@@ -1,10 +1,12 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
 // rustdoc-stripper-ignore-next
-//! Traits intended for subclassing [`CellRendererText`](crate::CellRendererText).
+//! Traits intended for subclassing
+//! [`CellRendererText`](crate::CellRendererText).
+
+use glib::{translate::*, GString};
 
 use crate::{prelude::*, subclass::prelude::*, CellRendererText};
-use glib::{translate::*, GString};
 
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 #[allow(deprecated)]
@@ -14,16 +16,17 @@ pub trait CellRendererTextImpl: CellRendererTextImplExt + CellRendererImpl {
     }
 }
 
-#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-#[allow(deprecated)]
-pub trait CellRendererTextImplExt: ObjectSubclass {
-    fn parent_edited(&self, path: &str, new_text: &str);
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::CellRendererTextImplExt> Sealed for T {}
 }
 
-impl<T: CellRendererTextImpl> CellRendererTextImplExt for T {
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+#[allow(deprecated)]
+pub trait CellRendererTextImplExt: sealed::Sealed + ObjectSubclass {
     fn parent_edited(&self, path: &str, new_text: &str) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkCellRendererTextClass;
             if let Some(f) = (*parent_class).edited {
                 f(
@@ -38,6 +41,8 @@ impl<T: CellRendererTextImpl> CellRendererTextImplExt for T {
         }
     }
 }
+
+impl<T: CellRendererTextImpl> CellRendererTextImplExt for T {}
 
 unsafe impl<T: CellRendererTextImpl> IsSubclassable<T> for CellRendererText {
     fn class_init(class: &mut ::glib::Class<Self>) {

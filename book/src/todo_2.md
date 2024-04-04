@@ -83,7 +83,7 @@ Then we add a reference to `settings` to `imp::Window`.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/2/window/imp.rs">listings/todo/2/window/imp.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/todo/2/window/imp.rs:struct_default}}
 ```
 
@@ -91,7 +91,7 @@ Again, we create functions to make it easier to access settings.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/2/window/mod.rs">listings/todo/2/window/mod.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/todo/2/window/mod.rs:settings}}
 ```
 
@@ -101,29 +101,49 @@ We will make use of them in the following snippets.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/2/task_object/mod.rs">listings/todo/2/task_object/mod.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/todo/2/task_object/mod.rs:impl}}
 ```
 
 Similar to the previous chapter, we let `settings` create the action.
 Then we add the newly created action "filter" to our window.
-We also add an action which allows us to remove done tasks. 
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/2/window/mod.rs">listings/todo/2/window/mod.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/todo/2/window/mod.rs:setup_actions}}
 ```
 
+We also add an action which allows us to remove done tasks. 
+This time we use another method called [`install_action`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/subclass/widget/trait.WidgetClassExt.html#method.install_action).
+This method has a couple of limitation.
+It can only be used when subclassing widgets, and it doesn't support stateful actions.
+On the flipside, its usage is concise and it has a corresponding sister-method [`install_action_async`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/subclass/widget/trait.WidgetClassExt.html#method.install_action_async) which we will use in one of the future chapters.
+
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/2/window/imp.rs">listings/todo/2/window/imp.rs</a>
+
+```rust
+{{#rustdoc_include ../listings/todo/2/window/imp.rs:object_subclass}}
+```
+
+This is the implementation of `remove_done_tasks`.
+We iterate through the `gio::ListStore` and remove all completed task objects.
+
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/2/window/mod.rs">listings/todo/2/window/mod.rs</a>
+
+```rust
+{{#rustdoc_include ../listings/todo/2/window/mod.rs:remove_done_tasks}}
+```
+
 After activating the action "win.filter", the corresponding setting will be changed.
-So we need a method which translates this setting into a filter that the [`gtk::FilterListModel`](../docs/gtk4/struct.FilterListModel.html) understands.
+So we need a method which translates this setting into a filter that the [`gtk::FilterListModel`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.FilterListModel.html) understands.
 The possible states are "All", "Open" and "Done". 
 We return `Some(filter)` for "Open" and "Done".
 If the state is "All" nothing has to be filtered out, so we return `None`.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/2/window/mod.rs">listings/todo/2/window/mod.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/todo/2/window/mod.rs:filter}}
 ```
 
@@ -133,7 +153,7 @@ Whenever the state of the key "filter" changes, we call the method `filter` agai
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/2/window/mod.rs">listings/todo/2/window/mod.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/todo/2/window/mod.rs:setup_tasks}}
 ```
 
@@ -143,14 +163,14 @@ Since this has to be done at the application level, `setup_shortcuts` takes a `g
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/2/main.rs">listings/todo/2/main.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/todo/2/main.rs:main}}
 ```
 
 Now that we created all these nice shortcuts we will want our users to find them.
 We do that by creating a shortcut window.
 Again we use an `ui` file to describe it, but here we don't want to use it as template for our custom widget.
-Instead we instantiate a widget of the existing class [`gtk::ShortcutsWindow`](../docs/gtk4/struct.ShortcutsWindow.html) with it. 
+Instead we instantiate a widget of the existing class [`gtk::ShortcutsWindow`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.ShortcutsWindow.html) with it. 
 
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/2/resources/shortcuts.ui">listings/todo/2/resources/shortcuts.ui</a>
@@ -159,9 +179,9 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 {{#rustdoc_include ../listings/todo/2/resources/shortcuts.ui}}
 ```
 
-The entries can be organized with [`gtk::ShortcutsSection`](../docs/gtk4/struct.ShortcutsSection.html) and [`gtk::ShortcutsGroup`](../docs/gtk4/struct.ShortcutsGroup.html).
+The entries can be organized with [`gtk::ShortcutsSection`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.ShortcutsSection.html) and [`gtk::ShortcutsGroup`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.ShortcutsGroup.html).
 If we specify the action name, we also don't have to repeat the keyboard accelerator.
-[`gtk::ShortcutsShortcut`](../docs/gtk4/struct.ShortcutsShortcut.html) looks it up on its own.
+[`gtk::ShortcutsShortcut`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.ShortcutsShortcut.html) looks it up on its own.
 
 
 > Note the way we set `action-name` for `ShortcutsShortcut`.
@@ -217,7 +237,7 @@ Doing so allows us to derive `Serialize` and `Deserialize` for `TodoData`.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/2/task_object/mod.rs">listings/todo/2/task_object/mod.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/todo/2/task_object/mod.rs:task_data}}
 ```
 
@@ -227,7 +247,7 @@ Then we return the file path.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/2/utils.rs">listings/todo/2/utils.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/todo/2/utils.rs:data_path}}
 ```
 
@@ -237,7 +257,7 @@ Then we serialize the `Vec` and store the data as a json file.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/2/window/imp.rs">listings/todo/2/window/imp.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/todo/2/window/imp.rs:window_impl}}
 ```
 
@@ -279,7 +299,7 @@ It might be the first time that we started the app and therefore there is no for
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/2/window/mod.rs">listings/todo/2/window/mod.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/todo/2/window/mod.rs:restore_data}}
 ```
 
@@ -287,7 +307,7 @@ Finally, we make sure that everything is set up in `constructed`.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/2/window/imp.rs">listings/todo/2/window/imp.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/todo/2/window/imp.rs:object_impl}}
 
 ```

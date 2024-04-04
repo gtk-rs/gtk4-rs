@@ -3,18 +3,17 @@
 // DO NOT EDIT
 #![allow(deprecated)]
 
-#[cfg(any(feature = "v4_6", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+#[cfg(feature = "v4_6")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
 use crate::GLAPI;
 use crate::{Display, DrawContext, Surface};
-#[cfg(any(feature = "v4_6", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+#[cfg(feature = "v4_6")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
 use glib::signal::{connect_raw, SignalHandlerId};
 use glib::{prelude::*, translate::*};
-#[cfg(any(feature = "v4_6", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
-use std::{boxed::Box as Box_, mem::transmute};
-use std::{fmt, mem, ptr};
+#[cfg(feature = "v4_6")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GdkGLContext")]
@@ -44,99 +43,16 @@ impl GLContext {
     }
 }
 
-pub trait GLContextExt: 'static {
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
-    #[doc(alias = "gdk_gl_context_get_allowed_apis")]
-    #[doc(alias = "get_allowed_apis")]
-    fn allowed_apis(&self) -> GLAPI;
-
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
-    #[doc(alias = "gdk_gl_context_get_api")]
-    #[doc(alias = "get_api")]
-    fn api(&self) -> GLAPI;
-
-    #[doc(alias = "gdk_gl_context_get_debug_enabled")]
-    #[doc(alias = "get_debug_enabled")]
-    fn is_debug_enabled(&self) -> bool;
-
-    #[doc(alias = "gdk_gl_context_get_display")]
-    #[doc(alias = "get_display")]
-    fn display(&self) -> Option<Display>;
-
-    #[doc(alias = "gdk_gl_context_get_forward_compatible")]
-    #[doc(alias = "get_forward_compatible")]
-    fn is_forward_compatible(&self) -> bool;
-
-    #[doc(alias = "gdk_gl_context_get_required_version")]
-    #[doc(alias = "get_required_version")]
-    fn required_version(&self) -> (i32, i32);
-
-    #[cfg_attr(feature = "v4_4", deprecated = "Since 4.4")]
-    #[allow(deprecated)]
-    #[doc(alias = "gdk_gl_context_get_shared_context")]
-    #[doc(alias = "get_shared_context")]
-    #[must_use]
-    fn shared_context(&self) -> Option<GLContext>;
-
-    #[doc(alias = "gdk_gl_context_get_surface")]
-    #[doc(alias = "get_surface")]
-    fn surface(&self) -> Option<Surface>;
-
-    #[doc(alias = "gdk_gl_context_get_use_es")]
-    #[doc(alias = "get_use_es")]
-    fn uses_es(&self) -> bool;
-
-    #[doc(alias = "gdk_gl_context_get_version")]
-    #[doc(alias = "get_version")]
-    fn version(&self) -> (i32, i32);
-
-    #[doc(alias = "gdk_gl_context_is_legacy")]
-    fn is_legacy(&self) -> bool;
-
-    #[cfg(any(feature = "v4_4", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
-    #[doc(alias = "gdk_gl_context_is_shared")]
-    fn is_shared(&self, other: &impl IsA<GLContext>) -> bool;
-
-    #[doc(alias = "gdk_gl_context_make_current")]
-    fn make_current(&self);
-
-    #[doc(alias = "gdk_gl_context_realize")]
-    fn realize(&self) -> Result<(), glib::Error>;
-
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
-    #[doc(alias = "gdk_gl_context_set_allowed_apis")]
-    fn set_allowed_apis(&self, apis: GLAPI);
-
-    #[doc(alias = "gdk_gl_context_set_debug_enabled")]
-    fn set_debug_enabled(&self, enabled: bool);
-
-    #[doc(alias = "gdk_gl_context_set_forward_compatible")]
-    fn set_forward_compatible(&self, compatible: bool);
-
-    #[doc(alias = "gdk_gl_context_set_required_version")]
-    fn set_required_version(&self, major: i32, minor: i32);
-
-    #[doc(alias = "gdk_gl_context_set_use_es")]
-    fn set_use_es(&self, use_es: i32);
-
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
-    #[doc(alias = "allowed-apis")]
-    fn connect_allowed_apis_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
-    #[doc(alias = "api")]
-    fn connect_api_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::GLContext>> Sealed for T {}
 }
 
-impl<O: IsA<GLContext>> GLContextExt for O {
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+pub trait GLContextExt: IsA<GLContext> + sealed::Sealed + 'static {
+    #[cfg(feature = "v4_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
+    #[doc(alias = "gdk_gl_context_get_allowed_apis")]
+    #[doc(alias = "get_allowed_apis")]
     fn allowed_apis(&self) -> GLAPI {
         unsafe {
             from_glib(ffi::gdk_gl_context_get_allowed_apis(
@@ -145,12 +61,16 @@ impl<O: IsA<GLContext>> GLContextExt for O {
         }
     }
 
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[cfg(feature = "v4_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
+    #[doc(alias = "gdk_gl_context_get_api")]
+    #[doc(alias = "get_api")]
     fn api(&self) -> GLAPI {
         unsafe { from_glib(ffi::gdk_gl_context_get_api(self.as_ref().to_glib_none().0)) }
     }
 
+    #[doc(alias = "gdk_gl_context_get_debug_enabled")]
+    #[doc(alias = "get_debug_enabled")]
     fn is_debug_enabled(&self) -> bool {
         unsafe {
             from_glib(ffi::gdk_gl_context_get_debug_enabled(
@@ -159,6 +79,8 @@ impl<O: IsA<GLContext>> GLContextExt for O {
         }
     }
 
+    #[doc(alias = "gdk_gl_context_get_display")]
+    #[doc(alias = "get_display")]
     fn display(&self) -> Option<Display> {
         unsafe {
             from_glib_none(ffi::gdk_gl_context_get_display(
@@ -167,6 +89,8 @@ impl<O: IsA<GLContext>> GLContextExt for O {
         }
     }
 
+    #[doc(alias = "gdk_gl_context_get_forward_compatible")]
+    #[doc(alias = "get_forward_compatible")]
     fn is_forward_compatible(&self) -> bool {
         unsafe {
             from_glib(ffi::gdk_gl_context_get_forward_compatible(
@@ -175,10 +99,12 @@ impl<O: IsA<GLContext>> GLContextExt for O {
         }
     }
 
+    #[doc(alias = "gdk_gl_context_get_required_version")]
+    #[doc(alias = "get_required_version")]
     fn required_version(&self) -> (i32, i32) {
         unsafe {
-            let mut major = mem::MaybeUninit::uninit();
-            let mut minor = mem::MaybeUninit::uninit();
+            let mut major = std::mem::MaybeUninit::uninit();
+            let mut minor = std::mem::MaybeUninit::uninit();
             ffi::gdk_gl_context_get_required_version(
                 self.as_ref().to_glib_none().0,
                 major.as_mut_ptr(),
@@ -188,7 +114,11 @@ impl<O: IsA<GLContext>> GLContextExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_4", deprecated = "Since 4.4")]
     #[allow(deprecated)]
+    #[doc(alias = "gdk_gl_context_get_shared_context")]
+    #[doc(alias = "get_shared_context")]
+    #[must_use]
     fn shared_context(&self) -> Option<GLContext> {
         unsafe {
             from_glib_none(ffi::gdk_gl_context_get_shared_context(
@@ -197,6 +127,8 @@ impl<O: IsA<GLContext>> GLContextExt for O {
         }
     }
 
+    #[doc(alias = "gdk_gl_context_get_surface")]
+    #[doc(alias = "get_surface")]
     fn surface(&self) -> Option<Surface> {
         unsafe {
             from_glib_none(ffi::gdk_gl_context_get_surface(
@@ -205,6 +137,8 @@ impl<O: IsA<GLContext>> GLContextExt for O {
         }
     }
 
+    #[doc(alias = "gdk_gl_context_get_use_es")]
+    #[doc(alias = "get_use_es")]
     fn uses_es(&self) -> bool {
         unsafe {
             from_glib(ffi::gdk_gl_context_get_use_es(
@@ -213,10 +147,12 @@ impl<O: IsA<GLContext>> GLContextExt for O {
         }
     }
 
+    #[doc(alias = "gdk_gl_context_get_version")]
+    #[doc(alias = "get_version")]
     fn version(&self) -> (i32, i32) {
         unsafe {
-            let mut major = mem::MaybeUninit::uninit();
-            let mut minor = mem::MaybeUninit::uninit();
+            let mut major = std::mem::MaybeUninit::uninit();
+            let mut minor = std::mem::MaybeUninit::uninit();
             ffi::gdk_gl_context_get_version(
                 self.as_ref().to_glib_none().0,
                 major.as_mut_ptr(),
@@ -226,6 +162,7 @@ impl<O: IsA<GLContext>> GLContextExt for O {
         }
     }
 
+    #[doc(alias = "gdk_gl_context_is_legacy")]
     fn is_legacy(&self) -> bool {
         unsafe {
             from_glib(ffi::gdk_gl_context_is_legacy(
@@ -234,8 +171,9 @@ impl<O: IsA<GLContext>> GLContextExt for O {
         }
     }
 
-    #[cfg(any(feature = "v4_4", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+    #[cfg(feature = "v4_4")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
+    #[doc(alias = "gdk_gl_context_is_shared")]
     fn is_shared(&self, other: &impl IsA<GLContext>) -> bool {
         unsafe {
             from_glib(ffi::gdk_gl_context_is_shared(
@@ -245,15 +183,17 @@ impl<O: IsA<GLContext>> GLContextExt for O {
         }
     }
 
+    #[doc(alias = "gdk_gl_context_make_current")]
     fn make_current(&self) {
         unsafe {
             ffi::gdk_gl_context_make_current(self.as_ref().to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gdk_gl_context_realize")]
     fn realize(&self) -> Result<(), glib::Error> {
         unsafe {
-            let mut error = ptr::null_mut();
+            let mut error = std::ptr::null_mut();
             let is_ok = ffi::gdk_gl_context_realize(self.as_ref().to_glib_none().0, &mut error);
             debug_assert_eq!(is_ok == glib::ffi::GFALSE, !error.is_null());
             if error.is_null() {
@@ -264,14 +204,16 @@ impl<O: IsA<GLContext>> GLContextExt for O {
         }
     }
 
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[cfg(feature = "v4_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
+    #[doc(alias = "gdk_gl_context_set_allowed_apis")]
     fn set_allowed_apis(&self, apis: GLAPI) {
         unsafe {
             ffi::gdk_gl_context_set_allowed_apis(self.as_ref().to_glib_none().0, apis.into_glib());
         }
     }
 
+    #[doc(alias = "gdk_gl_context_set_debug_enabled")]
     fn set_debug_enabled(&self, enabled: bool) {
         unsafe {
             ffi::gdk_gl_context_set_debug_enabled(
@@ -281,6 +223,7 @@ impl<O: IsA<GLContext>> GLContextExt for O {
         }
     }
 
+    #[doc(alias = "gdk_gl_context_set_forward_compatible")]
     fn set_forward_compatible(&self, compatible: bool) {
         unsafe {
             ffi::gdk_gl_context_set_forward_compatible(
@@ -290,20 +233,23 @@ impl<O: IsA<GLContext>> GLContextExt for O {
         }
     }
 
+    #[doc(alias = "gdk_gl_context_set_required_version")]
     fn set_required_version(&self, major: i32, minor: i32) {
         unsafe {
             ffi::gdk_gl_context_set_required_version(self.as_ref().to_glib_none().0, major, minor);
         }
     }
 
+    #[doc(alias = "gdk_gl_context_set_use_es")]
     fn set_use_es(&self, use_es: i32) {
         unsafe {
             ffi::gdk_gl_context_set_use_es(self.as_ref().to_glib_none().0, use_es);
         }
     }
 
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[cfg(feature = "v4_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
+    #[doc(alias = "allowed-apis")]
     fn connect_allowed_apis_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_allowed_apis_trampoline<
             P: IsA<GLContext>,
@@ -321,7 +267,7 @@ impl<O: IsA<GLContext>> GLContextExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::allowed-apis\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_allowed_apis_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -329,8 +275,9 @@ impl<O: IsA<GLContext>> GLContextExt for O {
         }
     }
 
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[cfg(feature = "v4_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
+    #[doc(alias = "api")]
     fn connect_api_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_api_trampoline<P: IsA<GLContext>, F: Fn(&P) + 'static>(
             this: *mut ffi::GdkGLContext,
@@ -345,7 +292,7 @@ impl<O: IsA<GLContext>> GLContextExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::api\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_api_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -354,8 +301,4 @@ impl<O: IsA<GLContext>> GLContextExt for O {
     }
 }
 
-impl fmt::Display for GLContext {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("GLContext")
-    }
-}
+impl<O: IsA<GLContext>> GLContextExt for O {}

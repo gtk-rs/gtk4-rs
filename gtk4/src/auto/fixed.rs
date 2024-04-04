@@ -6,7 +6,6 @@ use crate::{
     Accessible, AccessibleRole, Align, Buildable, ConstraintTarget, LayoutManager, Overflow, Widget,
 };
 use glib::{prelude::*, translate::*};
-use std::{fmt, mem};
 
 glib::wrapper! {
     #[doc(alias = "GtkFixed")]
@@ -249,34 +248,18 @@ impl FixedBuilder {
     }
 }
 
-pub trait FixedExt: 'static {
-    #[doc(alias = "gtk_fixed_get_child_position")]
-    #[doc(alias = "get_child_position")]
-    fn child_position(&self, widget: &impl IsA<Widget>) -> (f64, f64);
-
-    #[doc(alias = "gtk_fixed_get_child_transform")]
-    #[doc(alias = "get_child_transform")]
-    fn child_transform(&self, widget: &impl IsA<Widget>) -> Option<gsk::Transform>;
-
-    #[doc(alias = "gtk_fixed_move")]
-    #[doc(alias = "move")]
-    fn move_(&self, widget: &impl IsA<Widget>, x: f64, y: f64);
-
-    #[doc(alias = "gtk_fixed_put")]
-    fn put(&self, widget: &impl IsA<Widget>, x: f64, y: f64);
-
-    #[doc(alias = "gtk_fixed_remove")]
-    fn remove(&self, widget: &impl IsA<Widget>);
-
-    #[doc(alias = "gtk_fixed_set_child_transform")]
-    fn set_child_transform(&self, widget: &impl IsA<Widget>, transform: Option<&gsk::Transform>);
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::Fixed>> Sealed for T {}
 }
 
-impl<O: IsA<Fixed>> FixedExt for O {
+pub trait FixedExt: IsA<Fixed> + sealed::Sealed + 'static {
+    #[doc(alias = "gtk_fixed_get_child_position")]
+    #[doc(alias = "get_child_position")]
     fn child_position(&self, widget: &impl IsA<Widget>) -> (f64, f64) {
         unsafe {
-            let mut x = mem::MaybeUninit::uninit();
-            let mut y = mem::MaybeUninit::uninit();
+            let mut x = std::mem::MaybeUninit::uninit();
+            let mut y = std::mem::MaybeUninit::uninit();
             ffi::gtk_fixed_get_child_position(
                 self.as_ref().to_glib_none().0,
                 widget.as_ref().to_glib_none().0,
@@ -287,6 +270,8 @@ impl<O: IsA<Fixed>> FixedExt for O {
         }
     }
 
+    #[doc(alias = "gtk_fixed_get_child_transform")]
+    #[doc(alias = "get_child_transform")]
     fn child_transform(&self, widget: &impl IsA<Widget>) -> Option<gsk::Transform> {
         unsafe {
             from_glib_none(ffi::gtk_fixed_get_child_transform(
@@ -296,6 +281,8 @@ impl<O: IsA<Fixed>> FixedExt for O {
         }
     }
 
+    #[doc(alias = "gtk_fixed_move")]
+    #[doc(alias = "move")]
     fn move_(&self, widget: &impl IsA<Widget>, x: f64, y: f64) {
         unsafe {
             ffi::gtk_fixed_move(
@@ -307,6 +294,7 @@ impl<O: IsA<Fixed>> FixedExt for O {
         }
     }
 
+    #[doc(alias = "gtk_fixed_put")]
     fn put(&self, widget: &impl IsA<Widget>, x: f64, y: f64) {
         unsafe {
             ffi::gtk_fixed_put(
@@ -318,6 +306,7 @@ impl<O: IsA<Fixed>> FixedExt for O {
         }
     }
 
+    #[doc(alias = "gtk_fixed_remove")]
     fn remove(&self, widget: &impl IsA<Widget>) {
         unsafe {
             ffi::gtk_fixed_remove(
@@ -327,6 +316,7 @@ impl<O: IsA<Fixed>> FixedExt for O {
         }
     }
 
+    #[doc(alias = "gtk_fixed_set_child_transform")]
     fn set_child_transform(&self, widget: &impl IsA<Widget>, transform: Option<&gsk::Transform>) {
         unsafe {
             ffi::gtk_fixed_set_child_transform(
@@ -338,8 +328,4 @@ impl<O: IsA<Fixed>> FixedExt for O {
     }
 }
 
-impl fmt::Display for Fixed {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("Fixed")
-    }
-}
+impl<O: IsA<Fixed>> FixedExt for O {}

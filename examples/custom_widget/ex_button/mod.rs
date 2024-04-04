@@ -10,12 +10,6 @@ glib::wrapper! {
 
 impl Default for ExButton {
     fn default() -> Self {
-        Self::new()
-    }
-}
-
-impl ExButton {
-    pub fn new() -> Self {
         glib::Object::new()
     }
 }

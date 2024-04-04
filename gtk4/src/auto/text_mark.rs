@@ -4,7 +4,6 @@
 
 use crate::TextBuffer;
 use glib::{prelude::*, translate::*};
-use std::fmt;
 
 glib::wrapper! {
     #[doc(alias = "GtkTextMark")]
@@ -80,32 +79,14 @@ impl TextMarkBuilder {
     }
 }
 
-pub trait TextMarkExt: 'static {
-    #[doc(alias = "gtk_text_mark_get_buffer")]
-    #[doc(alias = "get_buffer")]
-    fn buffer(&self) -> Option<TextBuffer>;
-
-    #[doc(alias = "gtk_text_mark_get_deleted")]
-    #[doc(alias = "get_deleted")]
-    fn is_deleted(&self) -> bool;
-
-    #[doc(alias = "gtk_text_mark_get_left_gravity")]
-    #[doc(alias = "get_left_gravity")]
-    fn is_left_gravity(&self) -> bool;
-
-    #[doc(alias = "gtk_text_mark_get_name")]
-    #[doc(alias = "get_name")]
-    fn name(&self) -> Option<glib::GString>;
-
-    #[doc(alias = "gtk_text_mark_get_visible")]
-    #[doc(alias = "get_visible")]
-    fn is_visible(&self) -> bool;
-
-    #[doc(alias = "gtk_text_mark_set_visible")]
-    fn set_visible(&self, setting: bool);
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::TextMark>> Sealed for T {}
 }
 
-impl<O: IsA<TextMark>> TextMarkExt for O {
+pub trait TextMarkExt: IsA<TextMark> + sealed::Sealed + 'static {
+    #[doc(alias = "gtk_text_mark_get_buffer")]
+    #[doc(alias = "get_buffer")]
     fn buffer(&self) -> Option<TextBuffer> {
         unsafe {
             from_glib_none(ffi::gtk_text_mark_get_buffer(
@@ -114,6 +95,8 @@ impl<O: IsA<TextMark>> TextMarkExt for O {
         }
     }
 
+    #[doc(alias = "gtk_text_mark_get_deleted")]
+    #[doc(alias = "get_deleted")]
     fn is_deleted(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_text_mark_get_deleted(
@@ -122,6 +105,8 @@ impl<O: IsA<TextMark>> TextMarkExt for O {
         }
     }
 
+    #[doc(alias = "gtk_text_mark_get_left_gravity")]
+    #[doc(alias = "get_left_gravity")]
     fn is_left_gravity(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_text_mark_get_left_gravity(
@@ -130,10 +115,14 @@ impl<O: IsA<TextMark>> TextMarkExt for O {
         }
     }
 
+    #[doc(alias = "gtk_text_mark_get_name")]
+    #[doc(alias = "get_name")]
     fn name(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::gtk_text_mark_get_name(self.as_ref().to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_text_mark_get_visible")]
+    #[doc(alias = "get_visible")]
     fn is_visible(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_text_mark_get_visible(
@@ -142,6 +131,7 @@ impl<O: IsA<TextMark>> TextMarkExt for O {
         }
     }
 
+    #[doc(alias = "gtk_text_mark_set_visible")]
     fn set_visible(&self, setting: bool) {
         unsafe {
             ffi::gtk_text_mark_set_visible(self.as_ref().to_glib_none().0, setting.into_glib());
@@ -149,8 +139,4 @@ impl<O: IsA<TextMark>> TextMarkExt for O {
     }
 }
 
-impl fmt::Display for TextMark {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("TextMark")
-    }
-}
+impl<O: IsA<TextMark>> TextMarkExt for O {}

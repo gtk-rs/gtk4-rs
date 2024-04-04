@@ -1,14 +1,12 @@
 mod data_set;
 use std::str::FromStr;
 
-use gtk::prelude::*;
-use gtk::{gdk, glib};
+use gtk::{gdk, glib, prelude::*};
 
 fn main() -> glib::ExitCode {
-    let application = gtk::Application::new(
-        Some("com.github.gtk-rs.examples.flowbox"),
-        Default::default(),
-    );
+    let application = gtk::Application::builder()
+        .application_id("com.github.gtk-rs.examples.flowbox")
+        .build();
 
     application.connect_activate(build_ui);
     application.run()
@@ -41,7 +39,7 @@ fn build_ui(app: &gtk::Application) {
         .build();
 
     window.set_child(Some(&scrolled_window));
-    window.show();
+    window.present();
 }
 
 fn create_color_button(color: &'static str) -> gtk::Button {
@@ -53,7 +51,7 @@ fn create_color_button(color: &'static str) -> gtk::Button {
 
     let rgba = gdk::RGBA::from_str(color).unwrap();
     drawing_area.set_draw_func(move |_, cr, _width, _height| {
-        GdkCairoContextExt::set_source_rgba(cr, &rgba);
+        cr.set_source_color(&rgba);
         cr.paint().expect("Invalid cairo surface state");
     });
     button.set_child(Some(&drawing_area));

@@ -1,14 +1,18 @@
 use std::cell::RefCell;
 
-use gtk::glib::{self, Properties};
-use gtk::prelude::*;
-use gtk::subclass::prelude::*;
+use gtk::{glib, prelude::*, subclass::prelude::*};
 
-#[derive(Debug, Properties)]
+#[derive(Debug, glib::Properties)]
 #[properties(wrapper_type = super::CustomOrientable)]
 pub struct CustomOrientable {
     first_label: RefCell<Option<gtk::Widget>>,
     second_label: RefCell<Option<gtk::Widget>>,
+    // Every widget that implements Orientable has to define a "orientation"
+    // property like below, gtk::Orientation::Horizontal is a placeholder
+    // for the initial value.
+    //
+    // glib::ParamFlags::CONSTRUCT allows us to set that property the moment
+    // we create a new instance of the widget
     #[property(get, set=Self::set_orientation, builder(gtk::Orientation::Horizontal))]
     orientation: RefCell<gtk::Orientation>,
 }
@@ -65,24 +69,6 @@ impl ObjectImpl for CustomOrientable {
         if let Some(child) = self.second_label.borrow_mut().take() {
             child.unparent();
         }
-    }
-
-    // Every widget that implements Orientable has to define a "orientation"
-    // property like below, gtk::Orientation::Horizontal is a placeholder
-    // for the initial value.
-    //
-    // glib::ParamFlags::CONSTRUCT allows us to set that property the moment
-    // we create a new instance of the widget
-    fn properties() -> &'static [glib::ParamSpec] {
-        Self::derived_properties()
-    }
-
-    fn set_property(&self, id: usize, value: &glib::Value, pspec: &glib::ParamSpec) {
-        self.derived_set_property(id, value, pspec)
-    }
-
-    fn property(&self, id: usize, pspec: &glib::ParamSpec) -> glib::Value {
-        self.derived_property(id, pspec)
     }
 }
 

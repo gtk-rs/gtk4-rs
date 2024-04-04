@@ -1,8 +1,9 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
+use std::mem;
+
 use glib::translate::*;
 use graphene::{Point, Rect, Size};
-use std::mem;
 
 glib::wrapper! {
     #[doc(alias = "GskRoundedRect")]

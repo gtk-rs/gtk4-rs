@@ -2,13 +2,28 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+#[cfg(feature = "v4_12")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+use crate::SectionModel;
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::boxed::Box as Box_;
 
+#[cfg(feature = "v4_12")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+glib::wrapper! {
+    #[doc(alias = "GtkMapListModel")]
+    pub struct MapListModel(Object<ffi::GtkMapListModel, ffi::GtkMapListModelClass>) @implements gio::ListModel, SectionModel;
+
+    match fn {
+        type_ => || ffi::gtk_map_list_model_get_type(),
+    }
+}
+
+#[cfg(not(any(feature = "v4_12")))]
 glib::wrapper! {
     #[doc(alias = "GtkMapListModel")]
     pub struct MapListModel(Object<ffi::GtkMapListModel, ffi::GtkMapListModelClass>) @implements gio::ListModel;
@@ -31,14 +46,14 @@ impl MapListModel {
             user_data: glib::ffi::gpointer,
         ) -> *mut glib::gobject_ffi::GObject {
             let item = from_glib_full(item);
-            let callback: &P = &*(user_data as *mut _);
+            let callback = &*(user_data as *mut P);
             (*callback)(&item).to_glib_full()
         }
         let map_func = Some(map_func_func::<P> as _);
         unsafe extern "C" fn user_destroy_func<P: Fn(&glib::Object) -> glib::Object + 'static>(
             data: glib::ffi::gpointer,
         ) {
-            let _callback: Box_<P> = Box_::from_raw(data as *mut _);
+            let _callback = Box_::from_raw(data as *mut P);
         }
         let destroy_call3 = Some(user_destroy_func::<P> as _);
         let super_callback0: Box_<P> = map_func_data;
@@ -71,14 +86,14 @@ impl MapListModel {
             user_data: glib::ffi::gpointer,
         ) -> *mut glib::gobject_ffi::GObject {
             let item = from_glib_full(item);
-            let callback: &P = &*(user_data as *mut _);
+            let callback = &*(user_data as *mut P);
             (*callback)(&item).to_glib_full()
         }
         let map_func = Some(map_func_func::<P> as _);
         unsafe extern "C" fn user_destroy_func<P: Fn(&glib::Object) -> glib::Object + 'static>(
             data: glib::ffi::gpointer,
         ) {
-            let _callback: Box_<P> = Box_::from_raw(data as *mut _);
+            let _callback = Box_::from_raw(data as *mut P);
         }
         let destroy_call3 = Some(user_destroy_func::<P> as _);
         let super_callback0: Box_<P> = map_func_data;
@@ -117,17 +132,11 @@ impl MapListModel {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::has-map\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_has_map_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
         }
-    }
-}
-
-impl fmt::Display for MapListModel {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("MapListModel")
     }
 }

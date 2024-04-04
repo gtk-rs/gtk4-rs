@@ -1,6 +1,6 @@
 mod imp;
 
-use glib::{BindingFlags, Object};
+use glib::Object;
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
 use gtk::{glib, pango};
@@ -34,7 +34,8 @@ impl TaskRow {
         // Bind `task_object.completed` to `task_row.completed_button.active`
         let completed_button_binding = task_object
             .bind_property("completed", &completed_button, "active")
-            .flags(BindingFlags::SYNC_CREATE | BindingFlags::BIDIRECTIONAL)
+            .bidirectional()
+            .sync_create()
             .build();
         // Save binding
         bindings.push(completed_button_binding);
@@ -42,7 +43,7 @@ impl TaskRow {
         // Bind `task_object.content` to `task_row.content_label.label`
         let content_label_binding = task_object
             .bind_property("content", &content_label, "label")
-            .flags(BindingFlags::SYNC_CREATE)
+            .sync_create()
             .build();
         // Save binding
         bindings.push(content_label_binding);
@@ -50,7 +51,7 @@ impl TaskRow {
         // Bind `task_object.completed` to `task_row.content_label.attributes`
         let content_label_binding = task_object
             .bind_property("completed", &content_label, "attributes")
-            .flags(BindingFlags::SYNC_CREATE)
+            .sync_create()
             .transform_to(|_, active| {
                 let attribute_list = AttrList::new();
                 if active {

@@ -3,8 +3,7 @@
 // DO NOT EDIT
 
 use crate::RenderNodeType;
-use glib::translate::*;
-use std::{fmt, ptr};
+use glib::{prelude::*, translate::*};
 
 glib::wrapper! {
     #[doc(alias = "GskRenderNode")]
@@ -16,7 +15,7 @@ glib::wrapper! {
     }
 }
 
-impl glib::StaticType for RenderNode {
+impl StaticType for RenderNode {
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gsk_render_node_get_type()) }
     }
@@ -70,7 +69,7 @@ impl RenderNode {
     #[doc(alias = "gsk_render_node_write_to_file")]
     pub fn write_to_file(&self, filename: impl AsRef<std::path::Path>) -> Result<(), glib::Error> {
         unsafe {
-            let mut error = ptr::null_mut();
+            let mut error = std::ptr::null_mut();
             let is_ok = ffi::gsk_render_node_write_to_file(
                 self.as_ref().to_glib_none().0,
                 filename.as_ref().to_glib_none().0,
@@ -83,11 +82,5 @@ impl RenderNode {
                 Err(from_glib_full(error))
             }
         }
-    }
-}
-
-impl fmt::Display for RenderNode {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("RenderNode")
     }
 }

@@ -1,12 +1,14 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{prelude::*, DeleteType, MovementStep, Text, Widget};
+use std::mem::transmute;
+
 use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
-    GString, IntoGStr,
+    GString,
 };
-use std::mem::transmute;
+
+use crate::{prelude::*, DeleteType, MovementStep, Text, Widget};
 
 impl Text {
     pub fn connect_activate<F: Fn(&Text) + 'static>(&self, f: F) -> SignalHandlerId {

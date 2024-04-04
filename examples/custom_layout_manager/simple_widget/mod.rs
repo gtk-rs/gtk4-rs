@@ -1,10 +1,12 @@
 mod imp;
 
+use gtk::{
+    glib::{self, clone},
+    prelude::*,
+    subclass::prelude::*,
+};
+
 use crate::custom_layout::CustomLayout;
-use glib::clone;
-use gtk::glib;
-use gtk::prelude::*;
-use gtk::subclass::prelude::*;
 
 glib::wrapper! {
     pub struct SimpleWidget(ObjectSubclass<imp::SimpleWidget>)
@@ -13,15 +15,11 @@ glib::wrapper! {
 
 impl Default for SimpleWidget {
     fn default() -> Self {
-        Self::new()
+        glib::Object::new()
     }
 }
 
 impl SimpleWidget {
-    pub fn new() -> Self {
-        glib::Object::new()
-    }
-
     pub fn add_child<W: IsA<gtk::Widget>>(&self, widget: &W) {
         widget.set_parent(self);
     }
@@ -41,7 +39,7 @@ impl SimpleWidget {
         imp.tick_id.replace(Some(tick_id));
     }
 
-    pub fn transition(&self) -> glib::Continue {
+    pub fn transition(&self) -> glib::ControlFlow {
         let imp = self.imp();
         let now = std::time::Instant::now();
         self.queue_allocate();
@@ -73,9 +71,9 @@ impl SimpleWidget {
                 layout_manager.set_position(0.0);
             }
             let _ = imp.tick_id.borrow_mut().take();
-            return glib::Continue(false);
+            return glib::ControlFlow::Break;
         }
 
-        glib::Continue(true)
+        glib::ControlFlow::Continue
     }
 }

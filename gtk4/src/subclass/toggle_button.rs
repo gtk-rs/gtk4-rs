@@ -3,8 +3,9 @@
 // rustdoc-stripper-ignore-next
 //! Traits intended for subclassing [`ToggleButton`](crate::ToggleButton).
 
-use crate::{prelude::*, subclass::prelude::*, ToggleButton};
 use glib::translate::*;
+
+use crate::{prelude::*, subclass::prelude::*, ToggleButton};
 
 pub trait ToggleButtonImpl: ToggleButtonImplExt + ButtonImpl {
     fn toggled(&self) {
@@ -12,14 +13,15 @@ pub trait ToggleButtonImpl: ToggleButtonImplExt + ButtonImpl {
     }
 }
 
-pub trait ToggleButtonImplExt: ObjectSubclass {
-    fn parent_toggled(&self);
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::ToggleButtonImplExt> Sealed for T {}
 }
 
-impl<T: ToggleButtonImpl> ToggleButtonImplExt for T {
+pub trait ToggleButtonImplExt: sealed::Sealed + ObjectSubclass {
     fn parent_toggled(&self) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkToggleButtonClass;
             if let Some(f) = (*parent_class).toggled {
                 f(self
@@ -31,6 +33,8 @@ impl<T: ToggleButtonImpl> ToggleButtonImplExt for T {
         }
     }
 }
+
+impl<T: ToggleButtonImpl> ToggleButtonImplExt for T {}
 
 unsafe impl<T: ToggleButtonImpl> IsSubclassable<T> for ToggleButton {
     fn class_init(class: &mut glib::Class<Self>) {

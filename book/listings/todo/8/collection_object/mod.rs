@@ -1,6 +1,6 @@
 mod imp;
 
-use adw::prelude::{ListModelExtManual, *};
+use adw::prelude::*;
 use adw::subclass::prelude::*;
 use glib::Object;
 use gtk::{gio, glib};
@@ -21,24 +21,14 @@ impl CollectionObject {
             .build()
     }
 
-    pub fn tasks(&self) -> gio::ListStore {
-        self.imp()
-            .tasks
-            .get()
-            .expect("Could not get tasks.")
-            .clone()
-    }
-
     pub fn to_collection_data(&self) -> CollectionData {
         let title = self.imp().title.borrow().clone();
         let tasks_data = self
             .tasks()
-            .snapshot()
-            .iter()
-            .filter_map(Cast::downcast_ref::<TaskObject>)
-            .map(TaskObject::task_data)
+            .iter::<TaskObject>()
+            .filter_map(Result::ok)
+            .map(|task_object| task_object.task_data())
             .collect();
-
         CollectionData { title, tasks_data }
     }
 
@@ -50,7 +40,7 @@ impl CollectionObject {
             .map(TaskObject::from_task_data)
             .collect();
 
-        let tasks = gio::ListStore::new(TaskObject::static_type());
+        let tasks = gio::ListStore::new::<TaskObject>();
         tasks.extend_from_slice(&tasks_to_extend);
 
         Self::new(&title, tasks)

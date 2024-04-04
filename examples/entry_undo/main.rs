@@ -1,11 +1,9 @@
-use gtk::glib;
-use gtk::prelude::*;
+use gtk::{glib, prelude::*};
 
 fn main() -> glib::ExitCode {
-    let application = gtk::Application::new(
-        Some("com.github.gtk-rs.examples.entry-undo"),
-        Default::default(),
-    );
+    let application = gtk::Application::builder()
+        .application_id("com.github.gtk-rs.examples.entry-undo")
+        .build();
     application.connect_activate(build_ui);
     application.run()
 }
@@ -31,5 +29,5 @@ fn build_ui(application: &gtk::Application) {
 
     window.set_child(Some(&vbox));
 
-    window.show();
+    window.present();
 }

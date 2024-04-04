@@ -10,7 +10,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GtkAspectFrame")]
@@ -127,7 +127,7 @@ impl AspectFrame {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::child\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_child_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -150,7 +150,7 @@ impl AspectFrame {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::obey-child\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_obey_child_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -173,7 +173,7 @@ impl AspectFrame {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::ratio\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_ratio_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -196,7 +196,7 @@ impl AspectFrame {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::xalign\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_xalign_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -219,7 +219,7 @@ impl AspectFrame {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::yalign\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_yalign_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -469,11 +469,5 @@ impl AspectFrameBuilder {
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> AspectFrame {
         self.builder.build()
-    }
-}
-
-impl fmt::Display for AspectFrame {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("AspectFrame")
     }
 }

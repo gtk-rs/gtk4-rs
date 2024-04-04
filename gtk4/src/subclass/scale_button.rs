@@ -3,8 +3,9 @@
 // rustdoc-stripper-ignore-next
 //! Traits intended for subclassing [`ScaleButton`](crate::ScaleButton).
 
-use crate::{prelude::*, subclass::prelude::*, ScaleButton};
 use glib::translate::*;
+
+use crate::{prelude::*, subclass::prelude::*, ScaleButton};
 
 pub trait ScaleButtonImpl: ScaleButtonImplExt + WidgetImpl {
     fn value_changed(&self, new_value: f64) {
@@ -12,14 +13,15 @@ pub trait ScaleButtonImpl: ScaleButtonImplExt + WidgetImpl {
     }
 }
 
-pub trait ScaleButtonImplExt: ObjectSubclass {
-    fn parent_value_changed(&self, new_value: f64);
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::ScaleButtonImplExt> Sealed for T {}
 }
 
-impl<T: ScaleButtonImpl> ScaleButtonImplExt for T {
+pub trait ScaleButtonImplExt: sealed::Sealed + ObjectSubclass {
     fn parent_value_changed(&self, new_value: f64) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkScaleButtonClass;
             if let Some(f) = (*parent_class).value_changed {
                 f(
@@ -30,6 +32,8 @@ impl<T: ScaleButtonImpl> ScaleButtonImplExt for T {
         }
     }
 }
+
+impl<T: ScaleButtonImpl> ScaleButtonImplExt for T {}
 
 unsafe impl<T: ScaleButtonImpl> IsSubclassable<T> for ScaleButton {
     fn class_init(class: &mut glib::Class<Self>) {

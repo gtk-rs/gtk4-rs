@@ -1,10 +1,12 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
 // rustdoc-stripper-ignore-next
-//! Traits intended for implementing the [`Actionable`](crate::Actionable) interface.
+//! Traits intended for implementing the [`Actionable`](crate::Actionable)
+//! interface.
+
+use glib::{translate::*, GString, Variant};
 
 use crate::{prelude::*, subclass::prelude::*, Actionable};
-use glib::{translate::*, GString, Variant};
 
 pub trait ActionableImpl: WidgetImpl {
     #[doc(alias = "get_action_name")]
@@ -15,14 +17,12 @@ pub trait ActionableImpl: WidgetImpl {
     fn set_action_target_value(&self, value: Option<&Variant>);
 }
 
-pub trait ActionableImplExt: ObjectSubclass {
-    fn parent_action_name(&self) -> Option<GString>;
-    fn parent_action_target_value(&self) -> Option<Variant>;
-    fn parent_set_action_name(&self, name: Option<&str>);
-    fn parent_set_action_target_value(&self, value: Option<&Variant>);
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::ActionableImplExt> Sealed for T {}
 }
 
-impl<T: ActionableImpl> ActionableImplExt for T {
+pub trait ActionableImplExt: sealed::Sealed + ObjectSubclass {
     fn parent_action_name(&self) -> Option<GString> {
         unsafe {
             let type_data = Self::type_data();
@@ -89,6 +89,8 @@ impl<T: ActionableImpl> ActionableImplExt for T {
         }
     }
 }
+
+impl<T: ActionableImpl> ActionableImplExt for T {}
 
 unsafe impl<T: ActionableImpl> IsImplementable<T> for Actionable {
     fn interface_init(iface: &mut glib::Interface<Self>) {

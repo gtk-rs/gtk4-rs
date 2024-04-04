@@ -12,7 +12,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GtkLockButton")]
@@ -68,61 +68,61 @@ impl LockButton {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "text-lock")]
     pub fn text_lock(&self) -> Option<glib::GString> {
-        glib::ObjectExt::property(self, "text-lock")
+        ObjectExt::property(self, "text-lock")
     }
 
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "text-lock")]
     pub fn set_text_lock(&self, text_lock: Option<&str>) {
-        glib::ObjectExt::set_property(self, "text-lock", text_lock)
+        ObjectExt::set_property(self, "text-lock", text_lock)
     }
 
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "text-unlock")]
     pub fn text_unlock(&self) -> Option<glib::GString> {
-        glib::ObjectExt::property(self, "text-unlock")
+        ObjectExt::property(self, "text-unlock")
     }
 
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "text-unlock")]
     pub fn set_text_unlock(&self, text_unlock: Option<&str>) {
-        glib::ObjectExt::set_property(self, "text-unlock", text_unlock)
+        ObjectExt::set_property(self, "text-unlock", text_unlock)
     }
 
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "tooltip-lock")]
     pub fn tooltip_lock(&self) -> Option<glib::GString> {
-        glib::ObjectExt::property(self, "tooltip-lock")
+        ObjectExt::property(self, "tooltip-lock")
     }
 
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "tooltip-lock")]
     pub fn set_tooltip_lock(&self, tooltip_lock: Option<&str>) {
-        glib::ObjectExt::set_property(self, "tooltip-lock", tooltip_lock)
+        ObjectExt::set_property(self, "tooltip-lock", tooltip_lock)
     }
 
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "tooltip-not-authorized")]
     pub fn tooltip_not_authorized(&self) -> Option<glib::GString> {
-        glib::ObjectExt::property(self, "tooltip-not-authorized")
+        ObjectExt::property(self, "tooltip-not-authorized")
     }
 
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "tooltip-not-authorized")]
     pub fn set_tooltip_not_authorized(&self, tooltip_not_authorized: Option<&str>) {
-        glib::ObjectExt::set_property(self, "tooltip-not-authorized", tooltip_not_authorized)
+        ObjectExt::set_property(self, "tooltip-not-authorized", tooltip_not_authorized)
     }
 
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "tooltip-unlock")]
     pub fn tooltip_unlock(&self) -> Option<glib::GString> {
-        glib::ObjectExt::property(self, "tooltip-unlock")
+        ObjectExt::property(self, "tooltip-unlock")
     }
 
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "tooltip-unlock")]
     pub fn set_tooltip_unlock(&self, tooltip_unlock: Option<&str>) {
-        glib::ObjectExt::set_property(self, "tooltip-unlock", tooltip_unlock)
+        ObjectExt::set_property(self, "tooltip-unlock", tooltip_unlock)
     }
 
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
@@ -141,7 +141,7 @@ impl LockButton {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::permission\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_permission_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -165,7 +165,7 @@ impl LockButton {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::text-lock\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_text_lock_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -189,7 +189,7 @@ impl LockButton {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::text-unlock\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_text_unlock_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -213,7 +213,7 @@ impl LockButton {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::tooltip-lock\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_tooltip_lock_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -242,7 +242,7 @@ impl LockButton {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::tooltip-not-authorized\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_tooltip_not_authorized_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -266,7 +266,7 @@ impl LockButton {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::tooltip-unlock\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_tooltip_unlock_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -342,6 +342,14 @@ impl LockButtonBuilder {
             builder: self
                 .builder
                 .property("tooltip-unlock", tooltip_unlock.into()),
+        }
+    }
+
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn can_shrink(self, can_shrink: bool) -> Self {
+        Self {
+            builder: self.builder.property("can-shrink", can_shrink),
         }
     }
 
@@ -578,11 +586,5 @@ impl LockButtonBuilder {
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> LockButton {
         self.builder.build()
-    }
-}
-
-impl fmt::Display for LockButton {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("LockButton")
     }
 }

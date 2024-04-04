@@ -3,8 +3,9 @@
 // rustdoc-stripper-ignore-next
 //! Traits intended for subclassing [`RecentManager`](crate::RecentManager).
 
-use crate::{prelude::*, subclass::prelude::*, RecentManager};
 use glib::translate::*;
+
+use crate::{prelude::*, subclass::prelude::*, RecentManager};
 
 pub trait RecentManagerImpl: RecentManagerImplExt + ObjectImpl {
     fn changed(&self) {
@@ -12,14 +13,14 @@ pub trait RecentManagerImpl: RecentManagerImplExt + ObjectImpl {
     }
 }
 
-pub trait RecentManagerImplExt: ObjectSubclass {
-    fn parent_changed(&self);
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::RecentManagerImplExt> Sealed for T {}
 }
-
-impl<T: RecentManagerImpl> RecentManagerImplExt for T {
+pub trait RecentManagerImplExt: sealed::Sealed + ObjectSubclass {
     fn parent_changed(&self) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkRecentManagerClass;
             if let Some(f) = (*parent_class).changed {
                 f(self
@@ -31,6 +32,8 @@ impl<T: RecentManagerImpl> RecentManagerImplExt for T {
         }
     }
 }
+
+impl<T: RecentManagerImpl> RecentManagerImplExt for T {}
 
 unsafe impl<T: RecentManagerImpl> IsSubclassable<T> for RecentManager {
     fn class_init(class: &mut glib::Class<Self>) {

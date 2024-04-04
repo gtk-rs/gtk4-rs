@@ -1,19 +1,21 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{prelude::*, EventControllerKey};
+use std::{boxed::Box as Box_, mem::transmute};
+
 use gdk::Key;
 use glib::{signal::connect_raw, translate::*, SignalHandlerId};
-use std::{boxed::Box as Box_, mem::transmute};
+
+use crate::{prelude::*, EventControllerKey};
 
 impl EventControllerKey {
     pub fn connect_key_pressed<
-        F: Fn(&EventControllerKey, Key, u32, gdk::ModifierType) -> glib::signal::Inhibit + 'static,
+        F: Fn(&EventControllerKey, Key, u32, gdk::ModifierType) -> glib::Propagation + 'static,
     >(
         &self,
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn key_pressed_trampoline<
-            F: Fn(&EventControllerKey, Key, u32, gdk::ModifierType) -> glib::signal::Inhibit + 'static,
+            F: Fn(&EventControllerKey, Key, u32, gdk::ModifierType) -> glib::Propagation + 'static,
         >(
             this: *mut ffi::GtkEventControllerKey,
             keyval: libc::c_uint,

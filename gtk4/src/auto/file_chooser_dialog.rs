@@ -9,7 +9,6 @@ use crate::{
     ShortcutManager, Widget, Window,
 };
 use glib::prelude::*;
-use std::fmt;
 
 glib::wrapper! {
     #[doc(alias = "GtkFileChooserDialog")]
@@ -133,8 +132,8 @@ impl FileChooserDialogBuilder {
         }
     }
 
-    #[cfg(any(feature = "v4_2", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_2")))]
+    #[cfg(feature = "v4_2")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_2")))]
     pub fn handle_menubar_accel(self, handle_menubar_accel: bool) -> Self {
         Self {
             builder: self
@@ -193,8 +192,8 @@ impl FileChooserDialogBuilder {
         }
     }
 
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[cfg(feature = "v4_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     pub fn titlebar(self, titlebar: &impl IsA<Widget>) -> Self {
         Self {
             builder: self.builder.property("titlebar", titlebar.clone().upcast()),
@@ -426,11 +425,5 @@ impl FileChooserDialogBuilder {
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> FileChooserDialog {
         self.builder.build()
-    }
-}
-
-impl fmt::Display for FileChooserDialog {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("FileChooserDialog")
     }
 }

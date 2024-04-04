@@ -2,8 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use glib::translate::*;
-use std::{fmt, mem};
+use glib::{prelude::*, translate::*};
 
 glib::wrapper! {
     #[doc(alias = "GdkPadEvent")]
@@ -15,7 +14,7 @@ glib::wrapper! {
     }
 }
 
-impl glib::StaticType for PadEvent {
+impl StaticType for PadEvent {
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gdk_pad_event_get_type()) }
     }
@@ -26,8 +25,8 @@ impl PadEvent {
     #[doc(alias = "get_axis_value")]
     pub fn axis_value(&self) -> (u32, f64) {
         unsafe {
-            let mut index = mem::MaybeUninit::uninit();
-            let mut value = mem::MaybeUninit::uninit();
+            let mut index = std::mem::MaybeUninit::uninit();
+            let mut value = std::mem::MaybeUninit::uninit();
             ffi::gdk_pad_event_get_axis_value(
                 self.to_glib_none().0,
                 index.as_mut_ptr(),
@@ -47,8 +46,8 @@ impl PadEvent {
     #[doc(alias = "get_group_mode")]
     pub fn group_mode(&self) -> (u32, u32) {
         unsafe {
-            let mut group = mem::MaybeUninit::uninit();
-            let mut mode = mem::MaybeUninit::uninit();
+            let mut group = std::mem::MaybeUninit::uninit();
+            let mut mode = std::mem::MaybeUninit::uninit();
             ffi::gdk_pad_event_get_group_mode(
                 self.to_glib_none().0,
                 group.as_mut_ptr(),
@@ -56,11 +55,5 @@ impl PadEvent {
             );
             (group.assume_init(), mode.assume_init())
         }
-    }
-}
-
-impl fmt::Display for PadEvent {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("PadEvent")
     }
 }

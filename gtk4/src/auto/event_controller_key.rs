@@ -8,7 +8,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GtkEventControllerKey")]
@@ -86,7 +86,7 @@ impl EventControllerKey {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"im-update\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     im_update_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -95,26 +95,26 @@ impl EventControllerKey {
     }
 
     #[doc(alias = "modifiers")]
-    pub fn connect_modifiers<F: Fn(&Self, gdk::ModifierType) -> glib::signal::Inhibit + 'static>(
+    pub fn connect_modifiers<F: Fn(&Self, gdk::ModifierType) -> glib::Propagation + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn modifiers_trampoline<
-            F: Fn(&EventControllerKey, gdk::ModifierType) -> glib::signal::Inhibit + 'static,
+            F: Fn(&EventControllerKey, gdk::ModifierType) -> glib::Propagation + 'static,
         >(
             this: *mut ffi::GtkEventControllerKey,
-            keyval: gdk::ffi::GdkModifierType,
+            state: gdk::ffi::GdkModifierType,
             f: glib::ffi::gpointer,
         ) -> glib::ffi::gboolean {
             let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this), from_glib(keyval)).into_glib()
+            f(&from_glib_borrow(this), from_glib(state)).into_glib()
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"modifiers\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     modifiers_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -172,11 +172,5 @@ impl EventControllerKeyBuilder {
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> EventControllerKey {
         self.builder.build()
-    }
-}
-
-impl fmt::Display for EventControllerKey {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("EventControllerKey")
     }
 }

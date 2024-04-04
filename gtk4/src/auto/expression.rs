@@ -4,7 +4,7 @@
 
 use crate::ExpressionWatch;
 use glib::{prelude::*, translate::*};
-use std::{boxed::Box as Box_, fmt};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GtkExpression")]
@@ -16,7 +16,7 @@ glib::wrapper! {
     }
 }
 
-impl glib::StaticType for Expression {
+impl StaticType for Expression {
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gtk_expression_get_type()) }
     }
@@ -69,12 +69,12 @@ impl Expression {
     ) -> ExpressionWatch {
         let notify_data: Box_<P> = Box_::new(notify);
         unsafe extern "C" fn notify_func<P: Fn() + 'static>(user_data: glib::ffi::gpointer) {
-            let callback: &P = &*(user_data as *mut _);
+            let callback = &*(user_data as *mut P);
             (*callback)()
         }
         let notify = Some(notify_func::<P> as _);
         unsafe extern "C" fn user_destroy_func<P: Fn() + 'static>(data: glib::ffi::gpointer) {
-            let _callback: Box_<P> = Box_::from_raw(data as *mut _);
+            let _callback = Box_::from_raw(data as *mut P);
         }
         let destroy_call4 = Some(user_destroy_func::<P> as _);
         let super_callback0: Box_<P> = notify_data;
@@ -87,11 +87,5 @@ impl Expression {
                 destroy_call4,
             ))
         }
-    }
-}
-
-impl fmt::Display for Expression {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("Expression")
     }
 }

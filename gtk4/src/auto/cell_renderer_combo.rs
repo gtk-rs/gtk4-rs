@@ -9,7 +9,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GtkCellRendererCombo")]
@@ -39,30 +39,30 @@ impl CellRendererCombo {
 
     #[doc(alias = "has-entry")]
     pub fn has_entry(&self) -> bool {
-        glib::ObjectExt::property(self, "has-entry")
+        ObjectExt::property(self, "has-entry")
     }
 
     #[doc(alias = "has-entry")]
     pub fn set_has_entry(&self, has_entry: bool) {
-        glib::ObjectExt::set_property(self, "has-entry", has_entry)
+        ObjectExt::set_property(self, "has-entry", has_entry)
     }
 
     pub fn model(&self) -> Option<TreeModel> {
-        glib::ObjectExt::property(self, "model")
+        ObjectExt::property(self, "model")
     }
 
     pub fn set_model<P: IsA<TreeModel>>(&self, model: Option<&P>) {
-        glib::ObjectExt::set_property(self, "model", model)
+        ObjectExt::set_property(self, "model", model)
     }
 
     #[doc(alias = "text-column")]
     pub fn text_column(&self) -> i32 {
-        glib::ObjectExt::property(self, "text-column")
+        ObjectExt::property(self, "text-column")
     }
 
     #[doc(alias = "text-column")]
     pub fn set_text_column(&self, text_column: i32) {
-        glib::ObjectExt::set_property(self, "text-column", text_column)
+        ObjectExt::set_property(self, "text-column", text_column)
     }
 
     #[doc(alias = "changed")]
@@ -87,7 +87,7 @@ impl CellRendererCombo {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"changed\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     changed_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -110,7 +110,7 @@ impl CellRendererCombo {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::has-entry\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_has_entry_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -133,7 +133,7 @@ impl CellRendererCombo {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::model\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_model_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -156,7 +156,7 @@ impl CellRendererCombo {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::text-column\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_text_column_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -582,11 +582,5 @@ impl CellRendererComboBuilder {
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> CellRendererCombo {
         self.builder.build()
-    }
-}
-
-impl fmt::Display for CellRendererCombo {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("CellRendererCombo")
     }
 }

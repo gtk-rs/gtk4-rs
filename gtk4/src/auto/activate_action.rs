@@ -4,7 +4,6 @@
 
 use crate::ShortcutAction;
 use glib::translate::*;
-use std::fmt;
 
 glib::wrapper! {
     #[doc(alias = "GtkActivateAction")]
@@ -20,11 +19,5 @@ impl ActivateAction {
     pub fn get() -> ActivateAction {
         assert_initialized_main_thread!();
         unsafe { from_glib_none(ffi::gtk_activate_action_get()) }
-    }
-}
-
-impl fmt::Display for ActivateAction {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("ActivateAction")
     }
 }

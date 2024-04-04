@@ -1,9 +1,10 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::PadActionType;
+use std::ffi::CStr;
 
 use glib::translate::*;
-use std::ffi::CStr;
+
+use crate::PadActionType;
 
 glib::wrapper! {
     #[doc(alias = "GtkPadActionEntry")]

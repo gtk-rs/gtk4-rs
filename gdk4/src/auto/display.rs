@@ -3,8 +3,11 @@
 // DO NOT EDIT
 #![allow(deprecated)]
 
-#[cfg(any(feature = "v4_6", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+use crate::DmabufFormats;
+#[cfg(feature = "v4_6")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
 use crate::GLContext;
 use crate::{AppLaunchContext, Clipboard, Device, Event, Monitor, Seat, Surface};
 use glib::{
@@ -12,10 +15,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-#[cfg(any(feature = "v4_4", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
-use std::ptr;
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GdkDisplay")]
@@ -44,144 +44,39 @@ impl Display {
     }
 }
 
-impl fmt::Display for Display {
+impl std::fmt::Display for Display {
     #[inline]
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
         f.write_str(&DisplayExt::name(self))
     }
 }
 
-pub trait DisplayExt: 'static {
-    #[doc(alias = "gdk_display_beep")]
-    fn beep(&self);
-
-    #[doc(alias = "gdk_display_close")]
-    fn close(&self);
-
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
-    #[doc(alias = "gdk_display_create_gl_context")]
-    fn create_gl_context(&self) -> Result<GLContext, glib::Error>;
-
-    #[doc(alias = "gdk_display_device_is_grabbed")]
-    fn device_is_grabbed(&self, device: &impl IsA<Device>) -> bool;
-
-    #[doc(alias = "gdk_display_flush")]
-    fn flush(&self);
-
-    #[doc(alias = "gdk_display_get_app_launch_context")]
-    #[doc(alias = "get_app_launch_context")]
-    fn app_launch_context(&self) -> AppLaunchContext;
-
-    #[doc(alias = "gdk_display_get_clipboard")]
-    #[doc(alias = "get_clipboard")]
-    fn clipboard(&self) -> Clipboard;
-
-    #[doc(alias = "gdk_display_get_default_seat")]
-    #[doc(alias = "get_default_seat")]
-    fn default_seat(&self) -> Option<Seat>;
-
-    #[doc(alias = "gdk_display_get_monitor_at_surface")]
-    #[doc(alias = "get_monitor_at_surface")]
-    fn monitor_at_surface(&self, surface: &impl IsA<Surface>) -> Option<Monitor>;
-
-    #[doc(alias = "gdk_display_get_monitors")]
-    #[doc(alias = "get_monitors")]
-    fn monitors(&self) -> gio::ListModel;
-
-    #[doc(alias = "gdk_display_get_name")]
-    #[doc(alias = "get_name")]
-    fn name(&self) -> glib::GString;
-
-    #[doc(alias = "gdk_display_get_primary_clipboard")]
-    #[doc(alias = "get_primary_clipboard")]
-    fn primary_clipboard(&self) -> Clipboard;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gdk_display_get_startup_notification_id")]
-    #[doc(alias = "get_startup_notification_id")]
-    fn startup_notification_id(&self) -> Option<glib::GString>;
-
-    #[doc(alias = "gdk_display_is_closed")]
-    fn is_closed(&self) -> bool;
-
-    #[doc(alias = "gdk_display_is_composited")]
-    fn is_composited(&self) -> bool;
-
-    #[doc(alias = "gdk_display_is_rgba")]
-    fn is_rgba(&self) -> bool;
-
-    #[doc(alias = "gdk_display_list_seats")]
-    fn list_seats(&self) -> Vec<Seat>;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gdk_display_notify_startup_complete")]
-    fn notify_startup_complete(&self, startup_id: &str);
-
-    #[cfg(any(feature = "v4_4", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
-    #[doc(alias = "gdk_display_prepare_gl")]
-    fn prepare_gl(&self) -> Result<(), glib::Error>;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gdk_display_put_event")]
-    fn put_event(&self, event: impl AsRef<Event>);
-
-    #[doc(alias = "gdk_display_supports_input_shapes")]
-    fn supports_input_shapes(&self) -> bool;
-
-    #[doc(alias = "gdk_display_sync")]
-    fn sync(&self);
-
-    #[doc(alias = "input-shapes")]
-    fn is_input_shapes(&self) -> bool;
-
-    #[doc(alias = "closed")]
-    fn connect_closed<F: Fn(&Self, bool) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "opened")]
-    fn connect_opened<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "seat-added")]
-    fn connect_seat_added<F: Fn(&Self, &Seat) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "seat-removed")]
-    fn connect_seat_removed<F: Fn(&Self, &Seat) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "setting-changed")]
-    fn connect_setting_changed<F: Fn(&Self, &str) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "composited")]
-    fn connect_composited_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "input-shapes")]
-    fn connect_input_shapes_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "rgba")]
-    fn connect_rgba_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::Display>> Sealed for T {}
 }
 
-impl<O: IsA<Display>> DisplayExt for O {
+pub trait DisplayExt: IsA<Display> + sealed::Sealed + 'static {
+    #[doc(alias = "gdk_display_beep")]
     fn beep(&self) {
         unsafe {
             ffi::gdk_display_beep(self.as_ref().to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gdk_display_close")]
     fn close(&self) {
         unsafe {
             ffi::gdk_display_close(self.as_ref().to_glib_none().0);
         }
     }
 
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[cfg(feature = "v4_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
+    #[doc(alias = "gdk_display_create_gl_context")]
     fn create_gl_context(&self) -> Result<GLContext, glib::Error> {
         unsafe {
-            let mut error = ptr::null_mut();
+            let mut error = std::ptr::null_mut();
             let ret =
                 ffi::gdk_display_create_gl_context(self.as_ref().to_glib_none().0, &mut error);
             if error.is_null() {
@@ -192,6 +87,7 @@ impl<O: IsA<Display>> DisplayExt for O {
         }
     }
 
+    #[doc(alias = "gdk_display_device_is_grabbed")]
     fn device_is_grabbed(&self, device: &impl IsA<Device>) -> bool {
         unsafe {
             from_glib(ffi::gdk_display_device_is_grabbed(
@@ -201,12 +97,15 @@ impl<O: IsA<Display>> DisplayExt for O {
         }
     }
 
+    #[doc(alias = "gdk_display_flush")]
     fn flush(&self) {
         unsafe {
             ffi::gdk_display_flush(self.as_ref().to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gdk_display_get_app_launch_context")]
+    #[doc(alias = "get_app_launch_context")]
     fn app_launch_context(&self) -> AppLaunchContext {
         unsafe {
             from_glib_full(ffi::gdk_display_get_app_launch_context(
@@ -215,6 +114,8 @@ impl<O: IsA<Display>> DisplayExt for O {
         }
     }
 
+    #[doc(alias = "gdk_display_get_clipboard")]
+    #[doc(alias = "get_clipboard")]
     fn clipboard(&self) -> Clipboard {
         unsafe {
             from_glib_none(ffi::gdk_display_get_clipboard(
@@ -223,6 +124,8 @@ impl<O: IsA<Display>> DisplayExt for O {
         }
     }
 
+    #[doc(alias = "gdk_display_get_default_seat")]
+    #[doc(alias = "get_default_seat")]
     fn default_seat(&self) -> Option<Seat> {
         unsafe {
             from_glib_none(ffi::gdk_display_get_default_seat(
@@ -231,6 +134,20 @@ impl<O: IsA<Display>> DisplayExt for O {
         }
     }
 
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    #[doc(alias = "gdk_display_get_dmabuf_formats")]
+    #[doc(alias = "get_dmabuf_formats")]
+    fn dmabuf_formats(&self) -> DmabufFormats {
+        unsafe {
+            from_glib_none(ffi::gdk_display_get_dmabuf_formats(
+                self.as_ref().to_glib_none().0,
+            ))
+        }
+    }
+
+    #[doc(alias = "gdk_display_get_monitor_at_surface")]
+    #[doc(alias = "get_monitor_at_surface")]
     fn monitor_at_surface(&self, surface: &impl IsA<Surface>) -> Option<Monitor> {
         unsafe {
             from_glib_none(ffi::gdk_display_get_monitor_at_surface(
@@ -240,6 +157,8 @@ impl<O: IsA<Display>> DisplayExt for O {
         }
     }
 
+    #[doc(alias = "gdk_display_get_monitors")]
+    #[doc(alias = "get_monitors")]
     fn monitors(&self) -> gio::ListModel {
         unsafe {
             from_glib_none(ffi::gdk_display_get_monitors(
@@ -248,10 +167,14 @@ impl<O: IsA<Display>> DisplayExt for O {
         }
     }
 
+    #[doc(alias = "gdk_display_get_name")]
+    #[doc(alias = "get_name")]
     fn name(&self) -> glib::GString {
         unsafe { from_glib_none(ffi::gdk_display_get_name(self.as_ref().to_glib_none().0)) }
     }
 
+    #[doc(alias = "gdk_display_get_primary_clipboard")]
+    #[doc(alias = "get_primary_clipboard")]
     fn primary_clipboard(&self) -> Clipboard {
         unsafe {
             from_glib_none(ffi::gdk_display_get_primary_clipboard(
@@ -260,7 +183,10 @@ impl<O: IsA<Display>> DisplayExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gdk_display_get_startup_notification_id")]
+    #[doc(alias = "get_startup_notification_id")]
     fn startup_notification_id(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::gdk_display_get_startup_notification_id(
@@ -269,10 +195,12 @@ impl<O: IsA<Display>> DisplayExt for O {
         }
     }
 
+    #[doc(alias = "gdk_display_is_closed")]
     fn is_closed(&self) -> bool {
         unsafe { from_glib(ffi::gdk_display_is_closed(self.as_ref().to_glib_none().0)) }
     }
 
+    #[doc(alias = "gdk_display_is_composited")]
     fn is_composited(&self) -> bool {
         unsafe {
             from_glib(ffi::gdk_display_is_composited(
@@ -281,10 +209,12 @@ impl<O: IsA<Display>> DisplayExt for O {
         }
     }
 
+    #[doc(alias = "gdk_display_is_rgba")]
     fn is_rgba(&self) -> bool {
         unsafe { from_glib(ffi::gdk_display_is_rgba(self.as_ref().to_glib_none().0)) }
     }
 
+    #[doc(alias = "gdk_display_list_seats")]
     fn list_seats(&self) -> Vec<Seat> {
         unsafe {
             FromGlibPtrContainer::from_glib_container(ffi::gdk_display_list_seats(
@@ -293,7 +223,9 @@ impl<O: IsA<Display>> DisplayExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gdk_display_notify_startup_complete")]
     fn notify_startup_complete(&self, startup_id: &str) {
         unsafe {
             ffi::gdk_display_notify_startup_complete(
@@ -303,11 +235,12 @@ impl<O: IsA<Display>> DisplayExt for O {
         }
     }
 
-    #[cfg(any(feature = "v4_4", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+    #[cfg(feature = "v4_4")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
+    #[doc(alias = "gdk_display_prepare_gl")]
     fn prepare_gl(&self) -> Result<(), glib::Error> {
         unsafe {
-            let mut error = ptr::null_mut();
+            let mut error = std::ptr::null_mut();
             let is_ok = ffi::gdk_display_prepare_gl(self.as_ref().to_glib_none().0, &mut error);
             debug_assert_eq!(is_ok == glib::ffi::GFALSE, !error.is_null());
             if error.is_null() {
@@ -318,7 +251,9 @@ impl<O: IsA<Display>> DisplayExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gdk_display_put_event")]
     fn put_event(&self, event: impl AsRef<Event>) {
         unsafe {
             ffi::gdk_display_put_event(
@@ -328,6 +263,7 @@ impl<O: IsA<Display>> DisplayExt for O {
         }
     }
 
+    #[doc(alias = "gdk_display_supports_input_shapes")]
     fn supports_input_shapes(&self) -> bool {
         unsafe {
             from_glib(ffi::gdk_display_supports_input_shapes(
@@ -336,16 +272,30 @@ impl<O: IsA<Display>> DisplayExt for O {
         }
     }
 
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    #[doc(alias = "gdk_display_supports_shadow_width")]
+    fn supports_shadow_width(&self) -> bool {
+        unsafe {
+            from_glib(ffi::gdk_display_supports_shadow_width(
+                self.as_ref().to_glib_none().0,
+            ))
+        }
+    }
+
+    #[doc(alias = "gdk_display_sync")]
     fn sync(&self) {
         unsafe {
             ffi::gdk_display_sync(self.as_ref().to_glib_none().0);
         }
     }
 
+    #[doc(alias = "input-shapes")]
     fn is_input_shapes(&self) -> bool {
-        glib::ObjectExt::property(self.as_ref(), "input-shapes")
+        ObjectExt::property(self.as_ref(), "input-shapes")
     }
 
+    #[doc(alias = "closed")]
     fn connect_closed<F: Fn(&Self, bool) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn closed_trampoline<P: IsA<Display>, F: Fn(&P, bool) + 'static>(
             this: *mut ffi::GdkDisplay,
@@ -363,7 +313,7 @@ impl<O: IsA<Display>> DisplayExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"closed\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     closed_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -371,6 +321,7 @@ impl<O: IsA<Display>> DisplayExt for O {
         }
     }
 
+    #[doc(alias = "opened")]
     fn connect_opened<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn opened_trampoline<P: IsA<Display>, F: Fn(&P) + 'static>(
             this: *mut ffi::GdkDisplay,
@@ -384,7 +335,7 @@ impl<O: IsA<Display>> DisplayExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"opened\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     opened_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -392,6 +343,7 @@ impl<O: IsA<Display>> DisplayExt for O {
         }
     }
 
+    #[doc(alias = "seat-added")]
     fn connect_seat_added<F: Fn(&Self, &Seat) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn seat_added_trampoline<P: IsA<Display>, F: Fn(&P, &Seat) + 'static>(
             this: *mut ffi::GdkDisplay,
@@ -409,7 +361,7 @@ impl<O: IsA<Display>> DisplayExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"seat-added\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     seat_added_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -417,6 +369,7 @@ impl<O: IsA<Display>> DisplayExt for O {
         }
     }
 
+    #[doc(alias = "seat-removed")]
     fn connect_seat_removed<F: Fn(&Self, &Seat) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn seat_removed_trampoline<
             P: IsA<Display>,
@@ -437,7 +390,7 @@ impl<O: IsA<Display>> DisplayExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"seat-removed\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     seat_removed_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -445,6 +398,7 @@ impl<O: IsA<Display>> DisplayExt for O {
         }
     }
 
+    #[doc(alias = "setting-changed")]
     fn connect_setting_changed<F: Fn(&Self, &str) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn setting_changed_trampoline<
             P: IsA<Display>,
@@ -465,7 +419,7 @@ impl<O: IsA<Display>> DisplayExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"setting-changed\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     setting_changed_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -473,6 +427,7 @@ impl<O: IsA<Display>> DisplayExt for O {
         }
     }
 
+    #[doc(alias = "composited")]
     fn connect_composited_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_composited_trampoline<P: IsA<Display>, F: Fn(&P) + 'static>(
             this: *mut ffi::GdkDisplay,
@@ -487,7 +442,7 @@ impl<O: IsA<Display>> DisplayExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::composited\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_composited_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -495,6 +450,35 @@ impl<O: IsA<Display>> DisplayExt for O {
         }
     }
 
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    #[doc(alias = "dmabuf-formats")]
+    fn connect_dmabuf_formats_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_dmabuf_formats_trampoline<
+            P: IsA<Display>,
+            F: Fn(&P) + 'static,
+        >(
+            this: *mut ffi::GdkDisplay,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(Display::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::dmabuf-formats\0".as_ptr() as *const _,
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                    notify_dmabuf_formats_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[doc(alias = "input-shapes")]
     fn connect_input_shapes_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_input_shapes_trampoline<
             P: IsA<Display>,
@@ -512,7 +496,7 @@ impl<O: IsA<Display>> DisplayExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::input-shapes\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_input_shapes_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -520,6 +504,7 @@ impl<O: IsA<Display>> DisplayExt for O {
         }
     }
 
+    #[doc(alias = "rgba")]
     fn connect_rgba_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_rgba_trampoline<P: IsA<Display>, F: Fn(&P) + 'static>(
             this: *mut ffi::GdkDisplay,
@@ -534,11 +519,41 @@ impl<O: IsA<Display>> DisplayExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::rgba\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_rgba_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
         }
     }
+
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    #[doc(alias = "shadow-width")]
+    fn connect_shadow_width_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_shadow_width_trampoline<
+            P: IsA<Display>,
+            F: Fn(&P) + 'static,
+        >(
+            this: *mut ffi::GdkDisplay,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(Display::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::shadow-width\0".as_ptr() as *const _,
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                    notify_shadow_width_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
 }
+
+impl<O: IsA<Display>> DisplayExt for O {}

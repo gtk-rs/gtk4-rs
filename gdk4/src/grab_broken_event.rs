@@ -1,7 +1,8 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{EventType, GrabBrokenEvent};
 use std::fmt;
+
+use crate::{EventType, GrabBrokenEvent};
 
 define_event! {
     GrabBrokenEvent,

@@ -2,8 +2,6 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use std::fmt;
-
 glib::wrapper! {
     #[doc(alias = "GtkListItemFactory")]
     pub struct ListItemFactory(Object<ffi::GtkListItemFactory, ffi::GtkListItemFactoryClass>);
@@ -15,10 +13,4 @@ glib::wrapper! {
 
 impl ListItemFactory {
     pub const NONE: Option<&'static ListItemFactory> = None;
-}
-
-impl fmt::Display for ListItemFactory {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("ListItemFactory")
-    }
 }

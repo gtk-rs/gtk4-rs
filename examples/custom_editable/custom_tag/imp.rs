@@ -1,13 +1,12 @@
-use glib::clone;
-use glib::subclass::Signal;
-use glib::{ParamSpec, Properties};
-use gtk::glib;
-use gtk::prelude::*;
-use gtk::subclass::prelude::*;
-use once_cell::sync::Lazy;
-use std::cell::{Cell, RefCell};
+use std::{
+    cell::{Cell, RefCell},
+    sync::OnceLock,
+};
 
-#[derive(Debug, Properties)]
+use glib::{clone, subclass::Signal};
+use gtk::{glib, prelude::*, subclass::prelude::*};
+
+#[derive(Debug, glib::Properties)]
 #[properties(wrapper_type = super::CustomTag)]
 pub struct CustomTag {
     pub container: gtk::Box,
@@ -40,27 +39,16 @@ impl ObjectSubclass for CustomTag {
     }
 }
 
+#[glib::derived_properties]
 impl ObjectImpl for CustomTag {
-    fn properties() -> &'static [ParamSpec] {
-        Self::derived_properties()
-    }
-
-    fn property(&self, id: usize, pspec: &ParamSpec) -> glib::Value {
-        self.derived_property(id, pspec)
-    }
-
-    fn set_property(&self, id: usize, value: &glib::Value, pspec: &ParamSpec) {
-        self.derived_set_property(id, value, pspec)
-    }
-
     fn signals() -> &'static [Signal] {
-        static SIGNALS: Lazy<Vec<Signal>> = Lazy::new(|| {
+        static SIGNALS: OnceLock<Vec<Signal>> = OnceLock::new();
+        SIGNALS.get_or_init(|| {
             vec![
                 Signal::builder("closed").build(),
                 Signal::builder("clicked").build(),
             ]
-        });
-        SIGNALS.as_ref()
+        })
     }
 
     fn constructed(&self) {

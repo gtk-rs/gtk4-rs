@@ -1,8 +1,9 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
+use std::fmt;
+
 use gdk::RGBA;
 use glib::translate::*;
-use std::fmt;
 
 glib::wrapper! {
     #[doc(alias = "GskColorStop")]
@@ -22,9 +23,12 @@ impl ColorStop {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-pattern struct instance to construct [`ColorStop`] objects.
+    /// Creates a new builder-pattern struct instance to construct [`ColorStop`]
+    /// objects.
     ///
-    /// This method returns an instance of [`ColorStopBuilder`](crate::builders::ColorStopBuilder) which can be used to create [`ColorStop`] objects.
+    /// This method returns an instance of
+    /// [`ColorStopBuilder`](crate::builders::ColorStopBuilder) which can be
+    /// used to create [`ColorStop`] objects.
     pub fn builder() -> ColorStopBuilder {
         ColorStopBuilder::default()
     }

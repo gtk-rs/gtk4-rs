@@ -8,7 +8,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute, pin::Pin, ptr};
+use std::{boxed::Box as Box_, pin::Pin};
 
 glib::wrapper! {
     #[doc(alias = "GdkClipboard")]
@@ -68,7 +68,7 @@ impl Clipboard {
             res: *mut gio::ffi::GAsyncResult,
             user_data: glib::ffi::gpointer,
         ) {
-            let mut error = ptr::null_mut();
+            let mut error = std::ptr::null_mut();
             let ret =
                 ffi::gdk_clipboard_read_text_finish(_source_object as *mut _, res, &mut error);
             let result = if error.is_null() {
@@ -131,7 +131,7 @@ impl Clipboard {
             res: *mut gio::ffi::GAsyncResult,
             user_data: glib::ffi::gpointer,
         ) {
-            let mut error = ptr::null_mut();
+            let mut error = std::ptr::null_mut();
             let ret =
                 ffi::gdk_clipboard_read_texture_finish(_source_object as *mut _, res, &mut error);
             let result = if error.is_null() {
@@ -193,7 +193,7 @@ impl Clipboard {
             res: *mut gio::ffi::GAsyncResult,
             user_data: glib::ffi::gpointer,
         ) {
-            let mut error = ptr::null_mut();
+            let mut error = std::ptr::null_mut();
             let ret =
                 ffi::gdk_clipboard_read_value_finish(_source_object as *mut _, res, &mut error);
             let result = if error.is_null() {
@@ -291,7 +291,7 @@ impl Clipboard {
             res: *mut gio::ffi::GAsyncResult,
             user_data: glib::ffi::gpointer,
         ) {
-            let mut error = ptr::null_mut();
+            let mut error = std::ptr::null_mut();
             let _ = ffi::gdk_clipboard_store_finish(_source_object as *mut _, res, &mut error);
             let result = if error.is_null() {
                 Ok(())
@@ -340,7 +340,7 @@ impl Clipboard {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"changed\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     changed_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -363,7 +363,7 @@ impl Clipboard {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::content\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_content_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -386,7 +386,7 @@ impl Clipboard {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::formats\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_formats_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -409,17 +409,11 @@ impl Clipboard {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::local\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_local_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
         }
-    }
-}
-
-impl fmt::Display for Clipboard {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("Clipboard")
     }
 }

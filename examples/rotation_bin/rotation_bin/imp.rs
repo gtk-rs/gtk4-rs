@@ -1,12 +1,11 @@
-use graphene::Point;
-use gtk::subclass::prelude::*;
-use gtk::{glib, graphene, gsk, SizeRequestMode};
-use gtk::{glib::Properties, prelude::*};
-
-use super::Rotation;
 use std::cell::{Cell, RefCell};
 
-#[derive(Debug, Properties, Default)]
+use graphene::Point;
+use gtk::{glib, graphene, gsk, prelude::*, subclass::prelude::*, SizeRequestMode};
+
+use super::Rotation;
+
+#[derive(Debug, glib::Properties, Default)]
 #[properties(wrapper_type = super::RotationBin)]
 pub struct RotationBin {
     #[property(get, explicit_notify)]
@@ -22,19 +21,8 @@ impl ObjectSubclass for RotationBin {
     type ParentType = gtk::Widget;
 }
 
+#[glib::derived_properties]
 impl ObjectImpl for RotationBin {
-    fn properties() -> &'static [glib::ParamSpec] {
-        Self::derived_properties()
-    }
-
-    fn property(&self, id: usize, pspec: &glib::ParamSpec) -> glib::Value {
-        self.derived_property(id, pspec)
-    }
-
-    fn set_property(&self, id: usize, value: &glib::Value, pspec: &glib::ParamSpec) {
-        self.derived_set_property(id, value, pspec)
-    }
-
     fn dispose(&self) {
         if let Some(child) = self.child.borrow_mut().take() {
             child.unparent();
@@ -115,8 +103,8 @@ impl WidgetImpl for RotationBin {
         // If the orientation is horizontal and the rotation 0 or 180 degrees,
         // then pass through the child's measure directly
         //
-        // Otherwise return child's measure but discard minimum_baseline and natural_baseline
-        // as baseline is only useful for vertical orientations
+        // Otherwise return child's measure but discard minimum_baseline and
+        // natural_baseline as baseline is only useful for vertical orientations
         match (orientation, widget.rotation()) {
             (gtk::Orientation::Horizontal, Rotation::Normal | Rotation::Deg180) => {
                 child.measure(orientation, for_size)

@@ -1,7 +1,8 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::GLShader;
 use glib::translate::*;
+
+use crate::GLShader;
 
 impl GLShader {
     #[doc(alias = "gsk_gl_shader_get_arg_vec2")]

@@ -1,10 +1,11 @@
-use gtk::{glib, prelude::*, subclass::prelude::*};
 use std::{
     cell::{Cell, RefCell},
     f32::consts::PI,
     num::NonZeroU32,
     time::Instant,
 };
+
+use gtk::{glib, prelude::*, subclass::prelude::*};
 
 const STROKE_WIDTH: u32 = 2;
 const MARGIN: u32 = 8 + STROKE_WIDTH / 2;
@@ -41,7 +42,7 @@ impl ObjectImpl for FemtoVGArea {
         area.set_has_stencil_buffer(true);
         area.add_tick_callback(|area, _| {
             area.queue_render();
-            glib::Continue(true)
+            glib::ControlFlow::Continue
         });
         let click = gtk::GestureClick::new();
         let a = area.clone();
@@ -80,7 +81,7 @@ impl GLAreaImpl for FemtoVGArea {
             self.obj().scale_factor() as f32,
         );
     }
-    fn render(&self, _context: &gtk::gdk::GLContext) -> bool {
+    fn render(&self, _context: &gtk::gdk::GLContext) -> glib::Propagation {
         use femtovg::{Color, Paint, Path};
 
         self.ensure_canvas();
@@ -126,7 +127,7 @@ impl GLAreaImpl for FemtoVGArea {
         canvas.stroke_path(&mut path, &paint);
         canvas.flush();
 
-        true
+        glib::Propagation::Stop
     }
 }
 impl FemtoVGArea {
@@ -142,9 +143,10 @@ impl FemtoVGArea {
 
         static LOAD_FN: fn(&str) -> *const std::ffi::c_void =
             |s| epoxy::get_proc_addr(s) as *const _;
-        // SAFETY: Need to get the framebuffer id that gtk expects us to draw into, so femtovg
-        // knows which framebuffer to bind. This is safe as long as we call attach_buffers
-        // beforehand. Also unbind it here just in case, since this can be called outside render.
+        // SAFETY: Need to get the framebuffer id that gtk expects us to draw into, so
+        // femtovg knows which framebuffer to bind. This is safe as long as we
+        // call attach_buffers beforehand. Also unbind it here just in case,
+        // since this can be called outside render.
         let (mut renderer, fbo) = unsafe {
             let renderer =
                 renderer::OpenGl::new_from_function(LOAD_FN).expect("Cannot create renderer");

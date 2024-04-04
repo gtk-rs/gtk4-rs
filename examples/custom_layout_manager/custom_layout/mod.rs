@@ -1,25 +1,15 @@
 mod imp;
 
+use gtk::{glib, subclass::prelude::*};
+
 use crate::TOTAL_COLORS;
-use gtk::glib;
-use gtk::subclass::prelude::*;
 
 glib::wrapper! {
     pub struct CustomLayout(ObjectSubclass<imp::CustomLayout>)
         @extends gtk::LayoutManager;
 }
 
-impl Default for CustomLayout {
-    fn default() -> Self {
-        Self::new()
-    }
-}
-
 impl CustomLayout {
-    pub fn new() -> Self {
-        glib::Object::new()
-    }
-
     pub fn set_position(&self, position: f64) {
         self.imp().position.set(position);
     }

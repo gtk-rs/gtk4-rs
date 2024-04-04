@@ -3,8 +3,7 @@
 // DO NOT EDIT
 
 use crate::RenderNode;
-use glib::translate::*;
-use std::fmt;
+use glib::{prelude::*, translate::*};
 
 glib::wrapper! {
     #[doc(alias = "GskOpacityNode")]
@@ -16,7 +15,7 @@ glib::wrapper! {
     }
 }
 
-impl glib::StaticType for OpacityNode {
+impl StaticType for OpacityNode {
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gsk_opacity_node_get_type()) }
     }
@@ -44,11 +43,5 @@ impl OpacityNode {
     #[doc(alias = "get_opacity")]
     pub fn opacity(&self) -> f32 {
         unsafe { ffi::gsk_opacity_node_get_opacity(self.to_glib_none().0) }
-    }
-}
-
-impl fmt::Display for OpacityNode {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("OpacityNode")
     }
 }

@@ -11,7 +11,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GtkTreeExpander")]
@@ -43,8 +43,8 @@ impl TreeExpander {
         unsafe { from_glib_none(ffi::gtk_tree_expander_get_child(self.to_glib_none().0)) }
     }
 
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(feature = "v4_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "gtk_tree_expander_get_hide_expander")]
     #[doc(alias = "get_hide_expander")]
     pub fn hides_expander(&self) -> bool {
@@ -55,8 +55,8 @@ impl TreeExpander {
         }
     }
 
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(feature = "v4_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "gtk_tree_expander_get_indent_for_depth")]
     #[doc(alias = "get_indent_for_depth")]
     pub fn is_indent_for_depth(&self) -> bool {
@@ -67,8 +67,8 @@ impl TreeExpander {
         }
     }
 
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[cfg(feature = "v4_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     #[doc(alias = "gtk_tree_expander_get_indent_for_icon")]
     #[doc(alias = "get_indent_for_icon")]
     pub fn is_indent_for_icon(&self) -> bool {
@@ -101,8 +101,8 @@ impl TreeExpander {
         }
     }
 
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(feature = "v4_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "gtk_tree_expander_set_hide_expander")]
     pub fn set_hide_expander(&self, hide_expander: bool) {
         unsafe {
@@ -113,8 +113,8 @@ impl TreeExpander {
         }
     }
 
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(feature = "v4_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "gtk_tree_expander_set_indent_for_depth")]
     pub fn set_indent_for_depth(&self, indent_for_depth: bool) {
         unsafe {
@@ -125,8 +125,8 @@ impl TreeExpander {
         }
     }
 
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[cfg(feature = "v4_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     #[doc(alias = "gtk_tree_expander_set_indent_for_icon")]
     pub fn set_indent_for_icon(&self, indent_for_icon: bool) {
         unsafe {
@@ -159,7 +159,7 @@ impl TreeExpander {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::child\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_child_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -167,8 +167,8 @@ impl TreeExpander {
         }
     }
 
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(feature = "v4_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "hide-expander")]
     pub fn connect_hide_expander_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_hide_expander_trampoline<F: Fn(&TreeExpander) + 'static>(
@@ -184,7 +184,7 @@ impl TreeExpander {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::hide-expander\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_hide_expander_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -192,8 +192,8 @@ impl TreeExpander {
         }
     }
 
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(feature = "v4_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "indent-for-depth")]
     pub fn connect_indent_for_depth_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_indent_for_depth_trampoline<F: Fn(&TreeExpander) + 'static>(
@@ -209,7 +209,7 @@ impl TreeExpander {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::indent-for-depth\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_indent_for_depth_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -217,8 +217,8 @@ impl TreeExpander {
         }
     }
 
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[cfg(feature = "v4_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     #[doc(alias = "indent-for-icon")]
     pub fn connect_indent_for_icon_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_indent_for_icon_trampoline<F: Fn(&TreeExpander) + 'static>(
@@ -234,7 +234,7 @@ impl TreeExpander {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::indent-for-icon\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_indent_for_icon_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -257,7 +257,7 @@ impl TreeExpander {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::item\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_item_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -280,7 +280,7 @@ impl TreeExpander {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::list-row\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_list_row_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -317,24 +317,24 @@ impl TreeExpanderBuilder {
         }
     }
 
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(feature = "v4_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn hide_expander(self, hide_expander: bool) -> Self {
         Self {
             builder: self.builder.property("hide-expander", hide_expander),
         }
     }
 
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(feature = "v4_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn indent_for_depth(self, indent_for_depth: bool) -> Self {
         Self {
             builder: self.builder.property("indent-for-depth", indent_for_depth),
         }
     }
 
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[cfg(feature = "v4_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     pub fn indent_for_icon(self, indent_for_icon: bool) -> Self {
         Self {
             builder: self.builder.property("indent-for-icon", indent_for_icon),
@@ -536,11 +536,5 @@ impl TreeExpanderBuilder {
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> TreeExpander {
         self.builder.build()
-    }
-}
-
-impl fmt::Display for TreeExpander {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("TreeExpander")
     }
 }

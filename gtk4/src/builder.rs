@@ -1,8 +1,10 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{prelude::*, Builder};
-use glib::{translate::*, IntoGStr, Object};
 use std::path::Path;
+
+use glib::{translate::*, Object};
+
+use crate::{prelude::*, Builder};
 
 impl Builder {
     #[doc(alias = "gtk_builder_new_from_file")]
@@ -24,7 +26,7 @@ impl Builder {
             if ptr.is_null() {
                 None
             } else {
-                glib::gobject_ffi::g_object_ref(ptr as *mut glib::gobject_ffi::GObject);
+                glib::gobject_ffi::g_object_ref(ptr);
                 Some(from_glib_full(ptr))
             }
         }
@@ -34,6 +36,7 @@ impl Builder {
     #[doc(alias = "get_object")]
     pub fn object<T: IsA<Object>>(&self, name: impl IntoGStr) -> Option<T> {
         unsafe {
+            T::ensure_type();
             name.run_with_gstr(|name| {
                 Option::<Object>::from_glib_none(ffi::gtk_builder_get_object(
                     self.to_glib_none().0,

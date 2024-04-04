@@ -25,7 +25,7 @@ fn main() -> glib::ExitCode {
 }
 
 fn build_ui(app: &Application) {
-    // Create a new custom window and show it
+    // Create a new custom window and present it
     let window = Window::new(app);
     window.present();
 }

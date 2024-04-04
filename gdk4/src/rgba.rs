@@ -1,20 +1,23 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::RGBA;
-use glib::{translate::*, IntoGStr};
 use std::{fmt, str::FromStr};
 
-#[derive(Debug, Default)]
+use glib::translate::*;
+
+use crate::RGBA;
+
+#[derive(Debug)]
 // rustdoc-stripper-ignore-next
 /// A [builder-pattern] type to construct [`RGBA`] objects.
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 #[must_use = "The builder must be built to be used"]
-pub struct RGBABuilder {
-    red: Option<f32>,
-    green: Option<f32>,
-    blue: Option<f32>,
-    alpha: Option<f32>,
+pub struct RGBABuilder(RGBA);
+
+impl Default for RGBABuilder {
+    fn default() -> Self {
+        Self(RGBA::WHITE)
+    }
 }
 
 impl RGBABuilder {
@@ -25,22 +28,22 @@ impl RGBABuilder {
     }
 
     pub fn blue(mut self, blue: f32) -> Self {
-        self.blue = Some(blue);
+        self.0.set_blue(blue);
         self
     }
 
     pub fn green(mut self, green: f32) -> Self {
-        self.green = Some(green);
+        self.0.set_green(green);
         self
     }
 
     pub fn red(mut self, red: f32) -> Self {
-        self.red = Some(red);
+        self.0.set_red(red);
         self
     }
 
     pub fn alpha(mut self, alpha: f32) -> Self {
-        self.alpha = Some(alpha);
+        self.0.set_alpha(alpha);
         self
     }
 
@@ -48,41 +51,109 @@ impl RGBABuilder {
     /// Build the [`RGBA`].
     #[must_use = "The RGBA returned by this builder should probably be used"]
     pub fn build(self) -> RGBA {
-        let mut rgba = RGBA::WHITE;
-        if let Some(blue) = self.blue {
-            rgba.set_blue(blue);
-        }
-        if let Some(red) = self.red {
-            rgba.set_red(red);
-        }
-        if let Some(green) = self.green {
-            rgba.set_green(green);
-        }
-        if let Some(alpha) = self.alpha {
-            rgba.set_alpha(alpha);
-        }
-        rgba
+        self.0
     }
 }
 
 impl RGBA {
     #[inline]
-    pub fn new(red: f32, green: f32, blue: f32, alpha: f32) -> Self {
+    pub const fn new(red: f32, green: f32, blue: f32, alpha: f32) -> Self {
         skip_assert_initialized!();
-        unsafe {
-            Self::unsafe_from(ffi::GdkRGBA {
+        Self {
+            inner: ffi::GdkRGBA {
                 red,
                 green,
                 blue,
                 alpha,
-            })
+            },
         }
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-pattern struct instance to construct [`RGBA`] objects.
+    /// Creates an owned [`RGBA`] like `self` but with the given red value.
     ///
-    /// This method returns an instance of [`RGBABuilder`](crate::builders::RGBABuilder) which can be used to create [`RGBA`] objects.
+    /// # Example
+    ///
+    /// ```
+    /// # use gdk4::RGBA;
+    ///
+    /// let rgba = RGBA::new(1.0, 1.0, 1.0, 1.0);
+    /// assert_eq!(rgba.with_red(0.5), RGBA::new(0.5, 1.0, 1.0, 1.0));
+    /// ```
+    #[inline]
+    pub const fn with_red(self, red: f32) -> Self {
+        Self {
+            inner: ffi::GdkRGBA { red, ..self.inner },
+        }
+    }
+
+    // rustdoc-stripper-ignore-next
+    /// Creates an owned [`RGBA`] like `self` but with the given green value.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use gdk4::RGBA;
+    ///
+    /// let rgba = RGBA::new(1.0, 1.0, 1.0, 1.0);
+    /// assert_eq!(rgba.with_green(0.5), RGBA::new(1.0, 0.5, 1.0, 1.0));
+    /// ```
+    #[inline]
+    pub const fn with_green(self, green: f32) -> Self {
+        Self {
+            inner: ffi::GdkRGBA {
+                green,
+                ..self.inner
+            },
+        }
+    }
+
+    // rustdoc-stripper-ignore-next
+    /// Creates an owned [`RGBA`] like `self` but with the given blue value.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use gdk4::RGBA;
+    ///
+    /// let rgba = RGBA::new(1.0, 1.0, 1.0, 1.0);
+    /// assert_eq!(rgba.with_blue(0.5), RGBA::new(1.0, 1.0, 0.5, 1.0));
+    /// ```
+    #[inline]
+    pub const fn with_blue(self, blue: f32) -> Self {
+        Self {
+            inner: ffi::GdkRGBA { blue, ..self.inner },
+        }
+    }
+
+    // rustdoc-stripper-ignore-next
+    /// Creates an owned [`RGBA`] like `self` but with the given alpha value.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use gdk4::RGBA;
+    ///
+    /// let rgba = RGBA::new(1.0, 1.0, 1.0, 1.0);
+    /// assert_eq!(rgba.with_alpha(0.5), RGBA::new(1.0, 1.0, 1.0, 0.5));
+    /// ```
+    #[inline]
+    pub const fn with_alpha(self, alpha: f32) -> Self {
+        Self {
+            inner: ffi::GdkRGBA {
+                alpha,
+                ..self.inner
+            },
+        }
+    }
+
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-pattern struct instance to construct [`RGBA`]
+    /// objects.
+    ///
+    /// This method returns an instance of
+    /// [`RGBABuilder`](crate::builders::RGBABuilder) which can be used to
+    /// create [`RGBA`] objects.
     pub fn builder() -> RGBABuilder {
         RGBABuilder::default()
     }
@@ -142,59 +213,17 @@ impl RGBA {
         }
     }
 
-    pub const BLACK: RGBA = Self {
-        inner: ffi::GdkRGBA {
-            red: 0f32,
-            green: 0f32,
-            blue: 0f32,
-            alpha: 1f32,
-        },
-    };
+    pub const BLACK: RGBA = Self::new(0f32, 0f32, 0f32, 1f32);
 
-    pub const BLUE: RGBA = Self {
-        inner: ffi::GdkRGBA {
-            red: 0f32,
-            green: 0f32,
-            blue: 1f32,
-            alpha: 1f32,
-        },
-    };
+    pub const BLUE: RGBA = Self::new(0f32, 0f32, 1f32, 1f32);
 
-    pub const GREEN: RGBA = Self {
-        inner: ffi::GdkRGBA {
-            red: 0f32,
-            green: 1f32,
-            blue: 0f32,
-            alpha: 1f32,
-        },
-    };
+    pub const GREEN: RGBA = Self::new(0f32, 1f32, 0f32, 1f32);
 
-    pub const RED: RGBA = Self {
-        inner: ffi::GdkRGBA {
-            red: 1f32,
-            green: 0f32,
-            blue: 0f32,
-            alpha: 1f32,
-        },
-    };
+    pub const RED: RGBA = Self::new(1f32, 0f32, 0f32, 1f32);
 
-    pub const WHITE: RGBA = Self {
-        inner: ffi::GdkRGBA {
-            red: 1f32,
-            green: 1f32,
-            blue: 1f32,
-            alpha: 1f32,
-        },
-    };
+    pub const WHITE: RGBA = Self::new(1f32, 1f32, 1f32, 1f32);
 
-    pub const TRANSPARENT: RGBA = Self {
-        inner: ffi::GdkRGBA {
-            red: 0f32,
-            green: 0f32,
-            blue: 0f32,
-            alpha: 0f32,
-        },
-    };
+    pub const TRANSPARENT: RGBA = Self::new(0f32, 0f32, 0f32, 0f32);
 }
 
 impl fmt::Debug for RGBA {

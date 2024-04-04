@@ -11,7 +11,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GtkMenuButton")]
@@ -37,16 +37,16 @@ impl MenuButton {
         MenuButtonBuilder::new()
     }
 
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(feature = "v4_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "gtk_menu_button_get_active")]
     #[doc(alias = "get_active")]
     pub fn is_active(&self) -> bool {
         unsafe { from_glib(ffi::gtk_menu_button_get_active(self.to_glib_none().0)) }
     }
 
-    #[cfg(any(feature = "v4_4", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+    #[cfg(feature = "v4_4")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
     #[doc(alias = "gtk_menu_button_get_always_show_arrow")]
     #[doc(alias = "get_always_show_arrow")]
     pub fn must_always_show_arrow(&self) -> bool {
@@ -57,8 +57,16 @@ impl MenuButton {
         }
     }
 
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "gtk_menu_button_get_can_shrink")]
+    #[doc(alias = "get_can_shrink")]
+    pub fn can_shrink(&self) -> bool {
+        unsafe { from_glib(ffi::gtk_menu_button_get_can_shrink(self.to_glib_none().0)) }
+    }
+
+    #[cfg(feature = "v4_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     #[doc(alias = "gtk_menu_button_get_child")]
     #[doc(alias = "get_child")]
     pub fn child(&self) -> Option<Widget> {
@@ -101,8 +109,8 @@ impl MenuButton {
         unsafe { from_glib_none(ffi::gtk_menu_button_get_popover(self.to_glib_none().0)) }
     }
 
-    #[cfg(any(feature = "v4_4", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+    #[cfg(feature = "v4_4")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
     #[doc(alias = "gtk_menu_button_get_primary")]
     #[doc(alias = "get_primary")]
     pub fn is_primary(&self) -> bool {
@@ -133,8 +141,8 @@ impl MenuButton {
         }
     }
 
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(feature = "v4_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "gtk_menu_button_set_active")]
     pub fn set_active(&self, active: bool) {
         unsafe {
@@ -142,8 +150,8 @@ impl MenuButton {
         }
     }
 
-    #[cfg(any(feature = "v4_4", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+    #[cfg(feature = "v4_4")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
     #[doc(alias = "gtk_menu_button_set_always_show_arrow")]
     pub fn set_always_show_arrow(&self, always_show_arrow: bool) {
         unsafe {
@@ -154,8 +162,17 @@ impl MenuButton {
         }
     }
 
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "gtk_menu_button_set_can_shrink")]
+    pub fn set_can_shrink(&self, can_shrink: bool) {
+        unsafe {
+            ffi::gtk_menu_button_set_can_shrink(self.to_glib_none().0, can_shrink.into_glib());
+        }
+    }
+
+    #[cfg(feature = "v4_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     #[doc(alias = "gtk_menu_button_set_child")]
     pub fn set_child(&self, child: Option<&impl IsA<Widget>>) {
         unsafe {
@@ -174,14 +191,14 @@ impl MenuButton {
             user_data: glib::ffi::gpointer,
         ) {
             let menu_button = from_glib_borrow(menu_button);
-            let callback: &P = &*(user_data as *mut _);
+            let callback = &*(user_data as *mut P);
             (*callback)(&menu_button)
         }
         let func = Some(func_func::<P> as _);
         unsafe extern "C" fn destroy_notify_func<P: Fn(&MenuButton) + 'static>(
             data: glib::ffi::gpointer,
         ) {
-            let _callback: Box_<P> = Box_::from_raw(data as *mut _);
+            let _callback = Box_::from_raw(data as *mut P);
         }
         let destroy_call3 = Some(destroy_notify_func::<P> as _);
         let super_callback0: Box_<P> = func_data;
@@ -243,8 +260,8 @@ impl MenuButton {
         }
     }
 
-    #[cfg(any(feature = "v4_4", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+    #[cfg(feature = "v4_4")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
     #[doc(alias = "gtk_menu_button_set_primary")]
     pub fn set_primary(&self, primary: bool) {
         unsafe {
@@ -262,8 +279,8 @@ impl MenuButton {
         }
     }
 
-    #[cfg(any(feature = "v4_4", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+    #[cfg(feature = "v4_4")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
     #[doc(alias = "activate")]
     pub fn connect_activate<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn activate_trampoline<F: Fn(&MenuButton) + 'static>(
@@ -278,7 +295,7 @@ impl MenuButton {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"activate\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     activate_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -286,14 +303,14 @@ impl MenuButton {
         }
     }
 
-    #[cfg(any(feature = "v4_4", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+    #[cfg(feature = "v4_4")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
     pub fn emit_activate(&self) {
         self.emit_by_name::<()>("activate", &[]);
     }
 
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(feature = "v4_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "active")]
     pub fn connect_active_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_active_trampoline<F: Fn(&MenuButton) + 'static>(
@@ -309,7 +326,7 @@ impl MenuButton {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::active\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_active_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -317,8 +334,8 @@ impl MenuButton {
         }
     }
 
-    #[cfg(any(feature = "v4_4", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+    #[cfg(feature = "v4_4")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
     #[doc(alias = "always-show-arrow")]
     pub fn connect_always_show_arrow_notify<F: Fn(&Self) + 'static>(
         &self,
@@ -337,7 +354,7 @@ impl MenuButton {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::always-show-arrow\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_always_show_arrow_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -345,8 +362,33 @@ impl MenuButton {
         }
     }
 
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "can-shrink")]
+    pub fn connect_can_shrink_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_can_shrink_trampoline<F: Fn(&MenuButton) + 'static>(
+            this: *mut ffi::GtkMenuButton,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::can-shrink\0".as_ptr() as *const _,
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                    notify_can_shrink_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg(feature = "v4_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     #[doc(alias = "child")]
     pub fn connect_child_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_child_trampoline<F: Fn(&MenuButton) + 'static>(
@@ -362,7 +404,7 @@ impl MenuButton {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::child\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_child_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -385,7 +427,7 @@ impl MenuButton {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::direction\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_direction_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -408,7 +450,7 @@ impl MenuButton {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::has-frame\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_has_frame_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -431,7 +473,7 @@ impl MenuButton {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::icon-name\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_icon_name_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -454,7 +496,7 @@ impl MenuButton {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::label\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_label_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -477,7 +519,7 @@ impl MenuButton {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::menu-model\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_menu_model_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -500,7 +542,7 @@ impl MenuButton {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::popover\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_popover_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -508,8 +550,8 @@ impl MenuButton {
         }
     }
 
-    #[cfg(any(feature = "v4_4", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+    #[cfg(feature = "v4_4")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
     #[doc(alias = "primary")]
     pub fn connect_primary_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_primary_trampoline<F: Fn(&MenuButton) + 'static>(
@@ -525,7 +567,7 @@ impl MenuButton {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::primary\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_primary_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -548,7 +590,7 @@ impl MenuButton {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::use-underline\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_use_underline_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -579,16 +621,16 @@ impl MenuButtonBuilder {
         }
     }
 
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(feature = "v4_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn active(self, active: bool) -> Self {
         Self {
             builder: self.builder.property("active", active),
         }
     }
 
-    #[cfg(any(feature = "v4_4", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+    #[cfg(feature = "v4_4")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
     pub fn always_show_arrow(self, always_show_arrow: bool) -> Self {
         Self {
             builder: self
@@ -597,8 +639,16 @@ impl MenuButtonBuilder {
         }
     }
 
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn can_shrink(self, can_shrink: bool) -> Self {
+        Self {
+            builder: self.builder.property("can-shrink", can_shrink),
+        }
+    }
+
+    #[cfg(feature = "v4_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     pub fn child(self, child: &impl IsA<Widget>) -> Self {
         Self {
             builder: self.builder.property("child", child.clone().upcast()),
@@ -643,8 +693,8 @@ impl MenuButtonBuilder {
         }
     }
 
-    #[cfg(any(feature = "v4_4", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+    #[cfg(feature = "v4_4")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
     pub fn primary(self, primary: bool) -> Self {
         Self {
             builder: self.builder.property("primary", primary),
@@ -846,11 +896,5 @@ impl MenuButtonBuilder {
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> MenuButton {
         self.builder.build()
-    }
-}
-
-impl fmt::Display for MenuButton {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("MenuButton")
     }
 }

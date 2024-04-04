@@ -8,7 +8,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GtkPrintOperationPreview")]
@@ -23,33 +23,20 @@ impl PrintOperationPreview {
     pub const NONE: Option<&'static PrintOperationPreview> = None;
 }
 
-pub trait PrintOperationPreviewExt: 'static {
-    #[doc(alias = "gtk_print_operation_preview_end_preview")]
-    fn end_preview(&self);
-
-    #[doc(alias = "gtk_print_operation_preview_is_selected")]
-    fn is_selected(&self, page_nr: i32) -> bool;
-
-    #[doc(alias = "gtk_print_operation_preview_render_page")]
-    fn render_page(&self, page_nr: i32);
-
-    #[doc(alias = "got-page-size")]
-    fn connect_got_page_size<F: Fn(&Self, &PrintContext, &PageSetup) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-
-    #[doc(alias = "ready")]
-    fn connect_ready<F: Fn(&Self, &PrintContext) + 'static>(&self, f: F) -> SignalHandlerId;
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::PrintOperationPreview>> Sealed for T {}
 }
 
-impl<O: IsA<PrintOperationPreview>> PrintOperationPreviewExt for O {
+pub trait PrintOperationPreviewExt: IsA<PrintOperationPreview> + sealed::Sealed + 'static {
+    #[doc(alias = "gtk_print_operation_preview_end_preview")]
     fn end_preview(&self) {
         unsafe {
             ffi::gtk_print_operation_preview_end_preview(self.as_ref().to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_print_operation_preview_is_selected")]
     fn is_selected(&self, page_nr: i32) -> bool {
         unsafe {
             from_glib(ffi::gtk_print_operation_preview_is_selected(
@@ -59,12 +46,14 @@ impl<O: IsA<PrintOperationPreview>> PrintOperationPreviewExt for O {
         }
     }
 
+    #[doc(alias = "gtk_print_operation_preview_render_page")]
     fn render_page(&self, page_nr: i32) {
         unsafe {
             ffi::gtk_print_operation_preview_render_page(self.as_ref().to_glib_none().0, page_nr);
         }
     }
 
+    #[doc(alias = "got-page-size")]
     fn connect_got_page_size<F: Fn(&Self, &PrintContext, &PageSetup) + 'static>(
         &self,
         f: F,
@@ -90,7 +79,7 @@ impl<O: IsA<PrintOperationPreview>> PrintOperationPreviewExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"got-page-size\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     got_page_size_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -98,6 +87,7 @@ impl<O: IsA<PrintOperationPreview>> PrintOperationPreviewExt for O {
         }
     }
 
+    #[doc(alias = "ready")]
     fn connect_ready<F: Fn(&Self, &PrintContext) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn ready_trampoline<
             P: IsA<PrintOperationPreview>,
@@ -118,7 +108,7 @@ impl<O: IsA<PrintOperationPreview>> PrintOperationPreviewExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"ready\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     ready_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -127,8 +117,4 @@ impl<O: IsA<PrintOperationPreview>> PrintOperationPreviewExt for O {
     }
 }
 
-impl fmt::Display for PrintOperationPreview {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("PrintOperationPreview")
-    }
-}
+impl<O: IsA<PrintOperationPreview>> PrintOperationPreviewExt for O {}

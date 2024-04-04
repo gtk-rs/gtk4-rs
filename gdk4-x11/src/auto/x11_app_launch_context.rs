@@ -2,8 +2,6 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use std::fmt;
-
 glib::wrapper! {
     #[doc(alias = "GdkX11AppLaunchContext")]
     pub struct X11AppLaunchContext(Object<ffi::GdkX11AppLaunchContext, ffi::GdkX11AppLaunchContextClass>) @extends gdk::AppLaunchContext, gio::AppLaunchContext;
@@ -14,9 +12,3 @@ glib::wrapper! {
 }
 
 impl X11AppLaunchContext {}
-
-impl fmt::Display for X11AppLaunchContext {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("X11AppLaunchContext")
-    }
-}

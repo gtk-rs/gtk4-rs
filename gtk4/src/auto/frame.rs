@@ -10,7 +10,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GtkFrame")]
@@ -279,67 +279,32 @@ impl FrameBuilder {
     }
 }
 
-pub trait FrameExt: 'static {
-    #[doc(alias = "gtk_frame_get_child")]
-    #[doc(alias = "get_child")]
-    fn child(&self) -> Option<Widget>;
-
-    #[doc(alias = "gtk_frame_get_label")]
-    #[doc(alias = "get_label")]
-    fn label(&self) -> Option<glib::GString>;
-
-    #[doc(alias = "gtk_frame_get_label_align")]
-    #[doc(alias = "get_label_align")]
-    fn label_align(&self) -> f32;
-
-    #[doc(alias = "gtk_frame_get_label_widget")]
-    #[doc(alias = "get_label_widget")]
-    fn label_widget(&self) -> Option<Widget>;
-
-    #[doc(alias = "gtk_frame_set_child")]
-    fn set_child(&self, child: Option<&impl IsA<Widget>>);
-
-    #[doc(alias = "gtk_frame_set_label")]
-    fn set_label(&self, label: Option<&str>);
-
-    #[doc(alias = "gtk_frame_set_label_align")]
-    fn set_label_align(&self, xalign: f32);
-
-    #[doc(alias = "gtk_frame_set_label_widget")]
-    fn set_label_widget(&self, label_widget: Option<&impl IsA<Widget>>);
-
-    #[doc(alias = "label-xalign")]
-    fn label_xalign(&self) -> f32;
-
-    #[doc(alias = "label-xalign")]
-    fn set_label_xalign(&self, label_xalign: f32);
-
-    #[doc(alias = "child")]
-    fn connect_child_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "label")]
-    fn connect_label_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "label-widget")]
-    fn connect_label_widget_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "label-xalign")]
-    fn connect_label_xalign_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::Frame>> Sealed for T {}
 }
 
-impl<O: IsA<Frame>> FrameExt for O {
+pub trait FrameExt: IsA<Frame> + sealed::Sealed + 'static {
+    #[doc(alias = "gtk_frame_get_child")]
+    #[doc(alias = "get_child")]
     fn child(&self) -> Option<Widget> {
         unsafe { from_glib_none(ffi::gtk_frame_get_child(self.as_ref().to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_frame_get_label")]
+    #[doc(alias = "get_label")]
     fn label(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::gtk_frame_get_label(self.as_ref().to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_frame_get_label_align")]
+    #[doc(alias = "get_label_align")]
     fn label_align(&self) -> f32 {
         unsafe { ffi::gtk_frame_get_label_align(self.as_ref().to_glib_none().0) }
     }
 
+    #[doc(alias = "gtk_frame_get_label_widget")]
+    #[doc(alias = "get_label_widget")]
     fn label_widget(&self) -> Option<Widget> {
         unsafe {
             from_glib_none(ffi::gtk_frame_get_label_widget(
@@ -348,6 +313,7 @@ impl<O: IsA<Frame>> FrameExt for O {
         }
     }
 
+    #[doc(alias = "gtk_frame_set_child")]
     fn set_child(&self, child: Option<&impl IsA<Widget>>) {
         unsafe {
             ffi::gtk_frame_set_child(
@@ -357,18 +323,21 @@ impl<O: IsA<Frame>> FrameExt for O {
         }
     }
 
+    #[doc(alias = "gtk_frame_set_label")]
     fn set_label(&self, label: Option<&str>) {
         unsafe {
             ffi::gtk_frame_set_label(self.as_ref().to_glib_none().0, label.to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_frame_set_label_align")]
     fn set_label_align(&self, xalign: f32) {
         unsafe {
             ffi::gtk_frame_set_label_align(self.as_ref().to_glib_none().0, xalign);
         }
     }
 
+    #[doc(alias = "gtk_frame_set_label_widget")]
     fn set_label_widget(&self, label_widget: Option<&impl IsA<Widget>>) {
         unsafe {
             ffi::gtk_frame_set_label_widget(
@@ -378,14 +347,17 @@ impl<O: IsA<Frame>> FrameExt for O {
         }
     }
 
+    #[doc(alias = "label-xalign")]
     fn label_xalign(&self) -> f32 {
-        glib::ObjectExt::property(self.as_ref(), "label-xalign")
+        ObjectExt::property(self.as_ref(), "label-xalign")
     }
 
+    #[doc(alias = "label-xalign")]
     fn set_label_xalign(&self, label_xalign: f32) {
-        glib::ObjectExt::set_property(self.as_ref(), "label-xalign", label_xalign)
+        ObjectExt::set_property(self.as_ref(), "label-xalign", label_xalign)
     }
 
+    #[doc(alias = "child")]
     fn connect_child_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_child_trampoline<P: IsA<Frame>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkFrame,
@@ -400,7 +372,7 @@ impl<O: IsA<Frame>> FrameExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::child\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_child_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -408,6 +380,7 @@ impl<O: IsA<Frame>> FrameExt for O {
         }
     }
 
+    #[doc(alias = "label")]
     fn connect_label_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_label_trampoline<P: IsA<Frame>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkFrame,
@@ -422,7 +395,7 @@ impl<O: IsA<Frame>> FrameExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::label\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_label_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -430,6 +403,7 @@ impl<O: IsA<Frame>> FrameExt for O {
         }
     }
 
+    #[doc(alias = "label-widget")]
     fn connect_label_widget_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_label_widget_trampoline<P: IsA<Frame>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkFrame,
@@ -444,7 +418,7 @@ impl<O: IsA<Frame>> FrameExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::label-widget\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_label_widget_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -452,6 +426,7 @@ impl<O: IsA<Frame>> FrameExt for O {
         }
     }
 
+    #[doc(alias = "label-xalign")]
     fn connect_label_xalign_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_label_xalign_trampoline<P: IsA<Frame>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkFrame,
@@ -466,7 +441,7 @@ impl<O: IsA<Frame>> FrameExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::label-xalign\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_label_xalign_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -475,8 +450,4 @@ impl<O: IsA<Frame>> FrameExt for O {
     }
 }
 
-impl fmt::Display for Frame {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("Frame")
-    }
-}
+impl<O: IsA<Frame>> FrameExt for O {}

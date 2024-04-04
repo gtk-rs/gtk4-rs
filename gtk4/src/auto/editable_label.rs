@@ -7,7 +7,6 @@ use crate::{
     Overflow, Widget,
 };
 use glib::{prelude::*, translate::*};
-use std::fmt;
 
 glib::wrapper! {
     #[doc(alias = "GtkEditableLabel")]
@@ -55,10 +54,10 @@ impl EditableLabel {
         }
     }
 
-    #[cfg(any(feature = "v4_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    #[cfg(feature = "v4_8")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     pub fn set_editing(&self, editing: bool) {
-        glib::ObjectExt::set_property(self, "editing", editing)
+        ObjectExt::set_property(self, "editing", editing)
     }
 }
 
@@ -84,8 +83,8 @@ impl EditableLabelBuilder {
         }
     }
 
-    #[cfg(any(feature = "v4_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    #[cfg(feature = "v4_8")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     pub fn editing(self, editing: bool) -> Self {
         Self {
             builder: self.builder.property("editing", editing),
@@ -317,11 +316,5 @@ impl EditableLabelBuilder {
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> EditableLabel {
         self.builder.build()
-    }
-}
-
-impl fmt::Display for EditableLabel {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("EditableLabel")
     }
 }

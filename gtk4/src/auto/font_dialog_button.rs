@@ -11,7 +11,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GtkFontDialogButton")]
@@ -165,35 +165,65 @@ impl FontDialogButton {
     }
 
     pub fn get_property_level(&self) -> FontLevel {
-        glib::ObjectExt::property(self, "level")
+        ObjectExt::property(self, "level")
     }
 
     pub fn set_property_level(&self, level: FontLevel) {
-        glib::ObjectExt::set_property(self, "level", level)
+        ObjectExt::set_property(self, "level", level)
     }
 
     #[doc(alias = "use-font")]
     pub fn get_property_use_font(&self) -> bool {
-        glib::ObjectExt::property(self, "use-font")
+        ObjectExt::property(self, "use-font")
     }
 
     #[doc(alias = "use-font")]
     pub fn set_property_use_font(&self, use_font: bool) {
-        glib::ObjectExt::set_property(self, "use-font", use_font)
+        ObjectExt::set_property(self, "use-font", use_font)
     }
 
     #[doc(alias = "use-size")]
     pub fn get_property_use_size(&self) -> bool {
-        glib::ObjectExt::property(self, "use-size")
+        ObjectExt::property(self, "use-size")
     }
 
     #[doc(alias = "use-size")]
     pub fn set_property_use_size(&self, use_size: bool) {
-        glib::ObjectExt::set_property(self, "use-size", use_size)
+        ObjectExt::set_property(self, "use-size", use_size)
     }
 
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    #[doc(alias = "activate")]
+    pub fn connect_activate<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn activate_trampoline<F: Fn(&FontDialogButton) + 'static>(
+            this: *mut ffi::GtkFontDialogButton,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"activate\0".as_ptr() as *const _,
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                    activate_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn emit_activate(&self) {
+        self.emit_by_name::<()>("activate", &[]);
+    }
+
+    #[cfg(feature = "v4_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "dialog")]
     pub fn connect_dialog_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_dialog_trampoline<F: Fn(&FontDialogButton) + 'static>(
@@ -209,7 +239,7 @@ impl FontDialogButton {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::dialog\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_dialog_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -217,8 +247,8 @@ impl FontDialogButton {
         }
     }
 
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(feature = "v4_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "font-desc")]
     pub fn connect_font_desc_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_font_desc_trampoline<F: Fn(&FontDialogButton) + 'static>(
@@ -234,7 +264,7 @@ impl FontDialogButton {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::font-desc\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_font_desc_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -242,8 +272,8 @@ impl FontDialogButton {
         }
     }
 
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(feature = "v4_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "font-features")]
     pub fn connect_font_features_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_font_features_trampoline<F: Fn(&FontDialogButton) + 'static>(
@@ -259,7 +289,7 @@ impl FontDialogButton {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::font-features\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_font_features_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -267,8 +297,8 @@ impl FontDialogButton {
         }
     }
 
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(feature = "v4_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "language")]
     pub fn connect_language_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_language_trampoline<F: Fn(&FontDialogButton) + 'static>(
@@ -284,7 +314,7 @@ impl FontDialogButton {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::language\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_language_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -307,7 +337,7 @@ impl FontDialogButton {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::level\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_level_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -330,7 +360,7 @@ impl FontDialogButton {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::use-font\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_use_font_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -353,7 +383,7 @@ impl FontDialogButton {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::use-size\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_use_size_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -362,8 +392,8 @@ impl FontDialogButton {
     }
 }
 
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 impl Default for FontDialogButton {
     fn default() -> Self {
         glib::object::Object::new::<Self>()
@@ -386,32 +416,32 @@ impl FontDialogButtonBuilder {
         }
     }
 
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(feature = "v4_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn dialog(self, dialog: &FontDialog) -> Self {
         Self {
             builder: self.builder.property("dialog", dialog.clone()),
         }
     }
 
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(feature = "v4_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn font_desc(self, font_desc: &pango::FontDescription) -> Self {
         Self {
             builder: self.builder.property("font-desc", font_desc),
         }
     }
 
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(feature = "v4_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn font_features(self, font_features: impl Into<glib::GString>) -> Self {
         Self {
             builder: self.builder.property("font-features", font_features.into()),
         }
     }
 
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(feature = "v4_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn language(self, language: &pango::Language) -> Self {
         Self {
             builder: self.builder.property("language", language),
@@ -625,11 +655,5 @@ impl FontDialogButtonBuilder {
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> FontDialogButton {
         self.builder.build()
-    }
-}
-
-impl fmt::Display for FontDialogButton {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("FontDialogButton")
     }
 }

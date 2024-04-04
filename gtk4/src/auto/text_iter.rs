@@ -4,7 +4,6 @@
 
 use crate::{TextBuffer, TextChildAnchor, TextMark, TextSearchFlags, TextTag};
 use glib::{prelude::*, translate::*};
-use std::cmp;
 
 glib::wrapper! {
     #[derive(Debug)]
@@ -72,7 +71,7 @@ impl TextIter {
         ) -> glib::ffi::gboolean {
             let ch = std::convert::TryFrom::try_from(ch)
                 .expect("conversion from an invalid Unicode value attempted");
-            let callback: *mut P = user_data as *const _ as usize as *mut P;
+            let callback = user_data as *mut P;
             (*callback)(ch).into_glib()
         }
         let pred = Some(pred_func::<P> as _);
@@ -81,7 +80,7 @@ impl TextIter {
             from_glib(ffi::gtk_text_iter_backward_find_char(
                 self.to_glib_none_mut().0,
                 pred,
-                super_callback0 as *const _ as usize as *mut _,
+                super_callback0 as *const _ as *mut _,
                 limit.to_glib_none().0,
             ))
         }
@@ -340,7 +339,7 @@ impl TextIter {
         ) -> glib::ffi::gboolean {
             let ch = std::convert::TryFrom::try_from(ch)
                 .expect("conversion from an invalid Unicode value attempted");
-            let callback: *mut P = user_data as *const _ as usize as *mut P;
+            let callback = user_data as *mut P;
             (*callback)(ch).into_glib()
         }
         let pred = Some(pred_func::<P> as _);
@@ -349,7 +348,7 @@ impl TextIter {
             from_glib(ffi::gtk_text_iter_forward_find_char(
                 self.to_glib_none_mut().0,
                 pred,
-                super_callback0 as *const _ as usize as *mut _,
+                super_callback0 as *const _ as *mut _,
                 limit.to_glib_none().0,
             ))
         }
@@ -806,14 +805,14 @@ impl TextIter {
 
 impl PartialOrd for TextIter {
     #[inline]
-    fn partial_cmp(&self, other: &Self) -> Option<cmp::Ordering> {
-        self.compare(other).partial_cmp(&0)
+    fn partial_cmp(&self, other: &Self) -> Option<std::cmp::Ordering> {
+        Some(self.cmp(other))
     }
 }
 
 impl Ord for TextIter {
     #[inline]
-    fn cmp(&self, other: &Self) -> cmp::Ordering {
+    fn cmp(&self, other: &Self) -> std::cmp::Ordering {
         self.compare(other).cmp(&0)
     }
 }

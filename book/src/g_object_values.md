@@ -29,7 +29,7 @@ For example, this is how you would use a `Value` representing an `i32`.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_values/1/main.rs">listings/g_object_values/1/main.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/g_object_values/1/main.rs:i32}}
 ```
 
@@ -40,7 +40,7 @@ You can still access it the same way as with the `i32` above.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_values/1/main.rs">listings/g_object_values/1/main.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/g_object_values/1/main.rs:string}}
 ```
 
@@ -48,7 +48,7 @@ If you want to differentiate between specifying the wrong type and a `Value` rep
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_values/1/main.rs">listings/g_object_values/1/main.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/g_object_values/1/main.rs:string_none}}
 ```
 
@@ -65,7 +65,7 @@ In the most simple case, converting Rust types to `Variant` and vice-versa is ve
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_values/2/main.rs">listings/g_object_values/2/main.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/g_object_values/2/main.rs:i32}}
 ```
 
@@ -75,7 +75,7 @@ More examples can be found in the [docs](https://gtk-rs.org/gtk-rs-core/stable/l
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_values/2/main.rs">listings/g_object_values/2/main.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/g_object_values/2/main.rs:vec}}
 ```
 

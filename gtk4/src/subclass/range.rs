@@ -3,15 +3,16 @@
 // rustdoc-stripper-ignore-next
 //! Traits intended for subclassing [`Range`](crate::Range).
 
-use crate::{prelude::*, subclass::prelude::*, Border, Range, ScrollType};
 use glib::translate::*;
+
+use crate::{prelude::*, subclass::prelude::*, Border, Range, ScrollType};
 
 pub trait RangeImpl: RangeImplExt + WidgetImpl {
     fn adjust_bounds(&self, new_value: f64) {
         self.parent_adjust_bounds(new_value)
     }
 
-    fn change_value(&self, scroll_type: ScrollType, new_value: f64) -> bool {
+    fn change_value(&self, scroll_type: ScrollType, new_value: f64) -> glib::Propagation {
         self.parent_change_value(scroll_type, new_value)
     }
 
@@ -29,18 +30,15 @@ pub trait RangeImpl: RangeImplExt + WidgetImpl {
     }
 }
 
-pub trait RangeImplExt: ObjectSubclass {
-    fn parent_adjust_bounds(&self, new_value: f64);
-    fn parent_change_value(&self, scroll_type: ScrollType, new_value: f64) -> bool;
-    fn parent_range_border(&self) -> Border;
-    fn parent_move_slider(&self, scroll_type: ScrollType);
-    fn parent_value_changed(&self);
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::RangeImplExt> Sealed for T {}
 }
 
-impl<T: RangeImpl> RangeImplExt for T {
+pub trait RangeImplExt: sealed::Sealed + ObjectSubclass {
     fn parent_adjust_bounds(&self, new_value: f64) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkRangeClass;
             if let Some(f) = (*parent_class).adjust_bounds {
                 f(
@@ -51,9 +49,9 @@ impl<T: RangeImpl> RangeImplExt for T {
         }
     }
 
-    fn parent_change_value(&self, scroll_type: ScrollType, new_value: f64) -> bool {
+    fn parent_change_value(&self, scroll_type: ScrollType, new_value: f64) -> glib::Propagation {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkRangeClass;
             let f = (*parent_class)
                 .change_value
@@ -68,7 +66,7 @@ impl<T: RangeImpl> RangeImplExt for T {
 
     fn parent_range_border(&self) -> Border {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkRangeClass;
             let mut border = Border::default();
             if let Some(f) = (*parent_class).get_range_border {
@@ -83,7 +81,7 @@ impl<T: RangeImpl> RangeImplExt for T {
 
     fn parent_move_slider(&self, scroll_type: ScrollType) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkRangeClass;
             if let Some(f) = (*parent_class).move_slider {
                 f(
@@ -96,7 +94,7 @@ impl<T: RangeImpl> RangeImplExt for T {
 
     fn parent_value_changed(&self) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkRangeClass;
             if let Some(f) = (*parent_class).value_changed {
                 f(self.obj().unsafe_cast_ref::<Range>().to_glib_none().0)
@@ -104,6 +102,8 @@ impl<T: RangeImpl> RangeImplExt for T {
         }
     }
 }
+
+impl<T: RangeImpl> RangeImplExt for T {}
 
 unsafe impl<T: RangeImpl> IsSubclassable<T> for Range {
     fn class_init(class: &mut glib::Class<Self>) {

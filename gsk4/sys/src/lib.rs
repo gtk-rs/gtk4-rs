@@ -9,7 +9,14 @@
     clippy::unreadable_literal,
     clippy::upper_case_acronyms
 )]
-#![cfg_attr(feature = "dox", feature(doc_cfg))]
+#![cfg_attr(docsrs, feature(doc_cfg))]
+
+use cairo_sys as cairo;
+use gdk4_sys as gdk;
+use glib_sys as glib;
+use gobject_sys as gobject;
+use graphene_sys as graphene;
+use pango_sys as pango;
 
 #[allow(unused_imports)]
 use libc::{
@@ -45,6 +52,10 @@ pub const GSK_CORNER_TOP_RIGHT: GskCorner = 1;
 pub const GSK_CORNER_BOTTOM_RIGHT: GskCorner = 2;
 pub const GSK_CORNER_BOTTOM_LEFT: GskCorner = 3;
 
+pub type GskFillRule = c_int;
+pub const GSK_FILL_RULE_WINDING: GskFillRule = 0;
+pub const GSK_FILL_RULE_EVEN_ODD: GskFillRule = 1;
+
 pub type GskGLUniformType = c_int;
 pub const GSK_GL_UNIFORM_TYPE_NONE: GskGLUniformType = 0;
 pub const GSK_GL_UNIFORM_TYPE_FLOAT: GskGLUniformType = 1;
@@ -55,11 +66,35 @@ pub const GSK_GL_UNIFORM_TYPE_VEC2: GskGLUniformType = 5;
 pub const GSK_GL_UNIFORM_TYPE_VEC3: GskGLUniformType = 6;
 pub const GSK_GL_UNIFORM_TYPE_VEC4: GskGLUniformType = 7;
 
+pub type GskLineCap = c_int;
+pub const GSK_LINE_CAP_BUTT: GskLineCap = 0;
+pub const GSK_LINE_CAP_ROUND: GskLineCap = 1;
+pub const GSK_LINE_CAP_SQUARE: GskLineCap = 2;
+
+pub type GskLineJoin = c_int;
+pub const GSK_LINE_JOIN_MITER: GskLineJoin = 0;
+pub const GSK_LINE_JOIN_ROUND: GskLineJoin = 1;
+pub const GSK_LINE_JOIN_BEVEL: GskLineJoin = 2;
+
 pub type GskMaskMode = c_int;
 pub const GSK_MASK_MODE_ALPHA: GskMaskMode = 0;
 pub const GSK_MASK_MODE_INVERTED_ALPHA: GskMaskMode = 1;
 pub const GSK_MASK_MODE_LUMINANCE: GskMaskMode = 2;
 pub const GSK_MASK_MODE_INVERTED_LUMINANCE: GskMaskMode = 3;
+
+pub type GskPathDirection = c_int;
+pub const GSK_PATH_FROM_START: GskPathDirection = 0;
+pub const GSK_PATH_TO_START: GskPathDirection = 1;
+pub const GSK_PATH_TO_END: GskPathDirection = 2;
+pub const GSK_PATH_FROM_END: GskPathDirection = 3;
+
+pub type GskPathOperation = c_int;
+pub const GSK_PATH_MOVE: GskPathOperation = 0;
+pub const GSK_PATH_CLOSE: GskPathOperation = 1;
+pub const GSK_PATH_LINE: GskPathOperation = 2;
+pub const GSK_PATH_QUAD: GskPathOperation = 3;
+pub const GSK_PATH_CUBIC: GskPathOperation = 4;
+pub const GSK_PATH_CONIC: GskPathOperation = 5;
 
 pub type GskRenderNodeType = c_int;
 pub const GSK_NOT_A_RENDER_NODE: GskRenderNodeType = 0;
@@ -88,8 +123,21 @@ pub const GSK_TEXT_NODE: GskRenderNodeType = 22;
 pub const GSK_BLUR_NODE: GskRenderNodeType = 23;
 pub const GSK_DEBUG_NODE: GskRenderNodeType = 24;
 pub const GSK_GL_SHADER_NODE: GskRenderNodeType = 25;
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 pub const GSK_TEXTURE_SCALE_NODE: GskRenderNodeType = 26;
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 pub const GSK_MASK_NODE: GskRenderNodeType = 27;
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+pub const GSK_FILL_NODE: GskRenderNodeType = 28;
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+pub const GSK_STROKE_NODE: GskRenderNodeType = 29;
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+pub const GSK_SUBSURFACE_NODE: GskRenderNodeType = 30;
 
 pub type GskScalingFilter = c_int;
 pub const GSK_SCALING_FILTER_LINEAR: GskScalingFilter = 0;
@@ -110,6 +158,32 @@ pub const GSK_TRANSFORM_CATEGORY_2D_AFFINE: GskTransformCategory = 4;
 pub const GSK_TRANSFORM_CATEGORY_2D_TRANSLATE: GskTransformCategory = 5;
 pub const GSK_TRANSFORM_CATEGORY_IDENTITY: GskTransformCategory = 6;
 
+// Flags
+pub type GskPathForeachFlags = c_uint;
+pub const GSK_PATH_FOREACH_ALLOW_ONLY_LINES: GskPathForeachFlags = 0;
+pub const GSK_PATH_FOREACH_ALLOW_QUAD: GskPathForeachFlags = 1;
+pub const GSK_PATH_FOREACH_ALLOW_CUBIC: GskPathForeachFlags = 2;
+pub const GSK_PATH_FOREACH_ALLOW_CONIC: GskPathForeachFlags = 4;
+
+// Unions
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub union GskPathPoint_u1 {
+    pub s1: GskPathPoint__s1,
+    pub padding: [gpointer; 8],
+    pub alignment: graphene::graphene_vec4_t,
+}
+
+impl ::std::fmt::Debug for GskPathPoint_u1 {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GskPathPoint_u1 @ {self:p}"))
+            .field("s1", unsafe { &self.s1 })
+            .field("padding", unsafe { &self.padding })
+            .field("alignment", unsafe { &self.alignment })
+            .finish()
+    }
+}
+
 // Callbacks
 pub type GskParseErrorFunc = Option<
     unsafe extern "C" fn(
@@ -119,15 +193,28 @@ pub type GskParseErrorFunc = Option<
         gpointer,
     ),
 >;
+pub type GskPathForeachFunc = Option<
+    unsafe extern "C" fn(
+        GskPathOperation,
+        *const graphene::graphene_point_t,
+        size_t,
+        c_float,
+        gpointer,
+    ) -> gboolean,
+>;
 
 // Records
+#[cfg(feature = "broadway")]
+#[cfg_attr(docsrs, doc(cfg(feature = "broadway")))]
 #[repr(C)]
 pub struct _GskBroadwayRendererClass {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GskBroadwayRendererClass = *mut _GskBroadwayRendererClass;
+#[cfg(feature = "broadway")]
+#[cfg_attr(docsrs, doc(cfg(feature = "broadway")))]
+pub type GskBroadwayRendererClass = _GskBroadwayRendererClass;
 
 #[repr(C)]
 pub struct _GskCairoRendererClass {
@@ -135,7 +222,7 @@ pub struct _GskCairoRendererClass {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GskCairoRendererClass = *mut _GskCairoRendererClass;
+pub type GskCairoRendererClass = _GskCairoRendererClass;
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -159,7 +246,7 @@ pub struct _GskGLRendererClass {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GskGLRendererClass = *mut _GskGLRendererClass;
+pub type GskGLRendererClass = _GskGLRendererClass;
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -198,12 +285,82 @@ impl ::std::fmt::Debug for GskParseLocation {
 }
 
 #[repr(C)]
+pub struct GskPath {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+impl ::std::fmt::Debug for GskPath {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GskPath @ {self:p}")).finish()
+    }
+}
+
+#[repr(C)]
+pub struct GskPathBuilder {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+impl ::std::fmt::Debug for GskPathBuilder {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GskPathBuilder @ {self:p}"))
+            .finish()
+    }
+}
+
+#[repr(C)]
+pub struct GskPathMeasure {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+impl ::std::fmt::Debug for GskPathMeasure {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GskPathMeasure @ {self:p}"))
+            .finish()
+    }
+}
+
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct GskPathPoint {
+    pub u1: GskPathPoint_u1,
+}
+
+impl ::std::fmt::Debug for GskPathPoint {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GskPathPoint @ {self:p}"))
+            .field("u1", &self.u1)
+            .finish()
+    }
+}
+
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct GskPathPoint__s1 {
+    pub contour: size_t,
+    pub idx: size_t,
+    pub t: c_float,
+}
+
+impl ::std::fmt::Debug for GskPathPoint__s1 {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GskPathPoint__s1 @ {self:p}"))
+            .field("contour", &self.contour)
+            .field("idx", &self.idx)
+            .field("t", &self.t)
+            .finish()
+    }
+}
+
+#[repr(C)]
 pub struct _GskRendererClass {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GskRendererClass = *mut _GskRendererClass;
+pub type GskRendererClass = _GskRendererClass;
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -255,6 +412,18 @@ impl ::std::fmt::Debug for GskShadow {
 }
 
 #[repr(C)]
+pub struct GskStroke {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+impl ::std::fmt::Debug for GskStroke {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GskStroke @ {self:p}")).finish()
+    }
+}
+
+#[repr(C)]
 pub struct GskTransform {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -265,6 +434,18 @@ impl ::std::fmt::Debug for GskTransform {
         f.debug_struct(&format!("GskTransform @ {self:p}")).finish()
     }
 }
+
+#[cfg(feature = "vulkan")]
+#[cfg_attr(docsrs, doc(cfg(feature = "vulkan")))]
+#[repr(C)]
+pub struct _GskVulkanRendererClass {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+#[cfg(feature = "vulkan")]
+#[cfg_attr(docsrs, doc(cfg(feature = "vulkan")))]
+pub type GskVulkanRendererClass = _GskVulkanRendererClass;
 
 // Classes
 #[repr(C)]
@@ -304,12 +485,16 @@ impl ::std::fmt::Debug for GskBorderNode {
     }
 }
 
+#[cfg(feature = "broadway")]
+#[cfg_attr(docsrs, doc(cfg(feature = "broadway")))]
 #[repr(C)]
 pub struct GskBroadwayRenderer {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
+#[cfg(feature = "broadway")]
+#[cfg_attr(docsrs, doc(cfg(feature = "broadway")))]
 impl ::std::fmt::Debug for GskBroadwayRenderer {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("GskBroadwayRenderer @ {self:p}"))
@@ -427,6 +612,18 @@ pub struct GskDebugNode {
 impl ::std::fmt::Debug for GskDebugNode {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("GskDebugNode @ {self:p}")).finish()
+    }
+}
+
+#[repr(C)]
+pub struct GskFillNode {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+impl ::std::fmt::Debug for GskFillNode {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GskFillNode @ {self:p}")).finish()
     }
 }
 
@@ -649,6 +846,32 @@ impl ::std::fmt::Debug for GskShadowNode {
 }
 
 #[repr(C)]
+pub struct GskStrokeNode {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+impl ::std::fmt::Debug for GskStrokeNode {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GskStrokeNode @ {self:p}"))
+            .finish()
+    }
+}
+
+#[repr(C)]
+pub struct GskSubsurfaceNode {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+impl ::std::fmt::Debug for GskSubsurfaceNode {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GskSubsurfaceNode @ {self:p}"))
+            .finish()
+    }
+}
+
+#[repr(C)]
 pub struct GskTextNode {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -699,6 +922,23 @@ impl ::std::fmt::Debug for GskTransformNode {
     }
 }
 
+#[cfg(feature = "vulkan")]
+#[cfg_attr(docsrs, doc(cfg(feature = "vulkan")))]
+#[repr(C)]
+pub struct GskVulkanRenderer {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+#[cfg(feature = "vulkan")]
+#[cfg_attr(docsrs, doc(cfg(feature = "vulkan")))]
+impl ::std::fmt::Debug for GskVulkanRenderer {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GskVulkanRenderer @ {self:p}"))
+            .finish()
+    }
+}
+
 #[link(name = "gtk-4")]
 extern "C" {
 
@@ -713,16 +953,51 @@ extern "C" {
     pub fn gsk_corner_get_type() -> GType;
 
     //=========================================================================
+    // GskFillRule
+    //=========================================================================
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_fill_rule_get_type() -> GType;
+
+    //=========================================================================
     // GskGLUniformType
     //=========================================================================
     pub fn gsk_gl_uniform_type_get_type() -> GType;
 
     //=========================================================================
+    // GskLineCap
+    //=========================================================================
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_line_cap_get_type() -> GType;
+
+    //=========================================================================
+    // GskLineJoin
+    //=========================================================================
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_line_join_get_type() -> GType;
+
+    //=========================================================================
     // GskMaskMode
     //=========================================================================
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(feature = "v4_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gsk_mask_mode_get_type() -> GType;
+
+    //=========================================================================
+    // GskPathDirection
+    //=========================================================================
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_path_direction_get_type() -> GType;
+
+    //=========================================================================
+    // GskPathOperation
+    //=========================================================================
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_path_operation_get_type() -> GType;
 
     //=========================================================================
     // GskRenderNodeType
@@ -744,6 +1019,392 @@ extern "C" {
     // GskTransformCategory
     //=========================================================================
     pub fn gsk_transform_category_get_type() -> GType;
+
+    //=========================================================================
+    // GskPathForeachFlags
+    //=========================================================================
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_path_foreach_flags_get_type() -> GType;
+
+    //=========================================================================
+    // GskPath
+    //=========================================================================
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_path_get_type() -> GType;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_path_foreach(
+        self_: *mut GskPath,
+        flags: GskPathForeachFlags,
+        func: GskPathForeachFunc,
+        user_data: gpointer,
+    ) -> gboolean;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_path_get_bounds(
+        self_: *mut GskPath,
+        bounds: *mut graphene::graphene_rect_t,
+    ) -> gboolean;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_path_get_closest_point(
+        self_: *mut GskPath,
+        point: *const graphene::graphene_point_t,
+        threshold: c_float,
+        result: *mut GskPathPoint,
+        distance: *mut c_float,
+    ) -> gboolean;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_path_get_end_point(self_: *mut GskPath, result: *mut GskPathPoint) -> gboolean;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_path_get_start_point(self_: *mut GskPath, result: *mut GskPathPoint) -> gboolean;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_path_get_stroke_bounds(
+        self_: *mut GskPath,
+        stroke: *const GskStroke,
+        bounds: *mut graphene::graphene_rect_t,
+    ) -> gboolean;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_path_in_fill(
+        self_: *mut GskPath,
+        point: *const graphene::graphene_point_t,
+        fill_rule: GskFillRule,
+    ) -> gboolean;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_path_is_closed(self_: *mut GskPath) -> gboolean;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_path_is_empty(self_: *mut GskPath) -> gboolean;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_path_print(self_: *mut GskPath, string: *mut glib::GString);
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_path_ref(self_: *mut GskPath) -> *mut GskPath;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_path_to_cairo(self_: *mut GskPath, cr: *mut cairo::cairo_t);
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_path_to_string(self_: *mut GskPath) -> *mut c_char;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_path_unref(self_: *mut GskPath);
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_path_parse(string: *const c_char) -> *mut GskPath;
+
+    //=========================================================================
+    // GskPathBuilder
+    //=========================================================================
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_path_builder_get_type() -> GType;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_path_builder_new() -> *mut GskPathBuilder;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_path_builder_add_cairo_path(
+        self_: *mut GskPathBuilder,
+        path: *const cairo::cairo_path_t,
+    );
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_path_builder_add_circle(
+        self_: *mut GskPathBuilder,
+        center: *const graphene::graphene_point_t,
+        radius: c_float,
+    );
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_path_builder_add_layout(self_: *mut GskPathBuilder, layout: *mut pango::PangoLayout);
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_path_builder_add_path(self_: *mut GskPathBuilder, path: *mut GskPath);
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_path_builder_add_rect(
+        self_: *mut GskPathBuilder,
+        rect: *const graphene::graphene_rect_t,
+    );
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_path_builder_add_reverse_path(self_: *mut GskPathBuilder, path: *mut GskPath);
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_path_builder_add_rounded_rect(
+        self_: *mut GskPathBuilder,
+        rect: *const GskRoundedRect,
+    );
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_path_builder_add_segment(
+        self_: *mut GskPathBuilder,
+        path: *mut GskPath,
+        start: *const GskPathPoint,
+        end: *const GskPathPoint,
+    );
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_path_builder_arc_to(
+        self_: *mut GskPathBuilder,
+        x1: c_float,
+        y1: c_float,
+        x2: c_float,
+        y2: c_float,
+    );
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_path_builder_close(self_: *mut GskPathBuilder);
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_path_builder_conic_to(
+        self_: *mut GskPathBuilder,
+        x1: c_float,
+        y1: c_float,
+        x2: c_float,
+        y2: c_float,
+        weight: c_float,
+    );
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_path_builder_cubic_to(
+        self_: *mut GskPathBuilder,
+        x1: c_float,
+        y1: c_float,
+        x2: c_float,
+        y2: c_float,
+        x3: c_float,
+        y3: c_float,
+    );
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_path_builder_free_to_path(self_: *mut GskPathBuilder) -> *mut GskPath;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_path_builder_get_current_point(
+        self_: *mut GskPathBuilder,
+    ) -> *const graphene::graphene_point_t;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_path_builder_html_arc_to(
+        self_: *mut GskPathBuilder,
+        x1: c_float,
+        y1: c_float,
+        x2: c_float,
+        y2: c_float,
+        radius: c_float,
+    );
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_path_builder_line_to(self_: *mut GskPathBuilder, x: c_float, y: c_float);
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_path_builder_move_to(self_: *mut GskPathBuilder, x: c_float, y: c_float);
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_path_builder_quad_to(
+        self_: *mut GskPathBuilder,
+        x1: c_float,
+        y1: c_float,
+        x2: c_float,
+        y2: c_float,
+    );
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_path_builder_ref(self_: *mut GskPathBuilder) -> *mut GskPathBuilder;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_path_builder_rel_arc_to(
+        self_: *mut GskPathBuilder,
+        x1: c_float,
+        y1: c_float,
+        x2: c_float,
+        y2: c_float,
+    );
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_path_builder_rel_conic_to(
+        self_: *mut GskPathBuilder,
+        x1: c_float,
+        y1: c_float,
+        x2: c_float,
+        y2: c_float,
+        weight: c_float,
+    );
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_path_builder_rel_cubic_to(
+        self_: *mut GskPathBuilder,
+        x1: c_float,
+        y1: c_float,
+        x2: c_float,
+        y2: c_float,
+        x3: c_float,
+        y3: c_float,
+    );
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_path_builder_rel_html_arc_to(
+        self_: *mut GskPathBuilder,
+        x1: c_float,
+        y1: c_float,
+        x2: c_float,
+        y2: c_float,
+        radius: c_float,
+    );
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_path_builder_rel_line_to(self_: *mut GskPathBuilder, x: c_float, y: c_float);
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_path_builder_rel_move_to(self_: *mut GskPathBuilder, x: c_float, y: c_float);
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_path_builder_rel_quad_to(
+        self_: *mut GskPathBuilder,
+        x1: c_float,
+        y1: c_float,
+        x2: c_float,
+        y2: c_float,
+    );
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_path_builder_rel_svg_arc_to(
+        self_: *mut GskPathBuilder,
+        rx: c_float,
+        ry: c_float,
+        x_axis_rotation: c_float,
+        large_arc: gboolean,
+        positive_sweep: gboolean,
+        x: c_float,
+        y: c_float,
+    );
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_path_builder_svg_arc_to(
+        self_: *mut GskPathBuilder,
+        rx: c_float,
+        ry: c_float,
+        x_axis_rotation: c_float,
+        large_arc: gboolean,
+        positive_sweep: gboolean,
+        x: c_float,
+        y: c_float,
+    );
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_path_builder_to_path(self_: *mut GskPathBuilder) -> *mut GskPath;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_path_builder_unref(self_: *mut GskPathBuilder);
+
+    //=========================================================================
+    // GskPathMeasure
+    //=========================================================================
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_path_measure_get_type() -> GType;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_path_measure_new(path: *mut GskPath) -> *mut GskPathMeasure;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_path_measure_new_with_tolerance(
+        path: *mut GskPath,
+        tolerance: c_float,
+    ) -> *mut GskPathMeasure;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_path_measure_get_length(self_: *mut GskPathMeasure) -> c_float;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_path_measure_get_path(self_: *mut GskPathMeasure) -> *mut GskPath;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_path_measure_get_point(
+        self_: *mut GskPathMeasure,
+        distance: c_float,
+        result: *mut GskPathPoint,
+    ) -> gboolean;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_path_measure_get_tolerance(self_: *mut GskPathMeasure) -> c_float;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_path_measure_ref(self_: *mut GskPathMeasure) -> *mut GskPathMeasure;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_path_measure_unref(self_: *mut GskPathMeasure);
+
+    //=========================================================================
+    // GskPathPoint
+    //=========================================================================
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_path_point_get_type() -> GType;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_path_point_compare(
+        point1: *const GskPathPoint,
+        point2: *const GskPathPoint,
+    ) -> c_int;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_path_point_copy(point: *mut GskPathPoint) -> *mut GskPathPoint;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_path_point_equal(
+        point1: *const GskPathPoint,
+        point2: *const GskPathPoint,
+    ) -> gboolean;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_path_point_free(point: *mut GskPathPoint);
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_path_point_get_curvature(
+        point: *const GskPathPoint,
+        path: *mut GskPath,
+        direction: GskPathDirection,
+        center: *mut graphene::graphene_point_t,
+    ) -> c_float;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_path_point_get_distance(
+        point: *const GskPathPoint,
+        measure: *mut GskPathMeasure,
+    ) -> c_float;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_path_point_get_position(
+        point: *const GskPathPoint,
+        path: *mut GskPath,
+        position: *mut graphene::graphene_point_t,
+    );
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_path_point_get_rotation(
+        point: *const GskPathPoint,
+        path: *mut GskPath,
+        direction: GskPathDirection,
+    ) -> c_float;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_path_point_get_tangent(
+        point: *const GskPathPoint,
+        path: *mut GskPath,
+        direction: GskPathDirection,
+        tangent: *mut graphene::graphene_vec2_t,
+    );
 
     //=========================================================================
     // GskRoundedRect
@@ -846,6 +1507,64 @@ extern "C" {
     pub fn gsk_shader_args_builder_unref(builder: *mut GskShaderArgsBuilder);
 
     //=========================================================================
+    // GskStroke
+    //=========================================================================
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_stroke_get_type() -> GType;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_stroke_new(line_width: c_float) -> *mut GskStroke;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_stroke_copy(other: *const GskStroke) -> *mut GskStroke;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_stroke_free(self_: *mut GskStroke);
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_stroke_get_dash(self_: *const GskStroke, n_dash: *mut size_t) -> *const c_float;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_stroke_get_dash_offset(self_: *const GskStroke) -> c_float;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_stroke_get_line_cap(self_: *const GskStroke) -> GskLineCap;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_stroke_get_line_join(self_: *const GskStroke) -> GskLineJoin;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_stroke_get_line_width(self_: *const GskStroke) -> c_float;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_stroke_get_miter_limit(self_: *const GskStroke) -> c_float;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_stroke_set_dash(self_: *mut GskStroke, dash: *const c_float, n_dash: size_t);
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_stroke_set_dash_offset(self_: *mut GskStroke, offset: c_float);
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_stroke_set_line_cap(self_: *mut GskStroke, line_cap: GskLineCap);
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_stroke_set_line_join(self_: *mut GskStroke, line_join: GskLineJoin);
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_stroke_set_line_width(self_: *mut GskStroke, line_width: c_float);
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_stroke_set_miter_limit(self_: *mut GskStroke, limit: c_float);
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_stroke_to_cairo(self_: *const GskStroke, cr: *mut cairo::cairo_t);
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_stroke_equal(stroke1: gconstpointer, stroke2: gconstpointer) -> gboolean;
+
+    //=========================================================================
     // GskTransform
     //=========================================================================
     pub fn gsk_transform_get_type() -> GType;
@@ -877,8 +1596,8 @@ extern "C" {
         factor_y: c_float,
         factor_z: c_float,
     ) -> *mut GskTransform;
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[cfg(feature = "v4_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     pub fn gsk_transform_skew(
         next: *mut GskTransform,
         skew_x: c_float,
@@ -893,8 +1612,8 @@ extern "C" {
         out_dx: *mut c_float,
         out_dy: *mut c_float,
     );
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[cfg(feature = "v4_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     pub fn gsk_transform_to_2d_components(
         self_: *mut GskTransform,
         out_skew_x: *mut c_float,
@@ -987,7 +1706,11 @@ extern "C" {
     //=========================================================================
     // GskBroadwayRenderer
     //=========================================================================
+    #[cfg(feature = "broadway")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "broadway")))]
     pub fn gsk_broadway_renderer_get_type() -> GType;
+    #[cfg(feature = "broadway")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "broadway")))]
     pub fn gsk_broadway_renderer_new() -> *mut GskRenderer;
 
     //=========================================================================
@@ -1053,8 +1776,8 @@ extern "C" {
         color_stops: *const GskColorStop,
         n_color_stops: size_t,
     ) -> *mut GskConicGradientNode;
-    #[cfg(any(feature = "v4_2", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_2")))]
+    #[cfg(feature = "v4_2")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_2")))]
     pub fn gsk_conic_gradient_node_get_angle(node: *const GskConicGradientNode) -> c_float;
     pub fn gsk_conic_gradient_node_get_center(
         node: *const GskConicGradientNode,
@@ -1104,11 +1827,34 @@ extern "C" {
     pub fn gsk_debug_node_get_message(node: *const GskDebugNode) -> *const c_char;
 
     //=========================================================================
+    // GskFillNode
+    //=========================================================================
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_fill_node_get_type() -> GType;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_fill_node_new(
+        child: *mut GskRenderNode,
+        path: *mut GskPath,
+        fill_rule: GskFillRule,
+    ) -> *mut GskFillNode;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_fill_node_get_child(node: *const GskFillNode) -> *mut GskRenderNode;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_fill_node_get_fill_rule(node: *const GskFillNode) -> GskFillRule;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_fill_node_get_path(node: *const GskFillNode) -> *mut GskPath;
+
+    //=========================================================================
     // GskGLRenderer
     //=========================================================================
     pub fn gsk_gl_renderer_get_type() -> GType;
-    #[cfg(any(feature = "v4_2", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_2")))]
+    #[cfg(feature = "v4_2")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_2")))]
     pub fn gsk_gl_renderer_new() -> *mut GskRenderer;
 
     //=========================================================================
@@ -1243,24 +1989,24 @@ extern "C" {
     //=========================================================================
     // GskMaskNode
     //=========================================================================
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(feature = "v4_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gsk_mask_node_get_type() -> GType;
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(feature = "v4_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gsk_mask_node_new(
         source: *mut GskRenderNode,
         mask: *mut GskRenderNode,
         mask_mode: GskMaskMode,
     ) -> *mut GskMaskNode;
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(feature = "v4_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gsk_mask_node_get_mask(node: *const GskMaskNode) -> *mut GskRenderNode;
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(feature = "v4_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gsk_mask_node_get_mask_mode(node: *const GskMaskNode) -> GskMaskMode;
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(feature = "v4_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gsk_mask_node_get_source(node: *const GskMaskNode) -> *mut GskRenderNode;
 
     //=========================================================================
@@ -1365,6 +2111,13 @@ extern "C" {
         surface: *mut gdk::GdkSurface,
         error: *mut *mut glib::GError,
     ) -> gboolean;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_renderer_realize_for_display(
+        renderer: *mut GskRenderer,
+        display: *mut gdk::GdkDisplay,
+        error: *mut *mut glib::GError,
+    ) -> gboolean;
     pub fn gsk_renderer_render(
         renderer: *mut GskRenderer,
         root: *mut GskRenderNode,
@@ -1444,6 +2197,48 @@ extern "C" {
     pub fn gsk_shadow_node_get_shadow(node: *const GskShadowNode, i: size_t) -> *const GskShadow;
 
     //=========================================================================
+    // GskStrokeNode
+    //=========================================================================
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_stroke_node_get_type() -> GType;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_stroke_node_new(
+        child: *mut GskRenderNode,
+        path: *mut GskPath,
+        stroke: *const GskStroke,
+    ) -> *mut GskStrokeNode;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_stroke_node_get_child(node: *const GskStrokeNode) -> *mut GskRenderNode;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_stroke_node_get_path(node: *const GskStrokeNode) -> *mut GskPath;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_stroke_node_get_stroke(node: *const GskStrokeNode) -> *const GskStroke;
+
+    //=========================================================================
+    // GskSubsurfaceNode
+    //=========================================================================
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_subsurface_node_get_type() -> GType;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_subsurface_node_new(
+        child: *mut GskRenderNode,
+        subsurface: gpointer,
+    ) -> *mut GskSubsurfaceNode;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_subsurface_node_get_subsurface(node: *const GskDebugNode) -> gpointer;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_subsurface_node_get_child(node: *const GskSubsurfaceNode) -> *mut GskRenderNode;
+
+    //=========================================================================
     // GskTextNode
     //=========================================================================
     pub fn gsk_text_node_get_type() -> GType;
@@ -1461,8 +2256,8 @@ extern "C" {
     ) -> *const pango::PangoGlyphInfo;
     pub fn gsk_text_node_get_num_glyphs(node: *const GskTextNode) -> c_uint;
     pub fn gsk_text_node_get_offset(node: *const GskTextNode) -> *const graphene::graphene_point_t;
-    #[cfg(any(feature = "v4_2", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_2")))]
+    #[cfg(feature = "v4_2")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_2")))]
     pub fn gsk_text_node_has_color_glyphs(node: *const GskTextNode) -> gboolean;
 
     //=========================================================================
@@ -1478,21 +2273,21 @@ extern "C" {
     //=========================================================================
     // GskTextureScaleNode
     //=========================================================================
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(feature = "v4_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gsk_texture_scale_node_get_type() -> GType;
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(feature = "v4_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gsk_texture_scale_node_new(
         texture: *mut gdk::GdkTexture,
         bounds: *const graphene::graphene_rect_t,
         filter: GskScalingFilter,
     ) -> *mut GskTextureScaleNode;
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(feature = "v4_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gsk_texture_scale_node_get_filter(node: *const GskTextureScaleNode) -> GskScalingFilter;
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(feature = "v4_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gsk_texture_scale_node_get_texture(
         node: *const GskTextureScaleNode,
     ) -> *mut gdk::GdkTexture;
@@ -1509,19 +2304,29 @@ extern "C" {
     pub fn gsk_transform_node_get_transform(node: *const GskTransformNode) -> *mut GskTransform;
 
     //=========================================================================
+    // GskVulkanRenderer
+    //=========================================================================
+    #[cfg(feature = "vulkan")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "vulkan")))]
+    pub fn gsk_vulkan_renderer_get_type() -> GType;
+    #[cfg(feature = "vulkan")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "vulkan")))]
+    pub fn gsk_vulkan_renderer_new() -> *mut GskRenderer;
+
+    //=========================================================================
     // Other functions
     //=========================================================================
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[cfg(feature = "v4_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     pub fn gsk_value_dup_render_node(value: *const gobject::GValue) -> *mut GskRenderNode;
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[cfg(feature = "v4_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     pub fn gsk_value_get_render_node(value: *const gobject::GValue) -> *mut GskRenderNode;
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[cfg(feature = "v4_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     pub fn gsk_value_set_render_node(value: *mut gobject::GValue, node: *mut GskRenderNode);
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[cfg(feature = "v4_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     pub fn gsk_value_take_render_node(value: *mut gobject::GValue, node: *mut GskRenderNode);
 
 }

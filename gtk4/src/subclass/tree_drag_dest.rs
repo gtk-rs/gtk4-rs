@@ -1,10 +1,12 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
 // rustdoc-stripper-ignore-next
-//! Traits intended for implementing the [`TreeDragDest`](crate::TreeDragDest) interface.
+//! Traits intended for implementing the [`TreeDragDest`](crate::TreeDragDest)
+//! interface.
+
+use glib::{translate::*, Value};
 
 use crate::{prelude::*, subclass::prelude::*, TreeDragDest, TreePath};
-use glib::{translate::*, Value};
 
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 #[allow(deprecated)]
@@ -13,14 +15,14 @@ pub trait TreeDragDestImpl: ObjectImpl {
     fn row_drop_possible(&self, dest: &TreePath, value: Value) -> bool;
 }
 
-#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-#[allow(deprecated)]
-pub trait TreeDragDestImplExt: ObjectSubclass {
-    fn parent_drag_data_received(&self, dest: &TreePath, value: Value) -> bool;
-    fn parent_row_drop_possible(&self, dest: &TreePath, value: Value) -> bool;
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::TreeDragDestImplExt> Sealed for T {}
 }
 
-impl<T: TreeDragDestImpl> TreeDragDestImplExt for T {
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+#[allow(deprecated)]
+pub trait TreeDragDestImplExt: sealed::Sealed + ObjectSubclass {
     fn parent_drag_data_received(&self, dest: &TreePath, value: Value) -> bool {
         unsafe {
             let type_data = Self::type_data();
@@ -63,6 +65,8 @@ impl<T: TreeDragDestImpl> TreeDragDestImplExt for T {
         }
     }
 }
+
+impl<T: TreeDragDestImpl> TreeDragDestImplExt for T {}
 
 unsafe impl<T: TreeDragDestImpl> IsImplementable<T> for TreeDragDest {
     fn interface_init(iface: &mut glib::Interface<Self>) {

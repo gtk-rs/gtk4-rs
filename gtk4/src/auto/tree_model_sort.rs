@@ -5,7 +5,6 @@
 
 use crate::{TreeDragSource, TreeIter, TreeModel, TreePath, TreeSortable};
 use glib::{prelude::*, translate::*};
-use std::fmt;
 
 glib::wrapper! {
     #[doc(alias = "GtkTreeModelSort")]
@@ -31,56 +30,24 @@ impl TreeModelSort {
     }
 }
 
-pub trait TreeModelSortExt: 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::TreeModelSort>> Sealed for T {}
+}
+
+pub trait TreeModelSortExt: IsA<TreeModelSort> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_tree_model_sort_clear_cache")]
-    fn clear_cache(&self);
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_model_sort_convert_child_iter_to_iter")]
-    fn convert_child_iter_to_iter(&self, child_iter: &TreeIter) -> Option<TreeIter>;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_model_sort_convert_child_path_to_path")]
-    fn convert_child_path_to_path(&self, child_path: &TreePath) -> Option<TreePath>;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_model_sort_convert_iter_to_child_iter")]
-    fn convert_iter_to_child_iter(&self, sorted_iter: &TreeIter) -> TreeIter;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_model_sort_convert_path_to_child_path")]
-    fn convert_path_to_child_path(&self, sorted_path: &TreePath) -> Option<TreePath>;
-
-    #[doc(alias = "gtk_tree_model_sort_get_model")]
-    #[doc(alias = "get_model")]
-    fn model(&self) -> TreeModel;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_model_sort_iter_is_valid")]
-    fn iter_is_valid(&self, iter: &TreeIter) -> bool;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_model_sort_reset_default_sort_func")]
-    fn reset_default_sort_func(&self);
-}
-
-impl<O: IsA<TreeModelSort>> TreeModelSortExt for O {
-    #[allow(deprecated)]
     fn clear_cache(&self) {
         unsafe {
             ffi::gtk_tree_model_sort_clear_cache(self.as_ref().to_glib_none().0);
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_model_sort_convert_child_iter_to_iter")]
     fn convert_child_iter_to_iter(&self, child_iter: &TreeIter) -> Option<TreeIter> {
         unsafe {
             let mut sort_iter = TreeIter::uninitialized();
@@ -97,7 +64,9 @@ impl<O: IsA<TreeModelSort>> TreeModelSortExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_model_sort_convert_child_path_to_path")]
     fn convert_child_path_to_path(&self, child_path: &TreePath) -> Option<TreePath> {
         unsafe {
             from_glib_full(ffi::gtk_tree_model_sort_convert_child_path_to_path(
@@ -107,7 +76,9 @@ impl<O: IsA<TreeModelSort>> TreeModelSortExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_model_sort_convert_iter_to_child_iter")]
     fn convert_iter_to_child_iter(&self, sorted_iter: &TreeIter) -> TreeIter {
         unsafe {
             let mut child_iter = TreeIter::uninitialized();
@@ -120,7 +91,9 @@ impl<O: IsA<TreeModelSort>> TreeModelSortExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_model_sort_convert_path_to_child_path")]
     fn convert_path_to_child_path(&self, sorted_path: &TreePath) -> Option<TreePath> {
         unsafe {
             from_glib_full(ffi::gtk_tree_model_sort_convert_path_to_child_path(
@@ -130,6 +103,8 @@ impl<O: IsA<TreeModelSort>> TreeModelSortExt for O {
         }
     }
 
+    #[doc(alias = "gtk_tree_model_sort_get_model")]
+    #[doc(alias = "get_model")]
     fn model(&self) -> TreeModel {
         unsafe {
             from_glib_none(ffi::gtk_tree_model_sort_get_model(
@@ -138,7 +113,9 @@ impl<O: IsA<TreeModelSort>> TreeModelSortExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_model_sort_iter_is_valid")]
     fn iter_is_valid(&self, iter: &TreeIter) -> bool {
         unsafe {
             from_glib(ffi::gtk_tree_model_sort_iter_is_valid(
@@ -148,7 +125,9 @@ impl<O: IsA<TreeModelSort>> TreeModelSortExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_model_sort_reset_default_sort_func")]
     fn reset_default_sort_func(&self) {
         unsafe {
             ffi::gtk_tree_model_sort_reset_default_sort_func(self.as_ref().to_glib_none().0);
@@ -156,8 +135,4 @@ impl<O: IsA<TreeModelSort>> TreeModelSortExt for O {
     }
 }
 
-impl fmt::Display for TreeModelSort {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("TreeModelSort")
-    }
-}
+impl<O: IsA<TreeModelSort>> TreeModelSortExt for O {}

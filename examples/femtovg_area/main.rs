@@ -1,7 +1,6 @@
 use std::ptr;
 
-use gtk::glib;
-use gtk::prelude::*;
+use gtk::{glib, prelude::*};
 
 mod femtovg_area;
 use femtovg_area::FemtoVGArea;
@@ -25,10 +24,9 @@ fn main() -> glib::ExitCode {
         });
     }
 
-    let application = gtk::Application::new(
-        Some("com.github.gtk-rs.examples.femtovg-area"),
-        Default::default(),
-    );
+    let application = gtk::Application::builder()
+        .application_id("com.github.gtk-rs.examples.femtovg-area")
+        .build();
     application.connect_activate(build_ui);
     application.run()
 }
@@ -40,5 +38,5 @@ fn build_ui(application: &gtk::Application) {
     let widget = FemtoVGArea::default();
     window.set_child(Some(&widget));
 
-    window.show();
+    window.present();
 }

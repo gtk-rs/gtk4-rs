@@ -2,8 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use glib::translate::*;
-use std::fmt;
+use glib::{prelude::*, translate::*};
 
 glib::wrapper! {
     #[doc(alias = "GdkDeleteEvent")]
@@ -15,16 +14,10 @@ glib::wrapper! {
     }
 }
 
-impl glib::StaticType for DeleteEvent {
+impl StaticType for DeleteEvent {
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gdk_delete_event_get_type()) }
     }
 }
 
 impl DeleteEvent {}
-
-impl fmt::Display for DeleteEvent {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("DeleteEvent")
-    }
-}

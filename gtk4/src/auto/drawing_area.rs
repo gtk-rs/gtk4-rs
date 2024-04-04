@@ -10,7 +10,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GtkDrawingArea")]
@@ -265,52 +265,39 @@ impl DrawingAreaBuilder {
     }
 }
 
-pub trait DrawingAreaExt: 'static {
-    #[doc(alias = "gtk_drawing_area_get_content_height")]
-    #[doc(alias = "get_content_height")]
-    fn content_height(&self) -> i32;
-
-    #[doc(alias = "gtk_drawing_area_get_content_width")]
-    #[doc(alias = "get_content_width")]
-    fn content_width(&self) -> i32;
-
-    #[doc(alias = "gtk_drawing_area_set_content_height")]
-    fn set_content_height(&self, height: i32);
-
-    #[doc(alias = "gtk_drawing_area_set_content_width")]
-    fn set_content_width(&self, width: i32);
-
-    #[doc(alias = "resize")]
-    fn connect_resize<F: Fn(&Self, i32, i32) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "content-height")]
-    fn connect_content_height_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "content-width")]
-    fn connect_content_width_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::DrawingArea>> Sealed for T {}
 }
 
-impl<O: IsA<DrawingArea>> DrawingAreaExt for O {
+pub trait DrawingAreaExt: IsA<DrawingArea> + sealed::Sealed + 'static {
+    #[doc(alias = "gtk_drawing_area_get_content_height")]
+    #[doc(alias = "get_content_height")]
     fn content_height(&self) -> i32 {
         unsafe { ffi::gtk_drawing_area_get_content_height(self.as_ref().to_glib_none().0) }
     }
 
+    #[doc(alias = "gtk_drawing_area_get_content_width")]
+    #[doc(alias = "get_content_width")]
     fn content_width(&self) -> i32 {
         unsafe { ffi::gtk_drawing_area_get_content_width(self.as_ref().to_glib_none().0) }
     }
 
+    #[doc(alias = "gtk_drawing_area_set_content_height")]
     fn set_content_height(&self, height: i32) {
         unsafe {
             ffi::gtk_drawing_area_set_content_height(self.as_ref().to_glib_none().0, height);
         }
     }
 
+    #[doc(alias = "gtk_drawing_area_set_content_width")]
     fn set_content_width(&self, width: i32) {
         unsafe {
             ffi::gtk_drawing_area_set_content_width(self.as_ref().to_glib_none().0, width);
         }
     }
 
+    #[doc(alias = "resize")]
     fn connect_resize<F: Fn(&Self, i32, i32) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn resize_trampoline<
             P: IsA<DrawingArea>,
@@ -333,7 +320,7 @@ impl<O: IsA<DrawingArea>> DrawingAreaExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"resize\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     resize_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -341,6 +328,7 @@ impl<O: IsA<DrawingArea>> DrawingAreaExt for O {
         }
     }
 
+    #[doc(alias = "content-height")]
     fn connect_content_height_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_content_height_trampoline<
             P: IsA<DrawingArea>,
@@ -358,7 +346,7 @@ impl<O: IsA<DrawingArea>> DrawingAreaExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::content-height\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_content_height_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -366,6 +354,7 @@ impl<O: IsA<DrawingArea>> DrawingAreaExt for O {
         }
     }
 
+    #[doc(alias = "content-width")]
     fn connect_content_width_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_content_width_trampoline<
             P: IsA<DrawingArea>,
@@ -383,7 +372,7 @@ impl<O: IsA<DrawingArea>> DrawingAreaExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::content-width\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_content_width_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -392,8 +381,4 @@ impl<O: IsA<DrawingArea>> DrawingAreaExt for O {
     }
 }
 
-impl fmt::Display for DrawingArea {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("DrawingArea")
-    }
-}
+impl<O: IsA<DrawingArea>> DrawingAreaExt for O {}

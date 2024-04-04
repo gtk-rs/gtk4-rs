@@ -2,8 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use glib::translate::*;
-use std::fmt;
+use glib::{prelude::*, translate::*};
 
 glib::wrapper! {
     #[doc(alias = "GdkFocusEvent")]
@@ -15,7 +14,7 @@ glib::wrapper! {
     }
 }
 
-impl glib::StaticType for FocusEvent {
+impl StaticType for FocusEvent {
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gdk_focus_event_get_type()) }
     }
@@ -26,11 +25,5 @@ impl FocusEvent {
     #[doc(alias = "get_in")]
     pub fn is_in(&self) -> bool {
         unsafe { from_glib(ffi::gdk_focus_event_get_in(self.to_glib_none().0)) }
-    }
-}
-
-impl fmt::Display for FocusEvent {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("FocusEvent")
     }
 }

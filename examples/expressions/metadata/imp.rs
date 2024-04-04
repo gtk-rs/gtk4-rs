@@ -1,10 +1,8 @@
-use glib::prelude::*;
-use glib::subclass::prelude::*;
-use gtk::glib::{self, Properties};
-
 use std::cell::RefCell;
 
-#[derive(Debug, Properties)]
+use gtk::{glib, prelude::*, subclass::prelude::*};
+
+#[derive(Debug, glib::Properties)]
 #[properties(wrapper_type = super::Metadata)]
 pub struct Metadata {
     #[property(get, set)]
@@ -28,16 +26,5 @@ impl ObjectSubclass for Metadata {
     }
 }
 
-impl ObjectImpl for Metadata {
-    fn properties() -> &'static [glib::ParamSpec] {
-        Self::derived_properties()
-    }
-
-    fn set_property(&self, id: usize, value: &glib::Value, pspec: &glib::ParamSpec) {
-        self.derived_set_property(id, value, pspec)
-    }
-
-    fn property(&self, id: usize, pspec: &glib::ParamSpec) -> glib::Value {
-        self.derived_property(id, pspec)
-    }
-}
+#[glib::derived_properties]
+impl ObjectImpl for Metadata {}

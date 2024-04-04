@@ -1,15 +1,15 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{Win32Display, Win32MessageFilterReturn, MSG};
 use glib::translate::*;
-
-#[cfg(any(all(feature = "v4_4", feature = "egl"), feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(all(feature = "v4_4", feature = "egl"))))]
+#[cfg(all(feature = "v4_4", feature = "egl"))]
+#[cfg_attr(docsrs, doc(cfg(all(feature = "v4_4", feature = "egl"))))]
 use khronos_egl as egl;
 
+use crate::{Win32Display, Win32MessageFilterReturn, MSG};
+
 impl Win32Display {
-    #[cfg(any(all(feature = "v4_4", feature = "egl"), feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(all(feature = "v4_4", feature = "egl"))))]
+    #[cfg(all(feature = "v4_4", feature = "egl"))]
+    #[cfg_attr(docsrs, doc(cfg(all(feature = "v4_4", feature = "egl"))))]
     #[doc(alias = "gdk_win32_display_get_egl_display")]
     #[doc(alias = "get_egl_display")]
     pub fn egl_display(&self) -> Option<egl::Display> {
@@ -38,7 +38,7 @@ impl Win32Display {
         ) -> i32 {
             let f: &F = &*(box_ as *const F);
             f(
-                &from_glib_borrow(display as *mut ffi::GdkWin32Display),
+                &from_glib_borrow(display),
                 &mut *(msg as *mut MSG),
                 &mut *return_value,
             )

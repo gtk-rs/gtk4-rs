@@ -4,7 +4,6 @@
 
 use crate::Display;
 use glib::{prelude::*, translate::*};
-use std::fmt;
 
 glib::wrapper! {
     #[doc(alias = "GdkAppLaunchContext")]
@@ -19,25 +18,14 @@ impl AppLaunchContext {
     pub const NONE: Option<&'static AppLaunchContext> = None;
 }
 
-pub trait AppLaunchContextExt: 'static {
-    #[doc(alias = "gdk_app_launch_context_get_display")]
-    #[doc(alias = "get_display")]
-    fn display(&self) -> Display;
-
-    #[doc(alias = "gdk_app_launch_context_set_desktop")]
-    fn set_desktop(&self, desktop: i32);
-
-    #[doc(alias = "gdk_app_launch_context_set_icon")]
-    fn set_icon(&self, icon: Option<&impl IsA<gio::Icon>>);
-
-    #[doc(alias = "gdk_app_launch_context_set_icon_name")]
-    fn set_icon_name(&self, icon_name: Option<&str>);
-
-    #[doc(alias = "gdk_app_launch_context_set_timestamp")]
-    fn set_timestamp(&self, timestamp: u32);
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::AppLaunchContext>> Sealed for T {}
 }
 
-impl<O: IsA<AppLaunchContext>> AppLaunchContextExt for O {
+pub trait GdkAppLaunchContextExt: IsA<AppLaunchContext> + sealed::Sealed + 'static {
+    #[doc(alias = "gdk_app_launch_context_get_display")]
+    #[doc(alias = "get_display")]
     fn display(&self) -> Display {
         unsafe {
             from_glib_none(ffi::gdk_app_launch_context_get_display(
@@ -46,12 +34,14 @@ impl<O: IsA<AppLaunchContext>> AppLaunchContextExt for O {
         }
     }
 
+    #[doc(alias = "gdk_app_launch_context_set_desktop")]
     fn set_desktop(&self, desktop: i32) {
         unsafe {
             ffi::gdk_app_launch_context_set_desktop(self.as_ref().to_glib_none().0, desktop);
         }
     }
 
+    #[doc(alias = "gdk_app_launch_context_set_icon")]
     fn set_icon(&self, icon: Option<&impl IsA<gio::Icon>>) {
         unsafe {
             ffi::gdk_app_launch_context_set_icon(
@@ -61,6 +51,7 @@ impl<O: IsA<AppLaunchContext>> AppLaunchContextExt for O {
         }
     }
 
+    #[doc(alias = "gdk_app_launch_context_set_icon_name")]
     fn set_icon_name(&self, icon_name: Option<&str>) {
         unsafe {
             ffi::gdk_app_launch_context_set_icon_name(
@@ -70,6 +61,7 @@ impl<O: IsA<AppLaunchContext>> AppLaunchContextExt for O {
         }
     }
 
+    #[doc(alias = "gdk_app_launch_context_set_timestamp")]
     fn set_timestamp(&self, timestamp: u32) {
         unsafe {
             ffi::gdk_app_launch_context_set_timestamp(self.as_ref().to_glib_none().0, timestamp);
@@ -77,8 +69,4 @@ impl<O: IsA<AppLaunchContext>> AppLaunchContextExt for O {
     }
 }
 
-impl fmt::Display for AppLaunchContext {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("AppLaunchContext")
-    }
-}
+impl<O: IsA<AppLaunchContext>> GdkAppLaunchContextExt for O {}

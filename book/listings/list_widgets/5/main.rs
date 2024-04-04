@@ -23,11 +23,10 @@ fn main() -> glib::ExitCode {
 
 fn build_ui(app: &Application) {
     // Create a `Vec<IntegerObject>` with numbers from 0 to 100_000
-    let vector: Vec<IntegerObject> =
-        (0..=100_000).into_iter().map(IntegerObject::new).collect();
+    let vector: Vec<IntegerObject> = (0..=100_000).map(IntegerObject::new).collect();
 
     // Create new model
-    let model = gio::ListStore::new(IntegerObject::static_type());
+    let model = gio::ListStore::new::<IntegerObject>();
 
     // Add the vector to the model
     model.extend_from_slice(&vector);
@@ -57,11 +56,8 @@ fn build_ui(app: &Application) {
             .downcast_ref::<IntegerObject>()
             .expect("The object needs to be of type `IntegerObject`.");
 
-        // Get property "number" from `IntegerObject`
-        let number = integer_object.property::<i32>("number");
-
         // Only allow even numbers
-        number % 2 == 0
+        integer_object.number() % 2 == 0
     });
     let filter_model = FilterListModel::new(Some(model), Some(filter.clone()));
     // ANCHOR_END: filter
@@ -77,8 +73,8 @@ fn build_ui(app: &Application) {
             .expect("The object needs to be of type `IntegerObject`.");
 
         // Get property "number" from `IntegerObject`
-        let number_1 = integer_object_1.property::<i32>("number");
-        let number_2 = integer_object_2.property::<i32>("number");
+        let number_1 = integer_object_1.number();
+        let number_2 = integer_object_2.number();
 
         // Reverse sorting order -> large numbers come first
         number_2.cmp(&number_1).into()

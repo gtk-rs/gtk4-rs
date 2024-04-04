@@ -4,7 +4,6 @@
 
 use crate::TransformCategory;
 use glib::translate::*;
-use std::{fmt, mem};
 
 glib::wrapper! {
     #[derive(Debug, PartialOrd, Ord, Hash)]
@@ -60,12 +59,12 @@ impl Transform {
     #[doc(alias = "gsk_transform_to_2d")]
     pub fn to_2d(&self) -> (f32, f32, f32, f32, f32, f32) {
         unsafe {
-            let mut out_xx = mem::MaybeUninit::uninit();
-            let mut out_yx = mem::MaybeUninit::uninit();
-            let mut out_xy = mem::MaybeUninit::uninit();
-            let mut out_yy = mem::MaybeUninit::uninit();
-            let mut out_dx = mem::MaybeUninit::uninit();
-            let mut out_dy = mem::MaybeUninit::uninit();
+            let mut out_xx = std::mem::MaybeUninit::uninit();
+            let mut out_yx = std::mem::MaybeUninit::uninit();
+            let mut out_xy = std::mem::MaybeUninit::uninit();
+            let mut out_yy = std::mem::MaybeUninit::uninit();
+            let mut out_dx = std::mem::MaybeUninit::uninit();
+            let mut out_dy = std::mem::MaybeUninit::uninit();
             ffi::gsk_transform_to_2d(
                 self.to_glib_none().0,
                 out_xx.as_mut_ptr(),
@@ -86,18 +85,18 @@ impl Transform {
         }
     }
 
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[cfg(feature = "v4_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     #[doc(alias = "gsk_transform_to_2d_components")]
     pub fn to_2d_components(&self) -> (f32, f32, f32, f32, f32, f32, f32) {
         unsafe {
-            let mut out_skew_x = mem::MaybeUninit::uninit();
-            let mut out_skew_y = mem::MaybeUninit::uninit();
-            let mut out_scale_x = mem::MaybeUninit::uninit();
-            let mut out_scale_y = mem::MaybeUninit::uninit();
-            let mut out_angle = mem::MaybeUninit::uninit();
-            let mut out_dx = mem::MaybeUninit::uninit();
-            let mut out_dy = mem::MaybeUninit::uninit();
+            let mut out_skew_x = std::mem::MaybeUninit::uninit();
+            let mut out_skew_y = std::mem::MaybeUninit::uninit();
+            let mut out_scale_x = std::mem::MaybeUninit::uninit();
+            let mut out_scale_y = std::mem::MaybeUninit::uninit();
+            let mut out_angle = std::mem::MaybeUninit::uninit();
+            let mut out_dx = std::mem::MaybeUninit::uninit();
+            let mut out_dy = std::mem::MaybeUninit::uninit();
             ffi::gsk_transform_to_2d_components(
                 self.to_glib_none().0,
                 out_skew_x.as_mut_ptr(),
@@ -123,10 +122,10 @@ impl Transform {
     #[doc(alias = "gsk_transform_to_affine")]
     pub fn to_affine(&self) -> (f32, f32, f32, f32) {
         unsafe {
-            let mut out_scale_x = mem::MaybeUninit::uninit();
-            let mut out_scale_y = mem::MaybeUninit::uninit();
-            let mut out_dx = mem::MaybeUninit::uninit();
-            let mut out_dy = mem::MaybeUninit::uninit();
+            let mut out_scale_x = std::mem::MaybeUninit::uninit();
+            let mut out_scale_y = std::mem::MaybeUninit::uninit();
+            let mut out_dx = std::mem::MaybeUninit::uninit();
+            let mut out_dy = std::mem::MaybeUninit::uninit();
             ffi::gsk_transform_to_affine(
                 self.to_glib_none().0,
                 out_scale_x.as_mut_ptr(),
@@ -161,8 +160,8 @@ impl Transform {
     #[doc(alias = "gsk_transform_to_translate")]
     pub fn to_translate(&self) -> (f32, f32) {
         unsafe {
-            let mut out_dx = mem::MaybeUninit::uninit();
-            let mut out_dy = mem::MaybeUninit::uninit();
+            let mut out_dx = std::mem::MaybeUninit::uninit();
+            let mut out_dy = std::mem::MaybeUninit::uninit();
             ffi::gsk_transform_to_translate(
                 self.to_glib_none().0,
                 out_dx.as_mut_ptr(),
@@ -214,9 +213,9 @@ impl PartialEq for Transform {
 
 impl Eq for Transform {}
 
-impl fmt::Display for Transform {
+impl std::fmt::Display for Transform {
     #[inline]
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
         f.write_str(&self.to_str())
     }
 }

@@ -1,12 +1,12 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-#![cfg_attr(feature = "dox", feature(doc_cfg))]
+#![cfg_attr(docsrs, feature(doc_cfg))]
 #![allow(deprecated)]
 #![doc = include_str!("../README.md")]
 
-pub use ffi;
 // Re-export gtk dependencies
 pub use cairo;
+pub use ffi;
 pub use gdk;
 pub use gdk_pixbuf;
 pub use gio;
@@ -62,24 +62,8 @@ where
     R: Send + 'static,
 {
     skip_assert_initialized!();
-
-    use std::panic;
-    use std::sync::mpsc;
-
-    let (tx, rx) = mpsc::sync_channel(1);
-    TEST_THREAD_WORKER
-        .push(move || {
-            tx.send(panic::catch_unwind(function))
-                .unwrap_or_else(|_| panic!("Failed to return result from thread pool"));
-        })
-        .expect("Failed to schedule a test call");
-    rx.recv()
-        .expect("Failed to receive result from thread pool")
-        .unwrap_or_else(|e| std::panic::resume_unwind(e))
-}
-
-static TEST_THREAD_WORKER: once_cell::sync::Lazy<glib::ThreadPool> =
-    once_cell::sync::Lazy::new(|| {
+    static TEST_THREAD_WORKER: std::sync::OnceLock<glib::ThreadPool> = std::sync::OnceLock::new();
+    let pool = TEST_THREAD_WORKER.get_or_init(|| {
         let pool = glib::ThreadPool::exclusive(1).unwrap();
         pool.push(move || {
             crate::init().expect("Tests failed to initialize gtk");
@@ -87,6 +71,19 @@ static TEST_THREAD_WORKER: once_cell::sync::Lazy<glib::ThreadPool> =
         .expect("Failed to schedule a test call");
         pool
     });
+
+    use std::{panic, sync::mpsc};
+
+    let (tx, rx) = mpsc::sync_channel(1);
+    pool.push(move || {
+        tx.send(panic::catch_unwind(function))
+            .unwrap_or_else(|_| panic!("Failed to return result from thread pool"));
+    })
+    .expect("Failed to schedule a test call");
+    rx.recv()
+        .expect("Failed to receive result from thread pool")
+        .unwrap_or_else(|e| std::panic::resume_unwind(e))
+}
 
 #[allow(clippy::derived_hash_with_manual_eq)]
 #[allow(clippy::too_many_arguments)]
@@ -101,7 +98,6 @@ mod expression;
 pub mod builders;
 pub mod prelude;
 
-pub use auto::functions::*;
 pub use auto::*;
 pub use rt::*;
 
@@ -115,6 +111,8 @@ mod border;
 mod builder;
 mod builder_cscope;
 mod builder_rust_scope;
+mod calendar;
+mod callback_action;
 mod cell_area;
 mod cell_layout;
 mod closure_expression;
@@ -142,8 +140,8 @@ mod file_chooser;
 mod file_chooser_dialog;
 mod flow_box;
 mod font_chooser;
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 mod font_dialog;
 mod functions;
 mod gesture_stylus;
@@ -166,8 +164,8 @@ mod overlay;
 mod pad_action_entry;
 mod page_range;
 mod param_spec_expression;
-#[cfg(any(target_os = "linux", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(target_os = "linux")))]
+#[cfg(target_os = "linux")]
+#[cfg_attr(docsrs, doc(cfg(target_os = "linux")))]
 mod print_job;
 mod print_operation;
 mod print_settings;
@@ -183,6 +181,8 @@ mod signal_list_item_factory;
 mod snapshot;
 mod spin_button;
 mod string_list;
+mod string_object;
+mod style_context;
 mod text;
 mod text_buffer;
 mod tree_model;
@@ -201,9 +201,9 @@ pub use border::Border;
 pub use builder_cscope::BuilderCScope;
 pub use builder_rust_scope::BuilderRustScope;
 pub use css_location::CssLocation;
+pub use enums::Align;
 pub use expression_watch::ExpressionWatch;
 pub use functions::*;
-pub use glib::signal::Inhibit;
 pub use keyval_trigger::KeyvalTrigger;
 pub use mnemonic_trigger::MnemonicTrigger;
 pub use pad_action_entry::PadActionEntry;

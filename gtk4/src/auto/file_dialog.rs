@@ -8,7 +8,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute, pin::Pin, ptr};
+use std::{boxed::Box as Box_, pin::Pin};
 
 glib::wrapper! {
     #[doc(alias = "GtkFileDialog")]
@@ -116,7 +116,7 @@ impl FileDialog {
             res: *mut gio::ffi::GAsyncResult,
             user_data: glib::ffi::gpointer,
         ) {
-            let mut error = ptr::null_mut();
+            let mut error = std::ptr::null_mut();
             let ret = ffi::gtk_file_dialog_open_finish(_source_object as *mut _, res, &mut error);
             let result = if error.is_null() {
                 Ok(from_glib_full(ret))
@@ -182,7 +182,7 @@ impl FileDialog {
             res: *mut gio::ffi::GAsyncResult,
             user_data: glib::ffi::gpointer,
         ) {
-            let mut error = ptr::null_mut();
+            let mut error = std::ptr::null_mut();
             let ret = ffi::gtk_file_dialog_open_multiple_finish(
                 _source_object as *mut _,
                 res,
@@ -253,7 +253,7 @@ impl FileDialog {
             res: *mut gio::ffi::GAsyncResult,
             user_data: glib::ffi::gpointer,
         ) {
-            let mut error = ptr::null_mut();
+            let mut error = std::ptr::null_mut();
             let ret = ffi::gtk_file_dialog_save_finish(_source_object as *mut _, res, &mut error);
             let result = if error.is_null() {
                 Ok(from_glib_full(ret))
@@ -319,7 +319,7 @@ impl FileDialog {
             res: *mut gio::ffi::GAsyncResult,
             user_data: glib::ffi::gpointer,
         ) {
-            let mut error = ptr::null_mut();
+            let mut error = std::ptr::null_mut();
             let ret = ffi::gtk_file_dialog_select_folder_finish(
                 _source_object as *mut _,
                 res,
@@ -364,9 +364,7 @@ impl FileDialog {
     }
 
     #[doc(alias = "gtk_file_dialog_select_multiple_folders")]
-    pub fn select_multiple_folders<
-        P: FnOnce(Result<Option<gio::ListModel>, glib::Error>) + 'static,
-    >(
+    pub fn select_multiple_folders<P: FnOnce(Result<gio::ListModel, glib::Error>) + 'static>(
         &self,
         parent: Option<&impl IsA<Window>>,
         cancellable: Option<&impl IsA<gio::Cancellable>>,
@@ -385,13 +383,13 @@ impl FileDialog {
         let user_data: Box_<glib::thread_guard::ThreadGuard<P>> =
             Box_::new(glib::thread_guard::ThreadGuard::new(callback));
         unsafe extern "C" fn select_multiple_folders_trampoline<
-            P: FnOnce(Result<Option<gio::ListModel>, glib::Error>) + 'static,
+            P: FnOnce(Result<gio::ListModel, glib::Error>) + 'static,
         >(
             _source_object: *mut glib::gobject_ffi::GObject,
             res: *mut gio::ffi::GAsyncResult,
             user_data: glib::ffi::gpointer,
         ) {
-            let mut error = ptr::null_mut();
+            let mut error = std::ptr::null_mut();
             let ret = ffi::gtk_file_dialog_select_multiple_folders_finish(
                 _source_object as *mut _,
                 res,
@@ -422,11 +420,8 @@ impl FileDialog {
     pub fn select_multiple_folders_future(
         &self,
         parent: Option<&(impl IsA<Window> + Clone + 'static)>,
-    ) -> Pin<
-        Box_<
-            dyn std::future::Future<Output = Result<Option<gio::ListModel>, glib::Error>> + 'static,
-        >,
-    > {
+    ) -> Pin<Box_<dyn std::future::Future<Output = Result<gio::ListModel, glib::Error>> + 'static>>
+    {
         let parent = parent.map(ToOwned::to_owned);
         Box_::pin(gio::GioFuture::new(self, move |obj, cancellable, send| {
             obj.select_multiple_folders(
@@ -457,11 +452,11 @@ impl FileDialog {
     }
 
     #[doc(alias = "gtk_file_dialog_set_filters")]
-    pub fn set_filters(&self, filters: &impl IsA<gio::ListModel>) {
+    pub fn set_filters(&self, filters: Option<&impl IsA<gio::ListModel>>) {
         unsafe {
             ffi::gtk_file_dialog_set_filters(
                 self.to_glib_none().0,
-                filters.as_ref().to_glib_none().0,
+                filters.map(|p| p.as_ref()).to_glib_none().0,
             );
         }
     }
@@ -507,8 +502,8 @@ impl FileDialog {
         }
     }
 
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(feature = "v4_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "accept-label")]
     pub fn connect_accept_label_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_accept_label_trampoline<F: Fn(&FileDialog) + 'static>(
@@ -524,7 +519,7 @@ impl FileDialog {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::accept-label\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_accept_label_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -532,8 +527,8 @@ impl FileDialog {
         }
     }
 
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(feature = "v4_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "default-filter")]
     pub fn connect_default_filter_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_default_filter_trampoline<F: Fn(&FileDialog) + 'static>(
@@ -549,7 +544,7 @@ impl FileDialog {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::default-filter\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_default_filter_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -557,8 +552,8 @@ impl FileDialog {
         }
     }
 
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(feature = "v4_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "filters")]
     pub fn connect_filters_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_filters_trampoline<F: Fn(&FileDialog) + 'static>(
@@ -574,7 +569,7 @@ impl FileDialog {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::filters\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_filters_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -582,8 +577,8 @@ impl FileDialog {
         }
     }
 
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(feature = "v4_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "initial-file")]
     pub fn connect_initial_file_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_initial_file_trampoline<F: Fn(&FileDialog) + 'static>(
@@ -599,7 +594,7 @@ impl FileDialog {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::initial-file\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_initial_file_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -607,8 +602,8 @@ impl FileDialog {
         }
     }
 
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(feature = "v4_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "initial-folder")]
     pub fn connect_initial_folder_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_initial_folder_trampoline<F: Fn(&FileDialog) + 'static>(
@@ -624,7 +619,7 @@ impl FileDialog {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::initial-folder\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_initial_folder_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -632,8 +627,8 @@ impl FileDialog {
         }
     }
 
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(feature = "v4_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "initial-name")]
     pub fn connect_initial_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_initial_name_trampoline<F: Fn(&FileDialog) + 'static>(
@@ -649,7 +644,7 @@ impl FileDialog {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::initial-name\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_initial_name_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -657,8 +652,8 @@ impl FileDialog {
         }
     }
 
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(feature = "v4_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "modal")]
     pub fn connect_modal_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_modal_trampoline<F: Fn(&FileDialog) + 'static>(
@@ -674,7 +669,7 @@ impl FileDialog {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::modal\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_modal_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -682,8 +677,8 @@ impl FileDialog {
         }
     }
 
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(feature = "v4_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "title")]
     pub fn connect_title_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_title_trampoline<F: Fn(&FileDialog) + 'static>(
@@ -699,7 +694,7 @@ impl FileDialog {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::title\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_title_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -708,8 +703,8 @@ impl FileDialog {
     }
 }
 
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 impl Default for FileDialog {
     fn default() -> Self {
         Self::new()
@@ -732,16 +727,16 @@ impl FileDialogBuilder {
         }
     }
 
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(feature = "v4_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn accept_label(self, accept_label: impl Into<glib::GString>) -> Self {
         Self {
             builder: self.builder.property("accept-label", accept_label.into()),
         }
     }
 
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(feature = "v4_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn default_filter(self, default_filter: &FileFilter) -> Self {
         Self {
             builder: self
@@ -750,16 +745,16 @@ impl FileDialogBuilder {
         }
     }
 
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(feature = "v4_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn filters(self, filters: &impl IsA<gio::ListModel>) -> Self {
         Self {
             builder: self.builder.property("filters", filters.clone().upcast()),
         }
     }
 
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(feature = "v4_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn initial_file(self, initial_file: &impl IsA<gio::File>) -> Self {
         Self {
             builder: self
@@ -768,8 +763,8 @@ impl FileDialogBuilder {
         }
     }
 
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(feature = "v4_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn initial_folder(self, initial_folder: &impl IsA<gio::File>) -> Self {
         Self {
             builder: self
@@ -778,24 +773,24 @@ impl FileDialogBuilder {
         }
     }
 
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(feature = "v4_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn initial_name(self, initial_name: impl Into<glib::GString>) -> Self {
         Self {
             builder: self.builder.property("initial-name", initial_name.into()),
         }
     }
 
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(feature = "v4_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn modal(self, modal: bool) -> Self {
         Self {
             builder: self.builder.property("modal", modal),
         }
     }
 
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(feature = "v4_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn title(self, title: impl Into<glib::GString>) -> Self {
         Self {
             builder: self.builder.property("title", title.into()),
@@ -807,11 +802,5 @@ impl FileDialogBuilder {
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> FileDialog {
         self.builder.build()
-    }
-}
-
-impl fmt::Display for FileDialog {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("FileDialog")
     }
 }

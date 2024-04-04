@@ -7,7 +7,7 @@ First, we need to create an implementation struct that holds the state and overr
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_subclassing/1/custom_button/imp.rs">listings/g_object_subclassing/1/custom_button/imp.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/g_object_subclassing/1/custom_button/imp.rs}}
 ```
 The description of the subclassing is in `ObjectSubclass`.
@@ -22,13 +22,13 @@ Next, we describe the public interface of our custom GObject.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_subclassing/1/custom_button/mod.rs">listings/g_object_subclassing/1/custom_button/mod.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/g_object_subclassing/1/custom_button/mod.rs:mod}}
 ```
 
 [`glib::wrapper!`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/macro.wrapper.html) implements the same traits that our `ParentType` implements.
 Theoretically that would mean that the `ParentType` is also the only thing we have to specify here.
-Unfortunately, nobody found yet a good way to do that.
+Unfortunately, nobody has yet found a good way to do that.
 Which is why, as of today, subclassing of GObjects in Rust requires to mention all ancestors and interfaces apart from `GObject` and `GInitiallyUnowned`.
 For `gtk::Button`, we can look up the ancestors and interfaces in the corresponding [doc page](https://docs.gtk.org/gtk4/class.Button.html#hierarchy) of GTK4.
 
@@ -36,7 +36,7 @@ After these steps, nothing is stopping us from replacing `gtk::Button` with our 
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_subclassing/1/main.rs">listings/g_object_subclassing/1/main.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/g_object_subclassing/1/main.rs}}
 ```
 
@@ -55,7 +55,7 @@ So let's make it a bit more interesting!
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_subclassing/2/custom_button/imp.rs">listings/g_object_subclassing/2/custom_button/imp.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/g_object_subclassing/2/custom_button/imp.rs}}
 ```
 We override `constructed` in `ObjectImpl` so that the label of the button initializes with `number`.
@@ -63,7 +63,7 @@ We also override `clicked` in `ButtonImpl` so that every click increases `number
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_subclassing/2/main.rs">listings/g_object_subclassing/2/main.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/g_object_subclassing/2/main.rs:activate}}
 ```
 

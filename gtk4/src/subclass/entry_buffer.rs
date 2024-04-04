@@ -2,12 +2,12 @@
 
 // rustdoc-stripper-ignore-next
 //! Traits intended for subclassing [`EntryBuffer`](crate::EntryBuffer).
+use std::sync::OnceLock;
 
-use crate::{prelude::*, subclass::prelude::*, EntryBuffer};
 use glib::{translate::*, GString};
-use once_cell::sync::Lazy;
 
 use super::PtrHolder;
+use crate::{prelude::*, subclass::prelude::*, EntryBuffer};
 
 pub trait EntryBufferImpl: EntryBufferImplExt + ObjectImpl {
     fn delete_text(&self, position: u32, n_chars: Option<u32>) -> u32 {
@@ -36,19 +36,15 @@ pub trait EntryBufferImpl: EntryBufferImplExt + ObjectImpl {
     }
 }
 
-pub trait EntryBufferImplExt: ObjectSubclass {
-    fn parent_delete_text(&self, position: u32, n_chars: Option<u32>) -> u32;
-    fn parent_deleted_text(&self, position: u32, n_chars: Option<u32>);
-    fn parent_length(&self) -> u32;
-    fn parent_text(&self) -> GString;
-    fn parent_insert_text(&self, position: u32, chars: &str) -> u32;
-    fn parent_inserted_text(&self, position: u32, chars: &str);
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::EntryBufferImplExt> Sealed for T {}
 }
 
-impl<T: EntryBufferImpl> EntryBufferImplExt for T {
+pub trait EntryBufferImplExt: sealed::Sealed + ObjectSubclass {
     fn parent_delete_text(&self, position: u32, n_chars: Option<u32>) -> u32 {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkEntryBufferClass;
             let f = (*parent_class)
                 .delete_text
@@ -63,7 +59,7 @@ impl<T: EntryBufferImpl> EntryBufferImplExt for T {
 
     fn parent_deleted_text(&self, position: u32, n_chars: Option<u32>) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkEntryBufferClass;
             if let Some(f) = (*parent_class).deleted_text {
                 f(
@@ -77,7 +73,7 @@ impl<T: EntryBufferImpl> EntryBufferImplExt for T {
 
     fn parent_length(&self) -> u32 {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkEntryBufferClass;
             let f = (*parent_class)
                 .get_length
@@ -88,7 +84,7 @@ impl<T: EntryBufferImpl> EntryBufferImplExt for T {
 
     fn parent_text(&self) -> GString {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkEntryBufferClass;
             let f = (*parent_class)
                 .get_text
@@ -104,7 +100,7 @@ impl<T: EntryBufferImpl> EntryBufferImplExt for T {
 
     fn parent_insert_text(&self, position: u32, text: &str) -> u32 {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkEntryBufferClass;
             let f = (*parent_class)
                 .insert_text
@@ -121,7 +117,7 @@ impl<T: EntryBufferImpl> EntryBufferImplExt for T {
 
     fn parent_inserted_text(&self, position: u32, text: &str) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkEntryBufferClass;
             if let Some(f) = (*parent_class).inserted_text {
                 f(
@@ -134,6 +130,8 @@ impl<T: EntryBufferImpl> EntryBufferImplExt for T {
         }
     }
 }
+
+impl<T: EntryBufferImpl> EntryBufferImplExt for T {}
 
 unsafe impl<T: EntryBufferImpl> IsSubclassable<T> for EntryBuffer {
     fn class_init(class: &mut glib::Class<Self>) {
@@ -185,9 +183,6 @@ unsafe extern "C" fn entry_buffer_deleted_text<T: EntryBufferImpl>(
     imp.deleted_text(position, n_chars)
 }
 
-static GET_TEXT_QUARK: Lazy<glib::Quark> =
-    Lazy::new(|| glib::Quark::from_str("gtk4-rs-subclass-entry-buffer-text"));
-
 unsafe extern "C" fn entry_buffer_get_text<T: EntryBufferImpl>(
     ptr: *mut ffi::GtkEntryBuffer,
     n_bytes: *mut usize,
@@ -201,9 +196,13 @@ unsafe extern "C" fn entry_buffer_get_text<T: EntryBufferImpl>(
     }
     // Ensures that the returned text stays alive for as long as
     // the entry buffer instance
+
+    static QUARK: OnceLock<glib::Quark> = OnceLock::new();
+    let quark = *QUARK.get_or_init(|| glib::Quark::from_str("gtk4-rs-subclass-entry-buffer-text"));
+
     let fullptr = ret.into_glib_ptr();
     imp.obj().set_qdata(
-        *GET_TEXT_QUARK,
+        quark,
         PtrHolder(fullptr, |ptr| {
             glib::ffi::g_free(ptr as *mut _);
         }),

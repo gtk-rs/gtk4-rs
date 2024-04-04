@@ -1,3 +1,4 @@
+use std::thread;
 use std::time::Duration;
 
 use gtk::prelude::*;
@@ -30,7 +31,7 @@ fn build_ui(app: &Application) {
     button.connect_clicked(move |_| {
         // GUI is blocked for 5 seconds after the button is pressed
         let five_seconds = Duration::from_secs(5);
-        std::thread::sleep(five_seconds);
+        thread::sleep(five_seconds);
     });
 
     // Create a window

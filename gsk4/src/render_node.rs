@@ -1,8 +1,8 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{ParseLocation, RenderNode, RenderNodeType};
 use glib::translate::*;
-use glib::StaticType;
+
+use crate::{prelude::*, ParseLocation, RenderNode, RenderNodeType};
 
 impl RenderNode {
     #[inline]
@@ -95,7 +95,8 @@ impl std::fmt::Debug for RenderNode {
 }
 
 // rustdoc-stripper-ignore-next
-/// A common trait implemented by the various [`RenderNode`](crate::RenderNode) types.
+/// A common trait implemented by the various [`RenderNode`](crate::RenderNode)
+/// types.
 ///
 /// # Safety
 ///
@@ -164,14 +165,14 @@ macro_rules! define_render_node {
             }
         }
 
-        #[cfg(any(feature = "v4_6", feature = "dox"))]
-        #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+        #[cfg(feature = "v4_6")]
+        #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
         impl glib::value::ValueType for $rust_type {
             type Type = Self;
         }
 
-        #[cfg(any(feature = "v4_6", feature = "dox"))]
-        #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+        #[cfg(feature = "v4_6")]
+        #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
         unsafe impl<'a> glib::value::FromValue<'a> for $rust_type {
             type Checker = glib::value::GenericValueTypeOrNoneChecker<Self>;
 
@@ -184,8 +185,8 @@ macro_rules! define_render_node {
             }
         }
 
-        #[cfg(any(feature = "v4_6", feature = "dox"))]
-        #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+        #[cfg(feature = "v4_6")]
+        #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
         impl glib::value::ToValue for $rust_type {
             #[inline]
             fn to_value(&self) -> glib::Value {
@@ -201,13 +202,13 @@ macro_rules! define_render_node {
 
             #[inline]
             fn value_type(&self) -> glib::Type {
-                use glib::StaticType;
+                use glib::prelude::StaticType;
                 Self::static_type()
             }
         }
 
-        #[cfg(any(feature = "v4_6", feature = "dox"))]
-        #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+        #[cfg(feature = "v4_6")]
+        #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
         impl glib::value::ToValueOptional for $rust_type {
             #[inline]
             fn to_value_optional(s: Option<&Self>) -> glib::Value {

@@ -2,8 +2,8 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 use crate::AccessibleRange;
 use crate::{
     Accessible, AccessibleRole, Adjustment, Align, Buildable, CellEditable, ConstraintTarget,
@@ -15,10 +15,10 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem, mem::transmute};
+use std::boxed::Box as Box_;
 
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 glib::wrapper! {
     #[doc(alias = "GtkSpinButton")]
     pub struct SpinButton(Object<ffi::GtkSpinButton>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, AccessibleRange, CellEditable, Editable, Orientable;
@@ -28,7 +28,7 @@ glib::wrapper! {
     }
 }
 
-#[cfg(not(any(feature = "v4_10", feature = "dox")))]
+#[cfg(not(any(feature = "v4_10")))]
 glib::wrapper! {
     #[doc(alias = "GtkSpinButton")]
     pub struct SpinButton(Object<ffi::GtkSpinButton>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, CellEditable, Editable, Orientable;
@@ -91,6 +91,18 @@ impl SpinButton {
         }
     }
 
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    #[doc(alias = "gtk_spin_button_get_activates_default")]
+    #[doc(alias = "get_activates_default")]
+    pub fn activates_default(&self) -> bool {
+        unsafe {
+            from_glib(ffi::gtk_spin_button_get_activates_default(
+                self.to_glib_none().0,
+            ))
+        }
+    }
+
     #[doc(alias = "gtk_spin_button_get_adjustment")]
     #[doc(alias = "get_adjustment")]
     pub fn adjustment(&self) -> Adjustment {
@@ -113,8 +125,8 @@ impl SpinButton {
     #[doc(alias = "get_increments")]
     pub fn increments(&self) -> (f64, f64) {
         unsafe {
-            let mut step = mem::MaybeUninit::uninit();
-            let mut page = mem::MaybeUninit::uninit();
+            let mut step = std::mem::MaybeUninit::uninit();
+            let mut page = std::mem::MaybeUninit::uninit();
             ffi::gtk_spin_button_get_increments(
                 self.to_glib_none().0,
                 step.as_mut_ptr(),
@@ -134,8 +146,8 @@ impl SpinButton {
     #[doc(alias = "get_range")]
     pub fn range(&self) -> (f64, f64) {
         unsafe {
-            let mut min = mem::MaybeUninit::uninit();
-            let mut max = mem::MaybeUninit::uninit();
+            let mut min = std::mem::MaybeUninit::uninit();
+            let mut max = std::mem::MaybeUninit::uninit();
             ffi::gtk_spin_button_get_range(
                 self.to_glib_none().0,
                 min.as_mut_ptr(),
@@ -181,6 +193,18 @@ impl SpinButton {
     #[doc(alias = "get_wrap")]
     pub fn wraps(&self) -> bool {
         unsafe { from_glib(ffi::gtk_spin_button_get_wrap(self.to_glib_none().0)) }
+    }
+
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    #[doc(alias = "gtk_spin_button_set_activates_default")]
+    pub fn set_activates_default(&self, activates_default: bool) {
+        unsafe {
+            ffi::gtk_spin_button_set_activates_default(
+                self.to_glib_none().0,
+                activates_default.into_glib(),
+            );
+        }
     }
 
     #[doc(alias = "gtk_spin_button_set_adjustment")]
@@ -273,6 +297,36 @@ impl SpinButton {
         }
     }
 
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    #[doc(alias = "activate")]
+    pub fn connect_activate<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn activate_trampoline<F: Fn(&SpinButton) + 'static>(
+            this: *mut ffi::GtkSpinButton,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"activate\0".as_ptr() as *const _,
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                    activate_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn emit_activate(&self) {
+        self.emit_by_name::<()>("activate", &[]);
+    }
+
     #[doc(alias = "change-value")]
     pub fn connect_change_value<F: Fn(&Self, ScrollType) + 'static>(
         &self,
@@ -291,7 +345,7 @@ impl SpinButton {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"change-value\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     change_value_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -304,12 +358,12 @@ impl SpinButton {
     }
 
     #[doc(alias = "output")]
-    pub fn connect_output<F: Fn(&Self) -> glib::signal::Inhibit + 'static>(
+    pub fn connect_output<F: Fn(&Self) -> glib::Propagation + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn output_trampoline<
-            F: Fn(&SpinButton) -> glib::signal::Inhibit + 'static,
+            F: Fn(&SpinButton) -> glib::Propagation + 'static,
         >(
             this: *mut ffi::GtkSpinButton,
             f: glib::ffi::gpointer,
@@ -322,7 +376,7 @@ impl SpinButton {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"output\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     output_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -344,7 +398,7 @@ impl SpinButton {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"value-changed\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     value_changed_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -366,8 +420,36 @@ impl SpinButton {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"wrapped\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     wrapped_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    #[doc(alias = "activates-default")]
+    pub fn connect_activates_default_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_activates_default_trampoline<F: Fn(&SpinButton) + 'static>(
+            this: *mut ffi::GtkSpinButton,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::activates-default\0".as_ptr() as *const _,
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                    notify_activates_default_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -389,7 +471,7 @@ impl SpinButton {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::adjustment\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_adjustment_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -412,7 +494,7 @@ impl SpinButton {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::climb-rate\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_climb_rate_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -435,7 +517,7 @@ impl SpinButton {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::digits\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_digits_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -458,7 +540,7 @@ impl SpinButton {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::numeric\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_numeric_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -481,7 +563,7 @@ impl SpinButton {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::snap-to-ticks\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_snap_to_ticks_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -504,7 +586,7 @@ impl SpinButton {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::update-policy\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_update_policy_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -527,7 +609,7 @@ impl SpinButton {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::value\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_value_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -550,7 +632,7 @@ impl SpinButton {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::wrap\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_wrap_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -578,6 +660,16 @@ impl SpinButtonBuilder {
     fn new() -> Self {
         Self {
             builder: glib::object::Object::builder(),
+        }
+    }
+
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn activates_default(self, activates_default: bool) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("activates-default", activates_default),
         }
     }
 
@@ -868,11 +960,5 @@ impl SpinButtonBuilder {
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> SpinButton {
         self.builder.build()
-    }
-}
-
-impl fmt::Display for SpinButton {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("SpinButton")
     }
 }

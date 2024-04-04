@@ -2,17 +2,17 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // DO NOT EDIT
 
-#[cfg(not(feature = "dox"))]
+#[cfg(not(docsrs))]
 use std::io;
-#[cfg(not(feature = "dox"))]
+#[cfg(not(docsrs))]
 use std::io::prelude::*;
-#[cfg(not(feature = "dox"))]
+#[cfg(not(docsrs))]
 use std::process;
 
-#[cfg(feature = "dox")]
+#[cfg(docsrs)]
 fn main() {} // prevent linking libraries to avoid documentation failure
 
-#[cfg(not(feature = "dox"))]
+#[cfg(not(docsrs))]
 fn main() {
     if let Err(s) = system_deps::Config::new().probe() {
         let _ = writeln!(io::stderr(), "{s}");
@@ -24,7 +24,7 @@ fn main() {
     check_features();
 }
 
-#[cfg(not(feature = "dox"))]
+#[cfg(not(docsrs))]
 fn check_features() {
     const PKG_CONFIG_PACKAGE: &str = "gtk4";
 
@@ -41,7 +41,8 @@ fn check_features() {
         println!("cargo:backends={targets}");
         for target in targets.split_whitespace() {
             // For whatever reasons,calling pkg-config --variable=targets gtk4
-            // returns broadway\ wayland\ x11. So we drop those from the configured gtk_backend
+            // returns broadway\ wayland\ x11. So we drop those from the configured
+            // gtk_backend
             println!(
                 "cargo:rustc-cfg=gdk_backend=\"{}\"",
                 target.trim_end_matches('\\')

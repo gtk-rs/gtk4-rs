@@ -1,7 +1,8 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{prelude::*, MapListModel};
 use glib::translate::*;
+
+use crate::{prelude::*, MapListModel};
 
 impl MapListModel {
     #[doc(alias = "gtk_map_list_model_new")]

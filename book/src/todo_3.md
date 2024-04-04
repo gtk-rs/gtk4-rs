@@ -48,7 +48,7 @@ This means they cannot be used with [list views](https://developer.gnome.org/hig
 > Try to add tasks programmatically and see how many of them you have to add until the UI noticeably slows down.
 > Determine for yourself if you think that is a reasonable number or if we should have rather stuck with list views.
 
-We can use boxed lists by using [`gtk::ListBox`](../docs/gtk4/struct.ListBox.html) instead of [`gtk::ListView`](../docs/gtk4/struct.ListView.html).
+We can use boxed lists by using [`gtk::ListBox`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.ListBox.html) instead of [`gtk::ListView`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.ListView.html).
 We will also add the [`boxed-list`](https://gnome.pages.gitlab.gnome.org/libadwaita/doc/main/boxed-lists.html) style class provided by Libadwaita.
 
 Let's implement all these changes in the `window.ui` file.
@@ -97,7 +97,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 </child>
 ```
 
-In order to follow the boxed list pattern, we switched to [`gtk::ListBox`](../docs/gtk4/struct.ListBox.html), set its property "selection-mode" to "none" and added the `boxed-list` style class. 
+In order to follow the boxed list pattern, we switched to [`gtk::ListBox`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.ListBox.html), set its property "selection-mode" to "none" and added the `boxed-list` style class. 
 
 Let's continue with `window/imp.rs`.
 The member variable `tasks_list` now describes a `ListBox` rather than a `ListView`.

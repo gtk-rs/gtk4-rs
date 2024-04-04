@@ -11,7 +11,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GtkCenterBox")]
@@ -59,6 +59,18 @@ impl CenterBox {
         unsafe { from_glib_none(ffi::gtk_center_box_get_end_widget(self.to_glib_none().0)) }
     }
 
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "gtk_center_box_get_shrink_center_last")]
+    #[doc(alias = "get_shrink_center_last")]
+    pub fn shrinks_center_last(&self) -> bool {
+        unsafe {
+            from_glib(ffi::gtk_center_box_get_shrink_center_last(
+                self.to_glib_none().0,
+            ))
+        }
+    }
+
     #[doc(alias = "gtk_center_box_get_start_widget")]
     #[doc(alias = "get_start_widget")]
     pub fn start_widget(&self) -> Option<Widget> {
@@ -92,6 +104,18 @@ impl CenterBox {
         }
     }
 
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "gtk_center_box_set_shrink_center_last")]
+    pub fn set_shrink_center_last(&self, shrink_center_last: bool) {
+        unsafe {
+            ffi::gtk_center_box_set_shrink_center_last(
+                self.to_glib_none().0,
+                shrink_center_last.into_glib(),
+            );
+        }
+    }
+
     #[doc(alias = "gtk_center_box_set_start_widget")]
     pub fn set_start_widget(&self, child: Option<&impl IsA<Widget>>) {
         unsafe {
@@ -120,7 +144,7 @@ impl CenterBox {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::baseline-position\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_baseline_position_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -128,8 +152,8 @@ impl CenterBox {
         }
     }
 
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(feature = "v4_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "center-widget")]
     pub fn connect_center_widget_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_center_widget_trampoline<F: Fn(&CenterBox) + 'static>(
@@ -145,7 +169,7 @@ impl CenterBox {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::center-widget\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_center_widget_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -153,8 +177,8 @@ impl CenterBox {
         }
     }
 
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(feature = "v4_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "end-widget")]
     pub fn connect_end_widget_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_end_widget_trampoline<F: Fn(&CenterBox) + 'static>(
@@ -170,7 +194,7 @@ impl CenterBox {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::end-widget\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_end_widget_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -178,8 +202,36 @@ impl CenterBox {
         }
     }
 
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "shrink-center-last")]
+    pub fn connect_shrink_center_last_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_shrink_center_last_trampoline<F: Fn(&CenterBox) + 'static>(
+            this: *mut ffi::GtkCenterBox,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::shrink-center-last\0".as_ptr() as *const _,
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                    notify_shrink_center_last_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg(feature = "v4_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "start-widget")]
     pub fn connect_start_widget_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_start_widget_trampoline<F: Fn(&CenterBox) + 'static>(
@@ -195,7 +247,7 @@ impl CenterBox {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::start-widget\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_start_widget_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -234,8 +286,8 @@ impl CenterBoxBuilder {
         }
     }
 
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(feature = "v4_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn center_widget(self, center_widget: &impl IsA<Widget>) -> Self {
         Self {
             builder: self
@@ -244,8 +296,8 @@ impl CenterBoxBuilder {
         }
     }
 
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(feature = "v4_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn end_widget(self, end_widget: &impl IsA<Widget>) -> Self {
         Self {
             builder: self
@@ -254,8 +306,18 @@ impl CenterBoxBuilder {
         }
     }
 
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn shrink_center_last(self, shrink_center_last: bool) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("shrink-center-last", shrink_center_last),
+        }
+    }
+
+    #[cfg(feature = "v4_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn start_widget(self, start_widget: &impl IsA<Widget>) -> Self {
         Self {
             builder: self
@@ -459,11 +521,5 @@ impl CenterBoxBuilder {
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> CenterBox {
         self.builder.build()
-    }
-}
-
-impl fmt::Display for CenterBox {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("CenterBox")
     }
 }

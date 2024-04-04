@@ -1,8 +1,11 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
+use std::{
+    io::{Read, Write},
+    process::{Command, Stdio},
+};
+
 use anyhow::{bail, Result};
-use std::io::{Read, Write};
-use std::process::{Command, Stdio};
 
 pub(crate) fn compile_blueprint(blueprint: &[u8]) -> Result<String> {
     let mut compiler = Command::new("blueprint-compiler")

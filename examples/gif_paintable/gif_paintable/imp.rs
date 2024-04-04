@@ -1,8 +1,6 @@
 use std::cell::{Cell, RefCell};
 
-use gtk::prelude::*;
-use gtk::subclass::prelude::*;
-use gtk::{gdk, glib, graphene};
+use gtk::{gdk, glib, graphene, prelude::*, subclass::prelude::*};
 
 use super::Frame;
 

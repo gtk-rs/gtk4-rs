@@ -4,7 +4,6 @@
 
 use crate::{MemoryFormat, Paintable, Texture};
 use glib::translate::*;
-use std::fmt;
 
 glib::wrapper! {
     #[doc(alias = "GdkMemoryTexture")]
@@ -39,9 +38,3 @@ impl MemoryTexture {
 
 unsafe impl Send for MemoryTexture {}
 unsafe impl Sync for MemoryTexture {}
-
-impl fmt::Display for MemoryTexture {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("MemoryTexture")
-    }
-}

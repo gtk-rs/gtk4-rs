@@ -1,20 +1,34 @@
 [package]
-authors = ["The gtk-rs Project Developers"]
+name = "gtk4-sys"
 build = "build.rs"
 description = "FFI bindings of GTK 4"
 documentation = "https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4_sys"
-edition = "2021"
-homepage = "http://gtk-rs.org/"
 keywords = ["gtk", "gtk4", "ffi", "gtk-rs", "gnome"]
-license = "MIT"
 links = "gtk-4"
-name = "gtk4-sys"
-repository = "https://github.com/gtk-rs/gtk4-rs"
-version = "0.7.0"
-rust-version = "1.64"
 
-[package.metadata.docs.rs]
-features = ["dox"]
+[package.authors]
+workspace = true
+
+[package.categories]
+workspace = true
+
+[package.edition]
+workspace = true
+
+[package.homepage]
+workspace = true
+
+[package.license]
+workspace = true
+
+[package.repository]
+workspace = true
+
+[package.rust-version]
+workspace = true
+
+[package.version]
+workspace = true
 
 [package.metadata.system-deps.gtk4]
 name = "gtk4"
@@ -36,67 +50,57 @@ version = "4.7"
 version = "4.10"
 
 [package.metadata.system-deps.gtk4.v4_12]
-version = "4.12"
+version = "4.11"
+
+[package.metadata.system-deps.gtk4.v4_14]
+version = "4.13"
+
+[package.metadata.docs.rs]
+rustc-args = ["--cfg", "docsrs"]
+rustdoc-args = ["--cfg", "docsrs", "--generate-link-to-definition"]
+all-features = true
 
 [lib]
 name = "gtk4_sys"
 
 [features]
-dox = ["glib/dox", "gobject/dox", "gio/dox", "gdk_pixbuf/dox", "pango/dox", "cairo/dox", "graphene/dox", "gdk/dox", "gsk/dox"]
 v4_2 = []
 v4_4 = ["v4_2"]
 v4_6 = ["v4_4"]
 v4_8 = ["v4_6"]
 v4_10 = ["v4_8"]
 v4_12 = ["v4_10"]
+v4_14 = ["v4_12"]
 
 [dependencies]
 libc = "0.2"
 
-[dependencies.cairo]
-package = "cairo-sys-rs"
-git = "https://github.com/gtk-rs/gtk-rs-core"
-version = "0.18"
+[dependencies.cairo-sys-rs]
+workspace = true
 
-[dependencies.gdk_pixbuf]
-package = "gdk-pixbuf-sys"
-git = "https://github.com/gtk-rs/gtk-rs-core"
-version = "0.18"
+[dependencies.gdk-pixbuf-sys]
+workspace = true
 
-[dependencies.gdk]
-package = "gdk4-sys"
-path = "../../gdk4/sys"
-version = "0.7"
+[dependencies.gio-sys]
+workspace = true
 
-[dependencies.gio]
-package = "gio-sys"
-git = "https://github.com/gtk-rs/gtk-rs-core"
-version = "0.18"
+[dependencies.glib-sys]
+workspace = true
 
-[dependencies.glib]
-package = "glib-sys"
-git = "https://github.com/gtk-rs/gtk-rs-core"
-version = "0.18"
+[dependencies.gobject-sys]
+workspace = true
 
-[dependencies.gobject]
-package = "gobject-sys"
-git = "https://github.com/gtk-rs/gtk-rs-core"
-version = "0.18"
+[dependencies.pango-sys]
+workspace = true
 
-[dependencies.graphene]
-package = "graphene-sys"
-git = "https://github.com/gtk-rs/gtk-rs-core"
-version = "0.18"
+[dependencies.graphene-sys]
+workspace = true
 
-[dependencies.gsk]
-package = "gsk4-sys"
-path = "../../gsk4/sys"
-version = "0.7"
+[dependencies.gdk4-sys]
+workspace = true
 
-[dependencies.pango]
-package = "pango-sys"
-git = "https://github.com/gtk-rs/gtk-rs-core"
-version = "0.18"
+[dependencies.gsk4-sys]
+workspace = true
 
 [build-dependencies]
 system-deps = "6"

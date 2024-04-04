@@ -8,7 +8,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GtkTreeListModel")]
@@ -36,7 +36,7 @@ impl TreeListModel {
             user_data: glib::ffi::gpointer,
         ) -> *mut gio::ffi::GListModel {
             let item = from_glib_borrow(item);
-            let callback: &P = &*(user_data as *mut _);
+            let callback = &*(user_data as *mut P);
             (*callback)(&item).to_glib_full()
         }
         let create_func = Some(create_func_func::<P> as _);
@@ -45,7 +45,7 @@ impl TreeListModel {
         >(
             data: glib::ffi::gpointer,
         ) {
-            let _callback: Box_<P> = Box_::from_raw(data as *mut _);
+            let _callback = Box_::from_raw(data as *mut P);
         }
         let destroy_call5 = Some(user_destroy_func::<P> as _);
         let super_callback0: Box_<P> = create_func_data;
@@ -131,7 +131,7 @@ impl TreeListModel {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::autoexpand\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_autoexpand_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -154,17 +154,11 @@ impl TreeListModel {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::model\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_model_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
         }
-    }
-}
-
-impl fmt::Display for TreeListModel {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("TreeListModel")
     }
 }

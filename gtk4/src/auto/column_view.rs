@@ -7,12 +7,15 @@ use crate::{
     LayoutManager, Overflow, Scrollable, ScrollablePolicy, SelectionModel, SortType, Sorter,
     Widget,
 };
+#[cfg(feature = "v4_12")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+use crate::{ListItemFactory, ListScrollFlags, ListTabBehavior, ScrollInfo};
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GtkColumnView")]
@@ -66,6 +69,18 @@ impl ColumnView {
         }
     }
 
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "gtk_column_view_get_header_factory")]
+    #[doc(alias = "get_header_factory")]
+    pub fn header_factory(&self) -> Option<ListItemFactory> {
+        unsafe {
+            from_glib_none(ffi::gtk_column_view_get_header_factory(
+                self.to_glib_none().0,
+            ))
+        }
+    }
+
     #[doc(alias = "gtk_column_view_get_model")]
     #[doc(alias = "get_model")]
     pub fn model(&self) -> Option<SelectionModel> {
@@ -76,6 +91,14 @@ impl ColumnView {
     #[doc(alias = "get_reorderable")]
     pub fn is_reorderable(&self) -> bool {
         unsafe { from_glib(ffi::gtk_column_view_get_reorderable(self.to_glib_none().0)) }
+    }
+
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "gtk_column_view_get_row_factory")]
+    #[doc(alias = "get_row_factory")]
+    pub fn row_factory(&self) -> Option<ListItemFactory> {
+        unsafe { from_glib_none(ffi::gtk_column_view_get_row_factory(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_column_view_get_show_column_separators")]
@@ -114,6 +137,14 @@ impl ColumnView {
         unsafe { from_glib_none(ffi::gtk_column_view_get_sorter(self.to_glib_none().0)) }
     }
 
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "gtk_column_view_get_tab_behavior")]
+    #[doc(alias = "get_tab_behavior")]
+    pub fn tab_behavior(&self) -> ListTabBehavior {
+        unsafe { from_glib(ffi::gtk_column_view_get_tab_behavior(self.to_glib_none().0)) }
+    }
+
     #[doc(alias = "gtk_column_view_insert_column")]
     pub fn insert_column(&self, position: u32, column: &ColumnViewColumn) {
         unsafe {
@@ -132,12 +163,45 @@ impl ColumnView {
         }
     }
 
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "gtk_column_view_scroll_to")]
+    pub fn scroll_to(
+        &self,
+        pos: u32,
+        column: Option<&ColumnViewColumn>,
+        flags: ListScrollFlags,
+        scroll: Option<ScrollInfo>,
+    ) {
+        unsafe {
+            ffi::gtk_column_view_scroll_to(
+                self.to_glib_none().0,
+                pos,
+                column.to_glib_none().0,
+                flags.into_glib(),
+                scroll.into_glib_ptr(),
+            );
+        }
+    }
+
     #[doc(alias = "gtk_column_view_set_enable_rubberband")]
     pub fn set_enable_rubberband(&self, enable_rubberband: bool) {
         unsafe {
             ffi::gtk_column_view_set_enable_rubberband(
                 self.to_glib_none().0,
                 enable_rubberband.into_glib(),
+            );
+        }
+    }
+
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "gtk_column_view_set_header_factory")]
+    pub fn set_header_factory(&self, factory: Option<&impl IsA<ListItemFactory>>) {
+        unsafe {
+            ffi::gtk_column_view_set_header_factory(
+                self.to_glib_none().0,
+                factory.map(|p| p.as_ref()).to_glib_none().0,
             );
         }
     }
@@ -156,6 +220,18 @@ impl ColumnView {
     pub fn set_reorderable(&self, reorderable: bool) {
         unsafe {
             ffi::gtk_column_view_set_reorderable(self.to_glib_none().0, reorderable.into_glib());
+        }
+    }
+
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "gtk_column_view_set_row_factory")]
+    pub fn set_row_factory(&self, factory: Option<&impl IsA<ListItemFactory>>) {
+        unsafe {
+            ffi::gtk_column_view_set_row_factory(
+                self.to_glib_none().0,
+                factory.map(|p| p.as_ref()).to_glib_none().0,
+            );
         }
     }
 
@@ -189,6 +265,15 @@ impl ColumnView {
         }
     }
 
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "gtk_column_view_set_tab_behavior")]
+    pub fn set_tab_behavior(&self, tab_behavior: ListTabBehavior) {
+        unsafe {
+            ffi::gtk_column_view_set_tab_behavior(self.to_glib_none().0, tab_behavior.into_glib());
+        }
+    }
+
     #[doc(alias = "gtk_column_view_sort_by_column")]
     pub fn sort_by_column(&self, column: Option<&ColumnViewColumn>, direction: SortType) {
         unsafe {
@@ -215,7 +300,7 @@ impl ColumnView {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"activate\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     activate_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -238,7 +323,7 @@ impl ColumnView {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::columns\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_columns_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -264,8 +349,33 @@ impl ColumnView {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::enable-rubberband\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_enable_rubberband_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "header-factory")]
+    pub fn connect_header_factory_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_header_factory_trampoline<F: Fn(&ColumnView) + 'static>(
+            this: *mut ffi::GtkColumnView,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::header-factory\0".as_ptr() as *const _,
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                    notify_header_factory_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -287,7 +397,7 @@ impl ColumnView {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::model\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_model_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -310,8 +420,33 @@ impl ColumnView {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::reorderable\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_reorderable_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "row-factory")]
+    pub fn connect_row_factory_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_row_factory_trampoline<F: Fn(&ColumnView) + 'static>(
+            this: *mut ffi::GtkColumnView,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::row-factory\0".as_ptr() as *const _,
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                    notify_row_factory_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -338,7 +473,7 @@ impl ColumnView {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::show-column-separators\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_show_column_separators_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -364,7 +499,7 @@ impl ColumnView {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::show-row-separators\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_show_row_separators_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -392,7 +527,7 @@ impl ColumnView {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::single-click-activate\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_single_click_activate_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -415,8 +550,33 @@ impl ColumnView {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::sorter\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_sorter_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "tab-behavior")]
+    pub fn connect_tab_behavior_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_tab_behavior_trampoline<F: Fn(&ColumnView) + 'static>(
+            this: *mut ffi::GtkColumnView,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::tab-behavior\0".as_ptr() as *const _,
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                    notify_tab_behavior_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -454,6 +614,16 @@ impl ColumnViewBuilder {
         }
     }
 
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn header_factory(self, header_factory: &impl IsA<ListItemFactory>) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("header-factory", header_factory.clone().upcast()),
+        }
+    }
+
     pub fn model(self, model: &impl IsA<SelectionModel>) -> Self {
         Self {
             builder: self.builder.property("model", model.clone().upcast()),
@@ -463,6 +633,16 @@ impl ColumnViewBuilder {
     pub fn reorderable(self, reorderable: bool) -> Self {
         Self {
             builder: self.builder.property("reorderable", reorderable),
+        }
+    }
+
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn row_factory(self, row_factory: &impl IsA<ListItemFactory>) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("row-factory", row_factory.clone().upcast()),
         }
     }
 
@@ -487,6 +667,14 @@ impl ColumnViewBuilder {
             builder: self
                 .builder
                 .property("single-click-activate", single_click_activate),
+        }
+    }
+
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn tab_behavior(self, tab_behavior: ListTabBehavior) -> Self {
+        Self {
+            builder: self.builder.property("tab-behavior", tab_behavior),
         }
     }
 
@@ -707,11 +895,5 @@ impl ColumnViewBuilder {
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> ColumnView {
         self.builder.build()
-    }
-}
-
-impl fmt::Display for ColumnView {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("ColumnView")
     }
 }

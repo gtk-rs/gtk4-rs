@@ -1,17 +1,19 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{prelude::*, Scale};
 use glib::translate::*;
+
+use crate::{prelude::*, Scale};
+
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::Scale>> Sealed for T {}
+}
 
 // rustdoc-stripper-ignore-next
 /// Trait containing manually implemented methods of [`Scale`](crate::Scale).
-pub trait ScaleExtManual: 'static {
+pub trait ScaleExtManual: sealed::Sealed + IsA<Scale> + 'static {
     #[doc(alias = "gtk_scale_set_format_value_func")]
     #[doc(alias = "set_format_value_func")]
-    fn unset_format_value_func(&self);
-}
-
-impl<O: IsA<Scale>> ScaleExtManual for O {
     fn unset_format_value_func(&self) {
         unsafe {
             ffi::gtk_scale_set_format_value_func(
@@ -23,3 +25,5 @@ impl<O: IsA<Scale>> ScaleExtManual for O {
         }
     }
 }
+
+impl<O: IsA<Scale>> ScaleExtManual for O {}

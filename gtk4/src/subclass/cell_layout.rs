@@ -1,13 +1,15 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
 // rustdoc-stripper-ignore-next
-//! Traits intended for implementing the [`CellLayout`](crate::CellLayout) interface.
+//! Traits intended for implementing the [`CellLayout`](crate::CellLayout)
+//! interface.
+use std::sync::OnceLock;
+
+use glib::{translate::*, Quark};
 
 use crate::{
     prelude::*, subclass::prelude::*, CellArea, CellLayout, CellRenderer, TreeIter, TreeModel,
 };
-use glib::{translate::*, Quark};
-use once_cell::sync::Lazy;
 
 #[derive(Debug)]
 pub struct CellLayoutDataCallback {
@@ -94,26 +96,14 @@ pub trait CellLayoutImpl: ObjectImpl {
     }
 }
 
-#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-#[allow(deprecated)]
-pub trait CellLayoutImplExt: ObjectSubclass {
-    fn parent_add_attribute<R: IsA<CellRenderer>>(&self, cell: &R, attribute: &str, column: i32);
-    fn parent_clear_attributes<R: IsA<CellRenderer>>(&self, cell: &R);
-    fn parent_cells(&self) -> Vec<CellRenderer>;
-    fn parent_set_cell_data_func<R: IsA<CellRenderer>>(
-        &self,
-
-        cell: &R,
-        callback: Option<CellLayoutDataCallback>,
-    );
-    fn parent_reorder<R: IsA<CellRenderer>>(&self, cell: &R, position: i32);
-    fn parent_clear(&self);
-    fn parent_pack_start<R: IsA<CellRenderer>>(&self, cell: &R, expand: bool);
-    fn parent_pack_end<R: IsA<CellRenderer>>(&self, cell: &R, expand: bool);
-    fn parent_area(&self) -> Option<CellArea>;
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::CellLayoutImplExt> Sealed for T {}
 }
 
-impl<O: CellLayoutImpl> CellLayoutImplExt for O {
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+#[allow(deprecated)]
+pub trait CellLayoutImplExt: sealed::Sealed + ObjectSubclass {
     fn parent_add_attribute<R: IsA<CellRenderer>>(&self, cell: &R, attribute: &str, column: i32) {
         unsafe {
             let type_data = Self::type_data();
@@ -277,6 +267,8 @@ impl<O: CellLayoutImpl> CellLayoutImplExt for O {
     }
 }
 
+impl<T: CellLayoutImpl> CellLayoutImplExt for T {}
+
 unsafe impl<T: CellLayoutImpl> IsImplementable<T> for CellLayout {
     fn interface_init(iface: &mut glib::Interface<Self>) {
         let iface = iface.as_mut();
@@ -397,9 +389,6 @@ unsafe extern "C" fn cell_layout_set_cell_data_func<T: CellLayoutImpl>(
     imp.set_cell_data_func(&*cell, callback)
 }
 
-static CELL_LAYOUT_GET_CELLS_QUARK: Lazy<Quark> =
-    Lazy::new(|| Quark::from_str("gtk-rs-subclass-cell-layout-get-cells"));
-
 unsafe extern "C" fn cell_layout_get_cells<T: CellLayoutImpl>(
     cell_layout: *mut ffi::GtkCellLayout,
 ) -> *mut glib::ffi::GList {
@@ -408,9 +397,11 @@ unsafe extern "C" fn cell_layout_get_cells<T: CellLayoutImpl>(
 
     let cells = imp.cells();
 
+    static QUARK: OnceLock<Quark> = OnceLock::new();
+    let quark = *QUARK.get_or_init(|| Quark::from_str("gtk-rs-subclass-cell-layout-get-cells"));
+
     // transfer container: list owned by the caller by not the actual content
     // so we need to keep the cells around and return a ptr of the list
-    imp.obj()
-        .set_qdata(*CELL_LAYOUT_GET_CELLS_QUARK, cells.clone());
+    imp.obj().set_qdata(quark, cells.clone());
     cells.to_glib_container().0
 }

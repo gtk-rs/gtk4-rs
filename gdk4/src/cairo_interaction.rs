@@ -1,9 +1,10 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{Rectangle, Surface, RGBA};
 use cairo::{Context, Region};
 use gdk_pixbuf::Pixbuf;
 use glib::translate::*;
+
+use crate::{Rectangle, Surface, RGBA};
 
 // rustdoc-stripper-ignore-next
 /// Trait containing integration methods with [`cairo::Surface`].
@@ -24,7 +25,7 @@ impl GdkCairoSurfaceExt for cairo::Surface {
 
 // rustdoc-stripper-ignore-next
 /// Trait containing integration methods with [`cairo::Context`].
-pub trait GdkCairoContextExt {
+pub trait GdkCairoContextExt: sealed::Sealed {
     // rustdoc-stripper-ignore-next
     /// # Safety
     ///
@@ -42,36 +43,10 @@ pub trait GdkCairoContextExt {
         y: i32,
         width: i32,
         height: i32,
-    );
-
-    #[doc(alias = "gdk_cairo_set_source_rgba")]
-    fn set_source_rgba(&self, rgba: &RGBA);
-
-    #[doc(alias = "gdk_cairo_set_source_pixbuf")]
-    fn set_source_pixbuf(&self, pixbuf: &Pixbuf, x: f64, y: f64);
-
-    #[doc(alias = "gdk_cairo_rectangle")]
-    fn add_rectangle(&self, rectangle: &Rectangle);
-
-    #[doc(alias = "gdk_cairo_region")]
-    fn add_region(&self, region: &Region);
-}
-
-impl GdkCairoContextExt for Context {
-    unsafe fn draw_from_gl(
-        &self,
-        surface: &Surface,
-        source: i32,
-        source_type: i32,
-        buffer_scale: i32,
-        x: i32,
-        y: i32,
-        width: i32,
-        height: i32,
     ) {
         skip_assert_initialized!();
         ffi::gdk_cairo_draw_from_gl(
-            mut_override(self.to_glib_none().0),
+            self.to_raw(),
             surface.to_glib_none().0,
             source,
             source_type,
@@ -83,27 +58,48 @@ impl GdkCairoContextExt for Context {
         );
     }
 
-    fn set_source_rgba(&self, rgba: &RGBA) {
+    #[doc(alias = "gdk_cairo_set_source_rgba")]
+    #[doc(alias = "set_source_rgba")]
+    fn set_source_color(&self, rgba: &RGBA) {
         unsafe {
-            ffi::gdk_cairo_set_source_rgba(self.to_glib_none().0, rgba.to_glib_none().0);
+            ffi::gdk_cairo_set_source_rgba(self.to_raw(), rgba.to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gdk_cairo_set_source_pixbuf")]
     fn set_source_pixbuf(&self, pixbuf: &Pixbuf, x: f64, y: f64) {
         unsafe {
-            ffi::gdk_cairo_set_source_pixbuf(self.to_glib_none().0, pixbuf.to_glib_none().0, x, y);
+            ffi::gdk_cairo_set_source_pixbuf(self.to_raw(), pixbuf.to_glib_none().0, x, y);
         }
     }
 
+    #[doc(alias = "gdk_cairo_rectangle")]
     fn add_rectangle(&self, rectangle: &Rectangle) {
         unsafe {
-            ffi::gdk_cairo_rectangle(self.to_glib_none().0, rectangle.to_glib_none().0);
+            ffi::gdk_cairo_rectangle(self.to_raw(), rectangle.to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gdk_cairo_region")]
     fn add_region(&self, region: &Region) {
         unsafe {
-            ffi::gdk_cairo_region(self.to_glib_none().0, region.to_glib_none().0);
+            ffi::gdk_cairo_region(self.to_raw(), region.to_glib_none().0);
+        }
+    }
+}
+
+impl GdkCairoContextExt for Context {}
+
+mod sealed {
+    use cairo::{ffi::cairo_t, Context};
+
+    pub trait Sealed {
+        fn to_raw(&self) -> *mut cairo_t;
+    }
+
+    impl Sealed for Context {
+        fn to_raw(&self) -> *mut cairo_t {
+            self.to_raw_none()
         }
     }
 }

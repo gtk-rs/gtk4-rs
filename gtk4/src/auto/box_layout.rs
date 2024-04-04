@@ -8,7 +8,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GtkBoxLayout")]
@@ -37,6 +37,14 @@ impl BoxLayout {
         BoxLayoutBuilder::new()
     }
 
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "gtk_box_layout_get_baseline_child")]
+    #[doc(alias = "get_baseline_child")]
+    pub fn baseline_child(&self) -> i32 {
+        unsafe { ffi::gtk_box_layout_get_baseline_child(self.to_glib_none().0) }
+    }
+
     #[doc(alias = "gtk_box_layout_get_baseline_position")]
     #[doc(alias = "get_baseline_position")]
     pub fn baseline_position(&self) -> BaselinePosition {
@@ -57,6 +65,15 @@ impl BoxLayout {
     #[doc(alias = "get_spacing")]
     pub fn spacing(&self) -> u32 {
         unsafe { ffi::gtk_box_layout_get_spacing(self.to_glib_none().0) }
+    }
+
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "gtk_box_layout_set_baseline_child")]
+    pub fn set_baseline_child(&self, child: i32) {
+        unsafe {
+            ffi::gtk_box_layout_set_baseline_child(self.to_glib_none().0, child);
+        }
     }
 
     #[doc(alias = "gtk_box_layout_set_baseline_position")]
@@ -80,6 +97,31 @@ impl BoxLayout {
         }
     }
 
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "baseline-child")]
+    pub fn connect_baseline_child_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_baseline_child_trampoline<F: Fn(&BoxLayout) + 'static>(
+            this: *mut ffi::GtkBoxLayout,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::baseline-child\0".as_ptr() as *const _,
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                    notify_baseline_child_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
     #[doc(alias = "baseline-position")]
     pub fn connect_baseline_position_notify<F: Fn(&Self) + 'static>(
         &self,
@@ -98,7 +140,7 @@ impl BoxLayout {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::baseline-position\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_baseline_position_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -121,7 +163,7 @@ impl BoxLayout {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::homogeneous\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_homogeneous_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -144,7 +186,7 @@ impl BoxLayout {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::spacing\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_spacing_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -172,6 +214,14 @@ impl BoxLayoutBuilder {
     fn new() -> Self {
         Self {
             builder: glib::object::Object::builder(),
+        }
+    }
+
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn baseline_child(self, baseline_child: i32) -> Self {
+        Self {
+            builder: self.builder.property("baseline-child", baseline_child),
         }
     }
 
@@ -206,11 +256,5 @@ impl BoxLayoutBuilder {
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> BoxLayout {
         self.builder.build()
-    }
-}
-
-impl fmt::Display for BoxLayout {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("BoxLayout")
     }
 }

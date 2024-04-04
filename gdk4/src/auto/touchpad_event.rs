@@ -3,8 +3,7 @@
 // DO NOT EDIT
 
 use crate::TouchpadGesturePhase;
-use glib::translate::*;
-use std::{fmt, mem};
+use glib::{prelude::*, translate::*};
 
 glib::wrapper! {
     #[doc(alias = "GdkTouchpadEvent")]
@@ -16,7 +15,7 @@ glib::wrapper! {
     }
 }
 
-impl glib::StaticType for TouchpadEvent {
+impl StaticType for TouchpadEvent {
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gdk_touchpad_event_get_type()) }
     }
@@ -27,8 +26,8 @@ impl TouchpadEvent {
     #[doc(alias = "get_deltas")]
     pub fn deltas(&self) -> (f64, f64) {
         unsafe {
-            let mut dx = mem::MaybeUninit::uninit();
-            let mut dy = mem::MaybeUninit::uninit();
+            let mut dx = std::mem::MaybeUninit::uninit();
+            let mut dy = std::mem::MaybeUninit::uninit();
             ffi::gdk_touchpad_event_get_deltas(
                 self.to_glib_none().0,
                 dx.as_mut_ptr(),
@@ -64,11 +63,5 @@ impl TouchpadEvent {
     #[doc(alias = "get_pinch_scale")]
     pub fn pinch_scale(&self) -> f64 {
         unsafe { ffi::gdk_touchpad_event_get_pinch_scale(self.to_glib_none().0) }
-    }
-}
-
-impl fmt::Display for TouchpadEvent {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("TouchpadEvent")
     }
 }

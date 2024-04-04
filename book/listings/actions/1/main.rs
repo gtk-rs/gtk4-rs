@@ -1,5 +1,4 @@
-use gio::SimpleAction;
-use glib::clone;
+use gio::ActionEntry;
 use gtk::prelude::*;
 use gtk::{gio, glib, Application, ApplicationWindow};
 
@@ -31,11 +30,12 @@ fn build_ui(app: &Application) {
         .build();
 
     // Add action "close" to `window` taking no parameter
-    let action_close = SimpleAction::new("close", None);
-    action_close.connect_activate(clone!(@weak window => move |_, _| {
-        window.close();
-    }));
-    window.add_action(&action_close);
+    let action_close = ActionEntry::builder("close")
+        .activate(|window: &ApplicationWindow, _, _| {
+            window.close();
+        })
+        .build();
+    window.add_action_entries([action_close]);
 
     // Present window
     window.present();

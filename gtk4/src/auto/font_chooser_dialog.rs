@@ -9,7 +9,6 @@ use crate::{
     Window,
 };
 use glib::{prelude::*, translate::*};
-use std::fmt;
 
 glib::wrapper! {
     #[doc(alias = "GtkFontChooserDialog")]
@@ -153,8 +152,8 @@ impl FontChooserDialogBuilder {
         }
     }
 
-    #[cfg(any(feature = "v4_2", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_2")))]
+    #[cfg(feature = "v4_2")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_2")))]
     pub fn handle_menubar_accel(self, handle_menubar_accel: bool) -> Self {
         Self {
             builder: self
@@ -213,8 +212,8 @@ impl FontChooserDialogBuilder {
         }
     }
 
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[cfg(feature = "v4_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     pub fn titlebar(self, titlebar: &impl IsA<Widget>) -> Self {
         Self {
             builder: self.builder.property("titlebar", titlebar.clone().upcast()),
@@ -462,11 +461,5 @@ impl FontChooserDialogBuilder {
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> FontChooserDialog {
         self.builder.build()
-    }
-}
-
-impl fmt::Display for FontChooserDialog {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("FontChooserDialog")
     }
 }

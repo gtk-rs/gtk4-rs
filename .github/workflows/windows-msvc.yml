@@ -28,96 +28,96 @@ jobs:
       PKG_CONFIG_PATH: 'C:\gnome\lib\pkgconfig'
 
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/cache@v1
-      id: cache
-      with:
-        path: c:/gnome
-        key: ${{ runner.os }}-gtk4-10
-        restore-keys: |
-          ${{ runner.os }}-gtk4-10
-        
-    - name: Set up the PATH environment
-      run: |
-        echo "C:\pkg-config-lite-0.28-1\bin" >> $GITHUB_PATH
-        echo "C:\gnome\bin" >> $GITHUB_PATH
-      shell: bash
-        
-    - name: Install pkgconfig-lite
-      run: |
-        Invoke-WebRequest -Uri https://deac-fra.dl.sourceforge.net/project/pkgconfiglite/0.28-1/pkg-config-lite-0.28-1_bin-win32.zip -OutFile /pkg_config_lite.zip -MaximumRetryCount 5
-        Expand-Archive /pkg_config_lite.zip -DestinationPath C:\
-        ls C:\
-        ls C:\pkg-config-lite-0.28-1
-        ls C:\pkg-config-lite-0.28-1\bin
-        pkg-config --version
+      - uses: actions/checkout@v4
+      - uses: actions/cache@v4
+        id: cache
+        with:
+          path: c:/gnome
+          key: ${{ runner.os }}-gtk4-14.3
+          restore-keys: |
+            ${{ runner.os }}-gtk4-14.3
 
-    - name: Clone GTK
-      working-directory: /
-      if: steps.cache.outputs.cache-hit != 'true'
-      run: |
-        git clone https://gitlab.gnome.org/GNOME/gtk.git --depth 1
-        
-    - name: Setup Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: '3.x'
-        
-    - name: Install Python Dependencies
-      run: pip install meson ninja
-      
-    - name: Setup MSVC
-      uses: bus1/cabuild/action/msdevshell@v1
-      with:
-        architecture: x64
-        
-    - name: Install Rust
-      uses: actions-rs/toolchain@v1
-      with:
-        profile: minimal
-        toolchain: stable
-        components: clippy
-        
-    - name: Prepare GTK build
-      working-directory: /gtk
-      if: steps.cache.outputs.cache-hit != 'true'
-      run: |
-        meson setup builddir --prefix=C:/gnome -Dbackend_max_links=1 -Ddemos=false -Dbuild-tests=false -Dmedia-gstreamer=disabled -Dbuild-examples=false -Dglib:tests=false -Dharfbuzz:tests=disabled -Dharfbuzz:docs=disabled -Dgraphene:tests=false -Dgdk-pixbuf:tests=false -Dcairo:tests=disabled
-        
-    - name: Build and install GTK
-      working-directory: /gtk
-      if: steps.cache.outputs.cache-hit != 'true'
-      run: |
-        meson install -C builddir
+      - name: Set up the PATH environment
+        run: |
+          echo "C:\pkg-config-lite-0.28-1\bin" >> $GITHUB_PATH
+          echo "C:\gnome\bin" >> $GITHUB_PATH
+        shell: bash
 
-    - name: Build
-      uses: actions-rs/cargo@v1
-      with:
-        command: build
-        args: --features v4_10,xml_validation
-    - name: Clippy
-      uses: actions-rs/cargo@v1
-      with:
-        command: clippy
-        args: --features v4_10,xml_validation
-    - name: Tests
-      uses: actions-rs/cargo@v1
-      with:
-        command: test
-        args: --features v4_10,xml_validation
+      - name: Install pkgconfig-lite
+        run: |
+          Invoke-WebRequest -Uri https://deac-fra.dl.sourceforge.net/project/pkgconfiglite/0.28-1/pkg-config-lite-0.28-1_bin-win32.zip -OutFile /pkg_config_lite.zip -MaximumRetryCount 5
+          Expand-Archive /pkg_config_lite.zip -DestinationPath C:\
+          ls C:\
+          ls C:\pkg-config-lite-0.28-1
+          ls C:\pkg-config-lite-0.28-1\bin
+          pkg-config --version
 
-    - name: Build gdk-win32
-      uses: actions-rs/cargo@v1
-      with:
-        command: build
-        args: --features egl,win32 --manifest-path ./gdk4-win32/Cargo.toml
-    - name: Clippy gdk-win32
-      uses: actions-rs/cargo@v1
-      with:
-        command: clippy
-        args: --features egl,win32 --manifest-path ./gdk4-win32/Cargo.toml
-    - name: Tests gdk-win32
-      uses: actions-rs/cargo@v1
-      with:
-        command: test
-        args: --features egl,win32 --manifest-path ./gdk4-win32/Cargo.toml
+      - name: Clone GTK
+        working-directory: /
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: |
+          git clone https://gitlab.gnome.org/GNOME/gtk.git --depth 1
+
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.x"
+
+      - name: Install Python Dependencies
+        run: pip install meson ninja setuptools packaging
+
+      - name: Setup MSVC
+        uses: bus1/cabuild/action/msdevshell@v1
+        with:
+          architecture: x64
+
+      - name: Prepare GTK build
+        working-directory: /gtk
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: |
+          meson setup builddir --prefix=C:/gnome -Dbackend_max_links=1 -Ddemos=false -Dbuild-tests=false -Dvulkan=disabled -Dmedia-gstreamer=disabled -Dbuild-examples=false -Dglib:tests=false -Dharfbuzz:tests=disabled -Dharfbuzz:docs=disabled -Dgraphene:tests=false -Dgdk-pixbuf:tests=false -Dcairo:tests=disabled
+
+      - name: Build and install GTK
+        working-directory: /gtk
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: |
+          meson install -C builddir
+
+      - name: Install Rust
+        uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          toolchain: stable
+          components: clippy
+
+      - name: Build
+        uses: actions-rs/cargo@v1
+        with:
+          command: build
+          args: --features v4_14,xml_validation
+      - name: Clippy
+        uses: actions-rs/cargo@v1
+        with:
+          command: clippy
+          args: --features v4_14,xml_validation
+      - name: Tests
+        uses: actions-rs/cargo@v1
+        with:
+          command: test
+          args: --features v4_14,xml_validation
+
+      - name: Build gdk-win32
+        uses: actions-rs/cargo@v1
+        with:
+          command: build
+          args: --features egl,win32 --manifest-path ./gdk4-win32/Cargo.toml
+      - name: Clippy gdk-win32
+        uses: actions-rs/cargo@v1
+        with:
+          command: clippy
+          args: --features egl,win32 --manifest-path ./gdk4-win32/Cargo.toml
+      - name: Tests gdk-win32
+        uses: actions-rs/cargo@v1
+        with:
+          command: test
+          args: --features egl,win32 --manifest-path ./gdk4-win32/Cargo.toml

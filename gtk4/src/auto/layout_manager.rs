@@ -4,7 +4,6 @@
 
 use crate::{LayoutChild, Orientation, SizeRequestMode, Widget};
 use glib::{prelude::*, translate::*};
-use std::{fmt, mem};
 
 glib::wrapper! {
     #[doc(alias = "GtkLayoutManager")]
@@ -19,35 +18,13 @@ impl LayoutManager {
     pub const NONE: Option<&'static LayoutManager> = None;
 }
 
-pub trait LayoutManagerExt: 'static {
-    #[doc(alias = "gtk_layout_manager_allocate")]
-    fn allocate(&self, widget: &impl IsA<Widget>, width: i32, height: i32, baseline: i32);
-
-    #[doc(alias = "gtk_layout_manager_get_layout_child")]
-    #[doc(alias = "get_layout_child")]
-    fn layout_child(&self, child: &impl IsA<Widget>) -> LayoutChild;
-
-    #[doc(alias = "gtk_layout_manager_get_request_mode")]
-    #[doc(alias = "get_request_mode")]
-    fn request_mode(&self) -> SizeRequestMode;
-
-    #[doc(alias = "gtk_layout_manager_get_widget")]
-    #[doc(alias = "get_widget")]
-    fn widget(&self) -> Option<Widget>;
-
-    #[doc(alias = "gtk_layout_manager_layout_changed")]
-    fn layout_changed(&self);
-
-    #[doc(alias = "gtk_layout_manager_measure")]
-    fn measure(
-        &self,
-        widget: &impl IsA<Widget>,
-        orientation: Orientation,
-        for_size: i32,
-    ) -> (i32, i32, i32, i32);
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::LayoutManager>> Sealed for T {}
 }
 
-impl<O: IsA<LayoutManager>> LayoutManagerExt for O {
+pub trait LayoutManagerExt: IsA<LayoutManager> + sealed::Sealed + 'static {
+    #[doc(alias = "gtk_layout_manager_allocate")]
     fn allocate(&self, widget: &impl IsA<Widget>, width: i32, height: i32, baseline: i32) {
         unsafe {
             ffi::gtk_layout_manager_allocate(
@@ -60,6 +37,8 @@ impl<O: IsA<LayoutManager>> LayoutManagerExt for O {
         }
     }
 
+    #[doc(alias = "gtk_layout_manager_get_layout_child")]
+    #[doc(alias = "get_layout_child")]
     fn layout_child(&self, child: &impl IsA<Widget>) -> LayoutChild {
         unsafe {
             from_glib_none(ffi::gtk_layout_manager_get_layout_child(
@@ -69,6 +48,8 @@ impl<O: IsA<LayoutManager>> LayoutManagerExt for O {
         }
     }
 
+    #[doc(alias = "gtk_layout_manager_get_request_mode")]
+    #[doc(alias = "get_request_mode")]
     fn request_mode(&self) -> SizeRequestMode {
         unsafe {
             from_glib(ffi::gtk_layout_manager_get_request_mode(
@@ -77,6 +58,8 @@ impl<O: IsA<LayoutManager>> LayoutManagerExt for O {
         }
     }
 
+    #[doc(alias = "gtk_layout_manager_get_widget")]
+    #[doc(alias = "get_widget")]
     fn widget(&self) -> Option<Widget> {
         unsafe {
             from_glib_none(ffi::gtk_layout_manager_get_widget(
@@ -85,12 +68,14 @@ impl<O: IsA<LayoutManager>> LayoutManagerExt for O {
         }
     }
 
+    #[doc(alias = "gtk_layout_manager_layout_changed")]
     fn layout_changed(&self) {
         unsafe {
             ffi::gtk_layout_manager_layout_changed(self.as_ref().to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_layout_manager_measure")]
     fn measure(
         &self,
         widget: &impl IsA<Widget>,
@@ -98,10 +83,10 @@ impl<O: IsA<LayoutManager>> LayoutManagerExt for O {
         for_size: i32,
     ) -> (i32, i32, i32, i32) {
         unsafe {
-            let mut minimum = mem::MaybeUninit::uninit();
-            let mut natural = mem::MaybeUninit::uninit();
-            let mut minimum_baseline = mem::MaybeUninit::uninit();
-            let mut natural_baseline = mem::MaybeUninit::uninit();
+            let mut minimum = std::mem::MaybeUninit::uninit();
+            let mut natural = std::mem::MaybeUninit::uninit();
+            let mut minimum_baseline = std::mem::MaybeUninit::uninit();
+            let mut natural_baseline = std::mem::MaybeUninit::uninit();
             ffi::gtk_layout_manager_measure(
                 self.as_ref().to_glib_none().0,
                 widget.as_ref().to_glib_none().0,
@@ -122,8 +107,4 @@ impl<O: IsA<LayoutManager>> LayoutManagerExt for O {
     }
 }
 
-impl fmt::Display for LayoutManager {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("LayoutManager")
-    }
-}
+impl<O: IsA<LayoutManager>> LayoutManagerExt for O {}

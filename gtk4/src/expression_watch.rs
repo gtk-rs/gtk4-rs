@@ -32,7 +32,8 @@ impl ExpressionWatch {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Similar to [`Self::evaluate`] but panics if the value is of a different type.
+    /// Similar to [`Self::evaluate`] but panics if the value is of a different
+    /// type.
     #[doc(alias = "gtk_expression_evaluate")]
     pub fn evaluate_as<V: for<'b> FromValue<'b> + 'static>(&self) -> Option<V> {
         self.evaluate().map(|v| {
@@ -47,8 +48,8 @@ impl ExpressionWatch {
     }
 }
 
-#[cfg(any(feature = "v4_2", feature = "dox"))]
-impl glib::StaticType for ExpressionWatch {
+#[cfg(feature = "v4_2")]
+impl glib::prelude::StaticType for ExpressionWatch {
     #[doc(alias = "gtk_expression_watch_get_type")]
     #[inline]
     fn static_type() -> glib::Type {

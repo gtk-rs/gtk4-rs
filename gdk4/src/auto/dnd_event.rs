@@ -3,8 +3,7 @@
 // DO NOT EDIT
 
 use crate::Drop;
-use glib::translate::*;
-use std::fmt;
+use glib::{prelude::*, translate::*};
 
 glib::wrapper! {
     #[doc(alias = "GdkDNDEvent")]
@@ -16,7 +15,7 @@ glib::wrapper! {
     }
 }
 
-impl glib::StaticType for DNDEvent {
+impl StaticType for DNDEvent {
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gdk_dnd_event_get_type()) }
     }
@@ -27,11 +26,5 @@ impl DNDEvent {
     #[doc(alias = "get_drop")]
     pub fn drop(&self) -> Option<Drop> {
         unsafe { from_glib_none(ffi::gdk_dnd_event_get_drop(self.to_glib_none().0)) }
-    }
-}
-
-impl fmt::Display for DNDEvent {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("DNDEvent")
     }
 }

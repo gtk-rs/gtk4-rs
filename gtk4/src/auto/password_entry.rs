@@ -11,7 +11,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GtkPasswordEntry")]
@@ -79,22 +79,22 @@ impl PasswordEntry {
 
     #[doc(alias = "activates-default")]
     pub fn activates_default(&self) -> bool {
-        glib::ObjectExt::property(self, "activates-default")
+        ObjectExt::property(self, "activates-default")
     }
 
     #[doc(alias = "activates-default")]
     pub fn set_activates_default(&self, activates_default: bool) {
-        glib::ObjectExt::set_property(self, "activates-default", activates_default)
+        ObjectExt::set_property(self, "activates-default", activates_default)
     }
 
     #[doc(alias = "placeholder-text")]
     pub fn placeholder_text(&self) -> Option<glib::GString> {
-        glib::ObjectExt::property(self, "placeholder-text")
+        ObjectExt::property(self, "placeholder-text")
     }
 
     #[doc(alias = "placeholder-text")]
     pub fn set_placeholder_text(&self, placeholder_text: Option<&str>) {
-        glib::ObjectExt::set_property(self, "placeholder-text", placeholder_text)
+        ObjectExt::set_property(self, "placeholder-text", placeholder_text)
     }
 
     #[doc(alias = "activate")]
@@ -111,7 +111,7 @@ impl PasswordEntry {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"activate\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     activate_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -143,7 +143,7 @@ impl PasswordEntry {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::activates-default\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_activates_default_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -166,7 +166,7 @@ impl PasswordEntry {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::extra-menu\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_extra_menu_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -189,7 +189,7 @@ impl PasswordEntry {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::placeholder-text\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_placeholder_text_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -212,7 +212,7 @@ impl PasswordEntry {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::show-peek-icon\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_show_peek_icon_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -498,11 +498,5 @@ impl PasswordEntryBuilder {
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> PasswordEntry {
         self.builder.build()
-    }
-}
-
-impl fmt::Display for PasswordEntry {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("PasswordEntry")
     }
 }

@@ -1,12 +1,14 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
 // rustdoc-stripper-ignore-next
-//! Traits intended for implementing the [`BuilderScope`](crate::BuilderScope) interface.
+//! Traits intended for implementing the [`BuilderScope`](crate::BuilderScope)
+//! interface.
+
+use glib::{translate::*, GString};
 
 use crate::{
     prelude::*, subclass::prelude::*, Builder, BuilderCScope, BuilderClosureFlags, BuilderScope,
 };
-use glib::{translate::*, GString};
 
 pub trait BuilderCScopeImpl: BuilderScopeImpl {}
 
@@ -32,21 +34,12 @@ pub trait BuilderScopeImpl: ObjectImpl {
     ) -> Result<glib::Closure, glib::Error>;
 }
 
-pub trait BuilderScopeImplExt: ObjectSubclass {
-    fn parent_type_from_name(&self, builder: &Builder, type_name: &str) -> glib::Type;
-
-    fn parent_type_from_function(&self, builder: &Builder, function_name: &str) -> glib::Type;
-
-    fn parent_create_closure(
-        &self,
-        builder: &Builder,
-        function_name: &str,
-        flags: BuilderClosureFlags,
-        object: Option<&glib::Object>,
-    ) -> Result<glib::Closure, glib::Error>;
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::BuilderScopeImplExt> Sealed for T {}
 }
 
-impl<B: BuilderScopeImpl> BuilderScopeImplExt for B {
+pub trait BuilderScopeImplExt: sealed::Sealed + ObjectSubclass {
     fn parent_type_from_name(&self, builder: &Builder, type_name: &str) -> glib::Type {
         unsafe {
             let type_data = Self::type_data();
@@ -126,6 +119,8 @@ impl<B: BuilderScopeImpl> BuilderScopeImplExt for B {
     }
 }
 
+impl<T: BuilderScopeImpl> BuilderScopeImplExt for T {}
+
 unsafe impl<T: BuilderScopeImpl> IsImplementable<T> for BuilderScope {
     fn interface_init(iface: &mut glib::Interface<Self>) {
         let iface = iface.as_mut();
@@ -188,7 +183,9 @@ unsafe extern "C" fn builder_scope_create_closure<T: BuilderScopeImpl>(
     match ret {
         Ok(closure) => closure.into_glib_ptr(),
         Err(e) => {
-            *errorptr = e.into_glib_ptr();
+            if !errorptr.is_null() {
+                *errorptr = e.into_glib_ptr();
+            }
             std::ptr::null_mut()
         }
     }

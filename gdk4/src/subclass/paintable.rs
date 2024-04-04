@@ -1,12 +1,14 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
 // rustdoc-stripper-ignore-next
-//! Traits intended for implementing the [`Paintable`](crate::Paintable) interface.
+//! Traits intended for implementing the [`Paintable`](crate::Paintable)
+//! interface.
 
-use crate::{prelude::*, subclass::prelude::*, Paintable, PaintableFlags, Snapshot};
 use glib::translate::*;
 
-pub trait PaintableImpl: ObjectImpl {
+use crate::{prelude::*, subclass::prelude::*, Paintable, PaintableFlags, Snapshot};
+
+pub trait PaintableImpl: PaintableImplExt + ObjectImpl {
     #[doc(alias = "get_current_image")]
     fn current_image(&self) -> Paintable {
         self.parent_current_image()
@@ -35,16 +37,12 @@ pub trait PaintableImpl: ObjectImpl {
     fn snapshot(&self, snapshot: &Snapshot, width: f64, height: f64);
 }
 
-pub trait PaintableImplExt: ObjectSubclass {
-    fn parent_current_image(&self) -> Paintable;
-    fn parent_flags(&self) -> PaintableFlags;
-    fn parent_intrinsic_width(&self) -> i32;
-    fn parent_intrinsic_height(&self) -> i32;
-    fn parent_intrinsic_aspect_ratio(&self) -> f64;
-    fn parent_snapshot(&self, snapshot: &Snapshot, width: f64, height: f64);
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::PaintableImplExt> Sealed for T {}
 }
 
-impl<T: PaintableImpl> PaintableImplExt for T {
+pub trait PaintableImplExt: sealed::Sealed + ObjectSubclass {
     fn parent_current_image(&self) -> Paintable {
         unsafe {
             let type_data = Self::type_data();
@@ -132,6 +130,8 @@ impl<T: PaintableImpl> PaintableImplExt for T {
         }
     }
 }
+
+impl<T: PaintableImpl> PaintableImplExt for T {}
 
 unsafe impl<T: PaintableImpl> IsImplementable<T> for Paintable {
     fn interface_init(iface: &mut glib::Interface<Self>) {

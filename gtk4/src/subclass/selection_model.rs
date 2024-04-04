@@ -1,10 +1,12 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
 // rustdoc-stripper-ignore-next
-//! Traits intended for implementing the [`SelectionModel`](crate::SelectionModel) interface.
+//! Traits intended for implementing the
+//! [`SelectionModel`](crate::SelectionModel) interface.
+
+use glib::translate::*;
 
 use crate::{prelude::*, subclass::prelude::*, Bitset, SelectionModel};
-use glib::translate::*;
 
 pub trait SelectionModelImpl: ListModelImpl {
     #[doc(alias = "get_selection_in_range")]
@@ -45,19 +47,12 @@ pub trait SelectionModelImpl: ListModelImpl {
     }
 }
 
-pub trait SelectionModelImplExt: ObjectSubclass {
-    fn parent_selection_in_range(&self, position: u32, n_items: u32) -> Bitset;
-    fn parent_is_selected(&self, position: u32) -> bool;
-    fn parent_select_all(&self) -> bool;
-    fn parent_select_item(&self, position: u32, unselect_rest: bool) -> bool;
-    fn parent_select_range(&self, position: u32, n_items: u32, unselect_rest: bool) -> bool;
-    fn parent_set_selection(&self, selected: &Bitset, mask: &Bitset) -> bool;
-    fn parent_unselect_all(&self) -> bool;
-    fn parent_unselect_item(&self, position: u32) -> bool;
-    fn parent_unselect_range(&self, position: u32, n_items: u32) -> bool;
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::SelectionModelImplExt> Sealed for T {}
 }
 
-impl<T: SelectionModelImpl> SelectionModelImplExt for T {
+pub trait SelectionModelImplExt: sealed::Sealed + ObjectSubclass {
     fn parent_selection_in_range(&self, position: u32, n_items: u32) -> Bitset {
         unsafe {
             let type_data = Self::type_data();
@@ -242,6 +237,8 @@ impl<T: SelectionModelImpl> SelectionModelImplExt for T {
         }
     }
 }
+
+impl<T: SelectionModelImpl> SelectionModelImplExt for T {}
 
 unsafe impl<T: SelectionModelImpl> IsImplementable<T> for SelectionModel {
     fn interface_init(iface: &mut glib::Interface<Self>) {

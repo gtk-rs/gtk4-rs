@@ -2,23 +2,17 @@
 
 use std::borrow::Borrow;
 
+use glib::translate::*;
+
 use crate::{prelude::*, Snapshot};
-use glib::{translate::*, IntoGStr};
 
-pub trait SnapshotExtManual {
-    #[doc(alias = "gtk_snapshot_append_border")]
-    fn append_border(
-        &self,
-        outline: &gsk::RoundedRect,
-        border_width: &[f32; 4],
-        border_color: &[gdk::RGBA; 4],
-    );
-
-    #[doc(alias = "gtk_snapshot_push_debug")]
-    fn push_debug(&self, message: impl IntoGStr);
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::Snapshot>> Sealed for T {}
 }
 
-impl<T: IsA<Snapshot>> SnapshotExtManual for T {
+pub trait SnapshotExtManual: sealed::Sealed + IsA<Snapshot> + 'static {
+    #[doc(alias = "gtk_snapshot_append_border")]
     fn append_border(
         &self,
         outline: &gsk::RoundedRect,
@@ -37,6 +31,7 @@ impl<T: IsA<Snapshot>> SnapshotExtManual for T {
         }
     }
 
+    #[doc(alias = "gtk_snapshot_push_debug")]
     fn push_debug(&self, message: impl IntoGStr) {
         unsafe {
             message.run_with_gstr(|message| {
@@ -45,6 +40,8 @@ impl<T: IsA<Snapshot>> SnapshotExtManual for T {
         }
     }
 }
+
+impl<O: IsA<Snapshot>> SnapshotExtManual for O {}
 
 impl AsRef<Snapshot> for gdk::Snapshot {
     #[inline]

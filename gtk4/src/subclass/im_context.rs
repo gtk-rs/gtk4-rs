@@ -3,9 +3,10 @@
 // rustdoc-stripper-ignore-next
 //! Traits intended for subclassing [`IMContext`](crate::IMContext).
 
-use crate::{prelude::*, subclass::prelude::*, IMContext, Widget};
 use glib::{translate::*, GString};
 use pango::AttrList;
+
+use crate::{prelude::*, subclass::prelude::*, IMContext, Widget};
 
 #[allow(clippy::upper_case_acronyms)]
 pub trait IMContextImpl: IMContextImplExt + ObjectImpl {
@@ -61,40 +62,23 @@ pub trait IMContextImpl: IMContextImplExt + ObjectImpl {
     fn set_use_preedit(&self, use_preedit: bool) {
         self.parent_set_use_preedit(use_preedit)
     }
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg(feature = "v4_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     fn activate_osk(&self) {
         self.parent_activate_osk()
     }
 }
 
-#[allow(clippy::upper_case_acronyms)]
-pub trait IMContextImplExt: ObjectSubclass {
-    fn parent_commit(&self, string: &str);
-    fn parent_delete_surrounding(&self, offset: i32, n_chars: i32) -> bool;
-    fn parent_filter_keypress(&self, event: &gdk::Event) -> bool;
-    fn parent_focus_in(&self);
-    fn parent_focus_out(&self);
-    fn parent_preedit_string(&self) -> (GString, AttrList, i32);
-    fn parent_surrounding(&self) -> Option<(GString, i32)>;
-    fn parent_preedit_changed(&self);
-    fn parent_preedit_end(&self);
-    fn parent_preedit_start(&self);
-    fn parent_reset(&self);
-    fn parent_retrieve_surrounding(&self) -> bool;
-    fn parent_set_client_widget<P: IsA<Widget>>(&self, widget: Option<&P>);
-    fn parent_set_cursor_location(&self, area: &gdk::Rectangle);
-    #[cfg_attr(feature = "v4_2", deprecated = "Since 4.2")]
-    #[allow(deprecated)]
-    fn parent_set_surrounding(&self, text: &str, cursor_index: i32);
-    fn parent_set_use_preedit(&self, use_preedit: bool);
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    fn parent_activate_osk(&self);
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IMContextImplExt> Sealed for T {}
 }
 
-impl<T: IMContextImpl> IMContextImplExt for T {
+#[allow(clippy::upper_case_acronyms)]
+pub trait IMContextImplExt: sealed::Sealed + ObjectSubclass {
     fn parent_commit(&self, string: &str) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkIMContextClass;
             if let Some(f) = (*parent_class).commit {
                 f(
@@ -105,9 +89,10 @@ impl<T: IMContextImpl> IMContextImplExt for T {
         }
     }
 
+    // Returns true if the signal was handled
     fn parent_delete_surrounding(&self, offset: i32, n_chars: i32) -> bool {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkIMContextClass;
             if let Some(f) = (*parent_class).delete_surrounding {
                 from_glib(f(
@@ -116,15 +101,15 @@ impl<T: IMContextImpl> IMContextImplExt for T {
                     n_chars,
                 ))
             } else {
-                // Returns true if the signal was handled
                 false
             }
         }
     }
 
+    // Returns true if the event was consumed
     fn parent_filter_keypress(&self, event: &gdk::Event) -> bool {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkIMContextClass;
             if let Some(f) = (*parent_class).filter_keypress {
                 from_glib(f(
@@ -132,7 +117,6 @@ impl<T: IMContextImpl> IMContextImplExt for T {
                     event.to_glib_none().0,
                 ))
             } else {
-                // Returns true if the event was consumed
                 false
             }
         }
@@ -140,7 +124,7 @@ impl<T: IMContextImpl> IMContextImplExt for T {
 
     fn parent_focus_in(&self) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkIMContextClass;
             if let Some(f) = (*parent_class).focus_in {
                 f(self.obj().unsafe_cast_ref::<IMContext>().to_glib_none().0)
@@ -150,7 +134,7 @@ impl<T: IMContextImpl> IMContextImplExt for T {
 
     fn parent_focus_out(&self) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkIMContextClass;
             if let Some(f) = (*parent_class).focus_out {
                 f(self.obj().unsafe_cast_ref::<IMContext>().to_glib_none().0)
@@ -160,7 +144,7 @@ impl<T: IMContextImpl> IMContextImplExt for T {
 
     fn parent_surrounding(&self) -> Option<(GString, i32)> {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkIMContextClass;
             if let Some(f) = (*parent_class).get_surrounding {
                 let mut text = std::ptr::null_mut();
@@ -180,7 +164,7 @@ impl<T: IMContextImpl> IMContextImplExt for T {
 
     fn parent_preedit_string(&self) -> (GString, AttrList, i32) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkIMContextClass;
             let f = (*parent_class)
                 .get_preedit_string
@@ -204,7 +188,7 @@ impl<T: IMContextImpl> IMContextImplExt for T {
 
     fn parent_preedit_changed(&self) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkIMContextClass;
             if let Some(f) = (*parent_class).preedit_changed {
                 f(self.obj().unsafe_cast_ref::<IMContext>().to_glib_none().0)
@@ -214,7 +198,7 @@ impl<T: IMContextImpl> IMContextImplExt for T {
 
     fn parent_preedit_end(&self) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkIMContextClass;
             if let Some(f) = (*parent_class).preedit_end {
                 f(self.obj().unsafe_cast_ref::<IMContext>().to_glib_none().0)
@@ -224,7 +208,7 @@ impl<T: IMContextImpl> IMContextImplExt for T {
 
     fn parent_preedit_start(&self) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkIMContextClass;
             if let Some(f) = (*parent_class).preedit_start {
                 f(self.obj().unsafe_cast_ref::<IMContext>().to_glib_none().0)
@@ -234,7 +218,7 @@ impl<T: IMContextImpl> IMContextImplExt for T {
 
     fn parent_reset(&self) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkIMContextClass;
             if let Some(f) = (*parent_class).reset {
                 f(self.obj().unsafe_cast_ref::<IMContext>().to_glib_none().0)
@@ -242,9 +226,10 @@ impl<T: IMContextImpl> IMContextImplExt for T {
         }
     }
 
+    // Returns true if the signal was handled
     fn parent_retrieve_surrounding(&self) -> bool {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkIMContextClass;
             if let Some(f) = (*parent_class).retrieve_surrounding {
                 from_glib(f(self
@@ -253,7 +238,6 @@ impl<T: IMContextImpl> IMContextImplExt for T {
                     .to_glib_none()
                     .0))
             } else {
-                // Returns true if the signal was handled
                 false
             }
         }
@@ -261,7 +245,7 @@ impl<T: IMContextImpl> IMContextImplExt for T {
 
     fn parent_set_client_widget<P: IsA<Widget>>(&self, widget: Option<&P>) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkIMContextClass;
             if let Some(f) = (*parent_class).set_client_widget {
                 f(
@@ -274,7 +258,7 @@ impl<T: IMContextImpl> IMContextImplExt for T {
 
     fn parent_set_cursor_location(&self, area: &gdk::Rectangle) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkIMContextClass;
             if let Some(f) = (*parent_class).set_cursor_location {
                 f(
@@ -285,9 +269,11 @@ impl<T: IMContextImpl> IMContextImplExt for T {
         }
     }
 
+    #[cfg_attr(feature = "v4_2", deprecated = "Since 4.2")]
+    #[allow(deprecated)]
     fn parent_set_surrounding(&self, text: &str, cursor_index: i32) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkIMContextClass;
             if let Some(f) = (*parent_class).set_surrounding {
                 f(
@@ -302,7 +288,7 @@ impl<T: IMContextImpl> IMContextImplExt for T {
 
     fn parent_set_use_preedit(&self, use_preedit: bool) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkIMContextClass;
             if let Some(f) = (*parent_class).set_use_preedit {
                 f(
@@ -313,10 +299,11 @@ impl<T: IMContextImpl> IMContextImplExt for T {
         }
     }
 
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg(feature = "v4_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     fn parent_activate_osk(&self) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkIMContextClass;
             if let Some(f) = (*parent_class).activate_osk {
                 f(self.obj().unsafe_cast_ref::<IMContext>().to_glib_none().0)
@@ -324,6 +311,8 @@ impl<T: IMContextImpl> IMContextImplExt for T {
         }
     }
 }
+
+impl<T: IMContextImpl> IMContextImplExt for T {}
 
 unsafe impl<T: IMContextImpl> IsSubclassable<T> for IMContext {
     fn class_init(class: &mut glib::Class<Self>) {
@@ -348,7 +337,8 @@ unsafe impl<T: IMContextImpl> IsSubclassable<T> for IMContext {
         klass.set_cursor_location = Some(im_context_set_cursor_location::<T>);
         klass.set_surrounding = Some(im_context_set_surrounding::<T>);
         klass.set_use_preedit = Some(im_context_set_use_preedit::<T>);
-        #[cfg(any(feature = "v4_10", feature = "dox"))]
+        #[cfg(feature = "v4_10")]
+        #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
         {
             klass.activate_osk = Some(im_context_activate_osk::<T>);
         };
@@ -525,7 +515,8 @@ unsafe extern "C" fn im_context_set_use_preedit<T: IMContextImpl>(
     imp.set_use_preedit(from_glib(use_preedit))
 }
 
-#[cfg(any(feature = "v4_10", feature = "dox"))]
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 unsafe extern "C" fn im_context_activate_osk<T: IMContextImpl>(ptr: *mut ffi::GtkIMContext) {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();

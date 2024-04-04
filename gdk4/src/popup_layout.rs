@@ -1,7 +1,8 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::PopupLayout;
 use glib::translate::*;
+
+use crate::PopupLayout;
 
 impl PopupLayout {
     #[doc(alias = "gdk_popup_layout_get_offset")]

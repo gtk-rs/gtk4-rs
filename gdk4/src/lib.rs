@@ -1,12 +1,15 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-#![cfg_attr(feature = "dox", feature(doc_cfg))]
+#![cfg_attr(docsrs, feature(doc_cfg))]
 #![doc = include_str!("../README.md")]
 
 pub use cairo;
 pub use ffi;
 pub use gdk_pixbuf;
 pub use gio;
+#[cfg(feature = "gl")]
+#[cfg_attr(docsrs, doc(cfg(feature = "gl")))]
+pub use gl;
 pub use glib;
 pub use pango;
 
@@ -70,11 +73,20 @@ mod crossing_event;
 mod delete_event;
 mod display;
 mod dnd_event;
+#[cfg(feature = "v4_12")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+mod drag_surface;
+#[cfg(feature = "v4_12")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+mod drag_surface_size;
 mod draw_context;
 mod drop;
 mod focus_event;
 mod functions;
 mod gl_texture;
+#[cfg(feature = "v4_12")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+mod gl_texture_builder;
 mod grab_broken_event;
 mod key_event;
 mod keymap_key;
@@ -94,12 +106,12 @@ mod toplevel_size;
 mod touch_event;
 mod touchpad_event;
 
-pub use self::auto::functions::*;
 pub use auto::*;
-
-pub use functions::*;
-
 pub use display::Backend;
+#[cfg(feature = "v4_12")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+pub use drag_surface_size::DragSurfaceSize;
+pub use functions::*;
 pub use keymap_key::KeymapKey;
 pub use keys::Key;
 pub use time_coord::TimeCoord;

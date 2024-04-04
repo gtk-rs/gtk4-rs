@@ -1,7 +1,8 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{subclass::prelude::*, BuilderCScope, BuilderScope};
 use std::rc::Rc;
+
+use crate::{subclass::prelude::*, BuilderCScope, BuilderScope};
 
 glib::wrapper! {
     // rustdoc-stripper-ignore-next
@@ -50,8 +51,9 @@ impl BuilderRustScope {
         glib::Object::new()
     }
     // rustdoc-stripper-ignore-next
-    /// Adds a Rust callback to the scope with the given `name`. The callback can then be accessed
-    /// from a [`Builder`](crate::Builder) by referring to it in the builder XML, or by using
+    /// Adds a Rust callback to the scope with the given `name`. The callback
+    /// can then be accessed from a [`Builder`](crate::Builder) by referring
+    /// to it in the builder XML, or by using
     /// [`Builder::create_closure`](crate::Builder::create_closure).
     pub fn add_callback<N: Into<String>, F: Fn(&[glib::Value]) -> Option<glib::Value> + 'static>(
         &self,
@@ -66,10 +68,12 @@ impl BuilderRustScope {
 }
 
 mod imp {
+    use std::{cell::RefCell, collections::HashMap};
+
+    use glib::{translate::*, Closure, RustClosure};
+
     use super::*;
     use crate::{prelude::*, Builder, BuilderClosureFlags, BuilderError};
-    use glib::{translate::*, Closure, RustClosure};
-    use std::{cell::RefCell, collections::HashMap};
 
     type Callback = dyn Fn(&[glib::Value]) -> Option<glib::Value>;
 
@@ -87,12 +91,10 @@ mod imp {
     }
 
     impl ObjectImpl for BuilderRustScope {}
-    impl BuilderCScopeImpl for BuilderRustScope {}
-
     impl BuilderScopeImpl for BuilderRustScope {
         fn type_from_function(&self, _builder: &Builder, _function_name: &str) -> glib::Type {
-            // Override the implementation provided by BuilderCScope and default to the interface
-            // default implementation
+            // Override the implementation provided by BuilderCScope and default to the
+            // interface default implementation
             glib::Type::INVALID
         }
 
@@ -183,6 +185,8 @@ mod imp {
                 })
         }
     }
+
+    impl BuilderCScopeImpl for BuilderRustScope {}
 }
 
 #[cfg(test)]
@@ -190,7 +194,7 @@ mod tests {
     use super::BuilderRustScope;
     use crate::{self as gtk4, prelude::*, subclass::prelude::*, Builder};
 
-    const SIGNAL_XML: &str = r##"
+    const SIGNAL_XML: &str = r#"
     <?xml version="1.0" encoding="UTF-8"?>
     <interface>
       <object class="GtkButton" id="button">
@@ -198,7 +202,7 @@ mod tests {
         <signal name="clicked" handler="button_clicked"/>
       </object>
     </interface>
-    "##;
+    "#;
 
     #[crate::test]
     fn test_rust_builder_scope_signal_handler() {
@@ -225,7 +229,7 @@ mod tests {
         assert_eq!(button.label().unwrap().as_str(), "Clicked");
     }
 
-    const CLOSURE_XML: &str = r##"
+    const CLOSURE_XML: &str = r#"
     <?xml version="1.0" encoding="UTF-8"?>
     <interface>
       <object class="GtkEntry" id="entry_a"/>
@@ -237,7 +241,7 @@ mod tests {
         </binding>
       </object>
     </interface>
-    "##;
+    "#;
 
     #[crate::test]
     fn test_rust_builder_scope_closure() {
@@ -290,19 +294,19 @@ mod tests {
         entry_a.set_text("Hello World");
     }
 
-    const DISPOSE_XML: &str = r##"
+    const DISPOSE_XML: &str = r#"
     <?xml version="1.0" encoding="UTF-8"?>
     <interface>
       <object class="MyObject" id="obj">
         <signal name="destroyed" handler="my_object_destroyed" object="obj" swapped="true" />
       </object>
     </interface>
-    "##;
+    "#;
 
     #[crate::test]
     fn test_rust_builder_scope_object_during_dispose() {
         use glib::subclass::Signal;
-        use once_cell::sync::Lazy;
+        use std::sync::OnceLock;
         use std::{cell::Cell, rc::Rc};
 
         #[derive(Debug, Default)]
@@ -316,9 +320,8 @@ mod tests {
         }
         impl ObjectImpl for MyObjectPrivate {
             fn signals() -> &'static [Signal] {
-                static SIGNALS: Lazy<Vec<Signal>> =
-                    Lazy::new(|| vec![Signal::builder("destroyed").build()]);
-                SIGNALS.as_ref()
+                static SIGNALS: OnceLock<Vec<Signal>> = OnceLock::new();
+                SIGNALS.get_or_init(|| vec![Signal::builder("destroyed").build()])
             }
             fn dispose(&self) {
                 self.obj().emit_by_name::<()>("destroyed", &[]);

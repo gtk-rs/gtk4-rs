@@ -1,18 +1,16 @@
 mod custom_orientable;
 
 use custom_orientable::CustomOrientable;
-use gtk::glib;
-use gtk::prelude::*;
+use gtk::{glib, prelude::*};
 
 fn main() -> glib::ExitCode {
-    let application = gtk::Application::new(
-        Some("com.github.gtk-rs.examples.orientable_subclass"),
-        Default::default(),
-    );
+    let application = gtk::Application::builder()
+        .application_id("com.github.gtk-rs.examples.orientable_subclass")
+        .build();
     application.connect_activate(|app| {
         let window = gtk::ApplicationWindow::new(app);
         let bx = gtk::Box::new(gtk::Orientation::Vertical, 6);
-        let orientable = CustomOrientable::new();
+        let orientable = CustomOrientable::default();
         let button = gtk::Button::with_label("Switch orientation");
 
         button.connect_clicked(glib::clone!(@weak orientable => move |_| {
@@ -32,7 +30,7 @@ fn main() -> glib::ExitCode {
         bx.set_margin_end(18);
 
         window.set_child(Some(&bx));
-        window.show();
+        window.present();
     });
 
     application.run()

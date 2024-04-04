@@ -3,7 +3,8 @@ pub mod imp;
 use gtk::glib;
 
 glib::wrapper! {
-    pub struct CustomTag(ObjectSubclass<imp::CustomTag>) @extends gtk::Widget;
+    pub struct CustomTag(ObjectSubclass<imp::CustomTag>)
+        @extends gtk::Widget;
 }
 
 impl CustomTag {

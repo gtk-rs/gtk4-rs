@@ -1,9 +1,9 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{prelude::*, ListStore, TreeIter, TreeModel};
-use glib::{translate::*, ToValue, Type, Value};
+use glib::{translate::*, Type, Value};
 use libc::c_int;
-use std::ptr;
+
+use crate::{prelude::*, ListStore, TreeIter, TreeModel};
 
 impl ListStore {
     #[doc(alias = "gtk_list_store_newv")]
@@ -92,7 +92,7 @@ impl ListStore {
         unsafe {
             let count = ffi::gtk_tree_model_iter_n_children(
                 self.upcast_ref::<TreeModel>().to_glib_none().0,
-                ptr::null_mut(),
+                std::ptr::null_mut(),
             );
             let safe_count = count as usize == new_order.len();
             debug_assert!(

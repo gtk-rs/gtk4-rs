@@ -2,8 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use glib::translate::*;
-use std::fmt;
+use glib::{prelude::*, translate::*};
 
 glib::wrapper! {
     #[doc(alias = "GdkTouchEvent")]
@@ -15,7 +14,7 @@ glib::wrapper! {
     }
 }
 
-impl glib::StaticType for TouchEvent {
+impl StaticType for TouchEvent {
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gdk_touch_event_get_type()) }
     }
@@ -30,11 +29,5 @@ impl TouchEvent {
                 self.to_glib_none().0,
             ))
         }
-    }
-}
-
-impl fmt::Display for TouchEvent {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("TouchEvent")
     }
 }

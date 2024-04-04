@@ -1,3 +1,6 @@
+// gtk::Dialog was deprecated and applications are supposed
+// to use plain gtk::Window and structure it however they wish.
+#![allow(deprecated)]
 mod list_box_row;
 mod model;
 pub mod row_data;
@@ -5,16 +8,14 @@ pub mod row_data;
 use gtk::{
     glib::{self, clone},
     prelude::*,
-    ResponseType,
 };
 use list_box_row::ListBoxRow;
 use row_data::RowData;
 
 fn main() -> glib::ExitCode {
-    let application = gtk::Application::new(
-        Some("com.github.gtk-rs.examples.listbox-model"),
-        Default::default(),
-    );
+    let application = gtk::Application::builder()
+        .application_id("com.github.gtk-rs.examples.listbox-model")
+        .build();
 
     application.connect_activate(build_ui);
 
@@ -76,26 +77,26 @@ fn build_ui(application: &gtk::Application) {
             Some("Add Item"),
             Some(&window),
             gtk::DialogFlags::MODAL,
-            &[("Ok", ResponseType::Ok), ("Cancel", ResponseType::Cancel)],
+            &[("Ok", gtk::ResponseType::Ok), ("Cancel", gtk::ResponseType::Cancel)],
         );
-        dialog.set_default_response(ResponseType::Ok);
+        dialog.set_default_response(gtk::ResponseType::Ok);
         let content_area = dialog.content_area();
         let entry = gtk::Entry::new();
         entry.connect_activate(clone!(@weak dialog => move |_| {
-            dialog.response(ResponseType::Ok);
+            dialog.response(gtk::ResponseType::Ok);
         }));
         content_area.append(&entry);
         let spin_button = gtk::SpinButton::with_range(0.0, 100.0, 1.0);
         content_area.append(&spin_button);
         dialog.connect_response(clone!(@weak model, @weak entry, @weak spin_button => move |dialog, resp| {
             let text = entry.text();
-            if !text.is_empty() && resp == ResponseType::Ok {
+            if !text.is_empty() && resp == gtk::ResponseType::Ok {
                 model.append(&RowData::new(&text, spin_button.value() as u32));
             }
             dialog.close();
         }));
 
-        dialog.show()
+        dialog.present()
     }));
 
     hbox.append(&add_button);
@@ -123,5 +124,5 @@ fn build_ui(application: &gtk::Application) {
         model.append(&RowData::new(&format!("Name {i}"), i * 10));
     }
 
-    window.show();
+    window.present();
 }

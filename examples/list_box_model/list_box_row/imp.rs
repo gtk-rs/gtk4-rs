@@ -1,15 +1,17 @@
+// gtk::Dialog was deprecated and applications are supposed
+// to use plain gtk::Window and structure it however they wish.
+#![allow(deprecated)]
 use std::cell::RefCell;
 
 use gtk::{
-    glib::{self, clone, ParamSpec, Properties, Value},
+    glib::{self, clone},
     prelude::*,
     subclass::prelude::*,
-    ResponseType,
 };
 
 use crate::row_data::RowData;
 
-#[derive(Default, Properties, Debug)]
+#[derive(Default, glib::Properties, Debug)]
 #[properties(wrapper_type = super::ListBoxRow)]
 pub struct ListBoxRow {
     #[property(get, set, construct_only)]
@@ -23,19 +25,8 @@ impl ObjectSubclass for ListBoxRow {
     type Type = super::ListBoxRow;
 }
 
+#[glib::derived_properties]
 impl ObjectImpl for ListBoxRow {
-    fn properties() -> &'static [ParamSpec] {
-        Self::derived_properties()
-    }
-
-    fn set_property(&self, id: usize, value: &Value, pspec: &ParamSpec) {
-        self.derived_set_property(id, value, pspec)
-    }
-
-    fn property(&self, id: usize, pspec: &ParamSpec) -> Value {
-        self.derived_property(id, pspec)
-    }
-
     fn constructed(&self) {
         self.parent_constructed();
         let obj = self.obj();
@@ -54,7 +45,7 @@ impl ObjectImpl for ListBoxRow {
         // In case of the spin button the binding is bidirectional, that is any
         // change of value in the spin button will be automatically reflected in
         // the item.
-        let label = gtk::Label::new(None);
+        let label = gtk::Label::default();
         item.bind_property("name", &label, "label")
             .sync_create()
             .build();
@@ -75,9 +66,9 @@ impl ObjectImpl for ListBoxRow {
                 Some("Edit Item"),
                 parent_window.as_ref(),
                 gtk::DialogFlags::MODAL,
-                &[("Close", ResponseType::Close)],
+                &[("Close", gtk::ResponseType::Close)],
             );
-            dialog.set_default_response(ResponseType::Close);
+            dialog.set_default_response(gtk::ResponseType::Close);
             dialog.connect_response(|dialog, _| dialog.close());
 
             let content_area = dialog.content_area();
@@ -93,7 +84,7 @@ impl ObjectImpl for ListBoxRow {
 
             // Activating the entry (enter) will send response `ResponseType::Close` to the dialog
             entry.connect_activate(clone!(@weak dialog => move |_| {
-                dialog.response(ResponseType::Close);
+                dialog.response(gtk::ResponseType::Close);
             }));
             content_area.append(&entry);
 
@@ -103,7 +94,7 @@ impl ObjectImpl for ListBoxRow {
                 .build();
             content_area.append(&spin_button);
 
-            dialog.show()
+            dialog.present()
         }));
         hbox.append(&edit_button);
 

@@ -1,9 +1,12 @@
-use crate::custom_layout::CustomLayout;
-use glib::clone;
-use gtk::glib;
-use gtk::prelude::*;
-use gtk::subclass::prelude::*;
 use std::cell::{Cell, RefCell};
+
+use gtk::{
+    glib::{self, clone},
+    prelude::*,
+    subclass::prelude::*,
+};
+
+use crate::custom_layout::CustomLayout;
 
 #[derive(Default, Debug)]
 pub struct SimpleWidget {

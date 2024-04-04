@@ -7,6 +7,7 @@
 #include <stdio.h>
 
 int main() {
+    printf("%s;%zu;%zu\n", "GtkAccessibleAnnouncementPriority", sizeof(GtkAccessibleAnnouncementPriority), alignof(GtkAccessibleAnnouncementPriority));
     printf("%s;%zu;%zu\n", "GtkAccessibleAutocomplete", sizeof(GtkAccessibleAutocomplete), alignof(GtkAccessibleAutocomplete));
     printf("%s;%zu;%zu\n", "GtkAccessibleInterface", sizeof(GtkAccessibleInterface), alignof(GtkAccessibleInterface));
     printf("%s;%zu;%zu\n", "GtkAccessibleInvalidState", sizeof(GtkAccessibleInvalidState), alignof(GtkAccessibleInvalidState));
@@ -17,6 +18,10 @@ int main() {
     printf("%s;%zu;%zu\n", "GtkAccessibleRole", sizeof(GtkAccessibleRole), alignof(GtkAccessibleRole));
     printf("%s;%zu;%zu\n", "GtkAccessibleSort", sizeof(GtkAccessibleSort), alignof(GtkAccessibleSort));
     printf("%s;%zu;%zu\n", "GtkAccessibleState", sizeof(GtkAccessibleState), alignof(GtkAccessibleState));
+    printf("%s;%zu;%zu\n", "GtkAccessibleTextContentChange", sizeof(GtkAccessibleTextContentChange), alignof(GtkAccessibleTextContentChange));
+    printf("%s;%zu;%zu\n", "GtkAccessibleTextGranularity", sizeof(GtkAccessibleTextGranularity), alignof(GtkAccessibleTextGranularity));
+    printf("%s;%zu;%zu\n", "GtkAccessibleTextInterface", sizeof(GtkAccessibleTextInterface), alignof(GtkAccessibleTextInterface));
+    printf("%s;%zu;%zu\n", "GtkAccessibleTextRange", sizeof(GtkAccessibleTextRange), alignof(GtkAccessibleTextRange));
     printf("%s;%zu;%zu\n", "GtkAccessibleTristate", sizeof(GtkAccessibleTristate), alignof(GtkAccessibleTristate));
     printf("%s;%zu;%zu\n", "GtkActionableInterface", sizeof(GtkActionableInterface), alignof(GtkActionableInterface));
     printf("%s;%zu;%zu\n", "GtkAdjustment", sizeof(GtkAdjustment), alignof(GtkAdjustment));
@@ -139,6 +144,8 @@ int main() {
     printf("%s;%zu;%zu\n", "GtkFrameClass", sizeof(GtkFrameClass), alignof(GtkFrameClass));
     printf("%s;%zu;%zu\n", "GtkGLArea", sizeof(GtkGLArea), alignof(GtkGLArea));
     printf("%s;%zu;%zu\n", "GtkGLAreaClass", sizeof(GtkGLAreaClass), alignof(GtkGLAreaClass));
+    printf("%s;%zu;%zu\n", "GtkGraphicsOffloadClass", sizeof(GtkGraphicsOffloadClass), alignof(GtkGraphicsOffloadClass));
+    printf("%s;%zu;%zu\n", "GtkGraphicsOffloadEnabled", sizeof(GtkGraphicsOffloadEnabled), alignof(GtkGraphicsOffloadEnabled));
     printf("%s;%zu;%zu\n", "GtkGrid", sizeof(GtkGrid), alignof(GtkGrid));
     printf("%s;%zu;%zu\n", "GtkGridClass", sizeof(GtkGridClass), alignof(GtkGridClass));
     printf("%s;%zu;%zu\n", "GtkGridLayoutChildClass", sizeof(GtkGridLayoutChildClass), alignof(GtkGridLayoutChildClass));
@@ -167,8 +174,10 @@ int main() {
     printf("%s;%zu;%zu\n", "GtkLicense", sizeof(GtkLicense), alignof(GtkLicense));
     printf("%s;%zu;%zu\n", "GtkListBoxRow", sizeof(GtkListBoxRow), alignof(GtkListBoxRow));
     printf("%s;%zu;%zu\n", "GtkListBoxRowClass", sizeof(GtkListBoxRowClass), alignof(GtkListBoxRowClass));
+    printf("%s;%zu;%zu\n", "GtkListScrollFlags", sizeof(GtkListScrollFlags), alignof(GtkListScrollFlags));
     printf("%s;%zu;%zu\n", "GtkListStore", sizeof(GtkListStore), alignof(GtkListStore));
     printf("%s;%zu;%zu\n", "GtkListStoreClass", sizeof(GtkListStoreClass), alignof(GtkListStoreClass));
+    printf("%s;%zu;%zu\n", "GtkListTabBehavior", sizeof(GtkListTabBehavior), alignof(GtkListTabBehavior));
     printf("%s;%zu;%zu\n", "GtkMapListModelClass", sizeof(GtkMapListModelClass), alignof(GtkMapListModelClass));
     printf("%s;%zu;%zu\n", "GtkMediaControlsClass", sizeof(GtkMediaControlsClass), alignof(GtkMediaControlsClass));
     printf("%s;%zu;%zu\n", "GtkMediaFile", sizeof(GtkMediaFile), alignof(GtkMediaFile));
@@ -212,6 +221,7 @@ int main() {
     printf("%s;%zu;%zu\n", "GtkPopoverMenuFlags", sizeof(GtkPopoverMenuFlags), alignof(GtkPopoverMenuFlags));
     printf("%s;%zu;%zu\n", "GtkPositionType", sizeof(GtkPositionType), alignof(GtkPositionType));
     printf("%s;%zu;%zu\n", "GtkPrintCapabilities", sizeof(GtkPrintCapabilities), alignof(GtkPrintCapabilities));
+    printf("%s;%zu;%zu\n", "GtkPrintDialogClass", sizeof(GtkPrintDialogClass), alignof(GtkPrintDialogClass));
     printf("%s;%zu;%zu\n", "GtkPrintDuplex", sizeof(GtkPrintDuplex), alignof(GtkPrintDuplex));
     printf("%s;%zu;%zu\n", "GtkPrintError", sizeof(GtkPrintError), alignof(GtkPrintError));
     printf("%s;%zu;%zu\n", "GtkPrintOperation", sizeof(GtkPrintOperation), alignof(GtkPrintOperation));
@@ -242,6 +252,7 @@ int main() {
     printf("%s;%zu;%zu\n", "GtkScrollType", sizeof(GtkScrollType), alignof(GtkScrollType));
     printf("%s;%zu;%zu\n", "GtkScrollableInterface", sizeof(GtkScrollableInterface), alignof(GtkScrollableInterface));
     printf("%s;%zu;%zu\n", "GtkScrollablePolicy", sizeof(GtkScrollablePolicy), alignof(GtkScrollablePolicy));
+    printf("%s;%zu;%zu\n", "GtkSectionModelInterface", sizeof(GtkSectionModelInterface), alignof(GtkSectionModelInterface));
     printf("%s;%zu;%zu\n", "GtkSelectionFilterModelClass", sizeof(GtkSelectionFilterModelClass), alignof(GtkSelectionFilterModelClass));
     printf("%s;%zu;%zu\n", "GtkSelectionMode", sizeof(GtkSelectionMode), alignof(GtkSelectionMode));
     printf("%s;%zu;%zu\n", "GtkSelectionModelInterface", sizeof(GtkSelectionModelInterface), alignof(GtkSelectionModelInterface));

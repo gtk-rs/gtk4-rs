@@ -1,12 +1,12 @@
-use glib::clone;
-use gtk::glib;
-use gtk::prelude::*;
+use gtk::{
+    glib::{self, clone},
+    prelude::*,
+};
 
 fn main() -> glib::ExitCode {
-    let application = gtk::Application::new(
-        Some("com.github.gtk-rs.examples.search_bar"),
-        Default::default(),
-    );
+    let application = gtk::Application::builder()
+        .application_id("com.github.gtk-rs.examples.search_bar")
+        .build();
     application.connect_activate(build_ui);
     application.run()
 }
@@ -69,5 +69,5 @@ fn build_ui(application: &gtk::Application) {
         }
     }));
 
-    window.show();
+    window.present();
 }

@@ -1,19 +1,18 @@
-use gtk::glib;
-use gtk::prelude::*;
+// TODO - EntryCompletion is deprecated without replacement in GTK 4.10. This
+// example should be updated to remove the deprecated code when a replacement
+// lands. See: https://gitlab.gnome.org/GNOME/gtk/-/issues/5689
+#![allow(deprecated)]
 
-use glib::Type;
-use gtk::gio::SimpleAction;
-use gtk::{Application, Entry, EntryCompletion, Label, ListStore, Orientation};
+use gtk::{gio, glib, prelude::*};
 
 fn main() -> glib::ExitCode {
-    let application = Application::new(
-        Some("com.github.gtk-rs.examples.entry-completion"),
-        Default::default(),
-    );
+    let application = gtk::Application::builder()
+        .application_id("com.github.gtk-rs.examples.entry-completion")
+        .build();
     application.connect_activate(build_ui);
 
     // When activated, shuts down the application
-    let quit = SimpleAction::new("quit", None);
+    let quit = gio::SimpleAction::new("quit", None);
     quit.connect_activate(
         glib::clone!(@weak application => move |_action, _parameter| {
             application.quit();
@@ -26,7 +25,7 @@ fn main() -> glib::ExitCode {
     application.run()
 }
 
-fn build_ui(application: &Application) {
+fn build_ui(application: &gtk::Application) {
     // create the main window
     let window = gtk::ApplicationWindow::builder()
         .application(application)
@@ -36,11 +35,11 @@ fn build_ui(application: &Application) {
         .build();
 
     // Create a title label
-    let win_title = Label::new(None);
+    let win_title = gtk::Label::default();
     win_title.set_markup("<big>Which country would you like to spend a holiday in?</big>");
 
     // Create an EntryCompletion widget
-    let completion_countries = EntryCompletion::new();
+    let completion_countries = gtk::EntryCompletion::new();
     // Use the first (and only) column available to set the autocompletion text
     completion_countries.set_text_column(0);
     // how many keystrokes to wait before attempting to autocomplete?
@@ -55,11 +54,11 @@ fn build_ui(application: &Application) {
     let ls = create_list_model();
     completion_countries.set_model(Some(&ls));
 
-    let input_field = Entry::new();
+    let input_field = gtk::Entry::new();
     input_field.set_completion(Some(&completion_countries));
 
     let row = gtk::Box::builder()
-        .orientation(Orientation::Vertical)
+        .orientation(gtk::Orientation::Vertical)
         .spacing(12)
         .margin_start(24)
         .margin_end(24)
@@ -73,16 +72,14 @@ fn build_ui(application: &Application) {
     window.set_child(Some(&row));
 
     // show everything
-    window.show();
+    window.present();
 }
 
 struct Data {
     description: String,
 }
 
-fn create_list_model() -> ListStore {
-    let col_types: [Type; 1] = [Type::STRING];
-
+fn create_list_model() -> gtk::ListStore {
     let data: [Data; 4] = [
         Data {
             description: "France".to_string(),
@@ -97,7 +94,7 @@ fn create_list_model() -> ListStore {
             description: "Switzerland".to_string(),
         },
     ];
-    let store = ListStore::new(&col_types);
+    let store = gtk::ListStore::new(&[glib::Type::STRING]);
     for d in data.iter() {
         store.set(&store.append(), &[(0, &d.description)]);
     }

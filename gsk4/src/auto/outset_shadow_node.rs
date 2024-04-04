@@ -3,8 +3,7 @@
 // DO NOT EDIT
 
 use crate::RoundedRect;
-use glib::translate::*;
-use std::fmt;
+use glib::{prelude::*, translate::*};
 
 glib::wrapper! {
     #[doc(alias = "GskOutsetShadowNode")]
@@ -16,7 +15,7 @@ glib::wrapper! {
     }
 }
 
-impl glib::StaticType for OutsetShadowNode {
+impl StaticType for OutsetShadowNode {
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gsk_outset_shadow_node_get_type()) }
     }
@@ -83,11 +82,5 @@ impl OutsetShadowNode {
     #[doc(alias = "get_spread")]
     pub fn spread(&self) -> f32 {
         unsafe { ffi::gsk_outset_shadow_node_get_spread(self.to_glib_none().0) }
-    }
-}
-
-impl fmt::Display for OutsetShadowNode {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("OutsetShadowNode")
     }
 }

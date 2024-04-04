@@ -12,7 +12,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GtkAssistant")]
@@ -238,12 +238,12 @@ impl Assistant {
             current_page: libc::c_int,
             data: glib::ffi::gpointer,
         ) -> libc::c_int {
-            let callback: &P = &*(data as *mut _);
+            let callback = &*(data as *mut P);
             (*callback)(current_page)
         }
         let page_func = Some(page_func_func::<P> as _);
         unsafe extern "C" fn destroy_func<P: Fn(i32) -> i32 + 'static>(data: glib::ffi::gpointer) {
-            let _callback: Box_<P> = Box_::from_raw(data as *mut _);
+            let _callback = Box_::from_raw(data as *mut P);
         }
         let destroy_call3 = Some(destroy_func::<P> as _);
         let super_callback0: Box_<P> = page_func_data;
@@ -308,7 +308,7 @@ impl Assistant {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "use-header-bar")]
     pub fn use_header_bar(&self) -> i32 {
-        glib::ObjectExt::property(self, "use-header-bar")
+        ObjectExt::property(self, "use-header-bar")
     }
 
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
@@ -326,7 +326,7 @@ impl Assistant {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"apply\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     apply_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -349,7 +349,7 @@ impl Assistant {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"cancel\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     cancel_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -372,7 +372,7 @@ impl Assistant {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"close\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     close_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -395,7 +395,7 @@ impl Assistant {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"escape\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     escape_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -424,7 +424,7 @@ impl Assistant {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"prepare\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     prepare_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -447,7 +447,7 @@ impl Assistant {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::pages\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_pages_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -565,8 +565,8 @@ impl AssistantBuilder {
         }
     }
 
-    #[cfg(any(feature = "v4_2", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_2")))]
+    #[cfg(feature = "v4_2")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_2")))]
     pub fn handle_menubar_accel(self, handle_menubar_accel: bool) -> Self {
         Self {
             builder: self
@@ -625,8 +625,8 @@ impl AssistantBuilder {
         }
     }
 
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[cfg(feature = "v4_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     pub fn titlebar(self, titlebar: &impl IsA<Widget>) -> Self {
         Self {
             builder: self.builder.property("titlebar", titlebar.clone().upcast()),
@@ -830,11 +830,5 @@ impl AssistantBuilder {
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> Assistant {
         self.builder.build()
-    }
-}
-
-impl fmt::Display for Assistant {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("Assistant")
     }
 }

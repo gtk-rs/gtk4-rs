@@ -7,7 +7,7 @@ use gtk::prelude::*;
 use gtk::{gio, glib};
 use window::Window;
 
-static APP_ID: &str = "org.gtk_rs.Todo5";
+const APP_ID: &str = "org.gtk_rs.Todo5";
 
 // ANCHOR: main
 fn main() -> glib::ExitCode {
@@ -35,8 +35,8 @@ fn setup_shortcuts(app: &adw::Application) {
 
 //                👇 changed
 fn build_ui(app: &adw::Application) {
-    // Create a new custom window and show it
+    // Create a new custom window and present it
     let window = Window::new(app);
-    window.show();
+    window.present();
 }
 // ANCHOR_END: main

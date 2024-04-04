@@ -1,11 +1,13 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{prelude::*, Overlay, Widget};
+use std::{mem::transmute, ptr};
+
 use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{mem::transmute, ptr};
+
+use crate::{prelude::*, Overlay, Widget};
 
 impl Overlay {
     pub fn connect_get_child_position<F>(&self, f: F) -> SignalHandlerId

@@ -9,7 +9,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GtkCellRendererAccel")]
@@ -39,40 +39,40 @@ impl CellRendererAccel {
 
     #[doc(alias = "accel-key")]
     pub fn accel_key(&self) -> u32 {
-        glib::ObjectExt::property(self, "accel-key")
+        ObjectExt::property(self, "accel-key")
     }
 
     #[doc(alias = "accel-key")]
     pub fn set_accel_key(&self, accel_key: u32) {
-        glib::ObjectExt::set_property(self, "accel-key", accel_key)
+        ObjectExt::set_property(self, "accel-key", accel_key)
     }
 
     #[doc(alias = "accel-mode")]
     pub fn accel_mode(&self) -> CellRendererAccelMode {
-        glib::ObjectExt::property(self, "accel-mode")
+        ObjectExt::property(self, "accel-mode")
     }
 
     #[doc(alias = "accel-mode")]
     pub fn set_accel_mode(&self, accel_mode: CellRendererAccelMode) {
-        glib::ObjectExt::set_property(self, "accel-mode", accel_mode)
+        ObjectExt::set_property(self, "accel-mode", accel_mode)
     }
 
     #[doc(alias = "accel-mods")]
     pub fn accel_mods(&self) -> gdk::ModifierType {
-        glib::ObjectExt::property(self, "accel-mods")
+        ObjectExt::property(self, "accel-mods")
     }
 
     #[doc(alias = "accel-mods")]
     pub fn set_accel_mods(&self, accel_mods: gdk::ModifierType) {
-        glib::ObjectExt::set_property(self, "accel-mods", accel_mods)
+        ObjectExt::set_property(self, "accel-mods", accel_mods)
     }
 
     pub fn keycode(&self) -> u32 {
-        glib::ObjectExt::property(self, "keycode")
+        ObjectExt::property(self, "keycode")
     }
 
     pub fn set_keycode(&self, keycode: u32) {
-        glib::ObjectExt::set_property(self, "keycode", keycode)
+        ObjectExt::set_property(self, "keycode", keycode)
     }
 
     #[doc(alias = "accel-cleared")]
@@ -93,7 +93,7 @@ impl CellRendererAccel {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"accel-cleared\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     accel_cleared_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -131,7 +131,7 @@ impl CellRendererAccel {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"accel-edited\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     accel_edited_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -154,7 +154,7 @@ impl CellRendererAccel {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::accel-key\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_accel_key_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -177,7 +177,7 @@ impl CellRendererAccel {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::accel-mode\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_accel_mode_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -200,7 +200,7 @@ impl CellRendererAccel {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::accel-mods\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_accel_mods_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -223,7 +223,7 @@ impl CellRendererAccel {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::keycode\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_keycode_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -655,11 +655,5 @@ impl CellRendererAccelBuilder {
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> CellRendererAccel {
         self.builder.build()
-    }
-}
-
-impl fmt::Display for CellRendererAccel {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("CellRendererAccel")
     }
 }

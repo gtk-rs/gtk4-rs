@@ -1,8 +1,10 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{EventType, Key, KeyEvent, KeyMatch, ModifierType};
-use glib::translate::*;
 use std::{fmt, mem};
+
+use glib::translate::*;
+
+use crate::{EventType, Key, KeyEvent, KeyMatch, ModifierType};
 
 define_event! {
     KeyEvent,

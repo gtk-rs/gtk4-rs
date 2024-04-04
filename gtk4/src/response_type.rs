@@ -1,11 +1,9 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use glib::translate::*;
-use glib::{
-    value::{FromValue, ToValue, ValueType},
-    StaticType, Type, Value,
-};
 use std::fmt;
+
+use crate::prelude::*;
+use glib::{translate::*, value::FromValue, Type, Value};
 
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
 #[doc(alias = "GtkResponseType")]
@@ -110,6 +108,7 @@ impl fmt::Display for ResponseType {
 
 impl StaticType for ResponseType {
     #[inline]
+    #[doc(alias = "gtk_response_type_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gtk_response_type_get_type()) }
     }

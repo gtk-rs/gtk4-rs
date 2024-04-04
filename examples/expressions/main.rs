@@ -2,19 +2,14 @@ mod metadata;
 mod note;
 
 use glib::closure;
+use gtk::{gio, glib, prelude::*};
 
-use gtk::gio;
-use gtk::glib;
-use gtk::prelude::*;
-
-use self::metadata::Metadata;
-use self::note::Note;
+use self::{metadata::Metadata, note::Note};
 
 fn main() -> glib::ExitCode {
-    let application = gtk::Application::new(
-        Some("com.github.gtk-rs.examples.expressions"),
-        Default::default(),
-    );
+    let application = gtk::Application::builder()
+        .application_id("com.github.gtk-rs.examples.expressions")
+        .build();
 
     application.connect_activate(build_ui);
     application.run()
@@ -25,21 +20,23 @@ fn build_ui(app: &gtk::Application) {
     factory.connect_setup(|_, item| {
         // In gtk4 < 4.8, you don't need the following line
         // as gtk used to pass GtkListItem directly. In order to make that API
-        // generic for potentially future new APIs, it was switched to taking a GObject in 4.8
+        // generic for potentially future new APIs, it was switched to taking a GObject
+        // in 4.8
         let item = item.downcast_ref::<gtk::ListItem>().unwrap();
         let hbox = gtk::Box::builder()
             .orientation(gtk::Orientation::Horizontal)
             .spacing(24)
             .build();
 
-        let title_label = gtk::Label::new(None);
+        let title_label = gtk::Label::default();
         hbox.append(&title_label);
 
-        let last_modified_label = gtk::Label::new(None);
+        let last_modified_label = gtk::Label::default();
         hbox.append(&last_modified_label);
 
-        // Instead of binding properties and manually unbinding them, you can create expressions.
-        // The value can be obtained even if it is several steps away.
+        // Instead of binding properties and manually unbinding them, you can create
+        // expressions. The value can be obtained even if it is several steps
+        // away.
         item.property_expression("item")
             .chain_property::<Note>("metadata")
             .chain_property::<Metadata>("title")
@@ -49,8 +46,8 @@ fn build_ui(app: &gtk::Application) {
             })
             .bind(&title_label, "label", gtk::Widget::NONE);
 
-        // Property expressions can also start from the `this` value, which is set as the last
-        // argument to the `bind` function.
+        // Property expressions can also start from the `this` value, which is set as
+        // the last argument to the `bind` function.
         gtk::ListItem::this_expression("item")
             .chain_property::<Note>("metadata")
             .chain_property::<Metadata>("last-modified")
@@ -79,15 +76,14 @@ fn build_ui(app: &gtk::Application) {
         .child(&scrolled_window)
         .build();
 
-    window.show();
+    window.present();
 }
 
 fn data() -> gio::ListStore {
     let mut vector: Vec<Note> = Vec::new();
 
     for i in 0..=100 {
-        let metadata = Metadata::new();
-        metadata.set_property("title", format!("Note ({i})"));
+        let metadata = Metadata::new(&format!("Note ({i})"));
 
         let note = Note::new(&metadata);
         vector.push(note);

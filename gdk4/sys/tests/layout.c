@@ -15,6 +15,7 @@ int main() {
     printf("%s;%zu;%zu\n", "GdkCrossingMode", sizeof(GdkCrossingMode), alignof(GdkCrossingMode));
     printf("%s;%zu;%zu\n", "GdkDevicePadFeature", sizeof(GdkDevicePadFeature), alignof(GdkDevicePadFeature));
     printf("%s;%zu;%zu\n", "GdkDeviceToolType", sizeof(GdkDeviceToolType), alignof(GdkDeviceToolType));
+    printf("%s;%zu;%zu\n", "GdkDmabufError", sizeof(GdkDmabufError), alignof(GdkDmabufError));
     printf("%s;%zu;%zu\n", "GdkDragAction", sizeof(GdkDragAction), alignof(GdkDragAction));
     printf("%s;%zu;%zu\n", "GdkDragCancelReason", sizeof(GdkDragCancelReason), alignof(GdkDragCancelReason));
     printf("%s;%zu;%zu\n", "GdkEventType", sizeof(GdkEventType), alignof(GdkEventType));

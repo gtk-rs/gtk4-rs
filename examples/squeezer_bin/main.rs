@@ -1,7 +1,6 @@
 mod squeezer_bin;
 
-use gtk::glib;
-use gtk::prelude::*;
+use gtk::{glib, prelude::*};
 use squeezer_bin::SqueezerBin;
 
 fn main() -> glib::ExitCode {
@@ -14,7 +13,7 @@ fn main() -> glib::ExitCode {
         let headerbar = gtk::HeaderBar::new();
         let mode_switch = gtk::Switch::new();
         let switch_label = gtk::Label::new(Some("keep aspect ratio"));
-        let squeezer = SqueezerBin::new();
+        let squeezer = SqueezerBin::default();
         squeezer.set_child(Some(&gtk::Label::new(Some("Hello World!"))));
 
         headerbar.pack_start(&mode_switch);
@@ -26,7 +25,7 @@ fn main() -> glib::ExitCode {
 
         window.set_titlebar(Some(&headerbar));
         window.set_child(Some(&squeezer));
-        window.show();
+        window.present();
     });
 
     application.run()

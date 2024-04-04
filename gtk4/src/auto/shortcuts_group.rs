@@ -2,6 +2,9 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+use crate::ShortcutsShortcut;
 use crate::{
     Accessible, AccessibleRole, Align, BaselinePosition, Box, Buildable, ConstraintTarget,
     LayoutManager, Orientable, Orientation, Overflow, SizeGroup, Widget,
@@ -11,7 +14,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GtkShortcutsGroup")]
@@ -31,34 +34,43 @@ impl ShortcutsGroup {
         ShortcutsGroupBuilder::new()
     }
 
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    #[doc(alias = "gtk_shortcuts_group_add_shortcut")]
+    pub fn add_shortcut(&self, shortcut: &ShortcutsShortcut) {
+        unsafe {
+            ffi::gtk_shortcuts_group_add_shortcut(self.to_glib_none().0, shortcut.to_glib_none().0);
+        }
+    }
+
     #[doc(alias = "accel-size-group")]
     pub fn set_accel_size_group(&self, accel_size_group: Option<&SizeGroup>) {
-        glib::ObjectExt::set_property(self, "accel-size-group", accel_size_group)
+        ObjectExt::set_property(self, "accel-size-group", accel_size_group)
     }
 
     pub fn height(&self) -> u32 {
-        glib::ObjectExt::property(self, "height")
+        ObjectExt::property(self, "height")
     }
 
     pub fn title(&self) -> Option<glib::GString> {
-        glib::ObjectExt::property(self, "title")
+        ObjectExt::property(self, "title")
     }
 
     pub fn set_title(&self, title: Option<&str>) {
-        glib::ObjectExt::set_property(self, "title", title)
+        ObjectExt::set_property(self, "title", title)
     }
 
     #[doc(alias = "title-size-group")]
     pub fn set_title_size_group(&self, title_size_group: Option<&SizeGroup>) {
-        glib::ObjectExt::set_property(self, "title-size-group", title_size_group)
+        ObjectExt::set_property(self, "title-size-group", title_size_group)
     }
 
     pub fn view(&self) -> Option<glib::GString> {
-        glib::ObjectExt::property(self, "view")
+        ObjectExt::property(self, "view")
     }
 
     pub fn set_view(&self, view: Option<&str>) {
-        glib::ObjectExt::set_property(self, "view", view)
+        ObjectExt::set_property(self, "view", view)
     }
 
     #[doc(alias = "accel-size-group")]
@@ -78,7 +90,7 @@ impl ShortcutsGroup {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::accel-size-group\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_accel_size_group_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -101,7 +113,7 @@ impl ShortcutsGroup {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::height\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_height_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -124,7 +136,7 @@ impl ShortcutsGroup {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::title\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_title_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -149,7 +161,7 @@ impl ShortcutsGroup {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::title-size-group\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_title_size_group_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -172,7 +184,7 @@ impl ShortcutsGroup {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::view\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_view_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -222,6 +234,14 @@ impl ShortcutsGroupBuilder {
     pub fn view(self, view: impl Into<glib::GString>) -> Self {
         Self {
             builder: self.builder.property("view", view.into()),
+        }
+    }
+
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn baseline_child(self, baseline_child: i32) -> Self {
+        Self {
+            builder: self.builder.property("baseline-child", baseline_child),
         }
     }
 
@@ -440,11 +460,5 @@ impl ShortcutsGroupBuilder {
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> ShortcutsGroup {
         self.builder.build()
-    }
-}
-
-impl fmt::Display for ShortcutsGroup {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("ShortcutsGroup")
     }
 }

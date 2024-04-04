@@ -1,54 +1,21 @@
-use super::BaseButtonExt;
-use gtk::{
-    gio,
-    glib::{self, Error},
-    prelude::*,
-    subclass::prelude::*,
-};
-use std::{future::Future, pin::Pin};
+use gtk::{gio, glib, prelude::*, subclass::prelude::*};
 
-pub type BaseButtonInstance = super::BaseButton;
-pub type PinnedFuture = Pin<Box<dyn Future<Output = Result<(), Error>> + 'static>>;
-
-/// GObject glue code for our BaseButtonClass which holds the function pointers to our virtual functions.
-#[repr(C)]
-pub struct BaseButtonClass {
-    pub parent_class: gtk::ffi::GtkButtonClass,
-    // If these functions are meant to be called from C, you need to make these functions
-    // `unsafe extern "C" fn` & use FFI-safe types (usually raw pointers).
-    pub sync_method: fn(&BaseButtonInstance, extra_text: Option<String>),
-    pub async_method: fn(&BaseButtonInstance) -> PinnedFuture,
-}
-
-unsafe impl ClassStruct for BaseButtonClass {
-    type Type = BaseButton;
-}
+/// Implementation of `BaseButton`.
+use super::{BaseButtonExt, PinnedFuture};
 
 #[derive(Debug, Default)]
 pub struct BaseButton;
 
-// Virtual method default implementation trampolines
-fn sync_method_default_trampoline(this: &BaseButtonInstance, extra_text: Option<String>) {
-    this.imp().sync_method(this, extra_text)
-}
-
-fn async_method_default_trampoline(this: &BaseButtonInstance) -> PinnedFuture {
-    this.imp().async_method(this)
-}
-
-pub(super) fn base_button_sync_method(this: &BaseButtonInstance, extra_text: Option<String>) {
-    let klass = this.class();
-    (klass.as_ref().sync_method)(this, extra_text)
-}
-
-pub(super) fn base_button_async_method(this: &BaseButtonInstance) -> PinnedFuture {
-    let klass = this.class();
-    (klass.as_ref().async_method)(this)
-}
-
-/// Default implementations of our sync_method and async_method.
 impl BaseButton {
-    fn sync_method(&self, obj: &super::BaseButton, extra_text: Option<String>) {
+    /// Implementation for non-virtual methods.
+    pub(super) fn non_virtual_method(&self) {
+        let obj = self.obj();
+        obj.set_label("Non-virtual method called");
+    }
+
+    /// Default implementations virtual methods.
+    fn sync_method_default(&self, extra_text: Option<&str>) {
+        let obj = self.obj();
         if let Some(text) = extra_text {
             obj.set_label(&format!("BaseButton sync: {text}"));
         } else {
@@ -56,14 +23,12 @@ impl BaseButton {
         }
     }
 
-    fn async_method(&self, obj: &super::BaseButton) -> PinnedFuture {
-        Box::pin(gio::GioFuture::new(
-            obj,
-            glib::clone!(@weak obj => move |_, _, send| {
-                obj.set_label("BaseButton async");
-                send.resolve(Ok(()));
-            }),
-        ))
+    fn async_method_default(&self) -> PinnedFuture<Result<(), glib::Error>> {
+        let obj = self.obj();
+        Box::pin(gio::GioFuture::new(&*obj, |obj, _, send| {
+            obj.set_label("BaseButton async");
+            send.resolve(Ok(()));
+        }))
     }
 }
 
@@ -72,20 +37,25 @@ impl ObjectSubclass for BaseButton {
     const NAME: &'static str = "ExampleBaseButton";
     type ParentType = gtk::Button;
     type Type = super::BaseButton;
-    type Class = BaseButtonClass;
+    type Class = super::Class;
 
+    /// Initialize the class struct with the default implementations of the
+    /// virtual methods.
     fn class_init(klass: &mut Self::Class) {
-        klass.sync_method = sync_method_default_trampoline;
-        klass.async_method = async_method_default_trampoline;
+        klass.sync_method = |obj, extra_text| {
+            obj.imp().sync_method_default(extra_text);
+        };
+        klass.async_method = |obj| obj.imp().async_method_default();
     }
 }
 
 impl ObjectImpl for BaseButton {
     fn constructed(&self) {
         self.parent_constructed();
-        // For demo purposes, call the sync_method during construction to set the button label
-        self.obj()
-            .sync_method(Some(String::from("Sync extra text")));
+
+        // For demo purposes, call the `non_virtual_method()` during construction to set
+        // the button label
+        self.obj().non_virtual_method();
     }
 }
 

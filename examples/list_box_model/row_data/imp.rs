@@ -1,13 +1,10 @@
-use glib::subclass::prelude::*;
-use gtk::{
-    glib::{self, ParamSpec, Properties, Value},
-    prelude::*,
-};
 use std::cell::{Cell, RefCell};
+
+use gtk::{glib, prelude::*, subclass::prelude::*};
 
 // The actual data structure that stores our values. This is not accessible
 // directly from the outside.
-#[derive(Default, Properties)]
+#[derive(Default, glib::Properties)]
 #[properties(wrapper_type = super::RowData)]
 pub struct RowData {
     #[property(get, set)]
@@ -29,16 +26,5 @@ impl ObjectSubclass for RowData {
 //
 // This maps between the GObject properties and our internal storage of the
 // corresponding values of the properties.
-impl ObjectImpl for RowData {
-    fn properties() -> &'static [ParamSpec] {
-        Self::derived_properties()
-    }
-
-    fn set_property(&self, id: usize, value: &Value, pspec: &ParamSpec) {
-        self.derived_set_property(id, value, pspec)
-    }
-
-    fn property(&self, id: usize, pspec: &ParamSpec) -> Value {
-        self.derived_property(id, pspec)
-    }
-}
+#[glib::derived_properties]
+impl ObjectImpl for RowData {}

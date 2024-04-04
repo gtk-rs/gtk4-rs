@@ -7,7 +7,6 @@ use crate::{
     PrintQuality, Unit,
 };
 use glib::translate::*;
-use std::{fmt, mem, ptr};
 
 glib::wrapper! {
     #[doc(alias = "GtkPrintSettings")]
@@ -30,7 +29,7 @@ impl PrintSettings {
     pub fn from_file(file_name: impl AsRef<std::path::Path>) -> Result<PrintSettings, glib::Error> {
         assert_initialized_main_thread!();
         unsafe {
-            let mut error = ptr::null_mut();
+            let mut error = std::ptr::null_mut();
             let ret = ffi::gtk_print_settings_new_from_file(
                 file_name.as_ref().to_glib_none().0,
                 &mut error,
@@ -62,7 +61,7 @@ impl PrintSettings {
     ) -> Result<PrintSettings, glib::Error> {
         assert_initialized_main_thread!();
         unsafe {
-            let mut error = ptr::null_mut();
+            let mut error = std::ptr::null_mut();
             let ret = ffi::gtk_print_settings_new_from_key_file(
                 key_file.to_glib_none().0,
                 group_name.to_glib_none().0,
@@ -92,7 +91,7 @@ impl PrintSettings {
         ) {
             let key: Borrowed<glib::GString> = from_glib_borrow(key);
             let value: Borrowed<glib::GString> = from_glib_borrow(value);
-            let callback: *mut P = user_data as *const _ as usize as *mut P;
+            let callback = user_data as *mut P;
             (*callback)(key.as_str(), value.as_str())
         }
         let func = Some(func_func::<P> as _);
@@ -101,7 +100,7 @@ impl PrintSettings {
             ffi::gtk_print_settings_foreach(
                 self.to_glib_none().0,
                 func,
-                super_callback0 as *const _ as usize as *mut _,
+                super_callback0 as *const _ as *mut _,
             );
         }
     }
@@ -269,7 +268,7 @@ impl PrintSettings {
     #[doc(alias = "get_page_ranges")]
     pub fn page_ranges(&self) -> Vec<PageRange> {
         unsafe {
-            let mut num_ranges = mem::MaybeUninit::uninit();
+            let mut num_ranges = std::mem::MaybeUninit::uninit();
             let ret = FromGlibContainer::from_glib_full_num(
                 ffi::gtk_print_settings_get_page_ranges(
                     self.to_glib_none().0,
@@ -386,7 +385,7 @@ impl PrintSettings {
     #[doc(alias = "gtk_print_settings_load_file")]
     pub fn load_file(&self, file_name: impl AsRef<std::path::Path>) -> Result<(), glib::Error> {
         unsafe {
-            let mut error = ptr::null_mut();
+            let mut error = std::ptr::null_mut();
             let is_ok = ffi::gtk_print_settings_load_file(
                 self.to_glib_none().0,
                 file_name.as_ref().to_glib_none().0,
@@ -408,7 +407,7 @@ impl PrintSettings {
         group_name: Option<&str>,
     ) -> Result<(), glib::Error> {
         unsafe {
-            let mut error = ptr::null_mut();
+            let mut error = std::ptr::null_mut();
             let is_ok = ffi::gtk_print_settings_load_key_file(
                 self.to_glib_none().0,
                 key_file.to_glib_none().0,
@@ -669,7 +668,7 @@ impl PrintSettings {
     #[doc(alias = "gtk_print_settings_to_file")]
     pub fn to_file(&self, file_name: impl AsRef<std::path::Path>) -> Result<(), glib::Error> {
         unsafe {
-            let mut error = ptr::null_mut();
+            let mut error = std::ptr::null_mut();
             let is_ok = ffi::gtk_print_settings_to_file(
                 self.to_glib_none().0,
                 file_name.as_ref().to_glib_none().0,
@@ -711,11 +710,5 @@ impl PrintSettings {
 impl Default for PrintSettings {
     fn default() -> Self {
         Self::new()
-    }
-}
-
-impl fmt::Display for PrintSettings {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("PrintSettings")
     }
 }

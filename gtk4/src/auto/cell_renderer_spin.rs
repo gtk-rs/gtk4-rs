@@ -9,7 +9,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GtkCellRendererSpin")]
@@ -38,29 +38,29 @@ impl CellRendererSpin {
     }
 
     pub fn adjustment(&self) -> Option<Adjustment> {
-        glib::ObjectExt::property(self, "adjustment")
+        ObjectExt::property(self, "adjustment")
     }
 
     pub fn set_adjustment<P: IsA<Adjustment>>(&self, adjustment: Option<&P>) {
-        glib::ObjectExt::set_property(self, "adjustment", adjustment)
+        ObjectExt::set_property(self, "adjustment", adjustment)
     }
 
     #[doc(alias = "climb-rate")]
     pub fn climb_rate(&self) -> f64 {
-        glib::ObjectExt::property(self, "climb-rate")
+        ObjectExt::property(self, "climb-rate")
     }
 
     #[doc(alias = "climb-rate")]
     pub fn set_climb_rate(&self, climb_rate: f64) {
-        glib::ObjectExt::set_property(self, "climb-rate", climb_rate)
+        ObjectExt::set_property(self, "climb-rate", climb_rate)
     }
 
     pub fn digits(&self) -> u32 {
-        glib::ObjectExt::property(self, "digits")
+        ObjectExt::property(self, "digits")
     }
 
     pub fn set_digits(&self, digits: u32) {
-        glib::ObjectExt::set_property(self, "digits", digits)
+        ObjectExt::set_property(self, "digits", digits)
     }
 
     #[doc(alias = "adjustment")]
@@ -78,7 +78,7 @@ impl CellRendererSpin {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::adjustment\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_adjustment_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -101,7 +101,7 @@ impl CellRendererSpin {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::climb-rate\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_climb_rate_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -124,7 +124,7 @@ impl CellRendererSpin {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::digits\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_digits_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -552,11 +552,5 @@ impl CellRendererSpinBuilder {
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> CellRendererSpin {
         self.builder.build()
-    }
-}
-
-impl fmt::Display for CellRendererSpin {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("CellRendererSpin")
     }
 }

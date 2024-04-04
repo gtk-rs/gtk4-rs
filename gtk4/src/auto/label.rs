@@ -2,8 +2,8 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-#[cfg(any(feature = "v4_6", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+#[cfg(feature = "v4_6")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
 use crate::NaturalWrapMode;
 use crate::{
     Accessible, AccessibleRole, Align, Buildable, ConstraintTarget, Justification, LayoutManager,
@@ -14,7 +14,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem, mem::transmute};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GtkLabel")]
@@ -96,8 +96,8 @@ impl Label {
     #[doc(alias = "get_layout_offsets")]
     pub fn layout_offsets(&self) -> (i32, i32) {
         unsafe {
-            let mut x = mem::MaybeUninit::uninit();
-            let mut y = mem::MaybeUninit::uninit();
+            let mut x = std::mem::MaybeUninit::uninit();
+            let mut y = std::mem::MaybeUninit::uninit();
             ffi::gtk_label_get_layout_offsets(
                 self.to_glib_none().0,
                 x.as_mut_ptr(),
@@ -125,8 +125,8 @@ impl Label {
         unsafe { from_glib_none(ffi::gtk_label_get_mnemonic_widget(self.to_glib_none().0)) }
     }
 
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[cfg(feature = "v4_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     #[doc(alias = "gtk_label_get_natural_wrap_mode")]
     #[doc(alias = "get_natural_wrap_mode")]
     pub fn natural_wrap_mode(&self) -> NaturalWrapMode {
@@ -143,8 +143,8 @@ impl Label {
     #[doc(alias = "get_selection_bounds")]
     pub fn selection_bounds(&self) -> Option<(i32, i32)> {
         unsafe {
-            let mut start = mem::MaybeUninit::uninit();
-            let mut end = mem::MaybeUninit::uninit();
+            let mut start = std::mem::MaybeUninit::uninit();
+            let mut end = std::mem::MaybeUninit::uninit();
             let ret = from_glib(ffi::gtk_label_get_selection_bounds(
                 self.to_glib_none().0,
                 start.as_mut_ptr(),
@@ -164,8 +164,8 @@ impl Label {
         unsafe { from_glib(ffi::gtk_label_get_single_line_mode(self.to_glib_none().0)) }
     }
 
-    #[cfg(any(feature = "v4_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    #[cfg(feature = "v4_8")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     #[doc(alias = "gtk_label_get_tabs")]
     #[doc(alias = "get_tabs")]
     pub fn tabs(&self) -> Option<pango::TabArray> {
@@ -303,8 +303,8 @@ impl Label {
         }
     }
 
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[cfg(feature = "v4_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     #[doc(alias = "gtk_label_set_natural_wrap_mode")]
     pub fn set_natural_wrap_mode(&self, wrap_mode: NaturalWrapMode) {
         unsafe {
@@ -329,8 +329,8 @@ impl Label {
         }
     }
 
-    #[cfg(any(feature = "v4_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    #[cfg(feature = "v4_8")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     #[doc(alias = "gtk_label_set_tabs")]
     pub fn set_tabs(&self, tabs: Option<&pango::TabArray>) {
         unsafe {
@@ -415,7 +415,7 @@ impl Label {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"activate-current-link\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     activate_current_link_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -428,12 +428,12 @@ impl Label {
     }
 
     #[doc(alias = "activate-link")]
-    pub fn connect_activate_link<F: Fn(&Self, &str) -> glib::signal::Inhibit + 'static>(
+    pub fn connect_activate_link<F: Fn(&Self, &str) -> glib::Propagation + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn activate_link_trampoline<
-            F: Fn(&Label, &str) -> glib::signal::Inhibit + 'static,
+            F: Fn(&Label, &str) -> glib::Propagation + 'static,
         >(
             this: *mut ffi::GtkLabel,
             uri: *mut libc::c_char,
@@ -451,7 +451,7 @@ impl Label {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"activate-link\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     activate_link_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -473,7 +473,7 @@ impl Label {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"copy-clipboard\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     copy_clipboard_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -512,7 +512,7 @@ impl Label {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"move-cursor\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     move_cursor_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -539,7 +539,7 @@ impl Label {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::attributes\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_attributes_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -562,7 +562,7 @@ impl Label {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::ellipsize\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_ellipsize_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -585,7 +585,7 @@ impl Label {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::extra-menu\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_extra_menu_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -608,7 +608,7 @@ impl Label {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::justify\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_justify_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -631,7 +631,7 @@ impl Label {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::label\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_label_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -654,7 +654,7 @@ impl Label {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::lines\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_lines_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -677,7 +677,7 @@ impl Label {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::max-width-chars\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_max_width_chars_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -700,7 +700,7 @@ impl Label {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::mnemonic-keyval\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_mnemonic_keyval_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -723,7 +723,7 @@ impl Label {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::mnemonic-widget\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_mnemonic_widget_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -731,8 +731,8 @@ impl Label {
         }
     }
 
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[cfg(feature = "v4_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     #[doc(alias = "natural-wrap-mode")]
     pub fn connect_natural_wrap_mode_notify<F: Fn(&Self) + 'static>(
         &self,
@@ -751,7 +751,7 @@ impl Label {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::natural-wrap-mode\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_natural_wrap_mode_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -774,7 +774,7 @@ impl Label {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::selectable\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_selectable_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -797,7 +797,7 @@ impl Label {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::single-line-mode\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_single_line_mode_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -805,8 +805,8 @@ impl Label {
         }
     }
 
-    #[cfg(any(feature = "v4_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    #[cfg(feature = "v4_8")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     #[doc(alias = "tabs")]
     pub fn connect_tabs_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_tabs_trampoline<F: Fn(&Label) + 'static>(
@@ -822,7 +822,7 @@ impl Label {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::tabs\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_tabs_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -845,7 +845,7 @@ impl Label {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::use-markup\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_use_markup_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -868,7 +868,7 @@ impl Label {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::use-underline\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_use_underline_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -891,7 +891,7 @@ impl Label {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::width-chars\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_width_chars_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -914,7 +914,7 @@ impl Label {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::wrap\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_wrap_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -937,7 +937,7 @@ impl Label {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::wrap-mode\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_wrap_mode_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -960,7 +960,7 @@ impl Label {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::xalign\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_xalign_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -983,7 +983,7 @@ impl Label {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::yalign\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_yalign_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -1066,8 +1066,8 @@ impl LabelBuilder {
         }
     }
 
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[cfg(feature = "v4_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     pub fn natural_wrap_mode(self, natural_wrap_mode: NaturalWrapMode) -> Self {
         Self {
             builder: self
@@ -1088,8 +1088,8 @@ impl LabelBuilder {
         }
     }
 
-    #[cfg(any(feature = "v4_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    #[cfg(feature = "v4_8")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     pub fn tabs(self, tabs: &pango::TabArray) -> Self {
         Self {
             builder: self.builder.property("tabs", tabs),
@@ -1327,11 +1327,5 @@ impl LabelBuilder {
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> Label {
         self.builder.build()
-    }
-}
-
-impl fmt::Display for Label {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("Label")
     }
 }

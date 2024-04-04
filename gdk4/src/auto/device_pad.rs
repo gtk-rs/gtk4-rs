@@ -4,7 +4,6 @@
 
 use crate::{Device, DevicePadFeature};
 use glib::{prelude::*, translate::*};
-use std::fmt;
 
 glib::wrapper! {
     #[doc(alias = "GdkDevicePad")]
@@ -19,25 +18,14 @@ impl DevicePad {
     pub const NONE: Option<&'static DevicePad> = None;
 }
 
-pub trait DevicePadExt: 'static {
-    #[doc(alias = "gdk_device_pad_get_feature_group")]
-    #[doc(alias = "get_feature_group")]
-    fn feature_group(&self, feature: DevicePadFeature, feature_idx: i32) -> i32;
-
-    #[doc(alias = "gdk_device_pad_get_group_n_modes")]
-    #[doc(alias = "get_group_n_modes")]
-    fn group_n_modes(&self, group_idx: i32) -> i32;
-
-    #[doc(alias = "gdk_device_pad_get_n_features")]
-    #[doc(alias = "get_n_features")]
-    fn n_features(&self, feature: DevicePadFeature) -> i32;
-
-    #[doc(alias = "gdk_device_pad_get_n_groups")]
-    #[doc(alias = "get_n_groups")]
-    fn n_groups(&self) -> i32;
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::DevicePad>> Sealed for T {}
 }
 
-impl<O: IsA<DevicePad>> DevicePadExt for O {
+pub trait DevicePadExt: IsA<DevicePad> + sealed::Sealed + 'static {
+    #[doc(alias = "gdk_device_pad_get_feature_group")]
+    #[doc(alias = "get_feature_group")]
     fn feature_group(&self, feature: DevicePadFeature, feature_idx: i32) -> i32 {
         unsafe {
             ffi::gdk_device_pad_get_feature_group(
@@ -48,23 +36,25 @@ impl<O: IsA<DevicePad>> DevicePadExt for O {
         }
     }
 
+    #[doc(alias = "gdk_device_pad_get_group_n_modes")]
+    #[doc(alias = "get_group_n_modes")]
     fn group_n_modes(&self, group_idx: i32) -> i32 {
         unsafe { ffi::gdk_device_pad_get_group_n_modes(self.as_ref().to_glib_none().0, group_idx) }
     }
 
+    #[doc(alias = "gdk_device_pad_get_n_features")]
+    #[doc(alias = "get_n_features")]
     fn n_features(&self, feature: DevicePadFeature) -> i32 {
         unsafe {
             ffi::gdk_device_pad_get_n_features(self.as_ref().to_glib_none().0, feature.into_glib())
         }
     }
 
+    #[doc(alias = "gdk_device_pad_get_n_groups")]
+    #[doc(alias = "get_n_groups")]
     fn n_groups(&self) -> i32 {
         unsafe { ffi::gdk_device_pad_get_n_groups(self.as_ref().to_glib_none().0) }
     }
 }
 
-impl fmt::Display for DevicePad {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("DevicePad")
-    }
-}
+impl<O: IsA<DevicePad>> DevicePadExt for O {}

@@ -1,9 +1,11 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{prelude::*, ShortcutTrigger};
+use std::fmt;
+
 use gdk::Key;
 use glib::translate::*;
-use std::fmt;
+
+use crate::{prelude::*, ShortcutTrigger};
 
 glib::wrapper! {
     pub struct KeyvalTrigger(Object<ffi::GtkKeyvalTrigger, ffi::GtkKeyvalTriggerClass>) @extends ShortcutTrigger;

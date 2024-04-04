@@ -1,9 +1,10 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{prelude::*, Clipboard};
-use glib::translate::*;
-use glib::GString;
 use std::{future, pin::Pin, ptr};
+
+use glib::{translate::*, GString};
+
+use crate::{prelude::*, Clipboard};
 
 impl Clipboard {
     #[doc(alias = "gdk_clipboard_read_async")]
@@ -85,5 +86,16 @@ impl Clipboard {
                 send.resolve(res);
             });
         }))
+    }
+
+    #[doc(alias = "gdk_clipboard_set")]
+    #[doc(alias = "gdk_clipboard_set_value")]
+    #[doc(alias = "gdk_clipboard_set_valist")]
+    #[doc(alias = "set_value")]
+    #[doc(alias = "set_valist")]
+    pub fn set(&self, value: &impl ToValue) {
+        unsafe {
+            ffi::gdk_clipboard_set_value(self.to_glib_none().0, value.to_value().to_glib_none().0);
+        }
     }
 }

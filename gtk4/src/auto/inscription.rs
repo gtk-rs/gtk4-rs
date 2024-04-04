@@ -11,7 +11,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GtkInscription")]
@@ -180,8 +180,8 @@ impl Inscription {
         }
     }
 
-    #[cfg(any(feature = "v4_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    #[cfg(feature = "v4_8")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     #[doc(alias = "attributes")]
     pub fn connect_attributes_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_attributes_trampoline<F: Fn(&Inscription) + 'static>(
@@ -197,7 +197,7 @@ impl Inscription {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::attributes\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_attributes_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -205,8 +205,8 @@ impl Inscription {
         }
     }
 
-    #[cfg(any(feature = "v4_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    #[cfg(feature = "v4_8")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     #[doc(alias = "markup")]
     pub fn connect_markup_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_markup_trampoline<F: Fn(&Inscription) + 'static>(
@@ -222,7 +222,7 @@ impl Inscription {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::markup\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_markup_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -230,8 +230,8 @@ impl Inscription {
         }
     }
 
-    #[cfg(any(feature = "v4_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    #[cfg(feature = "v4_8")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     #[doc(alias = "min-chars")]
     pub fn connect_min_chars_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_min_chars_trampoline<F: Fn(&Inscription) + 'static>(
@@ -247,7 +247,7 @@ impl Inscription {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::min-chars\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_min_chars_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -255,8 +255,8 @@ impl Inscription {
         }
     }
 
-    #[cfg(any(feature = "v4_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    #[cfg(feature = "v4_8")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     #[doc(alias = "min-lines")]
     pub fn connect_min_lines_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_min_lines_trampoline<F: Fn(&Inscription) + 'static>(
@@ -272,7 +272,7 @@ impl Inscription {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::min-lines\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_min_lines_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -280,8 +280,8 @@ impl Inscription {
         }
     }
 
-    #[cfg(any(feature = "v4_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    #[cfg(feature = "v4_8")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     #[doc(alias = "nat-chars")]
     pub fn connect_nat_chars_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_nat_chars_trampoline<F: Fn(&Inscription) + 'static>(
@@ -297,7 +297,7 @@ impl Inscription {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::nat-chars\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_nat_chars_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -305,8 +305,8 @@ impl Inscription {
         }
     }
 
-    #[cfg(any(feature = "v4_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    #[cfg(feature = "v4_8")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     #[doc(alias = "nat-lines")]
     pub fn connect_nat_lines_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_nat_lines_trampoline<F: Fn(&Inscription) + 'static>(
@@ -322,7 +322,7 @@ impl Inscription {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::nat-lines\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_nat_lines_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -330,8 +330,8 @@ impl Inscription {
         }
     }
 
-    #[cfg(any(feature = "v4_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    #[cfg(feature = "v4_8")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     #[doc(alias = "text")]
     pub fn connect_text_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_text_trampoline<F: Fn(&Inscription) + 'static>(
@@ -347,7 +347,7 @@ impl Inscription {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::text\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_text_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -355,8 +355,8 @@ impl Inscription {
         }
     }
 
-    #[cfg(any(feature = "v4_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    #[cfg(feature = "v4_8")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     #[doc(alias = "text-overflow")]
     pub fn connect_text_overflow_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_text_overflow_trampoline<F: Fn(&Inscription) + 'static>(
@@ -372,7 +372,7 @@ impl Inscription {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::text-overflow\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_text_overflow_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -380,8 +380,8 @@ impl Inscription {
         }
     }
 
-    #[cfg(any(feature = "v4_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    #[cfg(feature = "v4_8")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     #[doc(alias = "wrap-mode")]
     pub fn connect_wrap_mode_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_wrap_mode_trampoline<F: Fn(&Inscription) + 'static>(
@@ -397,7 +397,7 @@ impl Inscription {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::wrap-mode\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_wrap_mode_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -405,8 +405,8 @@ impl Inscription {
         }
     }
 
-    #[cfg(any(feature = "v4_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    #[cfg(feature = "v4_8")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     #[doc(alias = "xalign")]
     pub fn connect_xalign_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_xalign_trampoline<F: Fn(&Inscription) + 'static>(
@@ -422,7 +422,7 @@ impl Inscription {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::xalign\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_xalign_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -430,8 +430,8 @@ impl Inscription {
         }
     }
 
-    #[cfg(any(feature = "v4_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    #[cfg(feature = "v4_8")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     #[doc(alias = "yalign")]
     pub fn connect_yalign_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_yalign_trampoline<F: Fn(&Inscription) + 'static>(
@@ -447,7 +447,7 @@ impl Inscription {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::yalign\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_yalign_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -456,8 +456,8 @@ impl Inscription {
     }
 }
 
-#[cfg(any(feature = "v4_8", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+#[cfg(feature = "v4_8")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
 impl Default for Inscription {
     fn default() -> Self {
         glib::object::Object::new::<Self>()
@@ -480,88 +480,88 @@ impl InscriptionBuilder {
         }
     }
 
-    #[cfg(any(feature = "v4_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    #[cfg(feature = "v4_8")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     pub fn attributes(self, attributes: &pango::AttrList) -> Self {
         Self {
             builder: self.builder.property("attributes", attributes.clone()),
         }
     }
 
-    #[cfg(any(feature = "v4_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    #[cfg(feature = "v4_8")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     pub fn markup(self, markup: impl Into<glib::GString>) -> Self {
         Self {
             builder: self.builder.property("markup", markup.into()),
         }
     }
 
-    #[cfg(any(feature = "v4_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    #[cfg(feature = "v4_8")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     pub fn min_chars(self, min_chars: u32) -> Self {
         Self {
             builder: self.builder.property("min-chars", min_chars),
         }
     }
 
-    #[cfg(any(feature = "v4_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    #[cfg(feature = "v4_8")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     pub fn min_lines(self, min_lines: u32) -> Self {
         Self {
             builder: self.builder.property("min-lines", min_lines),
         }
     }
 
-    #[cfg(any(feature = "v4_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    #[cfg(feature = "v4_8")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     pub fn nat_chars(self, nat_chars: u32) -> Self {
         Self {
             builder: self.builder.property("nat-chars", nat_chars),
         }
     }
 
-    #[cfg(any(feature = "v4_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    #[cfg(feature = "v4_8")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     pub fn nat_lines(self, nat_lines: u32) -> Self {
         Self {
             builder: self.builder.property("nat-lines", nat_lines),
         }
     }
 
-    #[cfg(any(feature = "v4_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    #[cfg(feature = "v4_8")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     pub fn text(self, text: impl Into<glib::GString>) -> Self {
         Self {
             builder: self.builder.property("text", text.into()),
         }
     }
 
-    #[cfg(any(feature = "v4_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    #[cfg(feature = "v4_8")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     pub fn text_overflow(self, text_overflow: InscriptionOverflow) -> Self {
         Self {
             builder: self.builder.property("text-overflow", text_overflow),
         }
     }
 
-    #[cfg(any(feature = "v4_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    #[cfg(feature = "v4_8")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     pub fn wrap_mode(self, wrap_mode: pango::WrapMode) -> Self {
         Self {
             builder: self.builder.property("wrap-mode", wrap_mode),
         }
     }
 
-    #[cfg(any(feature = "v4_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    #[cfg(feature = "v4_8")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     pub fn xalign(self, xalign: f32) -> Self {
         Self {
             builder: self.builder.property("xalign", xalign),
         }
     }
 
-    #[cfg(any(feature = "v4_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    #[cfg(feature = "v4_8")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     pub fn yalign(self, yalign: f32) -> Self {
         Self {
             builder: self.builder.property("yalign", yalign),
@@ -757,11 +757,5 @@ impl InscriptionBuilder {
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> Inscription {
         self.builder.build()
-    }
-}
-
-impl fmt::Display for Inscription {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("Inscription")
     }
 }

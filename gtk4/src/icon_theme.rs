@@ -1,7 +1,8 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
+use glib::{translate::*, Slice};
+
 use crate::IconTheme;
-use glib::{translate::*, IntoGStr, Slice};
 
 impl IconTheme {
     #[doc(alias = "gtk_icon_theme_get_icon_sizes")]

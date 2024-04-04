@@ -3,8 +3,7 @@
 // DO NOT EDIT
 
 use crate::{RenderNode, RoundedRect};
-use glib::translate::*;
-use std::fmt;
+use glib::{prelude::*, translate::*};
 
 glib::wrapper! {
     #[doc(alias = "GskRoundedClipNode")]
@@ -16,7 +15,7 @@ glib::wrapper! {
     }
 }
 
-impl glib::StaticType for RoundedClipNode {
+impl StaticType for RoundedClipNode {
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gsk_rounded_clip_node_get_type()) }
     }
@@ -44,11 +43,5 @@ impl RoundedClipNode {
     #[doc(alias = "get_clip")]
     pub fn clip(&self) -> RoundedRect {
         unsafe { from_glib_none(ffi::gsk_rounded_clip_node_get_clip(self.to_glib_none().0)) }
-    }
-}
-
-impl fmt::Display for RoundedClipNode {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("RoundedClipNode")
     }
 }

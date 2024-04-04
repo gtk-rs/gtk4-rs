@@ -3,8 +3,9 @@
 // rustdoc-stripper-ignore-next
 //! Traits intended for subclassing [`Filter`](crate::Filter).
 
-use crate::{prelude::*, subclass::prelude::*, Filter, FilterMatch};
 use glib::{translate::*, Object};
+
+use crate::{prelude::*, subclass::prelude::*, Filter, FilterMatch};
 
 pub trait FilterImpl: FilterImplExt + ObjectImpl {
     #[doc(alias = "get_strictness")]
@@ -16,15 +17,15 @@ pub trait FilterImpl: FilterImplExt + ObjectImpl {
     }
 }
 
-pub trait FilterImplExt: ObjectSubclass {
-    fn parent_strictness(&self) -> FilterMatch;
-    fn parent_match_(&self, item: &Object) -> bool;
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::FilterImplExt> Sealed for T {}
 }
 
-impl<T: FilterImpl> FilterImplExt for T {
+pub trait FilterImplExt: sealed::Sealed + ObjectSubclass {
     fn parent_strictness(&self) -> FilterMatch {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkFilterClass;
             let f = (*parent_class)
                 .get_strictness
@@ -35,7 +36,7 @@ impl<T: FilterImpl> FilterImplExt for T {
 
     fn parent_match_(&self, item: &Object) -> bool {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkFilterClass;
             let f = (*parent_class)
                 .match_
@@ -47,6 +48,8 @@ impl<T: FilterImpl> FilterImplExt for T {
         }
     }
 }
+
+impl<T: FilterImpl> FilterImplExt for T {}
 
 unsafe impl<T: FilterImpl> IsSubclassable<T> for Filter {
     fn class_init(class: &mut glib::Class<Self>) {

@@ -1,12 +1,13 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
+use glib::translate::*;
+#[cfg(feature = "xlib")]
+#[cfg_attr(docsrs, doc(cfg(feature = "xlib")))]
+use x11::xlib::Window as XWindow;
+
 use crate::X11Surface;
 #[cfg(not(feature = "xlib"))]
 use crate::XWindow;
-use glib::translate::*;
-#[cfg(any(feature = "xlib", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "xlib")))]
-use x11::xlib::Window as XWindow;
 
 impl X11Surface {
     #[doc(alias = "gdk_x11_surface_get_xid")]

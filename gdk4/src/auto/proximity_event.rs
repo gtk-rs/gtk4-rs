@@ -2,8 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use glib::translate::*;
-use std::fmt;
+use glib::{prelude::*, translate::*};
 
 glib::wrapper! {
     #[doc(alias = "GdkProximityEvent")]
@@ -15,16 +14,10 @@ glib::wrapper! {
     }
 }
 
-impl glib::StaticType for ProximityEvent {
+impl StaticType for ProximityEvent {
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gdk_proximity_event_get_type()) }
     }
 }
 
 impl ProximityEvent {}
-
-impl fmt::Display for ProximityEvent {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("ProximityEvent")
-    }
-}

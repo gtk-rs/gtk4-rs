@@ -3,13 +3,15 @@
 // rustdoc-stripper-ignore-next
 //! Traits intended for subclassing [`ComboBox`](crate::ComboBox).
 
-use crate::{prelude::*, subclass::prelude::*, ComboBox};
 use glib::{translate::*, GString};
+
+use crate::{prelude::*, subclass::prelude::*, ComboBox};
 
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 #[allow(deprecated)]
 pub trait ComboBoxImpl: ComboBoxImplExt + WidgetImpl {
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg(feature = "v4_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     fn activate(&self) {
         self.parent_activate()
     }
@@ -21,22 +23,19 @@ pub trait ComboBoxImpl: ComboBoxImplExt + WidgetImpl {
     }
 }
 
-#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-#[allow(deprecated)]
-pub trait ComboBoxImplExt: ObjectSubclass {
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    fn parent_activate(&self);
-
-    fn parent_changed(&self);
-
-    fn parent_format_entry_text(&self, path: &str) -> Option<GString>;
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::ComboBoxImplExt> Sealed for T {}
 }
 
-impl<T: ComboBoxImpl> ComboBoxImplExt for T {
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+#[allow(deprecated)]
+pub trait ComboBoxImplExt: sealed::Sealed + ObjectSubclass {
+    #[cfg(feature = "v4_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     fn parent_activate(&self) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkComboBoxClass;
             if let Some(f) = (*parent_class).activate {
                 f(self.obj().unsafe_cast_ref::<ComboBox>().to_glib_none().0)
@@ -45,7 +44,7 @@ impl<T: ComboBoxImpl> ComboBoxImplExt for T {
     }
     fn parent_changed(&self) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkComboBoxClass;
             if let Some(f) = (*parent_class).changed {
                 f(self.obj().unsafe_cast_ref::<ComboBox>().to_glib_none().0)
@@ -54,7 +53,7 @@ impl<T: ComboBoxImpl> ComboBoxImplExt for T {
     }
     fn parent_format_entry_text(&self, path: &str) -> Option<GString> {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkComboBoxClass;
             if let Some(f) = (*parent_class).format_entry_text {
                 return Some(from_glib_full(f(
@@ -67,6 +66,8 @@ impl<T: ComboBoxImpl> ComboBoxImplExt for T {
     }
 }
 
+impl<T: ComboBoxImpl> ComboBoxImplExt for T {}
+
 unsafe impl<T: ComboBoxImpl> IsSubclassable<T> for ComboBox {
     fn class_init(class: &mut glib::Class<Self>) {
         Self::parent_class_init::<T>(class);
@@ -74,7 +75,8 @@ unsafe impl<T: ComboBoxImpl> IsSubclassable<T> for ComboBox {
         let klass = class.as_mut();
         klass.changed = Some(combo_box_changed::<T>);
         klass.format_entry_text = Some(combo_box_format_entry_text::<T>);
-        #[cfg(any(feature = "v4_6", feature = "dox"))]
+        #[cfg(feature = "v4_6")]
+        #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
         {
             klass.activate = Some(combo_box_activate::<T>);
         };
@@ -99,7 +101,8 @@ unsafe extern "C" fn combo_box_format_entry_text<T: ComboBoxImpl>(
     imp.format_entry_text(path.as_str()).into_glib_ptr()
 }
 
-#[cfg(any(feature = "v4_6", feature = "dox"))]
+#[cfg(feature = "v4_6")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
 unsafe extern "C" fn combo_box_activate<T: ComboBoxImpl>(ptr: *mut ffi::GtkComboBox) {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();

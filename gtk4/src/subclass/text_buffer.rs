@@ -3,10 +3,11 @@
 // rustdoc-stripper-ignore-next
 //! Traits intended for subclassing [`TextBuffer`](crate::TextBuffer).
 
+use glib::translate::*;
+
 use crate::{
     prelude::*, subclass::prelude::*, TextBuffer, TextChildAnchor, TextIter, TextMark, TextTag,
 };
-use glib::translate::*;
 
 pub trait TextBufferImpl: TextBufferImplExt + ObjectImpl {
     fn apply_tag(&self, tag: &TextTag, start: &TextIter, end: &TextIter) {
@@ -56,28 +57,15 @@ pub trait TextBufferImpl: TextBufferImplExt + ObjectImpl {
     }
 }
 
-pub trait TextBufferImplExt: ObjectSubclass {
-    fn parent_apply_tag(&self, tag: &TextTag, start: &TextIter, end: &TextIter);
-    fn parent_begin_user_action(&self);
-    fn parent_changed(&self);
-    fn parent_delete_range(&self, start: &mut TextIter, end: &mut TextIter);
-    fn parent_end_user_action(&self);
-    fn parent_insert_child_anchor(&self, iter: &mut TextIter, anchor: &TextChildAnchor);
-    fn parent_insert_paintable(&self, iter: &mut TextIter, paintable: &gdk::Paintable);
-    fn parent_insert_text(&self, iter: &mut TextIter, new_text: &str);
-    fn parent_mark_deleted(&self, mark: &TextMark);
-    fn parent_mark_set(&self, location: &TextIter, mark: &TextMark);
-    fn parent_modified_changed(&self);
-    fn parent_paste_done(&self, clipboard: &gdk::Clipboard);
-    fn parent_redo(&self);
-    fn parent_remove_tag(&self, tag: &TextTag, start: &TextIter, end: &TextIter);
-    fn parent_undo(&self);
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::TextBufferImplExt> Sealed for T {}
 }
 
-impl<T: TextBufferImpl> TextBufferImplExt for T {
+pub trait TextBufferImplExt: sealed::Sealed + ObjectSubclass {
     fn parent_apply_tag(&self, tag: &TextTag, start: &TextIter, end: &TextIter) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkTextBufferClass;
             if let Some(f) = (*parent_class).apply_tag {
                 f(
@@ -92,7 +80,7 @@ impl<T: TextBufferImpl> TextBufferImplExt for T {
 
     fn parent_begin_user_action(&self) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkTextBufferClass;
             if let Some(f) = (*parent_class).begin_user_action {
                 f(self.obj().unsafe_cast_ref::<TextBuffer>().to_glib_none().0)
@@ -102,7 +90,7 @@ impl<T: TextBufferImpl> TextBufferImplExt for T {
 
     fn parent_changed(&self) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkTextBufferClass;
             if let Some(f) = (*parent_class).changed {
                 f(self.obj().unsafe_cast_ref::<TextBuffer>().to_glib_none().0)
@@ -112,7 +100,7 @@ impl<T: TextBufferImpl> TextBufferImplExt for T {
 
     fn parent_delete_range(&self, start: &mut TextIter, end: &mut TextIter) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkTextBufferClass;
             if let Some(f) = (*parent_class).delete_range {
                 f(
@@ -126,7 +114,7 @@ impl<T: TextBufferImpl> TextBufferImplExt for T {
 
     fn parent_end_user_action(&self) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkTextBufferClass;
             if let Some(f) = (*parent_class).end_user_action {
                 f(self.obj().unsafe_cast_ref::<TextBuffer>().to_glib_none().0)
@@ -136,7 +124,7 @@ impl<T: TextBufferImpl> TextBufferImplExt for T {
 
     fn parent_insert_child_anchor(&self, iter: &mut TextIter, anchor: &TextChildAnchor) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkTextBufferClass;
             if let Some(f) = (*parent_class).insert_child_anchor {
                 f(
@@ -150,7 +138,7 @@ impl<T: TextBufferImpl> TextBufferImplExt for T {
 
     fn parent_insert_paintable(&self, iter: &mut TextIter, paintable: &gdk::Paintable) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkTextBufferClass;
             if let Some(f) = (*parent_class).insert_paintable {
                 f(
@@ -164,7 +152,7 @@ impl<T: TextBufferImpl> TextBufferImplExt for T {
 
     fn parent_insert_text(&self, iter: &mut TextIter, new_text: &str) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkTextBufferClass;
             if let Some(f) = (*parent_class).insert_text {
                 f(
@@ -179,7 +167,7 @@ impl<T: TextBufferImpl> TextBufferImplExt for T {
 
     fn parent_mark_deleted(&self, mark: &TextMark) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkTextBufferClass;
             if let Some(f) = (*parent_class).mark_deleted {
                 f(
@@ -192,7 +180,7 @@ impl<T: TextBufferImpl> TextBufferImplExt for T {
 
     fn parent_mark_set(&self, location: &TextIter, mark: &TextMark) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkTextBufferClass;
             if let Some(f) = (*parent_class).mark_set {
                 f(
@@ -206,7 +194,7 @@ impl<T: TextBufferImpl> TextBufferImplExt for T {
 
     fn parent_modified_changed(&self) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkTextBufferClass;
             if let Some(f) = (*parent_class).modified_changed {
                 f(self.obj().unsafe_cast_ref::<TextBuffer>().to_glib_none().0)
@@ -216,7 +204,7 @@ impl<T: TextBufferImpl> TextBufferImplExt for T {
 
     fn parent_paste_done(&self, clipboard: &gdk::Clipboard) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkTextBufferClass;
             if let Some(f) = (*parent_class).paste_done {
                 f(
@@ -229,7 +217,7 @@ impl<T: TextBufferImpl> TextBufferImplExt for T {
 
     fn parent_redo(&self) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkTextBufferClass;
             if let Some(f) = (*parent_class).redo {
                 f(self.obj().unsafe_cast_ref::<TextBuffer>().to_glib_none().0)
@@ -239,7 +227,7 @@ impl<T: TextBufferImpl> TextBufferImplExt for T {
 
     fn parent_remove_tag(&self, tag: &TextTag, start: &TextIter, end: &TextIter) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkTextBufferClass;
             if let Some(f) = (*parent_class).remove_tag {
                 f(
@@ -254,7 +242,7 @@ impl<T: TextBufferImpl> TextBufferImplExt for T {
 
     fn parent_undo(&self) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkTextBufferClass;
             if let Some(f) = (*parent_class).undo {
                 f(self.obj().unsafe_cast_ref::<TextBuffer>().to_glib_none().0)
@@ -262,6 +250,8 @@ impl<T: TextBufferImpl> TextBufferImplExt for T {
         }
     }
 }
+
+impl<T: TextBufferImpl> TextBufferImplExt for T {}
 
 unsafe impl<T: TextBufferImpl> IsSubclassable<T> for TextBuffer {
     fn class_init(class: &mut glib::Class<Self>) {

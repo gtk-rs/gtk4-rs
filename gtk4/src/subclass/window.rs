@@ -3,8 +3,9 @@
 // rustdoc-stripper-ignore-next
 //! Traits intended for subclassing [`Window`](crate::Window).
 
-use crate::{prelude::*, subclass::prelude::*, Window};
 use glib::translate::*;
+
+use crate::{prelude::*, subclass::prelude::*, Window};
 
 pub trait WindowImpl: WindowImplExt + WidgetImpl {
     fn activate_focus(&self) {
@@ -23,23 +24,20 @@ pub trait WindowImpl: WindowImplExt + WidgetImpl {
         self.parent_enable_debugging(toggle)
     }
 
-    fn close_request(&self) -> glib::signal::Inhibit {
+    fn close_request(&self) -> glib::Propagation {
         self.parent_close_request()
     }
 }
 
-pub trait WindowImplExt: ObjectSubclass {
-    fn parent_activate_focus(&self);
-    fn parent_activate_default(&self);
-    fn parent_keys_changed(&self);
-    fn parent_enable_debugging(&self, toggle: bool) -> bool;
-    fn parent_close_request(&self) -> glib::signal::Inhibit;
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::WindowImplExt> Sealed for T {}
 }
 
-impl<T: WindowImpl> WindowImplExt for T {
+pub trait WindowImplExt: sealed::Sealed + ObjectSubclass {
     fn parent_activate_focus(&self) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkWindowClass;
             let f = (*parent_class)
                 .activate_focus
@@ -50,7 +48,7 @@ impl<T: WindowImpl> WindowImplExt for T {
 
     fn parent_activate_default(&self) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkWindowClass;
             let f = (*parent_class)
                 .activate_default
@@ -61,7 +59,7 @@ impl<T: WindowImpl> WindowImplExt for T {
 
     fn parent_keys_changed(&self) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkWindowClass;
             let f = (*parent_class)
                 .keys_changed
@@ -70,9 +68,10 @@ impl<T: WindowImpl> WindowImplExt for T {
         }
     }
 
+    // Returns true if debugging (inspector) should be enabled, false otherwise
     fn parent_enable_debugging(&self, toggle: bool) -> bool {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkWindowClass;
             let f = (*parent_class)
                 .enable_debugging
@@ -84,21 +83,19 @@ impl<T: WindowImpl> WindowImplExt for T {
         }
     }
 
-    fn parent_close_request(&self) -> glib::signal::Inhibit {
+    fn parent_close_request(&self) -> glib::Propagation {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkWindowClass;
             let f = (*parent_class)
                 .close_request
                 .expect("No parent class impl for \"close_request\"");
-            glib::signal::Inhibit(from_glib(f(self
-                .obj()
-                .unsafe_cast_ref::<Window>()
-                .to_glib_none()
-                .0)))
+            glib::Propagation::from_glib(f(self.obj().unsafe_cast_ref::<Window>().to_glib_none().0))
         }
     }
 }
+
+impl<T: WindowImpl> WindowImplExt for T {}
 
 unsafe impl<T: WindowImpl> IsSubclassable<T> for Window {
     fn class_init(class: &mut ::glib::Class<Self>) {

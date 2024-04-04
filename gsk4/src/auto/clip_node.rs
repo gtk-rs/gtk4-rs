@@ -3,8 +3,7 @@
 // DO NOT EDIT
 
 use crate::RenderNode;
-use glib::translate::*;
-use std::fmt;
+use glib::{prelude::*, translate::*};
 
 glib::wrapper! {
     #[doc(alias = "GskClipNode")]
@@ -16,7 +15,7 @@ glib::wrapper! {
     }
 }
 
-impl glib::StaticType for ClipNode {
+impl StaticType for ClipNode {
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gsk_clip_node_get_type()) }
     }
@@ -44,11 +43,5 @@ impl ClipNode {
     #[doc(alias = "get_clip")]
     pub fn clip(&self) -> graphene::Rect {
         unsafe { from_glib_none(ffi::gsk_clip_node_get_clip(self.to_glib_none().0)) }
-    }
-}
-
-impl fmt::Display for ClipNode {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("ClipNode")
     }
 }

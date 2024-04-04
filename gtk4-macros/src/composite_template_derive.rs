@@ -1,5 +1,8 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
+#[cfg(feature = "xml_validation")]
+use std::collections::HashMap;
+
 use proc_macro2::TokenStream;
 use proc_macro_error::{emit_call_site_error, emit_error};
 #[cfg(feature = "xml_validation")]
@@ -7,30 +10,42 @@ use quick_xml::name::QName;
 use quote::quote;
 use syn::Data;
 
-#[cfg(feature = "xml_validation")]
-use std::collections::HashMap;
-use std::string::ToString;
-
 #[cfg(feature = "blueprint")]
 use crate::blueprint::*;
 use crate::{attribute_parser::*, util::*};
 
 fn gen_set_template(source: &TemplateSource, crate_ident: &proc_macro2::Ident) -> TokenStream {
     match source {
-        TemplateSource::File(file) => quote! {
-            #crate_ident::subclass::widget::WidgetClassSubclassExt::set_template_static(
-                klass,
-                include_bytes!(#file),
-            );
-        },
+        TemplateSource::File(file) => {
+            let template = if file.ends_with(".blp") {
+                if cfg!(feature = "blueprint") {
+                    quote! {
+                        #crate_ident::gtk4_macros::include_blueprint!(#file).as_bytes()
+                    }
+                } else {
+                    panic!("blueprint feature is disabled")
+                }
+            } else {
+                quote! {
+                    include_bytes!(#file)
+                }
+            };
+
+            quote! {
+                #crate_ident::subclass::widget::WidgetClassExt::set_template_static(
+                        klass,
+                        #template,
+                );
+            }
+        }
         TemplateSource::Resource(resource) => quote! {
-            #crate_ident::subclass::widget::WidgetClassSubclassExt::set_template_from_resource(
+            #crate_ident::subclass::widget::WidgetClassExt::set_template_from_resource(
                 klass,
                 &#resource,
             );
         },
         TemplateSource::Xml(template) => quote! {
-            #crate_ident::subclass::widget::WidgetClassSubclassExt::set_template_static(
+            #crate_ident::subclass::widget::WidgetClassExt::set_template_static(
                 klass,
                 #template.as_bytes(),
             );
@@ -41,7 +56,7 @@ fn gen_set_template(source: &TemplateSource, crate_ident: &proc_macro2::Ident) -
                 compile_blueprint(blueprint.as_bytes()).expect("can't compile blueprint");
 
             quote! {
-                #crate_ident::subclass::widget::WidgetClassSubclassExt::set_template_static(
+                #crate_ident::subclass::widget::WidgetClassExt::set_template_static(
                     klass,
                     #template.as_bytes(),
                 );
@@ -148,8 +163,8 @@ fn gen_template_child_type_checks(fields: &[AttributedField]) -> TokenStream {
             let ident = &field.ident;
             let type_err = format!("Template child with id `{}` has incompatible type. XML has {{:?}}, struct has {{:?}}", field.id());
             quote! {
-                let ty = <<#ty as ::std::ops::Deref>::Target as #crate_ident::glib::StaticType>::static_type();
-                let child_ty = #crate_ident::glib::object::ObjectExt::type_(::std::ops::Deref::deref(&imp.#ident));
+                let ty = <<#ty as ::std::ops::Deref>::Target as #crate_ident::glib::prelude::StaticType>::static_type();
+                let child_ty = #crate_ident::glib::prelude::ObjectExt::type_(::std::ops::Deref::deref(&imp.#ident));
                 if !child_ty.is_a(ty) {
                     panic!(#type_err, child_ty, ty);
                 }

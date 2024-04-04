@@ -2,7 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-#![cfg(target_os = "linux")]
+#![cfg(unix)]
 
 use gdk4_sys::*;
 use std::env;
@@ -10,7 +10,7 @@ use std::error::Error;
 use std::ffi::OsString;
 use std::mem::{align_of, size_of};
 use std::path::Path;
-use std::process::Command;
+use std::process::{Command, Stdio};
 use std::str;
 use tempfile::Builder;
 
@@ -70,9 +70,11 @@ fn pkg_config_cflags(packages: &[&str]) -> Result<Vec<String>, Box<dyn Error>> {
     let mut cmd = Command::new(pkg_config);
     cmd.arg("--cflags");
     cmd.args(packages);
+    cmd.stderr(Stdio::inherit());
     let out = cmd.output()?;
     if !out.status.success() {
-        return Err(format!("command {cmd:?} returned {}", out.status).into());
+        let (status, stdout) = (out.status, String::from_utf8_lossy(&out.stdout));
+        return Err(format!("command {cmd:?} failed, {status:?}\nstdout: {stdout}").into());
     }
     let stdout = str::from_utf8(&out.stdout)?;
     Ok(shell_words::split(stdout.trim())?)
@@ -187,13 +189,15 @@ fn get_c_output(name: &str) -> Result<String, Box<dyn Error>> {
     let cc = Compiler::new().expect("configured compiler");
     cc.compile(&c_file, &exe)?;
 
-    let mut abi_cmd = Command::new(exe);
-    let output = abi_cmd.output()?;
-    if !output.status.success() {
-        return Err(format!("command {abi_cmd:?} failed, {output:?}").into());
+    let mut cmd = Command::new(exe);
+    cmd.stderr(Stdio::inherit());
+    let out = cmd.output()?;
+    if !out.status.success() {
+        let (status, stdout) = (out.status, String::from_utf8_lossy(&out.stdout));
+        return Err(format!("command {cmd:?} failed, {status:?}\nstdout: {stdout}").into());
     }
 
-    Ok(String::from_utf8(output.stdout)?)
+    Ok(String::from_utf8(out.stdout)?)
 }
 
 const RUST_LAYOUTS: &[(&str, Layout)] = &[
@@ -251,6 +255,13 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         Layout {
             size: size_of::<GdkDeviceToolType>(),
             alignment: align_of::<GdkDeviceToolType>(),
+        },
+    ),
+    (
+        "GdkDmabufError",
+        Layout {
+            size: size_of::<GdkDmabufError>(),
+            alignment: align_of::<GdkDmabufError>(),
         },
     ),
     (
@@ -538,6 +549,9 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(gint) GDK_DEVICE_TOOL_TYPE_PEN", "1"),
     ("(gint) GDK_DEVICE_TOOL_TYPE_PENCIL", "4"),
     ("(gint) GDK_DEVICE_TOOL_TYPE_UNKNOWN", "0"),
+    ("(gint) GDK_DMABUF_ERROR_CREATION_FAILED", "2"),
+    ("(gint) GDK_DMABUF_ERROR_NOT_AVAILABLE", "0"),
+    ("(gint) GDK_DMABUF_ERROR_UNSUPPORTED_FORMAT", "1"),
     ("(gint) GDK_DRAG_CANCEL_ERROR", "2"),
     ("(gint) GDK_DRAG_CANCEL_NO_TARGET", "0"),
     ("(gint) GDK_DRAG_CANCEL_USER_CANCELLED", "1"),
@@ -2864,13 +2878,25 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("GDK_KEY_zstroke", "16777654"),
     ("(gint) GDK_LEAVE_NOTIFY", "7"),
     ("(guint) GDK_LOCK_MASK", "2"),
+    ("(gint) GDK_MEMORY_A16", "25"),
+    ("(gint) GDK_MEMORY_A16_FLOAT", "26"),
+    ("(gint) GDK_MEMORY_A32_FLOAT", "27"),
+    ("(gint) GDK_MEMORY_A8", "24"),
     ("(gint) GDK_MEMORY_A8B8G8R8", "6"),
+    ("(gint) GDK_MEMORY_A8B8G8R8_PREMULTIPLIED", "28"),
     ("(gint) GDK_MEMORY_A8R8G8B8", "4"),
     ("(gint) GDK_MEMORY_A8R8G8B8_PREMULTIPLIED", "1"),
     ("(gint) GDK_MEMORY_B8G8R8", "8"),
     ("(gint) GDK_MEMORY_B8G8R8A8", "3"),
     ("(gint) GDK_MEMORY_B8G8R8A8_PREMULTIPLIED", "0"),
-    ("(gint) GDK_MEMORY_N_FORMATS", "18"),
+    ("(gint) GDK_MEMORY_B8G8R8X8", "29"),
+    ("(gint) GDK_MEMORY_G16", "23"),
+    ("(gint) GDK_MEMORY_G16A16", "22"),
+    ("(gint) GDK_MEMORY_G16A16_PREMULTIPLIED", "21"),
+    ("(gint) GDK_MEMORY_G8", "20"),
+    ("(gint) GDK_MEMORY_G8A8", "19"),
+    ("(gint) GDK_MEMORY_G8A8_PREMULTIPLIED", "18"),
+    ("(gint) GDK_MEMORY_N_FORMATS", "33"),
     ("(gint) GDK_MEMORY_R16G16B16", "9"),
     ("(gint) GDK_MEMORY_R16G16B16A16", "11"),
     ("(gint) GDK_MEMORY_R16G16B16A16_FLOAT", "14"),
@@ -2883,6 +2909,9 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(gint) GDK_MEMORY_R8G8B8", "7"),
     ("(gint) GDK_MEMORY_R8G8B8A8", "5"),
     ("(gint) GDK_MEMORY_R8G8B8A8_PREMULTIPLIED", "2"),
+    ("(gint) GDK_MEMORY_R8G8B8X8", "31"),
+    ("(gint) GDK_MEMORY_X8B8G8R8", "32"),
+    ("(gint) GDK_MEMORY_X8R8G8B8", "30"),
     ("(guint) GDK_META_MASK", "268435456"),
     ("GDK_MODIFIER_MASK", "469769999"),
     ("(gint) GDK_MOTION_NOTIFY", "1"),
@@ -2892,6 +2921,7 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(gint) GDK_NOTIFY_NONLINEAR_VIRTUAL", "4"),
     ("(gint) GDK_NOTIFY_UNKNOWN", "5"),
     ("(gint) GDK_NOTIFY_VIRTUAL", "1"),
+    ("(guint) GDK_NO_MODIFIER_MASK", "0"),
     ("(gint) GDK_PAD_BUTTON_PRESS", "23"),
     ("(gint) GDK_PAD_BUTTON_RELEASE", "24"),
     ("(gint) GDK_PAD_GROUP_MODE", "27"),
@@ -2910,7 +2940,7 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(gint) GDK_SCROLL_UNIT_SURFACE", "1"),
     ("(gint) GDK_SCROLL_UNIT_WHEEL", "0"),
     ("(gint) GDK_SCROLL_UP", "0"),
-    ("(guint) GDK_SEAT_CAPABILITY_ALL", "15"),
+    ("(guint) GDK_SEAT_CAPABILITY_ALL", "31"),
     ("(guint) GDK_SEAT_CAPABILITY_ALL_POINTING", "7"),
     ("(guint) GDK_SEAT_CAPABILITY_KEYBOARD", "8"),
     ("(guint) GDK_SEAT_CAPABILITY_NONE", "0"),
@@ -2961,6 +2991,7 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(guint) GDK_TOPLEVEL_STATE_RIGHT_RESIZABLE", "2048"),
     ("(guint) GDK_TOPLEVEL_STATE_RIGHT_TILED", "1024"),
     ("(guint) GDK_TOPLEVEL_STATE_STICKY", "4"),
+    ("(guint) GDK_TOPLEVEL_STATE_SUSPENDED", "65536"),
     ("(guint) GDK_TOPLEVEL_STATE_TILED", "128"),
     ("(guint) GDK_TOPLEVEL_STATE_TOP_RESIZABLE", "512"),
     ("(guint) GDK_TOPLEVEL_STATE_TOP_TILED", "256"),

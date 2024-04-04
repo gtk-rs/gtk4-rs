@@ -1,16 +1,12 @@
-use gtk::prelude::*;
-
-use std::fs::File;
-use std::io::prelude::*;
-use std::io::BufReader;
-
-use gtk::{
-    glib, Application, ApplicationWindow, Builder, Button, FileChooserAction, FileChooserDialog,
-    ResponseType, TextView,
+use std::{
+    fs::File,
+    io::{prelude::*, BufReader},
 };
 
+use gtk::{gio, glib, prelude::*};
+
 fn main() -> glib::ExitCode {
-    let application = Application::new(
+    let application = gtk::Application::new(
         Some("com.github.gtk-rs.examples.text_viewer"),
         Default::default(),
     );
@@ -18,31 +14,30 @@ fn main() -> glib::ExitCode {
     application.run()
 }
 
-pub fn build_ui(application: &Application) {
+pub fn build_ui(application: &gtk::Application) {
     let ui_src = include_str!("text_viewer.ui");
-    let builder = Builder::new();
-    builder
-        .add_from_string(ui_src)
-        .expect("Couldn't add from string");
+    let builder = gtk::Builder::from_string(ui_src);
 
-    let window: ApplicationWindow = builder.object("window").expect("Couldn't get window");
+    let window = builder
+        .object::<gtk::ApplicationWindow>("window")
+        .expect("Couldn't get window");
     window.set_application(Some(application));
-    let open_button: Button = builder.object("open_button").expect("Couldn't get builder");
-    let text_view: TextView = builder.object("text_view").expect("Couldn't get text_view");
+    let open_button = builder
+        .object::<gtk::Button>("open_button")
+        .expect("Couldn't get builder");
+    let text_view = builder
+        .object::<gtk::TextView>("text_view")
+        .expect("Couldn't get text_view");
 
     open_button.connect_clicked(glib::clone!(@weak window, @weak text_view => move |_| {
 
-        let file_chooser = FileChooserDialog::new(
-            Some("Open File"),
-            Some(&window),
-            FileChooserAction::Open,
-            &[("Open", ResponseType::Ok), ("Cancel", ResponseType::Cancel)],
-        );
+        let dialog = gtk::FileDialog::builder()
+            .title("Open File")
+            .accept_label("Open")
+            .build();
 
-        file_chooser.connect_response(move |d: &FileChooserDialog, response: ResponseType| {
-            if response == ResponseType::Ok {
-                let file = d.file().expect("Couldn't get file");
-
+        dialog.open(Some(&window), gio::Cancellable::NONE, move |file| {
+            if let Ok(file) = file {
                 let filename = file.path().expect("Couldn't get file path");
                 let file = File::open(filename).expect("Couldn't open file");
 
@@ -52,12 +47,8 @@ pub fn build_ui(application: &Application) {
 
                 text_view.buffer().set_text(&contents);
             }
-
-            d.close();
         });
-
-        file_chooser.show();
     }));
 
-    window.show();
+    window.present();
 }

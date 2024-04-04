@@ -1,20 +1,23 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{prelude::*, ColorChooser, Orientation};
 use gdk::RGBA;
 use glib::translate::*;
 use libc::c_int;
 
-// rustdoc-stripper-ignore-next
-/// Trait containing manually implemented methods of [`ColorChooser`](crate::ColorChooser).
-#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-#[allow(deprecated)]
-pub trait ColorChooserExtManual: 'static {
-    #[doc(alias = "gtk_color_chooser_add_palette")]
-    fn add_palette(&self, orientation: Orientation, colors_per_line: i32, colors: &[RGBA]);
+use crate::{prelude::*, ColorChooser, Orientation};
+
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::ColorChooser>> Sealed for T {}
 }
 
-impl<O: IsA<ColorChooser>> ColorChooserExtManual for O {
+// rustdoc-stripper-ignore-next
+/// Trait containing manually implemented methods of
+/// [`ColorChooser`](crate::ColorChooser).
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+#[allow(deprecated)]
+pub trait ColorChooserExtManual: sealed::Sealed + IsA<ColorChooser> + 'static {
+    #[doc(alias = "gtk_color_chooser_add_palette")]
     fn add_palette(&self, orientation: Orientation, colors_per_line: i32, colors: &[RGBA]) {
         unsafe {
             ffi::gtk_color_chooser_add_palette(
@@ -31,3 +34,5 @@ impl<O: IsA<ColorChooser>> ColorChooserExtManual for O {
         }
     }
 }
+
+impl<O: IsA<ColorChooser>> ColorChooserExtManual for O {}

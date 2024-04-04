@@ -4,7 +4,6 @@
 
 use crate::{Buildable, Filter};
 use glib::{prelude::*, translate::*};
-use std::fmt;
 
 glib::wrapper! {
     #[doc(alias = "GtkMultiFilter")]
@@ -19,15 +18,13 @@ impl MultiFilter {
     pub const NONE: Option<&'static MultiFilter> = None;
 }
 
-pub trait MultiFilterExt: 'static {
-    #[doc(alias = "gtk_multi_filter_append")]
-    fn append(&self, filter: impl IsA<Filter>);
-
-    #[doc(alias = "gtk_multi_filter_remove")]
-    fn remove(&self, position: u32);
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::MultiFilter>> Sealed for T {}
 }
 
-impl<O: IsA<MultiFilter>> MultiFilterExt for O {
+pub trait MultiFilterExt: IsA<MultiFilter> + sealed::Sealed + 'static {
+    #[doc(alias = "gtk_multi_filter_append")]
     fn append(&self, filter: impl IsA<Filter>) {
         unsafe {
             ffi::gtk_multi_filter_append(
@@ -37,6 +34,7 @@ impl<O: IsA<MultiFilter>> MultiFilterExt for O {
         }
     }
 
+    #[doc(alias = "gtk_multi_filter_remove")]
     fn remove(&self, position: u32) {
         unsafe {
             ffi::gtk_multi_filter_remove(self.as_ref().to_glib_none().0, position);
@@ -44,8 +42,4 @@ impl<O: IsA<MultiFilter>> MultiFilterExt for O {
     }
 }
 
-impl fmt::Display for MultiFilter {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("MultiFilter")
-    }
-}
+impl<O: IsA<MultiFilter>> MultiFilterExt for O {}

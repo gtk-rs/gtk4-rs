@@ -2,8 +2,6 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use std::fmt;
-
 glib::wrapper! {
     #[doc(alias = "GdkWaylandGLContext")]
     pub struct WaylandGLContext(Object<ffi::GdkWaylandGLContext, ffi::GdkWaylandGLContextClass>) @extends gdk::GLContext, gdk::DrawContext;
@@ -14,9 +12,3 @@ glib::wrapper! {
 }
 
 impl WaylandGLContext {}
-
-impl fmt::Display for WaylandGLContext {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("WaylandGLContext")
-    }
-}

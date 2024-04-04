@@ -9,7 +9,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GtkDropTarget")]
@@ -46,8 +46,8 @@ impl DropTarget {
         unsafe { from_glib(ffi::gtk_drop_target_get_actions(self.to_glib_none().0)) }
     }
 
-    #[cfg(any(feature = "v4_4", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+    #[cfg(feature = "v4_4")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
     #[doc(alias = "gtk_drop_target_get_current_drop")]
     #[doc(alias = "get_current_drop")]
     pub fn current_drop(&self) -> Option<gdk::Drop> {
@@ -119,7 +119,7 @@ impl DropTarget {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"accept\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     accept_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -148,7 +148,7 @@ impl DropTarget {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"enter\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     enter_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -170,7 +170,7 @@ impl DropTarget {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"leave\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     leave_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -199,7 +199,7 @@ impl DropTarget {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"motion\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     motion_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -222,7 +222,7 @@ impl DropTarget {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::actions\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_actions_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -230,8 +230,8 @@ impl DropTarget {
         }
     }
 
-    #[cfg(any(feature = "v4_4", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+    #[cfg(feature = "v4_4")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
     #[doc(alias = "current-drop")]
     pub fn connect_current_drop_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_current_drop_trampoline<F: Fn(&DropTarget) + 'static>(
@@ -247,7 +247,7 @@ impl DropTarget {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::current-drop\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_current_drop_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -271,7 +271,7 @@ impl DropTarget {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::drop\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_drop_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -294,7 +294,7 @@ impl DropTarget {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::preload\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_preload_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -317,7 +317,7 @@ impl DropTarget {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::value\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_value_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -393,11 +393,5 @@ impl DropTargetBuilder {
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> DropTarget {
         self.builder.build()
-    }
-}
-
-impl fmt::Display for DropTarget {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("DropTarget")
     }
 }

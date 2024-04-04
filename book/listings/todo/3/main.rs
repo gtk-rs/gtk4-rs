@@ -5,7 +5,7 @@ mod window;
 
 use gdk::Display;
 use gtk::prelude::*;
-use gtk::{gdk, gio, glib, Application, CssProvider, StyleContext};
+use gtk::{gdk, gio, glib, Application, CssProvider};
 use window::Window;
 
 const APP_ID: &str = "org.gtk_rs.Todo3";
@@ -43,7 +43,7 @@ fn load_css() {
     provider.load_from_resource("/org/gtk_rs/Todo3/style.css");
 
     // Add the provider to the default screen
-    StyleContext::add_provider_for_display(
+    gtk::style_context_add_provider_for_display(
         &Display::default().expect("Could not connect to a display."),
         &provider,
         gtk::STYLE_PROVIDER_PRIORITY_APPLICATION,
@@ -52,7 +52,7 @@ fn load_css() {
 // ANCHOR_END: load_css
 
 fn build_ui(app: &Application) {
-    // Create a new custom window and show it
+    // Create a new custom window and present it
     let window = Window::new(app);
     window.present();
 }

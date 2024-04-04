@@ -11,7 +11,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GtkPopoverMenu")]
@@ -70,6 +70,14 @@ impl PopoverMenu {
         }
     }
 
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    #[doc(alias = "gtk_popover_menu_get_flags")]
+    #[doc(alias = "get_flags")]
+    pub fn flags(&self) -> PopoverMenuFlags {
+        unsafe { from_glib(ffi::gtk_popover_menu_get_flags(self.to_glib_none().0)) }
+    }
+
     #[doc(alias = "gtk_popover_menu_get_menu_model")]
     #[doc(alias = "get_menu_model")]
     pub fn menu_model(&self) -> Option<gio::MenuModel> {
@@ -86,6 +94,15 @@ impl PopoverMenu {
         }
     }
 
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    #[doc(alias = "gtk_popover_menu_set_flags")]
+    pub fn set_flags(&self, flags: PopoverMenuFlags) {
+        unsafe {
+            ffi::gtk_popover_menu_set_flags(self.to_glib_none().0, flags.into_glib());
+        }
+    }
+
     #[doc(alias = "gtk_popover_menu_set_menu_model")]
     pub fn set_menu_model(&self, model: Option<&impl IsA<gio::MenuModel>>) {
         unsafe {
@@ -98,12 +115,37 @@ impl PopoverMenu {
 
     #[doc(alias = "visible-submenu")]
     pub fn visible_submenu(&self) -> Option<glib::GString> {
-        glib::ObjectExt::property(self, "visible-submenu")
+        ObjectExt::property(self, "visible-submenu")
     }
 
     #[doc(alias = "visible-submenu")]
     pub fn set_visible_submenu(&self, visible_submenu: Option<&str>) {
-        glib::ObjectExt::set_property(self, "visible-submenu", visible_submenu)
+        ObjectExt::set_property(self, "visible-submenu", visible_submenu)
+    }
+
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    #[doc(alias = "flags")]
+    pub fn connect_flags_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_flags_trampoline<F: Fn(&PopoverMenu) + 'static>(
+            this: *mut ffi::GtkPopoverMenu,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::flags\0".as_ptr() as *const _,
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                    notify_flags_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
     }
 
     #[doc(alias = "menu-model")]
@@ -121,7 +163,7 @@ impl PopoverMenu {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::menu-model\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_menu_model_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -144,7 +186,7 @@ impl PopoverMenu {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::visible-submenu\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_visible_submenu_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -166,6 +208,14 @@ impl PopoverMenuBuilder {
     fn new() -> Self {
         Self {
             builder: glib::object::Object::builder(),
+        }
+    }
+
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn flags(self, flags: PopoverMenuFlags) -> Self {
+        Self {
+            builder: self.builder.property("flags", flags),
         }
     }
 
@@ -426,11 +476,5 @@ impl PopoverMenuBuilder {
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> PopoverMenu {
         self.builder.build()
-    }
-}
-
-impl fmt::Display for PopoverMenu {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("PopoverMenu")
     }
 }

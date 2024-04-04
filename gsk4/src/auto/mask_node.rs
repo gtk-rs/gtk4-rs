@@ -3,8 +3,7 @@
 // DO NOT EDIT
 
 use crate::{MaskMode, RenderNode};
-use glib::translate::*;
-use std::fmt;
+use glib::{prelude::*, translate::*};
 
 glib::wrapper! {
     #[doc(alias = "GskMaskNode")]
@@ -16,7 +15,7 @@ glib::wrapper! {
     }
 }
 
-impl glib::StaticType for MaskNode {
+impl StaticType for MaskNode {
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gsk_mask_node_get_type()) }
     }
@@ -55,11 +54,5 @@ impl MaskNode {
     #[doc(alias = "get_source")]
     pub fn source(&self) -> RenderNode {
         unsafe { from_glib_none(ffi::gsk_mask_node_get_source(self.to_glib_none().0)) }
-    }
-}
-
-impl fmt::Display for MaskNode {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("MaskNode")
     }
 }

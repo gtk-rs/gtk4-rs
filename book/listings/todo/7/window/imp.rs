@@ -4,12 +4,11 @@ use std::fs::File;
 use adw::subclass::prelude::*;
 
 use gio::Settings;
-use glib::signal::Inhibit;
 use glib::subclass::InitializingObject;
 
 use adw::prelude::*;
 use gtk::{gio, glib, CompositeTemplate, Entry, ListBox};
-use once_cell::sync::OnceCell;
+use std::cell::OnceCell;
 
 use crate::task_object::{TaskData, TaskObject};
 use crate::utils::data_path;
@@ -38,6 +37,11 @@ impl ObjectSubclass for Window {
 
     fn class_init(klass: &mut Self::Class) {
         klass.bind_template();
+
+        // Create action to remove done tasks and add to action group "win"
+        klass.install_action("win.remove-done-tasks", None, |window, _, _| {
+            window.remove_done_tasks();
+        });
     }
 
     fn instance_init(obj: &InitializingObject<Self>) {
@@ -67,15 +71,14 @@ impl WidgetImpl for Window {}
 
 // Trait shared by all windows
 impl WindowImpl for Window {
-    fn close_request(&self) -> Inhibit {
+    fn close_request(&self) -> glib::Propagation {
         // Store task data in vector
         let backup_data: Vec<TaskData> = self
             .obj()
             .tasks()
-            .snapshot()
-            .iter()
-            .filter_map(Cast::downcast_ref::<TaskObject>)
-            .map(TaskObject::task_data)
+            .iter::<TaskObject>()
+            .filter_map(Result::ok)
+            .map(|task_object| task_object.task_data())
             .collect();
 
         // Save state to file

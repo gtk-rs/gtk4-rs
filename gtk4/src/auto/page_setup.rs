@@ -4,7 +4,6 @@
 
 use crate::{PageOrientation, PaperSize, Unit};
 use glib::translate::*;
-use std::{fmt, ptr};
 
 glib::wrapper! {
     #[doc(alias = "GtkPageSetup")]
@@ -27,7 +26,7 @@ impl PageSetup {
     pub fn from_file(file_name: impl AsRef<std::path::Path>) -> Result<PageSetup, glib::Error> {
         assert_initialized_main_thread!();
         unsafe {
-            let mut error = ptr::null_mut();
+            let mut error = std::ptr::null_mut();
             let ret =
                 ffi::gtk_page_setup_new_from_file(file_name.as_ref().to_glib_none().0, &mut error);
             if error.is_null() {
@@ -57,7 +56,7 @@ impl PageSetup {
     ) -> Result<PageSetup, glib::Error> {
         assert_initialized_main_thread!();
         unsafe {
-            let mut error = ptr::null_mut();
+            let mut error = std::ptr::null_mut();
             let ret = ffi::gtk_page_setup_new_from_key_file(
                 key_file.to_glib_none().0,
                 group_name.to_glib_none().0,
@@ -140,7 +139,7 @@ impl PageSetup {
     #[doc(alias = "gtk_page_setup_load_file")]
     pub fn load_file(&self, file_name: impl AsRef<std::path::Path>) -> Result<(), glib::Error> {
         unsafe {
-            let mut error = ptr::null_mut();
+            let mut error = std::ptr::null_mut();
             let is_ok = ffi::gtk_page_setup_load_file(
                 self.to_glib_none().0,
                 file_name.as_ref().to_glib_none().0,
@@ -162,7 +161,7 @@ impl PageSetup {
         group_name: Option<&str>,
     ) -> Result<(), glib::Error> {
         unsafe {
-            let mut error = ptr::null_mut();
+            let mut error = std::ptr::null_mut();
             let is_ok = ffi::gtk_page_setup_load_key_file(
                 self.to_glib_none().0,
                 key_file.to_glib_none().0,
@@ -236,7 +235,7 @@ impl PageSetup {
     #[doc(alias = "gtk_page_setup_to_file")]
     pub fn to_file(&self, file_name: impl AsRef<std::path::Path>) -> Result<(), glib::Error> {
         unsafe {
-            let mut error = ptr::null_mut();
+            let mut error = std::ptr::null_mut();
             let is_ok = ffi::gtk_page_setup_to_file(
                 self.to_glib_none().0,
                 file_name.as_ref().to_glib_none().0,
@@ -271,11 +270,5 @@ impl PageSetup {
 impl Default for PageSetup {
     fn default() -> Self {
         Self::new()
-    }
-}
-
-impl fmt::Display for PageSetup {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("PageSetup")
     }
 }

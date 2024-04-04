@@ -1,16 +1,12 @@
 mod rotation_bin;
 
+use gtk::{glib, glib::clone, prelude::*};
 use rotation_bin::{Rotation, RotationBin};
 
-use gtk::glib;
-use gtk::glib::clone;
-use gtk::prelude::*;
-
 fn main() -> glib::ExitCode {
-    let application = gtk::Application::new(
-        Some("com.github.gtk-rs.examples.rotation_bin"),
-        Default::default(),
-    );
+    let application = gtk::Application::builder()
+        .application_id("com.github.gtk-rs.examples.rotation_bin")
+        .build();
 
     application.connect_activate(build_ui);
     application.run()
@@ -35,7 +31,7 @@ fn build_ui(application: &gtk::Application) {
         .halign(gtk::Align::Center)
         .valign(gtk::Align::Center)
         .build();
-    let rotation_bin = RotationBin::new();
+    let rotation_bin = RotationBin::default();
     let img = gtk::Image::builder()
         .pixel_size(128)
         .icon_name("audio-x-generic")
@@ -102,5 +98,5 @@ fn build_ui(application: &gtk::Application) {
 
     window.set_child(Some(&vbox));
 
-    window.show();
+    window.present();
 }

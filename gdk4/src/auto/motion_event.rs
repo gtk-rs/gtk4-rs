@@ -2,8 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use glib::translate::*;
-use std::fmt;
+use glib::{prelude::*, translate::*};
 
 glib::wrapper! {
     #[doc(alias = "GdkMotionEvent")]
@@ -15,16 +14,10 @@ glib::wrapper! {
     }
 }
 
-impl glib::StaticType for MotionEvent {
+impl StaticType for MotionEvent {
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gdk_motion_event_get_type()) }
     }
 }
 
 impl MotionEvent {}
-
-impl fmt::Display for MotionEvent {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("MotionEvent")
-    }
-}

@@ -3,7 +3,6 @@
 // DO NOT EDIT
 
 use glib::{prelude::*, translate::*};
-use std::fmt;
 
 glib::wrapper! {
     #[doc(alias = "GtkShortcutTrigger")]
@@ -28,26 +27,20 @@ impl ShortcutTrigger {
     }
 }
 
-impl fmt::Display for ShortcutTrigger {
+impl std::fmt::Display for ShortcutTrigger {
     #[inline]
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
         f.write_str(&ShortcutTriggerExt::to_str(self))
     }
 }
 
-pub trait ShortcutTriggerExt: 'static {
-    #[doc(alias = "gtk_shortcut_trigger_to_label")]
-    fn to_label(&self, display: &impl IsA<gdk::Display>) -> glib::GString;
-
-    #[doc(alias = "gtk_shortcut_trigger_to_string")]
-    #[doc(alias = "to_string")]
-    fn to_str(&self) -> glib::GString;
-
-    #[doc(alias = "gtk_shortcut_trigger_trigger")]
-    fn trigger(&self, event: impl AsRef<gdk::Event>, enable_mnemonics: bool) -> gdk::KeyMatch;
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::ShortcutTrigger>> Sealed for T {}
 }
 
-impl<O: IsA<ShortcutTrigger>> ShortcutTriggerExt for O {
+pub trait ShortcutTriggerExt: IsA<ShortcutTrigger> + sealed::Sealed + 'static {
+    #[doc(alias = "gtk_shortcut_trigger_to_label")]
     fn to_label(&self, display: &impl IsA<gdk::Display>) -> glib::GString {
         unsafe {
             from_glib_full(ffi::gtk_shortcut_trigger_to_label(
@@ -57,6 +50,8 @@ impl<O: IsA<ShortcutTrigger>> ShortcutTriggerExt for O {
         }
     }
 
+    #[doc(alias = "gtk_shortcut_trigger_to_string")]
+    #[doc(alias = "to_string")]
     fn to_str(&self) -> glib::GString {
         unsafe {
             from_glib_full(ffi::gtk_shortcut_trigger_to_string(
@@ -65,6 +60,7 @@ impl<O: IsA<ShortcutTrigger>> ShortcutTriggerExt for O {
         }
     }
 
+    #[doc(alias = "gtk_shortcut_trigger_trigger")]
     fn trigger(&self, event: impl AsRef<gdk::Event>, enable_mnemonics: bool) -> gdk::KeyMatch {
         unsafe {
             from_glib(ffi::gtk_shortcut_trigger_trigger(
@@ -75,3 +71,5 @@ impl<O: IsA<ShortcutTrigger>> ShortcutTriggerExt for O {
         }
     }
 }
+
+impl<O: IsA<ShortcutTrigger>> ShortcutTriggerExt for O {}

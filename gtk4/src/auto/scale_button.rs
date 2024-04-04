@@ -2,8 +2,8 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 use crate::AccessibleRange;
 use crate::{
     Accessible, AccessibleRole, Adjustment, Align, Buildable, Button, ConstraintTarget,
@@ -14,10 +14,10 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::boxed::Box as Box_;
 
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 glib::wrapper! {
     #[doc(alias = "GtkScaleButton")]
     pub struct ScaleButton(Object<ffi::GtkScaleButton, ffi::GtkScaleButtonClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, AccessibleRange, Orientable;
@@ -27,7 +27,7 @@ glib::wrapper! {
     }
 }
 
-#[cfg(not(any(feature = "v4_10", feature = "dox")))]
+#[cfg(not(any(feature = "v4_10")))]
 glib::wrapper! {
     #[doc(alias = "GtkScaleButton")]
     pub struct ScaleButton(Object<ffi::GtkScaleButton, ffi::GtkScaleButtonClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Orientable;
@@ -90,6 +90,14 @@ impl ScaleButtonBuilder {
             builder: self
                 .builder
                 .property("adjustment", adjustment.clone().upcast()),
+        }
+    }
+
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn has_frame(self, has_frame: bool) -> Self {
+        Self {
+            builder: self.builder.property("has-frame", has_frame),
         }
     }
 
@@ -303,75 +311,16 @@ impl ScaleButtonBuilder {
     }
 }
 
-pub trait ScaleButtonExt: 'static {
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
-    #[doc(alias = "gtk_scale_button_get_active")]
-    #[doc(alias = "get_active")]
-    fn is_active(&self) -> bool;
-
-    #[doc(alias = "gtk_scale_button_get_adjustment")]
-    #[doc(alias = "get_adjustment")]
-    fn adjustment(&self) -> Adjustment;
-
-    #[doc(alias = "gtk_scale_button_get_minus_button")]
-    #[doc(alias = "get_minus_button")]
-    fn minus_button(&self) -> Button;
-
-    #[doc(alias = "gtk_scale_button_get_plus_button")]
-    #[doc(alias = "get_plus_button")]
-    fn plus_button(&self) -> Button;
-
-    #[doc(alias = "gtk_scale_button_get_popup")]
-    #[doc(alias = "get_popup")]
-    fn popup(&self) -> Widget;
-
-    #[doc(alias = "gtk_scale_button_get_value")]
-    #[doc(alias = "get_value")]
-    fn value(&self) -> f64;
-
-    #[doc(alias = "gtk_scale_button_set_adjustment")]
-    fn set_adjustment(&self, adjustment: &impl IsA<Adjustment>);
-
-    #[doc(alias = "gtk_scale_button_set_icons")]
-    fn set_icons(&self, icons: &[&str]);
-
-    #[doc(alias = "gtk_scale_button_set_value")]
-    fn set_value(&self, value: f64);
-
-    fn icons(&self) -> Vec<glib::GString>;
-
-    #[doc(alias = "popdown")]
-    fn connect_popdown<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn emit_popdown(&self);
-
-    #[doc(alias = "popup")]
-    fn connect_popup<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn emit_popup(&self);
-
-    #[doc(alias = "value-changed")]
-    fn connect_value_changed<F: Fn(&Self, f64) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
-    #[doc(alias = "active")]
-    fn connect_active_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "adjustment")]
-    fn connect_adjustment_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "icons")]
-    fn connect_icons_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "value")]
-    fn connect_value_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::ScaleButton>> Sealed for T {}
 }
 
-impl<O: IsA<ScaleButton>> ScaleButtonExt for O {
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+pub trait ScaleButtonExt: IsA<ScaleButton> + sealed::Sealed + 'static {
+    #[cfg(feature = "v4_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
+    #[doc(alias = "gtk_scale_button_get_active")]
+    #[doc(alias = "get_active")]
     fn is_active(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_scale_button_get_active(
@@ -380,6 +329,8 @@ impl<O: IsA<ScaleButton>> ScaleButtonExt for O {
         }
     }
 
+    #[doc(alias = "gtk_scale_button_get_adjustment")]
+    #[doc(alias = "get_adjustment")]
     fn adjustment(&self) -> Adjustment {
         unsafe {
             from_glib_none(ffi::gtk_scale_button_get_adjustment(
@@ -388,6 +339,20 @@ impl<O: IsA<ScaleButton>> ScaleButtonExt for O {
         }
     }
 
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    #[doc(alias = "gtk_scale_button_get_has_frame")]
+    #[doc(alias = "get_has_frame")]
+    fn has_frame(&self) -> bool {
+        unsafe {
+            from_glib(ffi::gtk_scale_button_get_has_frame(
+                self.as_ref().to_glib_none().0,
+            ))
+        }
+    }
+
+    #[doc(alias = "gtk_scale_button_get_minus_button")]
+    #[doc(alias = "get_minus_button")]
     fn minus_button(&self) -> Button {
         unsafe {
             from_glib_none(ffi::gtk_scale_button_get_minus_button(
@@ -396,6 +361,8 @@ impl<O: IsA<ScaleButton>> ScaleButtonExt for O {
         }
     }
 
+    #[doc(alias = "gtk_scale_button_get_plus_button")]
+    #[doc(alias = "get_plus_button")]
     fn plus_button(&self) -> Button {
         unsafe {
             from_glib_none(ffi::gtk_scale_button_get_plus_button(
@@ -404,6 +371,8 @@ impl<O: IsA<ScaleButton>> ScaleButtonExt for O {
         }
     }
 
+    #[doc(alias = "gtk_scale_button_get_popup")]
+    #[doc(alias = "get_popup")]
     fn popup(&self) -> Widget {
         unsafe {
             from_glib_none(ffi::gtk_scale_button_get_popup(
@@ -412,10 +381,13 @@ impl<O: IsA<ScaleButton>> ScaleButtonExt for O {
         }
     }
 
+    #[doc(alias = "gtk_scale_button_get_value")]
+    #[doc(alias = "get_value")]
     fn value(&self) -> f64 {
         unsafe { ffi::gtk_scale_button_get_value(self.as_ref().to_glib_none().0) }
     }
 
+    #[doc(alias = "gtk_scale_button_set_adjustment")]
     fn set_adjustment(&self, adjustment: &impl IsA<Adjustment>) {
         unsafe {
             ffi::gtk_scale_button_set_adjustment(
@@ -425,12 +397,26 @@ impl<O: IsA<ScaleButton>> ScaleButtonExt for O {
         }
     }
 
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    #[doc(alias = "gtk_scale_button_set_has_frame")]
+    fn set_has_frame(&self, has_frame: bool) {
+        unsafe {
+            ffi::gtk_scale_button_set_has_frame(
+                self.as_ref().to_glib_none().0,
+                has_frame.into_glib(),
+            );
+        }
+    }
+
+    #[doc(alias = "gtk_scale_button_set_icons")]
     fn set_icons(&self, icons: &[&str]) {
         unsafe {
             ffi::gtk_scale_button_set_icons(self.as_ref().to_glib_none().0, icons.to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_scale_button_set_value")]
     fn set_value(&self, value: f64) {
         unsafe {
             ffi::gtk_scale_button_set_value(self.as_ref().to_glib_none().0, value);
@@ -438,9 +424,10 @@ impl<O: IsA<ScaleButton>> ScaleButtonExt for O {
     }
 
     fn icons(&self) -> Vec<glib::GString> {
-        glib::ObjectExt::property(self.as_ref(), "icons")
+        ObjectExt::property(self.as_ref(), "icons")
     }
 
+    #[doc(alias = "popdown")]
     fn connect_popdown<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn popdown_trampoline<P: IsA<ScaleButton>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkScaleButton,
@@ -454,7 +441,7 @@ impl<O: IsA<ScaleButton>> ScaleButtonExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"popdown\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     popdown_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -466,6 +453,7 @@ impl<O: IsA<ScaleButton>> ScaleButtonExt for O {
         self.emit_by_name::<()>("popdown", &[]);
     }
 
+    #[doc(alias = "popup")]
     fn connect_popup<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn popup_trampoline<P: IsA<ScaleButton>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkScaleButton,
@@ -479,7 +467,7 @@ impl<O: IsA<ScaleButton>> ScaleButtonExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"popup\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     popup_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -491,6 +479,7 @@ impl<O: IsA<ScaleButton>> ScaleButtonExt for O {
         self.emit_by_name::<()>("popup", &[]);
     }
 
+    #[doc(alias = "value-changed")]
     fn connect_value_changed<F: Fn(&Self, f64) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn value_changed_trampoline<
             P: IsA<ScaleButton>,
@@ -508,7 +497,7 @@ impl<O: IsA<ScaleButton>> ScaleButtonExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"value-changed\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     value_changed_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -516,8 +505,9 @@ impl<O: IsA<ScaleButton>> ScaleButtonExt for O {
         }
     }
 
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(feature = "v4_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
+    #[doc(alias = "active")]
     fn connect_active_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_active_trampoline<P: IsA<ScaleButton>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkScaleButton,
@@ -532,7 +522,7 @@ impl<O: IsA<ScaleButton>> ScaleButtonExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::active\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_active_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -540,6 +530,7 @@ impl<O: IsA<ScaleButton>> ScaleButtonExt for O {
         }
     }
 
+    #[doc(alias = "adjustment")]
     fn connect_adjustment_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_adjustment_trampoline<
             P: IsA<ScaleButton>,
@@ -557,7 +548,7 @@ impl<O: IsA<ScaleButton>> ScaleButtonExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::adjustment\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_adjustment_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -565,6 +556,35 @@ impl<O: IsA<ScaleButton>> ScaleButtonExt for O {
         }
     }
 
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    #[doc(alias = "has-frame")]
+    fn connect_has_frame_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_has_frame_trampoline<
+            P: IsA<ScaleButton>,
+            F: Fn(&P) + 'static,
+        >(
+            this: *mut ffi::GtkScaleButton,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(ScaleButton::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::has-frame\0".as_ptr() as *const _,
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                    notify_has_frame_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[doc(alias = "icons")]
     fn connect_icons_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_icons_trampoline<P: IsA<ScaleButton>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkScaleButton,
@@ -579,7 +599,7 @@ impl<O: IsA<ScaleButton>> ScaleButtonExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::icons\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_icons_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -587,6 +607,7 @@ impl<O: IsA<ScaleButton>> ScaleButtonExt for O {
         }
     }
 
+    #[doc(alias = "value")]
     fn connect_value_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_value_trampoline<P: IsA<ScaleButton>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkScaleButton,
@@ -601,7 +622,7 @@ impl<O: IsA<ScaleButton>> ScaleButtonExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::value\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_value_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -610,8 +631,4 @@ impl<O: IsA<ScaleButton>> ScaleButtonExt for O {
     }
 }
 
-impl fmt::Display for ScaleButton {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("ScaleButton")
-    }
-}
+impl<O: IsA<ScaleButton>> ScaleButtonExt for O {}

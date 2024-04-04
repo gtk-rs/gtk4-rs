@@ -8,7 +8,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GtkScrollable")]
@@ -23,53 +23,14 @@ impl Scrollable {
     pub const NONE: Option<&'static Scrollable> = None;
 }
 
-pub trait ScrollableExt: 'static {
-    #[doc(alias = "gtk_scrollable_get_border")]
-    #[doc(alias = "get_border")]
-    fn border(&self) -> Option<Border>;
-
-    #[doc(alias = "gtk_scrollable_get_hadjustment")]
-    #[doc(alias = "get_hadjustment")]
-    fn hadjustment(&self) -> Option<Adjustment>;
-
-    #[doc(alias = "gtk_scrollable_get_hscroll_policy")]
-    #[doc(alias = "get_hscroll_policy")]
-    fn hscroll_policy(&self) -> ScrollablePolicy;
-
-    #[doc(alias = "gtk_scrollable_get_vadjustment")]
-    #[doc(alias = "get_vadjustment")]
-    fn vadjustment(&self) -> Option<Adjustment>;
-
-    #[doc(alias = "gtk_scrollable_get_vscroll_policy")]
-    #[doc(alias = "get_vscroll_policy")]
-    fn vscroll_policy(&self) -> ScrollablePolicy;
-
-    #[doc(alias = "gtk_scrollable_set_hadjustment")]
-    fn set_hadjustment(&self, hadjustment: Option<&impl IsA<Adjustment>>);
-
-    #[doc(alias = "gtk_scrollable_set_hscroll_policy")]
-    fn set_hscroll_policy(&self, policy: ScrollablePolicy);
-
-    #[doc(alias = "gtk_scrollable_set_vadjustment")]
-    fn set_vadjustment(&self, vadjustment: Option<&impl IsA<Adjustment>>);
-
-    #[doc(alias = "gtk_scrollable_set_vscroll_policy")]
-    fn set_vscroll_policy(&self, policy: ScrollablePolicy);
-
-    #[doc(alias = "hadjustment")]
-    fn connect_hadjustment_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "hscroll-policy")]
-    fn connect_hscroll_policy_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "vadjustment")]
-    fn connect_vadjustment_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "vscroll-policy")]
-    fn connect_vscroll_policy_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::Scrollable>> Sealed for T {}
 }
 
-impl<O: IsA<Scrollable>> ScrollableExt for O {
+pub trait ScrollableExt: IsA<Scrollable> + sealed::Sealed + 'static {
+    #[doc(alias = "gtk_scrollable_get_border")]
+    #[doc(alias = "get_border")]
     fn border(&self) -> Option<Border> {
         unsafe {
             let mut border = Border::uninitialized();
@@ -85,6 +46,8 @@ impl<O: IsA<Scrollable>> ScrollableExt for O {
         }
     }
 
+    #[doc(alias = "gtk_scrollable_get_hadjustment")]
+    #[doc(alias = "get_hadjustment")]
     fn hadjustment(&self) -> Option<Adjustment> {
         unsafe {
             from_glib_none(ffi::gtk_scrollable_get_hadjustment(
@@ -93,6 +56,8 @@ impl<O: IsA<Scrollable>> ScrollableExt for O {
         }
     }
 
+    #[doc(alias = "gtk_scrollable_get_hscroll_policy")]
+    #[doc(alias = "get_hscroll_policy")]
     fn hscroll_policy(&self) -> ScrollablePolicy {
         unsafe {
             from_glib(ffi::gtk_scrollable_get_hscroll_policy(
@@ -101,6 +66,8 @@ impl<O: IsA<Scrollable>> ScrollableExt for O {
         }
     }
 
+    #[doc(alias = "gtk_scrollable_get_vadjustment")]
+    #[doc(alias = "get_vadjustment")]
     fn vadjustment(&self) -> Option<Adjustment> {
         unsafe {
             from_glib_none(ffi::gtk_scrollable_get_vadjustment(
@@ -109,6 +76,8 @@ impl<O: IsA<Scrollable>> ScrollableExt for O {
         }
     }
 
+    #[doc(alias = "gtk_scrollable_get_vscroll_policy")]
+    #[doc(alias = "get_vscroll_policy")]
     fn vscroll_policy(&self) -> ScrollablePolicy {
         unsafe {
             from_glib(ffi::gtk_scrollable_get_vscroll_policy(
@@ -117,6 +86,7 @@ impl<O: IsA<Scrollable>> ScrollableExt for O {
         }
     }
 
+    #[doc(alias = "gtk_scrollable_set_hadjustment")]
     fn set_hadjustment(&self, hadjustment: Option<&impl IsA<Adjustment>>) {
         unsafe {
             ffi::gtk_scrollable_set_hadjustment(
@@ -126,6 +96,7 @@ impl<O: IsA<Scrollable>> ScrollableExt for O {
         }
     }
 
+    #[doc(alias = "gtk_scrollable_set_hscroll_policy")]
     fn set_hscroll_policy(&self, policy: ScrollablePolicy) {
         unsafe {
             ffi::gtk_scrollable_set_hscroll_policy(
@@ -135,6 +106,7 @@ impl<O: IsA<Scrollable>> ScrollableExt for O {
         }
     }
 
+    #[doc(alias = "gtk_scrollable_set_vadjustment")]
     fn set_vadjustment(&self, vadjustment: Option<&impl IsA<Adjustment>>) {
         unsafe {
             ffi::gtk_scrollable_set_vadjustment(
@@ -144,6 +116,7 @@ impl<O: IsA<Scrollable>> ScrollableExt for O {
         }
     }
 
+    #[doc(alias = "gtk_scrollable_set_vscroll_policy")]
     fn set_vscroll_policy(&self, policy: ScrollablePolicy) {
         unsafe {
             ffi::gtk_scrollable_set_vscroll_policy(
@@ -153,6 +126,7 @@ impl<O: IsA<Scrollable>> ScrollableExt for O {
         }
     }
 
+    #[doc(alias = "hadjustment")]
     fn connect_hadjustment_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_hadjustment_trampoline<
             P: IsA<Scrollable>,
@@ -170,7 +144,7 @@ impl<O: IsA<Scrollable>> ScrollableExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::hadjustment\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_hadjustment_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -178,6 +152,7 @@ impl<O: IsA<Scrollable>> ScrollableExt for O {
         }
     }
 
+    #[doc(alias = "hscroll-policy")]
     fn connect_hscroll_policy_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_hscroll_policy_trampoline<
             P: IsA<Scrollable>,
@@ -195,7 +170,7 @@ impl<O: IsA<Scrollable>> ScrollableExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::hscroll-policy\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_hscroll_policy_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -203,6 +178,7 @@ impl<O: IsA<Scrollable>> ScrollableExt for O {
         }
     }
 
+    #[doc(alias = "vadjustment")]
     fn connect_vadjustment_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_vadjustment_trampoline<
             P: IsA<Scrollable>,
@@ -220,7 +196,7 @@ impl<O: IsA<Scrollable>> ScrollableExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::vadjustment\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_vadjustment_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -228,6 +204,7 @@ impl<O: IsA<Scrollable>> ScrollableExt for O {
         }
     }
 
+    #[doc(alias = "vscroll-policy")]
     fn connect_vscroll_policy_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_vscroll_policy_trampoline<
             P: IsA<Scrollable>,
@@ -245,7 +222,7 @@ impl<O: IsA<Scrollable>> ScrollableExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::vscroll-policy\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_vscroll_policy_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -254,8 +231,4 @@ impl<O: IsA<Scrollable>> ScrollableExt for O {
     }
 }
 
-impl fmt::Display for Scrollable {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("Scrollable")
-    }
-}
+impl<O: IsA<Scrollable>> ScrollableExt for O {}

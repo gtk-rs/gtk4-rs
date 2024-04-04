@@ -1,19 +1,19 @@
 mod imp;
 
-use gtk::glib;
-use gtk::prelude::*;
-use gtk::subclass::prelude::*;
+use gtk::{glib, prelude::*, subclass::prelude::*};
 
 glib::wrapper! {
-    pub struct SqueezerBin(ObjectSubclass<imp::SqueezerBin>) @extends gtk::Widget;
+    pub struct SqueezerBin(ObjectSubclass<imp::SqueezerBin>)
+        @extends gtk::Widget;
+}
+
+impl Default for SqueezerBin {
+    fn default() -> Self {
+        glib::Object::new()
+    }
 }
 
 impl SqueezerBin {
-    #[allow(clippy::new_without_default)]
-    pub fn new() -> Self {
-        glib::Object::new()
-    }
-
     pub fn set_child(&self, widget: Option<&impl IsA<gtk::Widget>>) {
         let imp = self.imp();
         let widget = widget.map(|w| w.as_ref());

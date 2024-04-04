@@ -7,7 +7,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GtkStyleProvider")]
@@ -22,12 +22,13 @@ impl StyleProvider {
     pub const NONE: Option<&'static StyleProvider> = None;
 }
 
-pub trait StyleProviderExt: 'static {
-    #[doc(alias = "gtk-private-changed")]
-    fn connect_gtk_private_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::StyleProvider>> Sealed for T {}
 }
 
-impl<O: IsA<StyleProvider>> StyleProviderExt for O {
+pub trait StyleProviderExt: IsA<StyleProvider> + sealed::Sealed + 'static {
+    #[doc(alias = "gtk-private-changed")]
     fn connect_gtk_private_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn gtk_private_changed_trampoline<
             P: IsA<StyleProvider>,
@@ -44,7 +45,7 @@ impl<O: IsA<StyleProvider>> StyleProviderExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"gtk-private-changed\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     gtk_private_changed_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -53,8 +54,4 @@ impl<O: IsA<StyleProvider>> StyleProviderExt for O {
     }
 }
 
-impl fmt::Display for StyleProvider {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("StyleProvider")
-    }
-}
+impl<O: IsA<StyleProvider>> StyleProviderExt for O {}

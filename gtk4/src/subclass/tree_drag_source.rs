@@ -1,10 +1,12 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
 // rustdoc-stripper-ignore-next
-//! Traits intended for implementing the [`TreeDragSource`](crate::TreeDragSource) interface.
+//! Traits intended for implementing the
+//! [`TreeDragSource`](crate::TreeDragSource) interface.
+
+use glib::translate::*;
 
 use crate::{prelude::*, subclass::prelude::*, TreeDragSource, TreePath};
-use glib::translate::*;
 
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 #[allow(deprecated)]
@@ -16,15 +18,15 @@ pub trait TreeDragSourceImpl: ObjectImpl {
     fn drag_data_delete(&self, path: &TreePath) -> bool;
 }
 
-#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-#[allow(deprecated)]
-pub trait TreeDragSourceImplExt: ObjectSubclass {
-    fn parent_row_draggable(&self, _path: &TreePath) -> bool;
-    fn parent_drag_data_get(&self, path: &TreePath) -> gdk::ContentProvider;
-    fn parent_drag_data_delete(&self, path: &TreePath) -> bool;
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::TreeDragSourceImplExt> Sealed for T {}
 }
 
-impl<T: TreeDragSourceImpl> TreeDragSourceImplExt for T {
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+#[allow(deprecated)]
+pub trait TreeDragSourceImplExt: sealed::Sealed + ObjectSubclass {
+    // Returns true if the row can be dragged
     fn parent_row_draggable(&self, path: &TreePath) -> bool {
         unsafe {
             let type_data = Self::type_data();
@@ -66,6 +68,7 @@ impl<T: TreeDragSourceImpl> TreeDragSourceImplExt for T {
         }
     }
 
+    // True if the row was successfully deleted
     fn parent_drag_data_delete(&self, path: &TreePath) -> bool {
         unsafe {
             let type_data = Self::type_data();
@@ -86,6 +89,8 @@ impl<T: TreeDragSourceImpl> TreeDragSourceImplExt for T {
         }
     }
 }
+
+impl<T: TreeDragSourceImpl> TreeDragSourceImplExt for T {}
 
 unsafe impl<T: TreeDragSourceImpl> IsImplementable<T> for TreeDragSource {
     fn interface_init(iface: &mut glib::Interface<Self>) {

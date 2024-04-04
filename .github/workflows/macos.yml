@@ -21,31 +21,31 @@ on:
 jobs:
   ci-macos:
     name: macOS
-    runs-on: macos-12 
+    runs-on: macos-12
     steps:
-    - uses: actions/checkout@v3
-        
-    - name: Install GTK
-      run: |
-        brew install gtk4
-        
-    - name: Install Rust
-      uses: actions-rs/toolchain@v1
-      with:
-        profile: minimal
-        toolchain: stable
-        components: clippy
-        
-    - name: Build
-      uses: actions-rs/cargo@v1
-      with:
-        command: build
-        args: --features v4_8,xml_validation
-    - name: Clippy
-      uses: actions-rs/cargo@v1
-      with:
-        command: clippy
-        args: --features v4_8,xml_validation
+      - uses: actions/checkout@v4
+
+      - name: Install GTK
+        run: |
+          brew install gtk4
+
+      - name: Install Rust
+        uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          toolchain: stable
+          components: clippy
+
+      - name: Build
+        uses: actions-rs/cargo@v1
+        with:
+          command: build
+          args: --features v4_12,xml_validation --manifest-path ./gtk4/Cargo.toml
+      - name: Clippy
+        uses: actions-rs/cargo@v1
+        with:
+          command: clippy
+          args: --features v4_12,xml_validation --manifest-path ./gtk4/Cargo.toml
     # FIXME: renable once https://github.com/gtk-rs/gtk4-rs/issues/1235 is fixed
     #- name: Tests
     #  uses: actions-rs/cargo@v1

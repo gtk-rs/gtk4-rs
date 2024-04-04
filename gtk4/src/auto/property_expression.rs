@@ -3,8 +3,7 @@
 // DO NOT EDIT
 
 use crate::Expression;
-use glib::translate::*;
-use std::fmt;
+use glib::{prelude::*, translate::*};
 
 glib::wrapper! {
     #[doc(alias = "GtkPropertyExpression")]
@@ -16,7 +15,7 @@ glib::wrapper! {
     }
 }
 
-impl glib::StaticType for PropertyExpression {
+impl StaticType for PropertyExpression {
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gtk_property_expression_get_type()) }
     }
@@ -76,11 +75,5 @@ impl PropertyExpression {
                 self.to_glib_none().0,
             ))
         }
-    }
-}
-
-impl fmt::Display for PropertyExpression {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("PropertyExpression")
     }
 }

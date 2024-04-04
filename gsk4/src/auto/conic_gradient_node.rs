@@ -3,8 +3,7 @@
 // DO NOT EDIT
 
 use crate::ColorStop;
-use glib::translate::*;
-use std::{fmt, mem};
+use glib::{prelude::*, translate::*};
 
 glib::wrapper! {
     #[doc(alias = "GskConicGradientNode")]
@@ -16,7 +15,7 @@ glib::wrapper! {
     }
 }
 
-impl glib::StaticType for ConicGradientNode {
+impl StaticType for ConicGradientNode {
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gsk_conic_gradient_node_get_type()) }
     }
@@ -43,8 +42,8 @@ impl ConicGradientNode {
         }
     }
 
-    #[cfg(any(feature = "v4_2", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_2")))]
+    #[cfg(feature = "v4_2")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_2")))]
     #[doc(alias = "gsk_conic_gradient_node_get_angle")]
     #[doc(alias = "get_angle")]
     pub fn angle(&self) -> f32 {
@@ -65,7 +64,7 @@ impl ConicGradientNode {
     #[doc(alias = "get_color_stops")]
     pub fn color_stops(&self) -> Vec<ColorStop> {
         unsafe {
-            let mut n_stops = mem::MaybeUninit::uninit();
+            let mut n_stops = std::mem::MaybeUninit::uninit();
             let ret = FromGlibContainer::from_glib_none_num(
                 ffi::gsk_conic_gradient_node_get_color_stops(
                     self.to_glib_none().0,
@@ -87,11 +86,5 @@ impl ConicGradientNode {
     #[doc(alias = "get_rotation")]
     pub fn rotation(&self) -> f32 {
         unsafe { ffi::gsk_conic_gradient_node_get_rotation(self.to_glib_none().0) }
-    }
-}
-
-impl fmt::Display for ConicGradientNode {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("ConicGradientNode")
     }
 }

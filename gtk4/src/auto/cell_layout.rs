@@ -5,7 +5,7 @@
 
 use crate::{CellArea, CellRenderer, TreeIter, TreeModel};
 use glib::{prelude::*, translate::*};
-use std::{boxed::Box as Box_, fmt};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GtkCellLayout")]
@@ -20,61 +20,15 @@ impl CellLayout {
     pub const NONE: Option<&'static CellLayout> = None;
 }
 
-pub trait CellLayoutExt: 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::CellLayout>> Sealed for T {}
+}
+
+pub trait CellLayoutExt: IsA<CellLayout> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_cell_layout_add_attribute")]
-    fn add_attribute(&self, cell: &impl IsA<CellRenderer>, attribute: &str, column: i32);
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_cell_layout_clear")]
-    fn clear(&self);
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_cell_layout_clear_attributes")]
-    fn clear_attributes(&self, cell: &impl IsA<CellRenderer>);
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_cell_layout_get_area")]
-    #[doc(alias = "get_area")]
-    fn area(&self) -> Option<CellArea>;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_cell_layout_get_cells")]
-    #[doc(alias = "get_cells")]
-    fn cells(&self) -> Vec<CellRenderer>;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_cell_layout_pack_end")]
-    fn pack_end(&self, cell: &impl IsA<CellRenderer>, expand: bool);
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_cell_layout_pack_start")]
-    fn pack_start(&self, cell: &impl IsA<CellRenderer>, expand: bool);
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_cell_layout_reorder")]
-    fn reorder(&self, cell: &impl IsA<CellRenderer>, position: i32);
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_cell_layout_set_cell_data_func")]
-    fn set_cell_data_func<P: Fn(&CellLayout, &CellRenderer, &TreeModel, &TreeIter) + 'static>(
-        &self,
-        cell: &impl IsA<CellRenderer>,
-        func: P,
-    );
-}
-
-impl<O: IsA<CellLayout>> CellLayoutExt for O {
-    #[allow(deprecated)]
     fn add_attribute(&self, cell: &impl IsA<CellRenderer>, attribute: &str, column: i32) {
         unsafe {
             ffi::gtk_cell_layout_add_attribute(
@@ -86,14 +40,18 @@ impl<O: IsA<CellLayout>> CellLayoutExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_cell_layout_clear")]
     fn clear(&self) {
         unsafe {
             ffi::gtk_cell_layout_clear(self.as_ref().to_glib_none().0);
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_cell_layout_clear_attributes")]
     fn clear_attributes(&self, cell: &impl IsA<CellRenderer>) {
         unsafe {
             ffi::gtk_cell_layout_clear_attributes(
@@ -103,7 +61,10 @@ impl<O: IsA<CellLayout>> CellLayoutExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_cell_layout_get_area")]
+    #[doc(alias = "get_area")]
     fn area(&self) -> Option<CellArea> {
         unsafe {
             from_glib_none(ffi::gtk_cell_layout_get_area(
@@ -112,7 +73,10 @@ impl<O: IsA<CellLayout>> CellLayoutExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_cell_layout_get_cells")]
+    #[doc(alias = "get_cells")]
     fn cells(&self) -> Vec<CellRenderer> {
         unsafe {
             FromGlibPtrContainer::from_glib_container(ffi::gtk_cell_layout_get_cells(
@@ -121,7 +85,9 @@ impl<O: IsA<CellLayout>> CellLayoutExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_cell_layout_pack_end")]
     fn pack_end(&self, cell: &impl IsA<CellRenderer>, expand: bool) {
         unsafe {
             ffi::gtk_cell_layout_pack_end(
@@ -132,7 +98,9 @@ impl<O: IsA<CellLayout>> CellLayoutExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_cell_layout_pack_start")]
     fn pack_start(&self, cell: &impl IsA<CellRenderer>, expand: bool) {
         unsafe {
             ffi::gtk_cell_layout_pack_start(
@@ -143,7 +111,9 @@ impl<O: IsA<CellLayout>> CellLayoutExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_cell_layout_reorder")]
     fn reorder(&self, cell: &impl IsA<CellRenderer>, position: i32) {
         unsafe {
             ffi::gtk_cell_layout_reorder(
@@ -154,7 +124,9 @@ impl<O: IsA<CellLayout>> CellLayoutExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_cell_layout_set_cell_data_func")]
     fn set_cell_data_func<P: Fn(&CellLayout, &CellRenderer, &TreeModel, &TreeIter) + 'static>(
         &self,
         cell: &impl IsA<CellRenderer>,
@@ -174,7 +146,7 @@ impl<O: IsA<CellLayout>> CellLayoutExt for O {
             let cell = from_glib_borrow(cell);
             let tree_model = from_glib_borrow(tree_model);
             let iter = from_glib_borrow(iter);
-            let callback: &P = &*(data as *mut _);
+            let callback = &*(data as *mut P);
             (*callback)(&cell_layout, &cell, &tree_model, &iter)
         }
         let func = Some(func_func::<P> as _);
@@ -183,7 +155,7 @@ impl<O: IsA<CellLayout>> CellLayoutExt for O {
         >(
             data: glib::ffi::gpointer,
         ) {
-            let _callback: Box_<P> = Box_::from_raw(data as *mut _);
+            let _callback = Box_::from_raw(data as *mut P);
         }
         let destroy_call4 = Some(destroy_func::<P> as _);
         let super_callback0: Box_<P> = func_data;
@@ -199,8 +171,4 @@ impl<O: IsA<CellLayout>> CellLayoutExt for O {
     }
 }
 
-impl fmt::Display for CellLayout {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("CellLayout")
-    }
-}
+impl<O: IsA<CellLayout>> CellLayoutExt for O {}

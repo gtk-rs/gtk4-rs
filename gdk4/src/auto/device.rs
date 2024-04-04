@@ -8,7 +8,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem, mem::transmute};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GdkDevice")]
@@ -23,123 +23,21 @@ impl Device {
     pub const NONE: Option<&'static Device> = None;
 }
 
-impl fmt::Display for Device {
+impl std::fmt::Display for Device {
     #[inline]
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
         f.write_str(&DeviceExt::name(self))
     }
 }
 
-pub trait DeviceExt: 'static {
-    #[doc(alias = "gdk_device_get_caps_lock_state")]
-    #[doc(alias = "get_caps_lock_state")]
-    fn is_caps_locked(&self) -> bool;
-
-    #[doc(alias = "gdk_device_get_device_tool")]
-    #[doc(alias = "get_device_tool")]
-    fn device_tool(&self) -> Option<DeviceTool>;
-
-    #[doc(alias = "gdk_device_get_direction")]
-    #[doc(alias = "get_direction")]
-    fn direction(&self) -> pango::Direction;
-
-    #[doc(alias = "gdk_device_get_display")]
-    #[doc(alias = "get_display")]
-    fn display(&self) -> Display;
-
-    #[doc(alias = "gdk_device_get_has_cursor")]
-    #[doc(alias = "get_has_cursor")]
-    fn has_cursor(&self) -> bool;
-
-    #[doc(alias = "gdk_device_get_modifier_state")]
-    #[doc(alias = "get_modifier_state")]
-    fn modifier_state(&self) -> ModifierType;
-
-    #[doc(alias = "gdk_device_get_name")]
-    #[doc(alias = "get_name")]
-    fn name(&self) -> glib::GString;
-
-    #[doc(alias = "gdk_device_get_num_lock_state")]
-    #[doc(alias = "get_num_lock_state")]
-    fn is_num_locked(&self) -> bool;
-
-    #[doc(alias = "gdk_device_get_num_touches")]
-    #[doc(alias = "get_num_touches")]
-    fn num_touches(&self) -> u32;
-
-    #[doc(alias = "gdk_device_get_product_id")]
-    #[doc(alias = "get_product_id")]
-    fn product_id(&self) -> Option<glib::GString>;
-
-    #[doc(alias = "gdk_device_get_scroll_lock_state")]
-    #[doc(alias = "get_scroll_lock_state")]
-    fn is_scroll_locked(&self) -> bool;
-
-    #[doc(alias = "gdk_device_get_seat")]
-    #[doc(alias = "get_seat")]
-    fn seat(&self) -> Seat;
-
-    #[doc(alias = "gdk_device_get_source")]
-    #[doc(alias = "get_source")]
-    fn source(&self) -> InputSource;
-
-    #[doc(alias = "gdk_device_get_surface_at_position")]
-    #[doc(alias = "get_surface_at_position")]
-    fn surface_at_position(&self) -> (Option<Surface>, f64, f64);
-
-    #[cfg(any(feature = "v4_2", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_2")))]
-    #[doc(alias = "gdk_device_get_timestamp")]
-    #[doc(alias = "get_timestamp")]
-    fn timestamp(&self) -> u32;
-
-    #[doc(alias = "gdk_device_get_vendor_id")]
-    #[doc(alias = "get_vendor_id")]
-    fn vendor_id(&self) -> Option<glib::GString>;
-
-    #[doc(alias = "gdk_device_has_bidi_layouts")]
-    fn has_bidi_layouts(&self) -> bool;
-
-    #[doc(alias = "n-axes")]
-    fn n_axes(&self) -> u32;
-
-    fn set_seat<P: IsA<Seat>>(&self, seat: Option<&P>);
-
-    #[doc(alias = "changed")]
-    fn connect_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "tool-changed")]
-    fn connect_tool_changed<F: Fn(&Self, &DeviceTool) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "caps-lock-state")]
-    fn connect_caps_lock_state_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "direction")]
-    fn connect_direction_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "has-bidi-layouts")]
-    fn connect_has_bidi_layouts_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "modifier-state")]
-    fn connect_modifier_state_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "n-axes")]
-    fn connect_n_axes_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "num-lock-state")]
-    fn connect_num_lock_state_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "scroll-lock-state")]
-    fn connect_scroll_lock_state_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "seat")]
-    fn connect_seat_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "tool")]
-    fn connect_tool_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::Device>> Sealed for T {}
 }
 
-impl<O: IsA<Device>> DeviceExt for O {
+pub trait DeviceExt: IsA<Device> + sealed::Sealed + 'static {
+    #[doc(alias = "gdk_device_get_caps_lock_state")]
+    #[doc(alias = "get_caps_lock_state")]
     fn is_caps_locked(&self) -> bool {
         unsafe {
             from_glib(ffi::gdk_device_get_caps_lock_state(
@@ -148,6 +46,8 @@ impl<O: IsA<Device>> DeviceExt for O {
         }
     }
 
+    #[doc(alias = "gdk_device_get_device_tool")]
+    #[doc(alias = "get_device_tool")]
     fn device_tool(&self) -> Option<DeviceTool> {
         unsafe {
             from_glib_none(ffi::gdk_device_get_device_tool(
@@ -156,6 +56,8 @@ impl<O: IsA<Device>> DeviceExt for O {
         }
     }
 
+    #[doc(alias = "gdk_device_get_direction")]
+    #[doc(alias = "get_direction")]
     fn direction(&self) -> pango::Direction {
         unsafe {
             from_glib(ffi::gdk_device_get_direction(
@@ -164,10 +66,14 @@ impl<O: IsA<Device>> DeviceExt for O {
         }
     }
 
+    #[doc(alias = "gdk_device_get_display")]
+    #[doc(alias = "get_display")]
     fn display(&self) -> Display {
         unsafe { from_glib_none(ffi::gdk_device_get_display(self.as_ref().to_glib_none().0)) }
     }
 
+    #[doc(alias = "gdk_device_get_has_cursor")]
+    #[doc(alias = "get_has_cursor")]
     fn has_cursor(&self) -> bool {
         unsafe {
             from_glib(ffi::gdk_device_get_has_cursor(
@@ -176,6 +82,8 @@ impl<O: IsA<Device>> DeviceExt for O {
         }
     }
 
+    #[doc(alias = "gdk_device_get_modifier_state")]
+    #[doc(alias = "get_modifier_state")]
     fn modifier_state(&self) -> ModifierType {
         unsafe {
             from_glib(ffi::gdk_device_get_modifier_state(
@@ -184,10 +92,14 @@ impl<O: IsA<Device>> DeviceExt for O {
         }
     }
 
+    #[doc(alias = "gdk_device_get_name")]
+    #[doc(alias = "get_name")]
     fn name(&self) -> glib::GString {
         unsafe { from_glib_none(ffi::gdk_device_get_name(self.as_ref().to_glib_none().0)) }
     }
 
+    #[doc(alias = "gdk_device_get_num_lock_state")]
+    #[doc(alias = "get_num_lock_state")]
     fn is_num_locked(&self) -> bool {
         unsafe {
             from_glib(ffi::gdk_device_get_num_lock_state(
@@ -196,10 +108,14 @@ impl<O: IsA<Device>> DeviceExt for O {
         }
     }
 
+    #[doc(alias = "gdk_device_get_num_touches")]
+    #[doc(alias = "get_num_touches")]
     fn num_touches(&self) -> u32 {
         unsafe { ffi::gdk_device_get_num_touches(self.as_ref().to_glib_none().0) }
     }
 
+    #[doc(alias = "gdk_device_get_product_id")]
+    #[doc(alias = "get_product_id")]
     fn product_id(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::gdk_device_get_product_id(
@@ -208,6 +124,8 @@ impl<O: IsA<Device>> DeviceExt for O {
         }
     }
 
+    #[doc(alias = "gdk_device_get_scroll_lock_state")]
+    #[doc(alias = "get_scroll_lock_state")]
     fn is_scroll_locked(&self) -> bool {
         unsafe {
             from_glib(ffi::gdk_device_get_scroll_lock_state(
@@ -216,18 +134,24 @@ impl<O: IsA<Device>> DeviceExt for O {
         }
     }
 
+    #[doc(alias = "gdk_device_get_seat")]
+    #[doc(alias = "get_seat")]
     fn seat(&self) -> Seat {
         unsafe { from_glib_none(ffi::gdk_device_get_seat(self.as_ref().to_glib_none().0)) }
     }
 
+    #[doc(alias = "gdk_device_get_source")]
+    #[doc(alias = "get_source")]
     fn source(&self) -> InputSource {
         unsafe { from_glib(ffi::gdk_device_get_source(self.as_ref().to_glib_none().0)) }
     }
 
+    #[doc(alias = "gdk_device_get_surface_at_position")]
+    #[doc(alias = "get_surface_at_position")]
     fn surface_at_position(&self) -> (Option<Surface>, f64, f64) {
         unsafe {
-            let mut win_x = mem::MaybeUninit::uninit();
-            let mut win_y = mem::MaybeUninit::uninit();
+            let mut win_x = std::mem::MaybeUninit::uninit();
+            let mut win_y = std::mem::MaybeUninit::uninit();
             let ret = from_glib_none(ffi::gdk_device_get_surface_at_position(
                 self.as_ref().to_glib_none().0,
                 win_x.as_mut_ptr(),
@@ -237,12 +161,16 @@ impl<O: IsA<Device>> DeviceExt for O {
         }
     }
 
-    #[cfg(any(feature = "v4_2", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_2")))]
+    #[cfg(feature = "v4_2")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_2")))]
+    #[doc(alias = "gdk_device_get_timestamp")]
+    #[doc(alias = "get_timestamp")]
     fn timestamp(&self) -> u32 {
         unsafe { ffi::gdk_device_get_timestamp(self.as_ref().to_glib_none().0) }
     }
 
+    #[doc(alias = "gdk_device_get_vendor_id")]
+    #[doc(alias = "get_vendor_id")]
     fn vendor_id(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::gdk_device_get_vendor_id(
@@ -251,6 +179,7 @@ impl<O: IsA<Device>> DeviceExt for O {
         }
     }
 
+    #[doc(alias = "gdk_device_has_bidi_layouts")]
     fn has_bidi_layouts(&self) -> bool {
         unsafe {
             from_glib(ffi::gdk_device_has_bidi_layouts(
@@ -259,14 +188,16 @@ impl<O: IsA<Device>> DeviceExt for O {
         }
     }
 
+    #[doc(alias = "n-axes")]
     fn n_axes(&self) -> u32 {
-        glib::ObjectExt::property(self.as_ref(), "n-axes")
+        ObjectExt::property(self.as_ref(), "n-axes")
     }
 
     fn set_seat<P: IsA<Seat>>(&self, seat: Option<&P>) {
-        glib::ObjectExt::set_property(self.as_ref(), "seat", seat)
+        ObjectExt::set_property(self.as_ref(), "seat", seat)
     }
 
+    #[doc(alias = "changed")]
     fn connect_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn changed_trampoline<P: IsA<Device>, F: Fn(&P) + 'static>(
             this: *mut ffi::GdkDevice,
@@ -280,7 +211,7 @@ impl<O: IsA<Device>> DeviceExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"changed\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     changed_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -288,6 +219,7 @@ impl<O: IsA<Device>> DeviceExt for O {
         }
     }
 
+    #[doc(alias = "tool-changed")]
     fn connect_tool_changed<F: Fn(&Self, &DeviceTool) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn tool_changed_trampoline<
             P: IsA<Device>,
@@ -308,7 +240,7 @@ impl<O: IsA<Device>> DeviceExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"tool-changed\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     tool_changed_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -316,6 +248,7 @@ impl<O: IsA<Device>> DeviceExt for O {
         }
     }
 
+    #[doc(alias = "caps-lock-state")]
     fn connect_caps_lock_state_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_caps_lock_state_trampoline<
             P: IsA<Device>,
@@ -333,7 +266,7 @@ impl<O: IsA<Device>> DeviceExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::caps-lock-state\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_caps_lock_state_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -341,6 +274,7 @@ impl<O: IsA<Device>> DeviceExt for O {
         }
     }
 
+    #[doc(alias = "direction")]
     fn connect_direction_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_direction_trampoline<P: IsA<Device>, F: Fn(&P) + 'static>(
             this: *mut ffi::GdkDevice,
@@ -355,7 +289,7 @@ impl<O: IsA<Device>> DeviceExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::direction\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_direction_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -363,6 +297,7 @@ impl<O: IsA<Device>> DeviceExt for O {
         }
     }
 
+    #[doc(alias = "has-bidi-layouts")]
     fn connect_has_bidi_layouts_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_has_bidi_layouts_trampoline<
             P: IsA<Device>,
@@ -380,7 +315,7 @@ impl<O: IsA<Device>> DeviceExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::has-bidi-layouts\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_has_bidi_layouts_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -388,6 +323,7 @@ impl<O: IsA<Device>> DeviceExt for O {
         }
     }
 
+    #[doc(alias = "modifier-state")]
     fn connect_modifier_state_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_modifier_state_trampoline<
             P: IsA<Device>,
@@ -405,7 +341,7 @@ impl<O: IsA<Device>> DeviceExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::modifier-state\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_modifier_state_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -413,6 +349,7 @@ impl<O: IsA<Device>> DeviceExt for O {
         }
     }
 
+    #[doc(alias = "n-axes")]
     fn connect_n_axes_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_n_axes_trampoline<P: IsA<Device>, F: Fn(&P) + 'static>(
             this: *mut ffi::GdkDevice,
@@ -427,7 +364,7 @@ impl<O: IsA<Device>> DeviceExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::n-axes\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_n_axes_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -435,6 +372,7 @@ impl<O: IsA<Device>> DeviceExt for O {
         }
     }
 
+    #[doc(alias = "num-lock-state")]
     fn connect_num_lock_state_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_num_lock_state_trampoline<
             P: IsA<Device>,
@@ -452,7 +390,7 @@ impl<O: IsA<Device>> DeviceExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::num-lock-state\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_num_lock_state_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -460,6 +398,7 @@ impl<O: IsA<Device>> DeviceExt for O {
         }
     }
 
+    #[doc(alias = "scroll-lock-state")]
     fn connect_scroll_lock_state_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_scroll_lock_state_trampoline<
             P: IsA<Device>,
@@ -477,7 +416,7 @@ impl<O: IsA<Device>> DeviceExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::scroll-lock-state\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_scroll_lock_state_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -485,6 +424,7 @@ impl<O: IsA<Device>> DeviceExt for O {
         }
     }
 
+    #[doc(alias = "seat")]
     fn connect_seat_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_seat_trampoline<P: IsA<Device>, F: Fn(&P) + 'static>(
             this: *mut ffi::GdkDevice,
@@ -499,7 +439,7 @@ impl<O: IsA<Device>> DeviceExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::seat\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_seat_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -507,6 +447,7 @@ impl<O: IsA<Device>> DeviceExt for O {
         }
     }
 
+    #[doc(alias = "tool")]
     fn connect_tool_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_tool_trampoline<P: IsA<Device>, F: Fn(&P) + 'static>(
             this: *mut ffi::GdkDevice,
@@ -521,7 +462,7 @@ impl<O: IsA<Device>> DeviceExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::tool\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_tool_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -529,3 +470,5 @@ impl<O: IsA<Device>> DeviceExt for O {
         }
     }
 }
+
+impl<O: IsA<Device>> DeviceExt for O {}

@@ -14,7 +14,7 @@ Libadwaita is a library augmenting GTK 4 which:
 In order to use the Rust bindings, add the [libadwaita crate](https://crates.io/crates/libadwaita) as dependency by executing:
 
 ```
-cargo add libadwaita --rename adw --features v1_2
+cargo add libadwaita --rename adw --features v1_4
 ```
 
 The versions of the `gtk4` and `libadwaita` crates need to be synced.
@@ -68,7 +68,7 @@ From there, run the following commands:
 
 ```
 cd /
-git clone https://gitlab.gnome.org/GNOME/libadwaita.git --depth 1
+git clone --branch libadwaita-1-3 https://gitlab.gnome.org/GNOME/libadwaita.git --depth 1
 cd libadwaita
 meson setup builddir -Dprefix=C:/gnome -Dintrospection=disabled -Dvapi=false
 meson install -C builddir

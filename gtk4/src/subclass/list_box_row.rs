@@ -3,8 +3,9 @@
 // rustdoc-stripper-ignore-next
 //! Traits intended for subclassing [`ListBoxRow`](crate::ListBoxRow).
 
-use crate::{prelude::*, subclass::prelude::*, ListBoxRow};
 use glib::translate::*;
+
+use crate::{prelude::*, subclass::prelude::*, ListBoxRow};
 
 pub trait ListBoxRowImpl: ListBoxRowImplExt + WidgetImpl {
     fn activate(&self) {
@@ -12,14 +13,15 @@ pub trait ListBoxRowImpl: ListBoxRowImplExt + WidgetImpl {
     }
 }
 
-pub trait ListBoxRowImplExt: ObjectSubclass {
-    fn parent_activate(&self);
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::ListBoxRowImplExt> Sealed for T {}
 }
 
-impl<T: ListBoxRowImpl> ListBoxRowImplExt for T {
+pub trait ListBoxRowImplExt: sealed::Sealed + ObjectSubclass {
     fn parent_activate(&self) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkListBoxRowClass;
             if let Some(f) = (*parent_class).activate {
                 f(self.obj().unsafe_cast_ref::<ListBoxRow>().to_glib_none().0)
@@ -27,6 +29,8 @@ impl<T: ListBoxRowImpl> ListBoxRowImplExt for T {
         }
     }
 }
+
+impl<T: ListBoxRowImpl> ListBoxRowImplExt for T {}
 
 unsafe impl<T: ListBoxRowImpl> IsSubclassable<T> for ListBoxRow {
     fn class_init(class: &mut glib::Class<Self>) {

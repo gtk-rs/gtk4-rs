@@ -1,7 +1,8 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use glib::{collections::StrV, translate::*, GStringPtr};
 use std::ffi::CStr;
+
+use glib::{collections::StrV, translate::*, GStringPtr};
 
 glib::wrapper! {
     #[doc(alias = "GtkRecentData")]

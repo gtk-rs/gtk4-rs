@@ -1,5 +1,4 @@
-use gtk::glib;
-use gtk::subclass::prelude::*;
+use gtk::{glib, subclass::prelude::*};
 
 #[derive(Debug, Default, gtk::CompositeTemplate)]
 #[template(file = "grid_cell.ui")]
@@ -18,8 +17,9 @@ impl ObjectSubclass for GridCell {
     type ParentType = gtk::Widget;
 
     fn class_init(klass: &mut Self::Class) {
-        // When inheriting from GtkWidget directly, you have to either override the size_allocate/measure
-        // functions of WidgetImpl trait or use a layout manager which provides those functions for your widgets like below.
+        // When inheriting from GtkWidget directly, you have to either override the
+        // size_allocate/measure functions of WidgetImpl trait or use a layout
+        // manager which provides those functions for your widgets like below.
         klass.set_layout_manager_type::<gtk::BinLayout>();
         klass.bind_template();
     }

@@ -1,9 +1,6 @@
-use gtk::glib;
-use gtk::subclass::prelude::*;
+use gtk::{glib, subclass::prelude::*};
 
-use gtk::CompositeTemplate;
-
-#[derive(Debug, Default, CompositeTemplate)]
+#[derive(Debug, Default, gtk::CompositeTemplate)]
 #[template(file = "application_row.ui")]
 pub struct ApplicationRow {
     #[template_child]

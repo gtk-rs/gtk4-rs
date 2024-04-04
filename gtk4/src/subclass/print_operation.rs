@@ -3,11 +3,12 @@
 // rustdoc-stripper-ignore-next
 //! Traits intended for subclassing [`PrintOperation`](crate::PrintOperation).
 
+use glib::translate::*;
+
 use crate::{
     prelude::*, subclass::prelude::*, PageSetup, PrintContext, PrintOperation,
     PrintOperationPreview, PrintOperationResult, PrintSettings, Widget, Window,
 };
-use glib::translate::*;
 
 pub trait PrintOperationImpl: PrintOperationImplExt + PrintOperationPreviewImpl {
     fn begin_print(&self, context: &PrintContext) {
@@ -60,34 +61,15 @@ pub trait PrintOperationImpl: PrintOperationImplExt + PrintOperationPreviewImpl 
     }
 }
 
-pub trait PrintOperationImplExt: ObjectSubclass {
-    fn parent_begin_print(&self, context: &PrintContext);
-    fn parent_create_custom_widget(&self) -> Option<Widget>;
-    fn parent_custom_widget_apply(&self, widget: &Widget);
-    fn parent_done(&self, result: PrintOperationResult);
-    fn parent_draw_page(&self, context: &PrintContext, page_nr: i32);
-    fn parent_end_print(&self, context: &PrintContext);
-    fn parent_paginate(&self, context: &PrintContext) -> bool;
-    fn parent_preview(
-        &self,
-        preview: &PrintOperationPreview,
-        context: &PrintContext,
-        parent: Option<&Window>,
-    ) -> bool;
-    fn parent_request_page_setup(&self, context: &PrintContext, page_nr: i32, setup: &PageSetup);
-    fn parent_status_changed(&self);
-    fn parent_update_custom_widget(
-        &self,
-        widget: &Widget,
-        setup: &PageSetup,
-        settings: &PrintSettings,
-    );
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::PrintOperationImplExt> Sealed for T {}
 }
 
-impl<T: PrintOperationImpl> PrintOperationImplExt for T {
+pub trait PrintOperationImplExt: sealed::Sealed + ObjectSubclass {
     fn parent_begin_print(&self, context: &PrintContext) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkPrintOperationClass;
             if let Some(f) = (*parent_class).begin_print {
                 f(
@@ -103,7 +85,7 @@ impl<T: PrintOperationImpl> PrintOperationImplExt for T {
 
     fn parent_create_custom_widget(&self) -> Option<Widget> {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkPrintOperationClass;
             if let Some(f) = (*parent_class).create_custom_widget {
                 let ret = f(self
@@ -120,7 +102,7 @@ impl<T: PrintOperationImpl> PrintOperationImplExt for T {
 
     fn parent_custom_widget_apply(&self, widget: &Widget) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkPrintOperationClass;
             if let Some(f) = (*parent_class).custom_widget_apply {
                 f(
@@ -136,7 +118,7 @@ impl<T: PrintOperationImpl> PrintOperationImplExt for T {
 
     fn parent_done(&self, result: PrintOperationResult) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkPrintOperationClass;
             if let Some(f) = (*parent_class).done {
                 f(
@@ -152,7 +134,7 @@ impl<T: PrintOperationImpl> PrintOperationImplExt for T {
 
     fn parent_draw_page(&self, context: &PrintContext, page_nr: i32) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkPrintOperationClass;
             if let Some(f) = (*parent_class).draw_page {
                 f(
@@ -169,7 +151,7 @@ impl<T: PrintOperationImpl> PrintOperationImplExt for T {
 
     fn parent_end_print(&self, context: &PrintContext) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkPrintOperationClass;
             if let Some(f) = (*parent_class).end_print {
                 f(
@@ -183,9 +165,10 @@ impl<T: PrintOperationImpl> PrintOperationImplExt for T {
         }
     }
 
+    // Returns true if pagination is complete
     fn parent_paginate(&self, context: &PrintContext) -> bool {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkPrintOperationClass;
             if let Some(f) = (*parent_class).paginate {
                 from_glib(f(
@@ -202,6 +185,7 @@ impl<T: PrintOperationImpl> PrintOperationImplExt for T {
         }
     }
 
+    // true if the listener wants to take over control of the preview.
     fn parent_preview(
         &self,
         preview: &PrintOperationPreview,
@@ -209,7 +193,7 @@ impl<T: PrintOperationImpl> PrintOperationImplExt for T {
         parent: Option<&Window>,
     ) -> bool {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkPrintOperationClass;
             if let Some(f) = (*parent_class).preview {
                 from_glib(f(
@@ -230,7 +214,7 @@ impl<T: PrintOperationImpl> PrintOperationImplExt for T {
 
     fn parent_request_page_setup(&self, context: &PrintContext, page_nr: i32, setup: &PageSetup) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkPrintOperationClass;
             if let Some(f) = (*parent_class).request_page_setup {
                 f(
@@ -248,7 +232,7 @@ impl<T: PrintOperationImpl> PrintOperationImplExt for T {
 
     fn parent_status_changed(&self) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkPrintOperationClass;
             if let Some(f) = (*parent_class).status_changed {
                 f(self
@@ -267,7 +251,7 @@ impl<T: PrintOperationImpl> PrintOperationImplExt for T {
         settings: &PrintSettings,
     ) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkPrintOperationClass;
             if let Some(f) = (*parent_class).update_custom_widget {
                 f(
@@ -283,6 +267,8 @@ impl<T: PrintOperationImpl> PrintOperationImplExt for T {
         }
     }
 }
+
+impl<T: PrintOperationImpl> PrintOperationImplExt for T {}
 
 unsafe impl<T: PrintOperationImpl> IsSubclassable<T> for PrintOperation {
     fn class_init(class: &mut glib::Class<Self>) {

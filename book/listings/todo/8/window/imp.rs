@@ -1,17 +1,13 @@
 use std::cell::RefCell;
 use std::fs::File;
 
-use adw::prelude::*;
 use adw::subclass::prelude::*;
-use adw::Leaflet;
+use adw::{prelude::*, NavigationSplitView};
 use gio::Settings;
-use glib::signal::Inhibit;
 use glib::subclass::InitializingObject;
 use gtk::glib::SignalHandlerId;
-use gtk::{
-    gio, glib, Button, CompositeTemplate, Entry, FilterListModel, ListBox, Stack,
-};
-use once_cell::sync::OnceCell;
+use gtk::{gio, glib, CompositeTemplate, Entry, FilterListModel, ListBox, Stack};
+use std::cell::OnceCell;
 
 use crate::collection_object::{CollectionData, CollectionObject};
 use crate::utils::data_path;
@@ -30,11 +26,9 @@ pub struct Window {
     #[template_child]
     pub collections_list: TemplateChild<ListBox>,
     #[template_child]
-    pub leaflet: TemplateChild<Leaflet>,
+    pub split_view: TemplateChild<NavigationSplitView>,
     #[template_child]
     pub stack: TemplateChild<Stack>,
-    #[template_child]
-    pub back_button: TemplateChild<Button>,
     pub collections: OnceCell<gio::ListStore>,
     pub current_collection: RefCell<Option<CollectionObject>>,
     pub current_filter_model: RefCell<Option<FilterListModel>>,
@@ -42,6 +36,7 @@ pub struct Window {
 }
 // ANCHOR_END: struct
 
+// ANCHOR: object_subclass
 // The central trait for subclassing a GObject
 #[glib::object_subclass]
 impl ObjectSubclass for Window {
@@ -52,12 +47,27 @@ impl ObjectSubclass for Window {
 
     fn class_init(klass: &mut Self::Class) {
         klass.bind_template();
+
+        // Create action to remove done tasks and add to action group "win"
+        klass.install_action("win.remove-done-tasks", None, |window, _, _| {
+            window.remove_done_tasks();
+        });
+
+        // Create async action to create new collection and add to action group "win"
+        klass.install_action_async(
+            "win.new-collection",
+            None,
+            |window, _, _| async move {
+                window.new_collection().await;
+            },
+        );
     }
 
     fn instance_init(obj: &InitializingObject<Self>) {
         obj.init_template();
     }
 }
+// ANCHOR_END: object_subclass
 
 // ANCHOR: object_impl
 // Trait shared by all GObjects
@@ -83,15 +93,14 @@ impl WidgetImpl for Window {}
 // ANCHOR: window_impl
 // Trait shared by all windows
 impl WindowImpl for Window {
-    fn close_request(&self) -> Inhibit {
+    fn close_request(&self) -> glib::Propagation {
         // Store task data in vector
         let backup_data: Vec<CollectionData> = self
             .obj()
             .collections()
-            .snapshot()
-            .iter()
-            .filter_map(Cast::downcast_ref::<CollectionObject>)
-            .map(CollectionObject::to_collection_data)
+            .iter::<CollectionObject>()
+            .filter_map(|collection_object| collection_object.ok())
+            .map(|collection_object| collection_object.to_collection_data())
             .collect();
 
         // Save state to file

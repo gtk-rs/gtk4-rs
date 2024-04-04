@@ -4,7 +4,6 @@
 
 use crate::Renderer;
 use glib::{prelude::*, translate::*};
-use std::fmt;
 
 glib::wrapper! {
     #[doc(alias = "GskCairoRenderer")]
@@ -26,11 +25,5 @@ impl CairoRenderer {
 impl Default for CairoRenderer {
     fn default() -> Self {
         Self::new()
-    }
-}
-
-impl fmt::Display for CairoRenderer {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("CairoRenderer")
     }
 }

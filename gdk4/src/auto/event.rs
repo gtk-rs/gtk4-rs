@@ -6,8 +6,7 @@ use crate::{
     AxisUse, Device, DeviceTool, Display, EventSequence, EventType, ModifierType, Seat, Surface,
     TimeCoord,
 };
-use glib::translate::*;
-use std::{fmt, mem, ptr};
+use glib::{prelude::*, translate::*};
 
 glib::wrapper! {
     #[doc(alias = "GdkEvent")]
@@ -19,7 +18,7 @@ glib::wrapper! {
     }
 }
 
-impl glib::StaticType for Event {
+impl StaticType for Event {
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gdk_event_get_type()) }
     }
@@ -32,8 +31,8 @@ impl Event {
     #[doc(alias = "get_axes")]
     pub fn axes(&self) -> Option<Vec<f64>> {
         unsafe {
-            let mut axes = ptr::null_mut();
-            let mut n_axes = mem::MaybeUninit::uninit();
+            let mut axes = std::ptr::null_mut();
+            let mut n_axes = std::mem::MaybeUninit::uninit();
             let ret = from_glib(ffi::gdk_event_get_axes(
                 self.as_ref().to_glib_none().0,
                 &mut axes,
@@ -54,7 +53,7 @@ impl Event {
     #[doc(alias = "get_axis")]
     pub fn axis(&self, axis_use: AxisUse) -> Option<f64> {
         unsafe {
-            let mut value = mem::MaybeUninit::uninit();
+            let mut value = std::mem::MaybeUninit::uninit();
             let ret = from_glib(ffi::gdk_event_get_axis(
                 self.as_ref().to_glib_none().0,
                 axis_use.into_glib(),
@@ -114,7 +113,7 @@ impl Event {
     #[doc(alias = "get_history")]
     pub fn history(&self) -> Vec<TimeCoord> {
         unsafe {
-            let mut out_n_coords = mem::MaybeUninit::uninit();
+            let mut out_n_coords = std::mem::MaybeUninit::uninit();
             let ret = FromGlibContainer::from_glib_container_num(
                 ffi::gdk_event_get_history(
                     self.as_ref().to_glib_none().0,
@@ -150,8 +149,8 @@ impl Event {
     #[doc(alias = "get_position")]
     pub fn position(&self) -> Option<(f64, f64)> {
         unsafe {
-            let mut x = mem::MaybeUninit::uninit();
-            let mut y = mem::MaybeUninit::uninit();
+            let mut x = std::mem::MaybeUninit::uninit();
+            let mut y = std::mem::MaybeUninit::uninit();
             let ret = from_glib(ffi::gdk_event_get_position(
                 self.as_ref().to_glib_none().0,
                 x.as_mut_ptr(),
@@ -190,11 +189,5 @@ impl Event {
                 self.as_ref().to_glib_none().0,
             ))
         }
-    }
-}
-
-impl fmt::Display for Event {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("Event")
     }
 }

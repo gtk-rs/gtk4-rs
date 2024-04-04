@@ -8,7 +8,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GtkIconTheme")]
@@ -93,8 +93,8 @@ impl IconTheme {
         unsafe { from_glib_full(ffi::gtk_icon_theme_get_theme_name(self.to_glib_none().0)) }
     }
 
-    #[cfg(any(feature = "v4_2", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_2")))]
+    #[cfg(feature = "v4_2")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_2")))]
     #[doc(alias = "gtk_icon_theme_has_gicon")]
     pub fn has_gicon(&self, gicon: &impl IsA<gio::Icon>) -> bool {
         unsafe {
@@ -181,7 +181,7 @@ impl IconTheme {
     }
 
     pub fn set_display<P: IsA<gdk::Display>>(&self, display: Option<&P>) {
-        glib::ObjectExt::set_property(self, "display", display)
+        ObjectExt::set_property(self, "display", display)
     }
 
     #[doc(alias = "gtk_icon_theme_get_for_display")]
@@ -209,7 +209,7 @@ impl IconTheme {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"changed\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     changed_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -232,7 +232,7 @@ impl IconTheme {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::display\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_display_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -255,7 +255,7 @@ impl IconTheme {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::icon-names\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_icon_names_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -278,7 +278,7 @@ impl IconTheme {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::resource-path\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_resource_path_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -301,7 +301,7 @@ impl IconTheme {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::search-path\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_search_path_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -324,7 +324,7 @@ impl IconTheme {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::theme-name\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_theme_name_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -384,11 +384,5 @@ impl IconThemeBuilder {
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> IconTheme {
         self.builder.build()
-    }
-}
-
-impl fmt::Display for IconTheme {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("IconTheme")
     }
 }

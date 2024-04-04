@@ -1,9 +1,8 @@
 mod imp;
 
+use gtk::{gdk, glib, graphene, prelude::*, subclass::prelude::*};
+
 use crate::{Explosion, ExplosionParameters};
-use glib::subclass::prelude::*;
-use gtk::prelude::*;
-use gtk::{gdk, glib, graphene};
 
 glib::wrapper! {
     pub struct AnimatedExplosion(ObjectSubclass<imp::AnimatedExplosion>);
@@ -23,8 +22,8 @@ impl AnimatedExplosion {
         imp.lastupdate.replace(time);
         imp.duration.replace(duration);
     }
-    // Returns glib::source::Continue(false) if the animation is finished
-    pub(super) fn update(&self, clock: &gdk::FrameClock) -> Continue {
+    // Returns glib::ControlFlow::Break if the animation is finished
+    pub(super) fn update(&self, clock: &gdk::FrameClock) -> glib::ControlFlow {
         let imp = self.imp();
 
         // Time tracking to correctly update the physics simulation.
@@ -41,7 +40,7 @@ impl AnimatedExplosion {
         if !imp.finished.get() && time - imp.start.get() >= imp.duration.get() {
             imp.finished.replace(true);
         }
-        Continue(!imp.finished.get())
+        glib::ControlFlow::from(!imp.finished.get())
     }
 
     pub(super) fn draw(&self, snapshot: &gtk::Snapshot) {

@@ -1,10 +1,12 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
 // rustdoc-stripper-ignore-next
-//! Traits intended for implementing the [`AccessibleRange`](crate::AccessibleRange) interface.
+//! Traits intended for implementing the
+//! [`AccessibleRange`](crate::AccessibleRange) interface.
+
+use glib::translate::*;
 
 use crate::{prelude::*, subclass::prelude::*, AccessibleRange};
-use glib::translate::*;
 
 pub trait AccessibleRangeImpl: WidgetImpl {
     fn set_current_value(&self, accessible_range: &Self::Type, value: f64) -> bool {
@@ -12,11 +14,13 @@ pub trait AccessibleRangeImpl: WidgetImpl {
     }
 }
 
-pub trait AccessibleRangeImplExt: ObjectSubclass {
-    fn parent_set_current_value(&self, accessible_range: &Self::Type, value: f64) -> bool;
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::AccessibleRangeImplExt> Sealed for T {}
 }
 
-impl<T: AccessibleRangeImpl> AccessibleRangeImplExt for T {
+pub trait AccessibleRangeImplExt: sealed::Sealed + ObjectSubclass {
+    // Returns true if the operation was performed, false otherwise
     fn parent_set_current_value(&self, accessible_range: &Self::Type, value: f64) -> bool {
         unsafe {
             let type_data = Self::type_data();
@@ -37,6 +41,8 @@ impl<T: AccessibleRangeImpl> AccessibleRangeImplExt for T {
         }
     }
 }
+
+impl<T: AccessibleRangeImpl> AccessibleRangeImplExt for T {}
 
 unsafe impl<T: AccessibleRangeImpl> IsImplementable<T> for AccessibleRange {
     fn interface_init(iface: &mut glib::Interface<Self>) {

@@ -1,7 +1,8 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
+use glib::translate::*;
+
 use crate::Transform;
-use glib::{translate::*, IntoGStr};
 
 impl Transform {
     #[doc(alias = "gsk_transform_parse")]
@@ -42,7 +43,7 @@ impl Transform {
         unsafe {
             let res: Option<Self> =
                 from_glib_full(ffi::gsk_transform_rotate(self.into_glib_ptr(), angle));
-            res.unwrap_or_else(Self::new)
+            res.unwrap_or_default()
         }
     }
 
@@ -55,7 +56,7 @@ impl Transform {
                 angle,
                 axis.to_glib_none().0,
             ));
-            res.unwrap_or_else(Self::new)
+            res.unwrap_or_default()
         }
     }
 
@@ -68,7 +69,7 @@ impl Transform {
                 factor_x,
                 factor_y,
             ));
-            res.unwrap_or_else(Self::new)
+            res.unwrap_or_default()
         }
     }
 
@@ -82,12 +83,12 @@ impl Transform {
                 factor_y,
                 factor_z,
             ));
-            res.unwrap_or_else(Self::new)
+            res.unwrap_or_default()
         }
     }
 
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[cfg(feature = "v4_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     #[doc(alias = "gsk_transform_skew")]
     #[must_use]
     pub fn skew(self, skew_x: f32, skew_y: f32) -> Self {
@@ -97,7 +98,7 @@ impl Transform {
                 skew_x,
                 skew_y,
             ));
-            res.unwrap_or_else(Self::new)
+            res.unwrap_or_default()
         }
     }
 
@@ -109,7 +110,7 @@ impl Transform {
                 self.into_glib_ptr(),
                 other.to_glib_none().0,
             ));
-            res.unwrap_or_else(Self::new)
+            res.unwrap_or_default()
         }
     }
 
@@ -121,7 +122,7 @@ impl Transform {
                 self.into_glib_ptr(),
                 point.to_glib_none().0,
             ));
-            res.unwrap_or_else(Self::new)
+            res.unwrap_or_default()
         }
     }
 
@@ -133,7 +134,7 @@ impl Transform {
                 self.into_glib_ptr(),
                 point.to_glib_none().0,
             ));
-            res.unwrap_or_else(Self::new)
+            res.unwrap_or_default()
         }
     }
 }

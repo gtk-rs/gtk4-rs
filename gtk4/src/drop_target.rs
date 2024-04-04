@@ -1,13 +1,15 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{prelude::*, DropTarget};
+use std::{boxed::Box as Box_, mem::transmute};
+
 use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
     value::FromValue,
     Slice, Type,
 };
-use std::{boxed::Box as Box_, mem::transmute};
+
+use crate::{prelude::*, DropTarget};
 
 impl DropTarget {
     #[doc(alias = "gtk_drop_target_set_gtypes")]
@@ -25,7 +27,8 @@ impl DropTarget {
     #[doc(alias = "gtk_drop_target_get_value")]
     #[doc(alias = "get_value")]
     // rustdoc-stripper-ignore-next
-    /// Similar to [`Self::value`] but panics if the value is of a different type.
+    /// Similar to [`Self::value`] but panics if the value is of a different
+    /// type.
     pub fn value_as<V: for<'b> FromValue<'b> + 'static>(&self) -> Option<V> {
         self.value().map(|v| {
             v.get_owned::<V>()
@@ -45,6 +48,7 @@ impl DropTarget {
         }
     }
 
+    // Returns true if the drop was accepted
     pub fn connect_drop<F: Fn(&DropTarget, &glib::Value, f64, f64) -> bool + 'static>(
         &self,
         f: F,

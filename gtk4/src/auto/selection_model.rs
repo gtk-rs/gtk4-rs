@@ -8,7 +8,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GtkSelectionModel")]
@@ -23,47 +23,14 @@ impl SelectionModel {
     pub const NONE: Option<&'static SelectionModel> = None;
 }
 
-pub trait SelectionModelExt: 'static {
-    #[doc(alias = "gtk_selection_model_get_selection")]
-    #[doc(alias = "get_selection")]
-    fn selection(&self) -> Bitset;
-
-    #[doc(alias = "gtk_selection_model_get_selection_in_range")]
-    #[doc(alias = "get_selection_in_range")]
-    fn selection_in_range(&self, position: u32, n_items: u32) -> Bitset;
-
-    #[doc(alias = "gtk_selection_model_is_selected")]
-    fn is_selected(&self, position: u32) -> bool;
-
-    #[doc(alias = "gtk_selection_model_select_all")]
-    fn select_all(&self) -> bool;
-
-    #[doc(alias = "gtk_selection_model_select_item")]
-    fn select_item(&self, position: u32, unselect_rest: bool) -> bool;
-
-    #[doc(alias = "gtk_selection_model_select_range")]
-    fn select_range(&self, position: u32, n_items: u32, unselect_rest: bool) -> bool;
-
-    #[doc(alias = "gtk_selection_model_selection_changed")]
-    fn selection_changed(&self, position: u32, n_items: u32);
-
-    #[doc(alias = "gtk_selection_model_set_selection")]
-    fn set_selection(&self, selected: &Bitset, mask: &Bitset) -> bool;
-
-    #[doc(alias = "gtk_selection_model_unselect_all")]
-    fn unselect_all(&self) -> bool;
-
-    #[doc(alias = "gtk_selection_model_unselect_item")]
-    fn unselect_item(&self, position: u32) -> bool;
-
-    #[doc(alias = "gtk_selection_model_unselect_range")]
-    fn unselect_range(&self, position: u32, n_items: u32) -> bool;
-
-    #[doc(alias = "selection-changed")]
-    fn connect_selection_changed<F: Fn(&Self, u32, u32) + 'static>(&self, f: F) -> SignalHandlerId;
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::SelectionModel>> Sealed for T {}
 }
 
-impl<O: IsA<SelectionModel>> SelectionModelExt for O {
+pub trait SelectionModelExt: IsA<SelectionModel> + sealed::Sealed + 'static {
+    #[doc(alias = "gtk_selection_model_get_selection")]
+    #[doc(alias = "get_selection")]
     fn selection(&self) -> Bitset {
         unsafe {
             from_glib_full(ffi::gtk_selection_model_get_selection(
@@ -72,6 +39,8 @@ impl<O: IsA<SelectionModel>> SelectionModelExt for O {
         }
     }
 
+    #[doc(alias = "gtk_selection_model_get_selection_in_range")]
+    #[doc(alias = "get_selection_in_range")]
     fn selection_in_range(&self, position: u32, n_items: u32) -> Bitset {
         unsafe {
             from_glib_full(ffi::gtk_selection_model_get_selection_in_range(
@@ -82,6 +51,7 @@ impl<O: IsA<SelectionModel>> SelectionModelExt for O {
         }
     }
 
+    #[doc(alias = "gtk_selection_model_is_selected")]
     fn is_selected(&self, position: u32) -> bool {
         unsafe {
             from_glib(ffi::gtk_selection_model_is_selected(
@@ -91,6 +61,7 @@ impl<O: IsA<SelectionModel>> SelectionModelExt for O {
         }
     }
 
+    #[doc(alias = "gtk_selection_model_select_all")]
     fn select_all(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_selection_model_select_all(
@@ -99,6 +70,7 @@ impl<O: IsA<SelectionModel>> SelectionModelExt for O {
         }
     }
 
+    #[doc(alias = "gtk_selection_model_select_item")]
     fn select_item(&self, position: u32, unselect_rest: bool) -> bool {
         unsafe {
             from_glib(ffi::gtk_selection_model_select_item(
@@ -109,6 +81,7 @@ impl<O: IsA<SelectionModel>> SelectionModelExt for O {
         }
     }
 
+    #[doc(alias = "gtk_selection_model_select_range")]
     fn select_range(&self, position: u32, n_items: u32, unselect_rest: bool) -> bool {
         unsafe {
             from_glib(ffi::gtk_selection_model_select_range(
@@ -120,6 +93,7 @@ impl<O: IsA<SelectionModel>> SelectionModelExt for O {
         }
     }
 
+    #[doc(alias = "gtk_selection_model_selection_changed")]
     fn selection_changed(&self, position: u32, n_items: u32) {
         unsafe {
             ffi::gtk_selection_model_selection_changed(
@@ -130,6 +104,7 @@ impl<O: IsA<SelectionModel>> SelectionModelExt for O {
         }
     }
 
+    #[doc(alias = "gtk_selection_model_set_selection")]
     fn set_selection(&self, selected: &Bitset, mask: &Bitset) -> bool {
         unsafe {
             from_glib(ffi::gtk_selection_model_set_selection(
@@ -140,6 +115,7 @@ impl<O: IsA<SelectionModel>> SelectionModelExt for O {
         }
     }
 
+    #[doc(alias = "gtk_selection_model_unselect_all")]
     fn unselect_all(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_selection_model_unselect_all(
@@ -148,6 +124,7 @@ impl<O: IsA<SelectionModel>> SelectionModelExt for O {
         }
     }
 
+    #[doc(alias = "gtk_selection_model_unselect_item")]
     fn unselect_item(&self, position: u32) -> bool {
         unsafe {
             from_glib(ffi::gtk_selection_model_unselect_item(
@@ -157,6 +134,7 @@ impl<O: IsA<SelectionModel>> SelectionModelExt for O {
         }
     }
 
+    #[doc(alias = "gtk_selection_model_unselect_range")]
     fn unselect_range(&self, position: u32, n_items: u32) -> bool {
         unsafe {
             from_glib(ffi::gtk_selection_model_unselect_range(
@@ -167,6 +145,7 @@ impl<O: IsA<SelectionModel>> SelectionModelExt for O {
         }
     }
 
+    #[doc(alias = "selection-changed")]
     fn connect_selection_changed<F: Fn(&Self, u32, u32) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn selection_changed_trampoline<
             P: IsA<SelectionModel>,
@@ -189,7 +168,7 @@ impl<O: IsA<SelectionModel>> SelectionModelExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"selection-changed\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     selection_changed_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -198,8 +177,4 @@ impl<O: IsA<SelectionModel>> SelectionModelExt for O {
     }
 }
 
-impl fmt::Display for SelectionModel {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("SelectionModel")
-    }
-}
+impl<O: IsA<SelectionModel>> SelectionModelExt for O {}

@@ -1,40 +1,29 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{prelude::*, TextBuffer, TextIter, TextTag};
+use std::{boxed::Box as Box_, mem::transmute, slice, str};
+
 use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
 use libc::{c_char, c_int};
-use std::{boxed::Box as Box_, mem::transmute, slice, str};
+
+use crate::{prelude::*, TextBuffer, TextIter, TextTag};
+
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::TextBuffer>> Sealed for T {}
+}
 
 // rustdoc-stripper-ignore-next
-/// Trait containing manually implemented methods of [`TextBuffer`](crate::TextBuffer).
-pub trait TextBufferExtManual: 'static {
+/// Trait containing manually implemented methods of
+/// [`TextBuffer`](crate::TextBuffer).
+pub trait TextBufferExtManual: sealed::Sealed + IsA<TextBuffer> + 'static {
     // rustdoc-stripper-ignore-next
     /// # Panics
     ///
     /// If the properties don't exists or are not writeable.
     #[doc(alias = "gtk_text_buffer_create_tag")]
-    fn create_tag(
-        &self,
-        tag_name: Option<&str>,
-        properties: &[(&str, &dyn ToValue)],
-    ) -> Option<TextTag>;
-
-    #[doc(alias = "gtk_text_buffer_insert_with_tags")]
-    fn insert_with_tags(&self, iter: &mut TextIter, text: &str, tags: &[&TextTag]);
-
-    #[doc(alias = "gtk_text_buffer_insert_with_tags_by_name")]
-    fn insert_with_tags_by_name(&self, iter: &mut TextIter, text: &str, tags_names: &[&str]);
-
-    fn connect_insert_text<F: Fn(&Self, &mut TextIter, &str) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-}
-
-impl<O: IsA<TextBuffer>> TextBufferExtManual for O {
     fn create_tag(
         &self,
         tag_name: Option<&str>,
@@ -49,6 +38,7 @@ impl<O: IsA<TextBuffer>> TextBufferExtManual for O {
         }
     }
 
+    #[doc(alias = "gtk_text_buffer_insert_with_tags")]
     fn insert_with_tags(&self, iter: &mut TextIter, text: &str, tags: &[&TextTag]) {
         let start_offset = iter.offset();
         self.as_ref().insert(iter, text);
@@ -58,6 +48,7 @@ impl<O: IsA<TextBuffer>> TextBufferExtManual for O {
         });
     }
 
+    #[doc(alias = "gtk_text_buffer_insert_with_tags_by_name")]
     fn insert_with_tags_by_name(&self, iter: &mut TextIter, text: &str, tags_names: &[&str]) {
         let start_offset = iter.offset();
         self.as_ref().insert(iter, text);
@@ -111,5 +102,15 @@ impl<O: IsA<TextBuffer>> TextBufferExtManual for O {
                 Box_::into_raw(f),
             )
         }
+    }
+}
+
+impl<O: IsA<TextBuffer>> TextBufferExtManual for O {}
+
+impl std::fmt::Write for TextBuffer {
+    fn write_str(&mut self, s: &str) -> std::fmt::Result {
+        let mut iter = self.end_iter();
+        self.insert(&mut iter, s);
+        Ok(())
     }
 }

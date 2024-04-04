@@ -1,5 +1,6 @@
-use crate::base_button::*;
 use gtk::{gio, glib, prelude::*, subclass::prelude::*};
+
+use crate::base_button::*;
 
 #[derive(Debug, Default)]
 pub struct DerivedButton {}
@@ -17,7 +18,8 @@ impl ButtonImpl for DerivedButton {}
 
 /// Implement the base trait and override the functions
 impl BaseButtonImpl for DerivedButton {
-    fn sync_method(&self, obj: &BaseButton, extra_text: Option<String>) {
+    fn sync_method(&self, extra_text: Option<&str>) {
+        let obj = self.obj();
         if let Some(text) = extra_text {
             obj.set_label(&format!("DerivedButton sync {text}"));
         } else {
@@ -25,10 +27,10 @@ impl BaseButtonImpl for DerivedButton {
         }
     }
 
-    fn async_method(&self, obj: &BaseButton) -> PinnedFuture {
-        let obj_cloned = obj.clone();
-        Box::pin(gio::GioFuture::new(obj, move |_, _, send| {
-            obj_cloned.set_label("DerivedButton async");
+    fn async_method(&self) -> PinnedFuture<Result<(), glib::Error>> {
+        let obj = self.obj();
+        Box::pin(gio::GioFuture::new(&*obj, |obj, _, send| {
+            obj.set_label("DerivedButton async");
             send.resolve(Ok(()));
         }))
     }

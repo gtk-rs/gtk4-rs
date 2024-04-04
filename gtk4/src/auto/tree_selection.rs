@@ -9,7 +9,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute, ptr};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GtkTreeSelection")]
@@ -42,7 +42,7 @@ impl TreeSelection {
     #[doc(alias = "get_selected")]
     pub fn selected(&self) -> Option<(TreeModel, TreeIter)> {
         unsafe {
-            let mut model = ptr::null_mut();
+            let mut model = std::ptr::null_mut();
             let mut iter = TreeIter::uninitialized();
             let ret = from_glib(ffi::gtk_tree_selection_get_selected(
                 self.to_glib_none().0,
@@ -63,7 +63,7 @@ impl TreeSelection {
     #[doc(alias = "get_selected_rows")]
     pub fn selected_rows(&self) -> (Vec<TreePath>, TreeModel) {
         unsafe {
-            let mut model = ptr::null_mut();
+            let mut model = std::ptr::null_mut();
             let ret = FromGlibPtrContainer::from_glib_full(
                 ffi::gtk_tree_selection_get_selected_rows(self.to_glib_none().0, &mut model),
             );
@@ -163,7 +163,7 @@ impl TreeSelection {
             let model = from_glib_borrow(model);
             let path = from_glib_borrow(path);
             let iter = from_glib_borrow(iter);
-            let callback: *mut P = data as *const _ as usize as *mut P;
+            let callback = data as *mut P;
             (*callback)(&model, &path, &iter)
         }
         let func = Some(func_func::<P> as _);
@@ -172,7 +172,7 @@ impl TreeSelection {
             ffi::gtk_tree_selection_selected_foreach(
                 self.to_glib_none().0,
                 func,
-                super_callback0 as *const _ as usize as *mut _,
+                super_callback0 as *const _ as *mut _,
             );
         }
     }
@@ -209,7 +209,7 @@ impl TreeSelection {
             let model = from_glib_borrow(model);
             let path = from_glib_borrow(path);
             let path_currently_selected = from_glib(path_currently_selected);
-            let callback: &P = &*(data as *mut _);
+            let callback = &*(data as *mut P);
             (*callback)(&selection, &model, &path, path_currently_selected).into_glib()
         }
         let func = Some(func_func::<P> as _);
@@ -218,7 +218,7 @@ impl TreeSelection {
         >(
             data: glib::ffi::gpointer,
         ) {
-            let _callback: Box_<P> = Box_::from_raw(data as *mut _);
+            let _callback = Box_::from_raw(data as *mut P);
         }
         let destroy_call3 = Some(destroy_func::<P> as _);
         let super_callback0: Box_<P> = func_data;
@@ -292,7 +292,7 @@ impl TreeSelection {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"changed\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     changed_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -315,17 +315,11 @@ impl TreeSelection {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::mode\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_mode_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
         }
-    }
-}
-
-impl fmt::Display for TreeSelection {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("TreeSelection")
     }
 }

@@ -3,8 +3,7 @@
 // DO NOT EDIT
 
 use crate::{RenderNode, Shadow};
-use glib::translate::*;
-use std::fmt;
+use glib::{prelude::*, translate::*};
 
 glib::wrapper! {
     #[doc(alias = "GskShadowNode")]
@@ -16,7 +15,7 @@ glib::wrapper! {
     }
 }
 
-impl glib::StaticType for ShadowNode {
+impl StaticType for ShadowNode {
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gsk_shadow_node_get_type()) }
     }
@@ -46,11 +45,5 @@ impl ShadowNode {
     #[doc(alias = "get_n_shadows")]
     pub fn n_shadows(&self) -> usize {
         unsafe { ffi::gsk_shadow_node_get_n_shadows(self.to_glib_none().0) }
-    }
-}
-
-impl fmt::Display for ShadowNode {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("ShadowNode")
     }
 }

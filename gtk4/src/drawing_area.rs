@@ -1,23 +1,22 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{prelude::*, DrawingArea};
-use glib::translate::*;
 use std::{cell::RefCell, ptr};
 
+use glib::translate::*;
+
+use crate::{prelude::*, DrawingArea};
+
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::DrawingArea>> Sealed for T {}
+}
+
 // rustdoc-stripper-ignore-next
-/// Trait containing manually implemented methods of [`DrawingArea`](crate::DrawingArea).
-pub trait DrawingAreaExtManual: 'static {
+/// Trait containing manually implemented methods of
+/// [`DrawingArea`](crate::DrawingArea).
+pub trait DrawingAreaExtManual: sealed::Sealed + IsA<DrawingArea> + 'static {
     #[doc(alias = "gtk_drawing_area_set_draw_func")]
     #[doc(alias = "set_draw_func")]
-    fn unset_draw_func(&self);
-
-    #[doc(alias = "gtk_drawing_area_set_draw_func")]
-    fn set_draw_func<P: FnMut(&DrawingArea, &cairo::Context, i32, i32) + 'static>(
-        &self,
-        draw_func: P,
-    );
-}
-impl<O: IsA<DrawingArea>> DrawingAreaExtManual for O {
     fn unset_draw_func(&self) {
         unsafe {
             ffi::gtk_drawing_area_set_draw_func(
@@ -29,6 +28,7 @@ impl<O: IsA<DrawingArea>> DrawingAreaExtManual for O {
         }
     }
 
+    #[doc(alias = "gtk_drawing_area_set_draw_func")]
     fn set_draw_func<P: FnMut(&DrawingArea, &cairo::Context, i32, i32) + 'static>(
         &self,
         draw_func: P,
@@ -67,3 +67,4 @@ impl<O: IsA<DrawingArea>> DrawingAreaExtManual for O {
         }
     }
 }
+impl<O: IsA<DrawingArea>> DrawingAreaExtManual for O {}

@@ -20,12 +20,12 @@ fn build_ui(app: &Application) {
     // Create the switch
     let switch = Switch::new();
 
-    // Set and then immediately obtain state
-    switch.set_state(true);
-    let current_state = switch.state();
+    // Set and then immediately obtain active property
+    switch.set_active(true);
+    let switch_active = switch.is_active();
 
-    // This prints: "The current state is true"
-    println!("The current state is {}", current_state);
+    // This prints: "The active property of switch is true"
+    println!("The active property of switch is {}", switch_active);
     // ANCHOR_END: switch
 
     // Set up box

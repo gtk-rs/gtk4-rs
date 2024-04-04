@@ -3,9 +3,11 @@
 // rustdoc-stripper-ignore-next
 //! Traits intended for subclassing [`CellAreaContext`](crate::CellAreaContext).
 
-use crate::{prelude::*, subclass::prelude::*, CellAreaContext};
-use glib::translate::*;
 use std::mem::MaybeUninit;
+
+use glib::translate::*;
+
+use crate::{prelude::*, subclass::prelude::*, CellAreaContext};
 
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 #[allow(deprecated)]
@@ -27,19 +29,17 @@ pub trait CellAreaContextImpl: CellAreaContextImplExt + ObjectImpl {
     }
 }
 
-#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-#[allow(deprecated)]
-pub trait CellAreaContextImplExt: ObjectSubclass {
-    fn parent_reset(&self);
-    fn parent_preferred_height_for_width(&self, width: i32) -> (i32, i32);
-    fn parent_preferred_width_for_height(&self, height: i32) -> (i32, i32);
-    fn parent_allocate(&self, width: i32, height: i32);
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::CellAreaContextImplExt> Sealed for T {}
 }
 
-impl<T: CellAreaContextImpl> CellAreaContextImplExt for T {
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+#[allow(deprecated)]
+pub trait CellAreaContextImplExt: sealed::Sealed + ObjectSubclass {
     fn parent_reset(&self) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkCellAreaContextClass;
             if let Some(f) = (*parent_class).reset {
                 f(self
@@ -53,7 +53,7 @@ impl<T: CellAreaContextImpl> CellAreaContextImplExt for T {
 
     fn parent_preferred_height_for_width(&self, width: i32) -> (i32, i32) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkCellAreaContextClass;
             if let Some(f) = (*parent_class).get_preferred_height_for_width {
                 let mut minimum_size = MaybeUninit::uninit();
@@ -76,7 +76,7 @@ impl<T: CellAreaContextImpl> CellAreaContextImplExt for T {
 
     fn parent_preferred_width_for_height(&self, height: i32) -> (i32, i32) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkCellAreaContextClass;
             if let Some(f) = (*parent_class).get_preferred_width_for_height {
                 let mut minimum_size = MaybeUninit::uninit();
@@ -99,7 +99,7 @@ impl<T: CellAreaContextImpl> CellAreaContextImplExt for T {
 
     fn parent_allocate(&self, width: i32, height: i32) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkCellAreaContextClass;
             if let Some(f) = (*parent_class).allocate {
                 f(
@@ -114,6 +114,8 @@ impl<T: CellAreaContextImpl> CellAreaContextImplExt for T {
         }
     }
 }
+
+impl<T: CellAreaContextImpl> CellAreaContextImplExt for T {}
 
 unsafe impl<T: CellAreaContextImpl> IsSubclassable<T> for CellAreaContext {
     fn class_init(class: &mut glib::Class<Self>) {

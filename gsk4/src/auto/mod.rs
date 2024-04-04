@@ -11,11 +11,11 @@ pub use self::blur_node::BlurNode;
 mod border_node;
 pub use self::border_node::BorderNode;
 
-#[cfg(any(feature = "broadway", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "broadway")))]
+#[cfg(feature = "broadway")]
+#[cfg_attr(docsrs, doc(cfg(feature = "broadway")))]
 mod broadway_renderer;
-#[cfg(any(feature = "broadway", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "broadway")))]
+#[cfg(feature = "broadway")]
+#[cfg_attr(docsrs, doc(cfg(feature = "broadway")))]
 pub use self::broadway_renderer::BroadwayRenderer;
 
 mod cairo_node;
@@ -45,6 +45,13 @@ pub use self::cross_fade_node::CrossFadeNode;
 mod debug_node;
 pub use self::debug_node::DebugNode;
 
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+mod fill_node;
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+pub use self::fill_node::FillNode;
+
 mod gl_renderer;
 pub use self::gl_renderer::GLRenderer;
 
@@ -60,11 +67,11 @@ pub use self::inset_shadow_node::InsetShadowNode;
 mod linear_gradient_node;
 pub use self::linear_gradient_node::LinearGradientNode;
 
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 mod mask_node;
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 pub use self::mask_node::MaskNode;
 
 mod opacity_node;
@@ -97,24 +104,73 @@ pub use self::rounded_clip_node::RoundedClipNode;
 mod shadow_node;
 pub use self::shadow_node::ShadowNode;
 
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+mod stroke_node;
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+pub use self::stroke_node::StrokeNode;
+
 mod text_node;
 pub use self::text_node::TextNode;
 
 mod texture_node;
 pub use self::texture_node::TextureNode;
 
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 mod texture_scale_node;
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 pub use self::texture_scale_node::TextureScaleNode;
 
 mod transform_node;
 pub use self::transform_node::TransformNode;
 
+#[cfg(feature = "vulkan")]
+#[cfg_attr(docsrs, doc(cfg(feature = "vulkan")))]
+mod vulkan_renderer;
+#[cfg(feature = "vulkan")]
+#[cfg_attr(docsrs, doc(cfg(feature = "vulkan")))]
+pub use self::vulkan_renderer::VulkanRenderer;
+
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+mod path;
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+pub use self::path::Path;
+
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+mod path_builder;
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+pub use self::path_builder::PathBuilder;
+
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+mod path_measure;
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+pub use self::path_measure::PathMeasure;
+
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+mod path_point;
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+pub use self::path_point::PathPoint;
+
 mod shader_args_builder;
 pub use self::shader_args_builder::ShaderArgsBuilder;
+
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+mod stroke;
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+pub use self::stroke::Stroke;
 
 mod transform;
 pub use self::transform::Transform;
@@ -122,20 +178,38 @@ pub use self::transform::Transform;
 mod enums;
 pub use self::enums::BlendMode;
 pub use self::enums::Corner;
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+pub use self::enums::FillRule;
 pub use self::enums::GLUniformType;
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+pub use self::enums::LineCap;
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+pub use self::enums::LineJoin;
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 pub use self::enums::MaskMode;
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+pub use self::enums::PathDirection;
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+pub use self::enums::PathOperation;
 pub use self::enums::RenderNodeType;
 pub use self::enums::ScalingFilter;
 pub use self::enums::SerializationError;
 pub use self::enums::TransformCategory;
 
-#[doc(hidden)]
-pub mod traits {
+mod flags;
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+pub use self::flags::PathForeachFlags;
+
+pub(crate) mod traits {
     pub use super::renderer::GskRendererExt;
 }
-#[doc(hidden)]
-pub mod builders {
+pub(crate) mod builders {
     pub use super::gl_shader::GLShaderBuilder;
 }

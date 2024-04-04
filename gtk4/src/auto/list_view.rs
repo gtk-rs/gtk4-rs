@@ -7,12 +7,15 @@ use crate::{
     ListBase, ListItemFactory, Orientable, Orientation, Overflow, Scrollable, ScrollablePolicy,
     SelectionModel, Widget,
 };
+#[cfg(feature = "v4_12")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+use crate::{ListScrollFlags, ListTabBehavior, ScrollInfo};
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GtkListView")]
@@ -63,6 +66,14 @@ impl ListView {
         unsafe { from_glib_none(ffi::gtk_list_view_get_factory(self.to_glib_none().0)) }
     }
 
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "gtk_list_view_get_header_factory")]
+    #[doc(alias = "get_header_factory")]
+    pub fn header_factory(&self) -> Option<ListItemFactory> {
+        unsafe { from_glib_none(ffi::gtk_list_view_get_header_factory(self.to_glib_none().0)) }
+    }
+
     #[doc(alias = "gtk_list_view_get_model")]
     #[doc(alias = "get_model")]
     pub fn model(&self) -> Option<SelectionModel> {
@@ -89,6 +100,28 @@ impl ListView {
         }
     }
 
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "gtk_list_view_get_tab_behavior")]
+    #[doc(alias = "get_tab_behavior")]
+    pub fn tab_behavior(&self) -> ListTabBehavior {
+        unsafe { from_glib(ffi::gtk_list_view_get_tab_behavior(self.to_glib_none().0)) }
+    }
+
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "gtk_list_view_scroll_to")]
+    pub fn scroll_to(&self, pos: u32, flags: ListScrollFlags, scroll: Option<ScrollInfo>) {
+        unsafe {
+            ffi::gtk_list_view_scroll_to(
+                self.to_glib_none().0,
+                pos,
+                flags.into_glib(),
+                scroll.into_glib_ptr(),
+            );
+        }
+    }
+
     #[doc(alias = "gtk_list_view_set_enable_rubberband")]
     pub fn set_enable_rubberband(&self, enable_rubberband: bool) {
         unsafe {
@@ -103,6 +136,18 @@ impl ListView {
     pub fn set_factory(&self, factory: Option<&impl IsA<ListItemFactory>>) {
         unsafe {
             ffi::gtk_list_view_set_factory(
+                self.to_glib_none().0,
+                factory.map(|p| p.as_ref()).to_glib_none().0,
+            );
+        }
+    }
+
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "gtk_list_view_set_header_factory")]
+    pub fn set_header_factory(&self, factory: Option<&impl IsA<ListItemFactory>>) {
+        unsafe {
+            ffi::gtk_list_view_set_header_factory(
                 self.to_glib_none().0,
                 factory.map(|p| p.as_ref()).to_glib_none().0,
             );
@@ -139,6 +184,15 @@ impl ListView {
         }
     }
 
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "gtk_list_view_set_tab_behavior")]
+    pub fn set_tab_behavior(&self, tab_behavior: ListTabBehavior) {
+        unsafe {
+            ffi::gtk_list_view_set_tab_behavior(self.to_glib_none().0, tab_behavior.into_glib());
+        }
+    }
+
     #[doc(alias = "activate")]
     pub fn connect_activate<F: Fn(&Self, u32) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn activate_trampoline<F: Fn(&ListView, u32) + 'static>(
@@ -154,7 +208,7 @@ impl ListView {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"activate\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     activate_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -180,7 +234,7 @@ impl ListView {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::enable-rubberband\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_enable_rubberband_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -203,8 +257,33 @@ impl ListView {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::factory\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_factory_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "header-factory")]
+    pub fn connect_header_factory_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_header_factory_trampoline<F: Fn(&ListView) + 'static>(
+            this: *mut ffi::GtkListView,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::header-factory\0".as_ptr() as *const _,
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                    notify_header_factory_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -226,7 +305,7 @@ impl ListView {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::model\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_model_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -249,7 +328,7 @@ impl ListView {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::show-separators\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_show_separators_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -275,8 +354,33 @@ impl ListView {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::single-click-activate\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_single_click_activate_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "tab-behavior")]
+    pub fn connect_tab_behavior_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_tab_behavior_trampoline<F: Fn(&ListView) + 'static>(
+            this: *mut ffi::GtkListView,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::tab-behavior\0".as_ptr() as *const _,
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                    notify_tab_behavior_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -320,6 +424,16 @@ impl ListViewBuilder {
         }
     }
 
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn header_factory(self, header_factory: &impl IsA<ListItemFactory>) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("header-factory", header_factory.clone().upcast()),
+        }
+    }
+
     pub fn model(self, model: &impl IsA<SelectionModel>) -> Self {
         Self {
             builder: self.builder.property("model", model.clone().upcast()),
@@ -337,6 +451,14 @@ impl ListViewBuilder {
             builder: self
                 .builder
                 .property("single-click-activate", single_click_activate),
+        }
+    }
+
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn tab_behavior(self, tab_behavior: ListTabBehavior) -> Self {
+        Self {
+            builder: self.builder.property("tab-behavior", tab_behavior),
         }
     }
 
@@ -563,11 +685,5 @@ impl ListViewBuilder {
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> ListView {
         self.builder.build()
-    }
-}
-
-impl fmt::Display for ListView {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("ListView")
     }
 }

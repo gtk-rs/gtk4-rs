@@ -3,14 +3,15 @@
 // rustdoc-stripper-ignore-next
 //! Traits intended for subclassing [`Widget`](crate::Widget).
 
+use std::{boxed::Box as Box_, collections::HashMap, fmt, future::Future};
+
+use glib::{subclass::SignalId, translate::*, GString, Variant};
+
 use crate::{
     prelude::*, subclass::prelude::*, AccessibleRole, BuilderRustScope, BuilderScope,
     DirectionType, LayoutManager, Orientation, Shortcut, SizeRequestMode, Snapshot, StateFlags,
     SystemSetting, TextDirection, Tooltip, Widget,
 };
-use glib::{subclass::SignalId, translate::*, GString, Variant};
-
-use std::{boxed::Box as Box_, collections::HashMap, fmt, future::Future};
 
 #[derive(Debug, Default)]
 struct Internal {
@@ -206,47 +207,15 @@ pub trait WidgetImpl: WidgetImplExt + ObjectImpl {
     }
 }
 
-pub trait WidgetImplExt: ObjectSubclass {
-    fn parent_compute_expand(&self, hexpand: &mut bool, vexpand: &mut bool);
-    fn parent_contains(&self, x: f64, y: f64) -> bool;
-    fn parent_direction_changed(&self, previous_direction: TextDirection);
-    fn parent_focus(&self, direction_type: DirectionType) -> bool;
-    fn parent_request_mode(&self) -> SizeRequestMode;
-    fn parent_grab_focus(&self) -> bool;
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    fn parent_hide(&self);
-    fn parent_keynav_failed(&self, direction_type: DirectionType) -> bool;
-    fn parent_map(&self);
-    fn parent_measure(&self, orientation: Orientation, for_size: i32) -> (i32, i32, i32, i32);
-    fn parent_mnemonic_activate(&self, group_cycling: bool) -> bool;
-    fn parent_move_focus(&self, direction_type: DirectionType);
-    fn parent_query_tooltip(
-        &self,
-        x: i32,
-        y: i32,
-        keyboard_tooltip: bool,
-        tooltip: &Tooltip,
-    ) -> bool;
-    fn parent_realize(&self);
-    fn parent_root(&self);
-    fn parent_set_focus_child(&self, child: Option<&Widget>);
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    fn parent_show(&self);
-    fn parent_size_allocate(&self, width: i32, height: i32, baseline: i32);
-    fn parent_snapshot(&self, snapshot: &Snapshot);
-    fn parent_state_flags_changed(&self, state_flags: &StateFlags);
-    fn parent_system_setting_changed(&self, settings: &SystemSetting);
-    fn parent_unmap(&self);
-    fn parent_unrealize(&self);
-    fn parent_unroot(&self);
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::WidgetImplExt> Sealed for T {}
 }
 
-impl<T: WidgetImpl> WidgetImplExt for T {
+pub trait WidgetImplExt: sealed::Sealed + ObjectSubclass {
     fn parent_compute_expand(&self, hexpand: &mut bool, vexpand: &mut bool) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkWidgetClass;
             if let Some(f) = (*parent_class).compute_expand {
                 let mut hexpand_glib = hexpand.into_glib();
@@ -262,9 +231,10 @@ impl<T: WidgetImpl> WidgetImplExt for T {
         }
     }
 
+    // true if the widget contains (x, y)
     fn parent_contains(&self, x: f64, y: f64) -> bool {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkWidgetClass;
             if let Some(f) = (*parent_class).contains {
                 from_glib(f(
@@ -280,7 +250,7 @@ impl<T: WidgetImpl> WidgetImplExt for T {
 
     fn parent_direction_changed(&self, previous_direction: TextDirection) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkWidgetClass;
             if let Some(f) = (*parent_class).direction_changed {
                 f(
@@ -291,9 +261,10 @@ impl<T: WidgetImpl> WidgetImplExt for T {
         }
     }
 
+    // Returns true if focus ended up inside widget
     fn parent_focus(&self, direction_type: DirectionType) -> bool {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkWidgetClass;
             if let Some(f) = (*parent_class).focus {
                 from_glib(f(
@@ -308,7 +279,7 @@ impl<T: WidgetImpl> WidgetImplExt for T {
 
     fn parent_request_mode(&self) -> SizeRequestMode {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkWidgetClass;
             let f = (*parent_class)
                 .get_request_mode
@@ -317,9 +288,10 @@ impl<T: WidgetImpl> WidgetImplExt for T {
         }
     }
 
+    // Returns true if focus ended up inside widget
     fn parent_grab_focus(&self) -> bool {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkWidgetClass;
             if let Some(f) = (*parent_class).grab_focus {
                 from_glib(f(self.obj().unsafe_cast_ref::<Widget>().to_glib_none().0))
@@ -329,9 +301,11 @@ impl<T: WidgetImpl> WidgetImplExt for T {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+    #[allow(deprecated)]
     fn parent_hide(&self) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkWidgetClass;
             if let Some(f) = (*parent_class).hide {
                 f(self.obj().unsafe_cast_ref::<Widget>().to_glib_none().0)
@@ -339,9 +313,12 @@ impl<T: WidgetImpl> WidgetImplExt for T {
         }
     }
 
+    // TRUE if stopping keyboard navigation is fine,
+    // FALSE if the emitting widget should try to handle the keyboard navigation
+    // attempt in its parent container(s).
     fn parent_keynav_failed(&self, direction_type: DirectionType) -> bool {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkWidgetClass;
             if let Some(f) = (*parent_class).keynav_failed {
                 from_glib(f(
@@ -356,7 +333,7 @@ impl<T: WidgetImpl> WidgetImplExt for T {
 
     fn parent_map(&self) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkWidgetClass;
             if let Some(f) = (*parent_class).map {
                 f(self.obj().unsafe_cast_ref::<Widget>().to_glib_none().0)
@@ -366,7 +343,7 @@ impl<T: WidgetImpl> WidgetImplExt for T {
 
     fn parent_measure(&self, orientation: Orientation, for_size: i32) -> (i32, i32, i32, i32) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkWidgetClass;
 
             let f = (*parent_class)
@@ -390,9 +367,10 @@ impl<T: WidgetImpl> WidgetImplExt for T {
         }
     }
 
+    // True if the signal has been handled
     fn parent_mnemonic_activate(&self, group_cycling: bool) -> bool {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkWidgetClass;
             if let Some(f) = (*parent_class).mnemonic_activate {
                 from_glib(f(
@@ -407,7 +385,7 @@ impl<T: WidgetImpl> WidgetImplExt for T {
 
     fn parent_move_focus(&self, direction_type: DirectionType) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkWidgetClass;
             if let Some(f) = (*parent_class).move_focus {
                 f(
@@ -426,7 +404,7 @@ impl<T: WidgetImpl> WidgetImplExt for T {
         tooltip: &Tooltip,
     ) -> bool {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkWidgetClass;
             if let Some(f) = (*parent_class).query_tooltip {
                 from_glib(f(
@@ -444,7 +422,7 @@ impl<T: WidgetImpl> WidgetImplExt for T {
 
     fn parent_realize(&self) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkWidgetClass;
             if let Some(f) = (*parent_class).realize {
                 f(self.obj().unsafe_cast_ref::<Widget>().to_glib_none().0)
@@ -454,7 +432,7 @@ impl<T: WidgetImpl> WidgetImplExt for T {
 
     fn parent_root(&self) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkWidgetClass;
             if let Some(f) = (*parent_class).root {
                 f(self.obj().unsafe_cast_ref::<Widget>().to_glib_none().0)
@@ -464,7 +442,7 @@ impl<T: WidgetImpl> WidgetImplExt for T {
 
     fn parent_set_focus_child(&self, child: Option<&Widget>) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkWidgetClass;
             if let Some(f) = (*parent_class).set_focus_child {
                 f(
@@ -475,9 +453,11 @@ impl<T: WidgetImpl> WidgetImplExt for T {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+    #[allow(deprecated)]
     fn parent_show(&self) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkWidgetClass;
             if let Some(f) = (*parent_class).show {
                 f(self.obj().unsafe_cast_ref::<Widget>().to_glib_none().0)
@@ -487,7 +467,7 @@ impl<T: WidgetImpl> WidgetImplExt for T {
 
     fn parent_size_allocate(&self, width: i32, height: i32, baseline: i32) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkWidgetClass;
             if let Some(f) = (*parent_class).size_allocate {
                 f(
@@ -502,7 +482,7 @@ impl<T: WidgetImpl> WidgetImplExt for T {
 
     fn parent_snapshot(&self, snapshot: &Snapshot) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkWidgetClass;
             if let Some(f) = (*parent_class).snapshot {
                 f(
@@ -515,7 +495,7 @@ impl<T: WidgetImpl> WidgetImplExt for T {
 
     fn parent_state_flags_changed(&self, state_flags: &StateFlags) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkWidgetClass;
             if let Some(f) = (*parent_class).state_flags_changed {
                 f(
@@ -528,7 +508,7 @@ impl<T: WidgetImpl> WidgetImplExt for T {
 
     fn parent_system_setting_changed(&self, settings: &SystemSetting) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkWidgetClass;
             if let Some(f) = (*parent_class).system_setting_changed {
                 f(
@@ -541,7 +521,7 @@ impl<T: WidgetImpl> WidgetImplExt for T {
 
     fn parent_unmap(&self) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkWidgetClass;
             if let Some(f) = (*parent_class).unmap {
                 f(self.obj().unsafe_cast_ref::<Widget>().to_glib_none().0)
@@ -551,7 +531,7 @@ impl<T: WidgetImpl> WidgetImplExt for T {
 
     fn parent_unrealize(&self) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkWidgetClass;
             if let Some(f) = (*parent_class).unrealize {
                 f(self.obj().unsafe_cast_ref::<Widget>().to_glib_none().0)
@@ -561,7 +541,7 @@ impl<T: WidgetImpl> WidgetImplExt for T {
 
     fn parent_unroot(&self) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkWidgetClass;
             if let Some(f) = (*parent_class).unroot {
                 f(self.obj().unsafe_cast_ref::<Widget>().to_glib_none().0)
@@ -569,6 +549,8 @@ impl<T: WidgetImpl> WidgetImplExt for T {
         }
     }
 }
+
+impl<T: WidgetImpl> WidgetImplExt for T {}
 
 unsafe impl<T: WidgetImpl> IsSubclassable<T> for Widget {
     fn class_init(class: &mut ::glib::Class<Self>) {
@@ -879,7 +861,7 @@ unsafe extern "C" fn widget_unroot<T: WidgetImpl>(ptr: *mut ffi::GtkWidget) {
 }
 
 #[allow(clippy::missing_safety_doc)]
-pub unsafe trait WidgetClassSubclassExt: ClassStruct {
+pub unsafe trait WidgetClassExt: ClassStruct {
     #[doc(alias = "gtk_widget_class_set_template")]
     fn set_template_bytes(&mut self, template: &glib::Bytes) {
         unsafe {
@@ -912,7 +894,7 @@ pub unsafe trait WidgetClassSubclassExt: ClassStruct {
     fn install_action_async<Fut, F>(
         &mut self,
         action_name: &str,
-        parameter_type: Option<&str>,
+        parameter_type: Option<&glib::VariantTy>,
         activate: F,
     ) where
         F: Fn(
@@ -939,8 +921,12 @@ pub unsafe trait WidgetClassSubclassExt: ClassStruct {
     }
 
     #[doc(alias = "gtk_widget_class_install_action")]
-    fn install_action<F>(&mut self, action_name: &str, parameter_type: Option<&str>, activate: F)
-    where
+    fn install_action<F>(
+        &mut self,
+        action_name: &str,
+        parameter_type: Option<&glib::VariantTy>,
+        activate: F,
+    ) where
         F: Fn(&<<Self as ClassStruct>::Type as ObjectSubclass>::Type, &str, Option<&Variant>)
             + 'static,
     {
@@ -1000,7 +986,7 @@ pub unsafe trait WidgetClassSubclassExt: ClassStruct {
             ffi::gtk_widget_class_install_action(
                 widget_class,
                 action_name.to_glib_none().0,
-                parameter_type.to_glib_none().0,
+                parameter_type.map(|p| p.as_str()).to_glib_none().0,
                 Some(callback),
             );
         }
@@ -1022,49 +1008,35 @@ pub unsafe trait WidgetClassSubclassExt: ClassStruct {
 
     #[doc(alias = "gtk_widget_class_add_binding")]
     fn add_binding<
-        F: Fn(&<<Self as ClassStruct>::Type as ObjectSubclass>::Type, Option<&Variant>) -> bool
-            + 'static,
+        F: Fn(&<<Self as ClassStruct>::Type as ObjectSubclass>::Type) -> glib::Propagation + 'static,
     >(
         &mut self,
         keyval: gdk::Key,
         mods: gdk::ModifierType,
         callback: F,
-        arguments: Option<&glib::Variant>,
     ) {
         let shortcut = crate::Shortcut::new(
             Some(crate::KeyvalTrigger::new(keyval, mods)),
-            Some(crate::CallbackAction::new(move |widget, args| -> bool {
-                unsafe { callback(widget.unsafe_cast_ref(), args) }
-            })),
+            Some(crate::CallbackAction::new(
+                move |widget, _| -> glib::Propagation {
+                    unsafe { callback(widget.unsafe_cast_ref()) }
+                },
+            )),
         );
-        shortcut.set_arguments(arguments);
         self.add_shortcut(&shortcut);
     }
 
     #[doc(alias = "gtk_widget_class_add_binding_action")]
-    fn add_binding_action(
-        &mut self,
-        keyval: gdk::Key,
-        mods: gdk::ModifierType,
-        action_name: &str,
-        arguments: Option<&glib::Variant>,
-    ) {
+    fn add_binding_action(&mut self, keyval: gdk::Key, mods: gdk::ModifierType, action_name: &str) {
         let shortcut = crate::Shortcut::new(
             Some(crate::KeyvalTrigger::new(keyval, mods)),
             Some(crate::NamedAction::new(action_name)),
         );
-        shortcut.set_arguments(arguments);
         self.add_shortcut(&shortcut);
     }
 
     #[doc(alias = "gtk_widget_class_add_binding_signal")]
-    fn add_binding_signal(
-        &mut self,
-        keyval: gdk::Key,
-        mods: gdk::ModifierType,
-        signal_name: &str,
-        arguments: Option<&glib::Variant>,
-    ) {
+    fn add_binding_signal(&mut self, keyval: gdk::Key, mods: gdk::ModifierType, signal_name: &str) {
         let type_ = <Self::Type as ObjectSubclassType>::type_();
         assert!(
             SignalId::lookup(signal_name, type_).is_some(),
@@ -1075,7 +1047,6 @@ pub unsafe trait WidgetClassSubclassExt: ClassStruct {
             Some(crate::KeyvalTrigger::new(keyval, mods)),
             Some(crate::SignalAction::new(signal_name)),
         );
-        shortcut.set_arguments(arguments);
         self.add_shortcut(&shortcut);
     }
 
@@ -1232,7 +1203,7 @@ pub unsafe trait WidgetClassSubclassExt: ClassStruct {
     }
 }
 
-unsafe impl<T: ClassStruct> WidgetClassSubclassExt for T where T::Type: WidgetImpl {}
+unsafe impl<T: ClassStruct> WidgetClassExt for T where T::Type: WidgetImpl {}
 
 #[derive(Debug, PartialEq, Eq)]
 #[repr(transparent)]
@@ -1253,6 +1224,19 @@ where
         Self {
             ptr: std::ptr::null_mut(),
         }
+    }
+}
+
+impl<T> glib::HasParamSpec for TemplateChild<T>
+where
+    T: ObjectType + IsA<glib::Object> + FromGlibPtrNone<*mut <T as ObjectType>::GlibType>,
+{
+    type ParamSpec = glib::ParamSpecObject;
+    type SetValue = T;
+    type BuilderFn = fn(&str) -> glib::ParamSpecObjectBuilder<T>;
+
+    fn param_spec_builder() -> Self::BuilderFn {
+        Self::ParamSpec::builder
     }
 }
 
@@ -1307,20 +1291,22 @@ where
 
 // rustdoc-stripper-ignore-next
 /// A trait for setting up template children inside
-/// [`class_init`](glib::subclass::types::ObjectSubclass::class_init). This trait is implemented
-/// automatically by the [`CompositeTemplate`](crate::CompositeTemplate) macro.
+/// [`class_init`](glib::subclass::types::ObjectSubclass::class_init). This
+/// trait is implemented automatically by the
+/// [`CompositeTemplate`](crate::CompositeTemplate) macro.
 pub trait CompositeTemplate: WidgetImpl {
     fn bind_template(klass: &mut Self::Class);
     fn check_template_children(widget: &<Self as ObjectSubclass>::Type);
 }
 
 // rustdoc-stripper-ignore-next
-/// An extension trait for [`ClassStruct`](glib::subclass::types::ClassStruct) types to allow
-/// binding a composite template directly on `self`. This is a convenience wrapper around
-/// the [`CompositeTemplate`] trait.
+/// An extension trait for [`ClassStruct`](glib::subclass::types::ClassStruct)
+/// types to allow binding a composite template directly on `self`. This is a
+/// convenience wrapper around the [`CompositeTemplate`] trait.
 pub trait CompositeTemplateClass {
     // rustdoc-stripper-ignore-next
-    /// Binds the template callbacks from this type into the default template scope for `self`.
+    /// Binds the template callbacks from this type into the default template
+    /// scope for `self`.
     fn bind_template(&mut self);
 }
 
@@ -1338,20 +1324,22 @@ pub type TemplateCallback = (&'static str, fn(&[glib::Value]) -> Option<glib::Va
 
 // rustdoc-stripper-ignore-next
 /// A trait for setting up template callbacks inside
-/// [`class_init`](glib::subclass::types::ObjectSubclass::class_init). This trait is implemented
-/// automatically by the [`template_callbacks`](crate::template_callbacks) macro.
+/// [`class_init`](glib::subclass::types::ObjectSubclass::class_init). This
+/// trait is implemented automatically by the
+/// [`template_callbacks`](crate::template_callbacks) macro.
 pub trait CompositeTemplateCallbacks {
     const CALLBACKS: &'static [TemplateCallback];
 
     // rustdoc-stripper-ignore-next
-    /// Binds the template callbacks from this type into the default template scope for `klass`.
-    fn bind_template_callbacks<T: WidgetClassSubclassExt>(klass: &mut T) {
+    /// Binds the template callbacks from this type into the default template
+    /// scope for `klass`.
+    fn bind_template_callbacks<T: WidgetClassExt>(klass: &mut T) {
         Self::add_callbacks_to_scope(&klass.rust_template_scope());
     }
     // rustdoc-stripper-ignore-next
-    /// Binds the template callbacks from this type into the default template scope for `klass`,
-    /// prepending `prefix` to each callback name.
-    fn bind_template_callbacks_prefixed<T: WidgetClassSubclassExt>(klass: &mut T, prefix: &str) {
+    /// Binds the template callbacks from this type into the default template
+    /// scope for `klass`, prepending `prefix` to each callback name.
+    fn bind_template_callbacks_prefixed<T: WidgetClassExt>(klass: &mut T, prefix: &str) {
         Self::add_callbacks_to_scope_prefixed(&klass.rust_template_scope(), prefix);
     }
     // rustdoc-stripper-ignore-next
@@ -1362,8 +1350,8 @@ pub trait CompositeTemplateCallbacks {
         }
     }
     // rustdoc-stripper-ignore-next
-    /// Binds the template callbacks from this type into `scope`, prepending `prefix` to each
-    /// callback name.
+    /// Binds the template callbacks from this type into `scope`, prepending
+    /// `prefix` to each callback name.
     fn add_callbacks_to_scope_prefixed(scope: &BuilderRustScope, prefix: &str) {
         for (name, func) in Self::CALLBACKS {
             scope.add_callback(format!("{prefix}{name}"), func);
@@ -1372,18 +1360,19 @@ pub trait CompositeTemplateCallbacks {
 }
 
 // rustdoc-stripper-ignore-next
-/// An extension trait for [`ClassStruct`](glib::subclass::types::ClassStruct) types to allow
-/// binding private template callbacks directly on `self`. This is a convenience wrapper around
-/// the [`CompositeTemplateCallbacks`] trait.
+/// An extension trait for [`ClassStruct`](glib::subclass::types::ClassStruct)
+/// types to allow binding private template callbacks directly on `self`. This
+/// is a convenience wrapper around the [`CompositeTemplateCallbacks`] trait.
 pub trait CompositeTemplateCallbacksClass {
     // rustdoc-stripper-ignore-next
-    /// Binds the template callbacks from the subclass type into the default template scope for `self`.
+    /// Binds the template callbacks from the subclass type into the default
+    /// template scope for `self`.
     fn bind_template_callbacks(&mut self);
 }
 
 impl<T, U> CompositeTemplateCallbacksClass for T
 where
-    T: ClassStruct<Type = U> + WidgetClassSubclassExt,
+    T: ClassStruct<Type = U> + WidgetClassExt,
     U: ObjectSubclass<Class = T> + CompositeTemplateCallbacks,
 {
     fn bind_template_callbacks(&mut self) {
@@ -1392,18 +1381,20 @@ where
 }
 
 // rustdoc-stripper-ignore-next
-/// An extension trait for [`ClassStruct`](glib::subclass::types::ClassStruct) types to allow
-/// binding the instance template callbacks directly on `self`. This is a convenience wrapper around
-/// the [`CompositeTemplateCallbacks`] trait.
+/// An extension trait for [`ClassStruct`](glib::subclass::types::ClassStruct)
+/// types to allow binding the instance template callbacks directly on `self`.
+/// This is a convenience wrapper around the [`CompositeTemplateCallbacks`]
+/// trait.
 pub trait CompositeTemplateInstanceCallbacksClass {
     // rustdoc-stripper-ignore-next
-    /// Binds the template callbacks from the instance type into the default template scope for `self`.
+    /// Binds the template callbacks from the instance type into the default
+    /// template scope for `self`.
     fn bind_template_instance_callbacks(&mut self);
 }
 
 impl<T, U, V> CompositeTemplateInstanceCallbacksClass for T
 where
-    T: ClassStruct<Type = U> + WidgetClassSubclassExt,
+    T: ClassStruct<Type = U> + WidgetClassExt,
     U: ObjectSubclass<Class = T, Type = V>,
     V: CompositeTemplateCallbacks,
 {
@@ -1434,8 +1425,8 @@ where
 }
 
 pub trait CompositeTemplateDisposeExt {
-    #[cfg(any(feature = "v4_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    #[cfg(feature = "v4_8")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     fn dispose_template(&self);
 }
 
@@ -1444,8 +1435,8 @@ where
     T: WidgetImpl + CompositeTemplate,
     <T as ObjectSubclass>::Type: IsA<Widget>,
 {
-    #[cfg(any(feature = "v4_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    #[cfg(feature = "v4_8")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     fn dispose_template(&self) {
         unsafe {
             ffi::gtk_widget_dispose_template(

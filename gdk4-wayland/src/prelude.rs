@@ -3,11 +3,7 @@
 // rustdoc-stripper-ignore-next
 //! Traits intended for blanket imports.
 
-pub use crate::wayland_surface::WaylandSurfaceExtManual;
-
 #[doc(hidden)]
 pub use gdk::prelude::*;
-#[doc(hidden)]
-pub use gio::prelude::*;
-#[doc(hidden)]
-pub use glib::prelude::*;
+
+pub use crate::wayland_surface::WaylandSurfaceExtManual;

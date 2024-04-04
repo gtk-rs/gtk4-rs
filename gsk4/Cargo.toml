@@ -1,39 +1,43 @@
 [package]
-authors = ["The gtk-rs Project Developers"]
+name = "gsk4"
 description = "Rust bindings of the GSK 4 library"
 documentation = "https://gtk-rs.org/gtk4-rs/stable/latest/docs/gsk4"
-edition = "2021"
-homepage = "https://gtk-rs.org/"
 keywords = ["gsk", "gsk4", "gtk-rs", "gnome", "GUI"]
-license = "MIT"
-name = "gsk4"
 readme = "README.md"
-repository = "https://github.com/gtk-rs/gtk4-rs"
-version = "0.7.0"
-rust-version = "1.64"
+authors.workspace = true
+categories.workspace = true
+edition.workspace = true
+homepage.workspace = true
+license.workspace = true
+repository.workspace = true
+rust-version.workspace = true
+version.workspace = true
+
 [lib]
 name = "gsk4"
 
 [features]
-broadway = []
-dox = ["ffi/dox", "gdk/dox", "graphene/dox", "glib/dox", "cairo-rs/dox", "pango/dox"]
+broadway = ["ffi/broadway"]
+vulkan = ["ffi/vulkan"]
 v4_2 = ["ffi/v4_2", "gdk/v4_2"]
 v4_4 = ["ffi/v4_4", "gdk/v4_4", "v4_2"]
 v4_6 = ["ffi/v4_6", "gdk/v4_6", "v4_4"]
 v4_10 = ["ffi/v4_10", "gdk/v4_10", "v4_6"]
-
-[package.metadata.docs.rs]
-features = ["dox"]
+v4_14 = ["ffi/v4_14", "v4_10"]
 
 [dependencies]
-bitflags = "1.0"
-cairo-rs = {git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.18"}
-ffi = {package = "gsk4-sys", path = "./sys", version = "0.7"}
-gdk = {package = "gdk4", path = "../gdk4", version = "0.7"}
-glib = {git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.18", features = ["v2_66"]}
-graphene = {package = "graphene-rs", git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.18"}
-libc = "0.2"
-pango = {git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.18", features = ["v1_46"]}
+ffi = {package = "gsk4-sys", path = "./sys", version = "0.9"}
+cairo-rs.workspace = true
+gdk.workspace = true
+glib.workspace = true
+graphene.workspace = true
+libc.workspace = true
+pango.workspace = true
 
 [dev-dependencies]
-gir-format-check = "^0.1"
+gir-format-check.workspace = true
+
+[package.metadata.docs.rs]
+all-features = true
+rustc-args = ["--cfg", "docsrs"]
+rustdoc-args = ["--cfg", "docsrs", "--generate-link-to-definition"]

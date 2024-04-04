@@ -1,18 +1,20 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
+use glib::translate::*;
+#[cfg(feature = "xlib")]
+#[cfg_attr(docsrs, doc(cfg(feature = "xlib")))]
+use x11::xlib::{self, XID};
+
 use crate::X11Screen;
 #[cfg(not(feature = "xlib"))]
 use crate::XID;
-use glib::translate::*;
-#[cfg(any(feature = "xlib", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "xlib")))]
-use x11::xlib::{self, XID};
 
 impl X11Screen {
-    #[cfg(any(feature = "xlib", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "xlib")))]
+    #[cfg(feature = "xlib")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "xlib")))]
     #[doc(alias = "gdk_x11_screen_get_xscreen")]
     #[doc(alias = "get_xscreen")]
+    #[allow(clippy::missing_safety_doc)]
     pub unsafe fn xscreen(&self) -> *mut xlib::Screen {
         ffi::gdk_x11_screen_get_xscreen(self.to_glib_none().0) as *mut xlib::Screen
     }

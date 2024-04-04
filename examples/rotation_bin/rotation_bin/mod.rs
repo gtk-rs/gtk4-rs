@@ -51,15 +51,11 @@ glib::wrapper! {
 
 impl Default for RotationBin {
     fn default() -> Self {
-        Self::new()
+        glib::Object::new()
     }
 }
 
 impl RotationBin {
-    pub fn new() -> Self {
-        glib::Object::new()
-    }
-
     pub(super) fn rotate_clockwise(&self) {
         let r = self.rotation();
         self.set_rotation(r.rotate_clockwise());

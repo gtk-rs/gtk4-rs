@@ -5,7 +5,6 @@
 
 use crate::TreePath;
 use glib::{prelude::*, translate::*};
-use std::fmt;
 
 glib::wrapper! {
     #[doc(alias = "GtkTreeDragDest")]
@@ -20,20 +19,15 @@ impl TreeDragDest {
     pub const NONE: Option<&'static TreeDragDest> = None;
 }
 
-pub trait TreeDragDestExt: 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::TreeDragDest>> Sealed for T {}
+}
+
+pub trait TreeDragDestExt: IsA<TreeDragDest> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_tree_drag_dest_drag_data_received")]
-    fn drag_data_received(&self, dest: &TreePath, value: &glib::Value) -> bool;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_drag_dest_row_drop_possible")]
-    fn row_drop_possible(&self, dest_path: &TreePath, value: &glib::Value) -> bool;
-}
-
-impl<O: IsA<TreeDragDest>> TreeDragDestExt for O {
-    #[allow(deprecated)]
     fn drag_data_received(&self, dest: &TreePath, value: &glib::Value) -> bool {
         unsafe {
             from_glib(ffi::gtk_tree_drag_dest_drag_data_received(
@@ -44,7 +38,9 @@ impl<O: IsA<TreeDragDest>> TreeDragDestExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_drag_dest_row_drop_possible")]
     fn row_drop_possible(&self, dest_path: &TreePath, value: &glib::Value) -> bool {
         unsafe {
             from_glib(ffi::gtk_tree_drag_dest_row_drop_possible(
@@ -56,8 +52,4 @@ impl<O: IsA<TreeDragDest>> TreeDragDestExt for O {
     }
 }
 
-impl fmt::Display for TreeDragDest {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("TreeDragDest")
-    }
-}
+impl<O: IsA<TreeDragDest>> TreeDragDestExt for O {}

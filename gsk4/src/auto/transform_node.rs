@@ -3,8 +3,7 @@
 // DO NOT EDIT
 
 use crate::{RenderNode, Transform};
-use glib::translate::*;
-use std::fmt;
+use glib::{prelude::*, translate::*};
 
 glib::wrapper! {
     #[doc(alias = "GskTransformNode")]
@@ -16,7 +15,7 @@ glib::wrapper! {
     }
 }
 
-impl glib::StaticType for TransformNode {
+impl StaticType for TransformNode {
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gsk_transform_node_get_type()) }
     }
@@ -44,11 +43,5 @@ impl TransformNode {
     #[doc(alias = "get_transform")]
     pub fn transform(&self) -> Transform {
         unsafe { from_glib_none(ffi::gsk_transform_node_get_transform(self.to_glib_none().0)) }
-    }
-}
-
-impl fmt::Display for TransformNode {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("TransformNode")
     }
 }

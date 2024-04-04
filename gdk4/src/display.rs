@@ -1,8 +1,8 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
+use glib::translate::*;
+
 use crate::{prelude::*, Display, Key, KeymapKey, ModifierType};
-use glib::{translate::*, IntoGStr};
-use std::{mem, ptr};
 
 #[derive(Debug, PartialEq, Eq, Ord, PartialOrd)]
 pub enum Backend {
@@ -50,32 +50,16 @@ impl Backend {
     }
 }
 
-// rustdoc-stripper-ignore-next
-/// Trait containing manually implemented methods of [`Display`](crate::Display).
-pub trait DisplayExtManual: 'static {
-    #[doc(alias = "gdk_display_translate_key")]
-    fn translate_key(
-        &self,
-        keycode: u32,
-        state: ModifierType,
-        group: i32,
-    ) -> Option<(Key, i32, i32, ModifierType)>;
-
-    #[doc(alias = "gdk_display_get_setting")]
-    fn get_setting(&self, name: impl IntoGStr) -> Option<glib::Value>;
-
-    #[doc(alias = "gdk_display_map_keyval")]
-    fn map_keyval(&self, keyval: Key) -> Option<Vec<KeymapKey>>;
-
-    #[doc(alias = "gdk_display_map_keycode")]
-    fn map_keycode(&self, keycode: u32) -> Option<Vec<(KeymapKey, Key)>>;
-
-    // rustdoc-stripper-ignore-next
-    /// Get the currently used display backend
-    fn backend(&self) -> Backend;
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::Display>> Sealed for T {}
 }
 
-impl<O: IsA<Display>> DisplayExtManual for O {
+// rustdoc-stripper-ignore-next
+/// Trait containing manually implemented methods of
+/// [`Display`](crate::Display).
+pub trait DisplayExtManual: sealed::Sealed + IsA<Display> + 'static {
+    #[doc(alias = "gdk_display_translate_key")]
     fn translate_key(
         &self,
         keycode: u32,
@@ -83,10 +67,10 @@ impl<O: IsA<Display>> DisplayExtManual for O {
         group: i32,
     ) -> Option<(Key, i32, i32, ModifierType)> {
         unsafe {
-            let mut keyval = mem::MaybeUninit::uninit();
-            let mut effective_group = mem::MaybeUninit::uninit();
-            let mut level = mem::MaybeUninit::uninit();
-            let mut consumed = mem::MaybeUninit::uninit();
+            let mut keyval = std::mem::MaybeUninit::uninit();
+            let mut effective_group = std::mem::MaybeUninit::uninit();
+            let mut level = std::mem::MaybeUninit::uninit();
+            let mut consumed = std::mem::MaybeUninit::uninit();
             let ret = from_glib(ffi::gdk_display_translate_key(
                 self.as_ref().to_glib_none().0,
                 keycode,
@@ -114,6 +98,7 @@ impl<O: IsA<Display>> DisplayExtManual for O {
         }
     }
 
+    #[doc(alias = "gdk_display_get_setting")]
     fn get_setting(&self, name: impl IntoGStr) -> Option<glib::Value> {
         unsafe {
             name.run_with_gstr(|name| {
@@ -132,10 +117,11 @@ impl<O: IsA<Display>> DisplayExtManual for O {
         }
     }
 
+    #[doc(alias = "gdk_display_map_keyval")]
     fn map_keyval(&self, keyval: Key) -> Option<Vec<KeymapKey>> {
         unsafe {
-            let mut keys = ptr::null_mut();
-            let mut n_keys = mem::MaybeUninit::uninit();
+            let mut keys = std::ptr::null_mut();
+            let mut n_keys = std::mem::MaybeUninit::uninit();
             let ret = from_glib(ffi::gdk_display_map_keyval(
                 self.as_ref().to_glib_none().0,
                 keyval.into_glib(),
@@ -153,11 +139,12 @@ impl<O: IsA<Display>> DisplayExtManual for O {
         }
     }
 
+    #[doc(alias = "gdk_display_map_keycode")]
     fn map_keycode(&self, keycode: u32) -> Option<Vec<(KeymapKey, Key)>> {
         unsafe {
-            let mut keys = ptr::null_mut();
-            let mut keyvals = ptr::null_mut();
-            let mut n_entries = mem::MaybeUninit::uninit();
+            let mut keys = std::ptr::null_mut();
+            let mut keyvals = std::ptr::null_mut();
+            let mut n_entries = std::mem::MaybeUninit::uninit();
             let ret = from_glib(ffi::gdk_display_map_keycode(
                 self.as_ref().to_glib_none().0,
                 keycode,
@@ -178,6 +165,8 @@ impl<O: IsA<Display>> DisplayExtManual for O {
         }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Get the currently used display backend
     fn backend(&self) -> Backend {
         match self.as_ref().type_().name() {
             "GdkWaylandDisplay" => Backend::Wayland,
@@ -189,3 +178,5 @@ impl<O: IsA<Display>> DisplayExtManual for O {
         }
     }
 }
+
+impl<O: IsA<Display>> DisplayExtManual for O {}

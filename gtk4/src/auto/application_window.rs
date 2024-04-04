@@ -11,7 +11,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GtkApplicationWindow")]
@@ -153,8 +153,8 @@ impl ApplicationWindowBuilder {
         }
     }
 
-    #[cfg(any(feature = "v4_2", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_2")))]
+    #[cfg(feature = "v4_2")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_2")))]
     pub fn handle_menubar_accel(self, handle_menubar_accel: bool) -> Self {
         Self {
             builder: self
@@ -213,8 +213,8 @@ impl ApplicationWindowBuilder {
         }
     }
 
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[cfg(feature = "v4_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     pub fn titlebar(self, titlebar: &impl IsA<Widget>) -> Self {
         Self {
             builder: self.builder.property("titlebar", titlebar.clone().upcast()),
@@ -421,30 +421,14 @@ impl ApplicationWindowBuilder {
     }
 }
 
-pub trait ApplicationWindowExt: 'static {
-    #[doc(alias = "gtk_application_window_get_help_overlay")]
-    #[doc(alias = "get_help_overlay")]
-    fn help_overlay(&self) -> Option<ShortcutsWindow>;
-
-    #[doc(alias = "gtk_application_window_get_id")]
-    #[doc(alias = "get_id")]
-    fn id(&self) -> u32;
-
-    #[doc(alias = "gtk_application_window_get_show_menubar")]
-    #[doc(alias = "get_show_menubar")]
-    fn shows_menubar(&self) -> bool;
-
-    #[doc(alias = "gtk_application_window_set_help_overlay")]
-    fn set_help_overlay(&self, help_overlay: Option<&ShortcutsWindow>);
-
-    #[doc(alias = "gtk_application_window_set_show_menubar")]
-    fn set_show_menubar(&self, show_menubar: bool);
-
-    #[doc(alias = "show-menubar")]
-    fn connect_show_menubar_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::ApplicationWindow>> Sealed for T {}
 }
 
-impl<O: IsA<ApplicationWindow>> ApplicationWindowExt for O {
+pub trait ApplicationWindowExt: IsA<ApplicationWindow> + sealed::Sealed + 'static {
+    #[doc(alias = "gtk_application_window_get_help_overlay")]
+    #[doc(alias = "get_help_overlay")]
     fn help_overlay(&self) -> Option<ShortcutsWindow> {
         unsafe {
             from_glib_none(ffi::gtk_application_window_get_help_overlay(
@@ -453,10 +437,14 @@ impl<O: IsA<ApplicationWindow>> ApplicationWindowExt for O {
         }
     }
 
+    #[doc(alias = "gtk_application_window_get_id")]
+    #[doc(alias = "get_id")]
     fn id(&self) -> u32 {
         unsafe { ffi::gtk_application_window_get_id(self.as_ref().to_glib_none().0) }
     }
 
+    #[doc(alias = "gtk_application_window_get_show_menubar")]
+    #[doc(alias = "get_show_menubar")]
     fn shows_menubar(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_application_window_get_show_menubar(
@@ -465,6 +453,7 @@ impl<O: IsA<ApplicationWindow>> ApplicationWindowExt for O {
         }
     }
 
+    #[doc(alias = "gtk_application_window_set_help_overlay")]
     fn set_help_overlay(&self, help_overlay: Option<&ShortcutsWindow>) {
         unsafe {
             ffi::gtk_application_window_set_help_overlay(
@@ -474,6 +463,7 @@ impl<O: IsA<ApplicationWindow>> ApplicationWindowExt for O {
         }
     }
 
+    #[doc(alias = "gtk_application_window_set_show_menubar")]
     fn set_show_menubar(&self, show_menubar: bool) {
         unsafe {
             ffi::gtk_application_window_set_show_menubar(
@@ -483,6 +473,7 @@ impl<O: IsA<ApplicationWindow>> ApplicationWindowExt for O {
         }
     }
 
+    #[doc(alias = "show-menubar")]
     fn connect_show_menubar_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_show_menubar_trampoline<
             P: IsA<ApplicationWindow>,
@@ -500,7 +491,7 @@ impl<O: IsA<ApplicationWindow>> ApplicationWindowExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::show-menubar\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_show_menubar_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -509,8 +500,4 @@ impl<O: IsA<ApplicationWindow>> ApplicationWindowExt for O {
     }
 }
 
-impl fmt::Display for ApplicationWindow {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("ApplicationWindow")
-    }
-}
+impl<O: IsA<ApplicationWindow>> ApplicationWindowExt for O {}

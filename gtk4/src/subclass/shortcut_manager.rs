@@ -1,10 +1,12 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
 // rustdoc-stripper-ignore-next
-//! Traits intended for implementing the [`ShortcutManager`](crate::ShortcutManager) interface.
+//! Traits intended for implementing the
+//! [`ShortcutManager`](crate::ShortcutManager) interface.
+
+use glib::translate::*;
 
 use crate::{prelude::*, subclass::prelude::*, ShortcutController, ShortcutManager};
-use glib::translate::*;
 
 pub trait ShortcutManagerImpl: ObjectImpl {
     fn add_controller(&self, controller: &ShortcutController) {
@@ -16,12 +18,12 @@ pub trait ShortcutManagerImpl: ObjectImpl {
     }
 }
 
-pub trait ShortcutManagerImplExt: ObjectSubclass {
-    fn parent_add_controller(&self, controller: &ShortcutController);
-    fn parent_remove_controller(&self, controller: &ShortcutController);
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::ShortcutManagerImplExt> Sealed for T {}
 }
 
-impl<T: ShortcutManagerImpl> ShortcutManagerImplExt for T {
+pub trait ShortcutManagerImplExt: sealed::Sealed + ObjectSubclass {
     fn parent_add_controller(&self, controller: &ShortcutController) {
         unsafe {
             let type_data = Self::type_data();
@@ -62,6 +64,8 @@ impl<T: ShortcutManagerImpl> ShortcutManagerImplExt for T {
         }
     }
 }
+
+impl<T: ShortcutManagerImpl> ShortcutManagerImplExt for T {}
 
 unsafe impl<T: ShortcutManagerImpl> IsImplementable<T> for ShortcutManager {
     fn interface_init(iface: &mut glib::Interface<Self>) {

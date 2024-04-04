@@ -1,8 +1,8 @@
+use std::{cell::RefCell, collections::HashSet};
+
+use gtk::{glib, subclass::prelude::*};
+
 use crate::AnimatedExplosion;
-use gtk::glib;
-use gtk::subclass::prelude::*;
-use std::cell::RefCell;
-use std::collections::HashSet;
 
 #[derive(Default)]
 pub struct ConfettiWidget {

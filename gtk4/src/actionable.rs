@@ -1,17 +1,20 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{prelude::*, Actionable};
 use glib::{translate::*, Variant};
 
-// rustdoc-stripper-ignore-next
-/// Trait containing manually implemented methods of [`Actionable`](crate::Actionable).
-pub trait ActionableExtManual: 'static {
-    #[doc(alias = "gtk_actionable_set_action_target")]
-    #[doc(alias = "gtk_actionable_set_action_target_value")]
-    fn set_action_target(&self, target: Option<impl Into<Variant>>);
+use crate::{prelude::*, Actionable};
+
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::Actionable>> Sealed for T {}
 }
 
-impl<O: IsA<Actionable>> ActionableExtManual for O {
+// rustdoc-stripper-ignore-next
+/// Trait containing manually implemented methods of
+/// [`Actionable`](crate::Actionable).
+pub trait ActionableExtManual: sealed::Sealed + IsA<Actionable> + 'static {
+    #[doc(alias = "gtk_actionable_set_action_target")]
+    #[doc(alias = "gtk_actionable_set_action_target_value")]
     fn set_action_target(&self, target: Option<impl Into<Variant>>) {
         unsafe {
             ffi::gtk_actionable_set_action_target_value(
@@ -21,3 +24,5 @@ impl<O: IsA<Actionable>> ActionableExtManual for O {
         }
     }
 }
+
+impl<O: IsA<Actionable>> ActionableExtManual for O {}

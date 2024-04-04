@@ -12,7 +12,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GtkComboBox")]
@@ -366,196 +366,16 @@ impl ComboBoxBuilder {
     }
 }
 
-pub trait ComboBoxExt: 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::ComboBox>> Sealed for T {}
+}
+
+pub trait ComboBoxExt: IsA<ComboBox> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_combo_box_get_active_id")]
     #[doc(alias = "get_active_id")]
-    fn active_id(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_combo_box_get_active_iter")]
-    #[doc(alias = "get_active_iter")]
-    fn active_iter(&self) -> Option<TreeIter>;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_combo_box_get_button_sensitivity")]
-    #[doc(alias = "get_button_sensitivity")]
-    fn button_sensitivity(&self) -> SensitivityType;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_combo_box_get_child")]
-    #[doc(alias = "get_child")]
-    fn child(&self) -> Option<Widget>;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_combo_box_get_entry_text_column")]
-    #[doc(alias = "get_entry_text_column")]
-    fn entry_text_column(&self) -> i32;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_combo_box_get_has_entry")]
-    #[doc(alias = "get_has_entry")]
-    fn has_entry(&self) -> bool;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_combo_box_get_id_column")]
-    #[doc(alias = "get_id_column")]
-    fn id_column(&self) -> i32;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_combo_box_get_model")]
-    #[doc(alias = "get_model")]
-    fn model(&self) -> Option<TreeModel>;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_combo_box_get_popup_fixed_width")]
-    #[doc(alias = "get_popup_fixed_width")]
-    fn is_popup_fixed_width(&self) -> bool;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_combo_box_popdown")]
-    fn popdown(&self);
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_combo_box_popup")]
-    fn popup(&self);
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_combo_box_popup_for_device")]
-    fn popup_for_device(&self, device: &gdk::Device);
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_combo_box_set_active_id")]
-    fn set_active_id(&self, active_id: Option<&str>) -> bool;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_combo_box_set_active_iter")]
-    fn set_active_iter(&self, iter: Option<&TreeIter>);
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_combo_box_set_button_sensitivity")]
-    fn set_button_sensitivity(&self, sensitivity: SensitivityType);
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_combo_box_set_child")]
-    fn set_child(&self, child: Option<&impl IsA<Widget>>);
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_combo_box_set_entry_text_column")]
-    fn set_entry_text_column(&self, text_column: i32);
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_combo_box_set_id_column")]
-    fn set_id_column(&self, id_column: i32);
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_combo_box_set_model")]
-    fn set_model(&self, model: Option<&impl IsA<TreeModel>>);
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_combo_box_set_popup_fixed_width")]
-    fn set_popup_fixed_width(&self, fixed: bool);
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_combo_box_set_row_separator_func")]
-    fn set_row_separator_func<P: Fn(&TreeModel, &TreeIter) -> bool + 'static>(&self, func: P);
-
-    #[doc(alias = "has-frame")]
-    fn has_frame(&self) -> bool;
-
-    #[doc(alias = "has-frame")]
-    fn set_has_frame(&self, has_frame: bool);
-
-    #[doc(alias = "popup-shown")]
-    fn is_popup_shown(&self) -> bool;
-
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
-    #[doc(alias = "activate")]
-    fn connect_activate<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
-    fn emit_activate(&self);
-
-    #[doc(alias = "changed")]
-    fn connect_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "format-entry-text")]
-    fn connect_format_entry_text<F: Fn(&Self, &str) -> String + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-
-    #[doc(alias = "move-active")]
-    fn connect_move_active<F: Fn(&Self, ScrollType) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn emit_move_active(&self, scroll_type: ScrollType);
-
-    #[doc(alias = "popdown")]
-    fn connect_popdown<F: Fn(&Self) -> bool + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn emit_popdown(&self) -> bool;
-
-    #[doc(alias = "popup")]
-    fn connect_popup<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn emit_popup(&self);
-
-    #[doc(alias = "active")]
-    fn connect_active_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "active-id")]
-    fn connect_active_id_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "button-sensitivity")]
-    fn connect_button_sensitivity_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "child")]
-    fn connect_child_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "entry-text-column")]
-    fn connect_entry_text_column_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "has-frame")]
-    fn connect_has_frame_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "id-column")]
-    fn connect_id_column_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "model")]
-    fn connect_model_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "popup-fixed-width")]
-    fn connect_popup_fixed_width_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "popup-shown")]
-    fn connect_popup_shown_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<ComboBox>> ComboBoxExt for O {
-    #[allow(deprecated)]
     fn active_id(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::gtk_combo_box_get_active_id(
@@ -564,7 +384,10 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_combo_box_get_active_iter")]
+    #[doc(alias = "get_active_iter")]
     fn active_iter(&self) -> Option<TreeIter> {
         unsafe {
             let mut iter = TreeIter::uninitialized();
@@ -580,7 +403,10 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_combo_box_get_button_sensitivity")]
+    #[doc(alias = "get_button_sensitivity")]
     fn button_sensitivity(&self) -> SensitivityType {
         unsafe {
             from_glib(ffi::gtk_combo_box_get_button_sensitivity(
@@ -589,17 +415,26 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_combo_box_get_child")]
+    #[doc(alias = "get_child")]
     fn child(&self) -> Option<Widget> {
         unsafe { from_glib_none(ffi::gtk_combo_box_get_child(self.as_ref().to_glib_none().0)) }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_combo_box_get_entry_text_column")]
+    #[doc(alias = "get_entry_text_column")]
     fn entry_text_column(&self) -> i32 {
         unsafe { ffi::gtk_combo_box_get_entry_text_column(self.as_ref().to_glib_none().0) }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_combo_box_get_has_entry")]
+    #[doc(alias = "get_has_entry")]
     fn has_entry(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_combo_box_get_has_entry(
@@ -608,17 +443,26 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_combo_box_get_id_column")]
+    #[doc(alias = "get_id_column")]
     fn id_column(&self) -> i32 {
         unsafe { ffi::gtk_combo_box_get_id_column(self.as_ref().to_glib_none().0) }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_combo_box_get_model")]
+    #[doc(alias = "get_model")]
     fn model(&self) -> Option<TreeModel> {
         unsafe { from_glib_none(ffi::gtk_combo_box_get_model(self.as_ref().to_glib_none().0)) }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_combo_box_get_popup_fixed_width")]
+    #[doc(alias = "get_popup_fixed_width")]
     fn is_popup_fixed_width(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_combo_box_get_popup_fixed_width(
@@ -627,21 +471,27 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_combo_box_popdown")]
     fn popdown(&self) {
         unsafe {
             ffi::gtk_combo_box_popdown(self.as_ref().to_glib_none().0);
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_combo_box_popup")]
     fn popup(&self) {
         unsafe {
             ffi::gtk_combo_box_popup(self.as_ref().to_glib_none().0);
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_combo_box_popup_for_device")]
     fn popup_for_device(&self, device: &gdk::Device) {
         unsafe {
             ffi::gtk_combo_box_popup_for_device(
@@ -651,7 +501,9 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_combo_box_set_active_id")]
     fn set_active_id(&self, active_id: Option<&str>) -> bool {
         unsafe {
             from_glib(ffi::gtk_combo_box_set_active_id(
@@ -661,7 +513,9 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_combo_box_set_active_iter")]
     fn set_active_iter(&self, iter: Option<&TreeIter>) {
         unsafe {
             ffi::gtk_combo_box_set_active_iter(
@@ -671,7 +525,9 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_combo_box_set_button_sensitivity")]
     fn set_button_sensitivity(&self, sensitivity: SensitivityType) {
         unsafe {
             ffi::gtk_combo_box_set_button_sensitivity(
@@ -681,7 +537,9 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_combo_box_set_child")]
     fn set_child(&self, child: Option<&impl IsA<Widget>>) {
         unsafe {
             ffi::gtk_combo_box_set_child(
@@ -691,21 +549,27 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_combo_box_set_entry_text_column")]
     fn set_entry_text_column(&self, text_column: i32) {
         unsafe {
             ffi::gtk_combo_box_set_entry_text_column(self.as_ref().to_glib_none().0, text_column);
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_combo_box_set_id_column")]
     fn set_id_column(&self, id_column: i32) {
         unsafe {
             ffi::gtk_combo_box_set_id_column(self.as_ref().to_glib_none().0, id_column);
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_combo_box_set_model")]
     fn set_model(&self, model: Option<&impl IsA<TreeModel>>) {
         unsafe {
             ffi::gtk_combo_box_set_model(
@@ -715,7 +579,9 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_combo_box_set_popup_fixed_width")]
     fn set_popup_fixed_width(&self, fixed: bool) {
         unsafe {
             ffi::gtk_combo_box_set_popup_fixed_width(
@@ -725,7 +591,9 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_combo_box_set_row_separator_func")]
     fn set_row_separator_func<P: Fn(&TreeModel, &TreeIter) -> bool + 'static>(&self, func: P) {
         let func_data: Box_<P> = Box_::new(func);
         unsafe extern "C" fn func_func<P: Fn(&TreeModel, &TreeIter) -> bool + 'static>(
@@ -735,14 +603,14 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
         ) -> glib::ffi::gboolean {
             let model = from_glib_borrow(model);
             let iter = from_glib_borrow(iter);
-            let callback: &P = &*(data as *mut _);
+            let callback = &*(data as *mut P);
             (*callback)(&model, &iter).into_glib()
         }
         let func = Some(func_func::<P> as _);
         unsafe extern "C" fn destroy_func<P: Fn(&TreeModel, &TreeIter) -> bool + 'static>(
             data: glib::ffi::gpointer,
         ) {
-            let _callback: Box_<P> = Box_::from_raw(data as *mut _);
+            let _callback = Box_::from_raw(data as *mut P);
         }
         let destroy_call3 = Some(destroy_func::<P> as _);
         let super_callback0: Box_<P> = func_data;
@@ -756,20 +624,24 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
         }
     }
 
+    #[doc(alias = "has-frame")]
     fn has_frame(&self) -> bool {
-        glib::ObjectExt::property(self.as_ref(), "has-frame")
+        ObjectExt::property(self.as_ref(), "has-frame")
     }
 
+    #[doc(alias = "has-frame")]
     fn set_has_frame(&self, has_frame: bool) {
-        glib::ObjectExt::set_property(self.as_ref(), "has-frame", has_frame)
+        ObjectExt::set_property(self.as_ref(), "has-frame", has_frame)
     }
 
+    #[doc(alias = "popup-shown")]
     fn is_popup_shown(&self) -> bool {
-        glib::ObjectExt::property(self.as_ref(), "popup-shown")
+        ObjectExt::property(self.as_ref(), "popup-shown")
     }
 
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[cfg(feature = "v4_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
+    #[doc(alias = "activate")]
     fn connect_activate<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn activate_trampoline<P: IsA<ComboBox>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkComboBox,
@@ -783,7 +655,7 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"activate\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     activate_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -791,12 +663,13 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
         }
     }
 
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[cfg(feature = "v4_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     fn emit_activate(&self) {
         self.emit_by_name::<()>("activate", &[]);
     }
 
+    #[doc(alias = "changed")]
     fn connect_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn changed_trampoline<P: IsA<ComboBox>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkComboBox,
@@ -810,7 +683,7 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"changed\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     changed_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -818,6 +691,7 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
         }
     }
 
+    #[doc(alias = "format-entry-text")]
     fn connect_format_entry_text<F: Fn(&Self, &str) -> String + 'static>(
         &self,
         f: F,
@@ -842,7 +716,7 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"format-entry-text\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     format_entry_text_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -850,6 +724,7 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
         }
     }
 
+    #[doc(alias = "move-active")]
     fn connect_move_active<F: Fn(&Self, ScrollType) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn move_active_trampoline<
             P: IsA<ComboBox>,
@@ -870,7 +745,7 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"move-active\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     move_active_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -882,6 +757,7 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
         self.emit_by_name::<()>("move-active", &[&scroll_type]);
     }
 
+    #[doc(alias = "popdown")]
     fn connect_popdown<F: Fn(&Self) -> bool + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn popdown_trampoline<P: IsA<ComboBox>, F: Fn(&P) -> bool + 'static>(
             this: *mut ffi::GtkComboBox,
@@ -895,7 +771,7 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"popdown\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     popdown_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -907,6 +783,7 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
         self.emit_by_name("popdown", &[])
     }
 
+    #[doc(alias = "popup")]
     fn connect_popup<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn popup_trampoline<P: IsA<ComboBox>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkComboBox,
@@ -920,7 +797,7 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"popup\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     popup_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -932,6 +809,7 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
         self.emit_by_name::<()>("popup", &[]);
     }
 
+    #[doc(alias = "active")]
     fn connect_active_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_active_trampoline<P: IsA<ComboBox>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkComboBox,
@@ -946,7 +824,7 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::active\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_active_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -954,6 +832,7 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
         }
     }
 
+    #[doc(alias = "active-id")]
     fn connect_active_id_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_active_id_trampoline<P: IsA<ComboBox>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkComboBox,
@@ -968,7 +847,7 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::active-id\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_active_id_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -976,6 +855,7 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
         }
     }
 
+    #[doc(alias = "button-sensitivity")]
     fn connect_button_sensitivity_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_button_sensitivity_trampoline<
             P: IsA<ComboBox>,
@@ -993,7 +873,7 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::button-sensitivity\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_button_sensitivity_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -1001,6 +881,7 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
         }
     }
 
+    #[doc(alias = "child")]
     fn connect_child_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_child_trampoline<P: IsA<ComboBox>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkComboBox,
@@ -1015,7 +896,7 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::child\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_child_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -1023,6 +904,7 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
         }
     }
 
+    #[doc(alias = "entry-text-column")]
     fn connect_entry_text_column_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_entry_text_column_trampoline<
             P: IsA<ComboBox>,
@@ -1040,7 +922,7 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::entry-text-column\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_entry_text_column_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -1048,6 +930,7 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
         }
     }
 
+    #[doc(alias = "has-frame")]
     fn connect_has_frame_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_has_frame_trampoline<P: IsA<ComboBox>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkComboBox,
@@ -1062,7 +945,7 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::has-frame\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_has_frame_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -1070,6 +953,7 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
         }
     }
 
+    #[doc(alias = "id-column")]
     fn connect_id_column_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_id_column_trampoline<P: IsA<ComboBox>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkComboBox,
@@ -1084,7 +968,7 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::id-column\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_id_column_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -1092,6 +976,7 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
         }
     }
 
+    #[doc(alias = "model")]
     fn connect_model_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_model_trampoline<P: IsA<ComboBox>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkComboBox,
@@ -1106,7 +991,7 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::model\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_model_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -1114,6 +999,7 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
         }
     }
 
+    #[doc(alias = "popup-fixed-width")]
     fn connect_popup_fixed_width_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_popup_fixed_width_trampoline<
             P: IsA<ComboBox>,
@@ -1131,7 +1017,7 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::popup-fixed-width\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_popup_fixed_width_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -1139,6 +1025,7 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
         }
     }
 
+    #[doc(alias = "popup-shown")]
     fn connect_popup_shown_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_popup_shown_trampoline<
             P: IsA<ComboBox>,
@@ -1156,7 +1043,7 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::popup-shown\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_popup_shown_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -1165,8 +1052,4 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
     }
 }
 
-impl fmt::Display for ComboBox {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("ComboBox")
-    }
-}
+impl<O: IsA<ComboBox>> ComboBoxExt for O {}

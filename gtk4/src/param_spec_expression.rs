@@ -2,14 +2,11 @@
 
 use std::marker::PhantomData;
 
-use crate::{Expression, ParamSpecExpression};
+use glib::{gobject_ffi, shared::Shared, translate::*, ParamSpec, Value};
 
-use glib::{
-    gobject_ffi, prelude::*, shared::Shared, translate::*, IntoGStr, IntoOptionalGStr, ParamSpec,
-    StaticType, Value,
-};
+use crate::{prelude::*, Expression, ParamSpecExpression};
 
-impl glib::HasParamSpec for Expression {
+impl HasParamSpec for Expression {
     type ParamSpec = ParamSpecExpression;
 
     type SetValue = Expression;
@@ -124,20 +121,19 @@ impl ParamSpecExpression {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-pattern struct instance to construct [`ParamSpecExpression`] objects.
+    /// Creates a new builder-pattern struct instance to construct
+    /// [`ParamSpecExpression`] objects.
     ///
-    /// This method returns an instance of [`ParamSpecExpressionBuilder`](crate::builders::ParamSpecExpressionBuilder) which can be used to create [`ParamSpecExpression`] objects.
+    /// This method returns an instance of
+    /// [`ParamSpecExpressionBuilder`](crate::builders::ParamSpecExpressionBuilder)
+    /// which can be used to create [`ParamSpecExpression`] objects.
     pub fn builder(name: &str) -> ParamSpecExpressionBuilder {
         assert_initialized_main_thread!();
         ParamSpecExpressionBuilder::new(name)
     }
 
     pub fn upcast(self) -> ParamSpec {
-        unsafe {
-            from_glib_full(
-                IntoGlibPtr::<*mut _>::into_glib_ptr(self) as *mut gobject_ffi::GParamSpec
-            )
-        }
+        unsafe { from_glib_full(IntoGlibPtr::<*mut _>::into_glib_ptr(self)) }
     }
 
     pub fn upcast_ref(&self) -> &ParamSpec {
@@ -202,7 +198,7 @@ impl<'a> ParamSpecExpressionBuilder<'a> {
 }
 
 #[doc(hidden)]
-impl glib::value::ValueType for ParamSpecExpression {
+impl ValueType for ParamSpecExpression {
     type Type = ParamSpecExpression;
 }
 
@@ -217,12 +213,12 @@ unsafe impl<'a> glib::value::FromValue<'a> for ParamSpecExpression {
     unsafe fn from_value(value: &'a Value) -> Self {
         let ptr = gobject_ffi::g_value_dup_param(value.to_glib_none().0);
         debug_assert!(!ptr.is_null());
-        from_glib_full(ptr as *mut gobject_ffi::GParamSpec)
+        from_glib_full(ptr)
     }
 }
 
 #[doc(hidden)]
-impl glib::value::ToValue for ParamSpecExpression {
+impl ToValue for ParamSpecExpression {
     #[inline]
     fn to_value(&self) -> Value {
         unsafe {

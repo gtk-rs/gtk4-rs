@@ -1,13 +1,12 @@
 mod application_row;
+use gtk::{gio, glib, prelude::*};
+
 use crate::application_row::ApplicationRow;
-use gtk::prelude::*;
-use gtk::{gio, glib};
 
 fn main() -> glib::ExitCode {
-    let application = gtk::Application::new(
-        Some("com.github.gtk-rs.examples.apps_launcher"),
-        Default::default(),
-    );
+    let application = gtk::Application::builder()
+        .application_id("com.github.gtk-rs.examples.apps_launcher")
+        .build();
 
     application.connect_activate(build_ui);
     application.run()
@@ -31,17 +30,20 @@ fn build_ui(app: &gtk::Application) {
     factory.connect_setup(move |_factory, item| {
         // In gtk4 < 4.8, you don't need the following line
         // as gtk used to pass GtkListItem directly. In order to make that API
-        // generic for potentially future new APIs, it was switched to taking a GObject in 4.8
+        // generic for potentially future new APIs, it was switched to taking a GObject
+        // in 4.8
         let item = item.downcast_ref::<gtk::ListItem>().unwrap();
-        let row = ApplicationRow::new();
+        let row = ApplicationRow::default();
         item.set_child(Some(&row));
     });
 
-    // the bind stage is used for "binding" the data to the created widgets on the "setup" stage
+    // the bind stage is used for "binding" the data to the created widgets on the
+    // "setup" stage
     factory.connect_bind(move |_factory, item| {
         // In gtk4 < 4.8, you don't need the following line
         // as gtk used to pass GtkListItem directly. In order to make that API
-        // generic for potentially future new APIs, it was switched to taking a GObject in 4.8
+        // generic for potentially future new APIs, it was switched to taking a GObject
+        // in 4.8
         let item = item.downcast_ref::<gtk::ListItem>().unwrap();
         let app_info = item.item().and_downcast::<gio::AppInfo>().unwrap();
 
@@ -73,14 +75,12 @@ fn build_ui(app: &gtk::Application) {
         if let Err(err) = app_info.launch(&[], Some(&context)) {
             let parent_window = list_view.root().and_downcast::<gtk::Window>().unwrap();
 
-            gtk::MessageDialog::builder()
-                .text(format!("Failed to start {}", app_info.name()))
-                .secondary_text(err.to_string())
-                .message_type(gtk::MessageType::Error)
+            gtk::AlertDialog::builder()
+                .message(format!("Failed to start {}", app_info.name()))
+                .detail(err.to_string())
                 .modal(true)
-                .transient_for(&parent_window)
                 .build()
-                .show();
+                .show(Some(&parent_window));
         }
     });
 
@@ -91,5 +91,5 @@ fn build_ui(app: &gtk::Application) {
         .build();
 
     window.set_child(Some(&scrolled_window));
-    window.show();
+    window.present();
 }

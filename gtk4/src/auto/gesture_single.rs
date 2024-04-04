@@ -8,7 +8,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GtkGestureSingle")]
@@ -23,55 +23,26 @@ impl GestureSingle {
     pub const NONE: Option<&'static GestureSingle> = None;
 }
 
-pub trait GestureSingleExt: 'static {
-    #[doc(alias = "gtk_gesture_single_get_button")]
-    #[doc(alias = "get_button")]
-    fn button(&self) -> u32;
-
-    #[doc(alias = "gtk_gesture_single_get_current_button")]
-    #[doc(alias = "get_current_button")]
-    fn current_button(&self) -> u32;
-
-    #[doc(alias = "gtk_gesture_single_get_current_sequence")]
-    #[doc(alias = "get_current_sequence")]
-    fn current_sequence(&self) -> Option<gdk::EventSequence>;
-
-    #[doc(alias = "gtk_gesture_single_get_exclusive")]
-    #[doc(alias = "get_exclusive")]
-    fn is_exclusive(&self) -> bool;
-
-    #[doc(alias = "gtk_gesture_single_get_touch_only")]
-    #[doc(alias = "get_touch_only")]
-    fn is_touch_only(&self) -> bool;
-
-    #[doc(alias = "gtk_gesture_single_set_button")]
-    fn set_button(&self, button: u32);
-
-    #[doc(alias = "gtk_gesture_single_set_exclusive")]
-    fn set_exclusive(&self, exclusive: bool);
-
-    #[doc(alias = "gtk_gesture_single_set_touch_only")]
-    fn set_touch_only(&self, touch_only: bool);
-
-    #[doc(alias = "button")]
-    fn connect_button_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "exclusive")]
-    fn connect_exclusive_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "touch-only")]
-    fn connect_touch_only_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::GestureSingle>> Sealed for T {}
 }
 
-impl<O: IsA<GestureSingle>> GestureSingleExt for O {
+pub trait GestureSingleExt: IsA<GestureSingle> + sealed::Sealed + 'static {
+    #[doc(alias = "gtk_gesture_single_get_button")]
+    #[doc(alias = "get_button")]
     fn button(&self) -> u32 {
         unsafe { ffi::gtk_gesture_single_get_button(self.as_ref().to_glib_none().0) }
     }
 
+    #[doc(alias = "gtk_gesture_single_get_current_button")]
+    #[doc(alias = "get_current_button")]
     fn current_button(&self) -> u32 {
         unsafe { ffi::gtk_gesture_single_get_current_button(self.as_ref().to_glib_none().0) }
     }
 
+    #[doc(alias = "gtk_gesture_single_get_current_sequence")]
+    #[doc(alias = "get_current_sequence")]
     fn current_sequence(&self) -> Option<gdk::EventSequence> {
         unsafe {
             from_glib_full(ffi::gtk_gesture_single_get_current_sequence(
@@ -80,6 +51,8 @@ impl<O: IsA<GestureSingle>> GestureSingleExt for O {
         }
     }
 
+    #[doc(alias = "gtk_gesture_single_get_exclusive")]
+    #[doc(alias = "get_exclusive")]
     fn is_exclusive(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_gesture_single_get_exclusive(
@@ -88,6 +61,8 @@ impl<O: IsA<GestureSingle>> GestureSingleExt for O {
         }
     }
 
+    #[doc(alias = "gtk_gesture_single_get_touch_only")]
+    #[doc(alias = "get_touch_only")]
     fn is_touch_only(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_gesture_single_get_touch_only(
@@ -96,12 +71,14 @@ impl<O: IsA<GestureSingle>> GestureSingleExt for O {
         }
     }
 
+    #[doc(alias = "gtk_gesture_single_set_button")]
     fn set_button(&self, button: u32) {
         unsafe {
             ffi::gtk_gesture_single_set_button(self.as_ref().to_glib_none().0, button);
         }
     }
 
+    #[doc(alias = "gtk_gesture_single_set_exclusive")]
     fn set_exclusive(&self, exclusive: bool) {
         unsafe {
             ffi::gtk_gesture_single_set_exclusive(
@@ -111,6 +88,7 @@ impl<O: IsA<GestureSingle>> GestureSingleExt for O {
         }
     }
 
+    #[doc(alias = "gtk_gesture_single_set_touch_only")]
     fn set_touch_only(&self, touch_only: bool) {
         unsafe {
             ffi::gtk_gesture_single_set_touch_only(
@@ -120,6 +98,7 @@ impl<O: IsA<GestureSingle>> GestureSingleExt for O {
         }
     }
 
+    #[doc(alias = "button")]
     fn connect_button_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_button_trampoline<
             P: IsA<GestureSingle>,
@@ -137,7 +116,7 @@ impl<O: IsA<GestureSingle>> GestureSingleExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::button\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_button_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -145,6 +124,7 @@ impl<O: IsA<GestureSingle>> GestureSingleExt for O {
         }
     }
 
+    #[doc(alias = "exclusive")]
     fn connect_exclusive_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_exclusive_trampoline<
             P: IsA<GestureSingle>,
@@ -162,7 +142,7 @@ impl<O: IsA<GestureSingle>> GestureSingleExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::exclusive\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_exclusive_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -170,6 +150,7 @@ impl<O: IsA<GestureSingle>> GestureSingleExt for O {
         }
     }
 
+    #[doc(alias = "touch-only")]
     fn connect_touch_only_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_touch_only_trampoline<
             P: IsA<GestureSingle>,
@@ -187,7 +168,7 @@ impl<O: IsA<GestureSingle>> GestureSingleExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::touch-only\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_touch_only_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -196,8 +177,4 @@ impl<O: IsA<GestureSingle>> GestureSingleExt for O {
     }
 }
 
-impl fmt::Display for GestureSingle {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("GestureSingle")
-    }
-}
+impl<O: IsA<GestureSingle>> GestureSingleExt for O {}

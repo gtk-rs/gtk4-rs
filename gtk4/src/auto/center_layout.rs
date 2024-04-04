@@ -3,8 +3,13 @@
 // DO NOT EDIT
 
 use crate::{BaselinePosition, LayoutManager, Orientation, Widget};
+#[cfg(feature = "v4_12")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+use glib::signal::{connect_raw, SignalHandlerId};
 use glib::{prelude::*, translate::*};
-use std::fmt;
+#[cfg(feature = "v4_12")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GtkCenterLayout")]
@@ -58,6 +63,18 @@ impl CenterLayout {
         }
     }
 
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "gtk_center_layout_get_shrink_center_last")]
+    #[doc(alias = "get_shrink_center_last")]
+    pub fn shrinks_center_last(&self) -> bool {
+        unsafe {
+            from_glib(ffi::gtk_center_layout_get_shrink_center_last(
+                self.to_glib_none().0,
+            ))
+        }
+    }
+
     #[doc(alias = "gtk_center_layout_get_start_widget")]
     #[doc(alias = "get_start_widget")]
     pub fn start_widget(&self) -> Option<Widget> {
@@ -105,6 +122,18 @@ impl CenterLayout {
         }
     }
 
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "gtk_center_layout_set_shrink_center_last")]
+    pub fn set_shrink_center_last(&self, shrink_center_last: bool) {
+        unsafe {
+            ffi::gtk_center_layout_set_shrink_center_last(
+                self.to_glib_none().0,
+                shrink_center_last.into_glib(),
+            );
+        }
+    }
+
     #[doc(alias = "gtk_center_layout_set_start_widget")]
     pub fn set_start_widget(&self, widget: Option<&impl IsA<Widget>>) {
         unsafe {
@@ -114,16 +143,40 @@ impl CenterLayout {
             );
         }
     }
+
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "shrink-center-last")]
+    pub fn connect_shrink_center_last_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_shrink_center_last_trampoline<
+            F: Fn(&CenterLayout) + 'static,
+        >(
+            this: *mut ffi::GtkCenterLayout,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::shrink-center-last\0".as_ptr() as *const _,
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                    notify_shrink_center_last_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
 }
 
 impl Default for CenterLayout {
     fn default() -> Self {
         Self::new()
-    }
-}
-
-impl fmt::Display for CenterLayout {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("CenterLayout")
     }
 }

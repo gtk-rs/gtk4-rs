@@ -3,8 +3,7 @@ mod custom_layout_child;
 mod simple_widget;
 use std::str::FromStr;
 
-use gtk::prelude::*;
-use gtk::{gdk, glib};
+use gtk::{gdk, glib, prelude::*};
 
 const COLORS: [&str; 16] = [
     "red",
@@ -27,10 +26,9 @@ const COLORS: [&str; 16] = [
 const TOTAL_COLORS: i32 = COLORS.len() as i32;
 
 fn main() -> glib::ExitCode {
-    let application = gtk::Application::new(
-        Some("com.github.gtk-rs.examples.custom_layout"),
-        Default::default(),
-    );
+    let application = gtk::Application::builder()
+        .application_id("com.github.gtk-rs.examples.custom_layout")
+        .build();
 
     application.connect_activate(|app| {
         let window = gtk::ApplicationWindow::builder()
@@ -40,7 +38,7 @@ fn main() -> glib::ExitCode {
             .title("Custom Layout Manager")
             .build();
 
-        let widget = simple_widget::SimpleWidget::new();
+        let widget = simple_widget::SimpleWidget::default();
         for color in &COLORS {
             let rgba = gdk::RGBA::from_str(color).unwrap();
             let child = custom_layout_child::CustomLayoutChild::new(rgba);
@@ -48,7 +46,7 @@ fn main() -> glib::ExitCode {
         }
 
         window.set_child(Some(&widget));
-        window.show();
+        window.present();
     });
 
     application.run()

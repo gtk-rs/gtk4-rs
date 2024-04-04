@@ -4,7 +4,6 @@
 
 use crate::Surface;
 use glib::{prelude::*, translate::*};
-use std::fmt;
 
 glib::wrapper! {
     #[doc(alias = "GdkDragSurface")]
@@ -19,12 +18,13 @@ impl DragSurface {
     pub const NONE: Option<&'static DragSurface> = None;
 }
 
-pub trait DragSurfaceExt: 'static {
-    #[doc(alias = "gdk_drag_surface_present")]
-    fn present(&self, width: i32, height: i32) -> bool;
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::DragSurface>> Sealed for T {}
 }
 
-impl<O: IsA<DragSurface>> DragSurfaceExt for O {
+pub trait DragSurfaceExt: IsA<DragSurface> + sealed::Sealed + 'static {
+    #[doc(alias = "gdk_drag_surface_present")]
     fn present(&self, width: i32, height: i32) -> bool {
         unsafe {
             from_glib(ffi::gdk_drag_surface_present(
@@ -36,8 +36,4 @@ impl<O: IsA<DragSurface>> DragSurfaceExt for O {
     }
 }
 
-impl fmt::Display for DragSurface {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("DragSurface")
-    }
-}
+impl<O: IsA<DragSurface>> DragSurfaceExt for O {}

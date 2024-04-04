@@ -3,8 +3,7 @@
 // DO NOT EDIT
 
 use crate::RenderNode;
-use glib::translate::*;
-use std::fmt;
+use glib::{prelude::*, translate::*};
 
 glib::wrapper! {
     #[doc(alias = "GskBlurNode")]
@@ -16,7 +15,7 @@ glib::wrapper! {
     }
 }
 
-impl glib::StaticType for BlurNode {
+impl StaticType for BlurNode {
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gsk_blur_node_get_type()) }
     }
@@ -44,11 +43,5 @@ impl BlurNode {
     #[doc(alias = "get_radius")]
     pub fn radius(&self) -> f32 {
         unsafe { ffi::gsk_blur_node_get_radius(self.to_glib_none().0) }
-    }
-}
-
-impl fmt::Display for BlurNode {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("BlurNode")
     }
 }

@@ -1,6 +1,9 @@
 mod imp;
-use gtk::glib;
-use gtk::subclass::prelude::*;
+use gtk::{glib, subclass::prelude::*};
+
+pub struct Entry {
+    pub name: String,
+}
 
 glib::wrapper! {
     pub struct GridCell(ObjectSubclass<imp::GridCell>)
@@ -9,19 +12,11 @@ glib::wrapper! {
 
 impl Default for GridCell {
     fn default() -> Self {
-        Self::new()
+        glib::Object::new()
     }
-}
-
-pub struct Entry {
-    pub name: String,
 }
 
 impl GridCell {
-    pub fn new() -> Self {
-        glib::Object::new()
-    }
-
     pub fn set_entry(&self, entry: &Entry) {
         self.imp().name.set_text(Some(&entry.name));
     }

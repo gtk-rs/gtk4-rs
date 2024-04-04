@@ -11,7 +11,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GtkColorDialogButton")]
@@ -70,8 +70,38 @@ impl ColorDialogButton {
         }
     }
 
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    #[doc(alias = "activate")]
+    pub fn connect_activate<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn activate_trampoline<F: Fn(&ColorDialogButton) + 'static>(
+            this: *mut ffi::GtkColorDialogButton,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"activate\0".as_ptr() as *const _,
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                    activate_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn emit_activate(&self) {
+        self.emit_by_name::<()>("activate", &[]);
+    }
+
+    #[cfg(feature = "v4_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "dialog")]
     pub fn connect_dialog_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_dialog_trampoline<F: Fn(&ColorDialogButton) + 'static>(
@@ -87,7 +117,7 @@ impl ColorDialogButton {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::dialog\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_dialog_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -95,8 +125,8 @@ impl ColorDialogButton {
         }
     }
 
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(feature = "v4_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "rgba")]
     pub fn connect_rgba_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_rgba_trampoline<F: Fn(&ColorDialogButton) + 'static>(
@@ -112,7 +142,7 @@ impl ColorDialogButton {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::rgba\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_rgba_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -121,8 +151,8 @@ impl ColorDialogButton {
     }
 }
 
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 impl Default for ColorDialogButton {
     fn default() -> Self {
         glib::object::Object::new::<Self>()
@@ -145,16 +175,16 @@ impl ColorDialogButtonBuilder {
         }
     }
 
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(feature = "v4_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn dialog(self, dialog: &ColorDialog) -> Self {
         Self {
             builder: self.builder.property("dialog", dialog.clone()),
         }
     }
 
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(feature = "v4_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn rgba(self, rgba: &gdk::RGBA) -> Self {
         Self {
             builder: self.builder.property("rgba", rgba),
@@ -350,11 +380,5 @@ impl ColorDialogButtonBuilder {
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> ColorDialogButton {
         self.builder.build()
-    }
-}
-
-impl fmt::Display for ColorDialogButton {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("ColorDialogButton")
     }
 }

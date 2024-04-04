@@ -2,6 +2,9 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+use crate::ShortcutsSection;
 use crate::{
     Accessible, AccessibleRole, Align, Application, Buildable, ConstraintTarget, LayoutManager,
     Native, Overflow, Root, ShortcutManager, Widget, Window,
@@ -11,7 +14,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GtkShortcutsWindow")]
@@ -31,24 +34,33 @@ impl ShortcutsWindow {
         ShortcutsWindowBuilder::new()
     }
 
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    #[doc(alias = "gtk_shortcuts_window_add_section")]
+    pub fn add_section(&self, section: &ShortcutsSection) {
+        unsafe {
+            ffi::gtk_shortcuts_window_add_section(self.to_glib_none().0, section.to_glib_none().0);
+        }
+    }
+
     #[doc(alias = "section-name")]
     pub fn section_name(&self) -> Option<glib::GString> {
-        glib::ObjectExt::property(self, "section-name")
+        ObjectExt::property(self, "section-name")
     }
 
     #[doc(alias = "section-name")]
     pub fn set_section_name(&self, section_name: Option<&str>) {
-        glib::ObjectExt::set_property(self, "section-name", section_name)
+        ObjectExt::set_property(self, "section-name", section_name)
     }
 
     #[doc(alias = "view-name")]
     pub fn view_name(&self) -> Option<glib::GString> {
-        glib::ObjectExt::property(self, "view-name")
+        ObjectExt::property(self, "view-name")
     }
 
     #[doc(alias = "view-name")]
     pub fn set_view_name(&self, view_name: Option<&str>) {
-        glib::ObjectExt::set_property(self, "view-name", view_name)
+        ObjectExt::set_property(self, "view-name", view_name)
     }
 
     #[doc(alias = "close")]
@@ -65,7 +77,7 @@ impl ShortcutsWindow {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"close\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     close_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -91,7 +103,7 @@ impl ShortcutsWindow {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"search\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     search_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -118,7 +130,7 @@ impl ShortcutsWindow {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::section-name\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_section_name_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -141,7 +153,7 @@ impl ShortcutsWindow {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::view-name\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_view_name_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -258,8 +270,8 @@ impl ShortcutsWindowBuilder {
         }
     }
 
-    #[cfg(any(feature = "v4_2", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_2")))]
+    #[cfg(feature = "v4_2")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_2")))]
     pub fn handle_menubar_accel(self, handle_menubar_accel: bool) -> Self {
         Self {
             builder: self
@@ -318,8 +330,8 @@ impl ShortcutsWindowBuilder {
         }
     }
 
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[cfg(feature = "v4_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     pub fn titlebar(self, titlebar: &impl IsA<Widget>) -> Self {
         Self {
             builder: self.builder.property("titlebar", titlebar.clone().upcast()),
@@ -523,11 +535,5 @@ impl ShortcutsWindowBuilder {
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> ShortcutsWindow {
         self.builder.build()
-    }
-}
-
-impl fmt::Display for ShortcutsWindow {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("ShortcutsWindow")
     }
 }

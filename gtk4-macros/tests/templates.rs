@@ -1,13 +1,11 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use gtk::prelude::*;
-use gtk::subclass::prelude::*;
-use gtk::{glib, CompositeTemplate};
+use gtk::{glib, prelude::*, subclass::prelude::*};
 
 mod imp {
     use super::*;
 
-    #[derive(Debug, Default, CompositeTemplate)]
+    #[derive(Debug, Default, gtk::CompositeTemplate)]
     #[template(string = r#"
     <interface>
       <template class="MyWidget" parent="GtkWidget">
@@ -66,11 +64,13 @@ fn template_string() {
 }
 
 mod imp2 {
-    use super::*;
-    use futures_channel::mpsc;
     use std::cell::RefCell;
 
-    #[derive(Debug, CompositeTemplate)]
+    use futures_channel::mpsc;
+
+    use super::*;
+
+    #[derive(Debug, gtk::CompositeTemplate)]
     #[template(string = r#"
     <interface>
        <template class="MyWidget2" parent="GtkWidget">
@@ -204,7 +204,7 @@ fn template_child_without_attribute() {
 mod imp4 {
     use super::*;
 
-    #[derive(Debug, Default, CompositeTemplate)]
+    #[derive(Debug, Default, gtk::CompositeTemplate)]
     #[template(string = "
     template MyWidget4 : Widget {
         Label label {
@@ -255,4 +255,51 @@ glib::wrapper! {
 #[cfg(feature = "blueprint")]
 fn blueprint_template() {
     let _: MyWidget4 = glib::Object::new();
+}
+
+#[cfg(feature = "blueprint")]
+mod imp5 {
+    use super::*;
+
+    #[derive(Debug, Default, gtk::CompositeTemplate)]
+    #[template(file = "tests/my_widget.blp")]
+    pub struct MyWidget5 {
+        #[template_child]
+        pub label: TemplateChild<gtk::Label>,
+        #[template_child(id = "my_label2")]
+        pub label2: gtk::TemplateChild<gtk::Label>,
+    }
+
+    #[glib::object_subclass]
+    impl ObjectSubclass for MyWidget5 {
+        const NAME: &'static str = "MyWidget5";
+        type Type = super::MyWidget5;
+        type ParentType = gtk::Widget;
+        fn class_init(klass: &mut Self::Class) {
+            klass.bind_template();
+        }
+        fn instance_init(obj: &glib::subclass::InitializingObject<Self>) {
+            obj.init_template();
+        }
+    }
+
+    impl ObjectImpl for MyWidget5 {
+        fn dispose(&self) {
+            while let Some(child) = self.obj().first_child() {
+                child.unparent();
+            }
+        }
+    }
+    impl WidgetImpl for MyWidget5 {}
+}
+
+#[cfg(feature = "blueprint")]
+glib::wrapper! {
+    pub struct MyWidget5(ObjectSubclass<imp5::MyWidget5>) @extends gtk::Widget;
+}
+
+#[gtk::test]
+#[cfg(feature = "blueprint")]
+fn blueprint_file() {
+    let _: MyWidget5 = glib::Object::new();
 }

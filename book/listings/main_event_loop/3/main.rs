@@ -1,9 +1,9 @@
 use std::thread;
 use std::time::Duration;
 
-use glib::{clone, Continue, MainContext, PRIORITY_DEFAULT};
+use glib::clone;
 use gtk::prelude::*;
-use gtk::{glib, Application, ApplicationWindow, Button};
+use gtk::{gio, glib, Application, ApplicationWindow, Button};
 
 const APP_ID: &str = "org.gtk_rs.MainEventLoop3";
 
@@ -29,31 +29,32 @@ fn build_ui(app: &Application) {
         .build();
 
     // ANCHOR: callback
-    let (sender, receiver) = MainContext::channel(PRIORITY_DEFAULT);
+    // Create channel that can hold at most 1 message at a time
+    let (sender, receiver) = async_channel::bounded(1);
     // Connect to "clicked" signal of `button`
     button.connect_clicked(move |_| {
         let sender = sender.clone();
         // The long running operation runs now in a separate thread
-        thread::spawn(move || {
+        gio::spawn_blocking(move || {
             // Deactivate the button until the operation is done
-            sender.send(false).expect("Could not send through channel");
-            let ten_seconds = Duration::from_secs(10);
-            thread::sleep(ten_seconds);
+            sender
+                .send_blocking(false)
+                .expect("The channel needs to be open.");
+            let five_seconds = Duration::from_secs(5);
+            thread::sleep(five_seconds);
             // Activate the button again
-            sender.send(true).expect("Could not send through channel");
+            sender
+                .send_blocking(true)
+                .expect("The channel needs to be open.");
         });
     });
 
-    // The main loop executes the closure as soon as it receives the message
-    receiver.attach(
-        None,
-        clone!(@weak button => @default-return Continue(false),
-                    move |enable_button| {
-                        button.set_sensitive(enable_button);
-                        Continue(true)
-                    }
-        ),
-    );
+    // The main loop executes the asynchronous block
+    glib::spawn_future_local(clone!(@weak button => async move {
+        while let Ok(enable_button) = receiver.recv().await {
+            button.set_sensitive(enable_button);
+        }
+    }));
     // ANCHOR_END: callback
 
     // Create a window

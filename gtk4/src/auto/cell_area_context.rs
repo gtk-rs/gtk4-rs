@@ -9,7 +9,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem, mem::transmute};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GtkCellAreaContext")]
@@ -24,109 +24,29 @@ impl CellAreaContext {
     pub const NONE: Option<&'static CellAreaContext> = None;
 }
 
-pub trait CellAreaContextExt: 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::CellAreaContext>> Sealed for T {}
+}
+
+pub trait CellAreaContextExt: IsA<CellAreaContext> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_cell_area_context_allocate")]
-    fn allocate(&self, width: i32, height: i32);
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_cell_area_context_get_allocation")]
-    #[doc(alias = "get_allocation")]
-    fn allocation(&self) -> (i32, i32);
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_cell_area_context_get_area")]
-    #[doc(alias = "get_area")]
-    fn area(&self) -> CellArea;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_cell_area_context_get_preferred_height")]
-    #[doc(alias = "get_preferred_height")]
-    fn preferred_height(&self) -> (i32, i32);
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_cell_area_context_get_preferred_height_for_width")]
-    #[doc(alias = "get_preferred_height_for_width")]
-    fn preferred_height_for_width(&self, width: i32) -> (i32, i32);
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_cell_area_context_get_preferred_width")]
-    #[doc(alias = "get_preferred_width")]
-    fn preferred_width(&self) -> (i32, i32);
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_cell_area_context_get_preferred_width_for_height")]
-    #[doc(alias = "get_preferred_width_for_height")]
-    fn preferred_width_for_height(&self, height: i32) -> (i32, i32);
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_cell_area_context_push_preferred_height")]
-    fn push_preferred_height(&self, minimum_height: i32, natural_height: i32);
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_cell_area_context_push_preferred_width")]
-    fn push_preferred_width(&self, minimum_width: i32, natural_width: i32);
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_cell_area_context_reset")]
-    fn reset(&self);
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[doc(alias = "minimum-height")]
-    fn minimum_height(&self) -> i32;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[doc(alias = "minimum-width")]
-    fn minimum_width(&self) -> i32;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[doc(alias = "natural-height")]
-    fn natural_height(&self) -> i32;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[doc(alias = "natural-width")]
-    fn natural_width(&self) -> i32;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[doc(alias = "minimum-height")]
-    fn connect_minimum_height_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[doc(alias = "minimum-width")]
-    fn connect_minimum_width_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[doc(alias = "natural-height")]
-    fn connect_natural_height_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[doc(alias = "natural-width")]
-    fn connect_natural_width_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<CellAreaContext>> CellAreaContextExt for O {
-    #[allow(deprecated)]
     fn allocate(&self, width: i32, height: i32) {
         unsafe {
             ffi::gtk_cell_area_context_allocate(self.as_ref().to_glib_none().0, width, height);
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_cell_area_context_get_allocation")]
+    #[doc(alias = "get_allocation")]
     fn allocation(&self) -> (i32, i32) {
         unsafe {
-            let mut width = mem::MaybeUninit::uninit();
-            let mut height = mem::MaybeUninit::uninit();
+            let mut width = std::mem::MaybeUninit::uninit();
+            let mut height = std::mem::MaybeUninit::uninit();
             ffi::gtk_cell_area_context_get_allocation(
                 self.as_ref().to_glib_none().0,
                 width.as_mut_ptr(),
@@ -136,7 +56,10 @@ impl<O: IsA<CellAreaContext>> CellAreaContextExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_cell_area_context_get_area")]
+    #[doc(alias = "get_area")]
     fn area(&self) -> CellArea {
         unsafe {
             from_glib_none(ffi::gtk_cell_area_context_get_area(
@@ -145,11 +68,14 @@ impl<O: IsA<CellAreaContext>> CellAreaContextExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_cell_area_context_get_preferred_height")]
+    #[doc(alias = "get_preferred_height")]
     fn preferred_height(&self) -> (i32, i32) {
         unsafe {
-            let mut minimum_height = mem::MaybeUninit::uninit();
-            let mut natural_height = mem::MaybeUninit::uninit();
+            let mut minimum_height = std::mem::MaybeUninit::uninit();
+            let mut natural_height = std::mem::MaybeUninit::uninit();
             ffi::gtk_cell_area_context_get_preferred_height(
                 self.as_ref().to_glib_none().0,
                 minimum_height.as_mut_ptr(),
@@ -159,11 +85,14 @@ impl<O: IsA<CellAreaContext>> CellAreaContextExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_cell_area_context_get_preferred_height_for_width")]
+    #[doc(alias = "get_preferred_height_for_width")]
     fn preferred_height_for_width(&self, width: i32) -> (i32, i32) {
         unsafe {
-            let mut minimum_height = mem::MaybeUninit::uninit();
-            let mut natural_height = mem::MaybeUninit::uninit();
+            let mut minimum_height = std::mem::MaybeUninit::uninit();
+            let mut natural_height = std::mem::MaybeUninit::uninit();
             ffi::gtk_cell_area_context_get_preferred_height_for_width(
                 self.as_ref().to_glib_none().0,
                 width,
@@ -174,11 +103,14 @@ impl<O: IsA<CellAreaContext>> CellAreaContextExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_cell_area_context_get_preferred_width")]
+    #[doc(alias = "get_preferred_width")]
     fn preferred_width(&self) -> (i32, i32) {
         unsafe {
-            let mut minimum_width = mem::MaybeUninit::uninit();
-            let mut natural_width = mem::MaybeUninit::uninit();
+            let mut minimum_width = std::mem::MaybeUninit::uninit();
+            let mut natural_width = std::mem::MaybeUninit::uninit();
             ffi::gtk_cell_area_context_get_preferred_width(
                 self.as_ref().to_glib_none().0,
                 minimum_width.as_mut_ptr(),
@@ -188,11 +120,14 @@ impl<O: IsA<CellAreaContext>> CellAreaContextExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_cell_area_context_get_preferred_width_for_height")]
+    #[doc(alias = "get_preferred_width_for_height")]
     fn preferred_width_for_height(&self, height: i32) -> (i32, i32) {
         unsafe {
-            let mut minimum_width = mem::MaybeUninit::uninit();
-            let mut natural_width = mem::MaybeUninit::uninit();
+            let mut minimum_width = std::mem::MaybeUninit::uninit();
+            let mut natural_width = std::mem::MaybeUninit::uninit();
             ffi::gtk_cell_area_context_get_preferred_width_for_height(
                 self.as_ref().to_glib_none().0,
                 height,
@@ -203,7 +138,9 @@ impl<O: IsA<CellAreaContext>> CellAreaContextExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_cell_area_context_push_preferred_height")]
     fn push_preferred_height(&self, minimum_height: i32, natural_height: i32) {
         unsafe {
             ffi::gtk_cell_area_context_push_preferred_height(
@@ -214,7 +151,9 @@ impl<O: IsA<CellAreaContext>> CellAreaContextExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_cell_area_context_push_preferred_width")]
     fn push_preferred_width(&self, minimum_width: i32, natural_width: i32) {
         unsafe {
             ffi::gtk_cell_area_context_push_preferred_width(
@@ -225,29 +164,41 @@ impl<O: IsA<CellAreaContext>> CellAreaContextExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_cell_area_context_reset")]
     fn reset(&self) {
         unsafe {
             ffi::gtk_cell_area_context_reset(self.as_ref().to_glib_none().0);
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+    #[doc(alias = "minimum-height")]
     fn minimum_height(&self) -> i32 {
-        glib::ObjectExt::property(self.as_ref(), "minimum-height")
+        ObjectExt::property(self.as_ref(), "minimum-height")
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+    #[doc(alias = "minimum-width")]
     fn minimum_width(&self) -> i32 {
-        glib::ObjectExt::property(self.as_ref(), "minimum-width")
+        ObjectExt::property(self.as_ref(), "minimum-width")
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+    #[doc(alias = "natural-height")]
     fn natural_height(&self) -> i32 {
-        glib::ObjectExt::property(self.as_ref(), "natural-height")
+        ObjectExt::property(self.as_ref(), "natural-height")
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+    #[doc(alias = "natural-width")]
     fn natural_width(&self) -> i32 {
-        glib::ObjectExt::property(self.as_ref(), "natural-width")
+        ObjectExt::property(self.as_ref(), "natural-width")
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+    #[doc(alias = "minimum-height")]
     fn connect_minimum_height_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_minimum_height_trampoline<
             P: IsA<CellAreaContext>,
@@ -265,7 +216,7 @@ impl<O: IsA<CellAreaContext>> CellAreaContextExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::minimum-height\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_minimum_height_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -273,6 +224,8 @@ impl<O: IsA<CellAreaContext>> CellAreaContextExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+    #[doc(alias = "minimum-width")]
     fn connect_minimum_width_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_minimum_width_trampoline<
             P: IsA<CellAreaContext>,
@@ -290,7 +243,7 @@ impl<O: IsA<CellAreaContext>> CellAreaContextExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::minimum-width\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_minimum_width_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -298,6 +251,8 @@ impl<O: IsA<CellAreaContext>> CellAreaContextExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+    #[doc(alias = "natural-height")]
     fn connect_natural_height_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_natural_height_trampoline<
             P: IsA<CellAreaContext>,
@@ -315,7 +270,7 @@ impl<O: IsA<CellAreaContext>> CellAreaContextExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::natural-height\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_natural_height_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -323,6 +278,8 @@ impl<O: IsA<CellAreaContext>> CellAreaContextExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+    #[doc(alias = "natural-width")]
     fn connect_natural_width_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_natural_width_trampoline<
             P: IsA<CellAreaContext>,
@@ -340,7 +297,7 @@ impl<O: IsA<CellAreaContext>> CellAreaContextExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::natural-width\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_natural_width_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -349,8 +306,4 @@ impl<O: IsA<CellAreaContext>> CellAreaContextExt for O {
     }
 }
 
-impl fmt::Display for CellAreaContext {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("CellAreaContext")
-    }
-}
+impl<O: IsA<CellAreaContext>> CellAreaContextExt for O {}

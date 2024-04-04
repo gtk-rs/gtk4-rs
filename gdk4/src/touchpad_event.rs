@@ -1,7 +1,8 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{EventType, TouchpadEvent};
 use std::fmt;
+
+use crate::{EventType, TouchpadEvent};
 
 define_event! {
     TouchpadEvent,

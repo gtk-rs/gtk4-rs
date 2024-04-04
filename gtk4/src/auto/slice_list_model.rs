@@ -2,13 +2,28 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+#[cfg(feature = "v4_12")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+use crate::SectionModel;
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::boxed::Box as Box_;
 
+#[cfg(feature = "v4_12")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+glib::wrapper! {
+    #[doc(alias = "GtkSliceListModel")]
+    pub struct SliceListModel(Object<ffi::GtkSliceListModel, ffi::GtkSliceListModelClass>) @implements gio::ListModel, SectionModel;
+
+    match fn {
+        type_ => || ffi::gtk_slice_list_model_get_type(),
+    }
+}
+
+#[cfg(not(any(feature = "v4_12")))]
 glib::wrapper! {
     #[doc(alias = "GtkSliceListModel")]
     pub struct SliceListModel(Object<ffi::GtkSliceListModel, ffi::GtkSliceListModelClass>) @implements gio::ListModel;
@@ -96,7 +111,7 @@ impl SliceListModel {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::model\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_model_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -119,7 +134,7 @@ impl SliceListModel {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::offset\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_offset_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -142,7 +157,7 @@ impl SliceListModel {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::size\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_size_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -196,11 +211,5 @@ impl SliceListModelBuilder {
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> SliceListModel {
         self.builder.build()
-    }
-}
-
-impl fmt::Display for SliceListModel {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("SliceListModel")
     }
 }

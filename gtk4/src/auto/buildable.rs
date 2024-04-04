@@ -3,7 +3,6 @@
 // DO NOT EDIT
 
 use glib::{prelude::*, translate::*};
-use std::fmt;
 
 glib::wrapper! {
     #[doc(alias = "GtkBuildable")]
@@ -18,13 +17,14 @@ impl Buildable {
     pub const NONE: Option<&'static Buildable> = None;
 }
 
-pub trait BuildableExt: 'static {
-    #[doc(alias = "gtk_buildable_get_buildable_id")]
-    #[doc(alias = "get_buildable_id")]
-    fn buildable_id(&self) -> Option<glib::GString>;
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::Buildable>> Sealed for T {}
 }
 
-impl<O: IsA<Buildable>> BuildableExt for O {
+pub trait BuildableExt: IsA<Buildable> + sealed::Sealed + 'static {
+    #[doc(alias = "gtk_buildable_get_buildable_id")]
+    #[doc(alias = "get_buildable_id")]
     fn buildable_id(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::gtk_buildable_get_buildable_id(
@@ -34,8 +34,4 @@ impl<O: IsA<Buildable>> BuildableExt for O {
     }
 }
 
-impl fmt::Display for Buildable {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("Buildable")
-    }
-}
+impl<O: IsA<Buildable>> BuildableExt for O {}

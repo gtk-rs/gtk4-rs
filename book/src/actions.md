@@ -13,8 +13,9 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 {{#rustdoc_include ../listings/actions/1/main.rs:build_ui}}
 ```
 
-First, we created a new [`gio::SimpleAction`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.SimpleAction.html) which is named "close" and takes no parameter.
-We also connected a callback which closes the window.
+First, we created a new [`gio::ActionEntry`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.ActionEntry.html) which is named "close" and takes no parameter.
+We also connected a callback which closes the window when the action is activated.
+Finally, we add the action entry to the window via [`add_action_entries`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/prelude/trait.ActionMapExtManual.html#method.add_action_entries).
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/actions/1/main.rs">listings/actions/1/main.rs</a>
 
@@ -23,8 +24,8 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 ```
 
 One of the most popular reasons to use actions are keyboard accelerators, so we added one here.
-With [`set_accels_for_action`](../docs/gtk4/prelude/trait.GtkApplicationExt.html#tymethod.set_accels_for_action) one can assign one or more accelerators to a certain action.
-Check the documentation of [`accelerator_parse`](../docs/gtk4/functions/fn.accelerator_parse.html) in order to learn more about its syntax.
+With [`set_accels_for_action`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/prelude/trait.GtkApplicationExt.html#tymethod.set_accels_for_action) one can assign one or more accelerators to a certain action.
+Check the documentation of [`accelerator_parse`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/functions/fn.accelerator_parse.html) in order to learn more about its syntax.
 
 Before we move on to other aspects of actions, let's appreciate a few things that are curious here.
 The "win" part of "win.close" is the group of the action.
@@ -33,21 +34,32 @@ The answer is that it is so common to add actions to windows and applications th
 - "app" for actions global to the application, and
 - "win" for actions tied to an application window.
 
-If that had not been the case, we would have to add the action group manually via [`gio::SimpleActionGroup`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.SimpleActionGroup.html).
+We can add an action group to any widget via the method [`insert_action_group`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/prelude/trait.WidgetExt.html#method.insert_action_group).
+Let's add our action to the action group "custom-group" and add the group then to our window.
+The action entry isn't specific to our window anymore, the first parameter of the "activate" callback is of type `SimpleActionGroup` instead of `ApplicationWindow`.
+This means we have to clone `window` into the closure.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/actions/2/main.rs">listings/actions/2/main.rs</a>
 
-```rust ,no_run,noplayground
-{{#rustdoc_include ../listings/actions/2/main.rs:action_group}}
+```rust
+{{#rustdoc_include ../listings/actions/2/main.rs:build_ui}}
 ```
 
-Also, if we had multiple instances of the same windows we would expect that only the currently focused window will be closed when activating "win.close".
+If we bind the accelerator to "custom-group.close", it works just as before.
+
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/actions/2/main.rs">listings/actions/2/main.rs</a>
+
+```rust
+{{#rustdoc_include ../listings/actions/2/main.rs:accel}}
+```
+
+Also, if we had multiple instances of the same windows, we would expect that only the currently focused window will be closed when activating "win.close".
 And indeed, the "win.close" will be dispatched to the currently focused window.
 However, that also means that we actually define one action per window instance.
-If we want to have a single globally accessible action instead, we call `add_action` on our application instead.
+If we want to have a single globally accessible action instead, we call `add_action_entries` on our application instead.
 
 > Adding "win.close" was useful as a simple example.
-> However, in the future we will use the pre-defined ["window.close"](../docs/gtk4/struct.Window.html#actions) action which does exactly the same thing.
+> However, in the future we will use the pre-defined ["window.close"](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.Window.html#actions) action which does exactly the same thing.
 
 ## Parameter and State
 
@@ -57,11 +69,11 @@ Let's see how this works.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/actions/3/main.rs">listings/actions/3/main.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/actions/3/main.rs:build_ui}}
 ```
 
-Here we created a "win.count" action that increases its state by the given parameter every time it is activated.
+Here, we created a "win.count" action that increases its state by the given parameter every time it is activated.
 It also takes care of updating the `label` with the current state.
 The button activates the action with each click while passing "1" as parameter.
 This is how our app works:
@@ -76,14 +88,14 @@ This is how our app works:
 
 ## Actionable
 
-Connecting actions to the "clicked" signal of buttons is a typical use case, which is why all buttons implement the [`Actionable`](../docs/gtk4/struct.Actionable.html) interface.
+Connecting actions to the "clicked" signal of buttons is a typical use case, which is why all buttons implement the [`Actionable`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.Actionable.html) interface.
 This way, the action can be specified by setting the "action-name" property.
 If the action accepts a parameter, it can be set via the "action-target" property.
-With [`ButtonBuilder`](../docs/gtk4/builders/struct.ButtonBuilder.html), we can set everything up by calling its methods.
+With [`ButtonBuilder`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/builders/struct.ButtonBuilder.html), we can set everything up by calling its methods.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/actions/4/main.rs">listings/actions/4/main.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/actions/4/main.rs:button_builder}}
 ```
 
@@ -101,7 +113,7 @@ We will connect the actions and add them to the window in the `Window::setup_act
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/actions/5/window/mod.rs">listings/actions/5/window/mod.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/actions/5/window/mod.rs:impl_window}}
 ```
 
@@ -109,34 +121,34 @@ Finally, `setup_actions` will be called within `constructed`.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/actions/5/window/imp.rs">listings/actions/5/window/imp.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/actions/5/window/imp.rs:object_impl}}
 ```
 
-This app behaves the same as our previous example, but it leads us to menu creation.
+This app behaves the same as our previous example, but it will make it simpler for us to add a menu in the following section.
 
 
 ## Menus
 
-If you want to create a [menu](https://developer.gnome.org/hig/patterns/controls/menus.html) you have to use actions and you will want to use the interface builder.
+If you want to create a [menu](https://developer.gnome.org/hig/patterns/controls/menus.html), you have to use actions, and you will want to use the interface builder.
 Typically, a menu entry has an action fitting one of these three descriptions:
 - no parameter and no state, or
 - no parameter and boolean state, or
 - string parameter and string state.
 
 Let's modify our small app to demonstrate these cases.
-First we extend `setup_actions`.
+First, we extend `setup_actions`.
 For the action without parameter or state, we can use the pre-defined "window.close" action.
-Therefore we don't have to add anything here.
+Therefore, we don't have to add anything here.
 
-With the action "sensitive-button", we manipulate the "sensitive" property of `button`.
+With the action "button-frame", we manipulate the "has-frame" property of `button`.
 Here, the convention is that actions with no parameter and boolean state should behave like toggle actions.
 This means that the caller can expect the boolean state to toggle after activating the action. Luckily for us, that is the default behavior for [`gio::PropertyAction`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.PropertyAction.html) with a boolean property.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/actions/6/window/mod.rs">listings/actions/6/window/mod.rs</a>
 
-```rust ,no_run,noplayground
-{{#rustdoc_include ../listings/actions/6/window/mod.rs:action_sensitive_button}}
+```rust
+{{#rustdoc_include ../listings/actions/6/window/mod.rs:action_button_frame}}
 ```
 
 > A `PropertyAction` is useful when you need an action that manipulates the property of a GObject.
@@ -153,7 +165,7 @@ We don't need the action state to implement orientation switching, however it is
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/actions/6/window/mod.rs">listings/actions/6/window/mod.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/actions/6/window/mod.rs:action_orientation}}
 ```
 
@@ -171,8 +183,8 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 +      <attribute name="action">window.close</attribute>
 +    </item>
 +    <item>
-+      <attribute name="label" translatable="yes">_Sensitive button</attribute>
-+      <attribute name="action">win.sensitive-button</attribute>
++      <attribute name="label" translatable="yes">_Toggle button frame</attribute>
++      <attribute name="action">win.button-frame</attribute>
 +    </item>
 +    <section>
 +      <attribute name="label" translatable="yes">Orientation</attribute>
@@ -206,8 +218,8 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
          <property name="orientation">vertical</property>
 ```
 
-Since we connect the menu to the [`gtk::MenuButton`](../docs/gtk4/struct.MenuButton.html) via the [menu-model](https://docs.gtk.org/gtk4/property.MenuButton.menu-model.html) property, the `Menu` is expected to be a [`gtk::PopoverMenu`](../docs/gtk4/struct.PopoverMenu.html).
-The [documentation](../docs/gtk4/struct.PopoverMenu.html) for `PopoverMenu` also explains its `xml` syntax for the interface builder.
+Since we connect the menu to the [`gtk::MenuButton`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.MenuButton.html) via the [menu-model](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.MenuButton.html#menu-model) property, the `Menu` is expected to be a [`gtk::PopoverMenu`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.PopoverMenu.html).
+The [documentation](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.PopoverMenu.html) for `PopoverMenu` also explains its `xml` syntax for the interface builder.
 
 Also note how we specified the target:
 
@@ -234,12 +246,12 @@ This is how the app looks in action:
 </div>
 
 >We changed the icon of the `MenuButton` by setting its property "icon-name" to "open-menu-symbolic".
->You can find more icons with the [Icon Library](https://apps.gnome.org/app/org.gnome.design.IconLibrary/).
+>You can find more icons with the [Icon Library](https://flathub.org/apps/org.gnome.design.IconLibrary).
 >They can be embedded with [`gio::Resource`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.Resource.html) and then be referenced within the composite templates (or other places).
 
 ## Settings
 
-The menu entries nicely display the state of our stateful actions, but after the app is closed all changes to that state are lost.
+The menu entries nicely display the state of our stateful actions, but after the app is closed, all changes to that state are lost.
 As usual, we solve this problem with [`gio::Settings`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.Settings.html).
 First we create a schema with settings corresponding to the stateful actions we created before.
 
@@ -251,11 +263,11 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 
 Again, we install the schema as described in the settings [chapter](./settings.html).
 Then we add the settings to `imp::Window`.
-Since [`gio::Settings`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.Settings.html) does not implement `Default`, we wrap it in a [`once_cell::sync::OnceCell`](https://docs.rs/once_cell/latest/once_cell/sync/struct.OnceCell.html).
+Since [`gio::Settings`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.Settings.html) does not implement `Default`, we wrap it in a [`std::cell::OnceCell`](https://doc.rust-lang.org/std/cell/struct.OnceCell.html).
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/actions/7/window/imp.rs">listings/actions/7/window/imp.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/actions/7/window/imp.rs:imp_struct}}
 ```
 
@@ -263,7 +275,7 @@ Now we create functions to make it easier to access settings.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/actions/7/window/mod.rs">listings/actions/7/window/mod.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/actions/7/window/mod.rs:settings}}
 ```
 
@@ -273,19 +285,19 @@ We create actions with the[ `create_action`](https://gtk-rs.org/gtk-rs-core/stab
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/actions/7/window/mod.rs">listings/actions/7/window/mod.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/actions/7/window/mod.rs:settings_create_actions}}
 ```
 
 Since actions from `create_action` follow the aforementioned conventions, we can keep further changes to a minimum.
-The action "win.sensitive-button" toggles its state with each activation and the state of the "win.orientation" action follows the given parameter.
+The action "win.button-frame" toggles its state with each activation and the state of the "win.orientation" action follows the given parameter.
 
 We still have to specify what should happen when the actions are activated though.
-For the stateful actions, instead of adding callbacks to their "activate" signals we bind the settings to properties we want to manipulate.
+For the stateful actions, instead of adding callbacks to their "activate" signals, we bind the settings to properties we want to manipulate.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/actions/7/window/mod.rs">listings/actions/7/window/mod.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/actions/7/window/mod.rs:bind_settings}}
 ```
 
@@ -293,9 +305,9 @@ Finally, we make sure that `bind_settings` is called within `constructed`.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/actions/7/window/imp.rs">listings/actions/7/window/imp.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/actions/7/window/imp.rs:object_impl}}
 ```
 
-Actions are extremely powerful and we are only scratching the surface here.
+Actions are extremely powerful, and we are only scratching the surface here.
 If you want to learn more about them, the [GNOME developer documentation](https://developer.gnome.org/documentation/tutorials/actions.html) is a good place to start.

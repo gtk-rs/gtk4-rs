@@ -1,27 +1,30 @@
 [package]
-authors = ["The gtk-rs Project Developers"]
-categories = ["api-bindings", "gui"]
+name = "gtk4"
 description = "Rust bindings of the GTK 4 library"
 documentation = "https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4"
-edition = "2021"
-homepage = "https://gtk-rs.org/"
 keywords = ["gtk", "gtk4", "gtk-rs", "gnome", "GUI"]
-license = "MIT"
-name = "gtk4"
 readme = "README.md"
-repository = "https://github.com/gtk-rs/gtk4-rs"
-version = "0.7.0"
-rust-version = "1.64"
+authors.workspace = true
+categories.workspace = true
+edition.workspace = true
+homepage.workspace = true
+license.workspace = true
+repository.workspace = true
+rust-version.workspace = true
+version.workspace = true
+
 [lib]
 name = "gtk4"
 
 [features]
-dox = ["gdk/dox", "gsk/dox", "ffi/dox", "cairo-rs/dox", "gdk-pixbuf/dox", "gio/dox", "glib/dox", "graphene/dox", "pango/dox"]
 v4_2 = ["ffi/v4_2", "gdk/v4_2", "gsk/v4_2"]
 v4_4 = ["ffi/v4_4", "v4_2", "gdk/v4_4", "gsk/v4_4"]
 v4_6 = ["ffi/v4_6", "v4_4", "gdk/v4_6", "gsk/v4_6", "pango/v1_50"]
 v4_8 = ["ffi/v4_8", "v4_6", "gdk/v4_8"]
 v4_10 = ["ffi/v4_10", "v4_8", "gdk/v4_10", "gsk/v4_10"]
+v4_12 = ["ffi/v4_12", "v4_10", "gdk/v4_12"]
+v4_14 = ["ffi/v4_14", "v4_12", "gsk/v4_14"]
+gio_v2_80 = ["gio/v2_80"]
 xml_validation = ["gtk4-macros/xml_validation"]
 blueprint = ["gtk4-macros/blueprint"]
 unsafe-assume-initialized = []
@@ -29,29 +32,31 @@ unsafe-assume-initialized = []
 # Versions from https://gitlab.gnome.org/GNOME/gnome-build-meta/-/tree/gnome-43/elements/sdk
 # gtk takes care of setting the versions of gsk and gdk
 # gio takes care of setting the version of glib
+gnome_46 = ["v4_14", "cairo-rs/v1_16", "pango/v1_52", "gdk-pixbuf/v2_42", "gio_v2_80"]
+gnome_45 = ["v4_12", "cairo-rs/v1_16", "pango/v1_52", "gdk-pixbuf/v2_42", "gio/v2_78"]
 gnome_44 = ["v4_10", "cairo-rs/v1_16", "gdk-pixbuf/v2_42", "gio/v2_76"]
 gnome_43 = ["v4_8", "cairo-rs/v1_16", "gdk-pixbuf/v2_42", "gio/v2_74"]
 gnome_42 = ["v4_6", "cairo-rs/v1_16", "gdk-pixbuf/v2_42", "gio/v2_72"]
 
-[package.metadata.docs.rs]
-features = ["dox"]
-
 [dependencies]
-bitflags = "1.0"
-cairo-rs = {git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.18"}
-ffi = {package = "gtk4-sys", path = "./sys", version = "0.7"}
+ffi = {package = "gtk4-sys", path = "./sys", version = "0.9"}
 field-offset = "0.3"
 futures-channel = "0.3"
-gdk = {package = "gdk4", path = "../gdk4", version = "0.7"}
-gdk-pixbuf = {git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.18"}
-gio = {git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.18", features = ["v2_66"]}
-glib = {git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.18", features = ["v2_66"]}
-graphene = {package = "graphene-rs", git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.18"}
-gsk = {package = "gsk4", path = "../gsk4", version = "0.7"}
-gtk4-macros = {path = "../gtk4-macros", version = "0.7"}
-libc = "0.2"
-once_cell = "1.0"
-pango = {git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.18", features = ["v1_46"]}
+gdk.workspace = true
+gsk.workspace = true
+gtk4-macros.workspace = true
+cairo-rs.workspace = true
+gdk-pixbuf.workspace = true
+gio.workspace = true
+glib.workspace = true
+graphene.workspace = true
+libc.workspace = true
+pango.workspace = true
 
 [dev-dependencies]
-gir-format-check = "^0.1"
+gir-format-check.workspace = true
+
+[package.metadata.docs.rs]
+all-features = true
+rustc-args = ["--cfg", "docsrs"]
+rustdoc-args = ["--cfg", "docsrs", "--generate-link-to-definition"]

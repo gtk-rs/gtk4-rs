@@ -12,7 +12,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GtkPrintUnixDialog")]
@@ -210,12 +210,12 @@ impl PrintUnixDialog {
 
     #[doc(alias = "print-settings")]
     pub fn print_settings(&self) -> Option<PrintSettings> {
-        glib::ObjectExt::property(self, "print-settings")
+        ObjectExt::property(self, "print-settings")
     }
 
     #[doc(alias = "print-settings")]
     pub fn set_print_settings(&self, print_settings: Option<&PrintSettings>) {
-        glib::ObjectExt::set_property(self, "print-settings", print_settings)
+        ObjectExt::set_property(self, "print-settings", print_settings)
     }
 
     #[doc(alias = "current-page")]
@@ -233,7 +233,7 @@ impl PrintUnixDialog {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::current-page\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_current_page_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -258,7 +258,7 @@ impl PrintUnixDialog {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::embed-page-setup\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_embed_page_setup_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -281,7 +281,7 @@ impl PrintUnixDialog {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::has-selection\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_has_selection_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -309,7 +309,7 @@ impl PrintUnixDialog {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::manual-capabilities\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_manual_capabilities_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -332,7 +332,7 @@ impl PrintUnixDialog {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::page-setup\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_page_setup_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -355,7 +355,7 @@ impl PrintUnixDialog {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::print-settings\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_print_settings_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -380,7 +380,7 @@ impl PrintUnixDialog {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::selected-printer\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_selected_printer_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -408,7 +408,7 @@ impl PrintUnixDialog {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::support-selection\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_support_selection_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -574,8 +574,8 @@ impl PrintUnixDialogBuilder {
         }
     }
 
-    #[cfg(any(feature = "v4_2", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_2")))]
+    #[cfg(feature = "v4_2")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_2")))]
     pub fn handle_menubar_accel(self, handle_menubar_accel: bool) -> Self {
         Self {
             builder: self
@@ -634,8 +634,8 @@ impl PrintUnixDialogBuilder {
         }
     }
 
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[cfg(feature = "v4_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     pub fn titlebar(self, titlebar: &impl IsA<Widget>) -> Self {
         Self {
             builder: self.builder.property("titlebar", titlebar.clone().upcast()),
@@ -839,11 +839,5 @@ impl PrintUnixDialogBuilder {
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> PrintUnixDialog {
         self.builder.build()
-    }
-}
-
-impl fmt::Display for PrintUnixDialog {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("PrintUnixDialog")
     }
 }

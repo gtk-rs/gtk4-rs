@@ -16,3 +16,30 @@ external_libraries = [
 
 [external_libraries]
 gdk4 = "Gdk"
+
+
+[[object]]
+name = "Gsk.BroadwayRenderer"
+status = "generate"
+cfg_condition = "feature = \"broadway\""
+    [[object.function]]
+    pattern = "(new|get_type)"
+    cfg_condition = "feature = \"broadway\""
+
+[[object]]
+name = "Gsk.BroadwayRendererClass"
+status = "generate"
+cfg_condition = "feature = \"broadway\""
+
+[[object]]
+name = "Gsk.VulkanRenderer"
+status = "generate"
+cfg_condition = "feature = \"vulkan\""
+    [[object.function]]
+    pattern = "(new|get_type)"
+    cfg_condition = "feature = \"vulkan\""
+
+[[object]]
+name = "Gsk.VulkanRendererClass"
+status = "generate"
+cfg_condition = "feature = \"vulkan\""

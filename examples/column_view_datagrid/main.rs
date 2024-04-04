@@ -1,10 +1,12 @@
 mod grid_cell;
 
-use crate::grid_cell::Entry;
-use crate::grid_cell::GridCell;
-use gtk::glib::BoxedAnyObject;
-use gtk::prelude::*;
-use gtk::{gio, glib};
+use gtk::{
+    gio,
+    glib::{self, BoxedAnyObject},
+    prelude::*,
+};
+
+use crate::grid_cell::{Entry, GridCell};
 
 struct Row {
     col1: String,
@@ -14,10 +16,9 @@ struct Row {
 use std::cell::Ref;
 
 fn main() -> glib::ExitCode {
-    let app = gtk::Application::new(
-        Some("com.github.gtk-rs.examples.columnview-example"),
-        Default::default(),
-    );
+    let app = gtk::Application::builder()
+        .application_id("com.github.gtk-rs.examples.columnview-example")
+        .build();
     app.connect_activate(build_ui);
     app.run()
 }
@@ -45,7 +46,7 @@ fn build_ui(application: &gtk::Application) {
     let col2factory = gtk::SignalListItemFactory::new();
     col1factory.connect_setup(move |_factory, item| {
         let item = item.downcast_ref::<gtk::ListItem>().unwrap();
-        let row = GridCell::new();
+        let row = GridCell::default();
         item.set_child(Some(&row));
     });
 
@@ -61,7 +62,7 @@ fn build_ui(application: &gtk::Application) {
     });
     col2factory.connect_setup(move |_factory, item| {
         let item = item.downcast_ref::<gtk::ListItem>().unwrap();
-        let row = GridCell::new();
+        let row = GridCell::default();
         item.set_child(Some(&row));
     });
 
@@ -87,5 +88,5 @@ fn build_ui(application: &gtk::Application) {
     scrolled_window.set_child(Some(&columnview));
 
     window.set_child(Some(&scrolled_window));
-    window.show();
+    window.present();
 }

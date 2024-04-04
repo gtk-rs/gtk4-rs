@@ -11,7 +11,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GtkListBox")]
@@ -56,14 +56,14 @@ impl ListBox {
             user_data: glib::ffi::gpointer,
         ) -> *mut ffi::GtkWidget {
             let item = from_glib_borrow(item);
-            let callback: &P = &*(user_data as *mut _);
+            let callback = &*(user_data as *mut P);
             (*callback)(&item).to_glib_full()
         }
         let create_widget_func = Some(create_widget_func_func::<P> as _);
         unsafe extern "C" fn user_data_free_func_func<P: Fn(&glib::Object) -> Widget + 'static>(
             data: glib::ffi::gpointer,
         ) {
-            let _callback: Box_<P> = Box_::from_raw(data as *mut _);
+            let _callback = Box_::from_raw(data as *mut P);
         }
         let destroy_call4 = Some(user_data_free_func_func::<P> as _);
         let super_callback0: Box_<P> = create_widget_func_data;
@@ -202,6 +202,15 @@ impl ListBox {
         }
     }
 
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "gtk_list_box_remove_all")]
+    pub fn remove_all(&self) {
+        unsafe {
+            ffi::gtk_list_box_remove_all(self.to_glib_none().0);
+        }
+    }
+
     #[doc(alias = "gtk_list_box_select_all")]
     pub fn select_all(&self) {
         unsafe {
@@ -229,7 +238,7 @@ impl ListBox {
         ) {
             let box_ = from_glib_borrow(box_);
             let row = from_glib_borrow(row);
-            let callback: *mut P = user_data as *const _ as usize as *mut P;
+            let callback = user_data as *mut P;
             (*callback)(&box_, &row)
         }
         let func = Some(func_func::<P> as _);
@@ -238,7 +247,7 @@ impl ListBox {
             ffi::gtk_list_box_selected_foreach(
                 self.to_glib_none().0,
                 func,
-                super_callback0 as *const _ as usize as *mut _,
+                super_callback0 as *const _ as *mut _,
             );
         }
     }
@@ -271,14 +280,14 @@ impl ListBox {
             user_data: glib::ffi::gpointer,
         ) -> glib::ffi::gboolean {
             let row = from_glib_borrow(row);
-            let callback: &P = &*(user_data as *mut _);
+            let callback = &*(user_data as *mut P);
             (*callback)(&row).into_glib()
         }
         let filter_func = Some(filter_func_func::<P> as _);
         unsafe extern "C" fn destroy_func<P: Fn(&ListBoxRow) -> bool + 'static>(
             data: glib::ffi::gpointer,
         ) {
-            let _callback: Box_<P> = Box_::from_raw(data as *mut _);
+            let _callback = Box_::from_raw(data as *mut P);
         }
         let destroy_call3 = Some(destroy_func::<P> as _);
         let super_callback0: Box_<P> = filter_func_data;
@@ -307,14 +316,14 @@ impl ListBox {
         ) {
             let row = from_glib_borrow(row);
             let before: Borrowed<Option<ListBoxRow>> = from_glib_borrow(before);
-            let callback: &P = &*(user_data as *mut _);
+            let callback = &*(user_data as *mut P);
             (*callback)(&row, before.as_ref().as_ref())
         }
         let update_header = Some(update_header_func::<P> as _);
         unsafe extern "C" fn destroy_func<P: Fn(&ListBoxRow, Option<&ListBoxRow>) + 'static>(
             data: glib::ffi::gpointer,
         ) {
-            let _callback: Box_<P> = Box_::from_raw(data as *mut _);
+            let _callback = Box_::from_raw(data as *mut P);
         }
         let destroy_call3 = Some(destroy_func::<P> as _);
         let super_callback0: Box_<P> = update_header_data;
@@ -371,12 +380,12 @@ impl ListBox {
 
     #[doc(alias = "accept-unpaired-release")]
     pub fn accepts_unpaired_release(&self) -> bool {
-        glib::ObjectExt::property(self, "accept-unpaired-release")
+        ObjectExt::property(self, "accept-unpaired-release")
     }
 
     #[doc(alias = "accept-unpaired-release")]
     pub fn set_accept_unpaired_release(&self, accept_unpaired_release: bool) {
-        glib::ObjectExt::set_property(self, "accept-unpaired-release", accept_unpaired_release)
+        ObjectExt::set_property(self, "accept-unpaired-release", accept_unpaired_release)
     }
 
     #[doc(alias = "activate-cursor-row")]
@@ -393,7 +402,7 @@ impl ListBox {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"activate-cursor-row\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     activate_cursor_row_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -434,7 +443,7 @@ impl ListBox {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"move-cursor\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     move_cursor_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -464,7 +473,7 @@ impl ListBox {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"row-activated\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     row_activated_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -497,7 +506,7 @@ impl ListBox {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"row-selected\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     row_selected_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -519,7 +528,7 @@ impl ListBox {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"select-all\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     select_all_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -545,7 +554,7 @@ impl ListBox {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"selected-rows-changed\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     selected_rows_changed_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -567,7 +576,7 @@ impl ListBox {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"toggle-cursor-row\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     toggle_cursor_row_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -593,7 +602,7 @@ impl ListBox {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"unselect-all\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     unselect_all_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -625,7 +634,7 @@ impl ListBox {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::accept-unpaired-release\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_accept_unpaired_release_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -653,7 +662,7 @@ impl ListBox {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::activate-on-single-click\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_activate_on_single_click_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -676,7 +685,7 @@ impl ListBox {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::selection-mode\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_selection_mode_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -699,7 +708,7 @@ impl ListBox {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::show-separators\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_show_separators_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -947,11 +956,5 @@ impl ListBoxBuilder {
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> ListBox {
         self.builder.build()
-    }
-}
-
-impl fmt::Display for ListBox {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("ListBox")
     }
 }

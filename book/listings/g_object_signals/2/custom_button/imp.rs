@@ -1,15 +1,17 @@
 use std::cell::Cell;
+use std::sync::OnceLock;
 
 use glib::subclass::Signal;
-use glib::{BindingFlags, ParamSpec, ParamSpecInt, Value};
+use glib::Properties;
 use gtk::glib;
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
-use once_cell::sync::Lazy;
 
 // Object holding the state
-#[derive(Default)]
+#[derive(Properties, Default)]
+#[properties(wrapper_type = super::CustomButton)]
 pub struct CustomButton {
+    #[property(get, set)]
     number: Cell<i32>,
 }
 
@@ -23,40 +25,17 @@ impl ObjectSubclass for CustomButton {
 
 // ANCHOR: object_impl
 // Trait shared by all GObjects
+#[glib::derived_properties]
 impl ObjectImpl for CustomButton {
     fn signals() -> &'static [Signal] {
-        static SIGNALS: Lazy<Vec<Signal>> = Lazy::new(|| {
+        static SIGNALS: OnceLock<Vec<Signal>> = OnceLock::new();
+        SIGNALS.get_or_init(|| {
             vec![Signal::builder("max-number-reached")
                 .param_types([i32::static_type()])
                 .build()]
-        });
-        SIGNALS.as_ref()
+        })
     }
     // ANCHOR_END: object_impl
-
-    fn properties() -> &'static [ParamSpec] {
-        static PROPERTIES: Lazy<Vec<ParamSpec>> =
-            Lazy::new(|| vec![ParamSpecInt::builder("number").build()]);
-        PROPERTIES.as_ref()
-    }
-
-    fn set_property(&self, _id: usize, value: &Value, pspec: &ParamSpec) {
-        match pspec.name() {
-            "number" => {
-                let input_number =
-                    value.get().expect("The value needs to be of type `i32`.");
-                self.number.replace(input_number);
-            }
-            _ => unimplemented!(),
-        }
-    }
-
-    fn property(&self, _id: usize, pspec: &ParamSpec) -> Value {
-        match pspec.name() {
-            "number" => self.number.get().to_value(),
-            _ => unimplemented!(),
-        }
-    }
 
     fn constructed(&self) {
         self.parent_constructed();
@@ -65,7 +44,7 @@ impl ObjectImpl for CustomButton {
         // `SYNC_CREATE` ensures that the label will be immediately set
         let obj = self.obj();
         obj.bind_property("number", obj.as_ref(), "label")
-            .flags(BindingFlags::SYNC_CREATE)
+            .sync_create()
             .build();
     }
 }
@@ -79,15 +58,15 @@ static MAX_NUMBER: i32 = 8;
 // Trait shared by all buttons
 impl ButtonImpl for CustomButton {
     fn clicked(&self) {
-        let incremented_number = self.number.get() + 1;
+        let incremented_number = self.obj().number() + 1;
         let obj = self.obj();
         // If `number` reached `MAX_NUMBER`,
         // emit "max-number-reached" signal and set `number` back to 0
         if incremented_number == MAX_NUMBER {
             obj.emit_by_name::<()>("max-number-reached", &[&incremented_number]);
-            obj.set_property("number", &0);
+            obj.set_number(0);
         } else {
-            obj.set_property("number", &incremented_number);
+            obj.set_number(incremented_number);
         }
     }
 }

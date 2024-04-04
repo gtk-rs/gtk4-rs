@@ -9,7 +9,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GtkCellRendererPixbuf")]
@@ -38,63 +38,63 @@ impl CellRendererPixbuf {
     }
 
     pub fn gicon(&self) -> Option<gio::Icon> {
-        glib::ObjectExt::property(self, "gicon")
+        ObjectExt::property(self, "gicon")
     }
 
     pub fn set_gicon<P: IsA<gio::Icon>>(&self, gicon: Option<&P>) {
-        glib::ObjectExt::set_property(self, "gicon", gicon)
+        ObjectExt::set_property(self, "gicon", gicon)
     }
 
     #[doc(alias = "icon-name")]
     pub fn icon_name(&self) -> Option<glib::GString> {
-        glib::ObjectExt::property(self, "icon-name")
+        ObjectExt::property(self, "icon-name")
     }
 
     #[doc(alias = "icon-name")]
     pub fn set_icon_name(&self, icon_name: Option<&str>) {
-        glib::ObjectExt::set_property(self, "icon-name", icon_name)
+        ObjectExt::set_property(self, "icon-name", icon_name)
     }
 
     #[doc(alias = "icon-size")]
     pub fn icon_size(&self) -> IconSize {
-        glib::ObjectExt::property(self, "icon-size")
+        ObjectExt::property(self, "icon-size")
     }
 
     #[doc(alias = "icon-size")]
     pub fn set_icon_size(&self, icon_size: IconSize) {
-        glib::ObjectExt::set_property(self, "icon-size", icon_size)
+        ObjectExt::set_property(self, "icon-size", icon_size)
     }
 
     pub fn set_pixbuf(&self, pixbuf: Option<&gdk_pixbuf::Pixbuf>) {
-        glib::ObjectExt::set_property(self, "pixbuf", pixbuf)
+        ObjectExt::set_property(self, "pixbuf", pixbuf)
     }
 
     #[doc(alias = "pixbuf-expander-closed")]
     pub fn pixbuf_expander_closed(&self) -> Option<gdk_pixbuf::Pixbuf> {
-        glib::ObjectExt::property(self, "pixbuf-expander-closed")
+        ObjectExt::property(self, "pixbuf-expander-closed")
     }
 
     #[doc(alias = "pixbuf-expander-closed")]
     pub fn set_pixbuf_expander_closed(&self, pixbuf_expander_closed: Option<&gdk_pixbuf::Pixbuf>) {
-        glib::ObjectExt::set_property(self, "pixbuf-expander-closed", pixbuf_expander_closed)
+        ObjectExt::set_property(self, "pixbuf-expander-closed", pixbuf_expander_closed)
     }
 
     #[doc(alias = "pixbuf-expander-open")]
     pub fn pixbuf_expander_open(&self) -> Option<gdk_pixbuf::Pixbuf> {
-        glib::ObjectExt::property(self, "pixbuf-expander-open")
+        ObjectExt::property(self, "pixbuf-expander-open")
     }
 
     #[doc(alias = "pixbuf-expander-open")]
     pub fn set_pixbuf_expander_open(&self, pixbuf_expander_open: Option<&gdk_pixbuf::Pixbuf>) {
-        glib::ObjectExt::set_property(self, "pixbuf-expander-open", pixbuf_expander_open)
+        ObjectExt::set_property(self, "pixbuf-expander-open", pixbuf_expander_open)
     }
 
     pub fn texture(&self) -> Option<gdk::Texture> {
-        glib::ObjectExt::property(self, "texture")
+        ObjectExt::property(self, "texture")
     }
 
     pub fn set_texture<P: IsA<gdk::Texture>>(&self, texture: Option<&P>) {
-        glib::ObjectExt::set_property(self, "texture", texture)
+        ObjectExt::set_property(self, "texture", texture)
     }
 
     #[doc(alias = "gicon")]
@@ -112,7 +112,7 @@ impl CellRendererPixbuf {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::gicon\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_gicon_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -135,7 +135,7 @@ impl CellRendererPixbuf {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::icon-name\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_icon_name_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -158,7 +158,7 @@ impl CellRendererPixbuf {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::icon-size\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_icon_size_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -181,7 +181,7 @@ impl CellRendererPixbuf {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::pixbuf\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_pixbuf_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -209,7 +209,7 @@ impl CellRendererPixbuf {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::pixbuf-expander-closed\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_pixbuf_expander_closed_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -237,7 +237,7 @@ impl CellRendererPixbuf {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::pixbuf-expander-open\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_pixbuf_expander_open_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -260,7 +260,7 @@ impl CellRendererPixbuf {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::texture\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_texture_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -432,11 +432,5 @@ impl CellRendererPixbufBuilder {
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> CellRendererPixbuf {
         self.builder.build()
-    }
-}
-
-impl fmt::Display for CellRendererPixbuf {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("CellRendererPixbuf")
     }
 }

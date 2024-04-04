@@ -3,8 +3,7 @@
 // DO NOT EDIT
 
 use crate::RenderNode;
-use glib::translate::*;
-use std::fmt;
+use glib::{prelude::*, translate::*};
 
 glib::wrapper! {
     #[doc(alias = "GskColorMatrixNode")]
@@ -16,7 +15,7 @@ glib::wrapper! {
     }
 }
 
-impl glib::StaticType for ColorMatrixNode {
+impl StaticType for ColorMatrixNode {
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gsk_color_matrix_node_get_type()) }
     }
@@ -63,11 +62,5 @@ impl ColorMatrixNode {
                 self.to_glib_none().0,
             ))
         }
-    }
-}
-
-impl fmt::Display for ColorMatrixNode {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("ColorMatrixNode")
     }
 }

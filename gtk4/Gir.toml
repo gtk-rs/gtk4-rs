@@ -17,12 +17,15 @@ trust_return_value_nullability = true
 
 generate = [
     # "Gtk.RequestedSize", a record
+    # "Gtk.PrintBackend", a record without a gtype
+    "Gtk.AccessibleAnnouncementPriority",
     "Gtk.AccessibleAutocomplete",
     "Gtk.AccessibleInvalidState",
     "Gtk.AccessiblePlatformState",
     "Gtk.AccessibleProperty",
     "Gtk.AccessibleRange",
     "Gtk.AccessibleRelation",
+    "Gtk.AccessibleRole",
     "Gtk.AccessibleSort",
     "Gtk.AccessibleState",
     "Gtk.AccessibleTristate",
@@ -30,7 +33,6 @@ generate = [
     "Gtk.ActivateAction",
     "Gtk.Adjustment",
     "Gtk.AlertDialog",
-    "Gtk.Align",
     "Gtk.Allocation",
     "Gtk.AlternativeTrigger",
     "Gtk.AnyFilter",
@@ -65,14 +67,15 @@ generate = [
     "Gtk.CellRendererSpinner",
     "Gtk.CellRendererState",
     "Gtk.CenterBox",
-    "Gtk.CenterLayout",
     "Gtk.Collation",
     "Gtk.ColorButton",
     "Gtk.ColorChooserDialog",
     "Gtk.ColorChooserWidget",
     "Gtk.ColorDialogButton",
     "Gtk.ColumnView",
+    "Gtk.ColumnViewCell",
     "Gtk.ColumnViewColumn",
+    "Gtk.ColumnViewRow",
     "Gtk.ColumnViewSorter",
     "Gtk.ComboBoxText",
     "Gtk.Constraint",
@@ -119,12 +122,15 @@ generate = [
     "Gtk.FontChooserWidget",
     "Gtk.FontLevel",
     "Gtk.Frame",
+    "Gtk.GestureClick",
     "Gtk.GestureDrag",
     "Gtk.GestureLongPress",
     "Gtk.GesturePan",
     "Gtk.GestureRotate",
     "Gtk.GestureSwipe",
     "Gtk.GestureZoom",
+    "Gtk.GraphicsOffload",
+    "Gtk.GraphicsOffloadEnabled",
     "Gtk.Grid",
     "Gtk.GridLayout",
     "Gtk.GridView",
@@ -145,17 +151,17 @@ generate = [
     "Gtk.LayoutManager",
     "Gtk.LevelBar",
     "Gtk.LevelBarMode",
-    "Gtk.License",
     "Gtk.ListBase",
     "Gtk.ListBoxRow",
     "Gtk.ListItemFactory",
+    "Gtk.ListScrollFlags",
+    "Gtk.ListTabBehavior",
     "Gtk.ListView",
     "Gtk.LockButton",
     "Gtk.MediaControls",
     "Gtk.MediaFile",
     "Gtk.MessageType",
     "Gtk.MnemonicAction",
-    "Gtk.MountOperation",
     "Gtk.MovementStep",
     "Gtk.Native",
     "Gtk.NaturalWrapMode",
@@ -183,6 +189,7 @@ generate = [
     "Gtk.PopoverMenuBar",
     "Gtk.PopoverMenuFlags",
     "Gtk.PositionType",
+    "Gtk.PrintDialog",
     "Gtk.PrintDuplex",
     "Gtk.PrintError",
     "Gtk.PrintOperationAction",
@@ -190,6 +197,7 @@ generate = [
     "Gtk.PrintOperationResult",
     "Gtk.PrintPages",
     "Gtk.PrintQuality",
+    "Gtk.PrintSetup",
     "Gtk.PrintStatus",
     "Gtk.ProgressBar",
     "Gtk.PropagationLimit",
@@ -205,8 +213,10 @@ generate = [
     "Gtk.ScrollablePolicy",
     "Gtk.Scrollbar",
     "Gtk.ScrolledWindow",
+    "Gtk.ScrollInfo",
     "Gtk.ScrollStep",
     "Gtk.ScrollType",
+    "Gtk.SectionModel",
     "Gtk.SelectionMode",
     "Gtk.SelectionModel",
     "Gtk.SensitivityType",
@@ -270,9 +280,7 @@ generate = [
 ignore = [
     "Gtk.BuilderCScope", # not useful for rust
     "Gtk.CClosureExpression", # not useful for rust
-    "Gtk.CellAreaClass", # manual with subclassing
     "Gtk.CustomLayout", # subclass LayoutManager if you need a custom layout.
-    "Gtk.WidgetClass", # manual with subclassing
 ]
 
 manual = [
@@ -299,6 +307,7 @@ manual = [
     "Gdk.Event",
     "Gdk.EventSequence",
     "Gdk.FrameClock",
+    "Gdk.GLAPI",
     "Gdk.GLContext",
     "Gdk.Gravity",
     "Gdk.KeyMatch",
@@ -325,6 +334,7 @@ manual = [
     "Gio.Menu",
     "Gio.MenuModel",
     "Gio.MountOperation",
+    "Gio.OutputStream",
     "Gio.PasswordSave",
     "Gio.Permission",
     "GLib.Bytes",
@@ -348,15 +358,19 @@ manual = [
     "Gsk.BlendMode",
     "Gsk.CairoNode", # docs only
     "Gsk.ColorStop",
+    "Gsk.FillRule",
     "Gsk.GLShaderNode", # docs only
     "Gsk.MaskMode",
     "Gsk.MaskNode",
+    "Gsk.Path",
     "Gsk.Renderer",
     "Gsk.RenderNode",
     "Gsk.RoundedRect",
     "Gsk.ScalingFilter",
     "Gsk.Shadow",
+    "Gsk.Stroke",
     "Gsk.Transform",
+    "Gtk.Align", # as we need to handle baseline_fill = baseline for gtk >= 4.11
     "Gtk.BitsetIter",
     "Gtk.Border",
     "Gtk.CssLocation",
@@ -586,11 +600,16 @@ manual_traits = ["AccessibleExtManual"]
     rename = "platform_state"
 
 [[object]]
-name = "Gtk.AccessibleRole"
+name = "Gtk.AccessibleList"
 status = "generate"
-    [[object.member]]
-    name = "toggle_button"
-    version = "4.10"
+    [[object.function]]
+    name = "new_from_list"
+    ignore = true # there is new_from_array
+    [[object.function]]
+    name = "get_objects"
+        [[object.function.parameter]]
+        name = "accessible_list"
+        const = true
 
 [[object]]
 name = "Gtk.Actionable"
@@ -688,15 +707,16 @@ status = "generate"
     [[object.function]]
     name = "get_day_is_marked"
     rename = "day_is_marked"
+    [[object.property]]
+    pattern = "(day|month|year)"
+    generate = ["notify"]
 
 [[object]]
 name = "Gtk.CallbackAction"
 status = "generate"
     [[object.function]]
     name = "new"
-        [[object.function.parameter]]
-        name = "callback"
-        nullable = false
+    manual = true # to use glib::Propagation, we don't have inhibit for callbacks
 
 [[object]]
 name = "Gtk.CellArea"
@@ -731,6 +751,10 @@ manual_traits = ["CellAreaExtManual"]
     [[object.function]]
     name = "add_with_properties"
     manual = true # can't be generated manually it uses vargs
+
+[[object]]
+name = "Gtk.CellAreaClass"
+status = "manual" # used for Class docs
 
 [[object]]
 name = "Gtk.CellAreaContext"
@@ -821,6 +845,11 @@ status = "generate"
         [[object.function.parameter]]
         name = "path"
         const = true
+
+[[object]]
+name = "Gtk.CenterLayout"
+status = "generate"
+generate_builder = false
 
 [[object]]
 name = "Gtk.CheckButton"
@@ -1212,7 +1241,7 @@ status = "generate"
 name = "Gtk.FileDialog"
 status = "generate"
     [[object.function]]
-    pattern = "(open|save|open_multiple|select_folder)"
+    pattern = "(open|save|open_multiple|select_folder|select_multiple_folders)"
         [object.function.return]
         nullable = false
 
@@ -1317,16 +1346,6 @@ status = "generate"
         [[object.function.parameter]]
         name = "sequence"
         const = true
-
-[[object]]
-name = "Gtk.GestureClick"
-status = "generate"
-    # See https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/4777
-    [[object.signal]]
-    name = "unpaired-release"
-        [[object.signal.parameter]]
-        name = "sequence"
-        nullable = true
 
 [[object]]
 name = "Gtk.GestureSingle"
@@ -1443,6 +1462,13 @@ status = "generate"
         const = true
 
 [[object]]
+name = "Gtk.License"
+status = "generate"
+    [[object.member]]
+    name = "0bsd"
+    version = "4.14"
+
+[[object]]
 name = "Gtk.LinkButton"
 status = "generate"
     [[object.function]]
@@ -1475,6 +1501,11 @@ status = "generate"
     [[object.function]]
     name = "set_sort_func"
     manual = true # make the sort closure return a Ordering instead of an int
+
+[[object]]
+name = "Gtk.ListHeader"
+status = "generate"
+generate_builder = false
 
 [[object]]
 name = "Gtk.ListItem"
@@ -1594,6 +1625,11 @@ status = "generate"
 name = "Gtk.MnemonicTrigger"
 status = "manual" # to make use of gdk::Key # to make use of gdk::Key
 generate_builder = false
+
+[[object]]
+name = "Gtk.MountOperation"
+status = "generate"
+trait_name = "GtkMountOperationExt" # Conflicts with GMountOperation
 
 [[object]]
 name = "Gtk.MultiFilter"
@@ -1832,7 +1868,7 @@ generate_builder = false
 cfg_condition = "target_os = \"linux\""
     [[object.function]]
     name = "send"
-    manual = true # mis-generated callback_func
+    manual = true # misgenerated callback_func
 
 [[object]]
 name = "Gtk.PrintOperation"
@@ -2064,6 +2100,9 @@ generate_builder = false
 name = "Gtk.StringList"
 status = "generate"
 generate_builder = false
+    [[object.property]]
+    pattern = "(n-items|item-type)"
+    generate = [] # disable generated getter/notify, use the ones from GListModel iface
     [[object.function]]
     name = "take"
     ignore = true # A C helper, bindings should use append instead
@@ -2072,6 +2111,11 @@ generate_builder = false
 name = "Gtk.StyleContext"
 status = "generate"
 generate_builder = false
+    [[object.function]]
+    pattern = "(add|remove)_provider_for_display"
+    # To avoid them being marked as deprecated along with StyleContext
+    # see https://github.com/gtk-rs/gtk4-rs/issues/1317
+    manual = true
 
 [[object]]
 name = "Gtk.Switch"
@@ -2560,7 +2604,7 @@ manual_traits = ["TreeViewExtManual"]
     name = "set_row_separator_func"
         [[object.function.parameter]]
         name = "func"
-        nullable = false # use a separate unset_row_separtor_func
+        nullable = false # use a separate unset_row_separator_func
     [[object.signal]]
     pattern = ".+"
         [[object.signal.parameter]]
@@ -2645,7 +2689,7 @@ manual_traits = ["WidgetExtManual"]
         const = true
     [[object.function]]
     pattern = "(init|dispose)_template"
-    ignore = true # We manually bind this one as part of CompositeTemplatExt
+    ignore = true # We manually bind this one as part of CompositeTemplateExt
     [[object.function]]
     name = "get_template_child"
     ignore = true # Not useful for Rust bindings
@@ -2695,6 +2739,10 @@ manual_traits = ["WidgetExtManual"]
     [[object.signal]]
     name = "mnemonic-activate"
     inhibit = true
+
+[[object]]
+name = "Gtk.WidgetClass"
+status = "manual" # used for Class docs
 
 [[object]]
 name = "Gtk.WidgetPaintable"

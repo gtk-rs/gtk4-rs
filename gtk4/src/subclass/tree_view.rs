@@ -3,10 +3,11 @@
 // rustdoc-stripper-ignore-next
 //! Traits intended for subclassing [`TreeView`](crate::TreeView).
 
+use glib::translate::*;
+
 use crate::{
     prelude::*, subclass::prelude::*, MovementStep, TreeIter, TreePath, TreeView, TreeViewColumn,
 };
-use glib::translate::*;
 
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 #[allow(deprecated)]
@@ -72,41 +73,17 @@ pub trait TreeViewImpl: TreeViewImplExt + WidgetImpl {
     }
 }
 
-#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-#[allow(deprecated)]
-pub trait TreeViewImplExt: ObjectSubclass {
-    fn parent_columns_changed(&self);
-    fn parent_cursor_changed(&self);
-    fn parent_expand_collapse_cursor_row(
-        &self,
-        logical: bool,
-        expand: bool,
-        open_all: bool,
-    ) -> bool;
-    fn parent_move_cursor(
-        &self,
-        step: MovementStep,
-        count: i32,
-        extend: bool,
-        modify: bool,
-    ) -> bool;
-    fn parent_row_activated(&self, path: &TreePath, column: &TreeViewColumn);
-    fn parent_row_collapsed(&self, iter: &TreeIter, path: &TreePath);
-    fn parent_row_expanded(&self, iter: &TreeIter, path: &TreePath);
-    fn parent_select_all(&self) -> bool;
-    fn parent_select_cursor_parent(&self) -> bool;
-    fn parent_select_cursor_row(&self, start_editing: bool) -> bool;
-    fn parent_start_interactive_search(&self) -> bool;
-    fn parent_test_collapse_row(&self, iter: &TreeIter, path: &TreePath) -> bool;
-    fn parent_test_expand_row(&self, iter: &TreeIter, path: &TreePath) -> bool;
-    fn parent_toggle_cursor_row(&self) -> bool;
-    fn parent_unselect_all(&self) -> bool;
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::TreeViewImplExt> Sealed for T {}
 }
 
-impl<T: TreeViewImpl> TreeViewImplExt for T {
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+#[allow(deprecated)]
+pub trait TreeViewImplExt: sealed::Sealed + ObjectSubclass {
     fn parent_columns_changed(&self) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkTreeViewClass;
             // columns-changed is a signal
             if let Some(f) = (*parent_class).columns_changed {
@@ -117,7 +94,7 @@ impl<T: TreeViewImpl> TreeViewImplExt for T {
 
     fn parent_cursor_changed(&self) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkTreeViewClass;
             // cursor-changed is a signal
             if let Some(f) = (*parent_class).cursor_changed {
@@ -133,7 +110,7 @@ impl<T: TreeViewImpl> TreeViewImplExt for T {
         open_all: bool,
     ) -> bool {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkTreeViewClass;
             // expand-collapse-cursor-row is a signal
             if let Some(f) = (*parent_class).expand_collapse_cursor_row {
@@ -157,7 +134,7 @@ impl<T: TreeViewImpl> TreeViewImplExt for T {
         modify: bool,
     ) -> bool {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkTreeViewClass;
             // move-cursor is a signal
             if let Some(f) = (*parent_class).move_cursor {
@@ -177,7 +154,7 @@ impl<T: TreeViewImpl> TreeViewImplExt for T {
 
     fn parent_row_activated(&self, path: &TreePath, column: &TreeViewColumn) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkTreeViewClass;
             // row-activated is a signal
             if let Some(f) = (*parent_class).row_activated {
@@ -192,7 +169,7 @@ impl<T: TreeViewImpl> TreeViewImplExt for T {
 
     fn parent_row_collapsed(&self, iter: &TreeIter, path: &TreePath) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkTreeViewClass;
             // row-collapsed is a signal
             if let Some(f) = (*parent_class).row_collapsed {
@@ -207,7 +184,7 @@ impl<T: TreeViewImpl> TreeViewImplExt for T {
 
     fn parent_row_expanded(&self, iter: &TreeIter, path: &TreePath) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkTreeViewClass;
             // row-expanded is a signal
             if let Some(f) = (*parent_class).row_expanded {
@@ -222,7 +199,7 @@ impl<T: TreeViewImpl> TreeViewImplExt for T {
 
     fn parent_select_all(&self) -> bool {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkTreeViewClass;
             // select-all is a signal
             if let Some(f) = (*parent_class).select_all {
@@ -235,7 +212,7 @@ impl<T: TreeViewImpl> TreeViewImplExt for T {
 
     fn parent_select_cursor_parent(&self) -> bool {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkTreeViewClass;
             // select-cursor-parent is a signal
             if let Some(f) = (*parent_class).select_cursor_parent {
@@ -248,7 +225,7 @@ impl<T: TreeViewImpl> TreeViewImplExt for T {
 
     fn parent_select_cursor_row(&self, start_editing: bool) -> bool {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkTreeViewClass;
             // select-cursor-row is a signal
             if let Some(f) = (*parent_class).select_cursor_row {
@@ -264,7 +241,7 @@ impl<T: TreeViewImpl> TreeViewImplExt for T {
 
     fn parent_start_interactive_search(&self) -> bool {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkTreeViewClass;
             // start-interactive-search is a signal
             if let Some(f) = (*parent_class).start_interactive_search {
@@ -277,7 +254,7 @@ impl<T: TreeViewImpl> TreeViewImplExt for T {
 
     fn parent_test_collapse_row(&self, iter: &TreeIter, path: &TreePath) -> bool {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkTreeViewClass;
             // test-collapse-row is a signal
             if let Some(f) = (*parent_class).test_collapse_row {
@@ -295,7 +272,7 @@ impl<T: TreeViewImpl> TreeViewImplExt for T {
 
     fn parent_test_expand_row(&self, iter: &TreeIter, path: &TreePath) -> bool {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkTreeViewClass;
             // test-expand-row is a signal
             if let Some(f) = (*parent_class).test_expand_row {
@@ -313,7 +290,7 @@ impl<T: TreeViewImpl> TreeViewImplExt for T {
 
     fn parent_toggle_cursor_row(&self) -> bool {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkTreeViewClass;
             // toggle-cursor-row is a signal
             if let Some(f) = (*parent_class).toggle_cursor_row {
@@ -326,7 +303,7 @@ impl<T: TreeViewImpl> TreeViewImplExt for T {
 
     fn parent_unselect_all(&self) -> bool {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkTreeViewClass;
             // unselect-all is a signal
             if let Some(f) = (*parent_class).unselect_all {
@@ -337,6 +314,8 @@ impl<T: TreeViewImpl> TreeViewImplExt for T {
         }
     }
 }
+
+impl<T: TreeViewImpl> TreeViewImplExt for T {}
 
 unsafe impl<T: TreeViewImpl> IsSubclassable<T> for TreeView {
     fn class_init(class: &mut glib::Class<Self>) {

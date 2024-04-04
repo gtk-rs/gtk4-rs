@@ -1,7 +1,7 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::BookmarkList;
 use glib::translate::*;
+use crate::BookmarkList;
 
 /// # Example
 /// To iterate over `BookmarkList` call `iter::<gio::FileInfo>` to get an iterator.
@@ -30,9 +30,12 @@ impl BookmarkList {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-pattern struct instance to construct [`BookmarkList`] objects.
+    /// Creates a new builder-pattern struct instance to construct
+    /// [`BookmarkList`] objects.
     ///
-    /// This method returns an instance of [`BookmarkListBuilder`](crate::builders::BookmarkListBuilder) which can be used to create [`BookmarkList`] objects.
+    /// This method returns an instance of
+    /// [`BookmarkListBuilder`](crate::builders::BookmarkListBuilder) which can
+    /// be used to create [`BookmarkList`] objects.
     pub fn builder() -> BookmarkListBuilder {
         BookmarkListBuilder::new()
     }

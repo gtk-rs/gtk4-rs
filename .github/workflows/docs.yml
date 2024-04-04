@@ -30,18 +30,21 @@ on:
 
 jobs:
   build-deploy:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     name: build
     container:
       image: ghcr.io/gtk-rs/gtk4-rs/gtk4:latest
     env:
       RELEASES: |
+        0.8=0.8
+        0.7=0.7
         0.6=0.6
         0.5=0.5
         0.4=0.4
         0.3=0.3
+      RUSTFLAGS: --cfg docsrs
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         with:
           submodules: "recursive"
           set-safe-directory: true
@@ -66,6 +69,9 @@ jobs:
             --extern-html-root-url=khronos_egl=https://docs.rs/khronos-egl/latest/
             --extern-html-root-url=xkb=https://docs.rs/xkb/latest/
             --extern-html-root-url=windows=https://microsoft.github.io/windows-docs-rs/doc/
+            --extern-html-root-url=gl=https://docs.rs/gl/latest/
+            --cfg docsrs
+            -Zunstable-options --generate-link-to-definition
       - uses: actions-rs/cargo@v1
         with:
           command: doc
@@ -77,7 +83,8 @@ jobs:
             -p gsk4 -p gsk4-sys
             -p gtk4 -p gtk4-sys
             -p gtk4-macros
-            --features "dox" --no-deps
+            --all-features
+            --no-deps
 
       - name: Fix broken URLs
         run: |
@@ -87,6 +94,9 @@ jobs:
           sed -i 's|section-list-widget.html|https://docs.gtk.org/gtk4/section-list-widget.html|g' target/doc/gtk4/struct.GridView.html
 
           sed -i 's|input-handling.html|https://docs.gtk.org/gtk4/input-handling.html|g' target/doc/gtk4/struct.EventController.html
+
+          sed -i 's|coordinates.html|https://docs.gtk.org/gtk4/coordinates.html|g' target/doc/gdk4/struct.Event.html
+          sed -i 's|coordinates.html|https://docs.gtk.org/gtk4/coordinates.html|g' target/doc/gtk4/struct.Widget.html
 
           sed -i 's|section-text-widget.html|https://docs.gtk.org/gtk4/section-text-widget.html|g' target/doc/gtk4/struct.TextBuffer.html
           sed -i 's|section-text-widget.html|https://docs.gtk.org/gtk4/section-text-widget.html|g' target/doc/gtk4/struct.TextIter.html

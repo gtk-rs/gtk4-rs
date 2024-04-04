@@ -8,7 +8,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GdkSeat")]
@@ -23,45 +23,14 @@ impl Seat {
     pub const NONE: Option<&'static Seat> = None;
 }
 
-pub trait SeatExt: 'static {
-    #[doc(alias = "gdk_seat_get_capabilities")]
-    #[doc(alias = "get_capabilities")]
-    fn capabilities(&self) -> SeatCapabilities;
-
-    #[doc(alias = "gdk_seat_get_devices")]
-    #[doc(alias = "get_devices")]
-    fn devices(&self, capabilities: SeatCapabilities) -> Vec<Device>;
-
-    #[doc(alias = "gdk_seat_get_display")]
-    #[doc(alias = "get_display")]
-    fn display(&self) -> Display;
-
-    #[doc(alias = "gdk_seat_get_keyboard")]
-    #[doc(alias = "get_keyboard")]
-    fn keyboard(&self) -> Option<Device>;
-
-    #[doc(alias = "gdk_seat_get_pointer")]
-    #[doc(alias = "get_pointer")]
-    fn pointer(&self) -> Option<Device>;
-
-    #[doc(alias = "gdk_seat_get_tools")]
-    #[doc(alias = "get_tools")]
-    fn tools(&self) -> Vec<DeviceTool>;
-
-    #[doc(alias = "device-added")]
-    fn connect_device_added<F: Fn(&Self, &Device) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "device-removed")]
-    fn connect_device_removed<F: Fn(&Self, &Device) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "tool-added")]
-    fn connect_tool_added<F: Fn(&Self, &DeviceTool) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "tool-removed")]
-    fn connect_tool_removed<F: Fn(&Self, &DeviceTool) + 'static>(&self, f: F) -> SignalHandlerId;
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::Seat>> Sealed for T {}
 }
 
-impl<O: IsA<Seat>> SeatExt for O {
+pub trait SeatExt: IsA<Seat> + sealed::Sealed + 'static {
+    #[doc(alias = "gdk_seat_get_capabilities")]
+    #[doc(alias = "get_capabilities")]
     fn capabilities(&self) -> SeatCapabilities {
         unsafe {
             from_glib(ffi::gdk_seat_get_capabilities(
@@ -70,6 +39,8 @@ impl<O: IsA<Seat>> SeatExt for O {
         }
     }
 
+    #[doc(alias = "gdk_seat_get_devices")]
+    #[doc(alias = "get_devices")]
     fn devices(&self, capabilities: SeatCapabilities) -> Vec<Device> {
         unsafe {
             FromGlibPtrContainer::from_glib_container(ffi::gdk_seat_get_devices(
@@ -79,18 +50,26 @@ impl<O: IsA<Seat>> SeatExt for O {
         }
     }
 
+    #[doc(alias = "gdk_seat_get_display")]
+    #[doc(alias = "get_display")]
     fn display(&self) -> Display {
         unsafe { from_glib_none(ffi::gdk_seat_get_display(self.as_ref().to_glib_none().0)) }
     }
 
+    #[doc(alias = "gdk_seat_get_keyboard")]
+    #[doc(alias = "get_keyboard")]
     fn keyboard(&self) -> Option<Device> {
         unsafe { from_glib_none(ffi::gdk_seat_get_keyboard(self.as_ref().to_glib_none().0)) }
     }
 
+    #[doc(alias = "gdk_seat_get_pointer")]
+    #[doc(alias = "get_pointer")]
     fn pointer(&self) -> Option<Device> {
         unsafe { from_glib_none(ffi::gdk_seat_get_pointer(self.as_ref().to_glib_none().0)) }
     }
 
+    #[doc(alias = "gdk_seat_get_tools")]
+    #[doc(alias = "get_tools")]
     fn tools(&self) -> Vec<DeviceTool> {
         unsafe {
             FromGlibPtrContainer::from_glib_container(ffi::gdk_seat_get_tools(
@@ -99,6 +78,7 @@ impl<O: IsA<Seat>> SeatExt for O {
         }
     }
 
+    #[doc(alias = "device-added")]
     fn connect_device_added<F: Fn(&Self, &Device) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn device_added_trampoline<P: IsA<Seat>, F: Fn(&P, &Device) + 'static>(
             this: *mut ffi::GdkSeat,
@@ -116,7 +96,7 @@ impl<O: IsA<Seat>> SeatExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"device-added\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     device_added_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -124,6 +104,7 @@ impl<O: IsA<Seat>> SeatExt for O {
         }
     }
 
+    #[doc(alias = "device-removed")]
     fn connect_device_removed<F: Fn(&Self, &Device) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn device_removed_trampoline<
             P: IsA<Seat>,
@@ -144,7 +125,7 @@ impl<O: IsA<Seat>> SeatExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"device-removed\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     device_removed_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -152,6 +133,7 @@ impl<O: IsA<Seat>> SeatExt for O {
         }
     }
 
+    #[doc(alias = "tool-added")]
     fn connect_tool_added<F: Fn(&Self, &DeviceTool) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn tool_added_trampoline<
             P: IsA<Seat>,
@@ -172,7 +154,7 @@ impl<O: IsA<Seat>> SeatExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"tool-added\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     tool_added_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -180,6 +162,7 @@ impl<O: IsA<Seat>> SeatExt for O {
         }
     }
 
+    #[doc(alias = "tool-removed")]
     fn connect_tool_removed<F: Fn(&Self, &DeviceTool) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn tool_removed_trampoline<
             P: IsA<Seat>,
@@ -200,7 +183,7 @@ impl<O: IsA<Seat>> SeatExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"tool-removed\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     tool_removed_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -209,8 +192,4 @@ impl<O: IsA<Seat>> SeatExt for O {
     }
 }
 
-impl fmt::Display for Seat {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("Seat")
-    }
-}
+impl<O: IsA<Seat>> SeatExt for O {}

@@ -3,21 +3,22 @@ pub mod custom_tag;
 
 use custom_editable::CustomEditable;
 use custom_tag::CustomTag;
-use glib::clone;
-use gtk::prelude::*;
-use gtk::subclass::prelude::*;
-use gtk::{gdk, glib};
+use gtk::{
+    gdk,
+    glib::{self, clone},
+    prelude::*,
+    subclass::prelude::*,
+};
 
 fn main() -> glib::ExitCode {
-    let application = gtk::Application::new(
-        Some("com.github.gtk-rs.examples.editable"),
-        Default::default(),
-    );
+    let application = gtk::Application::builder()
+        .application_id("com.github.gtk-rs.examples.editable")
+        .build();
 
     application.connect_startup(|_| {
         let provider = gtk::CssProvider::new();
-        provider.load_from_data(include_str!("style.css"));
-        gtk::StyleContext::add_provider_for_display(
+        provider.load_from_string(include_str!("style.css"));
+        gtk::style_context_add_provider_for_display(
             &gdk::Display::default().unwrap(),
             &provider,
             800,
@@ -37,7 +38,7 @@ fn build_ui(application: &gtk::Application) {
     container.set_valign(gtk::Align::Center);
     container.set_halign(gtk::Align::Center);
 
-    let editable = CustomEditable::new();
+    let editable = CustomEditable::default();
     editable.set_halign(gtk::Align::Fill);
 
     container.append(&editable);
@@ -72,5 +73,5 @@ fn build_ui(application: &gtk::Application) {
 
     container.append(&horizontal_container);
     window.set_child(Some(&container));
-    window.show();
+    window.present();
 }

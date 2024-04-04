@@ -1,7 +1,6 @@
 mod scale_bin;
 
-use gtk::glib;
-use gtk::prelude::*;
+use gtk::{glib, prelude::*};
 use scale_bin::ScaleBin;
 
 fn main() -> glib::ExitCode {
@@ -11,9 +10,9 @@ fn main() -> glib::ExitCode {
 
     application.connect_activate(|app| {
         let window = gtk::ApplicationWindow::new(app);
-        let scale_bin = ScaleBin::new();
+        let scale_bin = ScaleBin::default();
         window.set_child(Some(&scale_bin));
-        window.show();
+        window.present();
     });
 
     application.run()

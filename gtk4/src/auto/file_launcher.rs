@@ -8,7 +8,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute, pin::Pin, ptr};
+use std::{boxed::Box as Box_, pin::Pin};
 
 glib::wrapper! {
     #[doc(alias = "GtkFileLauncher")]
@@ -30,10 +30,26 @@ impl FileLauncher {
         }
     }
 
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "gtk_file_launcher_get_always_ask")]
+    #[doc(alias = "get_always_ask")]
+    pub fn must_always_ask(&self) -> bool {
+        unsafe { from_glib(ffi::gtk_file_launcher_get_always_ask(self.to_glib_none().0)) }
+    }
+
     #[doc(alias = "gtk_file_launcher_get_file")]
     #[doc(alias = "get_file")]
     pub fn file(&self) -> Option<gio::File> {
         unsafe { from_glib_none(ffi::gtk_file_launcher_get_file(self.to_glib_none().0)) }
+    }
+
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    #[doc(alias = "gtk_file_launcher_get_writable")]
+    #[doc(alias = "get_writable")]
+    pub fn is_writable(&self) -> bool {
+        unsafe { from_glib(ffi::gtk_file_launcher_get_writable(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_file_launcher_launch")]
@@ -60,7 +76,7 @@ impl FileLauncher {
             res: *mut gio::ffi::GAsyncResult,
             user_data: glib::ffi::gpointer,
         ) {
-            let mut error = ptr::null_mut();
+            let mut error = std::ptr::null_mut();
             let _ = ffi::gtk_file_launcher_launch_finish(_source_object as *mut _, res, &mut error);
             let result = if error.is_null() {
                 Ok(())
@@ -126,7 +142,7 @@ impl FileLauncher {
             res: *mut gio::ffi::GAsyncResult,
             user_data: glib::ffi::gpointer,
         ) {
-            let mut error = ptr::null_mut();
+            let mut error = std::ptr::null_mut();
             let _ = ffi::gtk_file_launcher_open_containing_folder_finish(
                 _source_object as *mut _,
                 res,
@@ -170,6 +186,15 @@ impl FileLauncher {
         }))
     }
 
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "gtk_file_launcher_set_always_ask")]
+    pub fn set_always_ask(&self, always_ask: bool) {
+        unsafe {
+            ffi::gtk_file_launcher_set_always_ask(self.to_glib_none().0, always_ask.into_glib());
+        }
+    }
+
     #[doc(alias = "gtk_file_launcher_set_file")]
     pub fn set_file(&self, file: Option<&impl IsA<gio::File>>) {
         unsafe {
@@ -180,8 +205,42 @@ impl FileLauncher {
         }
     }
 
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    #[doc(alias = "gtk_file_launcher_set_writable")]
+    pub fn set_writable(&self, writable: bool) {
+        unsafe {
+            ffi::gtk_file_launcher_set_writable(self.to_glib_none().0, writable.into_glib());
+        }
+    }
+
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "always-ask")]
+    pub fn connect_always_ask_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_always_ask_trampoline<F: Fn(&FileLauncher) + 'static>(
+            this: *mut ffi::GtkFileLauncher,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::always-ask\0".as_ptr() as *const _,
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                    notify_always_ask_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg(feature = "v4_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "file")]
     pub fn connect_file_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_file_trampoline<F: Fn(&FileLauncher) + 'static>(
@@ -197,17 +256,36 @@ impl FileLauncher {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::file\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_file_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
         }
     }
-}
 
-impl fmt::Display for FileLauncher {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("FileLauncher")
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    #[doc(alias = "writable")]
+    pub fn connect_writable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_writable_trampoline<F: Fn(&FileLauncher) + 'static>(
+            this: *mut ffi::GtkFileLauncher,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::writable\0".as_ptr() as *const _,
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                    notify_writable_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
     }
 }

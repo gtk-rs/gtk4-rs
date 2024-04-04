@@ -2,8 +2,6 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use std::fmt;
-
 glib::wrapper! {
     #[doc(alias = "GdkX11Drag")]
     pub struct X11Drag(Object<ffi::GdkX11Drag, ffi::GdkX11DragClass>) @extends gdk::Drag;
@@ -14,9 +12,3 @@ glib::wrapper! {
 }
 
 impl X11Drag {}
-
-impl fmt::Display for X11Drag {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("X11Drag")
-    }
-}

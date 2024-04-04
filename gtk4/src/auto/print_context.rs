@@ -4,7 +4,6 @@
 
 use crate::PageSetup;
 use glib::translate::*;
-use std::{fmt, mem};
 
 glib::wrapper! {
     #[doc(alias = "GtkPrintContext")]
@@ -60,10 +59,10 @@ impl PrintContext {
     #[doc(alias = "get_hard_margins")]
     pub fn hard_margins(&self) -> Option<(f64, f64, f64, f64)> {
         unsafe {
-            let mut top = mem::MaybeUninit::uninit();
-            let mut bottom = mem::MaybeUninit::uninit();
-            let mut left = mem::MaybeUninit::uninit();
-            let mut right = mem::MaybeUninit::uninit();
+            let mut top = std::mem::MaybeUninit::uninit();
+            let mut bottom = std::mem::MaybeUninit::uninit();
+            let mut left = std::mem::MaybeUninit::uninit();
+            let mut right = std::mem::MaybeUninit::uninit();
             let ret = from_glib(ffi::gtk_print_context_get_hard_margins(
                 self.to_glib_none().0,
                 top.as_mut_ptr(),
@@ -122,11 +121,5 @@ impl PrintContext {
                 dpi_y,
             );
         }
-    }
-}
-
-impl fmt::Display for PrintContext {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("PrintContext")
     }
 }

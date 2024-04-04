@@ -1,21 +1,20 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
 use crate::{prelude::*, FileChooser};
-use glib::{translate::*, IntoGStr};
+use glib::translate::*;
 
-// rustdoc-stripper-ignore-next
-/// Trait containing manually implemented methods of [`FileChooser`](crate::FileChooser).
-#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-#[allow(deprecated)]
-pub trait FileChooserExtManual: 'static {
-    #[doc(alias = "gtk_file_chooser_add_choice")]
-    fn add_choice(&self, id: impl IntoGStr, label: impl IntoGStr, options: &[(&str, &str)]);
-
-    #[doc(alias = "gtk_file_chooser_set_current_folder")]
-    fn set_current_folder(&self, file: Option<&impl IsA<gio::File>>) -> Result<bool, glib::Error>;
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::FileChooser>> Sealed for T {}
 }
 
-impl<O: IsA<FileChooser>> FileChooserExtManual for O {
+// rustdoc-stripper-ignore-next
+/// Trait containing manually implemented methods of
+/// [`FileChooser`](crate::FileChooser).
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+#[allow(deprecated)]
+pub trait FileChooserExtManual: sealed::Sealed + IsA<FileChooser> + 'static {
+    #[doc(alias = "gtk_file_chooser_add_choice")]
     fn add_choice(&self, id: impl IntoGStr, label: impl IntoGStr, options: &[(&str, &str)]) {
         unsafe {
             let (options_ids, options_labels) = if options.is_empty() {
@@ -57,6 +56,7 @@ impl<O: IsA<FileChooser>> FileChooserExtManual for O {
         }
     }
 
+    #[doc(alias = "gtk_file_chooser_set_current_folder")]
     fn set_current_folder(&self, file: Option<&impl IsA<gio::File>>) -> Result<bool, glib::Error> {
         unsafe {
             let mut error = std::ptr::null_mut();
@@ -73,3 +73,5 @@ impl<O: IsA<FileChooser>> FileChooserExtManual for O {
         }
     }
 }
+
+impl<O: IsA<FileChooser>> FileChooserExtManual for O {}

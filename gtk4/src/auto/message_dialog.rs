@@ -12,7 +12,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GtkMessageDialog")]
@@ -55,50 +55,50 @@ impl MessageDialog {
 
     #[doc(alias = "message-type")]
     pub fn message_type(&self) -> MessageType {
-        glib::ObjectExt::property(self, "message-type")
+        ObjectExt::property(self, "message-type")
     }
 
     #[doc(alias = "message-type")]
     pub fn set_message_type(&self, message_type: MessageType) {
-        glib::ObjectExt::set_property(self, "message-type", message_type)
+        ObjectExt::set_property(self, "message-type", message_type)
     }
 
     #[doc(alias = "secondary-text")]
     pub fn secondary_text(&self) -> Option<glib::GString> {
-        glib::ObjectExt::property(self, "secondary-text")
+        ObjectExt::property(self, "secondary-text")
     }
 
     #[doc(alias = "secondary-text")]
     pub fn set_secondary_text(&self, secondary_text: Option<&str>) {
-        glib::ObjectExt::set_property(self, "secondary-text", secondary_text)
+        ObjectExt::set_property(self, "secondary-text", secondary_text)
     }
 
     #[doc(alias = "secondary-use-markup")]
     pub fn is_secondary_use_markup(&self) -> bool {
-        glib::ObjectExt::property(self, "secondary-use-markup")
+        ObjectExt::property(self, "secondary-use-markup")
     }
 
     #[doc(alias = "secondary-use-markup")]
     pub fn set_secondary_use_markup(&self, secondary_use_markup: bool) {
-        glib::ObjectExt::set_property(self, "secondary-use-markup", secondary_use_markup)
+        ObjectExt::set_property(self, "secondary-use-markup", secondary_use_markup)
     }
 
     pub fn text(&self) -> Option<glib::GString> {
-        glib::ObjectExt::property(self, "text")
+        ObjectExt::property(self, "text")
     }
 
     pub fn set_text(&self, text: Option<&str>) {
-        glib::ObjectExt::set_property(self, "text", text)
+        ObjectExt::set_property(self, "text", text)
     }
 
     #[doc(alias = "use-markup")]
     pub fn uses_markup(&self) -> bool {
-        glib::ObjectExt::property(self, "use-markup")
+        ObjectExt::property(self, "use-markup")
     }
 
     #[doc(alias = "use-markup")]
     pub fn set_use_markup(&self, use_markup: bool) {
-        glib::ObjectExt::set_property(self, "use-markup", use_markup)
+        ObjectExt::set_property(self, "use-markup", use_markup)
     }
 
     #[doc(alias = "message-area")]
@@ -116,7 +116,7 @@ impl MessageDialog {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::message-area\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_message_area_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -139,7 +139,7 @@ impl MessageDialog {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::message-type\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_message_type_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -162,7 +162,7 @@ impl MessageDialog {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::secondary-text\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_secondary_text_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -190,7 +190,7 @@ impl MessageDialog {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::secondary-use-markup\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_secondary_use_markup_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -213,7 +213,7 @@ impl MessageDialog {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::text\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_text_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -236,7 +236,7 @@ impl MessageDialog {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::use-markup\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_use_markup_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -388,8 +388,8 @@ impl MessageDialogBuilder {
         }
     }
 
-    #[cfg(any(feature = "v4_2", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_2")))]
+    #[cfg(feature = "v4_2")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_2")))]
     pub fn handle_menubar_accel(self, handle_menubar_accel: bool) -> Self {
         Self {
             builder: self
@@ -448,8 +448,8 @@ impl MessageDialogBuilder {
         }
     }
 
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[cfg(feature = "v4_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     pub fn titlebar(self, titlebar: &impl IsA<Widget>) -> Self {
         Self {
             builder: self.builder.property("titlebar", titlebar.clone().upcast()),
@@ -653,11 +653,5 @@ impl MessageDialogBuilder {
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> MessageDialog {
         self.builder.build()
-    }
-}
-
-impl fmt::Display for MessageDialog {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("MessageDialog")
     }
 }

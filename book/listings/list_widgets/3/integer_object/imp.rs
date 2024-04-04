@@ -1,14 +1,15 @@
 use std::cell::Cell;
 
-use glib::{ParamSpec, ParamSpecInt, Value};
+use glib::Properties;
 use gtk::glib;
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
-use once_cell::sync::Lazy;
 
 // Object holding the state
-#[derive(Default)]
+#[derive(Properties, Default)]
+#[properties(wrapper_type = super::IntegerObject)]
 pub struct IntegerObject {
+    #[property(get, set)]
     number: Cell<i32>,
 }
 
@@ -21,29 +22,6 @@ impl ObjectSubclass for IntegerObject {
 
 // ANCHOR: object_impl
 // Trait shared by all GObjects
-impl ObjectImpl for IntegerObject {
-    fn properties() -> &'static [ParamSpec] {
-        static PROPERTIES: Lazy<Vec<ParamSpec>> =
-            Lazy::new(|| vec![ParamSpecInt::builder("number").build()]);
-        PROPERTIES.as_ref()
-    }
-
-    fn set_property(&self, _id: usize, value: &Value, pspec: &ParamSpec) {
-        match pspec.name() {
-            "number" => {
-                let input_number =
-                    value.get().expect("The value needs to be of type `i32`.");
-                self.number.replace(input_number);
-            }
-            _ => unimplemented!(),
-        }
-    }
-
-    fn property(&self, _id: usize, pspec: &ParamSpec) -> Value {
-        match pspec.name() {
-            "number" => self.number.get().to_value(),
-            _ => unimplemented!(),
-        }
-    }
-}
+#[glib::derived_properties]
+impl ObjectImpl for IntegerObject {}
 // ANCHOR_END: object_impl

@@ -9,7 +9,9 @@
     clippy::unreadable_literal,
     clippy::upper_case_acronyms
 )]
-#![cfg_attr(feature = "dox", feature(doc_cfg))]
+#![cfg_attr(docsrs, feature(doc_cfg))]
+
+use glib_sys as glib;
 
 #[allow(unused_imports)]
 use libc::{
@@ -31,7 +33,7 @@ pub struct _GdkWaylandDeviceClass {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GdkWaylandDeviceClass = *mut _GdkWaylandDeviceClass;
+pub type GdkWaylandDeviceClass = _GdkWaylandDeviceClass;
 
 #[repr(C)]
 pub struct _GdkWaylandDisplayClass {
@@ -39,7 +41,7 @@ pub struct _GdkWaylandDisplayClass {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GdkWaylandDisplayClass = *mut _GdkWaylandDisplayClass;
+pub type GdkWaylandDisplayClass = _GdkWaylandDisplayClass;
 
 #[repr(C)]
 pub struct _GdkWaylandGLContextClass {
@@ -47,7 +49,7 @@ pub struct _GdkWaylandGLContextClass {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GdkWaylandGLContextClass = *mut _GdkWaylandGLContextClass;
+pub type GdkWaylandGLContextClass = _GdkWaylandGLContextClass;
 
 #[repr(C)]
 pub struct _GdkWaylandMonitorClass {
@@ -55,7 +57,7 @@ pub struct _GdkWaylandMonitorClass {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GdkWaylandMonitorClass = *mut _GdkWaylandMonitorClass;
+pub type GdkWaylandMonitorClass = _GdkWaylandMonitorClass;
 
 #[repr(C)]
 pub struct _GdkWaylandSeatClass {
@@ -63,7 +65,7 @@ pub struct _GdkWaylandSeatClass {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GdkWaylandSeatClass = *mut _GdkWaylandSeatClass;
+pub type GdkWaylandSeatClass = _GdkWaylandSeatClass;
 
 // Classes
 #[repr(C)]
@@ -181,16 +183,16 @@ extern "C" {
     pub fn gdk_wayland_device_get_wl_keyboard(device: *mut GdkWaylandDevice) -> gpointer;
     pub fn gdk_wayland_device_get_wl_pointer(device: *mut GdkWaylandDevice) -> gpointer;
     pub fn gdk_wayland_device_get_wl_seat(device: *mut GdkWaylandDevice) -> gpointer;
-    #[cfg(any(feature = "v4_4", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+    #[cfg(feature = "v4_4")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
     pub fn gdk_wayland_device_get_xkb_keymap(device: *mut GdkWaylandDevice) -> gpointer;
 
     //=========================================================================
     // GdkWaylandDisplay
     //=========================================================================
     pub fn gdk_wayland_display_get_type() -> GType;
-    #[cfg(any(feature = "v4_4", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+    #[cfg(feature = "v4_4")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
     pub fn gdk_wayland_display_get_egl_display(display: *mut GdkWaylandDisplay) -> gpointer;
     pub fn gdk_wayland_display_get_startup_notification_id(
         display: *mut GdkWaylandDisplay,
@@ -243,6 +245,12 @@ extern "C" {
     // GdkWaylandToplevel
     //=========================================================================
     pub fn gdk_wayland_toplevel_get_type() -> GType;
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn gdk_wayland_toplevel_drop_exported_handle(
+        toplevel: *mut GdkWaylandToplevel,
+        handle: *const c_char,
+    );
     pub fn gdk_wayland_toplevel_export_handle(
         toplevel: *mut GdkWaylandToplevel,
         callback: GdkWaylandToplevelExported,

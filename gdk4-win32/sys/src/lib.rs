@@ -9,7 +9,10 @@
     clippy::unreadable_literal,
     clippy::upper_case_acronyms
 )]
-#![cfg_attr(feature = "dox", feature(doc_cfg))]
+#![cfg_attr(docsrs, feature(doc_cfg))]
+
+use gdk4_sys as gdk;
+use glib_sys as glib;
 
 #[allow(unused_imports)]
 use libc::{
@@ -42,7 +45,7 @@ pub struct _GdkWin32DisplayClass {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GdkWin32DisplayClass = *mut _GdkWin32DisplayClass;
+pub type GdkWin32DisplayClass = _GdkWin32DisplayClass;
 
 #[repr(C)]
 pub struct _GdkWin32DisplayManagerClass {
@@ -50,7 +53,7 @@ pub struct _GdkWin32DisplayManagerClass {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GdkWin32DisplayManagerClass = *mut _GdkWin32DisplayManagerClass;
+pub type GdkWin32DisplayManagerClass = _GdkWin32DisplayManagerClass;
 
 #[repr(C)]
 pub struct _GdkWin32DragClass {
@@ -58,7 +61,7 @@ pub struct _GdkWin32DragClass {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GdkWin32DragClass = *mut _GdkWin32DragClass;
+pub type GdkWin32DragClass = _GdkWin32DragClass;
 
 #[repr(C)]
 pub struct _GdkWin32GLContextClass {
@@ -66,7 +69,7 @@ pub struct _GdkWin32GLContextClass {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GdkWin32GLContextClass = *mut _GdkWin32GLContextClass;
+pub type GdkWin32GLContextClass = _GdkWin32GLContextClass;
 
 #[repr(C)]
 pub struct _GdkWin32HCursorClass {
@@ -74,7 +77,7 @@ pub struct _GdkWin32HCursorClass {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GdkWin32HCursorClass = *mut _GdkWin32HCursorClass;
+pub type GdkWin32HCursorClass = _GdkWin32HCursorClass;
 
 #[repr(C)]
 pub struct _GdkWin32MonitorClass {
@@ -82,7 +85,7 @@ pub struct _GdkWin32MonitorClass {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GdkWin32MonitorClass = *mut _GdkWin32MonitorClass;
+pub type GdkWin32MonitorClass = _GdkWin32MonitorClass;
 
 #[repr(C)]
 pub struct _GdkWin32ScreenClass {
@@ -90,7 +93,7 @@ pub struct _GdkWin32ScreenClass {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GdkWin32ScreenClass = *mut _GdkWin32ScreenClass;
+pub type GdkWin32ScreenClass = _GdkWin32ScreenClass;
 
 #[repr(C)]
 pub struct _GdkWin32SurfaceClass {
@@ -98,7 +101,7 @@ pub struct _GdkWin32SurfaceClass {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GdkWin32SurfaceClass = *mut _GdkWin32SurfaceClass;
+pub type GdkWin32SurfaceClass = _GdkWin32SurfaceClass;
 
 // Classes
 #[repr(C)]
@@ -224,8 +227,8 @@ extern "C" {
         function: GdkWin32MessageFilterFunc,
         data: gpointer,
     );
-    #[cfg(any(feature = "v4_4", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+    #[cfg(feature = "v4_4")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
     pub fn gdk_win32_display_get_egl_display(display: *mut GdkWin32Display) -> gpointer;
     pub fn gdk_win32_display_get_win32hcursor(
         display: *mut GdkWin32Display,

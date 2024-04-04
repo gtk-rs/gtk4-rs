@@ -25,10 +25,11 @@ generate = [
     "Gdk.DevicePad",
     "Gdk.DevicePadFeature",
     "Gdk.DeviceToolType",
+    "Gdk.DmabufError",
+    "Gdk.DmabufTexture",
     "Gdk.DNDEvent",
     "Gdk.DragAction",
     "Gdk.DragCancelReason",
-    "Gdk.DragSurface",
     "Gdk.Event",
     "Gdk.EventSequence",
     "Gdk.FocusEvent",
@@ -59,7 +60,6 @@ generate = [
     "Gdk.TextureError",
     "Gdk.TitlebarGesture",
     "Gdk.ToplevelLayout",
-    "Gdk.ToplevelState",
     "Gdk.TouchEvent",
     "Gdk.TouchpadEvent",
     "Gdk.TouchpadGesturePhase",
@@ -72,6 +72,7 @@ manual = [
     "cairo.Context",
     "cairo.Region",
     "cairo.Surface",
+    "Gdk.DragSurfaceSize",
     "Gdk.KeymapKey",
     "Gdk.ToplevelSize",
     "GdkPixbuf.Pixbuf",
@@ -218,9 +219,13 @@ status = "generate"
     [[object.function]]
     name = "set_allowed_backends"
     assertion = "skip"
+    [[object.function]]
+    name = "drag_surface_size_get_type"
+    ignore = true # Used by glib::wrapper!
 
 [[object]]
 name = "Gdk.AppLaunchContext"
+trait_name = "GdkAppLaunchContextExt" # Conflicts with GAppLaunchContext
 status = "generate"
 generate_builder = false
 final_type = false
@@ -410,6 +415,9 @@ manual_traits = ["DisplayExtManual"]
     [[object.function]]
     pattern = "map_key(code|val)"
     manual = true # make use of Key
+    [[object.property]]
+    name = "shadow-width"
+    generate = ["notify"]
 
 [[object]]
 name = "Gdk.DisplayManager"
@@ -417,9 +425,35 @@ status = "generate"
 generate_builder = false
 
 [[object]]
+name = "Gdk.DmabufFormats"
+status = "generate"
+    [[object.function]]
+    name = "equal"
+        [[object.function.parameter]]
+        name = "formats2"
+        nullable = false
+
+[[object]]
+name = "Gdk.DmabufTextureBuilder"
+status = "generate"
+    [[object.function]]
+    name = "set_update_region"
+        [[object.function.parameter]]
+        name = "region"
+        const = true
+
+[[object]]
 name = "Gdk.Drag"
 status = "generate"
 final_type = false
+
+[[object]]
+name = "Gdk.DragSurface"
+status = "generate"
+manual_traits = ["DragSurfaceExtManual"]
+    [[object.signal]]
+    name = "compute-size"
+    manual = true
 
 [[object]]
 name = "Gdk.DrawContext"
@@ -473,6 +507,29 @@ concurrency = "send+sync"
     manual = true
 
 [[object]]
+name = "Gdk.GLTextureBuilder"
+status = "generate"
+concurrency = "send+sync"
+generate_builder = false
+    [[object.function]]
+    name = "set_update_region"
+        [[object.function.parameter]]
+        name = "region"
+        const = true
+    [[object.function]]
+    pattern = "set_(context|format|has_mipmap|height|id|update_region|update_texture|width)"
+    manual = true
+    [[object.function]]
+    pattern = "(set|get)_sync"
+    manual = true
+    [[object.function]]
+    name = "build"
+    manual = true
+    [[object.property]]
+    pattern = "(context|format|has-mipmap|height|id|sync|update-region|update-texture|width)"
+    generate = [] # ignore get/set/notify
+
+[[object]]
 name = "Gdk.KeyEvent"
 status = "generate"
     [[object.function]]
@@ -489,31 +546,7 @@ status = "generate"
 name = "Gdk.MemoryFormat"
 status = "generate"
     [[object.member]]
-    name = "r16g16b16"
-    version = "4.6"
-    [[object.member]]
-    name = "r16g16b16a16_premultiplied"
-    version = "4.6"
-    [[object.member]]
-    name = "r16g16b16a16"
-    version = "4.6"
-    [[object.member]]
-    name = "r16g16b16_float"
-    version = "4.6"
-    [[object.member]]
-    name = "r16g16b16a16_float_premultiplied"
-    version = "4.6"
-    [[object.member]]
-    name = "r16g16b16a16_float"
-    version = "4.6"
-    [[object.member]]
     name = "r32g32b32_float"
-    version = "4.6"
-    [[object.member]]
-    name = "r32g32b32a32_float_premultiplied"
-    version = "4.6"
-    [[object.member]]
-    name = "r32g32b32a32_float"
     version = "4.6"
     [[object.member]]
     name = "n_formats"
@@ -620,3 +653,10 @@ manual_traits = ["ToplevelExtManual"]
     name = "compute-size"
     manual = true
     doc_trait_name = "ToplevelExtManual"
+
+[[object]]
+name = "Gdk.ToplevelState"
+status = "generate"
+    [[object.member]]
+    name = "suspended"
+    version = "4.12"

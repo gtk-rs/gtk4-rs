@@ -8,7 +8,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem, mem::transmute};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GtkGestureDrag")]
@@ -113,30 +113,18 @@ impl GestureDragBuilder {
     }
 }
 
-pub trait GestureDragExt: 'static {
-    #[doc(alias = "gtk_gesture_drag_get_offset")]
-    #[doc(alias = "get_offset")]
-    fn offset(&self) -> Option<(f64, f64)>;
-
-    #[doc(alias = "gtk_gesture_drag_get_start_point")]
-    #[doc(alias = "get_start_point")]
-    fn start_point(&self) -> Option<(f64, f64)>;
-
-    #[doc(alias = "drag-begin")]
-    fn connect_drag_begin<F: Fn(&Self, f64, f64) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "drag-end")]
-    fn connect_drag_end<F: Fn(&Self, f64, f64) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "drag-update")]
-    fn connect_drag_update<F: Fn(&Self, f64, f64) + 'static>(&self, f: F) -> SignalHandlerId;
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::GestureDrag>> Sealed for T {}
 }
 
-impl<O: IsA<GestureDrag>> GestureDragExt for O {
+pub trait GestureDragExt: IsA<GestureDrag> + sealed::Sealed + 'static {
+    #[doc(alias = "gtk_gesture_drag_get_offset")]
+    #[doc(alias = "get_offset")]
     fn offset(&self) -> Option<(f64, f64)> {
         unsafe {
-            let mut x = mem::MaybeUninit::uninit();
-            let mut y = mem::MaybeUninit::uninit();
+            let mut x = std::mem::MaybeUninit::uninit();
+            let mut y = std::mem::MaybeUninit::uninit();
             let ret = from_glib(ffi::gtk_gesture_drag_get_offset(
                 self.as_ref().to_glib_none().0,
                 x.as_mut_ptr(),
@@ -150,10 +138,12 @@ impl<O: IsA<GestureDrag>> GestureDragExt for O {
         }
     }
 
+    #[doc(alias = "gtk_gesture_drag_get_start_point")]
+    #[doc(alias = "get_start_point")]
     fn start_point(&self) -> Option<(f64, f64)> {
         unsafe {
-            let mut x = mem::MaybeUninit::uninit();
-            let mut y = mem::MaybeUninit::uninit();
+            let mut x = std::mem::MaybeUninit::uninit();
+            let mut y = std::mem::MaybeUninit::uninit();
             let ret = from_glib(ffi::gtk_gesture_drag_get_start_point(
                 self.as_ref().to_glib_none().0,
                 x.as_mut_ptr(),
@@ -167,6 +157,7 @@ impl<O: IsA<GestureDrag>> GestureDragExt for O {
         }
     }
 
+    #[doc(alias = "drag-begin")]
     fn connect_drag_begin<F: Fn(&Self, f64, f64) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn drag_begin_trampoline<
             P: IsA<GestureDrag>,
@@ -189,7 +180,7 @@ impl<O: IsA<GestureDrag>> GestureDragExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"drag-begin\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     drag_begin_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -197,6 +188,7 @@ impl<O: IsA<GestureDrag>> GestureDragExt for O {
         }
     }
 
+    #[doc(alias = "drag-end")]
     fn connect_drag_end<F: Fn(&Self, f64, f64) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn drag_end_trampoline<
             P: IsA<GestureDrag>,
@@ -219,7 +211,7 @@ impl<O: IsA<GestureDrag>> GestureDragExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"drag-end\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     drag_end_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -227,6 +219,7 @@ impl<O: IsA<GestureDrag>> GestureDragExt for O {
         }
     }
 
+    #[doc(alias = "drag-update")]
     fn connect_drag_update<F: Fn(&Self, f64, f64) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn drag_update_trampoline<
             P: IsA<GestureDrag>,
@@ -249,7 +242,7 @@ impl<O: IsA<GestureDrag>> GestureDragExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"drag-update\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     drag_update_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -258,8 +251,4 @@ impl<O: IsA<GestureDrag>> GestureDragExt for O {
     }
 }
 
-impl fmt::Display for GestureDrag {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("GestureDrag")
-    }
-}
+impl<O: IsA<GestureDrag>> GestureDragExt for O {}

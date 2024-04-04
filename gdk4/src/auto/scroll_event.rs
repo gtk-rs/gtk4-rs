@@ -3,11 +3,10 @@
 // DO NOT EDIT
 
 use crate::ScrollDirection;
-#[cfg(any(feature = "v4_8", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+#[cfg(feature = "v4_8")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
 use crate::ScrollUnit;
-use glib::translate::*;
-use std::{fmt, mem};
+use glib::{prelude::*, translate::*};
 
 glib::wrapper! {
     #[doc(alias = "GdkScrollEvent")]
@@ -19,7 +18,7 @@ glib::wrapper! {
     }
 }
 
-impl glib::StaticType for ScrollEvent {
+impl StaticType for ScrollEvent {
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gdk_scroll_event_get_type()) }
     }
@@ -30,8 +29,8 @@ impl ScrollEvent {
     #[doc(alias = "get_deltas")]
     pub fn deltas(&self) -> (f64, f64) {
         unsafe {
-            let mut delta_x = mem::MaybeUninit::uninit();
-            let mut delta_y = mem::MaybeUninit::uninit();
+            let mut delta_x = std::mem::MaybeUninit::uninit();
+            let mut delta_y = std::mem::MaybeUninit::uninit();
             ffi::gdk_scroll_event_get_deltas(
                 self.to_glib_none().0,
                 delta_x.as_mut_ptr(),
@@ -47,8 +46,8 @@ impl ScrollEvent {
         unsafe { from_glib(ffi::gdk_scroll_event_get_direction(self.to_glib_none().0)) }
     }
 
-    #[cfg(any(feature = "v4_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    #[cfg(feature = "v4_8")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     #[doc(alias = "gdk_scroll_event_get_unit")]
     #[doc(alias = "get_unit")]
     pub fn unit(&self) -> ScrollUnit {
@@ -58,11 +57,5 @@ impl ScrollEvent {
     #[doc(alias = "gdk_scroll_event_is_stop")]
     pub fn is_stop(&self) -> bool {
         unsafe { from_glib(ffi::gdk_scroll_event_is_stop(self.to_glib_none().0)) }
-    }
-}
-
-impl fmt::Display for ScrollEvent {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("ScrollEvent")
     }
 }

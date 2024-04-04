@@ -4,13 +4,12 @@ use std::fs::File;
 
 use adw::prelude::*;
 use adw::subclass::prelude::*;
-use adw::{ActionRow, MessageDialog, NavigationDirection, ResponseAppearance};
+use adw::{ActionRow, MessageDialog, ResponseAppearance};
 use gio::Settings;
 use glib::{clone, Object};
-use gtk::glib::BindingFlags;
 use gtk::{
     gio, glib, pango, Align, CheckButton, CustomFilter, Entry, FilterListModel, Label,
-    ListBoxRow, NoSelection, SelectionMode,
+    ListBoxRow, NoSelection,
 };
 
 use crate::collection_object::{CollectionData, CollectionObject};
@@ -112,7 +111,7 @@ impl Window {
 
     // ANCHOR: setup_collections
     fn setup_collections(&self) {
-        let collections = gio::ListStore::new(CollectionObject::static_type());
+        let collections = gio::ListStore::new::<CollectionObject>();
         self.imp()
             .collections
             .set(collections.clone())
@@ -169,7 +168,7 @@ impl Window {
 
         collection_object
             .bind_property("title", &label, "label")
-            .flags(glib::BindingFlags::SYNC_CREATE)
+            .sync_create()
             .build();
 
         ListBoxRow::builder().child(&label).build()
@@ -250,11 +249,12 @@ impl Window {
         // Bind properties
         task_object
             .bind_property("completed", &check_button, "active")
-            .flags(BindingFlags::SYNC_CREATE | BindingFlags::BIDIRECTIONAL)
+            .bidirectional()
+            .sync_create()
             .build();
         task_object
             .bind_property("content", &row, "title")
-            .flags(BindingFlags::SYNC_CREATE)
+            .sync_create()
             .build();
 
         // Return row
@@ -303,31 +303,7 @@ impl Window {
                     .downcast::<CollectionObject>()
                     .expect("The object needs to be a `CollectionObject`.");
                 window.set_current_collection(selected_collection);
-                window.imp().leaflet.navigate(NavigationDirection::Forward);
-            }),
-        );
-
-        // Setup callback for folding the leaflet
-        self.imp().leaflet.connect_folded_notify(
-            clone!(@weak self as window => move |leaflet| {
-                if leaflet.is_folded() {
-                    window
-                        .imp()
-                        .collections_list
-                        .set_selection_mode(SelectionMode::None)
-                } else {
-                    window
-                        .imp()
-                        .collections_list
-                        .set_selection_mode(SelectionMode::Single);
-                    window.select_collection_row();
-                }
-            }),
-        );
-
-        self.imp().back_button.connect_clicked(
-            clone!(@weak self as window => move |_| {
-                window.imp().leaflet.navigate(NavigationDirection::Back);
+                window.imp().split_view.set_show_content(true);
             }),
         );
         // ANCHOR_END: setup_callbacks
@@ -361,42 +337,27 @@ impl Window {
         // Create action from key "filter" and add to action group "win"
         let action_filter = self.settings().create_action("filter");
         self.add_action(&action_filter);
+    }
 
-        // Create action to remove done tasks and add to action group "win"
-        let action_remove_done_tasks =
-            gio::SimpleAction::new("remove-done-tasks", None);
-        action_remove_done_tasks.connect_activate(
-            clone!(@weak self as window => move |_, _| {
-                let tasks = window.tasks();
-                let mut position = 0;
-                while let Some(item) = tasks.item(position) {
-                    // Get `TaskObject` from `glib::Object`
-                    let task_object = item
-                        .downcast_ref::<TaskObject>()
-                        .expect("The object needs to be of type `TaskObject`.");
+    fn remove_done_tasks(&self) {
+        let tasks = self.tasks();
+        let mut position = 0;
+        while let Some(item) = tasks.item(position) {
+            // Get `TaskObject` from `glib::Object`
+            let task_object = item
+                .downcast_ref::<TaskObject>()
+                .expect("The object needs to be of type `TaskObject`.");
 
-                    if task_object.is_completed() {
-                        tasks.remove(position);
-                    } else {
-                        position += 1;
-                    }
-                }
-            }),
-        );
-        self.add_action(&action_remove_done_tasks);
-
-        // ANCHOR: setup_actions
-        // Create action to create new collection and add to action group "win"
-        let action_new_list = gio::SimpleAction::new("new-collection", None);
-        action_new_list.connect_activate(clone!(@weak self as window => move |_, _| {
-            window.new_collection();
-        }));
-        self.add_action(&action_new_list);
-        // ANCHOR_END: setup_actions
+            if task_object.is_completed() {
+                tasks.remove(position);
+            } else {
+                position += 1;
+            }
+        }
     }
 
     // ANCHOR: new_collection
-    fn new_collection(&self) {
+    async fn new_collection(&self) {
         // Create entry
         let entry = Entry::builder()
             .placeholder_text("Name")
@@ -436,34 +397,26 @@ impl Window {
             }
         }));
 
-        // Connect response to dialog
-        dialog.connect_response(
-            None,
-            clone!(@weak self as window, @weak entry => move |dialog, response| {
-                // Destroy dialog
-                dialog.destroy();
+        let response = dialog.choose_future().await;
 
-                // Return if the user chose a response different than `create_response`
-                if response != create_response {
-                    return;
-                }
+        // Return if the user chose `cancel_response`
+        if response == cancel_response {
+            return;
+        }
 
-                // Create a new list store
-                let tasks = gio::ListStore::new(TaskObject::static_type());
+        // Create a new list store
+        let tasks = gio::ListStore::new::<TaskObject>();
 
-                // Create a new collection object from the title the user provided
-                let title = entry.text().to_string();
-                let collection = CollectionObject::new(&title, tasks);
+        // Create a new collection object from the title the user provided
+        let title = entry.text().to_string();
+        let collection = CollectionObject::new(&title, tasks);
 
-                // Add new collection object and set current tasks
-                window.collections().append(&collection);
-                window.set_current_collection(collection);
+        // Add new collection object and set current tasks
+        self.collections().append(&collection);
+        self.set_current_collection(collection);
 
-                // Let the leaflet navigate to the next child
-                window.imp().leaflet.navigate(NavigationDirection::Forward);
-            }),
-        );
-        dialog.present();
+        // Show the content
+        self.imp().split_view.set_show_content(true);
     }
     // ANCHOR_END: new_collection
 }

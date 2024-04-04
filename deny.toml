@@ -1,0 +1,47 @@
+exclude = [
+    "gtk4-rs-examples",
+    "gtk4-rs-book-listings",
+]
+
+[advisories]
+db-path = "~/.cargo/advisory-db"
+db-urls = ["https://github.com/rustsec/advisory-db"]
+vulnerability = "deny"
+unmaintained = "warn"
+notice = "warn"
+ignore = []
+
+[licenses]
+unlicensed = "deny"
+allow = [
+  "MIT",
+  "Apache-2.0",
+]
+copyleft = "deny"
+allow-osi-fsf-free = "either"
+default = "deny"
+confidence-threshold = 0.8
+
+[bans]
+multiple-versions = "deny"
+wildcards = "allow"
+highlight = "all"
+
+[sources]
+unknown-registry = "deny"
+unknown-git = "deny"
+allow-git = [
+  "https://github.com/gtk-rs/gtk-rs-core",
+]
+
+# proc-macro-error depends on an old version of syn
+# See https://github.com/gtk-rs/gtk4-rs/issues/1409
+[[bans.skip]]
+name = "syn"
+version = "1.0"
+
+# proc-macro-crate depends on an older version of toml_edit
+# https://github.com/bkchr/proc-macro-crate/pull/50
+[[bans.skip]]
+name = "toml_edit"
+version = "0.21"

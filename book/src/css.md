@@ -22,7 +22,7 @@ As usual, the widgets are created during the "activate" step.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/css/1/main.rs">listings/css/1/main.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/css/1/main.rs:main}}
 ```
 
@@ -47,7 +47,7 @@ We did not specify for which button the rule should apply, so it was applied to 
 
 [Class selectors](https://developer.mozilla.org/en-US/docs/Web/CSS/Class_selectors) are one way to choose which specific elements a CSS rule applies to.
 GTK adds style classes to many of its widgets, often depending on their content.
-A [`gtk::Button`](../docs/gtk4/struct.Button.html#css-nodes), for example, will get the `text-button` style class when its content is a label.
+A [`gtk::Button`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.Button.html#css-nodes), for example, will get the `text-button` style class when its content is a label.
 That is why we create a new CSS rule which only applies to `button` nodes with the style class `text_button`.
 
 
@@ -63,7 +63,7 @@ Now only the font of our button becomes magenta.
 
 ## Adding Your Own Style Class
 
-With [`add_css_class`](../docs/gtk4/prelude/trait.WidgetExt.html#tymethod.add_css_class) we can also add our own style classes to widgets.
+With [`add_css_class`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/prelude/trait.WidgetExt.html#tymethod.add_css_class) we can also add our own style classes to widgets.
 One use-case for this is when you want a rule to apply to a hand-picked set of widgets.
 For example if we have two buttons, but want only one of them to have magenta font.
 Relying on one of the style classes which GTK adds will not help since both will get the same ones.
@@ -71,7 +71,7 @@ Which is why we add the style class `button-1` to the first one.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/css/3/main.rs">listings/css/3/main.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/css/3/main.rs:buttons}}
 ```
 
@@ -96,11 +96,11 @@ Ideally however, you would give the widget a name and match with that name inste
 This way your intentions are more clear, compared to matching with style classes that can apply to multiple widgets. 
 
 Again, we have two buttons but want to color only one of them magenta.
-We set the name of the first one with [`set_widget_name`](../docs/gtk4/prelude/trait.WidgetExt.html#tymethod.set_widget_name).
+We set the name of the first one with [`set_widget_name`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/prelude/trait.WidgetExt.html#tymethod.set_widget_name).
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/css/4/main.rs">listings/css/4/main.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/css/4/main.rs:buttons}}
 ```
 
@@ -123,11 +123,11 @@ Again, the style rule only applies to the first button.
 Certain styles are common enough that GTK provides CSS rules for them.
 For example, if you want to indicate that your button leads to a destructive or suggested action you don't have to provide your own CSS rules.
 All you have to do is to add "destructive-action" or "suggested-action" style class to your button.
-Most widgets will document these rules in their documentation under [CSS nodes](../docs/gtk4/struct.Button.html#css-nodes).
+Most widgets will document these rules in their documentation under [CSS nodes](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.Button.html#css-nodes).
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/css/5/main.rs">listings/css/5/main.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/css/5/main.rs:buttons}}
 ```
 
@@ -137,7 +137,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 
 We can also add style classes with the interface builder.
 Just add the `<style>` element to your widget.
-The `<style>` element is documented together with [`gtk::Widget`](../docs/gtk4/struct.Widget.html#gtkwidget-as-gtkbuildable).
+The `<style>` element is documented together with [`gtk::Widget`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.Widget.html#gtkwidget-as-gtkbuildable).
 Adding again destructive and suggested buttons, would then look like this:
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/css/6/window/window.ui">listings/css/6/window/window.ui</a>
@@ -181,7 +181,7 @@ After we removed the cursor, the button returns to its original state.
 
 In the previous examples, a widget always corresponded to a single CSS node.
 This is not always the case.
-For example, [`gtk::MenuButton`](../docs/gtk4/struct.MenuButton.html) has multiple CSS nodes.
+For example, [`gtk::MenuButton`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.MenuButton.html) has multiple CSS nodes.
 Let's see how that works.
 
 First, we create a single `MenuButton`.
@@ -195,7 +195,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 You can make a `MenuButton` show an icon or a label.
 If you choose to do neither of those, as we currently do, it shows an image displaying an arrow.
 
-An inheritance tree of [CSS nodes](../docs/gtk4/struct.MenuButton.html#css-nodes) displays this situation:
+An inheritance tree of [CSS nodes](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.MenuButton.html#css-nodes) displays this situation:
 
 ```
 menubutton
@@ -227,12 +227,12 @@ Let's see how to deal with this situation by messing with our To-Do app once mor
 The class `TaskRow` inherits from `gtk::Box`, so we could just match for the node `box`.
 However, in that case we would also match with other instance of `gtk::Box`.
 What we will want to do instead is to give `TaskRow` its own CSS name.
-When calling [`set_css_name` ](../docs/gtk4/subclass/widget/trait.WidgetClassSubclassExt.html#method.set_css_name), we change the name of the CSS node of the widget class.
+When calling [`set_css_name` ](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/subclass/widget/trait.WidgetClassExt.html#method.set_css_name), we change the name of the CSS node of the widget class.
 In our case, the widget `TaskRow` then corresponds to the node `task-row`.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/3/task_row/imp.rs">listings/todo/3/task_row/imp.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/todo/3/task_row/imp.rs:object_subclass}}
 ```
 
@@ -274,14 +274,14 @@ Additionally, we call `load_css()` in `connect_startup`.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/3/main.rs">listings/todo/3/main.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/todo/3/main.rs:connect_startup}}
 ```
 
 `load_css()` is very similar to the one shown at the beginning of the chapter.
 However, this time we load styles using `load_from_resource()`.
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/todo/3/main.rs:load_css}}
 ```
 

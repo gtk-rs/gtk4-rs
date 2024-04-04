@@ -8,7 +8,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute, pin::Pin, ptr};
+use std::{boxed::Box as Box_, pin::Pin};
 
 glib::wrapper! {
     #[doc(alias = "GtkAlertDialog")]
@@ -57,7 +57,7 @@ impl AlertDialog {
             res: *mut gio::ffi::GAsyncResult,
             user_data: glib::ffi::gpointer,
         ) {
-            let mut error = ptr::null_mut();
+            let mut error = std::ptr::null_mut();
             let ret =
                 ffi::gtk_alert_dialog_choose_finish(_source_object as *mut _, res, &mut error);
             let result = if error.is_null() {
@@ -190,8 +190,8 @@ impl AlertDialog {
         }
     }
 
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(feature = "v4_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "buttons")]
     pub fn connect_buttons_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_buttons_trampoline<F: Fn(&AlertDialog) + 'static>(
@@ -207,7 +207,7 @@ impl AlertDialog {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::buttons\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_buttons_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -215,8 +215,8 @@ impl AlertDialog {
         }
     }
 
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(feature = "v4_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "cancel-button")]
     pub fn connect_cancel_button_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_cancel_button_trampoline<F: Fn(&AlertDialog) + 'static>(
@@ -232,7 +232,7 @@ impl AlertDialog {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::cancel-button\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_cancel_button_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -240,8 +240,8 @@ impl AlertDialog {
         }
     }
 
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(feature = "v4_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "default-button")]
     pub fn connect_default_button_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_default_button_trampoline<F: Fn(&AlertDialog) + 'static>(
@@ -257,7 +257,7 @@ impl AlertDialog {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::default-button\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_default_button_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -265,8 +265,8 @@ impl AlertDialog {
         }
     }
 
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(feature = "v4_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "detail")]
     pub fn connect_detail_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_detail_trampoline<F: Fn(&AlertDialog) + 'static>(
@@ -282,7 +282,7 @@ impl AlertDialog {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::detail\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_detail_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -290,8 +290,8 @@ impl AlertDialog {
         }
     }
 
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(feature = "v4_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "message")]
     pub fn connect_message_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_message_trampoline<F: Fn(&AlertDialog) + 'static>(
@@ -307,7 +307,7 @@ impl AlertDialog {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::message\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_message_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -315,8 +315,8 @@ impl AlertDialog {
         }
     }
 
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(feature = "v4_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "modal")]
     pub fn connect_modal_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_modal_trampoline<F: Fn(&AlertDialog) + 'static>(
@@ -332,7 +332,7 @@ impl AlertDialog {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::modal\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_modal_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -341,8 +341,8 @@ impl AlertDialog {
     }
 }
 
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 impl Default for AlertDialog {
     fn default() -> Self {
         glib::object::Object::new::<Self>()
@@ -365,48 +365,48 @@ impl AlertDialogBuilder {
         }
     }
 
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(feature = "v4_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn buttons(self, buttons: impl Into<glib::StrV>) -> Self {
         Self {
             builder: self.builder.property("buttons", buttons.into()),
         }
     }
 
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(feature = "v4_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn cancel_button(self, cancel_button: i32) -> Self {
         Self {
             builder: self.builder.property("cancel-button", cancel_button),
         }
     }
 
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(feature = "v4_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn default_button(self, default_button: i32) -> Self {
         Self {
             builder: self.builder.property("default-button", default_button),
         }
     }
 
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(feature = "v4_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn detail(self, detail: impl Into<glib::GString>) -> Self {
         Self {
             builder: self.builder.property("detail", detail.into()),
         }
     }
 
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(feature = "v4_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn message(self, message: impl Into<glib::GString>) -> Self {
         Self {
             builder: self.builder.property("message", message.into()),
         }
     }
 
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(feature = "v4_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn modal(self, modal: bool) -> Self {
         Self {
             builder: self.builder.property("modal", modal),
@@ -418,11 +418,5 @@ impl AlertDialogBuilder {
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> AlertDialog {
         self.builder.build()
-    }
-}
-
-impl fmt::Display for AlertDialog {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("AlertDialog")
     }
 }

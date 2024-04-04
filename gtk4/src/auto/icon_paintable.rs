@@ -2,14 +2,13 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-#[cfg(any(feature = "v4_6", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+#[cfg(feature = "v4_6")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
 use crate::SymbolicPaintable;
 use glib::{prelude::*, translate::*};
-use std::fmt;
 
-#[cfg(any(feature = "v4_6", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+#[cfg(feature = "v4_6")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
 glib::wrapper! {
     #[doc(alias = "GtkIconPaintable")]
     pub struct IconPaintable(Object<ffi::GtkIconPaintable>) @implements gdk::Paintable, SymbolicPaintable;
@@ -19,7 +18,7 @@ glib::wrapper! {
     }
 }
 
-#[cfg(not(any(feature = "v4_6", feature = "dox")))]
+#[cfg(not(any(feature = "v4_6")))]
 glib::wrapper! {
     #[doc(alias = "GtkIconPaintable")]
     pub struct IconPaintable(Object<ffi::GtkIconPaintable>) @implements gdk::Paintable;
@@ -58,11 +57,5 @@ impl IconPaintable {
     #[doc(alias = "gtk_icon_paintable_is_symbolic")]
     pub fn is_symbolic(&self) -> bool {
         unsafe { from_glib(ffi::gtk_icon_paintable_is_symbolic(self.to_glib_none().0)) }
-    }
-}
-
-impl fmt::Display for IconPaintable {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("IconPaintable")
     }
 }

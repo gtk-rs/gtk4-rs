@@ -6,7 +6,7 @@ use adw::prelude::*;
 use gtk::{gio, glib};
 use window::Window;
 
-static APP_ID: &str = "org.gtk_rs.Todo7";
+const APP_ID: &str = "org.gtk_rs.Todo7";
 
 fn main() -> glib::ExitCode {
     gio::resources_register_include!("todo_7.gresource")
@@ -30,7 +30,7 @@ fn setup_shortcuts(app: &adw::Application) {
 }
 
 fn build_ui(app: &adw::Application) {
-    // Create a new custom window and show it
+    // Create a new custom window and present it
     let window = Window::new(app);
-    window.show();
+    window.present();
 }

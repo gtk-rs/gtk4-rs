@@ -18,7 +18,7 @@ First, we create one and add convenience methods for accessing settings as well 
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/saving_window_state/1/custom_window/mod.rs">listings/saving_window_state/1/custom_window/mod.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/saving_window_state/1/custom_window/mod.rs:mod}}
 ```
 
@@ -27,11 +27,14 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 > When creating new GObjects, this is nicer than calling the setter methods manually.
 
 The implementation struct holds the `settings`.
+You can see that we embed `Settings` in [`std::cell::OnceCell`](https://doc.rust-lang.org/std/cell/struct.OnceCell.html).
+This is a nice alternative to `RefCell<Option<T>>` when you know that you will initialize the value only once. 
+
 We also override the `constructed` and `close_request` methods, where we load or save the window state. 
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/saving_window_state/1/custom_window/imp.rs">listings/saving_window_state/1/custom_window/imp.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/saving_window_state/1/custom_window/imp.rs:imp}}
 ```
 

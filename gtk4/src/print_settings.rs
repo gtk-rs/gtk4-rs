@@ -1,7 +1,8 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{PageRange, PrintSettings};
 use glib::translate::*;
+
+use crate::{PageRange, PrintSettings};
 
 impl PrintSettings {
     #[doc(alias = "gtk_print_settings_set_page_ranges")]

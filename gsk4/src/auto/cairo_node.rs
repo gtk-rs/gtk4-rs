@@ -2,8 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use glib::translate::*;
-use std::fmt;
+use glib::{prelude::*, translate::*};
 
 glib::wrapper! {
     #[doc(alias = "GskCairoNode")]
@@ -15,7 +14,7 @@ glib::wrapper! {
     }
 }
 
-impl glib::StaticType for CairoNode {
+impl StaticType for CairoNode {
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gsk_cairo_node_get_type()) }
     }
@@ -38,11 +37,5 @@ impl CairoNode {
     #[doc(alias = "get_surface")]
     pub fn surface(&self) -> cairo::Surface {
         unsafe { from_glib_none(ffi::gsk_cairo_node_get_surface(self.to_glib_none().0)) }
-    }
-}
-
-impl fmt::Display for CairoNode {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("CairoNode")
     }
 }

@@ -23,7 +23,7 @@ See also:
 
 ## Minimum supported Rust version
 
-Currently, the minimum supported Rust version is `1.64.0`.
+Currently, the minimum supported Rust version is `1.70`.
 
 ## "Hello, World!" example program
 
@@ -36,7 +36,7 @@ the [features](#features) section for how to do this globally in your `Cargo.tom
 ```rust,no_run
 use gtk4 as gtk;
 use gtk::prelude::*;
-use gtk::{Application, ApplicationWindow};
+use gtk::{glib, Application, ApplicationWindow};
 
 fn main() -> glib::ExitCode {
     let app = Application::builder()
@@ -53,7 +53,7 @@ fn main() -> glib::ExitCode {
             .build();
 
         // Show the window.
-        window.show();
+        window.present();
     });
 
     app.run()
@@ -68,7 +68,7 @@ and run the main event loop.
 ```rust,no_run
 use gtk4 as gtk;
 use gtk::prelude::*;
-use gtk::{Application, ApplicationWindow, Button};
+use gtk::{glib, Application, ApplicationWindow, Button};
 
 fn main() -> glib::ExitCode {
     let application = Application::builder()
@@ -89,7 +89,7 @@ fn main() -> glib::ExitCode {
         });
         window.set_child(Some(&button));
 
-        window.show();
+        window.present();
     });
 
     application.run()
@@ -183,11 +183,15 @@ gtk = { git = "https://github.com/gtk-rs/gtk4-rs.git", package = "gtk4" }
 
 | Feature | Description |
 | ---     | ----------- |
+| `v4_14` | Enable the new APIs part of GTK 4.14 |
+| `v4_12` | Enable the new APIs part of GTK 4.12 |
 | `v4_10` | Enable the new APIs part of GTK 4.10 |
 | `v4_8` | Enable the new APIs part of GTK 4.8 |
 | `v4_6` | Enable the new APIs part of GTK 4.6 |
 | `v4_4` | Enable the new APIs part of GTK 4.4 |
 | `v4_2` | Enable the new APIs part of GTK 4.2 |
+| `gnome_46` | Enable all version feature flags of this crate and its dependencies to match the GNOME 46 SDK |
+| `gnome_45` | Enable all version feature flags of this crate and its dependencies to match the GNOME 45 SDK |
 | `gnome_44` | Enable all version feature flags of this crate and its dependencies to match the GNOME 44 SDK |
 | `gnome_43` | Enable all version feature flags of this crate and its dependencies to match the GNOME 43 SDK |
 | `gnome_42` | Enable all version feature flags of this crate and its dependencies to match the GNOME 42 SDK |

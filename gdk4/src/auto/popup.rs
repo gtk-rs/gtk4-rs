@@ -4,7 +4,6 @@
 
 use crate::{Gravity, PopupLayout, Surface};
 use glib::{prelude::*, translate::*};
-use std::fmt;
 
 glib::wrapper! {
     #[doc(alias = "GdkPopup")]
@@ -19,52 +18,38 @@ impl Popup {
     pub const NONE: Option<&'static Popup> = None;
 }
 
-pub trait PopupExt: 'static {
-    #[doc(alias = "gdk_popup_get_autohide")]
-    #[doc(alias = "get_autohide")]
-    fn is_autohide(&self) -> bool;
-
-    #[doc(alias = "gdk_popup_get_parent")]
-    #[doc(alias = "get_parent")]
-    fn parent(&self) -> Option<Surface>;
-
-    #[doc(alias = "gdk_popup_get_position_x")]
-    #[doc(alias = "get_position_x")]
-    fn position_x(&self) -> i32;
-
-    #[doc(alias = "gdk_popup_get_position_y")]
-    #[doc(alias = "get_position_y")]
-    fn position_y(&self) -> i32;
-
-    #[doc(alias = "gdk_popup_get_rect_anchor")]
-    #[doc(alias = "get_rect_anchor")]
-    fn rect_anchor(&self) -> Gravity;
-
-    #[doc(alias = "gdk_popup_get_surface_anchor")]
-    #[doc(alias = "get_surface_anchor")]
-    fn surface_anchor(&self) -> Gravity;
-
-    #[doc(alias = "gdk_popup_present")]
-    fn present(&self, width: i32, height: i32, layout: &PopupLayout) -> bool;
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::Popup>> Sealed for T {}
 }
 
-impl<O: IsA<Popup>> PopupExt for O {
+pub trait PopupExt: IsA<Popup> + sealed::Sealed + 'static {
+    #[doc(alias = "gdk_popup_get_autohide")]
+    #[doc(alias = "get_autohide")]
     fn is_autohide(&self) -> bool {
         unsafe { from_glib(ffi::gdk_popup_get_autohide(self.as_ref().to_glib_none().0)) }
     }
 
+    #[doc(alias = "gdk_popup_get_parent")]
+    #[doc(alias = "get_parent")]
     fn parent(&self) -> Option<Surface> {
         unsafe { from_glib_none(ffi::gdk_popup_get_parent(self.as_ref().to_glib_none().0)) }
     }
 
+    #[doc(alias = "gdk_popup_get_position_x")]
+    #[doc(alias = "get_position_x")]
     fn position_x(&self) -> i32 {
         unsafe { ffi::gdk_popup_get_position_x(self.as_ref().to_glib_none().0) }
     }
 
+    #[doc(alias = "gdk_popup_get_position_y")]
+    #[doc(alias = "get_position_y")]
     fn position_y(&self) -> i32 {
         unsafe { ffi::gdk_popup_get_position_y(self.as_ref().to_glib_none().0) }
     }
 
+    #[doc(alias = "gdk_popup_get_rect_anchor")]
+    #[doc(alias = "get_rect_anchor")]
     fn rect_anchor(&self) -> Gravity {
         unsafe {
             from_glib(ffi::gdk_popup_get_rect_anchor(
@@ -73,6 +58,8 @@ impl<O: IsA<Popup>> PopupExt for O {
         }
     }
 
+    #[doc(alias = "gdk_popup_get_surface_anchor")]
+    #[doc(alias = "get_surface_anchor")]
     fn surface_anchor(&self) -> Gravity {
         unsafe {
             from_glib(ffi::gdk_popup_get_surface_anchor(
@@ -81,6 +68,7 @@ impl<O: IsA<Popup>> PopupExt for O {
         }
     }
 
+    #[doc(alias = "gdk_popup_present")]
     fn present(&self, width: i32, height: i32, layout: &PopupLayout) -> bool {
         unsafe {
             from_glib(ffi::gdk_popup_present(
@@ -93,8 +81,4 @@ impl<O: IsA<Popup>> PopupExt for O {
     }
 }
 
-impl fmt::Display for Popup {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("Popup")
-    }
-}
+impl<O: IsA<Popup>> PopupExt for O {}

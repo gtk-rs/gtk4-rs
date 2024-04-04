@@ -8,7 +8,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GtkSorter")]
@@ -23,28 +23,20 @@ impl Sorter {
     pub const NONE: Option<&'static Sorter> = None;
 }
 
-pub trait SorterExt: 'static {
-    #[doc(alias = "gtk_sorter_changed")]
-    fn changed(&self, change: SorterChange);
-
-    #[doc(alias = "gtk_sorter_compare")]
-    fn compare(&self, item1: &impl IsA<glib::Object>, item2: &impl IsA<glib::Object>) -> Ordering;
-
-    #[doc(alias = "gtk_sorter_get_order")]
-    #[doc(alias = "get_order")]
-    fn order(&self) -> SorterOrder;
-
-    #[doc(alias = "changed")]
-    fn connect_changed<F: Fn(&Self, SorterChange) + 'static>(&self, f: F) -> SignalHandlerId;
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::Sorter>> Sealed for T {}
 }
 
-impl<O: IsA<Sorter>> SorterExt for O {
+pub trait SorterExt: IsA<Sorter> + sealed::Sealed + 'static {
+    #[doc(alias = "gtk_sorter_changed")]
     fn changed(&self, change: SorterChange) {
         unsafe {
             ffi::gtk_sorter_changed(self.as_ref().to_glib_none().0, change.into_glib());
         }
     }
 
+    #[doc(alias = "gtk_sorter_compare")]
     fn compare(&self, item1: &impl IsA<glib::Object>, item2: &impl IsA<glib::Object>) -> Ordering {
         unsafe {
             from_glib(ffi::gtk_sorter_compare(
@@ -55,10 +47,13 @@ impl<O: IsA<Sorter>> SorterExt for O {
         }
     }
 
+    #[doc(alias = "gtk_sorter_get_order")]
+    #[doc(alias = "get_order")]
     fn order(&self) -> SorterOrder {
         unsafe { from_glib(ffi::gtk_sorter_get_order(self.as_ref().to_glib_none().0)) }
     }
 
+    #[doc(alias = "changed")]
     fn connect_changed<F: Fn(&Self, SorterChange) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn changed_trampoline<
             P: IsA<Sorter>,
@@ -79,7 +74,7 @@ impl<O: IsA<Sorter>> SorterExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"changed\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     changed_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -88,8 +83,4 @@ impl<O: IsA<Sorter>> SorterExt for O {
     }
 }
 
-impl fmt::Display for Sorter {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("Sorter")
-    }
-}
+impl<O: IsA<Sorter>> SorterExt for O {}

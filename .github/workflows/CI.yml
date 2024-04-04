@@ -30,7 +30,7 @@ name: CI
 jobs:
   check:
     name: Build
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     container:
       image: ghcr.io/gtk-rs/gtk4-rs/gtk4:latest
     strategy:
@@ -39,16 +39,28 @@ jobs:
           - stable
           - beta
           - nightly
-          - "1.64.0"
+          - "1.70"
         conf:
-          - { name: "gtk4", features: "v4_10,xml_validation,blueprint", test_sys: false }
-          - { name: "gsk4", features: "v4_6,broadway", test_sys: true }
-          - { name: "gdk4", features: "v4_8", test_sys: true }
-          - { name: "gdk4-wayland", features: "v4_4,wayland_crate,egl,xkb_crate", test_sys: true }
-          - { name: "gdk4-x11", features: "v4_4,xlib,egl", test_sys: false }
-          - { name: "gtk4-macros", features: "xml_validation,blueprint", test_sys: false }
+          - {
+              name: "gtk4",
+              features: "v4_14,xml_validation,blueprint",
+              test_sys: false,
+            }
+          - { name: "gsk4", features: "v4_14,broadway,vulkan", test_sys: true }
+          - { name: "gdk4", features: "v4_14,gl", test_sys: true }
+          - {
+              name: "gdk4-wayland",
+              features: "v4_12,wayland_crate,egl",
+              test_sys: true,
+            }
+          - { name: "gdk4-x11", features: "v4_4,xlib,egl", test_sys: true }
+          - {
+              name: "gtk4-macros",
+              features: "xml_validation,blueprint",
+              test_sys: false,
+            }
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - uses: actions-rs/toolchain@v1
         with:
           toolchain: ${{ matrix.rust }}
@@ -63,9 +75,7 @@ jobs:
         run: cargo build --manifest-path ${{ matrix.conf.name }}/Cargo.toml --features "${{ matrix.conf.features }}"
 
       - run: rustup component add clippy
-        if: matrix.rust == 'beta' || matrix.rust == 'stable'
-      - run: cargo clippy --manifest-path ${{ matrix.conf.name }}/Cargo.toml --features "${{ matrix.conf.features }}" --all-targets
-        if: matrix.rust == 'beta'
+        if: matrix.rust == 'stable'
       - run: cargo clippy --manifest-path ${{ matrix.conf.name }}/Cargo.toml --features "${{ matrix.conf.features }}" --all-targets -- -D warnings
         if: matrix.rust == 'stable'
 
@@ -73,11 +83,11 @@ jobs:
 
   examples:
     name: examples
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     container:
       image: ghcr.io/gtk-rs/gtk4-rs/gtk4:latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - uses: actions-rs/toolchain@v1
         with:
           profile: minimal
@@ -91,9 +101,9 @@ jobs:
 
   fmt:
     name: rustfmt
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - uses: actions-rs/toolchain@v1
         with:
           profile: minimal
@@ -105,11 +115,17 @@ jobs:
           command: fmt
           args: --all -- --check
 
+  cargo-deny:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: EmbarkStudios/cargo-deny-action@v1
+
   regen_check:
     name: regen checker
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         with:
           submodules: "recursive"
           set-safe-directory: true
@@ -126,7 +142,7 @@ jobs:
     name: docs embed check
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         with:
           submodules: recursive
           set-safe-directory: true
@@ -143,7 +159,7 @@ jobs:
 
   checker:
     name: gtk-rs checker
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         crate:
@@ -155,8 +171,8 @@ jobs:
           - { name: "gdk4-win32", is_macros_crate: false }
           - { name: "gtk4-macros", is_macros_crate: true }
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
           repository: gtk-rs/checker
           ref: master

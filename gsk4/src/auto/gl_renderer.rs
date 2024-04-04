@@ -3,10 +3,9 @@
 // DO NOT EDIT
 
 use crate::Renderer;
-#[cfg(any(feature = "v4_2", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_2")))]
+#[cfg(feature = "v4_2")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_2")))]
 use glib::{prelude::*, translate::*};
-use std::fmt;
 
 glib::wrapper! {
     #[doc(alias = "GskGLRenderer")]
@@ -18,8 +17,8 @@ glib::wrapper! {
 }
 
 impl GLRenderer {
-    #[cfg(any(feature = "v4_2", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_2")))]
+    #[cfg(feature = "v4_2")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_2")))]
     #[doc(alias = "gsk_gl_renderer_new")]
     pub fn new() -> GLRenderer {
         assert_initialized_main_thread!();
@@ -27,16 +26,10 @@ impl GLRenderer {
     }
 }
 
-#[cfg(any(feature = "v4_2", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_2")))]
+#[cfg(feature = "v4_2")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_2")))]
 impl Default for GLRenderer {
     fn default() -> Self {
         Self::new()
-    }
-}
-
-impl fmt::Display for GLRenderer {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("GLRenderer")
     }
 }

@@ -10,7 +10,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GtkFlowBoxChild")]
@@ -259,40 +259,21 @@ impl FlowBoxChildBuilder {
     }
 }
 
-pub trait FlowBoxChildExt: 'static {
-    #[doc(alias = "gtk_flow_box_child_changed")]
-    fn changed(&self);
-
-    #[doc(alias = "gtk_flow_box_child_get_child")]
-    #[doc(alias = "get_child")]
-    fn child(&self) -> Option<Widget>;
-
-    #[doc(alias = "gtk_flow_box_child_get_index")]
-    #[doc(alias = "get_index")]
-    fn index(&self) -> i32;
-
-    #[doc(alias = "gtk_flow_box_child_is_selected")]
-    fn is_selected(&self) -> bool;
-
-    #[doc(alias = "gtk_flow_box_child_set_child")]
-    fn set_child(&self, child: Option<&impl IsA<Widget>>);
-
-    #[doc(alias = "activate")]
-    fn connect_activate<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn emit_activate(&self);
-
-    #[doc(alias = "child")]
-    fn connect_child_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::FlowBoxChild>> Sealed for T {}
 }
 
-impl<O: IsA<FlowBoxChild>> FlowBoxChildExt for O {
+pub trait FlowBoxChildExt: IsA<FlowBoxChild> + sealed::Sealed + 'static {
+    #[doc(alias = "gtk_flow_box_child_changed")]
     fn changed(&self) {
         unsafe {
             ffi::gtk_flow_box_child_changed(self.as_ref().to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_flow_box_child_get_child")]
+    #[doc(alias = "get_child")]
     fn child(&self) -> Option<Widget> {
         unsafe {
             from_glib_none(ffi::gtk_flow_box_child_get_child(
@@ -301,10 +282,13 @@ impl<O: IsA<FlowBoxChild>> FlowBoxChildExt for O {
         }
     }
 
+    #[doc(alias = "gtk_flow_box_child_get_index")]
+    #[doc(alias = "get_index")]
     fn index(&self) -> i32 {
         unsafe { ffi::gtk_flow_box_child_get_index(self.as_ref().to_glib_none().0) }
     }
 
+    #[doc(alias = "gtk_flow_box_child_is_selected")]
     fn is_selected(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_flow_box_child_is_selected(
@@ -313,6 +297,7 @@ impl<O: IsA<FlowBoxChild>> FlowBoxChildExt for O {
         }
     }
 
+    #[doc(alias = "gtk_flow_box_child_set_child")]
     fn set_child(&self, child: Option<&impl IsA<Widget>>) {
         unsafe {
             ffi::gtk_flow_box_child_set_child(
@@ -322,6 +307,7 @@ impl<O: IsA<FlowBoxChild>> FlowBoxChildExt for O {
         }
     }
 
+    #[doc(alias = "activate")]
     fn connect_activate<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn activate_trampoline<P: IsA<FlowBoxChild>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkFlowBoxChild,
@@ -335,7 +321,7 @@ impl<O: IsA<FlowBoxChild>> FlowBoxChildExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"activate\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     activate_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -347,6 +333,7 @@ impl<O: IsA<FlowBoxChild>> FlowBoxChildExt for O {
         self.emit_by_name::<()>("activate", &[]);
     }
 
+    #[doc(alias = "child")]
     fn connect_child_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_child_trampoline<P: IsA<FlowBoxChild>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkFlowBoxChild,
@@ -361,7 +348,7 @@ impl<O: IsA<FlowBoxChild>> FlowBoxChildExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::child\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_child_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -370,8 +357,4 @@ impl<O: IsA<FlowBoxChild>> FlowBoxChildExt for O {
     }
 }
 
-impl fmt::Display for FlowBoxChild {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("FlowBoxChild")
-    }
-}
+impl<O: IsA<FlowBoxChild>> FlowBoxChildExt for O {}

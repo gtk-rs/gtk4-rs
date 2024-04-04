@@ -1,10 +1,8 @@
-use glib::{ParamSpec, Properties, Value};
-use gtk::prelude::*;
-use gtk::subclass::prelude::*;
-use gtk::{gdk, glib, graphene};
 use std::cell::RefCell;
 
-#[derive(Debug, Properties)]
+use gtk::{gdk, glib, graphene, prelude::*, subclass::prelude::*};
+
+#[derive(Debug, glib::Properties)]
 #[properties(wrapper_type = super::CustomLayoutChild)]
 pub struct CustomLayoutChild {
     #[property(get, set, construct_only)]
@@ -26,19 +24,8 @@ impl ObjectSubclass for CustomLayoutChild {
     type ParentType = gtk::Widget;
 }
 
+#[glib::derived_properties]
 impl ObjectImpl for CustomLayoutChild {
-    fn properties() -> &'static [ParamSpec] {
-        Self::derived_properties()
-    }
-
-    fn property(&self, id: usize, pspec: &ParamSpec) -> Value {
-        self.derived_property(id, pspec)
-    }
-
-    fn set_property(&self, id: usize, value: &Value, pspec: &ParamSpec) {
-        self.derived_set_property(id, value, pspec)
-    }
-
     fn constructed(&self) {
         self.parent_constructed();
         let widget = self.obj();
@@ -51,7 +38,8 @@ impl ObjectImpl for CustomLayoutChild {
 
 impl WidgetImpl for CustomLayoutChild {
     fn measure(&self, _orientation: gtk::Orientation, _for_size: i32) -> (i32, i32, i32, i32) {
-        // Return (minimum size, natural size, baseline position for the minimum size, baseline position for natural size)
+        // Return (minimum size, natural size, baseline position for the minimum size,
+        // baseline position for natural size)
         (32, 32, -1, -1)
     }
 

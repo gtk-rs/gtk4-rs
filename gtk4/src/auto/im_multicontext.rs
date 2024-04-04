@@ -4,7 +4,6 @@
 
 use crate::{IMContext, InputHints, InputPurpose};
 use glib::{prelude::*, translate::*};
-use std::fmt;
 
 glib::wrapper! {
     #[doc(alias = "GtkIMMulticontext")]
@@ -75,16 +74,14 @@ impl IMMulticontextBuilder {
     }
 }
 
-pub trait IMMulticontextExt: 'static {
-    #[doc(alias = "gtk_im_multicontext_get_context_id")]
-    #[doc(alias = "get_context_id")]
-    fn context_id(&self) -> glib::GString;
-
-    #[doc(alias = "gtk_im_multicontext_set_context_id")]
-    fn set_context_id(&self, context_id: Option<&str>);
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::IMMulticontext>> Sealed for T {}
 }
 
-impl<O: IsA<IMMulticontext>> IMMulticontextExt for O {
+pub trait IMMulticontextExt: IsA<IMMulticontext> + sealed::Sealed + 'static {
+    #[doc(alias = "gtk_im_multicontext_get_context_id")]
+    #[doc(alias = "get_context_id")]
     fn context_id(&self) -> glib::GString {
         unsafe {
             from_glib_none(ffi::gtk_im_multicontext_get_context_id(
@@ -93,6 +90,7 @@ impl<O: IsA<IMMulticontext>> IMMulticontextExt for O {
         }
     }
 
+    #[doc(alias = "gtk_im_multicontext_set_context_id")]
     fn set_context_id(&self, context_id: Option<&str>) {
         unsafe {
             ffi::gtk_im_multicontext_set_context_id(
@@ -103,8 +101,4 @@ impl<O: IsA<IMMulticontext>> IMMulticontextExt for O {
     }
 }
 
-impl fmt::Display for IMMulticontext {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("IMMulticontext")
-    }
-}
+impl<O: IsA<IMMulticontext>> IMMulticontextExt for O {}

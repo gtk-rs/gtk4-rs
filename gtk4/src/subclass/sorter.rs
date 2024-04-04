@@ -3,8 +3,9 @@
 // rustdoc-stripper-ignore-next
 //! Traits intended for subclassing [`Sorter`](crate::Sorter).
 
-use crate::{prelude::*, subclass::prelude::*, Ordering, Sorter, SorterOrder};
 use glib::{translate::*, Object};
+
+use crate::{prelude::*, subclass::prelude::*, Ordering, Sorter, SorterOrder};
 
 pub trait SorterImpl: SorterImplExt + ObjectImpl {
     fn compare(&self, item1: &Object, item2: &Object) -> Ordering {
@@ -16,15 +17,15 @@ pub trait SorterImpl: SorterImplExt + ObjectImpl {
     }
 }
 
-pub trait SorterImplExt: ObjectSubclass {
-    fn parent_compare(&self, item1: &Object, item2: &Object) -> Ordering;
-    fn parent_order(&self) -> SorterOrder;
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::SorterImplExt> Sealed for T {}
 }
 
-impl<T: SorterImpl> SorterImplExt for T {
+pub trait SorterImplExt: sealed::Sealed + ObjectSubclass {
     fn parent_compare(&self, item1: &Object, item2: &Object) -> Ordering {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkSorterClass;
             let f = (*parent_class)
                 .compare
@@ -39,7 +40,7 @@ impl<T: SorterImpl> SorterImplExt for T {
 
     fn parent_order(&self) -> SorterOrder {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkSorterClass;
             let f = (*parent_class)
                 .get_order
@@ -48,6 +49,8 @@ impl<T: SorterImpl> SorterImplExt for T {
         }
     }
 }
+
+impl<T: SorterImpl> SorterImplExt for T {}
 
 unsafe impl<T: SorterImpl> IsSubclassable<T> for Sorter {
     fn class_init(class: &mut glib::Class<Self>) {

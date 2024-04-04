@@ -1,16 +1,17 @@
 [package]
-authors = ["The gtk-rs Project Developers"]
-categories = ["api-bindings", "gui"]
 description = "Macros helpers for GTK 4 bindings"
 documentation = "https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4_macros"
-edition = "2021"
-homepage = "https://gtk-rs.org/"
 keywords = ["gtk", "gtk4", "gtk-rs", "gnome", "GUI"]
-license = "MIT"
 name = "gtk4-macros"
-repository = "https://github.com/gtk-rs/gtk4-rs"
-version = "0.7.0"
-rust-version = "1.64"
+authors.workspace = true
+categories.workspace = true
+edition.workspace = true
+homepage.workspace = true
+license.workspace = true
+repository.workspace = true
+rust-version.workspace = true
+version.workspace = true
+
 [lib]
 proc-macro = true
 
@@ -21,8 +22,8 @@ blueprint = []
 
 [dependencies]
 anyhow = "1.0"
-quick-xml = {version = "0.27", optional = true}
-proc-macro-crate = "1.0"
+quick-xml = {version = "0.31", optional = true}
+proc-macro-crate = "3.0"
 proc-macro-error = "1.0"
 proc-macro2 = "1.0"
 quote = "1.0"
@@ -31,5 +32,5 @@ syn = {version = "1.0", features = ["full"]}
 [dev-dependencies]
 futures-channel = "0.3"
 futures-util = "0.3"
-gtk = { path = "../gtk4", package = "gtk4", version = "0.7" }
+gtk.workspace = true
 trybuild2 = "1.0"

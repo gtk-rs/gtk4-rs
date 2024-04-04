@@ -3,8 +3,7 @@
 // DO NOT EDIT
 
 use crate::ColorStop;
-use glib::translate::*;
-use std::fmt;
+use glib::{prelude::*, translate::*};
 
 glib::wrapper! {
     #[doc(alias = "GskRepeatingRadialGradientNode")]
@@ -16,7 +15,7 @@ glib::wrapper! {
     }
 }
 
-impl glib::StaticType for RepeatingRadialGradientNode {
+impl StaticType for RepeatingRadialGradientNode {
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gsk_repeating_radial_gradient_node_get_type()) }
     }
@@ -47,11 +46,5 @@ impl RepeatingRadialGradientNode {
                 n_color_stops,
             ))
         }
-    }
-}
-
-impl fmt::Display for RepeatingRadialGradientNode {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("RepeatingRadialGradientNode")
     }
 }

@@ -1,16 +1,18 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{prelude::*, MediaStream};
 use glib::translate::*;
 
-pub trait MediaStreamExtManual: 'static {
+use crate::{prelude::*, MediaStream};
+
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::MediaStream>> Sealed for T {}
+}
+
+pub trait MediaStreamExtManual: sealed::Sealed + IsA<MediaStream> + 'static {
     #[doc(alias = "gtk_media_stream_gerror")]
     #[doc(alias = "gtk_media_stream_error")]
     #[doc(alias = "gerror")]
-    fn set_error(&self, error: glib::Error);
-}
-
-impl<O: IsA<MediaStream>> MediaStreamExtManual for O {
     fn set_error(&self, error: glib::Error) {
         unsafe {
             ffi::gtk_media_stream_gerror(
@@ -20,3 +22,5 @@ impl<O: IsA<MediaStream>> MediaStreamExtManual for O {
         }
     }
 }
+
+impl<O: IsA<MediaStream>> MediaStreamExtManual for O {}

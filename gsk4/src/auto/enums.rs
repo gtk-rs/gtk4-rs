@@ -2,10 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use glib::{
-    error::ErrorDomain, translate::*, value::FromValue, value::ToValue, Quark, StaticType, Type,
-};
-use std::fmt;
+use glib::{prelude::*, translate::*};
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
@@ -45,34 +42,6 @@ pub enum BlendMode {
     Luminosity,
     #[doc(hidden)]
     __Unknown(i32),
-}
-
-impl fmt::Display for BlendMode {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "BlendMode::{}",
-            match *self {
-                Self::Default => "Default",
-                Self::Multiply => "Multiply",
-                Self::Screen => "Screen",
-                Self::Overlay => "Overlay",
-                Self::Darken => "Darken",
-                Self::Lighten => "Lighten",
-                Self::ColorDodge => "ColorDodge",
-                Self::ColorBurn => "ColorBurn",
-                Self::HardLight => "HardLight",
-                Self::SoftLight => "SoftLight",
-                Self::Difference => "Difference",
-                Self::Exclusion => "Exclusion",
-                Self::Color => "Color",
-                Self::Hue => "Hue",
-                Self::Saturation => "Saturation",
-                Self::Luminosity => "Luminosity",
-                _ => "Unknown",
-            }
-        )
-    }
 }
 
 #[doc(hidden)]
@@ -131,7 +100,8 @@ impl FromGlib<ffi::GskBlendMode> for BlendMode {
 
 impl StaticType for BlendMode {
     #[inline]
-    fn static_type() -> Type {
+    #[doc(alias = "gsk_blend_mode_get_type")]
+    fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gsk_blend_mode_get_type()) }
     }
 }
@@ -142,7 +112,7 @@ impl glib::HasParamSpec for BlendMode {
     type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
 
     fn param_spec_builder() -> Self::BuilderFn {
-        |name, default_value| Self::ParamSpec::builder_with_default(name, default_value)
+        Self::ParamSpec::builder_with_default
     }
 }
 
@@ -150,7 +120,7 @@ impl glib::value::ValueType for BlendMode {
     type Type = Self;
 }
 
-unsafe impl<'a> FromValue<'a> for BlendMode {
+unsafe impl<'a> glib::value::FromValue<'a> for BlendMode {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
     #[inline]
@@ -200,22 +170,6 @@ pub enum Corner {
     __Unknown(i32),
 }
 
-impl fmt::Display for Corner {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "Corner::{}",
-            match *self {
-                Self::TopLeft => "TopLeft",
-                Self::TopRight => "TopRight",
-                Self::BottomRight => "BottomRight",
-                Self::BottomLeft => "BottomLeft",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for Corner {
     type GlibType = ffi::GskCorner;
@@ -250,7 +204,8 @@ impl FromGlib<ffi::GskCorner> for Corner {
 
 impl StaticType for Corner {
     #[inline]
-    fn static_type() -> Type {
+    #[doc(alias = "gsk_corner_get_type")]
+    fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gsk_corner_get_type()) }
     }
 }
@@ -261,7 +216,7 @@ impl glib::HasParamSpec for Corner {
     type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
 
     fn param_spec_builder() -> Self::BuilderFn {
-        |name, default_value| Self::ParamSpec::builder_with_default(name, default_value)
+        Self::ParamSpec::builder_with_default
     }
 }
 
@@ -269,7 +224,7 @@ impl glib::value::ValueType for Corner {
     type Type = Self;
 }
 
-unsafe impl<'a> FromValue<'a> for Corner {
+unsafe impl<'a> glib::value::FromValue<'a> for Corner {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
     #[inline]
@@ -303,6 +258,120 @@ impl From<Corner> for glib::Value {
     }
 }
 
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
+#[doc(alias = "GskFillRule")]
+pub enum FillRule {
+    #[doc(alias = "GSK_FILL_RULE_WINDING")]
+    Winding,
+    #[doc(alias = "GSK_FILL_RULE_EVEN_ODD")]
+    EvenOdd,
+    #[doc(hidden)]
+    __Unknown(i32),
+}
+
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+#[doc(hidden)]
+impl IntoGlib for FillRule {
+    type GlibType = ffi::GskFillRule;
+
+    #[inline]
+    fn into_glib(self) -> ffi::GskFillRule {
+        match self {
+            Self::Winding => ffi::GSK_FILL_RULE_WINDING,
+            Self::EvenOdd => ffi::GSK_FILL_RULE_EVEN_ODD,
+            Self::__Unknown(value) => value,
+        }
+    }
+}
+
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+#[doc(hidden)]
+impl FromGlib<ffi::GskFillRule> for FillRule {
+    #[inline]
+    unsafe fn from_glib(value: ffi::GskFillRule) -> Self {
+        skip_assert_initialized!();
+
+        match value {
+            ffi::GSK_FILL_RULE_WINDING => Self::Winding,
+            ffi::GSK_FILL_RULE_EVEN_ODD => Self::EvenOdd,
+            value => Self::__Unknown(value),
+        }
+    }
+}
+
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+impl StaticType for FillRule {
+    #[inline]
+    #[doc(alias = "gsk_fill_rule_get_type")]
+    fn static_type() -> glib::Type {
+        unsafe { from_glib(ffi::gsk_fill_rule_get_type()) }
+    }
+}
+
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+impl glib::HasParamSpec for FillRule {
+    type ParamSpec = glib::ParamSpecEnum;
+    type SetValue = Self;
+    type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
+
+    fn param_spec_builder() -> Self::BuilderFn {
+        Self::ParamSpec::builder_with_default
+    }
+}
+
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+impl glib::value::ValueType for FillRule {
+    type Type = Self;
+}
+
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+unsafe impl<'a> glib::value::FromValue<'a> for FillRule {
+    type Checker = glib::value::GenericValueTypeChecker<Self>;
+
+    #[inline]
+    unsafe fn from_value(value: &'a glib::Value) -> Self {
+        skip_assert_initialized!();
+        from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+    }
+}
+
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+impl ToValue for FillRule {
+    #[inline]
+    fn to_value(&self) -> glib::Value {
+        let mut value = glib::Value::for_value_type::<Self>();
+        unsafe {
+            glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
+        }
+        value
+    }
+
+    #[inline]
+    fn value_type(&self) -> glib::Type {
+        Self::static_type()
+    }
+}
+
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+impl From<FillRule> for glib::Value {
+    #[inline]
+    fn from(v: FillRule) -> Self {
+        skip_assert_initialized!();
+        ToValue::to_value(&v)
+    }
+}
+
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GskGLUniformType")]
@@ -325,26 +394,6 @@ pub enum GLUniformType {
     Vec4,
     #[doc(hidden)]
     __Unknown(i32),
-}
-
-impl fmt::Display for GLUniformType {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "GLUniformType::{}",
-            match *self {
-                Self::None => "None",
-                Self::Float => "Float",
-                Self::Int => "Int",
-                Self::Uint => "Uint",
-                Self::Bool => "Bool",
-                Self::Vec2 => "Vec2",
-                Self::Vec3 => "Vec3",
-                Self::Vec4 => "Vec4",
-                _ => "Unknown",
-            }
-        )
-    }
 }
 
 #[doc(hidden)]
@@ -389,7 +438,8 @@ impl FromGlib<ffi::GskGLUniformType> for GLUniformType {
 
 impl StaticType for GLUniformType {
     #[inline]
-    fn static_type() -> Type {
+    #[doc(alias = "gsk_gl_uniform_type_get_type")]
+    fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gsk_gl_uniform_type_get_type()) }
     }
 }
@@ -400,7 +450,7 @@ impl glib::HasParamSpec for GLUniformType {
     type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
 
     fn param_spec_builder() -> Self::BuilderFn {
-        |name, default_value| Self::ParamSpec::builder_with_default(name, default_value)
+        Self::ParamSpec::builder_with_default
     }
 }
 
@@ -408,7 +458,7 @@ impl glib::value::ValueType for GLUniformType {
     type Type = Self;
 }
 
-unsafe impl<'a> FromValue<'a> for GLUniformType {
+unsafe impl<'a> glib::value::FromValue<'a> for GLUniformType {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
     #[inline]
@@ -442,8 +492,244 @@ impl From<GLUniformType> for glib::Value {
     }
 }
 
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
+#[doc(alias = "GskLineCap")]
+pub enum LineCap {
+    #[doc(alias = "GSK_LINE_CAP_BUTT")]
+    Butt,
+    #[doc(alias = "GSK_LINE_CAP_ROUND")]
+    Round,
+    #[doc(alias = "GSK_LINE_CAP_SQUARE")]
+    Square,
+    #[doc(hidden)]
+    __Unknown(i32),
+}
+
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+#[doc(hidden)]
+impl IntoGlib for LineCap {
+    type GlibType = ffi::GskLineCap;
+
+    #[inline]
+    fn into_glib(self) -> ffi::GskLineCap {
+        match self {
+            Self::Butt => ffi::GSK_LINE_CAP_BUTT,
+            Self::Round => ffi::GSK_LINE_CAP_ROUND,
+            Self::Square => ffi::GSK_LINE_CAP_SQUARE,
+            Self::__Unknown(value) => value,
+        }
+    }
+}
+
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+#[doc(hidden)]
+impl FromGlib<ffi::GskLineCap> for LineCap {
+    #[inline]
+    unsafe fn from_glib(value: ffi::GskLineCap) -> Self {
+        skip_assert_initialized!();
+
+        match value {
+            ffi::GSK_LINE_CAP_BUTT => Self::Butt,
+            ffi::GSK_LINE_CAP_ROUND => Self::Round,
+            ffi::GSK_LINE_CAP_SQUARE => Self::Square,
+            value => Self::__Unknown(value),
+        }
+    }
+}
+
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+impl StaticType for LineCap {
+    #[inline]
+    #[doc(alias = "gsk_line_cap_get_type")]
+    fn static_type() -> glib::Type {
+        unsafe { from_glib(ffi::gsk_line_cap_get_type()) }
+    }
+}
+
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+impl glib::HasParamSpec for LineCap {
+    type ParamSpec = glib::ParamSpecEnum;
+    type SetValue = Self;
+    type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
+
+    fn param_spec_builder() -> Self::BuilderFn {
+        Self::ParamSpec::builder_with_default
+    }
+}
+
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+impl glib::value::ValueType for LineCap {
+    type Type = Self;
+}
+
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+unsafe impl<'a> glib::value::FromValue<'a> for LineCap {
+    type Checker = glib::value::GenericValueTypeChecker<Self>;
+
+    #[inline]
+    unsafe fn from_value(value: &'a glib::Value) -> Self {
+        skip_assert_initialized!();
+        from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+    }
+}
+
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+impl ToValue for LineCap {
+    #[inline]
+    fn to_value(&self) -> glib::Value {
+        let mut value = glib::Value::for_value_type::<Self>();
+        unsafe {
+            glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
+        }
+        value
+    }
+
+    #[inline]
+    fn value_type(&self) -> glib::Type {
+        Self::static_type()
+    }
+}
+
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+impl From<LineCap> for glib::Value {
+    #[inline]
+    fn from(v: LineCap) -> Self {
+        skip_assert_initialized!();
+        ToValue::to_value(&v)
+    }
+}
+
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
+#[doc(alias = "GskLineJoin")]
+pub enum LineJoin {
+    #[doc(alias = "GSK_LINE_JOIN_MITER")]
+    Miter,
+    #[doc(alias = "GSK_LINE_JOIN_ROUND")]
+    Round,
+    #[doc(alias = "GSK_LINE_JOIN_BEVEL")]
+    Bevel,
+    #[doc(hidden)]
+    __Unknown(i32),
+}
+
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+#[doc(hidden)]
+impl IntoGlib for LineJoin {
+    type GlibType = ffi::GskLineJoin;
+
+    #[inline]
+    fn into_glib(self) -> ffi::GskLineJoin {
+        match self {
+            Self::Miter => ffi::GSK_LINE_JOIN_MITER,
+            Self::Round => ffi::GSK_LINE_JOIN_ROUND,
+            Self::Bevel => ffi::GSK_LINE_JOIN_BEVEL,
+            Self::__Unknown(value) => value,
+        }
+    }
+}
+
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+#[doc(hidden)]
+impl FromGlib<ffi::GskLineJoin> for LineJoin {
+    #[inline]
+    unsafe fn from_glib(value: ffi::GskLineJoin) -> Self {
+        skip_assert_initialized!();
+
+        match value {
+            ffi::GSK_LINE_JOIN_MITER => Self::Miter,
+            ffi::GSK_LINE_JOIN_ROUND => Self::Round,
+            ffi::GSK_LINE_JOIN_BEVEL => Self::Bevel,
+            value => Self::__Unknown(value),
+        }
+    }
+}
+
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+impl StaticType for LineJoin {
+    #[inline]
+    #[doc(alias = "gsk_line_join_get_type")]
+    fn static_type() -> glib::Type {
+        unsafe { from_glib(ffi::gsk_line_join_get_type()) }
+    }
+}
+
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+impl glib::HasParamSpec for LineJoin {
+    type ParamSpec = glib::ParamSpecEnum;
+    type SetValue = Self;
+    type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
+
+    fn param_spec_builder() -> Self::BuilderFn {
+        Self::ParamSpec::builder_with_default
+    }
+}
+
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+impl glib::value::ValueType for LineJoin {
+    type Type = Self;
+}
+
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+unsafe impl<'a> glib::value::FromValue<'a> for LineJoin {
+    type Checker = glib::value::GenericValueTypeChecker<Self>;
+
+    #[inline]
+    unsafe fn from_value(value: &'a glib::Value) -> Self {
+        skip_assert_initialized!();
+        from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+    }
+}
+
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+impl ToValue for LineJoin {
+    #[inline]
+    fn to_value(&self) -> glib::Value {
+        let mut value = glib::Value::for_value_type::<Self>();
+        unsafe {
+            glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
+        }
+        value
+    }
+
+    #[inline]
+    fn value_type(&self) -> glib::Type {
+        Self::static_type()
+    }
+}
+
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+impl From<LineJoin> for glib::Value {
+    #[inline]
+    fn from(v: LineJoin) -> Self {
+        skip_assert_initialized!();
+        ToValue::to_value(&v)
+    }
+}
+
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GskMaskMode")]
@@ -460,26 +746,8 @@ pub enum MaskMode {
     __Unknown(i32),
 }
 
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
-impl fmt::Display for MaskMode {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "MaskMode::{}",
-            match *self {
-                Self::Alpha => "Alpha",
-                Self::InvertedAlpha => "InvertedAlpha",
-                Self::Luminance => "Luminance",
-                Self::InvertedLuminance => "InvertedLuminance",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 #[doc(hidden)]
 impl IntoGlib for MaskMode {
     type GlibType = ffi::GskMaskMode;
@@ -496,8 +764,8 @@ impl IntoGlib for MaskMode {
     }
 }
 
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 #[doc(hidden)]
 impl FromGlib<ffi::GskMaskMode> for MaskMode {
     #[inline]
@@ -514,36 +782,37 @@ impl FromGlib<ffi::GskMaskMode> for MaskMode {
     }
 }
 
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 impl StaticType for MaskMode {
     #[inline]
-    fn static_type() -> Type {
+    #[doc(alias = "gsk_mask_mode_get_type")]
+    fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gsk_mask_mode_get_type()) }
     }
 }
 
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 impl glib::HasParamSpec for MaskMode {
     type ParamSpec = glib::ParamSpecEnum;
     type SetValue = Self;
     type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
 
     fn param_spec_builder() -> Self::BuilderFn {
-        |name, default_value| Self::ParamSpec::builder_with_default(name, default_value)
+        Self::ParamSpec::builder_with_default
     }
 }
 
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 impl glib::value::ValueType for MaskMode {
     type Type = Self;
 }
 
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
-unsafe impl<'a> FromValue<'a> for MaskMode {
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
+unsafe impl<'a> glib::value::FromValue<'a> for MaskMode {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
     #[inline]
@@ -553,8 +822,8 @@ unsafe impl<'a> FromValue<'a> for MaskMode {
     }
 }
 
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 impl ToValue for MaskMode {
     #[inline]
     fn to_value(&self) -> glib::Value {
@@ -571,11 +840,263 @@ impl ToValue for MaskMode {
     }
 }
 
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 impl From<MaskMode> for glib::Value {
     #[inline]
     fn from(v: MaskMode) -> Self {
+        skip_assert_initialized!();
+        ToValue::to_value(&v)
+    }
+}
+
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
+#[doc(alias = "GskPathDirection")]
+pub enum PathDirection {
+    #[doc(alias = "GSK_PATH_FROM_START")]
+    FromStart,
+    #[doc(alias = "GSK_PATH_TO_START")]
+    ToStart,
+    #[doc(alias = "GSK_PATH_TO_END")]
+    ToEnd,
+    #[doc(alias = "GSK_PATH_FROM_END")]
+    FromEnd,
+    #[doc(hidden)]
+    __Unknown(i32),
+}
+
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+#[doc(hidden)]
+impl IntoGlib for PathDirection {
+    type GlibType = ffi::GskPathDirection;
+
+    #[inline]
+    fn into_glib(self) -> ffi::GskPathDirection {
+        match self {
+            Self::FromStart => ffi::GSK_PATH_FROM_START,
+            Self::ToStart => ffi::GSK_PATH_TO_START,
+            Self::ToEnd => ffi::GSK_PATH_TO_END,
+            Self::FromEnd => ffi::GSK_PATH_FROM_END,
+            Self::__Unknown(value) => value,
+        }
+    }
+}
+
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+#[doc(hidden)]
+impl FromGlib<ffi::GskPathDirection> for PathDirection {
+    #[inline]
+    unsafe fn from_glib(value: ffi::GskPathDirection) -> Self {
+        skip_assert_initialized!();
+
+        match value {
+            ffi::GSK_PATH_FROM_START => Self::FromStart,
+            ffi::GSK_PATH_TO_START => Self::ToStart,
+            ffi::GSK_PATH_TO_END => Self::ToEnd,
+            ffi::GSK_PATH_FROM_END => Self::FromEnd,
+            value => Self::__Unknown(value),
+        }
+    }
+}
+
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+impl StaticType for PathDirection {
+    #[inline]
+    #[doc(alias = "gsk_path_direction_get_type")]
+    fn static_type() -> glib::Type {
+        unsafe { from_glib(ffi::gsk_path_direction_get_type()) }
+    }
+}
+
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+impl glib::HasParamSpec for PathDirection {
+    type ParamSpec = glib::ParamSpecEnum;
+    type SetValue = Self;
+    type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
+
+    fn param_spec_builder() -> Self::BuilderFn {
+        Self::ParamSpec::builder_with_default
+    }
+}
+
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+impl glib::value::ValueType for PathDirection {
+    type Type = Self;
+}
+
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+unsafe impl<'a> glib::value::FromValue<'a> for PathDirection {
+    type Checker = glib::value::GenericValueTypeChecker<Self>;
+
+    #[inline]
+    unsafe fn from_value(value: &'a glib::Value) -> Self {
+        skip_assert_initialized!();
+        from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+    }
+}
+
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+impl ToValue for PathDirection {
+    #[inline]
+    fn to_value(&self) -> glib::Value {
+        let mut value = glib::Value::for_value_type::<Self>();
+        unsafe {
+            glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
+        }
+        value
+    }
+
+    #[inline]
+    fn value_type(&self) -> glib::Type {
+        Self::static_type()
+    }
+}
+
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+impl From<PathDirection> for glib::Value {
+    #[inline]
+    fn from(v: PathDirection) -> Self {
+        skip_assert_initialized!();
+        ToValue::to_value(&v)
+    }
+}
+
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
+#[doc(alias = "GskPathOperation")]
+pub enum PathOperation {
+    #[doc(alias = "GSK_PATH_MOVE")]
+    Move,
+    #[doc(alias = "GSK_PATH_CLOSE")]
+    Close,
+    #[doc(alias = "GSK_PATH_LINE")]
+    Line,
+    #[doc(alias = "GSK_PATH_QUAD")]
+    Quad,
+    #[doc(alias = "GSK_PATH_CUBIC")]
+    Cubic,
+    #[doc(alias = "GSK_PATH_CONIC")]
+    Conic,
+    #[doc(hidden)]
+    __Unknown(i32),
+}
+
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+#[doc(hidden)]
+impl IntoGlib for PathOperation {
+    type GlibType = ffi::GskPathOperation;
+
+    #[inline]
+    fn into_glib(self) -> ffi::GskPathOperation {
+        match self {
+            Self::Move => ffi::GSK_PATH_MOVE,
+            Self::Close => ffi::GSK_PATH_CLOSE,
+            Self::Line => ffi::GSK_PATH_LINE,
+            Self::Quad => ffi::GSK_PATH_QUAD,
+            Self::Cubic => ffi::GSK_PATH_CUBIC,
+            Self::Conic => ffi::GSK_PATH_CONIC,
+            Self::__Unknown(value) => value,
+        }
+    }
+}
+
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+#[doc(hidden)]
+impl FromGlib<ffi::GskPathOperation> for PathOperation {
+    #[inline]
+    unsafe fn from_glib(value: ffi::GskPathOperation) -> Self {
+        skip_assert_initialized!();
+
+        match value {
+            ffi::GSK_PATH_MOVE => Self::Move,
+            ffi::GSK_PATH_CLOSE => Self::Close,
+            ffi::GSK_PATH_LINE => Self::Line,
+            ffi::GSK_PATH_QUAD => Self::Quad,
+            ffi::GSK_PATH_CUBIC => Self::Cubic,
+            ffi::GSK_PATH_CONIC => Self::Conic,
+            value => Self::__Unknown(value),
+        }
+    }
+}
+
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+impl StaticType for PathOperation {
+    #[inline]
+    #[doc(alias = "gsk_path_operation_get_type")]
+    fn static_type() -> glib::Type {
+        unsafe { from_glib(ffi::gsk_path_operation_get_type()) }
+    }
+}
+
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+impl glib::HasParamSpec for PathOperation {
+    type ParamSpec = glib::ParamSpecEnum;
+    type SetValue = Self;
+    type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
+
+    fn param_spec_builder() -> Self::BuilderFn {
+        Self::ParamSpec::builder_with_default
+    }
+}
+
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+impl glib::value::ValueType for PathOperation {
+    type Type = Self;
+}
+
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+unsafe impl<'a> glib::value::FromValue<'a> for PathOperation {
+    type Checker = glib::value::GenericValueTypeChecker<Self>;
+
+    #[inline]
+    unsafe fn from_value(value: &'a glib::Value) -> Self {
+        skip_assert_initialized!();
+        from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+    }
+}
+
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+impl ToValue for PathOperation {
+    #[inline]
+    fn to_value(&self) -> glib::Value {
+        let mut value = glib::Value::for_value_type::<Self>();
+        unsafe {
+            glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
+        }
+        value
+    }
+
+    #[inline]
+    fn value_type(&self) -> glib::Type {
+        Self::static_type()
+    }
+}
+
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+impl From<PathOperation> for glib::Value {
+    #[inline]
+    fn from(v: PathOperation) -> Self {
         skip_assert_initialized!();
         ToValue::to_value(&v)
     }
@@ -637,52 +1158,28 @@ pub enum RenderNodeType {
     DebugNode,
     #[doc(alias = "GSK_GL_SHADER_NODE")]
     GlShaderNode,
+    #[cfg(feature = "v4_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "GSK_TEXTURE_SCALE_NODE")]
     TextureScaleNode,
+    #[cfg(feature = "v4_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "GSK_MASK_NODE")]
     MaskNode,
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    #[doc(alias = "GSK_FILL_NODE")]
+    FillNode,
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    #[doc(alias = "GSK_STROKE_NODE")]
+    StrokeNode,
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    #[doc(alias = "GSK_SUBSURFACE_NODE")]
+    SubsurfaceNode,
     #[doc(hidden)]
     __Unknown(i32),
-}
-
-impl fmt::Display for RenderNodeType {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "RenderNodeType::{}",
-            match *self {
-                Self::NotARenderNode => "NotARenderNode",
-                Self::ContainerNode => "ContainerNode",
-                Self::CairoNode => "CairoNode",
-                Self::ColorNode => "ColorNode",
-                Self::LinearGradientNode => "LinearGradientNode",
-                Self::RepeatingLinearGradientNode => "RepeatingLinearGradientNode",
-                Self::RadialGradientNode => "RadialGradientNode",
-                Self::RepeatingRadialGradientNode => "RepeatingRadialGradientNode",
-                Self::ConicGradientNode => "ConicGradientNode",
-                Self::BorderNode => "BorderNode",
-                Self::TextureNode => "TextureNode",
-                Self::InsetShadowNode => "InsetShadowNode",
-                Self::OutsetShadowNode => "OutsetShadowNode",
-                Self::TransformNode => "TransformNode",
-                Self::OpacityNode => "OpacityNode",
-                Self::ColorMatrixNode => "ColorMatrixNode",
-                Self::RepeatNode => "RepeatNode",
-                Self::ClipNode => "ClipNode",
-                Self::RoundedClipNode => "RoundedClipNode",
-                Self::ShadowNode => "ShadowNode",
-                Self::BlendNode => "BlendNode",
-                Self::CrossFadeNode => "CrossFadeNode",
-                Self::TextNode => "TextNode",
-                Self::BlurNode => "BlurNode",
-                Self::DebugNode => "DebugNode",
-                Self::GlShaderNode => "GlShaderNode",
-                Self::TextureScaleNode => "TextureScaleNode",
-                Self::MaskNode => "MaskNode",
-                _ => "Unknown",
-            }
-        )
-    }
 }
 
 #[doc(hidden)]
@@ -717,8 +1214,16 @@ impl IntoGlib for RenderNodeType {
             Self::BlurNode => ffi::GSK_BLUR_NODE,
             Self::DebugNode => ffi::GSK_DEBUG_NODE,
             Self::GlShaderNode => ffi::GSK_GL_SHADER_NODE,
+            #[cfg(feature = "v4_10")]
             Self::TextureScaleNode => ffi::GSK_TEXTURE_SCALE_NODE,
+            #[cfg(feature = "v4_10")]
             Self::MaskNode => ffi::GSK_MASK_NODE,
+            #[cfg(feature = "v4_14")]
+            Self::FillNode => ffi::GSK_FILL_NODE,
+            #[cfg(feature = "v4_14")]
+            Self::StrokeNode => ffi::GSK_STROKE_NODE,
+            #[cfg(feature = "v4_14")]
+            Self::SubsurfaceNode => ffi::GSK_SUBSURFACE_NODE,
             Self::__Unknown(value) => value,
         }
     }
@@ -756,8 +1261,16 @@ impl FromGlib<ffi::GskRenderNodeType> for RenderNodeType {
             ffi::GSK_BLUR_NODE => Self::BlurNode,
             ffi::GSK_DEBUG_NODE => Self::DebugNode,
             ffi::GSK_GL_SHADER_NODE => Self::GlShaderNode,
+            #[cfg(feature = "v4_10")]
             ffi::GSK_TEXTURE_SCALE_NODE => Self::TextureScaleNode,
+            #[cfg(feature = "v4_10")]
             ffi::GSK_MASK_NODE => Self::MaskNode,
+            #[cfg(feature = "v4_14")]
+            ffi::GSK_FILL_NODE => Self::FillNode,
+            #[cfg(feature = "v4_14")]
+            ffi::GSK_STROKE_NODE => Self::StrokeNode,
+            #[cfg(feature = "v4_14")]
+            ffi::GSK_SUBSURFACE_NODE => Self::SubsurfaceNode,
             value => Self::__Unknown(value),
         }
     }
@@ -765,7 +1278,8 @@ impl FromGlib<ffi::GskRenderNodeType> for RenderNodeType {
 
 impl StaticType for RenderNodeType {
     #[inline]
-    fn static_type() -> Type {
+    #[doc(alias = "gsk_render_node_type_get_type")]
+    fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gsk_render_node_type_get_type()) }
     }
 }
@@ -776,7 +1290,7 @@ impl glib::HasParamSpec for RenderNodeType {
     type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
 
     fn param_spec_builder() -> Self::BuilderFn {
-        |name, default_value| Self::ParamSpec::builder_with_default(name, default_value)
+        Self::ParamSpec::builder_with_default
     }
 }
 
@@ -784,7 +1298,7 @@ impl glib::value::ValueType for RenderNodeType {
     type Type = Self;
 }
 
-unsafe impl<'a> FromValue<'a> for RenderNodeType {
+unsafe impl<'a> glib::value::FromValue<'a> for RenderNodeType {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
     #[inline]
@@ -832,21 +1346,6 @@ pub enum ScalingFilter {
     __Unknown(i32),
 }
 
-impl fmt::Display for ScalingFilter {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "ScalingFilter::{}",
-            match *self {
-                Self::Linear => "Linear",
-                Self::Nearest => "Nearest",
-                Self::Trilinear => "Trilinear",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for ScalingFilter {
     type GlibType = ffi::GskScalingFilter;
@@ -879,7 +1378,8 @@ impl FromGlib<ffi::GskScalingFilter> for ScalingFilter {
 
 impl StaticType for ScalingFilter {
     #[inline]
-    fn static_type() -> Type {
+    #[doc(alias = "gsk_scaling_filter_get_type")]
+    fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gsk_scaling_filter_get_type()) }
     }
 }
@@ -890,7 +1390,7 @@ impl glib::HasParamSpec for ScalingFilter {
     type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
 
     fn param_spec_builder() -> Self::BuilderFn {
-        |name, default_value| Self::ParamSpec::builder_with_default(name, default_value)
+        Self::ParamSpec::builder_with_default
     }
 }
 
@@ -898,7 +1398,7 @@ impl glib::value::ValueType for ScalingFilter {
     type Type = Self;
 }
 
-unsafe impl<'a> FromValue<'a> for ScalingFilter {
+unsafe impl<'a> glib::value::FromValue<'a> for ScalingFilter {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
     #[inline]
@@ -946,21 +1446,6 @@ pub enum SerializationError {
     __Unknown(i32),
 }
 
-impl fmt::Display for SerializationError {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "SerializationError::{}",
-            match *self {
-                Self::UnsupportedFormat => "UnsupportedFormat",
-                Self::UnsupportedVersion => "UnsupportedVersion",
-                Self::InvalidData => "InvalidData",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for SerializationError {
     type GlibType = ffi::GskSerializationError;
@@ -991,9 +1476,9 @@ impl FromGlib<ffi::GskSerializationError> for SerializationError {
     }
 }
 
-impl ErrorDomain for SerializationError {
+impl glib::error::ErrorDomain for SerializationError {
     #[inline]
-    fn domain() -> Quark {
+    fn domain() -> glib::Quark {
         skip_assert_initialized!();
 
         unsafe { from_glib(ffi::gsk_serialization_error_quark()) }
@@ -1016,7 +1501,8 @@ impl ErrorDomain for SerializationError {
 
 impl StaticType for SerializationError {
     #[inline]
-    fn static_type() -> Type {
+    #[doc(alias = "gsk_serialization_error_get_type")]
+    fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gsk_serialization_error_get_type()) }
     }
 }
@@ -1027,7 +1513,7 @@ impl glib::HasParamSpec for SerializationError {
     type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
 
     fn param_spec_builder() -> Self::BuilderFn {
-        |name, default_value| Self::ParamSpec::builder_with_default(name, default_value)
+        Self::ParamSpec::builder_with_default
     }
 }
 
@@ -1035,7 +1521,7 @@ impl glib::value::ValueType for SerializationError {
     type Type = Self;
 }
 
-unsafe impl<'a> FromValue<'a> for SerializationError {
+unsafe impl<'a> glib::value::FromValue<'a> for SerializationError {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
     #[inline]
@@ -1091,25 +1577,6 @@ pub enum TransformCategory {
     __Unknown(i32),
 }
 
-impl fmt::Display for TransformCategory {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "TransformCategory::{}",
-            match *self {
-                Self::Unknown => "Unknown",
-                Self::Any => "Any",
-                Self::_3d => "_3d",
-                Self::_2d => "_2d",
-                Self::_2dAffine => "_2dAffine",
-                Self::_2dTranslate => "_2dTranslate",
-                Self::Identity => "Identity",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for TransformCategory {
     type GlibType = ffi::GskTransformCategory;
@@ -1150,7 +1617,8 @@ impl FromGlib<ffi::GskTransformCategory> for TransformCategory {
 
 impl StaticType for TransformCategory {
     #[inline]
-    fn static_type() -> Type {
+    #[doc(alias = "gsk_transform_category_get_type")]
+    fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gsk_transform_category_get_type()) }
     }
 }
@@ -1161,7 +1629,7 @@ impl glib::HasParamSpec for TransformCategory {
     type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
 
     fn param_spec_builder() -> Self::BuilderFn {
-        |name, default_value| Self::ParamSpec::builder_with_default(name, default_value)
+        Self::ParamSpec::builder_with_default
     }
 }
 
@@ -1169,7 +1637,7 @@ impl glib::value::ValueType for TransformCategory {
     type Type = Self;
 }
 
-unsafe impl<'a> FromValue<'a> for TransformCategory {
+unsafe impl<'a> glib::value::FromValue<'a> for TransformCategory {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
     #[inline]

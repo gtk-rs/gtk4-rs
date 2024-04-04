@@ -11,7 +11,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GtkListBoxRow")]
@@ -286,67 +286,21 @@ impl ListBoxRowBuilder {
     }
 }
 
-pub trait ListBoxRowExt: 'static {
-    #[doc(alias = "gtk_list_box_row_changed")]
-    fn changed(&self);
-
-    #[doc(alias = "gtk_list_box_row_get_activatable")]
-    #[doc(alias = "get_activatable")]
-    fn is_activatable(&self) -> bool;
-
-    #[doc(alias = "gtk_list_box_row_get_child")]
-    #[doc(alias = "get_child")]
-    fn child(&self) -> Option<Widget>;
-
-    #[doc(alias = "gtk_list_box_row_get_header")]
-    #[doc(alias = "get_header")]
-    fn header(&self) -> Option<Widget>;
-
-    #[doc(alias = "gtk_list_box_row_get_index")]
-    #[doc(alias = "get_index")]
-    fn index(&self) -> i32;
-
-    #[doc(alias = "gtk_list_box_row_get_selectable")]
-    #[doc(alias = "get_selectable")]
-    fn is_selectable(&self) -> bool;
-
-    #[doc(alias = "gtk_list_box_row_is_selected")]
-    fn is_selected(&self) -> bool;
-
-    #[doc(alias = "gtk_list_box_row_set_activatable")]
-    fn set_activatable(&self, activatable: bool);
-
-    #[doc(alias = "gtk_list_box_row_set_child")]
-    fn set_child(&self, child: Option<&impl IsA<Widget>>);
-
-    #[doc(alias = "gtk_list_box_row_set_header")]
-    fn set_header(&self, header: Option<&impl IsA<Widget>>);
-
-    #[doc(alias = "gtk_list_box_row_set_selectable")]
-    fn set_selectable(&self, selectable: bool);
-
-    #[doc(alias = "activate")]
-    fn connect_activate<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn emit_activate(&self);
-
-    #[doc(alias = "activatable")]
-    fn connect_activatable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "child")]
-    fn connect_child_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "selectable")]
-    fn connect_selectable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::ListBoxRow>> Sealed for T {}
 }
 
-impl<O: IsA<ListBoxRow>> ListBoxRowExt for O {
+pub trait ListBoxRowExt: IsA<ListBoxRow> + sealed::Sealed + 'static {
+    #[doc(alias = "gtk_list_box_row_changed")]
     fn changed(&self) {
         unsafe {
             ffi::gtk_list_box_row_changed(self.as_ref().to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_list_box_row_get_activatable")]
+    #[doc(alias = "get_activatable")]
     fn is_activatable(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_list_box_row_get_activatable(
@@ -355,6 +309,8 @@ impl<O: IsA<ListBoxRow>> ListBoxRowExt for O {
         }
     }
 
+    #[doc(alias = "gtk_list_box_row_get_child")]
+    #[doc(alias = "get_child")]
     fn child(&self) -> Option<Widget> {
         unsafe {
             from_glib_none(ffi::gtk_list_box_row_get_child(
@@ -363,6 +319,8 @@ impl<O: IsA<ListBoxRow>> ListBoxRowExt for O {
         }
     }
 
+    #[doc(alias = "gtk_list_box_row_get_header")]
+    #[doc(alias = "get_header")]
     fn header(&self) -> Option<Widget> {
         unsafe {
             from_glib_none(ffi::gtk_list_box_row_get_header(
@@ -371,10 +329,14 @@ impl<O: IsA<ListBoxRow>> ListBoxRowExt for O {
         }
     }
 
+    #[doc(alias = "gtk_list_box_row_get_index")]
+    #[doc(alias = "get_index")]
     fn index(&self) -> i32 {
         unsafe { ffi::gtk_list_box_row_get_index(self.as_ref().to_glib_none().0) }
     }
 
+    #[doc(alias = "gtk_list_box_row_get_selectable")]
+    #[doc(alias = "get_selectable")]
     fn is_selectable(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_list_box_row_get_selectable(
@@ -383,6 +345,7 @@ impl<O: IsA<ListBoxRow>> ListBoxRowExt for O {
         }
     }
 
+    #[doc(alias = "gtk_list_box_row_is_selected")]
     fn is_selected(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_list_box_row_is_selected(
@@ -391,6 +354,7 @@ impl<O: IsA<ListBoxRow>> ListBoxRowExt for O {
         }
     }
 
+    #[doc(alias = "gtk_list_box_row_set_activatable")]
     fn set_activatable(&self, activatable: bool) {
         unsafe {
             ffi::gtk_list_box_row_set_activatable(
@@ -400,6 +364,7 @@ impl<O: IsA<ListBoxRow>> ListBoxRowExt for O {
         }
     }
 
+    #[doc(alias = "gtk_list_box_row_set_child")]
     fn set_child(&self, child: Option<&impl IsA<Widget>>) {
         unsafe {
             ffi::gtk_list_box_row_set_child(
@@ -409,6 +374,7 @@ impl<O: IsA<ListBoxRow>> ListBoxRowExt for O {
         }
     }
 
+    #[doc(alias = "gtk_list_box_row_set_header")]
     fn set_header(&self, header: Option<&impl IsA<Widget>>) {
         unsafe {
             ffi::gtk_list_box_row_set_header(
@@ -418,6 +384,7 @@ impl<O: IsA<ListBoxRow>> ListBoxRowExt for O {
         }
     }
 
+    #[doc(alias = "gtk_list_box_row_set_selectable")]
     fn set_selectable(&self, selectable: bool) {
         unsafe {
             ffi::gtk_list_box_row_set_selectable(
@@ -427,6 +394,7 @@ impl<O: IsA<ListBoxRow>> ListBoxRowExt for O {
         }
     }
 
+    #[doc(alias = "activate")]
     fn connect_activate<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn activate_trampoline<P: IsA<ListBoxRow>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkListBoxRow,
@@ -440,7 +408,7 @@ impl<O: IsA<ListBoxRow>> ListBoxRowExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"activate\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     activate_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -452,6 +420,7 @@ impl<O: IsA<ListBoxRow>> ListBoxRowExt for O {
         self.emit_by_name::<()>("activate", &[]);
     }
 
+    #[doc(alias = "activatable")]
     fn connect_activatable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_activatable_trampoline<
             P: IsA<ListBoxRow>,
@@ -469,7 +438,7 @@ impl<O: IsA<ListBoxRow>> ListBoxRowExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::activatable\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_activatable_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -477,6 +446,7 @@ impl<O: IsA<ListBoxRow>> ListBoxRowExt for O {
         }
     }
 
+    #[doc(alias = "child")]
     fn connect_child_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_child_trampoline<P: IsA<ListBoxRow>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkListBoxRow,
@@ -491,7 +461,7 @@ impl<O: IsA<ListBoxRow>> ListBoxRowExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::child\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_child_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -499,6 +469,7 @@ impl<O: IsA<ListBoxRow>> ListBoxRowExt for O {
         }
     }
 
+    #[doc(alias = "selectable")]
     fn connect_selectable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_selectable_trampoline<
             P: IsA<ListBoxRow>,
@@ -516,7 +487,7 @@ impl<O: IsA<ListBoxRow>> ListBoxRowExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::selectable\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_selectable_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -525,8 +496,4 @@ impl<O: IsA<ListBoxRow>> ListBoxRowExt for O {
     }
 }
 
-impl fmt::Display for ListBoxRow {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("ListBoxRow")
-    }
-}
+impl<O: IsA<ListBoxRow>> ListBoxRowExt for O {}

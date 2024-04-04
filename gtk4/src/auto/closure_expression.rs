@@ -2,8 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use glib::translate::*;
-use std::fmt;
+use glib::{prelude::*, translate::*};
 
 glib::wrapper! {
     #[doc(alias = "GtkClosureExpression")]
@@ -15,16 +14,10 @@ glib::wrapper! {
     }
 }
 
-impl glib::StaticType for ClosureExpression {
+impl StaticType for ClosureExpression {
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gtk_closure_expression_get_type()) }
     }
 }
 
 impl ClosureExpression {}
-
-impl fmt::Display for ClosureExpression {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("ClosureExpression")
-    }
-}

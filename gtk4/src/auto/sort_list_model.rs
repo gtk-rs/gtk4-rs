@@ -2,14 +2,29 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+#[cfg(feature = "v4_12")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+use crate::SectionModel;
 use crate::Sorter;
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::boxed::Box as Box_;
 
+#[cfg(feature = "v4_12")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+glib::wrapper! {
+    #[doc(alias = "GtkSortListModel")]
+    pub struct SortListModel(Object<ffi::GtkSortListModel, ffi::GtkSortListModelClass>) @implements gio::ListModel, SectionModel;
+
+    match fn {
+        type_ => || ffi::gtk_sort_list_model_get_type(),
+    }
+}
+
+#[cfg(not(any(feature = "v4_12")))]
 glib::wrapper! {
     #[doc(alias = "GtkSortListModel")]
     pub struct SortListModel(Object<ffi::GtkSortListModel, ffi::GtkSortListModelClass>) @implements gio::ListModel;
@@ -64,6 +79,18 @@ impl SortListModel {
         unsafe { ffi::gtk_sort_list_model_get_pending(self.to_glib_none().0) }
     }
 
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "gtk_sort_list_model_get_section_sorter")]
+    #[doc(alias = "get_section_sorter")]
+    pub fn section_sorter(&self) -> Option<Sorter> {
+        unsafe {
+            from_glib_none(ffi::gtk_sort_list_model_get_section_sorter(
+                self.to_glib_none().0,
+            ))
+        }
+    }
+
     #[doc(alias = "gtk_sort_list_model_get_sorter")]
     #[doc(alias = "get_sorter")]
     pub fn sorter(&self) -> Option<Sorter> {
@@ -86,6 +113,18 @@ impl SortListModel {
             ffi::gtk_sort_list_model_set_model(
                 self.to_glib_none().0,
                 model.map(|p| p.as_ref()).to_glib_none().0,
+            );
+        }
+    }
+
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "gtk_sort_list_model_set_section_sorter")]
+    pub fn set_section_sorter(&self, sorter: Option<&impl IsA<Sorter>>) {
+        unsafe {
+            ffi::gtk_sort_list_model_set_section_sorter(
+                self.to_glib_none().0,
+                sorter.map(|p| p.as_ref()).to_glib_none().0,
             );
         }
     }
@@ -115,7 +154,7 @@ impl SortListModel {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::incremental\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_incremental_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -138,7 +177,7 @@ impl SortListModel {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::model\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_model_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -161,8 +200,33 @@ impl SortListModel {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::pending\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_pending_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "section-sorter")]
+    pub fn connect_section_sorter_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_section_sorter_trampoline<F: Fn(&SortListModel) + 'static>(
+            this: *mut ffi::GtkSortListModel,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::section-sorter\0".as_ptr() as *const _,
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                    notify_section_sorter_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -184,7 +248,7 @@ impl SortListModel {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::sorter\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_sorter_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -227,6 +291,16 @@ impl SortListModelBuilder {
         }
     }
 
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn section_sorter(self, section_sorter: &impl IsA<Sorter>) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("section-sorter", section_sorter.clone().upcast()),
+        }
+    }
+
     pub fn sorter(self, sorter: &impl IsA<Sorter>) -> Self {
         Self {
             builder: self.builder.property("sorter", sorter.clone().upcast()),
@@ -238,11 +312,5 @@ impl SortListModelBuilder {
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> SortListModel {
         self.builder.build()
-    }
-}
-
-impl fmt::Display for SortListModel {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("SortListModel")
     }
 }

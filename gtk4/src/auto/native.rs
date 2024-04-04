@@ -4,7 +4,6 @@
 
 use crate::{Accessible, Buildable, ConstraintTarget, Widget};
 use glib::{prelude::*, translate::*};
-use std::{fmt, mem};
 
 glib::wrapper! {
     #[doc(alias = "GtkNative")]
@@ -30,39 +29,30 @@ impl Native {
     }
 }
 
-pub trait NativeExt: 'static {
-    #[doc(alias = "gtk_native_get_renderer")]
-    #[doc(alias = "get_renderer")]
-    fn renderer(&self) -> gsk::Renderer;
-
-    #[doc(alias = "gtk_native_get_surface")]
-    #[doc(alias = "get_surface")]
-    fn surface(&self) -> gdk::Surface;
-
-    #[doc(alias = "gtk_native_get_surface_transform")]
-    #[doc(alias = "get_surface_transform")]
-    fn surface_transform(&self) -> (f64, f64);
-
-    #[doc(alias = "gtk_native_realize")]
-    fn realize(&self);
-
-    #[doc(alias = "gtk_native_unrealize")]
-    fn unrealize(&self);
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::Native>> Sealed for T {}
 }
 
-impl<O: IsA<Native>> NativeExt for O {
-    fn renderer(&self) -> gsk::Renderer {
+pub trait NativeExt: IsA<Native> + sealed::Sealed + 'static {
+    #[doc(alias = "gtk_native_get_renderer")]
+    #[doc(alias = "get_renderer")]
+    fn renderer(&self) -> Option<gsk::Renderer> {
         unsafe { from_glib_none(ffi::gtk_native_get_renderer(self.as_ref().to_glib_none().0)) }
     }
 
-    fn surface(&self) -> gdk::Surface {
+    #[doc(alias = "gtk_native_get_surface")]
+    #[doc(alias = "get_surface")]
+    fn surface(&self) -> Option<gdk::Surface> {
         unsafe { from_glib_none(ffi::gtk_native_get_surface(self.as_ref().to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_native_get_surface_transform")]
+    #[doc(alias = "get_surface_transform")]
     fn surface_transform(&self) -> (f64, f64) {
         unsafe {
-            let mut x = mem::MaybeUninit::uninit();
-            let mut y = mem::MaybeUninit::uninit();
+            let mut x = std::mem::MaybeUninit::uninit();
+            let mut y = std::mem::MaybeUninit::uninit();
             ffi::gtk_native_get_surface_transform(
                 self.as_ref().to_glib_none().0,
                 x.as_mut_ptr(),
@@ -72,12 +62,14 @@ impl<O: IsA<Native>> NativeExt for O {
         }
     }
 
+    #[doc(alias = "gtk_native_realize")]
     fn realize(&self) {
         unsafe {
             ffi::gtk_native_realize(self.as_ref().to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_native_unrealize")]
     fn unrealize(&self) {
         unsafe {
             ffi::gtk_native_unrealize(self.as_ref().to_glib_none().0);
@@ -85,8 +77,4 @@ impl<O: IsA<Native>> NativeExt for O {
     }
 }
 
-impl fmt::Display for Native {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("Native")
-    }
-}
+impl<O: IsA<Native>> NativeExt for O {}

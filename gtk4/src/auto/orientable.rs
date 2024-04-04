@@ -8,7 +8,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GtkOrientable")]
@@ -23,19 +23,14 @@ impl Orientable {
     pub const NONE: Option<&'static Orientable> = None;
 }
 
-pub trait OrientableExt: 'static {
-    #[doc(alias = "gtk_orientable_get_orientation")]
-    #[doc(alias = "get_orientation")]
-    fn orientation(&self) -> Orientation;
-
-    #[doc(alias = "gtk_orientable_set_orientation")]
-    fn set_orientation(&self, orientation: Orientation);
-
-    #[doc(alias = "orientation")]
-    fn connect_orientation_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::Orientable>> Sealed for T {}
 }
 
-impl<O: IsA<Orientable>> OrientableExt for O {
+pub trait OrientableExt: IsA<Orientable> + sealed::Sealed + 'static {
+    #[doc(alias = "gtk_orientable_get_orientation")]
+    #[doc(alias = "get_orientation")]
     fn orientation(&self) -> Orientation {
         unsafe {
             from_glib(ffi::gtk_orientable_get_orientation(
@@ -44,6 +39,7 @@ impl<O: IsA<Orientable>> OrientableExt for O {
         }
     }
 
+    #[doc(alias = "gtk_orientable_set_orientation")]
     fn set_orientation(&self, orientation: Orientation) {
         unsafe {
             ffi::gtk_orientable_set_orientation(
@@ -53,6 +49,7 @@ impl<O: IsA<Orientable>> OrientableExt for O {
         }
     }
 
+    #[doc(alias = "orientation")]
     fn connect_orientation_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_orientation_trampoline<
             P: IsA<Orientable>,
@@ -70,7 +67,7 @@ impl<O: IsA<Orientable>> OrientableExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::orientation\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_orientation_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -79,8 +76,4 @@ impl<O: IsA<Orientable>> OrientableExt for O {
     }
 }
 
-impl fmt::Display for Orientable {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("Orientable")
-    }
-}
+impl<O: IsA<Orientable>> OrientableExt for O {}

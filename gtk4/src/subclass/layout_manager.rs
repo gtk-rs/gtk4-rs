@@ -3,12 +3,13 @@
 // rustdoc-stripper-ignore-next
 //! Traits intended for subclassing [`LayoutManager`](crate::LayoutManager).
 
+use glib::translate::*;
+use libc::c_int;
+
 use crate::{
     prelude::*, subclass::prelude::*, LayoutChild, LayoutManager, Orientation, SizeRequestMode,
     Widget,
 };
-use glib::translate::*;
-use libc::c_int;
 
 pub trait LayoutManagerImpl: LayoutManagerImplExt + ObjectImpl {
     fn allocate(&self, widget: &Widget, width: i32, height: i32, baseline: i32) {
@@ -47,29 +48,15 @@ pub trait LayoutManagerImpl: LayoutManagerImplExt + ObjectImpl {
     }
 }
 
-pub trait LayoutManagerImplExt: ObjectSubclass {
-    fn parent_allocate(&self, widget: &Widget, width: i32, height: i32, baseline: i32);
-
-    fn parent_create_layout_child(&self, widget: &Widget, for_child: &Widget) -> LayoutChild;
-
-    fn parent_request_mode(&self, widget: &Widget) -> SizeRequestMode;
-
-    fn parent_measure(
-        &self,
-        widget: &Widget,
-        orientation: Orientation,
-        for_size: i32,
-    ) -> (i32, i32, i32, i32);
-
-    fn parent_root(&self);
-
-    fn parent_unroot(&self);
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::LayoutManagerImplExt> Sealed for T {}
 }
 
-impl<T: LayoutManagerImpl> LayoutManagerImplExt for T {
+pub trait LayoutManagerImplExt: sealed::Sealed + ObjectSubclass {
     fn parent_allocate(&self, widget: &Widget, width: i32, height: i32, baseline: i32) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkLayoutManagerClass;
             if let Some(f) = (*parent_class).allocate {
                 f(
@@ -88,7 +75,7 @@ impl<T: LayoutManagerImpl> LayoutManagerImplExt for T {
 
     fn parent_create_layout_child(&self, widget: &Widget, for_child: &Widget) -> LayoutChild {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkLayoutManagerClass;
             let f = (*parent_class)
                 .create_layout_child
@@ -106,7 +93,7 @@ impl<T: LayoutManagerImpl> LayoutManagerImplExt for T {
 
     fn parent_request_mode(&self, widget: &Widget) -> SizeRequestMode {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkLayoutManagerClass;
             let f = (*parent_class)
                 .get_request_mode
@@ -128,7 +115,7 @@ impl<T: LayoutManagerImpl> LayoutManagerImplExt for T {
         for_size: i32,
     ) -> (i32, i32, i32, i32) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkLayoutManagerClass;
             let f = (*parent_class)
                 .measure
@@ -157,7 +144,7 @@ impl<T: LayoutManagerImpl> LayoutManagerImplExt for T {
 
     fn parent_root(&self) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkLayoutManagerClass;
             if let Some(f) = (*parent_class).root {
                 f(self
@@ -171,7 +158,7 @@ impl<T: LayoutManagerImpl> LayoutManagerImplExt for T {
 
     fn parent_unroot(&self) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkLayoutManagerClass;
             if let Some(f) = (*parent_class).unroot {
                 f(self
@@ -183,6 +170,8 @@ impl<T: LayoutManagerImpl> LayoutManagerImplExt for T {
         }
     }
 }
+
+impl<T: LayoutManagerImpl> LayoutManagerImplExt for T {}
 
 unsafe impl<T: LayoutManagerImpl> IsSubclassable<T> for LayoutManager {
     fn class_init(class: &mut glib::Class<Self>) {

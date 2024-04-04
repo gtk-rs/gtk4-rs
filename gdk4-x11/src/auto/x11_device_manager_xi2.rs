@@ -3,7 +3,6 @@
 // DO NOT EDIT
 
 use glib::{prelude::*, translate::*};
-use std::fmt;
 
 glib::wrapper! {
     #[doc(alias = "GdkX11DeviceManagerXI2")]
@@ -24,19 +23,19 @@ impl X11DeviceManagerXI2 {
     }
 
     pub fn display(&self) -> Option<gdk::Display> {
-        glib::ObjectExt::property(self, "display")
+        ObjectExt::property(self, "display")
     }
 
     pub fn major(&self) -> i32 {
-        glib::ObjectExt::property(self, "major")
+        ObjectExt::property(self, "major")
     }
 
     pub fn minor(&self) -> i32 {
-        glib::ObjectExt::property(self, "minor")
+        ObjectExt::property(self, "minor")
     }
 
     pub fn opcode(&self) -> i32 {
-        glib::ObjectExt::property(self, "opcode")
+        ObjectExt::property(self, "opcode")
     }
 }
 
@@ -85,11 +84,5 @@ impl X11DeviceManagerXI2Builder {
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> X11DeviceManagerXI2 {
         self.builder.build()
-    }
-}
-
-impl fmt::Display for X11DeviceManagerXI2 {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("X11DeviceManagerXI2")
     }
 }

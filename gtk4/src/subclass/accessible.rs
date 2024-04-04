@@ -1,11 +1,14 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
 // rustdoc-stripper-ignore-next
-//! Traits intended for implementing the [`Accessible`](crate::Accessible) interface.
+//! Traits intended for implementing the [`Accessible`](crate::Accessible)
+//! interface.
+
+use std::mem::MaybeUninit;
+
+use glib::translate::*;
 
 use crate::{prelude::*, subclass::prelude::*, ATContext, Accessible, AccessiblePlatformState};
-use glib::translate::*;
-use std::mem::MaybeUninit;
 
 pub trait AccessibleImpl: ObjectImpl {
     #[doc(alias = "get_platform_state")]
@@ -39,16 +42,12 @@ pub trait AccessibleImpl: ObjectImpl {
     }
 }
 
-pub trait AccessibleImplExt: ObjectSubclass {
-    fn parent_platform_state(&self, state: AccessiblePlatformState) -> bool;
-    fn parent_bounds(&self) -> Option<(i32, i32, i32, i32)>;
-    fn parent_at_context(&self) -> Option<ATContext>;
-    fn parent_accessible_parent(&self) -> Option<Accessible>;
-    fn parent_first_accessible_child(&self) -> Option<Accessible>;
-    fn parent_next_accessible_sibling(&self) -> Option<Accessible>;
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::AccessibleImplExt> Sealed for T {}
 }
 
-impl<T: AccessibleImpl> AccessibleImplExt for T {
+pub trait AccessibleImplExt: sealed::Sealed + ObjectSubclass {
     fn parent_platform_state(&self, state: AccessiblePlatformState) -> bool {
         unsafe {
             let type_data = Self::type_data();
@@ -164,6 +163,8 @@ impl<T: AccessibleImpl> AccessibleImplExt for T {
         }
     }
 }
+
+impl<T: AccessibleImpl> AccessibleImplExt for T {}
 
 unsafe impl<T: AccessibleImpl> IsImplementable<T> for Accessible {
     fn interface_init(iface: &mut glib::Interface<Self>) {

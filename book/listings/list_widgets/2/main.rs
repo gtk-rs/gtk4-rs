@@ -23,11 +23,10 @@ fn main() -> glib::ExitCode {
 fn build_ui(app: &Application) {
     // ANCHOR: model
     // Create a `Vec<IntegerObject>` with numbers from 0 to 100_000
-    let vector: Vec<IntegerObject> =
-        (0..=100_000).into_iter().map(IntegerObject::new).collect();
+    let vector: Vec<IntegerObject> = (0..=100_000).map(IntegerObject::new).collect();
 
     // Create new model
-    let model = gio::ListStore::new(IntegerObject::static_type());
+    let model = gio::ListStore::new::<IntegerObject>();
 
     // Add the vector to the model
     model.extend_from_slice(&vector);
@@ -54,9 +53,6 @@ fn build_ui(app: &Application) {
             .and_downcast::<IntegerObject>()
             .expect("The item has to be an `IntegerObject`.");
 
-        // Get `i32` from `IntegerObject`
-        let number = integer_object.property::<i32>("number");
-
         // Get `Label` from `ListItem`
         let label = list_item
             .downcast_ref::<ListItem>()
@@ -66,7 +62,7 @@ fn build_ui(app: &Application) {
             .expect("The child has to be a `Label`.");
 
         // Set "label" to "number"
-        label.set_label(&number.to_string());
+        label.set_label(&integer_object.number().to_string());
     });
     // ANCHOR_END: factory_bind
 

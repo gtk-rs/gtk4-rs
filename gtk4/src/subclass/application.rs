@@ -7,7 +7,7 @@ use glib::translate::*;
 
 use crate::{prelude::*, subclass::prelude::*, Application, Window};
 
-pub trait GtkApplicationImpl: ObjectImpl + GtkApplicationImplExt + ApplicationImpl {
+pub trait GtkApplicationImpl: GtkApplicationImplExt + ApplicationImpl {
     fn window_added(&self, window: &Window) {
         self.parent_window_added(window)
     }
@@ -17,15 +17,15 @@ pub trait GtkApplicationImpl: ObjectImpl + GtkApplicationImplExt + ApplicationIm
     }
 }
 
-pub trait GtkApplicationImplExt: ObjectSubclass {
-    fn parent_window_added(&self, window: &Window);
-    fn parent_window_removed(&self, window: &Window);
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::GtkApplicationImplExt> Sealed for T {}
 }
 
-impl<T: GtkApplicationImpl> GtkApplicationImplExt for T {
+pub trait GtkApplicationImplExt: sealed::Sealed + ObjectSubclass {
     fn parent_window_added(&self, window: &Window) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkApplicationClass;
             if let Some(f) = (*parent_class).window_added {
                 f(
@@ -38,7 +38,7 @@ impl<T: GtkApplicationImpl> GtkApplicationImplExt for T {
 
     fn parent_window_removed(&self, window: &Window) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkApplicationClass;
             if let Some(f) = (*parent_class).window_removed {
                 f(
@@ -50,6 +50,8 @@ impl<T: GtkApplicationImpl> GtkApplicationImplExt for T {
     }
 }
 
+impl<T: GtkApplicationImpl> GtkApplicationImplExt for T {}
+
 unsafe impl<T: GtkApplicationImpl> IsSubclassable<T> for Application {
     fn class_init(class: &mut ::glib::Class<Self>) {
         // Override the original `GtkApplication` startup implementation so that
@@ -57,8 +59,8 @@ unsafe impl<T: GtkApplicationImpl> IsSubclassable<T> for Application {
         {
             use std::sync;
 
-            // Needed because the function pointer is not `Send+Sync` otherwise but has to be to be
-            // stored in a `static mut`.
+            // Needed because the function pointer is not `Send+Sync` otherwise but has to
+            // be to be stored in a `static mut`.
             struct WrapFn(unsafe extern "C" fn(*mut gio::ffi::GApplication));
             unsafe impl Send for WrapFn {}
             unsafe impl Sync for WrapFn {}
@@ -67,7 +69,8 @@ unsafe impl<T: GtkApplicationImpl> IsSubclassable<T> for Application {
             static mut OLD_STARTUP: Option<WrapFn> = None;
 
             // One the very first call replace the original `GtkApplication` startup with a
-            // function that first calls the original one and then marks gtk-rs as initialized.
+            // function that first calls the original one and then marks gtk-rs as
+            // initialized.
             ONCE.call_once(|| unsafe {
                 let base_klass =
                     glib::gobject_ffi::g_type_class_ref(ffi::gtk_application_get_type());

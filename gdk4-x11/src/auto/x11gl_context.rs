@@ -2,8 +2,6 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use std::fmt;
-
 glib::wrapper! {
     #[doc(alias = "GdkX11GLContext")]
     pub struct X11GLContext(Object<ffi::GdkX11GLContext, ffi::GdkX11GLContextClass>) @extends gdk::GLContext, gdk::DrawContext;
@@ -14,9 +12,3 @@ glib::wrapper! {
 }
 
 impl X11GLContext {}
-
-impl fmt::Display for X11GLContext {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("X11GLContext")
-    }
-}

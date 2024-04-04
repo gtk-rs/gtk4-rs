@@ -1,6 +1,7 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use glib::{translate::*, value::*, GString, IntoGStr, Type, Value};
+use crate::prelude::*;
+use glib::{translate::*, value::FromValue, GString, Type, Value};
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
 // rustdoc-stripper-ignore-next
@@ -4676,8 +4677,9 @@ unsafe impl<'a> FromValue<'a> for Key {
     #[inline]
     unsafe fn from_value(value: &'a Value) -> Self {
         let res: u32 = glib::gobject_ffi::g_value_get_uint(value.to_glib_none().0);
-        // As most of gdk_keyval_ apis don't really do any check for the input value (the key number)
-        // other than gdk_keyval_from_name, it is safe to not do any checks and assume people will not mis-use it
+        // As most of gdk_keyval_ apis don't really do any check for the input value
+        // (the key number) other than gdk_keyval_from_name, it is safe to not
+        // do any checks and assume people will not mis-use it
         Key::from_glib(res)
     }
 }
@@ -4707,7 +4709,7 @@ impl From<Key> for Value {
 }
 
 // TODO: Drop once https://github.com/gtk-rs/gtk-rs-core/issues/612
-impl glib::StaticType for Key {
+impl StaticType for Key {
     #[inline]
     fn static_type() -> Type {
         Type::U32

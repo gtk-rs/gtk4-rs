@@ -4,7 +4,6 @@
 
 use crate::Widget;
 use glib::{prelude::*, translate::*};
-use std::fmt;
 
 glib::wrapper! {
     #[doc(alias = "GtkTooltip")]
@@ -75,11 +74,5 @@ impl Tooltip {
         unsafe {
             ffi::gtk_tooltip_set_tip_area(self.to_glib_none().0, rect.to_glib_none().0);
         }
-    }
-}
-
-impl fmt::Display for Tooltip {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("Tooltip")
     }
 }

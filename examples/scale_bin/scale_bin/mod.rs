@@ -3,12 +3,12 @@ mod imp;
 use gtk::glib;
 
 glib::wrapper! {
-    pub struct ScaleBin(ObjectSubclass<imp::ScaleBin>) @extends gtk::Widget;
+    pub struct ScaleBin(ObjectSubclass<imp::ScaleBin>)
+        @extends gtk::Widget;
 }
 
-impl ScaleBin {
-    #[allow(clippy::new_without_default)]
-    pub fn new() -> Self {
+impl Default for ScaleBin {
+    fn default() -> Self {
         glib::Object::new()
     }
 }

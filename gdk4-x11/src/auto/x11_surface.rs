@@ -3,7 +3,6 @@
 // DO NOT EDIT
 
 use glib::{prelude::*, translate::*};
-use std::fmt;
 
 glib::wrapper! {
     #[doc(alias = "GdkX11Surface")]
@@ -108,11 +107,5 @@ impl X11Surface {
                 value.to_glib_none().0,
             );
         }
-    }
-}
-
-impl fmt::Display for X11Surface {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("X11Surface")
     }
 }

@@ -4,7 +4,6 @@
 
 use crate::ShortcutTrigger;
 use glib::translate::*;
-use std::fmt;
 
 glib::wrapper! {
     #[doc(alias = "GtkNeverTrigger")]
@@ -20,11 +19,5 @@ impl NeverTrigger {
     pub fn get() -> NeverTrigger {
         assert_initialized_main_thread!();
         unsafe { from_glib_none(ffi::gtk_never_trigger_get()) }
-    }
-}
-
-impl fmt::Display for NeverTrigger {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("NeverTrigger")
     }
 }

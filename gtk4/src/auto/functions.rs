@@ -2,8 +2,8 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-#[cfg(any(target_os = "linux", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(target_os = "linux")))]
+#[cfg(target_os = "linux")]
+#[cfg_attr(docsrs, doc(cfg(target_os = "linux")))]
 use crate::Printer;
 use crate::{
     Accessible, AccessibleProperty, AccessibleRelation, AccessibleRole, AccessibleState,
@@ -11,7 +11,7 @@ use crate::{
     Window,
 };
 use glib::{prelude::*, translate::*};
-use std::{boxed::Box as Box_, mem, ptr};
+use std::boxed::Box as Box_;
 
 #[doc(alias = "gtk_accelerator_get_default_mod_mask")]
 pub fn accelerator_get_default_mod_mask() -> gdk::ModifierType {
@@ -48,8 +48,8 @@ pub fn disable_setlocale() {
 //    unsafe { TODO: call ffi:gtk_distribute_natural_allocation() }
 //}
 
-#[cfg(any(target_os = "linux", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(target_os = "linux")))]
+#[cfg(target_os = "linux")]
+#[cfg_attr(docsrs, doc(cfg(target_os = "linux")))]
 #[doc(alias = "gtk_enumerate_printers")]
 pub fn enumerate_printers<P: Fn(&Printer) -> bool + Send + Sync + 'static>(func: P, wait: bool) {
     assert_initialized_main_thread!();
@@ -59,14 +59,14 @@ pub fn enumerate_printers<P: Fn(&Printer) -> bool + Send + Sync + 'static>(func:
         data: glib::ffi::gpointer,
     ) -> glib::ffi::gboolean {
         let printer = from_glib_borrow(printer);
-        let callback: &P = &*(data as *mut _);
+        let callback = &*(data as *mut P);
         (*callback)(&printer).into_glib()
     }
     let func = Some(func_func::<P> as _);
     unsafe extern "C" fn destroy_func<P: Fn(&Printer) -> bool + Send + Sync + 'static>(
         data: glib::ffi::gpointer,
     ) {
-        let _callback: Box_<P> = Box_::from_raw(data as *mut _);
+        let _callback = Box_::from_raw(data as *mut P);
     }
     let destroy_call2 = Some(destroy_func::<P> as _);
     let super_callback0: Box_<P> = func_data;
@@ -140,9 +140,9 @@ pub fn minor_version() -> u32 {
 pub fn hsv_to_rgb(h: f32, s: f32, v: f32) -> (f32, f32, f32) {
     assert_initialized_main_thread!();
     unsafe {
-        let mut r = mem::MaybeUninit::uninit();
-        let mut g = mem::MaybeUninit::uninit();
-        let mut b = mem::MaybeUninit::uninit();
+        let mut r = std::mem::MaybeUninit::uninit();
+        let mut g = std::mem::MaybeUninit::uninit();
+        let mut b = std::mem::MaybeUninit::uninit();
         ffi::gtk_hsv_to_rgb(h, s, v, r.as_mut_ptr(), g.as_mut_ptr(), b.as_mut_ptr());
         (r.assume_init(), g.assume_init(), b.assume_init())
     }
@@ -178,7 +178,7 @@ pub fn print_run_page_setup_dialog_async<P: FnOnce(&PageSetup) + Send + Sync + '
         data: glib::ffi::gpointer,
     ) {
         let page_setup = from_glib_borrow(page_setup);
-        let callback: Box_<P> = Box_::from_raw(data as *mut _);
+        let callback = Box_::from_raw(data as *mut P);
         (*callback)(&page_setup)
     }
     let done_cb = Some(done_cb_func::<P> as _);
@@ -482,9 +482,9 @@ pub fn render_option(
 pub fn rgb_to_hsv(r: f32, g: f32, b: f32) -> (f32, f32, f32) {
     assert_initialized_main_thread!();
     unsafe {
-        let mut h = mem::MaybeUninit::uninit();
-        let mut s = mem::MaybeUninit::uninit();
-        let mut v = mem::MaybeUninit::uninit();
+        let mut h = std::mem::MaybeUninit::uninit();
+        let mut s = std::mem::MaybeUninit::uninit();
+        let mut v = std::mem::MaybeUninit::uninit();
         ffi::gtk_rgb_to_hsv(r, g, b, h.as_mut_ptr(), s.as_mut_ptr(), v.as_mut_ptr());
         (h.assume_init(), s.assume_init(), v.assume_init())
     }
@@ -636,8 +636,8 @@ pub fn tree_get_row_drag_data(
 ) -> Option<(Option<TreeModel>, Option<TreePath>)> {
     assert_initialized_main_thread!();
     unsafe {
-        let mut tree_model = ptr::null_mut();
-        let mut path = ptr::null_mut();
+        let mut tree_model = std::ptr::null_mut();
+        let mut path = std::ptr::null_mut();
         let ret = from_glib(ffi::gtk_tree_get_row_drag_data(
             value.to_glib_none().0,
             &mut tree_model,

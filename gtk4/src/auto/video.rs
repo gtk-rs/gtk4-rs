@@ -2,6 +2,9 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+use crate::GraphicsOffloadEnabled;
 use crate::{
     Accessible, AccessibleRole, Align, Buildable, ConstraintTarget, LayoutManager, MediaStream,
     Overflow, Widget,
@@ -11,7 +14,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GtkVideo")]
@@ -97,6 +100,14 @@ impl Video {
         unsafe { from_glib_none(ffi::gtk_video_get_file(self.to_glib_none().0)) }
     }
 
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    #[doc(alias = "gtk_video_get_graphics_offload")]
+    #[doc(alias = "get_graphics_offload")]
+    pub fn graphics_offload(&self) -> GraphicsOffloadEnabled {
+        unsafe { from_glib(ffi::gtk_video_get_graphics_offload(self.to_glib_none().0)) }
+    }
+
     #[doc(alias = "gtk_video_get_loop")]
     #[doc(alias = "get_loop")]
     pub fn is_loop(&self) -> bool {
@@ -133,6 +144,15 @@ impl Video {
                 self.to_glib_none().0,
                 filename.as_ref().map(|p| p.as_ref()).to_glib_none().0,
             );
+        }
+    }
+
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    #[doc(alias = "gtk_video_set_graphics_offload")]
+    pub fn set_graphics_offload(&self, enabled: GraphicsOffloadEnabled) {
+        unsafe {
+            ffi::gtk_video_set_graphics_offload(self.to_glib_none().0, enabled.into_glib());
         }
     }
 
@@ -175,7 +195,7 @@ impl Video {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::autoplay\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_autoplay_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -198,8 +218,33 @@ impl Video {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::file\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_file_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    #[doc(alias = "graphics-offload")]
+    pub fn connect_graphics_offload_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_graphics_offload_trampoline<F: Fn(&Video) + 'static>(
+            this: *mut ffi::GtkVideo,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::graphics-offload\0".as_ptr() as *const _,
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                    notify_graphics_offload_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -221,7 +266,7 @@ impl Video {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::loop\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_loop_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -244,7 +289,7 @@ impl Video {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::media-stream\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_media_stream_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -284,6 +329,14 @@ impl VideoBuilder {
     pub fn file(self, file: &impl IsA<gio::File>) -> Self {
         Self {
             builder: self.builder.property("file", file.clone().upcast()),
+        }
+    }
+
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn graphics_offload(self, graphics_offload: GraphicsOffloadEnabled) -> Self {
+        Self {
+            builder: self.builder.property("graphics-offload", graphics_offload),
         }
     }
 
@@ -490,11 +543,5 @@ impl VideoBuilder {
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> Video {
         self.builder.build()
-    }
-}
-
-impl fmt::Display for Video {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("Video")
     }
 }

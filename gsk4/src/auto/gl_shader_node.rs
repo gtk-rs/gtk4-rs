@@ -3,8 +3,7 @@
 // DO NOT EDIT
 
 use crate::{GLShader, RenderNode};
-use glib::translate::*;
-use std::fmt;
+use glib::{prelude::*, translate::*};
 
 glib::wrapper! {
     #[doc(alias = "GskGLShaderNode")]
@@ -16,7 +15,7 @@ glib::wrapper! {
     }
 }
 
-impl glib::StaticType for GLShaderNode {
+impl StaticType for GLShaderNode {
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gsk_gl_shader_node_get_type()) }
     }
@@ -59,11 +58,5 @@ impl GLShaderNode {
     #[doc(alias = "get_shader")]
     pub fn shader(&self) -> GLShader {
         unsafe { from_glib_none(ffi::gsk_gl_shader_node_get_shader(self.to_glib_none().0)) }
-    }
-}
-
-impl fmt::Display for GLShaderNode {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("GLShaderNode")
     }
 }

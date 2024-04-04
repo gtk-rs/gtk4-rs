@@ -3,8 +3,7 @@
 // DO NOT EDIT
 
 use crate::RenderNode;
-use glib::translate::*;
-use std::fmt;
+use glib::{prelude::*, translate::*};
 
 glib::wrapper! {
     #[doc(alias = "GskContainerNode")]
@@ -16,7 +15,7 @@ glib::wrapper! {
     }
 }
 
-impl glib::StaticType for ContainerNode {
+impl StaticType for ContainerNode {
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gsk_container_node_get_type()) }
     }
@@ -39,11 +38,5 @@ impl ContainerNode {
     #[doc(alias = "get_n_children")]
     pub fn n_children(&self) -> u32 {
         unsafe { ffi::gsk_container_node_get_n_children(self.to_glib_none().0) }
-    }
-}
-
-impl fmt::Display for ContainerNode {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("ContainerNode")
     }
 }

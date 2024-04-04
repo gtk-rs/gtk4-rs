@@ -1,12 +1,14 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
 // rustdoc-stripper-ignore-next
-//! Traits intended for implementing the [`Editable`](crate::Editable) interface.
+//! Traits intended for implementing the [`Editable`](crate::Editable)
+//! interface.
+use std::sync::OnceLock;
 
-use crate::{prelude::*, subclass::prelude::*, Editable};
 use glib::{translate::*, GString, Quark};
 use libc::{c_char, c_int};
-use once_cell::sync::Lazy;
+
+use crate::{prelude::*, subclass::prelude::*, Editable};
 
 pub trait EditableImpl: WidgetImpl {
     fn insert_text(&self, text: &str, length: i32, position: &mut i32) {
@@ -49,7 +51,12 @@ pub trait EditableImpl: WidgetImpl {
     }
 }
 
-pub trait EditableImplExt: ObjectSubclass {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::EditableImplExt> Sealed for T {}
+}
+
+pub trait EditableImplExt: sealed::Sealed + ObjectSubclass {
     #[doc(alias = "gtk_editable_delegate_get_property")]
     fn delegate_get_property(
         &self,
@@ -95,18 +102,6 @@ pub trait EditableImplExt: ObjectSubclass {
         }
     }
 
-    fn parent_insert_text(&self, text: &str, length: i32, position: &mut i32);
-    fn parent_delete_text(&self, start_position: i32, end_position: i32);
-    fn parent_changed(&self);
-    fn parent_do_insert_text(&self, text: &str, length: i32, position: &mut i32);
-    fn parent_do_delete_text(&self, start_position: i32, end_position: i32);
-    fn parent_delegate(&self) -> Option<Editable>;
-    fn parent_selection_bounds(&self) -> Option<(i32, i32)>;
-    fn parent_set_selection_bounds(&self, start_position: i32, end_position: i32);
-    fn parent_text(&self) -> GString;
-}
-
-impl<T: EditableImpl> EditableImplExt for T {
     fn parent_insert_text(&self, text: &str, length: i32, position: &mut i32) {
         unsafe {
             let type_data = Self::type_data();
@@ -252,6 +247,8 @@ impl<T: EditableImpl> EditableImplExt for T {
     }
 }
 
+impl<T: EditableImpl> EditableImplExt for T {}
+
 unsafe impl<T: EditableImpl + ObjectSubclass> IsImplementable<T> for Editable {
     fn interface_init(iface: &mut glib::Interface<Self>) {
         let instance_type = iface.instance_type();
@@ -323,9 +320,6 @@ unsafe extern "C" fn editable_get_text<T: EditableImpl>(
     imp.text().into_glib_ptr()
 }
 
-static EDITABLE_GET_DELEGATE_QUARK: Lazy<Quark> =
-    Lazy::new(|| Quark::from_str("gtk-rs-subclass-editable-get-delegate"));
-
 unsafe extern "C" fn editable_get_delegate<T: EditableImpl>(
     editable: *mut ffi::GtkEditable,
 ) -> *mut ffi::GtkEditable {
@@ -334,10 +328,10 @@ unsafe extern "C" fn editable_get_delegate<T: EditableImpl>(
 
     let delegate = imp.delegate();
 
-    match imp
-        .obj()
-        .qdata::<Option<Editable>>(*EDITABLE_GET_DELEGATE_QUARK)
-    {
+    static QUARK: OnceLock<Quark> = OnceLock::new();
+    let quark = *QUARK.get_or_init(|| Quark::from_str("gtk-rs-subclass-editable-get-delegate"));
+
+    match imp.obj().qdata::<Option<Editable>>(quark) {
         Some(delegate_data) => {
             assert_eq!(
                 delegate_data.as_ref(),
@@ -346,8 +340,7 @@ unsafe extern "C" fn editable_get_delegate<T: EditableImpl>(
             );
         }
         None => {
-            imp.obj()
-                .set_qdata(*EDITABLE_GET_DELEGATE_QUARK, delegate.clone());
+            imp.obj().set_qdata(quark, delegate.clone());
         }
     };
     delegate.to_glib_none().0

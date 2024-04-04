@@ -5,11 +5,11 @@ For example, if we press on a button, the "clicked" signal will be emitted.
 The signal then takes care that all the registered callbacks will be executed.
 
 `gtk-rs` provides convenience methods for registering callbacks.
-In our "Hello World" example we [connected](../docs/gtk4/prelude/trait.ButtonExt.html#tymethod.connect_clicked) the "clicked" signal to a closure which sets the label of the button to "Hello World" as soon as it gets called.
+In our "Hello World" example we [connected](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/prelude/trait.ButtonExt.html#tymethod.connect_clicked) the "clicked" signal to a closure which sets the label of the button to "Hello World" as soon as it gets called.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/hello_world/3/main.rs">listings/hello_world/3/main.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/hello_world/3/main.rs:callback}}
 ```
 
@@ -17,11 +17,11 @@ If we wanted to, we could have connected to it with the generic [`connect_closur
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_signals/1/main.rs">listings/g_object_signals/1/main.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/g_object_signals/1/main.rs:callback}}
 ```
 
-Similar to the generic way of accessing properties, the advantage of `connect_closure` is that it also works with custom signals.
+The advantage of `connect_closure` is that it also works with custom signals.
 
 > If you need to clone reference counted objects into your closure you don't have to wrap it within another `clone!` macro.
 > `closure_local!` accepts the same syntax for creating strong/weak references, plus a [watch](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/macro.closure.html#object-watching) feature that automatically disconnects the closure once the watched object is dropped. 
@@ -30,11 +30,13 @@ Similar to the generic way of accessing properties, the advantage of `connect_cl
 
 Let's see how we can create our own signals.
 Again we do that by extending our `CustomButton`.
-First we override the necessary methods in `ObjectImpl`.
+First we override the `signals` method in `ObjectImpl`.
+In order to do that, we need to lazily initialize a static item `SIGNALS`.
+[`std::sync::OnceLock`](https://doc.rust-lang.org/std/sync/struct.OnceLock.html) ensures that `SIGNALS` will only be initialized once.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_signals/2/custom_button/imp.rs">listings/g_object_signals/2/custom_button/imp.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/g_object_signals/2/custom_button/imp.rs:object_impl}}
 ```
 
@@ -49,7 +51,7 @@ After we did that, we set `number` back to 0.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_signals/2/custom_button/imp.rs">listings/g_object_signals/2/custom_button/imp.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/g_object_signals/2/custom_button/imp.rs:button_impl}}
 ```
 
@@ -59,7 +61,7 @@ Whenever we now receive the "max-number-reached" signal, the accompanying number
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_signals/2/main.rs">listings/g_object_signals/2/main.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/g_object_signals/2/main.rs:signal_handling}}
 ```
 

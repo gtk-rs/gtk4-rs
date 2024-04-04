@@ -3,8 +3,8 @@
 // DO NOT EDIT
 #![allow(deprecated)]
 
-#[cfg(any(feature = "v4_8", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+#[cfg(feature = "v4_8")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
 use crate::ContentFit;
 use crate::{
     Accessible, AccessibleRole, Align, Buildable, ConstraintTarget, LayoutManager, Overflow, Widget,
@@ -14,7 +14,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GtkPicture")]
@@ -68,6 +68,8 @@ impl Picture {
         }
     }
 
+    #[cfg_attr(feature = "v4_12", deprecated = "Since 4.12")]
+    #[allow(deprecated)]
     #[doc(alias = "gtk_picture_new_for_pixbuf")]
     #[doc(alias = "new_for_pixbuf")]
     pub fn for_pixbuf(pixbuf: &gdk_pixbuf::Pixbuf) -> Picture {
@@ -110,8 +112,8 @@ impl Picture {
         unsafe { from_glib(ffi::gtk_picture_get_can_shrink(self.to_glib_none().0)) }
     }
 
-    #[cfg(any(feature = "v4_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    #[cfg(feature = "v4_8")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     #[doc(alias = "gtk_picture_get_content_fit")]
     #[doc(alias = "get_content_fit")]
     pub fn content_fit(&self) -> ContentFit {
@@ -159,8 +161,8 @@ impl Picture {
         }
     }
 
-    #[cfg(any(feature = "v4_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    #[cfg(feature = "v4_8")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     #[doc(alias = "gtk_picture_set_content_fit")]
     pub fn set_content_fit(&self, content_fit: ContentFit) {
         unsafe {
@@ -210,6 +212,8 @@ impl Picture {
         }
     }
 
+    #[cfg_attr(feature = "v4_12", deprecated = "Since 4.12")]
+    #[allow(deprecated)]
     #[doc(alias = "gtk_picture_set_pixbuf")]
     pub fn set_pixbuf(&self, pixbuf: Option<&gdk_pixbuf::Pixbuf>) {
         unsafe {
@@ -239,7 +243,7 @@ impl Picture {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::alternative-text\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_alternative_text_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -262,7 +266,7 @@ impl Picture {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::can-shrink\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_can_shrink_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -270,8 +274,8 @@ impl Picture {
         }
     }
 
-    #[cfg(any(feature = "v4_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    #[cfg(feature = "v4_8")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     #[doc(alias = "content-fit")]
     pub fn connect_content_fit_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_content_fit_trampoline<F: Fn(&Picture) + 'static>(
@@ -287,7 +291,7 @@ impl Picture {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::content-fit\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_content_fit_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -310,7 +314,7 @@ impl Picture {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::file\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_file_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -337,7 +341,7 @@ impl Picture {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::keep-aspect-ratio\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_keep_aspect_ratio_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -360,7 +364,7 @@ impl Picture {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::paintable\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_paintable_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -405,8 +409,8 @@ impl PictureBuilder {
         }
     }
 
-    #[cfg(any(feature = "v4_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    #[cfg(feature = "v4_8")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     pub fn content_fit(self, content_fit: ContentFit) -> Self {
         Self {
             builder: self.builder.property("content-fit", content_fit),
@@ -625,11 +629,5 @@ impl PictureBuilder {
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> Picture {
         self.builder.build()
-    }
-}
-
-impl fmt::Display for Picture {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("Picture")
     }
 }

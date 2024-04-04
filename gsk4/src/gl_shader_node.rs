@@ -1,7 +1,8 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{GLShaderNode, RenderNode, RenderNodeType};
 use glib::translate::*;
+
+use crate::{GLShaderNode, RenderNode, RenderNodeType};
 
 define_render_node!(
     GLShaderNode,

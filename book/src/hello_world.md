@@ -2,13 +2,13 @@
 
 Now that we've got a working installation, let's get right into it!
 
-At the very least, we need to create a [`gtk::Application`](../docs/gtk4/struct.Application.html) instance with an [application id](https://developer.gnome.org/documentation/tutorials/application-id.html).
+At the very least, we need to create a [`gtk::Application`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.Application.html) instance with an [application id](https://developer.gnome.org/documentation/tutorials/application-id.html).
 For that we use the [builder pattern](https://rust-unofficial.github.io/patterns/patterns/creational/builder.html) which many `gtk-rs` objects support.
 Note that we also import the prelude to bring the necessary traits into scope.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/hello_world/1/main.rs">listings/hello_world/1/main.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/hello_world/1/main.rs}}
 ```
 
@@ -20,11 +20,11 @@ and has no handlers connected to the 'activate' signal. It should do one of thes
 ```
 
 GTK tells us that something should be called in its `activate` step.
-So let's create a [`gtk::ApplicationWindow`](../docs/gtk4/struct.ApplicationWindow.html) there.
+So let's create a [`gtk::ApplicationWindow`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.ApplicationWindow.html) there.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/hello_world/2/main.rs">listings/hello_world/2/main.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/hello_world/2/main.rs}}
 ```
 That is better!
@@ -36,7 +36,7 @@ Also, the name of the chapter suggests that the phrase "Hello World!" will be in
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/hello_world/3/main.rs">listings/hello_world/3/main.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/hello_world/3/main.rs:build_ui}}
 ```
 

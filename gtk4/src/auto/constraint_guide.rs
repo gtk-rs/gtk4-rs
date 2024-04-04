@@ -8,7 +8,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GtkConstraintGuide")]
@@ -87,62 +87,62 @@ impl ConstraintGuide {
 
     #[doc(alias = "max-height")]
     pub fn max_height(&self) -> i32 {
-        glib::ObjectExt::property(self, "max-height")
+        ObjectExt::property(self, "max-height")
     }
 
     #[doc(alias = "max-height")]
     pub fn set_max_height(&self, max_height: i32) {
-        glib::ObjectExt::set_property(self, "max-height", max_height)
+        ObjectExt::set_property(self, "max-height", max_height)
     }
 
     #[doc(alias = "max-width")]
     pub fn max_width(&self) -> i32 {
-        glib::ObjectExt::property(self, "max-width")
+        ObjectExt::property(self, "max-width")
     }
 
     #[doc(alias = "max-width")]
     pub fn set_max_width(&self, max_width: i32) {
-        glib::ObjectExt::set_property(self, "max-width", max_width)
+        ObjectExt::set_property(self, "max-width", max_width)
     }
 
     #[doc(alias = "min-height")]
     pub fn min_height(&self) -> i32 {
-        glib::ObjectExt::property(self, "min-height")
+        ObjectExt::property(self, "min-height")
     }
 
     #[doc(alias = "min-height")]
     pub fn set_min_height(&self, min_height: i32) {
-        glib::ObjectExt::set_property(self, "min-height", min_height)
+        ObjectExt::set_property(self, "min-height", min_height)
     }
 
     #[doc(alias = "min-width")]
     pub fn min_width(&self) -> i32 {
-        glib::ObjectExt::property(self, "min-width")
+        ObjectExt::property(self, "min-width")
     }
 
     #[doc(alias = "min-width")]
     pub fn set_min_width(&self, min_width: i32) {
-        glib::ObjectExt::set_property(self, "min-width", min_width)
+        ObjectExt::set_property(self, "min-width", min_width)
     }
 
     #[doc(alias = "nat-height")]
     pub fn nat_height(&self) -> i32 {
-        glib::ObjectExt::property(self, "nat-height")
+        ObjectExt::property(self, "nat-height")
     }
 
     #[doc(alias = "nat-height")]
     pub fn set_nat_height(&self, nat_height: i32) {
-        glib::ObjectExt::set_property(self, "nat-height", nat_height)
+        ObjectExt::set_property(self, "nat-height", nat_height)
     }
 
     #[doc(alias = "nat-width")]
     pub fn nat_width(&self) -> i32 {
-        glib::ObjectExt::property(self, "nat-width")
+        ObjectExt::property(self, "nat-width")
     }
 
     #[doc(alias = "nat-width")]
     pub fn set_nat_width(&self, nat_width: i32) {
-        glib::ObjectExt::set_property(self, "nat-width", nat_width)
+        ObjectExt::set_property(self, "nat-width", nat_width)
     }
 
     #[doc(alias = "max-height")]
@@ -160,7 +160,7 @@ impl ConstraintGuide {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::max-height\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_max_height_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -183,7 +183,7 @@ impl ConstraintGuide {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::max-width\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_max_width_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -206,7 +206,7 @@ impl ConstraintGuide {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::min-height\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_min_height_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -229,7 +229,7 @@ impl ConstraintGuide {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::min-width\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_min_width_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -252,7 +252,7 @@ impl ConstraintGuide {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::name\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_name_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -275,7 +275,7 @@ impl ConstraintGuide {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::nat-height\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_nat_height_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -298,7 +298,7 @@ impl ConstraintGuide {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::nat-width\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_nat_width_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -321,7 +321,7 @@ impl ConstraintGuide {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::strength\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_strength_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -405,11 +405,5 @@ impl ConstraintGuideBuilder {
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> ConstraintGuide {
         self.builder.build()
-    }
-}
-
-impl fmt::Display for ConstraintGuide {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("ConstraintGuide")
     }
 }

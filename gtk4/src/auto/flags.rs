@@ -2,11 +2,10 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use bitflags::bitflags;
-use glib::{translate::*, value::FromValue, value::ToValue, StaticType, Type};
-use std::fmt;
+use glib::{bitflags::bitflags, prelude::*, translate::*};
 
 bitflags! {
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
     #[doc(alias = "GtkApplicationInhibitFlags")]
     pub struct ApplicationInhibitFlags: u32 {
         #[doc(alias = "GTK_APPLICATION_INHIBIT_LOGOUT")]
@@ -17,12 +16,6 @@ bitflags! {
         const SUSPEND = ffi::GTK_APPLICATION_INHIBIT_SUSPEND as _;
         #[doc(alias = "GTK_APPLICATION_INHIBIT_IDLE")]
         const IDLE = ffi::GTK_APPLICATION_INHIBIT_IDLE as _;
-    }
-}
-
-impl fmt::Display for ApplicationInhibitFlags {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        <Self as fmt::Debug>::fmt(self, f)
     }
 }
 
@@ -47,7 +40,8 @@ impl FromGlib<ffi::GtkApplicationInhibitFlags> for ApplicationInhibitFlags {
 
 impl StaticType for ApplicationInhibitFlags {
     #[inline]
-    fn static_type() -> Type {
+    #[doc(alias = "gtk_application_inhibit_flags_get_type")]
+    fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gtk_application_inhibit_flags_get_type()) }
     }
 }
@@ -58,7 +52,7 @@ impl glib::HasParamSpec for ApplicationInhibitFlags {
     type BuilderFn = fn(&str) -> glib::ParamSpecFlagsBuilder<Self>;
 
     fn param_spec_builder() -> Self::BuilderFn {
-        |name| Self::ParamSpec::builder(name)
+        Self::ParamSpec::builder
     }
 }
 
@@ -66,7 +60,7 @@ impl glib::value::ValueType for ApplicationInhibitFlags {
     type Type = Self;
 }
 
-unsafe impl<'a> FromValue<'a> for ApplicationInhibitFlags {
+unsafe impl<'a> glib::value::FromValue<'a> for ApplicationInhibitFlags {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
     #[inline]
@@ -101,16 +95,11 @@ impl From<ApplicationInhibitFlags> for glib::Value {
 }
 
 bitflags! {
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
     #[doc(alias = "GtkBuilderClosureFlags")]
     pub struct BuilderClosureFlags: u32 {
         #[doc(alias = "GTK_BUILDER_CLOSURE_SWAPPED")]
         const SWAPPED = ffi::GTK_BUILDER_CLOSURE_SWAPPED as _;
-    }
-}
-
-impl fmt::Display for BuilderClosureFlags {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        <Self as fmt::Debug>::fmt(self, f)
     }
 }
 
@@ -135,7 +124,8 @@ impl FromGlib<ffi::GtkBuilderClosureFlags> for BuilderClosureFlags {
 
 impl StaticType for BuilderClosureFlags {
     #[inline]
-    fn static_type() -> Type {
+    #[doc(alias = "gtk_builder_closure_flags_get_type")]
+    fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gtk_builder_closure_flags_get_type()) }
     }
 }
@@ -146,7 +136,7 @@ impl glib::HasParamSpec for BuilderClosureFlags {
     type BuilderFn = fn(&str) -> glib::ParamSpecFlagsBuilder<Self>;
 
     fn param_spec_builder() -> Self::BuilderFn {
-        |name| Self::ParamSpec::builder(name)
+        Self::ParamSpec::builder
     }
 }
 
@@ -154,7 +144,7 @@ impl glib::value::ValueType for BuilderClosureFlags {
     type Type = Self;
 }
 
-unsafe impl<'a> FromValue<'a> for BuilderClosureFlags {
+unsafe impl<'a> glib::value::FromValue<'a> for BuilderClosureFlags {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
     #[inline]
@@ -189,6 +179,7 @@ impl From<BuilderClosureFlags> for glib::Value {
 }
 
 bitflags! {
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
     #[doc(alias = "GtkCellRendererState")]
     pub struct CellRendererState: u32 {
         #[doc(alias = "GTK_CELL_RENDERER_SELECTED")]
@@ -205,12 +196,6 @@ bitflags! {
         const EXPANDABLE = ffi::GTK_CELL_RENDERER_EXPANDABLE as _;
         #[doc(alias = "GTK_CELL_RENDERER_EXPANDED")]
         const EXPANDED = ffi::GTK_CELL_RENDERER_EXPANDED as _;
-    }
-}
-
-impl fmt::Display for CellRendererState {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        <Self as fmt::Debug>::fmt(self, f)
     }
 }
 
@@ -235,7 +220,8 @@ impl FromGlib<ffi::GtkCellRendererState> for CellRendererState {
 
 impl StaticType for CellRendererState {
     #[inline]
-    fn static_type() -> Type {
+    #[doc(alias = "gtk_cell_renderer_state_get_type")]
+    fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gtk_cell_renderer_state_get_type()) }
     }
 }
@@ -246,7 +232,7 @@ impl glib::HasParamSpec for CellRendererState {
     type BuilderFn = fn(&str) -> glib::ParamSpecFlagsBuilder<Self>;
 
     fn param_spec_builder() -> Self::BuilderFn {
-        |name| Self::ParamSpec::builder(name)
+        Self::ParamSpec::builder
     }
 }
 
@@ -254,7 +240,7 @@ impl glib::value::ValueType for CellRendererState {
     type Type = Self;
 }
 
-unsafe impl<'a> FromValue<'a> for CellRendererState {
+unsafe impl<'a> glib::value::FromValue<'a> for CellRendererState {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
     #[inline]
@@ -289,6 +275,7 @@ impl From<CellRendererState> for glib::Value {
 }
 
 bitflags! {
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
     #[doc(alias = "GtkDebugFlags")]
     pub struct DebugFlags: u32 {
         #[doc(alias = "GTK_DEBUG_TEXT")]
@@ -313,8 +300,6 @@ bitflags! {
         const NO_CSS_CACHE = ffi::GTK_DEBUG_NO_CSS_CACHE as _;
         #[doc(alias = "GTK_DEBUG_INTERACTIVE")]
         const INTERACTIVE = ffi::GTK_DEBUG_INTERACTIVE as _;
-        #[doc(alias = "GTK_DEBUG_TOUCHSCREEN")]
-        const TOUCHSCREEN = ffi::GTK_DEBUG_TOUCHSCREEN as _;
         #[doc(alias = "GTK_DEBUG_ACTIONS")]
         const ACTIONS = ffi::GTK_DEBUG_ACTIONS as _;
         #[doc(alias = "GTK_DEBUG_LAYOUT")]
@@ -327,18 +312,14 @@ bitflags! {
         const BUILDER_OBJECTS = ffi::GTK_DEBUG_BUILDER_OBJECTS as _;
         #[doc(alias = "GTK_DEBUG_A11Y")]
         const A11Y = ffi::GTK_DEBUG_A11Y as _;
+        #[cfg(feature = "v4_2")]
+        #[cfg_attr(docsrs, doc(cfg(feature = "v4_2")))]
         #[doc(alias = "GTK_DEBUG_ICONFALLBACK")]
         const ICONFALLBACK = ffi::GTK_DEBUG_ICONFALLBACK as _;
-        #[cfg(any(feature = "v4_8", feature = "dox"))]
-        #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+        #[cfg(feature = "v4_8")]
+        #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
         #[doc(alias = "GTK_DEBUG_INVERT_TEXT_DIR")]
         const INVERT_TEXT_DIR = ffi::GTK_DEBUG_INVERT_TEXT_DIR as _;
-    }
-}
-
-impl fmt::Display for DebugFlags {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        <Self as fmt::Debug>::fmt(self, f)
     }
 }
 
@@ -363,7 +344,8 @@ impl FromGlib<ffi::GtkDebugFlags> for DebugFlags {
 
 impl StaticType for DebugFlags {
     #[inline]
-    fn static_type() -> Type {
+    #[doc(alias = "gtk_debug_flags_get_type")]
+    fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gtk_debug_flags_get_type()) }
     }
 }
@@ -374,7 +356,7 @@ impl glib::HasParamSpec for DebugFlags {
     type BuilderFn = fn(&str) -> glib::ParamSpecFlagsBuilder<Self>;
 
     fn param_spec_builder() -> Self::BuilderFn {
-        |name| Self::ParamSpec::builder(name)
+        Self::ParamSpec::builder
     }
 }
 
@@ -382,7 +364,7 @@ impl glib::value::ValueType for DebugFlags {
     type Type = Self;
 }
 
-unsafe impl<'a> FromValue<'a> for DebugFlags {
+unsafe impl<'a> glib::value::FromValue<'a> for DebugFlags {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
     #[inline]
@@ -417,6 +399,7 @@ impl From<DebugFlags> for glib::Value {
 }
 
 bitflags! {
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
     #[doc(alias = "GtkDialogFlags")]
     pub struct DialogFlags: u32 {
         #[doc(alias = "GTK_DIALOG_MODAL")]
@@ -425,12 +408,6 @@ bitflags! {
         const DESTROY_WITH_PARENT = ffi::GTK_DIALOG_DESTROY_WITH_PARENT as _;
         #[doc(alias = "GTK_DIALOG_USE_HEADER_BAR")]
         const USE_HEADER_BAR = ffi::GTK_DIALOG_USE_HEADER_BAR as _;
-    }
-}
-
-impl fmt::Display for DialogFlags {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        <Self as fmt::Debug>::fmt(self, f)
     }
 }
 
@@ -455,7 +432,8 @@ impl FromGlib<ffi::GtkDialogFlags> for DialogFlags {
 
 impl StaticType for DialogFlags {
     #[inline]
-    fn static_type() -> Type {
+    #[doc(alias = "gtk_dialog_flags_get_type")]
+    fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gtk_dialog_flags_get_type()) }
     }
 }
@@ -466,7 +444,7 @@ impl glib::HasParamSpec for DialogFlags {
     type BuilderFn = fn(&str) -> glib::ParamSpecFlagsBuilder<Self>;
 
     fn param_spec_builder() -> Self::BuilderFn {
-        |name| Self::ParamSpec::builder(name)
+        Self::ParamSpec::builder
     }
 }
 
@@ -474,7 +452,7 @@ impl glib::value::ValueType for DialogFlags {
     type Type = Self;
 }
 
-unsafe impl<'a> FromValue<'a> for DialogFlags {
+unsafe impl<'a> glib::value::FromValue<'a> for DialogFlags {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
     #[inline]
@@ -509,6 +487,7 @@ impl From<DialogFlags> for glib::Value {
 }
 
 bitflags! {
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
     #[doc(alias = "GtkEventControllerScrollFlags")]
     pub struct EventControllerScrollFlags: u32 {
         #[doc(alias = "GTK_EVENT_CONTROLLER_SCROLL_NONE")]
@@ -523,12 +502,6 @@ bitflags! {
         const KINETIC = ffi::GTK_EVENT_CONTROLLER_SCROLL_KINETIC as _;
         #[doc(alias = "GTK_EVENT_CONTROLLER_SCROLL_BOTH_AXES")]
         const BOTH_AXES = ffi::GTK_EVENT_CONTROLLER_SCROLL_BOTH_AXES as _;
-    }
-}
-
-impl fmt::Display for EventControllerScrollFlags {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        <Self as fmt::Debug>::fmt(self, f)
     }
 }
 
@@ -553,7 +526,8 @@ impl FromGlib<ffi::GtkEventControllerScrollFlags> for EventControllerScrollFlags
 
 impl StaticType for EventControllerScrollFlags {
     #[inline]
-    fn static_type() -> Type {
+    #[doc(alias = "gtk_event_controller_scroll_flags_get_type")]
+    fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gtk_event_controller_scroll_flags_get_type()) }
     }
 }
@@ -564,7 +538,7 @@ impl glib::HasParamSpec for EventControllerScrollFlags {
     type BuilderFn = fn(&str) -> glib::ParamSpecFlagsBuilder<Self>;
 
     fn param_spec_builder() -> Self::BuilderFn {
-        |name| Self::ParamSpec::builder(name)
+        Self::ParamSpec::builder
     }
 }
 
@@ -572,7 +546,7 @@ impl glib::value::ValueType for EventControllerScrollFlags {
     type Type = Self;
 }
 
-unsafe impl<'a> FromValue<'a> for EventControllerScrollFlags {
+unsafe impl<'a> glib::value::FromValue<'a> for EventControllerScrollFlags {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
     #[inline]
@@ -607,6 +581,7 @@ impl From<EventControllerScrollFlags> for glib::Value {
 }
 
 bitflags! {
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
     #[doc(alias = "GtkFontChooserLevel")]
     pub struct FontChooserLevel: u32 {
         #[doc(alias = "GTK_FONT_CHOOSER_LEVEL_FAMILY")]
@@ -619,12 +594,6 @@ bitflags! {
         const VARIATIONS = ffi::GTK_FONT_CHOOSER_LEVEL_VARIATIONS as _;
         #[doc(alias = "GTK_FONT_CHOOSER_LEVEL_FEATURES")]
         const FEATURES = ffi::GTK_FONT_CHOOSER_LEVEL_FEATURES as _;
-    }
-}
-
-impl fmt::Display for FontChooserLevel {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        <Self as fmt::Debug>::fmt(self, f)
     }
 }
 
@@ -649,7 +618,8 @@ impl FromGlib<ffi::GtkFontChooserLevel> for FontChooserLevel {
 
 impl StaticType for FontChooserLevel {
     #[inline]
-    fn static_type() -> Type {
+    #[doc(alias = "gtk_font_chooser_level_get_type")]
+    fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gtk_font_chooser_level_get_type()) }
     }
 }
@@ -660,7 +630,7 @@ impl glib::HasParamSpec for FontChooserLevel {
     type BuilderFn = fn(&str) -> glib::ParamSpecFlagsBuilder<Self>;
 
     fn param_spec_builder() -> Self::BuilderFn {
-        |name| Self::ParamSpec::builder(name)
+        Self::ParamSpec::builder
     }
 }
 
@@ -668,7 +638,7 @@ impl glib::value::ValueType for FontChooserLevel {
     type Type = Self;
 }
 
-unsafe impl<'a> FromValue<'a> for FontChooserLevel {
+unsafe impl<'a> glib::value::FromValue<'a> for FontChooserLevel {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
     #[inline]
@@ -703,6 +673,7 @@ impl From<FontChooserLevel> for glib::Value {
 }
 
 bitflags! {
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
     #[doc(alias = "GtkIconLookupFlags")]
     pub struct IconLookupFlags: u32 {
         #[doc(alias = "GTK_ICON_LOOKUP_FORCE_REGULAR")]
@@ -711,12 +682,6 @@ bitflags! {
         const FORCE_SYMBOLIC = ffi::GTK_ICON_LOOKUP_FORCE_SYMBOLIC as _;
         #[doc(alias = "GTK_ICON_LOOKUP_PRELOAD")]
         const PRELOAD = ffi::GTK_ICON_LOOKUP_PRELOAD as _;
-    }
-}
-
-impl fmt::Display for IconLookupFlags {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        <Self as fmt::Debug>::fmt(self, f)
     }
 }
 
@@ -741,7 +706,8 @@ impl FromGlib<ffi::GtkIconLookupFlags> for IconLookupFlags {
 
 impl StaticType for IconLookupFlags {
     #[inline]
-    fn static_type() -> Type {
+    #[doc(alias = "gtk_icon_lookup_flags_get_type")]
+    fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gtk_icon_lookup_flags_get_type()) }
     }
 }
@@ -752,7 +718,7 @@ impl glib::HasParamSpec for IconLookupFlags {
     type BuilderFn = fn(&str) -> glib::ParamSpecFlagsBuilder<Self>;
 
     fn param_spec_builder() -> Self::BuilderFn {
-        |name| Self::ParamSpec::builder(name)
+        Self::ParamSpec::builder
     }
 }
 
@@ -760,7 +726,7 @@ impl glib::value::ValueType for IconLookupFlags {
     type Type = Self;
 }
 
-unsafe impl<'a> FromValue<'a> for IconLookupFlags {
+unsafe impl<'a> glib::value::FromValue<'a> for IconLookupFlags {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
     #[inline]
@@ -795,6 +761,7 @@ impl From<IconLookupFlags> for glib::Value {
 }
 
 bitflags! {
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
     #[doc(alias = "GtkInputHints")]
     pub struct InputHints: u32 {
         #[doc(alias = "GTK_INPUT_HINT_NONE")]
@@ -826,12 +793,6 @@ bitflags! {
     }
 }
 
-impl fmt::Display for InputHints {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        <Self as fmt::Debug>::fmt(self, f)
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for InputHints {
     type GlibType = ffi::GtkInputHints;
@@ -853,7 +814,8 @@ impl FromGlib<ffi::GtkInputHints> for InputHints {
 
 impl StaticType for InputHints {
     #[inline]
-    fn static_type() -> Type {
+    #[doc(alias = "gtk_input_hints_get_type")]
+    fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gtk_input_hints_get_type()) }
     }
 }
@@ -864,7 +826,7 @@ impl glib::HasParamSpec for InputHints {
     type BuilderFn = fn(&str) -> glib::ParamSpecFlagsBuilder<Self>;
 
     fn param_spec_builder() -> Self::BuilderFn {
-        |name| Self::ParamSpec::builder(name)
+        Self::ParamSpec::builder
     }
 }
 
@@ -872,7 +834,7 @@ impl glib::value::ValueType for InputHints {
     type Type = Self;
 }
 
-unsafe impl<'a> FromValue<'a> for InputHints {
+unsafe impl<'a> glib::value::FromValue<'a> for InputHints {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
     #[inline]
@@ -906,7 +868,114 @@ impl From<InputHints> for glib::Value {
     }
 }
 
+#[cfg(feature = "v4_12")]
 bitflags! {
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
+    #[doc(alias = "GtkListScrollFlags")]
+    pub struct ListScrollFlags: u32 {
+        #[doc(alias = "GTK_LIST_SCROLL_NONE")]
+        const NONE = ffi::GTK_LIST_SCROLL_NONE as _;
+        #[doc(alias = "GTK_LIST_SCROLL_FOCUS")]
+        const FOCUS = ffi::GTK_LIST_SCROLL_FOCUS as _;
+        #[doc(alias = "GTK_LIST_SCROLL_SELECT")]
+        const SELECT = ffi::GTK_LIST_SCROLL_SELECT as _;
+    }
+}
+
+#[cfg(feature = "v4_12")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+#[doc(hidden)]
+impl IntoGlib for ListScrollFlags {
+    type GlibType = ffi::GtkListScrollFlags;
+
+    #[inline]
+    fn into_glib(self) -> ffi::GtkListScrollFlags {
+        self.bits()
+    }
+}
+
+#[cfg(feature = "v4_12")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+#[doc(hidden)]
+impl FromGlib<ffi::GtkListScrollFlags> for ListScrollFlags {
+    #[inline]
+    unsafe fn from_glib(value: ffi::GtkListScrollFlags) -> Self {
+        skip_assert_initialized!();
+        Self::from_bits_truncate(value)
+    }
+}
+
+#[cfg(feature = "v4_12")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+impl StaticType for ListScrollFlags {
+    #[inline]
+    #[doc(alias = "gtk_list_scroll_flags_get_type")]
+    fn static_type() -> glib::Type {
+        unsafe { from_glib(ffi::gtk_list_scroll_flags_get_type()) }
+    }
+}
+
+#[cfg(feature = "v4_12")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+impl glib::HasParamSpec for ListScrollFlags {
+    type ParamSpec = glib::ParamSpecFlags;
+    type SetValue = Self;
+    type BuilderFn = fn(&str) -> glib::ParamSpecFlagsBuilder<Self>;
+
+    fn param_spec_builder() -> Self::BuilderFn {
+        Self::ParamSpec::builder
+    }
+}
+
+#[cfg(feature = "v4_12")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+impl glib::value::ValueType for ListScrollFlags {
+    type Type = Self;
+}
+
+#[cfg(feature = "v4_12")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+unsafe impl<'a> glib::value::FromValue<'a> for ListScrollFlags {
+    type Checker = glib::value::GenericValueTypeChecker<Self>;
+
+    #[inline]
+    unsafe fn from_value(value: &'a glib::Value) -> Self {
+        skip_assert_initialized!();
+        from_glib(glib::gobject_ffi::g_value_get_flags(value.to_glib_none().0))
+    }
+}
+
+#[cfg(feature = "v4_12")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+impl ToValue for ListScrollFlags {
+    #[inline]
+    fn to_value(&self) -> glib::Value {
+        let mut value = glib::Value::for_value_type::<Self>();
+        unsafe {
+            glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, self.into_glib());
+        }
+        value
+    }
+
+    #[inline]
+    fn value_type(&self) -> glib::Type {
+        Self::static_type()
+    }
+}
+
+#[cfg(feature = "v4_12")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+impl From<ListScrollFlags> for glib::Value {
+    #[inline]
+    fn from(v: ListScrollFlags) -> Self {
+        skip_assert_initialized!();
+        ToValue::to_value(&v)
+    }
+}
+
+bitflags! {
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
     #[doc(alias = "GtkPickFlags")]
     pub struct PickFlags: u32 {
         #[doc(alias = "GTK_PICK_DEFAULT")]
@@ -915,12 +984,6 @@ bitflags! {
         const INSENSITIVE = ffi::GTK_PICK_INSENSITIVE as _;
         #[doc(alias = "GTK_PICK_NON_TARGETABLE")]
         const NON_TARGETABLE = ffi::GTK_PICK_NON_TARGETABLE as _;
-    }
-}
-
-impl fmt::Display for PickFlags {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        <Self as fmt::Debug>::fmt(self, f)
     }
 }
 
@@ -945,7 +1008,8 @@ impl FromGlib<ffi::GtkPickFlags> for PickFlags {
 
 impl StaticType for PickFlags {
     #[inline]
-    fn static_type() -> Type {
+    #[doc(alias = "gtk_pick_flags_get_type")]
+    fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gtk_pick_flags_get_type()) }
     }
 }
@@ -956,7 +1020,7 @@ impl glib::HasParamSpec for PickFlags {
     type BuilderFn = fn(&str) -> glib::ParamSpecFlagsBuilder<Self>;
 
     fn param_spec_builder() -> Self::BuilderFn {
-        |name| Self::ParamSpec::builder(name)
+        Self::ParamSpec::builder
     }
 }
 
@@ -964,7 +1028,7 @@ impl glib::value::ValueType for PickFlags {
     type Type = Self;
 }
 
-unsafe impl<'a> FromValue<'a> for PickFlags {
+unsafe impl<'a> glib::value::FromValue<'a> for PickFlags {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
     #[inline]
@@ -999,16 +1063,15 @@ impl From<PickFlags> for glib::Value {
 }
 
 bitflags! {
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
     #[doc(alias = "GtkPopoverMenuFlags")]
     pub struct PopoverMenuFlags: u32 {
+        #[cfg(feature = "v4_14")]
+        #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+        #[doc(alias = "GTK_POPOVER_MENU_SLIDING")]
+        const SLIDING = ffi::GTK_POPOVER_MENU_SLIDING as _;
         #[doc(alias = "GTK_POPOVER_MENU_NESTED")]
         const NESTED = ffi::GTK_POPOVER_MENU_NESTED as _;
-    }
-}
-
-impl fmt::Display for PopoverMenuFlags {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        <Self as fmt::Debug>::fmt(self, f)
     }
 }
 
@@ -1033,7 +1096,8 @@ impl FromGlib<ffi::GtkPopoverMenuFlags> for PopoverMenuFlags {
 
 impl StaticType for PopoverMenuFlags {
     #[inline]
-    fn static_type() -> Type {
+    #[doc(alias = "gtk_popover_menu_flags_get_type")]
+    fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gtk_popover_menu_flags_get_type()) }
     }
 }
@@ -1044,7 +1108,7 @@ impl glib::HasParamSpec for PopoverMenuFlags {
     type BuilderFn = fn(&str) -> glib::ParamSpecFlagsBuilder<Self>;
 
     fn param_spec_builder() -> Self::BuilderFn {
-        |name| Self::ParamSpec::builder(name)
+        Self::ParamSpec::builder
     }
 }
 
@@ -1052,7 +1116,7 @@ impl glib::value::ValueType for PopoverMenuFlags {
     type Type = Self;
 }
 
-unsafe impl<'a> FromValue<'a> for PopoverMenuFlags {
+unsafe impl<'a> glib::value::FromValue<'a> for PopoverMenuFlags {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
     #[inline]
@@ -1086,9 +1150,10 @@ impl From<PopoverMenuFlags> for glib::Value {
     }
 }
 
-#[cfg(any(target_os = "linux", feature = "dox"))]
+#[cfg(target_os = "linux")]
 bitflags! {
-    #[cfg_attr(feature = "dox", doc(cfg(target_os = "linux")))]
+    #[cfg_attr(docsrs, doc(cfg(target_os = "linux")))]
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
     #[doc(alias = "GtkPrintCapabilities")]
     pub struct PrintCapabilities: u32 {
         #[doc(alias = "GTK_PRINT_CAPABILITY_PAGE_SET")]
@@ -1114,14 +1179,7 @@ bitflags! {
     }
 }
 
-#[cfg(any(target_os = "linux", feature = "dox"))]
-impl fmt::Display for PrintCapabilities {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        <Self as fmt::Debug>::fmt(self, f)
-    }
-}
-
-#[cfg(any(target_os = "linux", feature = "dox"))]
+#[cfg(target_os = "linux")]
 #[doc(hidden)]
 impl IntoGlib for PrintCapabilities {
     type GlibType = ffi::GtkPrintCapabilities;
@@ -1132,7 +1190,7 @@ impl IntoGlib for PrintCapabilities {
     }
 }
 
-#[cfg(any(target_os = "linux", feature = "dox"))]
+#[cfg(target_os = "linux")]
 #[doc(hidden)]
 impl FromGlib<ffi::GtkPrintCapabilities> for PrintCapabilities {
     #[inline]
@@ -1142,32 +1200,33 @@ impl FromGlib<ffi::GtkPrintCapabilities> for PrintCapabilities {
     }
 }
 
-#[cfg(any(target_os = "linux", feature = "dox"))]
+#[cfg(target_os = "linux")]
 impl StaticType for PrintCapabilities {
     #[inline]
-    fn static_type() -> Type {
+    #[doc(alias = "gtk_print_capabilities_get_type")]
+    fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gtk_print_capabilities_get_type()) }
     }
 }
 
-#[cfg(any(target_os = "linux", feature = "dox"))]
+#[cfg(target_os = "linux")]
 impl glib::HasParamSpec for PrintCapabilities {
     type ParamSpec = glib::ParamSpecFlags;
     type SetValue = Self;
     type BuilderFn = fn(&str) -> glib::ParamSpecFlagsBuilder<Self>;
 
     fn param_spec_builder() -> Self::BuilderFn {
-        |name| Self::ParamSpec::builder(name)
+        Self::ParamSpec::builder
     }
 }
 
-#[cfg(any(target_os = "linux", feature = "dox"))]
+#[cfg(target_os = "linux")]
 impl glib::value::ValueType for PrintCapabilities {
     type Type = Self;
 }
 
-#[cfg(any(target_os = "linux", feature = "dox"))]
-unsafe impl<'a> FromValue<'a> for PrintCapabilities {
+#[cfg(target_os = "linux")]
+unsafe impl<'a> glib::value::FromValue<'a> for PrintCapabilities {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
     #[inline]
@@ -1177,7 +1236,7 @@ unsafe impl<'a> FromValue<'a> for PrintCapabilities {
     }
 }
 
-#[cfg(any(target_os = "linux", feature = "dox"))]
+#[cfg(target_os = "linux")]
 impl ToValue for PrintCapabilities {
     #[inline]
     fn to_value(&self) -> glib::Value {
@@ -1194,7 +1253,7 @@ impl ToValue for PrintCapabilities {
     }
 }
 
-#[cfg(any(target_os = "linux", feature = "dox"))]
+#[cfg(target_os = "linux")]
 impl From<PrintCapabilities> for glib::Value {
     #[inline]
     fn from(v: PrintCapabilities) -> Self {
@@ -1204,16 +1263,11 @@ impl From<PrintCapabilities> for glib::Value {
 }
 
 bitflags! {
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
     #[doc(alias = "GtkShortcutActionFlags")]
     pub struct ShortcutActionFlags: u32 {
         #[doc(alias = "GTK_SHORTCUT_ACTION_EXCLUSIVE")]
         const EXCLUSIVE = ffi::GTK_SHORTCUT_ACTION_EXCLUSIVE as _;
-    }
-}
-
-impl fmt::Display for ShortcutActionFlags {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        <Self as fmt::Debug>::fmt(self, f)
     }
 }
 
@@ -1238,7 +1292,8 @@ impl FromGlib<ffi::GtkShortcutActionFlags> for ShortcutActionFlags {
 
 impl StaticType for ShortcutActionFlags {
     #[inline]
-    fn static_type() -> Type {
+    #[doc(alias = "gtk_shortcut_action_flags_get_type")]
+    fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gtk_shortcut_action_flags_get_type()) }
     }
 }
@@ -1249,7 +1304,7 @@ impl glib::HasParamSpec for ShortcutActionFlags {
     type BuilderFn = fn(&str) -> glib::ParamSpecFlagsBuilder<Self>;
 
     fn param_spec_builder() -> Self::BuilderFn {
-        |name| Self::ParamSpec::builder(name)
+        Self::ParamSpec::builder
     }
 }
 
@@ -1257,7 +1312,7 @@ impl glib::value::ValueType for ShortcutActionFlags {
     type Type = Self;
 }
 
-unsafe impl<'a> FromValue<'a> for ShortcutActionFlags {
+unsafe impl<'a> glib::value::FromValue<'a> for ShortcutActionFlags {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
     #[inline]
@@ -1292,6 +1347,7 @@ impl From<ShortcutActionFlags> for glib::Value {
 }
 
 bitflags! {
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
     #[doc(alias = "GtkStateFlags")]
     pub struct StateFlags: u32 {
         #[doc(alias = "GTK_STATE_FLAG_NORMAL")]
@@ -1329,12 +1385,6 @@ bitflags! {
     }
 }
 
-impl fmt::Display for StateFlags {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        <Self as fmt::Debug>::fmt(self, f)
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for StateFlags {
     type GlibType = ffi::GtkStateFlags;
@@ -1356,7 +1406,8 @@ impl FromGlib<ffi::GtkStateFlags> for StateFlags {
 
 impl StaticType for StateFlags {
     #[inline]
-    fn static_type() -> Type {
+    #[doc(alias = "gtk_state_flags_get_type")]
+    fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gtk_state_flags_get_type()) }
     }
 }
@@ -1367,7 +1418,7 @@ impl glib::HasParamSpec for StateFlags {
     type BuilderFn = fn(&str) -> glib::ParamSpecFlagsBuilder<Self>;
 
     fn param_spec_builder() -> Self::BuilderFn {
-        |name| Self::ParamSpec::builder(name)
+        Self::ParamSpec::builder
     }
 }
 
@@ -1375,7 +1426,7 @@ impl glib::value::ValueType for StateFlags {
     type Type = Self;
 }
 
-unsafe impl<'a> FromValue<'a> for StateFlags {
+unsafe impl<'a> glib::value::FromValue<'a> for StateFlags {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
     #[inline]
@@ -1410,6 +1461,7 @@ impl From<StateFlags> for glib::Value {
 }
 
 bitflags! {
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
     #[doc(alias = "GtkStyleContextPrintFlags")]
     pub struct StyleContextPrintFlags: u32 {
         #[doc(alias = "GTK_STYLE_CONTEXT_PRINT_NONE")]
@@ -1420,12 +1472,6 @@ bitflags! {
         const SHOW_STYLE = ffi::GTK_STYLE_CONTEXT_PRINT_SHOW_STYLE as _;
         #[doc(alias = "GTK_STYLE_CONTEXT_PRINT_SHOW_CHANGE")]
         const SHOW_CHANGE = ffi::GTK_STYLE_CONTEXT_PRINT_SHOW_CHANGE as _;
-    }
-}
-
-impl fmt::Display for StyleContextPrintFlags {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        <Self as fmt::Debug>::fmt(self, f)
     }
 }
 
@@ -1450,7 +1496,8 @@ impl FromGlib<ffi::GtkStyleContextPrintFlags> for StyleContextPrintFlags {
 
 impl StaticType for StyleContextPrintFlags {
     #[inline]
-    fn static_type() -> Type {
+    #[doc(alias = "gtk_style_context_print_flags_get_type")]
+    fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gtk_style_context_print_flags_get_type()) }
     }
 }
@@ -1461,7 +1508,7 @@ impl glib::HasParamSpec for StyleContextPrintFlags {
     type BuilderFn = fn(&str) -> glib::ParamSpecFlagsBuilder<Self>;
 
     fn param_spec_builder() -> Self::BuilderFn {
-        |name| Self::ParamSpec::builder(name)
+        Self::ParamSpec::builder
     }
 }
 
@@ -1469,7 +1516,7 @@ impl glib::value::ValueType for StyleContextPrintFlags {
     type Type = Self;
 }
 
-unsafe impl<'a> FromValue<'a> for StyleContextPrintFlags {
+unsafe impl<'a> glib::value::FromValue<'a> for StyleContextPrintFlags {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
     #[inline]
@@ -1504,6 +1551,7 @@ impl From<StyleContextPrintFlags> for glib::Value {
 }
 
 bitflags! {
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
     #[doc(alias = "GtkTextSearchFlags")]
     pub struct TextSearchFlags: u32 {
         #[doc(alias = "GTK_TEXT_SEARCH_VISIBLE_ONLY")]
@@ -1512,12 +1560,6 @@ bitflags! {
         const TEXT_ONLY = ffi::GTK_TEXT_SEARCH_TEXT_ONLY as _;
         #[doc(alias = "GTK_TEXT_SEARCH_CASE_INSENSITIVE")]
         const CASE_INSENSITIVE = ffi::GTK_TEXT_SEARCH_CASE_INSENSITIVE as _;
-    }
-}
-
-impl fmt::Display for TextSearchFlags {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        <Self as fmt::Debug>::fmt(self, f)
     }
 }
 
@@ -1542,7 +1584,8 @@ impl FromGlib<ffi::GtkTextSearchFlags> for TextSearchFlags {
 
 impl StaticType for TextSearchFlags {
     #[inline]
-    fn static_type() -> Type {
+    #[doc(alias = "gtk_text_search_flags_get_type")]
+    fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gtk_text_search_flags_get_type()) }
     }
 }
@@ -1553,7 +1596,7 @@ impl glib::HasParamSpec for TextSearchFlags {
     type BuilderFn = fn(&str) -> glib::ParamSpecFlagsBuilder<Self>;
 
     fn param_spec_builder() -> Self::BuilderFn {
-        |name| Self::ParamSpec::builder(name)
+        Self::ParamSpec::builder
     }
 }
 
@@ -1561,7 +1604,7 @@ impl glib::value::ValueType for TextSearchFlags {
     type Type = Self;
 }
 
-unsafe impl<'a> FromValue<'a> for TextSearchFlags {
+unsafe impl<'a> glib::value::FromValue<'a> for TextSearchFlags {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
     #[inline]
@@ -1596,6 +1639,8 @@ impl From<TextSearchFlags> for glib::Value {
 }
 
 bitflags! {
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
     #[doc(alias = "GtkTreeModelFlags")]
     pub struct TreeModelFlags: u32 {
         #[doc(alias = "GTK_TREE_MODEL_ITERS_PERSIST")]
@@ -1605,12 +1650,7 @@ bitflags! {
     }
 }
 
-impl fmt::Display for TreeModelFlags {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        <Self as fmt::Debug>::fmt(self, f)
-    }
-}
-
+#[allow(deprecated)]
 #[doc(hidden)]
 impl IntoGlib for TreeModelFlags {
     type GlibType = ffi::GtkTreeModelFlags;
@@ -1621,6 +1661,7 @@ impl IntoGlib for TreeModelFlags {
     }
 }
 
+#[allow(deprecated)]
 #[doc(hidden)]
 impl FromGlib<ffi::GtkTreeModelFlags> for TreeModelFlags {
     #[inline]
@@ -1630,28 +1671,33 @@ impl FromGlib<ffi::GtkTreeModelFlags> for TreeModelFlags {
     }
 }
 
+#[allow(deprecated)]
 impl StaticType for TreeModelFlags {
     #[inline]
-    fn static_type() -> Type {
+    #[doc(alias = "gtk_tree_model_flags_get_type")]
+    fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gtk_tree_model_flags_get_type()) }
     }
 }
 
+#[allow(deprecated)]
 impl glib::HasParamSpec for TreeModelFlags {
     type ParamSpec = glib::ParamSpecFlags;
     type SetValue = Self;
     type BuilderFn = fn(&str) -> glib::ParamSpecFlagsBuilder<Self>;
 
     fn param_spec_builder() -> Self::BuilderFn {
-        |name| Self::ParamSpec::builder(name)
+        Self::ParamSpec::builder
     }
 }
 
+#[allow(deprecated)]
 impl glib::value::ValueType for TreeModelFlags {
     type Type = Self;
 }
 
-unsafe impl<'a> FromValue<'a> for TreeModelFlags {
+#[allow(deprecated)]
+unsafe impl<'a> glib::value::FromValue<'a> for TreeModelFlags {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
     #[inline]
@@ -1661,6 +1707,7 @@ unsafe impl<'a> FromValue<'a> for TreeModelFlags {
     }
 }
 
+#[allow(deprecated)]
 impl ToValue for TreeModelFlags {
     #[inline]
     fn to_value(&self) -> glib::Value {
@@ -1677,6 +1724,7 @@ impl ToValue for TreeModelFlags {
     }
 }
 
+#[allow(deprecated)]
 impl From<TreeModelFlags> for glib::Value {
     #[inline]
     fn from(v: TreeModelFlags) -> Self {

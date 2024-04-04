@@ -3,28 +3,52 @@ name: github packages
 on:
   # Rebuild the container once every week
   schedule:
-  - cron: '0 1 * * 1'
+    - cron: "0 1 * * 1"
   push:
     branches:
       - "master"
     paths:
       - "Dockerfile"
+      - ".github/workflows/image.yml"
   pull_request:
     paths:
       - "Dockerfile"
+      - ".github/workflows/image.yml"
   workflow_dispatch:
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}/gtk4
 
 jobs:
   docker:
-    runs-on: ubuntu-22.04
+    permissions:
+      contents: read
+      packages: write
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Push to GitHub Packages
-        uses: docker/build-push-action@v1
+      - uses: actions/checkout@v4
+
+      - name: Log in to the Container registry
+        uses: docker/login-action@e92390c5fb421da1463c202d546fed0ec5c39f20
         with:
-          push: ${{ github.event_name != 'pull_request' }}
+          registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-          registry: ghcr.io
-          repository: ${{ github.repository }}/gtk4
-          tags: latest
+
+      - name: Extract metadata (tags, labels) for Docker
+        id: meta
+        uses: docker/metadata-action@8e5442c4ef9f78752691e2d8f8d19755c6f78e81
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          tags: |
+            # set latest tag for master branch
+            type=raw,value=latest,enable=${{ github.ref == format('refs/heads/{0}', 'master') }}
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@090ca155fc9b214cbcac536c450455a0e96f52c6
+        with:
+          push: ${{ github.event_name != 'pull_request' }}
+          context: .
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+

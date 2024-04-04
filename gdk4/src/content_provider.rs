@@ -1,16 +1,19 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{prelude::*, ContentProvider};
 use glib::translate::*;
 
-// rustdoc-stripper-ignore-next
-/// Trait containing manually implemented methods of [`ContentProvider`](crate::ContentProvider).
-pub trait ContentProviderExtManual {
-    #[doc(alias = "gdk_content_provider_get_value")]
-    fn value(&self, type_: glib::Type) -> Result<glib::Value, glib::Error>;
+use crate::{prelude::*, ContentProvider};
+
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::ContentProvider>> Sealed for T {}
 }
 
-impl<O: IsA<ContentProvider>> ContentProviderExtManual for O {
+// rustdoc-stripper-ignore-next
+/// Trait containing manually implemented methods of
+/// [`ContentProvider`](crate::ContentProvider).
+pub trait ContentProviderExtManual: sealed::Sealed + IsA<ContentProvider> {
+    #[doc(alias = "gdk_content_provider_get_value")]
     fn value(&self, type_: glib::Type) -> Result<glib::Value, glib::Error> {
         unsafe {
             let mut error = std::ptr::null_mut();
@@ -28,3 +31,5 @@ impl<O: IsA<ContentProvider>> ContentProviderExtManual for O {
         }
     }
 }
+
+impl<O: IsA<ContentProvider>> ContentProviderExtManual for O {}

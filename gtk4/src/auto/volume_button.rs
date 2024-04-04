@@ -3,8 +3,8 @@
 // DO NOT EDIT
 #![allow(deprecated)]
 
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 use crate::AccessibleRange;
 use crate::{
     Accessible, AccessibleRole, Adjustment, Align, Buildable, ConstraintTarget, LayoutManager,
@@ -15,10 +15,10 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::boxed::Box as Box_;
 
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 glib::wrapper! {
     #[doc(alias = "GtkVolumeButton")]
     pub struct VolumeButton(Object<ffi::GtkVolumeButton>) @extends ScaleButton, Widget, @implements Accessible, Buildable, ConstraintTarget, AccessibleRange, Orientable;
@@ -28,7 +28,7 @@ glib::wrapper! {
     }
 }
 
-#[cfg(not(any(feature = "v4_10", feature = "dox")))]
+#[cfg(not(any(feature = "v4_10")))]
 glib::wrapper! {
     #[doc(alias = "GtkVolumeButton")]
     pub struct VolumeButton(Object<ffi::GtkVolumeButton>) @extends ScaleButton, Widget, @implements Accessible, Buildable, ConstraintTarget, Orientable;
@@ -58,13 +58,13 @@ impl VolumeButton {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "use-symbolic")]
     pub fn uses_symbolic(&self) -> bool {
-        glib::ObjectExt::property(self, "use-symbolic")
+        ObjectExt::property(self, "use-symbolic")
     }
 
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "use-symbolic")]
     pub fn set_use_symbolic(&self, use_symbolic: bool) {
-        glib::ObjectExt::set_property(self, "use-symbolic", use_symbolic)
+        ObjectExt::set_property(self, "use-symbolic", use_symbolic)
     }
 
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
@@ -83,7 +83,7 @@ impl VolumeButton {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::use-symbolic\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_use_symbolic_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -126,6 +126,14 @@ impl VolumeButtonBuilder {
             builder: self
                 .builder
                 .property("adjustment", adjustment.clone().upcast()),
+        }
+    }
+
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn has_frame(self, has_frame: bool) -> Self {
+        Self {
+            builder: self.builder.property("has-frame", has_frame),
         }
     }
 
@@ -336,11 +344,5 @@ impl VolumeButtonBuilder {
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> VolumeButton {
         self.builder.build()
-    }
-}
-
-impl fmt::Display for VolumeButton {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("VolumeButton")
     }
 }

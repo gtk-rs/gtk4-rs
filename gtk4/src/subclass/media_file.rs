@@ -3,8 +3,9 @@
 // rustdoc-stripper-ignore-next
 //! Traits intended for subclassing [`MediaFile`](crate::MediaFile).
 
-use crate::{prelude::*, subclass::prelude::*, MediaFile};
 use glib::translate::*;
+
+use crate::{prelude::*, subclass::prelude::*, MediaFile};
 
 pub trait MediaFileImpl: MediaFileImplExt + MediaStreamImpl {
     fn close(&self) {
@@ -15,15 +16,15 @@ pub trait MediaFileImpl: MediaFileImplExt + MediaStreamImpl {
     }
 }
 
-pub trait MediaFileImplExt: ObjectSubclass {
-    fn parent_close(&self);
-    fn parent_open(&self);
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::MediaFileImplExt> Sealed for T {}
 }
 
-impl<T: MediaFileImpl> MediaFileImplExt for T {
+pub trait MediaFileImplExt: sealed::Sealed + ObjectSubclass {
     fn parent_close(&self) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkMediaFileClass;
             if let Some(f) = (*parent_class).close {
                 f(self.obj().unsafe_cast_ref::<MediaFile>().to_glib_none().0)
@@ -33,7 +34,7 @@ impl<T: MediaFileImpl> MediaFileImplExt for T {
 
     fn parent_open(&self) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkMediaFileClass;
             if let Some(f) = (*parent_class).open {
                 f(self.obj().unsafe_cast_ref::<MediaFile>().to_glib_none().0)
@@ -41,6 +42,8 @@ impl<T: MediaFileImpl> MediaFileImplExt for T {
         }
     }
 }
+
+impl<T: MediaFileImpl> MediaFileImplExt for T {}
 
 unsafe impl<T: MediaFileImpl> IsSubclassable<T> for MediaFile {
     fn class_init(class: &mut glib::Class<Self>) {

@@ -1,9 +1,6 @@
 name: book
 
 on:
-  pull_request:
-    paths:
-      - "book/**"
   push:
     branches:
       - "master"
@@ -11,11 +8,11 @@ on:
       - "book/**"
 
 jobs:
-  build-deploy:
-    runs-on: ubuntu-22.04
+  deploy:
+    runs-on: ubuntu-latest
     name: build
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - uses: actions-rs/toolchain@v1
         with:
           profile: minimal
@@ -30,20 +27,8 @@ jobs:
 
       - name: Deploy to stable
         uses: peaceiris/actions-gh-pages@v3
-        if: ${{ (github.event_name == 'push' && github.ref == 'refs/heads/master') || github.event_name == 'release' }}
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./book/public
           keep_files: false
           destination_dir: stable/latest/book
-
-  codespell:
-    runs-on: ubuntu-22.04
-    steps:
-      - uses: actions/checkout@v2
-      - uses: codespell-project/actions-codespell@master
-        with:
-          check_filenames: true
-          path: book
-          ignore_words_list: "crate"
-          skip: "*.svg"

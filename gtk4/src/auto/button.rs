@@ -11,7 +11,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GtkButton")]
@@ -91,6 +91,14 @@ impl ButtonBuilder {
     fn new() -> Self {
         Self {
             builder: glib::object::Object::builder(),
+        }
+    }
+
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn can_shrink(self, can_shrink: bool) -> Self {
+        Self {
+            builder: self.builder.property("can-shrink", can_shrink),
         }
     }
 
@@ -330,73 +338,32 @@ impl ButtonBuilder {
     }
 }
 
-pub trait ButtonExt: 'static {
-    #[doc(alias = "gtk_button_get_child")]
-    #[doc(alias = "get_child")]
-    fn child(&self) -> Option<Widget>;
-
-    #[doc(alias = "gtk_button_get_has_frame")]
-    #[doc(alias = "get_has_frame")]
-    fn has_frame(&self) -> bool;
-
-    #[doc(alias = "gtk_button_get_icon_name")]
-    #[doc(alias = "get_icon_name")]
-    fn icon_name(&self) -> Option<glib::GString>;
-
-    #[doc(alias = "gtk_button_get_label")]
-    #[doc(alias = "get_label")]
-    fn label(&self) -> Option<glib::GString>;
-
-    #[doc(alias = "gtk_button_get_use_underline")]
-    #[doc(alias = "get_use_underline")]
-    fn uses_underline(&self) -> bool;
-
-    #[doc(alias = "gtk_button_set_child")]
-    fn set_child(&self, child: Option<&impl IsA<Widget>>);
-
-    #[doc(alias = "gtk_button_set_has_frame")]
-    fn set_has_frame(&self, has_frame: bool);
-
-    #[doc(alias = "gtk_button_set_icon_name")]
-    fn set_icon_name(&self, icon_name: &str);
-
-    #[doc(alias = "gtk_button_set_label")]
-    fn set_label(&self, label: &str);
-
-    #[doc(alias = "gtk_button_set_use_underline")]
-    fn set_use_underline(&self, use_underline: bool);
-
-    #[doc(alias = "activate")]
-    fn connect_activate<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn emit_activate(&self);
-
-    #[doc(alias = "clicked")]
-    fn connect_clicked<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn emit_clicked(&self);
-
-    #[doc(alias = "child")]
-    fn connect_child_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "has-frame")]
-    fn connect_has_frame_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "icon-name")]
-    fn connect_icon_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "label")]
-    fn connect_label_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "use-underline")]
-    fn connect_use_underline_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::Button>> Sealed for T {}
 }
 
-impl<O: IsA<Button>> ButtonExt for O {
+pub trait ButtonExt: IsA<Button> + sealed::Sealed + 'static {
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "gtk_button_get_can_shrink")]
+    #[doc(alias = "get_can_shrink")]
+    fn can_shrink(&self) -> bool {
+        unsafe {
+            from_glib(ffi::gtk_button_get_can_shrink(
+                self.as_ref().to_glib_none().0,
+            ))
+        }
+    }
+
+    #[doc(alias = "gtk_button_get_child")]
+    #[doc(alias = "get_child")]
     fn child(&self) -> Option<Widget> {
         unsafe { from_glib_none(ffi::gtk_button_get_child(self.as_ref().to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_button_get_has_frame")]
+    #[doc(alias = "get_has_frame")]
     fn has_frame(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_button_get_has_frame(
@@ -405,6 +372,8 @@ impl<O: IsA<Button>> ButtonExt for O {
         }
     }
 
+    #[doc(alias = "gtk_button_get_icon_name")]
+    #[doc(alias = "get_icon_name")]
     fn icon_name(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::gtk_button_get_icon_name(
@@ -413,10 +382,14 @@ impl<O: IsA<Button>> ButtonExt for O {
         }
     }
 
+    #[doc(alias = "gtk_button_get_label")]
+    #[doc(alias = "get_label")]
     fn label(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::gtk_button_get_label(self.as_ref().to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_button_get_use_underline")]
+    #[doc(alias = "get_use_underline")]
     fn uses_underline(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_button_get_use_underline(
@@ -425,6 +398,16 @@ impl<O: IsA<Button>> ButtonExt for O {
         }
     }
 
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "gtk_button_set_can_shrink")]
+    fn set_can_shrink(&self, can_shrink: bool) {
+        unsafe {
+            ffi::gtk_button_set_can_shrink(self.as_ref().to_glib_none().0, can_shrink.into_glib());
+        }
+    }
+
+    #[doc(alias = "gtk_button_set_child")]
     fn set_child(&self, child: Option<&impl IsA<Widget>>) {
         unsafe {
             ffi::gtk_button_set_child(
@@ -434,12 +417,14 @@ impl<O: IsA<Button>> ButtonExt for O {
         }
     }
 
+    #[doc(alias = "gtk_button_set_has_frame")]
     fn set_has_frame(&self, has_frame: bool) {
         unsafe {
             ffi::gtk_button_set_has_frame(self.as_ref().to_glib_none().0, has_frame.into_glib());
         }
     }
 
+    #[doc(alias = "gtk_button_set_icon_name")]
     fn set_icon_name(&self, icon_name: &str) {
         unsafe {
             ffi::gtk_button_set_icon_name(
@@ -449,12 +434,14 @@ impl<O: IsA<Button>> ButtonExt for O {
         }
     }
 
+    #[doc(alias = "gtk_button_set_label")]
     fn set_label(&self, label: &str) {
         unsafe {
             ffi::gtk_button_set_label(self.as_ref().to_glib_none().0, label.to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_button_set_use_underline")]
     fn set_use_underline(&self, use_underline: bool) {
         unsafe {
             ffi::gtk_button_set_use_underline(
@@ -464,6 +451,7 @@ impl<O: IsA<Button>> ButtonExt for O {
         }
     }
 
+    #[doc(alias = "activate")]
     fn connect_activate<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn activate_trampoline<P: IsA<Button>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkButton,
@@ -477,7 +465,7 @@ impl<O: IsA<Button>> ButtonExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"activate\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     activate_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -489,6 +477,7 @@ impl<O: IsA<Button>> ButtonExt for O {
         self.emit_by_name::<()>("activate", &[]);
     }
 
+    #[doc(alias = "clicked")]
     fn connect_clicked<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn clicked_trampoline<P: IsA<Button>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkButton,
@@ -502,7 +491,7 @@ impl<O: IsA<Button>> ButtonExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"clicked\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     clicked_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -514,6 +503,32 @@ impl<O: IsA<Button>> ButtonExt for O {
         self.emit_by_name::<()>("clicked", &[]);
     }
 
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "can-shrink")]
+    fn connect_can_shrink_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_can_shrink_trampoline<P: IsA<Button>, F: Fn(&P) + 'static>(
+            this: *mut ffi::GtkButton,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(Button::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::can-shrink\0".as_ptr() as *const _,
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                    notify_can_shrink_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[doc(alias = "child")]
     fn connect_child_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_child_trampoline<P: IsA<Button>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkButton,
@@ -528,7 +543,7 @@ impl<O: IsA<Button>> ButtonExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::child\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_child_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -536,6 +551,7 @@ impl<O: IsA<Button>> ButtonExt for O {
         }
     }
 
+    #[doc(alias = "has-frame")]
     fn connect_has_frame_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_has_frame_trampoline<P: IsA<Button>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkButton,
@@ -550,7 +566,7 @@ impl<O: IsA<Button>> ButtonExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::has-frame\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_has_frame_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -558,6 +574,7 @@ impl<O: IsA<Button>> ButtonExt for O {
         }
     }
 
+    #[doc(alias = "icon-name")]
     fn connect_icon_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_icon_name_trampoline<P: IsA<Button>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkButton,
@@ -572,7 +589,7 @@ impl<O: IsA<Button>> ButtonExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::icon-name\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_icon_name_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -580,6 +597,7 @@ impl<O: IsA<Button>> ButtonExt for O {
         }
     }
 
+    #[doc(alias = "label")]
     fn connect_label_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_label_trampoline<P: IsA<Button>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkButton,
@@ -594,7 +612,7 @@ impl<O: IsA<Button>> ButtonExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::label\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_label_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -602,6 +620,7 @@ impl<O: IsA<Button>> ButtonExt for O {
         }
     }
 
+    #[doc(alias = "use-underline")]
     fn connect_use_underline_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_use_underline_trampoline<
             P: IsA<Button>,
@@ -619,7 +638,7 @@ impl<O: IsA<Button>> ButtonExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::use-underline\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_use_underline_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -628,8 +647,4 @@ impl<O: IsA<Button>> ButtonExt for O {
     }
 }
 
-impl fmt::Display for Button {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("Button")
-    }
-}
+impl<O: IsA<Button>> ButtonExt for O {}

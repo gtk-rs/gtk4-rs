@@ -11,7 +11,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GtkLinkButton")]
@@ -79,12 +79,12 @@ impl LinkButton {
     }
 
     #[doc(alias = "activate-link")]
-    pub fn connect_activate_link<F: Fn(&Self) -> glib::signal::Inhibit + 'static>(
+    pub fn connect_activate_link<F: Fn(&Self) -> glib::Propagation + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn activate_link_trampoline<
-            F: Fn(&LinkButton) -> glib::signal::Inhibit + 'static,
+            F: Fn(&LinkButton) -> glib::Propagation + 'static,
         >(
             this: *mut ffi::GtkLinkButton,
             f: glib::ffi::gpointer,
@@ -97,7 +97,7 @@ impl LinkButton {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"activate-link\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     activate_link_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -120,7 +120,7 @@ impl LinkButton {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::uri\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_uri_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -143,7 +143,7 @@ impl LinkButton {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::visited\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_visited_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -183,6 +183,14 @@ impl LinkButtonBuilder {
     pub fn visited(self, visited: bool) -> Self {
         Self {
             builder: self.builder.property("visited", visited),
+        }
+    }
+
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn can_shrink(self, can_shrink: bool) -> Self {
+        Self {
+            builder: self.builder.property("can-shrink", can_shrink),
         }
     }
 
@@ -419,11 +427,5 @@ impl LinkButtonBuilder {
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> LinkButton {
         self.builder.build()
-    }
-}
-
-impl fmt::Display for LinkButton {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("LinkButton")
     }
 }

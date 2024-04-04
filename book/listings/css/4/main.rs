@@ -1,8 +1,6 @@
 use gdk::Display;
 use gtk::prelude::*;
-use gtk::{
-    gdk, glib, Application, ApplicationWindow, Button, CssProvider, StyleContext,
-};
+use gtk::{gdk, glib, Application, ApplicationWindow, Button, CssProvider};
 
 const APP_ID: &str = "org.gtk_rs.Css4";
 
@@ -21,10 +19,10 @@ fn main() -> glib::ExitCode {
 fn load_css() {
     // Load the CSS file and add it to the provider
     let provider = CssProvider::new();
-    provider.load_from_data(include_str!("style.css"));
+    provider.load_from_string(include_str!("style.css"));
 
     // Add the provider to the default screen
-    StyleContext::add_provider_for_display(
+    gtk::style_context_add_provider_for_display(
         &Display::default().expect("Could not connect to a display."),
         &provider,
         gtk::STYLE_PROVIDER_PRIORITY_APPLICATION,
@@ -52,7 +50,7 @@ fn build_ui(app: &Application) {
     gtk_box.append(&button_1);
     gtk_box.append(&button_2);
 
-    // Create a new window and show it
+    // Create a new window and present it
     let window = ApplicationWindow::builder()
         .application(app)
         .title("My GTK App")

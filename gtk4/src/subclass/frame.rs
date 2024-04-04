@@ -3,8 +3,9 @@
 // rustdoc-stripper-ignore-next
 //! Traits intended for subclassing [`Frame`](crate::Frame).
 
-use crate::{prelude::*, subclass::prelude::*, Allocation, Frame};
 use glib::translate::*;
+
+use crate::{prelude::*, subclass::prelude::*, Allocation, Frame};
 
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 #[allow(deprecated)]
@@ -17,13 +18,9 @@ pub trait FrameImpl: FrameImplExt + WidgetImpl {
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 #[allow(deprecated)]
 pub trait FrameImplExt: ObjectSubclass {
-    fn parent_compute_child_allocation(&self) -> Allocation;
-}
-
-impl<T: FrameImpl> FrameImplExt for T {
     fn parent_compute_child_allocation(&self) -> Allocation {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkFrameClass;
             let f = (*parent_class)
                 .compute_child_allocation
@@ -37,6 +34,8 @@ impl<T: FrameImpl> FrameImplExt for T {
         }
     }
 }
+
+impl<T: FrameImpl> FrameImplExt for T {}
 
 unsafe impl<T: FrameImpl> IsSubclassable<T> for Frame {
     fn class_init(class: &mut glib::Class<Self>) {

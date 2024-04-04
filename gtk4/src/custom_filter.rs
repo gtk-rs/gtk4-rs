@@ -1,8 +1,10 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::CustomFilter;
-use glib::translate::*;
 use std::ptr;
+
+use glib::translate::*;
+
+use crate::CustomFilter;
 
 impl CustomFilter {
     #[doc(alias = "gtk_custom_filter_new")]

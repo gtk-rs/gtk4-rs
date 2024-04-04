@@ -1,8 +1,8 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
+use glib::{translate::*, value::FromValue, Object, Type, Value};
+
 use crate::{prelude::*, Expression};
-use glib::translate::*;
-use glib::{value::FromValue, Object, StaticType, Type, Value};
 
 #[doc(hidden)]
 impl AsRef<Expression> for Expression {
@@ -13,13 +13,14 @@ impl AsRef<Expression> for Expression {
 }
 
 // rustdoc-stripper-ignore-next
-/// A common trait implemented by the various [`Expression`](crate::Expression) types.
+/// A common trait implemented by the various [`Expression`](crate::Expression)
+/// types.
 ///
 /// # Safety
 ///
 /// The user is not supposed to implement this trait.
 pub unsafe trait IsExpression:
-    glib::StaticType + FromGlibPtrFull<*mut ffi::GtkExpression> + 'static
+    StaticType + FromGlibPtrFull<*mut ffi::GtkExpression> + 'static
 {
 }
 
@@ -88,7 +89,8 @@ impl Expression {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Similar to [`Self::evaluate`] but panics if the value is of a different type.
+    /// Similar to [`Self::evaluate`] but panics if the value is of a different
+    /// type.
     #[doc(alias = "gtk_expression_evaluate")]
     pub fn evaluate_as<V: for<'b> FromValue<'b> + 'static, T: IsA<Object>>(
         &self,
@@ -101,9 +103,9 @@ impl Expression {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Create a [`PropertyExpression`](crate::PropertyExpression) that looks up for
-    /// `property_name` with self as parameter. This is useful in long chains of
-    /// [`Expression`](crate::Expression)s.
+    /// Create a [`PropertyExpression`](crate::PropertyExpression) that looks up
+    /// for `property_name` with self as parameter. This is useful in long
+    /// chains of [`Expression`](crate::Expression)s.
     pub fn chain_property<T: IsA<glib::Object>>(
         &self,
         property_name: &str,
@@ -112,20 +114,22 @@ impl Expression {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Create a [`ClosureExpression`](crate::ClosureExpression) from a [`glib::Closure`] with self
-    /// as the second parameter and `R` as the return type. The return type is checked at run-time
-    /// and must always be specified. This is useful in long chains of
-    /// [`Expression`](crate::Expression)s when using the [`glib::closure!`] macro.
+    /// Create a [`ClosureExpression`](crate::ClosureExpression) from a
+    /// [`glib::Closure`] with self as the second parameter and `R` as the
+    /// return type. The return type is checked at run-time and must always
+    /// be specified. This is useful in long chains of
+    /// [`Expression`](crate::Expression)s when using the [`glib::closure!`]
+    /// macro.
     ///
-    /// Note that the first parameter will always be the `this` object bound to the expression. If
-    /// `None` is passed as `this` then the type of the first parameter must be
-    /// `Option<glib::Object>` otherwise type checking will panic.
+    /// Note that the first parameter will always be the `this` object bound to
+    /// the expression. If `None` is passed as `this` then the type of the
+    /// first parameter must be `Option<glib::Object>` otherwise type
+    /// checking will panic.
     ///
     /// ```no_run
     /// # use gtk4 as gtk;
-    /// use gtk::prelude::*;
-    /// use gtk::glib;
     /// use glib::{closure, Object};
+    /// use gtk::{glib, prelude::*};
     ///
     /// let button = gtk::Button::new();
     /// button.set_label("Hello");
@@ -145,8 +149,9 @@ impl Expression {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Create a [`ClosureExpression`](crate::ClosureExpression) with self as the second parameter.
-    /// This is useful in long chains of [`Expression`](crate::Expression)s.
+    /// Create a [`ClosureExpression`](crate::ClosureExpression) with self as
+    /// the second parameter. This is useful in long chains of
+    /// [`Expression`](crate::Expression)s.
     pub fn chain_closure_with_callback<F, R>(&self, f: F) -> crate::ClosureExpression
     where
         F: Fn(&[glib::Value]) -> R + 'static,
@@ -218,8 +223,8 @@ impl From<Expression> for glib::Value {
 ///
 /// # Example
 ///
-/// `label_expression` is an [`Expression`](crate::Expression) that looks up at Button's `label`
-/// property.
+/// `label_expression` is an [`Expression`](crate::Expression) that looks up at
+/// Button's `label` property.
 ///
 /// ```no_run
 /// # use gtk4 as gtk;
@@ -230,36 +235,31 @@ impl From<Expression> for glib::Value {
 ///
 /// let label_expression = button.property_expression("label");
 /// ```
-pub trait GObjectPropertyExpressionExt {
+pub trait GObjectPropertyExpressionExt: IsA<glib::Object> {
     // rustdoc-stripper-ignore-next
     /// Create an expression looking up an object's property.
-    fn property_expression(&self, property_name: &str) -> crate::PropertyExpression;
+    fn property_expression(&self, property_name: &str) -> crate::PropertyExpression {
+        let obj_expr = crate::ConstantExpression::new(self);
+        crate::PropertyExpression::new(Self::static_type(), Some(&obj_expr), property_name)
+    }
 
     // rustdoc-stripper-ignore-next
-    /// Create an expression looking up an object's property with a weak reference.
-    fn property_expression_weak(&self, property_name: &str) -> crate::PropertyExpression;
+    /// Create an expression looking up an object's property with a weak
+    /// reference.
+    fn property_expression_weak(&self, property_name: &str) -> crate::PropertyExpression {
+        let obj_expr = crate::ObjectExpression::new(self);
+        crate::PropertyExpression::new(Self::static_type(), Some(&obj_expr), property_name)
+    }
 
     // rustdoc-stripper-ignore-next
     /// Create an expression looking up a property in the bound `this` object.
-    fn this_expression(property_name: &str) -> crate::PropertyExpression;
-}
-
-impl<T: IsA<glib::Object>> GObjectPropertyExpressionExt for T {
-    fn property_expression(&self, property_name: &str) -> crate::PropertyExpression {
-        let obj_expr = crate::ConstantExpression::new(self);
-        crate::PropertyExpression::new(T::static_type(), Some(&obj_expr), property_name)
-    }
-
-    fn property_expression_weak(&self, property_name: &str) -> crate::PropertyExpression {
-        let obj_expr = crate::ObjectExpression::new(self);
-        crate::PropertyExpression::new(T::static_type(), Some(&obj_expr), property_name)
-    }
-
     fn this_expression(property_name: &str) -> crate::PropertyExpression {
         skip_assert_initialized!();
-        crate::PropertyExpression::new(T::static_type(), Expression::NONE, property_name)
+        crate::PropertyExpression::new(Self::static_type(), Expression::NONE, property_name)
     }
 }
+
+impl<O: IsA<glib::Object>> GObjectPropertyExpressionExt for O {}
 
 macro_rules! define_expression {
     ($rust_type:ident, $ffi_type:path) => {
@@ -389,7 +389,7 @@ macro_rules! define_expression {
 
             #[inline]
             fn value_type(&self) -> glib::Type {
-                use glib::StaticType;
+                use glib::prelude::StaticType;
                 Self::static_type()
             }
         }

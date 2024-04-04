@@ -3,7 +3,6 @@
 // DO NOT EDIT
 
 use glib::{prelude::*, translate::*};
-use std::fmt;
 
 glib::wrapper! {
     #[doc(alias = "GskTextureNode")]
@@ -15,7 +14,7 @@ glib::wrapper! {
     }
 }
 
-impl glib::StaticType for TextureNode {
+impl StaticType for TextureNode {
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gsk_texture_node_get_type()) }
     }
@@ -37,11 +36,5 @@ impl TextureNode {
     #[doc(alias = "get_texture")]
     pub fn texture(&self) -> gdk::Texture {
         unsafe { from_glib_none(ffi::gsk_texture_node_get_texture(self.to_glib_none().0)) }
-    }
-}
-
-impl fmt::Display for TextureNode {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("TextureNode")
     }
 }

@@ -4,7 +4,6 @@
 
 use crate::{MemoryFormat, Texture};
 use glib::{prelude::*, translate::*};
-use std::mem;
 
 glib::wrapper! {
     #[derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -31,7 +30,7 @@ impl TextureDownloader {
     #[doc(alias = "gdk_texture_downloader_download_bytes")]
     pub fn download_bytes(&self) -> (glib::Bytes, usize) {
         unsafe {
-            let mut out_stride = mem::MaybeUninit::uninit();
+            let mut out_stride = std::mem::MaybeUninit::uninit();
             let ret = from_glib_full(ffi::gdk_texture_downloader_download_bytes(
                 self.to_glib_none().0,
                 out_stride.as_mut_ptr(),

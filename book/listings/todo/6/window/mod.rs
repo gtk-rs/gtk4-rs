@@ -6,7 +6,6 @@ use adw::subclass::prelude::*;
 use adw::{prelude::*, ActionRow};
 use gio::Settings;
 use glib::{clone, Object};
-use gtk::glib::BindingFlags;
 use gtk::{gio, glib, Align, CheckButton, CustomFilter, FilterListModel, NoSelection};
 
 use crate::task_object::{TaskData, TaskObject};
@@ -84,7 +83,7 @@ impl Window {
 
     fn setup_tasks(&self) {
         // Create new model
-        let model = gio::ListStore::new(TaskObject::static_type());
+        let model = gio::ListStore::new::<TaskObject>();
 
         // Get state and set model
         self.imp().tasks.replace(Some(model));
@@ -165,11 +164,12 @@ impl Window {
         // Bind properties
         task_object
             .bind_property("completed", &check_button, "active")
-            .flags(BindingFlags::SYNC_CREATE | BindingFlags::BIDIRECTIONAL)
+            .bidirectional()
+            .sync_create()
             .build();
         task_object
             .bind_property("content", &row, "title")
-            .flags(BindingFlags::SYNC_CREATE)
+            .sync_create()
             .build();
 
         // Return row
@@ -211,28 +211,22 @@ impl Window {
         // Create action from key "filter" and add to action group "win"
         let action_filter = self.settings().create_action("filter");
         self.add_action(&action_filter);
+    }
 
-        // Create action to remove done tasks and add to action group "win"
-        let action_remove_done_tasks =
-            gio::SimpleAction::new("remove-done-tasks", None);
-        action_remove_done_tasks.connect_activate(
-            clone!(@weak self as window => move |_, _| {
-                let tasks = window.tasks();
-                let mut position = 0;
-                while let Some(item) = tasks.item(position) {
-                    // Get `TaskObject` from `glib::Object`
-                    let task_object = item
-                        .downcast_ref::<TaskObject>()
-                        .expect("The object needs to be of type `TaskObject`.");
+    fn remove_done_tasks(&self) {
+        let tasks = self.tasks();
+        let mut position = 0;
+        while let Some(item) = tasks.item(position) {
+            // Get `TaskObject` from `glib::Object`
+            let task_object = item
+                .downcast_ref::<TaskObject>()
+                .expect("The object needs to be of type `TaskObject`.");
 
-                    if task_object.is_completed() {
-                        tasks.remove(position);
-                    } else {
-                        position += 1;
-                    }
-                }
-            }),
-        );
-        self.add_action(&action_remove_done_tasks);
+            if task_object.is_completed() {
+                tasks.remove(position);
+            } else {
+                position += 1;
+            }
+        }
     }
 }

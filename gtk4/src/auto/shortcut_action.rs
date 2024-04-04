@@ -4,7 +4,6 @@
 
 use crate::{ShortcutActionFlags, Widget};
 use glib::{prelude::*, translate::*};
-use std::fmt;
 
 glib::wrapper! {
     #[doc(alias = "GtkShortcutAction")]
@@ -29,28 +28,20 @@ impl ShortcutAction {
     }
 }
 
-impl fmt::Display for ShortcutAction {
+impl std::fmt::Display for ShortcutAction {
     #[inline]
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
         f.write_str(&ShortcutActionExt::to_str(self))
     }
 }
 
-pub trait ShortcutActionExt: 'static {
-    #[doc(alias = "gtk_shortcut_action_activate")]
-    fn activate(
-        &self,
-        flags: ShortcutActionFlags,
-        widget: &impl IsA<Widget>,
-        args: Option<&glib::Variant>,
-    ) -> bool;
-
-    #[doc(alias = "gtk_shortcut_action_to_string")]
-    #[doc(alias = "to_string")]
-    fn to_str(&self) -> glib::GString;
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::ShortcutAction>> Sealed for T {}
 }
 
-impl<O: IsA<ShortcutAction>> ShortcutActionExt for O {
+pub trait ShortcutActionExt: IsA<ShortcutAction> + sealed::Sealed + 'static {
+    #[doc(alias = "gtk_shortcut_action_activate")]
     fn activate(
         &self,
         flags: ShortcutActionFlags,
@@ -67,6 +58,8 @@ impl<O: IsA<ShortcutAction>> ShortcutActionExt for O {
         }
     }
 
+    #[doc(alias = "gtk_shortcut_action_to_string")]
+    #[doc(alias = "to_string")]
     fn to_str(&self) -> glib::GString {
         unsafe {
             from_glib_full(ffi::gtk_shortcut_action_to_string(
@@ -75,3 +68,5 @@ impl<O: IsA<ShortcutAction>> ShortcutActionExt for O {
         }
     }
 }
+
+impl<O: IsA<ShortcutAction>> ShortcutActionExt for O {}

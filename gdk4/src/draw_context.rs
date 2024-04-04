@@ -1,17 +1,20 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{prelude::*, DrawContext};
 use glib::translate::*;
 
-// rustdoc-stripper-ignore-next
-/// Trait containing manually implemented methods of [`DrawContext`](crate::DrawContext).
-pub trait DrawContextExtManual: 'static {
-    #[doc(alias = "gdk_draw_context_get_frame_region")]
-    #[doc(alias = "get_frame_region")]
-    fn frame_region(&self) -> Option<cairo::Region>;
+use crate::{prelude::*, DrawContext};
+
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::DrawContext>> Sealed for T {}
 }
 
-impl<O: IsA<DrawContext>> DrawContextExtManual for O {
+// rustdoc-stripper-ignore-next
+/// Trait containing manually implemented methods of
+/// [`DrawContext`](crate::DrawContext).
+pub trait DrawContextExtManual: sealed::Sealed + IsA<DrawContext> + 'static {
+    #[doc(alias = "gdk_draw_context_get_frame_region")]
+    #[doc(alias = "get_frame_region")]
     fn frame_region(&self) -> Option<cairo::Region> {
         unsafe {
             from_glib_none(
@@ -21,3 +24,5 @@ impl<O: IsA<DrawContext>> DrawContextExtManual for O {
         }
     }
 }
+
+impl<O: IsA<DrawContext>> DrawContextExtManual for O {}

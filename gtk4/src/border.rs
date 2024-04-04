@@ -1,7 +1,8 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use glib::translate::*;
 use std::fmt;
+
+use glib::translate::*;
 
 glib::wrapper! {
     #[doc(alias = "GtkBorder")]
@@ -24,7 +25,8 @@ impl Border {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-style object to construct a [`Border`].
     ///
-    /// This method returns an instance of [`BorderBuilder`] which can be used to create a [`Border`].
+    /// This method returns an instance of [`BorderBuilder`] which can be used
+    /// to create a [`Border`].
     pub fn builder() -> BorderBuilder {
         BorderBuilder::default()
     }

@@ -3,14 +3,13 @@
 // DO NOT EDIT
 
 use crate::ListItemFactory;
-#[cfg(any(feature = "v4_8", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+#[cfg(feature = "v4_8")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
 use glib::signal::{connect_raw, SignalHandlerId};
 use glib::{prelude::*, translate::*};
-use std::fmt;
-#[cfg(any(feature = "v4_8", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
-use std::{boxed::Box as Box_, mem::transmute};
+#[cfg(feature = "v4_8")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GtkSignalListItemFactory")]
@@ -30,8 +29,8 @@ impl SignalListItemFactory {
         }
     }
 
-    #[cfg(any(feature = "v4_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    #[cfg(feature = "v4_8")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     #[doc(alias = "bind")]
     pub fn connect_bind<F: Fn(&Self, &glib::Object) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn bind_trampoline<
@@ -49,7 +48,7 @@ impl SignalListItemFactory {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"bind\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     bind_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -57,8 +56,8 @@ impl SignalListItemFactory {
         }
     }
 
-    #[cfg(any(feature = "v4_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    #[cfg(feature = "v4_8")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     #[doc(alias = "setup")]
     pub fn connect_setup<F: Fn(&Self, &glib::Object) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn setup_trampoline<
@@ -76,7 +75,7 @@ impl SignalListItemFactory {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"setup\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     setup_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -84,8 +83,8 @@ impl SignalListItemFactory {
         }
     }
 
-    #[cfg(any(feature = "v4_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    #[cfg(feature = "v4_8")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     #[doc(alias = "teardown")]
     pub fn connect_teardown<F: Fn(&Self, &glib::Object) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn teardown_trampoline<
@@ -103,7 +102,7 @@ impl SignalListItemFactory {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"teardown\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     teardown_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -111,8 +110,8 @@ impl SignalListItemFactory {
         }
     }
 
-    #[cfg(any(feature = "v4_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    #[cfg(feature = "v4_8")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     #[doc(alias = "unbind")]
     pub fn connect_unbind<F: Fn(&Self, &glib::Object) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn unbind_trampoline<
@@ -130,7 +129,7 @@ impl SignalListItemFactory {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"unbind\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     unbind_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -142,11 +141,5 @@ impl SignalListItemFactory {
 impl Default for SignalListItemFactory {
     fn default() -> Self {
         Self::new()
-    }
-}
-
-impl fmt::Display for SignalListItemFactory {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("SignalListItemFactory")
     }
 }

@@ -1,14 +1,15 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
 // rustdoc-stripper-ignore-next
-//! Traits intended for implementing the [`FontChooser`](crate::FontChooser) interface.
+//! Traits intended for implementing the [`FontChooser`](crate::FontChooser)
+//! interface.
+use std::sync::OnceLock;
 
-use crate::{prelude::*, subclass::prelude::*, FontChooser};
 use glib::{translate::*, GString, Quark};
-use once_cell::sync::Lazy;
 use pango::{FontFace, FontFamily, FontMap};
 
 use super::PtrHolder;
+use crate::{prelude::*, subclass::prelude::*, FontChooser};
 
 #[derive(Debug)]
 pub struct FilterCallback {
@@ -18,6 +19,7 @@ pub struct FilterCallback {
 }
 
 impl FilterCallback {
+    // true if the font should be displayed
     pub fn call(&self, font_family: &FontFamily, font_face: &FontFace) -> bool {
         unsafe {
             if let Some(filter_func) = self.filter_func {
@@ -77,19 +79,14 @@ pub trait FontChooserImpl: ObjectImpl {
     }
 }
 
-#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-#[allow(deprecated)]
-pub trait FontChooserImplExt: ObjectSubclass {
-    fn parent_font_family(&self) -> Option<FontFamily>;
-    fn parent_font_face(&self) -> Option<FontFace>;
-    fn parent_font_size(&self) -> i32;
-    fn parent_set_filter_func(&self, callback: Option<FilterCallback>);
-    fn parent_set_font_map<P: IsA<FontMap>>(&self, font_map: Option<&P>);
-    fn parent_font_map(&self) -> Option<FontMap>;
-    fn parent_font_activated(&self, font_name: &str);
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::FontChooserImplExt> Sealed for T {}
 }
 
-impl<O: FontChooserImpl> FontChooserImplExt for O {
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+#[allow(deprecated)]
+pub trait FontChooserImplExt: sealed::Sealed + ObjectSubclass {
     fn parent_font_family(&self) -> Option<FontFamily> {
         unsafe {
             let type_data = Self::type_data();
@@ -215,6 +212,8 @@ impl<O: FontChooserImpl> FontChooserImplExt for O {
     }
 }
 
+impl<T: FontChooserImpl> FontChooserImplExt for T {}
+
 unsafe impl<T: FontChooserImpl> IsImplementable<T> for FontChooser {
     fn interface_init(iface: &mut glib::Interface<Self>) {
         let iface = iface.as_mut();
@@ -231,9 +230,6 @@ unsafe impl<T: FontChooserImpl> IsImplementable<T> for FontChooser {
     }
 }
 
-static FONT_CHOOSER_GET_FONT_FAMILY_QUARK: Lazy<Quark> =
-    Lazy::new(|| Quark::from_str("gtk4-rs-subclass-font-chooser-font-family"));
-
 unsafe extern "C" fn font_chooser_get_font_family<T: FontChooserImpl>(
     font_chooser: *mut ffi::GtkFontChooser,
 ) -> *mut pango::ffi::PangoFontFamily {
@@ -243,8 +239,13 @@ unsafe extern "C" fn font_chooser_get_font_family<T: FontChooserImpl>(
     let ret = imp.font_family();
     if let Some(font_family) = ret {
         let font_family = font_family.into_glib_ptr();
+
+        static QUARK: OnceLock<Quark> = OnceLock::new();
+        let quark =
+            *QUARK.get_or_init(|| Quark::from_str("gtk4-rs-subclass-font-chooser-font-family"));
+
         imp.obj().set_qdata(
-            *FONT_CHOOSER_GET_FONT_FAMILY_QUARK,
+            quark,
             PtrHolder(font_family, |ptr| {
                 glib::gobject_ffi::g_object_unref(ptr as *mut _)
             }),
@@ -255,8 +256,6 @@ unsafe extern "C" fn font_chooser_get_font_family<T: FontChooserImpl>(
     }
 }
 
-static FONT_CHOOSER_GET_FONT_FACE_QUARK: Lazy<Quark> =
-    Lazy::new(|| Quark::from_str("gtk4-rs-subclass-font-chooser-font-face"));
 unsafe extern "C" fn font_chooser_get_font_face<T: FontChooserImpl>(
     font_chooser: *mut ffi::GtkFontChooser,
 ) -> *mut pango::ffi::PangoFontFace {
@@ -266,8 +265,11 @@ unsafe extern "C" fn font_chooser_get_font_face<T: FontChooserImpl>(
     let ret = imp.font_face();
     if let Some(font_face) = ret {
         let font_face = font_face.into_glib_ptr();
+        static QUARK: OnceLock<Quark> = OnceLock::new();
+        let quark =
+            *QUARK.get_or_init(|| Quark::from_str("gtk4-rs-subclass-font-chooser-font-face"));
         imp.obj().set_qdata(
-            *FONT_CHOOSER_GET_FONT_FACE_QUARK,
+            quark,
             PtrHolder(font_face, |ptr| {
                 glib::gobject_ffi::g_object_unref(ptr as *mut _);
             }),

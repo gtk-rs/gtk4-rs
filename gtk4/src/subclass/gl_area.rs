@@ -3,9 +3,10 @@
 // rustdoc-stripper-ignore-next
 //! Traits intended for subclassing [`GLArea`](crate::GLArea).
 
-use crate::{prelude::*, subclass::prelude::*, GLArea};
 use gdk::GLContext;
 use glib::translate::*;
+
+use crate::{prelude::*, subclass::prelude::*, GLArea};
 
 #[allow(clippy::upper_case_acronyms)]
 pub trait GLAreaImpl: GLAreaImplExt + WidgetImpl {
@@ -13,7 +14,7 @@ pub trait GLAreaImpl: GLAreaImplExt + WidgetImpl {
         self.parent_create_context()
     }
 
-    fn render(&self, context: &GLContext) -> bool {
+    fn render(&self, context: &GLContext) -> glib::Propagation {
         self.parent_render(context)
     }
 
@@ -22,17 +23,16 @@ pub trait GLAreaImpl: GLAreaImplExt + WidgetImpl {
     }
 }
 
-#[allow(clippy::upper_case_acronyms)]
-pub trait GLAreaImplExt: ObjectSubclass {
-    fn parent_create_context(&self) -> Option<GLContext>;
-    fn parent_render(&self, context: &GLContext) -> bool;
-    fn parent_resize(&self, width: i32, height: i32);
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::GLAreaImplExt> Sealed for T {}
 }
 
-impl<T: GLAreaImpl> GLAreaImplExt for T {
+#[allow(clippy::upper_case_acronyms)]
+pub trait GLAreaImplExt: sealed::Sealed + ObjectSubclass {
     fn parent_create_context(&self) -> Option<GLContext> {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkGLAreaClass;
             if let Some(f) = (*parent_class).create_context {
                 return Some(from_glib_none(f(self
@@ -45,9 +45,9 @@ impl<T: GLAreaImpl> GLAreaImplExt for T {
         }
     }
 
-    fn parent_render(&self, context: &GLContext) -> bool {
+    fn parent_render(&self, context: &GLContext) -> glib::Propagation {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkGLAreaClass;
             let f = (*parent_class)
                 .render
@@ -61,7 +61,7 @@ impl<T: GLAreaImpl> GLAreaImplExt for T {
 
     fn parent_resize(&self, width: i32, height: i32) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkGLAreaClass;
             if let Some(f) = (*parent_class).resize {
                 f(
@@ -73,6 +73,8 @@ impl<T: GLAreaImpl> GLAreaImplExt for T {
         }
     }
 }
+
+impl<T: GLAreaImpl> GLAreaImplExt for T {}
 
 unsafe impl<T: GLAreaImpl> IsSubclassable<T> for GLArea {
     fn class_init(class: &mut glib::Class<Self>) {

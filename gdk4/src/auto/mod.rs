@@ -50,6 +50,20 @@ pub use self::display::Display;
 mod display_manager;
 pub use self::display_manager::DisplayManager;
 
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+mod dmabuf_texture;
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+pub use self::dmabuf_texture::DmabufTexture;
+
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+mod dmabuf_texture_builder;
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+pub use self::dmabuf_texture_builder::DmabufTextureBuilder;
+
 mod drag;
 pub use self::drag::Drag;
 
@@ -76,6 +90,13 @@ pub use self::gl_context::GLContext;
 
 mod gl_texture;
 pub use self::gl_texture::GLTexture;
+
+#[cfg(feature = "v4_12")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+mod gl_texture_builder;
+#[cfg(feature = "v4_12")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+pub use self::gl_texture_builder::GLTextureBuilder;
 
 mod grab_broken_event;
 pub use self::grab_broken_event::GrabBrokenEvent;
@@ -137,14 +158,21 @@ pub use self::content_formats::ContentFormats;
 mod content_formats_builder;
 pub use self::content_formats_builder::ContentFormatsBuilder;
 
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+mod dmabuf_formats;
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+pub use self::dmabuf_formats::DmabufFormats;
+
 mod event_sequence;
 pub use self::event_sequence::EventSequence;
 
-#[cfg(any(feature = "v4_6", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+#[cfg(feature = "v4_6")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
 mod file_list;
-#[cfg(any(feature = "v4_6", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+#[cfg(feature = "v4_6")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
 pub use self::file_list::FileList;
 
 mod frame_timings;
@@ -159,11 +187,11 @@ pub use self::rgba::RGBA;
 mod rectangle;
 pub use self::rectangle::Rectangle;
 
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 mod texture_downloader;
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 pub use self::texture_downloader::TextureDownloader;
 
 mod toplevel_layout;
@@ -174,6 +202,9 @@ pub use self::enums::AxisUse;
 pub use self::enums::CrossingMode;
 pub use self::enums::DevicePadFeature;
 pub use self::enums::DeviceToolType;
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+pub use self::enums::DmabufError;
 pub use self::enums::DragCancelReason;
 pub use self::enums::EventType;
 pub use self::enums::FullscreenMode;
@@ -184,16 +215,16 @@ pub use self::enums::KeyMatch;
 pub use self::enums::MemoryFormat;
 pub use self::enums::NotifyType;
 pub use self::enums::ScrollDirection;
-#[cfg(any(feature = "v4_8", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+#[cfg(feature = "v4_8")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
 pub use self::enums::ScrollUnit;
 pub use self::enums::SubpixelLayout;
 pub use self::enums::SurfaceEdge;
-#[cfg(any(feature = "v4_6", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+#[cfg(feature = "v4_6")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
 pub use self::enums::TextureError;
-#[cfg(any(feature = "v4_4", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+#[cfg(feature = "v4_4")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
 pub use self::enums::TitlebarGesture;
 pub use self::enums::TouchpadGesturePhase;
 pub use self::enums::VulkanError;
@@ -207,15 +238,14 @@ pub use self::flags::ModifierType;
 pub use self::flags::PaintableFlags;
 pub use self::flags::SeatCapabilities;
 pub use self::flags::ToplevelState;
-#[cfg(any(feature = "v4_6", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+#[cfg(feature = "v4_6")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
 pub use self::flags::GLAPI;
 
-pub mod functions;
+pub(crate) mod functions;
 
-#[doc(hidden)]
-pub mod traits {
-    pub use super::app_launch_context::AppLaunchContextExt;
+pub(crate) mod traits {
+    pub use super::app_launch_context::GdkAppLaunchContextExt;
     pub use super::content_provider::ContentProviderExt;
     pub use super::device::DeviceExt;
     pub use super::device_pad::DevicePadExt;
@@ -232,7 +262,6 @@ pub mod traits {
     pub use super::texture::TextureExt;
     pub use super::toplevel::ToplevelExt;
 }
-#[doc(hidden)]
-pub mod builders {
+pub(crate) mod builders {
     pub use super::cursor::CursorBuilder;
 }

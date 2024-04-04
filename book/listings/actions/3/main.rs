@@ -1,5 +1,4 @@
-use gio::SimpleAction;
-use glib::clone;
+use gio::ActionEntry;
 use gtk::prelude::*;
 use gtk::{
     gio, glib, Align, Application, ApplicationWindow, Button, Label, Orientation,
@@ -59,33 +58,32 @@ fn build_ui(app: &Application) {
         .build();
 
     // Add action "count" to `window` taking an integer as parameter
-    let action_count = SimpleAction::new_stateful(
-        "count",
-        Some(&i32::static_variant_type()),
-        original_state.to_variant(),
-    );
-    action_count.connect_activate(clone!(@weak label => move |action, parameter| {
-        // Get state
-        let mut state = action
-            .state()
-            .expect("Could not get state.")
-            .get::<i32>()
-            .expect("The variant needs to be of type `i32`.");
+    let action_count = ActionEntry::builder("count")
+        .parameter_type(Some(&i32::static_variant_type()))
+        .state(original_state.to_variant())
+        .activate(move |_, action, parameter| {
+            // Get state
+            let mut state = action
+                .state()
+                .expect("Could not get state.")
+                .get::<i32>()
+                .expect("The variant needs to be of type `i32`.");
 
-        // Get parameter
-        let parameter = parameter
-            .expect("Could not get parameter.")
-            .get::<i32>()
-            .expect("The variant needs to be of type `i32`.");
+            // Get parameter
+            let parameter = parameter
+                .expect("Could not get parameter.")
+                .get::<i32>()
+                .expect("The variant needs to be of type `i32`.");
 
-        // Increase state by parameter and store state
-        state += parameter;
-        action.set_state(state.to_variant());
+            // Increase state by parameter and store state
+            state += parameter;
+            action.set_state(&state.to_variant());
 
-        // Update label with new state
-        label.set_label(&format!("Counter: {state}"));
-    }));
-    window.add_action(&action_count);
+            // Update label with new state
+            label.set_label(&format!("Counter: {state}"));
+        })
+        .build();
+    window.add_action_entries([action_count]);
 
     // Present window
     window.present();

@@ -9,7 +9,6 @@ config.status
 *.so
 *.o
 *.swp
-Cargo.lock
 book/book
 .vscode
 *.log

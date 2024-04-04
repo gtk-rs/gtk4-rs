@@ -1,10 +1,12 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
 // rustdoc-stripper-ignore-next
-//! Traits intended for implementing the [`CellEditable`](crate::CellEditable) interface.
+//! Traits intended for implementing the [`CellEditable`](crate::CellEditable)
+//! interface.
+
+use glib::translate::*;
 
 use crate::{prelude::*, subclass::prelude::*, CellEditable};
-use glib::translate::*;
 
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 #[allow(deprecated)]
@@ -22,15 +24,14 @@ pub trait CellEditableImpl: ObjectImpl {
     }
 }
 
-#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-#[allow(deprecated)]
-pub trait CellEditableImplExt: ObjectSubclass {
-    fn parent_editing_done(&self);
-    fn parent_remove_widget(&self);
-    fn parent_start_editing(&self, event: Option<&gdk::Event>);
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::CellEditableImplExt> Sealed for T {}
 }
 
-impl<O: CellEditableImpl> CellEditableImplExt for O {
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+#[allow(deprecated)]
+pub trait CellEditableImplExt: sealed::Sealed + ObjectSubclass {
     fn parent_editing_done(&self) {
         unsafe {
             let type_data = Self::type_data();
@@ -81,6 +82,8 @@ impl<O: CellEditableImpl> CellEditableImplExt for O {
         }
     }
 }
+
+impl<T: CellEditableImpl> CellEditableImplExt for T {}
 
 unsafe impl<T: CellEditableImpl> IsImplementable<T> for CellEditable {
     fn interface_init(iface: &mut glib::Interface<Self>) {

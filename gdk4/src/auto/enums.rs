@@ -2,10 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use glib::{
-    error::ErrorDomain, translate::*, value::FromValue, value::ToValue, Quark, StaticType, Type,
-};
-use std::fmt;
+use glib::{prelude::*, translate::*};
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
@@ -37,30 +34,6 @@ pub enum AxisUse {
     Slider,
     #[doc(hidden)]
     __Unknown(i32),
-}
-
-impl fmt::Display for AxisUse {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "AxisUse::{}",
-            match *self {
-                Self::Ignore => "Ignore",
-                Self::X => "X",
-                Self::Y => "Y",
-                Self::DeltaX => "DeltaX",
-                Self::DeltaY => "DeltaY",
-                Self::Pressure => "Pressure",
-                Self::Xtilt => "Xtilt",
-                Self::Ytilt => "Ytilt",
-                Self::Wheel => "Wheel",
-                Self::Distance => "Distance",
-                Self::Rotation => "Rotation",
-                Self::Slider => "Slider",
-                _ => "Unknown",
-            }
-        )
-    }
 }
 
 #[doc(hidden)]
@@ -113,7 +86,8 @@ impl FromGlib<ffi::GdkAxisUse> for AxisUse {
 
 impl StaticType for AxisUse {
     #[inline]
-    fn static_type() -> Type {
+    #[doc(alias = "gdk_axis_use_get_type")]
+    fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gdk_axis_use_get_type()) }
     }
 }
@@ -124,7 +98,7 @@ impl glib::HasParamSpec for AxisUse {
     type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
 
     fn param_spec_builder() -> Self::BuilderFn {
-        |name, default_value| Self::ParamSpec::builder_with_default(name, default_value)
+        Self::ParamSpec::builder_with_default
     }
 }
 
@@ -132,7 +106,7 @@ impl glib::value::ValueType for AxisUse {
     type Type = Self;
 }
 
-unsafe impl<'a> FromValue<'a> for AxisUse {
+unsafe impl<'a> glib::value::FromValue<'a> for AxisUse {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
     #[inline]
@@ -192,27 +166,6 @@ pub enum CrossingMode {
     __Unknown(i32),
 }
 
-impl fmt::Display for CrossingMode {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "CrossingMode::{}",
-            match *self {
-                Self::Normal => "Normal",
-                Self::Grab => "Grab",
-                Self::Ungrab => "Ungrab",
-                Self::GtkGrab => "GtkGrab",
-                Self::GtkUngrab => "GtkUngrab",
-                Self::StateChanged => "StateChanged",
-                Self::TouchBegin => "TouchBegin",
-                Self::TouchEnd => "TouchEnd",
-                Self::DeviceSwitch => "DeviceSwitch",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for CrossingMode {
     type GlibType = ffi::GdkCrossingMode;
@@ -257,7 +210,8 @@ impl FromGlib<ffi::GdkCrossingMode> for CrossingMode {
 
 impl StaticType for CrossingMode {
     #[inline]
-    fn static_type() -> Type {
+    #[doc(alias = "gdk_crossing_mode_get_type")]
+    fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gdk_crossing_mode_get_type()) }
     }
 }
@@ -268,7 +222,7 @@ impl glib::HasParamSpec for CrossingMode {
     type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
 
     fn param_spec_builder() -> Self::BuilderFn {
-        |name, default_value| Self::ParamSpec::builder_with_default(name, default_value)
+        Self::ParamSpec::builder_with_default
     }
 }
 
@@ -276,7 +230,7 @@ impl glib::value::ValueType for CrossingMode {
     type Type = Self;
 }
 
-unsafe impl<'a> FromValue<'a> for CrossingMode {
+unsafe impl<'a> glib::value::FromValue<'a> for CrossingMode {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
     #[inline]
@@ -324,21 +278,6 @@ pub enum DevicePadFeature {
     __Unknown(i32),
 }
 
-impl fmt::Display for DevicePadFeature {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "DevicePadFeature::{}",
-            match *self {
-                Self::Button => "Button",
-                Self::Ring => "Ring",
-                Self::Strip => "Strip",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for DevicePadFeature {
     type GlibType = ffi::GdkDevicePadFeature;
@@ -371,7 +310,8 @@ impl FromGlib<ffi::GdkDevicePadFeature> for DevicePadFeature {
 
 impl StaticType for DevicePadFeature {
     #[inline]
-    fn static_type() -> Type {
+    #[doc(alias = "gdk_device_pad_feature_get_type")]
+    fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gdk_device_pad_feature_get_type()) }
     }
 }
@@ -382,7 +322,7 @@ impl glib::HasParamSpec for DevicePadFeature {
     type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
 
     fn param_spec_builder() -> Self::BuilderFn {
-        |name, default_value| Self::ParamSpec::builder_with_default(name, default_value)
+        Self::ParamSpec::builder_with_default
     }
 }
 
@@ -390,7 +330,7 @@ impl glib::value::ValueType for DevicePadFeature {
     type Type = Self;
 }
 
-unsafe impl<'a> FromValue<'a> for DevicePadFeature {
+unsafe impl<'a> glib::value::FromValue<'a> for DevicePadFeature {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
     #[inline]
@@ -448,26 +388,6 @@ pub enum DeviceToolType {
     __Unknown(i32),
 }
 
-impl fmt::Display for DeviceToolType {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "DeviceToolType::{}",
-            match *self {
-                Self::Unknown => "Unknown",
-                Self::Pen => "Pen",
-                Self::Eraser => "Eraser",
-                Self::Brush => "Brush",
-                Self::Pencil => "Pencil",
-                Self::Airbrush => "Airbrush",
-                Self::Mouse => "Mouse",
-                Self::Lens => "Lens",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for DeviceToolType {
     type GlibType = ffi::GdkDeviceToolType;
@@ -510,7 +430,8 @@ impl FromGlib<ffi::GdkDeviceToolType> for DeviceToolType {
 
 impl StaticType for DeviceToolType {
     #[inline]
-    fn static_type() -> Type {
+    #[doc(alias = "gdk_device_tool_type_get_type")]
+    fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gdk_device_tool_type_get_type()) }
     }
 }
@@ -521,7 +442,7 @@ impl glib::HasParamSpec for DeviceToolType {
     type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
 
     fn param_spec_builder() -> Self::BuilderFn {
-        |name, default_value| Self::ParamSpec::builder_with_default(name, default_value)
+        Self::ParamSpec::builder_with_default
     }
 }
 
@@ -529,7 +450,7 @@ impl glib::value::ValueType for DeviceToolType {
     type Type = Self;
 }
 
-unsafe impl<'a> FromValue<'a> for DeviceToolType {
+unsafe impl<'a> glib::value::FromValue<'a> for DeviceToolType {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
     #[inline]
@@ -563,6 +484,149 @@ impl From<DeviceToolType> for glib::Value {
     }
 }
 
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
+#[doc(alias = "GdkDmabufError")]
+pub enum DmabufError {
+    #[doc(alias = "GDK_DMABUF_ERROR_NOT_AVAILABLE")]
+    NotAvailable,
+    #[doc(alias = "GDK_DMABUF_ERROR_UNSUPPORTED_FORMAT")]
+    UnsupportedFormat,
+    #[doc(alias = "GDK_DMABUF_ERROR_CREATION_FAILED")]
+    CreationFailed,
+    #[doc(hidden)]
+    __Unknown(i32),
+}
+
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+#[doc(hidden)]
+impl IntoGlib for DmabufError {
+    type GlibType = ffi::GdkDmabufError;
+
+    #[inline]
+    fn into_glib(self) -> ffi::GdkDmabufError {
+        match self {
+            Self::NotAvailable => ffi::GDK_DMABUF_ERROR_NOT_AVAILABLE,
+            Self::UnsupportedFormat => ffi::GDK_DMABUF_ERROR_UNSUPPORTED_FORMAT,
+            Self::CreationFailed => ffi::GDK_DMABUF_ERROR_CREATION_FAILED,
+            Self::__Unknown(value) => value,
+        }
+    }
+}
+
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+#[doc(hidden)]
+impl FromGlib<ffi::GdkDmabufError> for DmabufError {
+    #[inline]
+    unsafe fn from_glib(value: ffi::GdkDmabufError) -> Self {
+        skip_assert_initialized!();
+
+        match value {
+            ffi::GDK_DMABUF_ERROR_NOT_AVAILABLE => Self::NotAvailable,
+            ffi::GDK_DMABUF_ERROR_UNSUPPORTED_FORMAT => Self::UnsupportedFormat,
+            ffi::GDK_DMABUF_ERROR_CREATION_FAILED => Self::CreationFailed,
+            value => Self::__Unknown(value),
+        }
+    }
+}
+
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+impl glib::error::ErrorDomain for DmabufError {
+    #[inline]
+    fn domain() -> glib::Quark {
+        skip_assert_initialized!();
+
+        unsafe { from_glib(ffi::gdk_dmabuf_error_quark()) }
+    }
+
+    #[inline]
+    fn code(self) -> i32 {
+        self.into_glib()
+    }
+
+    #[inline]
+    #[allow(clippy::match_single_binding)]
+    fn from(code: i32) -> Option<Self> {
+        skip_assert_initialized!();
+        match unsafe { from_glib(code) } {
+            value => Some(value),
+        }
+    }
+}
+
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+impl StaticType for DmabufError {
+    #[inline]
+    #[doc(alias = "gdk_dmabuf_error_get_type")]
+    fn static_type() -> glib::Type {
+        unsafe { from_glib(ffi::gdk_dmabuf_error_get_type()) }
+    }
+}
+
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+impl glib::HasParamSpec for DmabufError {
+    type ParamSpec = glib::ParamSpecEnum;
+    type SetValue = Self;
+    type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
+
+    fn param_spec_builder() -> Self::BuilderFn {
+        Self::ParamSpec::builder_with_default
+    }
+}
+
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+impl glib::value::ValueType for DmabufError {
+    type Type = Self;
+}
+
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+unsafe impl<'a> glib::value::FromValue<'a> for DmabufError {
+    type Checker = glib::value::GenericValueTypeChecker<Self>;
+
+    #[inline]
+    unsafe fn from_value(value: &'a glib::Value) -> Self {
+        skip_assert_initialized!();
+        from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+    }
+}
+
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+impl ToValue for DmabufError {
+    #[inline]
+    fn to_value(&self) -> glib::Value {
+        let mut value = glib::Value::for_value_type::<Self>();
+        unsafe {
+            glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
+        }
+        value
+    }
+
+    #[inline]
+    fn value_type(&self) -> glib::Type {
+        Self::static_type()
+    }
+}
+
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+impl From<DmabufError> for glib::Value {
+    #[inline]
+    fn from(v: DmabufError) -> Self {
+        skip_assert_initialized!();
+        ToValue::to_value(&v)
+    }
+}
+
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GdkDragCancelReason")]
@@ -575,21 +639,6 @@ pub enum DragCancelReason {
     Error,
     #[doc(hidden)]
     __Unknown(i32),
-}
-
-impl fmt::Display for DragCancelReason {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "DragCancelReason::{}",
-            match *self {
-                Self::NoTarget => "NoTarget",
-                Self::UserCancelled => "UserCancelled",
-                Self::Error => "Error",
-                _ => "Unknown",
-            }
-        )
-    }
 }
 
 #[doc(hidden)]
@@ -624,7 +673,8 @@ impl FromGlib<ffi::GdkDragCancelReason> for DragCancelReason {
 
 impl StaticType for DragCancelReason {
     #[inline]
-    fn static_type() -> Type {
+    #[doc(alias = "gdk_drag_cancel_reason_get_type")]
+    fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gdk_drag_cancel_reason_get_type()) }
     }
 }
@@ -635,7 +685,7 @@ impl glib::HasParamSpec for DragCancelReason {
     type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
 
     fn param_spec_builder() -> Self::BuilderFn {
-        |name, default_value| Self::ParamSpec::builder_with_default(name, default_value)
+        Self::ParamSpec::builder_with_default
     }
 }
 
@@ -643,7 +693,7 @@ impl glib::value::ValueType for DragCancelReason {
     type Type = Self;
 }
 
-unsafe impl<'a> FromValue<'a> for DragCancelReason {
+unsafe impl<'a> glib::value::FromValue<'a> for DragCancelReason {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
     #[inline]
@@ -737,54 +787,12 @@ pub enum EventType {
     PadStrip,
     #[doc(alias = "GDK_PAD_GROUP_MODE")]
     PadGroupMode,
-    #[cfg(any(feature = "v4_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    #[cfg(feature = "v4_8")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     #[doc(alias = "GDK_TOUCHPAD_HOLD")]
     TouchpadHold,
     #[doc(hidden)]
     __Unknown(i32),
-}
-
-impl fmt::Display for EventType {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "EventType::{}",
-            match *self {
-                Self::Delete => "Delete",
-                Self::MotionNotify => "MotionNotify",
-                Self::ButtonPress => "ButtonPress",
-                Self::ButtonRelease => "ButtonRelease",
-                Self::KeyPress => "KeyPress",
-                Self::KeyRelease => "KeyRelease",
-                Self::EnterNotify => "EnterNotify",
-                Self::LeaveNotify => "LeaveNotify",
-                Self::FocusChange => "FocusChange",
-                Self::ProximityIn => "ProximityIn",
-                Self::ProximityOut => "ProximityOut",
-                Self::DragEnter => "DragEnter",
-                Self::DragLeave => "DragLeave",
-                Self::DragMotion => "DragMotion",
-                Self::DropStart => "DropStart",
-                Self::Scroll => "Scroll",
-                Self::GrabBroken => "GrabBroken",
-                Self::TouchBegin => "TouchBegin",
-                Self::TouchUpdate => "TouchUpdate",
-                Self::TouchEnd => "TouchEnd",
-                Self::TouchCancel => "TouchCancel",
-                Self::TouchpadSwipe => "TouchpadSwipe",
-                Self::TouchpadPinch => "TouchpadPinch",
-                Self::PadButtonPress => "PadButtonPress",
-                Self::PadButtonRelease => "PadButtonRelease",
-                Self::PadRing => "PadRing",
-                Self::PadStrip => "PadStrip",
-                Self::PadGroupMode => "PadGroupMode",
-                #[cfg(any(feature = "v4_8", feature = "dox"))]
-                Self::TouchpadHold => "TouchpadHold",
-                _ => "Unknown",
-            }
-        )
-    }
 }
 
 #[doc(hidden)]
@@ -821,7 +829,7 @@ impl IntoGlib for EventType {
             Self::PadRing => ffi::GDK_PAD_RING,
             Self::PadStrip => ffi::GDK_PAD_STRIP,
             Self::PadGroupMode => ffi::GDK_PAD_GROUP_MODE,
-            #[cfg(any(feature = "v4_8", feature = "dox"))]
+            #[cfg(feature = "v4_8")]
             Self::TouchpadHold => ffi::GDK_TOUCHPAD_HOLD,
             Self::__Unknown(value) => value,
         }
@@ -862,7 +870,7 @@ impl FromGlib<ffi::GdkEventType> for EventType {
             ffi::GDK_PAD_RING => Self::PadRing,
             ffi::GDK_PAD_STRIP => Self::PadStrip,
             ffi::GDK_PAD_GROUP_MODE => Self::PadGroupMode,
-            #[cfg(any(feature = "v4_8", feature = "dox"))]
+            #[cfg(feature = "v4_8")]
             ffi::GDK_TOUCHPAD_HOLD => Self::TouchpadHold,
             value => Self::__Unknown(value),
         }
@@ -871,7 +879,8 @@ impl FromGlib<ffi::GdkEventType> for EventType {
 
 impl StaticType for EventType {
     #[inline]
-    fn static_type() -> Type {
+    #[doc(alias = "gdk_event_type_get_type")]
+    fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gdk_event_type_get_type()) }
     }
 }
@@ -882,7 +891,7 @@ impl glib::HasParamSpec for EventType {
     type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
 
     fn param_spec_builder() -> Self::BuilderFn {
-        |name, default_value| Self::ParamSpec::builder_with_default(name, default_value)
+        Self::ParamSpec::builder_with_default
     }
 }
 
@@ -890,7 +899,7 @@ impl glib::value::ValueType for EventType {
     type Type = Self;
 }
 
-unsafe impl<'a> FromValue<'a> for EventType {
+unsafe impl<'a> glib::value::FromValue<'a> for EventType {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
     #[inline]
@@ -936,20 +945,6 @@ pub enum FullscreenMode {
     __Unknown(i32),
 }
 
-impl fmt::Display for FullscreenMode {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "FullscreenMode::{}",
-            match *self {
-                Self::CurrentMonitor => "CurrentMonitor",
-                Self::AllMonitors => "AllMonitors",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for FullscreenMode {
     type GlibType = ffi::GdkFullscreenMode;
@@ -980,7 +975,8 @@ impl FromGlib<ffi::GdkFullscreenMode> for FullscreenMode {
 
 impl StaticType for FullscreenMode {
     #[inline]
-    fn static_type() -> Type {
+    #[doc(alias = "gdk_fullscreen_mode_get_type")]
+    fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gdk_fullscreen_mode_get_type()) }
     }
 }
@@ -991,7 +987,7 @@ impl glib::HasParamSpec for FullscreenMode {
     type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
 
     fn param_spec_builder() -> Self::BuilderFn {
-        |name, default_value| Self::ParamSpec::builder_with_default(name, default_value)
+        Self::ParamSpec::builder_with_default
     }
 }
 
@@ -999,7 +995,7 @@ impl glib::value::ValueType for FullscreenMode {
     type Type = Self;
 }
 
-unsafe impl<'a> FromValue<'a> for FullscreenMode {
+unsafe impl<'a> glib::value::FromValue<'a> for FullscreenMode {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
     #[inline]
@@ -1051,23 +1047,6 @@ pub enum GLError {
     __Unknown(i32),
 }
 
-impl fmt::Display for GLError {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "GLError::{}",
-            match *self {
-                Self::NotAvailable => "NotAvailable",
-                Self::UnsupportedFormat => "UnsupportedFormat",
-                Self::UnsupportedProfile => "UnsupportedProfile",
-                Self::CompilationFailed => "CompilationFailed",
-                Self::LinkFailed => "LinkFailed",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for GLError {
     type GlibType = ffi::GdkGLError;
@@ -1102,9 +1081,9 @@ impl FromGlib<ffi::GdkGLError> for GLError {
     }
 }
 
-impl ErrorDomain for GLError {
+impl glib::error::ErrorDomain for GLError {
     #[inline]
-    fn domain() -> Quark {
+    fn domain() -> glib::Quark {
         skip_assert_initialized!();
 
         unsafe { from_glib(ffi::gdk_gl_error_quark()) }
@@ -1127,7 +1106,8 @@ impl ErrorDomain for GLError {
 
 impl StaticType for GLError {
     #[inline]
-    fn static_type() -> Type {
+    #[doc(alias = "gdk_gl_error_get_type")]
+    fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gdk_gl_error_get_type()) }
     }
 }
@@ -1138,7 +1118,7 @@ impl glib::HasParamSpec for GLError {
     type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
 
     fn param_spec_builder() -> Self::BuilderFn {
-        |name, default_value| Self::ParamSpec::builder_with_default(name, default_value)
+        Self::ParamSpec::builder_with_default
     }
 }
 
@@ -1146,7 +1126,7 @@ impl glib::value::ValueType for GLError {
     type Type = Self;
 }
 
-unsafe impl<'a> FromValue<'a> for GLError {
+unsafe impl<'a> glib::value::FromValue<'a> for GLError {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
     #[inline]
@@ -1208,28 +1188,6 @@ pub enum Gravity {
     __Unknown(i32),
 }
 
-impl fmt::Display for Gravity {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "Gravity::{}",
-            match *self {
-                Self::NorthWest => "NorthWest",
-                Self::North => "North",
-                Self::NorthEast => "NorthEast",
-                Self::West => "West",
-                Self::Center => "Center",
-                Self::East => "East",
-                Self::SouthWest => "SouthWest",
-                Self::South => "South",
-                Self::SouthEast => "SouthEast",
-                Self::Static => "Static",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for Gravity {
     type GlibType = ffi::GdkGravity;
@@ -1276,7 +1234,8 @@ impl FromGlib<ffi::GdkGravity> for Gravity {
 
 impl StaticType for Gravity {
     #[inline]
-    fn static_type() -> Type {
+    #[doc(alias = "gdk_gravity_get_type")]
+    fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gdk_gravity_get_type()) }
     }
 }
@@ -1287,7 +1246,7 @@ impl glib::HasParamSpec for Gravity {
     type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
 
     fn param_spec_builder() -> Self::BuilderFn {
-        |name, default_value| Self::ParamSpec::builder_with_default(name, default_value)
+        Self::ParamSpec::builder_with_default
     }
 }
 
@@ -1295,7 +1254,7 @@ impl glib::value::ValueType for Gravity {
     type Type = Self;
 }
 
-unsafe impl<'a> FromValue<'a> for Gravity {
+unsafe impl<'a> glib::value::FromValue<'a> for Gravity {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
     #[inline]
@@ -1351,25 +1310,6 @@ pub enum InputSource {
     __Unknown(i32),
 }
 
-impl fmt::Display for InputSource {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "InputSource::{}",
-            match *self {
-                Self::Mouse => "Mouse",
-                Self::Pen => "Pen",
-                Self::Keyboard => "Keyboard",
-                Self::Touchscreen => "Touchscreen",
-                Self::Touchpad => "Touchpad",
-                Self::Trackpoint => "Trackpoint",
-                Self::TabletPad => "TabletPad",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for InputSource {
     type GlibType = ffi::GdkInputSource;
@@ -1410,7 +1350,8 @@ impl FromGlib<ffi::GdkInputSource> for InputSource {
 
 impl StaticType for InputSource {
     #[inline]
-    fn static_type() -> Type {
+    #[doc(alias = "gdk_input_source_get_type")]
+    fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gdk_input_source_get_type()) }
     }
 }
@@ -1421,7 +1362,7 @@ impl glib::HasParamSpec for InputSource {
     type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
 
     fn param_spec_builder() -> Self::BuilderFn {
-        |name, default_value| Self::ParamSpec::builder_with_default(name, default_value)
+        Self::ParamSpec::builder_with_default
     }
 }
 
@@ -1429,7 +1370,7 @@ impl glib::value::ValueType for InputSource {
     type Type = Self;
 }
 
-unsafe impl<'a> FromValue<'a> for InputSource {
+unsafe impl<'a> glib::value::FromValue<'a> for InputSource {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
     #[inline]
@@ -1477,21 +1418,6 @@ pub enum KeyMatch {
     __Unknown(i32),
 }
 
-impl fmt::Display for KeyMatch {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "KeyMatch::{}",
-            match *self {
-                Self::None => "None",
-                Self::Partial => "Partial",
-                Self::Exact => "Exact",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for KeyMatch {
     type GlibType = ffi::GdkKeyMatch;
@@ -1524,7 +1450,8 @@ impl FromGlib<ffi::GdkKeyMatch> for KeyMatch {
 
 impl StaticType for KeyMatch {
     #[inline]
-    fn static_type() -> Type {
+    #[doc(alias = "gdk_key_match_get_type")]
+    fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gdk_key_match_get_type()) }
     }
 }
@@ -1535,7 +1462,7 @@ impl glib::HasParamSpec for KeyMatch {
     type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
 
     fn param_spec_builder() -> Self::BuilderFn {
-        |name, default_value| Self::ParamSpec::builder_with_default(name, default_value)
+        Self::ParamSpec::builder_with_default
     }
 }
 
@@ -1543,7 +1470,7 @@ impl glib::value::ValueType for KeyMatch {
     type Type = Self;
 }
 
-unsafe impl<'a> FromValue<'a> for KeyMatch {
+unsafe impl<'a> glib::value::FromValue<'a> for KeyMatch {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
     #[inline]
@@ -1599,83 +1526,104 @@ pub enum MemoryFormat {
     R8g8b8,
     #[doc(alias = "GDK_MEMORY_B8G8R8")]
     B8g8r8,
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[cfg(feature = "v4_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     #[doc(alias = "GDK_MEMORY_R16G16B16")]
     R16g16b16,
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[cfg(feature = "v4_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     #[doc(alias = "GDK_MEMORY_R16G16B16A16_PREMULTIPLIED")]
     R16g16b16a16Premultiplied,
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[cfg(feature = "v4_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     #[doc(alias = "GDK_MEMORY_R16G16B16A16")]
     R16g16b16a16,
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[cfg(feature = "v4_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     #[doc(alias = "GDK_MEMORY_R16G16B16_FLOAT")]
     R16g16b16Float,
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[cfg(feature = "v4_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     #[doc(alias = "GDK_MEMORY_R16G16B16A16_FLOAT_PREMULTIPLIED")]
     R16g16b16a16FloatPremultiplied,
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[cfg(feature = "v4_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     #[doc(alias = "GDK_MEMORY_R16G16B16A16_FLOAT")]
     R16g16b16a16Float,
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[cfg(feature = "v4_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     #[doc(alias = "GDK_MEMORY_R32G32B32_FLOAT")]
     R32g32b32Float,
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[cfg(feature = "v4_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     #[doc(alias = "GDK_MEMORY_R32G32B32A32_FLOAT_PREMULTIPLIED")]
     R32g32b32a32FloatPremultiplied,
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[cfg(feature = "v4_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     #[doc(alias = "GDK_MEMORY_R32G32B32A32_FLOAT")]
     R32g32b32a32Float,
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "GDK_MEMORY_G8A8_PREMULTIPLIED")]
+    G8a8Premultiplied,
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "GDK_MEMORY_G8A8")]
+    G8a8,
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "GDK_MEMORY_G8")]
+    G8,
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "GDK_MEMORY_G16A16_PREMULTIPLIED")]
+    G16a16Premultiplied,
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "GDK_MEMORY_G16A16")]
+    G16a16,
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "GDK_MEMORY_G16")]
+    G16,
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "GDK_MEMORY_A8")]
+    A8,
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "GDK_MEMORY_A16")]
+    A16,
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "GDK_MEMORY_A16_FLOAT")]
+    A16Float,
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "GDK_MEMORY_A32_FLOAT")]
+    A32Float,
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    #[doc(alias = "GDK_MEMORY_A8B8G8R8_PREMULTIPLIED")]
+    A8b8g8r8Premultiplied,
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    #[doc(alias = "GDK_MEMORY_B8G8R8X8")]
+    B8g8r8x8,
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    #[doc(alias = "GDK_MEMORY_X8R8G8B8")]
+    X8r8g8b8,
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    #[doc(alias = "GDK_MEMORY_R8G8B8X8")]
+    R8g8b8x8,
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    #[doc(alias = "GDK_MEMORY_X8B8G8R8")]
+    X8b8g8r8,
     #[doc(hidden)]
     __Unknown(i32),
-}
-
-impl fmt::Display for MemoryFormat {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "MemoryFormat::{}",
-            match *self {
-                Self::B8g8r8a8Premultiplied => "B8g8r8a8Premultiplied",
-                Self::A8r8g8b8Premultiplied => "A8r8g8b8Premultiplied",
-                Self::R8g8b8a8Premultiplied => "R8g8b8a8Premultiplied",
-                Self::B8g8r8a8 => "B8g8r8a8",
-                Self::A8r8g8b8 => "A8r8g8b8",
-                Self::R8g8b8a8 => "R8g8b8a8",
-                Self::A8b8g8r8 => "A8b8g8r8",
-                Self::R8g8b8 => "R8g8b8",
-                Self::B8g8r8 => "B8g8r8",
-                #[cfg(any(feature = "v4_6", feature = "dox"))]
-                Self::R16g16b16 => "R16g16b16",
-                #[cfg(any(feature = "v4_6", feature = "dox"))]
-                Self::R16g16b16a16Premultiplied => "R16g16b16a16Premultiplied",
-                #[cfg(any(feature = "v4_6", feature = "dox"))]
-                Self::R16g16b16a16 => "R16g16b16a16",
-                #[cfg(any(feature = "v4_6", feature = "dox"))]
-                Self::R16g16b16Float => "R16g16b16Float",
-                #[cfg(any(feature = "v4_6", feature = "dox"))]
-                Self::R16g16b16a16FloatPremultiplied => "R16g16b16a16FloatPremultiplied",
-                #[cfg(any(feature = "v4_6", feature = "dox"))]
-                Self::R16g16b16a16Float => "R16g16b16a16Float",
-                #[cfg(any(feature = "v4_6", feature = "dox"))]
-                Self::R32g32b32Float => "R32g32b32Float",
-                #[cfg(any(feature = "v4_6", feature = "dox"))]
-                Self::R32g32b32a32FloatPremultiplied => "R32g32b32a32FloatPremultiplied",
-                #[cfg(any(feature = "v4_6", feature = "dox"))]
-                Self::R32g32b32a32Float => "R32g32b32a32Float",
-                _ => "Unknown",
-            }
-        )
-    }
 }
 
 #[doc(hidden)]
@@ -1693,28 +1641,58 @@ impl IntoGlib for MemoryFormat {
             Self::A8b8g8r8 => ffi::GDK_MEMORY_A8B8G8R8,
             Self::R8g8b8 => ffi::GDK_MEMORY_R8G8B8,
             Self::B8g8r8 => ffi::GDK_MEMORY_B8G8R8,
-            #[cfg(any(feature = "v4_6", feature = "dox"))]
+            #[cfg(feature = "v4_6")]
             Self::R16g16b16 => ffi::GDK_MEMORY_R16G16B16,
-            #[cfg(any(feature = "v4_6", feature = "dox"))]
+            #[cfg(feature = "v4_6")]
             Self::R16g16b16a16Premultiplied => ffi::GDK_MEMORY_R16G16B16A16_PREMULTIPLIED,
-            #[cfg(any(feature = "v4_6", feature = "dox"))]
+            #[cfg(feature = "v4_6")]
             Self::R16g16b16a16 => ffi::GDK_MEMORY_R16G16B16A16,
-            #[cfg(any(feature = "v4_6", feature = "dox"))]
+            #[cfg(feature = "v4_6")]
             Self::R16g16b16Float => ffi::GDK_MEMORY_R16G16B16_FLOAT,
-            #[cfg(any(feature = "v4_6", feature = "dox"))]
+            #[cfg(feature = "v4_6")]
             Self::R16g16b16a16FloatPremultiplied => {
                 ffi::GDK_MEMORY_R16G16B16A16_FLOAT_PREMULTIPLIED
             }
-            #[cfg(any(feature = "v4_6", feature = "dox"))]
+            #[cfg(feature = "v4_6")]
             Self::R16g16b16a16Float => ffi::GDK_MEMORY_R16G16B16A16_FLOAT,
-            #[cfg(any(feature = "v4_6", feature = "dox"))]
+            #[cfg(feature = "v4_6")]
             Self::R32g32b32Float => ffi::GDK_MEMORY_R32G32B32_FLOAT,
-            #[cfg(any(feature = "v4_6", feature = "dox"))]
+            #[cfg(feature = "v4_6")]
             Self::R32g32b32a32FloatPremultiplied => {
                 ffi::GDK_MEMORY_R32G32B32A32_FLOAT_PREMULTIPLIED
             }
-            #[cfg(any(feature = "v4_6", feature = "dox"))]
+            #[cfg(feature = "v4_6")]
             Self::R32g32b32a32Float => ffi::GDK_MEMORY_R32G32B32A32_FLOAT,
+            #[cfg(feature = "v4_12")]
+            Self::G8a8Premultiplied => ffi::GDK_MEMORY_G8A8_PREMULTIPLIED,
+            #[cfg(feature = "v4_12")]
+            Self::G8a8 => ffi::GDK_MEMORY_G8A8,
+            #[cfg(feature = "v4_12")]
+            Self::G8 => ffi::GDK_MEMORY_G8,
+            #[cfg(feature = "v4_12")]
+            Self::G16a16Premultiplied => ffi::GDK_MEMORY_G16A16_PREMULTIPLIED,
+            #[cfg(feature = "v4_12")]
+            Self::G16a16 => ffi::GDK_MEMORY_G16A16,
+            #[cfg(feature = "v4_12")]
+            Self::G16 => ffi::GDK_MEMORY_G16,
+            #[cfg(feature = "v4_12")]
+            Self::A8 => ffi::GDK_MEMORY_A8,
+            #[cfg(feature = "v4_12")]
+            Self::A16 => ffi::GDK_MEMORY_A16,
+            #[cfg(feature = "v4_12")]
+            Self::A16Float => ffi::GDK_MEMORY_A16_FLOAT,
+            #[cfg(feature = "v4_12")]
+            Self::A32Float => ffi::GDK_MEMORY_A32_FLOAT,
+            #[cfg(feature = "v4_14")]
+            Self::A8b8g8r8Premultiplied => ffi::GDK_MEMORY_A8B8G8R8_PREMULTIPLIED,
+            #[cfg(feature = "v4_14")]
+            Self::B8g8r8x8 => ffi::GDK_MEMORY_B8G8R8X8,
+            #[cfg(feature = "v4_14")]
+            Self::X8r8g8b8 => ffi::GDK_MEMORY_X8R8G8B8,
+            #[cfg(feature = "v4_14")]
+            Self::R8g8b8x8 => ffi::GDK_MEMORY_R8G8B8X8,
+            #[cfg(feature = "v4_14")]
+            Self::X8b8g8r8 => ffi::GDK_MEMORY_X8B8G8R8,
             Self::__Unknown(value) => value,
         }
     }
@@ -1735,28 +1713,58 @@ impl FromGlib<ffi::GdkMemoryFormat> for MemoryFormat {
             ffi::GDK_MEMORY_A8B8G8R8 => Self::A8b8g8r8,
             ffi::GDK_MEMORY_R8G8B8 => Self::R8g8b8,
             ffi::GDK_MEMORY_B8G8R8 => Self::B8g8r8,
-            #[cfg(any(feature = "v4_6", feature = "dox"))]
+            #[cfg(feature = "v4_6")]
             ffi::GDK_MEMORY_R16G16B16 => Self::R16g16b16,
-            #[cfg(any(feature = "v4_6", feature = "dox"))]
+            #[cfg(feature = "v4_6")]
             ffi::GDK_MEMORY_R16G16B16A16_PREMULTIPLIED => Self::R16g16b16a16Premultiplied,
-            #[cfg(any(feature = "v4_6", feature = "dox"))]
+            #[cfg(feature = "v4_6")]
             ffi::GDK_MEMORY_R16G16B16A16 => Self::R16g16b16a16,
-            #[cfg(any(feature = "v4_6", feature = "dox"))]
+            #[cfg(feature = "v4_6")]
             ffi::GDK_MEMORY_R16G16B16_FLOAT => Self::R16g16b16Float,
-            #[cfg(any(feature = "v4_6", feature = "dox"))]
+            #[cfg(feature = "v4_6")]
             ffi::GDK_MEMORY_R16G16B16A16_FLOAT_PREMULTIPLIED => {
                 Self::R16g16b16a16FloatPremultiplied
             }
-            #[cfg(any(feature = "v4_6", feature = "dox"))]
+            #[cfg(feature = "v4_6")]
             ffi::GDK_MEMORY_R16G16B16A16_FLOAT => Self::R16g16b16a16Float,
-            #[cfg(any(feature = "v4_6", feature = "dox"))]
+            #[cfg(feature = "v4_6")]
             ffi::GDK_MEMORY_R32G32B32_FLOAT => Self::R32g32b32Float,
-            #[cfg(any(feature = "v4_6", feature = "dox"))]
+            #[cfg(feature = "v4_6")]
             ffi::GDK_MEMORY_R32G32B32A32_FLOAT_PREMULTIPLIED => {
                 Self::R32g32b32a32FloatPremultiplied
             }
-            #[cfg(any(feature = "v4_6", feature = "dox"))]
+            #[cfg(feature = "v4_6")]
             ffi::GDK_MEMORY_R32G32B32A32_FLOAT => Self::R32g32b32a32Float,
+            #[cfg(feature = "v4_12")]
+            ffi::GDK_MEMORY_G8A8_PREMULTIPLIED => Self::G8a8Premultiplied,
+            #[cfg(feature = "v4_12")]
+            ffi::GDK_MEMORY_G8A8 => Self::G8a8,
+            #[cfg(feature = "v4_12")]
+            ffi::GDK_MEMORY_G8 => Self::G8,
+            #[cfg(feature = "v4_12")]
+            ffi::GDK_MEMORY_G16A16_PREMULTIPLIED => Self::G16a16Premultiplied,
+            #[cfg(feature = "v4_12")]
+            ffi::GDK_MEMORY_G16A16 => Self::G16a16,
+            #[cfg(feature = "v4_12")]
+            ffi::GDK_MEMORY_G16 => Self::G16,
+            #[cfg(feature = "v4_12")]
+            ffi::GDK_MEMORY_A8 => Self::A8,
+            #[cfg(feature = "v4_12")]
+            ffi::GDK_MEMORY_A16 => Self::A16,
+            #[cfg(feature = "v4_12")]
+            ffi::GDK_MEMORY_A16_FLOAT => Self::A16Float,
+            #[cfg(feature = "v4_12")]
+            ffi::GDK_MEMORY_A32_FLOAT => Self::A32Float,
+            #[cfg(feature = "v4_14")]
+            ffi::GDK_MEMORY_A8B8G8R8_PREMULTIPLIED => Self::A8b8g8r8Premultiplied,
+            #[cfg(feature = "v4_14")]
+            ffi::GDK_MEMORY_B8G8R8X8 => Self::B8g8r8x8,
+            #[cfg(feature = "v4_14")]
+            ffi::GDK_MEMORY_X8R8G8B8 => Self::X8r8g8b8,
+            #[cfg(feature = "v4_14")]
+            ffi::GDK_MEMORY_R8G8B8X8 => Self::R8g8b8x8,
+            #[cfg(feature = "v4_14")]
+            ffi::GDK_MEMORY_X8B8G8R8 => Self::X8b8g8r8,
             value => Self::__Unknown(value),
         }
     }
@@ -1764,7 +1772,8 @@ impl FromGlib<ffi::GdkMemoryFormat> for MemoryFormat {
 
 impl StaticType for MemoryFormat {
     #[inline]
-    fn static_type() -> Type {
+    #[doc(alias = "gdk_memory_format_get_type")]
+    fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gdk_memory_format_get_type()) }
     }
 }
@@ -1775,7 +1784,7 @@ impl glib::HasParamSpec for MemoryFormat {
     type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
 
     fn param_spec_builder() -> Self::BuilderFn {
-        |name, default_value| Self::ParamSpec::builder_with_default(name, default_value)
+        Self::ParamSpec::builder_with_default
     }
 }
 
@@ -1783,7 +1792,7 @@ impl glib::value::ValueType for MemoryFormat {
     type Type = Self;
 }
 
-unsafe impl<'a> FromValue<'a> for MemoryFormat {
+unsafe impl<'a> glib::value::FromValue<'a> for MemoryFormat {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
     #[inline]
@@ -1837,24 +1846,6 @@ pub enum NotifyType {
     __Unknown(i32),
 }
 
-impl fmt::Display for NotifyType {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "NotifyType::{}",
-            match *self {
-                Self::Ancestor => "Ancestor",
-                Self::Virtual => "Virtual",
-                Self::Inferior => "Inferior",
-                Self::Nonlinear => "Nonlinear",
-                Self::NonlinearVirtual => "NonlinearVirtual",
-                Self::Unknown => "Unknown",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for NotifyType {
     type GlibType = ffi::GdkNotifyType;
@@ -1893,7 +1884,8 @@ impl FromGlib<ffi::GdkNotifyType> for NotifyType {
 
 impl StaticType for NotifyType {
     #[inline]
-    fn static_type() -> Type {
+    #[doc(alias = "gdk_notify_type_get_type")]
+    fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gdk_notify_type_get_type()) }
     }
 }
@@ -1904,7 +1896,7 @@ impl glib::HasParamSpec for NotifyType {
     type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
 
     fn param_spec_builder() -> Self::BuilderFn {
-        |name, default_value| Self::ParamSpec::builder_with_default(name, default_value)
+        Self::ParamSpec::builder_with_default
     }
 }
 
@@ -1912,7 +1904,7 @@ impl glib::value::ValueType for NotifyType {
     type Type = Self;
 }
 
-unsafe impl<'a> FromValue<'a> for NotifyType {
+unsafe impl<'a> glib::value::FromValue<'a> for NotifyType {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
     #[inline]
@@ -1964,23 +1956,6 @@ pub enum ScrollDirection {
     __Unknown(i32),
 }
 
-impl fmt::Display for ScrollDirection {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "ScrollDirection::{}",
-            match *self {
-                Self::Up => "Up",
-                Self::Down => "Down",
-                Self::Left => "Left",
-                Self::Right => "Right",
-                Self::Smooth => "Smooth",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for ScrollDirection {
     type GlibType = ffi::GdkScrollDirection;
@@ -2017,7 +1992,8 @@ impl FromGlib<ffi::GdkScrollDirection> for ScrollDirection {
 
 impl StaticType for ScrollDirection {
     #[inline]
-    fn static_type() -> Type {
+    #[doc(alias = "gdk_scroll_direction_get_type")]
+    fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gdk_scroll_direction_get_type()) }
     }
 }
@@ -2028,7 +2004,7 @@ impl glib::HasParamSpec for ScrollDirection {
     type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
 
     fn param_spec_builder() -> Self::BuilderFn {
-        |name, default_value| Self::ParamSpec::builder_with_default(name, default_value)
+        Self::ParamSpec::builder_with_default
     }
 }
 
@@ -2036,7 +2012,7 @@ impl glib::value::ValueType for ScrollDirection {
     type Type = Self;
 }
 
-unsafe impl<'a> FromValue<'a> for ScrollDirection {
+unsafe impl<'a> glib::value::FromValue<'a> for ScrollDirection {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
     #[inline]
@@ -2070,8 +2046,8 @@ impl From<ScrollDirection> for glib::Value {
     }
 }
 
-#[cfg(any(feature = "v4_8", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+#[cfg(feature = "v4_8")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GdkScrollUnit")]
@@ -2084,24 +2060,8 @@ pub enum ScrollUnit {
     __Unknown(i32),
 }
 
-#[cfg(any(feature = "v4_8", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
-impl fmt::Display for ScrollUnit {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "ScrollUnit::{}",
-            match *self {
-                Self::Wheel => "Wheel",
-                Self::Surface => "Surface",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
-#[cfg(any(feature = "v4_8", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+#[cfg(feature = "v4_8")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
 #[doc(hidden)]
 impl IntoGlib for ScrollUnit {
     type GlibType = ffi::GdkScrollUnit;
@@ -2116,8 +2076,8 @@ impl IntoGlib for ScrollUnit {
     }
 }
 
-#[cfg(any(feature = "v4_8", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+#[cfg(feature = "v4_8")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
 #[doc(hidden)]
 impl FromGlib<ffi::GdkScrollUnit> for ScrollUnit {
     #[inline]
@@ -2132,36 +2092,37 @@ impl FromGlib<ffi::GdkScrollUnit> for ScrollUnit {
     }
 }
 
-#[cfg(any(feature = "v4_8", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+#[cfg(feature = "v4_8")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
 impl StaticType for ScrollUnit {
     #[inline]
-    fn static_type() -> Type {
+    #[doc(alias = "gdk_scroll_unit_get_type")]
+    fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gdk_scroll_unit_get_type()) }
     }
 }
 
-#[cfg(any(feature = "v4_8", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+#[cfg(feature = "v4_8")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
 impl glib::HasParamSpec for ScrollUnit {
     type ParamSpec = glib::ParamSpecEnum;
     type SetValue = Self;
     type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
 
     fn param_spec_builder() -> Self::BuilderFn {
-        |name, default_value| Self::ParamSpec::builder_with_default(name, default_value)
+        Self::ParamSpec::builder_with_default
     }
 }
 
-#[cfg(any(feature = "v4_8", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+#[cfg(feature = "v4_8")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
 impl glib::value::ValueType for ScrollUnit {
     type Type = Self;
 }
 
-#[cfg(any(feature = "v4_8", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
-unsafe impl<'a> FromValue<'a> for ScrollUnit {
+#[cfg(feature = "v4_8")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
+unsafe impl<'a> glib::value::FromValue<'a> for ScrollUnit {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
     #[inline]
@@ -2171,8 +2132,8 @@ unsafe impl<'a> FromValue<'a> for ScrollUnit {
     }
 }
 
-#[cfg(any(feature = "v4_8", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+#[cfg(feature = "v4_8")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
 impl ToValue for ScrollUnit {
     #[inline]
     fn to_value(&self) -> glib::Value {
@@ -2189,8 +2150,8 @@ impl ToValue for ScrollUnit {
     }
 }
 
-#[cfg(any(feature = "v4_8", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+#[cfg(feature = "v4_8")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
 impl From<ScrollUnit> for glib::Value {
     #[inline]
     fn from(v: ScrollUnit) -> Self {
@@ -2217,24 +2178,6 @@ pub enum SubpixelLayout {
     VerticalBgr,
     #[doc(hidden)]
     __Unknown(i32),
-}
-
-impl fmt::Display for SubpixelLayout {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "SubpixelLayout::{}",
-            match *self {
-                Self::Unknown => "Unknown",
-                Self::None => "None",
-                Self::HorizontalRgb => "HorizontalRgb",
-                Self::HorizontalBgr => "HorizontalBgr",
-                Self::VerticalRgb => "VerticalRgb",
-                Self::VerticalBgr => "VerticalBgr",
-                _ => "Unknown",
-            }
-        )
-    }
 }
 
 #[doc(hidden)]
@@ -2275,7 +2218,8 @@ impl FromGlib<ffi::GdkSubpixelLayout> for SubpixelLayout {
 
 impl StaticType for SubpixelLayout {
     #[inline]
-    fn static_type() -> Type {
+    #[doc(alias = "gdk_subpixel_layout_get_type")]
+    fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gdk_subpixel_layout_get_type()) }
     }
 }
@@ -2286,7 +2230,7 @@ impl glib::HasParamSpec for SubpixelLayout {
     type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
 
     fn param_spec_builder() -> Self::BuilderFn {
-        |name, default_value| Self::ParamSpec::builder_with_default(name, default_value)
+        Self::ParamSpec::builder_with_default
     }
 }
 
@@ -2294,7 +2238,7 @@ impl glib::value::ValueType for SubpixelLayout {
     type Type = Self;
 }
 
-unsafe impl<'a> FromValue<'a> for SubpixelLayout {
+unsafe impl<'a> glib::value::FromValue<'a> for SubpixelLayout {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
     #[inline]
@@ -2352,26 +2296,6 @@ pub enum SurfaceEdge {
     __Unknown(i32),
 }
 
-impl fmt::Display for SurfaceEdge {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "SurfaceEdge::{}",
-            match *self {
-                Self::NorthWest => "NorthWest",
-                Self::North => "North",
-                Self::NorthEast => "NorthEast",
-                Self::West => "West",
-                Self::East => "East",
-                Self::SouthWest => "SouthWest",
-                Self::South => "South",
-                Self::SouthEast => "SouthEast",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for SurfaceEdge {
     type GlibType = ffi::GdkSurfaceEdge;
@@ -2414,7 +2338,8 @@ impl FromGlib<ffi::GdkSurfaceEdge> for SurfaceEdge {
 
 impl StaticType for SurfaceEdge {
     #[inline]
-    fn static_type() -> Type {
+    #[doc(alias = "gdk_surface_edge_get_type")]
+    fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gdk_surface_edge_get_type()) }
     }
 }
@@ -2425,7 +2350,7 @@ impl glib::HasParamSpec for SurfaceEdge {
     type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
 
     fn param_spec_builder() -> Self::BuilderFn {
-        |name, default_value| Self::ParamSpec::builder_with_default(name, default_value)
+        Self::ParamSpec::builder_with_default
     }
 }
 
@@ -2433,7 +2358,7 @@ impl glib::value::ValueType for SurfaceEdge {
     type Type = Self;
 }
 
-unsafe impl<'a> FromValue<'a> for SurfaceEdge {
+unsafe impl<'a> glib::value::FromValue<'a> for SurfaceEdge {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
     #[inline]
@@ -2467,8 +2392,8 @@ impl From<SurfaceEdge> for glib::Value {
     }
 }
 
-#[cfg(any(feature = "v4_6", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+#[cfg(feature = "v4_6")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GdkTextureError")]
@@ -2485,26 +2410,8 @@ pub enum TextureError {
     __Unknown(i32),
 }
 
-#[cfg(any(feature = "v4_6", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
-impl fmt::Display for TextureError {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "TextureError::{}",
-            match *self {
-                Self::TooLarge => "TooLarge",
-                Self::CorruptImage => "CorruptImage",
-                Self::UnsupportedContent => "UnsupportedContent",
-                Self::UnsupportedFormat => "UnsupportedFormat",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
-#[cfg(any(feature = "v4_6", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+#[cfg(feature = "v4_6")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
 #[doc(hidden)]
 impl IntoGlib for TextureError {
     type GlibType = ffi::GdkTextureError;
@@ -2521,8 +2428,8 @@ impl IntoGlib for TextureError {
     }
 }
 
-#[cfg(any(feature = "v4_6", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+#[cfg(feature = "v4_6")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
 #[doc(hidden)]
 impl FromGlib<ffi::GdkTextureError> for TextureError {
     #[inline]
@@ -2539,11 +2446,11 @@ impl FromGlib<ffi::GdkTextureError> for TextureError {
     }
 }
 
-#[cfg(any(feature = "v4_6", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
-impl ErrorDomain for TextureError {
+#[cfg(feature = "v4_6")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
+impl glib::error::ErrorDomain for TextureError {
     #[inline]
-    fn domain() -> Quark {
+    fn domain() -> glib::Quark {
         skip_assert_initialized!();
 
         unsafe { from_glib(ffi::gdk_texture_error_quark()) }
@@ -2564,36 +2471,37 @@ impl ErrorDomain for TextureError {
     }
 }
 
-#[cfg(any(feature = "v4_6", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+#[cfg(feature = "v4_6")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
 impl StaticType for TextureError {
     #[inline]
-    fn static_type() -> Type {
+    #[doc(alias = "gdk_texture_error_get_type")]
+    fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gdk_texture_error_get_type()) }
     }
 }
 
-#[cfg(any(feature = "v4_6", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+#[cfg(feature = "v4_6")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
 impl glib::HasParamSpec for TextureError {
     type ParamSpec = glib::ParamSpecEnum;
     type SetValue = Self;
     type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
 
     fn param_spec_builder() -> Self::BuilderFn {
-        |name, default_value| Self::ParamSpec::builder_with_default(name, default_value)
+        Self::ParamSpec::builder_with_default
     }
 }
 
-#[cfg(any(feature = "v4_6", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+#[cfg(feature = "v4_6")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
 impl glib::value::ValueType for TextureError {
     type Type = Self;
 }
 
-#[cfg(any(feature = "v4_6", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
-unsafe impl<'a> FromValue<'a> for TextureError {
+#[cfg(feature = "v4_6")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
+unsafe impl<'a> glib::value::FromValue<'a> for TextureError {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
     #[inline]
@@ -2603,8 +2511,8 @@ unsafe impl<'a> FromValue<'a> for TextureError {
     }
 }
 
-#[cfg(any(feature = "v4_6", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+#[cfg(feature = "v4_6")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
 impl ToValue for TextureError {
     #[inline]
     fn to_value(&self) -> glib::Value {
@@ -2621,8 +2529,8 @@ impl ToValue for TextureError {
     }
 }
 
-#[cfg(any(feature = "v4_6", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+#[cfg(feature = "v4_6")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
 impl From<TextureError> for glib::Value {
     #[inline]
     fn from(v: TextureError) -> Self {
@@ -2631,8 +2539,8 @@ impl From<TextureError> for glib::Value {
     }
 }
 
-#[cfg(any(feature = "v4_4", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+#[cfg(feature = "v4_4")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GdkTitlebarGesture")]
@@ -2647,25 +2555,8 @@ pub enum TitlebarGesture {
     __Unknown(i32),
 }
 
-#[cfg(any(feature = "v4_4", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
-impl fmt::Display for TitlebarGesture {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "TitlebarGesture::{}",
-            match *self {
-                Self::DoubleClick => "DoubleClick",
-                Self::RightClick => "RightClick",
-                Self::MiddleClick => "MiddleClick",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
-#[cfg(any(feature = "v4_4", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+#[cfg(feature = "v4_4")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
 #[doc(hidden)]
 impl IntoGlib for TitlebarGesture {
     type GlibType = ffi::GdkTitlebarGesture;
@@ -2681,8 +2572,8 @@ impl IntoGlib for TitlebarGesture {
     }
 }
 
-#[cfg(any(feature = "v4_4", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+#[cfg(feature = "v4_4")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
 #[doc(hidden)]
 impl FromGlib<ffi::GdkTitlebarGesture> for TitlebarGesture {
     #[inline]
@@ -2698,36 +2589,37 @@ impl FromGlib<ffi::GdkTitlebarGesture> for TitlebarGesture {
     }
 }
 
-#[cfg(any(feature = "v4_4", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+#[cfg(feature = "v4_4")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
 impl StaticType for TitlebarGesture {
     #[inline]
-    fn static_type() -> Type {
+    #[doc(alias = "gdk_titlebar_gesture_get_type")]
+    fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gdk_titlebar_gesture_get_type()) }
     }
 }
 
-#[cfg(any(feature = "v4_4", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+#[cfg(feature = "v4_4")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
 impl glib::HasParamSpec for TitlebarGesture {
     type ParamSpec = glib::ParamSpecEnum;
     type SetValue = Self;
     type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
 
     fn param_spec_builder() -> Self::BuilderFn {
-        |name, default_value| Self::ParamSpec::builder_with_default(name, default_value)
+        Self::ParamSpec::builder_with_default
     }
 }
 
-#[cfg(any(feature = "v4_4", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+#[cfg(feature = "v4_4")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
 impl glib::value::ValueType for TitlebarGesture {
     type Type = Self;
 }
 
-#[cfg(any(feature = "v4_4", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
-unsafe impl<'a> FromValue<'a> for TitlebarGesture {
+#[cfg(feature = "v4_4")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
+unsafe impl<'a> glib::value::FromValue<'a> for TitlebarGesture {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
     #[inline]
@@ -2737,8 +2629,8 @@ unsafe impl<'a> FromValue<'a> for TitlebarGesture {
     }
 }
 
-#[cfg(any(feature = "v4_4", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+#[cfg(feature = "v4_4")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
 impl ToValue for TitlebarGesture {
     #[inline]
     fn to_value(&self) -> glib::Value {
@@ -2755,8 +2647,8 @@ impl ToValue for TitlebarGesture {
     }
 }
 
-#[cfg(any(feature = "v4_4", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+#[cfg(feature = "v4_4")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
 impl From<TitlebarGesture> for glib::Value {
     #[inline]
     fn from(v: TitlebarGesture) -> Self {
@@ -2779,22 +2671,6 @@ pub enum TouchpadGesturePhase {
     Cancel,
     #[doc(hidden)]
     __Unknown(i32),
-}
-
-impl fmt::Display for TouchpadGesturePhase {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "TouchpadGesturePhase::{}",
-            match *self {
-                Self::Begin => "Begin",
-                Self::Update => "Update",
-                Self::End => "End",
-                Self::Cancel => "Cancel",
-                _ => "Unknown",
-            }
-        )
-    }
 }
 
 #[doc(hidden)]
@@ -2831,7 +2707,8 @@ impl FromGlib<ffi::GdkTouchpadGesturePhase> for TouchpadGesturePhase {
 
 impl StaticType for TouchpadGesturePhase {
     #[inline]
-    fn static_type() -> Type {
+    #[doc(alias = "gdk_touchpad_gesture_phase_get_type")]
+    fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gdk_touchpad_gesture_phase_get_type()) }
     }
 }
@@ -2842,7 +2719,7 @@ impl glib::HasParamSpec for TouchpadGesturePhase {
     type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
 
     fn param_spec_builder() -> Self::BuilderFn {
-        |name, default_value| Self::ParamSpec::builder_with_default(name, default_value)
+        Self::ParamSpec::builder_with_default
     }
 }
 
@@ -2850,7 +2727,7 @@ impl glib::value::ValueType for TouchpadGesturePhase {
     type Type = Self;
 }
 
-unsafe impl<'a> FromValue<'a> for TouchpadGesturePhase {
+unsafe impl<'a> glib::value::FromValue<'a> for TouchpadGesturePhase {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
     #[inline]
@@ -2896,20 +2773,6 @@ pub enum VulkanError {
     __Unknown(i32),
 }
 
-impl fmt::Display for VulkanError {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "VulkanError::{}",
-            match *self {
-                Self::Unsupported => "Unsupported",
-                Self::NotAvailable => "NotAvailable",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for VulkanError {
     type GlibType = ffi::GdkVulkanError;
@@ -2938,9 +2801,9 @@ impl FromGlib<ffi::GdkVulkanError> for VulkanError {
     }
 }
 
-impl ErrorDomain for VulkanError {
+impl glib::error::ErrorDomain for VulkanError {
     #[inline]
-    fn domain() -> Quark {
+    fn domain() -> glib::Quark {
         skip_assert_initialized!();
 
         unsafe { from_glib(ffi::gdk_vulkan_error_quark()) }
@@ -2963,7 +2826,8 @@ impl ErrorDomain for VulkanError {
 
 impl StaticType for VulkanError {
     #[inline]
-    fn static_type() -> Type {
+    #[doc(alias = "gdk_vulkan_error_get_type")]
+    fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gdk_vulkan_error_get_type()) }
     }
 }
@@ -2974,7 +2838,7 @@ impl glib::HasParamSpec for VulkanError {
     type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
 
     fn param_spec_builder() -> Self::BuilderFn {
-        |name, default_value| Self::ParamSpec::builder_with_default(name, default_value)
+        Self::ParamSpec::builder_with_default
     }
 }
 
@@ -2982,7 +2846,7 @@ impl glib::value::ValueType for VulkanError {
     type Type = Self;
 }
 
-unsafe impl<'a> FromValue<'a> for VulkanError {
+unsafe impl<'a> glib::value::FromValue<'a> for VulkanError {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
     #[inline]

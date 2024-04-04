@@ -3,8 +3,9 @@
 // rustdoc-stripper-ignore-next
 //! Traits intended for subclassing [`Entry`](crate::Entry).
 
-use crate::{prelude::*, subclass::prelude::*, Entry};
 use glib::translate::*;
+
+use crate::{prelude::*, subclass::prelude::*, Entry};
 
 pub trait EntryImpl: EntryImplExt + WidgetImpl {
     fn activate(&self) {
@@ -12,14 +13,15 @@ pub trait EntryImpl: EntryImplExt + WidgetImpl {
     }
 }
 
-pub trait EntryImplExt: ObjectSubclass {
-    fn parent_activate(&self);
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::EntryImplExt> Sealed for T {}
 }
 
-impl<T: EntryImpl> EntryImplExt for T {
+pub trait EntryImplExt: sealed::Sealed + ObjectSubclass {
     fn parent_activate(&self) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkEntryClass;
             if let Some(f) = (*parent_class).activate {
                 f(self.obj().unsafe_cast_ref::<Entry>().to_glib_none().0)
@@ -27,6 +29,8 @@ impl<T: EntryImpl> EntryImplExt for T {
         }
     }
 }
+
+impl<T: EntryImpl> EntryImplExt for T {}
 
 unsafe impl<T: EntryImpl> IsSubclassable<T> for Entry {
     fn class_init(class: &mut glib::Class<Self>) {

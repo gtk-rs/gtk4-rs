@@ -1,10 +1,12 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
 // rustdoc-stripper-ignore-next
-//! Traits intended for implementing the [`PrintOperationPreview`](crate::PrintOperationPreview) interface.
+//! Traits intended for implementing the
+//! [`PrintOperationPreview`](crate::PrintOperationPreview) interface.
+
+use glib::translate::*;
 
 use crate::{prelude::*, subclass::prelude::*, PageSetup, PrintContext, PrintOperationPreview};
-use glib::translate::*;
 
 pub trait PrintOperationPreviewImpl: ObjectImpl {
     fn ready(&self, context: &PrintContext) {
@@ -20,15 +22,12 @@ pub trait PrintOperationPreviewImpl: ObjectImpl {
     fn end_preview(&self);
 }
 
-pub trait PrintOperationPreviewImplExt: ObjectSubclass {
-    fn parent_ready(&self, context: &PrintContext);
-    fn parent_got_page_size(&self, context: &PrintContext, page_setup: &PageSetup);
-    fn parent_render_page(&self, page_nr: i32);
-    fn parent_is_selected(&self, page_nr: i32) -> bool;
-    fn parent_end_preview(&self);
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::PrintOperationPreviewImplExt> Sealed for T {}
 }
 
-impl<T: PrintOperationPreviewImpl> PrintOperationPreviewImplExt for T {
+pub trait PrintOperationPreviewImplExt: sealed::Sealed + ObjectSubclass {
     fn parent_ready(&self, context: &PrintContext) {
         unsafe {
             let type_data = Self::type_data();
@@ -130,6 +129,8 @@ impl<T: PrintOperationPreviewImpl> PrintOperationPreviewImplExt for T {
         }
     }
 }
+
+impl<T: PrintOperationPreviewImpl> PrintOperationPreviewImplExt for T {}
 
 unsafe impl<T: PrintOperationPreviewImpl> IsImplementable<T> for PrintOperationPreview {
     fn interface_init(iface: &mut glib::Interface<Self>) {

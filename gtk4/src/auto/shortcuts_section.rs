@@ -2,6 +2,9 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+use crate::ShortcutsGroup;
 use crate::{
     Accessible, AccessibleRole, Align, BaselinePosition, Box, Buildable, ConstraintTarget,
     LayoutManager, Orientable, Orientation, Overflow, Widget,
@@ -11,7 +14,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GtkShortcutsSection")]
@@ -31,42 +34,51 @@ impl ShortcutsSection {
         ShortcutsSectionBuilder::new()
     }
 
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    #[doc(alias = "gtk_shortcuts_section_add_group")]
+    pub fn add_group(&self, group: &ShortcutsGroup) {
+        unsafe {
+            ffi::gtk_shortcuts_section_add_group(self.to_glib_none().0, group.to_glib_none().0);
+        }
+    }
+
     #[doc(alias = "max-height")]
     pub fn max_height(&self) -> u32 {
-        glib::ObjectExt::property(self, "max-height")
+        ObjectExt::property(self, "max-height")
     }
 
     #[doc(alias = "max-height")]
     pub fn set_max_height(&self, max_height: u32) {
-        glib::ObjectExt::set_property(self, "max-height", max_height)
+        ObjectExt::set_property(self, "max-height", max_height)
     }
 
     #[doc(alias = "section-name")]
     pub fn section_name(&self) -> Option<glib::GString> {
-        glib::ObjectExt::property(self, "section-name")
+        ObjectExt::property(self, "section-name")
     }
 
     #[doc(alias = "section-name")]
     pub fn set_section_name(&self, section_name: Option<&str>) {
-        glib::ObjectExt::set_property(self, "section-name", section_name)
+        ObjectExt::set_property(self, "section-name", section_name)
     }
 
     pub fn title(&self) -> Option<glib::GString> {
-        glib::ObjectExt::property(self, "title")
+        ObjectExt::property(self, "title")
     }
 
     pub fn set_title(&self, title: Option<&str>) {
-        glib::ObjectExt::set_property(self, "title", title)
+        ObjectExt::set_property(self, "title", title)
     }
 
     #[doc(alias = "view-name")]
     pub fn view_name(&self) -> Option<glib::GString> {
-        glib::ObjectExt::property(self, "view-name")
+        ObjectExt::property(self, "view-name")
     }
 
     #[doc(alias = "view-name")]
     pub fn set_view_name(&self, view_name: Option<&str>) {
-        glib::ObjectExt::set_property(self, "view-name", view_name)
+        ObjectExt::set_property(self, "view-name", view_name)
     }
 
     #[doc(alias = "max-height")]
@@ -84,7 +96,7 @@ impl ShortcutsSection {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::max-height\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_max_height_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -107,7 +119,7 @@ impl ShortcutsSection {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::section-name\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_section_name_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -130,7 +142,7 @@ impl ShortcutsSection {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::title\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_title_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -153,7 +165,7 @@ impl ShortcutsSection {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::view-name\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_view_name_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -199,6 +211,14 @@ impl ShortcutsSectionBuilder {
     pub fn view_name(self, view_name: impl Into<glib::GString>) -> Self {
         Self {
             builder: self.builder.property("view-name", view_name.into()),
+        }
+    }
+
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn baseline_child(self, baseline_child: i32) -> Self {
+        Self {
+            builder: self.builder.property("baseline-child", baseline_child),
         }
     }
 
@@ -417,11 +437,5 @@ impl ShortcutsSectionBuilder {
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> ShortcutsSection {
         self.builder.build()
-    }
-}
-
-impl fmt::Display for ShortcutsSection {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("ShortcutsSection")
     }
 }

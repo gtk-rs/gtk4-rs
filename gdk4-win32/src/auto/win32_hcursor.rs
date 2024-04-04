@@ -3,7 +3,6 @@
 // DO NOT EDIT
 
 use glib::{prelude::*, translate::*};
-use std::fmt;
 
 glib::wrapper! {
     #[doc(alias = "GdkWin32HCursor")]
@@ -16,16 +15,10 @@ glib::wrapper! {
 
 impl Win32HCursor {
     pub fn is_destroyable(&self) -> bool {
-        glib::ObjectExt::property(self, "destroyable")
+        ObjectExt::property(self, "destroyable")
     }
 
     pub fn display(&self) -> Option<gdk::Display> {
-        glib::ObjectExt::property(self, "display")
-    }
-}
-
-impl fmt::Display for Win32HCursor {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("Win32HCursor")
+        ObjectExt::property(self, "display")
     }
 }

@@ -1,12 +1,9 @@
-use glib::prelude::*;
-use glib::subclass::prelude::*;
-use gtk::glib::{self, Properties};
-
-use once_cell::unsync::OnceCell;
+use gtk::{glib, prelude::*, subclass::prelude::*};
+use std::cell::OnceCell;
 
 use super::Metadata;
 
-#[derive(Debug, Properties, Default)]
+#[derive(Debug, glib::Properties, Default)]
 #[properties(wrapper_type = super::Note)]
 pub struct Note {
     #[property(get, set, construct_only)]
@@ -19,16 +16,5 @@ impl ObjectSubclass for Note {
     type Type = super::Note;
 }
 
-impl ObjectImpl for Note {
-    fn properties() -> &'static [glib::ParamSpec] {
-        Self::derived_properties()
-    }
-
-    fn set_property(&self, id: usize, value: &glib::Value, pspec: &glib::ParamSpec) {
-        self.derived_set_property(id, value, pspec)
-    }
-
-    fn property(&self, id: usize, pspec: &glib::ParamSpec) -> glib::Value {
-        self.derived_property(id, pspec)
-    }
-}
+#[glib::derived_properties]
+impl ObjectImpl for Note {}
