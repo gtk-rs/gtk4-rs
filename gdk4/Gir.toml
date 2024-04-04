@@ -441,6 +441,9 @@ status = "generate"
         [[object.function.parameter]]
         name = "region"
         const = true
+    [[object.function]]
+    name = "build"
+    manual = true # Can't be auto-generated
 
 [[object]]
 name = "Gdk.Drag"
