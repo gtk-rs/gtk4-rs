@@ -1,13 +1,12 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
 use glib::translate::*;
-
-use crate::BookmarkList;
+use gtk4::BookmarkList;
 
 /// # Example
 /// To iterate over `BookmarkList` call `iter::<gio::FileInfo>` to get an iterator.
 /// ```no_run
-/// let bookmarks = crate::BookmarkList::new(Some("bookmarks.xbel"), None);
+/// let bookmarks = BookmarkList::new(Some("bookmarks.xbel"), None);
 /// while let Some(Ok(bookmark)) = bookmarks.iter::<gio::FileInfo>().next() {
 ///     // ...
 /// }
