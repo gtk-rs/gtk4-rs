@@ -2,6 +2,8 @@
 
 use glib::translate::*;
 
+use crate::BookmarkList;
+
 /// # Example
 /// To iterate over `BookmarkList` call `iter::<gio::FileInfo>` to get an iterator.
 /// ```no_run
