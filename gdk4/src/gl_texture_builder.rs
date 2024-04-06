@@ -25,8 +25,13 @@ impl GLTextureBuilder {
     #[doc(alias = "gdk_gl_texture_builder_build")]
     #[must_use = "The builder must be built to be used"]
     #[allow(clippy::missing_safety_doc)]
-    pub unsafe fn build_with_release_func<F: FnOnce() + 'static>(self, release_func: F) -> Texture {
-        unsafe extern "C" fn destroy_closure<F: FnOnce() + 'static>(func: glib::ffi::gpointer) {
+    pub unsafe fn build_with_release_func<F: FnOnce() + Send + 'static>(
+        self,
+        release_func: F,
+    ) -> Texture {
+        unsafe extern "C" fn destroy_closure<F: FnOnce() + Send + 'static>(
+            func: glib::ffi::gpointer,
+        ) {
             let released_func = Box::<F>::from_raw(func as *mut _);
             released_func();
         }
