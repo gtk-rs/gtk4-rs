@@ -245,7 +245,7 @@ The web client [`reqwest`](https://docs.rs/reqwest/latest/reqwest/) belongs to t
 Let's add it by executing the following command
 
 ```
-cargo add reqwest@0.11 --features rustls-tls --no-default-features
+cargo add reqwest@0.12 --features rustls-tls --no-default-features
 ```
 
 As soon as the button is pressed, we want to send a `GET` request to [www.gtk-rs.org](https://www.gtk-rs.org).

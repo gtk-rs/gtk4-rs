@@ -462,7 +462,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 ```
 
 As soon as the "new-collection" action is activated, the `async` `new_collection` method is called.
-Here, we create the [`adw::MessageDialog`](https://world.pages.gitlab.gnome.org/Rust/libadwaita-rs/stable/latest/docs/libadwaita/struct.MessageDialog.html), set up the buttons as well as add the entry to it.
+Here, we create the [`adw::AlertDialog`](https://world.pages.gitlab.gnome.org/Rust/libadwaita-rs/stable/latest/docs/libadwaita/struct.AlertDialog.html), set up the buttons as well as add the entry to it.
 We add a callback to the entry to ensure that when the content changes, an empty content sets `dialog_button` as insensitive and adds an "error" CSS class to the entry.
 We then `await` on the user pressing a button on the dialog.
 If they click "Cancel", we simply return.

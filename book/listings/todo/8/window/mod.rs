@@ -4,7 +4,7 @@ use std::fs::File;
 
 use adw::prelude::*;
 use adw::subclass::prelude::*;
-use adw::{ActionRow, MessageDialog, ResponseAppearance};
+use adw::{ActionRow, AlertDialog, ResponseAppearance};
 use gio::Settings;
 use glib::{clone, Object};
 use gtk::{
@@ -368,11 +368,8 @@ impl Window {
         let create_response = "create";
 
         // Create new dialog
-        let dialog = MessageDialog::builder()
+        let dialog = AlertDialog::builder()
             .heading("New Collection")
-            .transient_for(self)
-            .modal(true)
-            .destroy_with_parent(true)
             .close_response(cancel_response)
             .default_response(create_response)
             .extra_child(&entry)
@@ -397,7 +394,7 @@ impl Window {
             }
         }));
 
-        let response = dialog.choose_future().await;
+        let response = dialog.choose_future(self).await;
 
         // Return if the user chose `cancel_response`
         if response == cancel_response {
