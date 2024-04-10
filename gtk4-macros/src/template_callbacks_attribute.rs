@@ -1,9 +1,8 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use proc_macro2::TokenStream;
-use proc_macro_error::{emit_call_site_error, emit_error};
+use proc_macro2::{Span, TokenStream};
 use quote::{quote, ToTokens, TokenStreamExt};
-use syn::{parse::Parse, Token};
+use syn::{parse::Parse, Error, Result, Token};
 
 use crate::util::*;
 
@@ -21,7 +20,7 @@ pub struct Args {
 }
 
 impl Parse for Args {
-    fn parse(input: syn::parse::ParseStream) -> syn::Result<Self> {
+    fn parse(input: syn::parse::ParseStream) -> Result<Self> {
         let mut args = Self { functions: false };
         while !input.is_empty() {
             let lookahead = input.lookahead1();
@@ -58,7 +57,7 @@ impl CallbackArgs {
 }
 
 impl Parse for CallbackArgs {
-    fn parse(stream: syn::parse::ParseStream) -> syn::Result<Self> {
+    fn parse(stream: syn::parse::ParseStream) -> Result<Self> {
         let mut args = Self {
             name: None,
             function: None,
@@ -104,7 +103,7 @@ impl Parse for CallbackArgs {
     }
 }
 
-pub fn impl_template_callbacks(mut input: syn::ItemImpl, args: Args) -> TokenStream {
+pub fn impl_template_callbacks(mut input: syn::ItemImpl, args: Args) -> Result<TokenStream> {
     let syn::ItemImpl {
         attrs,
         generics,
@@ -114,7 +113,7 @@ pub fn impl_template_callbacks(mut input: syn::ItemImpl, args: Args) -> TokenStr
         ..
     } = &mut input;
     if trait_.is_some() {
-        emit_call_site_error!(WRONG_PLACE_MSG);
+        return Err(Error::new(Span::call_site(), WRONG_PLACE_MSG));
     }
     let crate_ident = crate_ident_new();
 
@@ -127,7 +126,10 @@ pub fn impl_template_callbacks(mut input: syn::ItemImpl, args: Args) -> TokenStr
                 if method.attrs[i].path.is_ident("template_callback") {
                     let callback = method.attrs.remove(i);
                     if attr.is_some() {
-                        emit_error!(callback, "Duplicate `template_callback` attribute");
+                        return Err(Error::new_spanned(
+                            callback,
+                            "Duplicate `template_callback` attribute",
+                        ));
                     } else {
                         attr.replace(callback);
                     }
@@ -142,10 +144,7 @@ pub fn impl_template_callbacks(mut input: syn::ItemImpl, args: Args) -> TokenStr
             };
 
             let ident = &method.sig.ident;
-            let callback_args = syn::parse2::<CallbackArgs>(attr.tokens).unwrap_or_else(|e| {
-                emit_error!(e);
-                Default::default()
-            });
+            let callback_args = syn::parse2::<CallbackArgs>(attr.tokens)?;
             let name = callback_args
                 .name
                 .as_ref()
@@ -157,7 +156,7 @@ pub fn impl_template_callbacks(mut input: syn::ItemImpl, args: Args) -> TokenStr
             let mut has_rest = false;
             let value_unpacks = method.sig.inputs.iter_mut().enumerate().map(|(index, arg)| {
                 if has_rest {
-                    emit_error!(arg, "Arguments past argument with `rest` attribute");
+                    return Err(Error::new_spanned(arg, "Arguments past argument with `rest` attribute"));
                 }
                 let index = index + start;
                 let name = quote::format_ident!("value{}", index);
@@ -179,11 +178,10 @@ pub fn impl_template_callbacks(mut input: syn::ItemImpl, args: Args) -> TokenStr
                             "Wrong type for `self` in template callback `{ident}`: {{:?}}",
                         );
                         if receiver.reference.is_none() {
-                            Some(unwrap_value(quote! { #self_ty }, err_msg))
+                            Ok(Some(unwrap_value(quote! { #self_ty }, err_msg)))
                         } else {
                             if receiver.mutability.is_some() {
-                                emit_error!(receiver, "Receiver cannot be a mutable reference");
-                                return None;
+                                return Err(Error::new_spanned(receiver, "Receiver cannot be a mutable reference"));
                             }
                             let self_value_ty = quote! {
                                 &<#self_ty as #crate_ident::glib::subclass::types::FromObject>::FromObjectType
@@ -192,7 +190,7 @@ pub fn impl_template_callbacks(mut input: syn::ItemImpl, args: Args) -> TokenStr
                             unwrap.append_all(quote! {
                                 let #name = <#self_ty as #crate_ident::glib::subclass::types::FromObject>::from_object(#name);
                             });
-                            Some(unwrap)
+                            Ok(Some(unwrap))
                         }
                     },
                     syn::FnArg::Typed(typed) => {
@@ -202,9 +200,9 @@ pub fn impl_template_callbacks(mut input: syn::ItemImpl, args: Args) -> TokenStr
                             if typed.attrs[i].path.is_ident("rest") {
                                 let rest = typed.attrs.remove(i);
                                 if cur_is_rest {
-                                    emit_error!(rest, "Duplicate `rest` attribute");
+                                    return Err(Error::new_spanned(rest, "Duplicate `rest` attribute"));
                                 } else if !rest.tokens.is_empty() {
-                                    emit_error!(rest, "Tokens after `rest` attribute");
+                                    return Err(Error::new_spanned(rest, "Tokens after `rest` attribute"));
                                 }
                                 cur_is_rest = true;
                             } else {
@@ -218,24 +216,24 @@ pub fn impl_template_callbacks(mut input: syn::ItemImpl, args: Args) -> TokenStr
                             } else {
                                 quote! { values.len() }
                             };
-                            Some(quote! {
+                            Ok(Some(quote! {
                                 let #name = &values[#index..#end];
-                            })
+                            }))
                         } else {
                             let ty = typed.ty.as_ref();
                             let err_msg = format!(
                                 "Wrong type for argument {index} in template callback `{ident}`: {{:?}}",
                             );
-                            Some(unwrap_value(ty.to_token_stream(), err_msg))
+                            Ok(Some(unwrap_value(ty.to_token_stream(), err_msg)))
                         }
                     }
                 }
-            }).collect::<Option<Vec<_>>>();
+            }).collect::<Result<Option<Vec<_>>>>()?;
 
             let body = value_unpacks
                 .map(|value_unpacks| {
                     let call = quote! { #self_ty::#ident(#(#arg_names),*) };
-                    match (&method.sig.asyncness, &method.sig.output) {
+                    let stream = match (&method.sig.asyncness, &method.sig.output) {
                         (None, syn::ReturnType::Default) => quote! {
                             #(#value_unpacks)*
                             #call;
@@ -256,14 +254,15 @@ pub fn impl_template_callbacks(mut input: syn::ItemImpl, args: Args) -> TokenStr
                             ::std::option::Option::None
                         },
                         (Some(async_), syn::ReturnType::Type(_, _)) => {
-                            emit_error!(
+                            return Err(Error::new_spanned(
                                 async_,
-                                "`async` only allowed on template callbacks without a return value"
-                            );
-                            quote! { ::std::option::Option::None }
+                                "`async` only allowed on template callbacks without a return value",
+                            ));
                         }
-                    }
+                    };
+                    Ok(stream)
                 })
+                .transpose()?
                 .unwrap_or_else(|| quote! { ::std::option::Option::None });
 
             callbacks.push(quote! {
@@ -274,7 +273,7 @@ pub fn impl_template_callbacks(mut input: syn::ItemImpl, args: Args) -> TokenStr
         }
     }
 
-    quote! {
+    Ok(quote! {
         #(#attrs)*
         impl #generics #self_ty {
             #(#items)*
@@ -285,5 +284,5 @@ pub fn impl_template_callbacks(mut input: syn::ItemImpl, args: Args) -> TokenStr
                 #(#callbacks),*
             ];
         }
-    }
+    })
 }
