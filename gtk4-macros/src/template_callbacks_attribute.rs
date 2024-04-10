@@ -2,7 +2,7 @@
 
 use proc_macro2::{Span, TokenStream};
 use quote::{quote, ToTokens, TokenStreamExt};
-use syn::{parse::Parse, Error, Result, Token};
+use syn::{parse::Parse, Error, Meta, Result, Token};
 
 use crate::util::*;
 
@@ -57,16 +57,12 @@ impl CallbackArgs {
 }
 
 impl Parse for CallbackArgs {
-    fn parse(stream: syn::parse::ParseStream) -> Result<Self> {
+    fn parse(input: syn::parse::ParseStream) -> Result<Self> {
         let mut args = Self {
             name: None,
             function: None,
         };
-        if stream.is_empty() {
-            return Ok(args);
-        }
-        let input;
-        syn::parenthesized!(input in stream);
+
         while !input.is_empty() {
             let lookahead = input.lookahead1();
             if lookahead.peek(keywords::name) {
@@ -119,11 +115,11 @@ pub fn impl_template_callbacks(mut input: syn::ItemImpl, args: Args) -> Result<T
 
     let mut callbacks = vec![];
     for item in items.iter_mut() {
-        if let syn::ImplItem::Method(method) = item {
+        if let syn::ImplItem::Fn(method) = item {
             let mut i = 0;
             let mut attr = None;
             while i < method.attrs.len() {
-                if method.attrs[i].path.is_ident("template_callback") {
+                if method.attrs[i].path().is_ident("template_callback") {
                     let callback = method.attrs.remove(i);
                     if attr.is_some() {
                         return Err(Error::new_spanned(
@@ -144,7 +140,13 @@ pub fn impl_template_callbacks(mut input: syn::ItemImpl, args: Args) -> Result<T
             };
 
             let ident = &method.sig.ident;
-            let callback_args = syn::parse2::<CallbackArgs>(attr.tokens)?;
+
+            let callback_args = if matches!(attr.meta, Meta::Path(_)) {
+                CallbackArgs::default()
+            } else {
+                attr.parse_args::<CallbackArgs>()?
+            };
+
             let name = callback_args
                 .name
                 .as_ref()
@@ -197,11 +199,11 @@ pub fn impl_template_callbacks(mut input: syn::ItemImpl, args: Args) -> Result<T
                         let mut i = 0;
                         let mut cur_is_rest = false;
                         while i < typed.attrs.len() {
-                            if typed.attrs[i].path.is_ident("rest") {
+                            if typed.attrs[i].path().is_ident("rest") {
                                 let rest = typed.attrs.remove(i);
                                 if cur_is_rest {
                                     return Err(Error::new_spanned(rest, "Duplicate `rest` attribute"));
-                                } else if !rest.tokens.is_empty() {
+                                } else if rest.meta.require_path_only().is_err() {
                                     return Err(Error::new_spanned(rest, "Tokens after `rest` attribute"));
                                 }
                                 cur_is_rest = true;
