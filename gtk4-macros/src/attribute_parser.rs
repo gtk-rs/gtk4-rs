@@ -1,10 +1,9 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use anyhow::{bail, Result};
 use proc_macro2::Span;
 use syn::{
-    parse::Error, spanned::Spanned, Attribute, DeriveInput, Field, Fields, Ident, Lit, Meta,
-    MetaList, MetaNameValue, NestedMeta, Type,
+    spanned::Spanned, Attribute, DeriveInput, Error, Field, Fields, Ident, Lit, Meta, MetaList,
+    MetaNameValue, NestedMeta, Result, Type,
 };
 
 pub struct Template {
@@ -21,30 +20,35 @@ pub enum TemplateSource {
 }
 
 impl TemplateSource {
-    fn from_string_source(source: String) -> Result<Self> {
-        for c in source.chars() {
+    fn from_string_source(source: &NestedMeta, value: String) -> Result<Self> {
+        for c in value.chars() {
             #[cfg(feature = "blueprint")]
             if c.is_ascii_alphabetic() {
                 // blueprint code starts with some alphabetic letters
-                return Ok(Self::Blueprint(source));
+                return Ok(Self::Blueprint(value));
             } else if c == '<' {
                 // xml tags starts with '<' symbol
-                return Ok(Self::Xml(source));
+                return Ok(Self::Xml(value));
             }
             #[cfg(not(feature = "blueprint"))]
             if c == '<' {
                 // xml tags starts with '<' symbol
-                return Ok(Self::Xml(source));
+                return Ok(Self::Xml(value));
             }
         }
-        bail!("Unknown language")
+        Err(Error::new_spanned(source, "Unknown language"))
     }
 }
 
 pub fn parse_template_source(input: &DeriveInput) -> Result<Template> {
     let meta = match find_attribute_meta(&input.attrs, "template")? {
         Some(meta) => meta,
-        _ => bail!("Missing 'template' attribute"),
+        _ => {
+            return Err(Error::new(
+                Span::call_site(),
+                "Missing 'template' attribute",
+            ))
+        }
     };
 
     let mut allow_template_child_without_attribute = false;
@@ -55,35 +59,37 @@ pub fn parse_template_source(input: &DeriveInput) -> Result<Template> {
             let p = m.path();
             if p.is_ident("file") || p.is_ident("resource") || p.is_ident("string") {
                 if source.is_some() {
-                    bail!(Error::new_spanned(
+                    return Err(Error::new_spanned(
                         p,
-                        "Specify only one of 'file', 'resource', or 'string'"
+                        "Specify only one of 'file', 'resource', or 'string'",
                     ));
                 }
                 source.replace(n);
             }
             if p.is_ident("allow_template_child_without_attribute") {
                 if !matches!(m, Meta::Path(_)) {
-                    bail!(Error::new_spanned(m, "Wrong meta"));
+                    return Err(Error::new_spanned(m, "Wrong meta"));
                 }
                 if allow_template_child_without_attribute {
-                    bail!(Error::new_spanned(
+                    return Err(Error::new_spanned(
                         p,
-                        "Duplicate 'allow_template_child_without_attribute'"
+                        "Duplicate 'allow_template_child_without_attribute'",
                     ));
                 }
                 allow_template_child_without_attribute = true;
             }
         } else {
-            bail!(Error::new_spanned(n, "wrong meta type"));
+            return Err(Error::new_spanned(n, "wrong meta type"));
         }
     }
     let source = match source {
         Some(source) => source,
-        None => bail!(Error::new_spanned(
-            &meta,
-            "Invalid meta, specify one of 'file', 'resource', or 'string'"
-        )),
+        None => {
+            return Err(Error::new_spanned(
+                &meta,
+                "Invalid meta, specify one of 'file', 'resource', or 'string'",
+            ))
+        }
     };
 
     let (ident, v) = parse_attribute(source)?;
@@ -91,8 +97,8 @@ pub fn parse_template_source(input: &DeriveInput) -> Result<Template> {
     let source = match ident.as_ref() {
         "file" => TemplateSource::File(v),
         "resource" => TemplateSource::Resource(v),
-        "string" => TemplateSource::from_string_source(v)?,
-        s => bail!("Unknown enum meta {}", s),
+        "string" => TemplateSource::from_string_source(source, v)?,
+        _ => return Err(Error::new_spanned(source, "Unknown enum meta")),
     };
     Ok(Template {
         source,
@@ -103,32 +109,28 @@ pub fn parse_template_source(input: &DeriveInput) -> Result<Template> {
 // find the #[@attr_name] attribute in @attrs
 fn find_attribute_meta(attrs: &[Attribute], attr_name: &str) -> Result<Option<MetaList>> {
     let meta = match attrs.iter().find(|a| a.path.is_ident(attr_name)) {
-        Some(a) => a.parse_meta(),
+        Some(a) => a.parse_meta()?,
         _ => return Ok(None),
     };
-    match meta? {
+    match meta {
         Meta::List(n) => Ok(Some(n)),
-        _ => bail!("wrong meta type"),
+        _ => Err(Error::new_spanned(meta, "wrong meta type")),
     }
 }
 
 // parse a single meta like: ident = "value"
 fn parse_attribute(meta: &NestedMeta) -> Result<(String, String)> {
     let meta = match &meta {
-        NestedMeta::Meta(m) => m,
-        _ => bail!("wrong meta type"),
-    };
-    let meta = match meta {
-        Meta::NameValue(n) => n,
-        _ => bail!("wrong meta type"),
+        NestedMeta::Meta(Meta::NameValue(m)) => m,
+        _ => return Err(Error::new_spanned(meta, "wrong meta type")),
     };
     let value = match &meta.lit {
         Lit::Str(s) => s.value(),
-        _ => bail!("wrong meta type"),
+        _ => return Err(Error::new_spanned(meta, "wrong meta type")),
     };
 
     let ident = match meta.path.get_ident() {
-        None => bail!("missing ident"),
+        None => return Err(Error::new_spanned(meta, "missing ident")),
         Some(ident) => ident,
     };
 
@@ -180,7 +182,7 @@ impl AttributedField {
     }
 }
 
-fn parse_field_attr_value_str(name_value: &MetaNameValue) -> Result<String, Error> {
+fn parse_field_attr_value_str(name_value: &MetaNameValue) -> Result<String> {
     match &name_value.lit {
         Lit::Str(s) => Ok(s.value()),
         _ => Err(Error::new(
@@ -190,7 +192,7 @@ fn parse_field_attr_value_str(name_value: &MetaNameValue) -> Result<String, Erro
     }
 }
 
-fn parse_field_attr_value_bool(internal_value: &MetaNameValue) -> Result<bool, Error> {
+fn parse_field_attr_value_bool(internal_value: &MetaNameValue) -> Result<bool> {
     match &internal_value.lit {
         Lit::Bool(s) => Ok(s.value()),
         _ => Err(Error::new(
@@ -200,10 +202,7 @@ fn parse_field_attr_value_bool(internal_value: &MetaNameValue) -> Result<bool, E
     }
 }
 
-fn parse_field_attr_meta(
-    ty: &FieldAttributeType,
-    meta: &NestedMeta,
-) -> Result<FieldAttributeArg, Error> {
+fn parse_field_attr_meta(ty: &FieldAttributeType, meta: &NestedMeta) -> Result<FieldAttributeArg> {
     let meta = match &meta {
         NestedMeta::Meta(m) => m,
         _ => {
@@ -249,7 +248,7 @@ fn parse_field_attr_meta(
 fn parse_field_attr_args(
     ty: &FieldAttributeType,
     attr: &Attribute,
-) -> Result<Vec<FieldAttributeArg>, Error> {
+) -> Result<Vec<FieldAttributeArg>> {
     let mut field_attribute_args = Vec::new();
     match attr.parse_meta()? {
         Meta::List(list) => {
@@ -280,7 +279,7 @@ fn parse_field_attr_args(
     Ok(field_attribute_args)
 }
 
-fn parse_field(field: &Field) -> Result<Option<AttributedField>, Error> {
+fn parse_field(field: &Field) -> Result<Option<AttributedField>> {
     let field_attrs = &field.attrs;
     let ident = match &field.ident {
         Some(ident) => ident,
@@ -350,7 +349,7 @@ fn path_is_template_child(path: &syn::Path) -> bool {
 pub fn parse_fields(
     fields: &Fields,
     allow_missing_attribute: bool,
-) -> Result<Vec<AttributedField>, Error> {
+) -> Result<Vec<AttributedField>> {
     let mut attributed_fields = Vec::new();
 
     for field in fields {
@@ -364,11 +363,11 @@ pub fn parse_fields(
         if !has_attr && !allow_missing_attribute {
             if let syn::Type::Path(syn::TypePath { path, .. }) = &field.ty {
                 if path_is_template_child(path) {
-                    proc_macro_error::emit_error!(
+                    return Err(Error::new_spanned(
                         field,
-                        "field `{}` with type `TemplateChild` possibly missing #[template_child] attribute. Use a meta attribute on the struct to suppress this error: '#[template(string|file|resource = \"...\", allow_template_child_without_attribute)]'",
-                        field.ident.as_ref().unwrap().to_string(),
-                    );
+                        format!("field `{}` with type `TemplateChild` possibly missing #[template_child] attribute. Use a meta attribute on the struct to suppress this error: '#[template(string|file|resource = \"...\", allow_template_child_without_attribute)]'",
+                        field.ident.as_ref().unwrap())
+                    ));
                 }
             }
         }
