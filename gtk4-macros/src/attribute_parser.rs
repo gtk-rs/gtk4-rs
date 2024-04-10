@@ -1,16 +1,117 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
 use proc_macro2::Span;
+use quote::ToTokens;
 use syn::{
-    spanned::Spanned, Attribute, DeriveInput, Error, Field, Fields, Ident, Lit, Meta, MetaList,
-    MetaNameValue, NestedMeta, Result, Type,
+    parse::{Parse, ParseStream},
+    punctuated::Punctuated,
+    Attribute, DeriveInput, Error, Field, Fields, Ident, LitBool, LitStr, Meta, Result, Token,
+    Type,
 };
 
+/// Custom meta keywords.
+mod kw {
+    // `template` attribute.
+    syn::custom_keyword!(file);
+    syn::custom_keyword!(resource);
+    syn::custom_keyword!(string);
+    syn::custom_keyword!(allow_template_child_without_attribute);
+
+    // `template_child` attribute.
+    syn::custom_keyword!(id);
+    syn::custom_keyword!(internal);
+}
+
+/// The parsed `template` attribute.
 pub struct Template {
     pub source: TemplateSource,
     pub allow_template_child_without_attribute: bool,
 }
 
+impl Parse for Template {
+    fn parse(input: ParseStream) -> Result<Self> {
+        let mut source = None;
+        let mut allow_template_child_without_attribute = false;
+
+        while !input.is_empty() {
+            let lookahead = input.lookahead1();
+            if lookahead.peek(kw::file) {
+                let keyword: kw::file = input.parse()?;
+                let _: Token![=] = input.parse()?;
+                let value: LitStr = input.parse()?;
+
+                if source.is_some() {
+                    return Err(Error::new_spanned(
+                        keyword,
+                        "Specify only one of 'file', 'resource', or 'string'",
+                    ));
+                }
+
+                source = Some(TemplateSource::File(value.value()));
+            } else if lookahead.peek(kw::resource) {
+                let keyword: kw::resource = input.parse()?;
+                let _: Token![=] = input.parse()?;
+                let value: LitStr = input.parse()?;
+
+                if source.is_some() {
+                    return Err(Error::new_spanned(
+                        keyword,
+                        "Specify only one of 'file', 'resource', or 'string'",
+                    ));
+                }
+
+                source = Some(TemplateSource::Resource(value.value()));
+            } else if lookahead.peek(kw::string) {
+                let keyword: kw::string = input.parse()?;
+                let _: Token![=] = input.parse()?;
+                let value: LitStr = input.parse()?;
+
+                if source.is_some() {
+                    return Err(Error::new_spanned(
+                        keyword,
+                        "Specify only one of 'file', 'resource', or 'string'",
+                    ));
+                }
+
+                source = Some(
+                    TemplateSource::from_string_source(value.value())
+                        .ok_or_else(|| Error::new_spanned(value, "Unknown language"))?,
+                );
+            } else if lookahead.peek(kw::allow_template_child_without_attribute) {
+                let keyword: kw::allow_template_child_without_attribute = input.parse()?;
+
+                if allow_template_child_without_attribute {
+                    return Err(Error::new_spanned(
+                        keyword,
+                        "Duplicate 'allow_template_child_without_attribute'",
+                    ));
+                }
+
+                allow_template_child_without_attribute = true;
+            } else {
+                return Err(lookahead.error());
+            }
+
+            if !input.is_empty() {
+                let _: Token![,] = input.parse()?;
+            }
+        }
+
+        let Some(source) = source else {
+            return Err(Error::new(
+                Span::call_site(),
+                "Invalid meta, specify one of 'file', 'resource', or 'string'",
+            ));
+        };
+
+        Ok(Template {
+            source,
+            allow_template_child_without_attribute,
+        })
+    }
+}
+
+/// The source of a template.
 pub enum TemplateSource {
     File(String),
     Resource(String),
@@ -20,123 +121,43 @@ pub enum TemplateSource {
 }
 
 impl TemplateSource {
-    fn from_string_source(source: &NestedMeta, value: String) -> Result<Self> {
+    fn from_string_source(value: String) -> Option<Self> {
         for c in value.chars() {
             #[cfg(feature = "blueprint")]
             if c.is_ascii_alphabetic() {
                 // blueprint code starts with some alphabetic letters
-                return Ok(Self::Blueprint(value));
+                return Some(Self::Blueprint(value));
             } else if c == '<' {
                 // xml tags starts with '<' symbol
-                return Ok(Self::Xml(value));
+                return Some(Self::Xml(value));
             }
             #[cfg(not(feature = "blueprint"))]
             if c == '<' {
                 // xml tags starts with '<' symbol
-                return Ok(Self::Xml(value));
+                return Some(Self::Xml(value));
             }
         }
-        Err(Error::new_spanned(source, "Unknown language"))
+
+        None
     }
 }
 
 pub fn parse_template_source(input: &DeriveInput) -> Result<Template> {
-    let meta = match find_attribute_meta(&input.attrs, "template")? {
-        Some(meta) => meta,
-        _ => {
-            return Err(Error::new(
-                Span::call_site(),
-                "Missing 'template' attribute",
-            ))
-        }
+    let Some(attr) = input
+        .attrs
+        .iter()
+        .find(|attr| attr.path().is_ident("template"))
+    else {
+        return Err(Error::new(
+            Span::call_site(),
+            "Missing 'template' attribute",
+        ));
     };
 
-    let mut allow_template_child_without_attribute = false;
-    let mut source = None;
-
-    for n in meta.nested.iter() {
-        if let NestedMeta::Meta(m) = n {
-            let p = m.path();
-            if p.is_ident("file") || p.is_ident("resource") || p.is_ident("string") {
-                if source.is_some() {
-                    return Err(Error::new_spanned(
-                        p,
-                        "Specify only one of 'file', 'resource', or 'string'",
-                    ));
-                }
-                source.replace(n);
-            }
-            if p.is_ident("allow_template_child_without_attribute") {
-                if !matches!(m, Meta::Path(_)) {
-                    return Err(Error::new_spanned(m, "Wrong meta"));
-                }
-                if allow_template_child_without_attribute {
-                    return Err(Error::new_spanned(
-                        p,
-                        "Duplicate 'allow_template_child_without_attribute'",
-                    ));
-                }
-                allow_template_child_without_attribute = true;
-            }
-        } else {
-            return Err(Error::new_spanned(n, "wrong meta type"));
-        }
-    }
-    let source = match source {
-        Some(source) => source,
-        None => {
-            return Err(Error::new_spanned(
-                &meta,
-                "Invalid meta, specify one of 'file', 'resource', or 'string'",
-            ))
-        }
-    };
-
-    let (ident, v) = parse_attribute(source)?;
-
-    let source = match ident.as_ref() {
-        "file" => TemplateSource::File(v),
-        "resource" => TemplateSource::Resource(v),
-        "string" => TemplateSource::from_string_source(source, v)?,
-        _ => return Err(Error::new_spanned(source, "Unknown enum meta")),
-    };
-    Ok(Template {
-        source,
-        allow_template_child_without_attribute,
-    })
+    attr.parse_args::<Template>()
 }
 
-// find the #[@attr_name] attribute in @attrs
-fn find_attribute_meta(attrs: &[Attribute], attr_name: &str) -> Result<Option<MetaList>> {
-    let meta = match attrs.iter().find(|a| a.path.is_ident(attr_name)) {
-        Some(a) => a.parse_meta()?,
-        _ => return Ok(None),
-    };
-    match meta {
-        Meta::List(n) => Ok(Some(n)),
-        _ => Err(Error::new_spanned(meta, "wrong meta type")),
-    }
-}
-
-// parse a single meta like: ident = "value"
-fn parse_attribute(meta: &NestedMeta) -> Result<(String, String)> {
-    let meta = match &meta {
-        NestedMeta::Meta(Meta::NameValue(m)) => m,
-        _ => return Err(Error::new_spanned(meta, "wrong meta type")),
-    };
-    let value = match &meta.lit {
-        Lit::Str(s) => s.value(),
-        _ => return Err(Error::new_spanned(meta, "wrong meta type")),
-    };
-
-    let ident = match meta.path.get_ident() {
-        None => return Err(Error::new_spanned(meta, "missing ident")),
-        Some(ident) => ident,
-    };
-
-    Ok((ident.to_string(), value))
-}
-
+/// An argument in a field attribute.
 pub enum FieldAttributeArg {
     #[allow(dead_code)]
     // The span is needed for xml_validation feature
@@ -144,16 +165,28 @@ pub enum FieldAttributeArg {
     Internal(bool),
 }
 
+impl FieldAttributeArg {
+    fn from_template_child_meta(meta: &TemplateChildAttributeMeta) -> Self {
+        match meta {
+            TemplateChildAttributeMeta::Id { value, .. } => Self::Id(value.value(), value.span()),
+            TemplateChildAttributeMeta::Internal { value, .. } => Self::Internal(value.value()),
+        }
+    }
+}
+
+/// The type of a field attribute.
 #[derive(Debug)]
 pub enum FieldAttributeType {
     TemplateChild,
 }
 
+/// A field attribute with args.
 pub struct FieldAttribute {
     pub ty: FieldAttributeType,
     pub args: Vec<FieldAttributeArg>,
 }
 
+/// A field with an attribute.
 pub struct AttributedField {
     pub ident: Ident,
     pub ty: Type,
@@ -182,144 +215,106 @@ impl AttributedField {
     }
 }
 
-fn parse_field_attr_value_str(name_value: &MetaNameValue) -> Result<String> {
-    match &name_value.lit {
-        Lit::Str(s) => Ok(s.value()),
-        _ => Err(Error::new(
-            name_value.lit.span(),
-            "invalid value type: Expected str literal",
-        )),
+/// A meta item of a `template_child` attribute.
+enum TemplateChildAttributeMeta {
+    Id {
+        keyword: kw::id,
+        value: LitStr,
+    },
+    Internal {
+        keyword: kw::internal,
+        value: LitBool,
+    },
+}
+
+impl Parse for TemplateChildAttributeMeta {
+    fn parse(input: ParseStream) -> Result<Self> {
+        let lookahead = input.lookahead1();
+        if lookahead.peek(kw::id) {
+            let keyword = input.parse()?;
+            let _: Token![=] = input.parse()?;
+            let value = input.parse()?;
+            Ok(Self::Id { keyword, value })
+        } else if lookahead.peek(kw::internal) {
+            let keyword = input.parse()?;
+            let _: Token![=] = input.parse()?;
+            let value = input.parse()?;
+            Ok(Self::Internal { keyword, value })
+        } else {
+            Err(lookahead.error())
+        }
     }
 }
 
-fn parse_field_attr_value_bool(internal_value: &MetaNameValue) -> Result<bool> {
-    match &internal_value.lit {
-        Lit::Bool(s) => Ok(s.value()),
-        _ => Err(Error::new(
-            internal_value.lit.span(),
-            "invalid value type: Expected bool",
-        )),
+impl ToTokens for TemplateChildAttributeMeta {
+    fn to_tokens(&self, tokens: &mut proc_macro2::TokenStream) {
+        match self {
+            Self::Id { keyword, .. } => keyword.to_tokens(tokens),
+            Self::Internal { keyword, .. } => keyword.to_tokens(tokens),
+        }
     }
 }
 
-fn parse_field_attr_meta(ty: &FieldAttributeType, meta: &NestedMeta) -> Result<FieldAttributeArg> {
-    let meta = match &meta {
-        NestedMeta::Meta(m) => m,
-        _ => {
-            return Err(Error::new(
-                meta.span(),
-                "invalid type - expected a name-value pair like id = \"widget\"",
-            ))
-        }
-    };
-    let name_value = match meta {
-        Meta::NameValue(n) => n,
-        _ => {
-            return Err(Error::new(
-                meta.span(),
-                "invalid type - expected a name-value pair like id = \"widget\"",
-            ))
-        }
-    };
-    let path = &name_value.path;
-    let ident = path
-        .get_ident()
-        .ok_or_else(|| Error::new(path.span(), "invalid name type - expected identifier"))?;
+fn parse_field_attr_args(ty: FieldAttributeType, attr: &Attribute) -> Result<FieldAttribute> {
+    let mut args = Vec::new();
 
-    let ident_str = ident.to_string();
-    let unknown_err = Err(Error::new(
-        ident.span(),
-        format!("unknown attribute argument: `{ident_str}`"),
-    ));
-    let value = match ty {
-        FieldAttributeType::TemplateChild => match ident_str.as_str() {
-            "id" => FieldAttributeArg::Id(
-                parse_field_attr_value_str(name_value)?,
-                name_value.lit.span(),
-            ),
-            "internal" => FieldAttributeArg::Internal(parse_field_attr_value_bool(name_value)?),
-            _ => return unknown_err,
-        },
-    };
+    if matches!(ty, FieldAttributeType::TemplateChild) && !matches!(attr.meta, Meta::Path(_)) {
+        let meta_list = attr.parse_args_with(
+            Punctuated::<TemplateChildAttributeMeta, Token![,]>::parse_terminated,
+        )?;
 
-    Ok(value)
-}
+        for meta in meta_list {
+            let new_arg = FieldAttributeArg::from_template_child_meta(&meta);
 
-fn parse_field_attr_args(
-    ty: &FieldAttributeType,
-    attr: &Attribute,
-) -> Result<Vec<FieldAttributeArg>> {
-    let mut field_attribute_args = Vec::new();
-    match attr.parse_meta()? {
-        Meta::List(list) => {
-            for meta in &list.nested {
-                let new_arg = parse_field_attr_meta(ty, meta)?;
-                for arg in &field_attribute_args {
-                    // Comparison of enum variants, not data
-                    if std::mem::discriminant(arg) == std::mem::discriminant(&new_arg) {
-                        return Err(Error::new(
-                            meta.span(),
-                            "two instances of the same attribute \
-                            argument, each argument must be specified only once",
-                        ));
-                    }
-                }
-                field_attribute_args.push(new_arg);
+            if args.iter().any(|arg| {
+                // Comparison of enum variants, not data
+                std::mem::discriminant(arg) == std::mem::discriminant(&new_arg)
+            }) {
+                return Err(Error::new_spanned(
+                    meta,
+                    "two instances of the same attribute \
+                    argument, each argument must be specified only once",
+                ));
             }
-        }
-        Meta::Path(_) => (),
-        meta => {
-            return Err(Error::new(
-                meta.span(),
-                "invalid attribute argument type, expected `name = value` list or nothing",
-            ))
+
+            args.push(new_arg);
         }
     }
 
-    Ok(field_attribute_args)
+    Ok(FieldAttribute { ty, args })
 }
 
 fn parse_field(field: &Field) -> Result<Option<AttributedField>> {
-    let field_attrs = &field.attrs;
-    let ident = match &field.ident {
-        Some(ident) => ident,
-        None => return Err(Error::new(field.span(), "expected identifier")),
+    let Some(ident) = &field.ident else {
+        return Err(Error::new_spanned(field, "expected identifier"));
     };
 
-    let ty = &field.ty;
-    let mut attr = None;
+    let mut attr_field = None;
 
-    for field_attr in field_attrs {
-        let span = field_attr.span();
-        let ty = if field_attr.path.is_ident("template_child") {
-            Some(FieldAttributeType::TemplateChild)
+    for attr in &field.attrs {
+        let ty = if attr.path().is_ident("template_child") {
+            FieldAttributeType::TemplateChild
         } else {
-            None
+            continue;
         };
 
-        if let Some(ty) = ty {
-            let args = parse_field_attr_args(&ty, field_attr)?;
+        let field_attr = parse_field_attr_args(ty, attr)?;
 
-            if attr.is_none() {
-                attr = Some(FieldAttribute { ty, args })
-            } else {
-                return Err(Error::new(
-                    span,
-                    "multiple attributes on the same field are not supported",
-                ));
-            }
+        if attr_field.is_some() {
+            return Err(Error::new_spanned(
+                attr,
+                "multiple attributes on the same field are not supported",
+            ));
         }
+
+        attr_field = Some(AttributedField {
+            ident: ident.clone(),
+            ty: field.ty.clone(),
+            attr: field_attr,
+        })
     }
 
-    if let Some(attr) = attr {
-        Ok(Some(AttributedField {
-            ident: ident.clone(),
-            ty: ty.clone(),
-            attr,
-        }))
-    } else {
-        Ok(None)
-    }
+    Ok(attr_field)
 }
 
 fn path_is_template_child(path: &syn::Path) -> bool {
