@@ -3,12 +3,11 @@
 #[cfg(feature = "xml_validation")]
 use std::collections::HashMap;
 
-use proc_macro2::TokenStream;
-use proc_macro_error::{emit_call_site_error, emit_error};
+use proc_macro2::{Span, TokenStream};
 #[cfg(feature = "xml_validation")]
 use quick_xml::name::QName;
 use quote::quote;
-use syn::Data;
+use syn::{Data, Error, Result};
 
 #[cfg(feature = "blueprint")]
 use crate::blueprint::*;
@@ -66,11 +65,11 @@ fn gen_set_template(source: &TemplateSource, crate_ident: &proc_macro2::Ident) -
 }
 
 #[cfg(feature = "xml_validation")]
-fn check_template_fields(source: &TemplateSource, fields: &[AttributedField]) {
+fn check_template_fields(source: &TemplateSource, fields: &[AttributedField]) -> Result<()> {
     #[allow(unused_assignments)]
     let xml = match source {
         TemplateSource::Xml(template) => template,
-        _ => return,
+        _ => return Ok(()),
     };
 
     let mut reader = quick_xml::Reader::from_str(xml);
@@ -90,12 +89,14 @@ fn check_template_fields(source: &TemplateSource, fields: &[AttributedField]) {
             Ok(Event::Empty(e)) => Some(e),
             Ok(Event::Eof) => break,
             Err(e) => {
-                emit_call_site_error!(
-                    "Failed reading template XML at position {}: {:?}",
-                    reader.buffer_position(),
-                    e
-                );
-                break;
+                return Err(Error::new(
+                    Span::call_site(),
+                    format!(
+                        "Failed reading template XML at position {}: {:?}",
+                        reader.buffer_position(),
+                        e
+                    ),
+                ));
             }
             _ => None,
         };
@@ -113,13 +114,14 @@ fn check_template_fields(source: &TemplateSource, fields: &[AttributedField]) {
         }
     }
 
-    if let Some((name, span)) = ids_left.iter().next() {
-        emit_error!(
+    if let Some((name, span)) = ids_left.into_iter().next() {
+        return Err(Error::new(
             span,
-            "Template child with id `{}` not found in template XML",
-            name
-        );
+            format!("Template child with id `{name}` not found in template XML",),
+        ));
     }
+
+    Ok(())
 }
 
 fn gen_template_child_bindings(fields: &[AttributedField]) -> TokenStream {
@@ -177,18 +179,18 @@ fn gen_template_child_type_checks(fields: &[AttributedField]) -> TokenStream {
     }
 }
 
-pub fn impl_composite_template(input: &syn::DeriveInput) -> TokenStream {
+pub fn impl_composite_template(input: &syn::DeriveInput) -> Result<TokenStream> {
     let name = &input.ident;
     let crate_ident = crate_ident_new();
 
     let template = match parse_template_source(input) {
         Ok(v) => Some(v),
         Err(e) => {
-            emit_call_site_error!(
-                "{}: derive(CompositeTemplate) requires #[template(...)] to specify 'file', 'resource', or 'string'",
-                e
-            );
-            None
+            return Err(Error::new(
+                Span::call_site(),
+                format!("{}: derive(CompositeTemplate) requires #[template(...)] to specify 'file', 'resource', or 'string'",
+                e)
+            ));
         }
     };
 
@@ -203,30 +205,28 @@ pub fn impl_composite_template(input: &syn::DeriveInput) -> TokenStream {
     let fields = match input.data {
         Data::Struct(ref s) => Some(&s.fields),
         _ => {
-            emit_call_site_error!("derive(CompositeTemplate) only supports structs");
-            None
+            return Err(Error::new(
+                Span::call_site(),
+                "derive(CompositeTemplate) only supports structs",
+            ));
         }
     };
 
     let attributed_fields = match fields.map(|f| parse_fields(f, allow_without_attribute)) {
-        Some(Ok(fields)) => fields,
-        Some(Err(err)) => {
-            emit_error!(err.span(), err);
-            vec![]
-        }
+        Some(fields) => fields?,
         None => vec![],
     };
 
     #[cfg(feature = "xml_validation")]
     {
         if let Some(source) = source {
-            check_template_fields(source, &attributed_fields);
+            check_template_fields(source, &attributed_fields)?;
         }
     }
     let template_children = gen_template_child_bindings(&attributed_fields);
     let checks = gen_template_child_type_checks(&attributed_fields);
 
-    quote! {
+    Ok(quote! {
         impl #crate_ident::subclass::widget::CompositeTemplate for #name {
             fn bind_template(klass: &mut Self::Class) {
                 #set_template
@@ -240,5 +240,5 @@ pub fn impl_composite_template(input: &syn::DeriveInput) -> TokenStream {
                 #checks
             }
         }
-    }
+    })
 }
