@@ -308,9 +308,9 @@ checksum = "658bd65b1cf4c852a3cc96f18a8ce7b5640f6b703f905c7d74532294c2a63984"
 
 [[package]]
 name = "femtovg"
-version = "0.9.0"
+version = "0.9.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "ad3cf7e8f8e3c684b418c2640c931afc8bbc7ebe547bed6bf64170f1f51d57c9"
+checksum = "a056992c3a862ef9d4452bad8b6b455780382502b38b93540fb17773a54ca092"
 dependencies = [
  "bitflags 2.5.0",
  "fnv",
