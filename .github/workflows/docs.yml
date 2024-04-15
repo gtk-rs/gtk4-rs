@@ -124,7 +124,7 @@ jobs:
           wget https://raw.githubusercontent.com/gtk-rs/gtk-rs.github.io/master/logo/gtk-rs.svg -O ./target/doc/rust-logo.svg
           wget https://raw.githubusercontent.com/gtk-rs/gtk-rs.github.io/master/logo/gtk-rs.svg -O ./target/doc/favicon.svg
       - name: deploy
-        uses: peaceiris/actions-gh-pages@v3
+        uses: peaceiris/actions-gh-pages@v4
         if: ${{ (github.event_name == 'push' && github.ref == 'refs/heads/master') || github.event_name == 'release' }}
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
@@ -134,7 +134,7 @@ jobs:
 
       - run: python3 ./gir-rustdoc/gir-rustdoc.py --project-title 'GTK 4 Rust bindings' html-index --early-section 'Book' '<ul><li><a href="stable/latest/book">Latest stable</a></li></ul>'
       - name: deploy index page
-        uses: peaceiris/actions-gh-pages@v3
+        uses: peaceiris/actions-gh-pages@v4
         if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
