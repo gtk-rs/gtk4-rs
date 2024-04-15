@@ -20,7 +20,7 @@ jobs:
           override: true
 
       - name: Setup mdBook
-        uses: peaceiris/actions-mdbook@v1
+        uses: peaceiris/actions-mdbook@v2
 
       - run: mdbook build -d public
         working-directory: book
