@@ -23,17 +23,6 @@ glib::wrapper! {
 }
 
 impl GraphicsOffload {
-    #[doc(alias = "gtk_graphics_offload_new")]
-    pub fn new(child: Option<&impl IsA<Widget>>) -> GraphicsOffload {
-        assert_initialized_main_thread!();
-        unsafe {
-            Widget::from_glib_full(ffi::gtk_graphics_offload_new(
-                child.map(|p| p.as_ref()).to_glib_none().0,
-            ))
-            .unsafe_cast()
-        }
-    }
-
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`GraphicsOffload`] objects.
     ///
@@ -119,14 +108,6 @@ impl GraphicsOffload {
                 Box_::into_raw(f),
             )
         }
-    }
-}
-
-#[cfg(feature = "v4_14")]
-#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
-impl Default for GraphicsOffload {
-    fn default() -> Self {
-        glib::object::Object::new::<Self>()
     }
 }
 
