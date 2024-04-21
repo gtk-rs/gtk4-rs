@@ -146,7 +146,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 {{#rustdoc_include ../listings/todo/1/window/imp.rs:constructed}}
 ```
 
-Since we need to access the list model quite often, we add the convenience method `Window::model` for that.
+Since we need to access the list model quite often, we add the convenience method `Window::tasks` for that.
 In `Window::setup_tasks` we create a new model.
 Then we store a reference to the model in `imp::Window` as well as in `gtk::ListView`.
 
