@@ -1,11 +1,9 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
 use std::{
-    io::{Read, Write},
+    io::{Error, ErrorKind, Read, Result, Write},
     process::{Command, Stdio},
 };
-
-use anyhow::{bail, Result};
 
 pub(crate) fn compile_blueprint(blueprint: &[u8]) -> Result<String> {
     let mut compiler = Command::new("blueprint-compiler")
@@ -24,7 +22,7 @@ pub(crate) fn compile_blueprint(blueprint: &[u8]) -> Result<String> {
     compiler.stdout.unwrap().read_to_string(&mut buf)?;
 
     if !buf.starts_with('<') {
-        bail!(buf);
+        return Err(Error::new(ErrorKind::Other, buf));
     }
 
     Ok(buf)
