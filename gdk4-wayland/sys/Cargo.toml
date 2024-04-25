@@ -40,10 +40,10 @@ version = "4.4"
 version = "4.10"
 
 [package.metadata.system-deps.gtk4_wayland.v4_12]
-version = "4.11"
+version = "4.12"
 
 [package.metadata.system-deps.gtk4_wayland.v4_16]
-version = "4.16"
+version = "4.15"
 
 [package.metadata.docs.rs]
 rustc-args = ["--cfg", "docsrs"]
