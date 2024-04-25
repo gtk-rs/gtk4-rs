@@ -2680,6 +2680,18 @@ pub const GDK_TOPLEVEL_STATE_SUSPENDED: GdkToplevelState = 65536;
 // Callbacks
 pub type GdkContentDeserializeFunc = Option<unsafe extern "C" fn(*mut GdkContentDeserializer)>;
 pub type GdkContentSerializeFunc = Option<unsafe extern "C" fn(*mut GdkContentSerializer)>;
+pub type GdkCursorGetTextureCallback = Option<
+    unsafe extern "C" fn(
+        *mut GdkCursor,
+        c_int,
+        c_double,
+        *mut c_int,
+        *mut c_int,
+        *mut c_int,
+        *mut c_int,
+        gpointer,
+    ) -> *mut GdkTexture,
+>;
 
 // Records
 #[repr(C)]
@@ -4444,6 +4456,14 @@ extern "C" {
     // GdkCursor
     //=========================================================================
     pub fn gdk_cursor_get_type() -> GType;
+    #[cfg(feature = "v4_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
+    pub fn gdk_cursor_new_from_callback(
+        callback: GdkCursorGetTextureCallback,
+        data: gpointer,
+        destroy: glib::GDestroyNotify,
+        fallback: *mut GdkCursor,
+    ) -> *mut GdkCursor;
     pub fn gdk_cursor_new_from_name(
         name: *const c_char,
         fallback: *mut GdkCursor,
