@@ -130,7 +130,6 @@ generate = [
     "Gtk.GestureRotate",
     "Gtk.GestureSwipe",
     "Gtk.GestureZoom",
-    "Gtk.GraphicsOffload",
     "Gtk.GraphicsOffloadEnabled",
     "Gtk.Grid",
     "Gtk.GridLayout",
@@ -1370,6 +1369,14 @@ status = "generate"
     name = "create-context"
         [object.signal.return]
         nullable = true
+
+[[object]]
+name = "Gtk.GraphicsOffload"
+status = "generate"
+    [[object.property]]
+    name = "black-background"
+    generate = ["notify"] # already has a getter/setter
+
 
 [[object]]
 name = "Gtk.GridLayoutChild"
