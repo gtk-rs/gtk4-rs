@@ -129,6 +129,7 @@ generate = [
     "Gtk.GestureRotate",
     "Gtk.GestureSwipe",
     "Gtk.GestureZoom",
+    "Gtk.GraphicsOffload",
     "Gtk.GraphicsOffloadEnabled",
     "Gtk.Grid",
     "Gtk.GridLayout",
@@ -1368,15 +1369,6 @@ status = "generate"
     name = "create-context"
         [object.signal.return]
         nullable = true
-
-[[object]]
-name = "Gtk.GraphicsOffload"
-status = "generate"
-    [[object.function]]
-    name = "new"
-    # transfer none
-    # https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/7159
-    manual = true
 
 [[object]]
 name = "Gtk.GridLayoutChild"

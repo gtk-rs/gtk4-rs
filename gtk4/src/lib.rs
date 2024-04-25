@@ -145,9 +145,6 @@ mod font_chooser;
 mod font_dialog;
 mod functions;
 mod gesture_stylus;
-#[cfg(feature = "v4_14")]
-#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
-mod graphics_offload;
 mod icon_theme;
 mod im_context_simple;
 mod info_bar;
