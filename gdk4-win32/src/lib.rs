@@ -1,6 +1,7 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
 #![doc = include_str!("../README.md")]
+#![allow(deprecated)]
 #![cfg_attr(docsrs, feature(doc_cfg))]
 
 pub use ffi;
