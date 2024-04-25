@@ -27,7 +27,7 @@ impl GraphicsOffload {
     pub fn new(child: Option<&impl IsA<Widget>>) -> GraphicsOffload {
         assert_initialized_main_thread!();
         unsafe {
-            Widget::from_glib_full(ffi::gtk_graphics_offload_new(
+            Widget::from_glib_none(ffi::gtk_graphics_offload_new(
                 child.map(|p| p.as_ref()).to_glib_none().0,
             ))
             .unsafe_cast()
@@ -42,6 +42,18 @@ impl GraphicsOffload {
         GraphicsOffloadBuilder::new()
     }
 
+    #[cfg(feature = "v4_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
+    #[doc(alias = "gtk_graphics_offload_get_black_background")]
+    #[doc(alias = "get_black_background")]
+    pub fn is_black_background(&self) -> bool {
+        unsafe {
+            from_glib(ffi::gtk_graphics_offload_get_black_background(
+                self.to_glib_none().0,
+            ))
+        }
+    }
+
     #[doc(alias = "gtk_graphics_offload_get_child")]
     #[doc(alias = "get_child")]
     pub fn child(&self) -> Option<Widget> {
@@ -52,6 +64,18 @@ impl GraphicsOffload {
     #[doc(alias = "get_enabled")]
     pub fn enabled(&self) -> GraphicsOffloadEnabled {
         unsafe { from_glib(ffi::gtk_graphics_offload_get_enabled(self.to_glib_none().0)) }
+    }
+
+    #[cfg(feature = "v4_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
+    #[doc(alias = "gtk_graphics_offload_set_black_background")]
+    pub fn set_black_background(&self, value: bool) {
+        unsafe {
+            ffi::gtk_graphics_offload_set_black_background(
+                self.to_glib_none().0,
+                value.into_glib(),
+            );
+        }
     }
 
     #[doc(alias = "gtk_graphics_offload_set_child")]
@@ -68,6 +92,41 @@ impl GraphicsOffload {
     pub fn set_enabled(&self, enabled: GraphicsOffloadEnabled) {
         unsafe {
             ffi::gtk_graphics_offload_set_enabled(self.to_glib_none().0, enabled.into_glib());
+        }
+    }
+
+    #[doc(alias = "black-background")]
+    pub fn get_property_black_background(&self) -> bool {
+        ObjectExt::property(self, "black-background")
+    }
+
+    #[doc(alias = "black-background")]
+    pub fn set_property_black_background(&self, black_background: bool) {
+        ObjectExt::set_property(self, "black-background", black_background)
+    }
+
+    #[doc(alias = "black-background")]
+    pub fn connect_black_background_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_black_background_trampoline<
+            F: Fn(&GraphicsOffload) + 'static,
+        >(
+            this: *mut ffi::GtkGraphicsOffload,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::black-background\0".as_ptr() as *const _,
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                    notify_black_background_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
         }
     }
 
@@ -143,6 +202,12 @@ impl GraphicsOffloadBuilder {
     fn new() -> Self {
         Self {
             builder: glib::object::Object::builder(),
+        }
+    }
+
+    pub fn black_background(self, black_background: bool) -> Self {
+        Self {
+            builder: self.builder.property("black-background", black_background),
         }
     }
 

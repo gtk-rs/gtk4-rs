@@ -449,6 +449,10 @@ pub const GTK_FONT_LEVEL_FACE: GtkFontLevel = 1;
 pub const GTK_FONT_LEVEL_FONT: GtkFontLevel = 2;
 pub const GTK_FONT_LEVEL_FEATURES: GtkFontLevel = 3;
 
+pub type GtkFontRendering = c_int;
+pub const GTK_FONT_RENDERING_AUTOMATIC: GtkFontRendering = 0;
+pub const GTK_FONT_RENDERING_MANUAL: GtkFontRendering = 1;
+
 pub type GtkGraphicsOffloadEnabled = c_int;
 pub const GTK_GRAPHICS_OFFLOAD_ENABLED: GtkGraphicsOffloadEnabled = 0;
 pub const GTK_GRAPHICS_OFFLOAD_DISABLED: GtkGraphicsOffloadEnabled = 1;
@@ -1421,6 +1425,21 @@ pub struct GtkAccessibleTextInterface {
     pub get_default_attributes: Option<
         unsafe extern "C" fn(*mut GtkAccessibleText, *mut *mut *mut c_char, *mut *mut *mut c_char),
     >,
+    pub get_extents: Option<
+        unsafe extern "C" fn(
+            *mut GtkAccessibleText,
+            c_uint,
+            c_uint,
+            *mut graphene::graphene_rect_t,
+        ) -> gboolean,
+    >,
+    pub get_offset: Option<
+        unsafe extern "C" fn(
+            *mut GtkAccessibleText,
+            *const graphene::graphene_point_t,
+            *mut c_uint,
+        ) -> gboolean,
+    >,
 }
 
 impl ::std::fmt::Debug for GtkAccessibleTextInterface {
@@ -1432,6 +1451,8 @@ impl ::std::fmt::Debug for GtkAccessibleTextInterface {
             .field("get_selection", &self.get_selection)
             .field("get_attributes", &self.get_attributes)
             .field("get_default_attributes", &self.get_default_attributes)
+            .field("get_extents", &self.get_extents)
+            .field("get_offset", &self.get_offset)
             .finish()
     }
 }
@@ -9692,6 +9713,13 @@ extern "C" {
     pub fn gtk_font_level_get_type() -> GType;
 
     //=========================================================================
+    // GtkFontRendering
+    //=========================================================================
+    #[cfg(feature = "v4_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
+    pub fn gtk_font_rendering_get_type() -> GType;
+
+    //=========================================================================
     // GtkGraphicsOffloadEnabled
     //=========================================================================
     #[cfg(feature = "v4_14")]
@@ -14375,6 +14403,9 @@ extern "C" {
     #[cfg(feature = "v4_14")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
     pub fn gtk_graphics_offload_new(child: *mut GtkWidget) -> *mut GtkWidget;
+    #[cfg(feature = "v4_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
+    pub fn gtk_graphics_offload_get_black_background(self_: *mut GtkGraphicsOffload) -> gboolean;
     #[cfg(feature = "v4_14")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
     pub fn gtk_graphics_offload_get_child(self_: *mut GtkGraphicsOffload) -> *mut GtkWidget;
@@ -14383,6 +14414,12 @@ extern "C" {
     pub fn gtk_graphics_offload_get_enabled(
         self_: *mut GtkGraphicsOffload,
     ) -> GtkGraphicsOffloadEnabled;
+    #[cfg(feature = "v4_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
+    pub fn gtk_graphics_offload_set_black_background(
+        self_: *mut GtkGraphicsOffload,
+        value: gboolean,
+    );
     #[cfg(feature = "v4_14")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
     pub fn gtk_graphics_offload_set_child(self_: *mut GtkGraphicsOffload, child: *mut GtkWidget);

@@ -2,6 +2,9 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
+use crate::AccessibleRange;
 use crate::{
     Accessible, AccessibleRole, Adjustment, Align, Buildable, ConstraintTarget, LayoutManager,
     Orientable, Orientation, Overflow, Widget,
@@ -13,6 +16,18 @@ use glib::{
 };
 use std::boxed::Box as Box_;
 
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
+glib::wrapper! {
+    #[doc(alias = "GtkScrollbar")]
+    pub struct Scrollbar(Object<ffi::GtkScrollbar>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, AccessibleRange, Orientable;
+
+    match fn {
+        type_ => || ffi::gtk_scrollbar_get_type(),
+    }
+}
+
+#[cfg(not(any(feature = "v4_10")))]
 glib::wrapper! {
     #[doc(alias = "GtkScrollbar")]
     pub struct Scrollbar(Object<ffi::GtkScrollbar>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Orientable;

@@ -140,6 +140,7 @@ int main() {
     printf("%s;%zu;%zu\n", "GtkFontDialogButtonClass", sizeof(GtkFontDialogButtonClass), alignof(GtkFontDialogButtonClass));
     printf("%s;%zu;%zu\n", "GtkFontDialogClass", sizeof(GtkFontDialogClass), alignof(GtkFontDialogClass));
     printf("%s;%zu;%zu\n", "GtkFontLevel", sizeof(GtkFontLevel), alignof(GtkFontLevel));
+    printf("%s;%zu;%zu\n", "GtkFontRendering", sizeof(GtkFontRendering), alignof(GtkFontRendering));
     printf("%s;%zu;%zu\n", "GtkFrame", sizeof(GtkFrame), alignof(GtkFrame));
     printf("%s;%zu;%zu\n", "GtkFrameClass", sizeof(GtkFrameClass), alignof(GtkFrameClass));
     printf("%s;%zu;%zu\n", "GtkGLArea", sizeof(GtkGLArea), alignof(GtkGLArea));

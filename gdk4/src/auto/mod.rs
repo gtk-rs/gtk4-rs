@@ -149,7 +149,9 @@ pub use self::touch_event::TouchEvent;
 mod touchpad_event;
 pub use self::touchpad_event::TouchpadEvent;
 
+#[cfg_attr(feature = "v4_14", deprecated = "Since 4.14")]
 mod vulkan_context;
+#[cfg_attr(feature = "v4_14", deprecated = "Since 4.14")]
 pub use self::vulkan_context::VulkanContext;
 
 mod content_formats;
