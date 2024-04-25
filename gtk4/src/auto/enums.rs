@@ -4693,6 +4693,120 @@ impl From<FontLevel> for glib::Value {
     }
 }
 
+#[cfg(feature = "v4_16")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
+#[doc(alias = "GtkFontRendering")]
+pub enum FontRendering {
+    #[doc(alias = "GTK_FONT_RENDERING_AUTOMATIC")]
+    Automatic,
+    #[doc(alias = "GTK_FONT_RENDERING_MANUAL")]
+    Manual,
+    #[doc(hidden)]
+    __Unknown(i32),
+}
+
+#[cfg(feature = "v4_16")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
+#[doc(hidden)]
+impl IntoGlib for FontRendering {
+    type GlibType = ffi::GtkFontRendering;
+
+    #[inline]
+    fn into_glib(self) -> ffi::GtkFontRendering {
+        match self {
+            Self::Automatic => ffi::GTK_FONT_RENDERING_AUTOMATIC,
+            Self::Manual => ffi::GTK_FONT_RENDERING_MANUAL,
+            Self::__Unknown(value) => value,
+        }
+    }
+}
+
+#[cfg(feature = "v4_16")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
+#[doc(hidden)]
+impl FromGlib<ffi::GtkFontRendering> for FontRendering {
+    #[inline]
+    unsafe fn from_glib(value: ffi::GtkFontRendering) -> Self {
+        skip_assert_initialized!();
+
+        match value {
+            ffi::GTK_FONT_RENDERING_AUTOMATIC => Self::Automatic,
+            ffi::GTK_FONT_RENDERING_MANUAL => Self::Manual,
+            value => Self::__Unknown(value),
+        }
+    }
+}
+
+#[cfg(feature = "v4_16")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
+impl StaticType for FontRendering {
+    #[inline]
+    #[doc(alias = "gtk_font_rendering_get_type")]
+    fn static_type() -> glib::Type {
+        unsafe { from_glib(ffi::gtk_font_rendering_get_type()) }
+    }
+}
+
+#[cfg(feature = "v4_16")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
+impl glib::HasParamSpec for FontRendering {
+    type ParamSpec = glib::ParamSpecEnum;
+    type SetValue = Self;
+    type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
+
+    fn param_spec_builder() -> Self::BuilderFn {
+        Self::ParamSpec::builder_with_default
+    }
+}
+
+#[cfg(feature = "v4_16")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
+impl glib::value::ValueType for FontRendering {
+    type Type = Self;
+}
+
+#[cfg(feature = "v4_16")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
+unsafe impl<'a> glib::value::FromValue<'a> for FontRendering {
+    type Checker = glib::value::GenericValueTypeChecker<Self>;
+
+    #[inline]
+    unsafe fn from_value(value: &'a glib::Value) -> Self {
+        skip_assert_initialized!();
+        from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+    }
+}
+
+#[cfg(feature = "v4_16")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
+impl ToValue for FontRendering {
+    #[inline]
+    fn to_value(&self) -> glib::Value {
+        let mut value = glib::Value::for_value_type::<Self>();
+        unsafe {
+            glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
+        }
+        value
+    }
+
+    #[inline]
+    fn value_type(&self) -> glib::Type {
+        Self::static_type()
+    }
+}
+
+#[cfg(feature = "v4_16")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
+impl From<FontRendering> for glib::Value {
+    #[inline]
+    fn from(v: FontRendering) -> Self {
+        skip_assert_initialized!();
+        ToValue::to_value(&v)
+    }
+}
+
 #[cfg(feature = "v4_14")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]

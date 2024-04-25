@@ -121,6 +121,7 @@ generate = [
     "Gtk.FontChooserLevel",
     "Gtk.FontChooserWidget",
     "Gtk.FontLevel",
+    "Gtk.FontRendering",
     "Gtk.Frame",
     "Gtk.GestureClick",
     "Gtk.GestureDrag",
