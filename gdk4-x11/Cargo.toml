@@ -16,6 +16,7 @@ version.workspace = true
 [features]
 v4_4 = ["ffi/v4_4", "gdk/v4_4"]
 v4_10 = ["ffi/v4_10", "v4_4", "gdk/v4_10"]
+v4_16 = ["ffi/v4_16", "v4_10", "gdk/v4_16"]
 egl = ["khronos-egl"]
 xlib = ["x11"]
 
