@@ -2,6 +2,9 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+#[cfg(feature = "v4_16")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
+use crate::FontRendering;
 use crate::StyleProvider;
 use glib::{
     prelude::*,
@@ -285,19 +288,19 @@ impl Settings {
         ObjectExt::set_property(self, "gtk-font-name", gtk_font_name)
     }
 
-    //#[cfg(feature = "v4_16")]
-    //#[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
-    //#[doc(alias = "gtk-font-rendering")]
-    //pub fn gtk_font_rendering(&self) -> /*Ignored*/FontRendering {
-    //    ObjectExt::property(self, "gtk-font-rendering")
-    //}
+    #[cfg(feature = "v4_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
+    #[doc(alias = "gtk-font-rendering")]
+    pub fn gtk_font_rendering(&self) -> FontRendering {
+        ObjectExt::property(self, "gtk-font-rendering")
+    }
 
-    //#[cfg(feature = "v4_16")]
-    //#[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
-    //#[doc(alias = "gtk-font-rendering")]
-    //pub fn set_gtk_font_rendering(&self, gtk_font_rendering: /*Ignored*/FontRendering) {
-    //    ObjectExt::set_property(self,"gtk-font-rendering", gtk_font_rendering)
-    //}
+    #[cfg(feature = "v4_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
+    #[doc(alias = "gtk-font-rendering")]
+    pub fn set_gtk_font_rendering(&self, gtk_font_rendering: FontRendering) {
+        ObjectExt::set_property(self, "gtk-font-rendering", gtk_font_rendering)
+    }
 
     #[doc(alias = "gtk-fontconfig-timestamp")]
     pub fn gtk_fontconfig_timestamp(&self) -> u32 {
@@ -2194,11 +2197,15 @@ impl SettingsBuilder {
         }
     }
 
-    //    #[cfg(feature = "v4_16")]
+    #[cfg(feature = "v4_16")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
-    //pub fn gtk_font_rendering(self, gtk_font_rendering: /*Ignored*/FontRendering) -> Self {
-    //    Self { builder: self.builder.property("gtk-font-rendering", gtk_font_rendering), }
-    //}
+    pub fn gtk_font_rendering(self, gtk_font_rendering: FontRendering) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("gtk-font-rendering", gtk_font_rendering),
+        }
+    }
 
     pub fn gtk_fontconfig_timestamp(self, gtk_fontconfig_timestamp: u32) -> Self {
         Self {
