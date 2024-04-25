@@ -1133,6 +1133,13 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
+        "GtkFontRendering",
+        Layout {
+            size: size_of::<GtkFontRendering>(),
+            alignment: align_of::<GtkFontRendering>(),
+        },
+    ),
+    (
         "GtkFrame",
         Layout {
             size: size_of::<GtkFrame>(),
@@ -2974,6 +2981,8 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(gint) GTK_FONT_LEVEL_FAMILY", "0"),
     ("(gint) GTK_FONT_LEVEL_FEATURES", "3"),
     ("(gint) GTK_FONT_LEVEL_FONT", "2"),
+    ("(gint) GTK_FONT_RENDERING_AUTOMATIC", "0"),
+    ("(gint) GTK_FONT_RENDERING_MANUAL", "1"),
     ("(gint) GTK_GRAPHICS_OFFLOAD_DISABLED", "1"),
     ("(gint) GTK_GRAPHICS_OFFLOAD_ENABLED", "0"),
     ("(guint) GTK_ICON_LOOKUP_FORCE_REGULAR", "1"),
