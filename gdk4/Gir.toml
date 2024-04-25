@@ -376,6 +376,9 @@ status = "generate"
 name = "Gdk.Cursor"
 status = "generate"
 generate_builder = true
+    [[object.function]]
+    name = "new_from_callback"
+    manual = true # handle &mut in the callback
 
 [[object]]
 name = "Gdk.Device"

@@ -70,6 +70,9 @@ mod content_formats_builder;
 mod content_provider;
 mod content_serializer;
 mod crossing_event;
+#[cfg(feature = "v4_16")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
+mod cursor;
 mod delete_event;
 mod display;
 #[cfg(feature = "v4_14")]
