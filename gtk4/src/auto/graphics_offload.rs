@@ -96,16 +96,6 @@ impl GraphicsOffload {
     }
 
     #[doc(alias = "black-background")]
-    pub fn get_property_black_background(&self) -> bool {
-        ObjectExt::property(self, "black-background")
-    }
-
-    #[doc(alias = "black-background")]
-    pub fn set_property_black_background(&self, black_background: bool) {
-        ObjectExt::set_property(self, "black-background", black_background)
-    }
-
-    #[doc(alias = "black-background")]
     pub fn connect_black_background_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_black_background_trampoline<
             F: Fn(&GraphicsOffload) + 'static,
