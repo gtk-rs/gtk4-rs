@@ -285,6 +285,20 @@ impl Settings {
         ObjectExt::set_property(self, "gtk-font-name", gtk_font_name)
     }
 
+    //#[cfg(feature = "v4_16")]
+    //#[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
+    //#[doc(alias = "gtk-font-rendering")]
+    //pub fn gtk_font_rendering(&self) -> /*Ignored*/FontRendering {
+    //    ObjectExt::property(self, "gtk-font-rendering")
+    //}
+
+    //#[cfg(feature = "v4_16")]
+    //#[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
+    //#[doc(alias = "gtk-font-rendering")]
+    //pub fn set_gtk_font_rendering(&self, gtk_font_rendering: /*Ignored*/FontRendering) {
+    //    ObjectExt::set_property(self,"gtk-font-rendering", gtk_font_rendering)
+    //}
+
     #[doc(alias = "gtk-fontconfig-timestamp")]
     pub fn gtk_fontconfig_timestamp(&self) -> u32 {
         ObjectExt::property(self, "gtk-fontconfig-timestamp")
@@ -1205,6 +1219,34 @@ impl Settings {
                 b"notify::gtk-font-name\0".as_ptr() as *const _,
                 Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_gtk_font_name_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg(feature = "v4_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
+    #[doc(alias = "gtk-font-rendering")]
+    pub fn connect_gtk_font_rendering_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_gtk_font_rendering_trampoline<F: Fn(&Settings) + 'static>(
+            this: *mut ffi::GtkSettings,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::gtk-font-rendering\0".as_ptr() as *const _,
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                    notify_gtk_font_rendering_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -2151,6 +2193,12 @@ impl SettingsBuilder {
             builder: self.builder.property("gtk-font-name", gtk_font_name.into()),
         }
     }
+
+    //    #[cfg(feature = "v4_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
+    //pub fn gtk_font_rendering(self, gtk_font_rendering: /*Ignored*/FontRendering) -> Self {
+    //    Self { builder: self.builder.property("gtk-font-rendering", gtk_font_rendering), }
+    //}
 
     pub fn gtk_fontconfig_timestamp(self, gtk_fontconfig_timestamp: u32) -> Self {
         Self {

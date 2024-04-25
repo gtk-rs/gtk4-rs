@@ -470,6 +470,8 @@ pub trait WidgetExt: IsA<Widget> + sealed::Sealed + 'static {
         unsafe { from_glib_none(ffi::gtk_widget_get_font_map(self.as_ref().to_glib_none().0)) }
     }
 
+    #[cfg_attr(feature = "v4_16", deprecated = "Since 4.16")]
+    #[allow(deprecated)]
     #[doc(alias = "gtk_widget_get_font_options")]
     #[doc(alias = "get_font_options")]
     fn font_options(&self) -> Option<cairo::FontOptions> {
@@ -1176,6 +1178,8 @@ pub trait WidgetExt: IsA<Widget> + sealed::Sealed + 'static {
         }
     }
 
+    #[cfg_attr(feature = "v4_16", deprecated = "Since 4.16")]
+    #[allow(deprecated)]
     #[doc(alias = "gtk_widget_set_font_options")]
     fn set_font_options(&self, options: Option<&cairo::FontOptions>) {
         unsafe {
