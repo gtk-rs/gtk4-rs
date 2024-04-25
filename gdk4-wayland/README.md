@@ -43,6 +43,7 @@ gdk-wayland = { git = "https://github.com/gtk-rs/gtk4-rs.git", package = "gdk4-w
 
 | Feature | Description |
 | ---     | ----------- |
+| `v4_16` | Enable the new APIs part of GTK 4.16 |
 | `v4_12` | Enable the new APIs part of GTK 4.12 |
 | `v4_10` | Enable the new APIs part of GTK 4.10 |
 | `v4_4` | Enable the new APIs part of GTK 4.4 |

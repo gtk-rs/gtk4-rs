@@ -17,6 +17,7 @@ version.workspace = true
 v4_4 = ["ffi/v4_4", "gdk/v4_4"]
 v4_10 = ["ffi/v4_10", "v4_4", "gdk/v4_10"]
 v4_12 = ["ffi/v4_12", "v4_10", "gdk/v4_12"]
+v4_16 = ["ffi/v4_16", "v4_12", "gdk/v4_16"]
 wayland_crate = ["wayland-client", "wayland-backend"]
 egl = ["khronos-egl"]
 
