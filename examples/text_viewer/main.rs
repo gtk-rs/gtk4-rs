@@ -1,7 +1,4 @@
-use std::{
-    fs::File,
-    io::{prelude::*, BufReader},
-};
+use std::fs::read_to_string;
 
 use gtk::{gio, glib, prelude::*};
 
@@ -39,11 +36,7 @@ pub fn build_ui(application: &gtk::Application) {
         dialog.open(Some(&window), gio::Cancellable::NONE, move |file| {
             if let Ok(file) = file {
                 let filename = file.path().expect("Couldn't get file path");
-                let file = File::open(filename).expect("Couldn't open file");
-
-                let mut reader = BufReader::new(file);
-                let mut contents = String::new();
-                let _ = reader.read_to_string(&mut contents);
+                let contents = read_to_string(filename).expect("Couldn't open file");
 
                 text_view.buffer().set_text(&contents);
             }
