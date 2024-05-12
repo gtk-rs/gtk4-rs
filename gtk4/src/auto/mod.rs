@@ -18,6 +18,13 @@ mod accessible_range;
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 pub use self::accessible_range::AccessibleRange;
 
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+mod accessible_text;
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+pub use self::accessible_text::AccessibleText;
+
 mod action_bar;
 pub use self::action_bar::ActionBar;
 
@@ -1127,6 +1134,12 @@ pub use self::enums::AccessibleRelation;
 pub use self::enums::AccessibleRole;
 pub use self::enums::AccessibleSort;
 pub use self::enums::AccessibleState;
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+pub use self::enums::AccessibleTextContentChange;
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+pub use self::enums::AccessibleTextGranularity;
 pub use self::enums::AccessibleTristate;
 pub use self::enums::ArrowType;
 pub use self::enums::AssistantPageType;
@@ -1428,6 +1441,9 @@ pub(crate) mod traits {
     #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub use super::accessible_range::AccessibleRangeExt;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub use super::accessible_text::AccessibleTextExt;
     pub use super::actionable::ActionableExt;
     pub use super::adjustment::AdjustmentExt;
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]

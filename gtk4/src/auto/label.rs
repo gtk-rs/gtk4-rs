@@ -2,6 +2,9 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+use crate::AccessibleText;
 #[cfg(feature = "v4_6")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
 use crate::NaturalWrapMode;
@@ -16,6 +19,18 @@ use glib::{
 };
 use std::boxed::Box as Box_;
 
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+glib::wrapper! {
+    #[doc(alias = "GtkLabel")]
+    pub struct Label(Object<ffi::GtkLabel>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, AccessibleText;
+
+    match fn {
+        type_ => || ffi::gtk_label_get_type(),
+    }
+}
+
+#[cfg(not(any(feature = "v4_14")))]
 glib::wrapper! {
     #[doc(alias = "GtkLabel")]
     pub struct Label(Object<ffi::GtkLabel>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;

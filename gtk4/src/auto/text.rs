@@ -2,6 +2,9 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+use crate::AccessibleText;
 use crate::{
     Accessible, AccessibleRole, Align, Buildable, ConstraintTarget, Editable, EntryBuffer,
     InputHints, InputPurpose, LayoutManager, Overflow, Widget,
@@ -13,6 +16,18 @@ use glib::{
 };
 use std::boxed::Box as Box_;
 
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+glib::wrapper! {
+    #[doc(alias = "GtkText")]
+    pub struct Text(Object<ffi::GtkText>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, AccessibleText, Editable;
+
+    match fn {
+        type_ => || ffi::gtk_text_get_type(),
+    }
+}
+
+#[cfg(not(any(feature = "v4_14")))]
 glib::wrapper! {
     #[doc(alias = "GtkText")]
     pub struct Text(Object<ffi::GtkText>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Editable;
