@@ -36,9 +36,9 @@ impl TreeStore {
     ) -> TreeIter {
         unsafe {
             assert!(
-                position.unwrap_or(0) <= i32::max_value() as u32,
+                position.unwrap_or(0) <= i32::MAX as u32,
                 "can't have more than {} rows",
-                i32::max_value()
+                i32::MAX
             );
             let n_columns =
                 ffi::gtk_tree_model_get_n_columns(self.upcast_ref::<TreeModel>().to_glib_none().0)

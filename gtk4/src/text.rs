@@ -24,7 +24,9 @@ impl Text {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"activate\0".as_ptr() as *const _,
-                Some(transmute(activate_trampoline::<F> as usize)),
+                Some(transmute::<usize, unsafe extern "C" fn()>(
+                    activate_trampoline::<F> as usize,
+                )),
                 Box::into_raw(f),
             )
         }
@@ -43,7 +45,9 @@ impl Text {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"backspace\0".as_ptr() as *const _,
-                Some(transmute(backspace_trampoline::<F> as usize)),
+                Some(transmute::<usize, unsafe extern "C" fn()>(
+                    backspace_trampoline::<F> as usize,
+                )),
                 Box::into_raw(f),
             )
         }
@@ -62,7 +66,9 @@ impl Text {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"copy-clipboard\0".as_ptr() as *const _,
-                Some(transmute(copy_clipboard_trampoline::<F> as usize)),
+                Some(transmute::<usize, unsafe extern "C" fn()>(
+                    copy_clipboard_trampoline::<F> as usize,
+                )),
                 Box::into_raw(f),
             )
         }
@@ -81,7 +87,9 @@ impl Text {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"cut-clipboard\0".as_ptr() as *const _,
-                Some(transmute(cut_clipboard_trampoline::<F> as usize)),
+                Some(transmute::<usize, unsafe extern "C" fn()>(
+                    cut_clipboard_trampoline::<F> as usize,
+                )),
                 Box::into_raw(f),
             )
         }
@@ -107,7 +115,9 @@ impl Text {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"delete-from-cursor\0".as_ptr() as *const _,
-                Some(transmute(delete_from_cursor_trampoline::<F> as usize)),
+                Some(transmute::<usize, unsafe extern "C" fn()>(
+                    delete_from_cursor_trampoline::<F> as usize,
+                )),
                 Box::into_raw(f),
             )
         }
@@ -127,7 +137,9 @@ impl Text {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"insert-at-cursor\0".as_ptr() as *const _,
-                Some(transmute(insert_at_cursor_trampoline::<F> as usize)),
+                Some(transmute::<usize, unsafe extern "C" fn()>(
+                    insert_at_cursor_trampoline::<F> as usize,
+                )),
                 Box::into_raw(f),
             )
         }
@@ -146,7 +158,9 @@ impl Text {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"insert-emoji\0".as_ptr() as *const _,
-                Some(transmute(insert_emoji_trampoline::<F> as usize)),
+                Some(transmute::<usize, unsafe extern "C" fn()>(
+                    insert_emoji_trampoline::<F> as usize,
+                )),
                 Box::into_raw(f),
             )
         }
@@ -178,7 +192,9 @@ impl Text {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"move-cursor\0".as_ptr() as *const _,
-                Some(transmute(move_cursor_trampoline::<F> as usize)),
+                Some(transmute::<usize, unsafe extern "C" fn()>(
+                    move_cursor_trampoline::<F> as usize,
+                )),
                 Box::into_raw(f),
             )
         }
@@ -197,7 +213,9 @@ impl Text {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"paste-clipboard\0".as_ptr() as *const _,
-                Some(transmute(paste_clipboard_trampoline::<F> as usize)),
+                Some(transmute::<usize, unsafe extern "C" fn()>(
+                    paste_clipboard_trampoline::<F> as usize,
+                )),
                 Box::into_raw(f),
             )
         }
@@ -217,7 +235,9 @@ impl Text {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"populate-popup\0".as_ptr() as *const _,
-                Some(transmute(populate_popup_trampoline::<F> as usize)),
+                Some(transmute::<usize, unsafe extern "C" fn()>(
+                    populate_popup_trampoline::<F> as usize,
+                )),
                 Box::into_raw(f),
             )
         }
@@ -237,7 +257,9 @@ impl Text {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"preedit-changed\0".as_ptr() as *const _,
-                Some(transmute(preedit_changed_trampoline::<F> as usize)),
+                Some(transmute::<usize, unsafe extern "C" fn()>(
+                    preedit_changed_trampoline::<F> as usize,
+                )),
                 Box::into_raw(f),
             )
         }
@@ -256,7 +278,9 @@ impl Text {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"toggle-overwrite\0".as_ptr() as *const _,
-                Some(transmute(toggle_overwrite_trampoline::<F> as usize)),
+                Some(transmute::<usize, unsafe extern "C" fn()>(
+                    toggle_overwrite_trampoline::<F> as usize,
+                )),
                 Box::into_raw(f),
             )
         }

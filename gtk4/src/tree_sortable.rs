@@ -24,7 +24,7 @@ impl IntoGlib for SortColumn {
         match self {
             SortColumn::Default => ffi::GTK_TREE_SORTABLE_DEFAULT_SORT_COLUMN_ID,
             SortColumn::Index(x) => {
-                assert!(x <= i32::max_value() as u32, "column index is too big");
+                assert!(x <= i32::MAX as u32, "column index is too big");
                 x as i32
             }
         }

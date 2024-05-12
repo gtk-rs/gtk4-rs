@@ -76,7 +76,7 @@ impl FromGlib<ffi::GtkResponseType> for ResponseType {
             ffi::GTK_RESPONSE_NO => Self::No,
             ffi::GTK_RESPONSE_APPLY => Self::Apply,
             ffi::GTK_RESPONSE_HELP => Self::Help,
-            value if value >= 0 && value <= ::std::u16::MAX as i32 => Self::Other(value as u16),
+            value if value >= 0 && value <= u16::MAX as i32 => Self::Other(value as u16),
             value => Self::__Unknown(value),
         }
     }

@@ -37,7 +37,7 @@ pub trait ToplevelExtManual: sealed::Sealed + IsA<Toplevel> {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"compute-size\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(transmute::<*const (), unsafe extern "C" fn()>(
                     compute_size_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
