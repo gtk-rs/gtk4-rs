@@ -102,6 +102,9 @@ pub use auto::*;
 pub use rt::*;
 
 pub mod accessible;
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+mod accessible_text_range;
 mod actionable;
 mod application;
 mod assistant;
