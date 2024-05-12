@@ -491,7 +491,7 @@ pub trait ApplicationWindowExt: IsA<ApplicationWindow> + sealed::Sealed + 'stati
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::show-menubar\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_show_menubar_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),

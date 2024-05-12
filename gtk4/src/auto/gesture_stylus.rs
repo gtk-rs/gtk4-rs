@@ -121,7 +121,7 @@ impl GestureStylus {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"down\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     down_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -145,7 +145,7 @@ impl GestureStylus {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"motion\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     motion_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -169,7 +169,7 @@ impl GestureStylus {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"proximity\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     proximity_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -193,7 +193,7 @@ impl GestureStylus {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"up\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     up_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -218,7 +218,7 @@ impl GestureStylus {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::stylus-only\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_stylus_only_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),

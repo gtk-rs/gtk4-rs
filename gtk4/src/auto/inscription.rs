@@ -197,7 +197,7 @@ impl Inscription {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::attributes\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_attributes_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -222,7 +222,7 @@ impl Inscription {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::markup\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_markup_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -247,7 +247,7 @@ impl Inscription {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::min-chars\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_min_chars_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -272,7 +272,7 @@ impl Inscription {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::min-lines\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_min_lines_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -297,7 +297,7 @@ impl Inscription {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::nat-chars\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_nat_chars_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -322,7 +322,7 @@ impl Inscription {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::nat-lines\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_nat_lines_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -347,7 +347,7 @@ impl Inscription {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::text\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_text_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -372,7 +372,7 @@ impl Inscription {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::text-overflow\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_text_overflow_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -397,7 +397,7 @@ impl Inscription {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::wrap-mode\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_wrap_mode_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -422,7 +422,7 @@ impl Inscription {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::xalign\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_xalign_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -447,7 +447,7 @@ impl Inscription {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::yalign\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_yalign_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),

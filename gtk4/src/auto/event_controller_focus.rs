@@ -68,7 +68,7 @@ impl EventControllerFocus {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"enter\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     enter_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -90,7 +90,7 @@ impl EventControllerFocus {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"leave\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     leave_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -115,7 +115,7 @@ impl EventControllerFocus {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::contains-focus\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_contains_focus_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -138,7 +138,7 @@ impl EventControllerFocus {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::is-focus\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_is_focus_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),

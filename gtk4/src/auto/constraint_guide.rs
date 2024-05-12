@@ -160,7 +160,7 @@ impl ConstraintGuide {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::max-height\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_max_height_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -183,7 +183,7 @@ impl ConstraintGuide {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::max-width\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_max_width_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -206,7 +206,7 @@ impl ConstraintGuide {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::min-height\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_min_height_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -229,7 +229,7 @@ impl ConstraintGuide {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::min-width\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_min_width_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -252,7 +252,7 @@ impl ConstraintGuide {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::name\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_name_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -275,7 +275,7 @@ impl ConstraintGuide {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::nat-height\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_nat_height_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -298,7 +298,7 @@ impl ConstraintGuide {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::nat-width\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_nat_width_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -321,7 +321,7 @@ impl ConstraintGuide {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::strength\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_strength_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),

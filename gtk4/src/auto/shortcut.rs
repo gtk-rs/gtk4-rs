@@ -102,7 +102,7 @@ impl Shortcut {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::action\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_action_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -125,7 +125,7 @@ impl Shortcut {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::arguments\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_arguments_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -148,7 +148,7 @@ impl Shortcut {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::trigger\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_trigger_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),

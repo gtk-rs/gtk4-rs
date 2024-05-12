@@ -172,7 +172,7 @@ pub trait EventControllerExt: IsA<EventController> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::name\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_name_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -198,7 +198,7 @@ pub trait EventControllerExt: IsA<EventController> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::propagation-limit\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_propagation_limit_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -224,7 +224,7 @@ pub trait EventControllerExt: IsA<EventController> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::propagation-phase\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_propagation_phase_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -250,7 +250,7 @@ pub trait EventControllerExt: IsA<EventController> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::widget\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_widget_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),

@@ -227,7 +227,7 @@ impl DmabufTextureBuilder {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::display\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_display_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -252,7 +252,7 @@ impl DmabufTextureBuilder {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::fourcc\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_fourcc_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -277,7 +277,7 @@ impl DmabufTextureBuilder {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::height\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_height_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -302,7 +302,7 @@ impl DmabufTextureBuilder {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::modifier\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_modifier_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -327,7 +327,7 @@ impl DmabufTextureBuilder {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::n-planes\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_n_planes_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -354,7 +354,7 @@ impl DmabufTextureBuilder {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::premultiplied\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_premultiplied_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -381,7 +381,7 @@ impl DmabufTextureBuilder {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::update-region\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_update_region_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -408,7 +408,7 @@ impl DmabufTextureBuilder {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::update-texture\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_update_texture_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -433,7 +433,7 @@ impl DmabufTextureBuilder {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::width\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_width_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),

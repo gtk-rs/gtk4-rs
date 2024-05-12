@@ -33,7 +33,7 @@ use libc::{dev_t, gid_t, pid_t, socklen_t, uid_t};
 #[allow(unused_imports)]
 use glib::{gboolean, gconstpointer, gpointer, GType};
 
-pub const GTK_ENTRY_BUFFER_MAX_SIZE: u16 = ::std::u16::MAX;
+pub const GTK_ENTRY_BUFFER_MAX_SIZE: u16 = u16::MAX;
 
 // Aliases
 pub type GtkAllocation = gdk::GdkRectangle;

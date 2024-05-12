@@ -633,7 +633,7 @@ impl Settings {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::gtk-alternative-button-order\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_gtk_alternative_button_order_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -661,7 +661,7 @@ impl Settings {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::gtk-alternative-sort-arrows\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_gtk_alternative_sort_arrows_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -689,7 +689,7 @@ impl Settings {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::gtk-application-prefer-dark-theme\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_gtk_application_prefer_dark_theme_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -717,7 +717,7 @@ impl Settings {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::gtk-cursor-aspect-ratio\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_gtk_cursor_aspect_ratio_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -740,7 +740,7 @@ impl Settings {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::gtk-cursor-blink\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_gtk_cursor_blink_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -766,7 +766,7 @@ impl Settings {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::gtk-cursor-blink-time\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_gtk_cursor_blink_time_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -794,7 +794,7 @@ impl Settings {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::gtk-cursor-blink-timeout\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_gtk_cursor_blink_timeout_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -820,7 +820,7 @@ impl Settings {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::gtk-cursor-theme-name\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_gtk_cursor_theme_name_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -846,7 +846,7 @@ impl Settings {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::gtk-cursor-theme-size\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_gtk_cursor_theme_size_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -872,7 +872,7 @@ impl Settings {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::gtk-decoration-layout\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_gtk_decoration_layout_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -900,7 +900,7 @@ impl Settings {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::gtk-dialogs-use-header\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_gtk_dialogs_use_header_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -928,7 +928,7 @@ impl Settings {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::gtk-dnd-drag-threshold\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_gtk_dnd_drag_threshold_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -956,7 +956,7 @@ impl Settings {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::gtk-double-click-distance\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_gtk_double_click_distance_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -982,7 +982,7 @@ impl Settings {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::gtk-double-click-time\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_gtk_double_click_time_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -1008,7 +1008,7 @@ impl Settings {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::gtk-enable-accels\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_gtk_enable_accels_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -1034,7 +1034,7 @@ impl Settings {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::gtk-enable-animations\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_gtk_enable_animations_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -1062,7 +1062,7 @@ impl Settings {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::gtk-enable-event-sounds\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_gtk_enable_event_sounds_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -1090,7 +1090,7 @@ impl Settings {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::gtk-enable-input-feedback-sounds\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_gtk_enable_input_feedback_sounds_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -1118,7 +1118,7 @@ impl Settings {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::gtk-enable-primary-paste\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_gtk_enable_primary_paste_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -1146,7 +1146,7 @@ impl Settings {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::gtk-entry-password-hint-timeout\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_gtk_entry_password_hint_timeout_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -1174,7 +1174,7 @@ impl Settings {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::gtk-entry-select-on-focus\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_gtk_entry_select_on_focus_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -1197,7 +1197,7 @@ impl Settings {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::gtk-error-bell\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_gtk_error_bell_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -1220,7 +1220,7 @@ impl Settings {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::gtk-font-name\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_gtk_font_name_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -1248,7 +1248,7 @@ impl Settings {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::gtk-font-rendering\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_gtk_font_rendering_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -1276,7 +1276,7 @@ impl Settings {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::gtk-fontconfig-timestamp\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_gtk_fontconfig_timestamp_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -1304,7 +1304,7 @@ impl Settings {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::gtk-hint-font-metrics\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_gtk_hint_font_metrics_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -1330,7 +1330,7 @@ impl Settings {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::gtk-icon-theme-name\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_gtk_icon_theme_name_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -1353,7 +1353,7 @@ impl Settings {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::gtk-im-module\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_gtk_im_module_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -1379,7 +1379,7 @@ impl Settings {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::gtk-keynav-use-caret\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_gtk_keynav_use_caret_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -1407,7 +1407,7 @@ impl Settings {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::gtk-label-select-on-focus\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_gtk_label_select_on_focus_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -1433,7 +1433,7 @@ impl Settings {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::gtk-long-press-time\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_gtk_long_press_time_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -1459,7 +1459,7 @@ impl Settings {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::gtk-overlay-scrolling\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_gtk_overlay_scrolling_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -1487,7 +1487,7 @@ impl Settings {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::gtk-primary-button-warps-slider\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_gtk_primary_button_warps_slider_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -1513,7 +1513,7 @@ impl Settings {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::gtk-print-backends\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_gtk_print_backends_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -1541,7 +1541,7 @@ impl Settings {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::gtk-print-preview-command\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_gtk_print_preview_command_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -1569,7 +1569,7 @@ impl Settings {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::gtk-recent-files-enabled\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_gtk_recent_files_enabled_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -1597,7 +1597,7 @@ impl Settings {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::gtk-recent-files-max-age\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_gtk_recent_files_max_age_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -1625,7 +1625,7 @@ impl Settings {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::gtk-shell-shows-app-menu\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_gtk_shell_shows_app_menu_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -1653,7 +1653,7 @@ impl Settings {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::gtk-shell-shows-desktop\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_gtk_shell_shows_desktop_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -1681,7 +1681,7 @@ impl Settings {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::gtk-shell-shows-menubar\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_gtk_shell_shows_menubar_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -1711,7 +1711,7 @@ impl Settings {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::gtk-show-status-shapes\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_gtk_show_status_shapes_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -1737,7 +1737,7 @@ impl Settings {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::gtk-sound-theme-name\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_gtk_sound_theme_name_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -1760,7 +1760,7 @@ impl Settings {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::gtk-split-cursor\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_gtk_split_cursor_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -1783,7 +1783,7 @@ impl Settings {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::gtk-theme-name\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_gtk_theme_name_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -1811,7 +1811,7 @@ impl Settings {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::gtk-titlebar-double-click\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_gtk_titlebar_double_click_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -1839,7 +1839,7 @@ impl Settings {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::gtk-titlebar-middle-click\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_gtk_titlebar_middle_click_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -1867,7 +1867,7 @@ impl Settings {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::gtk-titlebar-right-click\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_gtk_titlebar_right_click_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -1893,7 +1893,7 @@ impl Settings {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::gtk-xft-antialias\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_gtk_xft_antialias_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -1916,7 +1916,7 @@ impl Settings {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::gtk-xft-dpi\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_gtk_xft_dpi_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -1939,7 +1939,7 @@ impl Settings {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::gtk-xft-hinting\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_gtk_xft_hinting_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -1965,7 +1965,7 @@ impl Settings {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::gtk-xft-hintstyle\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_gtk_xft_hintstyle_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -1988,7 +1988,7 @@ impl Settings {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::gtk-xft-rgba\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_gtk_xft_rgba_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),

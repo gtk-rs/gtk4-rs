@@ -112,7 +112,7 @@ impl CellRendererPixbuf {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::gicon\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_gicon_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -135,7 +135,7 @@ impl CellRendererPixbuf {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::icon-name\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_icon_name_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -158,7 +158,7 @@ impl CellRendererPixbuf {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::icon-size\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_icon_size_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -181,7 +181,7 @@ impl CellRendererPixbuf {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::pixbuf\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_pixbuf_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -209,7 +209,7 @@ impl CellRendererPixbuf {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::pixbuf-expander-closed\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_pixbuf_expander_closed_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -237,7 +237,7 @@ impl CellRendererPixbuf {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::pixbuf-expander-open\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_pixbuf_expander_open_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -260,7 +260,7 @@ impl CellRendererPixbuf {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::texture\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_texture_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),

@@ -61,7 +61,7 @@ impl GestureLongPress {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"cancelled\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     cancelled_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -85,7 +85,7 @@ impl GestureLongPress {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"pressed\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     pressed_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -108,7 +108,7 @@ impl GestureLongPress {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::delay-factor\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_delay_factor_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
