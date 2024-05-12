@@ -9,8 +9,8 @@ use glib::translate::*;
 use crate::{prelude::*, subclass::prelude::*, AccessibleRange};
 
 pub trait AccessibleRangeImpl: WidgetImpl {
-    fn set_current_value(&self, accessible_range: &Self::Type, value: f64) -> bool {
-        self.parent_set_current_value(accessible_range, value)
+    fn set_current_value(&self, value: f64) -> bool {
+        self.parent_set_current_value(value)
     }
 }
 
@@ -21,7 +21,7 @@ mod sealed {
 
 pub trait AccessibleRangeImplExt: sealed::Sealed + ObjectSubclass {
     // Returns true if the operation was performed, false otherwise
-    fn parent_set_current_value(&self, accessible_range: &Self::Type, value: f64) -> bool {
+    fn parent_set_current_value(&self, value: f64) -> bool {
         unsafe {
             let type_data = Self::type_data();
             let parent_iface = type_data.as_ref().parent_interface::<AccessibleRange>()
@@ -32,7 +32,7 @@ pub trait AccessibleRangeImplExt: sealed::Sealed + ObjectSubclass {
                 .expect("no parent \"set_current_value\" implementation");
 
             from_glib(func(
-                accessible_range
+                self.obj()
                     .unsafe_cast_ref::<AccessibleRange>()
                     .to_glib_none()
                     .0,
@@ -59,9 +59,5 @@ unsafe extern "C" fn accessible_range_set_current_value<T: AccessibleRangeImpl>(
     let instance = &*(accessible_range as *mut T::Instance);
     let imp = instance.imp();
 
-    imp.set_current_value(
-        from_glib_borrow::<_, AccessibleRange>(accessible_range).unsafe_cast_ref(),
-        value,
-    )
-    .into_glib()
+    imp.set_current_value(value).into_glib()
 }
