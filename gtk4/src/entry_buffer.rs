@@ -24,7 +24,7 @@ macro_rules! to_u16 {
     ($e:expr) => (
         {
             let x = $e;
-            assert!(x as usize <= u16::max_value() as usize,
+            assert!(x as usize <= u16::MAX as usize,
                 "Unexpected value exceeding `u16` range");
             x as u16
         }

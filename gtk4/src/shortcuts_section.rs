@@ -30,7 +30,9 @@ impl ShortcutsSection {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"change-current-page\0".as_ptr() as *const _,
-                Some(transmute(change_current_page_trampoline::<F> as usize)),
+                Some(transmute::<usize, unsafe extern "C" fn()>(
+                    change_current_page_trampoline::<F> as usize,
+                )),
                 Box::into_raw(f),
             )
         }

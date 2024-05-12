@@ -76,7 +76,7 @@ impl DropTarget {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"drop\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(transmute::<*const (), unsafe extern "C" fn()>(
                     drop_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
