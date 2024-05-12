@@ -189,7 +189,7 @@ impl Calendar {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"day-selected\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     day_selected_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -211,7 +211,7 @@ impl Calendar {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"next-month\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     next_month_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -233,7 +233,7 @@ impl Calendar {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"next-year\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     next_year_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -255,7 +255,7 @@ impl Calendar {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"prev-month\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     prev_month_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -277,7 +277,7 @@ impl Calendar {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"prev-year\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     prev_year_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -300,7 +300,7 @@ impl Calendar {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::day\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_day_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -323,7 +323,7 @@ impl Calendar {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::month\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_month_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -346,7 +346,7 @@ impl Calendar {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::show-day-names\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_show_day_names_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -369,7 +369,7 @@ impl Calendar {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::show-heading\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_show_heading_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -395,7 +395,7 @@ impl Calendar {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::show-week-numbers\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_show_week_numbers_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -418,7 +418,7 @@ impl Calendar {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::year\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_year_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),

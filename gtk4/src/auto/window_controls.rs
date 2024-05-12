@@ -98,7 +98,7 @@ impl WindowControls {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::decoration-layout\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_decoration_layout_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -121,7 +121,7 @@ impl WindowControls {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::empty\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_empty_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -144,7 +144,7 @@ impl WindowControls {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::side\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_side_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),

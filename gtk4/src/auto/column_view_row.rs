@@ -161,7 +161,7 @@ impl ColumnViewRow {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::accessible-description\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_accessible_description_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -186,7 +186,7 @@ impl ColumnViewRow {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::accessible-label\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_accessible_label_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -211,7 +211,7 @@ impl ColumnViewRow {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::activatable\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_activatable_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -236,7 +236,7 @@ impl ColumnViewRow {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::focusable\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_focusable_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -261,7 +261,7 @@ impl ColumnViewRow {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::item\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_item_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -286,7 +286,7 @@ impl ColumnViewRow {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::position\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_position_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -311,7 +311,7 @@ impl ColumnViewRow {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::selectable\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_selectable_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -336,7 +336,7 @@ impl ColumnViewRow {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::selected\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_selected_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),

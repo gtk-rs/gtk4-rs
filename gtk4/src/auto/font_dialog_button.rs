@@ -208,7 +208,7 @@ impl FontDialogButton {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"activate\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     activate_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -239,7 +239,7 @@ impl FontDialogButton {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::dialog\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_dialog_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -264,7 +264,7 @@ impl FontDialogButton {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::font-desc\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_font_desc_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -289,7 +289,7 @@ impl FontDialogButton {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::font-features\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_font_features_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -314,7 +314,7 @@ impl FontDialogButton {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::language\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_language_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -337,7 +337,7 @@ impl FontDialogButton {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::level\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_level_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -360,7 +360,7 @@ impl FontDialogButton {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::use-font\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_use_font_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -383,7 +383,7 @@ impl FontDialogButton {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::use-size\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_use_size_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),

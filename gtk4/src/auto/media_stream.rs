@@ -320,7 +320,7 @@ pub trait MediaStreamExt: IsA<MediaStream> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::duration\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_duration_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -343,7 +343,7 @@ pub trait MediaStreamExt: IsA<MediaStream> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::ended\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_ended_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -366,7 +366,7 @@ pub trait MediaStreamExt: IsA<MediaStream> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::error\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_error_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -392,7 +392,7 @@ pub trait MediaStreamExt: IsA<MediaStream> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::has-audio\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_has_audio_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -418,7 +418,7 @@ pub trait MediaStreamExt: IsA<MediaStream> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::has-video\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_has_video_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -441,7 +441,7 @@ pub trait MediaStreamExt: IsA<MediaStream> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::loop\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_loop_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -464,7 +464,7 @@ pub trait MediaStreamExt: IsA<MediaStream> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::muted\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_muted_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -487,7 +487,7 @@ pub trait MediaStreamExt: IsA<MediaStream> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::playing\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_playing_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -513,7 +513,7 @@ pub trait MediaStreamExt: IsA<MediaStream> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::prepared\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_prepared_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -539,7 +539,7 @@ pub trait MediaStreamExt: IsA<MediaStream> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::seekable\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_seekable_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -562,7 +562,7 @@ pub trait MediaStreamExt: IsA<MediaStream> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::seeking\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_seeking_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -588,7 +588,7 @@ pub trait MediaStreamExt: IsA<MediaStream> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::timestamp\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_timestamp_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -611,7 +611,7 @@ pub trait MediaStreamExt: IsA<MediaStream> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::volume\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_volume_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),

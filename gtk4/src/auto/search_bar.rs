@@ -128,7 +128,7 @@ impl SearchBar {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::child\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_child_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -154,7 +154,7 @@ impl SearchBar {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::key-capture-widget\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_key_capture_widget_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -180,7 +180,7 @@ impl SearchBar {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::search-mode-enabled\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_search_mode_enabled_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -206,7 +206,7 @@ impl SearchBar {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::show-close-button\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_show_close_button_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),

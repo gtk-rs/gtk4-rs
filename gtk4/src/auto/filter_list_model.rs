@@ -130,7 +130,7 @@ impl FilterListModel {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::filter\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_filter_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -153,7 +153,7 @@ impl FilterListModel {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::incremental\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_incremental_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -176,7 +176,7 @@ impl FilterListModel {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::model\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_model_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -199,7 +199,7 @@ impl FilterListModel {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::pending\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_pending_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),

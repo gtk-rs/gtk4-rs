@@ -208,7 +208,7 @@ impl Printer {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"details-acquired\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     details_acquired_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -231,7 +231,7 @@ impl Printer {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::accepting-jobs\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_accepting_jobs_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -254,7 +254,7 @@ impl Printer {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::icon-name\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_icon_name_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -277,7 +277,7 @@ impl Printer {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::job-count\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_job_count_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -300,7 +300,7 @@ impl Printer {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::location\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_location_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -323,7 +323,7 @@ impl Printer {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::paused\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_paused_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -346,7 +346,7 @@ impl Printer {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::state-message\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_state_message_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),

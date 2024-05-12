@@ -1508,7 +1508,7 @@ pub trait WidgetExt: IsA<Widget> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"destroy\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     destroy_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -1540,7 +1540,7 @@ pub trait WidgetExt: IsA<Widget> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"direction-changed\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     direction_changed_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -1562,7 +1562,7 @@ pub trait WidgetExt: IsA<Widget> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"hide\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     hide_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -1595,7 +1595,7 @@ pub trait WidgetExt: IsA<Widget> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"keynav-failed\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     keynav_failed_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -1617,7 +1617,7 @@ pub trait WidgetExt: IsA<Widget> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"map\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     map_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -1650,7 +1650,7 @@ pub trait WidgetExt: IsA<Widget> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"mnemonic-activate\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     mnemonic_activate_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -1679,7 +1679,7 @@ pub trait WidgetExt: IsA<Widget> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"move-focus\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     move_focus_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -1722,7 +1722,7 @@ pub trait WidgetExt: IsA<Widget> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"query-tooltip\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     query_tooltip_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -1744,7 +1744,7 @@ pub trait WidgetExt: IsA<Widget> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"realize\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     realize_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -1766,7 +1766,7 @@ pub trait WidgetExt: IsA<Widget> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"show\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     show_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -1798,7 +1798,7 @@ pub trait WidgetExt: IsA<Widget> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"state-flags-changed\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     state_flags_changed_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -1820,7 +1820,7 @@ pub trait WidgetExt: IsA<Widget> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"unmap\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     unmap_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -1842,7 +1842,7 @@ pub trait WidgetExt: IsA<Widget> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"unrealize\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     unrealize_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -1865,7 +1865,7 @@ pub trait WidgetExt: IsA<Widget> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::can-focus\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_can_focus_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -1888,7 +1888,7 @@ pub trait WidgetExt: IsA<Widget> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::can-target\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_can_target_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -1911,7 +1911,7 @@ pub trait WidgetExt: IsA<Widget> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::css-classes\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_css_classes_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -1934,7 +1934,7 @@ pub trait WidgetExt: IsA<Widget> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::cursor\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_cursor_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -1960,7 +1960,7 @@ pub trait WidgetExt: IsA<Widget> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::focus-on-click\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_focus_on_click_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -1983,7 +1983,7 @@ pub trait WidgetExt: IsA<Widget> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::focusable\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_focusable_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -2006,7 +2006,7 @@ pub trait WidgetExt: IsA<Widget> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::halign\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_halign_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -2029,7 +2029,7 @@ pub trait WidgetExt: IsA<Widget> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::has-default\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_has_default_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -2052,7 +2052,7 @@ pub trait WidgetExt: IsA<Widget> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::has-focus\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_has_focus_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -2075,7 +2075,7 @@ pub trait WidgetExt: IsA<Widget> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::has-tooltip\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_has_tooltip_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -2101,7 +2101,7 @@ pub trait WidgetExt: IsA<Widget> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::height-request\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_height_request_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -2124,7 +2124,7 @@ pub trait WidgetExt: IsA<Widget> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::hexpand\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_hexpand_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -2147,7 +2147,7 @@ pub trait WidgetExt: IsA<Widget> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::hexpand-set\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_hexpand_set_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -2173,7 +2173,7 @@ pub trait WidgetExt: IsA<Widget> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::layout-manager\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_layout_manager_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -2199,7 +2199,7 @@ pub trait WidgetExt: IsA<Widget> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::margin-bottom\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_margin_bottom_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -2222,7 +2222,7 @@ pub trait WidgetExt: IsA<Widget> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::margin-end\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_margin_end_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -2245,7 +2245,7 @@ pub trait WidgetExt: IsA<Widget> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::margin-start\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_margin_start_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -2268,7 +2268,7 @@ pub trait WidgetExt: IsA<Widget> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::margin-top\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_margin_top_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -2291,7 +2291,7 @@ pub trait WidgetExt: IsA<Widget> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::name\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_name_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -2314,7 +2314,7 @@ pub trait WidgetExt: IsA<Widget> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::opacity\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_opacity_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -2337,7 +2337,7 @@ pub trait WidgetExt: IsA<Widget> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::overflow\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_overflow_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -2360,7 +2360,7 @@ pub trait WidgetExt: IsA<Widget> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::parent\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_parent_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -2386,7 +2386,7 @@ pub trait WidgetExt: IsA<Widget> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::receives-default\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_receives_default_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -2409,7 +2409,7 @@ pub trait WidgetExt: IsA<Widget> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::root\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_root_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -2432,7 +2432,7 @@ pub trait WidgetExt: IsA<Widget> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::scale-factor\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_scale_factor_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -2455,7 +2455,7 @@ pub trait WidgetExt: IsA<Widget> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::sensitive\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_sensitive_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -2481,7 +2481,7 @@ pub trait WidgetExt: IsA<Widget> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::tooltip-markup\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_tooltip_markup_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -2504,7 +2504,7 @@ pub trait WidgetExt: IsA<Widget> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::tooltip-text\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_tooltip_text_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -2527,7 +2527,7 @@ pub trait WidgetExt: IsA<Widget> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::valign\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_valign_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -2550,7 +2550,7 @@ pub trait WidgetExt: IsA<Widget> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::vexpand\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_vexpand_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -2573,7 +2573,7 @@ pub trait WidgetExt: IsA<Widget> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::vexpand-set\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_vexpand_set_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -2596,7 +2596,7 @@ pub trait WidgetExt: IsA<Widget> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::visible\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_visible_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -2622,7 +2622,7 @@ pub trait WidgetExt: IsA<Widget> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::width-request\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_width_request_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),

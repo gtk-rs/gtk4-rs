@@ -95,7 +95,7 @@ impl TreeListRow {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::children\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_children_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -118,7 +118,7 @@ impl TreeListRow {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::depth\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_depth_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -141,7 +141,7 @@ impl TreeListRow {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::expandable\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_expandable_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -164,7 +164,7 @@ impl TreeListRow {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::expanded\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_expanded_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -187,7 +187,7 @@ impl TreeListRow {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::item\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_item_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
