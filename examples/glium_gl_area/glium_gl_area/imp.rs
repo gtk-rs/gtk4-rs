@@ -46,24 +46,22 @@ impl Renderer {
         let index_buffer =
             IndexBuffer::new(&context, PrimitiveType::TrianglesList, &[0u16, 1, 2]).unwrap();
         let program = program!(&context,
-            // This example includes a shader that requires GLSL 140 or above.
+            // This example includes a shader that requires GLSL 1.40 or above.
             //
-            // Emmanuele Bassi explains:
+            // GLSL 1.40 is supported by GL 3.1 or above, but not by GLES 2.0 which only supports
+            // GLSL 1.00. GLES 3.0 supports GLSL 3.00 ES, which also supports the shader below but
+            // requires the floating point precision to be specified.
             //
-            // The version of the shaders depend on the version of GL; currently, GTK4 uses:
-            //
-            // - 100 on GLES
-            // - 110 on GL2 legacy
-            // - 130 on GL3 legacy
-            // - 150 on GL3.2+
+            // GL < 3.1 and GLES < 3.0 are not supported by the example.
             //
             // In practice, the version of GLSL for the shaders inside your application depends on
-            // the GL context you're either creating or using—i.e. if you support multiple versions
+            // the GL context you're either creating or using — i.e. if you support multiple versions
             // of GL then you should load different shaders.
             //
             // If you only care about recent GL, as you should, then going for GLSL 1.50 is
             // perfectly fine; anything else will error out, and you can catch that error and fall
-            // back to something else.
+            // back to something else. This example simply unwrap()s on error and does not
+            // implement a fallback or error reporting.
             140 => {
                 vertex: "
                     #version 140
@@ -79,6 +77,29 @@ impl Renderer {
 
                 fragment: "
                     #version 140
+                    in vec3 vColor;
+                    out vec4 f_color;
+                    void main() {
+                        f_color = vec4(vColor, 1.0);
+                    }
+                "
+            },
+            300 es => {
+                vertex: "
+                    #version 300 es
+                    uniform mat4 matrix;
+                    in vec2 position;
+                    in vec3 color;
+                    out vec3 vColor;
+                    void main() {
+                        gl_Position = vec4(position, 0.0, 1.0) * matrix;
+                        vColor = color;
+                    }
+                ",
+
+                fragment: "
+                    #version 300 es
+                    precision mediump float;
                     in vec3 vColor;
                     out vec4 f_color;
                     void main() {
