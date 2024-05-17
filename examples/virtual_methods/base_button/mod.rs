@@ -36,6 +36,7 @@ pub trait BaseButtonExt: IsA<BaseButton> {
     ///
     /// This retrieves this instance's class and calls the function pointer in
     /// it.
+    #[allow(dead_code)]
     fn sync_method(&self, extra_text: Option<&str>) {
         let obj = self.upcast_ref::<BaseButton>();
         (obj.class().as_ref().sync_method)(obj, extra_text);
