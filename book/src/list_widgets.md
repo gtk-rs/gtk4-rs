@@ -50,7 +50,7 @@ The following figure demonstrates how this works in practice.
 We start by defining and filling up our model.
 The model is an instance of [`gio::ListStore`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.ListStore.html).
 The main limitation here is that `gio::ListStore` only accepts GObjects.
-So let's create a custom GObject `IntegerObject` that which is initialized with a number.
+So let's create a custom GObject `IntegerObject` that is initialized with a number.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/list_widgets/2/integer_object/mod.rs">listings/list_widgets/2/integer_object/mod.rs</a>
 
