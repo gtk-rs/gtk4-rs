@@ -5,7 +5,7 @@
 
 use std::{boxed::Box as Box_, collections::HashMap, fmt, future::Future};
 
-use glib::{subclass::SignalId, translate::*, GString, Variant};
+use glib::{clone::Downgrade, subclass::SignalId, translate::*, GString, Variant};
 
 use crate::{
     prelude::*, subclass::prelude::*, AccessibleRole, BuilderRustScope, BuilderScope,
@@ -1255,6 +1255,17 @@ where
             }
             &*(&self.ptr as *const _ as *const T)
         }
+    }
+}
+
+impl<T> Downgrade for TemplateChild<T>
+where
+    T: ObjectType + FromGlibPtrNone<*mut <T as ObjectType>::GlibType> + Downgrade,
+{
+    type Weak = T::Weak;
+
+    fn downgrade(&self) -> Self::Weak {
+        T::downgrade(&self.get())
     }
 }
 
