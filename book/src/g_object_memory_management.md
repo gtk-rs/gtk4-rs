@@ -76,7 +76,7 @@ help: to force the closure to take ownership of `number` (and any other referenc
 ```
 
 Our closure only borrows `number`.
-Signal handlers in GTK require `static'` lifetimes for their references, so we cannot borrow a variable that only lives for the scope of the function `build_ui`.
+Signal handlers in GTK require `'static` lifetimes for their references, so we cannot borrow a variable that only lives for the scope of the function `build_ui`.
 The compiler also suggests how to fix this.
 By adding the `move` keyword in front of the closure, `number` will be moved into the closure.
 
