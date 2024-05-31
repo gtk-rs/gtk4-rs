@@ -81,6 +81,9 @@ pub const GTK_ACCESSIBLE_PROPERTY_VALUE_MAX: GtkAccessibleProperty = 15;
 pub const GTK_ACCESSIBLE_PROPERTY_VALUE_MIN: GtkAccessibleProperty = 16;
 pub const GTK_ACCESSIBLE_PROPERTY_VALUE_NOW: GtkAccessibleProperty = 17;
 pub const GTK_ACCESSIBLE_PROPERTY_VALUE_TEXT: GtkAccessibleProperty = 18;
+#[cfg(feature = "v4_16")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
+pub const GTK_ACCESSIBLE_PROPERTY_HELP_TEXT: GtkAccessibleProperty = 19;
 
 pub type GtkAccessibleRelation = c_int;
 pub const GTK_ACCESSIBLE_RELATION_ACTIVE_DESCENDANT: GtkAccessibleRelation = 0;
@@ -1041,6 +1044,9 @@ pub const GTK_DEBUG_ICONFALLBACK: GtkDebugFlags = 262144;
 #[cfg(feature = "v4_8")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
 pub const GTK_DEBUG_INVERT_TEXT_DIR: GtkDebugFlags = 524288;
+#[cfg(feature = "v4_16")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
+pub const GTK_DEBUG_CSS: GtkDebugFlags = 1048576;
 
 pub type GtkDialogFlags = c_uint;
 pub const GTK_DIALOG_MODAL: GtkDialogFlags = 1;
@@ -10308,6 +10314,17 @@ extern "C" {
         start: *const GtkCssLocation,
         end: *const GtkCssLocation,
     ) -> *mut GtkCssSection;
+    #[cfg(feature = "v4_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
+    pub fn gtk_css_section_new_with_bytes(
+        file: *mut gio::GFile,
+        bytes: *mut glib::GBytes,
+        start: *const GtkCssLocation,
+        end: *const GtkCssLocation,
+    ) -> *mut GtkCssSection;
+    #[cfg(feature = "v4_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
+    pub fn gtk_css_section_get_bytes(section: *const GtkCssSection) -> *mut glib::GBytes;
     pub fn gtk_css_section_get_end_location(section: *const GtkCssSection)
         -> *const GtkCssLocation;
     pub fn gtk_css_section_get_file(section: *const GtkCssSection) -> *mut gio::GFile;
