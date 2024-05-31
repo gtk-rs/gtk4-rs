@@ -13,7 +13,7 @@ pub struct CustomOrientable {
     //
     // glib::ParamFlags::CONSTRUCT allows us to set that property the moment
     // we create a new instance of the widget
-    #[property(get, set=Self::set_orientation, builder(gtk::Orientation::Horizontal))]
+    #[property(override_interface=gtk::Orientable, get, set=Self::set_orientation, builder(gtk::Orientation::Horizontal))]
     orientation: RefCell<gtk::Orientation>,
 }
 
@@ -39,6 +39,7 @@ impl ObjectSubclass for CustomOrientable {
     }
 }
 
+#[glib::derived_properties]
 impl ObjectImpl for CustomOrientable {
     fn constructed(&self) {
         self.parent_constructed();
