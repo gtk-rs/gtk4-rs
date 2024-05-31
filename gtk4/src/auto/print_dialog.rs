@@ -52,13 +52,13 @@ impl PrintDialog {
 
     #[doc(alias = "gtk_print_dialog_get_page_setup")]
     #[doc(alias = "get_page_setup")]
-    pub fn page_setup(&self) -> PageSetup {
+    pub fn page_setup(&self) -> Option<PageSetup> {
         unsafe { from_glib_none(ffi::gtk_print_dialog_get_page_setup(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_print_dialog_get_print_settings")]
     #[doc(alias = "get_print_settings")]
-    pub fn print_settings(&self) -> PrintSettings {
+    pub fn print_settings(&self) -> Option<PrintSettings> {
         unsafe {
             from_glib_none(ffi::gtk_print_dialog_get_print_settings(
                 self.to_glib_none().0,
@@ -73,7 +73,7 @@ impl PrintDialog {
     }
 
     #[doc(alias = "gtk_print_dialog_print")]
-    pub fn print<P: FnOnce(Result<Option<gio::OutputStream>, glib::Error>) + 'static>(
+    pub fn print<P: FnOnce(Result<gio::OutputStream, glib::Error>) + 'static>(
         &self,
         parent: Option<&impl IsA<Window>>,
         setup: Option<&PrintSetup>,
@@ -93,7 +93,7 @@ impl PrintDialog {
         let user_data: Box_<glib::thread_guard::ThreadGuard<P>> =
             Box_::new(glib::thread_guard::ThreadGuard::new(callback));
         unsafe extern "C" fn print_trampoline<
-            P: FnOnce(Result<Option<gio::OutputStream>, glib::Error>) + 'static,
+            P: FnOnce(Result<gio::OutputStream, glib::Error>) + 'static,
         >(
             _source_object: *mut glib::gobject_ffi::GObject,
             res: *mut gio::ffi::GAsyncResult,
@@ -128,12 +128,8 @@ impl PrintDialog {
         &self,
         parent: Option<&(impl IsA<Window> + Clone + 'static)>,
         setup: Option<&PrintSetup>,
-    ) -> Pin<
-        Box_<
-            dyn std::future::Future<Output = Result<Option<gio::OutputStream>, glib::Error>>
-                + 'static,
-        >,
-    > {
+    ) -> Pin<Box_<dyn std::future::Future<Output = Result<gio::OutputStream, glib::Error>> + 'static>>
+    {
         let parent = parent.map(ToOwned::to_owned);
         let setup = setup.map(ToOwned::to_owned);
         Box_::pin(gio::GioFuture::new(self, move |obj, cancellable, send| {
@@ -268,7 +264,7 @@ impl PrintDialog {
     }
 
     #[doc(alias = "gtk_print_dialog_setup")]
-    pub fn setup<P: FnOnce(Result<Option<PrintSetup>, glib::Error>) + 'static>(
+    pub fn setup<P: FnOnce(Result<PrintSetup, glib::Error>) + 'static>(
         &self,
         parent: Option<&impl IsA<Window>>,
         cancellable: Option<&impl IsA<gio::Cancellable>>,
@@ -287,7 +283,7 @@ impl PrintDialog {
         let user_data: Box_<glib::thread_guard::ThreadGuard<P>> =
             Box_::new(glib::thread_guard::ThreadGuard::new(callback));
         unsafe extern "C" fn setup_trampoline<
-            P: FnOnce(Result<Option<PrintSetup>, glib::Error>) + 'static,
+            P: FnOnce(Result<PrintSetup, glib::Error>) + 'static,
         >(
             _source_object: *mut glib::gobject_ffi::GObject,
             res: *mut gio::ffi::GAsyncResult,
@@ -320,9 +316,8 @@ impl PrintDialog {
     pub fn setup_future(
         &self,
         parent: Option<&(impl IsA<Window> + Clone + 'static)>,
-    ) -> Pin<
-        Box_<dyn std::future::Future<Output = Result<Option<PrintSetup>, glib::Error>> + 'static>,
-    > {
+    ) -> Pin<Box_<dyn std::future::Future<Output = Result<PrintSetup, glib::Error>> + 'static>>
+    {
         let parent = parent.map(ToOwned::to_owned);
         Box_::pin(gio::GioFuture::new(self, move |obj, cancellable, send| {
             obj.setup(

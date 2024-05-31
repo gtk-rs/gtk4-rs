@@ -320,6 +320,10 @@ bitflags! {
         #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
         #[doc(alias = "GTK_DEBUG_INVERT_TEXT_DIR")]
         const INVERT_TEXT_DIR = ffi::GTK_DEBUG_INVERT_TEXT_DIR as _;
+        #[cfg(feature = "v4_16")]
+        #[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
+        #[doc(alias = "GTK_DEBUG_CSS")]
+        const CSS = ffi::GTK_DEBUG_CSS as _;
     }
 }
 

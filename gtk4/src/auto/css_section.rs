@@ -33,6 +33,35 @@ impl CssSection {
         }
     }
 
+    #[cfg(feature = "v4_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
+    #[doc(alias = "gtk_css_section_new_with_bytes")]
+    #[doc(alias = "new_with_bytes")]
+    pub fn with_bytes(
+        file: Option<&impl IsA<gio::File>>,
+        bytes: Option<&glib::Bytes>,
+        start: &CssLocation,
+        end: &CssLocation,
+    ) -> CssSection {
+        assert_initialized_main_thread!();
+        unsafe {
+            from_glib_full(ffi::gtk_css_section_new_with_bytes(
+                file.map(|p| p.as_ref()).to_glib_none().0,
+                bytes.to_glib_none().0,
+                start.to_glib_none().0,
+                end.to_glib_none().0,
+            ))
+        }
+    }
+
+    #[cfg(feature = "v4_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
+    #[doc(alias = "gtk_css_section_get_bytes")]
+    #[doc(alias = "get_bytes")]
+    pub fn bytes(&self) -> Option<glib::Bytes> {
+        unsafe { from_glib_none(ffi::gtk_css_section_get_bytes(self.to_glib_none().0)) }
+    }
+
     #[doc(alias = "gtk_css_section_get_end_location")]
     #[doc(alias = "get_end_location")]
     pub fn end_location(&self) -> CssLocation {

@@ -490,6 +490,10 @@ pub enum AccessibleProperty {
     ValueNow,
     #[doc(alias = "GTK_ACCESSIBLE_PROPERTY_VALUE_TEXT")]
     ValueText,
+    #[cfg(feature = "v4_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
+    #[doc(alias = "GTK_ACCESSIBLE_PROPERTY_HELP_TEXT")]
+    HelpText,
     #[doc(hidden)]
     __Unknown(i32),
 }
@@ -529,6 +533,8 @@ impl IntoGlib for AccessibleProperty {
             Self::ValueMin => ffi::GTK_ACCESSIBLE_PROPERTY_VALUE_MIN,
             Self::ValueNow => ffi::GTK_ACCESSIBLE_PROPERTY_VALUE_NOW,
             Self::ValueText => ffi::GTK_ACCESSIBLE_PROPERTY_VALUE_TEXT,
+            #[cfg(feature = "v4_16")]
+            Self::HelpText => ffi::GTK_ACCESSIBLE_PROPERTY_HELP_TEXT,
             Self::__Unknown(value) => value,
         }
     }
@@ -559,6 +565,8 @@ impl FromGlib<ffi::GtkAccessibleProperty> for AccessibleProperty {
             ffi::GTK_ACCESSIBLE_PROPERTY_VALUE_MIN => Self::ValueMin,
             ffi::GTK_ACCESSIBLE_PROPERTY_VALUE_NOW => Self::ValueNow,
             ffi::GTK_ACCESSIBLE_PROPERTY_VALUE_TEXT => Self::ValueText,
+            #[cfg(feature = "v4_16")]
+            ffi::GTK_ACCESSIBLE_PROPERTY_HELP_TEXT => Self::HelpText,
             value => Self::__Unknown(value),
         }
     }

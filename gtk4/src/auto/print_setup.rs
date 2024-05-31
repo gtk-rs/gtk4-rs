@@ -19,13 +19,13 @@ glib::wrapper! {
 impl PrintSetup {
     #[doc(alias = "gtk_print_setup_get_page_setup")]
     #[doc(alias = "get_page_setup")]
-    pub fn page_setup(&self) -> Option<PageSetup> {
+    pub fn page_setup(&self) -> PageSetup {
         unsafe { from_glib_none(ffi::gtk_print_setup_get_page_setup(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_print_setup_get_print_settings")]
     #[doc(alias = "get_print_settings")]
-    pub fn print_settings(&self) -> Option<PrintSettings> {
+    pub fn print_settings(&self) -> PrintSettings {
         unsafe {
             from_glib_none(ffi::gtk_print_setup_get_print_settings(
                 self.to_glib_none().0,
