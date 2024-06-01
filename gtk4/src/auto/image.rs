@@ -177,16 +177,18 @@ impl Image {
     }
 
     #[doc(alias = "gtk_image_set_from_icon_name")]
+    #[doc(alias = "set_from_icon_name")]
     #[doc(alias = "icon-name")]
-    pub fn set_from_icon_name(&self, icon_name: Option<&str>) {
+    pub fn set_icon_name(&self, icon_name: Option<&str>) {
         unsafe {
             ffi::gtk_image_set_from_icon_name(self.to_glib_none().0, icon_name.to_glib_none().0);
         }
     }
 
     #[doc(alias = "gtk_image_set_from_paintable")]
+    #[doc(alias = "set_from_paintable")]
     #[doc(alias = "paintable")]
-    pub fn set_from_paintable(&self, paintable: Option<&impl IsA<gdk::Paintable>>) {
+    pub fn set_paintable(&self, paintable: Option<&impl IsA<gdk::Paintable>>) {
         unsafe {
             ffi::gtk_image_set_from_paintable(
                 self.to_glib_none().0,
@@ -206,8 +208,9 @@ impl Image {
     }
 
     #[doc(alias = "gtk_image_set_from_resource")]
+    #[doc(alias = "set_from_resource")]
     #[doc(alias = "resource")]
-    pub fn set_from_resource(&self, resource_path: Option<&str>) {
+    pub fn set_resource(&self, resource_path: Option<&str>) {
         unsafe {
             ffi::gtk_image_set_from_resource(self.to_glib_none().0, resource_path.to_glib_none().0);
         }

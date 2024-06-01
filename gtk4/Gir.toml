@@ -1426,6 +1426,18 @@ status = "generate"
         [[object.function.parameter]]
         name = "pixbuf"
         nullable = false
+    # The following are more idiomatic, set_from_x are the actual setters and
+    # gir no longer generates Object::set_property("prop-name", _) setters when
+    # there is a setter in the gir annotation.
+    [[object.function]]
+    name = "set_from_paintable"
+    rename = "set_paintable"
+    [[object.function]]
+    name = "set_from_icon_name"
+    rename = "set_icon_name"
+    [[object.function]]
+    name = "set_from_resource"
+    rename = "set_resource"
 
 
 [[object]]
