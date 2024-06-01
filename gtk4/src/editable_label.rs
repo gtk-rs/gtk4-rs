@@ -7,7 +7,7 @@ use glib::{
     translate::*,
 };
 
-use crate::{prelude::*, EditableLabel};
+use crate::{ffi, prelude::*, EditableLabel};
 
 impl EditableLabel {
     #[doc(alias = "editing")]

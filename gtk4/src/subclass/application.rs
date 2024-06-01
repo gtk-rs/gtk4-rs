@@ -5,7 +5,7 @@
 
 use glib::translate::*;
 
-use crate::{prelude::*, subclass::prelude::*, Application, Window};
+use crate::{ffi, prelude::*, subclass::prelude::*, Application, Window};
 
 pub trait GtkApplicationImpl: GtkApplicationImplExt + ApplicationImpl {
     fn window_added(&self, window: &Window) {

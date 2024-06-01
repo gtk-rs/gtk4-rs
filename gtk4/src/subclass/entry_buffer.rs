@@ -7,7 +7,7 @@ use std::sync::OnceLock;
 use glib::{translate::*, GString};
 
 use super::PtrHolder;
-use crate::{prelude::*, subclass::prelude::*, EntryBuffer};
+use crate::{ffi, prelude::*, subclass::prelude::*, EntryBuffer};
 
 pub trait EntryBufferImpl: EntryBufferImplExt + ObjectImpl {
     fn delete_text(&self, position: u32, n_chars: Option<u32>) -> u32 {

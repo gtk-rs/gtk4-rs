@@ -4,7 +4,7 @@ use gdk::RGBA;
 use glib::translate::*;
 use libc::c_int;
 
-use crate::{prelude::*, ColorChooser, Orientation};
+use crate::{ffi, prelude::*, ColorChooser, Orientation};
 
 mod sealed {
     pub trait Sealed {}

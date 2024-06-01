@@ -2,7 +2,7 @@
 
 use glib::{prelude::*, translate::*};
 
-use crate::{GLContext, GLTextureBuilder, MemoryFormat, Texture};
+use crate::{ffi, GLContext, GLTextureBuilder, MemoryFormat, Texture};
 
 #[cfg(not(feature = "gl"))]
 pub type GLsync = *const libc::c_void;

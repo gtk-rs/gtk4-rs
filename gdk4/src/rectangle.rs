@@ -12,7 +12,7 @@ impl Rectangle {
     pub fn new(x: i32, y: i32, width: i32, height: i32) -> Self {
         skip_assert_initialized!();
         unsafe {
-            Self::unsafe_from(ffi::GdkRectangle {
+            Self::unsafe_from(crate::ffi::GdkRectangle {
                 x,
                 y,
                 width,

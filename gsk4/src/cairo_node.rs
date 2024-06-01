@@ -2,7 +2,11 @@
 
 use crate::{CairoNode, RenderNodeType};
 
-define_render_node!(CairoNode, ffi::GskCairoNode, RenderNodeType::CairoNode);
+define_render_node!(
+    CairoNode,
+    crate::ffi::GskCairoNode,
+    RenderNodeType::CairoNode
+);
 
 impl std::fmt::Debug for CairoNode {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {

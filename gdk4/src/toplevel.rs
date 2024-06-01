@@ -7,7 +7,7 @@ use glib::{
     translate::*,
 };
 
-use crate::{prelude::*, Toplevel, ToplevelSize};
+use crate::{ffi, prelude::*, Toplevel, ToplevelSize};
 
 mod sealed {
     pub trait Sealed {}

@@ -8,7 +8,7 @@ use glib::{
 };
 use libc::{c_double, c_int};
 
-use crate::{prelude::*, SpinButton};
+use crate::{ffi, prelude::*, SpinButton};
 
 impl SpinButton {
     pub fn connect_input<F>(&self, f: F) -> SignalHandlerId

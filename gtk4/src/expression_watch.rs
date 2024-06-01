@@ -2,6 +2,8 @@
 
 use glib::{translate::*, value::FromValue, Value};
 
+use crate::ffi;
+
 glib::wrapper! {
     #[derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
     #[doc(alias = "GtkExpressionWatch")]

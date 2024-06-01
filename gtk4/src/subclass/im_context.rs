@@ -6,7 +6,7 @@
 use glib::{translate::*, GString};
 use pango::AttrList;
 
-use crate::{prelude::*, subclass::prelude::*, IMContext, Widget};
+use crate::{ffi, prelude::*, subclass::prelude::*, IMContext, Widget};
 
 #[allow(clippy::upper_case_acronyms)]
 pub trait IMContextImpl: IMContextImplExt + ObjectImpl {

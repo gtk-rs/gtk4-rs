@@ -5,7 +5,7 @@
 
 use glib::translate::*;
 
-use crate::{prelude::*, subclass::prelude::*, Window};
+use crate::{ffi, prelude::*, subclass::prelude::*, Window};
 
 pub trait WindowImpl: WindowImplExt + WidgetImpl {
     fn activate_focus(&self) {

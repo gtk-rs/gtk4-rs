@@ -6,7 +6,7 @@ use crate::{EventType, ProximityEvent};
 
 define_event! {
     ProximityEvent,
-    ffi::GdkProximityEvent,
+    crate::ffi::GdkProximityEvent,
     &[EventType::ProximityIn, EventType::ProximityOut]
 }
 

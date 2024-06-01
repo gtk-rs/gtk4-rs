@@ -5,7 +5,7 @@
 
 use glib::translate::*;
 
-use crate::{prelude::*, subclass::prelude::*, Adjustment};
+use crate::{ffi, prelude::*, subclass::prelude::*, Adjustment};
 
 pub trait AdjustmentImpl: AdjustmentImplExt + ObjectImpl {
     fn changed(&self) {

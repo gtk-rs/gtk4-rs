@@ -2,7 +2,7 @@
 
 use glib::translate::*;
 
-use crate::{prelude::*, CellRenderer, TreeView, TreeViewColumn, TreeViewColumnSizing};
+use crate::{ffi, prelude::*, CellRenderer, TreeView, TreeViewColumn, TreeViewColumnSizing};
 
 mod sealed {
     pub trait Sealed {}

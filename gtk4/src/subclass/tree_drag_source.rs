@@ -6,7 +6,7 @@
 
 use glib::translate::*;
 
-use crate::{prelude::*, subclass::prelude::*, TreeDragSource, TreePath};
+use crate::{ffi, prelude::*, subclass::prelude::*, TreeDragSource, TreePath};
 
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 #[allow(deprecated)]

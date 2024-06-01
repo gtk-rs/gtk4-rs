@@ -4,7 +4,7 @@ use std::{fmt, mem};
 
 use glib::translate::*;
 
-use crate::{EventType, Key, KeyEvent, KeyMatch, ModifierType};
+use crate::{ffi, EventType, Key, KeyEvent, KeyMatch, ModifierType};
 
 define_event! {
     KeyEvent,

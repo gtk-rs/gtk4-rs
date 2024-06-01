@@ -5,9 +5,9 @@ use glib::translate::*;
 #[cfg_attr(docsrs, doc(cfg(feature = "xlib")))]
 use x11::xlib::Window as XWindow;
 
-use crate::X11Surface;
 #[cfg(not(feature = "xlib"))]
 use crate::XWindow;
+use crate::{ffi, X11Surface};
 
 impl X11Surface {
     #[doc(alias = "gdk_x11_surface_get_xid")]

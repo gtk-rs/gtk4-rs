@@ -2,7 +2,7 @@
 
 use glib::translate::*;
 
-use crate::{ContainerNode, RenderNode, RenderNodeType};
+use crate::{ffi, ContainerNode, RenderNode, RenderNodeType};
 
 define_render_node!(
     ContainerNode,

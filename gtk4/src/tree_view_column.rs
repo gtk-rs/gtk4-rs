@@ -2,7 +2,7 @@
 
 use glib::translate::*;
 
-use crate::{prelude::*, CellRenderer, TreeViewColumn};
+use crate::{ffi, prelude::*, CellRenderer, TreeViewColumn};
 
 impl TreeViewColumn {
     #[doc(alias = "gtk_tree_view_column_new_with_attributes")]

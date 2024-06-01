@@ -8,7 +8,7 @@ use glib::{
 };
 use libc::{c_char, c_int};
 
-use crate::{prelude::*, TextBuffer, TextIter, TextTag};
+use crate::{ffi, prelude::*, TextBuffer, TextIter, TextTag};
 
 mod sealed {
     pub trait Sealed {}

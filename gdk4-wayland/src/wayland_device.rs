@@ -11,10 +11,10 @@ use wayland_client::{
     Proxy,
 };
 
+use crate::WaylandDevice;
 #[cfg(feature = "wayland_crate")]
 #[cfg_attr(docsrs, doc(cfg(feature = "wayland_crate")))]
-use crate::prelude::*;
-use crate::WaylandDevice;
+use crate::{ffi, prelude::*};
 
 impl WaylandDevice {
     #[doc(alias = "gdk_wayland_device_get_wl_keyboard")]

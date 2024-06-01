@@ -4,7 +4,7 @@ use std::{boxed::Box as Box_, ptr};
 
 use glib::translate::*;
 
-use crate::{FlowBox, FlowBoxChild, Ordering};
+use crate::{ffi, FlowBox, FlowBoxChild, Ordering};
 
 impl FlowBox {
     #[doc(alias = "gtk_flow_box_bind_model")]

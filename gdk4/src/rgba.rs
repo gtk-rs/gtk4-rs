@@ -4,7 +4,7 @@ use std::{fmt, str::FromStr};
 
 use glib::translate::*;
 
-use crate::RGBA;
+use crate::{ffi, RGBA};
 
 #[derive(Debug)]
 // rustdoc-stripper-ignore-next

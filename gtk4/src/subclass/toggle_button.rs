@@ -5,7 +5,7 @@
 
 use glib::translate::*;
 
-use crate::{prelude::*, subclass::prelude::*, ToggleButton};
+use crate::{ffi, prelude::*, subclass::prelude::*, ToggleButton};
 
 pub trait ToggleButtonImpl: ToggleButtonImplExt + ButtonImpl {
     fn toggled(&self) {

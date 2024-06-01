@@ -19,7 +19,7 @@ pub trait FontChooserExtManual: sealed::Sealed + IsA<FontChooser> + 'static {
     #[doc(alias = "set_filter_func")]
     fn unset_filter_func(&self) {
         unsafe {
-            ffi::gtk_font_chooser_set_filter_func(
+            crate::ffi::gtk_font_chooser_set_filter_func(
                 self.as_ref().to_glib_none().0,
                 None,
                 std::ptr::null_mut(),

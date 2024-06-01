@@ -7,7 +7,7 @@ use std::mem::MaybeUninit;
 
 use glib::translate::*;
 
-use crate::{prelude::*, subclass::prelude::*, CellAreaContext};
+use crate::{ffi, prelude::*, subclass::prelude::*, CellAreaContext};
 
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 #[allow(deprecated)]

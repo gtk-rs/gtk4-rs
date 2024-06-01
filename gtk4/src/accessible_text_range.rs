@@ -3,7 +3,7 @@
 #[derive(Copy, Clone)]
 #[doc(alias = "GtkAccessibleTextRange")]
 #[repr(transparent)]
-pub struct AccessibleTextRange(ffi::GtkAccessibleTextRange);
+pub struct AccessibleTextRange(crate::ffi::GtkAccessibleTextRange);
 
 impl AccessibleTextRange {
     pub fn start(&self) -> usize {

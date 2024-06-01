@@ -6,7 +6,7 @@
 use gdk::GLContext;
 use glib::translate::*;
 
-use crate::{prelude::*, subclass::prelude::*, GLArea};
+use crate::{ffi, prelude::*, subclass::prelude::*, GLArea};
 
 #[allow(clippy::upper_case_acronyms)]
 pub trait GLAreaImpl: GLAreaImplExt + WidgetImpl {

@@ -5,9 +5,9 @@ use glib::translate::*;
 #[cfg_attr(docsrs, doc(cfg(feature = "xlib")))]
 use x11::xlib::XID;
 
-use crate::X11Monitor;
 #[cfg(not(feature = "xlib"))]
 use crate::XID;
+use crate::{ffi, X11Monitor};
 
 impl X11Monitor {
     #[doc(alias = "gdk_x11_monitor_get_output")]

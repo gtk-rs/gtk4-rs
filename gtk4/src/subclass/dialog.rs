@@ -5,7 +5,7 @@
 
 use glib::translate::*;
 
-use crate::{prelude::*, subclass::prelude::*, Dialog, ResponseType};
+use crate::{ffi, prelude::*, subclass::prelude::*, Dialog, ResponseType};
 
 pub trait DialogImpl: DialogImplExt + WindowImpl {
     fn response(&self, response: ResponseType) {

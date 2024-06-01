@@ -2,7 +2,7 @@
 
 use glib::translate::*;
 
-use crate::{RenderNodeType, Shadow, ShadowNode};
+use crate::{ffi, RenderNodeType, Shadow, ShadowNode};
 
 define_render_node!(ShadowNode, ffi::GskShadowNode, RenderNodeType::ShadowNode);
 

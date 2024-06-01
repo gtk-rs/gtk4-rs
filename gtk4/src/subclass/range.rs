@@ -5,7 +5,7 @@
 
 use glib::translate::*;
 
-use crate::{prelude::*, subclass::prelude::*, Border, Range, ScrollType};
+use crate::{ffi, prelude::*, subclass::prelude::*, Border, Range, ScrollType};
 
 pub trait RangeImpl: RangeImplExt + WidgetImpl {
     fn adjust_bounds(&self, new_value: f64) {

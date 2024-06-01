@@ -5,7 +5,7 @@
 
 use glib::translate::*;
 
-use crate::{prelude::*, subclass::prelude::*, Popover};
+use crate::{ffi, prelude::*, subclass::prelude::*, Popover};
 
 pub trait PopoverImpl: PopoverImplExt + WidgetImpl {
     fn activate_default(&self) {

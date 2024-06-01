@@ -2,7 +2,11 @@
 
 use crate::{BlendNode, RenderNodeType};
 
-define_render_node!(BlendNode, ffi::GskBlendNode, RenderNodeType::BlendNode);
+define_render_node!(
+    BlendNode,
+    crate::ffi::GskBlendNode,
+    RenderNodeType::BlendNode
+);
 
 impl std::fmt::Debug for BlendNode {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {

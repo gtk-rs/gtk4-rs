@@ -2,7 +2,11 @@
 
 use crate::{DebugNode, RenderNodeType};
 
-define_render_node!(DebugNode, ffi::GskDebugNode, RenderNodeType::DebugNode);
+define_render_node!(
+    DebugNode,
+    crate::ffi::GskDebugNode,
+    RenderNodeType::DebugNode
+);
 
 impl std::fmt::Debug for DebugNode {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {

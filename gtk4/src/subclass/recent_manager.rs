@@ -5,7 +5,7 @@
 
 use glib::translate::*;
 
-use crate::{prelude::*, subclass::prelude::*, RecentManager};
+use crate::{ffi, prelude::*, subclass::prelude::*, RecentManager};
 
 pub trait RecentManagerImpl: RecentManagerImplExt + ObjectImpl {
     fn changed(&self) {

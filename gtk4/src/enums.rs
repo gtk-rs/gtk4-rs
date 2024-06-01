@@ -4,7 +4,7 @@ use std::cmp;
 
 use glib::{translate::*, Quark};
 
-use crate::{prelude::*, CssParserWarning, Ordering};
+use crate::{ffi, prelude::*, CssParserWarning, Ordering};
 
 impl From<cmp::Ordering> for Ordering {
     #[inline]

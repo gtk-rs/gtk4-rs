@@ -4,7 +4,7 @@ use std::{future, pin::Pin, ptr};
 
 use glib::{translate::*, GString};
 
-use crate::{prelude::*, Drop};
+use crate::{ffi, prelude::*, Drop};
 
 impl Drop {
     #[doc(alias = "gdk_drop_read_async")]

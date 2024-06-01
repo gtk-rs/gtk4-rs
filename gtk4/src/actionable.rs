@@ -17,7 +17,7 @@ pub trait ActionableExtManual: sealed::Sealed + IsA<Actionable> + 'static {
     #[doc(alias = "gtk_actionable_set_action_target_value")]
     fn set_action_target(&self, target: Option<impl Into<Variant>>) {
         unsafe {
-            ffi::gtk_actionable_set_action_target_value(
+            crate::ffi::gtk_actionable_set_action_target_value(
                 self.as_ref().to_glib_none().0,
                 target.map(|v| v.into()).to_glib_none().0,
             );

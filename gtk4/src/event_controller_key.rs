@@ -5,7 +5,7 @@ use std::{boxed::Box as Box_, mem::transmute};
 use gdk::Key;
 use glib::{signal::connect_raw, translate::*, SignalHandlerId};
 
-use crate::{prelude::*, EventControllerKey};
+use crate::{ffi, prelude::*, EventControllerKey};
 
 impl EventControllerKey {
     pub fn connect_key_pressed<

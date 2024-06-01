@@ -8,7 +8,7 @@ use std::{boxed::Box as Box_, collections::HashMap, fmt, future::Future};
 use glib::{clone::Downgrade, subclass::SignalId, translate::*, GString, Variant};
 
 use crate::{
-    prelude::*, subclass::prelude::*, AccessibleRole, BuilderRustScope, BuilderScope,
+    ffi, prelude::*, subclass::prelude::*, AccessibleRole, BuilderRustScope, BuilderScope,
     DirectionType, LayoutManager, Orientation, Shortcut, SizeRequestMode, Snapshot, StateFlags,
     SystemSetting, TextDirection, Tooltip, Widget,
 };

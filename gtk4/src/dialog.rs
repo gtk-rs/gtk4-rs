@@ -10,7 +10,7 @@ use std::{
 
 use glib::translate::*;
 
-use crate::{prelude::*, Dialog, DialogFlags, ResponseType, Widget, Window};
+use crate::{ffi, prelude::*, Dialog, DialogFlags, ResponseType, Widget, Window};
 
 impl Dialog {
     #[doc(alias = "gtk_dialog_new_with_buttons")]

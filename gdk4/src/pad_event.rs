@@ -6,7 +6,7 @@ use crate::{EventType, PadEvent};
 
 define_event! {
     PadEvent,
-    ffi::GdkPadEvent,
+    crate::ffi::GdkPadEvent,
     &[EventType::PadButtonPress, EventType::PadButtonRelease, EventType::PadRing, EventType::PadStrip, EventType::PadGroupMode]
 }
 

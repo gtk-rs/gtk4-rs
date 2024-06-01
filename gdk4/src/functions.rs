@@ -5,7 +5,7 @@ use std::{future, pin::Pin, ptr};
 use glib::translate::*;
 
 pub use crate::auto::functions::*;
-use crate::{prelude::*, ContentDeserializer, ContentSerializer};
+use crate::{ffi, prelude::*, ContentDeserializer, ContentSerializer};
 
 #[repr(packed)]
 pub struct GRange(pub i32, pub i32);

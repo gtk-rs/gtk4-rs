@@ -3,7 +3,7 @@
 use glib::translate::*;
 use libc::c_int;
 
-use crate::{prelude::*, Notebook, Widget};
+use crate::{ffi, prelude::*, Notebook, Widget};
 
 impl Notebook {
     #[doc(alias = "gtk_notebook_append_page")]

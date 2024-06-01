@@ -6,7 +6,7 @@ use crate::{EventType, ScrollEvent};
 
 define_event! {
     ScrollEvent,
-    ffi::GdkScrollEvent,
+    crate::ffi::GdkScrollEvent,
     &[EventType::Scroll]
 }
 

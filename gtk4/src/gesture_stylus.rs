@@ -3,7 +3,7 @@
 use gdk::AxisUse;
 use glib::translate::*;
 
-use crate::GestureStylus;
+use crate::{ffi, GestureStylus};
 
 impl GestureStylus {
     #[doc(alias = "gtk_gesture_stylus_get_axes")]

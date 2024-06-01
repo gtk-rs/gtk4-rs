@@ -7,7 +7,7 @@
 use gdk::RGBA;
 use glib::translate::*;
 
-use crate::{prelude::*, subclass::prelude::*, ColorChooser, Orientation};
+use crate::{ffi, prelude::*, subclass::prelude::*, ColorChooser, Orientation};
 
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 #[allow(deprecated)]

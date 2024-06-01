@@ -4,7 +4,7 @@ use glib::translate::*;
 
 use crate::{prelude::*, PropertyExpression};
 
-define_expression!(PropertyExpression, ffi::GtkPropertyExpression);
+define_expression!(PropertyExpression, crate::ffi::GtkPropertyExpression);
 
 impl std::fmt::Debug for PropertyExpression {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {

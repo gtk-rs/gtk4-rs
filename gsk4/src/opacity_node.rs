@@ -4,7 +4,7 @@ use crate::{OpacityNode, RenderNodeType};
 
 define_render_node!(
     OpacityNode,
-    ffi::GskOpacityNode,
+    crate::ffi::GskOpacityNode,
     RenderNodeType::OpacityNode
 );
 

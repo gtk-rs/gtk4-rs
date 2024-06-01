@@ -16,7 +16,7 @@ pub trait ScaleExtManual: sealed::Sealed + IsA<Scale> + 'static {
     #[doc(alias = "set_format_value_func")]
     fn unset_format_value_func(&self) {
         unsafe {
-            ffi::gtk_scale_set_format_value_func(
+            crate::ffi::gtk_scale_set_format_value_func(
                 self.as_ref().to_glib_none().0,
                 None,
                 std::ptr::null_mut(),

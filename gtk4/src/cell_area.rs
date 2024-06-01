@@ -2,7 +2,7 @@
 
 use glib::{translate::*, value::FromValue, Value};
 
-use crate::{prelude::*, CellArea, CellRenderer};
+use crate::{ffi, prelude::*, CellArea, CellRenderer};
 
 mod sealed {
     pub trait Sealed {}

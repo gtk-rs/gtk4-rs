@@ -2,7 +2,7 @@
 
 use glib::translate::*;
 
-use crate::{DmabufTextureBuilder, Texture};
+use crate::{ffi, DmabufTextureBuilder, Texture};
 
 impl DmabufTextureBuilder {
     #[doc(alias = "gdk_dmabuf_texture_builder_build")]

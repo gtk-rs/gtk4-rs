@@ -6,7 +6,7 @@
 
 use glib::{translate::*, GString};
 
-use crate::{prelude::*, subclass::prelude::*, CellRendererText};
+use crate::{ffi, prelude::*, subclass::prelude::*, CellRendererText};
 
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 #[allow(deprecated)]

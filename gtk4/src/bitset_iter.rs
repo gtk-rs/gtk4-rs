@@ -4,7 +4,7 @@ use std::marker::PhantomData;
 
 use glib::translate::*;
 
-use crate::Bitset;
+use crate::{ffi, Bitset};
 
 #[derive(Copy, Clone)]
 #[doc(alias = "GtkBitsetIter")]

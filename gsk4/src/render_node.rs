@@ -2,7 +2,7 @@
 
 use glib::translate::*;
 
-use crate::{prelude::*, ParseLocation, RenderNode, RenderNodeType};
+use crate::{ffi, prelude::*, ParseLocation, RenderNode, RenderNodeType};
 
 impl RenderNode {
     #[inline]
@@ -146,7 +146,7 @@ macro_rules! define_render_node {
                 unsafe {
                     glib::translate::from_glib_full(
                         glib::translate::IntoGlibPtr::<*mut $ffi_type>::into_glib_ptr(self)
-                            as *mut ffi::GskRenderNode,
+                            as *mut crate::ffi::GskRenderNode,
                     )
                 }
             }
@@ -158,9 +158,9 @@ macro_rules! define_render_node {
         }
 
         #[doc(hidden)]
-        impl glib::translate::FromGlibPtrFull<*mut ffi::GskRenderNode> for $rust_type {
+        impl glib::translate::FromGlibPtrFull<*mut crate::ffi::GskRenderNode> for $rust_type {
             #[inline]
-            unsafe fn from_glib_full(ptr: *mut ffi::GskRenderNode) -> Self {
+            unsafe fn from_glib_full(ptr: *mut crate::ffi::GskRenderNode) -> Self {
                 glib::translate::from_glib_full(ptr as *mut $ffi_type)
             }
         }
@@ -179,7 +179,7 @@ macro_rules! define_render_node {
             #[inline]
             unsafe fn from_value(value: &'a glib::Value) -> Self {
                 skip_assert_initialized!();
-                glib::translate::from_glib_full(ffi::gsk_value_dup_render_node(
+                glib::translate::from_glib_full(crate::ffi::gsk_value_dup_render_node(
                     glib::translate::ToGlibPtr::to_glib_none(value).0,
                 ))
             }
@@ -192,7 +192,7 @@ macro_rules! define_render_node {
             fn to_value(&self) -> glib::Value {
                 let mut value = glib::Value::for_value_type::<Self>();
                 unsafe {
-                    ffi::gsk_value_set_render_node(
+                    crate::ffi::gsk_value_set_render_node(
                         glib::translate::ToGlibPtrMut::to_glib_none_mut(&mut value).0,
                         self.as_ptr() as *mut _,
                     )
@@ -215,7 +215,7 @@ macro_rules! define_render_node {
                 skip_assert_initialized!();
                 let mut value = glib::Value::for_value_type::<Self>();
                 unsafe {
-                    ffi::gsk_value_set_render_node(
+                    crate::ffi::gsk_value_set_render_node(
                         glib::translate::ToGlibPtrMut::to_glib_none_mut(&mut value).0,
                         s.map(|s| s.as_ptr()).unwrap_or(std::ptr::null_mut()) as *mut _,
                     )

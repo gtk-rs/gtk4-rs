@@ -2,7 +2,11 @@
 
 use crate::{RenderNodeType, RepeatNode};
 
-define_render_node!(RepeatNode, ffi::GskRepeatNode, RenderNodeType::RepeatNode);
+define_render_node!(
+    RepeatNode,
+    crate::ffi::GskRepeatNode,
+    RenderNodeType::RepeatNode
+);
 
 impl std::fmt::Debug for RepeatNode {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {

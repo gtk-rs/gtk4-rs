@@ -14,14 +14,14 @@ rust-version.workspace = true
 version.workspace = true
 
 [features]
-v4_4 = ["ffi/v4_4", "gdk/v4_4"]
-v4_10 = ["ffi/v4_10", "v4_4", "gdk/v4_10"]
-v4_16 = ["ffi/v4_16", "v4_10", "gdk/v4_16"]
+v4_4 = ["gdk4-x11-sys/v4_4", "gdk/v4_4"]
+v4_10 = ["gdk4-x11-sys/v4_10", "v4_4", "gdk/v4_10"]
+v4_16 = ["gdk4-x11-sys/v4_16", "v4_10", "gdk/v4_16"]
 egl = ["khronos-egl"]
 xlib = ["x11"]
 
 [dependencies]
-ffi = {path = "./sys", package = "gdk4-x11-sys", version = "0.9"}
+gdk4-x11-sys.workspace = true
 gdk.workspace = true
 gio.workspace = true
 glib.workspace = true

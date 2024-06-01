@@ -3,7 +3,7 @@
 use glib::{translate::*, Type, Value};
 use libc::c_int;
 
-use crate::{prelude::*, TreeIter, TreeModel, TreeStore};
+use crate::{ffi, prelude::*, TreeIter, TreeModel, TreeStore};
 
 impl TreeStore {
     #[doc(alias = "gtk_tree_store_newv")]

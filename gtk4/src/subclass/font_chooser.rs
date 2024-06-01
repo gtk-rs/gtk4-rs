@@ -9,7 +9,7 @@ use glib::{translate::*, GString, Quark};
 use pango::{FontFace, FontFamily, FontMap};
 
 use super::PtrHolder;
-use crate::{prelude::*, subclass::prelude::*, FontChooser};
+use crate::{ffi, prelude::*, subclass::prelude::*, FontChooser};
 
 #[derive(Debug)]
 pub struct FilterCallback {

@@ -7,7 +7,7 @@ use glib::translate::*;
 #[cfg_attr(docsrs, doc(cfg(feature = "wayland_crate")))]
 use wayland_client::{backend::ObjectId, protocol::wl_surface::WlSurface, Proxy};
 
-use crate::{prelude::*, WaylandSurface};
+use crate::{ffi, prelude::*, WaylandSurface};
 
 mod sealed {
     pub trait Sealed {}

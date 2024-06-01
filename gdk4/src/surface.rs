@@ -2,7 +2,7 @@
 
 use glib::translate::*;
 
-use crate::{prelude::*, Surface};
+use crate::{ffi, prelude::*, Surface};
 
 mod sealed {
     pub trait Sealed {}

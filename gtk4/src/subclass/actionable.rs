@@ -6,7 +6,7 @@
 
 use glib::{translate::*, GString, Variant};
 
-use crate::{prelude::*, subclass::prelude::*, Actionable};
+use crate::{ffi, prelude::*, subclass::prelude::*, Actionable};
 
 pub trait ActionableImpl: WidgetImpl {
     #[doc(alias = "get_action_name")]

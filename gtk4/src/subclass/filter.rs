@@ -5,7 +5,7 @@
 
 use glib::{translate::*, Object};
 
-use crate::{prelude::*, subclass::prelude::*, Filter, FilterMatch};
+use crate::{ffi, prelude::*, subclass::prelude::*, Filter, FilterMatch};
 
 pub trait FilterImpl: FilterImplExt + ObjectImpl {
     #[doc(alias = "get_strictness")]

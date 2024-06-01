@@ -4,7 +4,7 @@ use glib::translate::*;
 
 use crate::ObjectExpression;
 
-define_expression!(ObjectExpression, ffi::GtkObjectExpression);
+define_expression!(ObjectExpression, crate::ffi::GtkObjectExpression);
 
 impl std::fmt::Debug for ObjectExpression {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {

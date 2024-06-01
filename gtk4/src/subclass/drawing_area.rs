@@ -5,7 +5,7 @@
 
 use glib::translate::*;
 
-use crate::{prelude::*, subclass::prelude::*, DrawingArea};
+use crate::{ffi, prelude::*, subclass::prelude::*, DrawingArea};
 
 pub trait DrawingAreaImpl: DrawingAreaImplExt + WidgetImpl {
     fn resize(&self, width: i32, height: i32) {

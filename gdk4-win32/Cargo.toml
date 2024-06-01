@@ -18,12 +18,12 @@ name = "gtk4-win32"
 version = "4"
 
 [features]
-v4_4 = ["ffi/v4_4", "gdk/v4_4"]
+v4_4 = ["gdk4-win32-sys/v4_4", "gdk/v4_4"]
 egl = ["khronos-egl"]
 win32 = ["windows"]
 
 [dependencies]
-ffi = { path = "./sys", version = "0.9", package = "gdk4-win32-sys"}
+gdk4-win32-sys.workspace = true
 gdk.workspace = true
 gio.workspace = true
 glib.workspace = true

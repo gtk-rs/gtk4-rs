@@ -2,7 +2,7 @@
 
 use glib::translate::*;
 
-use crate::{prelude::*, Constraint, ConstraintLayout, Widget};
+use crate::{ffi, prelude::*, Constraint, ConstraintLayout, Widget};
 
 impl ConstraintLayout {
     #[doc(alias = "gtk_constraint_layout_add_constraints_from_descriptionv")]

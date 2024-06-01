@@ -7,7 +7,7 @@ use glib::{
     translate::*,
 };
 
-use crate::{prelude::*, Overlay, Widget};
+use crate::{ffi, prelude::*, Overlay, Widget};
 
 impl Overlay {
     pub fn connect_get_child_position<F>(&self, f: F) -> SignalHandlerId
