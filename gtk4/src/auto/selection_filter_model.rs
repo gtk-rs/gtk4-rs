@@ -41,6 +41,7 @@ impl SelectionFilterModel {
     }
 
     #[doc(alias = "gtk_selection_filter_model_set_model")]
+    #[doc(alias = "model")]
     pub fn set_model(&self, model: Option<&impl IsA<SelectionModel>>) {
         unsafe {
             ffi::gtk_selection_filter_model_set_model(

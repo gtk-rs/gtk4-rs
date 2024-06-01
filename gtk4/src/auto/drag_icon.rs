@@ -27,6 +27,7 @@ impl DragIcon {
     }
 
     #[doc(alias = "gtk_drag_icon_set_child")]
+    #[doc(alias = "child")]
     pub fn set_child(&self, child: Option<&impl IsA<Widget>>) {
         unsafe {
             ffi::gtk_drag_icon_set_child(

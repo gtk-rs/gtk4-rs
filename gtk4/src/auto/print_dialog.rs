@@ -36,6 +36,7 @@ impl PrintDialog {
 
     #[doc(alias = "gtk_print_dialog_get_accept_label")]
     #[doc(alias = "get_accept_label")]
+    #[doc(alias = "accept-label")]
     pub fn accept_label(&self) -> glib::GString {
         unsafe {
             from_glib_none(ffi::gtk_print_dialog_get_accept_label(
@@ -46,18 +47,21 @@ impl PrintDialog {
 
     #[doc(alias = "gtk_print_dialog_get_modal")]
     #[doc(alias = "get_modal")]
+    #[doc(alias = "modal")]
     pub fn is_modal(&self) -> bool {
         unsafe { from_glib(ffi::gtk_print_dialog_get_modal(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_print_dialog_get_page_setup")]
     #[doc(alias = "get_page_setup")]
+    #[doc(alias = "page-setup")]
     pub fn page_setup(&self) -> Option<PageSetup> {
         unsafe { from_glib_none(ffi::gtk_print_dialog_get_page_setup(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_print_dialog_get_print_settings")]
     #[doc(alias = "get_print_settings")]
+    #[doc(alias = "print-settings")]
     pub fn print_settings(&self) -> Option<PrintSettings> {
         unsafe {
             from_glib_none(ffi::gtk_print_dialog_get_print_settings(
@@ -220,6 +224,7 @@ impl PrintDialog {
     }
 
     #[doc(alias = "gtk_print_dialog_set_accept_label")]
+    #[doc(alias = "accept-label")]
     pub fn set_accept_label(&self, accept_label: &str) {
         unsafe {
             ffi::gtk_print_dialog_set_accept_label(
@@ -230,6 +235,7 @@ impl PrintDialog {
     }
 
     #[doc(alias = "gtk_print_dialog_set_modal")]
+    #[doc(alias = "modal")]
     pub fn set_modal(&self, modal: bool) {
         unsafe {
             ffi::gtk_print_dialog_set_modal(self.to_glib_none().0, modal.into_glib());
@@ -237,6 +243,7 @@ impl PrintDialog {
     }
 
     #[doc(alias = "gtk_print_dialog_set_page_setup")]
+    #[doc(alias = "page-setup")]
     pub fn set_page_setup(&self, page_setup: &PageSetup) {
         unsafe {
             ffi::gtk_print_dialog_set_page_setup(
@@ -247,6 +254,7 @@ impl PrintDialog {
     }
 
     #[doc(alias = "gtk_print_dialog_set_print_settings")]
+    #[doc(alias = "print-settings")]
     pub fn set_print_settings(&self, print_settings: &PrintSettings) {
         unsafe {
             ffi::gtk_print_dialog_set_print_settings(
@@ -257,6 +265,7 @@ impl PrintDialog {
     }
 
     #[doc(alias = "gtk_print_dialog_set_title")]
+    #[doc(alias = "title")]
     pub fn set_title(&self, title: &str) {
         unsafe {
             ffi::gtk_print_dialog_set_title(self.to_glib_none().0, title.to_glib_none().0);

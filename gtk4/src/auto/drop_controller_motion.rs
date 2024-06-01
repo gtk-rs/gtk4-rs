@@ -37,6 +37,7 @@ impl DropControllerMotion {
     }
 
     #[doc(alias = "gtk_drop_controller_motion_contains_pointer")]
+    #[doc(alias = "contains-pointer")]
     pub fn contains_pointer(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_drop_controller_motion_contains_pointer(
@@ -56,6 +57,7 @@ impl DropControllerMotion {
     }
 
     #[doc(alias = "gtk_drop_controller_motion_is_pointer")]
+    #[doc(alias = "is-pointer")]
     pub fn is_pointer(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_drop_controller_motion_is_pointer(

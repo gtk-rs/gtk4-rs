@@ -52,6 +52,7 @@ impl NumericSorter {
 
     #[doc(alias = "gtk_numeric_sorter_get_sort_order")]
     #[doc(alias = "get_sort_order")]
+    #[doc(alias = "sort-order")]
     pub fn sort_order(&self) -> SortType {
         unsafe {
             from_glib(ffi::gtk_numeric_sorter_get_sort_order(
@@ -61,6 +62,7 @@ impl NumericSorter {
     }
 
     #[doc(alias = "gtk_numeric_sorter_set_expression")]
+    #[doc(alias = "expression")]
     pub fn set_expression(&self, expression: Option<impl AsRef<Expression>>) {
         unsafe {
             ffi::gtk_numeric_sorter_set_expression(
@@ -71,6 +73,7 @@ impl NumericSorter {
     }
 
     #[doc(alias = "gtk_numeric_sorter_set_sort_order")]
+    #[doc(alias = "sort-order")]
     pub fn set_sort_order(&self, sort_order: SortType) {
         unsafe {
             ffi::gtk_numeric_sorter_set_sort_order(self.to_glib_none().0, sort_order.into_glib());

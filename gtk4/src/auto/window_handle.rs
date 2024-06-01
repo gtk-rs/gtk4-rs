@@ -44,6 +44,7 @@ impl WindowHandle {
     }
 
     #[doc(alias = "gtk_window_handle_set_child")]
+    #[doc(alias = "child")]
     pub fn set_child(&self, child: Option<&impl IsA<Widget>>) {
         unsafe {
             ffi::gtk_window_handle_set_child(

@@ -50,6 +50,7 @@ impl DropTarget {
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
     #[doc(alias = "gtk_drop_target_get_current_drop")]
     #[doc(alias = "get_current_drop")]
+    #[doc(alias = "current-drop")]
     pub fn current_drop(&self) -> Option<gdk::Drop> {
         unsafe { from_glib_none(ffi::gtk_drop_target_get_current_drop(self.to_glib_none().0)) }
     }
@@ -70,6 +71,7 @@ impl DropTarget {
 
     #[doc(alias = "gtk_drop_target_get_preload")]
     #[doc(alias = "get_preload")]
+    #[doc(alias = "preload")]
     pub fn is_preload(&self) -> bool {
         unsafe { from_glib(ffi::gtk_drop_target_get_preload(self.to_glib_none().0)) }
     }
@@ -88,6 +90,7 @@ impl DropTarget {
     }
 
     #[doc(alias = "gtk_drop_target_set_actions")]
+    #[doc(alias = "actions")]
     pub fn set_actions(&self, actions: gdk::DragAction) {
         unsafe {
             ffi::gtk_drop_target_set_actions(self.to_glib_none().0, actions.into_glib());
@@ -95,6 +98,7 @@ impl DropTarget {
     }
 
     #[doc(alias = "gtk_drop_target_set_preload")]
+    #[doc(alias = "preload")]
     pub fn set_preload(&self, preload: bool) {
         unsafe {
             ffi::gtk_drop_target_set_preload(self.to_glib_none().0, preload.into_glib());

@@ -55,6 +55,7 @@ impl SingleSelection {
 
     #[doc(alias = "gtk_single_selection_get_autoselect")]
     #[doc(alias = "get_autoselect")]
+    #[doc(alias = "autoselect")]
     pub fn is_autoselect(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_single_selection_get_autoselect(
@@ -65,6 +66,7 @@ impl SingleSelection {
 
     #[doc(alias = "gtk_single_selection_get_can_unselect")]
     #[doc(alias = "get_can_unselect")]
+    #[doc(alias = "can-unselect")]
     pub fn can_unselect(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_single_selection_get_can_unselect(
@@ -87,6 +89,7 @@ impl SingleSelection {
 
     #[doc(alias = "gtk_single_selection_get_selected_item")]
     #[doc(alias = "get_selected_item")]
+    #[doc(alias = "selected-item")]
     pub fn selected_item(&self) -> Option<glib::Object> {
         unsafe {
             from_glib_none(ffi::gtk_single_selection_get_selected_item(
@@ -96,6 +99,7 @@ impl SingleSelection {
     }
 
     #[doc(alias = "gtk_single_selection_set_autoselect")]
+    #[doc(alias = "autoselect")]
     pub fn set_autoselect(&self, autoselect: bool) {
         unsafe {
             ffi::gtk_single_selection_set_autoselect(self.to_glib_none().0, autoselect.into_glib());
@@ -103,6 +107,7 @@ impl SingleSelection {
     }
 
     #[doc(alias = "gtk_single_selection_set_can_unselect")]
+    #[doc(alias = "can-unselect")]
     pub fn set_can_unselect(&self, can_unselect: bool) {
         unsafe {
             ffi::gtk_single_selection_set_can_unselect(
@@ -113,6 +118,7 @@ impl SingleSelection {
     }
 
     #[doc(alias = "gtk_single_selection_set_model")]
+    #[doc(alias = "model")]
     pub fn set_model(&self, model: Option<&impl IsA<gio::ListModel>>) {
         unsafe {
             ffi::gtk_single_selection_set_model(
@@ -123,6 +129,7 @@ impl SingleSelection {
     }
 
     #[doc(alias = "gtk_single_selection_set_selected")]
+    #[doc(alias = "selected")]
     pub fn set_selected(&self, position: u32) {
         unsafe {
             ffi::gtk_single_selection_set_selected(self.to_glib_none().0, position);

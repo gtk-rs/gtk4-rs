@@ -83,6 +83,7 @@ impl Overlay {
     }
 
     #[doc(alias = "gtk_overlay_set_child")]
+    #[doc(alias = "child")]
     pub fn set_child(&self, child: Option<&impl IsA<Widget>>) {
         unsafe {
             ffi::gtk_overlay_set_child(

@@ -300,6 +300,7 @@ pub trait TextBufferExt: IsA<TextBuffer> + sealed::Sealed + 'static {
 
     #[doc(alias = "gtk_text_buffer_get_can_redo")]
     #[doc(alias = "get_can_redo")]
+    #[doc(alias = "can-redo")]
     fn can_redo(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_text_buffer_get_can_redo(
@@ -310,6 +311,7 @@ pub trait TextBufferExt: IsA<TextBuffer> + sealed::Sealed + 'static {
 
     #[doc(alias = "gtk_text_buffer_get_can_undo")]
     #[doc(alias = "get_can_undo")]
+    #[doc(alias = "can-undo")]
     fn can_undo(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_text_buffer_get_can_undo(
@@ -326,6 +328,7 @@ pub trait TextBufferExt: IsA<TextBuffer> + sealed::Sealed + 'static {
 
     #[doc(alias = "gtk_text_buffer_get_enable_undo")]
     #[doc(alias = "get_enable_undo")]
+    #[doc(alias = "enable-undo")]
     fn enables_undo(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_text_buffer_get_enable_undo(
@@ -349,6 +352,7 @@ pub trait TextBufferExt: IsA<TextBuffer> + sealed::Sealed + 'static {
 
     #[doc(alias = "gtk_text_buffer_get_has_selection")]
     #[doc(alias = "get_has_selection")]
+    #[doc(alias = "has-selection")]
     fn has_selection(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_text_buffer_get_has_selection(
@@ -564,6 +568,7 @@ pub trait TextBufferExt: IsA<TextBuffer> + sealed::Sealed + 'static {
 
     #[doc(alias = "gtk_text_buffer_get_tag_table")]
     #[doc(alias = "get_tag_table")]
+    #[doc(alias = "tag-table")]
     fn tag_table(&self) -> TextTagTable {
         unsafe {
             from_glib_none(ffi::gtk_text_buffer_get_tag_table(
@@ -816,6 +821,7 @@ pub trait TextBufferExt: IsA<TextBuffer> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_text_buffer_set_enable_undo")]
+    #[doc(alias = "enable-undo")]
     fn set_enable_undo(&self, enable_undo: bool) {
         unsafe {
             ffi::gtk_text_buffer_set_enable_undo(
@@ -843,6 +849,7 @@ pub trait TextBufferExt: IsA<TextBuffer> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_text_buffer_set_text")]
+    #[doc(alias = "text")]
     fn set_text(&self, text: &str) {
         let len = text.len() as _;
         unsafe {

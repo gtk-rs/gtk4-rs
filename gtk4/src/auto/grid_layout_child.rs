@@ -28,6 +28,7 @@ impl GridLayoutChild {
 
     #[doc(alias = "gtk_grid_layout_child_get_column_span")]
     #[doc(alias = "get_column_span")]
+    #[doc(alias = "column-span")]
     pub fn column_span(&self) -> i32 {
         unsafe { ffi::gtk_grid_layout_child_get_column_span(self.to_glib_none().0) }
     }
@@ -40,11 +41,13 @@ impl GridLayoutChild {
 
     #[doc(alias = "gtk_grid_layout_child_get_row_span")]
     #[doc(alias = "get_row_span")]
+    #[doc(alias = "row-span")]
     pub fn row_span(&self) -> i32 {
         unsafe { ffi::gtk_grid_layout_child_get_row_span(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_grid_layout_child_set_column")]
+    #[doc(alias = "column")]
     pub fn set_column(&self, column: i32) {
         unsafe {
             ffi::gtk_grid_layout_child_set_column(self.to_glib_none().0, column);
@@ -52,6 +55,7 @@ impl GridLayoutChild {
     }
 
     #[doc(alias = "gtk_grid_layout_child_set_column_span")]
+    #[doc(alias = "column-span")]
     pub fn set_column_span(&self, span: i32) {
         unsafe {
             ffi::gtk_grid_layout_child_set_column_span(self.to_glib_none().0, span);
@@ -59,6 +63,7 @@ impl GridLayoutChild {
     }
 
     #[doc(alias = "gtk_grid_layout_child_set_row")]
+    #[doc(alias = "row")]
     pub fn set_row(&self, row: i32) {
         unsafe {
             ffi::gtk_grid_layout_child_set_row(self.to_glib_none().0, row);
@@ -66,6 +71,7 @@ impl GridLayoutChild {
     }
 
     #[doc(alias = "gtk_grid_layout_child_set_row_span")]
+    #[doc(alias = "row-span")]
     pub fn set_row_span(&self, span: i32) {
         unsafe {
             ffi::gtk_grid_layout_child_set_row_span(self.to_glib_none().0, span);

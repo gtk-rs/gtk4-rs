@@ -36,6 +36,7 @@ impl MessageDialog {
     #[allow(deprecated)]
     #[doc(alias = "gtk_message_dialog_get_message_area")]
     #[doc(alias = "get_message_area")]
+    #[doc(alias = "message-area")]
     pub fn message_area(&self) -> Widget {
         unsafe {
             from_glib_none(ffi::gtk_message_dialog_get_message_area(

@@ -82,6 +82,7 @@ impl FlowBox {
 
     #[doc(alias = "gtk_flow_box_get_activate_on_single_click")]
     #[doc(alias = "get_activate_on_single_click")]
+    #[doc(alias = "activate-on-single-click")]
     pub fn activates_on_single_click(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_flow_box_get_activate_on_single_click(
@@ -115,30 +116,35 @@ impl FlowBox {
 
     #[doc(alias = "gtk_flow_box_get_column_spacing")]
     #[doc(alias = "get_column_spacing")]
+    #[doc(alias = "column-spacing")]
     pub fn column_spacing(&self) -> u32 {
         unsafe { ffi::gtk_flow_box_get_column_spacing(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_flow_box_get_homogeneous")]
     #[doc(alias = "get_homogeneous")]
+    #[doc(alias = "homogeneous")]
     pub fn is_homogeneous(&self) -> bool {
         unsafe { from_glib(ffi::gtk_flow_box_get_homogeneous(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_flow_box_get_max_children_per_line")]
     #[doc(alias = "get_max_children_per_line")]
+    #[doc(alias = "max-children-per-line")]
     pub fn max_children_per_line(&self) -> u32 {
         unsafe { ffi::gtk_flow_box_get_max_children_per_line(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_flow_box_get_min_children_per_line")]
     #[doc(alias = "get_min_children_per_line")]
+    #[doc(alias = "min-children-per-line")]
     pub fn min_children_per_line(&self) -> u32 {
         unsafe { ffi::gtk_flow_box_get_min_children_per_line(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_flow_box_get_row_spacing")]
     #[doc(alias = "get_row_spacing")]
+    #[doc(alias = "row-spacing")]
     pub fn row_spacing(&self) -> u32 {
         unsafe { ffi::gtk_flow_box_get_row_spacing(self.to_glib_none().0) }
     }
@@ -155,6 +161,7 @@ impl FlowBox {
 
     #[doc(alias = "gtk_flow_box_get_selection_mode")]
     #[doc(alias = "get_selection_mode")]
+    #[doc(alias = "selection-mode")]
     pub fn selection_mode(&self) -> SelectionMode {
         unsafe { from_glib(ffi::gtk_flow_box_get_selection_mode(self.to_glib_none().0)) }
     }
@@ -248,6 +255,7 @@ impl FlowBox {
     }
 
     #[doc(alias = "gtk_flow_box_set_activate_on_single_click")]
+    #[doc(alias = "activate-on-single-click")]
     pub fn set_activate_on_single_click(&self, single: bool) {
         unsafe {
             ffi::gtk_flow_box_set_activate_on_single_click(
@@ -258,6 +266,7 @@ impl FlowBox {
     }
 
     #[doc(alias = "gtk_flow_box_set_column_spacing")]
+    #[doc(alias = "column-spacing")]
     pub fn set_column_spacing(&self, spacing: u32) {
         unsafe {
             ffi::gtk_flow_box_set_column_spacing(self.to_glib_none().0, spacing);
@@ -304,6 +313,7 @@ impl FlowBox {
     }
 
     #[doc(alias = "gtk_flow_box_set_homogeneous")]
+    #[doc(alias = "homogeneous")]
     pub fn set_homogeneous(&self, homogeneous: bool) {
         unsafe {
             ffi::gtk_flow_box_set_homogeneous(self.to_glib_none().0, homogeneous.into_glib());
@@ -311,6 +321,7 @@ impl FlowBox {
     }
 
     #[doc(alias = "gtk_flow_box_set_max_children_per_line")]
+    #[doc(alias = "max-children-per-line")]
     pub fn set_max_children_per_line(&self, n_children: u32) {
         unsafe {
             ffi::gtk_flow_box_set_max_children_per_line(self.to_glib_none().0, n_children);
@@ -318,6 +329,7 @@ impl FlowBox {
     }
 
     #[doc(alias = "gtk_flow_box_set_min_children_per_line")]
+    #[doc(alias = "min-children-per-line")]
     pub fn set_min_children_per_line(&self, n_children: u32) {
         unsafe {
             ffi::gtk_flow_box_set_min_children_per_line(self.to_glib_none().0, n_children);
@@ -325,6 +337,7 @@ impl FlowBox {
     }
 
     #[doc(alias = "gtk_flow_box_set_row_spacing")]
+    #[doc(alias = "row-spacing")]
     pub fn set_row_spacing(&self, spacing: u32) {
         unsafe {
             ffi::gtk_flow_box_set_row_spacing(self.to_glib_none().0, spacing);
@@ -332,6 +345,7 @@ impl FlowBox {
     }
 
     #[doc(alias = "gtk_flow_box_set_selection_mode")]
+    #[doc(alias = "selection-mode")]
     pub fn set_selection_mode(&self, mode: SelectionMode) {
         unsafe {
             ffi::gtk_flow_box_set_selection_mode(self.to_glib_none().0, mode.into_glib());

@@ -75,18 +75,21 @@ impl LevelBar {
 
     #[doc(alias = "gtk_level_bar_get_inverted")]
     #[doc(alias = "get_inverted")]
+    #[doc(alias = "inverted")]
     pub fn is_inverted(&self) -> bool {
         unsafe { from_glib(ffi::gtk_level_bar_get_inverted(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_level_bar_get_max_value")]
     #[doc(alias = "get_max_value")]
+    #[doc(alias = "max-value")]
     pub fn max_value(&self) -> f64 {
         unsafe { ffi::gtk_level_bar_get_max_value(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_level_bar_get_min_value")]
     #[doc(alias = "get_min_value")]
+    #[doc(alias = "min-value")]
     pub fn min_value(&self) -> f64 {
         unsafe { ffi::gtk_level_bar_get_min_value(self.to_glib_none().0) }
     }
@@ -129,6 +132,7 @@ impl LevelBar {
     }
 
     #[doc(alias = "gtk_level_bar_set_inverted")]
+    #[doc(alias = "inverted")]
     pub fn set_inverted(&self, inverted: bool) {
         unsafe {
             ffi::gtk_level_bar_set_inverted(self.to_glib_none().0, inverted.into_glib());
@@ -136,6 +140,7 @@ impl LevelBar {
     }
 
     #[doc(alias = "gtk_level_bar_set_max_value")]
+    #[doc(alias = "max-value")]
     pub fn set_max_value(&self, value: f64) {
         unsafe {
             ffi::gtk_level_bar_set_max_value(self.to_glib_none().0, value);
@@ -143,6 +148,7 @@ impl LevelBar {
     }
 
     #[doc(alias = "gtk_level_bar_set_min_value")]
+    #[doc(alias = "min-value")]
     pub fn set_min_value(&self, value: f64) {
         unsafe {
             ffi::gtk_level_bar_set_min_value(self.to_glib_none().0, value);
@@ -150,6 +156,7 @@ impl LevelBar {
     }
 
     #[doc(alias = "gtk_level_bar_set_mode")]
+    #[doc(alias = "mode")]
     pub fn set_mode(&self, mode: LevelBarMode) {
         unsafe {
             ffi::gtk_level_bar_set_mode(self.to_glib_none().0, mode.into_glib());
@@ -157,6 +164,7 @@ impl LevelBar {
     }
 
     #[doc(alias = "gtk_level_bar_set_value")]
+    #[doc(alias = "value")]
     pub fn set_value(&self, value: f64) {
         unsafe {
             ffi::gtk_level_bar_set_value(self.to_glib_none().0, value);

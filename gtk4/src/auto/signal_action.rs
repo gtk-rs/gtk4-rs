@@ -23,6 +23,7 @@ impl SignalAction {
 
     #[doc(alias = "gtk_signal_action_get_signal_name")]
     #[doc(alias = "get_signal_name")]
+    #[doc(alias = "signal-name")]
     pub fn signal_name(&self) -> glib::GString {
         unsafe {
             from_glib_none(ffi::gtk_signal_action_get_signal_name(

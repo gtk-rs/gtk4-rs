@@ -30,6 +30,7 @@ impl ColumnViewRow {
 
     #[doc(alias = "gtk_column_view_row_get_accessible_description")]
     #[doc(alias = "get_accessible_description")]
+    #[doc(alias = "accessible-description")]
     pub fn accessible_description(&self) -> glib::GString {
         unsafe {
             from_glib_none(ffi::gtk_column_view_row_get_accessible_description(
@@ -40,6 +41,7 @@ impl ColumnViewRow {
 
     #[doc(alias = "gtk_column_view_row_get_accessible_label")]
     #[doc(alias = "get_accessible_label")]
+    #[doc(alias = "accessible-label")]
     pub fn accessible_label(&self) -> glib::GString {
         unsafe {
             from_glib_none(ffi::gtk_column_view_row_get_accessible_label(
@@ -50,6 +52,7 @@ impl ColumnViewRow {
 
     #[doc(alias = "gtk_column_view_row_get_activatable")]
     #[doc(alias = "get_activatable")]
+    #[doc(alias = "activatable")]
     pub fn is_activatable(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_column_view_row_get_activatable(
@@ -60,6 +63,7 @@ impl ColumnViewRow {
 
     #[doc(alias = "gtk_column_view_row_get_focusable")]
     #[doc(alias = "get_focusable")]
+    #[doc(alias = "focusable")]
     pub fn is_focusable(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_column_view_row_get_focusable(
@@ -82,6 +86,7 @@ impl ColumnViewRow {
 
     #[doc(alias = "gtk_column_view_row_get_selectable")]
     #[doc(alias = "get_selectable")]
+    #[doc(alias = "selectable")]
     pub fn is_selectable(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_column_view_row_get_selectable(
@@ -92,11 +97,13 @@ impl ColumnViewRow {
 
     #[doc(alias = "gtk_column_view_row_get_selected")]
     #[doc(alias = "get_selected")]
+    #[doc(alias = "selected")]
     pub fn is_selected(&self) -> bool {
         unsafe { from_glib(ffi::gtk_column_view_row_get_selected(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_column_view_row_set_accessible_description")]
+    #[doc(alias = "accessible-description")]
     pub fn set_accessible_description(&self, description: &str) {
         unsafe {
             ffi::gtk_column_view_row_set_accessible_description(
@@ -107,6 +114,7 @@ impl ColumnViewRow {
     }
 
     #[doc(alias = "gtk_column_view_row_set_accessible_label")]
+    #[doc(alias = "accessible-label")]
     pub fn set_accessible_label(&self, label: &str) {
         unsafe {
             ffi::gtk_column_view_row_set_accessible_label(
@@ -117,6 +125,7 @@ impl ColumnViewRow {
     }
 
     #[doc(alias = "gtk_column_view_row_set_activatable")]
+    #[doc(alias = "activatable")]
     pub fn set_activatable(&self, activatable: bool) {
         unsafe {
             ffi::gtk_column_view_row_set_activatable(
@@ -127,6 +136,7 @@ impl ColumnViewRow {
     }
 
     #[doc(alias = "gtk_column_view_row_set_focusable")]
+    #[doc(alias = "focusable")]
     pub fn set_focusable(&self, focusable: bool) {
         unsafe {
             ffi::gtk_column_view_row_set_focusable(self.to_glib_none().0, focusable.into_glib());
@@ -134,6 +144,7 @@ impl ColumnViewRow {
     }
 
     #[doc(alias = "gtk_column_view_row_set_selectable")]
+    #[doc(alias = "selectable")]
     pub fn set_selectable(&self, selectable: bool) {
         unsafe {
             ffi::gtk_column_view_row_set_selectable(self.to_glib_none().0, selectable.into_glib());

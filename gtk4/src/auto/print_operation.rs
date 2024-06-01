@@ -194,6 +194,7 @@ pub trait PrintOperationExt: IsA<PrintOperation> + sealed::Sealed + 'static {
 
     #[doc(alias = "gtk_print_operation_get_default_page_setup")]
     #[doc(alias = "get_default_page_setup")]
+    #[doc(alias = "default-page-setup")]
     fn default_page_setup(&self) -> PageSetup {
         unsafe {
             from_glib_none(ffi::gtk_print_operation_get_default_page_setup(
@@ -204,6 +205,7 @@ pub trait PrintOperationExt: IsA<PrintOperation> + sealed::Sealed + 'static {
 
     #[doc(alias = "gtk_print_operation_get_embed_page_setup")]
     #[doc(alias = "get_embed_page_setup")]
+    #[doc(alias = "embed-page-setup")]
     fn embeds_page_setup(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_print_operation_get_embed_page_setup(
@@ -214,6 +216,7 @@ pub trait PrintOperationExt: IsA<PrintOperation> + sealed::Sealed + 'static {
 
     #[doc(alias = "gtk_print_operation_get_has_selection")]
     #[doc(alias = "get_has_selection")]
+    #[doc(alias = "has-selection")]
     fn has_selection(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_print_operation_get_has_selection(
@@ -224,12 +227,14 @@ pub trait PrintOperationExt: IsA<PrintOperation> + sealed::Sealed + 'static {
 
     #[doc(alias = "gtk_print_operation_get_n_pages_to_print")]
     #[doc(alias = "get_n_pages_to_print")]
+    #[doc(alias = "n-pages-to-print")]
     fn n_pages_to_print(&self) -> i32 {
         unsafe { ffi::gtk_print_operation_get_n_pages_to_print(self.as_ref().to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_print_operation_get_print_settings")]
     #[doc(alias = "get_print_settings")]
+    #[doc(alias = "print-settings")]
     fn print_settings(&self) -> Option<PrintSettings> {
         unsafe {
             from_glib_none(ffi::gtk_print_operation_get_print_settings(
@@ -250,6 +255,7 @@ pub trait PrintOperationExt: IsA<PrintOperation> + sealed::Sealed + 'static {
 
     #[doc(alias = "gtk_print_operation_get_status_string")]
     #[doc(alias = "get_status_string")]
+    #[doc(alias = "status-string")]
     fn status_string(&self) -> glib::GString {
         unsafe {
             from_glib_none(ffi::gtk_print_operation_get_status_string(
@@ -260,6 +266,7 @@ pub trait PrintOperationExt: IsA<PrintOperation> + sealed::Sealed + 'static {
 
     #[doc(alias = "gtk_print_operation_get_support_selection")]
     #[doc(alias = "get_support_selection")]
+    #[doc(alias = "support-selection")]
     fn supports_selection(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_print_operation_get_support_selection(
@@ -300,6 +307,7 @@ pub trait PrintOperationExt: IsA<PrintOperation> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_print_operation_set_allow_async")]
+    #[doc(alias = "allow-async")]
     fn set_allow_async(&self, allow_async: bool) {
         unsafe {
             ffi::gtk_print_operation_set_allow_async(
@@ -310,6 +318,7 @@ pub trait PrintOperationExt: IsA<PrintOperation> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_print_operation_set_current_page")]
+    #[doc(alias = "current-page")]
     fn set_current_page(&self, current_page: i32) {
         unsafe {
             ffi::gtk_print_operation_set_current_page(self.as_ref().to_glib_none().0, current_page);
@@ -317,6 +326,7 @@ pub trait PrintOperationExt: IsA<PrintOperation> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_print_operation_set_custom_tab_label")]
+    #[doc(alias = "custom-tab-label")]
     fn set_custom_tab_label(&self, label: Option<&str>) {
         unsafe {
             ffi::gtk_print_operation_set_custom_tab_label(
@@ -327,6 +337,7 @@ pub trait PrintOperationExt: IsA<PrintOperation> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_print_operation_set_default_page_setup")]
+    #[doc(alias = "default-page-setup")]
     fn set_default_page_setup(&self, default_page_setup: Option<&PageSetup>) {
         unsafe {
             ffi::gtk_print_operation_set_default_page_setup(
@@ -344,6 +355,7 @@ pub trait PrintOperationExt: IsA<PrintOperation> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_print_operation_set_embed_page_setup")]
+    #[doc(alias = "embed-page-setup")]
     fn set_embed_page_setup(&self, embed: bool) {
         unsafe {
             ffi::gtk_print_operation_set_embed_page_setup(
@@ -354,6 +366,7 @@ pub trait PrintOperationExt: IsA<PrintOperation> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_print_operation_set_export_filename")]
+    #[doc(alias = "export-filename")]
     fn set_export_filename(&self, filename: impl AsRef<std::path::Path>) {
         unsafe {
             ffi::gtk_print_operation_set_export_filename(
@@ -364,6 +377,7 @@ pub trait PrintOperationExt: IsA<PrintOperation> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_print_operation_set_has_selection")]
+    #[doc(alias = "has-selection")]
     fn set_has_selection(&self, has_selection: bool) {
         unsafe {
             ffi::gtk_print_operation_set_has_selection(
@@ -374,6 +388,7 @@ pub trait PrintOperationExt: IsA<PrintOperation> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_print_operation_set_job_name")]
+    #[doc(alias = "job-name")]
     fn set_job_name(&self, job_name: &str) {
         unsafe {
             ffi::gtk_print_operation_set_job_name(
@@ -384,6 +399,7 @@ pub trait PrintOperationExt: IsA<PrintOperation> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_print_operation_set_n_pages")]
+    #[doc(alias = "n-pages")]
     fn set_n_pages(&self, n_pages: i32) {
         unsafe {
             ffi::gtk_print_operation_set_n_pages(self.as_ref().to_glib_none().0, n_pages);
@@ -391,6 +407,7 @@ pub trait PrintOperationExt: IsA<PrintOperation> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_print_operation_set_print_settings")]
+    #[doc(alias = "print-settings")]
     fn set_print_settings(&self, print_settings: Option<&PrintSettings>) {
         unsafe {
             ffi::gtk_print_operation_set_print_settings(
@@ -401,6 +418,7 @@ pub trait PrintOperationExt: IsA<PrintOperation> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_print_operation_set_show_progress")]
+    #[doc(alias = "show-progress")]
     fn set_show_progress(&self, show_progress: bool) {
         unsafe {
             ffi::gtk_print_operation_set_show_progress(
@@ -411,6 +429,7 @@ pub trait PrintOperationExt: IsA<PrintOperation> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_print_operation_set_support_selection")]
+    #[doc(alias = "support-selection")]
     fn set_support_selection(&self, support_selection: bool) {
         unsafe {
             ffi::gtk_print_operation_set_support_selection(
@@ -421,6 +440,7 @@ pub trait PrintOperationExt: IsA<PrintOperation> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_print_operation_set_track_print_status")]
+    #[doc(alias = "track-print-status")]
     fn set_track_print_status(&self, track_status: bool) {
         unsafe {
             ffi::gtk_print_operation_set_track_print_status(
@@ -431,6 +451,7 @@ pub trait PrintOperationExt: IsA<PrintOperation> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_print_operation_set_unit")]
+    #[doc(alias = "unit")]
     fn set_unit(&self, unit: Unit) {
         unsafe {
             ffi::gtk_print_operation_set_unit(self.as_ref().to_glib_none().0, unit.into_glib());
@@ -438,6 +459,7 @@ pub trait PrintOperationExt: IsA<PrintOperation> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_print_operation_set_use_full_page")]
+    #[doc(alias = "use-full-page")]
     fn set_use_full_page(&self, full_page: bool) {
         unsafe {
             ffi::gtk_print_operation_set_use_full_page(

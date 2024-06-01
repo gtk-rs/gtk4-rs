@@ -52,6 +52,7 @@ impl FontDialogButton {
 
     #[doc(alias = "gtk_font_dialog_button_get_font_desc")]
     #[doc(alias = "get_font_desc")]
+    #[doc(alias = "font-desc")]
     pub fn font_desc(&self) -> Option<pango::FontDescription> {
         unsafe {
             from_glib_none(ffi::gtk_font_dialog_button_get_font_desc(
@@ -62,6 +63,7 @@ impl FontDialogButton {
 
     #[doc(alias = "gtk_font_dialog_button_get_font_features")]
     #[doc(alias = "get_font_features")]
+    #[doc(alias = "font-features")]
     pub fn font_features(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::gtk_font_dialog_button_get_font_features(
@@ -88,6 +90,7 @@ impl FontDialogButton {
 
     #[doc(alias = "gtk_font_dialog_button_get_use_font")]
     #[doc(alias = "get_use_font")]
+    #[doc(alias = "use-font")]
     pub fn uses_font(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_font_dialog_button_get_use_font(
@@ -98,6 +101,7 @@ impl FontDialogButton {
 
     #[doc(alias = "gtk_font_dialog_button_get_use_size")]
     #[doc(alias = "get_use_size")]
+    #[doc(alias = "use-size")]
     pub fn uses_size(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_font_dialog_button_get_use_size(
@@ -107,6 +111,7 @@ impl FontDialogButton {
     }
 
     #[doc(alias = "gtk_font_dialog_button_set_dialog")]
+    #[doc(alias = "dialog")]
     pub fn set_dialog(&self, dialog: &FontDialog) {
         unsafe {
             ffi::gtk_font_dialog_button_set_dialog(self.to_glib_none().0, dialog.to_glib_none().0);
@@ -114,6 +119,7 @@ impl FontDialogButton {
     }
 
     #[doc(alias = "gtk_font_dialog_button_set_font_desc")]
+    #[doc(alias = "font-desc")]
     pub fn set_font_desc(&self, font_desc: &pango::FontDescription) {
         unsafe {
             ffi::gtk_font_dialog_button_set_font_desc(
@@ -124,6 +130,7 @@ impl FontDialogButton {
     }
 
     #[doc(alias = "gtk_font_dialog_button_set_font_features")]
+    #[doc(alias = "font-features")]
     pub fn set_font_features(&self, font_features: Option<&str>) {
         unsafe {
             ffi::gtk_font_dialog_button_set_font_features(
@@ -134,6 +141,7 @@ impl FontDialogButton {
     }
 
     #[doc(alias = "gtk_font_dialog_button_set_language")]
+    #[doc(alias = "language")]
     pub fn set_language(&self, language: Option<&pango::Language>) {
         unsafe {
             ffi::gtk_font_dialog_button_set_language(
@@ -144,6 +152,7 @@ impl FontDialogButton {
     }
 
     #[doc(alias = "gtk_font_dialog_button_set_level")]
+    #[doc(alias = "level")]
     pub fn set_level(&self, level: FontLevel) {
         unsafe {
             ffi::gtk_font_dialog_button_set_level(self.to_glib_none().0, level.into_glib());
@@ -151,6 +160,7 @@ impl FontDialogButton {
     }
 
     #[doc(alias = "gtk_font_dialog_button_set_use_font")]
+    #[doc(alias = "use-font")]
     pub fn set_use_font(&self, use_font: bool) {
         unsafe {
             ffi::gtk_font_dialog_button_set_use_font(self.to_glib_none().0, use_font.into_glib());
@@ -158,38 +168,11 @@ impl FontDialogButton {
     }
 
     #[doc(alias = "gtk_font_dialog_button_set_use_size")]
+    #[doc(alias = "use-size")]
     pub fn set_use_size(&self, use_size: bool) {
         unsafe {
             ffi::gtk_font_dialog_button_set_use_size(self.to_glib_none().0, use_size.into_glib());
         }
-    }
-
-    pub fn get_property_level(&self) -> FontLevel {
-        ObjectExt::property(self, "level")
-    }
-
-    pub fn set_property_level(&self, level: FontLevel) {
-        ObjectExt::set_property(self, "level", level)
-    }
-
-    #[doc(alias = "use-font")]
-    pub fn get_property_use_font(&self) -> bool {
-        ObjectExt::property(self, "use-font")
-    }
-
-    #[doc(alias = "use-font")]
-    pub fn set_property_use_font(&self, use_font: bool) {
-        ObjectExt::set_property(self, "use-font", use_font)
-    }
-
-    #[doc(alias = "use-size")]
-    pub fn get_property_use_size(&self) -> bool {
-        ObjectExt::property(self, "use-size")
-    }
-
-    #[doc(alias = "use-size")]
-    pub fn set_property_use_size(&self, use_size: bool) {
-        ObjectExt::set_property(self, "use-size", use_size)
     }
 
     #[cfg(feature = "v4_14")]

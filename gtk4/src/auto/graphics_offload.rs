@@ -46,6 +46,7 @@ impl GraphicsOffload {
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
     #[doc(alias = "gtk_graphics_offload_get_black_background")]
     #[doc(alias = "get_black_background")]
+    #[doc(alias = "black-background")]
     pub fn is_black_background(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_graphics_offload_get_black_background(
@@ -69,6 +70,7 @@ impl GraphicsOffload {
     #[cfg(feature = "v4_16")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
     #[doc(alias = "gtk_graphics_offload_set_black_background")]
+    #[doc(alias = "black-background")]
     pub fn set_black_background(&self, value: bool) {
         unsafe {
             ffi::gtk_graphics_offload_set_black_background(
@@ -79,6 +81,7 @@ impl GraphicsOffload {
     }
 
     #[doc(alias = "gtk_graphics_offload_set_child")]
+    #[doc(alias = "child")]
     pub fn set_child(&self, child: Option<&impl IsA<Widget>>) {
         unsafe {
             ffi::gtk_graphics_offload_set_child(
@@ -89,6 +92,7 @@ impl GraphicsOffload {
     }
 
     #[doc(alias = "gtk_graphics_offload_set_enabled")]
+    #[doc(alias = "enabled")]
     pub fn set_enabled(&self, enabled: GraphicsOffloadEnabled) {
         unsafe {
             ffi::gtk_graphics_offload_set_enabled(self.to_glib_none().0, enabled.into_glib());

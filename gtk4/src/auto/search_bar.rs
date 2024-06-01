@@ -55,6 +55,7 @@ impl SearchBar {
 
     #[doc(alias = "gtk_search_bar_get_key_capture_widget")]
     #[doc(alias = "get_key_capture_widget")]
+    #[doc(alias = "key-capture-widget")]
     pub fn key_capture_widget(&self) -> Option<Widget> {
         unsafe {
             from_glib_none(ffi::gtk_search_bar_get_key_capture_widget(
@@ -65,12 +66,14 @@ impl SearchBar {
 
     #[doc(alias = "gtk_search_bar_get_search_mode")]
     #[doc(alias = "get_search_mode")]
+    #[doc(alias = "search-mode-enabled")]
     pub fn is_search_mode(&self) -> bool {
         unsafe { from_glib(ffi::gtk_search_bar_get_search_mode(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_search_bar_get_show_close_button")]
     #[doc(alias = "get_show_close_button")]
+    #[doc(alias = "show-close-button")]
     pub fn shows_close_button(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_search_bar_get_show_close_button(
@@ -80,6 +83,7 @@ impl SearchBar {
     }
 
     #[doc(alias = "gtk_search_bar_set_child")]
+    #[doc(alias = "child")]
     pub fn set_child(&self, child: Option<&impl IsA<Widget>>) {
         unsafe {
             ffi::gtk_search_bar_set_child(
@@ -90,6 +94,7 @@ impl SearchBar {
     }
 
     #[doc(alias = "gtk_search_bar_set_key_capture_widget")]
+    #[doc(alias = "key-capture-widget")]
     pub fn set_key_capture_widget(&self, widget: Option<&impl IsA<Widget>>) {
         unsafe {
             ffi::gtk_search_bar_set_key_capture_widget(
@@ -100,6 +105,7 @@ impl SearchBar {
     }
 
     #[doc(alias = "gtk_search_bar_set_search_mode")]
+    #[doc(alias = "search-mode-enabled")]
     pub fn set_search_mode(&self, search_mode: bool) {
         unsafe {
             ffi::gtk_search_bar_set_search_mode(self.to_glib_none().0, search_mode.into_glib());
@@ -107,6 +113,7 @@ impl SearchBar {
     }
 
     #[doc(alias = "gtk_search_bar_set_show_close_button")]
+    #[doc(alias = "show-close-button")]
     pub fn set_show_close_button(&self, visible: bool) {
         unsafe {
             ffi::gtk_search_bar_set_show_close_button(self.to_glib_none().0, visible.into_glib());

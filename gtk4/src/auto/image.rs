@@ -125,12 +125,14 @@ impl Image {
 
     #[doc(alias = "gtk_image_get_icon_name")]
     #[doc(alias = "get_icon_name")]
+    #[doc(alias = "icon-name")]
     pub fn icon_name(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::gtk_image_get_icon_name(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_image_get_icon_size")]
     #[doc(alias = "get_icon_size")]
+    #[doc(alias = "icon-size")]
     pub fn icon_size(&self) -> IconSize {
         unsafe { from_glib(ffi::gtk_image_get_icon_size(self.to_glib_none().0)) }
     }
@@ -143,17 +145,20 @@ impl Image {
 
     #[doc(alias = "gtk_image_get_pixel_size")]
     #[doc(alias = "get_pixel_size")]
+    #[doc(alias = "pixel-size")]
     pub fn pixel_size(&self) -> i32 {
         unsafe { ffi::gtk_image_get_pixel_size(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_image_get_storage_type")]
     #[doc(alias = "get_storage_type")]
+    #[doc(alias = "storage-type")]
     pub fn storage_type(&self) -> ImageType {
         unsafe { from_glib(ffi::gtk_image_get_storage_type(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_image_set_from_file")]
+    #[doc(alias = "file")]
     pub fn set_from_file(&self, filename: Option<impl AsRef<std::path::Path>>) {
         unsafe {
             ffi::gtk_image_set_from_file(
@@ -164,6 +169,7 @@ impl Image {
     }
 
     #[doc(alias = "gtk_image_set_from_gicon")]
+    #[doc(alias = "gicon")]
     pub fn set_from_gicon(&self, icon: &impl IsA<gio::Icon>) {
         unsafe {
             ffi::gtk_image_set_from_gicon(self.to_glib_none().0, icon.as_ref().to_glib_none().0);
@@ -171,6 +177,7 @@ impl Image {
     }
 
     #[doc(alias = "gtk_image_set_from_icon_name")]
+    #[doc(alias = "icon-name")]
     pub fn set_from_icon_name(&self, icon_name: Option<&str>) {
         unsafe {
             ffi::gtk_image_set_from_icon_name(self.to_glib_none().0, icon_name.to_glib_none().0);
@@ -178,6 +185,7 @@ impl Image {
     }
 
     #[doc(alias = "gtk_image_set_from_paintable")]
+    #[doc(alias = "paintable")]
     pub fn set_from_paintable(&self, paintable: Option<&impl IsA<gdk::Paintable>>) {
         unsafe {
             ffi::gtk_image_set_from_paintable(
@@ -190,6 +198,7 @@ impl Image {
     #[cfg_attr(feature = "v4_12", deprecated = "Since 4.12")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_image_set_from_pixbuf")]
+    #[doc(alias = "paintable")]
     pub fn set_from_pixbuf(&self, pixbuf: Option<&gdk_pixbuf::Pixbuf>) {
         unsafe {
             ffi::gtk_image_set_from_pixbuf(self.to_glib_none().0, pixbuf.to_glib_none().0);
@@ -197,6 +206,7 @@ impl Image {
     }
 
     #[doc(alias = "gtk_image_set_from_resource")]
+    #[doc(alias = "resource")]
     pub fn set_from_resource(&self, resource_path: Option<&str>) {
         unsafe {
             ffi::gtk_image_set_from_resource(self.to_glib_none().0, resource_path.to_glib_none().0);
@@ -204,6 +214,7 @@ impl Image {
     }
 
     #[doc(alias = "gtk_image_set_icon_size")]
+    #[doc(alias = "icon-size")]
     pub fn set_icon_size(&self, icon_size: IconSize) {
         unsafe {
             ffi::gtk_image_set_icon_size(self.to_glib_none().0, icon_size.into_glib());
@@ -211,6 +222,7 @@ impl Image {
     }
 
     #[doc(alias = "gtk_image_set_pixel_size")]
+    #[doc(alias = "pixel-size")]
     pub fn set_pixel_size(&self, pixel_size: i32) {
         unsafe {
             ffi::gtk_image_set_pixel_size(self.to_glib_none().0, pixel_size);
@@ -221,29 +233,8 @@ impl Image {
         ObjectExt::property(self, "file")
     }
 
-    pub fn set_file(&self, file: Option<&str>) {
-        ObjectExt::set_property(self, "file", file)
-    }
-
-    pub fn set_gicon<P: IsA<gio::Icon>>(&self, gicon: Option<&P>) {
-        ObjectExt::set_property(self, "gicon", gicon)
-    }
-
-    #[doc(alias = "icon-name")]
-    pub fn set_icon_name(&self, icon_name: Option<&str>) {
-        ObjectExt::set_property(self, "icon-name", icon_name)
-    }
-
-    pub fn set_paintable<P: IsA<gdk::Paintable>>(&self, paintable: Option<&P>) {
-        ObjectExt::set_property(self, "paintable", paintable)
-    }
-
     pub fn resource(&self) -> Option<glib::GString> {
         ObjectExt::property(self, "resource")
-    }
-
-    pub fn set_resource(&self, resource: Option<&str>) {
-        ObjectExt::set_property(self, "resource", resource)
     }
 
     #[doc(alias = "use-fallback")]

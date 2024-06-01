@@ -356,6 +356,7 @@ pub trait CellAreaExt: IsA<CellArea> + sealed::Sealed + 'static {
     #[allow(deprecated)]
     #[doc(alias = "gtk_cell_area_get_edit_widget")]
     #[doc(alias = "get_edit_widget")]
+    #[doc(alias = "edit-widget")]
     fn edit_widget(&self) -> Option<CellEditable> {
         unsafe {
             from_glib_none(ffi::gtk_cell_area_get_edit_widget(
@@ -368,6 +369,7 @@ pub trait CellAreaExt: IsA<CellArea> + sealed::Sealed + 'static {
     #[allow(deprecated)]
     #[doc(alias = "gtk_cell_area_get_edited_cell")]
     #[doc(alias = "get_edited_cell")]
+    #[doc(alias = "edited-cell")]
     fn edited_cell(&self) -> Option<CellRenderer> {
         unsafe {
             from_glib_none(ffi::gtk_cell_area_get_edited_cell(
@@ -380,6 +382,7 @@ pub trait CellAreaExt: IsA<CellArea> + sealed::Sealed + 'static {
     #[allow(deprecated)]
     #[doc(alias = "gtk_cell_area_get_focus_cell")]
     #[doc(alias = "get_focus_cell")]
+    #[doc(alias = "focus-cell")]
     fn focus_cell(&self) -> Option<CellRenderer> {
         unsafe {
             from_glib_none(ffi::gtk_cell_area_get_focus_cell(
@@ -638,6 +641,7 @@ pub trait CellAreaExt: IsA<CellArea> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_cell_area_set_focus_cell")]
+    #[doc(alias = "focus-cell")]
     fn set_focus_cell(&self, renderer: Option<&impl IsA<CellRenderer>>) {
         unsafe {
             ffi::gtk_cell_area_set_focus_cell(

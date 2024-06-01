@@ -91,6 +91,7 @@ pub trait FileChooserExt: IsA<FileChooser> + sealed::Sealed + 'static {
     #[allow(deprecated)]
     #[doc(alias = "gtk_file_chooser_get_create_folders")]
     #[doc(alias = "get_create_folders")]
+    #[doc(alias = "create-folders")]
     fn creates_folders(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_file_chooser_get_create_folders(
@@ -175,6 +176,7 @@ pub trait FileChooserExt: IsA<FileChooser> + sealed::Sealed + 'static {
     #[allow(deprecated)]
     #[doc(alias = "gtk_file_chooser_get_select_multiple")]
     #[doc(alias = "get_select_multiple")]
+    #[doc(alias = "select-multiple")]
     fn selects_multiple(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_file_chooser_get_select_multiple(
@@ -187,6 +189,7 @@ pub trait FileChooserExt: IsA<FileChooser> + sealed::Sealed + 'static {
     #[allow(deprecated)]
     #[doc(alias = "gtk_file_chooser_get_shortcut_folders")]
     #[doc(alias = "get_shortcut_folders")]
+    #[doc(alias = "shortcut-folders")]
     fn shortcut_folders(&self) -> gio::ListModel {
         unsafe {
             from_glib_full(ffi::gtk_file_chooser_get_shortcut_folders(
@@ -242,6 +245,7 @@ pub trait FileChooserExt: IsA<FileChooser> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_file_chooser_set_action")]
+    #[doc(alias = "action")]
     fn set_action(&self, action: FileChooserAction) {
         unsafe {
             ffi::gtk_file_chooser_set_action(self.as_ref().to_glib_none().0, action.into_glib());
@@ -264,6 +268,7 @@ pub trait FileChooserExt: IsA<FileChooser> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_file_chooser_set_create_folders")]
+    #[doc(alias = "create-folders")]
     fn set_create_folders(&self, create_folders: bool) {
         unsafe {
             ffi::gtk_file_chooser_set_create_folders(
@@ -308,6 +313,7 @@ pub trait FileChooserExt: IsA<FileChooser> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_file_chooser_set_filter")]
+    #[doc(alias = "filter")]
     fn set_filter(&self, filter: &FileFilter) {
         unsafe {
             ffi::gtk_file_chooser_set_filter(
@@ -320,6 +326,7 @@ pub trait FileChooserExt: IsA<FileChooser> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_file_chooser_set_select_multiple")]
+    #[doc(alias = "select-multiple")]
     fn set_select_multiple(&self, select_multiple: bool) {
         unsafe {
             ffi::gtk_file_chooser_set_select_multiple(

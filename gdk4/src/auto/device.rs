@@ -38,6 +38,7 @@ mod sealed {
 pub trait DeviceExt: IsA<Device> + sealed::Sealed + 'static {
     #[doc(alias = "gdk_device_get_caps_lock_state")]
     #[doc(alias = "get_caps_lock_state")]
+    #[doc(alias = "caps-lock-state")]
     fn is_caps_locked(&self) -> bool {
         unsafe {
             from_glib(ffi::gdk_device_get_caps_lock_state(
@@ -48,6 +49,7 @@ pub trait DeviceExt: IsA<Device> + sealed::Sealed + 'static {
 
     #[doc(alias = "gdk_device_get_device_tool")]
     #[doc(alias = "get_device_tool")]
+    #[doc(alias = "tool")]
     fn device_tool(&self) -> Option<DeviceTool> {
         unsafe {
             from_glib_none(ffi::gdk_device_get_device_tool(
@@ -74,6 +76,7 @@ pub trait DeviceExt: IsA<Device> + sealed::Sealed + 'static {
 
     #[doc(alias = "gdk_device_get_has_cursor")]
     #[doc(alias = "get_has_cursor")]
+    #[doc(alias = "has-cursor")]
     fn has_cursor(&self) -> bool {
         unsafe {
             from_glib(ffi::gdk_device_get_has_cursor(
@@ -84,6 +87,7 @@ pub trait DeviceExt: IsA<Device> + sealed::Sealed + 'static {
 
     #[doc(alias = "gdk_device_get_modifier_state")]
     #[doc(alias = "get_modifier_state")]
+    #[doc(alias = "modifier-state")]
     fn modifier_state(&self) -> ModifierType {
         unsafe {
             from_glib(ffi::gdk_device_get_modifier_state(
@@ -100,6 +104,7 @@ pub trait DeviceExt: IsA<Device> + sealed::Sealed + 'static {
 
     #[doc(alias = "gdk_device_get_num_lock_state")]
     #[doc(alias = "get_num_lock_state")]
+    #[doc(alias = "num-lock-state")]
     fn is_num_locked(&self) -> bool {
         unsafe {
             from_glib(ffi::gdk_device_get_num_lock_state(
@@ -110,12 +115,14 @@ pub trait DeviceExt: IsA<Device> + sealed::Sealed + 'static {
 
     #[doc(alias = "gdk_device_get_num_touches")]
     #[doc(alias = "get_num_touches")]
+    #[doc(alias = "num-touches")]
     fn num_touches(&self) -> u32 {
         unsafe { ffi::gdk_device_get_num_touches(self.as_ref().to_glib_none().0) }
     }
 
     #[doc(alias = "gdk_device_get_product_id")]
     #[doc(alias = "get_product_id")]
+    #[doc(alias = "product-id")]
     fn product_id(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::gdk_device_get_product_id(
@@ -126,6 +133,7 @@ pub trait DeviceExt: IsA<Device> + sealed::Sealed + 'static {
 
     #[doc(alias = "gdk_device_get_scroll_lock_state")]
     #[doc(alias = "get_scroll_lock_state")]
+    #[doc(alias = "scroll-lock-state")]
     fn is_scroll_locked(&self) -> bool {
         unsafe {
             from_glib(ffi::gdk_device_get_scroll_lock_state(
@@ -171,6 +179,7 @@ pub trait DeviceExt: IsA<Device> + sealed::Sealed + 'static {
 
     #[doc(alias = "gdk_device_get_vendor_id")]
     #[doc(alias = "get_vendor_id")]
+    #[doc(alias = "vendor-id")]
     fn vendor_id(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::gdk_device_get_vendor_id(
@@ -180,6 +189,7 @@ pub trait DeviceExt: IsA<Device> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gdk_device_has_bidi_layouts")]
+    #[doc(alias = "has-bidi-layouts")]
     fn has_bidi_layouts(&self) -> bool {
         unsafe {
             from_glib(ffi::gdk_device_has_bidi_layouts(

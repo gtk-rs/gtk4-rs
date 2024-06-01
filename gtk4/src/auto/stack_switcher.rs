@@ -44,6 +44,7 @@ impl StackSwitcher {
     }
 
     #[doc(alias = "gtk_stack_switcher_set_stack")]
+    #[doc(alias = "stack")]
     pub fn set_stack(&self, stack: Option<&Stack>) {
         unsafe {
             ffi::gtk_stack_switcher_set_stack(self.to_glib_none().0, stack.to_glib_none().0);

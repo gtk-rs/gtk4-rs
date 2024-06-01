@@ -119,6 +119,7 @@ pub trait CellRendererExt: IsA<CellRenderer> + sealed::Sealed + 'static {
     #[allow(deprecated)]
     #[doc(alias = "gtk_cell_renderer_get_is_expanded")]
     #[doc(alias = "get_is_expanded")]
+    #[doc(alias = "is-expanded")]
     fn is_expanded(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_cell_renderer_get_is_expanded(
@@ -131,6 +132,7 @@ pub trait CellRendererExt: IsA<CellRenderer> + sealed::Sealed + 'static {
     #[allow(deprecated)]
     #[doc(alias = "gtk_cell_renderer_get_is_expander")]
     #[doc(alias = "get_is_expander")]
+    #[doc(alias = "is-expander")]
     fn is_expander(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_cell_renderer_get_is_expander(
@@ -264,6 +266,7 @@ pub trait CellRendererExt: IsA<CellRenderer> + sealed::Sealed + 'static {
     #[allow(deprecated)]
     #[doc(alias = "gtk_cell_renderer_get_sensitive")]
     #[doc(alias = "get_sensitive")]
+    #[doc(alias = "sensitive")]
     fn is_sensitive(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_cell_renderer_get_sensitive(
@@ -294,6 +297,7 @@ pub trait CellRendererExt: IsA<CellRenderer> + sealed::Sealed + 'static {
     #[allow(deprecated)]
     #[doc(alias = "gtk_cell_renderer_get_visible")]
     #[doc(alias = "get_visible")]
+    #[doc(alias = "visible")]
     fn is_visible(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_cell_renderer_get_visible(
@@ -334,6 +338,7 @@ pub trait CellRendererExt: IsA<CellRenderer> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_cell_renderer_set_is_expanded")]
+    #[doc(alias = "is-expanded")]
     fn set_is_expanded(&self, is_expanded: bool) {
         unsafe {
             ffi::gtk_cell_renderer_set_is_expanded(
@@ -346,6 +351,7 @@ pub trait CellRendererExt: IsA<CellRenderer> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_cell_renderer_set_is_expander")]
+    #[doc(alias = "is-expander")]
     fn set_is_expander(&self, is_expander: bool) {
         unsafe {
             ffi::gtk_cell_renderer_set_is_expander(
@@ -367,6 +373,7 @@ pub trait CellRendererExt: IsA<CellRenderer> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_cell_renderer_set_sensitive")]
+    #[doc(alias = "sensitive")]
     fn set_sensitive(&self, sensitive: bool) {
         unsafe {
             ffi::gtk_cell_renderer_set_sensitive(
@@ -379,6 +386,7 @@ pub trait CellRendererExt: IsA<CellRenderer> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_cell_renderer_set_visible")]
+    #[doc(alias = "visible")]
     fn set_visible(&self, visible: bool) {
         unsafe {
             ffi::gtk_cell_renderer_set_visible(self.as_ref().to_glib_none().0, visible.into_glib());

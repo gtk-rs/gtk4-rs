@@ -74,6 +74,7 @@ impl SliceListModel {
     }
 
     #[doc(alias = "gtk_slice_list_model_set_model")]
+    #[doc(alias = "model")]
     pub fn set_model(&self, model: Option<&impl IsA<gio::ListModel>>) {
         unsafe {
             ffi::gtk_slice_list_model_set_model(
@@ -84,6 +85,7 @@ impl SliceListModel {
     }
 
     #[doc(alias = "gtk_slice_list_model_set_offset")]
+    #[doc(alias = "offset")]
     pub fn set_offset(&self, offset: u32) {
         unsafe {
             ffi::gtk_slice_list_model_set_offset(self.to_glib_none().0, offset);
@@ -91,6 +93,7 @@ impl SliceListModel {
     }
 
     #[doc(alias = "gtk_slice_list_model_set_size")]
+    #[doc(alias = "size")]
     pub fn set_size(&self, size: u32) {
         unsafe {
             ffi::gtk_slice_list_model_set_size(self.to_glib_none().0, size);

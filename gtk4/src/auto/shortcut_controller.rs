@@ -50,6 +50,7 @@ impl ShortcutController {
 
     #[doc(alias = "gtk_shortcut_controller_get_mnemonics_modifiers")]
     #[doc(alias = "get_mnemonics_modifiers")]
+    #[doc(alias = "mnemonic-modifiers")]
     pub fn mnemonics_modifiers(&self) -> gdk::ModifierType {
         unsafe {
             from_glib(ffi::gtk_shortcut_controller_get_mnemonics_modifiers(
@@ -79,6 +80,7 @@ impl ShortcutController {
     }
 
     #[doc(alias = "gtk_shortcut_controller_set_mnemonics_modifiers")]
+    #[doc(alias = "mnemonic-modifiers")]
     pub fn set_mnemonics_modifiers(&self, modifiers: gdk::ModifierType) {
         unsafe {
             ffi::gtk_shortcut_controller_set_mnemonics_modifiers(
@@ -89,20 +91,11 @@ impl ShortcutController {
     }
 
     #[doc(alias = "gtk_shortcut_controller_set_scope")]
+    #[doc(alias = "scope")]
     pub fn set_scope(&self, scope: ShortcutScope) {
         unsafe {
             ffi::gtk_shortcut_controller_set_scope(self.to_glib_none().0, scope.into_glib());
         }
-    }
-
-    #[doc(alias = "mnemonic-modifiers")]
-    pub fn mnemonic_modifiers(&self) -> gdk::ModifierType {
-        ObjectExt::property(self, "mnemonic-modifiers")
-    }
-
-    #[doc(alias = "mnemonic-modifiers")]
-    pub fn set_mnemonic_modifiers(&self, mnemonic_modifiers: gdk::ModifierType) {
-        ObjectExt::set_property(self, "mnemonic-modifiers", mnemonic_modifiers)
     }
 
     #[doc(alias = "mnemonic-modifiers")]

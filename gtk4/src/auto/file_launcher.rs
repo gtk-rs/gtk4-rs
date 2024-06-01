@@ -34,6 +34,7 @@ impl FileLauncher {
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     #[doc(alias = "gtk_file_launcher_get_always_ask")]
     #[doc(alias = "get_always_ask")]
+    #[doc(alias = "always-ask")]
     pub fn must_always_ask(&self) -> bool {
         unsafe { from_glib(ffi::gtk_file_launcher_get_always_ask(self.to_glib_none().0)) }
     }
@@ -48,6 +49,7 @@ impl FileLauncher {
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
     #[doc(alias = "gtk_file_launcher_get_writable")]
     #[doc(alias = "get_writable")]
+    #[doc(alias = "writable")]
     pub fn is_writable(&self) -> bool {
         unsafe { from_glib(ffi::gtk_file_launcher_get_writable(self.to_glib_none().0)) }
     }
@@ -189,6 +191,7 @@ impl FileLauncher {
     #[cfg(feature = "v4_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     #[doc(alias = "gtk_file_launcher_set_always_ask")]
+    #[doc(alias = "always-ask")]
     pub fn set_always_ask(&self, always_ask: bool) {
         unsafe {
             ffi::gtk_file_launcher_set_always_ask(self.to_glib_none().0, always_ask.into_glib());
@@ -196,6 +199,7 @@ impl FileLauncher {
     }
 
     #[doc(alias = "gtk_file_launcher_set_file")]
+    #[doc(alias = "file")]
     pub fn set_file(&self, file: Option<&impl IsA<gio::File>>) {
         unsafe {
             ffi::gtk_file_launcher_set_file(
@@ -208,6 +212,7 @@ impl FileLauncher {
     #[cfg(feature = "v4_14")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
     #[doc(alias = "gtk_file_launcher_set_writable")]
+    #[doc(alias = "writable")]
     pub fn set_writable(&self, writable: bool) {
         unsafe {
             ffi::gtk_file_launcher_set_writable(self.to_glib_none().0, writable.into_glib());

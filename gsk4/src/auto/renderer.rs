@@ -47,6 +47,7 @@ pub trait GskRendererExt: IsA<Renderer> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gsk_renderer_is_realized")]
+    #[doc(alias = "realized")]
     fn is_realized(&self) -> bool {
         unsafe {
             from_glib(ffi::gsk_renderer_is_realized(

@@ -57,12 +57,14 @@ impl PrintUnixDialog {
 
     #[doc(alias = "gtk_print_unix_dialog_get_current_page")]
     #[doc(alias = "get_current_page")]
+    #[doc(alias = "current-page")]
     pub fn current_page(&self) -> i32 {
         unsafe { ffi::gtk_print_unix_dialog_get_current_page(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_print_unix_dialog_get_embed_page_setup")]
     #[doc(alias = "get_embed_page_setup")]
+    #[doc(alias = "embed-page-setup")]
     pub fn embeds_page_setup(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_print_unix_dialog_get_embed_page_setup(
@@ -73,6 +75,7 @@ impl PrintUnixDialog {
 
     #[doc(alias = "gtk_print_unix_dialog_get_has_selection")]
     #[doc(alias = "get_has_selection")]
+    #[doc(alias = "has-selection")]
     pub fn has_selection(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_print_unix_dialog_get_has_selection(
@@ -83,6 +86,7 @@ impl PrintUnixDialog {
 
     #[doc(alias = "gtk_print_unix_dialog_get_manual_capabilities")]
     #[doc(alias = "get_manual_capabilities")]
+    #[doc(alias = "manual-capabilities")]
     pub fn manual_capabilities(&self) -> PrintCapabilities {
         unsafe {
             from_glib(ffi::gtk_print_unix_dialog_get_manual_capabilities(
@@ -93,6 +97,7 @@ impl PrintUnixDialog {
 
     #[doc(alias = "gtk_print_unix_dialog_get_page_setup")]
     #[doc(alias = "get_page_setup")]
+    #[doc(alias = "page-setup")]
     pub fn page_setup(&self) -> PageSetup {
         unsafe {
             from_glib_none(ffi::gtk_print_unix_dialog_get_page_setup(
@@ -113,6 +118,7 @@ impl PrintUnixDialog {
 
     #[doc(alias = "gtk_print_unix_dialog_get_selected_printer")]
     #[doc(alias = "get_selected_printer")]
+    #[doc(alias = "selected-printer")]
     pub fn selected_printer(&self) -> Option<Printer> {
         unsafe {
             from_glib_none(ffi::gtk_print_unix_dialog_get_selected_printer(
@@ -123,6 +129,7 @@ impl PrintUnixDialog {
 
     #[doc(alias = "gtk_print_unix_dialog_get_settings")]
     #[doc(alias = "get_settings")]
+    #[doc(alias = "print-settings")]
     pub fn settings(&self) -> PrintSettings {
         unsafe {
             from_glib_full(ffi::gtk_print_unix_dialog_get_settings(
@@ -133,6 +140,7 @@ impl PrintUnixDialog {
 
     #[doc(alias = "gtk_print_unix_dialog_get_support_selection")]
     #[doc(alias = "get_support_selection")]
+    #[doc(alias = "support-selection")]
     pub fn supports_selection(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_print_unix_dialog_get_support_selection(
@@ -142,6 +150,7 @@ impl PrintUnixDialog {
     }
 
     #[doc(alias = "gtk_print_unix_dialog_set_current_page")]
+    #[doc(alias = "current-page")]
     pub fn set_current_page(&self, current_page: i32) {
         unsafe {
             ffi::gtk_print_unix_dialog_set_current_page(self.to_glib_none().0, current_page);
@@ -149,6 +158,7 @@ impl PrintUnixDialog {
     }
 
     #[doc(alias = "gtk_print_unix_dialog_set_embed_page_setup")]
+    #[doc(alias = "embed-page-setup")]
     pub fn set_embed_page_setup(&self, embed: bool) {
         unsafe {
             ffi::gtk_print_unix_dialog_set_embed_page_setup(
@@ -159,6 +169,7 @@ impl PrintUnixDialog {
     }
 
     #[doc(alias = "gtk_print_unix_dialog_set_has_selection")]
+    #[doc(alias = "has-selection")]
     pub fn set_has_selection(&self, has_selection: bool) {
         unsafe {
             ffi::gtk_print_unix_dialog_set_has_selection(
@@ -169,6 +180,7 @@ impl PrintUnixDialog {
     }
 
     #[doc(alias = "gtk_print_unix_dialog_set_manual_capabilities")]
+    #[doc(alias = "manual-capabilities")]
     pub fn set_manual_capabilities(&self, capabilities: PrintCapabilities) {
         unsafe {
             ffi::gtk_print_unix_dialog_set_manual_capabilities(
@@ -179,6 +191,7 @@ impl PrintUnixDialog {
     }
 
     #[doc(alias = "gtk_print_unix_dialog_set_page_setup")]
+    #[doc(alias = "page-setup")]
     pub fn set_page_setup(&self, page_setup: &PageSetup) {
         unsafe {
             ffi::gtk_print_unix_dialog_set_page_setup(
@@ -189,6 +202,7 @@ impl PrintUnixDialog {
     }
 
     #[doc(alias = "gtk_print_unix_dialog_set_settings")]
+    #[doc(alias = "print-settings")]
     pub fn set_settings(&self, settings: Option<&PrintSettings>) {
         unsafe {
             ffi::gtk_print_unix_dialog_set_settings(
@@ -199,6 +213,7 @@ impl PrintUnixDialog {
     }
 
     #[doc(alias = "gtk_print_unix_dialog_set_support_selection")]
+    #[doc(alias = "support-selection")]
     pub fn set_support_selection(&self, support_selection: bool) {
         unsafe {
             ffi::gtk_print_unix_dialog_set_support_selection(
@@ -206,16 +221,6 @@ impl PrintUnixDialog {
                 support_selection.into_glib(),
             );
         }
-    }
-
-    #[doc(alias = "print-settings")]
-    pub fn print_settings(&self) -> Option<PrintSettings> {
-        ObjectExt::property(self, "print-settings")
-    }
-
-    #[doc(alias = "print-settings")]
-    pub fn set_print_settings(&self, print_settings: Option<&PrintSettings>) {
-        ObjectExt::set_property(self, "print-settings", print_settings)
     }
 
     #[doc(alias = "current-page")]

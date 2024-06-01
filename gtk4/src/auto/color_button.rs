@@ -54,6 +54,7 @@ impl ColorButton {
     #[allow(deprecated)]
     #[doc(alias = "gtk_color_button_get_modal")]
     #[doc(alias = "get_modal")]
+    #[doc(alias = "modal")]
     pub fn is_modal(&self) -> bool {
         unsafe { from_glib(ffi::gtk_color_button_get_modal(self.to_glib_none().0)) }
     }
@@ -69,6 +70,7 @@ impl ColorButton {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_color_button_set_modal")]
+    #[doc(alias = "modal")]
     pub fn set_modal(&self, modal: bool) {
         unsafe {
             ffi::gtk_color_button_set_modal(self.to_glib_none().0, modal.into_glib());
@@ -78,6 +80,7 @@ impl ColorButton {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_color_button_set_title")]
+    #[doc(alias = "title")]
     pub fn set_title(&self, title: &str) {
         unsafe {
             ffi::gtk_color_button_set_title(self.to_glib_none().0, title.to_glib_none().0);

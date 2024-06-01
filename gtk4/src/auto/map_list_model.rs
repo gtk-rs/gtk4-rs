@@ -75,6 +75,7 @@ impl MapListModel {
     }
 
     #[doc(alias = "gtk_map_list_model_has_map")]
+    #[doc(alias = "has-map")]
     pub fn has_map(&self) -> bool {
         unsafe { from_glib(ffi::gtk_map_list_model_has_map(self.to_glib_none().0)) }
     }
@@ -109,6 +110,7 @@ impl MapListModel {
     }
 
     #[doc(alias = "gtk_map_list_model_set_model")]
+    #[doc(alias = "model")]
     pub fn set_model(&self, model: Option<&impl IsA<gio::ListModel>>) {
         unsafe {
             ffi::gtk_map_list_model_set_model(

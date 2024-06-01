@@ -351,6 +351,7 @@ mod sealed {
 pub trait ToggleButtonExt: IsA<ToggleButton> + sealed::Sealed + 'static {
     #[doc(alias = "gtk_toggle_button_get_active")]
     #[doc(alias = "get_active")]
+    #[doc(alias = "active")]
     fn is_active(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_toggle_button_get_active(
@@ -360,6 +361,7 @@ pub trait ToggleButtonExt: IsA<ToggleButton> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_toggle_button_set_active")]
+    #[doc(alias = "active")]
     fn set_active(&self, is_active: bool) {
         unsafe {
             ffi::gtk_toggle_button_set_active(
@@ -370,6 +372,7 @@ pub trait ToggleButtonExt: IsA<ToggleButton> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_toggle_button_set_group")]
+    #[doc(alias = "group")]
     fn set_group(&self, group: Option<&impl IsA<ToggleButton>>) {
         unsafe {
             ffi::gtk_toggle_button_set_group(

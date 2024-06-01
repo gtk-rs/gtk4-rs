@@ -95,6 +95,7 @@ impl SpinButton {
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
     #[doc(alias = "gtk_spin_button_get_activates_default")]
     #[doc(alias = "get_activates_default")]
+    #[doc(alias = "activates-default")]
     pub fn activates_default(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_spin_button_get_activates_default(
@@ -111,6 +112,7 @@ impl SpinButton {
 
     #[doc(alias = "gtk_spin_button_get_climb_rate")]
     #[doc(alias = "get_climb_rate")]
+    #[doc(alias = "climb-rate")]
     pub fn climb_rate(&self) -> f64 {
         unsafe { ffi::gtk_spin_button_get_climb_rate(self.to_glib_none().0) }
     }
@@ -138,6 +140,7 @@ impl SpinButton {
 
     #[doc(alias = "gtk_spin_button_get_numeric")]
     #[doc(alias = "get_numeric")]
+    #[doc(alias = "numeric")]
     pub fn is_numeric(&self) -> bool {
         unsafe { from_glib(ffi::gtk_spin_button_get_numeric(self.to_glib_none().0)) }
     }
@@ -159,6 +162,7 @@ impl SpinButton {
 
     #[doc(alias = "gtk_spin_button_get_snap_to_ticks")]
     #[doc(alias = "get_snap_to_ticks")]
+    #[doc(alias = "snap-to-ticks")]
     pub fn snaps_to_ticks(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_spin_button_get_snap_to_ticks(
@@ -169,6 +173,7 @@ impl SpinButton {
 
     #[doc(alias = "gtk_spin_button_get_update_policy")]
     #[doc(alias = "get_update_policy")]
+    #[doc(alias = "update-policy")]
     pub fn update_policy(&self) -> SpinButtonUpdatePolicy {
         unsafe {
             from_glib(ffi::gtk_spin_button_get_update_policy(
@@ -191,6 +196,7 @@ impl SpinButton {
 
     #[doc(alias = "gtk_spin_button_get_wrap")]
     #[doc(alias = "get_wrap")]
+    #[doc(alias = "wrap")]
     pub fn wraps(&self) -> bool {
         unsafe { from_glib(ffi::gtk_spin_button_get_wrap(self.to_glib_none().0)) }
     }
@@ -198,6 +204,7 @@ impl SpinButton {
     #[cfg(feature = "v4_14")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
     #[doc(alias = "gtk_spin_button_set_activates_default")]
+    #[doc(alias = "activates-default")]
     pub fn set_activates_default(&self, activates_default: bool) {
         unsafe {
             ffi::gtk_spin_button_set_activates_default(
@@ -208,6 +215,7 @@ impl SpinButton {
     }
 
     #[doc(alias = "gtk_spin_button_set_adjustment")]
+    #[doc(alias = "adjustment")]
     pub fn set_adjustment(&self, adjustment: &impl IsA<Adjustment>) {
         unsafe {
             ffi::gtk_spin_button_set_adjustment(
@@ -218,6 +226,7 @@ impl SpinButton {
     }
 
     #[doc(alias = "gtk_spin_button_set_climb_rate")]
+    #[doc(alias = "climb-rate")]
     pub fn set_climb_rate(&self, climb_rate: f64) {
         unsafe {
             ffi::gtk_spin_button_set_climb_rate(self.to_glib_none().0, climb_rate);
@@ -225,6 +234,7 @@ impl SpinButton {
     }
 
     #[doc(alias = "gtk_spin_button_set_digits")]
+    #[doc(alias = "digits")]
     pub fn set_digits(&self, digits: u32) {
         unsafe {
             ffi::gtk_spin_button_set_digits(self.to_glib_none().0, digits);
@@ -239,6 +249,7 @@ impl SpinButton {
     }
 
     #[doc(alias = "gtk_spin_button_set_numeric")]
+    #[doc(alias = "numeric")]
     pub fn set_numeric(&self, numeric: bool) {
         unsafe {
             ffi::gtk_spin_button_set_numeric(self.to_glib_none().0, numeric.into_glib());
@@ -253,6 +264,7 @@ impl SpinButton {
     }
 
     #[doc(alias = "gtk_spin_button_set_snap_to_ticks")]
+    #[doc(alias = "snap-to-ticks")]
     pub fn set_snap_to_ticks(&self, snap_to_ticks: bool) {
         unsafe {
             ffi::gtk_spin_button_set_snap_to_ticks(
@@ -263,6 +275,7 @@ impl SpinButton {
     }
 
     #[doc(alias = "gtk_spin_button_set_update_policy")]
+    #[doc(alias = "update-policy")]
     pub fn set_update_policy(&self, policy: SpinButtonUpdatePolicy) {
         unsafe {
             ffi::gtk_spin_button_set_update_policy(self.to_glib_none().0, policy.into_glib());
@@ -270,6 +283,7 @@ impl SpinButton {
     }
 
     #[doc(alias = "gtk_spin_button_set_value")]
+    #[doc(alias = "value")]
     pub fn set_value(&self, value: f64) {
         unsafe {
             ffi::gtk_spin_button_set_value(self.to_glib_none().0, value);
@@ -277,6 +291,7 @@ impl SpinButton {
     }
 
     #[doc(alias = "gtk_spin_button_set_wrap")]
+    #[doc(alias = "wrap")]
     pub fn set_wrap(&self, wrap: bool) {
         unsafe {
             ffi::gtk_spin_button_set_wrap(self.to_glib_none().0, wrap.into_glib());

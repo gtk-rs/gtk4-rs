@@ -54,6 +54,7 @@ impl Paned {
 
     #[doc(alias = "gtk_paned_get_end_child")]
     #[doc(alias = "get_end_child")]
+    #[doc(alias = "end-child")]
     pub fn end_child(&self) -> Option<Widget> {
         unsafe { from_glib_none(ffi::gtk_paned_get_end_child(self.to_glib_none().0)) }
     }
@@ -66,41 +67,48 @@ impl Paned {
 
     #[doc(alias = "gtk_paned_get_resize_end_child")]
     #[doc(alias = "get_resize_end_child")]
+    #[doc(alias = "resize-end-child")]
     pub fn resizes_end_child(&self) -> bool {
         unsafe { from_glib(ffi::gtk_paned_get_resize_end_child(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_paned_get_resize_start_child")]
     #[doc(alias = "get_resize_start_child")]
+    #[doc(alias = "resize-start-child")]
     pub fn resizes_start_child(&self) -> bool {
         unsafe { from_glib(ffi::gtk_paned_get_resize_start_child(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_paned_get_shrink_end_child")]
     #[doc(alias = "get_shrink_end_child")]
+    #[doc(alias = "shrink-end-child")]
     pub fn shrinks_end_child(&self) -> bool {
         unsafe { from_glib(ffi::gtk_paned_get_shrink_end_child(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_paned_get_shrink_start_child")]
     #[doc(alias = "get_shrink_start_child")]
+    #[doc(alias = "shrink-start-child")]
     pub fn shrinks_start_child(&self) -> bool {
         unsafe { from_glib(ffi::gtk_paned_get_shrink_start_child(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_paned_get_start_child")]
     #[doc(alias = "get_start_child")]
+    #[doc(alias = "start-child")]
     pub fn start_child(&self) -> Option<Widget> {
         unsafe { from_glib_none(ffi::gtk_paned_get_start_child(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_paned_get_wide_handle")]
     #[doc(alias = "get_wide_handle")]
+    #[doc(alias = "wide-handle")]
     pub fn is_wide_handle(&self) -> bool {
         unsafe { from_glib(ffi::gtk_paned_get_wide_handle(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_paned_set_end_child")]
+    #[doc(alias = "end-child")]
     pub fn set_end_child(&self, child: Option<&impl IsA<Widget>>) {
         unsafe {
             ffi::gtk_paned_set_end_child(
@@ -111,6 +119,7 @@ impl Paned {
     }
 
     #[doc(alias = "gtk_paned_set_position")]
+    #[doc(alias = "position")]
     pub fn set_position(&self, position: i32) {
         unsafe {
             ffi::gtk_paned_set_position(self.to_glib_none().0, position);
@@ -118,6 +127,7 @@ impl Paned {
     }
 
     #[doc(alias = "gtk_paned_set_resize_end_child")]
+    #[doc(alias = "resize-end-child")]
     pub fn set_resize_end_child(&self, resize: bool) {
         unsafe {
             ffi::gtk_paned_set_resize_end_child(self.to_glib_none().0, resize.into_glib());
@@ -125,6 +135,7 @@ impl Paned {
     }
 
     #[doc(alias = "gtk_paned_set_resize_start_child")]
+    #[doc(alias = "resize-start-child")]
     pub fn set_resize_start_child(&self, resize: bool) {
         unsafe {
             ffi::gtk_paned_set_resize_start_child(self.to_glib_none().0, resize.into_glib());
@@ -132,6 +143,7 @@ impl Paned {
     }
 
     #[doc(alias = "gtk_paned_set_shrink_end_child")]
+    #[doc(alias = "shrink-end-child")]
     pub fn set_shrink_end_child(&self, resize: bool) {
         unsafe {
             ffi::gtk_paned_set_shrink_end_child(self.to_glib_none().0, resize.into_glib());
@@ -139,6 +151,7 @@ impl Paned {
     }
 
     #[doc(alias = "gtk_paned_set_shrink_start_child")]
+    #[doc(alias = "shrink-start-child")]
     pub fn set_shrink_start_child(&self, resize: bool) {
         unsafe {
             ffi::gtk_paned_set_shrink_start_child(self.to_glib_none().0, resize.into_glib());
@@ -146,6 +159,7 @@ impl Paned {
     }
 
     #[doc(alias = "gtk_paned_set_start_child")]
+    #[doc(alias = "start-child")]
     pub fn set_start_child(&self, child: Option<&impl IsA<Widget>>) {
         unsafe {
             ffi::gtk_paned_set_start_child(
@@ -156,6 +170,7 @@ impl Paned {
     }
 
     #[doc(alias = "gtk_paned_set_wide_handle")]
+    #[doc(alias = "wide-handle")]
     pub fn set_wide_handle(&self, wide: bool) {
         unsafe {
             ffi::gtk_paned_set_wide_handle(self.to_glib_none().0, wide.into_glib());

@@ -83,6 +83,7 @@ pub trait ContentProviderExt: IsA<ContentProvider> + sealed::Sealed + 'static {
 
     #[doc(alias = "gdk_content_provider_ref_storable_formats")]
     #[doc(alias = "ref_storable_formats")]
+    #[doc(alias = "storable-formats")]
     fn storable_formats(&self) -> ContentFormats {
         unsafe {
             from_glib_full(ffi::gdk_content_provider_ref_storable_formats(

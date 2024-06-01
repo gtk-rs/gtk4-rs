@@ -348,6 +348,7 @@ pub trait ButtonExt: IsA<Button> + sealed::Sealed + 'static {
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     #[doc(alias = "gtk_button_get_can_shrink")]
     #[doc(alias = "get_can_shrink")]
+    #[doc(alias = "can-shrink")]
     fn can_shrink(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_button_get_can_shrink(
@@ -364,6 +365,7 @@ pub trait ButtonExt: IsA<Button> + sealed::Sealed + 'static {
 
     #[doc(alias = "gtk_button_get_has_frame")]
     #[doc(alias = "get_has_frame")]
+    #[doc(alias = "has-frame")]
     fn has_frame(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_button_get_has_frame(
@@ -374,6 +376,7 @@ pub trait ButtonExt: IsA<Button> + sealed::Sealed + 'static {
 
     #[doc(alias = "gtk_button_get_icon_name")]
     #[doc(alias = "get_icon_name")]
+    #[doc(alias = "icon-name")]
     fn icon_name(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::gtk_button_get_icon_name(
@@ -390,6 +393,7 @@ pub trait ButtonExt: IsA<Button> + sealed::Sealed + 'static {
 
     #[doc(alias = "gtk_button_get_use_underline")]
     #[doc(alias = "get_use_underline")]
+    #[doc(alias = "use-underline")]
     fn uses_underline(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_button_get_use_underline(
@@ -401,6 +405,7 @@ pub trait ButtonExt: IsA<Button> + sealed::Sealed + 'static {
     #[cfg(feature = "v4_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     #[doc(alias = "gtk_button_set_can_shrink")]
+    #[doc(alias = "can-shrink")]
     fn set_can_shrink(&self, can_shrink: bool) {
         unsafe {
             ffi::gtk_button_set_can_shrink(self.as_ref().to_glib_none().0, can_shrink.into_glib());
@@ -408,6 +413,7 @@ pub trait ButtonExt: IsA<Button> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_button_set_child")]
+    #[doc(alias = "child")]
     fn set_child(&self, child: Option<&impl IsA<Widget>>) {
         unsafe {
             ffi::gtk_button_set_child(
@@ -418,6 +424,7 @@ pub trait ButtonExt: IsA<Button> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_button_set_has_frame")]
+    #[doc(alias = "has-frame")]
     fn set_has_frame(&self, has_frame: bool) {
         unsafe {
             ffi::gtk_button_set_has_frame(self.as_ref().to_glib_none().0, has_frame.into_glib());
@@ -425,6 +432,7 @@ pub trait ButtonExt: IsA<Button> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_button_set_icon_name")]
+    #[doc(alias = "icon-name")]
     fn set_icon_name(&self, icon_name: &str) {
         unsafe {
             ffi::gtk_button_set_icon_name(
@@ -435,6 +443,7 @@ pub trait ButtonExt: IsA<Button> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_button_set_label")]
+    #[doc(alias = "label")]
     fn set_label(&self, label: &str) {
         unsafe {
             ffi::gtk_button_set_label(self.as_ref().to_glib_none().0, label.to_glib_none().0);
@@ -442,6 +451,7 @@ pub trait ButtonExt: IsA<Button> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_button_set_use_underline")]
+    #[doc(alias = "use-underline")]
     fn set_use_underline(&self, use_underline: bool) {
         unsafe {
             ffi::gtk_button_set_use_underline(

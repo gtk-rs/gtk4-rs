@@ -37,6 +37,7 @@ impl WidgetPaintable {
     }
 
     #[doc(alias = "gtk_widget_paintable_set_widget")]
+    #[doc(alias = "widget")]
     pub fn set_widget(&self, widget: Option<&impl IsA<Widget>>) {
         unsafe {
             ffi::gtk_widget_paintable_set_widget(

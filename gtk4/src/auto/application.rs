@@ -157,6 +157,7 @@ pub trait GtkApplicationExt: IsA<Application> + sealed::Sealed + 'static {
 
     #[doc(alias = "gtk_application_get_active_window")]
     #[doc(alias = "get_active_window")]
+    #[doc(alias = "active-window")]
     fn active_window(&self) -> Option<Window> {
         unsafe {
             from_glib_none(ffi::gtk_application_get_active_window(
@@ -255,6 +256,7 @@ pub trait GtkApplicationExt: IsA<Application> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_application_set_menubar")]
+    #[doc(alias = "menubar")]
     fn set_menubar(&self, menubar: Option<&impl IsA<gio::MenuModel>>) {
         unsafe {
             ffi::gtk_application_set_menubar(

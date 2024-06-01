@@ -107,6 +107,7 @@ pub trait TextMarkExt: IsA<TextMark> + sealed::Sealed + 'static {
 
     #[doc(alias = "gtk_text_mark_get_left_gravity")]
     #[doc(alias = "get_left_gravity")]
+    #[doc(alias = "left-gravity")]
     fn is_left_gravity(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_text_mark_get_left_gravity(

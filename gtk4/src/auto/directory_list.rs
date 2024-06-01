@@ -55,16 +55,19 @@ impl DirectoryList {
 
     #[doc(alias = "gtk_directory_list_get_monitored")]
     #[doc(alias = "get_monitored")]
+    #[doc(alias = "monitored")]
     pub fn is_monitored(&self) -> bool {
         unsafe { from_glib(ffi::gtk_directory_list_get_monitored(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_directory_list_is_loading")]
+    #[doc(alias = "loading")]
     pub fn is_loading(&self) -> bool {
         unsafe { from_glib(ffi::gtk_directory_list_is_loading(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_directory_list_set_attributes")]
+    #[doc(alias = "attributes")]
     pub fn set_attributes(&self, attributes: Option<&str>) {
         unsafe {
             ffi::gtk_directory_list_set_attributes(
@@ -75,6 +78,7 @@ impl DirectoryList {
     }
 
     #[doc(alias = "gtk_directory_list_set_file")]
+    #[doc(alias = "file")]
     pub fn set_file(&self, file: Option<&impl IsA<gio::File>>) {
         unsafe {
             ffi::gtk_directory_list_set_file(
@@ -85,6 +89,7 @@ impl DirectoryList {
     }
 
     #[doc(alias = "gtk_directory_list_set_monitored")]
+    #[doc(alias = "monitored")]
     pub fn set_monitored(&self, monitored: bool) {
         unsafe {
             ffi::gtk_directory_list_set_monitored(self.to_glib_none().0, monitored.into_glib());

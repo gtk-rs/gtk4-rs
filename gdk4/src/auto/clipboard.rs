@@ -39,6 +39,7 @@ impl Clipboard {
     }
 
     #[doc(alias = "gdk_clipboard_is_local")]
+    #[doc(alias = "local")]
     pub fn is_local(&self) -> bool {
         unsafe { from_glib(ffi::gdk_clipboard_is_local(self.to_glib_none().0)) }
     }

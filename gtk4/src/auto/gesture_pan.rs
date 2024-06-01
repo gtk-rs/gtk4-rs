@@ -46,6 +46,7 @@ impl GesturePan {
     }
 
     #[doc(alias = "gtk_gesture_pan_set_orientation")]
+    #[doc(alias = "orientation")]
     pub fn set_orientation(&self, orientation: Orientation) {
         unsafe {
             ffi::gtk_gesture_pan_set_orientation(self.to_glib_none().0, orientation.into_glib());

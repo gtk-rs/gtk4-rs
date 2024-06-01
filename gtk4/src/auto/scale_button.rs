@@ -321,6 +321,7 @@ pub trait ScaleButtonExt: IsA<ScaleButton> + sealed::Sealed + 'static {
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "gtk_scale_button_get_active")]
     #[doc(alias = "get_active")]
+    #[doc(alias = "active")]
     fn is_active(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_scale_button_get_active(
@@ -343,6 +344,7 @@ pub trait ScaleButtonExt: IsA<ScaleButton> + sealed::Sealed + 'static {
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
     #[doc(alias = "gtk_scale_button_get_has_frame")]
     #[doc(alias = "get_has_frame")]
+    #[doc(alias = "has-frame")]
     fn has_frame(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_scale_button_get_has_frame(
@@ -388,6 +390,7 @@ pub trait ScaleButtonExt: IsA<ScaleButton> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_scale_button_set_adjustment")]
+    #[doc(alias = "adjustment")]
     fn set_adjustment(&self, adjustment: &impl IsA<Adjustment>) {
         unsafe {
             ffi::gtk_scale_button_set_adjustment(
@@ -400,6 +403,7 @@ pub trait ScaleButtonExt: IsA<ScaleButton> + sealed::Sealed + 'static {
     #[cfg(feature = "v4_14")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
     #[doc(alias = "gtk_scale_button_set_has_frame")]
+    #[doc(alias = "has-frame")]
     fn set_has_frame(&self, has_frame: bool) {
         unsafe {
             ffi::gtk_scale_button_set_has_frame(
@@ -410,6 +414,7 @@ pub trait ScaleButtonExt: IsA<ScaleButton> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_scale_button_set_icons")]
+    #[doc(alias = "icons")]
     fn set_icons(&self, icons: &[&str]) {
         unsafe {
             ffi::gtk_scale_button_set_icons(self.as_ref().to_glib_none().0, icons.to_glib_none().0);
@@ -417,6 +422,7 @@ pub trait ScaleButtonExt: IsA<ScaleButton> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_scale_button_set_value")]
+    #[doc(alias = "value")]
     fn set_value(&self, value: f64) {
         unsafe {
             ffi::gtk_scale_button_set_value(self.as_ref().to_glib_none().0, value);

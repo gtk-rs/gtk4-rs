@@ -60,6 +60,7 @@ impl SizeGroup {
     }
 
     #[doc(alias = "gtk_size_group_set_mode")]
+    #[doc(alias = "mode")]
     pub fn set_mode(&self, mode: SizeGroupMode) {
         unsafe {
             ffi::gtk_size_group_set_mode(self.to_glib_none().0, mode.into_glib());

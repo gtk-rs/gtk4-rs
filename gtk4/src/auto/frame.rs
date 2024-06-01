@@ -300,12 +300,14 @@ pub trait FrameExt: IsA<Frame> + sealed::Sealed + 'static {
 
     #[doc(alias = "gtk_frame_get_label_align")]
     #[doc(alias = "get_label_align")]
+    #[doc(alias = "label-xalign")]
     fn label_align(&self) -> f32 {
         unsafe { ffi::gtk_frame_get_label_align(self.as_ref().to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_frame_get_label_widget")]
     #[doc(alias = "get_label_widget")]
+    #[doc(alias = "label-widget")]
     fn label_widget(&self) -> Option<Widget> {
         unsafe {
             from_glib_none(ffi::gtk_frame_get_label_widget(
@@ -315,6 +317,7 @@ pub trait FrameExt: IsA<Frame> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_frame_set_child")]
+    #[doc(alias = "child")]
     fn set_child(&self, child: Option<&impl IsA<Widget>>) {
         unsafe {
             ffi::gtk_frame_set_child(
@@ -325,6 +328,7 @@ pub trait FrameExt: IsA<Frame> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_frame_set_label")]
+    #[doc(alias = "label")]
     fn set_label(&self, label: Option<&str>) {
         unsafe {
             ffi::gtk_frame_set_label(self.as_ref().to_glib_none().0, label.to_glib_none().0);
@@ -332,6 +336,7 @@ pub trait FrameExt: IsA<Frame> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_frame_set_label_align")]
+    #[doc(alias = "label-xalign")]
     fn set_label_align(&self, xalign: f32) {
         unsafe {
             ffi::gtk_frame_set_label_align(self.as_ref().to_glib_none().0, xalign);
@@ -339,6 +344,7 @@ pub trait FrameExt: IsA<Frame> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_frame_set_label_widget")]
+    #[doc(alias = "label-widget")]
     fn set_label_widget(&self, label_widget: Option<&impl IsA<Widget>>) {
         unsafe {
             ffi::gtk_frame_set_label_widget(
@@ -346,16 +352,6 @@ pub trait FrameExt: IsA<Frame> + sealed::Sealed + 'static {
                 label_widget.map(|p| p.as_ref()).to_glib_none().0,
             );
         }
-    }
-
-    #[doc(alias = "label-xalign")]
-    fn label_xalign(&self) -> f32 {
-        ObjectExt::property(self.as_ref(), "label-xalign")
-    }
-
-    #[doc(alias = "label-xalign")]
-    fn set_label_xalign(&self, label_xalign: f32) {
-        ObjectExt::set_property(self.as_ref(), "label-xalign", label_xalign)
     }
 
     #[doc(alias = "child")]

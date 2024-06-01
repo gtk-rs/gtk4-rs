@@ -23,6 +23,7 @@ impl DeviceTool {
 
     #[doc(alias = "gdk_device_tool_get_hardware_id")]
     #[doc(alias = "get_hardware_id")]
+    #[doc(alias = "hardware-id")]
     pub fn hardware_id(&self) -> u64 {
         unsafe { ffi::gdk_device_tool_get_hardware_id(self.to_glib_none().0) }
     }
@@ -35,6 +36,7 @@ impl DeviceTool {
 
     #[doc(alias = "gdk_device_tool_get_tool_type")]
     #[doc(alias = "get_tool_type")]
+    #[doc(alias = "tool-type")]
     pub fn tool_type(&self) -> DeviceToolType {
         unsafe { from_glib(ffi::gdk_device_tool_get_tool_type(self.to_glib_none().0)) }
     }

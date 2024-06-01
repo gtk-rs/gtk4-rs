@@ -158,6 +158,7 @@ pub trait SurfaceExt: IsA<Surface> + sealed::Sealed + 'static {
 
     #[doc(alias = "gdk_surface_get_frame_clock")]
     #[doc(alias = "get_frame_clock")]
+    #[doc(alias = "frame-clock")]
     fn frame_clock(&self) -> FrameClock {
         unsafe {
             from_glib_none(ffi::gdk_surface_get_frame_clock(
@@ -174,6 +175,7 @@ pub trait SurfaceExt: IsA<Surface> + sealed::Sealed + 'static {
 
     #[doc(alias = "gdk_surface_get_mapped")]
     #[doc(alias = "get_mapped")]
+    #[doc(alias = "mapped")]
     fn is_mapped(&self) -> bool {
         unsafe { from_glib(ffi::gdk_surface_get_mapped(self.as_ref().to_glib_none().0)) }
     }
@@ -188,6 +190,7 @@ pub trait SurfaceExt: IsA<Surface> + sealed::Sealed + 'static {
 
     #[doc(alias = "gdk_surface_get_scale_factor")]
     #[doc(alias = "get_scale_factor")]
+    #[doc(alias = "scale-factor")]
     fn scale_factor(&self) -> i32 {
         unsafe { ffi::gdk_surface_get_scale_factor(self.as_ref().to_glib_none().0) }
     }
@@ -229,6 +232,7 @@ pub trait SurfaceExt: IsA<Surface> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gdk_surface_set_cursor")]
+    #[doc(alias = "cursor")]
     fn set_cursor(&self, cursor: Option<&Cursor>) {
         unsafe {
             ffi::gdk_surface_set_cursor(self.as_ref().to_glib_none().0, cursor.to_glib_none().0);

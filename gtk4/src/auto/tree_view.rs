@@ -655,6 +655,7 @@ pub trait TreeViewExt: IsA<TreeView> + sealed::Sealed + 'static {
     #[allow(deprecated)]
     #[doc(alias = "gtk_tree_view_get_activate_on_single_click")]
     #[doc(alias = "get_activate_on_single_click")]
+    #[doc(alias = "activate-on-single-click")]
     fn activates_on_single_click(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_tree_view_get_activate_on_single_click(
@@ -795,6 +796,7 @@ pub trait TreeViewExt: IsA<TreeView> + sealed::Sealed + 'static {
     #[allow(deprecated)]
     #[doc(alias = "gtk_tree_view_get_enable_search")]
     #[doc(alias = "get_enable_search")]
+    #[doc(alias = "enable-search")]
     fn enables_search(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_tree_view_get_enable_search(
@@ -807,6 +809,7 @@ pub trait TreeViewExt: IsA<TreeView> + sealed::Sealed + 'static {
     #[allow(deprecated)]
     #[doc(alias = "gtk_tree_view_get_enable_tree_lines")]
     #[doc(alias = "get_enable_tree_lines")]
+    #[doc(alias = "enable-tree-lines")]
     fn enables_tree_lines(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_tree_view_get_enable_tree_lines(
@@ -819,6 +822,7 @@ pub trait TreeViewExt: IsA<TreeView> + sealed::Sealed + 'static {
     #[allow(deprecated)]
     #[doc(alias = "gtk_tree_view_get_expander_column")]
     #[doc(alias = "get_expander_column")]
+    #[doc(alias = "expander-column")]
     fn expander_column(&self) -> Option<TreeViewColumn> {
         unsafe {
             from_glib_none(ffi::gtk_tree_view_get_expander_column(
@@ -831,6 +835,7 @@ pub trait TreeViewExt: IsA<TreeView> + sealed::Sealed + 'static {
     #[allow(deprecated)]
     #[doc(alias = "gtk_tree_view_get_fixed_height_mode")]
     #[doc(alias = "get_fixed_height_mode")]
+    #[doc(alias = "fixed-height-mode")]
     fn is_fixed_height_mode(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_tree_view_get_fixed_height_mode(
@@ -855,6 +860,7 @@ pub trait TreeViewExt: IsA<TreeView> + sealed::Sealed + 'static {
     #[allow(deprecated)]
     #[doc(alias = "gtk_tree_view_get_headers_clickable")]
     #[doc(alias = "get_headers_clickable")]
+    #[doc(alias = "headers-clickable")]
     fn is_headers_clickable(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_tree_view_get_headers_clickable(
@@ -867,6 +873,7 @@ pub trait TreeViewExt: IsA<TreeView> + sealed::Sealed + 'static {
     #[allow(deprecated)]
     #[doc(alias = "gtk_tree_view_get_headers_visible")]
     #[doc(alias = "get_headers_visible")]
+    #[doc(alias = "headers-visible")]
     fn is_headers_visible(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_tree_view_get_headers_visible(
@@ -879,6 +886,7 @@ pub trait TreeViewExt: IsA<TreeView> + sealed::Sealed + 'static {
     #[allow(deprecated)]
     #[doc(alias = "gtk_tree_view_get_hover_expand")]
     #[doc(alias = "get_hover_expand")]
+    #[doc(alias = "hover-expand")]
     fn hover_expands(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_tree_view_get_hover_expand(
@@ -891,6 +899,7 @@ pub trait TreeViewExt: IsA<TreeView> + sealed::Sealed + 'static {
     #[allow(deprecated)]
     #[doc(alias = "gtk_tree_view_get_hover_selection")]
     #[doc(alias = "get_hover_selection")]
+    #[doc(alias = "hover-selection")]
     fn is_hover_selection(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_tree_view_get_hover_selection(
@@ -903,6 +912,7 @@ pub trait TreeViewExt: IsA<TreeView> + sealed::Sealed + 'static {
     #[allow(deprecated)]
     #[doc(alias = "gtk_tree_view_get_level_indentation")]
     #[doc(alias = "get_level_indentation")]
+    #[doc(alias = "level-indentation")]
     fn level_indentation(&self) -> i32 {
         unsafe { ffi::gtk_tree_view_get_level_indentation(self.as_ref().to_glib_none().0) }
     }
@@ -963,6 +973,7 @@ pub trait TreeViewExt: IsA<TreeView> + sealed::Sealed + 'static {
     #[allow(deprecated)]
     #[doc(alias = "gtk_tree_view_get_reorderable")]
     #[doc(alias = "get_reorderable")]
+    #[doc(alias = "reorderable")]
     fn is_reorderable(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_tree_view_get_reorderable(
@@ -975,6 +986,7 @@ pub trait TreeViewExt: IsA<TreeView> + sealed::Sealed + 'static {
     #[allow(deprecated)]
     #[doc(alias = "gtk_tree_view_get_rubber_banding")]
     #[doc(alias = "get_rubber_banding")]
+    #[doc(alias = "rubber-banding")]
     fn is_rubber_banding(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_tree_view_get_rubber_banding(
@@ -987,6 +999,7 @@ pub trait TreeViewExt: IsA<TreeView> + sealed::Sealed + 'static {
     #[allow(deprecated)]
     #[doc(alias = "gtk_tree_view_get_search_column")]
     #[doc(alias = "get_search_column")]
+    #[doc(alias = "search-column")]
     fn search_column(&self) -> i32 {
         unsafe { ffi::gtk_tree_view_get_search_column(self.as_ref().to_glib_none().0) }
     }
@@ -1019,6 +1032,7 @@ pub trait TreeViewExt: IsA<TreeView> + sealed::Sealed + 'static {
     #[allow(deprecated)]
     #[doc(alias = "gtk_tree_view_get_show_expanders")]
     #[doc(alias = "get_show_expanders")]
+    #[doc(alias = "show-expanders")]
     fn shows_expanders(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_tree_view_get_show_expanders(
@@ -1031,6 +1045,7 @@ pub trait TreeViewExt: IsA<TreeView> + sealed::Sealed + 'static {
     #[allow(deprecated)]
     #[doc(alias = "gtk_tree_view_get_tooltip_column")]
     #[doc(alias = "get_tooltip_column")]
+    #[doc(alias = "tooltip-column")]
     fn tooltip_column(&self) -> i32 {
         unsafe { ffi::gtk_tree_view_get_tooltip_column(self.as_ref().to_glib_none().0) }
     }
@@ -1324,6 +1339,7 @@ pub trait TreeViewExt: IsA<TreeView> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_tree_view_set_activate_on_single_click")]
+    #[doc(alias = "activate-on-single-click")]
     fn set_activate_on_single_click(&self, single: bool) {
         unsafe {
             ffi::gtk_tree_view_set_activate_on_single_click(
@@ -1467,6 +1483,7 @@ pub trait TreeViewExt: IsA<TreeView> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_tree_view_set_enable_search")]
+    #[doc(alias = "enable-search")]
     fn set_enable_search(&self, enable_search: bool) {
         unsafe {
             ffi::gtk_tree_view_set_enable_search(
@@ -1479,6 +1496,7 @@ pub trait TreeViewExt: IsA<TreeView> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_tree_view_set_enable_tree_lines")]
+    #[doc(alias = "enable-tree-lines")]
     fn set_enable_tree_lines(&self, enabled: bool) {
         unsafe {
             ffi::gtk_tree_view_set_enable_tree_lines(
@@ -1491,6 +1509,7 @@ pub trait TreeViewExt: IsA<TreeView> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_tree_view_set_expander_column")]
+    #[doc(alias = "expander-column")]
     fn set_expander_column(&self, column: Option<&TreeViewColumn>) {
         unsafe {
             ffi::gtk_tree_view_set_expander_column(
@@ -1503,6 +1522,7 @@ pub trait TreeViewExt: IsA<TreeView> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_tree_view_set_fixed_height_mode")]
+    #[doc(alias = "fixed-height-mode")]
     fn set_fixed_height_mode(&self, enable: bool) {
         unsafe {
             ffi::gtk_tree_view_set_fixed_height_mode(
@@ -1527,6 +1547,7 @@ pub trait TreeViewExt: IsA<TreeView> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_tree_view_set_headers_clickable")]
+    #[doc(alias = "headers-clickable")]
     fn set_headers_clickable(&self, setting: bool) {
         unsafe {
             ffi::gtk_tree_view_set_headers_clickable(
@@ -1539,6 +1560,7 @@ pub trait TreeViewExt: IsA<TreeView> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_tree_view_set_headers_visible")]
+    #[doc(alias = "headers-visible")]
     fn set_headers_visible(&self, headers_visible: bool) {
         unsafe {
             ffi::gtk_tree_view_set_headers_visible(
@@ -1551,6 +1573,7 @@ pub trait TreeViewExt: IsA<TreeView> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_tree_view_set_hover_expand")]
+    #[doc(alias = "hover-expand")]
     fn set_hover_expand(&self, expand: bool) {
         unsafe {
             ffi::gtk_tree_view_set_hover_expand(self.as_ref().to_glib_none().0, expand.into_glib());
@@ -1560,6 +1583,7 @@ pub trait TreeViewExt: IsA<TreeView> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_tree_view_set_hover_selection")]
+    #[doc(alias = "hover-selection")]
     fn set_hover_selection(&self, hover: bool) {
         unsafe {
             ffi::gtk_tree_view_set_hover_selection(
@@ -1572,6 +1596,7 @@ pub trait TreeViewExt: IsA<TreeView> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_tree_view_set_level_indentation")]
+    #[doc(alias = "level-indentation")]
     fn set_level_indentation(&self, indentation: i32) {
         unsafe {
             ffi::gtk_tree_view_set_level_indentation(self.as_ref().to_glib_none().0, indentation);
@@ -1581,6 +1606,7 @@ pub trait TreeViewExt: IsA<TreeView> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_tree_view_set_model")]
+    #[doc(alias = "model")]
     fn set_model(&self, model: Option<&impl IsA<TreeModel>>) {
         unsafe {
             ffi::gtk_tree_view_set_model(
@@ -1593,6 +1619,7 @@ pub trait TreeViewExt: IsA<TreeView> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_tree_view_set_reorderable")]
+    #[doc(alias = "reorderable")]
     fn set_reorderable(&self, reorderable: bool) {
         unsafe {
             ffi::gtk_tree_view_set_reorderable(
@@ -1638,6 +1665,7 @@ pub trait TreeViewExt: IsA<TreeView> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_tree_view_set_rubber_banding")]
+    #[doc(alias = "rubber-banding")]
     fn set_rubber_banding(&self, enable: bool) {
         unsafe {
             ffi::gtk_tree_view_set_rubber_banding(
@@ -1650,6 +1678,7 @@ pub trait TreeViewExt: IsA<TreeView> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_tree_view_set_search_column")]
+    #[doc(alias = "search-column")]
     fn set_search_column(&self, column: i32) {
         unsafe {
             ffi::gtk_tree_view_set_search_column(self.as_ref().to_glib_none().0, column);
@@ -1714,6 +1743,7 @@ pub trait TreeViewExt: IsA<TreeView> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_tree_view_set_show_expanders")]
+    #[doc(alias = "show-expanders")]
     fn set_show_expanders(&self, enabled: bool) {
         unsafe {
             ffi::gtk_tree_view_set_show_expanders(
@@ -1747,6 +1777,7 @@ pub trait TreeViewExt: IsA<TreeView> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_tree_view_set_tooltip_column")]
+    #[doc(alias = "tooltip-column")]
     fn set_tooltip_column(&self, column: i32) {
         unsafe {
             ffi::gtk_tree_view_set_tooltip_column(self.as_ref().to_glib_none().0, column);

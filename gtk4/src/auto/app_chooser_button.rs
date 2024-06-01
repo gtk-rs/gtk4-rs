@@ -84,6 +84,7 @@ impl AppChooserButton {
     #[allow(deprecated)]
     #[doc(alias = "gtk_app_chooser_button_get_modal")]
     #[doc(alias = "get_modal")]
+    #[doc(alias = "modal")]
     pub fn is_modal(&self) -> bool {
         unsafe { from_glib(ffi::gtk_app_chooser_button_get_modal(self.to_glib_none().0)) }
     }
@@ -92,6 +93,7 @@ impl AppChooserButton {
     #[allow(deprecated)]
     #[doc(alias = "gtk_app_chooser_button_get_show_default_item")]
     #[doc(alias = "get_show_default_item")]
+    #[doc(alias = "show-default-item")]
     pub fn shows_default_item(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_app_chooser_button_get_show_default_item(
@@ -104,6 +106,7 @@ impl AppChooserButton {
     #[allow(deprecated)]
     #[doc(alias = "gtk_app_chooser_button_get_show_dialog_item")]
     #[doc(alias = "get_show_dialog_item")]
+    #[doc(alias = "show-dialog-item")]
     pub fn shows_dialog_item(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_app_chooser_button_get_show_dialog_item(
@@ -127,6 +130,7 @@ impl AppChooserButton {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_app_chooser_button_set_heading")]
+    #[doc(alias = "heading")]
     pub fn set_heading(&self, heading: &str) {
         unsafe {
             ffi::gtk_app_chooser_button_set_heading(
@@ -139,6 +143,7 @@ impl AppChooserButton {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_app_chooser_button_set_modal")]
+    #[doc(alias = "modal")]
     pub fn set_modal(&self, modal: bool) {
         unsafe {
             ffi::gtk_app_chooser_button_set_modal(self.to_glib_none().0, modal.into_glib());
@@ -148,6 +153,7 @@ impl AppChooserButton {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_app_chooser_button_set_show_default_item")]
+    #[doc(alias = "show-default-item")]
     pub fn set_show_default_item(&self, setting: bool) {
         unsafe {
             ffi::gtk_app_chooser_button_set_show_default_item(
@@ -160,6 +166,7 @@ impl AppChooserButton {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_app_chooser_button_set_show_dialog_item")]
+    #[doc(alias = "show-dialog-item")]
     pub fn set_show_dialog_item(&self, setting: bool) {
         unsafe {
             ffi::gtk_app_chooser_button_set_show_dialog_item(

@@ -47,11 +47,13 @@ impl BookmarkList {
     }
 
     #[doc(alias = "gtk_bookmark_list_is_loading")]
+    #[doc(alias = "loading")]
     pub fn is_loading(&self) -> bool {
         unsafe { from_glib(ffi::gtk_bookmark_list_is_loading(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_bookmark_list_set_attributes")]
+    #[doc(alias = "attributes")]
     pub fn set_attributes(&self, attributes: Option<&str>) {
         unsafe {
             ffi::gtk_bookmark_list_set_attributes(

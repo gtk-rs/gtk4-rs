@@ -36,11 +36,13 @@ impl GestureLongPress {
 
     #[doc(alias = "gtk_gesture_long_press_get_delay_factor")]
     #[doc(alias = "get_delay_factor")]
+    #[doc(alias = "delay-factor")]
     pub fn delay_factor(&self) -> f64 {
         unsafe { ffi::gtk_gesture_long_press_get_delay_factor(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_gesture_long_press_set_delay_factor")]
+    #[doc(alias = "delay-factor")]
     pub fn set_delay_factor(&self, delay_factor: f64) {
         unsafe {
             ffi::gtk_gesture_long_press_set_delay_factor(self.to_glib_none().0, delay_factor);

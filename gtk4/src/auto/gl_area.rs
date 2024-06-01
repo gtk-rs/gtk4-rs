@@ -307,6 +307,7 @@ pub trait GLAreaExt: IsA<GLArea> + sealed::Sealed + 'static {
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     #[doc(alias = "gtk_gl_area_get_allowed_apis")]
     #[doc(alias = "get_allowed_apis")]
+    #[doc(alias = "allowed-apis")]
     fn allowed_apis(&self) -> gdk::GLAPI {
         unsafe {
             from_glib(ffi::gtk_gl_area_get_allowed_apis(
@@ -325,6 +326,7 @@ pub trait GLAreaExt: IsA<GLArea> + sealed::Sealed + 'static {
 
     #[doc(alias = "gtk_gl_area_get_auto_render")]
     #[doc(alias = "get_auto_render")]
+    #[doc(alias = "auto-render")]
     fn is_auto_render(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_gl_area_get_auto_render(
@@ -347,6 +349,7 @@ pub trait GLAreaExt: IsA<GLArea> + sealed::Sealed + 'static {
 
     #[doc(alias = "gtk_gl_area_get_has_depth_buffer")]
     #[doc(alias = "get_has_depth_buffer")]
+    #[doc(alias = "has-depth-buffer")]
     fn has_depth_buffer(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_gl_area_get_has_depth_buffer(
@@ -357,6 +360,7 @@ pub trait GLAreaExt: IsA<GLArea> + sealed::Sealed + 'static {
 
     #[doc(alias = "gtk_gl_area_get_has_stencil_buffer")]
     #[doc(alias = "get_has_stencil_buffer")]
+    #[doc(alias = "has-stencil-buffer")]
     fn has_stencil_buffer(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_gl_area_get_has_stencil_buffer(
@@ -384,6 +388,7 @@ pub trait GLAreaExt: IsA<GLArea> + sealed::Sealed + 'static {
     #[allow(deprecated)]
     #[doc(alias = "gtk_gl_area_get_use_es")]
     #[doc(alias = "get_use_es")]
+    #[doc(alias = "use-es")]
     fn uses_es(&self) -> bool {
         unsafe { from_glib(ffi::gtk_gl_area_get_use_es(self.as_ref().to_glib_none().0)) }
     }
@@ -405,6 +410,7 @@ pub trait GLAreaExt: IsA<GLArea> + sealed::Sealed + 'static {
     #[cfg(feature = "v4_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     #[doc(alias = "gtk_gl_area_set_allowed_apis")]
+    #[doc(alias = "allowed-apis")]
     fn set_allowed_apis(&self, apis: gdk::GLAPI) {
         unsafe {
             ffi::gtk_gl_area_set_allowed_apis(self.as_ref().to_glib_none().0, apis.into_glib());
@@ -412,6 +418,7 @@ pub trait GLAreaExt: IsA<GLArea> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_gl_area_set_auto_render")]
+    #[doc(alias = "auto-render")]
     fn set_auto_render(&self, auto_render: bool) {
         unsafe {
             ffi::gtk_gl_area_set_auto_render(
@@ -429,6 +436,7 @@ pub trait GLAreaExt: IsA<GLArea> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_gl_area_set_has_depth_buffer")]
+    #[doc(alias = "has-depth-buffer")]
     fn set_has_depth_buffer(&self, has_depth_buffer: bool) {
         unsafe {
             ffi::gtk_gl_area_set_has_depth_buffer(
@@ -439,6 +447,7 @@ pub trait GLAreaExt: IsA<GLArea> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_gl_area_set_has_stencil_buffer")]
+    #[doc(alias = "has-stencil-buffer")]
     fn set_has_stencil_buffer(&self, has_stencil_buffer: bool) {
         unsafe {
             ffi::gtk_gl_area_set_has_stencil_buffer(
@@ -458,6 +467,7 @@ pub trait GLAreaExt: IsA<GLArea> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v4_12", deprecated = "Since 4.12")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_gl_area_set_use_es")]
+    #[doc(alias = "use-es")]
     fn set_use_es(&self, use_es: bool) {
         unsafe {
             ffi::gtk_gl_area_set_use_es(self.as_ref().to_glib_none().0, use_es.into_glib());

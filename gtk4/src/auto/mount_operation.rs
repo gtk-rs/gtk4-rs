@@ -169,6 +169,7 @@ pub trait GtkMountOperationExt: IsA<MountOperation> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_mount_operation_is_showing")]
+    #[doc(alias = "is-showing")]
     fn is_showing(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_mount_operation_is_showing(
@@ -178,6 +179,7 @@ pub trait GtkMountOperationExt: IsA<MountOperation> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_mount_operation_set_display")]
+    #[doc(alias = "display")]
     fn set_display(&self, display: &impl IsA<gdk::Display>) {
         unsafe {
             ffi::gtk_mount_operation_set_display(
@@ -188,6 +190,7 @@ pub trait GtkMountOperationExt: IsA<MountOperation> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_mount_operation_set_parent")]
+    #[doc(alias = "parent")]
     fn set_parent(&self, parent: Option<&impl IsA<Window>>) {
         unsafe {
             ffi::gtk_mount_operation_set_parent(

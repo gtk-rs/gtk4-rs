@@ -33,6 +33,7 @@ impl ColumnViewCell {
     #[cfg_attr(docsrs, doc(cfg(not(feature = "v4_12"))))]
     #[doc(alias = "gtk_column_view_cell_get_focusable")]
     #[doc(alias = "get_focusable")]
+    #[doc(alias = "focusable")]
     pub fn is_focusable(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_column_view_cell_get_focusable(
@@ -55,6 +56,7 @@ impl ColumnViewCell {
 
     #[doc(alias = "gtk_column_view_cell_get_selected")]
     #[doc(alias = "get_selected")]
+    #[doc(alias = "selected")]
     pub fn is_selected(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_column_view_cell_get_selected(
@@ -64,6 +66,7 @@ impl ColumnViewCell {
     }
 
     #[doc(alias = "gtk_column_view_cell_set_child")]
+    #[doc(alias = "child")]
     pub fn set_child(&self, child: Option<&impl IsA<Widget>>) {
         unsafe {
             ffi::gtk_column_view_cell_set_child(
@@ -76,6 +79,7 @@ impl ColumnViewCell {
     #[cfg(not(feature = "v4_12"))]
     #[cfg_attr(docsrs, doc(cfg(not(feature = "v4_12"))))]
     #[doc(alias = "gtk_column_view_cell_set_focusable")]
+    #[doc(alias = "focusable")]
     pub fn set_focusable(&self, focusable: bool) {
         unsafe {
             ffi::gtk_column_view_cell_set_focusable(self.to_glib_none().0, focusable.into_glib());

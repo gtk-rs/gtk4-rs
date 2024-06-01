@@ -58,6 +58,7 @@ impl FontButton {
     #[allow(deprecated)]
     #[doc(alias = "gtk_font_button_get_modal")]
     #[doc(alias = "get_modal")]
+    #[doc(alias = "modal")]
     pub fn is_modal(&self) -> bool {
         unsafe { from_glib(ffi::gtk_font_button_get_modal(self.to_glib_none().0)) }
     }
@@ -74,6 +75,7 @@ impl FontButton {
     #[allow(deprecated)]
     #[doc(alias = "gtk_font_button_get_use_font")]
     #[doc(alias = "get_use_font")]
+    #[doc(alias = "use-font")]
     pub fn uses_font(&self) -> bool {
         unsafe { from_glib(ffi::gtk_font_button_get_use_font(self.to_glib_none().0)) }
     }
@@ -82,6 +84,7 @@ impl FontButton {
     #[allow(deprecated)]
     #[doc(alias = "gtk_font_button_get_use_size")]
     #[doc(alias = "get_use_size")]
+    #[doc(alias = "use-size")]
     pub fn uses_size(&self) -> bool {
         unsafe { from_glib(ffi::gtk_font_button_get_use_size(self.to_glib_none().0)) }
     }
@@ -89,6 +92,7 @@ impl FontButton {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_font_button_set_modal")]
+    #[doc(alias = "modal")]
     pub fn set_modal(&self, modal: bool) {
         unsafe {
             ffi::gtk_font_button_set_modal(self.to_glib_none().0, modal.into_glib());
@@ -98,6 +102,7 @@ impl FontButton {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_font_button_set_title")]
+    #[doc(alias = "title")]
     pub fn set_title(&self, title: &str) {
         unsafe {
             ffi::gtk_font_button_set_title(self.to_glib_none().0, title.to_glib_none().0);
@@ -107,6 +112,7 @@ impl FontButton {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_font_button_set_use_font")]
+    #[doc(alias = "use-font")]
     pub fn set_use_font(&self, use_font: bool) {
         unsafe {
             ffi::gtk_font_button_set_use_font(self.to_glib_none().0, use_font.into_glib());
@@ -116,6 +122,7 @@ impl FontButton {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_font_button_set_use_size")]
+    #[doc(alias = "use-size")]
     pub fn set_use_size(&self, use_size: bool) {
         unsafe {
             ffi::gtk_font_button_set_use_size(self.to_glib_none().0, use_size.into_glib());

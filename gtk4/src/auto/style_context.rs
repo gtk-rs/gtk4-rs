@@ -223,6 +223,7 @@ pub trait StyleContextExt: IsA<StyleContext> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_style_context_set_display")]
+    #[doc(alias = "display")]
     fn set_display(&self, display: &impl IsA<gdk::Display>) {
         unsafe {
             ffi::gtk_style_context_set_display(

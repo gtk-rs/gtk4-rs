@@ -62,6 +62,7 @@ impl DmabufTextureBuilder {
 
     #[doc(alias = "gdk_dmabuf_texture_builder_get_n_planes")]
     #[doc(alias = "get_n_planes")]
+    #[doc(alias = "n-planes")]
     pub fn n_planes(&self) -> u32 {
         unsafe { ffi::gdk_dmabuf_texture_builder_get_n_planes(self.to_glib_none().0) }
     }
@@ -74,6 +75,7 @@ impl DmabufTextureBuilder {
 
     #[doc(alias = "gdk_dmabuf_texture_builder_get_premultiplied")]
     #[doc(alias = "get_premultiplied")]
+    #[doc(alias = "premultiplied")]
     pub fn is_premultiplied(&self) -> bool {
         unsafe {
             from_glib(ffi::gdk_dmabuf_texture_builder_get_premultiplied(
@@ -90,6 +92,7 @@ impl DmabufTextureBuilder {
 
     #[doc(alias = "gdk_dmabuf_texture_builder_get_update_region")]
     #[doc(alias = "get_update_region")]
+    #[doc(alias = "update-region")]
     pub fn update_region(&self) -> Option<cairo::Region> {
         unsafe {
             from_glib_none(ffi::gdk_dmabuf_texture_builder_get_update_region(
@@ -100,6 +103,7 @@ impl DmabufTextureBuilder {
 
     #[doc(alias = "gdk_dmabuf_texture_builder_get_update_texture")]
     #[doc(alias = "get_update_texture")]
+    #[doc(alias = "update-texture")]
     pub fn update_texture(&self) -> Option<Texture> {
         unsafe {
             from_glib_none(ffi::gdk_dmabuf_texture_builder_get_update_texture(
@@ -115,6 +119,7 @@ impl DmabufTextureBuilder {
     }
 
     #[doc(alias = "gdk_dmabuf_texture_builder_set_display")]
+    #[doc(alias = "display")]
     pub fn set_display(&self, display: &impl IsA<Display>) {
         unsafe {
             ffi::gdk_dmabuf_texture_builder_set_display(
@@ -132,6 +137,7 @@ impl DmabufTextureBuilder {
     }
 
     #[doc(alias = "gdk_dmabuf_texture_builder_set_fourcc")]
+    #[doc(alias = "fourcc")]
     pub fn set_fourcc(&self, fourcc: u32) {
         unsafe {
             ffi::gdk_dmabuf_texture_builder_set_fourcc(self.to_glib_none().0, fourcc);
@@ -139,6 +145,7 @@ impl DmabufTextureBuilder {
     }
 
     #[doc(alias = "gdk_dmabuf_texture_builder_set_height")]
+    #[doc(alias = "height")]
     pub fn set_height(&self, height: u32) {
         unsafe {
             ffi::gdk_dmabuf_texture_builder_set_height(self.to_glib_none().0, height);
@@ -146,6 +153,7 @@ impl DmabufTextureBuilder {
     }
 
     #[doc(alias = "gdk_dmabuf_texture_builder_set_modifier")]
+    #[doc(alias = "modifier")]
     pub fn set_modifier(&self, modifier: u64) {
         unsafe {
             ffi::gdk_dmabuf_texture_builder_set_modifier(self.to_glib_none().0, modifier);
@@ -153,6 +161,7 @@ impl DmabufTextureBuilder {
     }
 
     #[doc(alias = "gdk_dmabuf_texture_builder_set_n_planes")]
+    #[doc(alias = "n-planes")]
     pub fn set_n_planes(&self, n_planes: u32) {
         unsafe {
             ffi::gdk_dmabuf_texture_builder_set_n_planes(self.to_glib_none().0, n_planes);
@@ -167,6 +176,7 @@ impl DmabufTextureBuilder {
     }
 
     #[doc(alias = "gdk_dmabuf_texture_builder_set_premultiplied")]
+    #[doc(alias = "premultiplied")]
     pub fn set_premultiplied(&self, premultiplied: bool) {
         unsafe {
             ffi::gdk_dmabuf_texture_builder_set_premultiplied(
@@ -184,6 +194,7 @@ impl DmabufTextureBuilder {
     }
 
     #[doc(alias = "gdk_dmabuf_texture_builder_set_update_region")]
+    #[doc(alias = "update-region")]
     pub fn set_update_region(&self, region: Option<&cairo::Region>) {
         unsafe {
             ffi::gdk_dmabuf_texture_builder_set_update_region(
@@ -194,6 +205,7 @@ impl DmabufTextureBuilder {
     }
 
     #[doc(alias = "gdk_dmabuf_texture_builder_set_update_texture")]
+    #[doc(alias = "update-texture")]
     pub fn set_update_texture(&self, texture: Option<&impl IsA<Texture>>) {
         unsafe {
             ffi::gdk_dmabuf_texture_builder_set_update_texture(
@@ -204,6 +216,7 @@ impl DmabufTextureBuilder {
     }
 
     #[doc(alias = "gdk_dmabuf_texture_builder_set_width")]
+    #[doc(alias = "width")]
     pub fn set_width(&self, width: u32) {
         unsafe {
             ffi::gdk_dmabuf_texture_builder_set_width(self.to_glib_none().0, width);

@@ -53,6 +53,7 @@ pub trait GestureSingleExt: IsA<GestureSingle> + sealed::Sealed + 'static {
 
     #[doc(alias = "gtk_gesture_single_get_exclusive")]
     #[doc(alias = "get_exclusive")]
+    #[doc(alias = "exclusive")]
     fn is_exclusive(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_gesture_single_get_exclusive(
@@ -63,6 +64,7 @@ pub trait GestureSingleExt: IsA<GestureSingle> + sealed::Sealed + 'static {
 
     #[doc(alias = "gtk_gesture_single_get_touch_only")]
     #[doc(alias = "get_touch_only")]
+    #[doc(alias = "touch-only")]
     fn is_touch_only(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_gesture_single_get_touch_only(
@@ -72,6 +74,7 @@ pub trait GestureSingleExt: IsA<GestureSingle> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_gesture_single_set_button")]
+    #[doc(alias = "button")]
     fn set_button(&self, button: u32) {
         unsafe {
             ffi::gtk_gesture_single_set_button(self.as_ref().to_glib_none().0, button);
@@ -79,6 +82,7 @@ pub trait GestureSingleExt: IsA<GestureSingle> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_gesture_single_set_exclusive")]
+    #[doc(alias = "exclusive")]
     fn set_exclusive(&self, exclusive: bool) {
         unsafe {
             ffi::gtk_gesture_single_set_exclusive(
@@ -89,6 +93,7 @@ pub trait GestureSingleExt: IsA<GestureSingle> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_gesture_single_set_touch_only")]
+    #[doc(alias = "touch-only")]
     fn set_touch_only(&self, touch_only: bool) {
         unsafe {
             ffi::gtk_gesture_single_set_touch_only(

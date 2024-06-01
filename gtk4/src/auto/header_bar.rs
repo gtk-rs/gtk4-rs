@@ -39,6 +39,7 @@ impl HeaderBar {
 
     #[doc(alias = "gtk_header_bar_get_decoration_layout")]
     #[doc(alias = "get_decoration_layout")]
+    #[doc(alias = "decoration-layout")]
     pub fn decoration_layout(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::gtk_header_bar_get_decoration_layout(
@@ -49,6 +50,7 @@ impl HeaderBar {
 
     #[doc(alias = "gtk_header_bar_get_show_title_buttons")]
     #[doc(alias = "get_show_title_buttons")]
+    #[doc(alias = "show-title-buttons")]
     pub fn shows_title_buttons(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_header_bar_get_show_title_buttons(
@@ -59,6 +61,7 @@ impl HeaderBar {
 
     #[doc(alias = "gtk_header_bar_get_title_widget")]
     #[doc(alias = "get_title_widget")]
+    #[doc(alias = "title-widget")]
     pub fn title_widget(&self) -> Option<Widget> {
         unsafe { from_glib_none(ffi::gtk_header_bar_get_title_widget(self.to_glib_none().0)) }
     }
@@ -85,6 +88,7 @@ impl HeaderBar {
     }
 
     #[doc(alias = "gtk_header_bar_set_decoration_layout")]
+    #[doc(alias = "decoration-layout")]
     pub fn set_decoration_layout(&self, layout: Option<&str>) {
         unsafe {
             ffi::gtk_header_bar_set_decoration_layout(
@@ -95,6 +99,7 @@ impl HeaderBar {
     }
 
     #[doc(alias = "gtk_header_bar_set_show_title_buttons")]
+    #[doc(alias = "show-title-buttons")]
     pub fn set_show_title_buttons(&self, setting: bool) {
         unsafe {
             ffi::gtk_header_bar_set_show_title_buttons(self.to_glib_none().0, setting.into_glib());
@@ -102,6 +107,7 @@ impl HeaderBar {
     }
 
     #[doc(alias = "gtk_header_bar_set_title_widget")]
+    #[doc(alias = "title-widget")]
     pub fn set_title_widget(&self, title_widget: Option<&impl IsA<Widget>>) {
         unsafe {
             ffi::gtk_header_bar_set_title_widget(

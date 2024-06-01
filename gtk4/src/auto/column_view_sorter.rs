@@ -42,6 +42,7 @@ impl ColumnViewSorter {
 
     #[doc(alias = "gtk_column_view_sorter_get_primary_sort_column")]
     #[doc(alias = "get_primary_sort_column")]
+    #[doc(alias = "primary-sort-column")]
     pub fn primary_sort_column(&self) -> Option<ColumnViewColumn> {
         unsafe {
             from_glib_none(ffi::gtk_column_view_sorter_get_primary_sort_column(
@@ -52,6 +53,7 @@ impl ColumnViewSorter {
 
     #[doc(alias = "gtk_column_view_sorter_get_primary_sort_order")]
     #[doc(alias = "get_primary_sort_order")]
+    #[doc(alias = "primary-sort-order")]
     pub fn primary_sort_order(&self) -> SortType {
         unsafe {
             from_glib(ffi::gtk_column_view_sorter_get_primary_sort_order(

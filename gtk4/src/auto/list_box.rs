@@ -97,6 +97,7 @@ impl ListBox {
 
     #[doc(alias = "gtk_list_box_get_activate_on_single_click")]
     #[doc(alias = "get_activate_on_single_click")]
+    #[doc(alias = "activate-on-single-click")]
     pub fn activates_on_single_click(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_list_box_get_activate_on_single_click(
@@ -146,12 +147,14 @@ impl ListBox {
 
     #[doc(alias = "gtk_list_box_get_selection_mode")]
     #[doc(alias = "get_selection_mode")]
+    #[doc(alias = "selection-mode")]
     pub fn selection_mode(&self) -> SelectionMode {
         unsafe { from_glib(ffi::gtk_list_box_get_selection_mode(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_list_box_get_show_separators")]
     #[doc(alias = "get_show_separators")]
+    #[doc(alias = "show-separators")]
     pub fn shows_separators(&self) -> bool {
         unsafe { from_glib(ffi::gtk_list_box_get_show_separators(self.to_glib_none().0)) }
     }
@@ -253,6 +256,7 @@ impl ListBox {
     }
 
     #[doc(alias = "gtk_list_box_set_activate_on_single_click")]
+    #[doc(alias = "activate-on-single-click")]
     pub fn set_activate_on_single_click(&self, single: bool) {
         unsafe {
             ffi::gtk_list_box_set_activate_on_single_click(
@@ -348,6 +352,7 @@ impl ListBox {
     }
 
     #[doc(alias = "gtk_list_box_set_selection_mode")]
+    #[doc(alias = "selection-mode")]
     pub fn set_selection_mode(&self, mode: SelectionMode) {
         unsafe {
             ffi::gtk_list_box_set_selection_mode(self.to_glib_none().0, mode.into_glib());
@@ -355,6 +360,7 @@ impl ListBox {
     }
 
     #[doc(alias = "gtk_list_box_set_show_separators")]
+    #[doc(alias = "show-separators")]
     pub fn set_show_separators(&self, show_separators: bool) {
         unsafe {
             ffi::gtk_list_box_set_show_separators(

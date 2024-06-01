@@ -44,6 +44,7 @@ impl ATContext {
 
     #[doc(alias = "gtk_at_context_get_accessible_role")]
     #[doc(alias = "get_accessible_role")]
+    #[doc(alias = "accessible-role")]
     pub fn accessible_role(&self) -> AccessibleRole {
         unsafe {
             from_glib(ffi::gtk_at_context_get_accessible_role(

@@ -66,18 +66,21 @@ impl ProgressBar {
 
     #[doc(alias = "gtk_progress_bar_get_inverted")]
     #[doc(alias = "get_inverted")]
+    #[doc(alias = "inverted")]
     pub fn is_inverted(&self) -> bool {
         unsafe { from_glib(ffi::gtk_progress_bar_get_inverted(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_progress_bar_get_pulse_step")]
     #[doc(alias = "get_pulse_step")]
+    #[doc(alias = "pulse-step")]
     pub fn pulse_step(&self) -> f64 {
         unsafe { ffi::gtk_progress_bar_get_pulse_step(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_progress_bar_get_show_text")]
     #[doc(alias = "get_show_text")]
+    #[doc(alias = "show-text")]
     pub fn shows_text(&self) -> bool {
         unsafe { from_glib(ffi::gtk_progress_bar_get_show_text(self.to_glib_none().0)) }
     }
@@ -96,6 +99,7 @@ impl ProgressBar {
     }
 
     #[doc(alias = "gtk_progress_bar_set_ellipsize")]
+    #[doc(alias = "ellipsize")]
     pub fn set_ellipsize(&self, mode: pango::EllipsizeMode) {
         unsafe {
             ffi::gtk_progress_bar_set_ellipsize(self.to_glib_none().0, mode.into_glib());
@@ -103,6 +107,7 @@ impl ProgressBar {
     }
 
     #[doc(alias = "gtk_progress_bar_set_fraction")]
+    #[doc(alias = "fraction")]
     pub fn set_fraction(&self, fraction: f64) {
         unsafe {
             ffi::gtk_progress_bar_set_fraction(self.to_glib_none().0, fraction);
@@ -110,6 +115,7 @@ impl ProgressBar {
     }
 
     #[doc(alias = "gtk_progress_bar_set_inverted")]
+    #[doc(alias = "inverted")]
     pub fn set_inverted(&self, inverted: bool) {
         unsafe {
             ffi::gtk_progress_bar_set_inverted(self.to_glib_none().0, inverted.into_glib());
@@ -117,6 +123,7 @@ impl ProgressBar {
     }
 
     #[doc(alias = "gtk_progress_bar_set_pulse_step")]
+    #[doc(alias = "pulse-step")]
     pub fn set_pulse_step(&self, fraction: f64) {
         unsafe {
             ffi::gtk_progress_bar_set_pulse_step(self.to_glib_none().0, fraction);
@@ -124,6 +131,7 @@ impl ProgressBar {
     }
 
     #[doc(alias = "gtk_progress_bar_set_show_text")]
+    #[doc(alias = "show-text")]
     pub fn set_show_text(&self, show_text: bool) {
         unsafe {
             ffi::gtk_progress_bar_set_show_text(self.to_glib_none().0, show_text.into_glib());
@@ -131,6 +139,7 @@ impl ProgressBar {
     }
 
     #[doc(alias = "gtk_progress_bar_set_text")]
+    #[doc(alias = "text")]
     pub fn set_text(&self, text: Option<&str>) {
         unsafe {
             ffi::gtk_progress_bar_set_text(self.to_glib_none().0, text.to_glib_none().0);

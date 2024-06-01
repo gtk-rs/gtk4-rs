@@ -90,6 +90,7 @@ impl CellAreaBox {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_cell_area_box_set_spacing")]
+    #[doc(alias = "spacing")]
     pub fn set_spacing(&self, spacing: i32) {
         unsafe {
             ffi::gtk_cell_area_box_set_spacing(self.to_glib_none().0, spacing);

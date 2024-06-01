@@ -52,6 +52,7 @@ impl ShortcutLabel {
 
     #[doc(alias = "gtk_shortcut_label_get_disabled_text")]
     #[doc(alias = "get_disabled_text")]
+    #[doc(alias = "disabled-text")]
     pub fn disabled_text(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::gtk_shortcut_label_get_disabled_text(
@@ -61,6 +62,7 @@ impl ShortcutLabel {
     }
 
     #[doc(alias = "gtk_shortcut_label_set_accelerator")]
+    #[doc(alias = "accelerator")]
     pub fn set_accelerator(&self, accelerator: &str) {
         unsafe {
             ffi::gtk_shortcut_label_set_accelerator(
@@ -71,6 +73,7 @@ impl ShortcutLabel {
     }
 
     #[doc(alias = "gtk_shortcut_label_set_disabled_text")]
+    #[doc(alias = "disabled-text")]
     pub fn set_disabled_text(&self, disabled_text: &str) {
         unsafe {
             ffi::gtk_shortcut_label_set_disabled_text(

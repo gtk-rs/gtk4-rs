@@ -39,11 +39,13 @@ impl Spinner {
 
     #[doc(alias = "gtk_spinner_get_spinning")]
     #[doc(alias = "get_spinning")]
+    #[doc(alias = "spinning")]
     pub fn is_spinning(&self) -> bool {
         unsafe { from_glib(ffi::gtk_spinner_get_spinning(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_spinner_set_spinning")]
+    #[doc(alias = "spinning")]
     pub fn set_spinning(&self, spinning: bool) {
         unsafe {
             ffi::gtk_spinner_set_spinning(self.to_glib_none().0, spinning.into_glib());

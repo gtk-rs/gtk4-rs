@@ -310,12 +310,14 @@ pub trait BoxExt: IsA<Box> + sealed::Sealed + 'static {
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     #[doc(alias = "gtk_box_get_baseline_child")]
     #[doc(alias = "get_baseline_child")]
+    #[doc(alias = "baseline-child")]
     fn baseline_child(&self) -> i32 {
         unsafe { ffi::gtk_box_get_baseline_child(self.as_ref().to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_box_get_baseline_position")]
     #[doc(alias = "get_baseline_position")]
+    #[doc(alias = "baseline-position")]
     fn baseline_position(&self) -> BaselinePosition {
         unsafe {
             from_glib(ffi::gtk_box_get_baseline_position(
@@ -326,6 +328,7 @@ pub trait BoxExt: IsA<Box> + sealed::Sealed + 'static {
 
     #[doc(alias = "gtk_box_get_homogeneous")]
     #[doc(alias = "get_homogeneous")]
+    #[doc(alias = "homogeneous")]
     fn is_homogeneous(&self) -> bool {
         unsafe { from_glib(ffi::gtk_box_get_homogeneous(self.as_ref().to_glib_none().0)) }
     }
@@ -381,6 +384,7 @@ pub trait BoxExt: IsA<Box> + sealed::Sealed + 'static {
     #[cfg(feature = "v4_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     #[doc(alias = "gtk_box_set_baseline_child")]
+    #[doc(alias = "baseline-child")]
     fn set_baseline_child(&self, child: i32) {
         unsafe {
             ffi::gtk_box_set_baseline_child(self.as_ref().to_glib_none().0, child);
@@ -388,6 +392,7 @@ pub trait BoxExt: IsA<Box> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_box_set_baseline_position")]
+    #[doc(alias = "baseline-position")]
     fn set_baseline_position(&self, position: BaselinePosition) {
         unsafe {
             ffi::gtk_box_set_baseline_position(
@@ -398,6 +403,7 @@ pub trait BoxExt: IsA<Box> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_box_set_homogeneous")]
+    #[doc(alias = "homogeneous")]
     fn set_homogeneous(&self, homogeneous: bool) {
         unsafe {
             ffi::gtk_box_set_homogeneous(self.as_ref().to_glib_none().0, homogeneous.into_glib());
@@ -405,6 +411,7 @@ pub trait BoxExt: IsA<Box> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_box_set_spacing")]
+    #[doc(alias = "spacing")]
     fn set_spacing(&self, spacing: i32) {
         unsafe {
             ffi::gtk_box_set_spacing(self.as_ref().to_glib_none().0, spacing);

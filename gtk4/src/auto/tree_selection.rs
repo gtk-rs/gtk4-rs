@@ -180,6 +180,7 @@ impl TreeSelection {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_tree_selection_set_mode")]
+    #[doc(alias = "mode")]
     pub fn set_mode(&self, type_: SelectionMode) {
         unsafe {
             ffi::gtk_tree_selection_set_mode(self.to_glib_none().0, type_.into_glib());

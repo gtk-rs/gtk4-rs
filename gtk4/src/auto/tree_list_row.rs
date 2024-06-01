@@ -46,6 +46,7 @@ impl TreeListRow {
 
     #[doc(alias = "gtk_tree_list_row_get_expanded")]
     #[doc(alias = "get_expanded")]
+    #[doc(alias = "expanded")]
     pub fn is_expanded(&self) -> bool {
         unsafe { from_glib(ffi::gtk_tree_list_row_get_expanded(self.to_glib_none().0)) }
     }
@@ -70,11 +71,13 @@ impl TreeListRow {
     }
 
     #[doc(alias = "gtk_tree_list_row_is_expandable")]
+    #[doc(alias = "expandable")]
     pub fn is_expandable(&self) -> bool {
         unsafe { from_glib(ffi::gtk_tree_list_row_is_expandable(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_tree_list_row_set_expanded")]
+    #[doc(alias = "expanded")]
     pub fn set_expanded(&self, expanded: bool) {
         unsafe {
             ffi::gtk_tree_list_row_set_expanded(self.to_glib_none().0, expanded.into_glib());

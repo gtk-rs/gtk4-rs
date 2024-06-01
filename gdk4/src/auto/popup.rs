@@ -26,6 +26,7 @@ mod sealed {
 pub trait PopupExt: IsA<Popup> + sealed::Sealed + 'static {
     #[doc(alias = "gdk_popup_get_autohide")]
     #[doc(alias = "get_autohide")]
+    #[doc(alias = "autohide")]
     fn is_autohide(&self) -> bool {
         unsafe { from_glib(ffi::gdk_popup_get_autohide(self.as_ref().to_glib_none().0)) }
     }

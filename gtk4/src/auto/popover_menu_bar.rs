@@ -56,6 +56,7 @@ impl PopoverMenuBar {
 
     #[doc(alias = "gtk_popover_menu_bar_get_menu_model")]
     #[doc(alias = "get_menu_model")]
+    #[doc(alias = "menu-model")]
     pub fn menu_model(&self) -> Option<gio::MenuModel> {
         unsafe {
             from_glib_none(ffi::gtk_popover_menu_bar_get_menu_model(
@@ -75,6 +76,7 @@ impl PopoverMenuBar {
     }
 
     #[doc(alias = "gtk_popover_menu_bar_set_menu_model")]
+    #[doc(alias = "menu-model")]
     pub fn set_menu_model(&self, model: Option<&impl IsA<gio::MenuModel>>) {
         unsafe {
             ffi::gtk_popover_menu_bar_set_menu_model(

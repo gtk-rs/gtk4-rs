@@ -41,6 +41,7 @@ impl TreeListRowSorter {
     }
 
     #[doc(alias = "gtk_tree_list_row_sorter_set_sorter")]
+    #[doc(alias = "sorter")]
     pub fn set_sorter(&self, sorter: Option<&impl IsA<Sorter>>) {
         unsafe {
             ffi::gtk_tree_list_row_sorter_set_sorter(

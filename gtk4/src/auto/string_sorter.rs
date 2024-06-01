@@ -59,6 +59,7 @@ impl StringSorter {
 
     #[doc(alias = "gtk_string_sorter_get_ignore_case")]
     #[doc(alias = "get_ignore_case")]
+    #[doc(alias = "ignore-case")]
     pub fn ignores_case(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_string_sorter_get_ignore_case(
@@ -70,6 +71,7 @@ impl StringSorter {
     #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "gtk_string_sorter_set_collation")]
+    #[doc(alias = "collation")]
     pub fn set_collation(&self, collation: Collation) {
         unsafe {
             ffi::gtk_string_sorter_set_collation(self.to_glib_none().0, collation.into_glib());
@@ -77,6 +79,7 @@ impl StringSorter {
     }
 
     #[doc(alias = "gtk_string_sorter_set_expression")]
+    #[doc(alias = "expression")]
     pub fn set_expression(&self, expression: Option<impl AsRef<Expression>>) {
         unsafe {
             ffi::gtk_string_sorter_set_expression(
@@ -87,6 +90,7 @@ impl StringSorter {
     }
 
     #[doc(alias = "gtk_string_sorter_set_ignore_case")]
+    #[doc(alias = "ignore-case")]
     pub fn set_ignore_case(&self, ignore_case: bool) {
         unsafe {
             ffi::gtk_string_sorter_set_ignore_case(self.to_glib_none().0, ignore_case.into_glib());

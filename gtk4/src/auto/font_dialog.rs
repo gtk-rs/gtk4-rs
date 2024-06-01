@@ -267,6 +267,7 @@ impl FontDialog {
 
     #[doc(alias = "gtk_font_dialog_get_font_map")]
     #[doc(alias = "get_font_map")]
+    #[doc(alias = "font-map")]
     pub fn font_map(&self) -> Option<pango::FontMap> {
         unsafe { from_glib_none(ffi::gtk_font_dialog_get_font_map(self.to_glib_none().0)) }
     }
@@ -279,6 +280,7 @@ impl FontDialog {
 
     #[doc(alias = "gtk_font_dialog_get_modal")]
     #[doc(alias = "get_modal")]
+    #[doc(alias = "modal")]
     pub fn is_modal(&self) -> bool {
         unsafe { from_glib(ffi::gtk_font_dialog_get_modal(self.to_glib_none().0)) }
     }
@@ -290,6 +292,7 @@ impl FontDialog {
     }
 
     #[doc(alias = "gtk_font_dialog_set_filter")]
+    #[doc(alias = "filter")]
     pub fn set_filter(&self, filter: Option<&impl IsA<Filter>>) {
         unsafe {
             ffi::gtk_font_dialog_set_filter(
@@ -300,6 +303,7 @@ impl FontDialog {
     }
 
     #[doc(alias = "gtk_font_dialog_set_font_map")]
+    #[doc(alias = "font-map")]
     pub fn set_font_map(&self, fontmap: Option<&impl IsA<pango::FontMap>>) {
         unsafe {
             ffi::gtk_font_dialog_set_font_map(
@@ -310,6 +314,7 @@ impl FontDialog {
     }
 
     #[doc(alias = "gtk_font_dialog_set_language")]
+    #[doc(alias = "language")]
     pub fn set_language(&self, language: &pango::Language) {
         unsafe {
             ffi::gtk_font_dialog_set_language(
@@ -320,6 +325,7 @@ impl FontDialog {
     }
 
     #[doc(alias = "gtk_font_dialog_set_modal")]
+    #[doc(alias = "modal")]
     pub fn set_modal(&self, modal: bool) {
         unsafe {
             ffi::gtk_font_dialog_set_modal(self.to_glib_none().0, modal.into_glib());
@@ -327,6 +333,7 @@ impl FontDialog {
     }
 
     #[doc(alias = "gtk_font_dialog_set_title")]
+    #[doc(alias = "title")]
     pub fn set_title(&self, title: &str) {
         unsafe {
             ffi::gtk_font_dialog_set_title(self.to_glib_none().0, title.to_glib_none().0);

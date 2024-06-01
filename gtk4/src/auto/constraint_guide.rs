@@ -65,6 +65,7 @@ impl ConstraintGuide {
     }
 
     #[doc(alias = "gtk_constraint_guide_set_name")]
+    #[doc(alias = "name")]
     pub fn set_name(&self, name: Option<&str>) {
         unsafe {
             ffi::gtk_constraint_guide_set_name(self.to_glib_none().0, name.to_glib_none().0);
@@ -79,6 +80,7 @@ impl ConstraintGuide {
     }
 
     #[doc(alias = "gtk_constraint_guide_set_strength")]
+    #[doc(alias = "strength")]
     pub fn set_strength(&self, strength: ConstraintStrength) {
         unsafe {
             ffi::gtk_constraint_guide_set_strength(self.to_glib_none().0, strength.into_glib());

@@ -299,6 +299,7 @@ pub trait FlowBoxChildExt: IsA<FlowBoxChild> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_flow_box_child_set_child")]
+    #[doc(alias = "child")]
     fn set_child(&self, child: Option<&impl IsA<Widget>>) {
         unsafe {
             ffi::gtk_flow_box_child_set_child(

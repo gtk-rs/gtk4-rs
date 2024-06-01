@@ -28,6 +28,7 @@ impl StackPage {
 
     #[doc(alias = "gtk_stack_page_get_icon_name")]
     #[doc(alias = "get_icon_name")]
+    #[doc(alias = "icon-name")]
     pub fn icon_name(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::gtk_stack_page_get_icon_name(self.to_glib_none().0)) }
     }
@@ -40,6 +41,7 @@ impl StackPage {
 
     #[doc(alias = "gtk_stack_page_get_needs_attention")]
     #[doc(alias = "get_needs_attention")]
+    #[doc(alias = "needs-attention")]
     pub fn needs_attention(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_stack_page_get_needs_attention(
@@ -56,17 +58,20 @@ impl StackPage {
 
     #[doc(alias = "gtk_stack_page_get_use_underline")]
     #[doc(alias = "get_use_underline")]
+    #[doc(alias = "use-underline")]
     pub fn uses_underline(&self) -> bool {
         unsafe { from_glib(ffi::gtk_stack_page_get_use_underline(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_stack_page_get_visible")]
     #[doc(alias = "get_visible")]
+    #[doc(alias = "visible")]
     pub fn is_visible(&self) -> bool {
         unsafe { from_glib(ffi::gtk_stack_page_get_visible(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_stack_page_set_icon_name")]
+    #[doc(alias = "icon-name")]
     pub fn set_icon_name(&self, setting: &str) {
         unsafe {
             ffi::gtk_stack_page_set_icon_name(self.to_glib_none().0, setting.to_glib_none().0);
@@ -74,6 +79,7 @@ impl StackPage {
     }
 
     #[doc(alias = "gtk_stack_page_set_name")]
+    #[doc(alias = "name")]
     pub fn set_name(&self, setting: &str) {
         unsafe {
             ffi::gtk_stack_page_set_name(self.to_glib_none().0, setting.to_glib_none().0);
@@ -81,6 +87,7 @@ impl StackPage {
     }
 
     #[doc(alias = "gtk_stack_page_set_needs_attention")]
+    #[doc(alias = "needs-attention")]
     pub fn set_needs_attention(&self, setting: bool) {
         unsafe {
             ffi::gtk_stack_page_set_needs_attention(self.to_glib_none().0, setting.into_glib());
@@ -88,6 +95,7 @@ impl StackPage {
     }
 
     #[doc(alias = "gtk_stack_page_set_title")]
+    #[doc(alias = "title")]
     pub fn set_title(&self, setting: &str) {
         unsafe {
             ffi::gtk_stack_page_set_title(self.to_glib_none().0, setting.to_glib_none().0);
@@ -95,6 +103,7 @@ impl StackPage {
     }
 
     #[doc(alias = "gtk_stack_page_set_use_underline")]
+    #[doc(alias = "use-underline")]
     pub fn set_use_underline(&self, setting: bool) {
         unsafe {
             ffi::gtk_stack_page_set_use_underline(self.to_glib_none().0, setting.into_glib());
@@ -102,6 +111,7 @@ impl StackPage {
     }
 
     #[doc(alias = "gtk_stack_page_set_visible")]
+    #[doc(alias = "visible")]
     pub fn set_visible(&self, visible: bool) {
         unsafe {
             ffi::gtk_stack_page_set_visible(self.to_glib_none().0, visible.into_glib());

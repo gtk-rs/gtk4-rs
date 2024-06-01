@@ -37,6 +37,7 @@ impl EventControllerFocus {
     }
 
     #[doc(alias = "gtk_event_controller_focus_contains_focus")]
+    #[doc(alias = "contains-focus")]
     pub fn contains_focus(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_event_controller_focus_contains_focus(
@@ -46,6 +47,7 @@ impl EventControllerFocus {
     }
 
     #[doc(alias = "gtk_event_controller_focus_is_focus")]
+    #[doc(alias = "is-focus")]
     pub fn is_focus(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_event_controller_focus_is_focus(

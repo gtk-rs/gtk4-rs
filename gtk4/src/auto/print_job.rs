@@ -148,6 +148,7 @@ impl PrintJob {
 
     #[doc(alias = "gtk_print_job_get_track_print_status")]
     #[doc(alias = "get_track_print_status")]
+    #[doc(alias = "track-print-status")]
     pub fn tracks_print_status(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_print_job_get_track_print_status(
@@ -267,6 +268,7 @@ impl PrintJob {
     }
 
     #[doc(alias = "gtk_print_job_set_track_print_status")]
+    #[doc(alias = "track-print-status")]
     pub fn set_track_print_status(&self, track_status: bool) {
         unsafe {
             ffi::gtk_print_job_set_track_print_status(

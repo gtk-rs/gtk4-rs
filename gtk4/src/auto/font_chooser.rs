@@ -46,6 +46,7 @@ pub trait FontChooserExt: IsA<FontChooser> + sealed::Sealed + 'static {
     #[allow(deprecated)]
     #[doc(alias = "gtk_font_chooser_get_font_desc")]
     #[doc(alias = "get_font_desc")]
+    #[doc(alias = "font-desc")]
     fn font_desc(&self) -> Option<pango::FontDescription> {
         unsafe {
             from_glib_full(ffi::gtk_font_chooser_get_font_desc(
@@ -82,6 +83,7 @@ pub trait FontChooserExt: IsA<FontChooser> + sealed::Sealed + 'static {
     #[allow(deprecated)]
     #[doc(alias = "gtk_font_chooser_get_font_features")]
     #[doc(alias = "get_font_features")]
+    #[doc(alias = "font-features")]
     fn font_features(&self) -> glib::GString {
         unsafe {
             from_glib_full(ffi::gtk_font_chooser_get_font_features(
@@ -138,6 +140,7 @@ pub trait FontChooserExt: IsA<FontChooser> + sealed::Sealed + 'static {
     #[allow(deprecated)]
     #[doc(alias = "gtk_font_chooser_get_preview_text")]
     #[doc(alias = "get_preview_text")]
+    #[doc(alias = "preview-text")]
     fn preview_text(&self) -> glib::GString {
         unsafe {
             from_glib_full(ffi::gtk_font_chooser_get_preview_text(
@@ -150,6 +153,7 @@ pub trait FontChooserExt: IsA<FontChooser> + sealed::Sealed + 'static {
     #[allow(deprecated)]
     #[doc(alias = "gtk_font_chooser_get_show_preview_entry")]
     #[doc(alias = "get_show_preview_entry")]
+    #[doc(alias = "show-preview-entry")]
     fn shows_preview_entry(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_font_chooser_get_show_preview_entry(
@@ -201,6 +205,7 @@ pub trait FontChooserExt: IsA<FontChooser> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_font_chooser_set_font")]
+    #[doc(alias = "font")]
     fn set_font(&self, fontname: &str) {
         unsafe {
             ffi::gtk_font_chooser_set_font(
@@ -213,6 +218,7 @@ pub trait FontChooserExt: IsA<FontChooser> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_font_chooser_set_font_desc")]
+    #[doc(alias = "font-desc")]
     fn set_font_desc(&self, font_desc: &pango::FontDescription) {
         unsafe {
             ffi::gtk_font_chooser_set_font_desc(
@@ -237,6 +243,7 @@ pub trait FontChooserExt: IsA<FontChooser> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_font_chooser_set_language")]
+    #[doc(alias = "language")]
     fn set_language(&self, language: &str) {
         unsafe {
             ffi::gtk_font_chooser_set_language(
@@ -249,6 +256,7 @@ pub trait FontChooserExt: IsA<FontChooser> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_font_chooser_set_level")]
+    #[doc(alias = "level")]
     fn set_level(&self, level: FontChooserLevel) {
         unsafe {
             ffi::gtk_font_chooser_set_level(self.as_ref().to_glib_none().0, level.into_glib());
@@ -258,6 +266,7 @@ pub trait FontChooserExt: IsA<FontChooser> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_font_chooser_set_preview_text")]
+    #[doc(alias = "preview-text")]
     fn set_preview_text(&self, text: &str) {
         unsafe {
             ffi::gtk_font_chooser_set_preview_text(
@@ -270,6 +279,7 @@ pub trait FontChooserExt: IsA<FontChooser> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_font_chooser_set_show_preview_entry")]
+    #[doc(alias = "show-preview-entry")]
     fn set_show_preview_entry(&self, show_preview_entry: bool) {
         unsafe {
             ffi::gtk_font_chooser_set_show_preview_entry(
