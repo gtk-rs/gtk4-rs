@@ -8,7 +8,7 @@ use glib::{
     GString,
 };
 
-use crate::{prelude::*, DeleteType, MovementStep, Text, Widget};
+use crate::{ffi, prelude::*, DeleteType, MovementStep, Text, Widget};
 
 impl Text {
     pub fn connect_activate<F: Fn(&Text) + 'static>(&self, f: F) -> SignalHandlerId {

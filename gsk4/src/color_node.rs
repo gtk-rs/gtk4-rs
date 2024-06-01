@@ -2,7 +2,11 @@
 
 use crate::{ColorNode, RenderNodeType};
 
-define_render_node!(ColorNode, ffi::GskColorNode, RenderNodeType::ColorNode);
+define_render_node!(
+    ColorNode,
+    crate::ffi::GskColorNode,
+    RenderNodeType::ColorNode
+);
 
 impl std::fmt::Debug for ColorNode {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {

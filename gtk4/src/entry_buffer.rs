@@ -3,7 +3,7 @@
 use glib::{translate::*, GString};
 use libc::{c_int, c_uint};
 
-use crate::{prelude::*, EntryBuffer};
+use crate::{ffi, prelude::*, EntryBuffer};
 
 impl EntryBuffer {
     #[doc(alias = "gtk_entry_buffer_new")]

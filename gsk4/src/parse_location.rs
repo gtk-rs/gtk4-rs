@@ -4,7 +4,7 @@ use std::fmt;
 
 glib::wrapper! {
     #[doc(alias = "GskParseLocation")]
-    pub struct ParseLocation(BoxedInline<ffi::GskParseLocation>);
+    pub struct ParseLocation(BoxedInline<crate::ffi::GskParseLocation>);
 }
 
 impl ParseLocation {

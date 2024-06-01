@@ -2,7 +2,7 @@
 
 use crate::{MaskNode, RenderNodeType};
 
-define_render_node!(MaskNode, ffi::GskMaskNode, RenderNodeType::MaskNode);
+define_render_node!(MaskNode, crate::ffi::GskMaskNode, RenderNodeType::MaskNode);
 
 impl std::fmt::Debug for MaskNode {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {

@@ -4,7 +4,7 @@ use crate::{ColorMatrixNode, RenderNodeType};
 
 define_render_node!(
     ColorMatrixNode,
-    ffi::GskColorMatrixNode,
+    crate::ffi::GskColorMatrixNode,
     RenderNodeType::ColorMatrixNode
 );
 

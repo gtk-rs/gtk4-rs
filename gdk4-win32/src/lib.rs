@@ -4,8 +4,8 @@
 #![allow(deprecated)]
 #![cfg_attr(docsrs, feature(doc_cfg))]
 
-pub use ffi;
 pub use gdk;
+pub use gdk4_win32_sys as ffi;
 pub use gio;
 pub use glib;
 #[cfg(feature = "win32")]

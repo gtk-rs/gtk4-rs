@@ -2,7 +2,7 @@
 
 use crate::{RenderNodeType, TextNode};
 
-define_render_node!(TextNode, ffi::GskTextNode, RenderNodeType::TextNode);
+define_render_node!(TextNode, crate::ffi::GskTextNode, RenderNodeType::TextNode);
 
 impl std::fmt::Debug for TextNode {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {

@@ -2,7 +2,7 @@
 
 use glib::{translate::*, value::FromValue};
 
-use crate::ContentSerializer;
+use crate::{ffi, ContentSerializer};
 
 impl ContentSerializer {
     #[doc(alias = "gdk_content_serializer_get_priority")]

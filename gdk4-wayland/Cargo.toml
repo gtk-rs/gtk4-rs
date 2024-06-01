@@ -14,15 +14,15 @@ rust-version.workspace = true
 version.workspace = true
 
 [features]
-v4_4 = ["ffi/v4_4", "gdk/v4_4"]
-v4_10 = ["ffi/v4_10", "v4_4", "gdk/v4_10"]
-v4_12 = ["ffi/v4_12", "v4_10", "gdk/v4_12"]
-v4_16 = ["ffi/v4_16", "v4_12", "gdk/v4_16"]
+v4_4 = ["gdk4-wayland-sys/v4_4", "gdk/v4_4"]
+v4_10 = ["gdk4-wayland-sys/v4_10", "v4_4", "gdk/v4_10"]
+v4_12 = ["gdk4-wayland-sys/v4_12", "v4_10", "gdk/v4_12"]
+v4_16 = ["gdk4-wayland-sys/v4_16", "v4_12", "gdk/v4_16"]
 wayland_crate = ["wayland-client", "wayland-backend"]
 egl = ["khronos-egl"]
 
 [dependencies]
-ffi = {path = "./sys", package = "gdk4-wayland-sys", version = "0.9"}
+gdk4-wayland-sys.workspace = true
 gdk.workspace=  true
 gio.workspace = true
 glib.workspace = true

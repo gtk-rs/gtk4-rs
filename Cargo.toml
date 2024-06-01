@@ -58,6 +58,9 @@ libc = "0.2"
 pango-sys = {git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.20", branch = "master", features = ["v1_46"]}
 pango = {git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.20", branch = "master", features = ["v1_46"]}
 gir-format-check = "^0.1"
+gdk4-x11-sys = {path = "gdk4-x11/sys", version = "0.9"}
+gdk4-wayland-sys = {path = "gdk4-wayland/sys", version = "0.9"}
+gdk4-win32-sys = {path = "gdk4-win32/sys", version = "0.9"}
 gdk4-sys = {path = "gdk4/sys", version = "0.9"}
 gdk = {package = "gdk4", path = "gdk4", version = "0.9"}
 gsk4-sys = {path = "gsk4/sys", version = "0.9"}

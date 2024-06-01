@@ -2,6 +2,7 @@
 
 use std::ffi::CStr;
 
+use crate::ffi;
 use glib::{collections::StrV, translate::*, GStringPtr};
 
 glib::wrapper! {

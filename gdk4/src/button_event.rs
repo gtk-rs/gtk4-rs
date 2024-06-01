@@ -6,7 +6,7 @@ use crate::{ButtonEvent, EventType};
 
 define_event! {
     ButtonEvent,
-    ffi::GdkButtonEvent,
+    crate::ffi::GdkButtonEvent,
     &[EventType::ButtonPress, EventType::ButtonRelease]
 }
 

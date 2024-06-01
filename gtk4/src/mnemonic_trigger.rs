@@ -5,7 +5,7 @@ use std::fmt;
 use gdk::Key;
 use glib::translate::*;
 
-use crate::ShortcutTrigger;
+use crate::{ffi, ShortcutTrigger};
 
 glib::wrapper! {
     pub struct MnemonicTrigger(Object<ffi::GtkMnemonicTrigger, ffi::GtkMnemonicTriggerClass>) @extends ShortcutTrigger;

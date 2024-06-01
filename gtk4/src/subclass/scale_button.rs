@@ -5,7 +5,7 @@
 
 use glib::translate::*;
 
-use crate::{prelude::*, subclass::prelude::*, ScaleButton};
+use crate::{ffi, prelude::*, subclass::prelude::*, ScaleButton};
 
 pub trait ScaleButtonImpl: ScaleButtonImplExt + WidgetImpl {
     fn value_changed(&self, new_value: f64) {

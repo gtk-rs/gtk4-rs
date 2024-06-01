@@ -4,7 +4,7 @@ use crate::{RadialGradientNode, RenderNodeType};
 
 define_render_node!(
     RadialGradientNode,
-    ffi::GskRadialGradientNode,
+    crate::ffi::GskRadialGradientNode,
     RenderNodeType::RadialGradientNode
 );
 

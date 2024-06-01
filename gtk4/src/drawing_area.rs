@@ -4,7 +4,7 @@ use std::{cell::RefCell, ptr};
 
 use glib::translate::*;
 
-use crate::{prelude::*, DrawingArea};
+use crate::{ffi, prelude::*, DrawingArea};
 
 mod sealed {
     pub trait Sealed {}

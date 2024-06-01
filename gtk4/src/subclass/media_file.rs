@@ -5,7 +5,7 @@
 
 use glib::translate::*;
 
-use crate::{prelude::*, subclass::prelude::*, MediaFile};
+use crate::{ffi, prelude::*, subclass::prelude::*, MediaFile};
 
 pub trait MediaFileImpl: MediaFileImplExt + MediaStreamImpl {
     fn close(&self) {

@@ -1,6 +1,6 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{Cursor, Texture};
+use crate::{ffi, Cursor, Texture};
 use glib::translate::*;
 use std::boxed::Box as Box_;
 

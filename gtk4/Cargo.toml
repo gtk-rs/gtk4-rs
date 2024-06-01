@@ -17,14 +17,14 @@ version.workspace = true
 name = "gtk4"
 
 [features]
-v4_2 = ["ffi/v4_2", "gdk/v4_2", "gsk/v4_2"]
-v4_4 = ["ffi/v4_4", "v4_2", "gdk/v4_4", "gsk/v4_4"]
-v4_6 = ["ffi/v4_6", "v4_4", "gdk/v4_6", "gsk/v4_6", "pango/v1_50"]
-v4_8 = ["ffi/v4_8", "v4_6", "gdk/v4_8"]
-v4_10 = ["ffi/v4_10", "v4_8", "gdk/v4_10", "gsk/v4_10"]
-v4_12 = ["ffi/v4_12", "v4_10", "gdk/v4_12"]
-v4_14 = ["ffi/v4_14", "v4_12", "gdk/v4_14", "gsk/v4_14"]
-v4_16 = ["ffi/v4_16", "v4_14", "gdk/v4_16"]
+v4_2 = ["gtk4-sys/v4_2", "gdk/v4_2", "gsk/v4_2"]
+v4_4 = ["gtk4-sys/v4_4", "v4_2", "gdk/v4_4", "gsk/v4_4"]
+v4_6 = ["gtk4-sys/v4_6", "v4_4", "gdk/v4_6", "gsk/v4_6", "pango/v1_50"]
+v4_8 = ["gtk4-sys/v4_8", "v4_6", "gdk/v4_8"]
+v4_10 = ["gtk4-sys/v4_10", "v4_8", "gdk/v4_10", "gsk/v4_10"]
+v4_12 = ["gtk4-sys/v4_12", "v4_10", "gdk/v4_12"]
+v4_14 = ["gtk4-sys/v4_14", "v4_12", "gdk/v4_14", "gsk/v4_14"]
+v4_16 = ["gtk4-sys/v4_16", "v4_14", "gdk/v4_16"]
 gio_v2_80 = ["gio/v2_80"]
 xml_validation = ["gtk4-macros/xml_validation"]
 blueprint = ["gtk4-macros/blueprint"]
@@ -40,7 +40,7 @@ gnome_43 = ["v4_8", "cairo-rs/v1_16", "gdk-pixbuf/v2_42", "gio/v2_74"]
 gnome_42 = ["v4_6", "cairo-rs/v1_16", "gdk-pixbuf/v2_42", "gio/v2_72"]
 
 [dependencies]
-ffi = {package = "gtk4-sys", path = "./sys", version = "0.9"}
+gtk4-sys.workspace = true
 field-offset = "0.3"
 futures-channel = "0.3"
 gdk.workspace = true

@@ -2,7 +2,7 @@
 
 use glib::translate::*;
 
-use crate::{Path, PathForeachFlags, PathOperation};
+use crate::{ffi, Path, PathForeachFlags, PathOperation};
 
 impl Path {
     #[doc(alias = "gsk_path_foreach")]

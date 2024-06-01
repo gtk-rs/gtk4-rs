@@ -11,7 +11,7 @@ impl PopupLayout {
         let mut dx = 0;
         let mut dy = 0;
         unsafe {
-            ffi::gdk_popup_layout_get_offset(self.to_glib_none().0, &mut dx, &mut dy);
+            crate::ffi::gdk_popup_layout_get_offset(self.to_glib_none().0, &mut dx, &mut dy);
         }
         (dx, dy)
     }

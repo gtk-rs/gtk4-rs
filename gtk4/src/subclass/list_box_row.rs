@@ -5,7 +5,7 @@
 
 use glib::translate::*;
 
-use crate::{prelude::*, subclass::prelude::*, ListBoxRow};
+use crate::{ffi, prelude::*, subclass::prelude::*, ListBoxRow};
 
 pub trait ListBoxRowImpl: ListBoxRowImplExt + WidgetImpl {
     fn activate(&self) {

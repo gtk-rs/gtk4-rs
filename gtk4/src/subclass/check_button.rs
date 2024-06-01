@@ -5,7 +5,7 @@
 
 use glib::translate::*;
 
-use crate::{prelude::*, subclass::prelude::*, CheckButton};
+use crate::{ffi, prelude::*, subclass::prelude::*, CheckButton};
 
 pub trait CheckButtonImpl: CheckButtonImplExt + WidgetImpl {
     fn toggled(&self) {

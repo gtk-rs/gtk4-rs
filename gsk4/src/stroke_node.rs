@@ -2,7 +2,11 @@
 
 use crate::{RenderNodeType, StrokeNode};
 
-define_render_node!(StrokeNode, ffi::GskStrokeNode, RenderNodeType::StrokeNode);
+define_render_node!(
+    StrokeNode,
+    crate::ffi::GskStrokeNode,
+    RenderNodeType::StrokeNode
+);
 
 impl std::fmt::Debug for StrokeNode {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {

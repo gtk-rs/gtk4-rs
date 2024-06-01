@@ -2,6 +2,9 @@
 
 #[cfg(feature = "wayland_crate")]
 #[cfg_attr(docsrs, doc(cfg(feature = "wayland_crate")))]
+use crate::ffi;
+#[cfg(feature = "wayland_crate")]
+#[cfg_attr(docsrs, doc(cfg(feature = "wayland_crate")))]
 use glib::{prelude::*, translate::*, Quark};
 #[cfg(all(feature = "v4_4", feature = "egl"))]
 #[cfg_attr(docsrs, doc(cfg(all(feature = "v4_4", feature = "egl"))))]

@@ -5,10 +5,10 @@
 #![doc = include_str!("../README.md")]
 
 pub use cairo;
-pub use ffi;
 pub use gdk;
 pub use glib;
 pub use graphene;
+pub use gsk4_sys as ffi;
 pub use pango;
 
 // GSK 4 has no runtime to initialize

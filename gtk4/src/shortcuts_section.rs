@@ -7,7 +7,7 @@ use glib::{
     translate::*,
 };
 
-use crate::{prelude::*, ShortcutsSection};
+use crate::{ffi, prelude::*, ShortcutsSection};
 
 impl ShortcutsSection {
     // todo: figure out what the bool return value here corresponds to

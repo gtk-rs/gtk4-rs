@@ -11,7 +11,7 @@ impl TreeSelection {
     #[allow(deprecated)]
     pub fn unset_select_function(&self) {
         unsafe {
-            ffi::gtk_tree_selection_set_select_function(
+            crate::ffi::gtk_tree_selection_set_select_function(
                 self.to_glib_none().0,
                 None,
                 std::ptr::null_mut(),

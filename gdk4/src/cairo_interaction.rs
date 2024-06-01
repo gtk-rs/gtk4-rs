@@ -4,7 +4,7 @@ use cairo::{Context, Region};
 use gdk_pixbuf::Pixbuf;
 use glib::translate::*;
 
-use crate::{Rectangle, Surface, RGBA};
+use crate::{ffi, Rectangle, Surface, RGBA};
 
 // rustdoc-stripper-ignore-next
 /// Trait containing integration methods with [`cairo::Surface`].

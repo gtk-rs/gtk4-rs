@@ -9,7 +9,7 @@ use glib::{
     Slice, Type,
 };
 
-use crate::{prelude::*, DropTarget};
+use crate::{ffi, prelude::*, DropTarget};
 
 impl DropTarget {
     #[doc(alias = "gtk_drop_target_set_gtypes")]

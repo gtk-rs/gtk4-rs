@@ -6,7 +6,7 @@
 
 use glib::translate::*;
 
-use crate::{prelude::*, subclass::prelude::*, SymbolicPaintable};
+use crate::{ffi, prelude::*, subclass::prelude::*, SymbolicPaintable};
 
 pub trait SymbolicPaintableImpl: PaintableImpl {
     fn snapshot_symbolic(

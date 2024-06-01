@@ -6,7 +6,7 @@
 
 use glib::translate::*;
 
-use crate::{prelude::*, subclass::prelude::*, Paintable, PaintableFlags, Snapshot};
+use crate::{ffi, prelude::*, subclass::prelude::*, Paintable, PaintableFlags, Snapshot};
 
 pub trait PaintableImpl: PaintableImplExt + ObjectImpl {
     #[doc(alias = "get_current_image")]

@@ -11,7 +11,7 @@ use glib::{
 
 use crate::SignalListItemFactory;
 #[cfg(not(feature = "v4_8"))]
-use crate::{prelude::*, ListItem};
+use crate::{ffi, prelude::*, ListItem};
 
 impl SignalListItemFactory {
     #[doc(alias = "bind")]

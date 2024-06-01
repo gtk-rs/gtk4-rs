@@ -2,7 +2,7 @@
 
 use glib::translate::*;
 
-use crate::{prelude::*, Win32Surface, HWND};
+use crate::{ffi, prelude::*, Win32Surface, HWND};
 
 impl Win32Surface {
     #[doc(alias = "gdk_win32_surface_lookup_for_display")]

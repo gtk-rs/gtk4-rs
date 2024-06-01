@@ -9,7 +9,7 @@ impl MenuButton {
     #[doc(alias = "set_create_popup_func")]
     pub fn unset_create_popup_func(&self) {
         unsafe {
-            ffi::gtk_menu_button_set_create_popup_func(
+            crate::ffi::gtk_menu_button_set_create_popup_func(
                 self.to_glib_none().0,
                 None,
                 std::ptr::null_mut(),

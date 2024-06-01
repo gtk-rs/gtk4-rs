@@ -6,7 +6,7 @@
 
 use glib::translate::*;
 
-use crate::{prelude::*, subclass::prelude::*, AccessibleRange};
+use crate::{ffi, prelude::*, subclass::prelude::*, AccessibleRange};
 
 pub trait AccessibleRangeImpl: WidgetImpl {
     fn set_current_value(&self, value: f64) -> bool {

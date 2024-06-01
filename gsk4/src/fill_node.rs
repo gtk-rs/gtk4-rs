@@ -2,7 +2,7 @@
 
 use crate::{FillNode, RenderNodeType};
 
-define_render_node!(FillNode, ffi::GskFillNode, RenderNodeType::FillNode);
+define_render_node!(FillNode, crate::ffi::GskFillNode, RenderNodeType::FillNode);
 
 impl std::fmt::Debug for FillNode {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {

@@ -2,7 +2,7 @@
 
 use glib::translate::*;
 
-use crate::{prelude::*, TreeIter, TreePath, TreeRowReference};
+use crate::{ffi, prelude::*, TreeIter, TreePath, TreeRowReference};
 
 impl TreeRowReference {
     #[doc(alias = "gtk_tree_row_reference_reordered")]

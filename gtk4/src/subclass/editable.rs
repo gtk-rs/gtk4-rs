@@ -8,7 +8,7 @@ use std::sync::OnceLock;
 use glib::{translate::*, GString, Quark};
 use libc::{c_char, c_int};
 
-use crate::{prelude::*, subclass::prelude::*, Editable};
+use crate::{ffi, prelude::*, subclass::prelude::*, Editable};
 
 pub trait EditableImpl: WidgetImpl {
     fn insert_text(&self, text: &str, length: i32, position: &mut i32) {

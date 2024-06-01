@@ -7,7 +7,7 @@ use glib::{
     translate::*,
 };
 
-use crate::{prelude::*, DragSurface, DragSurfaceSize};
+use crate::{ffi, prelude::*, DragSurface, DragSurfaceSize};
 
 mod sealed {
     pub trait Sealed {}

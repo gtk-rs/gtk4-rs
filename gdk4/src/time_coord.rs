@@ -4,7 +4,7 @@ use std::fmt;
 
 use glib::translate::*;
 
-use crate::AxisFlags;
+use crate::{ffi, AxisFlags};
 
 glib::wrapper! {
     #[doc(alias = "GdkTimeCoord")]

@@ -6,13 +6,13 @@
 
 // Re-export gtk dependencies
 pub use cairo;
-pub use ffi;
 pub use gdk;
 pub use gdk_pixbuf;
 pub use gio;
 pub use glib;
 pub use graphene;
 pub use gsk;
+pub use gtk4_sys as ffi;
 pub use pango;
 
 #[macro_use]

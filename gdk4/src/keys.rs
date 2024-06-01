@@ -1,6 +1,6 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::prelude::*;
+use crate::{ffi, prelude::*};
 use glib::{translate::*, value::FromValue, GString, Type, Value};
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]

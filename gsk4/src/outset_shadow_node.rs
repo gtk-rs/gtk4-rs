@@ -4,7 +4,7 @@ use crate::{OutsetShadowNode, RenderNodeType};
 
 define_render_node!(
     OutsetShadowNode,
-    ffi::GskOutsetShadowNode,
+    crate::ffi::GskOutsetShadowNode,
     RenderNodeType::OutsetShadowNode
 );
 

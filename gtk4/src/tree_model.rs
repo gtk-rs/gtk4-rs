@@ -2,7 +2,7 @@
 
 use glib::{translate::*, value::FromValue};
 
-use crate::{prelude::*, TreeIter, TreeModel};
+use crate::{ffi, prelude::*, TreeIter, TreeModel};
 
 mod sealed {
     pub trait Sealed {}

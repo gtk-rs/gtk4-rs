@@ -4,7 +4,7 @@ use crate::{RenderNodeType, TextureNode};
 
 define_render_node!(
     TextureNode,
-    ffi::GskTextureNode,
+    crate::ffi::GskTextureNode,
     RenderNodeType::TextureNode
 );
 

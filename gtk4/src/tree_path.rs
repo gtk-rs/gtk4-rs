@@ -12,7 +12,7 @@ impl TreePath {
     pub fn indices(&self) -> Slice<i32> {
         unsafe {
             let mut count = 0;
-            let ptr = ffi::gtk_tree_path_get_indices_with_depth(
+            let ptr = crate::ffi::gtk_tree_path_get_indices_with_depth(
                 mut_override(self.to_glib_none().0),
                 &mut count,
             );

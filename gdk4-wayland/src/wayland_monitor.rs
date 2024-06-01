@@ -5,7 +5,10 @@
 use wayland_client::{backend::ObjectId, protocol::wl_output::WlOutput, Proxy};
 #[cfg(feature = "wayland_crate")]
 #[cfg_attr(docsrs, doc(cfg(feature = "wayland_crate")))]
-use {crate::prelude::*, glib::translate::*};
+use {
+    crate::{ffi, prelude::*},
+    glib::translate::*,
+};
 
 use crate::WaylandMonitor;
 

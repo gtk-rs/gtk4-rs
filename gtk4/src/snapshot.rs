@@ -4,7 +4,7 @@ use std::borrow::Borrow;
 
 use glib::translate::*;
 
-use crate::{prelude::*, Snapshot};
+use crate::{ffi, prelude::*, Snapshot};
 
 mod sealed {
     pub trait Sealed {}

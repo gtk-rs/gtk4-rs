@@ -8,7 +8,7 @@ use std::sync::OnceLock;
 use glib::{translate::*, GString, Object, Quark, Value};
 
 use super::PtrHolder;
-use crate::{prelude::*, subclass::prelude::*, Buildable, Builder};
+use crate::{ffi, prelude::*, subclass::prelude::*, Buildable, Builder};
 
 pub trait BuildableImpl: ObjectImpl {
     fn set_id(&self, id: &str) {

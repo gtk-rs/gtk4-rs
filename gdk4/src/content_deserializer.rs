@@ -2,7 +2,7 @@
 
 use glib::{translate::*, value::FromValue};
 
-use crate::ContentDeserializer;
+use crate::{ffi, ContentDeserializer};
 
 impl ContentDeserializer {
     pub fn set_value(&self, value: glib::Value) {

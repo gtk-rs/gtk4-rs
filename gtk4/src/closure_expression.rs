@@ -2,7 +2,7 @@
 
 use glib::{translate::*, Value};
 
-use crate::{prelude::*, ClosureExpression, Expression};
+use crate::{ffi, prelude::*, ClosureExpression, Expression};
 
 define_expression!(ClosureExpression, ffi::GtkClosureExpression);
 

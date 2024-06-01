@@ -39,7 +39,7 @@ pub trait EditableExtManual: sealed::Sealed + IsA<Editable> + 'static {
 impl<O: IsA<Editable>> EditableExtManual for O {}
 
 unsafe extern "C" fn insert_text_trampoline<T, F: Fn(&T, &str, &mut i32) + 'static>(
-    this: *mut ffi::GtkEditable,
+    this: *mut crate::ffi::GtkEditable,
     new_text: *mut c_char,
     new_text_length: c_int,
     position: *mut c_int,

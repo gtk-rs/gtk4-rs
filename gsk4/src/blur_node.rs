@@ -2,7 +2,7 @@
 
 use crate::{BlurNode, RenderNodeType};
 
-define_render_node!(BlurNode, ffi::GskBlurNode, RenderNodeType::BlurNode);
+define_render_node!(BlurNode, crate::ffi::GskBlurNode, RenderNodeType::BlurNode);
 
 impl std::fmt::Debug for BlurNode {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {

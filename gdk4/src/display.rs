@@ -2,7 +2,7 @@
 
 use glib::translate::*;
 
-use crate::{prelude::*, Display, Key, KeymapKey, ModifierType};
+use crate::{ffi, prelude::*, Display, Key, KeymapKey, ModifierType};
 
 #[derive(Debug, PartialEq, Eq, Ord, PartialOrd)]
 pub enum Backend {

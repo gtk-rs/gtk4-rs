@@ -11,7 +11,7 @@ impl EntryCompletion {
     #[allow(deprecated)]
     pub fn entry(&self) -> Option<Entry> {
         unsafe {
-            Option::<Widget>::from_glib_none(ffi::gtk_entry_completion_get_entry(
+            Option::<Widget>::from_glib_none(crate::ffi::gtk_entry_completion_get_entry(
                 self.to_glib_none().0,
             ))
             .map(|widget| {

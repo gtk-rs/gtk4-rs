@@ -18,7 +18,7 @@ use x11::xlib;
 #[cfg_attr(docsrs, doc(cfg(feature = "xlib")))]
 use x11::xlib::{Cursor as XCursor, Window as XWindow};
 
-use crate::{prelude::*, X11Display};
+use crate::{ffi, prelude::*, X11Display};
 #[cfg(not(feature = "xlib"))]
 use crate::{XCursor, XWindow};
 

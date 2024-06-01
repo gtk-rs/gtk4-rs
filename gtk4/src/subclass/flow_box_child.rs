@@ -5,7 +5,7 @@
 
 use glib::translate::*;
 
-use crate::{prelude::*, subclass::prelude::*, FlowBoxChild};
+use crate::{ffi, prelude::*, subclass::prelude::*, FlowBoxChild};
 
 pub trait FlowBoxChildImpl: FlowBoxChildImplExt + WidgetImpl {
     fn activate(&self) {

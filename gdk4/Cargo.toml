@@ -17,18 +17,18 @@ version.workspace = true
 name = "gdk4"
 
 [features]
-v4_2 = ["ffi/v4_2"]
-v4_4 = ["ffi/v4_4", "v4_2"]
-v4_6 = ["ffi/v4_6", "v4_4"]
-v4_8 = ["ffi/v4_8", "v4_6"]
-v4_10 = ["ffi/v4_10", "v4_8"]
-v4_12 = ["ffi/v4_12", "v4_10"]
-v4_14 = ["ffi/v4_14", "v4_12"]
-v4_16 = ["ffi/v4_16", "v4_14"]
+v4_2 = ["gdk4-sys/v4_2"]
+v4_4 = ["gdk4-sys/v4_4", "v4_2"]
+v4_6 = ["gdk4-sys/v4_6", "v4_4"]
+v4_8 = ["gdk4-sys/v4_8", "v4_6"]
+v4_10 = ["gdk4-sys/v4_10", "v4_8"]
+v4_12 = ["gdk4-sys/v4_12", "v4_10"]
+v4_14 = ["gdk4-sys/v4_14", "v4_12"]
+v4_16 = ["gdk4-sys/v4_16", "v4_14"]
 gl = ["dep:gl"]
 
 [dependencies]
-ffi = {package = "gdk4-sys", path = "./sys", version = "0.9"}
+gdk4-sys.workspace = true
 cairo-rs.workspace = true
 gdk-pixbuf.workspace = true
 gio.workspace = true

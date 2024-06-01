@@ -5,9 +5,9 @@ use glib::translate::*;
 #[cfg_attr(docsrs, doc(cfg(feature = "xlib")))]
 use x11::xlib::{self, XID};
 
-use crate::X11Screen;
 #[cfg(not(feature = "xlib"))]
 use crate::XID;
+use crate::{ffi, X11Screen};
 
 impl X11Screen {
     #[cfg(feature = "xlib")]

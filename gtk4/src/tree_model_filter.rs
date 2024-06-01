@@ -4,7 +4,7 @@ use std::boxed::Box as Box_;
 
 use glib::translate::*;
 
-use crate::{prelude::*, TreeIter, TreeModel, TreeModelFilter, TreePath};
+use crate::{ffi, prelude::*, TreeIter, TreeModel, TreeModelFilter, TreePath};
 
 impl TreeModelFilter {
     #[doc(alias = "gtk_tree_model_filter_new")]

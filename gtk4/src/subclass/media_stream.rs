@@ -5,7 +5,7 @@
 
 use glib::translate::*;
 
-use crate::{prelude::*, subclass::prelude::*, MediaStream};
+use crate::{ffi, prelude::*, subclass::prelude::*, MediaStream};
 
 pub trait MediaStreamImpl: MediaStreamImplExt + ObjectImpl {
     fn pause(&self) {

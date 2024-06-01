@@ -4,7 +4,7 @@ use std::{fmt, mem};
 
 use glib::translate::*;
 
-use crate::{prelude::*, Ordering, SortType, TreeIter, TreeModel, TreeSortable};
+use crate::{ffi, prelude::*, Ordering, SortType, TreeIter, TreeModel, TreeSortable};
 
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]

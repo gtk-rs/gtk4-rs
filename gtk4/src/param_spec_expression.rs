@@ -4,7 +4,7 @@ use std::marker::PhantomData;
 
 use glib::{gobject_ffi, shared::Shared, translate::*, ParamSpec, Value};
 
-use crate::{prelude::*, Expression, ParamSpecExpression};
+use crate::{ffi, prelude::*, Expression, ParamSpecExpression};
 
 impl HasParamSpec for Expression {
     type ParamSpec = ParamSpecExpression;

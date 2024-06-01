@@ -5,6 +5,7 @@ use std::{
     sync::atomic::{AtomicBool, Ordering},
 };
 
+use crate::ffi;
 use glib::translate::*;
 
 #[cfg(target_os = "macos")]

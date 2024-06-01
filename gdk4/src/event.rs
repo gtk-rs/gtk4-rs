@@ -2,7 +2,7 @@
 
 use glib::translate::*;
 
-use crate::{prelude::*, Event, EventType};
+use crate::{ffi, prelude::*, Event, EventType};
 
 impl Event {
     #[inline]
@@ -164,9 +164,9 @@ macro_rules! define_event {
         }
 
         #[doc(hidden)]
-        impl glib::translate::FromGlibPtrFull<*mut ffi::GdkEvent> for $rust_type {
+        impl glib::translate::FromGlibPtrFull<*mut crate::ffi::GdkEvent> for $rust_type {
             #[inline]
-            unsafe fn from_glib_full(ptr: *mut ffi::GdkEvent) -> Self {
+            unsafe fn from_glib_full(ptr: *mut crate::ffi::GdkEvent) -> Self {
                 glib::translate::FromGlibPtrFull::from_glib_full(ptr as *mut $ffi_type)
             }
         }

@@ -2,7 +2,7 @@
 
 use glib::{translate::*, ControlFlow, WeakRef};
 
-use crate::{prelude::*, Widget};
+use crate::{ffi, prelude::*, Widget};
 
 mod sealed {
     pub trait Sealed {}

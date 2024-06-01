@@ -5,7 +5,7 @@ use std::{boxed::Box as Box_, pin::Pin, sync::OnceLock};
 use glib::{translate::*, Quark, Slice};
 
 pub use crate::auto::functions::*;
-use crate::{prelude::*, AboutDialog, StyleProvider, Window};
+use crate::{ffi, prelude::*, AboutDialog, StyleProvider, Window};
 
 #[doc(alias = "gtk_accelerator_valid")]
 pub fn accelerator_valid(keyval: gdk::Key, modifiers: gdk::ModifierType) -> bool {

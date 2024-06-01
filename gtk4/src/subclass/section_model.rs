@@ -6,7 +6,7 @@
 
 use glib::translate::*;
 
-use crate::{prelude::*, subclass::prelude::*, SectionModel};
+use crate::{ffi, prelude::*, subclass::prelude::*, SectionModel};
 
 pub trait SectionModelImpl: ListModelImpl {
     #[doc(alias = "get_section")]

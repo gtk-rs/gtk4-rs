@@ -26,7 +26,7 @@ pub trait CellLayoutExtManual: sealed::Sealed + IsA<CellLayout> + 'static {
     #[doc(alias = "set_cell_data_func")]
     fn unset_cell_data_func(&self, cell: &impl IsA<CellRenderer>) {
         unsafe {
-            ffi::gtk_cell_layout_set_cell_data_func(
+            crate::ffi::gtk_cell_layout_set_cell_data_func(
                 self.as_ref().to_glib_none().0,
                 cell.as_ref().to_glib_none().0,
                 None,

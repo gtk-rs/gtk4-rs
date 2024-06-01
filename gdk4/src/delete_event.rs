@@ -6,7 +6,7 @@ use crate::{DeleteEvent, EventType};
 
 define_event! {
     DeleteEvent,
-    ffi::GdkDeleteEvent,
+    crate::ffi::GdkDeleteEvent,
     &[EventType::Delete]
 }
 

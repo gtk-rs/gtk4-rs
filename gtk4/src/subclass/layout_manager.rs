@@ -7,8 +7,8 @@ use glib::translate::*;
 use libc::c_int;
 
 use crate::{
-    prelude::*, subclass::prelude::*, LayoutChild, LayoutManager, Orientation, SizeRequestMode,
-    Widget,
+    ffi, prelude::*, subclass::prelude::*, LayoutChild, LayoutManager, Orientation,
+    SizeRequestMode, Widget,
 };
 
 pub trait LayoutManagerImpl: LayoutManagerImplExt + ObjectImpl {

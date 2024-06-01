@@ -5,7 +5,7 @@
 #![doc = include_str!("../README.md")]
 
 pub use cairo;
-pub use ffi;
+pub use gdk4_sys as ffi;
 pub use gdk_pixbuf;
 pub use gio;
 #[cfg(feature = "gl")]
