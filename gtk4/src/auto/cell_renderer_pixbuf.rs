@@ -3,7 +3,7 @@
 // DO NOT EDIT
 #![allow(deprecated)]
 
-use crate::{CellRenderer, CellRendererMode, IconSize};
+use crate::{ffi, CellRenderer, CellRendererMode, IconSize};
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},

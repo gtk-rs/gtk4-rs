@@ -2,7 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::{AxisFlags, DeviceToolType};
+use crate::{ffi, AxisFlags, DeviceToolType};
 use glib::translate::*;
 
 glib::wrapper! {

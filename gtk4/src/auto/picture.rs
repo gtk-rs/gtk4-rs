@@ -7,7 +7,8 @@
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
 use crate::ContentFit;
 use crate::{
-    Accessible, AccessibleRole, Align, Buildable, ConstraintTarget, LayoutManager, Overflow, Widget,
+    ffi, Accessible, AccessibleRole, Align, Buildable, ConstraintTarget, LayoutManager, Overflow,
+    Widget,
 };
 use glib::{
     prelude::*,

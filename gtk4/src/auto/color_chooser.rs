@@ -3,6 +3,7 @@
 // DO NOT EDIT
 #![allow(deprecated)]
 
+use crate::ffi;
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},

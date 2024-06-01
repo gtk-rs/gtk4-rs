@@ -5,7 +5,7 @@
 #[cfg(feature = "v4_10")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 use crate::AccessiblePlatformState;
-use crate::{Accessible, Buildable, ConstraintTarget, Widget};
+use crate::{ffi, Accessible, Buildable, ConstraintTarget, Widget};
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},

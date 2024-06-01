@@ -2,6 +2,8 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use crate::ffi;
+
 glib::wrapper! {
     #[doc(alias = "GdkWin32DisplayManager")]
     pub struct Win32DisplayManager(Object<ffi::GdkWin32DisplayManager, ffi::GdkWin32DisplayManagerClass>) @extends gdk::DisplayManager;

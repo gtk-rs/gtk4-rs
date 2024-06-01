@@ -4,7 +4,7 @@
 #![allow(deprecated)]
 
 use crate::{
-    Buildable, CellAreaContext, CellEditable, CellLayout, CellRenderer, CellRendererState,
+    ffi, Buildable, CellAreaContext, CellEditable, CellLayout, CellRenderer, CellRendererState,
     DirectionType, Orientation, SizeRequestMode, Snapshot, TreeIter, TreeModel, TreePath, Widget,
 };
 use glib::{

@@ -5,7 +5,7 @@
 #[cfg(feature = "v4_10")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 use crate::MemoryFormat;
-use crate::Paintable;
+use crate::{ffi, Paintable};
 use glib::{prelude::*, translate::*};
 
 glib::wrapper! {

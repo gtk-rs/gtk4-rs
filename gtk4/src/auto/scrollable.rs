@@ -2,7 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::{Adjustment, Border, ScrollablePolicy};
+use crate::{ffi, Adjustment, Border, ScrollablePolicy};
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},

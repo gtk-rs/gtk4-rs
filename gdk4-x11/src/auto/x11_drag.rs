@@ -2,6 +2,8 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use crate::ffi;
+
 glib::wrapper! {
     #[doc(alias = "GdkX11Drag")]
     pub struct X11Drag(Object<ffi::GdkX11Drag, ffi::GdkX11DragClass>) @extends gdk::Drag;

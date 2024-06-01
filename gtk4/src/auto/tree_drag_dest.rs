@@ -3,7 +3,7 @@
 // DO NOT EDIT
 #![allow(deprecated)]
 
-use crate::TreePath;
+use crate::{ffi, TreePath};
 use glib::{prelude::*, translate::*};
 
 glib::wrapper! {

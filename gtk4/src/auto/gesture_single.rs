@@ -2,7 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::{EventController, Gesture};
+use crate::{ffi, EventController, Gesture};
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},

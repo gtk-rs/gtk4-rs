@@ -3,7 +3,7 @@
 // DO NOT EDIT
 
 use crate::{
-    Accessible, AccessibleRole, Align, Buildable, ConstraintTarget, LayoutManager, Overflow,
+    ffi, Accessible, AccessibleRole, Align, Buildable, ConstraintTarget, LayoutManager, Overflow,
     RevealerTransitionType, Widget,
 };
 use glib::{

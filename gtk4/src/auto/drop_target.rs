@@ -3,7 +3,7 @@
 // DO NOT EDIT
 #![allow(deprecated)]
 
-use crate::{EventController, PropagationLimit, PropagationPhase};
+use crate::{ffi, EventController, PropagationLimit, PropagationPhase};
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},

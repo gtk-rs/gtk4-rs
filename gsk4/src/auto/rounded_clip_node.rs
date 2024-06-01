@@ -2,7 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::{RenderNode, RoundedRect};
+use crate::{ffi, RenderNode, RoundedRect};
 use glib::{prelude::*, translate::*};
 
 glib::wrapper! {

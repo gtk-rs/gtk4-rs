@@ -4,7 +4,7 @@
 #![allow(deprecated)]
 
 use crate::{
-    Accessible, AppChooser, Buildable, ConstraintTarget, Dialog, DialogFlags, Native, Root,
+    ffi, Accessible, AppChooser, Buildable, ConstraintTarget, Dialog, DialogFlags, Native, Root,
     ShortcutManager, Widget, Window,
 };
 use glib::{

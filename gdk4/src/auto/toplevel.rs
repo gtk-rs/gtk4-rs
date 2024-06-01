@@ -6,7 +6,8 @@
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
 use crate::TitlebarGesture;
 use crate::{
-    Device, Event, FullscreenMode, Surface, SurfaceEdge, Texture, ToplevelLayout, ToplevelState,
+    ffi, Device, Event, FullscreenMode, Surface, SurfaceEdge, Texture, ToplevelLayout,
+    ToplevelState,
 };
 use glib::{
     prelude::*,

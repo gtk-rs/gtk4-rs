@@ -3,7 +3,7 @@
 // DO NOT EDIT
 #![allow(deprecated)]
 
-use crate::StyleContext;
+use crate::{ffi, StyleContext};
 use glib::{prelude::*, translate::*};
 
 glib::wrapper! {

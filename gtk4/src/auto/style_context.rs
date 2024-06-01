@@ -3,7 +3,7 @@
 // DO NOT EDIT
 #![allow(deprecated)]
 
-use crate::{Border, StateFlags, StyleContextPrintFlags, StyleProvider};
+use crate::{ffi, Border, StateFlags, StyleContextPrintFlags, StyleProvider};
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},

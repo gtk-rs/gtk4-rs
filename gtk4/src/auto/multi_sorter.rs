@@ -2,7 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::{Buildable, Sorter};
+use crate::{ffi, Buildable, Sorter};
 use glib::{prelude::*, translate::*};
 
 glib::wrapper! {

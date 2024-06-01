@@ -5,7 +5,7 @@
 #[cfg(feature = "v4_10")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 use crate::Collation;
-use crate::{Expression, Sorter};
+use crate::{ffi, Expression, Sorter};
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},

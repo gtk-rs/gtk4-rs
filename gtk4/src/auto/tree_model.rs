@@ -3,7 +3,7 @@
 // DO NOT EDIT
 #![allow(deprecated)]
 
-use crate::{TreeIter, TreeModelFlags, TreePath};
+use crate::{ffi, TreeIter, TreeModelFlags, TreePath};
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},

@@ -3,7 +3,7 @@
 // DO NOT EDIT
 #![allow(deprecated)]
 
-use crate::{CellArea, CellRenderer, TreeIter, TreeModel};
+use crate::{ffi, CellArea, CellRenderer, TreeIter, TreeModel};
 use glib::{prelude::*, translate::*};
 use std::boxed::Box as Box_;
 

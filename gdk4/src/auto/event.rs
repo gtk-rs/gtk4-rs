@@ -3,8 +3,8 @@
 // DO NOT EDIT
 
 use crate::{
-    AxisUse, Device, DeviceTool, Display, EventSequence, EventType, ModifierType, Seat, Surface,
-    TimeCoord,
+    ffi, AxisUse, Device, DeviceTool, Display, EventSequence, EventType, ModifierType, Seat,
+    Surface, TimeCoord,
 };
 use glib::{prelude::*, translate::*};
 

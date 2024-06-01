@@ -3,7 +3,8 @@
 // DO NOT EDIT
 
 use crate::{
-    NumberUpLayout, PageRange, PageSet, PageSetup, PrintPages, PrintSettings, PrintStatus, Printer,
+    ffi, NumberUpLayout, PageRange, PageSet, PageSetup, PrintPages, PrintSettings, PrintStatus,
+    Printer,
 };
 use glib::{
     prelude::*,

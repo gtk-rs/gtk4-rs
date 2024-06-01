@@ -2,7 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::{Device, DeviceTool, Display, SeatCapabilities};
+use crate::{ffi, Device, DeviceTool, Display, SeatCapabilities};
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},

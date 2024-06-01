@@ -5,7 +5,7 @@
 #[cfg(feature = "v4_16")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
 use crate::FontRendering;
-use crate::StyleProvider;
+use crate::{ffi, StyleProvider};
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},

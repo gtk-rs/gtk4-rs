@@ -2,7 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::{Paintable, Texture};
+use crate::{ffi, Paintable, Texture};
 
 glib::wrapper! {
     #[doc(alias = "GdkDmabufTexture")]

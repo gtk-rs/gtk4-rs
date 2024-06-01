@@ -3,7 +3,7 @@
 // DO NOT EDIT
 #![allow(deprecated)]
 
-use crate::{TreeDragSource, TreeIter, TreeModel, TreePath};
+use crate::{ffi, TreeDragSource, TreeIter, TreeModel, TreePath};
 use glib::{prelude::*, translate::*};
 use std::boxed::Box as Box_;
 

@@ -6,7 +6,7 @@
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
 use crate::AccessibleText;
 use crate::{
-    Accessible, AccessibleRole, Align, Buildable, ConstraintTarget, InscriptionOverflow,
+    ffi, Accessible, AccessibleRole, Align, Buildable, ConstraintTarget, InscriptionOverflow,
     LayoutManager, Overflow, Widget,
 };
 use glib::{

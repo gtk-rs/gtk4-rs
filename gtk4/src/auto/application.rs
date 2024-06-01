@@ -2,7 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::{ApplicationInhibitFlags, Window};
+use crate::{ffi, ApplicationInhibitFlags, Window};
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},

@@ -3,7 +3,7 @@
 // DO NOT EDIT
 #![allow(deprecated)]
 
-use crate::{CssSection, StyleProvider};
+use crate::{ffi, CssSection, StyleProvider};
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},

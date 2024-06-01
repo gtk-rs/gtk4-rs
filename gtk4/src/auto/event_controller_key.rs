@@ -2,7 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::{EventController, IMContext, PropagationLimit, PropagationPhase, Widget};
+use crate::{ffi, EventController, IMContext, PropagationLimit, PropagationPhase, Widget};
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},

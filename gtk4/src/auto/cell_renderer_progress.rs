@@ -3,7 +3,7 @@
 // DO NOT EDIT
 #![allow(deprecated)]
 
-use crate::{CellRenderer, CellRendererMode, Orientable, Orientation};
+use crate::{ffi, CellRenderer, CellRendererMode, Orientable, Orientation};
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},

@@ -2,7 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::ListItemFactory;
+use crate::{ffi, ListItemFactory};
 #[cfg(feature = "v4_8")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
 use glib::signal::{connect_raw, SignalHandlerId};

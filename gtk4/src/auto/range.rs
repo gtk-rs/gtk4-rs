@@ -5,7 +5,9 @@
 #[cfg(feature = "v4_10")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 use crate::AccessibleRange;
-use crate::{Accessible, Adjustment, Buildable, ConstraintTarget, Orientable, ScrollType, Widget};
+use crate::{
+    ffi, Accessible, Adjustment, Buildable, ConstraintTarget, Orientable, ScrollType, Widget,
+};
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},

@@ -9,7 +9,7 @@ use crate::DmabufFormats;
 #[cfg(feature = "v4_6")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
 use crate::GLContext;
-use crate::{AppLaunchContext, Clipboard, Device, Event, Monitor, Seat, Surface};
+use crate::{ffi, AppLaunchContext, Clipboard, Device, Event, Monitor, Seat, Surface};
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},

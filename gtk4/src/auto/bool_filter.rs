@@ -2,7 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::{Expression, Filter};
+use crate::{ffi, Expression, Filter};
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},

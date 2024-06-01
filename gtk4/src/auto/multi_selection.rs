@@ -5,7 +5,7 @@
 #[cfg(feature = "v4_12")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
 use crate::SectionModel;
-use crate::SelectionModel;
+use crate::{ffi, SelectionModel};
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},

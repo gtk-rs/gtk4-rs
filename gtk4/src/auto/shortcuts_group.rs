@@ -6,7 +6,7 @@
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
 use crate::ShortcutsShortcut;
 use crate::{
-    Accessible, AccessibleRole, Align, BaselinePosition, Box, Buildable, ConstraintTarget,
+    ffi, Accessible, AccessibleRole, Align, BaselinePosition, Box, Buildable, ConstraintTarget,
     LayoutManager, Orientable, Orientation, Overflow, SizeGroup, Widget,
 };
 use glib::{

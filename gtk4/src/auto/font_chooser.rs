@@ -3,7 +3,7 @@
 // DO NOT EDIT
 #![allow(deprecated)]
 
-use crate::FontChooserLevel;
+use crate::{ffi, FontChooserLevel};
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},

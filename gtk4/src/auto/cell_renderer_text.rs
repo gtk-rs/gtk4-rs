@@ -3,7 +3,7 @@
 // DO NOT EDIT
 #![allow(deprecated)]
 
-use crate::{CellRenderer, CellRendererMode, TreePath};
+use crate::{ffi, CellRenderer, CellRendererMode, TreePath};
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},

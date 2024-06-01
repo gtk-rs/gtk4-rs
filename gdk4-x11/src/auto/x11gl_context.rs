@@ -2,6 +2,8 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use crate::ffi;
+
 glib::wrapper! {
     #[doc(alias = "GdkX11GLContext")]
     pub struct X11GLContext(Object<ffi::GdkX11GLContext, ffi::GdkX11GLContextClass>) @extends gdk::GLContext, gdk::DrawContext;

@@ -2,7 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::Renderer;
+use crate::{ffi, Renderer};
 #[cfg(feature = "v4_2")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_2")))]
 use glib::{prelude::*, translate::*};

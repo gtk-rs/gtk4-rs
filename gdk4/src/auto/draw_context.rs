@@ -2,7 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::{Display, Surface};
+use crate::{ffi, Display, Surface};
 use glib::{prelude::*, translate::*};
 
 glib::wrapper! {
