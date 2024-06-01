@@ -65,6 +65,7 @@ impl FilterListModel {
 
     #[doc(alias = "gtk_filter_list_model_get_incremental")]
     #[doc(alias = "get_incremental")]
+    #[doc(alias = "incremental")]
     pub fn is_incremental(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_filter_list_model_get_incremental(
@@ -86,6 +87,7 @@ impl FilterListModel {
     }
 
     #[doc(alias = "gtk_filter_list_model_set_filter")]
+    #[doc(alias = "filter")]
     pub fn set_filter(&self, filter: Option<&impl IsA<Filter>>) {
         unsafe {
             ffi::gtk_filter_list_model_set_filter(
@@ -96,6 +98,7 @@ impl FilterListModel {
     }
 
     #[doc(alias = "gtk_filter_list_model_set_incremental")]
+    #[doc(alias = "incremental")]
     pub fn set_incremental(&self, incremental: bool) {
         unsafe {
             ffi::gtk_filter_list_model_set_incremental(
@@ -106,6 +109,7 @@ impl FilterListModel {
     }
 
     #[doc(alias = "gtk_filter_list_model_set_model")]
+    #[doc(alias = "model")]
     pub fn set_model(&self, model: Option<&impl IsA<gio::ListModel>>) {
         unsafe {
             ffi::gtk_filter_list_model_set_model(

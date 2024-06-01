@@ -301,6 +301,7 @@ pub trait ListBoxRowExt: IsA<ListBoxRow> + sealed::Sealed + 'static {
 
     #[doc(alias = "gtk_list_box_row_get_activatable")]
     #[doc(alias = "get_activatable")]
+    #[doc(alias = "activatable")]
     fn is_activatable(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_list_box_row_get_activatable(
@@ -337,6 +338,7 @@ pub trait ListBoxRowExt: IsA<ListBoxRow> + sealed::Sealed + 'static {
 
     #[doc(alias = "gtk_list_box_row_get_selectable")]
     #[doc(alias = "get_selectable")]
+    #[doc(alias = "selectable")]
     fn is_selectable(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_list_box_row_get_selectable(
@@ -355,6 +357,7 @@ pub trait ListBoxRowExt: IsA<ListBoxRow> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_list_box_row_set_activatable")]
+    #[doc(alias = "activatable")]
     fn set_activatable(&self, activatable: bool) {
         unsafe {
             ffi::gtk_list_box_row_set_activatable(
@@ -365,6 +368,7 @@ pub trait ListBoxRowExt: IsA<ListBoxRow> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_list_box_row_set_child")]
+    #[doc(alias = "child")]
     fn set_child(&self, child: Option<&impl IsA<Widget>>) {
         unsafe {
             ffi::gtk_list_box_row_set_child(
@@ -385,6 +389,7 @@ pub trait ListBoxRowExt: IsA<ListBoxRow> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_list_box_row_set_selectable")]
+    #[doc(alias = "selectable")]
     fn set_selectable(&self, selectable: bool) {
         unsafe {
             ffi::gtk_list_box_row_set_selectable(

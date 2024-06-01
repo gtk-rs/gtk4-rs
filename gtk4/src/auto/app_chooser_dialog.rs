@@ -90,6 +90,7 @@ impl AppChooserDialog {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_app_chooser_dialog_set_heading")]
+    #[doc(alias = "heading")]
     pub fn set_heading(&self, heading: &str) {
         unsafe {
             ffi::gtk_app_chooser_dialog_set_heading(

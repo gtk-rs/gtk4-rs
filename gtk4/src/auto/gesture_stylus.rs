@@ -88,6 +88,7 @@ impl GestureStylus {
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "gtk_gesture_stylus_get_stylus_only")]
     #[doc(alias = "get_stylus_only")]
+    #[doc(alias = "stylus-only")]
     pub fn is_stylus_only(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_gesture_stylus_get_stylus_only(
@@ -99,6 +100,7 @@ impl GestureStylus {
     #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "gtk_gesture_stylus_set_stylus_only")]
+    #[doc(alias = "stylus-only")]
     pub fn set_stylus_only(&self, stylus_only: bool) {
         unsafe {
             ffi::gtk_gesture_stylus_set_stylus_only(self.to_glib_none().0, stylus_only.into_glib());

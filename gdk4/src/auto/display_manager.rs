@@ -22,6 +22,7 @@ glib::wrapper! {
 impl DisplayManager {
     #[doc(alias = "gdk_display_manager_get_default_display")]
     #[doc(alias = "get_default_display")]
+    #[doc(alias = "default-display")]
     pub fn default_display(&self) -> Option<Display> {
         unsafe {
             from_glib_none(ffi::gdk_display_manager_get_default_display(
@@ -50,6 +51,7 @@ impl DisplayManager {
     }
 
     #[doc(alias = "gdk_display_manager_set_default_display")]
+    #[doc(alias = "default-display")]
     pub fn set_default_display(&self, display: &impl IsA<Display>) {
         unsafe {
             ffi::gdk_display_manager_set_default_display(

@@ -59,6 +59,7 @@ impl SortListModel {
 
     #[doc(alias = "gtk_sort_list_model_get_incremental")]
     #[doc(alias = "get_incremental")]
+    #[doc(alias = "incremental")]
     pub fn is_incremental(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_sort_list_model_get_incremental(
@@ -83,6 +84,7 @@ impl SortListModel {
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     #[doc(alias = "gtk_sort_list_model_get_section_sorter")]
     #[doc(alias = "get_section_sorter")]
+    #[doc(alias = "section-sorter")]
     pub fn section_sorter(&self) -> Option<Sorter> {
         unsafe {
             from_glib_none(ffi::gtk_sort_list_model_get_section_sorter(
@@ -98,6 +100,7 @@ impl SortListModel {
     }
 
     #[doc(alias = "gtk_sort_list_model_set_incremental")]
+    #[doc(alias = "incremental")]
     pub fn set_incremental(&self, incremental: bool) {
         unsafe {
             ffi::gtk_sort_list_model_set_incremental(
@@ -108,6 +111,7 @@ impl SortListModel {
     }
 
     #[doc(alias = "gtk_sort_list_model_set_model")]
+    #[doc(alias = "model")]
     pub fn set_model(&self, model: Option<&impl IsA<gio::ListModel>>) {
         unsafe {
             ffi::gtk_sort_list_model_set_model(
@@ -120,6 +124,7 @@ impl SortListModel {
     #[cfg(feature = "v4_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     #[doc(alias = "gtk_sort_list_model_set_section_sorter")]
+    #[doc(alias = "section-sorter")]
     pub fn set_section_sorter(&self, sorter: Option<&impl IsA<Sorter>>) {
         unsafe {
             ffi::gtk_sort_list_model_set_section_sorter(
@@ -130,6 +135,7 @@ impl SortListModel {
     }
 
     #[doc(alias = "gtk_sort_list_model_set_sorter")]
+    #[doc(alias = "sorter")]
     pub fn set_sorter(&self, sorter: Option<&impl IsA<Sorter>>) {
         unsafe {
             ffi::gtk_sort_list_model_set_sorter(

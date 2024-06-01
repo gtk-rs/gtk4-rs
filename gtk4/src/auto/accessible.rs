@@ -63,6 +63,7 @@ pub trait AccessibleExt: IsA<Accessible> + sealed::Sealed + 'static {
 
     #[doc(alias = "gtk_accessible_get_accessible_role")]
     #[doc(alias = "get_accessible_role")]
+    #[doc(alias = "accessible-role")]
     fn accessible_role(&self) -> AccessibleRole {
         unsafe {
             from_glib(ffi::gtk_accessible_get_accessible_role(

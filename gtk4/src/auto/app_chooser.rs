@@ -41,6 +41,7 @@ pub trait AppChooserExt: IsA<AppChooser> + sealed::Sealed + 'static {
     #[allow(deprecated)]
     #[doc(alias = "gtk_app_chooser_get_content_type")]
     #[doc(alias = "get_content_type")]
+    #[doc(alias = "content-type")]
     fn content_type(&self) -> glib::GString {
         unsafe {
             from_glib_full(ffi::gtk_app_chooser_get_content_type(

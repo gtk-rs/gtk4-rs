@@ -72,6 +72,7 @@ pub trait MonitorExt: IsA<Monitor> + sealed::Sealed + 'static {
 
     #[doc(alias = "gdk_monitor_get_height_mm")]
     #[doc(alias = "get_height_mm")]
+    #[doc(alias = "height-mm")]
     fn height_mm(&self) -> i32 {
         unsafe { ffi::gdk_monitor_get_height_mm(self.as_ref().to_glib_none().0) }
     }
@@ -94,6 +95,7 @@ pub trait MonitorExt: IsA<Monitor> + sealed::Sealed + 'static {
 
     #[doc(alias = "gdk_monitor_get_refresh_rate")]
     #[doc(alias = "get_refresh_rate")]
+    #[doc(alias = "refresh-rate")]
     fn refresh_rate(&self) -> i32 {
         unsafe { ffi::gdk_monitor_get_refresh_rate(self.as_ref().to_glib_none().0) }
     }
@@ -108,12 +110,14 @@ pub trait MonitorExt: IsA<Monitor> + sealed::Sealed + 'static {
 
     #[doc(alias = "gdk_monitor_get_scale_factor")]
     #[doc(alias = "get_scale_factor")]
+    #[doc(alias = "scale-factor")]
     fn scale_factor(&self) -> i32 {
         unsafe { ffi::gdk_monitor_get_scale_factor(self.as_ref().to_glib_none().0) }
     }
 
     #[doc(alias = "gdk_monitor_get_subpixel_layout")]
     #[doc(alias = "get_subpixel_layout")]
+    #[doc(alias = "subpixel-layout")]
     fn subpixel_layout(&self) -> SubpixelLayout {
         unsafe {
             from_glib(ffi::gdk_monitor_get_subpixel_layout(
@@ -124,11 +128,13 @@ pub trait MonitorExt: IsA<Monitor> + sealed::Sealed + 'static {
 
     #[doc(alias = "gdk_monitor_get_width_mm")]
     #[doc(alias = "get_width_mm")]
+    #[doc(alias = "width-mm")]
     fn width_mm(&self) -> i32 {
         unsafe { ffi::gdk_monitor_get_width_mm(self.as_ref().to_glib_none().0) }
     }
 
     #[doc(alias = "gdk_monitor_is_valid")]
+    #[doc(alias = "valid")]
     fn is_valid(&self) -> bool {
         unsafe { from_glib(ffi::gdk_monitor_is_valid(self.as_ref().to_glib_none().0)) }
     }

@@ -40,6 +40,7 @@ pub trait OrientableExt: IsA<Orientable> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_orientable_set_orientation")]
+    #[doc(alias = "orientation")]
     fn set_orientation(&self, orientation: Orientation) {
         unsafe {
             ffi::gtk_orientable_set_orientation(

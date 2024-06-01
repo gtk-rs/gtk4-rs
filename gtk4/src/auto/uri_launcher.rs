@@ -105,6 +105,7 @@ impl UriLauncher {
     }
 
     #[doc(alias = "gtk_uri_launcher_set_uri")]
+    #[doc(alias = "uri")]
     pub fn set_uri(&self, uri: Option<&str>) {
         unsafe {
             ffi::gtk_uri_launcher_set_uri(self.to_glib_none().0, uri.to_glib_none().0);

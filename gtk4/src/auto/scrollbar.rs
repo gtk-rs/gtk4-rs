@@ -65,6 +65,7 @@ impl Scrollbar {
     }
 
     #[doc(alias = "gtk_scrollbar_set_adjustment")]
+    #[doc(alias = "adjustment")]
     pub fn set_adjustment(&self, adjustment: Option<&impl IsA<Adjustment>>) {
         unsafe {
             ffi::gtk_scrollbar_set_adjustment(

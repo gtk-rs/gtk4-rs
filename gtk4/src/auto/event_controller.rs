@@ -77,6 +77,7 @@ pub trait EventControllerExt: IsA<EventController> + sealed::Sealed + 'static {
 
     #[doc(alias = "gtk_event_controller_get_propagation_limit")]
     #[doc(alias = "get_propagation_limit")]
+    #[doc(alias = "propagation-limit")]
     fn propagation_limit(&self) -> PropagationLimit {
         unsafe {
             from_glib(ffi::gtk_event_controller_get_propagation_limit(
@@ -87,6 +88,7 @@ pub trait EventControllerExt: IsA<EventController> + sealed::Sealed + 'static {
 
     #[doc(alias = "gtk_event_controller_get_propagation_phase")]
     #[doc(alias = "get_propagation_phase")]
+    #[doc(alias = "propagation-phase")]
     fn propagation_phase(&self) -> PropagationPhase {
         unsafe {
             from_glib(ffi::gtk_event_controller_get_propagation_phase(
@@ -113,6 +115,7 @@ pub trait EventControllerExt: IsA<EventController> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_event_controller_set_name")]
+    #[doc(alias = "name")]
     fn set_name(&self, name: Option<&str>) {
         unsafe {
             ffi::gtk_event_controller_set_name(
@@ -123,6 +126,7 @@ pub trait EventControllerExt: IsA<EventController> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_event_controller_set_propagation_limit")]
+    #[doc(alias = "propagation-limit")]
     fn set_propagation_limit(&self, limit: PropagationLimit) {
         unsafe {
             ffi::gtk_event_controller_set_propagation_limit(
@@ -133,6 +137,7 @@ pub trait EventControllerExt: IsA<EventController> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_event_controller_set_propagation_phase")]
+    #[doc(alias = "propagation-phase")]
     fn set_propagation_phase(&self, phase: PropagationPhase) {
         unsafe {
             ffi::gtk_event_controller_set_propagation_phase(

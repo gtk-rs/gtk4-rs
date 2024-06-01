@@ -57,6 +57,7 @@ impl Viewport {
 
     #[doc(alias = "gtk_viewport_get_scroll_to_focus")]
     #[doc(alias = "get_scroll_to_focus")]
+    #[doc(alias = "scroll-to-focus")]
     pub fn is_scroll_to_focus(&self) -> bool {
         unsafe { from_glib(ffi::gtk_viewport_get_scroll_to_focus(self.to_glib_none().0)) }
     }
@@ -75,6 +76,7 @@ impl Viewport {
     }
 
     #[doc(alias = "gtk_viewport_set_child")]
+    #[doc(alias = "child")]
     pub fn set_child(&self, child: Option<&impl IsA<Widget>>) {
         unsafe {
             ffi::gtk_viewport_set_child(
@@ -85,6 +87,7 @@ impl Viewport {
     }
 
     #[doc(alias = "gtk_viewport_set_scroll_to_focus")]
+    #[doc(alias = "scroll-to-focus")]
     pub fn set_scroll_to_focus(&self, scroll_to_focus: bool) {
         unsafe {
             ffi::gtk_viewport_set_scroll_to_focus(

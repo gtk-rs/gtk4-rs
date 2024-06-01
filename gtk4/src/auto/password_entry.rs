@@ -39,6 +39,7 @@ impl PasswordEntry {
 
     #[doc(alias = "gtk_password_entry_get_extra_menu")]
     #[doc(alias = "get_extra_menu")]
+    #[doc(alias = "extra-menu")]
     pub fn extra_menu(&self) -> Option<gio::MenuModel> {
         unsafe {
             from_glib_none(ffi::gtk_password_entry_get_extra_menu(
@@ -49,6 +50,7 @@ impl PasswordEntry {
 
     #[doc(alias = "gtk_password_entry_get_show_peek_icon")]
     #[doc(alias = "get_show_peek_icon")]
+    #[doc(alias = "show-peek-icon")]
     pub fn shows_peek_icon(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_password_entry_get_show_peek_icon(
@@ -58,6 +60,7 @@ impl PasswordEntry {
     }
 
     #[doc(alias = "gtk_password_entry_set_extra_menu")]
+    #[doc(alias = "extra-menu")]
     pub fn set_extra_menu(&self, model: Option<&impl IsA<gio::MenuModel>>) {
         unsafe {
             ffi::gtk_password_entry_set_extra_menu(
@@ -68,6 +71,7 @@ impl PasswordEntry {
     }
 
     #[doc(alias = "gtk_password_entry_set_show_peek_icon")]
+    #[doc(alias = "show-peek-icon")]
     pub fn set_show_peek_icon(&self, show_peek_icon: bool) {
         unsafe {
             ffi::gtk_password_entry_set_show_peek_icon(

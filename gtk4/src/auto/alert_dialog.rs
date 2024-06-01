@@ -110,12 +110,14 @@ impl AlertDialog {
 
     #[doc(alias = "gtk_alert_dialog_get_cancel_button")]
     #[doc(alias = "get_cancel_button")]
+    #[doc(alias = "cancel-button")]
     pub fn cancel_button(&self) -> i32 {
         unsafe { ffi::gtk_alert_dialog_get_cancel_button(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_alert_dialog_get_default_button")]
     #[doc(alias = "get_default_button")]
+    #[doc(alias = "default-button")]
     pub fn default_button(&self) -> i32 {
         unsafe { ffi::gtk_alert_dialog_get_default_button(self.to_glib_none().0) }
     }
@@ -134,11 +136,13 @@ impl AlertDialog {
 
     #[doc(alias = "gtk_alert_dialog_get_modal")]
     #[doc(alias = "get_modal")]
+    #[doc(alias = "modal")]
     pub fn is_modal(&self) -> bool {
         unsafe { from_glib(ffi::gtk_alert_dialog_get_modal(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_alert_dialog_set_buttons")]
+    #[doc(alias = "buttons")]
     pub fn set_buttons(&self, labels: &[&str]) {
         unsafe {
             ffi::gtk_alert_dialog_set_buttons(self.to_glib_none().0, labels.to_glib_none().0);
@@ -146,6 +150,7 @@ impl AlertDialog {
     }
 
     #[doc(alias = "gtk_alert_dialog_set_cancel_button")]
+    #[doc(alias = "cancel-button")]
     pub fn set_cancel_button(&self, button: i32) {
         unsafe {
             ffi::gtk_alert_dialog_set_cancel_button(self.to_glib_none().0, button);
@@ -153,6 +158,7 @@ impl AlertDialog {
     }
 
     #[doc(alias = "gtk_alert_dialog_set_default_button")]
+    #[doc(alias = "default-button")]
     pub fn set_default_button(&self, button: i32) {
         unsafe {
             ffi::gtk_alert_dialog_set_default_button(self.to_glib_none().0, button);
@@ -160,6 +166,7 @@ impl AlertDialog {
     }
 
     #[doc(alias = "gtk_alert_dialog_set_detail")]
+    #[doc(alias = "detail")]
     pub fn set_detail(&self, detail: &str) {
         unsafe {
             ffi::gtk_alert_dialog_set_detail(self.to_glib_none().0, detail.to_glib_none().0);
@@ -167,6 +174,7 @@ impl AlertDialog {
     }
 
     #[doc(alias = "gtk_alert_dialog_set_message")]
+    #[doc(alias = "message")]
     pub fn set_message(&self, message: &str) {
         unsafe {
             ffi::gtk_alert_dialog_set_message(self.to_glib_none().0, message.to_glib_none().0);
@@ -174,6 +182,7 @@ impl AlertDialog {
     }
 
     #[doc(alias = "gtk_alert_dialog_set_modal")]
+    #[doc(alias = "modal")]
     pub fn set_modal(&self, modal: bool) {
         unsafe {
             ffi::gtk_alert_dialog_set_modal(self.to_glib_none().0, modal.into_glib());

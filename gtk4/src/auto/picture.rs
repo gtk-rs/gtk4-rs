@@ -103,12 +103,14 @@ impl Picture {
 
     #[doc(alias = "gtk_picture_get_alternative_text")]
     #[doc(alias = "get_alternative_text")]
+    #[doc(alias = "alternative-text")]
     pub fn alternative_text(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::gtk_picture_get_alternative_text(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_picture_get_can_shrink")]
     #[doc(alias = "get_can_shrink")]
+    #[doc(alias = "can-shrink")]
     pub fn can_shrink(&self) -> bool {
         unsafe { from_glib(ffi::gtk_picture_get_can_shrink(self.to_glib_none().0)) }
     }
@@ -117,6 +119,7 @@ impl Picture {
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     #[doc(alias = "gtk_picture_get_content_fit")]
     #[doc(alias = "get_content_fit")]
+    #[doc(alias = "content-fit")]
     pub fn content_fit(&self) -> ContentFit {
         unsafe { from_glib(ffi::gtk_picture_get_content_fit(self.to_glib_none().0)) }
     }
@@ -131,6 +134,7 @@ impl Picture {
     #[allow(deprecated)]
     #[doc(alias = "gtk_picture_get_keep_aspect_ratio")]
     #[doc(alias = "get_keep_aspect_ratio")]
+    #[doc(alias = "keep-aspect-ratio")]
     pub fn is_keep_aspect_ratio(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_picture_get_keep_aspect_ratio(
@@ -146,6 +150,7 @@ impl Picture {
     }
 
     #[doc(alias = "gtk_picture_set_alternative_text")]
+    #[doc(alias = "alternative-text")]
     pub fn set_alternative_text(&self, alternative_text: Option<&str>) {
         unsafe {
             ffi::gtk_picture_set_alternative_text(
@@ -156,6 +161,7 @@ impl Picture {
     }
 
     #[doc(alias = "gtk_picture_set_can_shrink")]
+    #[doc(alias = "can-shrink")]
     pub fn set_can_shrink(&self, can_shrink: bool) {
         unsafe {
             ffi::gtk_picture_set_can_shrink(self.to_glib_none().0, can_shrink.into_glib());
@@ -165,6 +171,7 @@ impl Picture {
     #[cfg(feature = "v4_8")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     #[doc(alias = "gtk_picture_set_content_fit")]
+    #[doc(alias = "content-fit")]
     pub fn set_content_fit(&self, content_fit: ContentFit) {
         unsafe {
             ffi::gtk_picture_set_content_fit(self.to_glib_none().0, content_fit.into_glib());
@@ -172,6 +179,7 @@ impl Picture {
     }
 
     #[doc(alias = "gtk_picture_set_file")]
+    #[doc(alias = "file")]
     pub fn set_file(&self, file: Option<&impl IsA<gio::File>>) {
         unsafe {
             ffi::gtk_picture_set_file(
@@ -194,6 +202,7 @@ impl Picture {
     #[cfg_attr(feature = "v4_8", deprecated = "Since 4.8")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_picture_set_keep_aspect_ratio")]
+    #[doc(alias = "keep-aspect-ratio")]
     pub fn set_keep_aspect_ratio(&self, keep_aspect_ratio: bool) {
         unsafe {
             ffi::gtk_picture_set_keep_aspect_ratio(
@@ -204,6 +213,7 @@ impl Picture {
     }
 
     #[doc(alias = "gtk_picture_set_paintable")]
+    #[doc(alias = "paintable")]
     pub fn set_paintable(&self, paintable: Option<&impl IsA<gdk::Paintable>>) {
         unsafe {
             ffi::gtk_picture_set_paintable(

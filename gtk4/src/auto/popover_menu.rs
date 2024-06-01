@@ -80,6 +80,7 @@ impl PopoverMenu {
 
     #[doc(alias = "gtk_popover_menu_get_menu_model")]
     #[doc(alias = "get_menu_model")]
+    #[doc(alias = "menu-model")]
     pub fn menu_model(&self) -> Option<gio::MenuModel> {
         unsafe { from_glib_none(ffi::gtk_popover_menu_get_menu_model(self.to_glib_none().0)) }
     }
@@ -97,6 +98,7 @@ impl PopoverMenu {
     #[cfg(feature = "v4_14")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
     #[doc(alias = "gtk_popover_menu_set_flags")]
+    #[doc(alias = "flags")]
     pub fn set_flags(&self, flags: PopoverMenuFlags) {
         unsafe {
             ffi::gtk_popover_menu_set_flags(self.to_glib_none().0, flags.into_glib());
@@ -104,6 +106,7 @@ impl PopoverMenu {
     }
 
     #[doc(alias = "gtk_popover_menu_set_menu_model")]
+    #[doc(alias = "menu-model")]
     pub fn set_menu_model(&self, model: Option<&impl IsA<gio::MenuModel>>) {
         unsafe {
             ffi::gtk_popover_menu_set_menu_model(

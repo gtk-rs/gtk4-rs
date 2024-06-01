@@ -239,6 +239,7 @@ impl Builder {
 
     #[doc(alias = "gtk_builder_get_translation_domain")]
     #[doc(alias = "get_translation_domain")]
+    #[doc(alias = "translation-domain")]
     pub fn translation_domain(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::gtk_builder_get_translation_domain(
@@ -259,6 +260,7 @@ impl Builder {
     }
 
     #[doc(alias = "gtk_builder_set_current_object")]
+    #[doc(alias = "current-object")]
     pub fn set_current_object(&self, current_object: Option<&impl IsA<glib::Object>>) {
         unsafe {
             ffi::gtk_builder_set_current_object(
@@ -269,6 +271,7 @@ impl Builder {
     }
 
     #[doc(alias = "gtk_builder_set_scope")]
+    #[doc(alias = "scope")]
     pub fn set_scope(&self, scope: Option<&impl IsA<BuilderScope>>) {
         unsafe {
             ffi::gtk_builder_set_scope(
@@ -279,6 +282,7 @@ impl Builder {
     }
 
     #[doc(alias = "gtk_builder_set_translation_domain")]
+    #[doc(alias = "translation-domain")]
     pub fn set_translation_domain(&self, domain: Option<&str>) {
         unsafe {
             ffi::gtk_builder_set_translation_domain(self.to_glib_none().0, domain.to_glib_none().0);

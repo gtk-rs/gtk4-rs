@@ -51,11 +51,13 @@ impl IconPaintable {
 
     #[doc(alias = "gtk_icon_paintable_get_icon_name")]
     #[doc(alias = "get_icon_name")]
+    #[doc(alias = "icon-name")]
     pub fn icon_name(&self) -> Option<std::path::PathBuf> {
         unsafe { from_glib_none(ffi::gtk_icon_paintable_get_icon_name(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_icon_paintable_is_symbolic")]
+    #[doc(alias = "is-symbolic")]
     pub fn is_symbolic(&self) -> bool {
         unsafe { from_glib(ffi::gtk_icon_paintable_is_symbolic(self.to_glib_none().0)) }
     }

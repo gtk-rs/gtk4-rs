@@ -100,6 +100,7 @@ pub trait MediaFileExt: IsA<MediaFile> + sealed::Sealed + 'static {
 
     #[doc(alias = "gtk_media_file_get_input_stream")]
     #[doc(alias = "get_input_stream")]
+    #[doc(alias = "input-stream")]
     fn input_stream(&self) -> Option<gio::InputStream> {
         unsafe {
             from_glib_none(ffi::gtk_media_file_get_input_stream(
@@ -109,6 +110,7 @@ pub trait MediaFileExt: IsA<MediaFile> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_media_file_set_file")]
+    #[doc(alias = "file")]
     fn set_file(&self, file: Option<&impl IsA<gio::File>>) {
         unsafe {
             ffi::gtk_media_file_set_file(
@@ -129,6 +131,7 @@ pub trait MediaFileExt: IsA<MediaFile> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_media_file_set_input_stream")]
+    #[doc(alias = "input-stream")]
     fn set_input_stream(&self, stream: Option<&impl IsA<gio::InputStream>>) {
         unsafe {
             ffi::gtk_media_file_set_input_stream(

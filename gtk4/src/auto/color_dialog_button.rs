@@ -57,6 +57,7 @@ impl ColorDialogButton {
     }
 
     #[doc(alias = "gtk_color_dialog_button_set_dialog")]
+    #[doc(alias = "dialog")]
     pub fn set_dialog(&self, dialog: &ColorDialog) {
         unsafe {
             ffi::gtk_color_dialog_button_set_dialog(self.to_glib_none().0, dialog.to_glib_none().0);
@@ -64,6 +65,7 @@ impl ColorDialogButton {
     }
 
     #[doc(alias = "gtk_color_dialog_button_set_rgba")]
+    #[doc(alias = "rgba")]
     pub fn set_rgba(&self, color: &gdk::RGBA) {
         unsafe {
             ffi::gtk_color_dialog_button_set_rgba(self.to_glib_none().0, color.to_glib_none().0);

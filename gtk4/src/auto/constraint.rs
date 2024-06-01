@@ -95,6 +95,7 @@ impl Constraint {
 
     #[doc(alias = "gtk_constraint_get_source_attribute")]
     #[doc(alias = "get_source_attribute")]
+    #[doc(alias = "source-attribute")]
     pub fn source_attribute(&self) -> ConstraintAttribute {
         unsafe {
             from_glib(ffi::gtk_constraint_get_source_attribute(
@@ -117,6 +118,7 @@ impl Constraint {
 
     #[doc(alias = "gtk_constraint_get_target_attribute")]
     #[doc(alias = "get_target_attribute")]
+    #[doc(alias = "target-attribute")]
     pub fn target_attribute(&self) -> ConstraintAttribute {
         unsafe {
             from_glib(ffi::gtk_constraint_get_target_attribute(

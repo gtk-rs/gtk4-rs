@@ -60,6 +60,7 @@ impl DragSource {
     }
 
     #[doc(alias = "gtk_drag_source_set_actions")]
+    #[doc(alias = "actions")]
     pub fn set_actions(&self, actions: gdk::DragAction) {
         unsafe {
             ffi::gtk_drag_source_set_actions(self.to_glib_none().0, actions.into_glib());
@@ -67,6 +68,7 @@ impl DragSource {
     }
 
     #[doc(alias = "gtk_drag_source_set_content")]
+    #[doc(alias = "content")]
     pub fn set_content(&self, content: Option<&impl IsA<gdk::ContentProvider>>) {
         unsafe {
             ffi::gtk_drag_source_set_content(

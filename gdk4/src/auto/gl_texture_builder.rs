@@ -43,6 +43,7 @@ impl GLTextureBuilder {
 
     #[doc(alias = "gdk_gl_texture_builder_get_has_mipmap")]
     #[doc(alias = "get_has_mipmap")]
+    #[doc(alias = "has-mipmap")]
     pub fn has_mipmap(&self) -> bool {
         unsafe {
             from_glib(ffi::gdk_gl_texture_builder_get_has_mipmap(
@@ -65,6 +66,7 @@ impl GLTextureBuilder {
 
     #[doc(alias = "gdk_gl_texture_builder_get_update_region")]
     #[doc(alias = "get_update_region")]
+    #[doc(alias = "update-region")]
     pub fn update_region(&self) -> Option<cairo::Region> {
         unsafe {
             from_glib_none(ffi::gdk_gl_texture_builder_get_update_region(
@@ -75,6 +77,7 @@ impl GLTextureBuilder {
 
     #[doc(alias = "gdk_gl_texture_builder_get_update_texture")]
     #[doc(alias = "get_update_texture")]
+    #[doc(alias = "update-texture")]
     pub fn update_texture(&self) -> Option<Texture> {
         unsafe {
             from_glib_none(ffi::gdk_gl_texture_builder_get_update_texture(

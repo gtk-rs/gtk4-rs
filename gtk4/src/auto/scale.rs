@@ -393,6 +393,7 @@ pub trait ScaleExt: IsA<Scale> + sealed::Sealed + 'static {
 
     #[doc(alias = "gtk_scale_get_draw_value")]
     #[doc(alias = "get_draw_value")]
+    #[doc(alias = "draw-value")]
     fn draws_value(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_scale_get_draw_value(
@@ -403,6 +404,7 @@ pub trait ScaleExt: IsA<Scale> + sealed::Sealed + 'static {
 
     #[doc(alias = "gtk_scale_get_has_origin")]
     #[doc(alias = "get_has_origin")]
+    #[doc(alias = "has-origin")]
     fn has_origin(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_scale_get_has_origin(
@@ -434,11 +436,13 @@ pub trait ScaleExt: IsA<Scale> + sealed::Sealed + 'static {
 
     #[doc(alias = "gtk_scale_get_value_pos")]
     #[doc(alias = "get_value_pos")]
+    #[doc(alias = "value-pos")]
     fn value_pos(&self) -> PositionType {
         unsafe { from_glib(ffi::gtk_scale_get_value_pos(self.as_ref().to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_scale_set_digits")]
+    #[doc(alias = "digits")]
     fn set_digits(&self, digits: i32) {
         unsafe {
             ffi::gtk_scale_set_digits(self.as_ref().to_glib_none().0, digits);
@@ -446,6 +450,7 @@ pub trait ScaleExt: IsA<Scale> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_scale_set_draw_value")]
+    #[doc(alias = "draw-value")]
     fn set_draw_value(&self, draw_value: bool) {
         unsafe {
             ffi::gtk_scale_set_draw_value(self.as_ref().to_glib_none().0, draw_value.into_glib());
@@ -483,6 +488,7 @@ pub trait ScaleExt: IsA<Scale> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_scale_set_has_origin")]
+    #[doc(alias = "has-origin")]
     fn set_has_origin(&self, has_origin: bool) {
         unsafe {
             ffi::gtk_scale_set_has_origin(self.as_ref().to_glib_none().0, has_origin.into_glib());
@@ -490,6 +496,7 @@ pub trait ScaleExt: IsA<Scale> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_scale_set_value_pos")]
+    #[doc(alias = "value-pos")]
     fn set_value_pos(&self, pos: PositionType) {
         unsafe {
             ffi::gtk_scale_set_value_pos(self.as_ref().to_glib_none().0, pos.into_glib());

@@ -48,6 +48,7 @@ impl StringFilter {
 
     #[doc(alias = "gtk_string_filter_get_ignore_case")]
     #[doc(alias = "get_ignore_case")]
+    #[doc(alias = "ignore-case")]
     pub fn ignores_case(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_string_filter_get_ignore_case(
@@ -58,6 +59,7 @@ impl StringFilter {
 
     #[doc(alias = "gtk_string_filter_get_match_mode")]
     #[doc(alias = "get_match_mode")]
+    #[doc(alias = "match-mode")]
     pub fn match_mode(&self) -> StringFilterMatchMode {
         unsafe { from_glib(ffi::gtk_string_filter_get_match_mode(self.to_glib_none().0)) }
     }
@@ -69,6 +71,7 @@ impl StringFilter {
     }
 
     #[doc(alias = "gtk_string_filter_set_expression")]
+    #[doc(alias = "expression")]
     pub fn set_expression(&self, expression: Option<impl AsRef<Expression>>) {
         unsafe {
             ffi::gtk_string_filter_set_expression(
@@ -79,6 +82,7 @@ impl StringFilter {
     }
 
     #[doc(alias = "gtk_string_filter_set_ignore_case")]
+    #[doc(alias = "ignore-case")]
     pub fn set_ignore_case(&self, ignore_case: bool) {
         unsafe {
             ffi::gtk_string_filter_set_ignore_case(self.to_glib_none().0, ignore_case.into_glib());
@@ -86,6 +90,7 @@ impl StringFilter {
     }
 
     #[doc(alias = "gtk_string_filter_set_match_mode")]
+    #[doc(alias = "match-mode")]
     pub fn set_match_mode(&self, mode: StringFilterMatchMode) {
         unsafe {
             ffi::gtk_string_filter_set_match_mode(self.to_glib_none().0, mode.into_glib());
@@ -93,6 +98,7 @@ impl StringFilter {
     }
 
     #[doc(alias = "gtk_string_filter_set_search")]
+    #[doc(alias = "search")]
     pub fn set_search(&self, search: Option<&str>) {
         unsafe {
             ffi::gtk_string_filter_set_search(self.to_glib_none().0, search.to_glib_none().0);

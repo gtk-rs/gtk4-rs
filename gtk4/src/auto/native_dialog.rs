@@ -38,6 +38,7 @@ pub trait NativeDialogExt: IsA<NativeDialog> + sealed::Sealed + 'static {
 
     #[doc(alias = "gtk_native_dialog_get_modal")]
     #[doc(alias = "get_modal")]
+    #[doc(alias = "modal")]
     fn is_modal(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_native_dialog_get_modal(
@@ -58,6 +59,7 @@ pub trait NativeDialogExt: IsA<NativeDialog> + sealed::Sealed + 'static {
 
     #[doc(alias = "gtk_native_dialog_get_transient_for")]
     #[doc(alias = "get_transient_for")]
+    #[doc(alias = "transient-for")]
     fn transient_for(&self) -> Option<Window> {
         unsafe {
             from_glib_none(ffi::gtk_native_dialog_get_transient_for(
@@ -68,6 +70,7 @@ pub trait NativeDialogExt: IsA<NativeDialog> + sealed::Sealed + 'static {
 
     #[doc(alias = "gtk_native_dialog_get_visible")]
     #[doc(alias = "get_visible")]
+    #[doc(alias = "visible")]
     fn is_visible(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_native_dialog_get_visible(
@@ -84,6 +87,7 @@ pub trait NativeDialogExt: IsA<NativeDialog> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_native_dialog_set_modal")]
+    #[doc(alias = "modal")]
     fn set_modal(&self, modal: bool) {
         unsafe {
             ffi::gtk_native_dialog_set_modal(self.as_ref().to_glib_none().0, modal.into_glib());
@@ -91,6 +95,7 @@ pub trait NativeDialogExt: IsA<NativeDialog> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_native_dialog_set_title")]
+    #[doc(alias = "title")]
     fn set_title(&self, title: &str) {
         unsafe {
             ffi::gtk_native_dialog_set_title(
@@ -101,6 +106,7 @@ pub trait NativeDialogExt: IsA<NativeDialog> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_native_dialog_set_transient_for")]
+    #[doc(alias = "transient-for")]
     fn set_transient_for(&self, parent: Option<&impl IsA<Window>>) {
         unsafe {
             ffi::gtk_native_dialog_set_transient_for(

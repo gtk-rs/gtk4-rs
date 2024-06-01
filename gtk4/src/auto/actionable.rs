@@ -31,6 +31,7 @@ mod sealed {
 pub trait ActionableExt: IsA<Actionable> + sealed::Sealed + 'static {
     #[doc(alias = "gtk_actionable_get_action_name")]
     #[doc(alias = "get_action_name")]
+    #[doc(alias = "action-name")]
     fn action_name(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::gtk_actionable_get_action_name(
@@ -41,6 +42,7 @@ pub trait ActionableExt: IsA<Actionable> + sealed::Sealed + 'static {
 
     #[doc(alias = "gtk_actionable_get_action_target_value")]
     #[doc(alias = "get_action_target_value")]
+    #[doc(alias = "action-target")]
     fn action_target_value(&self) -> Option<glib::Variant> {
         unsafe {
             from_glib_none(ffi::gtk_actionable_get_action_target_value(
@@ -50,6 +52,7 @@ pub trait ActionableExt: IsA<Actionable> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_actionable_set_action_name")]
+    #[doc(alias = "action-name")]
     fn set_action_name(&self, action_name: Option<&str>) {
         unsafe {
             ffi::gtk_actionable_set_action_name(
@@ -60,6 +63,7 @@ pub trait ActionableExt: IsA<Actionable> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_actionable_set_action_target_value")]
+    #[doc(alias = "action-target")]
     fn set_action_target_value(&self, target_value: Option<&glib::Variant>) {
         unsafe {
             ffi::gtk_actionable_set_action_target_value(

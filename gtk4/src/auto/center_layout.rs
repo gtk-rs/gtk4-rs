@@ -67,6 +67,7 @@ impl CenterLayout {
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     #[doc(alias = "gtk_center_layout_get_shrink_center_last")]
     #[doc(alias = "get_shrink_center_last")]
+    #[doc(alias = "shrink-center-last")]
     pub fn shrinks_center_last(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_center_layout_get_shrink_center_last(
@@ -125,6 +126,7 @@ impl CenterLayout {
     #[cfg(feature = "v4_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     #[doc(alias = "gtk_center_layout_set_shrink_center_last")]
+    #[doc(alias = "shrink-center-last")]
     pub fn set_shrink_center_last(&self, shrink_center_last: bool) {
         unsafe {
             ffi::gtk_center_layout_set_shrink_center_last(

@@ -26,6 +26,7 @@ mod sealed {
 pub trait LayoutChildExt: IsA<LayoutChild> + sealed::Sealed + 'static {
     #[doc(alias = "gtk_layout_child_get_child_widget")]
     #[doc(alias = "get_child_widget")]
+    #[doc(alias = "child-widget")]
     fn child_widget(&self) -> Widget {
         unsafe {
             from_glib_none(ffi::gtk_layout_child_get_child_widget(
@@ -36,6 +37,7 @@ pub trait LayoutChildExt: IsA<LayoutChild> + sealed::Sealed + 'static {
 
     #[doc(alias = "gtk_layout_child_get_layout_manager")]
     #[doc(alias = "get_layout_manager")]
+    #[doc(alias = "layout-manager")]
     fn layout_manager(&self) -> LayoutManager {
         unsafe {
             from_glib_none(ffi::gtk_layout_child_get_layout_manager(

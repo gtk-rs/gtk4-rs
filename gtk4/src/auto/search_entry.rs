@@ -44,6 +44,7 @@ impl SearchEntry {
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
     #[doc(alias = "gtk_search_entry_get_input_hints")]
     #[doc(alias = "get_input_hints")]
+    #[doc(alias = "input-hints")]
     pub fn input_hints(&self) -> InputHints {
         unsafe { from_glib(ffi::gtk_search_entry_get_input_hints(self.to_glib_none().0)) }
     }
@@ -52,6 +53,7 @@ impl SearchEntry {
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
     #[doc(alias = "gtk_search_entry_get_input_purpose")]
     #[doc(alias = "get_input_purpose")]
+    #[doc(alias = "input-purpose")]
     pub fn input_purpose(&self) -> InputPurpose {
         unsafe {
             from_glib(ffi::gtk_search_entry_get_input_purpose(
@@ -74,6 +76,7 @@ impl SearchEntry {
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     #[doc(alias = "gtk_search_entry_get_search_delay")]
     #[doc(alias = "get_search_delay")]
+    #[doc(alias = "search-delay")]
     pub fn search_delay(&self) -> u32 {
         unsafe { ffi::gtk_search_entry_get_search_delay(self.to_glib_none().0) }
     }
@@ -81,6 +84,7 @@ impl SearchEntry {
     #[cfg(feature = "v4_14")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
     #[doc(alias = "gtk_search_entry_set_input_hints")]
+    #[doc(alias = "input-hints")]
     pub fn set_input_hints(&self, hints: InputHints) {
         unsafe {
             ffi::gtk_search_entry_set_input_hints(self.to_glib_none().0, hints.into_glib());
@@ -90,6 +94,7 @@ impl SearchEntry {
     #[cfg(feature = "v4_14")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
     #[doc(alias = "gtk_search_entry_set_input_purpose")]
+    #[doc(alias = "input-purpose")]
     pub fn set_input_purpose(&self, purpose: InputPurpose) {
         unsafe {
             ffi::gtk_search_entry_set_input_purpose(self.to_glib_none().0, purpose.into_glib());
@@ -109,6 +114,7 @@ impl SearchEntry {
     #[cfg(feature = "v4_8")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     #[doc(alias = "gtk_search_entry_set_search_delay")]
+    #[doc(alias = "search-delay")]
     pub fn set_search_delay(&self, delay: u32) {
         unsafe {
             ffi::gtk_search_entry_set_search_delay(self.to_glib_none().0, delay);

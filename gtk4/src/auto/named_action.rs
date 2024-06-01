@@ -23,6 +23,7 @@ impl NamedAction {
 
     #[doc(alias = "gtk_named_action_get_action_name")]
     #[doc(alias = "get_action_name")]
+    #[doc(alias = "action-name")]
     pub fn action_name(&self) -> glib::GString {
         unsafe { from_glib_none(ffi::gtk_named_action_get_action_name(self.to_glib_none().0)) }
     }

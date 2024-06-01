@@ -61,6 +61,7 @@ impl Shortcut {
     }
 
     #[doc(alias = "gtk_shortcut_set_action")]
+    #[doc(alias = "action")]
     pub fn set_action(&self, action: Option<impl IsA<ShortcutAction>>) {
         unsafe {
             ffi::gtk_shortcut_set_action(
@@ -71,6 +72,7 @@ impl Shortcut {
     }
 
     #[doc(alias = "gtk_shortcut_set_arguments")]
+    #[doc(alias = "arguments")]
     pub fn set_arguments(&self, args: Option<&glib::Variant>) {
         unsafe {
             ffi::gtk_shortcut_set_arguments(self.to_glib_none().0, args.to_glib_none().0);
@@ -78,6 +80,7 @@ impl Shortcut {
     }
 
     #[doc(alias = "gtk_shortcut_set_trigger")]
+    #[doc(alias = "trigger")]
     pub fn set_trigger(&self, trigger: Option<impl IsA<ShortcutTrigger>>) {
         unsafe {
             ffi::gtk_shortcut_set_trigger(

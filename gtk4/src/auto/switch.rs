@@ -39,6 +39,7 @@ impl Switch {
 
     #[doc(alias = "gtk_switch_get_active")]
     #[doc(alias = "get_active")]
+    #[doc(alias = "active")]
     pub fn is_active(&self) -> bool {
         unsafe { from_glib(ffi::gtk_switch_get_active(self.to_glib_none().0)) }
     }
@@ -50,6 +51,7 @@ impl Switch {
     }
 
     #[doc(alias = "gtk_switch_set_active")]
+    #[doc(alias = "active")]
     pub fn set_active(&self, is_active: bool) {
         unsafe {
             ffi::gtk_switch_set_active(self.to_glib_none().0, is_active.into_glib());
@@ -57,6 +59,7 @@ impl Switch {
     }
 
     #[doc(alias = "gtk_switch_set_state")]
+    #[doc(alias = "state")]
     pub fn set_state(&self, state: bool) {
         unsafe {
             ffi::gtk_switch_set_state(self.to_glib_none().0, state.into_glib());

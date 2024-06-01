@@ -334,6 +334,7 @@ pub trait WidgetExt: IsA<Widget> + sealed::Sealed + 'static {
 
     #[doc(alias = "gtk_widget_get_can_focus")]
     #[doc(alias = "get_can_focus")]
+    #[doc(alias = "can-focus")]
     fn can_focus(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_widget_get_can_focus(
@@ -344,6 +345,7 @@ pub trait WidgetExt: IsA<Widget> + sealed::Sealed + 'static {
 
     #[doc(alias = "gtk_widget_get_can_target")]
     #[doc(alias = "get_can_target")]
+    #[doc(alias = "can-target")]
     fn can_target(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_widget_get_can_target(
@@ -386,6 +388,7 @@ pub trait WidgetExt: IsA<Widget> + sealed::Sealed + 'static {
 
     #[doc(alias = "gtk_widget_get_css_classes")]
     #[doc(alias = "get_css_classes")]
+    #[doc(alias = "css-classes")]
     fn css_classes(&self) -> Vec<glib::GString> {
         unsafe {
             FromGlibPtrContainer::from_glib_full(ffi::gtk_widget_get_css_classes(
@@ -396,6 +399,7 @@ pub trait WidgetExt: IsA<Widget> + sealed::Sealed + 'static {
 
     #[doc(alias = "gtk_widget_get_css_name")]
     #[doc(alias = "get_css_name")]
+    #[doc(alias = "css-name")]
     fn css_name(&self) -> glib::GString {
         unsafe { from_glib_none(ffi::gtk_widget_get_css_name(self.as_ref().to_glib_none().0)) }
     }
@@ -446,6 +450,7 @@ pub trait WidgetExt: IsA<Widget> + sealed::Sealed + 'static {
 
     #[doc(alias = "gtk_widget_get_focus_on_click")]
     #[doc(alias = "get_focus_on_click")]
+    #[doc(alias = "focus-on-click")]
     fn gets_focus_on_click(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_widget_get_focus_on_click(
@@ -456,6 +461,7 @@ pub trait WidgetExt: IsA<Widget> + sealed::Sealed + 'static {
 
     #[doc(alias = "gtk_widget_get_focusable")]
     #[doc(alias = "get_focusable")]
+    #[doc(alias = "focusable")]
     fn is_focusable(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_widget_get_focusable(
@@ -500,6 +506,7 @@ pub trait WidgetExt: IsA<Widget> + sealed::Sealed + 'static {
 
     #[doc(alias = "gtk_widget_get_has_tooltip")]
     #[doc(alias = "get_has_tooltip")]
+    #[doc(alias = "has-tooltip")]
     fn has_tooltip(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_widget_get_has_tooltip(
@@ -516,12 +523,14 @@ pub trait WidgetExt: IsA<Widget> + sealed::Sealed + 'static {
 
     #[doc(alias = "gtk_widget_get_hexpand")]
     #[doc(alias = "get_hexpand")]
+    #[doc(alias = "hexpand")]
     fn hexpands(&self) -> bool {
         unsafe { from_glib(ffi::gtk_widget_get_hexpand(self.as_ref().to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_widget_get_hexpand_set")]
     #[doc(alias = "get_hexpand_set")]
+    #[doc(alias = "hexpand-set")]
     fn is_hexpand_set(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_widget_get_hexpand_set(
@@ -543,6 +552,7 @@ pub trait WidgetExt: IsA<Widget> + sealed::Sealed + 'static {
 
     #[doc(alias = "gtk_widget_get_layout_manager")]
     #[doc(alias = "get_layout_manager")]
+    #[doc(alias = "layout-manager")]
     fn layout_manager(&self) -> Option<LayoutManager> {
         unsafe {
             from_glib_none(ffi::gtk_widget_get_layout_manager(
@@ -559,30 +569,35 @@ pub trait WidgetExt: IsA<Widget> + sealed::Sealed + 'static {
 
     #[doc(alias = "gtk_widget_get_margin_bottom")]
     #[doc(alias = "get_margin_bottom")]
+    #[doc(alias = "margin-bottom")]
     fn margin_bottom(&self) -> i32 {
         unsafe { ffi::gtk_widget_get_margin_bottom(self.as_ref().to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_widget_get_margin_end")]
     #[doc(alias = "get_margin_end")]
+    #[doc(alias = "margin-end")]
     fn margin_end(&self) -> i32 {
         unsafe { ffi::gtk_widget_get_margin_end(self.as_ref().to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_widget_get_margin_start")]
     #[doc(alias = "get_margin_start")]
+    #[doc(alias = "margin-start")]
     fn margin_start(&self) -> i32 {
         unsafe { ffi::gtk_widget_get_margin_start(self.as_ref().to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_widget_get_margin_top")]
     #[doc(alias = "get_margin_top")]
+    #[doc(alias = "margin-top")]
     fn margin_top(&self) -> i32 {
         unsafe { ffi::gtk_widget_get_margin_top(self.as_ref().to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_widget_get_name")]
     #[doc(alias = "get_name")]
+    #[doc(alias = "name")]
     fn widget_name(&self) -> glib::GString {
         unsafe { from_glib_none(ffi::gtk_widget_get_name(self.as_ref().to_glib_none().0)) }
     }
@@ -677,6 +692,7 @@ pub trait WidgetExt: IsA<Widget> + sealed::Sealed + 'static {
 
     #[doc(alias = "gtk_widget_get_receives_default")]
     #[doc(alias = "get_receives_default")]
+    #[doc(alias = "receives-default")]
     fn receives_default(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_widget_get_receives_default(
@@ -703,11 +719,13 @@ pub trait WidgetExt: IsA<Widget> + sealed::Sealed + 'static {
 
     #[doc(alias = "gtk_widget_get_scale_factor")]
     #[doc(alias = "get_scale_factor")]
+    #[doc(alias = "scale-factor")]
     fn scale_factor(&self) -> i32 {
         unsafe { ffi::gtk_widget_get_scale_factor(self.as_ref().to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_widget_get_sensitive")]
+    #[doc(alias = "sensitive")]
     fn get_sensitive(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_widget_get_sensitive(
@@ -767,6 +785,7 @@ pub trait WidgetExt: IsA<Widget> + sealed::Sealed + 'static {
 
     #[doc(alias = "gtk_widget_get_tooltip_markup")]
     #[doc(alias = "get_tooltip_markup")]
+    #[doc(alias = "tooltip-markup")]
     fn tooltip_markup(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::gtk_widget_get_tooltip_markup(
@@ -777,6 +796,7 @@ pub trait WidgetExt: IsA<Widget> + sealed::Sealed + 'static {
 
     #[doc(alias = "gtk_widget_get_tooltip_text")]
     #[doc(alias = "get_tooltip_text")]
+    #[doc(alias = "tooltip-text")]
     fn tooltip_text(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::gtk_widget_get_tooltip_text(
@@ -793,12 +813,14 @@ pub trait WidgetExt: IsA<Widget> + sealed::Sealed + 'static {
 
     #[doc(alias = "gtk_widget_get_vexpand")]
     #[doc(alias = "get_vexpand")]
+    #[doc(alias = "vexpand")]
     fn vexpands(&self) -> bool {
         unsafe { from_glib(ffi::gtk_widget_get_vexpand(self.as_ref().to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_widget_get_vexpand_set")]
     #[doc(alias = "get_vexpand_set")]
+    #[doc(alias = "vexpand-set")]
     fn is_vexpand_set(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_widget_get_vexpand_set(
@@ -808,6 +830,7 @@ pub trait WidgetExt: IsA<Widget> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_widget_get_visible")]
+    #[doc(alias = "visible")]
     fn get_visible(&self) -> bool {
         unsafe { from_glib(ffi::gtk_widget_get_visible(self.as_ref().to_glib_none().0)) }
     }
@@ -834,11 +857,13 @@ pub trait WidgetExt: IsA<Widget> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_widget_has_default")]
+    #[doc(alias = "has-default")]
     fn has_default(&self) -> bool {
         unsafe { from_glib(ffi::gtk_widget_has_default(self.as_ref().to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_widget_has_focus")]
+    #[doc(alias = "has-focus")]
     fn has_focus(&self) -> bool {
         unsafe { from_glib(ffi::gtk_widget_has_focus(self.as_ref().to_glib_none().0)) }
     }
@@ -1084,6 +1109,7 @@ pub trait WidgetExt: IsA<Widget> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_widget_set_can_focus")]
+    #[doc(alias = "can-focus")]
     fn set_can_focus(&self, can_focus: bool) {
         unsafe {
             ffi::gtk_widget_set_can_focus(self.as_ref().to_glib_none().0, can_focus.into_glib());
@@ -1091,6 +1117,7 @@ pub trait WidgetExt: IsA<Widget> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_widget_set_can_target")]
+    #[doc(alias = "can-target")]
     fn set_can_target(&self, can_target: bool) {
         unsafe {
             ffi::gtk_widget_set_can_target(self.as_ref().to_glib_none().0, can_target.into_glib());
@@ -1108,6 +1135,7 @@ pub trait WidgetExt: IsA<Widget> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_widget_set_css_classes")]
+    #[doc(alias = "css-classes")]
     fn set_css_classes(&self, classes: &[&str]) {
         unsafe {
             ffi::gtk_widget_set_css_classes(
@@ -1118,6 +1146,7 @@ pub trait WidgetExt: IsA<Widget> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_widget_set_cursor")]
+    #[doc(alias = "cursor")]
     fn set_cursor(&self, cursor: Option<&gdk::Cursor>) {
         unsafe {
             ffi::gtk_widget_set_cursor(self.as_ref().to_glib_none().0, cursor.to_glib_none().0);
@@ -1152,6 +1181,7 @@ pub trait WidgetExt: IsA<Widget> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_widget_set_focus_on_click")]
+    #[doc(alias = "focus-on-click")]
     fn set_focus_on_click(&self, focus_on_click: bool) {
         unsafe {
             ffi::gtk_widget_set_focus_on_click(
@@ -1162,6 +1192,7 @@ pub trait WidgetExt: IsA<Widget> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_widget_set_focusable")]
+    #[doc(alias = "focusable")]
     fn set_focusable(&self, focusable: bool) {
         unsafe {
             ffi::gtk_widget_set_focusable(self.as_ref().to_glib_none().0, focusable.into_glib());
@@ -1191,6 +1222,7 @@ pub trait WidgetExt: IsA<Widget> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_widget_set_halign")]
+    #[doc(alias = "halign")]
     fn set_halign(&self, align: Align) {
         unsafe {
             ffi::gtk_widget_set_halign(self.as_ref().to_glib_none().0, align.into_glib());
@@ -1198,6 +1230,7 @@ pub trait WidgetExt: IsA<Widget> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_widget_set_has_tooltip")]
+    #[doc(alias = "has-tooltip")]
     fn set_has_tooltip(&self, has_tooltip: bool) {
         unsafe {
             ffi::gtk_widget_set_has_tooltip(
@@ -1208,6 +1241,7 @@ pub trait WidgetExt: IsA<Widget> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_widget_set_hexpand")]
+    #[doc(alias = "hexpand")]
     fn set_hexpand(&self, expand: bool) {
         unsafe {
             ffi::gtk_widget_set_hexpand(self.as_ref().to_glib_none().0, expand.into_glib());
@@ -1215,6 +1249,7 @@ pub trait WidgetExt: IsA<Widget> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_widget_set_hexpand_set")]
+    #[doc(alias = "hexpand-set")]
     fn set_hexpand_set(&self, set: bool) {
         unsafe {
             ffi::gtk_widget_set_hexpand_set(self.as_ref().to_glib_none().0, set.into_glib());
@@ -1222,6 +1257,7 @@ pub trait WidgetExt: IsA<Widget> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_widget_set_layout_manager")]
+    #[doc(alias = "layout-manager")]
     fn set_layout_manager(&self, layout_manager: Option<impl IsA<LayoutManager>>) {
         unsafe {
             ffi::gtk_widget_set_layout_manager(
@@ -1232,6 +1268,7 @@ pub trait WidgetExt: IsA<Widget> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_widget_set_margin_bottom")]
+    #[doc(alias = "margin-bottom")]
     fn set_margin_bottom(&self, margin: i32) {
         unsafe {
             ffi::gtk_widget_set_margin_bottom(self.as_ref().to_glib_none().0, margin);
@@ -1239,6 +1276,7 @@ pub trait WidgetExt: IsA<Widget> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_widget_set_margin_end")]
+    #[doc(alias = "margin-end")]
     fn set_margin_end(&self, margin: i32) {
         unsafe {
             ffi::gtk_widget_set_margin_end(self.as_ref().to_glib_none().0, margin);
@@ -1246,6 +1284,7 @@ pub trait WidgetExt: IsA<Widget> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_widget_set_margin_start")]
+    #[doc(alias = "margin-start")]
     fn set_margin_start(&self, margin: i32) {
         unsafe {
             ffi::gtk_widget_set_margin_start(self.as_ref().to_glib_none().0, margin);
@@ -1253,6 +1292,7 @@ pub trait WidgetExt: IsA<Widget> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_widget_set_margin_top")]
+    #[doc(alias = "margin-top")]
     fn set_margin_top(&self, margin: i32) {
         unsafe {
             ffi::gtk_widget_set_margin_top(self.as_ref().to_glib_none().0, margin);
@@ -1261,6 +1301,7 @@ pub trait WidgetExt: IsA<Widget> + sealed::Sealed + 'static {
 
     #[doc(alias = "gtk_widget_set_name")]
     #[doc(alias = "set_name")]
+    #[doc(alias = "name")]
     fn set_widget_name(&self, name: &str) {
         unsafe {
             ffi::gtk_widget_set_name(self.as_ref().to_glib_none().0, name.to_glib_none().0);
@@ -1268,6 +1309,7 @@ pub trait WidgetExt: IsA<Widget> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_widget_set_opacity")]
+    #[doc(alias = "opacity")]
     fn set_opacity(&self, opacity: f64) {
         unsafe {
             ffi::gtk_widget_set_opacity(self.as_ref().to_glib_none().0, opacity);
@@ -1275,6 +1317,7 @@ pub trait WidgetExt: IsA<Widget> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_widget_set_overflow")]
+    #[doc(alias = "overflow")]
     fn set_overflow(&self, overflow: Overflow) {
         unsafe {
             ffi::gtk_widget_set_overflow(self.as_ref().to_glib_none().0, overflow.into_glib());
@@ -1282,6 +1325,7 @@ pub trait WidgetExt: IsA<Widget> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_widget_set_parent")]
+    #[doc(alias = "parent")]
     fn set_parent(&self, parent: &impl IsA<Widget>) {
         unsafe {
             ffi::gtk_widget_set_parent(
@@ -1292,6 +1336,7 @@ pub trait WidgetExt: IsA<Widget> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_widget_set_receives_default")]
+    #[doc(alias = "receives-default")]
     fn set_receives_default(&self, receives_default: bool) {
         unsafe {
             ffi::gtk_widget_set_receives_default(
@@ -1302,6 +1347,7 @@ pub trait WidgetExt: IsA<Widget> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_widget_set_sensitive")]
+    #[doc(alias = "sensitive")]
     fn set_sensitive(&self, sensitive: bool) {
         unsafe {
             ffi::gtk_widget_set_sensitive(self.as_ref().to_glib_none().0, sensitive.into_glib());
@@ -1327,6 +1373,7 @@ pub trait WidgetExt: IsA<Widget> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_widget_set_tooltip_markup")]
+    #[doc(alias = "tooltip-markup")]
     fn set_tooltip_markup(&self, markup: Option<&str>) {
         unsafe {
             ffi::gtk_widget_set_tooltip_markup(
@@ -1337,6 +1384,7 @@ pub trait WidgetExt: IsA<Widget> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_widget_set_tooltip_text")]
+    #[doc(alias = "tooltip-text")]
     fn set_tooltip_text(&self, text: Option<&str>) {
         unsafe {
             ffi::gtk_widget_set_tooltip_text(self.as_ref().to_glib_none().0, text.to_glib_none().0);
@@ -1344,6 +1392,7 @@ pub trait WidgetExt: IsA<Widget> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_widget_set_valign")]
+    #[doc(alias = "valign")]
     fn set_valign(&self, align: Align) {
         unsafe {
             ffi::gtk_widget_set_valign(self.as_ref().to_glib_none().0, align.into_glib());
@@ -1351,6 +1400,7 @@ pub trait WidgetExt: IsA<Widget> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_widget_set_vexpand")]
+    #[doc(alias = "vexpand")]
     fn set_vexpand(&self, expand: bool) {
         unsafe {
             ffi::gtk_widget_set_vexpand(self.as_ref().to_glib_none().0, expand.into_glib());
@@ -1358,6 +1408,7 @@ pub trait WidgetExt: IsA<Widget> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_widget_set_vexpand_set")]
+    #[doc(alias = "vexpand-set")]
     fn set_vexpand_set(&self, set: bool) {
         unsafe {
             ffi::gtk_widget_set_vexpand_set(self.as_ref().to_glib_none().0, set.into_glib());
@@ -1365,6 +1416,7 @@ pub trait WidgetExt: IsA<Widget> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_widget_set_visible")]
+    #[doc(alias = "visible")]
     fn set_visible(&self, visible: bool) {
         unsafe {
             ffi::gtk_widget_set_visible(self.as_ref().to_glib_none().0, visible.into_glib());

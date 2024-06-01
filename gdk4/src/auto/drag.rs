@@ -102,6 +102,7 @@ pub trait DragExt: IsA<Drag> + sealed::Sealed + 'static {
 
     #[doc(alias = "gdk_drag_get_selected_action")]
     #[doc(alias = "get_selected_action")]
+    #[doc(alias = "selected-action")]
     fn selected_action(&self) -> DragAction {
         unsafe {
             from_glib(ffi::gdk_drag_get_selected_action(

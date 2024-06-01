@@ -49,6 +49,7 @@ impl AppChooserWidget {
     #[allow(deprecated)]
     #[doc(alias = "gtk_app_chooser_widget_get_default_text")]
     #[doc(alias = "get_default_text")]
+    #[doc(alias = "default-text")]
     pub fn default_text(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::gtk_app_chooser_widget_get_default_text(
@@ -61,6 +62,7 @@ impl AppChooserWidget {
     #[allow(deprecated)]
     #[doc(alias = "gtk_app_chooser_widget_get_show_all")]
     #[doc(alias = "get_show_all")]
+    #[doc(alias = "show-all")]
     pub fn shows_all(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_app_chooser_widget_get_show_all(
@@ -73,6 +75,7 @@ impl AppChooserWidget {
     #[allow(deprecated)]
     #[doc(alias = "gtk_app_chooser_widget_get_show_default")]
     #[doc(alias = "get_show_default")]
+    #[doc(alias = "show-default")]
     pub fn shows_default(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_app_chooser_widget_get_show_default(
@@ -85,6 +88,7 @@ impl AppChooserWidget {
     #[allow(deprecated)]
     #[doc(alias = "gtk_app_chooser_widget_get_show_fallback")]
     #[doc(alias = "get_show_fallback")]
+    #[doc(alias = "show-fallback")]
     pub fn shows_fallback(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_app_chooser_widget_get_show_fallback(
@@ -97,6 +101,7 @@ impl AppChooserWidget {
     #[allow(deprecated)]
     #[doc(alias = "gtk_app_chooser_widget_get_show_other")]
     #[doc(alias = "get_show_other")]
+    #[doc(alias = "show-other")]
     pub fn shows_other(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_app_chooser_widget_get_show_other(
@@ -109,6 +114,7 @@ impl AppChooserWidget {
     #[allow(deprecated)]
     #[doc(alias = "gtk_app_chooser_widget_get_show_recommended")]
     #[doc(alias = "get_show_recommended")]
+    #[doc(alias = "show-recommended")]
     pub fn shows_recommended(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_app_chooser_widget_get_show_recommended(
@@ -120,6 +126,7 @@ impl AppChooserWidget {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_app_chooser_widget_set_default_text")]
+    #[doc(alias = "default-text")]
     pub fn set_default_text(&self, text: &str) {
         unsafe {
             ffi::gtk_app_chooser_widget_set_default_text(
@@ -132,6 +139,7 @@ impl AppChooserWidget {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_app_chooser_widget_set_show_all")]
+    #[doc(alias = "show-all")]
     pub fn set_show_all(&self, setting: bool) {
         unsafe {
             ffi::gtk_app_chooser_widget_set_show_all(self.to_glib_none().0, setting.into_glib());
@@ -141,6 +149,7 @@ impl AppChooserWidget {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_app_chooser_widget_set_show_default")]
+    #[doc(alias = "show-default")]
     pub fn set_show_default(&self, setting: bool) {
         unsafe {
             ffi::gtk_app_chooser_widget_set_show_default(
@@ -153,6 +162,7 @@ impl AppChooserWidget {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_app_chooser_widget_set_show_fallback")]
+    #[doc(alias = "show-fallback")]
     pub fn set_show_fallback(&self, setting: bool) {
         unsafe {
             ffi::gtk_app_chooser_widget_set_show_fallback(
@@ -165,6 +175,7 @@ impl AppChooserWidget {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_app_chooser_widget_set_show_other")]
+    #[doc(alias = "show-other")]
     pub fn set_show_other(&self, setting: bool) {
         unsafe {
             ffi::gtk_app_chooser_widget_set_show_other(self.to_glib_none().0, setting.into_glib());
@@ -174,6 +185,7 @@ impl AppChooserWidget {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_app_chooser_widget_set_show_recommended")]
+    #[doc(alias = "show-recommended")]
     pub fn set_show_recommended(&self, setting: bool) {
         unsafe {
             ffi::gtk_app_chooser_widget_set_show_recommended(

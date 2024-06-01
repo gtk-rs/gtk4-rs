@@ -48,11 +48,13 @@ impl BoolFilter {
 
     #[doc(alias = "gtk_bool_filter_get_invert")]
     #[doc(alias = "get_invert")]
+    #[doc(alias = "invert")]
     pub fn inverts(&self) -> bool {
         unsafe { from_glib(ffi::gtk_bool_filter_get_invert(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_bool_filter_set_expression")]
+    #[doc(alias = "expression")]
     pub fn set_expression(&self, expression: Option<impl AsRef<Expression>>) {
         unsafe {
             ffi::gtk_bool_filter_set_expression(
@@ -63,6 +65,7 @@ impl BoolFilter {
     }
 
     #[doc(alias = "gtk_bool_filter_set_invert")]
+    #[doc(alias = "invert")]
     pub fn set_invert(&self, invert: bool) {
         unsafe {
             ffi::gtk_bool_filter_set_invert(self.to_glib_none().0, invert.into_glib());

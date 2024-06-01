@@ -109,6 +109,7 @@ impl CellView {
     #[allow(deprecated)]
     #[doc(alias = "gtk_cell_view_get_draw_sensitive")]
     #[doc(alias = "get_draw_sensitive")]
+    #[doc(alias = "draw-sensitive")]
     pub fn draws_sensitive(&self) -> bool {
         unsafe { from_glib(ffi::gtk_cell_view_get_draw_sensitive(self.to_glib_none().0)) }
     }
@@ -117,6 +118,7 @@ impl CellView {
     #[allow(deprecated)]
     #[doc(alias = "gtk_cell_view_get_fit_model")]
     #[doc(alias = "get_fit_model")]
+    #[doc(alias = "fit-model")]
     pub fn fits_model(&self) -> bool {
         unsafe { from_glib(ffi::gtk_cell_view_get_fit_model(self.to_glib_none().0)) }
     }
@@ -144,6 +146,7 @@ impl CellView {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_cell_view_set_draw_sensitive")]
+    #[doc(alias = "draw-sensitive")]
     pub fn set_draw_sensitive(&self, draw_sensitive: bool) {
         unsafe {
             ffi::gtk_cell_view_set_draw_sensitive(
@@ -156,6 +159,7 @@ impl CellView {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_cell_view_set_fit_model")]
+    #[doc(alias = "fit-model")]
     pub fn set_fit_model(&self, fit_model: bool) {
         unsafe {
             ffi::gtk_cell_view_set_fit_model(self.to_glib_none().0, fit_model.into_glib());
@@ -165,6 +169,7 @@ impl CellView {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_cell_view_set_model")]
+    #[doc(alias = "model")]
     pub fn set_model(&self, model: Option<&impl IsA<TreeModel>>) {
         unsafe {
             ffi::gtk_cell_view_set_model(

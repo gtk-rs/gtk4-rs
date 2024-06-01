@@ -445,6 +445,7 @@ pub trait ApplicationWindowExt: IsA<ApplicationWindow> + sealed::Sealed + 'stati
 
     #[doc(alias = "gtk_application_window_get_show_menubar")]
     #[doc(alias = "get_show_menubar")]
+    #[doc(alias = "show-menubar")]
     fn shows_menubar(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_application_window_get_show_menubar(
@@ -464,6 +465,7 @@ pub trait ApplicationWindowExt: IsA<ApplicationWindow> + sealed::Sealed + 'stati
     }
 
     #[doc(alias = "gtk_application_window_set_show_menubar")]
+    #[doc(alias = "show-menubar")]
     fn set_show_menubar(&self, show_menubar: bool) {
         unsafe {
             ffi::gtk_application_window_set_show_menubar(

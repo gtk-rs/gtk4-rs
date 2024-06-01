@@ -53,6 +53,7 @@ pub trait GLContextExt: IsA<GLContext> + sealed::Sealed + 'static {
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     #[doc(alias = "gdk_gl_context_get_allowed_apis")]
     #[doc(alias = "get_allowed_apis")]
+    #[doc(alias = "allowed-apis")]
     fn allowed_apis(&self) -> GLAPI {
         unsafe {
             from_glib(ffi::gdk_gl_context_get_allowed_apis(
@@ -118,6 +119,7 @@ pub trait GLContextExt: IsA<GLContext> + sealed::Sealed + 'static {
     #[allow(deprecated)]
     #[doc(alias = "gdk_gl_context_get_shared_context")]
     #[doc(alias = "get_shared_context")]
+    #[doc(alias = "shared-context")]
     #[must_use]
     fn shared_context(&self) -> Option<GLContext> {
         unsafe {
@@ -207,6 +209,7 @@ pub trait GLContextExt: IsA<GLContext> + sealed::Sealed + 'static {
     #[cfg(feature = "v4_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     #[doc(alias = "gdk_gl_context_set_allowed_apis")]
+    #[doc(alias = "allowed-apis")]
     fn set_allowed_apis(&self, apis: GLAPI) {
         unsafe {
             ffi::gdk_gl_context_set_allowed_apis(self.as_ref().to_glib_none().0, apis.into_glib());

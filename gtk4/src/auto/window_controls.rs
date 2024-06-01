@@ -41,6 +41,7 @@ impl WindowControls {
 
     #[doc(alias = "gtk_window_controls_get_decoration_layout")]
     #[doc(alias = "get_decoration_layout")]
+    #[doc(alias = "decoration-layout")]
     pub fn decoration_layout(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::gtk_window_controls_get_decoration_layout(
@@ -51,6 +52,7 @@ impl WindowControls {
 
     #[doc(alias = "gtk_window_controls_get_empty")]
     #[doc(alias = "get_empty")]
+    #[doc(alias = "empty")]
     pub fn is_empty(&self) -> bool {
         unsafe { from_glib(ffi::gtk_window_controls_get_empty(self.to_glib_none().0)) }
     }
@@ -62,6 +64,7 @@ impl WindowControls {
     }
 
     #[doc(alias = "gtk_window_controls_set_decoration_layout")]
+    #[doc(alias = "decoration-layout")]
     pub fn set_decoration_layout(&self, layout: Option<&str>) {
         unsafe {
             ffi::gtk_window_controls_set_decoration_layout(
@@ -72,6 +75,7 @@ impl WindowControls {
     }
 
     #[doc(alias = "gtk_window_controls_set_side")]
+    #[doc(alias = "side")]
     pub fn set_side(&self, side: PackType) {
         unsafe {
             ffi::gtk_window_controls_set_side(self.to_glib_none().0, side.into_glib());

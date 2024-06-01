@@ -60,6 +60,7 @@ impl EventControllerScroll {
     }
 
     #[doc(alias = "gtk_event_controller_scroll_set_flags")]
+    #[doc(alias = "flags")]
     pub fn set_flags(&self, flags: EventControllerScrollFlags) {
         unsafe {
             ffi::gtk_event_controller_scroll_set_flags(self.to_glib_none().0, flags.into_glib());

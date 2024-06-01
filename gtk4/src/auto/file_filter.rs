@@ -84,6 +84,7 @@ impl FileFilter {
     }
 
     #[doc(alias = "gtk_file_filter_set_name")]
+    #[doc(alias = "name")]
     pub fn set_name(&self, name: Option<&str>) {
         unsafe {
             ffi::gtk_file_filter_set_name(self.to_glib_none().0, name.to_glib_none().0);

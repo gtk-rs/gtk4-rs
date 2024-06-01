@@ -274,17 +274,20 @@ mod sealed {
 pub trait DrawingAreaExt: IsA<DrawingArea> + sealed::Sealed + 'static {
     #[doc(alias = "gtk_drawing_area_get_content_height")]
     #[doc(alias = "get_content_height")]
+    #[doc(alias = "content-height")]
     fn content_height(&self) -> i32 {
         unsafe { ffi::gtk_drawing_area_get_content_height(self.as_ref().to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_drawing_area_get_content_width")]
     #[doc(alias = "get_content_width")]
+    #[doc(alias = "content-width")]
     fn content_width(&self) -> i32 {
         unsafe { ffi::gtk_drawing_area_get_content_width(self.as_ref().to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_drawing_area_set_content_height")]
+    #[doc(alias = "content-height")]
     fn set_content_height(&self, height: i32) {
         unsafe {
             ffi::gtk_drawing_area_set_content_height(self.as_ref().to_glib_none().0, height);
@@ -292,6 +295,7 @@ pub trait DrawingAreaExt: IsA<DrawingArea> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_drawing_area_set_content_width")]
+    #[doc(alias = "content-width")]
     fn set_content_width(&self, width: i32) {
         unsafe {
             ffi::gtk_drawing_area_set_content_width(self.as_ref().to_glib_none().0, width);

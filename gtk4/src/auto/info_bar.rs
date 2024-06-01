@@ -79,6 +79,7 @@ impl InfoBar {
     #[allow(deprecated)]
     #[doc(alias = "gtk_info_bar_get_message_type")]
     #[doc(alias = "get_message_type")]
+    #[doc(alias = "message-type")]
     pub fn message_type(&self) -> MessageType {
         unsafe { from_glib(ffi::gtk_info_bar_get_message_type(self.to_glib_none().0)) }
     }
@@ -87,6 +88,7 @@ impl InfoBar {
     #[allow(deprecated)]
     #[doc(alias = "gtk_info_bar_get_revealed")]
     #[doc(alias = "get_revealed")]
+    #[doc(alias = "revealed")]
     pub fn is_revealed(&self) -> bool {
         unsafe { from_glib(ffi::gtk_info_bar_get_revealed(self.to_glib_none().0)) }
     }
@@ -95,6 +97,7 @@ impl InfoBar {
     #[allow(deprecated)]
     #[doc(alias = "gtk_info_bar_get_show_close_button")]
     #[doc(alias = "get_show_close_button")]
+    #[doc(alias = "show-close-button")]
     pub fn shows_close_button(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_info_bar_get_show_close_button(
@@ -145,6 +148,7 @@ impl InfoBar {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_info_bar_set_message_type")]
+    #[doc(alias = "message-type")]
     pub fn set_message_type(&self, message_type: MessageType) {
         unsafe {
             ffi::gtk_info_bar_set_message_type(self.to_glib_none().0, message_type.into_glib());
@@ -167,6 +171,7 @@ impl InfoBar {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_info_bar_set_revealed")]
+    #[doc(alias = "revealed")]
     pub fn set_revealed(&self, revealed: bool) {
         unsafe {
             ffi::gtk_info_bar_set_revealed(self.to_glib_none().0, revealed.into_glib());
@@ -176,6 +181,7 @@ impl InfoBar {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_info_bar_set_show_close_button")]
+    #[doc(alias = "show-close-button")]
     pub fn set_show_close_button(&self, setting: bool) {
         unsafe {
             ffi::gtk_info_bar_set_show_close_button(self.to_glib_none().0, setting.into_glib());

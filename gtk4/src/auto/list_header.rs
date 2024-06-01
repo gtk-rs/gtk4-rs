@@ -40,6 +40,7 @@ impl ListHeader {
 
     #[doc(alias = "gtk_list_header_get_n_items")]
     #[doc(alias = "get_n_items")]
+    #[doc(alias = "n-items")]
     pub fn n_items(&self) -> u32 {
         unsafe { ffi::gtk_list_header_get_n_items(self.to_glib_none().0) }
     }
@@ -51,6 +52,7 @@ impl ListHeader {
     }
 
     #[doc(alias = "gtk_list_header_set_child")]
+    #[doc(alias = "child")]
     pub fn set_child(&self, child: Option<&impl IsA<Widget>>) {
         unsafe {
             ffi::gtk_list_header_set_child(

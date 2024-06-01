@@ -63,6 +63,7 @@ impl FlattenListModel {
     }
 
     #[doc(alias = "gtk_flatten_list_model_set_model")]
+    #[doc(alias = "model")]
     pub fn set_model(&self, model: Option<&impl IsA<gio::ListModel>>) {
         unsafe {
             ffi::gtk_flatten_list_model_set_model(

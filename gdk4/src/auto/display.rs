@@ -138,6 +138,7 @@ pub trait DisplayExt: IsA<Display> + sealed::Sealed + 'static {
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
     #[doc(alias = "gdk_display_get_dmabuf_formats")]
     #[doc(alias = "get_dmabuf_formats")]
+    #[doc(alias = "dmabuf-formats")]
     fn dmabuf_formats(&self) -> DmabufFormats {
         unsafe {
             from_glib_none(ffi::gdk_display_get_dmabuf_formats(
@@ -201,6 +202,7 @@ pub trait DisplayExt: IsA<Display> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gdk_display_is_composited")]
+    #[doc(alias = "composited")]
     fn is_composited(&self) -> bool {
         unsafe {
             from_glib(ffi::gdk_display_is_composited(
@@ -210,6 +212,7 @@ pub trait DisplayExt: IsA<Display> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gdk_display_is_rgba")]
+    #[doc(alias = "rgba")]
     fn is_rgba(&self) -> bool {
         unsafe { from_glib(ffi::gdk_display_is_rgba(self.as_ref().to_glib_none().0)) }
     }
@@ -264,6 +267,7 @@ pub trait DisplayExt: IsA<Display> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gdk_display_supports_input_shapes")]
+    #[doc(alias = "input-shapes")]
     fn supports_input_shapes(&self) -> bool {
         unsafe {
             from_glib(ffi::gdk_display_supports_input_shapes(
@@ -275,6 +279,7 @@ pub trait DisplayExt: IsA<Display> + sealed::Sealed + 'static {
     #[cfg(feature = "v4_14")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
     #[doc(alias = "gdk_display_supports_shadow_width")]
+    #[doc(alias = "shadow-width")]
     fn supports_shadow_width(&self) -> bool {
         unsafe {
             from_glib(ffi::gdk_display_supports_shadow_width(
@@ -288,11 +293,6 @@ pub trait DisplayExt: IsA<Display> + sealed::Sealed + 'static {
         unsafe {
             ffi::gdk_display_sync(self.as_ref().to_glib_none().0);
         }
-    }
-
-    #[doc(alias = "input-shapes")]
-    fn is_input_shapes(&self) -> bool {
-        ObjectExt::property(self.as_ref(), "input-shapes")
     }
 
     #[doc(alias = "closed")]

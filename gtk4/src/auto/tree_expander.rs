@@ -47,6 +47,7 @@ impl TreeExpander {
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "gtk_tree_expander_get_hide_expander")]
     #[doc(alias = "get_hide_expander")]
+    #[doc(alias = "hide-expander")]
     pub fn hides_expander(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_tree_expander_get_hide_expander(
@@ -59,6 +60,7 @@ impl TreeExpander {
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "gtk_tree_expander_get_indent_for_depth")]
     #[doc(alias = "get_indent_for_depth")]
+    #[doc(alias = "indent-for-depth")]
     pub fn is_indent_for_depth(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_tree_expander_get_indent_for_depth(
@@ -71,6 +73,7 @@ impl TreeExpander {
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     #[doc(alias = "gtk_tree_expander_get_indent_for_icon")]
     #[doc(alias = "get_indent_for_icon")]
+    #[doc(alias = "indent-for-icon")]
     pub fn is_indent_for_icon(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_tree_expander_get_indent_for_icon(
@@ -87,11 +90,13 @@ impl TreeExpander {
 
     #[doc(alias = "gtk_tree_expander_get_list_row")]
     #[doc(alias = "get_list_row")]
+    #[doc(alias = "list-row")]
     pub fn list_row(&self) -> Option<TreeListRow> {
         unsafe { from_glib_none(ffi::gtk_tree_expander_get_list_row(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_tree_expander_set_child")]
+    #[doc(alias = "child")]
     pub fn set_child(&self, child: Option<&impl IsA<Widget>>) {
         unsafe {
             ffi::gtk_tree_expander_set_child(
@@ -104,6 +109,7 @@ impl TreeExpander {
     #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "gtk_tree_expander_set_hide_expander")]
+    #[doc(alias = "hide-expander")]
     pub fn set_hide_expander(&self, hide_expander: bool) {
         unsafe {
             ffi::gtk_tree_expander_set_hide_expander(
@@ -116,6 +122,7 @@ impl TreeExpander {
     #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "gtk_tree_expander_set_indent_for_depth")]
+    #[doc(alias = "indent-for-depth")]
     pub fn set_indent_for_depth(&self, indent_for_depth: bool) {
         unsafe {
             ffi::gtk_tree_expander_set_indent_for_depth(
@@ -128,6 +135,7 @@ impl TreeExpander {
     #[cfg(feature = "v4_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     #[doc(alias = "gtk_tree_expander_set_indent_for_icon")]
+    #[doc(alias = "indent-for-icon")]
     pub fn set_indent_for_icon(&self, indent_for_icon: bool) {
         unsafe {
             ffi::gtk_tree_expander_set_indent_for_icon(
@@ -138,6 +146,7 @@ impl TreeExpander {
     }
 
     #[doc(alias = "gtk_tree_expander_set_list_row")]
+    #[doc(alias = "list-row")]
     pub fn set_list_row(&self, list_row: Option<&TreeListRow>) {
         unsafe {
             ffi::gtk_tree_expander_set_list_row(self.to_glib_none().0, list_row.to_glib_none().0);

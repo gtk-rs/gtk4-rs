@@ -67,6 +67,7 @@ impl DropTargetAsync {
     }
 
     #[doc(alias = "gtk_drop_target_async_set_actions")]
+    #[doc(alias = "actions")]
     pub fn set_actions(&self, actions: gdk::DragAction) {
         unsafe {
             ffi::gtk_drop_target_async_set_actions(self.to_glib_none().0, actions.into_glib());
@@ -74,6 +75,7 @@ impl DropTargetAsync {
     }
 
     #[doc(alias = "gtk_drop_target_async_set_formats")]
+    #[doc(alias = "formats")]
     pub fn set_formats(&self, formats: Option<&gdk::ContentFormats>) {
         unsafe {
             ffi::gtk_drop_target_async_set_formats(self.to_glib_none().0, formats.to_glib_none().0);

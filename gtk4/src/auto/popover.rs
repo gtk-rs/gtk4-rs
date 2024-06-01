@@ -314,6 +314,7 @@ mod sealed {
 pub trait PopoverExt: IsA<Popover> + sealed::Sealed + 'static {
     #[doc(alias = "gtk_popover_get_autohide")]
     #[doc(alias = "get_autohide")]
+    #[doc(alias = "autohide")]
     fn is_autohide(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_popover_get_autohide(
@@ -324,6 +325,7 @@ pub trait PopoverExt: IsA<Popover> + sealed::Sealed + 'static {
 
     #[doc(alias = "gtk_popover_get_cascade_popdown")]
     #[doc(alias = "get_cascade_popdown")]
+    #[doc(alias = "cascade-popdown")]
     fn is_cascade_popdown(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_popover_get_cascade_popdown(
@@ -340,6 +342,7 @@ pub trait PopoverExt: IsA<Popover> + sealed::Sealed + 'static {
 
     #[doc(alias = "gtk_popover_get_has_arrow")]
     #[doc(alias = "get_has_arrow")]
+    #[doc(alias = "has-arrow")]
     fn has_arrow(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_popover_get_has_arrow(
@@ -350,6 +353,7 @@ pub trait PopoverExt: IsA<Popover> + sealed::Sealed + 'static {
 
     #[doc(alias = "gtk_popover_get_mnemonics_visible")]
     #[doc(alias = "get_mnemonics_visible")]
+    #[doc(alias = "mnemonics-visible")]
     fn is_mnemonics_visible(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_popover_get_mnemonics_visible(
@@ -375,6 +379,7 @@ pub trait PopoverExt: IsA<Popover> + sealed::Sealed + 'static {
 
     #[doc(alias = "gtk_popover_get_pointing_to")]
     #[doc(alias = "get_pointing_to")]
+    #[doc(alias = "pointing-to")]
     fn pointing_to(&self) -> (bool, gdk::Rectangle) {
         unsafe {
             let mut rect = gdk::Rectangle::uninitialized();
@@ -418,6 +423,7 @@ pub trait PopoverExt: IsA<Popover> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_popover_set_autohide")]
+    #[doc(alias = "autohide")]
     fn set_autohide(&self, autohide: bool) {
         unsafe {
             ffi::gtk_popover_set_autohide(self.as_ref().to_glib_none().0, autohide.into_glib());
@@ -425,6 +431,7 @@ pub trait PopoverExt: IsA<Popover> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_popover_set_cascade_popdown")]
+    #[doc(alias = "cascade-popdown")]
     fn set_cascade_popdown(&self, cascade_popdown: bool) {
         unsafe {
             ffi::gtk_popover_set_cascade_popdown(
@@ -435,6 +442,7 @@ pub trait PopoverExt: IsA<Popover> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_popover_set_child")]
+    #[doc(alias = "child")]
     fn set_child(&self, child: Option<&impl IsA<Widget>>) {
         unsafe {
             ffi::gtk_popover_set_child(
@@ -445,6 +453,7 @@ pub trait PopoverExt: IsA<Popover> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_popover_set_default_widget")]
+    #[doc(alias = "default-widget")]
     fn set_default_widget(&self, widget: Option<&impl IsA<Widget>>) {
         unsafe {
             ffi::gtk_popover_set_default_widget(
@@ -455,6 +464,7 @@ pub trait PopoverExt: IsA<Popover> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_popover_set_has_arrow")]
+    #[doc(alias = "has-arrow")]
     fn set_has_arrow(&self, has_arrow: bool) {
         unsafe {
             ffi::gtk_popover_set_has_arrow(self.as_ref().to_glib_none().0, has_arrow.into_glib());
@@ -462,6 +472,7 @@ pub trait PopoverExt: IsA<Popover> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_popover_set_mnemonics_visible")]
+    #[doc(alias = "mnemonics-visible")]
     fn set_mnemonics_visible(&self, mnemonics_visible: bool) {
         unsafe {
             ffi::gtk_popover_set_mnemonics_visible(
@@ -479,6 +490,7 @@ pub trait PopoverExt: IsA<Popover> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_popover_set_pointing_to")]
+    #[doc(alias = "pointing-to")]
     fn set_pointing_to(&self, rect: Option<&gdk::Rectangle>) {
         unsafe {
             ffi::gtk_popover_set_pointing_to(self.as_ref().to_glib_none().0, rect.to_glib_none().0);
@@ -486,6 +498,7 @@ pub trait PopoverExt: IsA<Popover> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_popover_set_position")]
+    #[doc(alias = "position")]
     fn set_position(&self, position: PositionType) {
         unsafe {
             ffi::gtk_popover_set_position(self.as_ref().to_glib_none().0, position.into_glib());

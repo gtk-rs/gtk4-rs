@@ -79,18 +79,21 @@ impl Calendar {
 
     #[doc(alias = "gtk_calendar_get_show_day_names")]
     #[doc(alias = "get_show_day_names")]
+    #[doc(alias = "show-day-names")]
     pub fn shows_day_names(&self) -> bool {
         unsafe { from_glib(ffi::gtk_calendar_get_show_day_names(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_calendar_get_show_heading")]
     #[doc(alias = "get_show_heading")]
+    #[doc(alias = "show-heading")]
     pub fn shows_heading(&self) -> bool {
         unsafe { from_glib(ffi::gtk_calendar_get_show_heading(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_calendar_get_show_week_numbers")]
     #[doc(alias = "get_show_week_numbers")]
+    #[doc(alias = "show-week-numbers")]
     pub fn shows_week_numbers(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_calendar_get_show_week_numbers(
@@ -124,6 +127,7 @@ impl Calendar {
     #[cfg(feature = "v4_14")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
     #[doc(alias = "gtk_calendar_set_day")]
+    #[doc(alias = "day")]
     pub fn set_day(&self, day: i32) {
         unsafe {
             ffi::gtk_calendar_set_day(self.to_glib_none().0, day);
@@ -133,6 +137,7 @@ impl Calendar {
     #[cfg(feature = "v4_14")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
     #[doc(alias = "gtk_calendar_set_month")]
+    #[doc(alias = "month")]
     pub fn set_month(&self, month: i32) {
         unsafe {
             ffi::gtk_calendar_set_month(self.to_glib_none().0, month);
@@ -140,6 +145,7 @@ impl Calendar {
     }
 
     #[doc(alias = "gtk_calendar_set_show_day_names")]
+    #[doc(alias = "show-day-names")]
     pub fn set_show_day_names(&self, value: bool) {
         unsafe {
             ffi::gtk_calendar_set_show_day_names(self.to_glib_none().0, value.into_glib());
@@ -147,6 +153,7 @@ impl Calendar {
     }
 
     #[doc(alias = "gtk_calendar_set_show_heading")]
+    #[doc(alias = "show-heading")]
     pub fn set_show_heading(&self, value: bool) {
         unsafe {
             ffi::gtk_calendar_set_show_heading(self.to_glib_none().0, value.into_glib());
@@ -154,6 +161,7 @@ impl Calendar {
     }
 
     #[doc(alias = "gtk_calendar_set_show_week_numbers")]
+    #[doc(alias = "show-week-numbers")]
     pub fn set_show_week_numbers(&self, value: bool) {
         unsafe {
             ffi::gtk_calendar_set_show_week_numbers(self.to_glib_none().0, value.into_glib());
@@ -163,6 +171,7 @@ impl Calendar {
     #[cfg(feature = "v4_14")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
     #[doc(alias = "gtk_calendar_set_year")]
+    #[doc(alias = "year")]
     pub fn set_year(&self, year: i32) {
         unsafe {
             ffi::gtk_calendar_set_year(self.to_glib_none().0, year);

@@ -376,6 +376,7 @@ pub trait ComboBoxExt: IsA<ComboBox> + sealed::Sealed + 'static {
     #[allow(deprecated)]
     #[doc(alias = "gtk_combo_box_get_active_id")]
     #[doc(alias = "get_active_id")]
+    #[doc(alias = "active-id")]
     fn active_id(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::gtk_combo_box_get_active_id(
@@ -407,6 +408,7 @@ pub trait ComboBoxExt: IsA<ComboBox> + sealed::Sealed + 'static {
     #[allow(deprecated)]
     #[doc(alias = "gtk_combo_box_get_button_sensitivity")]
     #[doc(alias = "get_button_sensitivity")]
+    #[doc(alias = "button-sensitivity")]
     fn button_sensitivity(&self) -> SensitivityType {
         unsafe {
             from_glib(ffi::gtk_combo_box_get_button_sensitivity(
@@ -427,6 +429,7 @@ pub trait ComboBoxExt: IsA<ComboBox> + sealed::Sealed + 'static {
     #[allow(deprecated)]
     #[doc(alias = "gtk_combo_box_get_entry_text_column")]
     #[doc(alias = "get_entry_text_column")]
+    #[doc(alias = "entry-text-column")]
     fn entry_text_column(&self) -> i32 {
         unsafe { ffi::gtk_combo_box_get_entry_text_column(self.as_ref().to_glib_none().0) }
     }
@@ -435,6 +438,7 @@ pub trait ComboBoxExt: IsA<ComboBox> + sealed::Sealed + 'static {
     #[allow(deprecated)]
     #[doc(alias = "gtk_combo_box_get_has_entry")]
     #[doc(alias = "get_has_entry")]
+    #[doc(alias = "has-entry")]
     fn has_entry(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_combo_box_get_has_entry(
@@ -447,6 +451,7 @@ pub trait ComboBoxExt: IsA<ComboBox> + sealed::Sealed + 'static {
     #[allow(deprecated)]
     #[doc(alias = "gtk_combo_box_get_id_column")]
     #[doc(alias = "get_id_column")]
+    #[doc(alias = "id-column")]
     fn id_column(&self) -> i32 {
         unsafe { ffi::gtk_combo_box_get_id_column(self.as_ref().to_glib_none().0) }
     }
@@ -463,6 +468,7 @@ pub trait ComboBoxExt: IsA<ComboBox> + sealed::Sealed + 'static {
     #[allow(deprecated)]
     #[doc(alias = "gtk_combo_box_get_popup_fixed_width")]
     #[doc(alias = "get_popup_fixed_width")]
+    #[doc(alias = "popup-fixed-width")]
     fn is_popup_fixed_width(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_combo_box_get_popup_fixed_width(
@@ -504,6 +510,7 @@ pub trait ComboBoxExt: IsA<ComboBox> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_combo_box_set_active_id")]
+    #[doc(alias = "active-id")]
     fn set_active_id(&self, active_id: Option<&str>) -> bool {
         unsafe {
             from_glib(ffi::gtk_combo_box_set_active_id(
@@ -528,6 +535,7 @@ pub trait ComboBoxExt: IsA<ComboBox> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_combo_box_set_button_sensitivity")]
+    #[doc(alias = "button-sensitivity")]
     fn set_button_sensitivity(&self, sensitivity: SensitivityType) {
         unsafe {
             ffi::gtk_combo_box_set_button_sensitivity(
@@ -540,6 +548,7 @@ pub trait ComboBoxExt: IsA<ComboBox> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_combo_box_set_child")]
+    #[doc(alias = "child")]
     fn set_child(&self, child: Option<&impl IsA<Widget>>) {
         unsafe {
             ffi::gtk_combo_box_set_child(
@@ -552,6 +561,7 @@ pub trait ComboBoxExt: IsA<ComboBox> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_combo_box_set_entry_text_column")]
+    #[doc(alias = "entry-text-column")]
     fn set_entry_text_column(&self, text_column: i32) {
         unsafe {
             ffi::gtk_combo_box_set_entry_text_column(self.as_ref().to_glib_none().0, text_column);
@@ -561,6 +571,7 @@ pub trait ComboBoxExt: IsA<ComboBox> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_combo_box_set_id_column")]
+    #[doc(alias = "id-column")]
     fn set_id_column(&self, id_column: i32) {
         unsafe {
             ffi::gtk_combo_box_set_id_column(self.as_ref().to_glib_none().0, id_column);
@@ -570,6 +581,7 @@ pub trait ComboBoxExt: IsA<ComboBox> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_combo_box_set_model")]
+    #[doc(alias = "model")]
     fn set_model(&self, model: Option<&impl IsA<TreeModel>>) {
         unsafe {
             ffi::gtk_combo_box_set_model(
@@ -582,6 +594,7 @@ pub trait ComboBoxExt: IsA<ComboBox> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_combo_box_set_popup_fixed_width")]
+    #[doc(alias = "popup-fixed-width")]
     fn set_popup_fixed_width(&self, fixed: bool) {
         unsafe {
             ffi::gtk_combo_box_set_popup_fixed_width(

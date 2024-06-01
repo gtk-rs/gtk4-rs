@@ -55,6 +55,7 @@ impl FileChooserNative {
     #[allow(deprecated)]
     #[doc(alias = "gtk_file_chooser_native_get_accept_label")]
     #[doc(alias = "get_accept_label")]
+    #[doc(alias = "accept-label")]
     pub fn accept_label(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::gtk_file_chooser_native_get_accept_label(
@@ -67,6 +68,7 @@ impl FileChooserNative {
     #[allow(deprecated)]
     #[doc(alias = "gtk_file_chooser_native_get_cancel_label")]
     #[doc(alias = "get_cancel_label")]
+    #[doc(alias = "cancel-label")]
     pub fn cancel_label(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::gtk_file_chooser_native_get_cancel_label(
@@ -78,6 +80,7 @@ impl FileChooserNative {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_file_chooser_native_set_accept_label")]
+    #[doc(alias = "accept-label")]
     pub fn set_accept_label(&self, accept_label: Option<&str>) {
         unsafe {
             ffi::gtk_file_chooser_native_set_accept_label(
@@ -90,6 +93,7 @@ impl FileChooserNative {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_file_chooser_native_set_cancel_label")]
+    #[doc(alias = "cancel-label")]
     pub fn set_cancel_label(&self, cancel_label: Option<&str>) {
         unsafe {
             ffi::gtk_file_chooser_native_set_cancel_label(

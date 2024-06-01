@@ -87,6 +87,7 @@ impl EntryCompletion {
     #[allow(deprecated)]
     #[doc(alias = "gtk_entry_completion_get_inline_completion")]
     #[doc(alias = "get_inline_completion")]
+    #[doc(alias = "inline-completion")]
     pub fn is_inline_completion(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_entry_completion_get_inline_completion(
@@ -99,6 +100,7 @@ impl EntryCompletion {
     #[allow(deprecated)]
     #[doc(alias = "gtk_entry_completion_get_inline_selection")]
     #[doc(alias = "get_inline_selection")]
+    #[doc(alias = "inline-selection")]
     pub fn is_inline_selection(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_entry_completion_get_inline_selection(
@@ -111,6 +113,7 @@ impl EntryCompletion {
     #[allow(deprecated)]
     #[doc(alias = "gtk_entry_completion_get_minimum_key_length")]
     #[doc(alias = "get_minimum_key_length")]
+    #[doc(alias = "minimum-key-length")]
     pub fn minimum_key_length(&self) -> i32 {
         unsafe { ffi::gtk_entry_completion_get_minimum_key_length(self.to_glib_none().0) }
     }
@@ -127,6 +130,7 @@ impl EntryCompletion {
     #[allow(deprecated)]
     #[doc(alias = "gtk_entry_completion_get_popup_completion")]
     #[doc(alias = "get_popup_completion")]
+    #[doc(alias = "popup-completion")]
     pub fn is_popup_completion(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_entry_completion_get_popup_completion(
@@ -139,6 +143,7 @@ impl EntryCompletion {
     #[allow(deprecated)]
     #[doc(alias = "gtk_entry_completion_get_popup_set_width")]
     #[doc(alias = "get_popup_set_width")]
+    #[doc(alias = "popup-set-width")]
     pub fn is_popup_set_width(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_entry_completion_get_popup_set_width(
@@ -151,6 +156,7 @@ impl EntryCompletion {
     #[allow(deprecated)]
     #[doc(alias = "gtk_entry_completion_get_popup_single_match")]
     #[doc(alias = "get_popup_single_match")]
+    #[doc(alias = "popup-single-match")]
     pub fn is_popup_single_match(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_entry_completion_get_popup_single_match(
@@ -163,6 +169,7 @@ impl EntryCompletion {
     #[allow(deprecated)]
     #[doc(alias = "gtk_entry_completion_get_text_column")]
     #[doc(alias = "get_text_column")]
+    #[doc(alias = "text-column")]
     pub fn text_column(&self) -> i32 {
         unsafe { ffi::gtk_entry_completion_get_text_column(self.to_glib_none().0) }
     }
@@ -179,6 +186,7 @@ impl EntryCompletion {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_entry_completion_set_inline_completion")]
+    #[doc(alias = "inline-completion")]
     pub fn set_inline_completion(&self, inline_completion: bool) {
         unsafe {
             ffi::gtk_entry_completion_set_inline_completion(
@@ -191,6 +199,7 @@ impl EntryCompletion {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_entry_completion_set_inline_selection")]
+    #[doc(alias = "inline-selection")]
     pub fn set_inline_selection(&self, inline_selection: bool) {
         unsafe {
             ffi::gtk_entry_completion_set_inline_selection(
@@ -245,6 +254,7 @@ impl EntryCompletion {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_entry_completion_set_minimum_key_length")]
+    #[doc(alias = "minimum-key-length")]
     pub fn set_minimum_key_length(&self, length: i32) {
         unsafe {
             ffi::gtk_entry_completion_set_minimum_key_length(self.to_glib_none().0, length);
@@ -254,6 +264,7 @@ impl EntryCompletion {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_entry_completion_set_model")]
+    #[doc(alias = "model")]
     pub fn set_model(&self, model: Option<&impl IsA<TreeModel>>) {
         unsafe {
             ffi::gtk_entry_completion_set_model(
@@ -266,6 +277,7 @@ impl EntryCompletion {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_entry_completion_set_popup_completion")]
+    #[doc(alias = "popup-completion")]
     pub fn set_popup_completion(&self, popup_completion: bool) {
         unsafe {
             ffi::gtk_entry_completion_set_popup_completion(
@@ -278,6 +290,7 @@ impl EntryCompletion {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_entry_completion_set_popup_set_width")]
+    #[doc(alias = "popup-set-width")]
     pub fn set_popup_set_width(&self, popup_set_width: bool) {
         unsafe {
             ffi::gtk_entry_completion_set_popup_set_width(
@@ -290,6 +303,7 @@ impl EntryCompletion {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_entry_completion_set_popup_single_match")]
+    #[doc(alias = "popup-single-match")]
     pub fn set_popup_single_match(&self, popup_single_match: bool) {
         unsafe {
             ffi::gtk_entry_completion_set_popup_single_match(
@@ -302,6 +316,7 @@ impl EntryCompletion {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_entry_completion_set_text_column")]
+    #[doc(alias = "text-column")]
     pub fn set_text_column(&self, column: i32) {
         unsafe {
             ffi::gtk_entry_completion_set_text_column(self.to_glib_none().0, column);

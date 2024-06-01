@@ -44,6 +44,7 @@ impl MediaControls {
 
     #[doc(alias = "gtk_media_controls_get_media_stream")]
     #[doc(alias = "get_media_stream")]
+    #[doc(alias = "media-stream")]
     pub fn media_stream(&self) -> Option<MediaStream> {
         unsafe {
             from_glib_none(ffi::gtk_media_controls_get_media_stream(
@@ -53,6 +54,7 @@ impl MediaControls {
     }
 
     #[doc(alias = "gtk_media_controls_set_media_stream")]
+    #[doc(alias = "media-stream")]
     pub fn set_media_stream(&self, stream: Option<&impl IsA<MediaStream>>) {
         unsafe {
             ffi::gtk_media_controls_set_media_stream(

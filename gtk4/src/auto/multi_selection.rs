@@ -52,6 +52,7 @@ impl MultiSelection {
     }
 
     #[doc(alias = "gtk_multi_selection_set_model")]
+    #[doc(alias = "model")]
     pub fn set_model(&self, model: Option<&impl IsA<gio::ListModel>>) {
         unsafe {
             ffi::gtk_multi_selection_set_model(

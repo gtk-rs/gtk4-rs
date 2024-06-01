@@ -98,6 +98,7 @@ impl AboutDialog {
 
     #[doc(alias = "gtk_about_dialog_get_license_type")]
     #[doc(alias = "get_license_type")]
+    #[doc(alias = "license-type")]
     pub fn license_type(&self) -> License {
         unsafe {
             from_glib(ffi::gtk_about_dialog_get_license_type(
@@ -114,6 +115,7 @@ impl AboutDialog {
 
     #[doc(alias = "gtk_about_dialog_get_logo_icon_name")]
     #[doc(alias = "get_logo_icon_name")]
+    #[doc(alias = "logo-icon-name")]
     pub fn logo_icon_name(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::gtk_about_dialog_get_logo_icon_name(
@@ -124,6 +126,7 @@ impl AboutDialog {
 
     #[doc(alias = "gtk_about_dialog_get_program_name")]
     #[doc(alias = "get_program_name")]
+    #[doc(alias = "program-name")]
     pub fn program_name(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::gtk_about_dialog_get_program_name(
@@ -134,6 +137,7 @@ impl AboutDialog {
 
     #[doc(alias = "gtk_about_dialog_get_system_information")]
     #[doc(alias = "get_system_information")]
+    #[doc(alias = "system-information")]
     pub fn system_information(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::gtk_about_dialog_get_system_information(
@@ -144,6 +148,7 @@ impl AboutDialog {
 
     #[doc(alias = "gtk_about_dialog_get_translator_credits")]
     #[doc(alias = "get_translator_credits")]
+    #[doc(alias = "translator-credits")]
     pub fn translator_credits(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::gtk_about_dialog_get_translator_credits(
@@ -166,6 +171,7 @@ impl AboutDialog {
 
     #[doc(alias = "gtk_about_dialog_get_website_label")]
     #[doc(alias = "get_website_label")]
+    #[doc(alias = "website-label")]
     pub fn website_label(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::gtk_about_dialog_get_website_label(
@@ -176,6 +182,7 @@ impl AboutDialog {
 
     #[doc(alias = "gtk_about_dialog_get_wrap_license")]
     #[doc(alias = "get_wrap_license")]
+    #[doc(alias = "wrap-license")]
     pub fn wraps_license(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_about_dialog_get_wrap_license(
@@ -185,6 +192,7 @@ impl AboutDialog {
     }
 
     #[doc(alias = "gtk_about_dialog_set_artists")]
+    #[doc(alias = "artists")]
     pub fn set_artists(&self, artists: &[&str]) {
         unsafe {
             ffi::gtk_about_dialog_set_artists(self.to_glib_none().0, artists.to_glib_none().0);
@@ -192,6 +200,7 @@ impl AboutDialog {
     }
 
     #[doc(alias = "gtk_about_dialog_set_authors")]
+    #[doc(alias = "authors")]
     pub fn set_authors(&self, authors: &[&str]) {
         unsafe {
             ffi::gtk_about_dialog_set_authors(self.to_glib_none().0, authors.to_glib_none().0);
@@ -199,6 +208,7 @@ impl AboutDialog {
     }
 
     #[doc(alias = "gtk_about_dialog_set_comments")]
+    #[doc(alias = "comments")]
     pub fn set_comments(&self, comments: Option<&str>) {
         unsafe {
             ffi::gtk_about_dialog_set_comments(self.to_glib_none().0, comments.to_glib_none().0);
@@ -206,6 +216,7 @@ impl AboutDialog {
     }
 
     #[doc(alias = "gtk_about_dialog_set_copyright")]
+    #[doc(alias = "copyright")]
     pub fn set_copyright(&self, copyright: Option<&str>) {
         unsafe {
             ffi::gtk_about_dialog_set_copyright(self.to_glib_none().0, copyright.to_glib_none().0);
@@ -213,6 +224,7 @@ impl AboutDialog {
     }
 
     #[doc(alias = "gtk_about_dialog_set_documenters")]
+    #[doc(alias = "documenters")]
     pub fn set_documenters(&self, documenters: &[&str]) {
         unsafe {
             ffi::gtk_about_dialog_set_documenters(
@@ -223,6 +235,7 @@ impl AboutDialog {
     }
 
     #[doc(alias = "gtk_about_dialog_set_license")]
+    #[doc(alias = "license")]
     pub fn set_license(&self, license: Option<&str>) {
         unsafe {
             ffi::gtk_about_dialog_set_license(self.to_glib_none().0, license.to_glib_none().0);
@@ -230,6 +243,7 @@ impl AboutDialog {
     }
 
     #[doc(alias = "gtk_about_dialog_set_license_type")]
+    #[doc(alias = "license-type")]
     pub fn set_license_type(&self, license_type: License) {
         unsafe {
             ffi::gtk_about_dialog_set_license_type(self.to_glib_none().0, license_type.into_glib());
@@ -237,6 +251,7 @@ impl AboutDialog {
     }
 
     #[doc(alias = "gtk_about_dialog_set_logo")]
+    #[doc(alias = "logo")]
     pub fn set_logo(&self, logo: Option<&impl IsA<gdk::Paintable>>) {
         unsafe {
             ffi::gtk_about_dialog_set_logo(
@@ -247,6 +262,7 @@ impl AboutDialog {
     }
 
     #[doc(alias = "gtk_about_dialog_set_logo_icon_name")]
+    #[doc(alias = "logo-icon-name")]
     pub fn set_logo_icon_name(&self, icon_name: Option<&str>) {
         unsafe {
             ffi::gtk_about_dialog_set_logo_icon_name(
@@ -257,6 +273,7 @@ impl AboutDialog {
     }
 
     #[doc(alias = "gtk_about_dialog_set_program_name")]
+    #[doc(alias = "program-name")]
     pub fn set_program_name(&self, name: Option<&str>) {
         unsafe {
             ffi::gtk_about_dialog_set_program_name(self.to_glib_none().0, name.to_glib_none().0);
@@ -264,6 +281,7 @@ impl AboutDialog {
     }
 
     #[doc(alias = "gtk_about_dialog_set_system_information")]
+    #[doc(alias = "system-information")]
     pub fn set_system_information(&self, system_information: Option<&str>) {
         unsafe {
             ffi::gtk_about_dialog_set_system_information(
@@ -274,6 +292,7 @@ impl AboutDialog {
     }
 
     #[doc(alias = "gtk_about_dialog_set_translator_credits")]
+    #[doc(alias = "translator-credits")]
     pub fn set_translator_credits(&self, translator_credits: Option<&str>) {
         unsafe {
             ffi::gtk_about_dialog_set_translator_credits(
@@ -284,6 +303,7 @@ impl AboutDialog {
     }
 
     #[doc(alias = "gtk_about_dialog_set_version")]
+    #[doc(alias = "version")]
     pub fn set_version(&self, version: Option<&str>) {
         unsafe {
             ffi::gtk_about_dialog_set_version(self.to_glib_none().0, version.to_glib_none().0);
@@ -291,6 +311,7 @@ impl AboutDialog {
     }
 
     #[doc(alias = "gtk_about_dialog_set_website")]
+    #[doc(alias = "website")]
     pub fn set_website(&self, website: Option<&str>) {
         unsafe {
             ffi::gtk_about_dialog_set_website(self.to_glib_none().0, website.to_glib_none().0);
@@ -298,6 +319,7 @@ impl AboutDialog {
     }
 
     #[doc(alias = "gtk_about_dialog_set_website_label")]
+    #[doc(alias = "website-label")]
     pub fn set_website_label(&self, website_label: &str) {
         unsafe {
             ffi::gtk_about_dialog_set_website_label(
@@ -308,6 +330,7 @@ impl AboutDialog {
     }
 
     #[doc(alias = "gtk_about_dialog_set_wrap_license")]
+    #[doc(alias = "wrap-license")]
     pub fn set_wrap_license(&self, wrap_license: bool) {
         unsafe {
             ffi::gtk_about_dialog_set_wrap_license(self.to_glib_none().0, wrap_license.into_glib());

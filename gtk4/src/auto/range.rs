@@ -58,6 +58,7 @@ pub trait RangeExt: IsA<Range> + sealed::Sealed + 'static {
 
     #[doc(alias = "gtk_range_get_fill_level")]
     #[doc(alias = "get_fill_level")]
+    #[doc(alias = "fill-level")]
     fn fill_level(&self) -> f64 {
         unsafe { ffi::gtk_range_get_fill_level(self.as_ref().to_glib_none().0) }
     }
@@ -70,6 +71,7 @@ pub trait RangeExt: IsA<Range> + sealed::Sealed + 'static {
 
     #[doc(alias = "gtk_range_get_inverted")]
     #[doc(alias = "get_inverted")]
+    #[doc(alias = "inverted")]
     fn is_inverted(&self) -> bool {
         unsafe { from_glib(ffi::gtk_range_get_inverted(self.as_ref().to_glib_none().0)) }
     }
@@ -89,6 +91,7 @@ pub trait RangeExt: IsA<Range> + sealed::Sealed + 'static {
 
     #[doc(alias = "gtk_range_get_restrict_to_fill_level")]
     #[doc(alias = "get_restrict_to_fill_level")]
+    #[doc(alias = "restrict-to-fill-level")]
     fn restricts_to_fill_level(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_range_get_restrict_to_fill_level(
@@ -99,12 +102,14 @@ pub trait RangeExt: IsA<Range> + sealed::Sealed + 'static {
 
     #[doc(alias = "gtk_range_get_round_digits")]
     #[doc(alias = "get_round_digits")]
+    #[doc(alias = "round-digits")]
     fn round_digits(&self) -> i32 {
         unsafe { ffi::gtk_range_get_round_digits(self.as_ref().to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_range_get_show_fill_level")]
     #[doc(alias = "get_show_fill_level")]
+    #[doc(alias = "show-fill-level")]
     fn shows_fill_level(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_range_get_show_fill_level(
@@ -145,6 +150,7 @@ pub trait RangeExt: IsA<Range> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_range_set_adjustment")]
+    #[doc(alias = "adjustment")]
     fn set_adjustment(&self, adjustment: &impl IsA<Adjustment>) {
         unsafe {
             ffi::gtk_range_set_adjustment(
@@ -155,6 +161,7 @@ pub trait RangeExt: IsA<Range> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_range_set_fill_level")]
+    #[doc(alias = "fill-level")]
     fn set_fill_level(&self, fill_level: f64) {
         unsafe {
             ffi::gtk_range_set_fill_level(self.as_ref().to_glib_none().0, fill_level);
@@ -176,6 +183,7 @@ pub trait RangeExt: IsA<Range> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_range_set_inverted")]
+    #[doc(alias = "inverted")]
     fn set_inverted(&self, setting: bool) {
         unsafe {
             ffi::gtk_range_set_inverted(self.as_ref().to_glib_none().0, setting.into_glib());
@@ -190,6 +198,7 @@ pub trait RangeExt: IsA<Range> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_range_set_restrict_to_fill_level")]
+    #[doc(alias = "restrict-to-fill-level")]
     fn set_restrict_to_fill_level(&self, restrict_to_fill_level: bool) {
         unsafe {
             ffi::gtk_range_set_restrict_to_fill_level(
@@ -200,6 +209,7 @@ pub trait RangeExt: IsA<Range> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_range_set_round_digits")]
+    #[doc(alias = "round-digits")]
     fn set_round_digits(&self, round_digits: i32) {
         unsafe {
             ffi::gtk_range_set_round_digits(self.as_ref().to_glib_none().0, round_digits);
@@ -207,6 +217,7 @@ pub trait RangeExt: IsA<Range> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_range_set_show_fill_level")]
+    #[doc(alias = "show-fill-level")]
     fn set_show_fill_level(&self, show_fill_level: bool) {
         unsafe {
             ffi::gtk_range_set_show_fill_level(

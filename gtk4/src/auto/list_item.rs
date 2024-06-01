@@ -33,6 +33,7 @@ pub trait ListItemExt: IsA<ListItem> + sealed::Sealed + 'static {
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     #[doc(alias = "gtk_list_item_get_accessible_description")]
     #[doc(alias = "get_accessible_description")]
+    #[doc(alias = "accessible-description")]
     fn accessible_description(&self) -> glib::GString {
         unsafe {
             from_glib_none(ffi::gtk_list_item_get_accessible_description(
@@ -45,6 +46,7 @@ pub trait ListItemExt: IsA<ListItem> + sealed::Sealed + 'static {
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     #[doc(alias = "gtk_list_item_get_accessible_label")]
     #[doc(alias = "get_accessible_label")]
+    #[doc(alias = "accessible-label")]
     fn accessible_label(&self) -> glib::GString {
         unsafe {
             from_glib_none(ffi::gtk_list_item_get_accessible_label(
@@ -55,6 +57,7 @@ pub trait ListItemExt: IsA<ListItem> + sealed::Sealed + 'static {
 
     #[doc(alias = "gtk_list_item_get_activatable")]
     #[doc(alias = "get_activatable")]
+    #[doc(alias = "activatable")]
     fn is_activatable(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_list_item_get_activatable(
@@ -73,6 +76,7 @@ pub trait ListItemExt: IsA<ListItem> + sealed::Sealed + 'static {
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     #[doc(alias = "gtk_list_item_get_focusable")]
     #[doc(alias = "get_focusable")]
+    #[doc(alias = "focusable")]
     fn is_focusable(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_list_item_get_focusable(
@@ -95,6 +99,7 @@ pub trait ListItemExt: IsA<ListItem> + sealed::Sealed + 'static {
 
     #[doc(alias = "gtk_list_item_get_selectable")]
     #[doc(alias = "get_selectable")]
+    #[doc(alias = "selectable")]
     fn is_selectable(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_list_item_get_selectable(
@@ -105,6 +110,7 @@ pub trait ListItemExt: IsA<ListItem> + sealed::Sealed + 'static {
 
     #[doc(alias = "gtk_list_item_get_selected")]
     #[doc(alias = "get_selected")]
+    #[doc(alias = "selected")]
     fn is_selected(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_list_item_get_selected(
@@ -116,6 +122,7 @@ pub trait ListItemExt: IsA<ListItem> + sealed::Sealed + 'static {
     #[cfg(feature = "v4_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     #[doc(alias = "gtk_list_item_set_accessible_description")]
+    #[doc(alias = "accessible-description")]
     fn set_accessible_description(&self, description: &str) {
         unsafe {
             ffi::gtk_list_item_set_accessible_description(
@@ -128,6 +135,7 @@ pub trait ListItemExt: IsA<ListItem> + sealed::Sealed + 'static {
     #[cfg(feature = "v4_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     #[doc(alias = "gtk_list_item_set_accessible_label")]
+    #[doc(alias = "accessible-label")]
     fn set_accessible_label(&self, label: &str) {
         unsafe {
             ffi::gtk_list_item_set_accessible_label(
@@ -138,6 +146,7 @@ pub trait ListItemExt: IsA<ListItem> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_list_item_set_activatable")]
+    #[doc(alias = "activatable")]
     fn set_activatable(&self, activatable: bool) {
         unsafe {
             ffi::gtk_list_item_set_activatable(
@@ -148,6 +157,7 @@ pub trait ListItemExt: IsA<ListItem> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_list_item_set_child")]
+    #[doc(alias = "child")]
     fn set_child(&self, child: Option<&impl IsA<Widget>>) {
         unsafe {
             ffi::gtk_list_item_set_child(
@@ -160,6 +170,7 @@ pub trait ListItemExt: IsA<ListItem> + sealed::Sealed + 'static {
     #[cfg(feature = "v4_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     #[doc(alias = "gtk_list_item_set_focusable")]
+    #[doc(alias = "focusable")]
     fn set_focusable(&self, focusable: bool) {
         unsafe {
             ffi::gtk_list_item_set_focusable(self.as_ref().to_glib_none().0, focusable.into_glib());
@@ -167,6 +178,7 @@ pub trait ListItemExt: IsA<ListItem> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_list_item_set_selectable")]
+    #[doc(alias = "selectable")]
     fn set_selectable(&self, selectable: bool) {
         unsafe {
             ffi::gtk_list_item_set_selectable(

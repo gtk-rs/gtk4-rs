@@ -60,11 +60,13 @@ impl LinkButton {
 
     #[doc(alias = "gtk_link_button_get_visited")]
     #[doc(alias = "get_visited")]
+    #[doc(alias = "visited")]
     pub fn is_visited(&self) -> bool {
         unsafe { from_glib(ffi::gtk_link_button_get_visited(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_link_button_set_uri")]
+    #[doc(alias = "uri")]
     pub fn set_uri(&self, uri: &str) {
         unsafe {
             ffi::gtk_link_button_set_uri(self.to_glib_none().0, uri.to_glib_none().0);
@@ -72,6 +74,7 @@ impl LinkButton {
     }
 
     #[doc(alias = "gtk_link_button_set_visited")]
+    #[doc(alias = "visited")]
     pub fn set_visited(&self, visited: bool) {
         unsafe {
             ffi::gtk_link_button_set_visited(self.to_glib_none().0, visited.into_glib());

@@ -61,6 +61,7 @@ impl ColumnView {
 
     #[doc(alias = "gtk_column_view_get_enable_rubberband")]
     #[doc(alias = "get_enable_rubberband")]
+    #[doc(alias = "enable-rubberband")]
     pub fn enables_rubberband(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_column_view_get_enable_rubberband(
@@ -73,6 +74,7 @@ impl ColumnView {
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     #[doc(alias = "gtk_column_view_get_header_factory")]
     #[doc(alias = "get_header_factory")]
+    #[doc(alias = "header-factory")]
     pub fn header_factory(&self) -> Option<ListItemFactory> {
         unsafe {
             from_glib_none(ffi::gtk_column_view_get_header_factory(
@@ -89,6 +91,7 @@ impl ColumnView {
 
     #[doc(alias = "gtk_column_view_get_reorderable")]
     #[doc(alias = "get_reorderable")]
+    #[doc(alias = "reorderable")]
     pub fn is_reorderable(&self) -> bool {
         unsafe { from_glib(ffi::gtk_column_view_get_reorderable(self.to_glib_none().0)) }
     }
@@ -97,12 +100,14 @@ impl ColumnView {
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     #[doc(alias = "gtk_column_view_get_row_factory")]
     #[doc(alias = "get_row_factory")]
+    #[doc(alias = "row-factory")]
     pub fn row_factory(&self) -> Option<ListItemFactory> {
         unsafe { from_glib_none(ffi::gtk_column_view_get_row_factory(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_column_view_get_show_column_separators")]
     #[doc(alias = "get_show_column_separators")]
+    #[doc(alias = "show-column-separators")]
     pub fn shows_column_separators(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_column_view_get_show_column_separators(
@@ -113,6 +118,7 @@ impl ColumnView {
 
     #[doc(alias = "gtk_column_view_get_show_row_separators")]
     #[doc(alias = "get_show_row_separators")]
+    #[doc(alias = "show-row-separators")]
     pub fn shows_row_separators(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_column_view_get_show_row_separators(
@@ -123,6 +129,7 @@ impl ColumnView {
 
     #[doc(alias = "gtk_column_view_get_single_click_activate")]
     #[doc(alias = "get_single_click_activate")]
+    #[doc(alias = "single-click-activate")]
     pub fn is_single_click_activate(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_column_view_get_single_click_activate(
@@ -141,6 +148,7 @@ impl ColumnView {
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     #[doc(alias = "gtk_column_view_get_tab_behavior")]
     #[doc(alias = "get_tab_behavior")]
+    #[doc(alias = "tab-behavior")]
     pub fn tab_behavior(&self) -> ListTabBehavior {
         unsafe { from_glib(ffi::gtk_column_view_get_tab_behavior(self.to_glib_none().0)) }
     }
@@ -185,6 +193,7 @@ impl ColumnView {
     }
 
     #[doc(alias = "gtk_column_view_set_enable_rubberband")]
+    #[doc(alias = "enable-rubberband")]
     pub fn set_enable_rubberband(&self, enable_rubberband: bool) {
         unsafe {
             ffi::gtk_column_view_set_enable_rubberband(
@@ -197,6 +206,7 @@ impl ColumnView {
     #[cfg(feature = "v4_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     #[doc(alias = "gtk_column_view_set_header_factory")]
+    #[doc(alias = "header-factory")]
     pub fn set_header_factory(&self, factory: Option<&impl IsA<ListItemFactory>>) {
         unsafe {
             ffi::gtk_column_view_set_header_factory(
@@ -207,6 +217,7 @@ impl ColumnView {
     }
 
     #[doc(alias = "gtk_column_view_set_model")]
+    #[doc(alias = "model")]
     pub fn set_model(&self, model: Option<&impl IsA<SelectionModel>>) {
         unsafe {
             ffi::gtk_column_view_set_model(
@@ -217,6 +228,7 @@ impl ColumnView {
     }
 
     #[doc(alias = "gtk_column_view_set_reorderable")]
+    #[doc(alias = "reorderable")]
     pub fn set_reorderable(&self, reorderable: bool) {
         unsafe {
             ffi::gtk_column_view_set_reorderable(self.to_glib_none().0, reorderable.into_glib());
@@ -226,6 +238,7 @@ impl ColumnView {
     #[cfg(feature = "v4_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     #[doc(alias = "gtk_column_view_set_row_factory")]
+    #[doc(alias = "row-factory")]
     pub fn set_row_factory(&self, factory: Option<&impl IsA<ListItemFactory>>) {
         unsafe {
             ffi::gtk_column_view_set_row_factory(
@@ -236,6 +249,7 @@ impl ColumnView {
     }
 
     #[doc(alias = "gtk_column_view_set_show_column_separators")]
+    #[doc(alias = "show-column-separators")]
     pub fn set_show_column_separators(&self, show_column_separators: bool) {
         unsafe {
             ffi::gtk_column_view_set_show_column_separators(
@@ -246,6 +260,7 @@ impl ColumnView {
     }
 
     #[doc(alias = "gtk_column_view_set_show_row_separators")]
+    #[doc(alias = "show-row-separators")]
     pub fn set_show_row_separators(&self, show_row_separators: bool) {
         unsafe {
             ffi::gtk_column_view_set_show_row_separators(
@@ -256,6 +271,7 @@ impl ColumnView {
     }
 
     #[doc(alias = "gtk_column_view_set_single_click_activate")]
+    #[doc(alias = "single-click-activate")]
     pub fn set_single_click_activate(&self, single_click_activate: bool) {
         unsafe {
             ffi::gtk_column_view_set_single_click_activate(
@@ -268,6 +284,7 @@ impl ColumnView {
     #[cfg(feature = "v4_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     #[doc(alias = "gtk_column_view_set_tab_behavior")]
+    #[doc(alias = "tab-behavior")]
     pub fn set_tab_behavior(&self, tab_behavior: ListTabBehavior) {
         unsafe {
             ffi::gtk_column_view_set_tab_behavior(self.to_glib_none().0, tab_behavior.into_glib());

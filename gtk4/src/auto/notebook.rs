@@ -57,6 +57,7 @@ impl Notebook {
 
     #[doc(alias = "gtk_notebook_get_group_name")]
     #[doc(alias = "get_group_name")]
+    #[doc(alias = "group-name")]
     pub fn group_name(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::gtk_notebook_get_group_name(self.to_glib_none().0)) }
     }
@@ -102,18 +103,21 @@ impl Notebook {
 
     #[doc(alias = "gtk_notebook_get_scrollable")]
     #[doc(alias = "get_scrollable")]
+    #[doc(alias = "scrollable")]
     pub fn is_scrollable(&self) -> bool {
         unsafe { from_glib(ffi::gtk_notebook_get_scrollable(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_notebook_get_show_border")]
     #[doc(alias = "get_show_border")]
+    #[doc(alias = "show-border")]
     pub fn shows_border(&self) -> bool {
         unsafe { from_glib(ffi::gtk_notebook_get_show_border(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_notebook_get_show_tabs")]
     #[doc(alias = "get_show_tabs")]
+    #[doc(alias = "show-tabs")]
     pub fn shows_tabs(&self) -> bool {
         unsafe { from_glib(ffi::gtk_notebook_get_show_tabs(self.to_glib_none().0)) }
     }
@@ -153,6 +157,7 @@ impl Notebook {
 
     #[doc(alias = "gtk_notebook_get_tab_pos")]
     #[doc(alias = "get_tab_pos")]
+    #[doc(alias = "tab-pos")]
     pub fn tab_pos(&self) -> PositionType {
         unsafe { from_glib(ffi::gtk_notebook_get_tab_pos(self.to_glib_none().0)) }
     }
@@ -208,6 +213,7 @@ impl Notebook {
     }
 
     #[doc(alias = "gtk_notebook_set_group_name")]
+    #[doc(alias = "group-name")]
     pub fn set_group_name(&self, group_name: Option<&str>) {
         unsafe {
             ffi::gtk_notebook_set_group_name(self.to_glib_none().0, group_name.to_glib_none().0);
@@ -237,6 +243,7 @@ impl Notebook {
     }
 
     #[doc(alias = "gtk_notebook_set_scrollable")]
+    #[doc(alias = "scrollable")]
     pub fn set_scrollable(&self, scrollable: bool) {
         unsafe {
             ffi::gtk_notebook_set_scrollable(self.to_glib_none().0, scrollable.into_glib());
@@ -244,6 +251,7 @@ impl Notebook {
     }
 
     #[doc(alias = "gtk_notebook_set_show_border")]
+    #[doc(alias = "show-border")]
     pub fn set_show_border(&self, show_border: bool) {
         unsafe {
             ffi::gtk_notebook_set_show_border(self.to_glib_none().0, show_border.into_glib());
@@ -251,6 +259,7 @@ impl Notebook {
     }
 
     #[doc(alias = "gtk_notebook_set_show_tabs")]
+    #[doc(alias = "show-tabs")]
     pub fn set_show_tabs(&self, show_tabs: bool) {
         unsafe {
             ffi::gtk_notebook_set_show_tabs(self.to_glib_none().0, show_tabs.into_glib());
@@ -291,6 +300,7 @@ impl Notebook {
     }
 
     #[doc(alias = "gtk_notebook_set_tab_pos")]
+    #[doc(alias = "tab-pos")]
     pub fn set_tab_pos(&self, pos: PositionType) {
         unsafe {
             ffi::gtk_notebook_set_tab_pos(self.to_glib_none().0, pos.into_glib());
@@ -316,10 +326,6 @@ impl Notebook {
     #[doc(alias = "enable-popup")]
     pub fn set_enable_popup(&self, enable_popup: bool) {
         ObjectExt::set_property(self, "enable-popup", enable_popup)
-    }
-
-    pub fn set_page(&self, page: i32) {
-        ObjectExt::set_property(self, "page", page)
     }
 
     #[doc(alias = "change-current-page")]

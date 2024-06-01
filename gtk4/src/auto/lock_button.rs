@@ -56,6 +56,7 @@ impl LockButton {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_lock_button_set_permission")]
+    #[doc(alias = "permission")]
     pub fn set_permission(&self, permission: Option<&impl IsA<gio::Permission>>) {
         unsafe {
             ffi::gtk_lock_button_set_permission(
