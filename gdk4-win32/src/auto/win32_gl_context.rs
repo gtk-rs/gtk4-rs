@@ -2,6 +2,8 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use crate::ffi;
+
 glib::wrapper! {
     #[doc(alias = "GdkWin32GLContext")]
     pub struct Win32GLContext(Object<ffi::GdkWin32GLContext, ffi::GdkWin32GLContextClass>) @extends gdk::GLContext, gdk::DrawContext;

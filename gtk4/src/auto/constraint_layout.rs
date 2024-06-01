@@ -2,7 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::{Buildable, Constraint, ConstraintGuide, LayoutManager};
+use crate::{ffi, Buildable, Constraint, ConstraintGuide, LayoutManager};
 use glib::{prelude::*, translate::*};
 
 glib::wrapper! {

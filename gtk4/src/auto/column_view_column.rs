@@ -2,7 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::{ColumnView, ListItemFactory, Sorter};
+use crate::{ffi, ColumnView, ListItemFactory, Sorter};
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},

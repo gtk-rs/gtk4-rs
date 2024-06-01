@@ -3,7 +3,7 @@
 // DO NOT EDIT
 #![allow(deprecated)]
 
-use crate::{Paintable, Texture};
+use crate::{ffi, Paintable, Texture};
 use glib::translate::*;
 
 glib::wrapper! {

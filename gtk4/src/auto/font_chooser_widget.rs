@@ -4,8 +4,8 @@
 #![allow(deprecated)]
 
 use crate::{
-    Accessible, AccessibleRole, Align, Buildable, ConstraintTarget, FontChooser, FontChooserLevel,
-    LayoutManager, Overflow, Widget,
+    ffi, Accessible, AccessibleRole, Align, Buildable, ConstraintTarget, FontChooser,
+    FontChooserLevel, LayoutManager, Overflow, Widget,
 };
 use glib::{
     prelude::*,

@@ -2,7 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::{Buildable, EventController, Shortcut, ShortcutScope};
+use crate::{ffi, Buildable, EventController, Shortcut, ShortcutScope};
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},

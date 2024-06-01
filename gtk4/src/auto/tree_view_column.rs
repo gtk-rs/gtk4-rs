@@ -4,7 +4,7 @@
 #![allow(deprecated)]
 
 use crate::{
-    Buildable, CellArea, CellLayout, CellRenderer, SortType, TreeIter, TreeModel,
+    ffi, Buildable, CellArea, CellLayout, CellRenderer, SortType, TreeIter, TreeModel,
     TreeViewColumnSizing, Widget,
 };
 use glib::{

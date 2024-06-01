@@ -2,7 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::{PageSetup, PrintContext};
+use crate::{ffi, PageSetup, PrintContext};
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},

@@ -2,7 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::{FrameClockPhase, FrameTimings};
+use crate::{ffi, FrameClockPhase, FrameTimings};
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},

@@ -6,8 +6,8 @@
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
 use crate::GraphicsOffloadEnabled;
 use crate::{
-    Accessible, AccessibleRole, Align, Buildable, ConstraintTarget, LayoutManager, MediaStream,
-    Overflow, Widget,
+    ffi, Accessible, AccessibleRole, Align, Buildable, ConstraintTarget, LayoutManager,
+    MediaStream, Overflow, Widget,
 };
 use glib::{
     prelude::*,

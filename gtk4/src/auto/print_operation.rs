@@ -3,8 +3,8 @@
 // DO NOT EDIT
 
 use crate::{
-    PageSetup, PrintContext, PrintOperationAction, PrintOperationPreview, PrintOperationResult,
-    PrintSettings, PrintStatus, Unit, Widget, Window,
+    ffi, PageSetup, PrintContext, PrintOperationAction, PrintOperationPreview,
+    PrintOperationResult, PrintSettings, PrintStatus, Unit, Widget, Window,
 };
 use glib::{
     prelude::*,

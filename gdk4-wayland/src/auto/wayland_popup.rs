@@ -2,7 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::WaylandSurface;
+use crate::{ffi, WaylandSurface};
 
 glib::wrapper! {
     #[doc(alias = "GdkWaylandPopup")]

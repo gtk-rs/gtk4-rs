@@ -5,10 +5,10 @@
 #[cfg(feature = "v4_14")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
 use crate::AccessibleAnnouncementPriority;
+use crate::{ffi, AccessibleProperty, AccessibleRelation, AccessibleRole, AccessibleState};
 #[cfg(feature = "v4_10")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 use crate::{ATContext, AccessiblePlatformState};
-use crate::{AccessibleProperty, AccessibleRelation, AccessibleRole, AccessibleState};
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},

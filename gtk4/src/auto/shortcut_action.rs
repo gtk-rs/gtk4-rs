@@ -2,7 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::{ShortcutActionFlags, Widget};
+use crate::{ffi, ShortcutActionFlags, Widget};
 use glib::{prelude::*, translate::*};
 
 glib::wrapper! {

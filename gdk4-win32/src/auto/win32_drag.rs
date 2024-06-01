@@ -2,6 +2,8 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use crate::ffi;
+
 glib::wrapper! {
     #[doc(alias = "GdkWin32Drag")]
     pub struct Win32Drag(Object<ffi::GdkWin32Drag, ffi::GdkWin32DragClass>) @extends gdk::Drag;

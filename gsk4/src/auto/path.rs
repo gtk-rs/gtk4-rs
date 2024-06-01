@@ -2,7 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::{FillRule, PathPoint, Stroke};
+use crate::{ffi, FillRule, PathPoint, Stroke};
 use glib::translate::*;
 
 glib::wrapper! {

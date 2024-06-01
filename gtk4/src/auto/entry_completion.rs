@@ -3,7 +3,7 @@
 // DO NOT EDIT
 #![allow(deprecated)]
 
-use crate::{Buildable, CellArea, CellLayout, TreeIter, TreeModel};
+use crate::{ffi, Buildable, CellArea, CellLayout, TreeIter, TreeModel};
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},

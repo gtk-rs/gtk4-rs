@@ -6,7 +6,7 @@
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
 use crate::StringFilterMatchMode;
 use crate::{
-    Accessible, AccessibleRole, Align, Buildable, ConstraintTarget, Expression, LayoutManager,
+    ffi, Accessible, AccessibleRole, Align, Buildable, ConstraintTarget, Expression, LayoutManager,
     ListItemFactory, Overflow, Widget,
 };
 use glib::{

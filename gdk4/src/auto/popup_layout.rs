@@ -2,7 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::{AnchorHints, Gravity, Rectangle};
+use crate::{ffi, AnchorHints, Gravity, Rectangle};
 use glib::translate::*;
 
 glib::wrapper! {

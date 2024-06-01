@@ -3,7 +3,7 @@
 // DO NOT EDIT
 
 use crate::{
-    EventController, Gesture, GestureDrag, GestureSingle, Orientation, PanDirection,
+    ffi, EventController, Gesture, GestureDrag, GestureSingle, Orientation, PanDirection,
     PropagationLimit, PropagationPhase,
 };
 use glib::{

@@ -3,7 +3,7 @@
 // DO NOT EDIT
 #![allow(deprecated)]
 
-use crate::{Adjustment, CellRenderer, CellRendererMode, CellRendererText};
+use crate::{ffi, Adjustment, CellRenderer, CellRendererMode, CellRendererText};
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},

@@ -4,7 +4,7 @@
 #![allow(deprecated)]
 
 use crate::{
-    Accessible, AccessibleRole, Align, Application, Buildable, ButtonsType, ConstraintTarget,
+    ffi, Accessible, AccessibleRole, Align, Application, Buildable, ButtonsType, ConstraintTarget,
     Dialog, LayoutManager, MessageType, Native, Overflow, Root, ShortcutManager, Widget, Window,
 };
 use glib::{

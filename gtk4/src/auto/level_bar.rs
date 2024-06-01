@@ -6,8 +6,8 @@
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 use crate::AccessibleRange;
 use crate::{
-    Accessible, AccessibleRole, Align, Buildable, ConstraintTarget, LayoutManager, LevelBarMode,
-    Orientable, Orientation, Overflow, Widget,
+    ffi, Accessible, AccessibleRole, Align, Buildable, ConstraintTarget, LayoutManager,
+    LevelBarMode, Orientable, Orientation, Overflow, Widget,
 };
 use glib::{
     prelude::*,

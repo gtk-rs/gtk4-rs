@@ -3,7 +3,7 @@
 // DO NOT EDIT
 #![allow(deprecated)]
 
-use crate::{InputHints, InputPurpose, Widget};
+use crate::{ffi, InputHints, InputPurpose, Widget};
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},

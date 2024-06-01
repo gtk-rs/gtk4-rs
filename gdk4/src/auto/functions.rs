@@ -2,7 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::Texture;
+use crate::{ffi, Texture};
 use glib::{prelude::*, translate::*};
 
 #[doc(alias = "gdk_intern_mime_type")]

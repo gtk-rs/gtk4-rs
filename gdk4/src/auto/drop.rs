@@ -2,7 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::{ContentFormats, Device, Display, Drag, DragAction, Surface};
+use crate::{ffi, ContentFormats, Device, Display, Drag, DragAction, Surface};
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},

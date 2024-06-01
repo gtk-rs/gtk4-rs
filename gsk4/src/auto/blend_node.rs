@@ -2,7 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::{BlendMode, RenderNode};
+use crate::{ffi, BlendMode, RenderNode};
 use glib::{prelude::*, translate::*};
 
 glib::wrapper! {

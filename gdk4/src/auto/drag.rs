@@ -3,7 +3,7 @@
 // DO NOT EDIT
 
 use crate::{
-    ContentFormats, ContentProvider, Device, Display, DragAction, DragCancelReason, Surface,
+    ffi, ContentFormats, ContentProvider, Device, Display, DragAction, DragCancelReason, Surface,
 };
 use glib::{
     prelude::*,

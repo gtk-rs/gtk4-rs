@@ -2,7 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::{Gravity, PopupLayout, Surface};
+use crate::{ffi, Gravity, PopupLayout, Surface};
 use glib::{prelude::*, translate::*};
 
 glib::wrapper! {

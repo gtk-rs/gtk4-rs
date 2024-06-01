@@ -2,6 +2,8 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use crate::ffi;
+
 glib::wrapper! {
     #[doc(alias = "GdkWin32Screen")]
     pub struct Win32Screen(Object<ffi::GdkWin32Screen, ffi::GdkWin32ScreenClass>);

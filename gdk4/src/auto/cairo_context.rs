@@ -2,7 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::DrawContext;
+use crate::{ffi, DrawContext};
 use glib::translate::*;
 
 glib::wrapper! {

@@ -3,7 +3,7 @@
 // DO NOT EDIT
 #![allow(deprecated)]
 
-use crate::CellArea;
+use crate::{ffi, CellArea};
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},

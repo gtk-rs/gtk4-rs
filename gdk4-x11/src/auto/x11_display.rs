@@ -3,7 +3,7 @@
 // DO NOT EDIT
 #![allow(deprecated)]
 
-use crate::X11Screen;
+use crate::{ffi, X11Screen};
 use glib::translate::*;
 
 glib::wrapper! {

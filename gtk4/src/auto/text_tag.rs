@@ -2,7 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::{Justification, TextDirection, WrapMode};
+use crate::{ffi, Justification, TextDirection, WrapMode};
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},

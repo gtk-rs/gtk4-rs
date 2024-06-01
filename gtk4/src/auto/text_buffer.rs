@@ -2,7 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::{TextChildAnchor, TextIter, TextMark, TextTag, TextTagTable};
+use crate::{ffi, TextChildAnchor, TextIter, TextMark, TextTag, TextTagTable};
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},

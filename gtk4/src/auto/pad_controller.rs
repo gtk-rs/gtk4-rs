@@ -2,7 +2,9 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::{EventController, PadActionEntry, PadActionType, PropagationLimit, PropagationPhase};
+use crate::{
+    ffi, EventController, PadActionEntry, PadActionType, PropagationLimit, PropagationPhase,
+};
 use glib::{prelude::*, translate::*};
 
 glib::wrapper! {

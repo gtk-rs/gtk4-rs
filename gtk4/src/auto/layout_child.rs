@@ -2,7 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::{LayoutManager, Widget};
+use crate::{ffi, LayoutManager, Widget};
 use glib::{prelude::*, translate::*};
 
 glib::wrapper! {

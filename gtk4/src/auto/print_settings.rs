@@ -3,7 +3,7 @@
 // DO NOT EDIT
 
 use crate::{
-    NumberUpLayout, PageOrientation, PageRange, PageSet, PaperSize, PrintDuplex, PrintPages,
+    ffi, NumberUpLayout, PageOrientation, PageRange, PageSet, PaperSize, PrintDuplex, PrintPages,
     PrintQuality, Unit,
 };
 use glib::translate::*;

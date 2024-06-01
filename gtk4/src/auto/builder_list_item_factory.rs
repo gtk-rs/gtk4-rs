@@ -2,7 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::{BuilderScope, ListItemFactory};
+use crate::{ffi, BuilderScope, ListItemFactory};
 use glib::{prelude::*, translate::*};
 
 glib::wrapper! {

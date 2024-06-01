@@ -4,8 +4,8 @@
 #![allow(deprecated)]
 
 use crate::{
-    CairoContext, Cursor, Device, Display, Event, FrameClock, GLContext, ModifierType, Monitor,
-    VulkanContext,
+    ffi, CairoContext, Cursor, Device, Display, Event, FrameClock, GLContext, ModifierType,
+    Monitor, VulkanContext,
 };
 use glib::{
     prelude::*,

@@ -6,7 +6,7 @@
 #[cfg(feature = "v4_6")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
 use crate::GLAPI;
-use crate::{Display, DrawContext, Surface};
+use crate::{ffi, Display, DrawContext, Surface};
 #[cfg(feature = "v4_6")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
 use glib::signal::{connect_raw, SignalHandlerId};

@@ -9,8 +9,8 @@ use crate::AccessibleText;
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
 use crate::NaturalWrapMode;
 use crate::{
-    Accessible, AccessibleRole, Align, Buildable, ConstraintTarget, Justification, LayoutManager,
-    MovementStep, Overflow, Widget,
+    ffi, Accessible, AccessibleRole, Align, Buildable, ConstraintTarget, Justification,
+    LayoutManager, MovementStep, Overflow, Widget,
 };
 use glib::{
     prelude::*,

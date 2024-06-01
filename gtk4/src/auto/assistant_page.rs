@@ -3,7 +3,7 @@
 // DO NOT EDIT
 #![allow(deprecated)]
 
-use crate::{AssistantPageType, Widget};
+use crate::{ffi, AssistantPageType, Widget};
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},

@@ -3,7 +3,7 @@
 // DO NOT EDIT
 #![allow(deprecated)]
 
-use crate::TreeModel;
+use crate::{ffi, TreeModel};
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},

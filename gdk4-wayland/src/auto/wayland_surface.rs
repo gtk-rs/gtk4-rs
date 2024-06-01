@@ -2,6 +2,8 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use crate::ffi;
+
 glib::wrapper! {
     #[doc(alias = "GdkWaylandSurface")]
     pub struct WaylandSurface(Object<ffi::GdkWaylandSurface>) @extends gdk::Surface;

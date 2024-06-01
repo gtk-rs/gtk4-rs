@@ -2,7 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::{Expression, Filter, StringFilterMatchMode};
+use crate::{ffi, Expression, Filter, StringFilterMatchMode};
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},

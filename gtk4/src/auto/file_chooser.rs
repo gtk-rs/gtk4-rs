@@ -3,7 +3,7 @@
 // DO NOT EDIT
 #![allow(deprecated)]
 
-use crate::{FileChooserAction, FileFilter};
+use crate::{ffi, FileChooserAction, FileFilter};
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},
