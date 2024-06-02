@@ -16,10 +16,41 @@ fn child_size(child: &impl IsA<gtk::Widget>) -> ((i32, i32), (i32, i32)) {
 #[derive(Debug, Default, glib::Properties)]
 #[properties(wrapper_type = super::SqueezerBin)]
 pub struct SqueezerBin {
-    #[property(get, explicit_notify)]
+    #[property(get, set = Self::set_child, explicit_notify, nullable)]
     pub(super) child: RefCell<Option<gtk::Widget>>,
-    #[property(get, explicit_notify)]
+    #[property(get, set = Self::set_keep_aspect_ratio, explicit_notify)]
     pub(super) keep_aspect_ratio: Cell<bool>,
+}
+
+impl SqueezerBin {
+    fn set_child(&self, widget: Option<&gtk::Widget>) {
+        if widget == self.child.borrow().as_ref() {
+            return;
+        }
+
+        if let Some(child) = self.child.borrow_mut().take() {
+            child.unparent();
+        }
+
+        if let Some(w) = widget {
+            self.child.replace(Some(w.clone()));
+            w.set_parent(&*self.obj());
+        }
+
+        self.obj().queue_resize();
+        self.obj().notify_child();
+    }
+
+    fn set_keep_aspect_ratio(&self, keep_aspect_ratio: bool) {
+        if self.keep_aspect_ratio.get() == keep_aspect_ratio {
+            return;
+        }
+
+        self.keep_aspect_ratio.set(keep_aspect_ratio);
+
+        self.obj().queue_resize();
+        self.obj().notify_keep_aspect_ratio();
+    }
 }
 
 #[glib::object_subclass]
