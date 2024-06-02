@@ -1,5 +1,13 @@
 [files]
-extend-exclude = ["auto", "gdk4", "*.svg"]
+extend-exclude = [
+    "auto",
+    "gdk4/src/keys.rs",
+    "gdk4/sys/src/lib.rs",
+    "gdk4/sys/tests/abi.rs",
+    "gdk4/sys/tests/constant.c",
+    "**/**/versions.txt",
+    "*.svg",
+]
 
 [default.extend-words]
 # Ignore false-positives
