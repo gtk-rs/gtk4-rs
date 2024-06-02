@@ -52,7 +52,7 @@ impl WidgetImpl for SqueezerBin {
     fn size_allocate(&self, width: i32, height: i32, baseline: i32) {
         let widget = self.obj();
         if let Some(child) = widget.child() {
-            let ((_, horizontal_size), (_, vertical_size)) = child_size(&*widget);
+            let ((_, horizontal_size), (_, vertical_size)) = child_size(&child);
 
             let (mut horizontal_zoom, mut vertical_zoom) = (
                 width as f32 / horizontal_size as f32,
