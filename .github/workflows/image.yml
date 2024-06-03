@@ -45,7 +45,7 @@ jobs:
             type=raw,value=latest,enable=${{ github.ref == format('refs/heads/{0}', 'master') }}
 
       - name: Build and push Docker image
-        uses: docker/build-push-action@2a53c6ccda456d31fb62eedc658aae06e238b7bd
+        uses: docker/build-push-action@ca052bb54ab0790a636c9b5f226502c73d547a25
         with:
           push: ${{ github.event_name != 'pull_request' }}
           context: .
