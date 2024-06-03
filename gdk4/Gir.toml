@@ -121,7 +121,7 @@ status = "generate"
     [[object.function]]
     name = "cairo_set_source_rgba"
     manual = true
-    rename = "set_source_rgba"
+    rename = "set_source_color"
     doc_trait_name = "GdkCairoContextExt"
     [[object.function]]
     name = "cairo_set_source_pixbuf"
