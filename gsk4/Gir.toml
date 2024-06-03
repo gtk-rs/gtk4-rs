@@ -79,7 +79,6 @@ manual = [
     "Graphene.Vec4",
     "Gsk.NglRenderer",
     "Gsk.ParseLocation",
-    "Gsk.RoundedRect",
     "Gsk.Shadow",
     "Gtk.Snapshot", # docs specific
     "Pango.Font",
@@ -208,6 +207,16 @@ status = "generate"
         [[object.function.parameter]]
         name = "cr"
         const = true
+
+[[object]]
+name = "Gsk.RoundedRect"
+status = "manual"
+    [[object.function]]
+    name = "init"
+    rename = "new"
+    [[object.function]]
+    name = "init_from_rect"
+    rename = "from_rect"
 
 [[object]]
 name = "Gsk.ShaderArgsBuilder"
