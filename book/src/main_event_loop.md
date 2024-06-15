@@ -369,7 +369,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 {{#rustdoc_include ../listings/main_event_loop/9/main.rs:tokio_runtime}}
 ```
 
-In the button callback we can now spawn the `requwest` `async` block with `tokio` rather than with `glib`.
+In the button callback we can now spawn the `reqwest` `async` block with `tokio` rather than with `glib`.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/main_event_loop/9/main.rs">listings/main_event_loop/9/main.rs</a>
 
