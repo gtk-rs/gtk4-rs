@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Trait containing all `struct@CellArea` methods."><title>CellAreaExt in gtk4::prelude - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-46f98efaafac5295.ttf.woff2,FiraSans-Regular-018c141bf0843ffd.woff2,FiraSans-Medium-8f9a781e4970d388.woff2,SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2,SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-dd39b87e5fcfba68.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.80.0-nightly (f67a1acc0 2024-06-01)" data-channel="nightly" data-search-js="search-d52510db62a78183.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-118b08c4c78b968e.js"></script><script defer src="sidebar-items.js"></script><script defer src="../../static.files/main-20a3ad099b048cf2.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-df360f571f6edeae.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc trait"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Trait containing all `struct@CellArea` methods."><title>CellAreaExt in gtk4::prelude - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-46f98efaafac5295.ttf.woff2,FiraSans-Regular-018c141bf0843ffd.woff2,FiraSans-Medium-8f9a781e4970d388.woff2,SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2,SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-dd39b87e5fcfba68.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.81.0-nightly (d7f6ebace 2024-06-16)" data-channel="nightly" data-search-js="search-0fe7219eb170c82e.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-118b08c4c78b968e.js"></script><script defer src="sidebar-items.js"></script><script defer src="../../static.files/main-20a3ad099b048cf2.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-df360f571f6edeae.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc trait"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
 
@@ -79,7 +79,7 @@
         widget: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;,
         cell_area: &amp;<a class="struct" href="../../gdk4/auto/rectangle/struct.Rectangle.html" title="struct gdk4::auto::rectangle::Rectangle">Rectangle</a>,
         flags: <a class="struct" href="../struct.CellRendererState.html" title="struct gtk4::CellRendererState">CellRendererState</a>,
-        edit_only: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>
+        edit_only: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>,
     ) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> { ... }
 <span class="item-spacer"></span>    fn <a href="#method.activate_cell" class="fn">activate_cell</a>(
         &amp;self,
@@ -87,40 +87,40 @@
         renderer: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.CellRenderer.html" title="struct gtk4::CellRenderer">CellRenderer</a>&gt;,
         event: impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html" title="trait core::convert::AsRef">AsRef</a>&lt;<a class="struct" href="../../gdk4/auto/event/struct.Event.html" title="struct gdk4::auto::event::Event">Event</a>&gt;,
         cell_area: &amp;<a class="struct" href="../../gdk4/auto/rectangle/struct.Rectangle.html" title="struct gdk4::auto::rectangle::Rectangle">Rectangle</a>,
-        flags: <a class="struct" href="../struct.CellRendererState.html" title="struct gtk4::CellRendererState">CellRendererState</a>
+        flags: <a class="struct" href="../struct.CellRendererState.html" title="struct gtk4::CellRendererState">CellRendererState</a>,
     ) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> { ... }
 <span class="item-spacer"></span>    fn <a href="#method.add" class="fn">add</a>(&amp;self, renderer: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.CellRenderer.html" title="struct gtk4::CellRenderer">CellRenderer</a>&gt;) { ... }
 <span class="item-spacer"></span>    fn <a href="#method.add_focus_sibling" class="fn">add_focus_sibling</a>(
         &amp;self,
         renderer: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.CellRenderer.html" title="struct gtk4::CellRenderer">CellRenderer</a>&gt;,
-        sibling: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.CellRenderer.html" title="struct gtk4::CellRenderer">CellRenderer</a>&gt;
+        sibling: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.CellRenderer.html" title="struct gtk4::CellRenderer">CellRenderer</a>&gt;,
     ) { ... }
 <span class="item-spacer"></span>    fn <a href="#method.apply_attributes" class="fn">apply_attributes</a>(
         &amp;self,
         tree_model: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.TreeModel.html" title="struct gtk4::TreeModel">TreeModel</a>&gt;,
         iter: &amp;<a class="struct" href="../struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>,
         is_expander: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>,
-        is_expanded: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>
+        is_expanded: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>,
     ) { ... }
 <span class="item-spacer"></span>    fn <a href="#method.attribute_connect" class="fn">attribute_connect</a>(
         &amp;self,
         renderer: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.CellRenderer.html" title="struct gtk4::CellRenderer">CellRenderer</a>&gt;,
         attribute: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>,
-        column: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>
+        column: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>,
     ) { ... }
 <span class="item-spacer"></span>    fn <a href="#method.attribute_disconnect" class="fn">attribute_disconnect</a>(
         &amp;self,
         renderer: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.CellRenderer.html" title="struct gtk4::CellRenderer">CellRenderer</a>&gt;,
-        attribute: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>
+        attribute: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>,
     ) { ... }
 <span class="item-spacer"></span>    fn <a href="#method.attribute_get_column" class="fn">attribute_get_column</a>(
         &amp;self,
         renderer: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.CellRenderer.html" title="struct gtk4::CellRenderer">CellRenderer</a>&gt;,
-        attribute: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>
+        attribute: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>,
     ) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a> { ... }
 <span class="item-spacer"></span>    fn <a href="#method.copy_context" class="fn">copy_context</a>(
         &amp;self,
-        context: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.CellAreaContext.html" title="struct gtk4::CellAreaContext">CellAreaContext</a>&gt;
+        context: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.CellAreaContext.html" title="struct gtk4::CellAreaContext">CellAreaContext</a>&gt;,
     ) -&gt; <a class="struct" href="../struct.CellAreaContext.html" title="struct gtk4::CellAreaContext">CellAreaContext</a> { ... }
 <span class="item-spacer"></span>    fn <a href="#method.create_context" class="fn">create_context</a>(&amp;self) -&gt; <a class="struct" href="../struct.CellAreaContext.html" title="struct gtk4::CellAreaContext">CellAreaContext</a> { ... }
 <span class="item-spacer"></span>    fn <a href="#method.event" class="fn">event</a>(
@@ -129,7 +129,7 @@
         widget: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;,
         event: impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html" title="trait core::convert::AsRef">AsRef</a>&lt;<a class="struct" href="../../gdk4/auto/event/struct.Event.html" title="struct gdk4::auto::event::Event">Event</a>&gt;,
         cell_area: &amp;<a class="struct" href="../../gdk4/auto/rectangle/struct.Rectangle.html" title="struct gdk4::auto::rectangle::Rectangle">Rectangle</a>,
-        flags: <a class="struct" href="../struct.CellRendererState.html" title="struct gtk4::CellRendererState">CellRendererState</a>
+        flags: <a class="struct" href="../struct.CellRendererState.html" title="struct gtk4::CellRendererState">CellRendererState</a>,
     ) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a> { ... }
 <span class="item-spacer"></span>    fn <a href="#method.focus" class="fn">focus</a>(&amp;self, direction: <a class="enum" href="../enum.DirectionType.html" title="enum gtk4::DirectionType">DirectionType</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> { ... }
 <span class="item-spacer"></span>    fn <a href="#method.foreach" class="fn">foreach</a>&lt;P: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.FnMut.html" title="trait core::ops::function::FnMut">FnMut</a>(&amp;<a class="struct" href="../struct.CellRenderer.html" title="struct gtk4::CellRenderer">CellRenderer</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>&gt;(&amp;self, callback: P) { ... }
@@ -139,14 +139,14 @@
         widget: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;,
         cell_area: &amp;<a class="struct" href="../../gdk4/auto/rectangle/struct.Rectangle.html" title="struct gdk4::auto::rectangle::Rectangle">Rectangle</a>,
         background_area: &amp;<a class="struct" href="../../gdk4/auto/rectangle/struct.Rectangle.html" title="struct gdk4::auto::rectangle::Rectangle">Rectangle</a>,
-        callback: P
+        callback: P,
     ) { ... }
 <span class="item-spacer"></span>    fn <a href="#method.cell_allocation" class="fn">cell_allocation</a>(
         &amp;self,
         context: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.CellAreaContext.html" title="struct gtk4::CellAreaContext">CellAreaContext</a>&gt;,
         widget: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;,
         renderer: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.CellRenderer.html" title="struct gtk4::CellRenderer">CellRenderer</a>&gt;,
-        cell_area: &amp;<a class="struct" href="../../gdk4/auto/rectangle/struct.Rectangle.html" title="struct gdk4::auto::rectangle::Rectangle">Rectangle</a>
+        cell_area: &amp;<a class="struct" href="../../gdk4/auto/rectangle/struct.Rectangle.html" title="struct gdk4::auto::rectangle::Rectangle">Rectangle</a>,
     ) -&gt; <a class="struct" href="../../gdk4/auto/rectangle/struct.Rectangle.html" title="struct gdk4::auto::rectangle::Rectangle">Rectangle</a> { ... }
 <span class="item-spacer"></span>    fn <a href="#method.cell_at_position" class="fn">cell_at_position</a>(
         &amp;self,
@@ -154,7 +154,7 @@
         widget: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;,
         cell_area: &amp;<a class="struct" href="../../gdk4/auto/rectangle/struct.Rectangle.html" title="struct gdk4::auto::rectangle::Rectangle">Rectangle</a>,
         x: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>,
-        y: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>
+        y: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>,
     ) -&gt; (<a class="struct" href="../struct.CellRenderer.html" title="struct gtk4::CellRenderer">CellRenderer</a>, <a class="struct" href="../../gdk4/auto/rectangle/struct.Rectangle.html" title="struct gdk4::auto::rectangle::Rectangle">Rectangle</a>) { ... }
 <span class="item-spacer"></span>    fn <a href="#method.current_path_string" class="fn">current_path_string</a>(&amp;self) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/gstring/struct.GString.html" title="struct glib::gstring::GString">GString</a> { ... }
 <span class="item-spacer"></span>    fn <a href="#method.edit_widget" class="fn">edit_widget</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.CellEditable.html" title="struct gtk4::CellEditable">CellEditable</a>&gt; { ... }
@@ -162,59 +162,59 @@
 <span class="item-spacer"></span>    fn <a href="#method.focus_cell" class="fn">focus_cell</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.CellRenderer.html" title="struct gtk4::CellRenderer">CellRenderer</a>&gt; { ... }
 <span class="item-spacer"></span>    fn <a href="#method.focus_from_sibling" class="fn">focus_from_sibling</a>(
         &amp;self,
-        renderer: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.CellRenderer.html" title="struct gtk4::CellRenderer">CellRenderer</a>&gt;
+        renderer: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.CellRenderer.html" title="struct gtk4::CellRenderer">CellRenderer</a>&gt;,
     ) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.CellRenderer.html" title="struct gtk4::CellRenderer">CellRenderer</a>&gt; { ... }
 <span class="item-spacer"></span>    fn <a href="#method.focus_siblings" class="fn">focus_siblings</a>(
         &amp;self,
-        renderer: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.CellRenderer.html" title="struct gtk4::CellRenderer">CellRenderer</a>&gt;
+        renderer: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.CellRenderer.html" title="struct gtk4::CellRenderer">CellRenderer</a>&gt;,
     ) -&gt; <a class="struct" href="https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html" title="struct alloc::vec::Vec">Vec</a>&lt;<a class="struct" href="../struct.CellRenderer.html" title="struct gtk4::CellRenderer">CellRenderer</a>&gt; { ... }
 <span class="item-spacer"></span>    fn <a href="#method.preferred_height" class="fn">preferred_height</a>(
         &amp;self,
         context: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.CellAreaContext.html" title="struct gtk4::CellAreaContext">CellAreaContext</a>&gt;,
-        widget: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;
+        widget: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;,
     ) -&gt; (<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) { ... }
 <span class="item-spacer"></span>    fn <a href="#method.preferred_height_for_width" class="fn">preferred_height_for_width</a>(
         &amp;self,
         context: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.CellAreaContext.html" title="struct gtk4::CellAreaContext">CellAreaContext</a>&gt;,
         widget: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;,
-        width: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>
+        width: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>,
     ) -&gt; (<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) { ... }
 <span class="item-spacer"></span>    fn <a href="#method.preferred_width" class="fn">preferred_width</a>(
         &amp;self,
         context: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.CellAreaContext.html" title="struct gtk4::CellAreaContext">CellAreaContext</a>&gt;,
-        widget: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;
+        widget: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;,
     ) -&gt; (<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) { ... }
 <span class="item-spacer"></span>    fn <a href="#method.preferred_width_for_height" class="fn">preferred_width_for_height</a>(
         &amp;self,
         context: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.CellAreaContext.html" title="struct gtk4::CellAreaContext">CellAreaContext</a>&gt;,
         widget: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;,
-        height: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>
+        height: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>,
     ) -&gt; (<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) { ... }
 <span class="item-spacer"></span>    fn <a href="#method.request_mode" class="fn">request_mode</a>(&amp;self) -&gt; <a class="enum" href="../enum.SizeRequestMode.html" title="enum gtk4::SizeRequestMode">SizeRequestMode</a> { ... }
 <span class="item-spacer"></span>    fn <a href="#method.has_renderer" class="fn">has_renderer</a>(&amp;self, renderer: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.CellRenderer.html" title="struct gtk4::CellRenderer">CellRenderer</a>&gt;) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> { ... }
 <span class="item-spacer"></span>    fn <a href="#method.inner_cell_area" class="fn">inner_cell_area</a>(
         &amp;self,
         widget: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;,
-        cell_area: &amp;<a class="struct" href="../../gdk4/auto/rectangle/struct.Rectangle.html" title="struct gdk4::auto::rectangle::Rectangle">Rectangle</a>
+        cell_area: &amp;<a class="struct" href="../../gdk4/auto/rectangle/struct.Rectangle.html" title="struct gdk4::auto::rectangle::Rectangle">Rectangle</a>,
     ) -&gt; <a class="struct" href="../../gdk4/auto/rectangle/struct.Rectangle.html" title="struct gdk4::auto::rectangle::Rectangle">Rectangle</a> { ... }
 <span class="item-spacer"></span>    fn <a href="#method.is_activatable" class="fn">is_activatable</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> { ... }
 <span class="item-spacer"></span>    fn <a href="#method.is_focus_sibling" class="fn">is_focus_sibling</a>(
         &amp;self,
         renderer: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.CellRenderer.html" title="struct gtk4::CellRenderer">CellRenderer</a>&gt;,
-        sibling: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.CellRenderer.html" title="struct gtk4::CellRenderer">CellRenderer</a>&gt;
+        sibling: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.CellRenderer.html" title="struct gtk4::CellRenderer">CellRenderer</a>&gt;,
     ) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> { ... }
 <span class="item-spacer"></span>    fn <a href="#method.remove" class="fn">remove</a>(&amp;self, renderer: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.CellRenderer.html" title="struct gtk4::CellRenderer">CellRenderer</a>&gt;) { ... }
 <span class="item-spacer"></span>    fn <a href="#method.remove_focus_sibling" class="fn">remove_focus_sibling</a>(
         &amp;self,
         renderer: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.CellRenderer.html" title="struct gtk4::CellRenderer">CellRenderer</a>&gt;,
-        sibling: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.CellRenderer.html" title="struct gtk4::CellRenderer">CellRenderer</a>&gt;
+        sibling: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.CellRenderer.html" title="struct gtk4::CellRenderer">CellRenderer</a>&gt;,
     ) { ... }
 <span class="item-spacer"></span>    fn <a href="#method.request_renderer" class="fn">request_renderer</a>(
         &amp;self,
         renderer: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.CellRenderer.html" title="struct gtk4::CellRenderer">CellRenderer</a>&gt;,
         orientation: <a class="enum" href="../enum.Orientation.html" title="enum gtk4::Orientation">Orientation</a>,
         widget: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;,
-        for_size: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>
+        for_size: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>,
     ) -&gt; (<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) { ... }
 <span class="item-spacer"></span>    fn <a href="#method.set_focus_cell" class="fn">set_focus_cell</a>(&amp;self, renderer: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.CellRenderer.html" title="struct gtk4::CellRenderer">CellRenderer</a>&gt;&gt;) { ... }
 <span class="item-spacer"></span>    fn <a href="#method.snapshot" class="fn">snapshot</a>(
@@ -225,36 +225,36 @@
         background_area: &amp;<a class="struct" href="../../gdk4/auto/rectangle/struct.Rectangle.html" title="struct gdk4::auto::rectangle::Rectangle">Rectangle</a>,
         cell_area: &amp;<a class="struct" href="../../gdk4/auto/rectangle/struct.Rectangle.html" title="struct gdk4::auto::rectangle::Rectangle">Rectangle</a>,
         flags: <a class="struct" href="../struct.CellRendererState.html" title="struct gtk4::CellRendererState">CellRendererState</a>,
-        paint_focus: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>
+        paint_focus: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>,
     ) { ... }
 <span class="item-spacer"></span>    fn <a href="#method.stop_editing" class="fn">stop_editing</a>(&amp;self, canceled: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) { ... }
 <span class="item-spacer"></span>    fn <a href="#method.connect_add_editable" class="fn">connect_add_editable</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>, &amp;<a class="struct" href="../struct.CellRenderer.html" title="struct gtk4::CellRenderer">CellRenderer</a>, &amp;<a class="struct" href="../struct.CellEditable.html" title="struct gtk4::CellEditable">CellEditable</a>, &amp;<a class="struct" href="../../gdk4/auto/rectangle/struct.Rectangle.html" title="struct gdk4::auto::rectangle::Rectangle">Rectangle</a>, <a class="struct" href="../struct.TreePath.html" title="struct gtk4::TreePath">TreePath</a>) + 'static&gt;(
         &amp;self,
-        f: F
+        f: F,
     ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
 <span class="item-spacer"></span>    fn <a href="#method.connect_apply_attributes" class="fn">connect_apply_attributes</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>, &amp;<a class="struct" href="../struct.TreeModel.html" title="struct gtk4::TreeModel">TreeModel</a>, &amp;<a class="struct" href="../struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) + 'static&gt;(
         &amp;self,
-        f: F
+        f: F,
     ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
 <span class="item-spacer"></span>    fn <a href="#method.connect_focus_changed" class="fn">connect_focus_changed</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>, &amp;<a class="struct" href="../struct.CellRenderer.html" title="struct gtk4::CellRenderer">CellRenderer</a>, <a class="struct" href="../struct.TreePath.html" title="struct gtk4::TreePath">TreePath</a>) + 'static&gt;(
         &amp;self,
-        f: F
+        f: F,
     ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
 <span class="item-spacer"></span>    fn <a href="#method.connect_remove_editable" class="fn">connect_remove_editable</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>, &amp;<a class="struct" href="../struct.CellRenderer.html" title="struct gtk4::CellRenderer">CellRenderer</a>, &amp;<a class="struct" href="../struct.CellEditable.html" title="struct gtk4::CellEditable">CellEditable</a>) + 'static&gt;(
         &amp;self,
-        f: F
+        f: F,
     ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
 <span class="item-spacer"></span>    fn <a href="#method.connect_edit_widget_notify" class="fn">connect_edit_widget_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
         &amp;self,
-        f: F
+        f: F,
     ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
 <span class="item-spacer"></span>    fn <a href="#method.connect_edited_cell_notify" class="fn">connect_edited_cell_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
         &amp;self,
-        f: F
+        f: F,
     ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
 <span class="item-spacer"></span>    fn <a href="#method.connect_focus_cell_notify" class="fn">connect_focus_cell_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
         &amp;self,
-        f: F
+        f: F,
     ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
 </details>}</code></pre><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Trait containing all <a href="../struct.CellArea.html" title="struct gtk4::CellArea"><code>CellArea</code></a> methods.</p>
 <h2 id="implementors-1"><a class="doc-anchor" href="#implementors-1">§</a>Implementors</h2>
@@ -265,7 +265,7 @@
     widget: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;,
     cell_area: &amp;<a class="struct" href="../../gdk4/auto/rectangle/struct.Rectangle.html" title="struct gdk4::auto::rectangle::Rectangle">Rectangle</a>,
     flags: <a class="struct" href="../struct.CellRendererState.html" title="struct gtk4::CellRendererState">CellRendererState</a>,
-    edit_only: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>
+    edit_only: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>,
 ) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Activates @self, usually by activating the currently focused
 cell, however some subclasses which embed widgets in the area
 can also activate a widget if it currently has the focus.</p>
@@ -288,7 +288,7 @@ will be activated.</p>
     renderer: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.CellRenderer.html" title="struct gtk4::CellRenderer">CellRenderer</a>&gt;,
     event: impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html" title="trait core::convert::AsRef">AsRef</a>&lt;<a class="struct" href="../../gdk4/auto/event/struct.Event.html" title="struct gdk4::auto::event::Event">Event</a>&gt;,
     cell_area: &amp;<a class="struct" href="../../gdk4/auto/rectangle/struct.Rectangle.html" title="struct gdk4::auto::rectangle::Rectangle">Rectangle</a>,
-    flags: <a class="struct" href="../struct.CellRendererState.html" title="struct gtk4::CellRendererState">CellRendererState</a>
+    flags: <a class="struct" href="../struct.CellRendererState.html" title="struct gtk4::CellRendererState">CellRendererState</a>,
 ) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>This is used by <a href="../struct.CellArea.html" title="struct gtk4::CellArea"><code>CellArea</code></a> subclasses when handling events
 to activate cells, the base <a href="../struct.CellArea.html" title="struct gtk4::CellArea"><code>CellArea</code></a> class activates cells
 for keyboard events for free in its own GtkCellArea-&gt;activate()
@@ -312,7 +312,7 @@ of @renderer for the current row.</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.add_focus_sibling" class="method"><a class="src rightside" href="../../src/gtk4/auto/cell_area.rs.html#554-566">source</a><h4 class="code-header">fn <a href="#method.add_focus_sibling" class="fn">add_focus_sibling</a>(
     &amp;self,
     renderer: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.CellRenderer.html" title="struct gtk4::CellRenderer">CellRenderer</a>&gt;,
-    sibling: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.CellRenderer.html" title="struct gtk4::CellRenderer">CellRenderer</a>&gt;
+    sibling: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.CellRenderer.html" title="struct gtk4::CellRenderer">CellRenderer</a>&gt;,
 )</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Adds @sibling to @renderer’s focusable area, focus will be drawn
 around @renderer and all of its siblings if @renderer can
 focus for a given row.</p>
@@ -327,7 +327,7 @@ focusable @renderer.</p>
     tree_model: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.TreeModel.html" title="struct gtk4::TreeModel">TreeModel</a>&gt;,
     iter: &amp;<a class="struct" href="../struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>,
     is_expander: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>,
-    is_expanded: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>
+    is_expanded: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>,
 )</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Applies any connected attributes to the renderers in
 @self by pulling the values from @tree_model.</p>
 <h5 id="deprecated-since-410-4"><a class="doc-anchor" href="#deprecated-since-410-4">§</a>Deprecated since 4.10</h5><h6 id="tree_model"><a class="doc-anchor" href="#tree_model">§</a><code>tree_model</code></h6>
@@ -343,7 +343,7 @@ children are visible</p>
     &amp;self,
     renderer: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.CellRenderer.html" title="struct gtk4::CellRenderer">CellRenderer</a>&gt;,
     attribute: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>,
-    column: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>
+    column: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>,
 )</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Connects an @attribute to apply values from @column for the
 <a href="../struct.TreeModel.html" title="struct gtk4::TreeModel"><code>TreeModel</code></a> in use.</p>
 <h5 id="deprecated-since-410-5"><a class="doc-anchor" href="#deprecated-since-410-5">§</a>Deprecated since 4.10</h5><h6 id="renderer-3"><a class="doc-anchor" href="#renderer-3">§</a><code>renderer</code></h6>
@@ -355,7 +355,7 @@ children are visible</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.attribute_disconnect" class="method"><a class="src rightside" href="../../src/gtk4/auto/cell_area.rs.html#641-649">source</a><h4 class="code-header">fn <a href="#method.attribute_disconnect" class="fn">attribute_disconnect</a>(
     &amp;self,
     renderer: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.CellRenderer.html" title="struct gtk4::CellRenderer">CellRenderer</a>&gt;,
-    attribute: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>
+    attribute: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>,
 )</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Disconnects @attribute for the @renderer in @self so that
 attribute will no longer be updated with values from the
 model.</p>
@@ -366,7 +366,7 @@ model.</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.attribute_get_column" class="method"><a class="src rightside" href="../../src/gtk4/auto/cell_area.rs.html#667-675">source</a><h4 class="code-header">fn <a href="#method.attribute_get_column" class="fn">attribute_get_column</a>(
     &amp;self,
     renderer: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.CellRenderer.html" title="struct gtk4::CellRenderer">CellRenderer</a>&gt;,
-    attribute: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>
+    attribute: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>,
 ) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Returns the model column that an attribute has been mapped to,
 or -1 if the attribute is not mapped.</p>
 <h5 id="deprecated-since-410-7"><a class="doc-anchor" href="#deprecated-since-410-7">§</a>Deprecated since 4.10</h5><h6 id="renderer-5"><a class="doc-anchor" href="#renderer-5">§</a><code>renderer</code></h6>
@@ -403,7 +403,7 @@ which was used to request the size of those rows of data).</p>
     widget: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;,
     event: impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html" title="trait core::convert::AsRef">AsRef</a>&lt;<a class="struct" href="../../gdk4/auto/event/struct.Event.html" title="struct gdk4::auto::event::Event">Event</a>&gt;,
     cell_area: &amp;<a class="struct" href="../../gdk4/auto/rectangle/struct.Rectangle.html" title="struct gdk4::auto::rectangle::Rectangle">Rectangle</a>,
-    flags: <a class="struct" href="../struct.CellRendererState.html" title="struct gtk4::CellRendererState">CellRendererState</a>
+    flags: <a class="struct" href="../struct.CellRendererState.html" title="struct gtk4::CellRendererState">CellRendererState</a>,
 ) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Delegates event handling to a <a href="../struct.CellArea.html" title="struct gtk4::CellArea"><code>CellArea</code></a>.</p>
 <h5 id="deprecated-since-410-10"><a class="doc-anchor" href="#deprecated-since-410-10">§</a>Deprecated since 4.10</h5><h6 id="context-2"><a class="doc-anchor" href="#context-2">§</a><code>context</code></h6>
 <p>the <a href="../struct.CellArea.html" title="struct gtk4::CellArea"><code>CellArea</code></a>Context for this row of data.</p>
@@ -438,7 +438,7 @@ to how it lays out cells.</p>
     widget: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;,
     cell_area: &amp;<a class="struct" href="../../gdk4/auto/rectangle/struct.Rectangle.html" title="struct gdk4::auto::rectangle::Rectangle">Rectangle</a>,
     background_area: &amp;<a class="struct" href="../../gdk4/auto/rectangle/struct.Rectangle.html" title="struct gdk4::auto::rectangle::Rectangle">Rectangle</a>,
-    callback: P
+    callback: P,
 )</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Calls @callback for every <a href="../struct.CellRenderer.html" title="struct gtk4::CellRenderer"><code>CellRenderer</code></a> in @self with the
 allocated rectangle inside @cell_area.</p>
 <h6 id="context-3"><a class="doc-anchor" href="#context-3">§</a><code>context</code></h6>
@@ -458,7 +458,7 @@ allocated rectangle inside @cell_area.</p>
     context: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.CellAreaContext.html" title="struct gtk4::CellAreaContext">CellAreaContext</a>&gt;,
     widget: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;,
     renderer: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.CellRenderer.html" title="struct gtk4::CellRenderer">CellRenderer</a>&gt;,
-    cell_area: &amp;<a class="struct" href="../../gdk4/auto/rectangle/struct.Rectangle.html" title="struct gdk4::auto::rectangle::Rectangle">Rectangle</a>
+    cell_area: &amp;<a class="struct" href="../../gdk4/auto/rectangle/struct.Rectangle.html" title="struct gdk4::auto::rectangle::Rectangle">Rectangle</a>,
 ) -&gt; <a class="struct" href="../../gdk4/auto/rectangle/struct.Rectangle.html" title="struct gdk4::auto::rectangle::Rectangle">Rectangle</a></h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Derives the allocation of @renderer inside @self if @self
 were to be rendered in @cell_area.</p>
 <h5 id="deprecated-since-410-13"><a class="doc-anchor" href="#deprecated-since-410-13">§</a>Deprecated since 4.10</h5><h6 id="context-4"><a class="doc-anchor" href="#context-4">§</a><code>context</code></h6>
@@ -478,7 +478,7 @@ for this row</p>
     widget: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;,
     cell_area: &amp;<a class="struct" href="../../gdk4/auto/rectangle/struct.Rectangle.html" title="struct gdk4::auto::rectangle::Rectangle">Rectangle</a>,
     x: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>,
-    y: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>
+    y: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>,
 ) -&gt; (<a class="struct" href="../struct.CellRenderer.html" title="struct gtk4::CellRenderer">CellRenderer</a>, <a class="struct" href="../../gdk4/auto/rectangle/struct.Rectangle.html" title="struct gdk4::auto::rectangle::Rectangle">Rectangle</a>)</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Gets the <a href="../struct.CellRenderer.html" title="struct gtk4::CellRenderer"><code>CellRenderer</code></a> at @x and @y coordinates inside @self and optionally
 returns the full cell allocation for it inside @cell_area.</p>
 <h5 id="deprecated-since-410-14"><a class="doc-anchor" href="#deprecated-since-410-14">§</a>Deprecated since 4.10</h5><h6 id="context-5"><a class="doc-anchor" href="#context-5">§</a><code>context</code></h6>
@@ -519,7 +519,7 @@ being edited.</p>
 <p>the currently focused cell in @self.</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.focus_from_sibling" class="method"><a class="src rightside" href="../../src/gtk4/auto/cell_area.rs.html#1090-1097">source</a><h4 class="code-header">fn <a href="#method.focus_from_sibling" class="fn">focus_from_sibling</a>(
     &amp;self,
-    renderer: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.CellRenderer.html" title="struct gtk4::CellRenderer">CellRenderer</a>&gt;
+    renderer: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.CellRenderer.html" title="struct gtk4::CellRenderer">CellRenderer</a>&gt;,
 ) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.CellRenderer.html" title="struct gtk4::CellRenderer">CellRenderer</a>&gt;</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Gets the <a href="../struct.CellRenderer.html" title="struct gtk4::CellRenderer"><code>CellRenderer</code></a> which is expected to be focusable
 for which @renderer is, or may be a sibling.</p>
 <p>This is handy for <a href="../struct.CellArea.html" title="struct gtk4::CellArea"><code>CellArea</code></a> subclasses when handling events,
@@ -540,7 +540,7 @@ The returned list is internal and should not be freed.</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.preferred_height" class="method"><a class="src rightside" href="../../src/gtk4/auto/cell_area.rs.html#1150-1167">source</a><h4 class="code-header">fn <a href="#method.preferred_height" class="fn">preferred_height</a>(
     &amp;self,
     context: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.CellAreaContext.html" title="struct gtk4::CellAreaContext">CellAreaContext</a>&gt;,
-    widget: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;
+    widget: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;,
 ) -&gt; (<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Retrieves a cell area’s initial minimum and natural height.</p>
 <p>@self will store some geometrical information in @context along the way;
 when requesting sizes over an arbitrary number of rows, it’s not important
@@ -559,7 +559,7 @@ requests.</p>
     &amp;self,
     context: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.CellAreaContext.html" title="struct gtk4::CellAreaContext">CellAreaContext</a>&gt;,
     widget: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;,
-    width: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>
+    width: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>,
 ) -&gt; (<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Retrieves a cell area’s minimum and natural height if it would be given
 the specified @width.</p>
 <p>@self stores some geometrical information in @context along the way
@@ -585,7 +585,7 @@ gtk_cell_area_context_get_preferred_width().</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.preferred_width" class="method"><a class="src rightside" href="../../src/gtk4/auto/cell_area.rs.html#1253-1270">source</a><h4 class="code-header">fn <a href="#method.preferred_width" class="fn">preferred_width</a>(
     &amp;self,
     context: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.CellAreaContext.html" title="struct gtk4::CellAreaContext">CellAreaContext</a>&gt;,
-    widget: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;
+    widget: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;,
 ) -&gt; (<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Retrieves a cell area’s initial minimum and natural width.</p>
 <p>@self will store some geometrical information in @context along the way;
 when requesting sizes over an arbitrary number of rows, it’s not important
@@ -604,7 +604,7 @@ requests.</p>
     &amp;self,
     context: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.CellAreaContext.html" title="struct gtk4::CellAreaContext">CellAreaContext</a>&gt;,
     widget: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;,
-    height: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>
+    height: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>,
 ) -&gt; (<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Retrieves a cell area’s minimum and natural width if it would be given
 the specified @height.</p>
 <p>@self stores some geometrical information in @context along the way
@@ -639,7 +639,7 @@ or a width-for-height layout.</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.inner_cell_area" class="method"><a class="src rightside" href="../../src/gtk4/auto/cell_area.rs.html#1387-1402">source</a><h4 class="code-header">fn <a href="#method.inner_cell_area" class="fn">inner_cell_area</a>(
     &amp;self,
     widget: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;,
-    cell_area: &amp;<a class="struct" href="../../gdk4/auto/rectangle/struct.Rectangle.html" title="struct gdk4::auto::rectangle::Rectangle">Rectangle</a>
+    cell_area: &amp;<a class="struct" href="../../gdk4/auto/rectangle/struct.Rectangle.html" title="struct gdk4::auto::rectangle::Rectangle">Rectangle</a>,
 ) -&gt; <a class="struct" href="../../gdk4/auto/rectangle/struct.Rectangle.html" title="struct gdk4::auto::rectangle::Rectangle">Rectangle</a></h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>This is a convenience function for <a href="../struct.CellArea.html" title="struct gtk4::CellArea"><code>CellArea</code></a> implementations
 to get the inner area where a given <a href="../struct.CellRenderer.html" title="struct gtk4::CellRenderer"><code>CellRenderer</code></a> will be
 rendered. It removes any padding previously added by gtk_cell_area_request_renderer().</p>
@@ -657,7 +657,7 @@ after applying new attributes to @self.</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.is_focus_sibling" class="method"><a class="src rightside" href="../../src/gtk4/auto/cell_area.rs.html#1440-1452">source</a><h4 class="code-header">fn <a href="#method.is_focus_sibling" class="fn">is_focus_sibling</a>(
     &amp;self,
     renderer: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.CellRenderer.html" title="struct gtk4::CellRenderer">CellRenderer</a>&gt;,
-    sibling: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.CellRenderer.html" title="struct gtk4::CellRenderer">CellRenderer</a>&gt;
+    sibling: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.CellRenderer.html" title="struct gtk4::CellRenderer">CellRenderer</a>&gt;,
 ) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Returns whether @sibling is one of @renderer’s focus siblings
 (see gtk_cell_area_add_focus_sibling()).</p>
 <h5 id="deprecated-since-410-27"><a class="doc-anchor" href="#deprecated-since-410-27">§</a>Deprecated since 4.10</h5><h6 id="renderer-10"><a class="doc-anchor" href="#renderer-10">§</a><code>renderer</code></h6>
@@ -672,7 +672,7 @@ after applying new attributes to @self.</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.remove_focus_sibling" class="method"><a class="src rightside" href="../../src/gtk4/auto/cell_area.rs.html#1484-1496">source</a><h4 class="code-header">fn <a href="#method.remove_focus_sibling" class="fn">remove_focus_sibling</a>(
     &amp;self,
     renderer: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.CellRenderer.html" title="struct gtk4::CellRenderer">CellRenderer</a>&gt;,
-    sibling: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.CellRenderer.html" title="struct gtk4::CellRenderer">CellRenderer</a>&gt;
+    sibling: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.CellRenderer.html" title="struct gtk4::CellRenderer">CellRenderer</a>&gt;,
 )</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Removes @sibling from @renderer’s focus sibling list
 (see gtk_cell_area_add_focus_sibling()).</p>
 <h5 id="deprecated-since-410-29"><a class="doc-anchor" href="#deprecated-since-410-29">§</a>Deprecated since 4.10</h5><h6 id="renderer-12"><a class="doc-anchor" href="#renderer-12">§</a><code>renderer</code></h6>
@@ -684,7 +684,7 @@ after applying new attributes to @self.</p>
     renderer: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.CellRenderer.html" title="struct gtk4::CellRenderer">CellRenderer</a>&gt;,
     orientation: <a class="enum" href="../enum.Orientation.html" title="enum gtk4::Orientation">Orientation</a>,
     widget: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;,
-    for_size: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>
+    for_size: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>,
 ) -&gt; (<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>This is a convenience function for <a href="../struct.CellArea.html" title="struct gtk4::CellArea"><code>CellArea</code></a> implementations
 to request size for cell renderers. It’s important to use this
 function to request size and then use gtk_cell_area_inner_cell_area()
@@ -718,7 +718,7 @@ as gtk_tree_view_set_cursor_on_cell().</p>
     background_area: &amp;<a class="struct" href="../../gdk4/auto/rectangle/struct.Rectangle.html" title="struct gdk4::auto::rectangle::Rectangle">Rectangle</a>,
     cell_area: &amp;<a class="struct" href="../../gdk4/auto/rectangle/struct.Rectangle.html" title="struct gdk4::auto::rectangle::Rectangle">Rectangle</a>,
     flags: <a class="struct" href="../struct.CellRendererState.html" title="struct gtk4::CellRendererState">CellRendererState</a>,
-    paint_focus: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>
+    paint_focus: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>,
 )</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Snapshots @self’s cells according to @self’s layout onto at
 the given coordinates.</p>
 <h5 id="deprecated-since-410-32"><a class="doc-anchor" href="#deprecated-since-410-32">§</a>Deprecated since 4.10</h5><h6 id="context-10"><a class="doc-anchor" href="#context-10">§</a><code>context</code></h6>
@@ -745,7 +745,7 @@ edit widget.</p>
 <p>whether editing was canceled.</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.connect_add_editable" class="method"><a class="src rightside" href="../../src/gtk4/auto/cell_area.rs.html#1654-1692">source</a><h4 class="code-header">fn <a href="#method.connect_add_editable" class="fn">connect_add_editable</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>, &amp;<a class="struct" href="../struct.CellRenderer.html" title="struct gtk4::CellRenderer">CellRenderer</a>, &amp;<a class="struct" href="../struct.CellEditable.html" title="struct gtk4::CellEditable">CellEditable</a>, &amp;<a class="struct" href="../../gdk4/auto/rectangle/struct.Rectangle.html" title="struct gdk4::auto::rectangle::Rectangle">Rectangle</a>, <a class="struct" href="../struct.TreePath.html" title="struct gtk4::TreePath">TreePath</a>) + 'static&gt;(
     &amp;self,
-    f: F
+    f: F,
 ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Indicates that editing has started on @renderer and that @editable
 should be added to the owning cell-layouting widget at @cell_area.</p>
 <h6 id="renderer-15"><a class="doc-anchor" href="#renderer-15">§</a><code>renderer</code></h6>
@@ -759,7 +759,7 @@ where @editable should be added</p>
 <p>the <a href="../struct.TreePath.html" title="struct gtk4::TreePath"><code>TreePath</code></a> string this edit was initiated for</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.connect_apply_attributes" class="method"><a class="src rightside" href="../../src/gtk4/auto/cell_area.rs.html#1704-1739">source</a><h4 class="code-header">fn <a href="#method.connect_apply_attributes" class="fn">connect_apply_attributes</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>, &amp;<a class="struct" href="../struct.TreeModel.html" title="struct gtk4::TreeModel">TreeModel</a>, &amp;<a class="struct" href="../struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) + 'static&gt;(
     &amp;self,
-    f: F
+    f: F,
 ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>This signal is emitted whenever applying attributes to @area from @model</p>
 <h6 id="model"><a class="doc-anchor" href="#model">§</a><code>model</code></h6>
 <p>the <a href="../struct.TreeModel.html" title="struct gtk4::TreeModel"><code>TreeModel</code></a> to apply the attributes from</p>
@@ -771,7 +771,7 @@ where @editable should be added</p>
 <p>whether the view is currently showing the children of this row</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.connect_focus_changed" class="method"><a class="src rightside" href="../../src/gtk4/auto/cell_area.rs.html#1754-1786">source</a><h4 class="code-header">fn <a href="#method.connect_focus_changed" class="fn">connect_focus_changed</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>, &amp;<a class="struct" href="../struct.CellRenderer.html" title="struct gtk4::CellRenderer">CellRenderer</a>, <a class="struct" href="../struct.TreePath.html" title="struct gtk4::TreePath">TreePath</a>) + 'static&gt;(
     &amp;self,
-    f: F
+    f: F,
 ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Indicates that focus changed on this @area. This signal
 is emitted either as a result of focus handling or event
 handling.</p>
@@ -785,7 +785,7 @@ same cell area for a different row of data.</p>
 <p>the current <a href="../struct.TreePath.html" title="struct gtk4::TreePath"><code>TreePath</code></a> string set for @area</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.connect_remove_editable" class="method"><a class="src rightside" href="../../src/gtk4/auto/cell_area.rs.html#1795-1826">source</a><h4 class="code-header">fn <a href="#method.connect_remove_editable" class="fn">connect_remove_editable</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>, &amp;<a class="struct" href="../struct.CellRenderer.html" title="struct gtk4::CellRenderer">CellRenderer</a>, &amp;<a class="struct" href="../struct.CellEditable.html" title="struct gtk4::CellEditable">CellEditable</a>) + 'static&gt;(
     &amp;self,
-    f: F
+    f: F,
 ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Indicates that editing finished on @renderer and that @editable
 should be removed from the owning cell-layouting widget.</p>
 <h6 id="renderer-17"><a class="doc-anchor" href="#renderer-17">§</a><code>renderer</code></h6>
@@ -794,11 +794,11 @@ should be removed from the owning cell-layouting widget.</p>
 <p>the <a href="../struct.CellEditable.html" title="struct gtk4::CellEditable"><code>CellEditable</code></a> widget to remove</p>
 </div></details><section id="method.connect_edit_widget_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/cell_area.rs.html#1829-1852">source</a><h4 class="code-header">fn <a href="#method.connect_edit_widget_notify" class="fn">connect_edit_widget_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
     &amp;self,
-    f: F
+    f: F,
 ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span><section id="method.connect_edited_cell_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/cell_area.rs.html#1855-1878">source</a><h4 class="code-header">fn <a href="#method.connect_edited_cell_notify" class="fn">connect_edited_cell_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
     &amp;self,
-    f: F
+    f: F,
 ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span><section id="method.connect_focus_cell_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/cell_area.rs.html#1881-1901">source</a><h4 class="code-header">fn <a href="#method.connect_focus_cell_notify" class="fn">connect_focus_cell_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
     &amp;self,
-    f: F
+    f: F,
 ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></div><h2 id="object-safety" class="section-header">Object Safety<a href="#object-safety" class="anchor">§</a></h2><div class="object-safety-info">This trait is <b>not</b> <a href="https://doc.rust-lang.org/nightly/reference/items/traits.html#object-safety">object safe</a>.</div><h2 id="implementors" class="section-header">Implementors<a href="#implementors" class="anchor">§</a></h2><div id="implementors-list"><section id="impl-CellAreaExt-for-O" class="impl"><a class="src rightside" href="../../src/gtk4/auto/cell_area.rs.html#1904">source</a><a href="#impl-CellAreaExt-for-O" class="anchor">§</a><h3 class="code-header">impl&lt;O: <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.CellArea.html" title="struct gtk4::CellArea">CellArea</a>&gt;&gt; <a class="trait" href="trait.CellAreaExt.html" title="trait gtk4::prelude::CellAreaExt">CellAreaExt</a> for O</h3></section></div><script src="../../trait.impl/gtk4/auto/cell_area/trait.CellAreaExt.js" async></script></section></div></main></body></html>

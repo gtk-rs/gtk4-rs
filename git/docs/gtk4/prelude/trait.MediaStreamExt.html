@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Trait containing all `struct@MediaStream` methods."><title>MediaStreamExt in gtk4::prelude - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-46f98efaafac5295.ttf.woff2,FiraSans-Regular-018c141bf0843ffd.woff2,FiraSans-Medium-8f9a781e4970d388.woff2,SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2,SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-dd39b87e5fcfba68.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.80.0-nightly (f67a1acc0 2024-06-01)" data-channel="nightly" data-search-js="search-d52510db62a78183.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-118b08c4c78b968e.js"></script><script defer src="sidebar-items.js"></script><script defer src="../../static.files/main-20a3ad099b048cf2.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-df360f571f6edeae.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc trait"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Trait containing all `struct@MediaStream` methods."><title>MediaStreamExt in gtk4::prelude - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-46f98efaafac5295.ttf.woff2,FiraSans-Regular-018c141bf0843ffd.woff2,FiraSans-Medium-8f9a781e4970d388.woff2,SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2,SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-dd39b87e5fcfba68.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.81.0-nightly (d7f6ebace 2024-06-16)" data-channel="nightly" data-search-js="search-0fe7219eb170c82e.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-118b08c4c78b968e.js"></script><script defer src="sidebar-items.js"></script><script defer src="../../static.files/main-20a3ad099b048cf2.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-df360f571f6edeae.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc trait"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
 
@@ -94,7 +94,7 @@
         has_audio: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>,
         has_video: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>,
         seekable: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>,
-        duration: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i64.html">i64</a>
+        duration: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i64.html">i64</a>,
     ) { ... }
 <span class="item-spacer"></span>    fn <a href="#method.realize" class="fn">realize</a>(&amp;self, surface: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../../gdk4/auto/surface/struct.Surface.html" title="struct gdk4::auto::surface::Surface">Surface</a>&gt;) { ... }
 <span class="item-spacer"></span>    fn <a href="#method.seek" class="fn">seek</a>(&amp;self, timestamp: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i64.html">i64</a>) { ... }
@@ -110,7 +110,7 @@
         has_audio: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>,
         has_video: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>,
         seekable: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>,
-        duration: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i64.html">i64</a>
+        duration: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i64.html">i64</a>,
     ) { ... }
 <span class="item-spacer"></span>    fn <a href="#method.stream_unprepared" class="fn">stream_unprepared</a>(&amp;self) { ... }
 <span class="item-spacer"></span>    fn <a href="#method.unprepared" class="fn">unprepared</a>(&amp;self) { ... }
@@ -119,55 +119,55 @@
 <span class="item-spacer"></span>    fn <a href="#method.set_prepared" class="fn">set_prepared</a>(&amp;self, prepared: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) { ... }
 <span class="item-spacer"></span>    fn <a href="#method.connect_duration_notify" class="fn">connect_duration_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
         &amp;self,
-        f: F
+        f: F,
     ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
 <span class="item-spacer"></span>    fn <a href="#method.connect_ended_notify" class="fn">connect_ended_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
         &amp;self,
-        f: F
+        f: F,
     ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
 <span class="item-spacer"></span>    fn <a href="#method.connect_error_notify" class="fn">connect_error_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
         &amp;self,
-        f: F
+        f: F,
     ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
 <span class="item-spacer"></span>    fn <a href="#method.connect_has_audio_notify" class="fn">connect_has_audio_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
         &amp;self,
-        f: F
+        f: F,
     ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
 <span class="item-spacer"></span>    fn <a href="#method.connect_has_video_notify" class="fn">connect_has_video_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
         &amp;self,
-        f: F
+        f: F,
     ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
 <span class="item-spacer"></span>    fn <a href="#method.connect_loop_notify" class="fn">connect_loop_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
         &amp;self,
-        f: F
+        f: F,
     ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
 <span class="item-spacer"></span>    fn <a href="#method.connect_muted_notify" class="fn">connect_muted_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
         &amp;self,
-        f: F
+        f: F,
     ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
 <span class="item-spacer"></span>    fn <a href="#method.connect_playing_notify" class="fn">connect_playing_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
         &amp;self,
-        f: F
+        f: F,
     ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
 <span class="item-spacer"></span>    fn <a href="#method.connect_prepared_notify" class="fn">connect_prepared_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
         &amp;self,
-        f: F
+        f: F,
     ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
 <span class="item-spacer"></span>    fn <a href="#method.connect_seekable_notify" class="fn">connect_seekable_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
         &amp;self,
-        f: F
+        f: F,
     ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
 <span class="item-spacer"></span>    fn <a href="#method.connect_seeking_notify" class="fn">connect_seeking_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
         &amp;self,
-        f: F
+        f: F,
     ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
 <span class="item-spacer"></span>    fn <a href="#method.connect_timestamp_notify" class="fn">connect_timestamp_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
         &amp;self,
-        f: F
+        f: F,
     ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
 <span class="item-spacer"></span>    fn <a href="#method.connect_volume_notify" class="fn">connect_volume_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
         &amp;self,
-        f: F
+        f: F,
     ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
 </details>}</code></pre><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Trait containing all <a href="../struct.MediaStream.html" title="struct gtk4::MediaStream"><code>MediaStream</code></a> methods.</p>
 <h2 id="implementors-1"><a class="doc-anchor" href="#implementors-1">§</a>Implementors</h2>
@@ -248,7 +248,7 @@ stream, though it will not do anything.</p>
     has_audio: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>,
     has_video: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>,
     seekable: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>,
-    duration: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i64.html">i64</a>
+    duration: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i64.html">i64</a>,
 )</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.4</span></div></span></summary><div class="docblock"><p>Same as gtk_media_stream_stream_prepared().</p>
 <h5 id="deprecated-since-44-1"><a class="doc-anchor" href="#deprecated-since-44-1">§</a>Deprecated since 4.4</h5>
 <p>Use <a href="trait.MediaStreamExt.html#method.stream_prepared"><code>stream_prepared()</code></a> instead.</p>
@@ -332,7 +332,7 @@ may still happen.</p>
     has_audio: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>,
     has_video: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>,
     seekable: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>,
-    duration: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i64.html">i64</a>
+    duration: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i64.html">i64</a>,
 )</h4></section><span class="item-info"><div class="stab portability">Available on <strong>crate feature <code>v4_4</code></strong> only.</div></span></summary><div class="docblock"><p>Called by <a href="../struct.MediaStream.html" title="struct gtk4::MediaStream"><code>MediaStream</code></a> implementations to advertise the stream
 being ready to play and providing details about the stream.</p>
 <p>Note that the arguments are hints. If the stream implementation
@@ -371,26 +371,26 @@ they deem appropriate.</p>
 audio and video is known.</p>
 </div></details><section id="method.connect_duration_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/media_stream.rs.html#688-711">source</a><h4 class="code-header">fn <a href="#method.connect_duration_notify" class="fn">connect_duration_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
     &amp;self,
-    f: F
+    f: F,
 ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_ended_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/media_stream.rs.html#714-734">source</a><h4 class="code-header">fn <a href="#method.connect_ended_notify" class="fn">connect_ended_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_error_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/media_stream.rs.html#737-757">source</a><h4 class="code-header">fn <a href="#method.connect_error_notify" class="fn">connect_error_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_has_audio_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/media_stream.rs.html#760-783">source</a><h4 class="code-header">fn <a href="#method.connect_has_audio_notify" class="fn">connect_has_audio_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
     &amp;self,
-    f: F
+    f: F,
 ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_has_video_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/media_stream.rs.html#786-809">source</a><h4 class="code-header">fn <a href="#method.connect_has_video_notify" class="fn">connect_has_video_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
     &amp;self,
-    f: F
+    f: F,
 ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_loop_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/media_stream.rs.html#812-832">source</a><h4 class="code-header">fn <a href="#method.connect_loop_notify" class="fn">connect_loop_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_muted_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/media_stream.rs.html#835-855">source</a><h4 class="code-header">fn <a href="#method.connect_muted_notify" class="fn">connect_muted_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_playing_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/media_stream.rs.html#858-878">source</a><h4 class="code-header">fn <a href="#method.connect_playing_notify" class="fn">connect_playing_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
     &amp;self,
-    f: F
+    f: F,
 ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_prepared_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/media_stream.rs.html#881-904">source</a><h4 class="code-header">fn <a href="#method.connect_prepared_notify" class="fn">connect_prepared_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
     &amp;self,
-    f: F
+    f: F,
 ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_seekable_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/media_stream.rs.html#907-930">source</a><h4 class="code-header">fn <a href="#method.connect_seekable_notify" class="fn">connect_seekable_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
     &amp;self,
-    f: F
+    f: F,
 ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_seeking_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/media_stream.rs.html#933-953">source</a><h4 class="code-header">fn <a href="#method.connect_seeking_notify" class="fn">connect_seeking_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
     &amp;self,
-    f: F
+    f: F,
 ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_timestamp_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/media_stream.rs.html#956-979">source</a><h4 class="code-header">fn <a href="#method.connect_timestamp_notify" class="fn">connect_timestamp_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
     &amp;self,
-    f: F
+    f: F,
 ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_volume_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/media_stream.rs.html#982-1002">source</a><h4 class="code-header">fn <a href="#method.connect_volume_notify" class="fn">connect_volume_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section></div><h2 id="object-safety" class="section-header">Object Safety<a href="#object-safety" class="anchor">§</a></h2><div class="object-safety-info">This trait is <b>not</b> <a href="https://doc.rust-lang.org/nightly/reference/items/traits.html#object-safety">object safe</a>.</div><h2 id="implementors" class="section-header">Implementors<a href="#implementors" class="anchor">§</a></h2><div id="implementors-list"><section id="impl-MediaStreamExt-for-O" class="impl"><a class="src rightside" href="../../src/gtk4/auto/media_stream.rs.html#1005">source</a><a href="#impl-MediaStreamExt-for-O" class="anchor">§</a><h3 class="code-header">impl&lt;O: <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.MediaStream.html" title="struct gtk4::MediaStream">MediaStream</a>&gt;&gt; <a class="trait" href="trait.MediaStreamExt.html" title="trait gtk4::prelude::MediaStreamExt">MediaStreamExt</a> for O</h3></section></div><script src="../../trait.impl/gtk4/auto/media_stream/trait.MediaStreamExt.js" async></script></section></div></main></body></html>

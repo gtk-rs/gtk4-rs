@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Trait containing all `struct@Widget` methods."><title>WidgetExt in gtk4::prelude - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-46f98efaafac5295.ttf.woff2,FiraSans-Regular-018c141bf0843ffd.woff2,FiraSans-Medium-8f9a781e4970d388.woff2,SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2,SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-dd39b87e5fcfba68.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.80.0-nightly (f67a1acc0 2024-06-01)" data-channel="nightly" data-search-js="search-d52510db62a78183.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-118b08c4c78b968e.js"></script><script defer src="sidebar-items.js"></script><script defer src="../../static.files/main-20a3ad099b048cf2.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-df360f571f6edeae.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc trait"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Trait containing all `struct@Widget` methods."><title>WidgetExt in gtk4::prelude - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-46f98efaafac5295.ttf.woff2,FiraSans-Regular-018c141bf0843ffd.woff2,FiraSans-Medium-8f9a781e4970d388.woff2,SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2,SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-dd39b87e5fcfba68.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.81.0-nightly (d7f6ebace 2024-06-16)" data-channel="nightly" data-search-js="search-0fe7219eb170c82e.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-118b08c4c78b968e.js"></script><script defer src="sidebar-items.js"></script><script defer src="../../static.files/main-20a3ad099b048cf2.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-df360f571f6edeae.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc trait"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
 
@@ -78,7 +78,7 @@
 <span class="item-spacer"></span>    fn <a href="#method.activate_action" class="fn">activate_action</a>(
         &amp;self,
         name: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>,
-        args: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/variant/struct.Variant.html" title="struct glib::variant::Variant">Variant</a>&gt;
+        args: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/variant/struct.Variant.html" title="struct glib::variant::Variant">Variant</a>&gt;,
     ) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.unit.html">()</a>, <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/error/struct.BoolError.html" title="struct glib::error::BoolError">BoolError</a>&gt; { ... }
 <span class="item-spacer"></span>    fn <a href="#method.activate_default" class="fn">activate_default</a>(&amp;self) { ... }
 <span class="item-spacer"></span>    fn <a href="#method.add_controller" class="fn">add_controller</a>(&amp;self, controller: impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.EventController.html" title="struct gtk4::EventController">EventController</a>&gt;) { ... }
@@ -89,7 +89,7 @@
         width: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>,
         height: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>,
         baseline: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>,
-        transform: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../../gsk4/auto/transform/struct.Transform.html" title="struct gsk4::auto::transform::Transform">Transform</a>&gt;
+        transform: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../../gsk4/auto/transform/struct.Transform.html" title="struct gsk4::auto::transform::Transform">Transform</a>&gt;,
     ) { ... }
 <span class="item-spacer"></span>    fn <a href="#method.child_focus" class="fn">child_focus</a>(&amp;self, direction: <a class="enum" href="../enum.DirectionType.html" title="enum gtk4::DirectionType">DirectionType</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> { ... }
 <span class="item-spacer"></span>    fn <a href="#method.compute_bounds" class="fn">compute_bounds</a>(&amp;self, target: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/graphene/auto/rect/struct.Rect.html" title="struct graphene::auto::rect::Rect">Rect</a>&gt; { ... }
@@ -97,7 +97,7 @@
 <span class="item-spacer"></span>    fn <a href="#method.compute_point" class="fn">compute_point</a>(
         &amp;self,
         target: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;,
-        point: &amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/graphene/auto/point/struct.Point.html" title="struct graphene::auto::point::Point">Point</a>
+        point: &amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/graphene/auto/point/struct.Point.html" title="struct graphene::auto::point::Point">Point</a>,
     ) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/graphene/auto/point/struct.Point.html" title="struct graphene::auto::point::Point">Point</a>&gt; { ... }
 <span class="item-spacer"></span>    fn <a href="#method.compute_transform" class="fn">compute_transform</a>(&amp;self, target: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/graphene/auto/matrix/struct.Matrix.html" title="struct graphene::auto::matrix::Matrix">Matrix</a>&gt; { ... }
 <span class="item-spacer"></span>    fn <a href="#method.contains" class="fn">contains</a>(&amp;self, x: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>, y: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> { ... }
@@ -108,7 +108,7 @@
         start_x: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>,
         start_y: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>,
         current_x: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>,
-        current_y: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>
+        current_y: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>,
     ) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> { ... }
 <span class="item-spacer"></span>    fn <a href="#method.error_bell" class="fn">error_bell</a>(&amp;self) { ... }
 <span class="item-spacer"></span>    fn <a href="#method.allocated_baseline" class="fn">allocated_baseline</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a> { ... }
@@ -184,17 +184,17 @@
 <span class="item-spacer"></span>    fn <a href="#method.insert_action_group" class="fn">insert_action_group</a>(
         &amp;self,
         name: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>,
-        group: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/gio/auto/action_group/struct.ActionGroup.html" title="struct gio::auto::action_group::ActionGroup">ActionGroup</a>&gt;&gt;
+        group: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/gio/auto/action_group/struct.ActionGroup.html" title="struct gio::auto::action_group::ActionGroup">ActionGroup</a>&gt;&gt;,
     ) { ... }
 <span class="item-spacer"></span>    fn <a href="#method.insert_after" class="fn">insert_after</a>(
         &amp;self,
         parent: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;,
-        previous_sibling: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;&gt;
+        previous_sibling: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;&gt;,
     ) { ... }
 <span class="item-spacer"></span>    fn <a href="#method.insert_before" class="fn">insert_before</a>(
         &amp;self,
         parent: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;,
-        next_sibling: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;&gt;
+        next_sibling: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;&gt;,
     ) { ... }
 <span class="item-spacer"></span>    fn <a href="#method.is_ancestor" class="fn">is_ancestor</a>(&amp;self, ancestor: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> { ... }
 <span class="item-spacer"></span>    fn <a href="#method.is_drawable" class="fn">is_drawable</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> { ... }
@@ -207,7 +207,7 @@
 <span class="item-spacer"></span>    fn <a href="#method.measure" class="fn">measure</a>(
         &amp;self,
         orientation: <a class="enum" href="../enum.Orientation.html" title="enum gtk4::Orientation">Orientation</a>,
-        for_size: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>
+        for_size: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>,
     ) -&gt; (<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) { ... }
 <span class="item-spacer"></span>    fn <a href="#method.mnemonic_activate" class="fn">mnemonic_activate</a>(&amp;self, group_cycling: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> { ... }
 <span class="item-spacer"></span>    fn <a href="#method.observe_children" class="fn">observe_children</a>(&amp;self) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/gio/auto/list_model/struct.ListModel.html" title="struct gio::auto::list_model::ListModel">ListModel</a> { ... }
@@ -238,7 +238,7 @@
 <span class="item-spacer"></span>    fn <a href="#method.set_hexpand_set" class="fn">set_hexpand_set</a>(&amp;self, set: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) { ... }
 <span class="item-spacer"></span>    fn <a href="#method.set_layout_manager" class="fn">set_layout_manager</a>(
         &amp;self,
-        layout_manager: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.LayoutManager.html" title="struct gtk4::LayoutManager">LayoutManager</a>&gt;&gt;
+        layout_manager: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.LayoutManager.html" title="struct gtk4::LayoutManager">LayoutManager</a>&gt;&gt;,
     ) { ... }
 <span class="item-spacer"></span>    fn <a href="#method.set_margin_bottom" class="fn">set_margin_bottom</a>(&amp;self, margin: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) { ... }
 <span class="item-spacer"></span>    fn <a href="#method.set_margin_end" class="fn">set_margin_end</a>(&amp;self, margin: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) { ... }
@@ -264,13 +264,13 @@
 <span class="item-spacer"></span>    fn <a href="#method.snapshot_child" class="fn">snapshot_child</a>(
         &amp;self,
         child: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;,
-        snapshot: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Snapshot.html" title="struct gtk4::Snapshot">Snapshot</a>&gt;
+        snapshot: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Snapshot.html" title="struct gtk4::Snapshot">Snapshot</a>&gt;,
     ) { ... }
 <span class="item-spacer"></span>    fn <a href="#method.translate_coordinates" class="fn">translate_coordinates</a>(
         &amp;self,
         dest_widget: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;,
         src_x: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>,
-        src_y: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>
+        src_y: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>,
     ) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>)&gt; { ... }
 <span class="item-spacer"></span>    fn <a href="#method.trigger_tooltip_query" class="fn">trigger_tooltip_query</a>(&amp;self) { ... }
 <span class="item-spacer"></span>    fn <a href="#method.unmap" class="fn">unmap</a>(&amp;self) { ... }
@@ -284,166 +284,166 @@
 <span class="item-spacer"></span>    fn <a href="#method.connect_destroy" class="fn">connect_destroy</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
 <span class="item-spacer"></span>    fn <a href="#method.connect_direction_changed" class="fn">connect_direction_changed</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>, <a class="enum" href="../enum.TextDirection.html" title="enum gtk4::TextDirection">TextDirection</a>) + 'static&gt;(
         &amp;self,
-        f: F
+        f: F,
     ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
 <span class="item-spacer"></span>    fn <a href="#method.connect_hide" class="fn">connect_hide</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
 <span class="item-spacer"></span>    fn <a href="#method.connect_keynav_failed" class="fn">connect_keynav_failed</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>, <a class="enum" href="../enum.DirectionType.html" title="enum gtk4::DirectionType">DirectionType</a>) -&gt; <a class="enum" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/enum.Propagation.html" title="enum glib::signal::Propagation">Propagation</a> + 'static&gt;(
         &amp;self,
-        f: F
+        f: F,
     ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
 <span class="item-spacer"></span>    fn <a href="#method.connect_map" class="fn">connect_map</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
 <span class="item-spacer"></span>    fn <a href="#method.connect_mnemonic_activate" class="fn">connect_mnemonic_activate</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) -&gt; <a class="enum" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/enum.Propagation.html" title="enum glib::signal::Propagation">Propagation</a> + 'static&gt;(
         &amp;self,
-        f: F
+        f: F,
     ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
 <span class="item-spacer"></span>    fn <a href="#method.connect_move_focus" class="fn">connect_move_focus</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>, <a class="enum" href="../enum.DirectionType.html" title="enum gtk4::DirectionType">DirectionType</a>) + 'static&gt;(
         &amp;self,
-        f: F
+        f: F,
     ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
 <span class="item-spacer"></span>    fn <a href="#method.emit_move_focus" class="fn">emit_move_focus</a>(&amp;self, direction: <a class="enum" href="../enum.DirectionType.html" title="enum gtk4::DirectionType">DirectionType</a>) { ... }
 <span class="item-spacer"></span>    fn <a href="#method.connect_query_tooltip" class="fn">connect_query_tooltip</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>, &amp;<a class="struct" href="../struct.Tooltip.html" title="struct gtk4::Tooltip">Tooltip</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> + 'static&gt;(
         &amp;self,
-        f: F
+        f: F,
     ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
 <span class="item-spacer"></span>    fn <a href="#method.connect_realize" class="fn">connect_realize</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
 <span class="item-spacer"></span>    fn <a href="#method.connect_show" class="fn">connect_show</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
 <span class="item-spacer"></span>    fn <a href="#method.connect_state_flags_changed" class="fn">connect_state_flags_changed</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>, <a class="struct" href="../struct.StateFlags.html" title="struct gtk4::StateFlags">StateFlags</a>) + 'static&gt;(
         &amp;self,
-        f: F
+        f: F,
     ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
 <span class="item-spacer"></span>    fn <a href="#method.connect_unmap" class="fn">connect_unmap</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
 <span class="item-spacer"></span>    fn <a href="#method.connect_unrealize" class="fn">connect_unrealize</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
 <span class="item-spacer"></span>    fn <a href="#method.connect_can_focus_notify" class="fn">connect_can_focus_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
         &amp;self,
-        f: F
+        f: F,
     ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
 <span class="item-spacer"></span>    fn <a href="#method.connect_can_target_notify" class="fn">connect_can_target_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
         &amp;self,
-        f: F
+        f: F,
     ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
 <span class="item-spacer"></span>    fn <a href="#method.connect_css_classes_notify" class="fn">connect_css_classes_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
         &amp;self,
-        f: F
+        f: F,
     ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
 <span class="item-spacer"></span>    fn <a href="#method.connect_cursor_notify" class="fn">connect_cursor_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
         &amp;self,
-        f: F
+        f: F,
     ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
 <span class="item-spacer"></span>    fn <a href="#method.connect_focus_on_click_notify" class="fn">connect_focus_on_click_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
         &amp;self,
-        f: F
+        f: F,
     ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
 <span class="item-spacer"></span>    fn <a href="#method.connect_focusable_notify" class="fn">connect_focusable_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
         &amp;self,
-        f: F
+        f: F,
     ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
 <span class="item-spacer"></span>    fn <a href="#method.connect_halign_notify" class="fn">connect_halign_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
         &amp;self,
-        f: F
+        f: F,
     ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
 <span class="item-spacer"></span>    fn <a href="#method.connect_has_default_notify" class="fn">connect_has_default_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
         &amp;self,
-        f: F
+        f: F,
     ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
 <span class="item-spacer"></span>    fn <a href="#method.connect_has_focus_notify" class="fn">connect_has_focus_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
         &amp;self,
-        f: F
+        f: F,
     ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
 <span class="item-spacer"></span>    fn <a href="#method.connect_has_tooltip_notify" class="fn">connect_has_tooltip_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
         &amp;self,
-        f: F
+        f: F,
     ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
 <span class="item-spacer"></span>    fn <a href="#method.connect_height_request_notify" class="fn">connect_height_request_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
         &amp;self,
-        f: F
+        f: F,
     ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
 <span class="item-spacer"></span>    fn <a href="#method.connect_hexpand_notify" class="fn">connect_hexpand_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
         &amp;self,
-        f: F
+        f: F,
     ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
 <span class="item-spacer"></span>    fn <a href="#method.connect_hexpand_set_notify" class="fn">connect_hexpand_set_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
         &amp;self,
-        f: F
+        f: F,
     ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
 <span class="item-spacer"></span>    fn <a href="#method.connect_layout_manager_notify" class="fn">connect_layout_manager_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
         &amp;self,
-        f: F
+        f: F,
     ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
 <span class="item-spacer"></span>    fn <a href="#method.connect_margin_bottom_notify" class="fn">connect_margin_bottom_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
         &amp;self,
-        f: F
+        f: F,
     ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
 <span class="item-spacer"></span>    fn <a href="#method.connect_margin_end_notify" class="fn">connect_margin_end_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
         &amp;self,
-        f: F
+        f: F,
     ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
 <span class="item-spacer"></span>    fn <a href="#method.connect_margin_start_notify" class="fn">connect_margin_start_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
         &amp;self,
-        f: F
+        f: F,
     ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
 <span class="item-spacer"></span>    fn <a href="#method.connect_margin_top_notify" class="fn">connect_margin_top_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
         &amp;self,
-        f: F
+        f: F,
     ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
 <span class="item-spacer"></span>    fn <a href="#method.connect_name_notify" class="fn">connect_name_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
         &amp;self,
-        f: F
+        f: F,
     ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
 <span class="item-spacer"></span>    fn <a href="#method.connect_opacity_notify" class="fn">connect_opacity_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
         &amp;self,
-        f: F
+        f: F,
     ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
 <span class="item-spacer"></span>    fn <a href="#method.connect_overflow_notify" class="fn">connect_overflow_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
         &amp;self,
-        f: F
+        f: F,
     ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
 <span class="item-spacer"></span>    fn <a href="#method.connect_parent_notify" class="fn">connect_parent_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
         &amp;self,
-        f: F
+        f: F,
     ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
 <span class="item-spacer"></span>    fn <a href="#method.connect_receives_default_notify" class="fn">connect_receives_default_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
         &amp;self,
-        f: F
+        f: F,
     ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
 <span class="item-spacer"></span>    fn <a href="#method.connect_root_notify" class="fn">connect_root_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
         &amp;self,
-        f: F
+        f: F,
     ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
 <span class="item-spacer"></span>    fn <a href="#method.connect_scale_factor_notify" class="fn">connect_scale_factor_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
         &amp;self,
-        f: F
+        f: F,
     ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
 <span class="item-spacer"></span>    fn <a href="#method.connect_sensitive_notify" class="fn">connect_sensitive_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
         &amp;self,
-        f: F
+        f: F,
     ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
 <span class="item-spacer"></span>    fn <a href="#method.connect_tooltip_markup_notify" class="fn">connect_tooltip_markup_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
         &amp;self,
-        f: F
+        f: F,
     ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
 <span class="item-spacer"></span>    fn <a href="#method.connect_tooltip_text_notify" class="fn">connect_tooltip_text_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
         &amp;self,
-        f: F
+        f: F,
     ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
 <span class="item-spacer"></span>    fn <a href="#method.connect_valign_notify" class="fn">connect_valign_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
         &amp;self,
-        f: F
+        f: F,
     ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
 <span class="item-spacer"></span>    fn <a href="#method.connect_vexpand_notify" class="fn">connect_vexpand_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
         &amp;self,
-        f: F
+        f: F,
     ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
 <span class="item-spacer"></span>    fn <a href="#method.connect_vexpand_set_notify" class="fn">connect_vexpand_set_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
         &amp;self,
-        f: F
+        f: F,
     ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
 <span class="item-spacer"></span>    fn <a href="#method.connect_visible_notify" class="fn">connect_visible_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
         &amp;self,
-        f: F
+        f: F,
     ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
 <span class="item-spacer"></span>    fn <a href="#method.connect_width_request_notify" class="fn">connect_width_request_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
         &amp;self,
-        f: F
+        f: F,
     ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
 </details>}</code></pre><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Trait containing all <a href="../struct.Widget.html" title="struct gtk4::Widget"><code>Widget</code></a> methods.</p>
 <h2 id="implementors-1"><a class="doc-anchor" href="#implementors-1">§</a>Implementors</h2>
@@ -469,7 +469,7 @@ created with <a href="../struct.SignalAction.html#method.new" title="associated 
 </div></details><details class="toggle method-toggle" open><summary><section id="method.activate_action" class="method"><a class="src rightside" href="../../src/gtk4/auto/widget.rs.html#965-980">source</a><h4 class="code-header">fn <a href="#method.activate_action" class="fn">activate_action</a>(
     &amp;self,
     name: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>,
-    args: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/variant/struct.Variant.html" title="struct glib::variant::Variant">Variant</a>&gt;
+    args: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/variant/struct.Variant.html" title="struct glib::variant::Variant">Variant</a>&gt;,
 ) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.unit.html">()</a>, <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/error/struct.BoolError.html" title="struct glib::error::BoolError">BoolError</a>&gt;</h4></section></summary><div class="docblock"><p>Looks up the action in the action groups associated with
 @self and its ancestors, and activates it.</p>
 <p>If the action is in an action group added with
@@ -512,7 +512,7 @@ its internal state at this point as well.</p>
     width: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>,
     height: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>,
     baseline: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>,
-    transform: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../../gsk4/auto/transform/struct.Transform.html" title="struct gsk4::auto::transform::Transform">Transform</a>&gt;
+    transform: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../../gsk4/auto/transform/struct.Transform.html" title="struct gsk4::auto::transform::Transform">Transform</a>&gt;,
 )</h4></section></summary><div class="docblock"><p>This function is only used by <a href="../struct.Widget.html" title="struct gtk4::Widget"><code>Widget</code></a> subclasses, to
 assign a size, position and (optionally) baseline to their
 child widgets.</p>
@@ -581,7 +581,7 @@ the widget may expand if some of its children do.</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.compute_point" class="method"><a class="src rightside" href="../../src/gtk4/auto/widget.rs.html#1198-1217">source</a><h4 class="code-header">fn <a href="#method.compute_point" class="fn">compute_point</a>(
     &amp;self,
     target: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;,
-    point: &amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/graphene/auto/point/struct.Point.html" title="struct graphene::auto::point::Point">Point</a>
+    point: &amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/graphene/auto/point/struct.Point.html" title="struct graphene::auto::point::Point">Point</a>,
 ) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/graphene/auto/point/struct.Point.html" title="struct graphene::auto::point::Point">Point</a>&gt;</h4></section></summary><div class="docblock"><p>Translates the given @point in @self’s coordinates to coordinates
 relative to @target’s coordinate system.</p>
 <p>In order to perform this operation, both widgets must share a
@@ -641,7 +641,7 @@ of the <a href="../struct.Widget.html#root" title="struct gtk4::Widget"><code>ro
     start_x: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>,
     start_y: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>,
     current_x: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>,
-    current_y: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>
+    current_y: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>,
 ) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>Checks to see if a drag movement has passed the GTK drag threshold.</p>
 <h6 id="start_x"><a class="doc-anchor" href="#start_x">§</a><code>start_x</code></h6>
 <p>X coordinate of start of drag</p>
@@ -1139,7 +1139,7 @@ the previously inserted group for @name</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.insert_after" class="method"><a class="src rightside" href="../../src/gtk4/auto/widget.rs.html#2746-2754">source</a><h4 class="code-header">fn <a href="#method.insert_after" class="fn">insert_after</a>(
     &amp;self,
     parent: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;,
-    previous_sibling: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;&gt;
+    previous_sibling: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;&gt;,
 )</h4></section></summary><div class="docblock"><p>Inserts @self into the child widget list of @parent.</p>
 <p>It will be placed after @previous_sibling, or at the beginning if
 @previous_sibling is <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="variant core::option::Option::None"><code>None</code></a>.</p>
@@ -1157,7 +1157,7 @@ just using a widget, you <em>must</em> use its own API for adding children.</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.insert_before" class="method"><a class="src rightside" href="../../src/gtk4/auto/widget.rs.html#2774-2782">source</a><h4 class="code-header">fn <a href="#method.insert_before" class="fn">insert_before</a>(
     &amp;self,
     parent: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;,
-    next_sibling: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;&gt;
+    next_sibling: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;&gt;,
 )</h4></section></summary><div class="docblock"><p>Inserts @self into the child widget list of @parent.</p>
 <p>It will be placed before @next_sibling, or at the end if
 @next_sibling is <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="variant core::option::Option::None"><code>None</code></a>.</p>
@@ -1248,7 +1248,7 @@ are done with it.</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.measure" class="method"><a class="src rightside" href="../../src/gtk4/auto/widget.rs.html#2975-2997">source</a><h4 class="code-header">fn <a href="#method.measure" class="fn">measure</a>(
     &amp;self,
     orientation: <a class="enum" href="../enum.Orientation.html" title="enum gtk4::Orientation">Orientation</a>,
-    for_size: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>
+    for_size: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>,
 ) -&gt; (<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</h4></section></summary><div class="docblock"><p>Measures @self in the orientation @orientation and for the given @for_size.</p>
 <p>As an example, if @orientation is <a href="../enum.Orientation.html#variant.Horizontal" title="variant gtk4::Orientation::Horizontal"><code>Orientation::Horizontal</code></a> and @for_size
 is 300, this functions will compute the minimum and natural width of @self
@@ -1702,7 +1702,7 @@ the origin to the position in @allocation.</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.snapshot_child" class="method"><a class="src rightside" href="../../src/gtk4/auto/widget.rs.html#3989-3997">source</a><h4 class="code-header">fn <a href="#method.snapshot_child" class="fn">snapshot_child</a>(
     &amp;self,
     child: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;,
-    snapshot: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Snapshot.html" title="struct gtk4::Snapshot">Snapshot</a>&gt;
+    snapshot: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Snapshot.html" title="struct gtk4::Snapshot">Snapshot</a>&gt;,
 )</h4></section></summary><div class="docblock"><p>Snapshot the a child of @self.</p>
 <p>When a widget receives a call to the snapshot function,
 it must send synthetic <a href="../subclass/widget/trait.WidgetImpl.html#method.snapshot" title="method gtk4::subclass::widget::WidgetImpl::snapshot"><code>WidgetImpl::snapshot()</code></a> calls
@@ -1724,7 +1724,7 @@ have been made.</p>
     &amp;self,
     dest_widget: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;,
     src_x: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>,
-    src_y: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>
+    src_y: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>,
 ) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>)&gt;</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.12</span></div></span></summary><div class="docblock"><p>Translate coordinates relative to @self’s allocation
 to coordinates relative to @dest_widget’s allocations.</p>
 <p>In order to perform this operation, both widget must share
@@ -1774,14 +1774,14 @@ the reference that they hold.</p>
 <p>This signal is not suitable for saving widget state.</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.connect_direction_changed" class="method"><a class="src rightside" href="../../src/gtk4/auto/widget.rs.html#4173-4202">source</a><h4 class="code-header">fn <a href="#method.connect_direction_changed" class="fn">connect_direction_changed</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>, <a class="enum" href="../enum.TextDirection.html" title="enum gtk4::TextDirection">TextDirection</a>) + 'static&gt;(
     &amp;self,
-    f: F
+    f: F,
 ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section></summary><div class="docblock"><p>Emitted when the text direction of a widget changes.</p>
 <h6 id="previous_direction"><a class="doc-anchor" href="#previous_direction">§</a><code>previous_direction</code></h6>
 <p>the previous text direction of @widget</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.connect_hide" class="method"><a class="src rightside" href="../../src/gtk4/auto/widget.rs.html#4206-4225">source</a><h4 class="code-header">fn <a href="#method.connect_hide" class="fn">connect_hide</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section></summary><div class="docblock"><p>Emitted when @widget is hidden.</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.connect_keynav_failed" class="method"><a class="src rightside" href="../../src/gtk4/auto/widget.rs.html#4239-4269">source</a><h4 class="code-header">fn <a href="#method.connect_keynav_failed" class="fn">connect_keynav_failed</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>, <a class="enum" href="../enum.DirectionType.html" title="enum gtk4::DirectionType">DirectionType</a>) -&gt; <a class="enum" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/enum.Propagation.html" title="enum glib::signal::Propagation">Propagation</a> + 'static&gt;(
     &amp;self,
-    f: F
+    f: F,
 ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section></summary><div class="docblock"><p>Emitted if keyboard navigation fails.</p>
 <p>See <a href="trait.WidgetExt.html#method.keynav_failed"><code>keynav_failed()</code></a> for details.</p>
 <h6 id="direction-2"><a class="doc-anchor" href="#direction-2">§</a><code>direction</code></h6>
@@ -1799,7 +1799,7 @@ for instance it can resume an animation that was stopped during the
 emission of <a href="../struct.Widget.html#unmap" title="struct gtk4::Widget"><code>unmap</code></a>.</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.connect_mnemonic_activate" class="method"><a class="src rightside" href="../../src/gtk4/auto/widget.rs.html#4314-4344">source</a><h4 class="code-header">fn <a href="#method.connect_mnemonic_activate" class="fn">connect_mnemonic_activate</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) -&gt; <a class="enum" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/enum.Propagation.html" title="enum glib::signal::Propagation">Propagation</a> + 'static&gt;(
     &amp;self,
-    f: F
+    f: F,
 ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section></summary><div class="docblock"><p>Emitted when a widget is activated via a mnemonic.</p>
 <p>The default handler for this signal activates @widget if @group_cycling
 is <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>false</code></a>, or just makes @widget grab focus if @group_cycling is <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a>.</p>
@@ -1810,7 +1810,7 @@ is <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="pr
 <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>false</code></a> to propagate the event further.</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.connect_move_focus" class="method"><a class="src rightside" href="../../src/gtk4/auto/widget.rs.html#4355-4381">source</a><h4 class="code-header">fn <a href="#method.connect_move_focus" class="fn">connect_move_focus</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>, <a class="enum" href="../enum.DirectionType.html" title="enum gtk4::DirectionType">DirectionType</a>) + 'static&gt;(
     &amp;self,
-    f: F
+    f: F,
 ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section></summary><div class="docblock"><p>Emitted when the focus is moved.</p>
 <p>The ::move-focus signal is a <a href="class.SignalAction.html">keybinding signal</a>.</p>
 <p>The default bindings for this signal are <kbd>Tab</kbd> to move forward,
@@ -1819,7 +1819,7 @@ and <kbd>Shift</kbd>+<kbd>Tab</kbd> to move backward.</p>
 <p>the direction of the focus move</p>
 </div></details><section id="method.emit_move_focus" class="method"><a class="src rightside" href="../../src/gtk4/auto/widget.rs.html#4383-4385">source</a><h4 class="code-header">fn <a href="#method.emit_move_focus" class="fn">emit_move_focus</a>(&amp;self, direction: <a class="enum" href="../enum.DirectionType.html" title="enum gtk4::DirectionType">DirectionType</a>)</h4></section><details class="toggle method-toggle" open><summary><section id="method.connect_query_tooltip" class="method"><a class="src rightside" href="../../src/gtk4/auto/widget.rs.html#4416-4452">source</a><h4 class="code-header">fn <a href="#method.connect_query_tooltip" class="fn">connect_query_tooltip</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>, &amp;<a class="struct" href="../struct.Tooltip.html" title="struct gtk4::Tooltip">Tooltip</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> + 'static&gt;(
     &amp;self,
-    f: F
+    f: F,
 ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section></summary><div class="docblock"><p>Emitted when the widget’s tooltip is about to be shown.</p>
 <p>This happens when the <a href="../struct.Widget.html#has-tooltip" title="struct gtk4::Widget"><code>has-tooltip</code></a> property
 is <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> and the hover timeout has expired with the cursor hovering
@@ -1849,7 +1849,7 @@ or the widget has been mapped (that is, it is going to be drawn).</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.connect_show" class="method"><a class="src rightside" href="../../src/gtk4/auto/widget.rs.html#4482-4501">source</a><h4 class="code-header">fn <a href="#method.connect_show" class="fn">connect_show</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section></summary><div class="docblock"><p>Emitted when @widget is shown.</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.connect_state_flags_changed" class="method"><a class="src rightside" href="../../src/gtk4/auto/widget.rs.html#4509-4538">source</a><h4 class="code-header">fn <a href="#method.connect_state_flags_changed" class="fn">connect_state_flags_changed</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>, <a class="struct" href="../struct.StateFlags.html" title="struct gtk4::StateFlags">StateFlags</a>) + 'static&gt;(
     &amp;self,
-    f: F
+    f: F,
 ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section></summary><div class="docblock"><p>Emitted when the widget state changes.</p>
 <p>See <a href="trait.WidgetExt.html#method.state_flags"><code>state_flags()</code></a>.</p>
 <h6 id="flags-3"><a class="doc-anchor" href="#flags-3">§</a><code>flags</code></h6>
@@ -1864,83 +1864,83 @@ it can be used to, for example, stop an animation on the widget.</p>
 or the widget has been unmapped (that is, it is going to be hidden).</p>
 </div></details><section id="method.connect_can_focus_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/widget.rs.html#4596-4616">source</a><h4 class="code-header">fn <a href="#method.connect_can_focus_notify" class="fn">connect_can_focus_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
     &amp;self,
-    f: F
+    f: F,
 ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_can_target_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/widget.rs.html#4619-4639">source</a><h4 class="code-header">fn <a href="#method.connect_can_target_notify" class="fn">connect_can_target_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
     &amp;self,
-    f: F
+    f: F,
 ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_css_classes_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/widget.rs.html#4642-4662">source</a><h4 class="code-header">fn <a href="#method.connect_css_classes_notify" class="fn">connect_css_classes_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
     &amp;self,
-    f: F
+    f: F,
 ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_cursor_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/widget.rs.html#4665-4685">source</a><h4 class="code-header">fn <a href="#method.connect_cursor_notify" class="fn">connect_cursor_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_focus_on_click_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/widget.rs.html#4688-4711">source</a><h4 class="code-header">fn <a href="#method.connect_focus_on_click_notify" class="fn">connect_focus_on_click_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
     &amp;self,
-    f: F
+    f: F,
 ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_focusable_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/widget.rs.html#4714-4734">source</a><h4 class="code-header">fn <a href="#method.connect_focusable_notify" class="fn">connect_focusable_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
     &amp;self,
-    f: F
+    f: F,
 ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_halign_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/widget.rs.html#4737-4757">source</a><h4 class="code-header">fn <a href="#method.connect_halign_notify" class="fn">connect_halign_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_has_default_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/widget.rs.html#4760-4780">source</a><h4 class="code-header">fn <a href="#method.connect_has_default_notify" class="fn">connect_has_default_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
     &amp;self,
-    f: F
+    f: F,
 ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_has_focus_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/widget.rs.html#4783-4803">source</a><h4 class="code-header">fn <a href="#method.connect_has_focus_notify" class="fn">connect_has_focus_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
     &amp;self,
-    f: F
+    f: F,
 ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_has_tooltip_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/widget.rs.html#4806-4826">source</a><h4 class="code-header">fn <a href="#method.connect_has_tooltip_notify" class="fn">connect_has_tooltip_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
     &amp;self,
-    f: F
+    f: F,
 ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_height_request_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/widget.rs.html#4829-4852">source</a><h4 class="code-header">fn <a href="#method.connect_height_request_notify" class="fn">connect_height_request_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
     &amp;self,
-    f: F
+    f: F,
 ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_hexpand_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/widget.rs.html#4855-4875">source</a><h4 class="code-header">fn <a href="#method.connect_hexpand_notify" class="fn">connect_hexpand_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
     &amp;self,
-    f: F
+    f: F,
 ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_hexpand_set_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/widget.rs.html#4878-4898">source</a><h4 class="code-header">fn <a href="#method.connect_hexpand_set_notify" class="fn">connect_hexpand_set_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
     &amp;self,
-    f: F
+    f: F,
 ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_layout_manager_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/widget.rs.html#4901-4924">source</a><h4 class="code-header">fn <a href="#method.connect_layout_manager_notify" class="fn">connect_layout_manager_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
     &amp;self,
-    f: F
+    f: F,
 ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_margin_bottom_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/widget.rs.html#4927-4950">source</a><h4 class="code-header">fn <a href="#method.connect_margin_bottom_notify" class="fn">connect_margin_bottom_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
     &amp;self,
-    f: F
+    f: F,
 ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_margin_end_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/widget.rs.html#4953-4973">source</a><h4 class="code-header">fn <a href="#method.connect_margin_end_notify" class="fn">connect_margin_end_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
     &amp;self,
-    f: F
+    f: F,
 ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_margin_start_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/widget.rs.html#4976-4996">source</a><h4 class="code-header">fn <a href="#method.connect_margin_start_notify" class="fn">connect_margin_start_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
     &amp;self,
-    f: F
+    f: F,
 ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_margin_top_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/widget.rs.html#4999-5019">source</a><h4 class="code-header">fn <a href="#method.connect_margin_top_notify" class="fn">connect_margin_top_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
     &amp;self,
-    f: F
+    f: F,
 ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_name_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/widget.rs.html#5022-5042">source</a><h4 class="code-header">fn <a href="#method.connect_name_notify" class="fn">connect_name_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_opacity_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/widget.rs.html#5045-5065">source</a><h4 class="code-header">fn <a href="#method.connect_opacity_notify" class="fn">connect_opacity_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
     &amp;self,
-    f: F
+    f: F,
 ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_overflow_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/widget.rs.html#5068-5088">source</a><h4 class="code-header">fn <a href="#method.connect_overflow_notify" class="fn">connect_overflow_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
     &amp;self,
-    f: F
+    f: F,
 ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_parent_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/widget.rs.html#5091-5111">source</a><h4 class="code-header">fn <a href="#method.connect_parent_notify" class="fn">connect_parent_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_receives_default_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/widget.rs.html#5114-5137">source</a><h4 class="code-header">fn <a href="#method.connect_receives_default_notify" class="fn">connect_receives_default_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
     &amp;self,
-    f: F
+    f: F,
 ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_root_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/widget.rs.html#5140-5160">source</a><h4 class="code-header">fn <a href="#method.connect_root_notify" class="fn">connect_root_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_scale_factor_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/widget.rs.html#5163-5183">source</a><h4 class="code-header">fn <a href="#method.connect_scale_factor_notify" class="fn">connect_scale_factor_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
     &amp;self,
-    f: F
+    f: F,
 ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_sensitive_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/widget.rs.html#5186-5206">source</a><h4 class="code-header">fn <a href="#method.connect_sensitive_notify" class="fn">connect_sensitive_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
     &amp;self,
-    f: F
+    f: F,
 ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_tooltip_markup_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/widget.rs.html#5209-5232">source</a><h4 class="code-header">fn <a href="#method.connect_tooltip_markup_notify" class="fn">connect_tooltip_markup_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
     &amp;self,
-    f: F
+    f: F,
 ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_tooltip_text_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/widget.rs.html#5235-5255">source</a><h4 class="code-header">fn <a href="#method.connect_tooltip_text_notify" class="fn">connect_tooltip_text_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
     &amp;self,
-    f: F
+    f: F,
 ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_valign_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/widget.rs.html#5258-5278">source</a><h4 class="code-header">fn <a href="#method.connect_valign_notify" class="fn">connect_valign_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_vexpand_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/widget.rs.html#5281-5301">source</a><h4 class="code-header">fn <a href="#method.connect_vexpand_notify" class="fn">connect_vexpand_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
     &amp;self,
-    f: F
+    f: F,
 ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_vexpand_set_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/widget.rs.html#5304-5324">source</a><h4 class="code-header">fn <a href="#method.connect_vexpand_set_notify" class="fn">connect_vexpand_set_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
     &amp;self,
-    f: F
+    f: F,
 ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_visible_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/widget.rs.html#5327-5347">source</a><h4 class="code-header">fn <a href="#method.connect_visible_notify" class="fn">connect_visible_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
     &amp;self,
-    f: F
+    f: F,
 ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_width_request_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/widget.rs.html#5350-5373">source</a><h4 class="code-header">fn <a href="#method.connect_width_request_notify" class="fn">connect_width_request_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
     &amp;self,
-    f: F
+    f: F,
 ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section></div><h2 id="object-safety" class="section-header">Object Safety<a href="#object-safety" class="anchor">§</a></h2><div class="object-safety-info">This trait is <b>not</b> <a href="https://doc.rust-lang.org/nightly/reference/items/traits.html#object-safety">object safe</a>.</div><h2 id="implementors" class="section-header">Implementors<a href="#implementors" class="anchor">§</a></h2><div id="implementors-list"><section id="impl-WidgetExt-for-O" class="impl"><a class="src rightside" href="../../src/gtk4/auto/widget.rs.html#5376">source</a><a href="#impl-WidgetExt-for-O" class="anchor">§</a><h3 class="code-header">impl&lt;O: <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;&gt; <a class="trait" href="trait.WidgetExt.html" title="trait gtk4::prelude::WidgetExt">WidgetExt</a> for O</h3></section></div><script src="../../trait.impl/gtk4/auto/widget/trait.WidgetExt.js" async></script></section></div></main></body></html>

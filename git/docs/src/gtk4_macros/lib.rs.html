@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4-macros/src/lib.rs`."><title>lib.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-46f98efaafac5295.ttf.woff2,FiraSans-Regular-018c141bf0843ffd.woff2,FiraSans-Medium-8f9a781e4970d388.woff2,SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2,SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-dd39b87e5fcfba68.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gtk4_macros" data-themes="" data-resource-suffix="" data-rustdoc-version="1.80.0-nightly (f67a1acc0 2024-06-01)" data-channel="nightly" data-search-js="search-d52510db62a78183.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-118b08c4c78b968e.js"></script><script defer src="../../static.files/src-script-e66d777a5a92e9b2.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-20a3ad099b048cf2.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-df360f571f6edeae.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4-macros/src/lib.rs`."><title>lib.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-46f98efaafac5295.ttf.woff2,FiraSans-Regular-018c141bf0843ffd.woff2,FiraSans-Medium-8f9a781e4970d388.woff2,SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2,SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-dd39b87e5fcfba68.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gtk4_macros" data-themes="" data-resource-suffix="" data-rustdoc-version="1.81.0-nightly (d7f6ebace 2024-06-16)" data-channel="nightly" data-search-js="search-0fe7219eb170c82e.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-118b08c4c78b968e.js"></script><script defer src="../../static.files/src-script-e66d777a5a92e9b2.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-20a3ad099b048cf2.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-df360f571f6edeae.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
 
@@ -563,7 +563,7 @@
 <span class="kw">mod </span><a href="util.rs.html#3-17">util</a>;
 
 <span class="kw">use </span><a href="https://doc.rust-lang.org/nightly/proc_macro/struct.TokenStream.html">proc_macro::TokenStream</a>;
-<span class="kw">use </span><a href="https://docs.rs/proc-macro2/1.0.84/proc_macro2/struct.Span.html">proc_macro2::Span</a>;
+<span class="kw">use </span><a href="https://docs.rs/proc-macro2/1.0.85/proc_macro2/struct.Span.html">proc_macro2::Span</a>;
 <span class="kw">use </span>syn::{<a href="https://docs.rs/syn/2.0.66/syn/macro.parse_macro_input.html">parse_macro_input</a>, <a href="https://docs.rs/syn/2.0.66/syn/derive/struct.DeriveInput.html">DeriveInput</a>, <a href="https://docs.rs/syn/2.0.66/syn/error/struct.Error.html">Error</a>};
 
 <span class="doccomment">/// That macro includes and compiles blueprint file by path relative to project
@@ -579,7 +579,7 @@
     <span class="kw">let </span>tokens: Vec&lt;<span class="kw">_</span>&gt; = <a href="#25">input</a>.<a href="https://doc.rust-lang.org/nightly/core/iter/traits/collect/trait.IntoIterator.html#tymethod.into_iter">into_iter</a>().<a href="https://doc.rust-lang.org/nightly/core/iter/traits/iterator/trait.Iterator.html#tymethod.collect">collect</a>();
 
     <span class="kw">if </span>tokens.len() != <span class="number">1 </span>{
-        <span class="kw">return </span><a href="https://docs.rs/syn/2.0.66/syn/error/struct.Error.html#method.new">Error::new</a>(<a href="https://docs.rs/proc-macro2/1.0.84/proc_macro2/struct.Span.html#method.call_site">Span::call_site</a>(), <span class="string">"File name not found"</span>)
+        <span class="kw">return </span><a href="https://docs.rs/syn/2.0.66/syn/error/struct.Error.html#method.new">Error::new</a>(<a href="https://docs.rs/proc-macro2/1.0.85/proc_macro2/struct.Span.html#method.call_site">Span::call_site</a>(), <span class="string">"File name not found"</span>)
             .<a href="https://docs.rs/syn/2.0.66/syn/error/struct.Error.html#method.into_compile_error">into_compile_error</a>()
             .<a href="https://doc.rust-lang.org/nightly/core/convert/trait.Into.html#tymethod.into">into</a>();
     }
@@ -594,7 +594,7 @@
 
     <span class="kw">if </span>!path.exists() {
         <span class="kw">return </span><a href="https://docs.rs/syn/2.0.66/syn/error/struct.Error.html#method.new">Error::new</a>(
-            <a href="https://docs.rs/proc-macro2/1.0.84/proc_macro2/struct.Span.html#method.call_site">Span::call_site</a>(),
+            <a href="https://docs.rs/proc-macro2/1.0.85/proc_macro2/struct.Span.html#method.call_site">Span::call_site</a>(),
             <a class="macro" href="https://doc.rust-lang.org/nightly/alloc/macro.format.html">format!</a>(<span class="string">"{} not found"</span>, <span class="kw-2">&amp;</span>path.to_string_lossy()),
         )
         .<a href="https://docs.rs/syn/2.0.66/syn/error/struct.Error.html#method.into_compile_error">into_compile_error</a>()
@@ -606,7 +606,7 @@
     <span class="kw">let </span>template = <span class="kw">match </span><a href="https://doc.rust-lang.org/nightly/std/fs/fn.read_to_string.html">std::fs::read_to_string</a>(<span class="kw-2">&amp;</span><a href="#53">path</a>) {
         <span class="prelude-val">Ok</span>(content) =&gt; <a href="blueprint.rs.html#8-29">blueprint::compile_blueprint</a>(<a href="#56">content</a>.<a href="https://doc.rust-lang.org/nightly/alloc/string/struct.String.html#method.as_bytes">as_bytes</a>()).<a href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html#method.unwrap">unwrap</a>(),
         <span class="prelude-val">Err</span>(err) =&gt; {
-            <span class="kw">return </span><a href="https://docs.rs/syn/2.0.66/syn/error/struct.Error.html#method.new">Error::new</a>(<a href="https://docs.rs/proc-macro2/1.0.84/proc_macro2/struct.Span.html#method.call_site">Span::call_site</a>(), <a href="#57">err</a>)
+            <span class="kw">return </span><a href="https://docs.rs/syn/2.0.66/syn/error/struct.Error.html#method.new">Error::new</a>(<a href="https://docs.rs/proc-macro2/1.0.85/proc_macro2/struct.Span.html#method.call_site">Span::call_site</a>(), <a href="#57">err</a>)
                 .<a href="https://docs.rs/syn/2.0.66/syn/error/struct.Error.html#method.into_compile_error">into_compile_error</a>()
                 .<a href="https://doc.rust-lang.org/nightly/core/convert/trait.Into.html#tymethod.into">into</a>()
         }
@@ -951,7 +951,7 @@
             .<a href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html#method.unwrap_or_else">unwrap_or_else</a>(syn::Error::into_compile_error)
             .<a href="https://doc.rust-lang.org/nightly/core/convert/trait.Into.html#tymethod.into">into</a>(),
         <span class="prelude-val">Err</span>(<span class="kw">_</span>) =&gt; <a href="https://docs.rs/syn/2.0.66/syn/error/struct.Error.html#method.new">Error::new</a>(
-            <a href="https://docs.rs/proc-macro2/1.0.84/proc_macro2/struct.Span.html#method.call_site">Span::call_site</a>(),
+            <a href="https://docs.rs/proc-macro2/1.0.85/proc_macro2/struct.Span.html#method.call_site">Span::call_site</a>(),
             <a href="template_callbacks_attribute.rs.html#9-10">template_callbacks_attribute::WRONG_PLACE_MSG</a>,
         )
         .<a href="https://docs.rs/syn/2.0.66/syn/error/struct.Error.html#method.into_compile_error">into_compile_error</a>()
@@ -1020,7 +1020,7 @@
             <a href="#460">test</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.Into.html#tymethod.into">into</a>()
         }
         <span class="prelude-val">Err</span>(<span class="kw">_</span>) =&gt; <a href="https://docs.rs/syn/2.0.66/syn/error/struct.Error.html#method.new">Error::new</a>(
-            <a href="https://docs.rs/proc-macro2/1.0.84/proc_macro2/struct.Span.html#method.call_site">Span::call_site</a>(),
+            <a href="https://docs.rs/proc-macro2/1.0.85/proc_macro2/struct.Span.html#method.call_site">Span::call_site</a>(),
             <span class="string">"This macro should be used on a function definition"</span>,
         )
         .<a href="https://docs.rs/syn/2.0.66/syn/error/struct.Error.html#method.into_compile_error">into_compile_error</a>()
