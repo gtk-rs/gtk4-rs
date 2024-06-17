@@ -32,10 +32,12 @@ impl SimpleWidget {
 
         let start_time = std::time::Instant::now();
         imp.start_time.replace(Some(start_time));
-        let tick_id =
-            self.add_tick_callback(clone!(@weak self as this => @default-panic, move |_, _| {
-                this.transition()
-            }));
+        let tick_id = self.add_tick_callback(clone!(
+            #[weak(rename_to = this)]
+            self,
+            #[upgrade_or_panic]
+            move |_, _| this.transition()
+        ));
         imp.tick_id.replace(Some(tick_id));
     }
 

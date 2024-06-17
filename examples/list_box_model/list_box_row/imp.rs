@@ -60,51 +60,67 @@ impl ObjectImpl for ListBoxRow {
         // When the edit button is clicked, a new modal dialog is created for editing
         // the corresponding row
         let edit_button = gtk::Button::with_label("Edit");
-        edit_button.connect_clicked(clone!(@weak item, @weak obj => move |_| {
-            let parent_window = obj.root().and_downcast::<gtk::Window>();
-            let dialog = gtk::Dialog::with_buttons(
-                Some("Edit Item"),
-                parent_window.as_ref(),
-                gtk::DialogFlags::MODAL,
-                &[("Close", gtk::ResponseType::Close)],
-            );
-            dialog.set_default_response(gtk::ResponseType::Close);
-            dialog.connect_response(|dialog, _| dialog.close());
+        edit_button.connect_clicked(clone!(
+            #[weak]
+            item,
+            #[weak]
+            obj,
+            move |_| {
+                let parent_window = obj.root().and_downcast::<gtk::Window>();
+                let dialog = gtk::Dialog::with_buttons(
+                    Some("Edit Item"),
+                    parent_window.as_ref(),
+                    gtk::DialogFlags::MODAL,
+                    &[("Close", gtk::ResponseType::Close)],
+                );
+                dialog.set_default_response(gtk::ResponseType::Close);
+                dialog.connect_response(|dialog, _| dialog.close());
 
-            let content_area = dialog.content_area();
+                let content_area = dialog.content_area();
 
-            // Similarly to the label and spin button inside the listbox, the text entry
-            // and spin button in the edit dialog are connected via property bindings to
-            // the item. Any changes will be immediately reflected inside the item and
-            // by the listbox
-            let entry = gtk::Entry::new();
-            item.bind_property("name", &entry, "text")
-                .sync_create().bidirectional()
-                .build();
+                // Similarly to the label and spin button inside the listbox, the text entry
+                // and spin button in the edit dialog are connected via property bindings to
+                // the item. Any changes will be immediately reflected inside the item and
+                // by the listbox
+                let entry = gtk::Entry::new();
+                item.bind_property("name", &entry, "text")
+                    .sync_create()
+                    .bidirectional()
+                    .build();
 
-            // Activating the entry (enter) will send response `ResponseType::Close` to the dialog
-            entry.connect_activate(clone!(@weak dialog => move |_| {
-                dialog.response(gtk::ResponseType::Close);
-            }));
-            content_area.append(&entry);
+                // Activating the entry (enter) will send response `ResponseType::Close` to the dialog
+                entry.connect_activate(clone!(
+                    #[weak]
+                    dialog,
+                    move |_| {
+                        dialog.response(gtk::ResponseType::Close);
+                    }
+                ));
+                content_area.append(&entry);
 
-            let spin_button = gtk::SpinButton::with_range(0.0, 100.0, 1.0);
-            item.bind_property("count", &spin_button, "value")
-                .sync_create().bidirectional()
-                .build();
-            content_area.append(&spin_button);
+                let spin_button = gtk::SpinButton::with_range(0.0, 100.0, 1.0);
+                item.bind_property("count", &spin_button, "value")
+                    .sync_create()
+                    .bidirectional()
+                    .build();
+                content_area.append(&spin_button);
 
-            dialog.present()
-        }));
+                dialog.present()
+            }
+        ));
         hbox.append(&edit_button);
 
         obj.set_child(Some(&hbox));
 
         // When a row is activated (select + enter) we simply emit the clicked
         // signal on the corresponding edit button to open the edit dialog
-        obj.connect_activate(clone!(@weak edit_button => move |_| {
-            edit_button.emit_clicked();
-        }));
+        obj.connect_activate(clone!(
+            #[weak]
+            edit_button,
+            move |_| {
+                edit_button.emit_clicked();
+            }
+        ));
     }
 }
 

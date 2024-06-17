@@ -20,15 +20,19 @@ fn build_ui(application: &gtk::Application) {
         .object::<gtk::Button>("button")
         .expect("Couldn't get button");
 
-    bigbutton.connect_clicked(glib::clone!(@weak window => move |_| {
-        gtk::AlertDialog::builder()
-            .modal(true)
-            .message("Thank you for trying this example")
-            .detail("You have pressed the button")
-            .buttons(["Ok"])
-            .build()
-            .show(Some(&window));
-    }));
+    bigbutton.connect_clicked(glib::clone!(
+        #[weak]
+        window,
+        move |_| {
+            gtk::AlertDialog::builder()
+                .modal(true)
+                .message("Thank you for trying this example")
+                .detail("You have pressed the button")
+                .buttons(["Ok"])
+                .build()
+                .show(Some(&window));
+        }
+    ));
 
     window.present();
 }

@@ -58,9 +58,13 @@ impl ObjectImpl for CustomTag {
         self.container.append(&self.label);
 
         let gesture = gtk::GestureClick::new();
-        gesture.connect_released(clone!(@weak tag => move |_gesture, _n_press, _x, _y| {
-            tag.emit_by_name::<()>("clicked", &[]);
-        }));
+        gesture.connect_released(clone!(
+            #[weak]
+            tag,
+            move |_gesture, _n_press, _x, _y| {
+                tag.emit_by_name::<()>("clicked", &[]);
+            }
+        ));
         tag.add_controller(gesture);
     }
 
@@ -98,9 +102,13 @@ impl CustomTag {
                 .valign(gtk::Align::Center)
                 .has_frame(false)
                 .build();
-            button.connect_clicked(clone!(@weak self as tag => move |_btn| {
-                tag.obj().emit_by_name::<()>("closed", &[]);
-            }));
+            button.connect_clicked(clone!(
+                #[weak(rename_to = tag)]
+                self,
+                move |_btn| {
+                    tag.obj().emit_by_name::<()>("closed", &[]);
+                }
+            ));
             let icon = gtk::Image::from_icon_name("window-close-symbolic");
             button.set_child(Some(&icon));
 

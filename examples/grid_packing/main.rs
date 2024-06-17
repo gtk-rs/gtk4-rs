@@ -47,7 +47,11 @@ fn build_ui(application: &gtk::Application) {
 
     // Create the quit button and put it into the grid at (0, 1)
     let quit_button = gtk::Button::with_label("Quit");
-    quit_button.connect_clicked(clone!(@weak window => move |_| window.destroy()));
+    quit_button.connect_clicked(clone!(
+        #[weak]
+        window,
+        move |_| window.destroy()
+    ));
 
     grid.attach(&quit_button, 0, 1, 2, 1);
 

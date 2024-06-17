@@ -1,5 +1,3 @@
-use std::rc::Rc;
-
 use gtk::{
     glib::{self, clone},
     prelude::*,
@@ -21,20 +19,20 @@ fn build_ui(application: &gtk::Application) {
         .valign(gtk::Align::Center)
         .build();
 
-    let window = Rc::new(
-        gtk::ApplicationWindow::builder()
-            .application(application)
-            .title("Dialog Example")
-            .default_width(350)
-            .default_height(70)
-            .child(&button)
-            .visible(true)
-            .build(),
-    );
+    let window = gtk::ApplicationWindow::builder()
+        .application(application)
+        .title("Dialog Example")
+        .default_width(350)
+        .default_height(70)
+        .child(&button)
+        .visible(true)
+        .build();
 
-    button.connect_clicked(clone!(@strong window =>
+    button.connect_clicked(clone!(
+        #[weak]
+        window,
         move |_| {
-            gtk::glib::MainContext::default().spawn_local(dialog(Rc::clone(&window)));
+            gtk::glib::MainContext::default().spawn_local(dialog(window.clone()));
         }
     ));
 
@@ -46,14 +44,14 @@ fn build_ui(application: &gtk::Application) {
     });
 }
 
-async fn dialog<W: IsA<gtk::Window>>(window: Rc<W>) {
+async fn dialog<W: IsA<gtk::Window>>(window: W) {
     let question_dialog = gtk::AlertDialog::builder()
         .modal(true)
         .buttons(["Cancel", "Ok"])
         .message("What is your answer?")
         .build();
 
-    let answer = question_dialog.choose_future(Some(&*window)).await;
+    let answer = question_dialog.choose_future(Some(&window)).await;
 
     let info_dialog = gtk::AlertDialog::builder()
         .modal(true)
@@ -61,5 +59,5 @@ async fn dialog<W: IsA<gtk::Window>>(window: Rc<W>) {
         .detail(format!("Your answer: {answer:?}"))
         .build();
 
-    info_dialog.show(Some(&*window));
+    info_dialog.show(Some(&window));
 }

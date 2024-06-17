@@ -54,23 +54,42 @@ fn build_ui(application: &gtk::Application) {
     text_container.append(&from_entry);
 
     let copy_btn = gtk::Button::with_label("Copy");
-    copy_btn.connect_clicked(clone!(@weak clipboard, @weak from_entry => move |_btn| {
-        let text = from_entry.text();
-        clipboard.set_text(&text);
-    }));
+    copy_btn.connect_clicked(clone!(
+        #[weak]
+        clipboard,
+        #[weak]
+        from_entry,
+        move |_btn| {
+            let text = from_entry.text();
+            clipboard.set_text(&text);
+        }
+    ));
     text_container.append(&copy_btn);
 
     let into_entry = gtk::Entry::new();
     text_container.append(&into_entry);
 
     let paste_btn = gtk::Button::with_label("Paste");
-    paste_btn.connect_clicked(clone!(@weak clipboard, @weak into_entry => move |_btn| {
-        clipboard.read_text_async(gio::Cancellable::NONE, clone!(@weak into_entry => move|res| {
-            if let Ok(Some(text)) = res {
-                into_entry.set_text(&text);
-            }
-        }));
-    }));
+    paste_btn.connect_clicked(clone!(
+        #[weak]
+        clipboard,
+        #[weak]
+        into_entry,
+        move |_btn| {
+            clipboard.read_text_async(
+                gio::Cancellable::NONE,
+                clone!(
+                    #[weak]
+                    into_entry,
+                    move |res| {
+                        if let Ok(Some(text)) = res {
+                            into_entry.set_text(&text);
+                        }
+                    }
+                ),
+            );
+        }
+    ));
     text_container.append(&paste_btn);
     container.append(&text_container);
 
@@ -100,10 +119,19 @@ fn build_ui(application: &gtk::Application) {
         .label("Copy")
         .valign(gtk::Align::Center)
         .build();
-    copy_texture_btn.connect_clicked(clone!(@weak clipboard, @weak image_from => move |_btn| {
-        let texture = image_from.paintable().and_downcast::<gdk::Texture>().unwrap();
-        clipboard.set_texture(&texture);
-    }));
+    copy_texture_btn.connect_clicked(clone!(
+        #[weak]
+        clipboard,
+        #[weak]
+        image_from,
+        move |_btn| {
+            let texture = image_from
+                .paintable()
+                .and_downcast::<gdk::Texture>()
+                .unwrap();
+            clipboard.set_texture(&texture);
+        }
+    ));
     texture_container.append(&copy_texture_btn);
 
     let image_into = gtk::Image::builder()
@@ -115,13 +143,24 @@ fn build_ui(application: &gtk::Application) {
         .label("Paste")
         .valign(gtk::Align::Center)
         .build();
-    paste_texture_btn.connect_clicked(clone!(@weak clipboard => move |_btn| {
-        clipboard.read_texture_async(gio::Cancellable::NONE, clone!(@weak image_into => move |res| {
-            if let Ok(Some(texture)) = res {
-                image_into.set_paintable(Some(&texture));
-            }
-        }));
-    }));
+    paste_texture_btn.connect_clicked(clone!(
+        #[weak]
+        clipboard,
+        move |_btn| {
+            clipboard.read_texture_async(
+                gio::Cancellable::NONE,
+                clone!(
+                    #[weak]
+                    image_into,
+                    move |res| {
+                        if let Ok(Some(texture)) = res {
+                            image_into.set_paintable(Some(&texture));
+                        }
+                    }
+                ),
+            );
+        }
+    ));
     texture_container.append(&paste_texture_btn);
     container.append(&texture_container);
 

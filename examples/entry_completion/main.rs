@@ -13,11 +13,13 @@ fn main() -> glib::ExitCode {
 
     // When activated, shuts down the application
     let quit = gio::SimpleAction::new("quit", None);
-    quit.connect_activate(
-        glib::clone!(@weak application => move |_action, _parameter| {
+    quit.connect_activate(glib::clone!(
+        #[weak]
+        application,
+        move |_action, _parameter| {
             application.quit();
-        }),
-    );
+        }
+    ));
     application.set_accels_for_action("app.quit", &["<Primary>Q"]);
     application.add_action(&quit);
 

@@ -53,11 +53,18 @@ fn main() -> glib::ExitCode {
 
 fn build_ui(app: &Application) {
     let (sender, receiver) = async_channel::bounded::<Result<Vec<Pokemon>, reqwest::Error>>(1);
-    runtime().spawn(clone!(@strong sender => async move {
-        let mut pokemon_client = PokemonClient::default();
-        let pokemon_vec = pokemon_client.get_pokemon_list().await;
-        sender.send(pokemon_vec).await.expect("The channel needs to be open.");
-    }));
+    runtime().spawn(clone!(
+        #[strong]
+        sender,
+        async move {
+            let mut pokemon_client = PokemonClient::default();
+            let pokemon_vec = pokemon_client.get_pokemon_list().await;
+            sender
+                .send(pokemon_vec)
+                .await
+                .expect("The channel needs to be open.");
+        }
+    ));
 
     let list_box = gtk::ListBox::builder().build();
     let scrolled_window = gtk::ScrolledWindow::builder()
@@ -69,10 +76,17 @@ fn build_ui(app: &Application) {
     scrolled_window.connect_edge_reached(move |_, position| {
         let mut pokemon_client = PokemonClient::default();
         if gtk::PositionType::Bottom == position {
-            runtime().spawn(clone!(@strong sender => async move {
-                let pokemon_vec = pokemon_client.get_pokemon_list().await;
-                sender.send(pokemon_vec).await.expect("The channel needs to be open.");
-            }));
+            runtime().spawn(clone!(
+                #[strong]
+                sender,
+                async move {
+                    let pokemon_vec = pokemon_client.get_pokemon_list().await;
+                    sender
+                        .send(pokemon_vec)
+                        .await
+                        .expect("The channel needs to be open.");
+                }
+            ));
         }
     });
 

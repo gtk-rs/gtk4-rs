@@ -48,18 +48,39 @@ fn build_ui(application: &gtk::Application) {
 
     let add_tag_button = gtk::Button::with_label("Add Tag");
     add_tag_button.set_halign(gtk::Align::Center);
-    add_tag_button.connect_clicked(clone!(@weak editable => move |_btn| {
-        let tag = CustomTag::new("Blue");
-        tag.connect_local_id(custom_tag::imp::CustomTag::signals()[0].signal_id(), None, false, clone!(@weak editable, @weak tag => @default-return None, move |_args| {
-            editable.remove_tag(&tag);
-            None
-        }));
-        tag.connect_local_id(custom_tag::imp::CustomTag::signals()[1].signal_id(), None, false, move |_args| {
-            println!("Tag clicked");
-            None
-        });
-        editable.add_tag(&tag);
-    }));
+    add_tag_button.connect_clicked(clone!(
+        #[weak]
+        editable,
+        move |_btn| {
+            let tag = CustomTag::new("Blue");
+            tag.connect_local_id(
+                custom_tag::imp::CustomTag::signals()[0].signal_id(),
+                None,
+                false,
+                clone!(
+                    #[weak]
+                    editable,
+                    #[weak]
+                    tag,
+                    #[upgrade_or_default]
+                    move |_args| {
+                        editable.remove_tag(&tag);
+                        None
+                    }
+                ),
+            );
+            tag.connect_local_id(
+                custom_tag::imp::CustomTag::signals()[1].signal_id(),
+                None,
+                false,
+                move |_args| {
+                    println!("Tag clicked");
+                    None
+                },
+            );
+            editable.add_tag(&tag);
+        }
+    ));
     horizontal_container.append(&add_tag_button);
 
     let show_spinner = gtk::CheckButton::builder()

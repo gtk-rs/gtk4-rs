@@ -33,9 +33,13 @@ impl ObjectImpl for SimpleWidget {
         let gesture = gtk::GestureClick::new();
         // Trigger a transition on click
         let obj = self.obj();
-        gesture.connect_pressed(clone!(@strong obj as this => move |_, _, _, _| {
-            this.do_transition();
-        }));
+        gesture.connect_pressed(clone!(
+            #[weak(rename_to = this)]
+            obj,
+            move |_, _, _, _| {
+                this.do_transition();
+            }
+        ));
         self.obj().add_controller(gesture);
     }
 

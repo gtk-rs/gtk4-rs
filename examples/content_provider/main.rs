@@ -17,15 +17,32 @@ fn on_activate(application: &gtk::Application) {
     // both GtkRootExt and GtkWidgetExt trait.
     let display = WidgetExt::display(&window);
 
-    window.connect_realize(glib::clone!(@weak display, @weak application => move |_| {
-        let provider = ContentProvider::default();
-        display.clipboard().set_content(Some(&provider)).unwrap();
-        glib::MainContext::default().spawn_local(glib::clone!(@weak display, @weak application => async move {
-            let text = display.clipboard().read_text_future().await.unwrap().unwrap();
-            assert_eq!(text.as_str(), "Hello clipboard!");
-            application.quit();
-        }));
-    }));
+    window.connect_realize(glib::clone!(
+        #[weak]
+        display,
+        #[weak]
+        application,
+        move |_| {
+            let provider = ContentProvider::default();
+            display.clipboard().set_content(Some(&provider)).unwrap();
+            glib::MainContext::default().spawn_local(glib::clone!(
+                #[weak]
+                display,
+                #[weak]
+                application,
+                async move {
+                    let text = display
+                        .clipboard()
+                        .read_text_future()
+                        .await
+                        .unwrap()
+                        .unwrap();
+                    assert_eq!(text.as_str(), "Hello clipboard!");
+                    application.quit();
+                }
+            ));
+        }
+    ));
 
     window.present();
 }
