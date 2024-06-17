@@ -27,20 +27,24 @@ fn main() {
         let bytes = glib::Bytes::from_static(LOGO_SVG);
         let logo = gdk::Texture::from_bytes(&bytes).expect("gtk-rs.svg to load");
 
-        button.connect_clicked(glib::clone!(@weak window => move |_| {
-            let dialog = gtk::AboutDialog::builder()
-                .transient_for(&window)
-                .modal(true)
-                .program_name("About Dialog Example")
-                .version("0.1.0")
-                .website("https://gtk-rs.org")
-                .license_type(gtk::License::MitX11)
-                .authors(["Author 1", "Author 2"])
-                .logo(&logo)
-                .build();
+        button.connect_clicked(glib::clone!(
+            #[weak]
+            window,
+            move |_| {
+                let dialog = gtk::AboutDialog::builder()
+                    .transient_for(&window)
+                    .modal(true)
+                    .program_name("About Dialog Example")
+                    .version("0.1.0")
+                    .website("https://gtk-rs.org")
+                    .license_type(gtk::License::MitX11)
+                    .authors(["Author 1", "Author 2"])
+                    .logo(&logo)
+                    .build();
 
-            dialog.present();
-        }));
+                dialog.present();
+            }
+        ));
 
         window.present();
     });

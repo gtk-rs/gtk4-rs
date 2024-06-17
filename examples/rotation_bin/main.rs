@@ -60,12 +60,16 @@ fn build_ui(application: &gtk::Application) {
     let clockwise = gtk::Button::with_label("Rotate clockwise");
     let counter_clockwise = gtk::Button::with_label("Rotate counter clockwise");
 
-    clockwise.connect_clicked(clone!(@weak rotation_bin => move |_| {
-        rotation_bin.rotate_clockwise()
-    }));
-    counter_clockwise.connect_clicked(clone!(@weak rotation_bin => move |_| {
-        rotation_bin.rotate_counter_clockwise()
-    }));
+    clockwise.connect_clicked(clone!(
+        #[weak]
+        rotation_bin,
+        move |_| rotation_bin.rotate_clockwise()
+    ));
+    counter_clockwise.connect_clicked(clone!(
+        #[weak]
+        rotation_bin,
+        move |_| rotation_bin.rotate_counter_clockwise()
+    ));
 
     interactive_box.append(&clockwise);
     interactive_box.append(&counter_clockwise);
@@ -75,18 +79,26 @@ fn build_ui(application: &gtk::Application) {
     let deg180 = gtk::Button::with_label("Reset rotation to 180 degrees");
     let deg270 = gtk::Button::with_label("Reset rotation to 270 degrees");
 
-    normal.connect_clicked(clone!(@weak rotation_bin => move |_| {
-        rotation_bin.set_rotation(Rotation::Normal)
-    }));
-    deg90.connect_clicked(clone!(@weak rotation_bin => move |_| {
-        rotation_bin.set_rotation(Rotation::Deg90)
-    }));
-    deg180.connect_clicked(clone!(@weak rotation_bin => move |_| {
-        rotation_bin.set_rotation(Rotation::Deg180)
-    }));
-    deg270.connect_clicked(clone!(@weak rotation_bin => move |_| {
-        rotation_bin.set_rotation(Rotation::Deg270)
-    }));
+    normal.connect_clicked(clone!(
+        #[weak]
+        rotation_bin,
+        move |_| rotation_bin.set_rotation(Rotation::Normal)
+    ));
+    deg90.connect_clicked(clone!(
+        #[weak]
+        rotation_bin,
+        move |_| rotation_bin.set_rotation(Rotation::Deg90)
+    ));
+    deg180.connect_clicked(clone!(
+        #[weak]
+        rotation_bin,
+        move |_| rotation_bin.set_rotation(Rotation::Deg180)
+    ));
+    deg270.connect_clicked(clone!(
+        #[weak]
+        rotation_bin,
+        move |_| rotation_bin.set_rotation(Rotation::Deg270)
+    ));
 
     grid.attach(&normal, 0, 1, 1, 1);
     grid.attach(&deg90, 1, 1, 1, 1);

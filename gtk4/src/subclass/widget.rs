@@ -913,9 +913,19 @@ pub unsafe trait WidgetClassExt: ClassStruct {
                 let ctx = glib::MainContext::default();
                 let action_name = action_name.to_owned();
                 let parameter_type = parameter_type.map(ToOwned::to_owned);
-                ctx.spawn_local(glib::clone!(@strong this, @strong action_name, @strong parameter_type, @strong activate => async move {
-                    activate(this, action_name, parameter_type).await;
-                }));
+                ctx.spawn_local(glib::clone!(
+                    #[strong]
+                    this,
+                    #[strong]
+                    action_name,
+                    #[strong]
+                    parameter_type,
+                    #[strong]
+                    activate,
+                    async move {
+                        activate(this, action_name, parameter_type).await;
+                    }
+                ));
             },
         );
     }

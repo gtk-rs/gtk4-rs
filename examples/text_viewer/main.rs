@@ -26,22 +26,27 @@ pub fn build_ui(application: &gtk::Application) {
         .object::<gtk::TextView>("text_view")
         .expect("Couldn't get text_view");
 
-    open_button.connect_clicked(glib::clone!(@weak window, @weak text_view => move |_| {
+    open_button.connect_clicked(glib::clone!(
+        #[weak]
+        window,
+        #[weak]
+        text_view,
+        move |_| {
+            let dialog = gtk::FileDialog::builder()
+                .title("Open File")
+                .accept_label("Open")
+                .build();
 
-        let dialog = gtk::FileDialog::builder()
-            .title("Open File")
-            .accept_label("Open")
-            .build();
+            dialog.open(Some(&window), gio::Cancellable::NONE, move |file| {
+                if let Ok(file) = file {
+                    let filename = file.path().expect("Couldn't get file path");
+                    let contents = read_to_string(filename).expect("Couldn't open file");
 
-        dialog.open(Some(&window), gio::Cancellable::NONE, move |file| {
-            if let Ok(file) = file {
-                let filename = file.path().expect("Couldn't get file path");
-                let contents = read_to_string(filename).expect("Couldn't open file");
-
-                text_view.buffer().set_text(&contents);
-            }
-        });
-    }));
+                    text_view.buffer().set_text(&contents);
+                }
+            });
+        }
+    ));
 
     window.present();
 }

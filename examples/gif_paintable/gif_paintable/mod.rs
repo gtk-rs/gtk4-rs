@@ -80,10 +80,14 @@ impl GifPaintable {
 
         // setup a callback to this function once the frame has finished so that
         // we can play the next frame
-        let update_next_frame_callback = glib::clone!(@weak self as paintable => move || {
-            paintable.imp().timeout_source_id.take();
-            paintable.setup_next_frame();
-        });
+        let update_next_frame_callback = glib::clone!(
+            #[weak(rename_to = paintable)]
+            self,
+            move || {
+                paintable.imp().timeout_source_id.take();
+                paintable.setup_next_frame();
+            }
+        );
 
         let source_id =
             glib::timeout_add_local_once(next_frame.frame_duration, update_next_frame_callback);

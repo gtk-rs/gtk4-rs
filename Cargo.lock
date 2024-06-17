@@ -128,7 +128,7 @@ checksum = "514de17de45fdb8dc022b1a7975556c53c86f9f0aa5f534b98977b171857c2c9"
 [[package]]
 name = "cairo-rs"
 version = "0.20.0"
-source = "git+https://github.com/gtk-rs/gtk-rs-core?branch=master#2579e50c7677474152e0eba2dc78222cff30b4ca"
+source = "git+https://github.com/gtk-rs/gtk-rs-core?branch=master#dc97710becdf432e5a97e0b7c22d4d1daa8cfec6"
 dependencies = [
  "bitflags 2.5.0",
  "cairo-sys-rs",
@@ -140,7 +140,7 @@ dependencies = [
 [[package]]
 name = "cairo-sys-rs"
 version = "0.20.0"
-source = "git+https://github.com/gtk-rs/gtk-rs-core?branch=master#2579e50c7677474152e0eba2dc78222cff30b4ca"
+source = "git+https://github.com/gtk-rs/gtk-rs-core?branch=master#dc97710becdf432e5a97e0b7c22d4d1daa8cfec6"
 dependencies = [
  "glib-sys",
  "libc",
@@ -392,7 +392,7 @@ dependencies = [
 [[package]]
 name = "gdk-pixbuf"
 version = "0.20.0"
-source = "git+https://github.com/gtk-rs/gtk-rs-core?branch=master#2579e50c7677474152e0eba2dc78222cff30b4ca"
+source = "git+https://github.com/gtk-rs/gtk-rs-core?branch=master#dc97710becdf432e5a97e0b7c22d4d1daa8cfec6"
 dependencies = [
  "gdk-pixbuf-sys",
  "gio",
@@ -403,7 +403,7 @@ dependencies = [
 [[package]]
 name = "gdk-pixbuf-sys"
 version = "0.20.0"
-source = "git+https://github.com/gtk-rs/gtk-rs-core?branch=master#2579e50c7677474152e0eba2dc78222cff30b4ca"
+source = "git+https://github.com/gtk-rs/gtk-rs-core?branch=master#dc97710becdf432e5a97e0b7c22d4d1daa8cfec6"
 dependencies = [
  "gio-sys",
  "glib-sys",
@@ -552,7 +552,7 @@ checksum = "40ecd4077b5ae9fd2e9e169b102c6c330d0605168eb0e8bf79952b256dbefffd"
 [[package]]
 name = "gio"
 version = "0.20.0"
-source = "git+https://github.com/gtk-rs/gtk-rs-core?branch=master#2579e50c7677474152e0eba2dc78222cff30b4ca"
+source = "git+https://github.com/gtk-rs/gtk-rs-core?branch=master#dc97710becdf432e5a97e0b7c22d4d1daa8cfec6"
 dependencies = [
  "futures-channel",
  "futures-core",
@@ -569,7 +569,7 @@ dependencies = [
 [[package]]
 name = "gio-sys"
 version = "0.20.0"
-source = "git+https://github.com/gtk-rs/gtk-rs-core?branch=master#2579e50c7677474152e0eba2dc78222cff30b4ca"
+source = "git+https://github.com/gtk-rs/gtk-rs-core?branch=master#dc97710becdf432e5a97e0b7c22d4d1daa8cfec6"
 dependencies = [
  "glib-sys",
  "gobject-sys",
@@ -618,7 +618,7 @@ dependencies = [
 [[package]]
 name = "glib"
 version = "0.20.0"
-source = "git+https://github.com/gtk-rs/gtk-rs-core?branch=master#2579e50c7677474152e0eba2dc78222cff30b4ca"
+source = "git+https://github.com/gtk-rs/gtk-rs-core?branch=master#dc97710becdf432e5a97e0b7c22d4d1daa8cfec6"
 dependencies = [
  "bitflags 2.5.0",
  "futures-channel",
@@ -639,7 +639,7 @@ dependencies = [
 [[package]]
 name = "glib-macros"
 version = "0.20.0"
-source = "git+https://github.com/gtk-rs/gtk-rs-core?branch=master#2579e50c7677474152e0eba2dc78222cff30b4ca"
+source = "git+https://github.com/gtk-rs/gtk-rs-core?branch=master#dc97710becdf432e5a97e0b7c22d4d1daa8cfec6"
 dependencies = [
  "heck",
  "proc-macro-crate",
@@ -651,7 +651,7 @@ dependencies = [
 [[package]]
 name = "glib-sys"
 version = "0.20.0"
-source = "git+https://github.com/gtk-rs/gtk-rs-core?branch=master#2579e50c7677474152e0eba2dc78222cff30b4ca"
+source = "git+https://github.com/gtk-rs/gtk-rs-core?branch=master#dc97710becdf432e5a97e0b7c22d4d1daa8cfec6"
 dependencies = [
  "libc",
  "system-deps",
@@ -693,7 +693,7 @@ dependencies = [
 [[package]]
 name = "gobject-sys"
 version = "0.20.0"
-source = "git+https://github.com/gtk-rs/gtk-rs-core?branch=master#2579e50c7677474152e0eba2dc78222cff30b4ca"
+source = "git+https://github.com/gtk-rs/gtk-rs-core?branch=master#dc97710becdf432e5a97e0b7c22d4d1daa8cfec6"
 dependencies = [
  "glib-sys",
  "libc",
@@ -703,7 +703,7 @@ dependencies = [
 [[package]]
 name = "graphene-rs"
 version = "0.20.0"
-source = "git+https://github.com/gtk-rs/gtk-rs-core?branch=master#2579e50c7677474152e0eba2dc78222cff30b4ca"
+source = "git+https://github.com/gtk-rs/gtk-rs-core?branch=master#dc97710becdf432e5a97e0b7c22d4d1daa8cfec6"
 dependencies = [
  "glib",
  "graphene-sys",
@@ -713,7 +713,7 @@ dependencies = [
 [[package]]
 name = "graphene-sys"
 version = "0.20.0"
-source = "git+https://github.com/gtk-rs/gtk-rs-core?branch=master#2579e50c7677474152e0eba2dc78222cff30b4ca"
+source = "git+https://github.com/gtk-rs/gtk-rs-core?branch=master#dc97710becdf432e5a97e0b7c22d4d1daa8cfec6"
 dependencies = [
  "glib-sys",
  "libc",
@@ -1075,7 +1075,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "0c2a198fb6b0eada2a8df47933734e6d35d350665a33a3593d7164fa52c75c19"
 dependencies = [
  "cfg-if",
- "windows-targets 0.52.5",
+ "windows-targets 0.48.5",
 ]
 
 [[package]]
@@ -1108,9 +1108,9 @@ checksum = "d3262e75e648fce39813cb56ac41f3c3e3f65217ebf3844d818d1f9398cfb0dc"
 
 [[package]]
 name = "memchr"
-version = "2.7.2"
+version = "2.7.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "6c8640c5d730cb13ebd907d8d04b52f55ac9a2eec55b440c8892f40d56c76c1d"
+checksum = "78ca9ab1a0babb1e7d5695e3530886289c18cf2f87ec19a575a0abdce112e3a3"
 
 [[package]]
 name = "memoffset"
@@ -1184,7 +1184,7 @@ checksum = "3fdb12b2476b595f9358c5161aa467c2438859caa136dec86c26fdd2efe17b92"
 [[package]]
 name = "pango"
 version = "0.20.0"
-source = "git+https://github.com/gtk-rs/gtk-rs-core?branch=master#2579e50c7677474152e0eba2dc78222cff30b4ca"
+source = "git+https://github.com/gtk-rs/gtk-rs-core?branch=master#dc97710becdf432e5a97e0b7c22d4d1daa8cfec6"
 dependencies = [
  "gio",
  "glib",
@@ -1195,7 +1195,7 @@ dependencies = [
 [[package]]
 name = "pango-sys"
 version = "0.20.0"
-source = "git+https://github.com/gtk-rs/gtk-rs-core?branch=master#2579e50c7677474152e0eba2dc78222cff30b4ca"
+source = "git+https://github.com/gtk-rs/gtk-rs-core?branch=master#dc97710becdf432e5a97e0b7c22d4d1daa8cfec6"
 dependencies = [
  "glib-sys",
  "gobject-sys",

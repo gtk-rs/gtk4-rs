@@ -27,17 +27,23 @@ impl ConfettiWidget {
         let frame_clock = self.frame_clock().unwrap();
         exp.init_time(&frame_clock, duration);
 
-        frame_clock.connect_update(clone!(@weak self as this, @weak exp => move |clock| {
-            match exp.update(clock) {
-                ControlFlow::Continue => {
-                    this.queue_draw();
-                },
-                ControlFlow::Break => {
-                    this.imp().explosions.borrow_mut().remove(&exp);
-                    clock.end_updating();
+        frame_clock.connect_update(clone!(
+            #[weak(rename_to = this)]
+            self,
+            #[weak]
+            exp,
+            move |clock| {
+                match exp.update(clock) {
+                    ControlFlow::Continue => {
+                        this.queue_draw();
+                    }
+                    ControlFlow::Break => {
+                        this.imp().explosions.borrow_mut().remove(&exp);
+                        clock.end_updating();
+                    }
                 }
             }
-        }));
+        ));
         self.imp().explosions.borrow_mut().insert(exp.clone());
         frame_clock.begin_updating();
         exp

@@ -53,21 +53,33 @@ fn build_ui(application: &gtk::Application) {
 
     container.append(&label);
 
-    entry.connect_search_started(clone!(@weak search_button => move |_| {
-        search_button.set_active(true);
-    }));
-
-    entry.connect_stop_search(clone!(@weak search_button => move |_| {
-        search_button.set_active(false);
-    }));
-
-    entry.connect_search_changed(clone!(@weak label => move |entry| {
-        if entry.text() != "" {
-            label.set_text(&entry.text());
-        } else {
-            label.set_text("Type to start search");
+    entry.connect_search_started(clone!(
+        #[weak]
+        search_button,
+        move |_| {
+            search_button.set_active(true);
         }
-    }));
+    ));
+
+    entry.connect_stop_search(clone!(
+        #[weak]
+        search_button,
+        move |_| {
+            search_button.set_active(false);
+        }
+    ));
+
+    entry.connect_search_changed(clone!(
+        #[weak]
+        label,
+        move |entry| {
+            if entry.text() != "" {
+                label.set_text(&entry.text());
+            } else {
+                label.set_text("Type to start search");
+            }
+        }
+    ));
 
     window.present();
 }

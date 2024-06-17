@@ -48,9 +48,13 @@ fn build_ui(application: &gtk::Application) {
         gtk::Scale::new(gtk::Orientation::Horizontal, Some(&horizontal_adjustment));
 
     // Now if we want to take actions with the changed values of the scale, we'll have to implement a signal
-    horizontal_scale.connect_value_changed(clone!(@weak update_label => move |slider| {
-        update_label.set_text(&format!("Horizontal scale value: {:.2}", slider.value()));
-    }));
+    horizontal_scale.connect_value_changed(clone!(
+        #[weak]
+        update_label,
+        move |slider| {
+            update_label.set_text(&format!("Horizontal scale value: {:.2}", slider.value()));
+        }
+    ));
 
     // Now for the vertical scale let's use the builder
     let vertical_scale = gtk::Scale::builder()
@@ -60,9 +64,13 @@ fn build_ui(application: &gtk::Application) {
         .build();
 
     // To create a similar signal for the vertical scale
-    vertical_scale.connect_value_changed(clone!(@weak update_label => move |slider| {
-        update_label.set_text(&format!("Vertical scale value: {:.2}", slider.value()));
-    }));
+    vertical_scale.connect_value_changed(clone!(
+        #[weak]
+        update_label,
+        move |slider| {
+            update_label.set_text(&format!("Vertical scale value: {:.2}", slider.value()));
+        }
+    ));
 
     // To arrange everything in a presentable way we can use the grids
     let grid = gtk::Grid::builder()

@@ -21,15 +21,23 @@ fn main() -> glib::ExitCode {
 
         base_button.connect_clicked(|b| {
             let ctx = glib::MainContext::default();
-            ctx.spawn_local(clone!(@weak b => async move {
-                b.async_method().await.unwrap();
-            }));
+            ctx.spawn_local(clone!(
+                #[weak]
+                b,
+                async move {
+                    b.async_method().await.unwrap();
+                }
+            ));
         });
         derived_button.connect_clicked(|b| {
             let ctx = glib::MainContext::default();
-            ctx.spawn_local(clone!(@weak b => async move {
-                b.async_method().await.unwrap();
-            }));
+            ctx.spawn_local(clone!(
+                #[weak]
+                b,
+                async move {
+                    b.async_method().await.unwrap();
+                }
+            ));
         });
 
         boxed.append(&base_button);

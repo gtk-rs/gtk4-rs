@@ -13,13 +13,21 @@ fn main() -> glib::ExitCode {
         let orientable = CustomOrientable::default();
         let button = gtk::Button::with_label("Switch orientation");
 
-        button.connect_clicked(glib::clone!(@weak orientable => move |_| {
-            match orientable.orientation() {
-                gtk::Orientation::Horizontal => orientable.set_orientation(gtk::Orientation::Vertical),
-                gtk::Orientation::Vertical => orientable.set_orientation(gtk::Orientation::Horizontal),
-                _ => unreachable!(),
-            };
-        }));
+        button.connect_clicked(glib::clone!(
+            #[weak]
+            orientable,
+            move |_| {
+                match orientable.orientation() {
+                    gtk::Orientation::Horizontal => {
+                        orientable.set_orientation(gtk::Orientation::Vertical)
+                    }
+                    gtk::Orientation::Vertical => {
+                        orientable.set_orientation(gtk::Orientation::Horizontal)
+                    }
+                    _ => unreachable!(),
+                };
+            }
+        ));
 
         orientable.set_halign(gtk::Align::Center);
         bx.append(&orientable);

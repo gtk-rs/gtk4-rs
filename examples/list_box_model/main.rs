@@ -47,13 +47,18 @@ fn build_ui(application: &gtk::Application) {
     let listbox = gtk::ListBox::new();
     listbox.bind_model(
         Some(&model),
-        clone!(@weak window => @default-panic, move |item| {
-            ListBoxRow::new(
-                item.downcast_ref::<RowData>()
-                    .expect("RowData is of wrong type"),
-            )
-            .upcast::<gtk::Widget>()
-        }),
+        clone!(
+            #[weak]
+            window,
+            #[upgrade_or_panic]
+            move |item| {
+                ListBoxRow::new(
+                    item.downcast_ref::<RowData>()
+                        .expect("RowData is of wrong type"),
+                )
+                .upcast::<gtk::Widget>()
+            }
+        ),
     );
 
     let scrolled_window = gtk::ScrolledWindow::builder()
@@ -72,32 +77,53 @@ fn build_ui(application: &gtk::Application) {
     // then add it to the model. Once added to the model, it will immediately
     // appear in the listbox UI
     let add_button = gtk::Button::with_label("Add");
-    add_button.connect_clicked(clone!(@weak window, @weak model => move |_| {
-        let dialog = gtk::Dialog::with_buttons(
-            Some("Add Item"),
-            Some(&window),
-            gtk::DialogFlags::MODAL,
-            &[("Ok", gtk::ResponseType::Ok), ("Cancel", gtk::ResponseType::Cancel)],
-        );
-        dialog.set_default_response(gtk::ResponseType::Ok);
-        let content_area = dialog.content_area();
-        let entry = gtk::Entry::new();
-        entry.connect_activate(clone!(@weak dialog => move |_| {
-            dialog.response(gtk::ResponseType::Ok);
-        }));
-        content_area.append(&entry);
-        let spin_button = gtk::SpinButton::with_range(0.0, 100.0, 1.0);
-        content_area.append(&spin_button);
-        dialog.connect_response(clone!(@weak model, @weak entry, @weak spin_button => move |dialog, resp| {
-            let text = entry.text();
-            if !text.is_empty() && resp == gtk::ResponseType::Ok {
-                model.append(&RowData::new(&text, spin_button.value() as u32));
-            }
-            dialog.close();
-        }));
+    add_button.connect_clicked(clone!(
+        #[weak]
+        window,
+        #[weak]
+        model,
+        move |_| {
+            let dialog = gtk::Dialog::with_buttons(
+                Some("Add Item"),
+                Some(&window),
+                gtk::DialogFlags::MODAL,
+                &[
+                    ("Ok", gtk::ResponseType::Ok),
+                    ("Cancel", gtk::ResponseType::Cancel),
+                ],
+            );
+            dialog.set_default_response(gtk::ResponseType::Ok);
+            let content_area = dialog.content_area();
+            let entry = gtk::Entry::new();
+            entry.connect_activate(clone!(
+                #[weak]
+                dialog,
+                move |_| {
+                    dialog.response(gtk::ResponseType::Ok);
+                }
+            ));
+            content_area.append(&entry);
+            let spin_button = gtk::SpinButton::with_range(0.0, 100.0, 1.0);
+            content_area.append(&spin_button);
+            dialog.connect_response(clone!(
+                #[weak]
+                model,
+                #[weak]
+                entry,
+                #[weak]
+                spin_button,
+                move |dialog, resp| {
+                    let text = entry.text();
+                    if !text.is_empty() && resp == gtk::ResponseType::Ok {
+                        model.append(&RowData::new(&text, spin_button.value() as u32));
+                    }
+                    dialog.close();
+                }
+            ));
 
-        dialog.present()
-    }));
+            dialog.present()
+        }
+    ));
 
     hbox.append(&add_button);
 
@@ -105,14 +131,20 @@ fn build_ui(application: &gtk::Application) {
     // is at the index of the selected row. Also deleting from the
     // model is immediately reflected in the listbox.
     let delete_button = gtk::Button::with_label("Delete");
-    delete_button.connect_clicked(clone!(@weak model, @weak listbox => move |_| {
-        let selected = listbox.selected_row();
+    delete_button.connect_clicked(clone!(
+        #[weak]
+        model,
+        #[weak]
+        listbox,
+        move |_| {
+            let selected = listbox.selected_row();
 
-        if let Some(selected) = selected {
-            let idx = selected.index();
-            model.remove(idx as u32);
+            if let Some(selected) = selected {
+                let idx = selected.index();
+                model.remove(idx as u32);
+            }
         }
-    }));
+    ));
     hbox.append(&delete_button);
 
     vbox.append(&hbox);
