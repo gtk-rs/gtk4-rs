@@ -21,7 +21,7 @@ xml_validation = ["quick-xml"]
 blueprint = []
 
 [dependencies]
-quick-xml = {version = "0.31", optional = true}
+quick-xml = {version = "0.32", optional = true}
 proc-macro-crate = "3.0"
 proc-macro2 = "1.0"
 quote = "1.0"
