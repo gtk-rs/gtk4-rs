@@ -45,7 +45,7 @@ jobs:
 
       - name: Install pkgconfig-lite
         run: |
-          Invoke-WebRequest -Uri https://deac-fra.dl.sourceforge.net/project/pkgconfiglite/0.28-1/pkg-config-lite-0.28-1_bin-win32.zip -OutFile /pkg_config_lite.zip -MaximumRetryCount 5
+          Invoke-WebRequest -UserAgent "Wget" -Uri https://downloads.sourceforge.net/project/pkgconfiglite/0.28-1/pkg-config-lite-0.28-1_bin-win32.zip -OutFile /pkg_config_lite.zip -MaximumRetryCount 5
           Expand-Archive /pkg_config_lite.zip -DestinationPath C:\
           ls C:\
           ls C:\pkg-config-lite-0.28-1
