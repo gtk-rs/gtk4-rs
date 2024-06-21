@@ -3995,6 +3995,9 @@ extern "C" {
     //=========================================================================
     #[cfg(feature = "v4_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn gdk_drag_surface_size_get_type() -> GType;
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     pub fn gdk_drag_surface_size_set_size(
         size: *mut GdkDragSurfaceSize,
         width: c_int,
@@ -4206,6 +4209,7 @@ extern "C" {
     //=========================================================================
     // GdkToplevelSize
     //=========================================================================
+    pub fn gdk_toplevel_size_get_type() -> GType;
     pub fn gdk_toplevel_size_get_bounds(
         size: *mut GdkToplevelSize,
         bounds_width: *mut c_int,
@@ -5525,9 +5529,6 @@ extern "C" {
         result: *mut gio::GAsyncResult,
         error: *mut *mut glib::GError,
     ) -> gboolean;
-    #[cfg(feature = "v4_12")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
-    pub fn gdk_drag_surface_size_get_type() -> GType;
     pub fn gdk_events_get_angle(
         event1: *mut GdkEvent,
         event2: *mut GdkEvent,
@@ -5576,7 +5577,6 @@ extern "C" {
     ) -> *mut gdk_pixbuf::GdkPixbuf;
     pub fn gdk_pixbuf_get_from_texture(texture: *mut GdkTexture) -> *mut gdk_pixbuf::GdkPixbuf;
     pub fn gdk_set_allowed_backends(backends: *const c_char);
-    pub fn gdk_toplevel_size_get_type() -> GType;
     pub fn gdk_unicode_to_keyval(wc: u32) -> c_uint;
 
 }

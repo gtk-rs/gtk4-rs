@@ -52,7 +52,11 @@ mod fill_node;
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
 pub use self::fill_node::FillNode;
 
+#[cfg(feature = "v4_2")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_2")))]
 mod gl_renderer;
+#[cfg(feature = "v4_2")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_2")))]
 pub use self::gl_renderer::GLRenderer;
 
 mod gl_shader;

@@ -429,19 +429,19 @@ impl ListBox {
             F: Fn(&ListBox, MovementStep, i32, bool, bool) + 'static,
         >(
             this: *mut ffi::GtkListBox,
-            object: ffi::GtkMovementStep,
-            p0: libc::c_int,
-            p1: glib::ffi::gboolean,
-            p2: glib::ffi::gboolean,
+            step: ffi::GtkMovementStep,
+            count: libc::c_int,
+            extend: glib::ffi::gboolean,
+            modify: glib::ffi::gboolean,
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(
                 &from_glib_borrow(this),
-                from_glib(object),
-                p0,
-                from_glib(p1),
-                from_glib(p2),
+                from_glib(step),
+                count,
+                from_glib(extend),
+                from_glib(modify),
             )
         }
         unsafe {
@@ -457,8 +457,8 @@ impl ListBox {
         }
     }
 
-    pub fn emit_move_cursor(&self, object: MovementStep, p0: i32, p1: bool, p2: bool) {
-        self.emit_by_name::<()>("move-cursor", &[&object, &p0, &p1, &p2]);
+    pub fn emit_move_cursor(&self, step: MovementStep, count: i32, extend: bool, modify: bool) {
+        self.emit_by_name::<()>("move-cursor", &[&step, &count, &extend, &modify]);
     }
 
     #[doc(alias = "row-activated")]

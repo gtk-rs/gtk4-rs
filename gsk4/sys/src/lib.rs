@@ -1855,6 +1855,8 @@ extern "C" {
     //=========================================================================
     // GskGLRenderer
     //=========================================================================
+    #[cfg(feature = "v4_2")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_2")))]
     pub fn gsk_gl_renderer_get_type() -> GType;
     #[cfg(feature = "v4_2")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_2")))]

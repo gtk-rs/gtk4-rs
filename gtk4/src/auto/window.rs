@@ -707,6 +707,7 @@ pub trait GtkWindowExt: IsA<Window> + sealed::Sealed + 'static {
     #[cfg(feature = "v4_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     #[doc(alias = "gtk_window_is_suspended")]
+    #[doc(alias = "suspended")]
     fn is_suspended(&self) -> bool {
         unsafe { from_glib(ffi::gtk_window_is_suspended(self.as_ref().to_glib_none().0)) }
     }
@@ -974,6 +975,15 @@ pub trait GtkWindowExt: IsA<Window> + sealed::Sealed + 'static {
     #[doc(alias = "default-width")]
     fn set_default_width(&self, default_width: i32) {
         ObjectExt::set_property(self.as_ref(), "default-width", default_width)
+    }
+
+    #[doc(alias = "focus-widget")]
+    fn focus_widget(&self) -> Option<Widget> {
+        ObjectExt::property(self.as_ref(), "focus-widget")
+    }
+
+    fn is_fullscreened(&self) -> bool {
+        ObjectExt::property(self.as_ref(), "fullscreened")
     }
 
     fn set_fullscreened(&self, fullscreened: bool) {
