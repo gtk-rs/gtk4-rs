@@ -337,11 +337,11 @@ impl Notebook {
             F: Fn(&Notebook, i32) -> bool + 'static,
         >(
             this: *mut ffi::GtkNotebook,
-            object: libc::c_int,
+            page: libc::c_int,
             f: glib::ffi::gpointer,
         ) -> glib::ffi::gboolean {
             let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this), object).into_glib()
+            f(&from_glib_borrow(this), page).into_glib()
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -356,8 +356,8 @@ impl Notebook {
         }
     }
 
-    pub fn emit_change_current_page(&self, object: i32) -> bool {
-        self.emit_by_name("change-current-page", &[&object])
+    pub fn emit_change_current_page(&self, page: i32) -> bool {
+        self.emit_by_name("change-current-page", &[&page])
     }
 
     #[doc(alias = "create-window")]
@@ -399,11 +399,11 @@ impl Notebook {
             F: Fn(&Notebook, NotebookTab) -> bool + 'static,
         >(
             this: *mut ffi::GtkNotebook,
-            object: ffi::GtkNotebookTab,
+            tab: ffi::GtkNotebookTab,
             f: glib::ffi::gpointer,
         ) -> glib::ffi::gboolean {
             let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this), from_glib(object)).into_glib()
+            f(&from_glib_borrow(this), from_glib(tab)).into_glib()
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -418,8 +418,8 @@ impl Notebook {
         }
     }
 
-    pub fn emit_focus_tab(&self, object: NotebookTab) -> bool {
-        self.emit_by_name("focus-tab", &[&object])
+    pub fn emit_focus_tab(&self, tab: NotebookTab) -> bool {
+        self.emit_by_name("focus-tab", &[&tab])
     }
 
     #[doc(alias = "move-focus-out")]
@@ -431,11 +431,11 @@ impl Notebook {
             F: Fn(&Notebook, DirectionType) + 'static,
         >(
             this: *mut ffi::GtkNotebook,
-            object: ffi::GtkDirectionType,
+            direction: ffi::GtkDirectionType,
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this), from_glib(object))
+            f(&from_glib_borrow(this), from_glib(direction))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -450,8 +450,8 @@ impl Notebook {
         }
     }
 
-    pub fn emit_move_focus_out(&self, object: DirectionType) {
-        self.emit_by_name::<()>("move-focus-out", &[&object]);
+    pub fn emit_move_focus_out(&self, direction: DirectionType) {
+        self.emit_by_name::<()>("move-focus-out", &[&direction]);
     }
 
     #[doc(alias = "page-added")]
@@ -544,12 +544,17 @@ impl Notebook {
             F: Fn(&Notebook, DirectionType, bool) -> bool + 'static,
         >(
             this: *mut ffi::GtkNotebook,
-            object: ffi::GtkDirectionType,
-            p0: glib::ffi::gboolean,
+            direction: ffi::GtkDirectionType,
+            move_to_last: glib::ffi::gboolean,
             f: glib::ffi::gpointer,
         ) -> glib::ffi::gboolean {
             let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this), from_glib(object), from_glib(p0)).into_glib()
+            f(
+                &from_glib_borrow(this),
+                from_glib(direction),
+                from_glib(move_to_last),
+            )
+            .into_glib()
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -564,8 +569,8 @@ impl Notebook {
         }
     }
 
-    pub fn emit_reorder_tab(&self, object: DirectionType, p0: bool) -> bool {
-        self.emit_by_name("reorder-tab", &[&object, &p0])
+    pub fn emit_reorder_tab(&self, direction: DirectionType, move_to_last: bool) -> bool {
+        self.emit_by_name("reorder-tab", &[&direction, &move_to_last])
     }
 
     #[doc(alias = "select-page")]
@@ -575,11 +580,11 @@ impl Notebook {
     ) -> SignalHandlerId {
         unsafe extern "C" fn select_page_trampoline<F: Fn(&Notebook, bool) -> bool + 'static>(
             this: *mut ffi::GtkNotebook,
-            object: glib::ffi::gboolean,
+            move_focus: glib::ffi::gboolean,
             f: glib::ffi::gpointer,
         ) -> glib::ffi::gboolean {
             let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this), from_glib(object)).into_glib()
+            f(&from_glib_borrow(this), from_glib(move_focus)).into_glib()
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -594,8 +599,8 @@ impl Notebook {
         }
     }
 
-    pub fn emit_select_page(&self, object: bool) -> bool {
-        self.emit_by_name("select-page", &[&object])
+    pub fn emit_select_page(&self, move_focus: bool) -> bool {
+        self.emit_by_name("select-page", &[&move_focus])
     }
 
     #[doc(alias = "switch-page")]

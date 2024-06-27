@@ -1025,6 +1025,9 @@ generate_builder  = false # use glib::Priority
 name = "Gtk.DragIcon"
 status = "generate"
 generate_builder = false
+    [[object.function]]
+    name = "get_for_drag"
+    rename = "for_drag"
 
 [[object]]
 name = "Gtk.DrawingArea"

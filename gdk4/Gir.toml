@@ -485,7 +485,7 @@ status = "generate"
     version = "4.8"
     [[object.member]]
     name = "event_last"
-    alias = true # not useful
+    ignore = true # not useful
 
 [[object]]
 name = "Gdk.FileList"
@@ -556,7 +556,7 @@ status = "generate"
     version = "4.6"
     [[object.member]]
     name = "n_formats"
-    alias = true # not useful
+    ignore = true # not useful
 
 [[object]]
 name = "Gdk.MemoryTexture"

@@ -175,6 +175,46 @@ impl FontDialogButton {
         }
     }
 
+    #[cfg(not(feature = "v4_10"))]
+    #[cfg_attr(docsrs, doc(cfg(not(feature = "v4_10"))))]
+    pub fn level(&self) -> FontLevel {
+        ObjectExt::property(self, "level")
+    }
+
+    #[cfg(not(feature = "v4_10"))]
+    #[cfg_attr(docsrs, doc(cfg(not(feature = "v4_10"))))]
+    pub fn set_level(&self, level: FontLevel) {
+        ObjectExt::set_property(self, "level", level)
+    }
+
+    #[cfg(not(feature = "v4_10"))]
+    #[cfg_attr(docsrs, doc(cfg(not(feature = "v4_10"))))]
+    #[doc(alias = "use-font")]
+    pub fn uses_font(&self) -> bool {
+        ObjectExt::property(self, "use-font")
+    }
+
+    #[cfg(not(feature = "v4_10"))]
+    #[cfg_attr(docsrs, doc(cfg(not(feature = "v4_10"))))]
+    #[doc(alias = "use-font")]
+    pub fn set_use_font(&self, use_font: bool) {
+        ObjectExt::set_property(self, "use-font", use_font)
+    }
+
+    #[cfg(not(feature = "v4_10"))]
+    #[cfg_attr(docsrs, doc(cfg(not(feature = "v4_10"))))]
+    #[doc(alias = "use-size")]
+    pub fn uses_size(&self) -> bool {
+        ObjectExt::property(self, "use-size")
+    }
+
+    #[cfg(not(feature = "v4_10"))]
+    #[cfg_attr(docsrs, doc(cfg(not(feature = "v4_10"))))]
+    #[doc(alias = "use-size")]
+    pub fn set_use_size(&self, use_size: bool) {
+        ObjectExt::set_property(self, "use-size", use_size)
+    }
+
     #[cfg(feature = "v4_14")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
     #[doc(alias = "activate")]
