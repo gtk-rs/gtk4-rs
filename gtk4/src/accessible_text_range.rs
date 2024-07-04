@@ -1,17 +1,24 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-#[derive(Copy, Clone)]
-#[doc(alias = "GtkAccessibleTextRange")]
-#[repr(transparent)]
-pub struct AccessibleTextRange(crate::ffi::GtkAccessibleTextRange);
+use glib::translate::UnsafeFrom;
+use gtk4_sys::GtkAccessibleTextRange;
+
+glib::wrapper! {
+    #[doc(alias = "GtkAccessibleTextRange")]
+    pub struct AccessibleTextRange(BoxedInline<crate::ffi::GtkAccessibleTextRange>);
+}
 
 impl AccessibleTextRange {
+    pub fn new(start: usize, length: usize) -> Self {
+        unsafe { AccessibleTextRange::unsafe_from(GtkAccessibleTextRange { start, length }) }
+    }
+
     pub fn start(&self) -> usize {
-        self.0.start
+        self.inner.start
     }
 
     pub fn length(&self) -> usize {
-        self.0.length
+        self.inner.length
     }
 }
 
