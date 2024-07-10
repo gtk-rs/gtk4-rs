@@ -15,10 +15,3 @@ external_libraries = [
     "Pango",
     "Cairo",
 ]
-
-[[object]]
-name = "Gdk.*"
-status = "generate"
-    [[object.function]]
-    name = "drag_surface_size_get_type"
-    version = "4.12"
