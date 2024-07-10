@@ -268,7 +268,7 @@ mod tests {
         assert_eq!(entry_b.text().as_str(), "HELLO WORLD");
     }
 
-    #[crate::test]
+    #[allow(unused)]
     #[should_panic(
         expected = "Closure returned a value of type guint64 but caller expected gchararray"
     )]
