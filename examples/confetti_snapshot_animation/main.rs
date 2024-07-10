@@ -29,7 +29,7 @@ fn build_ui(application: &gtk::Application) {
     // `ConfettiWidget`
     let ev_ctrl = gtk::GestureClick::new();
     ev_ctrl.connect_pressed(move |event, _, x, y| {
-        let confetti = event.widget().downcast::<ConfettiWidget>().unwrap();
+        let confetti = event.widget().and_downcast::<ConfettiWidget>().unwrap();
         let params = ExplosionParameters {
             quantity: 25,
             acceleration: Vec2::new(0.0, 1.0 / 1000.0),
