@@ -200,7 +200,6 @@ impl Image {
     #[cfg_attr(feature = "v4_12", deprecated = "Since 4.12")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_image_set_from_pixbuf")]
-    #[doc(alias = "paintable")]
     pub fn set_from_pixbuf(&self, pixbuf: Option<&gdk_pixbuf::Pixbuf>) {
         unsafe {
             ffi::gtk_image_set_from_pixbuf(self.to_glib_none().0, pixbuf.to_glib_none().0);

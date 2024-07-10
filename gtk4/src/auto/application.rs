@@ -59,14 +59,6 @@ impl ApplicationBuilder {
         }
     }
 
-    pub fn action_group(self, action_group: &impl IsA<gio::ActionGroup>) -> Self {
-        Self {
-            builder: self
-                .builder
-                .property("action-group", action_group.clone().upcast()),
-        }
-    }
-
     pub fn application_id(self, application_id: impl Into<glib::GString>) -> Self {
         Self {
             builder: self

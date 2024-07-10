@@ -66,7 +66,7 @@ libc = "0.2"
 workspace = true
 
 [build-dependencies]
-system-deps = "6"
+system-deps = "7"
 
 [dev-dependencies]
 shell-words = "1.0.0"

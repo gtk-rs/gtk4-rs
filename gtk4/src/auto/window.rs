@@ -569,6 +569,7 @@ pub trait GtkWindowExt: IsA<Window> + sealed::Sealed + 'static {
 
     #[doc(alias = "gtk_window_get_focus")]
     #[doc(alias = "get_focus")]
+    #[doc(alias = "focus-widget")]
     fn focus(&self) -> Option<Widget> {
         unsafe { from_glib_none(ffi::gtk_window_get_focus(self.as_ref().to_glib_none().0)) }
     }
@@ -690,6 +691,7 @@ pub trait GtkWindowExt: IsA<Window> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_window_is_fullscreen")]
+    #[doc(alias = "fullscreened")]
     fn is_fullscreen(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_window_is_fullscreen(
@@ -707,6 +709,7 @@ pub trait GtkWindowExt: IsA<Window> + sealed::Sealed + 'static {
     #[cfg(feature = "v4_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     #[doc(alias = "gtk_window_is_suspended")]
+    #[doc(alias = "suspended")]
     fn is_suspended(&self) -> bool {
         unsafe { from_glib(ffi::gtk_window_is_suspended(self.as_ref().to_glib_none().0)) }
     }

@@ -949,11 +949,13 @@ pub trait WidgetExt: IsA<Widget> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_widget_is_sensitive")]
+    #[doc(alias = "sensitive")]
     fn is_sensitive(&self) -> bool {
         unsafe { from_glib(ffi::gtk_widget_is_sensitive(self.as_ref().to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_widget_is_visible")]
+    #[doc(alias = "visible")]
     fn is_visible(&self) -> bool {
         unsafe { from_glib(ffi::gtk_widget_is_visible(self.as_ref().to_glib_none().0)) }
     }
@@ -1325,7 +1327,6 @@ pub trait WidgetExt: IsA<Widget> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "gtk_widget_set_parent")]
-    #[doc(alias = "parent")]
     fn set_parent(&self, parent: &impl IsA<Widget>) {
         unsafe {
             ffi::gtk_widget_set_parent(

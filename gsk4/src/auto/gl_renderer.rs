@@ -3,8 +3,6 @@
 // DO NOT EDIT
 
 use crate::{ffi, Renderer};
-#[cfg(feature = "v4_2")]
-#[cfg_attr(docsrs, doc(cfg(feature = "v4_2")))]
 use glib::{prelude::*, translate::*};
 
 glib::wrapper! {
@@ -17,8 +15,6 @@ glib::wrapper! {
 }
 
 impl GLRenderer {
-    #[cfg(feature = "v4_2")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v4_2")))]
     #[doc(alias = "gsk_gl_renderer_new")]
     pub fn new() -> GLRenderer {
         assert_initialized_main_thread!();
