@@ -12961,8 +12961,8 @@ extern "C" {
     // GtkDragIcon
     //=========================================================================
     pub fn gtk_drag_icon_get_type() -> GType;
-    pub fn gtk_drag_icon_create_widget_for_value(value: *const gobject::GValue) -> *mut GtkWidget;
     pub fn gtk_drag_icon_get_for_drag(drag: *mut gdk::GdkDrag) -> *mut GtkWidget;
+    pub fn gtk_drag_icon_create_widget_for_value(value: *const gobject::GValue) -> *mut GtkWidget;
     pub fn gtk_drag_icon_set_from_paintable(
         drag: *mut gdk::GdkDrag,
         paintable: *mut gdk::GdkPaintable,

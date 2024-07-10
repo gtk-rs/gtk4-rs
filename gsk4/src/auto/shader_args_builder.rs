@@ -17,6 +17,8 @@ glib::wrapper! {
 }
 
 impl ShaderArgsBuilder {
+    #[cfg_attr(feature = "v4_16", deprecated = "Since 4.16")]
+    #[allow(deprecated)]
     #[doc(alias = "gsk_shader_args_builder_new")]
     pub fn new(shader: &GLShader, initial_values: Option<&glib::Bytes>) -> ShaderArgsBuilder {
         skip_assert_initialized!();
@@ -28,6 +30,8 @@ impl ShaderArgsBuilder {
         }
     }
 
+    #[cfg_attr(feature = "v4_16", deprecated = "Since 4.16")]
+    #[allow(deprecated)]
     #[doc(alias = "gsk_shader_args_builder_set_bool")]
     pub fn set_bool(&self, idx: i32, value: bool) {
         unsafe {
@@ -42,6 +46,8 @@ impl ShaderArgsBuilder {
         }
     }
 
+    #[cfg_attr(feature = "v4_16", deprecated = "Since 4.16")]
+    #[allow(deprecated)]
     #[doc(alias = "gsk_shader_args_builder_set_int")]
     pub fn set_int(&self, idx: i32, value: i32) {
         unsafe {
@@ -49,6 +55,8 @@ impl ShaderArgsBuilder {
         }
     }
 
+    #[cfg_attr(feature = "v4_16", deprecated = "Since 4.16")]
+    #[allow(deprecated)]
     #[doc(alias = "gsk_shader_args_builder_set_uint")]
     pub fn set_uint(&self, idx: i32, value: u32) {
         unsafe {
@@ -56,6 +64,8 @@ impl ShaderArgsBuilder {
         }
     }
 
+    #[cfg_attr(feature = "v4_16", deprecated = "Since 4.16")]
+    #[allow(deprecated)]
     #[doc(alias = "gsk_shader_args_builder_set_vec2")]
     pub fn set_vec2(&self, idx: i32, value: &graphene::Vec2) {
         unsafe {
@@ -67,6 +77,8 @@ impl ShaderArgsBuilder {
         }
     }
 
+    #[cfg_attr(feature = "v4_16", deprecated = "Since 4.16")]
+    #[allow(deprecated)]
     #[doc(alias = "gsk_shader_args_builder_set_vec3")]
     pub fn set_vec3(&self, idx: i32, value: &graphene::Vec3) {
         unsafe {
@@ -78,6 +90,8 @@ impl ShaderArgsBuilder {
         }
     }
 
+    #[cfg_attr(feature = "v4_16", deprecated = "Since 4.16")]
+    #[allow(deprecated)]
     #[doc(alias = "gsk_shader_args_builder_set_vec4")]
     pub fn set_vec4(&self, idx: i32, value: &graphene::Vec4) {
         unsafe {
@@ -89,6 +103,8 @@ impl ShaderArgsBuilder {
         }
     }
 
+    #[cfg_attr(feature = "v4_16", deprecated = "Since 4.16")]
+    #[allow(deprecated)]
     #[doc(alias = "gsk_shader_args_builder_to_args")]
     pub fn to_args(self) -> glib::Bytes {
         unsafe { from_glib_full(ffi::gsk_shader_args_builder_to_args(self.into_glib_ptr())) }

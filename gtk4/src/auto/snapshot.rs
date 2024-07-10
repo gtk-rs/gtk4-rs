@@ -300,6 +300,8 @@ pub trait SnapshotExt: IsA<Snapshot> + sealed::Sealed + 'static {
         }
     }
 
+    #[cfg_attr(feature = "v4_16", deprecated = "Since 4.16")]
+    #[allow(deprecated)]
     #[doc(alias = "gtk_snapshot_gl_shader_pop_texture")]
     fn gl_shader_pop_texture(&self) {
         unsafe {
@@ -373,6 +375,8 @@ pub trait SnapshotExt: IsA<Snapshot> + sealed::Sealed + 'static {
         }
     }
 
+    #[cfg_attr(feature = "v4_16", deprecated = "Since 4.16")]
+    #[allow(deprecated)]
     #[doc(alias = "gtk_snapshot_push_gl_shader")]
     fn push_gl_shader(
         &self,

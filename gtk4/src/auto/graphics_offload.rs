@@ -99,6 +99,8 @@ impl GraphicsOffload {
         }
     }
 
+    #[cfg(feature = "v4_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
     #[doc(alias = "black-background")]
     pub fn connect_black_background_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_black_background_trampoline<
@@ -199,6 +201,8 @@ impl GraphicsOffloadBuilder {
         }
     }
 
+    #[cfg(feature = "v4_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
     pub fn black_background(self, black_background: bool) -> Self {
         Self {
             builder: self.builder.property("black-background", black_background),

@@ -99,7 +99,7 @@ pub trait EventControllerExt: IsA<EventController> + sealed::Sealed + 'static {
 
     #[doc(alias = "gtk_event_controller_get_widget")]
     #[doc(alias = "get_widget")]
-    fn widget(&self) -> Widget {
+    fn widget(&self) -> Option<Widget> {
         unsafe {
             from_glib_none(ffi::gtk_event_controller_get_widget(
                 self.as_ref().to_glib_none().0,

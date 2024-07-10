@@ -57,6 +57,25 @@ impl RenderNode {
         }
     }
 
+    #[cfg(feature = "v4_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
+    #[doc(alias = "gsk_render_node_get_opaque_rect")]
+    #[doc(alias = "get_opaque_rect")]
+    pub fn opaque_rect(&self) -> Option<graphene::Rect> {
+        unsafe {
+            let mut out_opaque = graphene::Rect::uninitialized();
+            let ret = from_glib(ffi::gsk_render_node_get_opaque_rect(
+                self.as_ref().to_glib_none().0,
+                out_opaque.to_glib_none_mut().0,
+            ));
+            if ret {
+                Some(out_opaque)
+            } else {
+                None
+            }
+        }
+    }
+
     #[doc(alias = "gsk_render_node_serialize")]
     pub fn serialize(&self) -> glib::Bytes {
         unsafe {

@@ -1855,6 +1855,8 @@ extern "C" {
     //=========================================================================
     // GskGLRenderer
     //=========================================================================
+    #[cfg(feature = "v4_2")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_2")))]
     pub fn gsk_gl_renderer_get_type() -> GType;
     #[cfg(feature = "v4_2")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_2")))]
@@ -2015,7 +2017,11 @@ extern "C" {
     //=========================================================================
     // GskNglRenderer
     //=========================================================================
+    #[cfg(feature = "v4_2")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_2")))]
     pub fn gsk_ngl_renderer_get_type() -> GType;
+    #[cfg(feature = "v4_2")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_2")))]
     pub fn gsk_ngl_renderer_new() -> *mut GskRenderer;
 
     //=========================================================================
@@ -2093,6 +2099,12 @@ extern "C" {
         bounds: *mut graphene::graphene_rect_t,
     );
     pub fn gsk_render_node_get_node_type(node: *const GskRenderNode) -> GskRenderNodeType;
+    #[cfg(feature = "v4_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
+    pub fn gsk_render_node_get_opaque_rect(
+        self_: *mut GskRenderNode,
+        out_opaque: *mut graphene::graphene_rect_t,
+    ) -> gboolean;
     pub fn gsk_render_node_ref(node: *mut GskRenderNode) -> *mut GskRenderNode;
     pub fn gsk_render_node_serialize(node: *mut GskRenderNode) -> *mut glib::GBytes;
     pub fn gsk_render_node_unref(node: *mut GskRenderNode);
