@@ -39,3 +39,8 @@ allow-git = [
 [[bans.skip]]
 name = "toml_edit"
 version = "0.21"
+
+# wayland-scanner depends on an older version
+[[bans.skip]]
+name = "quick-xml"
+version = "0.34.0"
