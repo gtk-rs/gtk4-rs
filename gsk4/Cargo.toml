@@ -24,6 +24,7 @@ v4_4 = ["gsk4-sys/v4_4", "gdk/v4_4", "v4_2"]
 v4_6 = ["gsk4-sys/v4_6", "gdk/v4_6", "v4_4"]
 v4_10 = ["gsk4-sys/v4_10", "gdk/v4_10", "v4_6"]
 v4_14 = ["gsk4-sys/v4_14", "v4_10"]
+v4_16 = ["gsk4-sys/v4_16", "v4_14"]
 
 [dependencies]
 gsk4-sys.workspace = true
