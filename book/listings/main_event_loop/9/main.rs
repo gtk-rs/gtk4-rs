@@ -42,10 +42,17 @@ fn build_ui(app: &Application) {
     let (sender, receiver) = async_channel::bounded(1);
     // Connect to "clicked" signal of `button`
     button.connect_clicked(move |_| {
-        runtime().spawn(clone!(#[strong] sender, async move {
-            let response = reqwest::get("https://www.gtk-rs.org").await;
-            sender.send(response).await.expect("The channel needs to be open.");
-        }));
+        runtime().spawn(clone!(
+            #[strong]
+            sender,
+            async move {
+                let response = reqwest::get("https://www.gtk-rs.org").await;
+                sender
+                    .send(response)
+                    .await
+                    .expect("The channel needs to be open.");
+            }
+        ));
     });
 
     // The main loop executes the asynchronous block
