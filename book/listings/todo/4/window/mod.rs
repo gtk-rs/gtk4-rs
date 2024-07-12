@@ -100,7 +100,7 @@ impl Window {
         // Filter model whenever the value of the key "filter" changes
         self.settings().connect_changed(
             Some("filter"),
-            clone!(@weak self as window, @weak filter_model => move |_, _| {
+            clone!(#[weak(rename_to = window)] self, #[weak] filter_model , move |_, _| {
                 filter_model.set_filter(window.filter().as_ref());
             }),
         );
@@ -128,13 +128,13 @@ impl Window {
         // Setup callback for activation of the entry
         self.imp()
             .entry
-            .connect_activate(clone!(@weak self as window => move |_| {
+            .connect_activate(clone!(#[weak(rename_to = window)] self , move |_| {
                 window.new_task();
             }));
 
         // Setup callback for clicking (and the releasing) the icon of the entry
         self.imp().entry.connect_icon_release(
-            clone!(@weak self as window => move |_,_| {
+            clone!(#[weak(rename_to = window)] self , move |_,_| {
                 window.new_task();
             }),
         );

@@ -31,7 +31,7 @@ fn build_ui(app: &Application) {
     // Connect to "clicked" signal of `button`
     button.connect_clicked(move |_| {
         // The main loop executes the asynchronous block
-        glib::spawn_future_local(clone!(@strong sender => async move {
+        glib::spawn_future_local(clone!(#[strong] sender , async move {
             let response = reqwest::get("https://www.gtk-rs.org").await;
             sender.send(response).await.expect("The channel needs to be open.");
         }));

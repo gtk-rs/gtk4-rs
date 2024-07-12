@@ -30,7 +30,7 @@ fn build_ui(app: &Application) {
     let (sender, receiver) = async_channel::bounded(1);
     // Connect to "clicked" signal of `button`
     button.connect_clicked(move |_| {
-        glib::spawn_future_local(clone!(@strong sender => async move {
+        glib::spawn_future_local(clone!(#[strong] sender , async move {
             // Deactivate the button until the operation is done
             sender.send(false).await.expect("The channel needs to be open.");
             glib::timeout_future_seconds(5).await;
@@ -40,7 +40,7 @@ fn build_ui(app: &Application) {
     });
 
     // The main loop executes the asynchronous block
-    glib::spawn_future_local(clone!(@weak button => async move {
+    glib::spawn_future_local(clone!(#[weak] button , async move {
         while let Ok(enable_button) = receiver.recv().await {
             button.set_sensitive(enable_button);
         }

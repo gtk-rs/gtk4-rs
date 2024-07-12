@@ -39,9 +39,13 @@ fn build_ui(app: &Application) {
     // Connect callbacks
     // When a button is clicked, `number` will be changed
     // ANCHOR: callback
-    button_increase.connect_clicked(clone!(@strong number => move |_| {
-        number.set(number.get() + 1);
-    }));
+    button_increase.connect_clicked(clone!(
+        #[strong]
+        number,
+        move |_| {
+            number.set(number.get() + 1);
+        }
+    ));
     button_decrease.connect_clicked(move |_| {
         number.set(number.get() - 1);
     });

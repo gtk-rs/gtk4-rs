@@ -32,7 +32,7 @@ fn build_ui(app: &Application) {
     // Connect to "clicked" signal of `button`
     button.connect_clicked(move |button| {
         // The main loop executes the asynchronous block
-        glib::spawn_future_local(clone!(@weak button => async move {
+        glib::spawn_future_local(clone!(#[weak] button , async move {
             // Deactivate the button until the operation is done
             button.set_sensitive(false);
             let enable_button = gio::spawn_blocking(move || {
