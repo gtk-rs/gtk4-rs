@@ -320,7 +320,7 @@ static RUNTIME: Runtime =
 #    let (sender, receiver) = async_channel::bounded(1);
 #    // Connect to "clicked" signal of `button`
 #    button.connect_clicked(move |_| {
-#        RUNTIME.spawn(clone!(@strong sender => async move {
+#        RUNTIME.spawn(clone!(#[strong] sender, async move {
 #            let response = reqwest::get("https://www.gtk-rs.org").await;
 #            sender.send(response).await.expect("The channel needs to be open.");
 #        }));
