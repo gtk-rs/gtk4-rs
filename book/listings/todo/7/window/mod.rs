@@ -97,30 +97,45 @@ impl Window {
         let selection_model = NoSelection::new(Some(filter_model.clone()));
         self.imp().tasks_list.bind_model(
             Some(&selection_model),
-            clone!(@weak self as window => @default-panic, move |obj| {
-                let task_object = obj.downcast_ref().expect("The object should be of type `TaskObject`.");
-                let row = window.create_task_row(task_object);
-                row.upcast()
-            }),
+            clone!(
+                #[weak(rename_to = window)]
+                self,
+                #[upgrade_or_panic]
+                move |obj| {
+                    let task_object = obj
+                        .downcast_ref()
+                        .expect("The object should be of type `TaskObject`.");
+                    let row = window.create_task_row(task_object);
+                    row.upcast()
+                }
+            ),
         );
         // ANCHOR_END: bind_model
 
         // Filter model whenever the value of the key "filter" changes
         self.settings().connect_changed(
             Some("filter"),
-            clone!(@weak self as window, @weak filter_model => move |_, _| {
-                filter_model.set_filter(window.filter().as_ref());
-            }),
+            clone!(
+                #[weak(rename_to = window)]
+                self,
+                #[weak]
+                filter_model,
+                move |_, _| {
+                    filter_model.set_filter(window.filter().as_ref());
+                }
+            ),
         );
 
         // ANCHOR: connect_items_changed
         // Assure that the task list is only visible when it is supposed to
         self.set_task_list_visible(&self.tasks());
-        self.tasks().connect_items_changed(
-            clone!(@weak self as window => move |tasks, _, _, _| {
+        self.tasks().connect_items_changed(clone!(
+            #[weak(rename_to = window)]
+            self,
+            move |tasks, _, _, _| {
                 window.set_task_list_visible(tasks);
-            }),
-        );
+            }
+        ));
         // ANCHOR_END: connect_items_changed
     }
 
@@ -182,18 +197,22 @@ impl Window {
 
     fn setup_callbacks(&self) {
         // Setup callback for activation of the entry
-        self.imp()
-            .entry
-            .connect_activate(clone!(@weak self as window => move |_| {
+        self.imp().entry.connect_activate(clone!(
+            #[weak(rename_to = window)]
+            self,
+            move |_| {
                 window.new_task();
-            }));
+            }
+        ));
 
         // Setup callback for clicking (and the releasing) the icon of the entry
-        self.imp().entry.connect_icon_release(
-            clone!(@weak self as window => move |_,_| {
+        self.imp().entry.connect_icon_release(clone!(
+            #[weak(rename_to = window)]
+            self,
+            move |_, _| {
                 window.new_task();
-            }),
-        );
+            }
+        ));
     }
 
     fn new_task(&self) {

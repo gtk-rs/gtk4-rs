@@ -40,16 +40,24 @@ fn build_ui(app: &Application) {
     // ANCHOR: callback
     // Connect callbacks
     // When a button is clicked, `number` and label of the other button will be changed
-    button_increase.connect_clicked(clone!(@weak number, @strong button_decrease =>
+    button_increase.connect_clicked(clone!(
+        #[weak]
+        number,
+        #[strong]
+        button_decrease,
         move |_| {
             number.set(number.get() + 1);
             button_decrease.set_label(&number.get().to_string());
-    }));
-    button_decrease.connect_clicked(clone!(@strong button_increase =>
+        }
+    ));
+    button_decrease.connect_clicked(clone!(
+        #[strong]
+        button_increase,
         move |_| {
             number.set(number.get() - 1);
             button_increase.set_label(&number.get().to_string());
-    }));
+        }
+    ));
     // ANCHOR_END: callback
 
     // Add buttons to `gtk_box`
