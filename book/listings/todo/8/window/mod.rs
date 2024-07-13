@@ -119,13 +119,18 @@ impl Window {
 
         self.imp().collections_list.bind_model(
             Some(&collections),
-            clone!(@weak self as window => @default-panic, move |obj| {
-                let collection_object = obj
-                    .downcast_ref()
-                    .expect("The object should be of type `CollectionObject`.");
-                let row = window.create_collection_row(collection_object);
-                row.upcast()
-            }),
+            clone!(
+                #[weak(rename_to = window)]
+                self,
+                #[upgrade_or_panic]
+                move |obj| {
+                    let collection_object = obj
+                        .downcast_ref()
+                        .expect("The object should be of type `CollectionObject`.");
+                    let row = window.create_collection_row(collection_object);
+                    row.upcast()
+                }
+            ),
         )
     }
     // ANCHOR_END: setup_collections
@@ -183,13 +188,18 @@ impl Window {
         let selection_model = NoSelection::new(Some(filter_model.clone()));
         self.imp().tasks_list.bind_model(
             Some(&selection_model),
-            clone!(@weak self as window => @default-panic, move |obj| {
-                let task_object = obj
-                    .downcast_ref()
-                    .expect("The object should be of type `TaskObject`.");
-                let row = window.create_task_row(task_object);
-                row.upcast()
-            }),
+            clone!(
+                #[weak(rename_to = window)]
+                self,
+                #[upgrade_or_panic]
+                move |obj| {
+                    let task_object = obj
+                        .downcast_ref()
+                        .expect("The object should be of type `TaskObject`.");
+                    let row = window.create_task_row(task_object);
+                    row.upcast()
+                }
+            ),
         );
 
         // Store filter model
@@ -202,11 +212,13 @@ impl Window {
 
         // Assure that the task list is only visible when it is supposed to
         self.set_task_list_visible(&tasks);
-        let tasks_changed_handler_id = tasks.connect_items_changed(
-            clone!(@weak self as window => move |tasks, _, _, _| {
+        let tasks_changed_handler_id = tasks.connect_items_changed(clone!(
+            #[weak(rename_to = window)]
+            self,
+            move |tasks, _, _, _| {
                 window.set_task_list_visible(tasks);
-            }),
-        );
+            }
+        ));
         self.imp()
             .tasks_changed_handler_id
             .replace(Some(tasks_changed_handler_id));
@@ -263,49 +275,62 @@ impl Window {
 
     fn setup_callbacks(&self) {
         // Setup callback for activation of the entry
-        self.imp()
-            .entry
-            .connect_activate(clone!(@weak self as window => move |_| {
+        self.imp().entry.connect_activate(clone!(
+            #[weak(rename_to = window)]
+            self,
+            move |_| {
                 window.new_task();
-            }));
+            }
+        ));
 
         // Setup callback for clicking (and the releasing) the icon of the entry
-        self.imp().entry.connect_icon_release(
-            clone!(@weak self as window => move |_,_| {
+        self.imp().entry.connect_icon_release(clone!(
+            #[weak(rename_to = window)]
+            self,
+            move |_, _| {
                 window.new_task();
-            }),
-        );
+            }
+        ));
 
         // ANCHOR: setup_callbacks
         // Filter model whenever the value of the key "filter" changes
         self.settings().connect_changed(
             Some("filter"),
-            clone!(@weak self as window => move |_, _| {
-                window.set_filter();
-            }),
+            clone!(
+                #[weak(rename_to = window)]
+                self,
+                move |_, _| {
+                    window.set_filter();
+                }
+            ),
         );
 
         // Setup callback when items of collections change
         self.set_stack();
-        self.collections().connect_items_changed(
-            clone!(@weak self as window => move |_, _, _, _| {
+        self.collections().connect_items_changed(clone!(
+            #[weak(rename_to = window)]
+            self,
+            move |_, _, _, _| {
                 window.set_stack();
-            }),
-        );
+            }
+        ));
 
         // Setup callback for activating a row of collections list
-        self.imp().collections_list.connect_row_activated(
-            clone!(@weak self as window => move |_, row| {
+        self.imp().collections_list.connect_row_activated(clone!(
+            #[weak(rename_to = window)]
+            self,
+            move |_, row| {
                 let index = row.index();
-                let selected_collection = window.collections()
+                let selected_collection = window
+                    .collections()
                     .item(index as u32)
                     .expect("There needs to be an object at this position.")
                     .downcast::<CollectionObject>()
                     .expect("The object needs to be a `CollectionObject`.");
                 window.set_current_collection(selected_collection);
                 window.imp().split_view.set_show_content(true);
-            }),
-        );
+            }
+        ));
         // ANCHOR_END: setup_callbacks
     }
 
@@ -381,18 +406,22 @@ impl Window {
         dialog.set_response_appearance(create_response, ResponseAppearance::Suggested);
 
         // Set entry's css class to "error", when there is no text in it
-        entry.connect_changed(clone!(@weak dialog => move |entry| {
-            let text = entry.text();
-            let empty = text.is_empty();
+        entry.connect_changed(clone!(
+            #[weak]
+            dialog,
+            move |entry| {
+                let text = entry.text();
+                let empty = text.is_empty();
 
-            dialog.set_response_enabled(create_response, !empty);
+                dialog.set_response_enabled(create_response, !empty);
 
-            if empty {
-                entry.add_css_class("error");
-            } else {
-                entry.remove_css_class("error");
+                if empty {
+                    entry.add_css_class("error");
+                } else {
+                    entry.remove_css_class("error");
+                }
             }
-        }));
+        ));
 
         let response = dialog.choose_future(self).await;
 

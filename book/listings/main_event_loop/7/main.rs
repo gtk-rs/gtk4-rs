@@ -31,23 +31,27 @@ fn build_ui(app: &Application) {
     // Connect to "clicked" signal of `button`
     button.connect_clicked(move |button| {
         // The main loop executes the asynchronous block
-        glib::spawn_future_local(clone!(@weak button => async move {
-            // Get native of button for window identifier
-            let native = button.native().expect("Need to be able to get native.");
-            // Get window identifier so that the dialog will be modal to the main window
-            let identifier = WindowIdentifier::from_native(&native).await;
-            let request = UserInformation::request()
-                .reason("App would like to access user information.")
-                .identifier(identifier)
-                .send()
-                .await;
+        glib::spawn_future_local(clone!(
+            #[weak]
+            button,
+            async move {
+                // Get native of button for window identifier
+                let native = button.native().expect("Need to be able to get native.");
+                // Get window identifier so that the dialog will be modal to the main window
+                let identifier = WindowIdentifier::from_native(&native).await;
+                let request = UserInformation::request()
+                    .reason("App would like to access user information.")
+                    .identifier(identifier)
+                    .send()
+                    .await;
 
-            if let Ok(response) = request.and_then(|r| r.response()) {
-                println!("User name: {}", response.name());
-            } else {
-                println!("Could not access user information.")
+                if let Ok(response) = request.and_then(|r| r.response()) {
+                    println!("User name: {}", response.name());
+                } else {
+                    println!("Could not access user information.")
+                }
             }
-        }));
+        ));
     });
     // ANCHOR_END: callback
 
