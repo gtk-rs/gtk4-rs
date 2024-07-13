@@ -32,9 +32,13 @@ fn build_ui(app: &Application) {
 
     // Add action "close" to `window` taking no parameter
     let action_close = ActionEntry::builder("close")
-        .activate(clone!(@weak window => move |_, _, _| {
-            window.close();
-        }))
+        .activate(clone!(
+            #[weak]
+            window,
+            move |_, _, _| {
+                window.close();
+            }
+        ))
         .build();
 
     // ANCHOR: action_group
