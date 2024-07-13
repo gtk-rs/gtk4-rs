@@ -7,7 +7,7 @@ edition = "2021"
 [dependencies]
 adw = { version = "0.7", package = "libadwaita", features = ["v1_5"] }
 anyhow = "1.0"
-ashpd = { git = "https://github.com/bilelmoussaoui/ashpd", features = ["gtk4"] }
+ashpd = { version = "0.9", features = ["gtk4"] }
 async-channel = "2.0"
 dirs = "5.0"
 gtk = { version = "0.9", package = "gtk4", features = ["v4_12"] }
