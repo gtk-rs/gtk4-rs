@@ -288,7 +288,7 @@ checksum = "47921d14afc4daad9bedc926099bc6edcaa23e37a957448f86cdefcbafe2f632"
 dependencies = [
  "bitflags 2.6.0",
  "fnv",
- "glow",
+ "glow 0.13.1",
  "imgref",
  "log",
  "lru",
@@ -691,6 +691,18 @@ dependencies = [
 ]
 
 [[package]]
+name = "glow"
+version = "0.14.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "f865cbd94bd355b89611211e49508da98a1fce0ad755c1e8448fb96711b24528"
+dependencies = [
+ "js-sys",
+ "slotmap",
+ "wasm-bindgen",
+ "web-sys",
+]
+
+[[package]]
 name = "gobject-sys"
 version = "0.21.0"
 source = "git+https://github.com/gtk-rs/gtk-rs-core?branch=master#25eec3ea281e9753cb3c0283fb98ccd3d1ef8dbf"
@@ -795,7 +807,7 @@ dependencies = [
  "epoxy",
  "femtovg",
  "glium",
- "glow",
+ "glow 0.14.0",
  "gtk4",
  "im-rc",
  "image",
@@ -1076,7 +1088,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "e310b3a6b5907f99202fcdb4960ff45b93735d7c7d96b760fcff8db2dc0e103d"
 dependencies = [
  "cfg-if",
- "windows-targets 0.48.5",
+ "windows-targets 0.52.6",
 ]
 
 [[package]]
