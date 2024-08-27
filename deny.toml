@@ -37,3 +37,7 @@ allow-git = [
 [[bans.skip]]
 name = "quick-xml"
 version = "0.34.0"
+# rustix/errno depends on an older version
+[[bans.skip]]
+name = "windows-sys"
+version = "0.52.0"
