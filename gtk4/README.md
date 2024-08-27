@@ -119,16 +119,15 @@ The [`gtk`](mod@crate) and [`gdk`][`mod@gdk`] crates have some run-time safety a
 checks.
 
 - Any constructor or free function will panic if called before [`init`][`fn@init`] or on
-a non-main thread.
+  a non-main thread.
 
-- Any [`&str`] or [`&Path`](std::path::Path) parameter with an interior null (`\0`) character will
-cause a panic.
+- Any [`&str`] or [`&Path`](std::path::Path) parameter with an interior null (`\0`) character will cause a panic.
 
 - Some functions will panic if supplied out-of-range integer parameters. All
-such cases will be documented individually but they are not yet.
+  such cases will be documented individually but they are not yet.
 
 - A panic in a closure that handles signals or in any other closure passed
-to a [`gtk`](mod@crate) function will abort the process.
+  to a [`gtk`](mod@crate) function will abort the process.
 
 ## Features
 
