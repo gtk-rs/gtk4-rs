@@ -29,23 +29,23 @@ pub use win32_display::Win32DisplayFilterHandle;
 mod win32_hcursor;
 mod win32_surface;
 
-#[cfg(not(feature = "win32"))]
+#[cfg(not(all(feature = "win32", windows)))]
 pub struct HANDLE(pub isize);
-#[cfg(not(feature = "win32"))]
+#[cfg(not(all(feature = "win32", windows)))]
 pub struct HCURSOR(pub isize);
-#[cfg(not(feature = "win32"))]
+#[cfg(not(all(feature = "win32", windows)))]
 pub struct HICON(pub isize);
-#[cfg(not(feature = "win32"))]
+#[cfg(not(all(feature = "win32", windows)))]
 pub struct HWND(pub isize);
 
-#[cfg(not(feature = "win32"))]
+#[cfg(not(all(feature = "win32", windows)))]
 #[repr(transparent)]
 pub struct WPARAM(pub usize);
-#[cfg(not(feature = "win32"))]
+#[cfg(not(all(feature = "win32", windows)))]
 #[repr(transparent)]
 pub struct LPARAM(pub isize);
 
-#[cfg(not(feature = "win32"))]
+#[cfg(not(all(feature = "win32", windows)))]
 #[repr(C)]
 pub struct POINT {
     pub x: i32,
@@ -53,7 +53,7 @@ pub struct POINT {
 }
 
 #[allow(non_snake_case)]
-#[cfg(not(feature = "win32"))]
+#[cfg(not(all(feature = "win32", windows)))]
 #[repr(C)]
 pub struct MSG {
     pub hwnd: HWND,
@@ -64,7 +64,7 @@ pub struct MSG {
     pub pt: POINT,
 }
 
-#[cfg(feature = "win32")]
+#[cfg(all(feature = "win32", windows))]
 pub use windows::Win32::Foundation::{HANDLE, HWND};
-#[cfg(feature = "win32")]
+#[cfg(all(feature = "win32", windows))]
 pub use windows::Win32::UI::WindowsAndMessaging::{HCURSOR, HICON, MSG};
