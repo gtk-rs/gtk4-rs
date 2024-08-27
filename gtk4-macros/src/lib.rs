@@ -256,12 +256,10 @@ pub fn composite_template_derive(input: TokenStream) -> TokenStream {
 /// exposed to the template scope. It can take the following options:
 /// - `name` renames the callback. Defaults to the function name if not defined.
 /// - `function` ignores the first value when calling the callback and disallows
-///   `self`.  Useful
-/// for callbacks called from `<closure>` tags.
+///   `self`.  Useful for callbacks called from `<closure>` tags.
 /// - `function = false` reverts the effects of `functions` used on the `impl`,
-///   so the callback
-/// gets the first value and can take `self` again. Mainly useful for callbacks
-/// that are invoked with `swapped="true"`.
+///   so the callback gets the first value and can take `self` again. Mainly useful
+///   for callbacks that are invoked with `swapped="true"`.
 ///
 /// The `rest` attribute can be placed on the last argument of a template
 /// callback. This attribute must be used on an argument of type
