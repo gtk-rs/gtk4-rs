@@ -4,6 +4,8 @@
 #![allow(deprecated)]
 #![cfg_attr(docsrs, feature(doc_cfg))]
 
+use std::ffi::c_void;
+
 pub use gdk;
 pub use gdk4_win32_sys as ffi;
 pub use gio;
@@ -30,13 +32,13 @@ mod win32_hcursor;
 mod win32_surface;
 
 #[cfg(not(all(feature = "win32", windows)))]
-pub struct HANDLE(pub isize);
+pub struct HANDLE(pub *mut c_void);
 #[cfg(not(all(feature = "win32", windows)))]
-pub struct HCURSOR(pub isize);
+pub struct HCURSOR(pub *mut c_void);
 #[cfg(not(all(feature = "win32", windows)))]
-pub struct HICON(pub isize);
+pub struct HICON(pub *mut c_void);
 #[cfg(not(all(feature = "win32", windows)))]
-pub struct HWND(pub isize);
+pub struct HWND(pub *mut c_void);
 
 #[cfg(not(all(feature = "win32", windows)))]
 #[repr(transparent)]

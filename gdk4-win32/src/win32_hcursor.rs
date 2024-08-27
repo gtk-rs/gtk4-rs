@@ -1,6 +1,6 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use std::ptr::NonNull;
+use std::{ffi::c_void, ptr::NonNull};
 
 use glib::{translate::*, types::Pointee};
 
@@ -17,7 +17,7 @@ impl Win32HCursor {
         unsafe {
             from_glib_full(ffi::gdk_win32_hcursor_new(
                 display.as_ref().to_glib_none().0,
-                handle.0,
+                handle.0 as isize,
                 destroyable.into_glib(),
             ))
         }
@@ -25,6 +25,6 @@ impl Win32HCursor {
 
     pub fn handle(&self) -> HCURSOR {
         let ptr: NonNull<Pointee> = ObjectExt::property(self, "handle");
-        HCURSOR(ptr.as_ptr() as _)
+        HCURSOR(ptr.as_ptr() as *mut c_void)
     }
 }
