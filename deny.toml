@@ -33,12 +33,6 @@ allow-git = [
   "https://github.com/gtk-rs/gtk-rs-core",
 ]
 
-# proc-macro-crate depends on an older version of toml_edit
-# https://github.com/bkchr/proc-macro-crate/pull/50
-[[bans.skip]]
-name = "toml_edit"
-version = "0.21"
-
 # wayland-scanner depends on an older version
 [[bans.skip]]
 name = "quick-xml"
