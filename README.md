@@ -1,4 +1,6 @@
-# gtk4-rs ![CI](https://github.com/gtk-rs/gtk4-rs/workflows/CI/badge.svg)
+# gtk4-rs
+
+![CI](https://github.com/gtk-rs/gtk4-rs/workflows/CI/badge.svg)
 
 A group of crates that aims to provide complete [GTK](https://gtk.org/) 4 bindings. This repository contains all the "core" crates of GTK 4.
 
