@@ -16,40 +16,45 @@ mod sealed {
 pub trait FileChooserExtManual: sealed::Sealed + IsA<FileChooser> + 'static {
     #[doc(alias = "gtk_file_chooser_add_choice")]
     fn add_choice(&self, id: impl IntoGStr, label: impl IntoGStr, options: &[(&str, &str)]) {
-        unsafe {
-            let (options_ids, options_labels) = if options.is_empty() {
-                (std::ptr::null(), std::ptr::null())
-            } else {
-                let stashes_ids = options
-                    .iter()
-                    .map(|o| o.0.to_glib_none())
-                    .collect::<Vec<_>>();
-                let stashes_labels = options
-                    .iter()
-                    .map(|o| o.1.to_glib_none())
-                    .collect::<Vec<_>>();
-                (
-                    stashes_ids
-                        .iter()
-                        .map(|o| o.0)
-                        .collect::<Vec<*const libc::c_char>>()
-                        .as_ptr(),
-                    stashes_labels
-                        .iter()
-                        .map(|o| o.0)
-                        .collect::<Vec<*const libc::c_char>>()
-                        .as_ptr(),
-                )
-            };
-
+        if options.is_empty() {
             id.run_with_gstr(|id| {
-                label.run_with_gstr(|label| {
+                label.run_with_gstr(|label| unsafe {
                     ffi::gtk_file_chooser_add_choice(
                         self.as_ref().to_glib_none().0,
                         id.as_ptr(),
                         label.as_ptr(),
-                        mut_override(options_ids),
-                        mut_override(options_labels),
+                        mut_override(std::ptr::null()),
+                        mut_override(std::ptr::null()),
+                    );
+                });
+            });
+        } else {
+            let stashes_ids = options
+                .iter()
+                .map(|o| o.0.to_glib_none())
+                .collect::<Vec<_>>();
+            let stashes_labels = options
+                .iter()
+                .map(|o| o.1.to_glib_none())
+                .collect::<Vec<_>>();
+            let options_ids = stashes_ids
+                .iter()
+                .map(|o| o.0)
+                .chain(std::iter::once(std::ptr::null()))
+                .collect::<Vec<*const libc::c_char>>();
+            let options_labels = stashes_labels
+                .iter()
+                .map(|o| o.0)
+                .chain(std::iter::once(std::ptr::null()))
+                .collect::<Vec<*const libc::c_char>>();
+            id.run_with_gstr(|id| {
+                label.run_with_gstr(|label| unsafe {
+                    ffi::gtk_file_chooser_add_choice(
+                        self.as_ref().to_glib_none().0,
+                        id.as_ptr(),
+                        label.as_ptr(),
+                        mut_override(options_ids.as_ptr()),
+                        mut_override(options_labels.as_ptr()),
                     );
                 });
             });
