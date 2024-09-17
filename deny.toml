@@ -33,10 +33,6 @@ allow-git = [
   "https://github.com/gtk-rs/gtk-rs-core",
 ]
 
-# wayland-scanner depends on an older version
-[[bans.skip]]
-name = "quick-xml"
-version = "0.34.0"
 # rustix/errno depends on an older version
 [[bans.skip]]
 name = "windows-sys"
