@@ -1709,8 +1709,8 @@ pub trait TreeViewExt: IsA<TreeView> + sealed::Sealed + 'static {
             P: Fn(&TreeModel, i32, &str, &TreeIter) -> bool + 'static,
         >(
             model: *mut ffi::GtkTreeModel,
-            column: libc::c_int,
-            key: *const libc::c_char,
+            column: std::ffi::c_int,
+            key: *const std::ffi::c_char,
             iter: *mut ffi::GtkTreeIter,
             search_data: glib::ffi::gpointer,
         ) -> glib::ffi::gboolean {
@@ -1921,7 +1921,7 @@ pub trait TreeViewExt: IsA<TreeView> + sealed::Sealed + 'static {
         >(
             this: *mut ffi::GtkTreeView,
             step: ffi::GtkMovementStep,
-            direction: libc::c_int,
+            direction: std::ffi::c_int,
             extend: glib::ffi::gboolean,
             modify: glib::ffi::gboolean,
             f: glib::ffi::gpointer,

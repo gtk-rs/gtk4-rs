@@ -73,8 +73,8 @@ impl EventControllerScroll {
             F: Fn(&EventControllerScroll, f64, f64) + 'static,
         >(
             this: *mut ffi::GtkEventControllerScroll,
-            vel_x: libc::c_double,
-            vel_y: libc::c_double,
+            vel_x: std::ffi::c_double,
+            vel_y: std::ffi::c_double,
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
@@ -102,8 +102,8 @@ impl EventControllerScroll {
             F: Fn(&EventControllerScroll, f64, f64) -> glib::Propagation + 'static,
         >(
             this: *mut ffi::GtkEventControllerScroll,
-            dx: libc::c_double,
-            dy: libc::c_double,
+            dx: std::ffi::c_double,
+            dy: std::ffi::c_double,
             f: glib::ffi::gpointer,
         ) -> glib::ffi::gboolean {
             let f: &F = &*(f as *const F);

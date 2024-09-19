@@ -152,8 +152,8 @@ pub trait SelectionModelExt: IsA<SelectionModel> + sealed::Sealed + 'static {
             F: Fn(&P, u32, u32) + 'static,
         >(
             this: *mut ffi::GtkSelectionModel,
-            position: libc::c_uint,
-            n_items: libc::c_uint,
+            position: std::ffi::c_uint,
+            n_items: std::ffi::c_uint,
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);

@@ -179,7 +179,7 @@ impl LevelBar {
     ) -> SignalHandlerId {
         unsafe extern "C" fn offset_changed_trampoline<F: Fn(&LevelBar, &str) + 'static>(
             this: *mut ffi::GtkLevelBar,
-            name: *mut libc::c_char,
+            name: *mut std::ffi::c_char,
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);

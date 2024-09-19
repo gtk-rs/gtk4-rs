@@ -799,8 +799,8 @@ pub trait CellRendererTextExt: IsA<CellRendererText> + sealed::Sealed + 'static 
             F: Fn(&P, TreePath, &str) + 'static,
         >(
             this: *mut ffi::GtkCellRendererText,
-            path: *mut libc::c_char,
-            new_text: *mut libc::c_char,
+            path: *mut std::ffi::c_char,
+            new_text: *mut std::ffi::c_char,
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);

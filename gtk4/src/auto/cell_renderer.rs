@@ -569,7 +569,7 @@ pub trait CellRendererExt: IsA<CellRenderer> + sealed::Sealed + 'static {
         >(
             this: *mut ffi::GtkCellRenderer,
             editable: *mut ffi::GtkCellEditable,
-            path: *mut libc::c_char,
+            path: *mut std::ffi::c_char,
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);

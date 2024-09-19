@@ -74,7 +74,7 @@ impl CellRendererCombo {
             F: Fn(&CellRendererCombo, TreePath, &TreeIter) + 'static,
         >(
             this: *mut ffi::GtkCellRendererCombo,
-            path_string: *mut libc::c_char,
+            path_string: *mut std::ffi::c_char,
             new_iter: *mut ffi::GtkTreeIter,
             f: glib::ffi::gpointer,
         ) {

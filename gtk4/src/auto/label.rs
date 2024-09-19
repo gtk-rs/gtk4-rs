@@ -481,7 +481,7 @@ impl Label {
             F: Fn(&Label, &str) -> glib::Propagation + 'static,
         >(
             this: *mut ffi::GtkLabel,
-            uri: *mut libc::c_char,
+            uri: *mut std::ffi::c_char,
             f: glib::ffi::gpointer,
         ) -> glib::ffi::gboolean {
             let f: &F = &*(f as *const F);
@@ -540,7 +540,7 @@ impl Label {
         >(
             this: *mut ffi::GtkLabel,
             step: ffi::GtkMovementStep,
-            count: libc::c_int,
+            count: std::ffi::c_int,
             extend_selection: glib::ffi::gboolean,
             f: glib::ffi::gpointer,
         ) {

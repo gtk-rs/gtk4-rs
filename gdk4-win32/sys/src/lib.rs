@@ -14,14 +14,15 @@
 use gdk4_sys as gdk;
 use glib_sys as glib;
 
-#[allow(unused_imports)]
-use libc::{
-    c_char, c_double, c_float, c_int, c_long, c_short, c_uchar, c_uint, c_ulong, c_ushort, c_void,
-    intptr_t, off_t, size_t, ssize_t, time_t, uintptr_t, FILE,
-};
 #[cfg(unix)]
 #[allow(unused_imports)]
 use libc::{dev_t, gid_t, pid_t, socklen_t, uid_t};
+#[allow(unused_imports)]
+use libc::{intptr_t, off_t, size_t, ssize_t, time_t, uintptr_t, FILE};
+#[allow(unused_imports)]
+use std::ffi::{
+    c_char, c_double, c_float, c_int, c_long, c_short, c_uchar, c_uint, c_ulong, c_ushort, c_void,
+};
 
 #[allow(unused_imports)]
 use glib::{gboolean, gconstpointer, gpointer, GType};
@@ -43,6 +44,7 @@ pub type GdkWin32MessageFilterFunc = Option<
 
 // Records
 #[repr(C)]
+#[allow(dead_code)]
 pub struct _GdkWin32DisplayClass {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -51,6 +53,7 @@ pub struct _GdkWin32DisplayClass {
 pub type GdkWin32DisplayClass = _GdkWin32DisplayClass;
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct _GdkWin32DisplayManagerClass {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -59,6 +62,7 @@ pub struct _GdkWin32DisplayManagerClass {
 pub type GdkWin32DisplayManagerClass = _GdkWin32DisplayManagerClass;
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct _GdkWin32DragClass {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -67,6 +71,7 @@ pub struct _GdkWin32DragClass {
 pub type GdkWin32DragClass = _GdkWin32DragClass;
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct _GdkWin32GLContextClass {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -75,6 +80,7 @@ pub struct _GdkWin32GLContextClass {
 pub type GdkWin32GLContextClass = _GdkWin32GLContextClass;
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct _GdkWin32HCursorClass {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -83,6 +89,7 @@ pub struct _GdkWin32HCursorClass {
 pub type GdkWin32HCursorClass = _GdkWin32HCursorClass;
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct _GdkWin32MonitorClass {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -91,6 +98,7 @@ pub struct _GdkWin32MonitorClass {
 pub type GdkWin32MonitorClass = _GdkWin32MonitorClass;
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct _GdkWin32ScreenClass {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -99,6 +107,7 @@ pub struct _GdkWin32ScreenClass {
 pub type GdkWin32ScreenClass = _GdkWin32ScreenClass;
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct _GdkWin32SurfaceClass {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -108,6 +117,7 @@ pub type GdkWin32SurfaceClass = _GdkWin32SurfaceClass;
 
 // Classes
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GdkWin32Display {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -121,6 +131,7 @@ impl ::std::fmt::Debug for GdkWin32Display {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GdkWin32DisplayManager {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -134,6 +145,7 @@ impl ::std::fmt::Debug for GdkWin32DisplayManager {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GdkWin32Drag {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -146,6 +158,7 @@ impl ::std::fmt::Debug for GdkWin32Drag {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GdkWin32GLContext {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -159,6 +172,7 @@ impl ::std::fmt::Debug for GdkWin32GLContext {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GdkWin32HCursor {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -172,6 +186,7 @@ impl ::std::fmt::Debug for GdkWin32HCursor {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GdkWin32Monitor {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -185,6 +200,7 @@ impl ::std::fmt::Debug for GdkWin32Monitor {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GdkWin32Screen {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -198,6 +214,7 @@ impl ::std::fmt::Debug for GdkWin32Screen {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GdkWin32Surface {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -210,7 +227,6 @@ impl ::std::fmt::Debug for GdkWin32Surface {
     }
 }
 
-#[link(name = "gtk-4")]
 extern "C" {
 
     //=========================================================================
