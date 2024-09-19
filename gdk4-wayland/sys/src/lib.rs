@@ -13,14 +13,15 @@
 
 use glib_sys as glib;
 
-#[allow(unused_imports)]
-use libc::{
-    c_char, c_double, c_float, c_int, c_long, c_short, c_uchar, c_uint, c_ulong, c_ushort, c_void,
-    intptr_t, off_t, size_t, ssize_t, time_t, uintptr_t, FILE,
-};
 #[cfg(unix)]
 #[allow(unused_imports)]
 use libc::{dev_t, gid_t, pid_t, socklen_t, uid_t};
+#[allow(unused_imports)]
+use libc::{intptr_t, off_t, size_t, ssize_t, time_t, uintptr_t, FILE};
+#[allow(unused_imports)]
+use std::ffi::{
+    c_char, c_double, c_float, c_int, c_long, c_short, c_uchar, c_uint, c_ulong, c_ushort, c_void,
+};
 
 #[allow(unused_imports)]
 use glib::{gboolean, gconstpointer, gpointer, GType};
@@ -31,6 +32,7 @@ pub type GdkWaylandToplevelExported =
 
 // Records
 #[repr(C)]
+#[allow(dead_code)]
 pub struct _GdkWaylandDeviceClass {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -39,6 +41,7 @@ pub struct _GdkWaylandDeviceClass {
 pub type GdkWaylandDeviceClass = _GdkWaylandDeviceClass;
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct _GdkWaylandDisplayClass {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -47,6 +50,7 @@ pub struct _GdkWaylandDisplayClass {
 pub type GdkWaylandDisplayClass = _GdkWaylandDisplayClass;
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct _GdkWaylandGLContextClass {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -55,6 +59,7 @@ pub struct _GdkWaylandGLContextClass {
 pub type GdkWaylandGLContextClass = _GdkWaylandGLContextClass;
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct _GdkWaylandMonitorClass {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -63,6 +68,7 @@ pub struct _GdkWaylandMonitorClass {
 pub type GdkWaylandMonitorClass = _GdkWaylandMonitorClass;
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct _GdkWaylandSeatClass {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -72,6 +78,7 @@ pub type GdkWaylandSeatClass = _GdkWaylandSeatClass;
 
 // Classes
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GdkWaylandDevice {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -85,6 +92,7 @@ impl ::std::fmt::Debug for GdkWaylandDevice {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GdkWaylandDisplay {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -98,6 +106,7 @@ impl ::std::fmt::Debug for GdkWaylandDisplay {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GdkWaylandGLContext {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -111,6 +120,7 @@ impl ::std::fmt::Debug for GdkWaylandGLContext {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GdkWaylandMonitor {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -124,6 +134,7 @@ impl ::std::fmt::Debug for GdkWaylandMonitor {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GdkWaylandPopup {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -137,6 +148,7 @@ impl ::std::fmt::Debug for GdkWaylandPopup {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GdkWaylandSeat {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -150,6 +162,7 @@ impl ::std::fmt::Debug for GdkWaylandSeat {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GdkWaylandSurface {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -163,6 +176,7 @@ impl ::std::fmt::Debug for GdkWaylandSurface {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GdkWaylandToplevel {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -175,7 +189,6 @@ impl ::std::fmt::Debug for GdkWaylandToplevel {
     }
 }
 
-#[link(name = "gtk-4")]
 extern "C" {
 
     //=========================================================================

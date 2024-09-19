@@ -492,7 +492,7 @@ pub trait ScaleButtonExt: IsA<ScaleButton> + sealed::Sealed + 'static {
             F: Fn(&P, f64) + 'static,
         >(
             this: *mut ffi::GtkScaleButton,
-            value: libc::c_double,
+            value: std::ffi::c_double,
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);

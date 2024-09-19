@@ -714,9 +714,9 @@ pub trait ComboBoxExt: IsA<ComboBox> + sealed::Sealed + 'static {
             F: Fn(&P, &str) -> String + 'static,
         >(
             this: *mut ffi::GtkComboBox,
-            path: *mut libc::c_char,
+            path: *mut std::ffi::c_char,
             f: glib::ffi::gpointer,
-        ) -> *mut libc::c_char {
+        ) -> *mut std::ffi::c_char {
             let f: &F = &*(f as *const F);
             f(
                 ComboBox::from_glib_borrow(this).unsafe_cast_ref(),

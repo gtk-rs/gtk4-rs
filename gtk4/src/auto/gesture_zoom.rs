@@ -44,7 +44,7 @@ impl GestureZoom {
     pub fn connect_scale_changed<F: Fn(&Self, f64) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn scale_changed_trampoline<F: Fn(&GestureZoom, f64) + 'static>(
             this: *mut ffi::GtkGestureZoom,
-            scale: libc::c_double,
+            scale: std::ffi::c_double,
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);

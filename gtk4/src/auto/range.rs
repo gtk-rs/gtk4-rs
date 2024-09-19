@@ -248,7 +248,7 @@ pub trait RangeExt: IsA<Range> + sealed::Sealed + 'static {
     fn connect_adjust_bounds<F: Fn(&Self, f64) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn adjust_bounds_trampoline<P: IsA<Range>, F: Fn(&P, f64) + 'static>(
             this: *mut ffi::GtkRange,
-            value: libc::c_double,
+            value: std::ffi::c_double,
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
@@ -278,7 +278,7 @@ pub trait RangeExt: IsA<Range> + sealed::Sealed + 'static {
         >(
             this: *mut ffi::GtkRange,
             scroll: ffi::GtkScrollType,
-            value: libc::c_double,
+            value: std::ffi::c_double,
             f: glib::ffi::gpointer,
         ) -> glib::ffi::gboolean {
             let f: &F = &*(f as *const F);

@@ -209,7 +209,7 @@ impl ListView {
     pub fn connect_activate<F: Fn(&Self, u32) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn activate_trampoline<F: Fn(&ListView, u32) + 'static>(
             this: *mut ffi::GtkListView,
-            position: libc::c_uint,
+            position: std::ffi::c_uint,
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);

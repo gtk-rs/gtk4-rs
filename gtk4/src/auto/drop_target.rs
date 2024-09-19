@@ -140,8 +140,8 @@ impl DropTarget {
             F: Fn(&DropTarget, f64, f64) -> gdk::DragAction + 'static,
         >(
             this: *mut ffi::GtkDropTarget,
-            x: libc::c_double,
-            y: libc::c_double,
+            x: std::ffi::c_double,
+            y: std::ffi::c_double,
             f: glib::ffi::gpointer,
         ) -> gdk::ffi::GdkDragAction {
             let f: &F = &*(f as *const F);
@@ -191,8 +191,8 @@ impl DropTarget {
             F: Fn(&DropTarget, f64, f64) -> gdk::DragAction + 'static,
         >(
             this: *mut ffi::GtkDropTarget,
-            x: libc::c_double,
-            y: libc::c_double,
+            x: std::ffi::c_double,
+            y: std::ffi::c_double,
             f: glib::ffi::gpointer,
         ) -> gdk::ffi::GdkDragAction {
             let f: &F = &*(f as *const F);

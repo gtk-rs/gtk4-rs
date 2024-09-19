@@ -85,8 +85,8 @@ impl PrintSettings {
     pub fn foreach<P: FnMut(&str, &str)>(&self, func: P) {
         let func_data: P = func;
         unsafe extern "C" fn func_func<P: FnMut(&str, &str)>(
-            key: *const libc::c_char,
-            value: *const libc::c_char,
+            key: *const std::ffi::c_char,
+            value: *const std::ffi::c_char,
             user_data: glib::ffi::gpointer,
         ) {
             let key: Borrowed<glib::GString> = from_glib_borrow(key);

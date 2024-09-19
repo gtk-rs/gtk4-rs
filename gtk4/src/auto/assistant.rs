@@ -236,9 +236,9 @@ impl Assistant {
     pub fn set_forward_page_func<P: Fn(i32) -> i32 + 'static>(&self, page_func: P) {
         let page_func_data: Box_<P> = Box_::new(page_func);
         unsafe extern "C" fn page_func_func<P: Fn(i32) -> i32 + 'static>(
-            current_page: libc::c_int,
+            current_page: std::ffi::c_int,
             data: glib::ffi::gpointer,
-        ) -> libc::c_int {
+        ) -> std::ffi::c_int {
             let callback = &*(data as *mut P);
             (*callback)(current_page)
         }

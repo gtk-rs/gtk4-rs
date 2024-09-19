@@ -405,7 +405,7 @@ pub trait DisplayExt: IsA<Display> + sealed::Sealed + 'static {
             F: Fn(&P, &str) + 'static,
         >(
             this: *mut ffi::GdkDisplay,
-            setting: *mut libc::c_char,
+            setting: *mut std::ffi::c_char,
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);

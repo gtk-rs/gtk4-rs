@@ -18,14 +18,15 @@ use gobject_sys as gobject;
 use graphene_sys as graphene;
 use pango_sys as pango;
 
-#[allow(unused_imports)]
-use libc::{
-    c_char, c_double, c_float, c_int, c_long, c_short, c_uchar, c_uint, c_ulong, c_ushort, c_void,
-    intptr_t, off_t, size_t, ssize_t, time_t, uintptr_t, FILE,
-};
 #[cfg(unix)]
 #[allow(unused_imports)]
 use libc::{dev_t, gid_t, pid_t, socklen_t, uid_t};
+#[allow(unused_imports)]
+use libc::{intptr_t, off_t, size_t, ssize_t, time_t, uintptr_t, FILE};
+#[allow(unused_imports)]
+use std::ffi::{
+    c_char, c_double, c_float, c_int, c_long, c_short, c_uchar, c_uint, c_ulong, c_ushort, c_void,
+};
 
 #[allow(unused_imports)]
 use glib::{gboolean, gconstpointer, gpointer, GType};
@@ -210,6 +211,7 @@ pub type GskPathForeachFunc = Option<
 #[cfg(feature = "broadway")]
 #[cfg_attr(docsrs, doc(cfg(feature = "broadway")))]
 #[repr(C)]
+#[allow(dead_code)]
 pub struct _GskBroadwayRendererClass {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -220,6 +222,7 @@ pub struct _GskBroadwayRendererClass {
 pub type GskBroadwayRendererClass = _GskBroadwayRendererClass;
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct _GskCairoRendererClass {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -244,6 +247,7 @@ impl ::std::fmt::Debug for GskColorStop {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct _GskGLRendererClass {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -288,6 +292,7 @@ impl ::std::fmt::Debug for GskParseLocation {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GskPath {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -300,6 +305,7 @@ impl ::std::fmt::Debug for GskPath {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GskPathBuilder {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -313,6 +319,7 @@ impl ::std::fmt::Debug for GskPathBuilder {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GskPathMeasure {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -358,6 +365,7 @@ impl ::std::fmt::Debug for GskPathPoint__s1 {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct _GskRendererClass {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -382,6 +390,7 @@ impl ::std::fmt::Debug for GskRoundedRect {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GskShaderArgsBuilder {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -415,6 +424,7 @@ impl ::std::fmt::Debug for GskShadow {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GskStroke {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -427,6 +437,7 @@ impl ::std::fmt::Debug for GskStroke {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GskTransform {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -441,6 +452,7 @@ impl ::std::fmt::Debug for GskTransform {
 #[cfg(feature = "vulkan")]
 #[cfg_attr(docsrs, doc(cfg(feature = "vulkan")))]
 #[repr(C)]
+#[allow(dead_code)]
 pub struct _GskVulkanRendererClass {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -452,6 +464,7 @@ pub type GskVulkanRendererClass = _GskVulkanRendererClass;
 
 // Classes
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GskBlendNode {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -464,6 +477,7 @@ impl ::std::fmt::Debug for GskBlendNode {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GskBlurNode {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -476,6 +490,7 @@ impl ::std::fmt::Debug for GskBlurNode {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GskBorderNode {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -491,6 +506,7 @@ impl ::std::fmt::Debug for GskBorderNode {
 #[cfg(feature = "broadway")]
 #[cfg_attr(docsrs, doc(cfg(feature = "broadway")))]
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GskBroadwayRenderer {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -506,6 +522,7 @@ impl ::std::fmt::Debug for GskBroadwayRenderer {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GskCairoNode {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -518,6 +535,7 @@ impl ::std::fmt::Debug for GskCairoNode {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GskCairoRenderer {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -531,6 +549,7 @@ impl ::std::fmt::Debug for GskCairoRenderer {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GskClipNode {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -543,6 +562,7 @@ impl ::std::fmt::Debug for GskClipNode {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GskColorMatrixNode {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -556,6 +576,7 @@ impl ::std::fmt::Debug for GskColorMatrixNode {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GskColorNode {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -568,6 +589,7 @@ impl ::std::fmt::Debug for GskColorNode {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GskConicGradientNode {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -581,6 +603,7 @@ impl ::std::fmt::Debug for GskConicGradientNode {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GskContainerNode {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -594,6 +617,7 @@ impl ::std::fmt::Debug for GskContainerNode {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GskCrossFadeNode {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -607,6 +631,7 @@ impl ::std::fmt::Debug for GskCrossFadeNode {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GskDebugNode {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -619,6 +644,7 @@ impl ::std::fmt::Debug for GskDebugNode {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GskFillNode {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -631,6 +657,7 @@ impl ::std::fmt::Debug for GskFillNode {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GskGLRenderer {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -644,6 +671,7 @@ impl ::std::fmt::Debug for GskGLRenderer {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GskGLShader {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -656,6 +684,7 @@ impl ::std::fmt::Debug for GskGLShader {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GskGLShaderNode {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -669,6 +698,7 @@ impl ::std::fmt::Debug for GskGLShaderNode {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GskInsetShadowNode {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -682,6 +712,7 @@ impl ::std::fmt::Debug for GskInsetShadowNode {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GskLinearGradientNode {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -695,6 +726,7 @@ impl ::std::fmt::Debug for GskLinearGradientNode {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GskMaskNode {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -707,6 +739,7 @@ impl ::std::fmt::Debug for GskMaskNode {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GskNglRenderer {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -720,6 +753,7 @@ impl ::std::fmt::Debug for GskNglRenderer {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GskOpacityNode {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -733,6 +767,7 @@ impl ::std::fmt::Debug for GskOpacityNode {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GskOutsetShadowNode {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -746,6 +781,7 @@ impl ::std::fmt::Debug for GskOutsetShadowNode {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GskRadialGradientNode {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -759,6 +795,7 @@ impl ::std::fmt::Debug for GskRadialGradientNode {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GskRenderNode {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -772,6 +809,7 @@ impl ::std::fmt::Debug for GskRenderNode {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GskRenderer {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -784,6 +822,7 @@ impl ::std::fmt::Debug for GskRenderer {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GskRepeatNode {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -797,6 +836,7 @@ impl ::std::fmt::Debug for GskRepeatNode {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GskRepeatingLinearGradientNode {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -810,6 +850,7 @@ impl ::std::fmt::Debug for GskRepeatingLinearGradientNode {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GskRepeatingRadialGradientNode {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -823,6 +864,7 @@ impl ::std::fmt::Debug for GskRepeatingRadialGradientNode {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GskRoundedClipNode {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -836,6 +878,7 @@ impl ::std::fmt::Debug for GskRoundedClipNode {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GskShadowNode {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -849,6 +892,7 @@ impl ::std::fmt::Debug for GskShadowNode {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GskStrokeNode {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -862,6 +906,7 @@ impl ::std::fmt::Debug for GskStrokeNode {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GskSubsurfaceNode {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -875,6 +920,7 @@ impl ::std::fmt::Debug for GskSubsurfaceNode {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GskTextNode {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -887,6 +933,7 @@ impl ::std::fmt::Debug for GskTextNode {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GskTextureNode {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -900,6 +947,7 @@ impl ::std::fmt::Debug for GskTextureNode {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GskTextureScaleNode {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -913,6 +961,7 @@ impl ::std::fmt::Debug for GskTextureScaleNode {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GskTransformNode {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -928,6 +977,7 @@ impl ::std::fmt::Debug for GskTransformNode {
 #[cfg(feature = "vulkan")]
 #[cfg_attr(docsrs, doc(cfg(feature = "vulkan")))]
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GskVulkanRenderer {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -942,7 +992,6 @@ impl ::std::fmt::Debug for GskVulkanRenderer {
     }
 }
 
-#[link(name = "gtk-4")]
 extern "C" {
 
     //=========================================================================

@@ -263,7 +263,7 @@ pub trait IMContextExt: IsA<IMContext> + sealed::Sealed + 'static {
     fn connect_commit<F: Fn(&Self, &str) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn commit_trampoline<P: IsA<IMContext>, F: Fn(&P, &str) + 'static>(
             this: *mut ffi::GtkIMContext,
-            str: *mut libc::c_char,
+            str: *mut std::ffi::c_char,
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
@@ -295,8 +295,8 @@ pub trait IMContextExt: IsA<IMContext> + sealed::Sealed + 'static {
             F: Fn(&P, i32, i32) -> bool + 'static,
         >(
             this: *mut ffi::GtkIMContext,
-            offset: libc::c_int,
-            n_chars: libc::c_int,
+            offset: std::ffi::c_int,
+            n_chars: std::ffi::c_int,
             f: glib::ffi::gpointer,
         ) -> glib::ffi::gboolean {
             let f: &F = &*(f as *const F);

@@ -904,7 +904,7 @@ impl IconView {
         >(
             this: *mut ffi::GtkIconView,
             step: ffi::GtkMovementStep,
-            count: libc::c_int,
+            count: std::ffi::c_int,
             extend: glib::ffi::gboolean,
             modify: glib::ffi::gboolean,
             f: glib::ffi::gpointer,

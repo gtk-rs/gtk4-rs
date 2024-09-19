@@ -120,8 +120,8 @@ impl DropTargetAsync {
         >(
             this: *mut ffi::GtkDropTargetAsync,
             drop: *mut gdk::ffi::GdkDrop,
-            x: libc::c_double,
-            y: libc::c_double,
+            x: std::ffi::c_double,
+            y: std::ffi::c_double,
             f: glib::ffi::gpointer,
         ) -> gdk::ffi::GdkDragAction {
             let f: &F = &*(f as *const F);
@@ -175,8 +175,8 @@ impl DropTargetAsync {
         >(
             this: *mut ffi::GtkDropTargetAsync,
             drop: *mut gdk::ffi::GdkDrop,
-            x: libc::c_double,
-            y: libc::c_double,
+            x: std::ffi::c_double,
+            y: std::ffi::c_double,
             f: glib::ffi::gpointer,
         ) -> gdk::ffi::GdkDragAction {
             let f: &F = &*(f as *const F);
@@ -205,8 +205,8 @@ impl DropTargetAsync {
         >(
             this: *mut ffi::GtkDropTargetAsync,
             drop: *mut gdk::ffi::GdkDrop,
-            x: libc::c_double,
-            y: libc::c_double,
+            x: std::ffi::c_double,
+            y: std::ffi::c_double,
             f: glib::ffi::gpointer,
         ) -> glib::ffi::gboolean {
             let f: &F = &*(f as *const F);

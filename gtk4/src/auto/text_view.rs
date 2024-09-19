@@ -1326,7 +1326,7 @@ pub trait TextViewExt: IsA<TextView> + sealed::Sealed + 'static {
         >(
             this: *mut ffi::GtkTextView,
             type_: ffi::GtkDeleteType,
-            count: libc::c_int,
+            count: std::ffi::c_int,
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
@@ -1403,7 +1403,7 @@ pub trait TextViewExt: IsA<TextView> + sealed::Sealed + 'static {
             F: Fn(&P, &str) + 'static,
         >(
             this: *mut ffi::GtkTextView,
-            string: *mut libc::c_char,
+            string: *mut std::ffi::c_char,
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
@@ -1466,7 +1466,7 @@ pub trait TextViewExt: IsA<TextView> + sealed::Sealed + 'static {
         >(
             this: *mut ffi::GtkTextView,
             step: ffi::GtkMovementStep,
-            count: libc::c_int,
+            count: std::ffi::c_int,
             extend_selection: glib::ffi::gboolean,
             f: glib::ffi::gpointer,
         ) {
@@ -1506,7 +1506,7 @@ pub trait TextViewExt: IsA<TextView> + sealed::Sealed + 'static {
         >(
             this: *mut ffi::GtkTextView,
             step: ffi::GtkScrollStep,
-            count: libc::c_int,
+            count: std::ffi::c_int,
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
@@ -1566,7 +1566,7 @@ pub trait TextViewExt: IsA<TextView> + sealed::Sealed + 'static {
             F: Fn(&P, &str) + 'static,
         >(
             this: *mut ffi::GtkTextView,
-            preedit: *mut libc::c_char,
+            preedit: *mut std::ffi::c_char,
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
