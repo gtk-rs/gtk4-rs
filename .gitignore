@@ -14,3 +14,4 @@ book/book
 *.log
 **/**/docs.md
 **~
+.idea
