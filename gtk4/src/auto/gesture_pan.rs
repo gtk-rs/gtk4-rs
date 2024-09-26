@@ -58,7 +58,7 @@ impl GesturePan {
         unsafe extern "C" fn pan_trampoline<F: Fn(&GesturePan, PanDirection, f64) + 'static>(
             this: *mut ffi::GtkGesturePan,
             direction: ffi::GtkPanDirection,
-            offset: libc::c_double,
+            offset: std::ffi::c_double,
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);

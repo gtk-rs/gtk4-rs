@@ -189,8 +189,8 @@ impl DragSource {
             F: Fn(&DragSource, f64, f64) -> Option<gdk::ContentProvider> + 'static,
         >(
             this: *mut ffi::GtkDragSource,
-            x: libc::c_double,
-            y: libc::c_double,
+            x: std::ffi::c_double,
+            y: std::ffi::c_double,
             f: glib::ffi::gpointer,
         ) -> *mut gdk::ffi::GdkContentProvider {
             let f: &F = &*(f as *const F);

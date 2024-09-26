@@ -346,7 +346,7 @@ impl AboutDialog {
             F: Fn(&AboutDialog, &str) -> glib::Propagation + 'static,
         >(
             this: *mut ffi::GtkAboutDialog,
-            uri: *mut libc::c_char,
+            uri: *mut std::ffi::c_char,
             f: glib::ffi::gpointer,
         ) -> glib::ffi::gboolean {
             let f: &F = &*(f as *const F);

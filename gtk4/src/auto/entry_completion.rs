@@ -221,7 +221,7 @@ impl EntryCompletion {
             P: Fn(&EntryCompletion, &str, &TreeIter) -> bool + 'static,
         >(
             completion: *mut ffi::GtkEntryCompletion,
-            key: *const libc::c_char,
+            key: *const std::ffi::c_char,
             iter: *mut ffi::GtkTreeIter,
             user_data: glib::ffi::gpointer,
         ) -> glib::ffi::gboolean {
@@ -373,7 +373,7 @@ impl EntryCompletion {
             F: Fn(&EntryCompletion, &str) -> glib::Propagation + 'static,
         >(
             this: *mut ffi::GtkEntryCompletion,
-            prefix: *mut libc::c_char,
+            prefix: *mut std::ffi::c_char,
             f: glib::ffi::gpointer,
         ) -> glib::ffi::gboolean {
             let f: &F = &*(f as *const F);

@@ -1754,8 +1754,8 @@ pub trait WidgetExt: IsA<Widget> + sealed::Sealed + 'static {
             F: Fn(&P, i32, i32, bool, &Tooltip) -> bool + 'static,
         >(
             this: *mut ffi::GtkWidget,
-            x: libc::c_int,
-            y: libc::c_int,
+            x: std::ffi::c_int,
+            y: std::ffi::c_int,
             keyboard_mode: glib::ffi::gboolean,
             tooltip: *mut ffi::GtkTooltip,
             f: glib::ffi::gpointer,

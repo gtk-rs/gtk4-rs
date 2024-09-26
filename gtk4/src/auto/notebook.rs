@@ -337,7 +337,7 @@ impl Notebook {
             F: Fn(&Notebook, i32) -> bool + 'static,
         >(
             this: *mut ffi::GtkNotebook,
-            page: libc::c_int,
+            page: std::ffi::c_int,
             f: glib::ffi::gpointer,
         ) -> glib::ffi::gboolean {
             let f: &F = &*(f as *const F);
@@ -462,7 +462,7 @@ impl Notebook {
         unsafe extern "C" fn page_added_trampoline<F: Fn(&Notebook, &Widget, u32) + 'static>(
             this: *mut ffi::GtkNotebook,
             child: *mut ffi::GtkWidget,
-            page_num: libc::c_uint,
+            page_num: std::ffi::c_uint,
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
@@ -489,7 +489,7 @@ impl Notebook {
         unsafe extern "C" fn page_removed_trampoline<F: Fn(&Notebook, &Widget, u32) + 'static>(
             this: *mut ffi::GtkNotebook,
             child: *mut ffi::GtkWidget,
-            page_num: libc::c_uint,
+            page_num: std::ffi::c_uint,
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
@@ -516,7 +516,7 @@ impl Notebook {
         unsafe extern "C" fn page_reordered_trampoline<F: Fn(&Notebook, &Widget, u32) + 'static>(
             this: *mut ffi::GtkNotebook,
             child: *mut ffi::GtkWidget,
-            page_num: libc::c_uint,
+            page_num: std::ffi::c_uint,
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
@@ -611,7 +611,7 @@ impl Notebook {
         unsafe extern "C" fn switch_page_trampoline<F: Fn(&Notebook, &Widget, u32) + 'static>(
             this: *mut ffi::GtkNotebook,
             page: *mut ffi::GtkWidget,
-            page_num: libc::c_uint,
+            page_num: std::ffi::c_uint,
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);

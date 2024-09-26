@@ -57,8 +57,8 @@ impl GestureSwipe {
     pub fn connect_swipe<F: Fn(&Self, f64, f64) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn swipe_trampoline<F: Fn(&GestureSwipe, f64, f64) + 'static>(
             this: *mut ffi::GtkGestureSwipe,
-            velocity_x: libc::c_double,
-            velocity_y: libc::c_double,
+            velocity_x: std::ffi::c_double,
+            velocity_y: std::ffi::c_double,
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);

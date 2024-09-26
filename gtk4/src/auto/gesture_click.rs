@@ -38,9 +38,9 @@ impl GestureClick {
     pub fn connect_pressed<F: Fn(&Self, i32, f64, f64) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn pressed_trampoline<F: Fn(&GestureClick, i32, f64, f64) + 'static>(
             this: *mut ffi::GtkGestureClick,
-            n_press: libc::c_int,
-            x: libc::c_double,
-            y: libc::c_double,
+            n_press: std::ffi::c_int,
+            x: std::ffi::c_double,
+            y: std::ffi::c_double,
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
@@ -63,9 +63,9 @@ impl GestureClick {
     pub fn connect_released<F: Fn(&Self, i32, f64, f64) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn released_trampoline<F: Fn(&GestureClick, i32, f64, f64) + 'static>(
             this: *mut ffi::GtkGestureClick,
-            n_press: libc::c_int,
-            x: libc::c_double,
-            y: libc::c_double,
+            n_press: std::ffi::c_int,
+            x: std::ffi::c_double,
+            y: std::ffi::c_double,
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
@@ -117,9 +117,9 @@ impl GestureClick {
             F: Fn(&GestureClick, f64, f64, u32, Option<&gdk::EventSequence>) + 'static,
         >(
             this: *mut ffi::GtkGestureClick,
-            x: libc::c_double,
-            y: libc::c_double,
-            button: libc::c_uint,
+            x: std::ffi::c_double,
+            y: std::ffi::c_double,
+            button: std::ffi::c_uint,
             sequence: *mut gdk::ffi::GdkEventSequence,
             f: glib::ffi::gpointer,
         ) {

@@ -164,8 +164,8 @@ pub trait GestureDragExt: IsA<GestureDrag> + sealed::Sealed + 'static {
             F: Fn(&P, f64, f64) + 'static,
         >(
             this: *mut ffi::GtkGestureDrag,
-            start_x: libc::c_double,
-            start_y: libc::c_double,
+            start_x: std::ffi::c_double,
+            start_y: std::ffi::c_double,
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
@@ -195,8 +195,8 @@ pub trait GestureDragExt: IsA<GestureDrag> + sealed::Sealed + 'static {
             F: Fn(&P, f64, f64) + 'static,
         >(
             this: *mut ffi::GtkGestureDrag,
-            offset_x: libc::c_double,
-            offset_y: libc::c_double,
+            offset_x: std::ffi::c_double,
+            offset_y: std::ffi::c_double,
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
@@ -226,8 +226,8 @@ pub trait GestureDragExt: IsA<GestureDrag> + sealed::Sealed + 'static {
             F: Fn(&P, f64, f64) + 'static,
         >(
             this: *mut ffi::GtkGestureDrag,
-            offset_x: libc::c_double,
-            offset_y: libc::c_double,
+            offset_x: std::ffi::c_double,
+            offset_y: std::ffi::c_double,
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);

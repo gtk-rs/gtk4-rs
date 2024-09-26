@@ -148,7 +148,7 @@ impl FileChooserWidget {
             F: Fn(&FileChooserWidget, &str) + 'static,
         >(
             this: *mut ffi::GtkFileChooserWidget,
-            path: *mut libc::c_char,
+            path: *mut std::ffi::c_char,
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
@@ -260,7 +260,7 @@ impl FileChooserWidget {
     pub fn connect_quick_bookmark<F: Fn(&Self, i32) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn quick_bookmark_trampoline<F: Fn(&FileChooserWidget, i32) + 'static>(
             this: *mut ffi::GtkFileChooserWidget,
-            bookmark_index: libc::c_int,
+            bookmark_index: std::ffi::c_int,
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);

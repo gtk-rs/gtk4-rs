@@ -18,14 +18,15 @@ use glib_sys as glib;
 use gobject_sys as gobject;
 use pango_sys as pango;
 
-#[allow(unused_imports)]
-use libc::{
-    c_char, c_double, c_float, c_int, c_long, c_short, c_uchar, c_uint, c_ulong, c_ushort, c_void,
-    intptr_t, off_t, size_t, ssize_t, time_t, uintptr_t, FILE,
-};
 #[cfg(unix)]
 #[allow(unused_imports)]
 use libc::{dev_t, gid_t, pid_t, socklen_t, uid_t};
+#[allow(unused_imports)]
+use libc::{intptr_t, off_t, size_t, ssize_t, time_t, uintptr_t, FILE};
+#[allow(unused_imports)]
+use std::ffi::{
+    c_char, c_double, c_float, c_int, c_long, c_short, c_uchar, c_uint, c_ulong, c_ushort, c_void,
+};
 
 #[allow(unused_imports)]
 use glib::{gboolean, gconstpointer, gpointer, GType};
@@ -2695,6 +2696,7 @@ pub type GdkCursorGetTextureCallback = Option<
 
 // Records
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GdkContentFormats {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -2708,6 +2710,7 @@ impl ::std::fmt::Debug for GdkContentFormats {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GdkContentFormatsBuilder {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -2776,6 +2779,7 @@ impl ::std::fmt::Debug for GdkContentProviderClass {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct _GdkDevicePadInterface {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -2784,6 +2788,7 @@ pub struct _GdkDevicePadInterface {
 pub type GdkDevicePadInterface = _GdkDevicePadInterface;
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GdkDmabufFormats {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -2797,6 +2802,7 @@ impl ::std::fmt::Debug for GdkDmabufFormats {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct _GdkDmabufTextureBuilderClass {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -2805,6 +2811,7 @@ pub struct _GdkDmabufTextureBuilderClass {
 pub type GdkDmabufTextureBuilderClass = _GdkDmabufTextureBuilderClass;
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct _GdkDmabufTextureClass {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -2813,6 +2820,7 @@ pub struct _GdkDmabufTextureClass {
 pub type GdkDmabufTextureClass = _GdkDmabufTextureClass;
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct _GdkDragSurfaceInterface {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -2821,6 +2829,7 @@ pub struct _GdkDragSurfaceInterface {
 pub type GdkDragSurfaceInterface = _GdkDragSurfaceInterface;
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct _GdkDragSurfaceSize {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -2829,6 +2838,7 @@ pub struct _GdkDragSurfaceSize {
 pub type GdkDragSurfaceSize = _GdkDragSurfaceSize;
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GdkEventSequence {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -2842,6 +2852,7 @@ impl ::std::fmt::Debug for GdkEventSequence {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GdkFileList {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -2854,6 +2865,7 @@ impl ::std::fmt::Debug for GdkFileList {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct _GdkFrameClockClass {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -2862,6 +2874,7 @@ pub struct _GdkFrameClockClass {
 pub type GdkFrameClockClass = _GdkFrameClockClass;
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct _GdkFrameClockPrivate {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -2870,6 +2883,7 @@ pub struct _GdkFrameClockPrivate {
 pub type GdkFrameClockPrivate = _GdkFrameClockPrivate;
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GdkFrameTimings {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -2883,6 +2897,7 @@ impl ::std::fmt::Debug for GdkFrameTimings {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct _GdkGLTextureBuilderClass {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -2891,6 +2906,7 @@ pub struct _GdkGLTextureBuilderClass {
 pub type GdkGLTextureBuilderClass = _GdkGLTextureBuilderClass;
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct _GdkGLTextureClass {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -2917,6 +2933,7 @@ impl ::std::fmt::Debug for GdkKeymapKey {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct _GdkMemoryTextureClass {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -2925,6 +2942,7 @@ pub struct _GdkMemoryTextureClass {
 pub type GdkMemoryTextureClass = _GdkMemoryTextureClass;
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct _GdkMonitorClass {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -2962,6 +2980,7 @@ impl ::std::fmt::Debug for GdkPaintableInterface {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct _GdkPopupInterface {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -2970,6 +2989,7 @@ pub struct _GdkPopupInterface {
 pub type GdkPopupInterface = _GdkPopupInterface;
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GdkPopupLayout {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -3023,6 +3043,7 @@ impl ::std::fmt::Debug for GdkRectangle {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct _GdkSnapshotClass {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -3031,6 +3052,7 @@ pub struct _GdkSnapshotClass {
 pub type GdkSnapshotClass = _GdkSnapshotClass;
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct _GdkSurfaceClass {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -3039,6 +3061,7 @@ pub struct _GdkSurfaceClass {
 pub type GdkSurfaceClass = _GdkSurfaceClass;
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct _GdkTextureClass {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -3047,6 +3070,7 @@ pub struct _GdkTextureClass {
 pub type GdkTextureClass = _GdkTextureClass;
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GdkTextureDownloader {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -3078,6 +3102,7 @@ impl ::std::fmt::Debug for GdkTimeCoord {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct _GdkToplevelInterface {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -3086,6 +3111,7 @@ pub struct _GdkToplevelInterface {
 pub type GdkToplevelInterface = _GdkToplevelInterface;
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GdkToplevelLayout {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -3099,6 +3125,7 @@ impl ::std::fmt::Debug for GdkToplevelLayout {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct _GdkToplevelSize {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -3108,6 +3135,7 @@ pub type GdkToplevelSize = _GdkToplevelSize;
 
 // Classes
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GdkAppLaunchContext {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -3121,6 +3149,7 @@ impl ::std::fmt::Debug for GdkAppLaunchContext {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GdkButtonEvent {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -3134,6 +3163,7 @@ impl ::std::fmt::Debug for GdkButtonEvent {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GdkCairoContext {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -3147,6 +3177,7 @@ impl ::std::fmt::Debug for GdkCairoContext {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GdkClipboard {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -3159,6 +3190,7 @@ impl ::std::fmt::Debug for GdkClipboard {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GdkContentDeserializer {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -3186,6 +3218,7 @@ impl ::std::fmt::Debug for GdkContentProvider {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GdkContentSerializer {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -3199,6 +3232,7 @@ impl ::std::fmt::Debug for GdkContentSerializer {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GdkCrossingEvent {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -3212,6 +3246,7 @@ impl ::std::fmt::Debug for GdkCrossingEvent {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GdkCursor {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -3224,6 +3259,7 @@ impl ::std::fmt::Debug for GdkCursor {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GdkDNDEvent {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -3236,6 +3272,7 @@ impl ::std::fmt::Debug for GdkDNDEvent {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GdkDeleteEvent {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -3249,6 +3286,7 @@ impl ::std::fmt::Debug for GdkDeleteEvent {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GdkDevice {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -3261,6 +3299,7 @@ impl ::std::fmt::Debug for GdkDevice {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GdkDeviceTool {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -3274,6 +3313,7 @@ impl ::std::fmt::Debug for GdkDeviceTool {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GdkDisplay {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -3286,6 +3326,7 @@ impl ::std::fmt::Debug for GdkDisplay {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GdkDisplayManager {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -3299,6 +3340,7 @@ impl ::std::fmt::Debug for GdkDisplayManager {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GdkDmabufTexture {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -3312,6 +3354,7 @@ impl ::std::fmt::Debug for GdkDmabufTexture {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GdkDmabufTextureBuilder {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -3325,6 +3368,7 @@ impl ::std::fmt::Debug for GdkDmabufTextureBuilder {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GdkDrag {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -3337,6 +3381,7 @@ impl ::std::fmt::Debug for GdkDrag {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GdkDrawContext {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -3350,6 +3395,7 @@ impl ::std::fmt::Debug for GdkDrawContext {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GdkDrop {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -3362,6 +3408,7 @@ impl ::std::fmt::Debug for GdkDrop {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GdkEvent {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -3374,6 +3421,7 @@ impl ::std::fmt::Debug for GdkEvent {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GdkFocusEvent {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -3387,6 +3435,7 @@ impl ::std::fmt::Debug for GdkFocusEvent {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GdkFrameClock {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -3400,6 +3449,7 @@ impl ::std::fmt::Debug for GdkFrameClock {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GdkGLContext {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -3412,6 +3462,7 @@ impl ::std::fmt::Debug for GdkGLContext {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GdkGLTexture {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -3424,6 +3475,7 @@ impl ::std::fmt::Debug for GdkGLTexture {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GdkGLTextureBuilder {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -3437,6 +3489,7 @@ impl ::std::fmt::Debug for GdkGLTextureBuilder {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GdkGrabBrokenEvent {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -3450,6 +3503,7 @@ impl ::std::fmt::Debug for GdkGrabBrokenEvent {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GdkKeyEvent {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -3462,6 +3516,7 @@ impl ::std::fmt::Debug for GdkKeyEvent {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GdkMemoryTexture {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -3475,6 +3530,7 @@ impl ::std::fmt::Debug for GdkMemoryTexture {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GdkMonitor {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -3487,6 +3543,7 @@ impl ::std::fmt::Debug for GdkMonitor {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GdkMotionEvent {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -3500,6 +3557,7 @@ impl ::std::fmt::Debug for GdkMotionEvent {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GdkPadEvent {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -3512,6 +3570,7 @@ impl ::std::fmt::Debug for GdkPadEvent {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GdkProximityEvent {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -3525,6 +3584,7 @@ impl ::std::fmt::Debug for GdkProximityEvent {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GdkScrollEvent {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -3552,6 +3612,7 @@ impl ::std::fmt::Debug for GdkSeat {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GdkSnapshot {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -3564,6 +3625,7 @@ impl ::std::fmt::Debug for GdkSnapshot {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GdkSurface {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -3576,6 +3638,7 @@ impl ::std::fmt::Debug for GdkSurface {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GdkTexture {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -3588,6 +3651,7 @@ impl ::std::fmt::Debug for GdkTexture {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GdkTouchEvent {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -3601,6 +3665,7 @@ impl ::std::fmt::Debug for GdkTouchEvent {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GdkTouchpadEvent {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -3614,6 +3679,7 @@ impl ::std::fmt::Debug for GdkTouchpadEvent {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GdkVulkanContext {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -3628,6 +3694,7 @@ impl ::std::fmt::Debug for GdkVulkanContext {
 
 // Interfaces
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GdkDevicePad {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -3640,6 +3707,7 @@ impl ::std::fmt::Debug for GdkDevicePad {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GdkDragSurface {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -3652,6 +3720,7 @@ impl ::std::fmt::Debug for GdkDragSurface {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GdkPaintable {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -3664,6 +3733,7 @@ impl ::std::fmt::Debug for GdkPaintable {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GdkPopup {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -3676,6 +3746,7 @@ impl ::std::fmt::Debug for GdkPopup {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GdkToplevel {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -3687,7 +3758,6 @@ impl ::std::fmt::Debug for GdkToplevel {
     }
 }
 
-#[link(name = "gtk-4")]
 extern "C" {
 
     //=========================================================================
