@@ -92,8 +92,8 @@ impl Statusbar {
     pub fn connect_text_popped<F: Fn(&Self, u32, &str) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn text_popped_trampoline<F: Fn(&Statusbar, u32, &str) + 'static>(
             this: *mut ffi::GtkStatusbar,
-            context_id: libc::c_uint,
-            text: *mut libc::c_char,
+            context_id: std::ffi::c_uint,
+            text: *mut std::ffi::c_char,
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
@@ -121,8 +121,8 @@ impl Statusbar {
     pub fn connect_text_pushed<F: Fn(&Self, u32, &str) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn text_pushed_trampoline<F: Fn(&Statusbar, u32, &str) + 'static>(
             this: *mut ffi::GtkStatusbar,
-            context_id: libc::c_uint,
-            text: *mut libc::c_char,
+            context_id: std::ffi::c_uint,
+            text: *mut std::ffi::c_char,
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);

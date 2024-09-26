@@ -309,8 +309,8 @@ pub trait DrawingAreaExt: IsA<DrawingArea> + sealed::Sealed + 'static {
             F: Fn(&P, i32, i32) + 'static,
         >(
             this: *mut ffi::GtkDrawingArea,
-            width: libc::c_int,
-            height: libc::c_int,
+            width: std::ffi::c_int,
+            height: std::ffi::c_int,
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);

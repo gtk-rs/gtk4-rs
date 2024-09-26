@@ -702,7 +702,7 @@ pub trait CellAreaExt: IsA<CellArea> + sealed::Sealed + 'static {
             renderer: *mut ffi::GtkCellRenderer,
             editable: *mut ffi::GtkCellEditable,
             cell_area: *mut gdk::ffi::GdkRectangle,
-            path: *mut libc::c_char,
+            path: *mut std::ffi::c_char,
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
@@ -777,7 +777,7 @@ pub trait CellAreaExt: IsA<CellArea> + sealed::Sealed + 'static {
         >(
             this: *mut ffi::GtkCellArea,
             renderer: *mut ffi::GtkCellRenderer,
-            path: *mut libc::c_char,
+            path: *mut std::ffi::c_char,
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);

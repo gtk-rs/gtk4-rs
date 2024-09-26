@@ -333,8 +333,8 @@ pub trait SurfaceExt: IsA<Surface> + sealed::Sealed + 'static {
     fn connect_layout<F: Fn(&Self, i32, i32) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn layout_trampoline<P: IsA<Surface>, F: Fn(&P, i32, i32) + 'static>(
             this: *mut ffi::GdkSurface,
-            width: libc::c_int,
-            height: libc::c_int,
+            width: std::ffi::c_int,
+            height: std::ffi::c_int,
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);

@@ -462,9 +462,9 @@ pub trait ScaleExt: IsA<Scale> + sealed::Sealed + 'static {
         let func_data: Box_<P> = Box_::new(func);
         unsafe extern "C" fn func_func<P: Fn(&Scale, f64) -> String + 'static>(
             scale: *mut ffi::GtkScale,
-            value: libc::c_double,
+            value: std::ffi::c_double,
             user_data: glib::ffi::gpointer,
-        ) -> *mut libc::c_char {
+        ) -> *mut std::ffi::c_char {
             let scale = from_glib_borrow(scale);
             let callback = &*(user_data as *mut P);
             (*callback)(&scale, value).to_glib_full()

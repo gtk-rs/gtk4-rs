@@ -297,7 +297,7 @@ pub trait FontChooserExt: IsA<FontChooser> + sealed::Sealed + 'static {
             F: Fn(&P, &str) + 'static,
         >(
             this: *mut ffi::GtkFontChooser,
-            fontname: *mut libc::c_char,
+            fontname: *mut std::ffi::c_char,
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);

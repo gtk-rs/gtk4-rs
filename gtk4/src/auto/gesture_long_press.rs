@@ -75,8 +75,8 @@ impl GestureLongPress {
     pub fn connect_pressed<F: Fn(&Self, f64, f64) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn pressed_trampoline<F: Fn(&GestureLongPress, f64, f64) + 'static>(
             this: *mut ffi::GtkGestureLongPress,
-            x: libc::c_double,
-            y: libc::c_double,
+            x: std::ffi::c_double,
+            y: std::ffi::c_double,
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);

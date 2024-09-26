@@ -649,7 +649,7 @@ pub trait PrintOperationExt: IsA<PrintOperation> + sealed::Sealed + 'static {
         >(
             this: *mut ffi::GtkPrintOperation,
             context: *mut ffi::GtkPrintContext,
-            page_nr: libc::c_int,
+            page_nr: std::ffi::c_int,
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
@@ -784,7 +784,7 @@ pub trait PrintOperationExt: IsA<PrintOperation> + sealed::Sealed + 'static {
         >(
             this: *mut ffi::GtkPrintOperation,
             context: *mut ffi::GtkPrintContext,
-            page_nr: libc::c_int,
+            page_nr: std::ffi::c_int,
             setup: *mut ffi::GtkPageSetup,
             f: glib::ffi::gpointer,
         ) {

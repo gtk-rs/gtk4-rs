@@ -41,7 +41,7 @@ impl EmojiChooser {
     pub fn connect_emoji_picked<F: Fn(&Self, &str) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn emoji_picked_trampoline<F: Fn(&EmojiChooser, &str) + 'static>(
             this: *mut ffi::GtkEmojiChooser,
-            text: *mut libc::c_char,
+            text: *mut std::ffi::c_char,
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);

@@ -238,7 +238,7 @@ impl AppChooserButton {
             F: Fn(&AppChooserButton, &str) + 'static,
         >(
             this: *mut ffi::GtkAppChooserButton,
-            item_name: *mut libc::c_char,
+            item_name: *mut std::ffi::c_char,
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);

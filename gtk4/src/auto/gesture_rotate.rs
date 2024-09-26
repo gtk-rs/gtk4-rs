@@ -44,8 +44,8 @@ impl GestureRotate {
     pub fn connect_angle_changed<F: Fn(&Self, f64, f64) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn angle_changed_trampoline<F: Fn(&GestureRotate, f64, f64) + 'static>(
             this: *mut ffi::GtkGestureRotate,
-            angle: libc::c_double,
-            angle_delta: libc::c_double,
+            angle: std::ffi::c_double,
+            angle_delta: std::ffi::c_double,
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);

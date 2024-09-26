@@ -283,8 +283,8 @@ pub trait EditableExt: IsA<Editable> + sealed::Sealed + 'static {
             F: Fn(&P, i32, i32) + 'static,
         >(
             this: *mut ffi::GtkEditable,
-            start_pos: libc::c_int,
-            end_pos: libc::c_int,
+            start_pos: std::ffi::c_int,
+            end_pos: std::ffi::c_int,
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);

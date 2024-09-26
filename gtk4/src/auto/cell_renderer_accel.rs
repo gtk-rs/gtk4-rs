@@ -83,7 +83,7 @@ impl CellRendererAccel {
             F: Fn(&CellRendererAccel, TreePath) + 'static,
         >(
             this: *mut ffi::GtkCellRendererAccel,
-            path_string: *mut libc::c_char,
+            path_string: *mut std::ffi::c_char,
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
@@ -112,10 +112,10 @@ impl CellRendererAccel {
             F: Fn(&CellRendererAccel, TreePath, u32, gdk::ModifierType, u32) + 'static,
         >(
             this: *mut ffi::GtkCellRendererAccel,
-            path_string: *mut libc::c_char,
-            accel_key: libc::c_uint,
+            path_string: *mut std::ffi::c_char,
+            accel_key: std::ffi::c_uint,
             accel_mods: gdk::ffi::GdkModifierType,
-            hardware_keycode: libc::c_uint,
+            hardware_keycode: std::ffi::c_uint,
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
