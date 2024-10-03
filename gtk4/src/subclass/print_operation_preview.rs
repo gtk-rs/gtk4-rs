@@ -10,7 +10,9 @@ use crate::{
     ffi, prelude::*, subclass::prelude::*, PageSetup, PrintContext, PrintOperationPreview,
 };
 
-pub trait PrintOperationPreviewImpl: ObjectImpl {
+pub trait PrintOperationPreviewImpl:
+    ObjectImpl + ObjectSubclass<Type: IsA<PrintOperationPreview>>
+{
     fn ready(&self, context: &PrintContext) {
         self.parent_ready(context)
     }
@@ -24,12 +26,7 @@ pub trait PrintOperationPreviewImpl: ObjectImpl {
     fn end_preview(&self);
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::PrintOperationPreviewImplExt> Sealed for T {}
-}
-
-pub trait PrintOperationPreviewImplExt: sealed::Sealed + ObjectSubclass {
+pub trait PrintOperationPreviewImplExt: PrintOperationPreviewImpl {
     fn parent_ready(&self, context: &PrintContext) {
         unsafe {
             let type_data = Self::type_data();

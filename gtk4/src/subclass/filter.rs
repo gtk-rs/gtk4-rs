@@ -7,7 +7,7 @@ use glib::{translate::*, Object};
 
 use crate::{ffi, prelude::*, subclass::prelude::*, Filter, FilterMatch};
 
-pub trait FilterImpl: FilterImplExt + ObjectImpl {
+pub trait FilterImpl: ObjectImpl + ObjectSubclass<Type: IsA<Filter>> {
     #[doc(alias = "get_strictness")]
     fn strictness(&self) -> FilterMatch {
         self.parent_strictness()
@@ -17,12 +17,7 @@ pub trait FilterImpl: FilterImplExt + ObjectImpl {
     }
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::FilterImplExt> Sealed for T {}
-}
-
-pub trait FilterImplExt: sealed::Sealed + ObjectSubclass {
+pub trait FilterImplExt: FilterImpl {
     fn parent_strictness(&self) -> FilterMatch {
         unsafe {
             let data = Self::type_data();

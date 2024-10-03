@@ -10,19 +10,14 @@ use crate::{ffi, prelude::*, subclass::prelude::*, TreeDragDest, TreePath};
 
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 #[allow(deprecated)]
-pub trait TreeDragDestImpl: ObjectImpl {
+pub trait TreeDragDestImpl: ObjectImpl + ObjectSubclass<Type: IsA<TreeDragDest>> {
     fn drag_data_received(&self, dest: &TreePath, value: Value) -> bool;
     fn row_drop_possible(&self, dest: &TreePath, value: Value) -> bool;
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::TreeDragDestImplExt> Sealed for T {}
-}
-
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 #[allow(deprecated)]
-pub trait TreeDragDestImplExt: sealed::Sealed + ObjectSubclass {
+pub trait TreeDragDestImplExt: TreeDragDestImpl {
     fn parent_drag_data_received(&self, dest: &TreePath, value: Value) -> bool {
         unsafe {
             let type_data = Self::type_data();

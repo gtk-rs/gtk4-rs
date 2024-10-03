@@ -7,7 +7,7 @@ use glib::translate::*;
 
 use crate::{ffi, prelude::*, subclass::prelude::*, Border, Range, ScrollType};
 
-pub trait RangeImpl: RangeImplExt + WidgetImpl {
+pub trait RangeImpl: WidgetImpl + ObjectSubclass<Type: IsA<Range>> {
     fn adjust_bounds(&self, new_value: f64) {
         self.parent_adjust_bounds(new_value)
     }
@@ -30,12 +30,7 @@ pub trait RangeImpl: RangeImplExt + WidgetImpl {
     }
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::RangeImplExt> Sealed for T {}
-}
-
-pub trait RangeImplExt: sealed::Sealed + ObjectSubclass {
+pub trait RangeImplExt: RangeImpl {
     fn parent_adjust_bounds(&self, new_value: f64) {
         unsafe {
             let data = Self::type_data();

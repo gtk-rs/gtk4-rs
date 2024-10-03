@@ -7,18 +7,13 @@ use glib::translate::*;
 
 use crate::{ffi, prelude::*, subclass::prelude::*, FlowBoxChild};
 
-pub trait FlowBoxChildImpl: FlowBoxChildImplExt + WidgetImpl {
+pub trait FlowBoxChildImpl: WidgetImpl + ObjectSubclass<Type: IsA<FlowBoxChild>> {
     fn activate(&self) {
         self.parent_activate()
     }
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::FlowBoxChildImplExt> Sealed for T {}
-}
-
-pub trait FlowBoxChildImplExt: sealed::Sealed + ObjectSubclass {
+pub trait FlowBoxChildImplExt: FlowBoxChildImpl {
     fn parent_activate(&self) {
         unsafe {
             let data = Self::type_data();

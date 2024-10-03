@@ -9,7 +9,7 @@ use crate::{
     ffi, prelude::*, subclass::prelude::*, TextBuffer, TextChildAnchor, TextIter, TextMark, TextTag,
 };
 
-pub trait TextBufferImpl: TextBufferImplExt + ObjectImpl {
+pub trait TextBufferImpl: ObjectImpl + ObjectSubclass<Type: IsA<TextBuffer>> {
     fn apply_tag(&self, tag: &TextTag, start: &TextIter, end: &TextIter) {
         self.parent_apply_tag(tag, start, end)
     }
@@ -57,12 +57,7 @@ pub trait TextBufferImpl: TextBufferImplExt + ObjectImpl {
     }
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::TextBufferImplExt> Sealed for T {}
-}
-
-pub trait TextBufferImplExt: sealed::Sealed + ObjectSubclass {
+pub trait TextBufferImplExt: TextBufferImpl {
     fn parent_apply_tag(&self, tag: &TextTag, start: &TextIter, end: &TextIter) {
         unsafe {
             let data = Self::type_data();

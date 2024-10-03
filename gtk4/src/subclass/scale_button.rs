@@ -7,18 +7,13 @@ use glib::translate::*;
 
 use crate::{ffi, prelude::*, subclass::prelude::*, ScaleButton};
 
-pub trait ScaleButtonImpl: ScaleButtonImplExt + WidgetImpl {
+pub trait ScaleButtonImpl: WidgetImpl + ObjectSubclass<Type: IsA<ScaleButton>> {
     fn value_changed(&self, new_value: f64) {
         self.parent_value_changed(new_value)
     }
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::ScaleButtonImplExt> Sealed for T {}
-}
-
-pub trait ScaleButtonImplExt: sealed::Sealed + ObjectSubclass {
+pub trait ScaleButtonImplExt: ScaleButtonImpl {
     fn parent_value_changed(&self, new_value: f64) {
         unsafe {
             let data = Self::type_data();

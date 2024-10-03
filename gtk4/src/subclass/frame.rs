@@ -9,7 +9,7 @@ use crate::{ffi, prelude::*, subclass::prelude::*, Allocation, Frame};
 
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 #[allow(deprecated)]
-pub trait FrameImpl: FrameImplExt + WidgetImpl {
+pub trait FrameImpl: WidgetImpl + ObjectSubclass<Type: IsA<Frame>> {
     fn compute_child_allocation(&self) -> Allocation {
         self.parent_compute_child_allocation()
     }
@@ -17,7 +17,7 @@ pub trait FrameImpl: FrameImplExt + WidgetImpl {
 
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 #[allow(deprecated)]
-pub trait FrameImplExt: ObjectSubclass {
+pub trait FrameImplExt: FrameImpl {
     fn parent_compute_child_allocation(&self) -> Allocation {
         unsafe {
             let data = Self::type_data();

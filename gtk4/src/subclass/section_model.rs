@@ -8,19 +8,14 @@ use glib::translate::*;
 
 use crate::{ffi, prelude::*, subclass::prelude::*, SectionModel};
 
-pub trait SectionModelImpl: ListModelImpl {
+pub trait SectionModelImpl: ListModelImpl + ObjectSubclass<Type: IsA<SectionModel>> {
     #[doc(alias = "get_section")]
     fn section(&self, position: u32) -> (u32, u32) {
         self.parent_section(position)
     }
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::SectionModelImplExt> Sealed for T {}
-}
-
-pub trait SectionModelImplExt: sealed::Sealed + ObjectSubclass {
+pub trait SectionModelImplExt: SectionModelImpl {
     fn parent_section(&self, position: u32) -> (u32, u32) {
         unsafe {
             let type_data = Self::type_data();

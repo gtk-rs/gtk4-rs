@@ -9,7 +9,7 @@ use crate::{ffi, prelude::*, subclass::prelude::*, NativeDialog, ResponseType};
 
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 #[allow(deprecated)]
-pub trait NativeDialogImpl: NativeDialogImplExt + ObjectImpl {
+pub trait NativeDialogImpl: ObjectImpl + ObjectSubclass<Type: IsA<NativeDialog>> {
     fn response(&self, response: ResponseType) {
         self.parent_response(response)
     }
@@ -23,14 +23,9 @@ pub trait NativeDialogImpl: NativeDialogImplExt + ObjectImpl {
     }
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::NativeDialogImplExt> Sealed for T {}
-}
-
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 #[allow(deprecated)]
-pub trait NativeDialogImplExt: sealed::Sealed + ObjectSubclass {
+pub trait NativeDialogImplExt: NativeDialogImpl {
     fn parent_response(&self, response: ResponseType) {
         unsafe {
             let data = Self::type_data();
