@@ -7,7 +7,7 @@ use glib::translate::*;
 
 use crate::{ffi, prelude::*, subclass::prelude::*, CheckButton};
 
-pub trait CheckButtonImpl: CheckButtonImplExt + WidgetImpl {
+pub trait CheckButtonImpl: WidgetImpl + ObjectSubclass<Type: IsA<CheckButton>> {
     fn toggled(&self) {
         self.parent_toggled()
     }
@@ -19,12 +19,7 @@ pub trait CheckButtonImpl: CheckButtonImplExt + WidgetImpl {
     }
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::CheckButtonImplExt> Sealed for T {}
-}
-
-pub trait CheckButtonImplExt: sealed::Sealed + ObjectSubclass {
+pub trait CheckButtonImplExt: CheckButtonImpl {
     fn parent_toggled(&self) {
         unsafe {
             let data = Self::type_data();

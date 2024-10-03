@@ -104,7 +104,7 @@ impl Iterator for WidgetActionIter {
 
 impl std::iter::FusedIterator for WidgetActionIter {}
 
-pub trait WidgetImpl: WidgetImplExt + ObjectImpl {
+pub trait WidgetImpl: ObjectImpl + ObjectSubclass<Type: IsA<Widget>> {
     fn compute_expand(&self, hexpand: &mut bool, vexpand: &mut bool) {
         self.parent_compute_expand(hexpand, vexpand)
     }
@@ -207,12 +207,7 @@ pub trait WidgetImpl: WidgetImplExt + ObjectImpl {
     }
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::WidgetImplExt> Sealed for T {}
-}
-
-pub trait WidgetImplExt: sealed::Sealed + ObjectSubclass {
+pub trait WidgetImplExt: WidgetImpl {
     fn parent_compute_expand(&self, hexpand: &mut bool, vexpand: &mut bool) {
         unsafe {
             let data = Self::type_data();
@@ -1428,17 +1423,15 @@ pub trait CompositeTemplateInitializingExt {
     fn init_template(&self);
 }
 
-impl<T> CompositeTemplateInitializingExt for glib::subclass::InitializingObject<T>
-where
-    T: WidgetImpl + CompositeTemplate,
-    <T as ObjectSubclass>::Type: IsA<Widget>,
+impl<T: WidgetImpl + CompositeTemplate> CompositeTemplateInitializingExt
+    for glib::subclass::InitializingObject<T>
 {
     fn init_template(&self) {
         unsafe {
             let widget = self
                 .as_ref()
                 .unsafe_cast_ref::<<T as ObjectSubclass>::Type>();
-            ffi::gtk_widget_init_template(widget.as_ref().to_glib_none().0);
+            ffi::gtk_widget_init_template(AsRef::<Widget>::as_ref(widget).to_glib_none().0);
 
             <T as CompositeTemplate>::check_template_children(widget);
         }
@@ -1451,11 +1444,7 @@ pub trait CompositeTemplateDisposeExt {
     fn dispose_template(&self);
 }
 
-impl<T> CompositeTemplateDisposeExt for T
-where
-    T: WidgetImpl + CompositeTemplate,
-    <T as ObjectSubclass>::Type: IsA<Widget>,
-{
+impl<T: WidgetImpl + CompositeTemplate> CompositeTemplateDisposeExt for T {
     #[cfg(feature = "v4_8")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     fn dispose_template(&self) {

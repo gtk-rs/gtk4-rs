@@ -8,7 +8,7 @@ use glib::translate::*;
 
 use crate::{ffi, prelude::*, subclass::prelude::*, Paintable, PaintableFlags, Snapshot};
 
-pub trait PaintableImpl: PaintableImplExt + ObjectImpl {
+pub trait PaintableImpl: ObjectImpl + ObjectSubclass<Type: IsA<Paintable>> {
     #[doc(alias = "get_current_image")]
     fn current_image(&self) -> Paintable {
         self.parent_current_image()
@@ -37,12 +37,7 @@ pub trait PaintableImpl: PaintableImplExt + ObjectImpl {
     fn snapshot(&self, snapshot: &Snapshot, width: f64, height: f64);
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::PaintableImplExt> Sealed for T {}
-}
-
-pub trait PaintableImplExt: sealed::Sealed + ObjectSubclass {
+pub trait PaintableImplExt: PaintableImpl {
     fn parent_current_image(&self) -> Paintable {
         unsafe {
             let type_data = Self::type_data();

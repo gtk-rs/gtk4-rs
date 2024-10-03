@@ -8,7 +8,9 @@ use glib::translate::*;
 
 use crate::{ffi, prelude::*, subclass::prelude::*, SymbolicPaintable};
 
-pub trait SymbolicPaintableImpl: PaintableImpl {
+pub trait SymbolicPaintableImpl:
+    PaintableImpl + ObjectSubclass<Type: IsA<SymbolicPaintable>>
+{
     fn snapshot_symbolic(
         &self,
         snapshot: &gdk::Snapshot,
@@ -20,12 +22,7 @@ pub trait SymbolicPaintableImpl: PaintableImpl {
     }
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::SymbolicPaintableImplExt> Sealed for T {}
-}
-
-pub trait SymbolicPaintableImplExt: sealed::Sealed + ObjectSubclass {
+pub trait SymbolicPaintableImplExt: SymbolicPaintableImpl {
     fn parent_snapshot_symbolic(
         &self,
         snapshot: &gdk::Snapshot,

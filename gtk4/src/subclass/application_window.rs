@@ -4,8 +4,11 @@
 //! Traits intended for subclassing
 //! [`ApplicationWindow`](crate::ApplicationWindow).
 
-use crate::{subclass::prelude::*, ApplicationWindow};
+use crate::{prelude::*, subclass::prelude::*, ApplicationWindow};
 
-pub trait ApplicationWindowImpl: WindowImpl + 'static {}
+pub trait ApplicationWindowImpl:
+    WindowImpl + ObjectSubclass<Type: IsA<ApplicationWindow>> + 'static
+{
+}
 
 unsafe impl<T: ApplicationWindowImpl> IsSubclassable<T> for ApplicationWindow {}

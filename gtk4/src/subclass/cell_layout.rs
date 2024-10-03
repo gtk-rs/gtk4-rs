@@ -53,7 +53,7 @@ impl Drop for CellLayoutDataCallback {
 
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 #[allow(deprecated)]
-pub trait CellLayoutImpl: ObjectImpl {
+pub trait CellLayoutImpl: ObjectImpl + ObjectSubclass<Type: IsA<CellLayout>> {
     fn add_attribute<R: IsA<CellRenderer>>(&self, cell: &R, attribute: &str, column: i32) {
         self.parent_add_attribute(cell, attribute, column)
     }
@@ -96,14 +96,9 @@ pub trait CellLayoutImpl: ObjectImpl {
     }
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::CellLayoutImplExt> Sealed for T {}
-}
-
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 #[allow(deprecated)]
-pub trait CellLayoutImplExt: sealed::Sealed + ObjectSubclass {
+pub trait CellLayoutImplExt: CellLayoutImpl {
     fn parent_add_attribute<R: IsA<CellRenderer>>(&self, cell: &R, attribute: &str, column: i32) {
         unsafe {
             let type_data = Self::type_data();

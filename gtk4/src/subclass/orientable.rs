@@ -4,8 +4,8 @@
 //! Traits intended for implementing the [`Orientable`](crate::Orientable)
 //! interface.
 
-use crate::{subclass::prelude::*, Orientable};
+use crate::{prelude::*, subclass::prelude::*, Orientable};
 
-pub trait OrientableImpl: WidgetImpl {}
+pub trait OrientableImpl: ObjectImpl + ObjectSubclass<Type: IsA<Orientable>> {}
 
 unsafe impl<T: OrientableImpl> IsImplementable<T> for Orientable {}

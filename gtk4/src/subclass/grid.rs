@@ -3,8 +3,8 @@
 // rustdoc-stripper-ignore-next
 //! Traits intended for subclassing [`Grid`](crate::Grid).
 
-use crate::{subclass::prelude::*, Grid};
+use crate::{prelude::*, subclass::prelude::*, Grid};
 
-pub trait GridImpl: WidgetImpl {}
+pub trait GridImpl: WidgetImpl + ObjectSubclass<Type: IsA<Grid>> {}
 
 unsafe impl<T: GridImpl> IsSubclassable<T> for Grid {}

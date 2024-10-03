@@ -3,8 +3,8 @@
 // rustdoc-stripper-ignore-next
 //! Traits intended for subclassing [`WindowGroup`](crate::WindowGroup).
 
-use crate::{subclass::prelude::*, WindowGroup};
+use crate::{prelude::*, subclass::prelude::*, WindowGroup};
 
-pub trait WindowGroupImpl: ObjectImpl {}
+pub trait WindowGroupImpl: ObjectImpl + ObjectSubclass<Type: IsA<WindowGroup>> {}
 
 unsafe impl<T: WindowGroupImpl> IsSubclassable<T> for WindowGroup {}
