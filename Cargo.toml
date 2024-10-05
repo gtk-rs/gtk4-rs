@@ -39,7 +39,7 @@ edition = "2021"
 homepage = "https://gtk-rs.org/gtk4-rs"
 license = "MIT"
 repository = "https://github.com/gtk-rs/gtk4-rs"
-rust-version = "1.70"
+rust-version = "1.80"
 version = "0.10.0"
 
 [workspace.dependencies]
