@@ -10,7 +10,7 @@ GDK X11 contains functions specific to the X11 backend.
 
 ## Minimum supported Rust version
 
-Currently, the minimum supported Rust version is `1.70`.
+Currently, the minimum supported Rust version is `1.80`.
 
 ## Documentation
 
