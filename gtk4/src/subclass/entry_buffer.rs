@@ -9,7 +9,7 @@ use glib::{translate::*, GString};
 use super::PtrHolder;
 use crate::{ffi, prelude::*, subclass::prelude::*, EntryBuffer};
 
-pub trait EntryBufferImpl: EntryBufferImplExt + ObjectImpl {
+pub trait EntryBufferImpl: ObjectImpl + ObjectSubclass<Type: IsA<EntryBuffer>> {
     fn delete_text(&self, position: u32, n_chars: Option<u32>) -> u32 {
         self.parent_delete_text(position, n_chars)
     }
@@ -36,12 +36,7 @@ pub trait EntryBufferImpl: EntryBufferImplExt + ObjectImpl {
     }
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::EntryBufferImplExt> Sealed for T {}
-}
-
-pub trait EntryBufferImplExt: sealed::Sealed + ObjectSubclass {
+pub trait EntryBufferImplExt: EntryBufferImpl {
     fn parent_delete_text(&self, position: u32, n_chars: Option<u32>) -> u32 {
         unsafe {
             let data = Self::type_data();

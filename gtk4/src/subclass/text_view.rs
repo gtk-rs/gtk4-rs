@@ -10,7 +10,7 @@ use crate::{
     TextIter, TextView, TextViewLayer,
 };
 
-pub trait TextViewImpl: TextViewImplExt + WidgetImpl {
+pub trait TextViewImpl: WidgetImpl + ObjectSubclass<Type: IsA<TextView>> {
     fn backspace(&self) {
         self.parent_backspace()
     }
@@ -66,12 +66,7 @@ pub trait TextViewImpl: TextViewImplExt + WidgetImpl {
     }
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::TextViewImplExt> Sealed for T {}
-}
-
-pub trait TextViewImplExt: sealed::Sealed + ObjectSubclass {
+pub trait TextViewImplExt: TextViewImpl {
     fn parent_backspace(&self) {
         unsafe {
             let data = Self::type_data();

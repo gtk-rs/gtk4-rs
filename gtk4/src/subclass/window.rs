@@ -7,7 +7,7 @@ use glib::translate::*;
 
 use crate::{ffi, prelude::*, subclass::prelude::*, Window};
 
-pub trait WindowImpl: WindowImplExt + WidgetImpl {
+pub trait WindowImpl: WidgetImpl + ObjectSubclass<Type: IsA<Window>> {
     fn activate_focus(&self) {
         self.parent_activate_focus()
     }
@@ -29,12 +29,7 @@ pub trait WindowImpl: WindowImplExt + WidgetImpl {
     }
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::WindowImplExt> Sealed for T {}
-}
-
-pub trait WindowImplExt: sealed::Sealed + ObjectSubclass {
+pub trait WindowImplExt: WindowImpl {
     fn parent_activate_focus(&self) {
         unsafe {
             let data = Self::type_data();

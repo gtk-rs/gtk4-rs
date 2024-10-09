@@ -8,19 +8,14 @@ use glib::translate::*;
 
 use crate::{ffi, prelude::*, subclass::prelude::*, Border, Scrollable};
 
-pub trait ScrollableImpl: WidgetImpl {
+pub trait ScrollableImpl: WidgetImpl + ObjectSubclass<Type: IsA<Scrollable>> {
     #[doc(alias = "get_border")]
     fn border(&self) -> Option<Border> {
         self.parent_border()
     }
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::ScrollableImplExt> Sealed for T {}
-}
-
-pub trait ScrollableImplExt: sealed::Sealed + ObjectSubclass {
+pub trait ScrollableImplExt: ScrollableImpl {
     fn parent_border(&self) -> Option<Border> {
         unsafe {
             let type_data = Self::type_data();

@@ -7,7 +7,7 @@ use glib::translate::*;
 
 use crate::{ffi, prelude::*, subclass::prelude::*, Dialog, ResponseType};
 
-pub trait DialogImpl: DialogImplExt + WindowImpl {
+pub trait DialogImpl: WindowImpl + ObjectSubclass<Type: IsA<Dialog>> {
     fn response(&self, response: ResponseType) {
         self.parent_response(response)
     }
@@ -17,12 +17,7 @@ pub trait DialogImpl: DialogImplExt + WindowImpl {
     }
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::DialogImplExt> Sealed for T {}
-}
-
-pub trait DialogImplExt: sealed::Sealed + ObjectSubclass {
+pub trait DialogImplExt: DialogImpl {
     fn parent_response(&self, response: ResponseType) {
         unsafe {
             let data = Self::type_data();

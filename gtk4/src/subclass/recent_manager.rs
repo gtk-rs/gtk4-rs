@@ -7,17 +7,13 @@ use glib::translate::*;
 
 use crate::{ffi, prelude::*, subclass::prelude::*, RecentManager};
 
-pub trait RecentManagerImpl: RecentManagerImplExt + ObjectImpl {
+pub trait RecentManagerImpl: ObjectImpl + ObjectSubclass<Type: IsA<RecentManager>> {
     fn changed(&self) {
         self.parent_changed()
     }
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::RecentManagerImplExt> Sealed for T {}
-}
-pub trait RecentManagerImplExt: sealed::Sealed + ObjectSubclass {
+pub trait RecentManagerImplExt: RecentManagerImpl {
     fn parent_changed(&self) {
         unsafe {
             let data = Self::type_data();

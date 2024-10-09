@@ -10,7 +10,7 @@ use glib::{translate::*, GString, Object, Quark, Value};
 use super::PtrHolder;
 use crate::{ffi, prelude::*, subclass::prelude::*, Buildable, Builder};
 
-pub trait BuildableImpl: ObjectImpl {
+pub trait BuildableImpl: ObjectImpl + ObjectSubclass<Type: IsA<Buildable>> {
     fn set_id(&self, id: &str) {
         self.parent_set_id(id)
     }
@@ -59,12 +59,7 @@ pub trait BuildableImpl: ObjectImpl {
     // );
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::BuildableImplExt> Sealed for T {}
-}
-
-pub trait BuildableImplExt: sealed::Sealed + ObjectSubclass {
+pub trait BuildableImplExt: BuildableImpl {
     fn parent_set_id(&self, id: &str) {
         unsafe {
             let type_data = Self::type_data();

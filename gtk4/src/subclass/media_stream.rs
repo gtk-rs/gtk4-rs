@@ -7,7 +7,7 @@ use glib::translate::*;
 
 use crate::{ffi, prelude::*, subclass::prelude::*, MediaStream};
 
-pub trait MediaStreamImpl: MediaStreamImplExt + ObjectImpl {
+pub trait MediaStreamImpl: ObjectImpl + ObjectSubclass<Type: IsA<MediaStream>> {
     fn pause(&self) {
         self.parent_pause()
     }
@@ -33,12 +33,7 @@ pub trait MediaStreamImpl: MediaStreamImplExt + ObjectImpl {
     }
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::MediaStreamImplExt> Sealed for T {}
-}
-
-pub trait MediaStreamImplExt: sealed::Sealed + ObjectSubclass {
+pub trait MediaStreamImplExt: MediaStreamImpl {
     fn parent_pause(&self) {
         unsafe {
             let data = Self::type_data();

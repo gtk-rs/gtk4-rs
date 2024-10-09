@@ -49,7 +49,7 @@ impl Drop for FilterCallback {
 
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 #[allow(deprecated)]
-pub trait FontChooserImpl: ObjectImpl {
+pub trait FontChooserImpl: ObjectImpl + ObjectSubclass<Type: IsA<FontChooser>> {
     fn font_family(&self) -> Option<FontFamily> {
         self.parent_font_family()
     }
@@ -79,14 +79,9 @@ pub trait FontChooserImpl: ObjectImpl {
     }
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::FontChooserImplExt> Sealed for T {}
-}
-
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 #[allow(deprecated)]
-pub trait FontChooserImplExt: sealed::Sealed + ObjectSubclass {
+pub trait FontChooserImplExt: FontChooserImpl {
     fn parent_font_family(&self) -> Option<FontFamily> {
         unsafe {
             let type_data = Self::type_data();

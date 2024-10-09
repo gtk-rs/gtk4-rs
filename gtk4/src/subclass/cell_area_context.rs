@@ -11,7 +11,7 @@ use crate::{ffi, prelude::*, subclass::prelude::*, CellAreaContext};
 
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 #[allow(deprecated)]
-pub trait CellAreaContextImpl: CellAreaContextImplExt + ObjectImpl {
+pub trait CellAreaContextImpl: ObjectImpl + ObjectSubclass<Type: IsA<CellAreaContext>> {
     fn reset(&self) {
         self.parent_reset()
     }
@@ -29,14 +29,9 @@ pub trait CellAreaContextImpl: CellAreaContextImplExt + ObjectImpl {
     }
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::CellAreaContextImplExt> Sealed for T {}
-}
-
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 #[allow(deprecated)]
-pub trait CellAreaContextImplExt: sealed::Sealed + ObjectSubclass {
+pub trait CellAreaContextImplExt: CellAreaContextImpl {
     fn parent_reset(&self) {
         unsafe {
             let data = Self::type_data();

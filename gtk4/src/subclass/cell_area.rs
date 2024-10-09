@@ -63,7 +63,7 @@ impl CellCallbackAllocate {
 
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 #[allow(deprecated)]
-pub trait CellAreaImpl: CellAreaImplExt + ObjectImpl {
+pub trait CellAreaImpl: ObjectImpl + ObjectSubclass<Type: IsA<CellArea>> {
     fn cell_properties() -> &'static [ParamSpec] {
         &[]
     }
@@ -219,14 +219,9 @@ pub trait CellAreaImpl: CellAreaImplExt + ObjectImpl {
     }
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::CellAreaImplExt> Sealed for T {}
-}
-
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 #[allow(deprecated)]
-pub trait CellAreaImplExt: sealed::Sealed + ObjectSubclass {
+pub trait CellAreaImplExt: CellAreaImpl {
     // Returns true if the area was successfully activated
     fn parent_activate<P: IsA<CellAreaContext>, W: IsA<Widget>>(
         &self,
@@ -956,4 +951,4 @@ pub unsafe trait CellAreaClassExt: ClassStruct {
     }
 }
 
-unsafe impl<T: ClassStruct> CellAreaClassExt for T where T::Type: CellAreaImpl {}
+unsafe impl<T: ClassStruct> CellAreaClassExt for T {}

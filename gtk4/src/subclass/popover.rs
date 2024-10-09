@@ -7,7 +7,7 @@ use glib::translate::*;
 
 use crate::{ffi, prelude::*, subclass::prelude::*, Popover};
 
-pub trait PopoverImpl: PopoverImplExt + WidgetImpl {
+pub trait PopoverImpl: WidgetImpl + ObjectSubclass<Type: IsA<Popover>> {
     fn activate_default(&self) {
         self.parent_activate_default()
     }
@@ -17,12 +17,7 @@ pub trait PopoverImpl: PopoverImplExt + WidgetImpl {
     }
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::PopoverImplExt> Sealed for T {}
-}
-
-pub trait PopoverImplExt: sealed::Sealed + ObjectSubclass {
+pub trait PopoverImplExt: PopoverImpl {
     fn parent_activate_default(&self) {
         unsafe {
             let data = Self::type_data();

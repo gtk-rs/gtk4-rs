@@ -3,9 +3,9 @@
 // rustdoc-stripper-ignore-next
 //! Traits intended for subclassing [`LayoutChild`](crate::LayoutChild).
 
-use crate::{subclass::prelude::*, LayoutChild};
+use crate::{prelude::*, subclass::prelude::*, LayoutChild};
 
-pub trait LayoutChildImpl: ObjectImpl {}
+pub trait LayoutChildImpl: ObjectImpl + ObjectSubclass<Type: IsA<LayoutChild>> {}
 
 unsafe impl<T: LayoutChildImpl> IsSubclassable<T> for LayoutChild {
     fn class_init(class: &mut glib::Class<Self>) {

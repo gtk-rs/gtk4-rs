@@ -39,7 +39,7 @@ jobs:
           - stable
           - beta
           - nightly
-          - "1.70"
+          - "1.80"
         conf:
           - {
               name: "gtk4",
@@ -118,8 +118,8 @@ jobs:
   cargo-deny:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
-    - uses: EmbarkStudios/cargo-deny-action@v2
+      - uses: actions/checkout@v4
+      - uses: EmbarkStudios/cargo-deny-action@v2
 
   regen_check:
     name: regen checker

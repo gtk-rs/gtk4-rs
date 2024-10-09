@@ -7,18 +7,13 @@ use glib::translate::*;
 
 use crate::{ffi, prelude::*, subclass::prelude::*, Entry};
 
-pub trait EntryImpl: EntryImplExt + WidgetImpl {
+pub trait EntryImpl: WidgetImpl + ObjectSubclass<Type: IsA<Entry>> {
     fn activate(&self) {
         self.parent_activate()
     }
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::EntryImplExt> Sealed for T {}
-}
-
-pub trait EntryImplExt: sealed::Sealed + ObjectSubclass {
+pub trait EntryImplExt: EntryImpl {
     fn parent_activate(&self) {
         unsafe {
             let data = Self::type_data();

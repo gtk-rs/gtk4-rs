@@ -7,7 +7,7 @@ use glib::translate::*;
 
 use crate::{ffi, prelude::*, subclass::prelude::*, Adjustment};
 
-pub trait AdjustmentImpl: AdjustmentImplExt + ObjectImpl {
+pub trait AdjustmentImpl: ObjectImpl + ObjectSubclass<Type: IsA<Adjustment>> {
     fn changed(&self) {
         self.parent_changed()
     }
@@ -17,12 +17,7 @@ pub trait AdjustmentImpl: AdjustmentImplExt + ObjectImpl {
     }
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::AdjustmentImplExt> Sealed for T {}
-}
-
-pub trait AdjustmentImplExt: sealed::Sealed + ObjectSubclass {
+pub trait AdjustmentImplExt: AdjustmentImpl {
     fn parent_changed(&self) {
         unsafe {
             let data = Self::type_data();

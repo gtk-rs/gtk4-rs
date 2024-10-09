@@ -7,7 +7,7 @@ use glib::{translate::*, Object};
 
 use crate::{ffi, prelude::*, subclass::prelude::*, Ordering, Sorter, SorterOrder};
 
-pub trait SorterImpl: SorterImplExt + ObjectImpl {
+pub trait SorterImpl: ObjectImpl + ObjectSubclass<Type: IsA<Sorter>> {
     fn compare(&self, item1: &Object, item2: &Object) -> Ordering {
         self.parent_compare(item1, item2)
     }
@@ -17,12 +17,7 @@ pub trait SorterImpl: SorterImplExt + ObjectImpl {
     }
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::SorterImplExt> Sealed for T {}
-}
-
-pub trait SorterImplExt: sealed::Sealed + ObjectSubclass {
+pub trait SorterImplExt: SorterImpl {
     fn parent_compare(&self, item1: &Object, item2: &Object) -> Ordering {
         unsafe {
             let data = Self::type_data();

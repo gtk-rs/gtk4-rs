@@ -15,7 +15,7 @@ use crate::{
 
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 #[allow(deprecated)]
-pub trait CellRendererImpl: CellRendererImplExt + ObjectImpl {
+pub trait CellRendererImpl: ObjectImpl + ObjectSubclass<Type: IsA<CellRenderer>> {
     fn activate<P: IsA<Widget>>(
         &self,
         event: Option<&gdk::Event>,
@@ -95,14 +95,9 @@ pub trait CellRendererImpl: CellRendererImplExt + ObjectImpl {
     }
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::CellRendererImplExt> Sealed for T {}
-}
-
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 #[allow(deprecated)]
-pub trait CellRendererImplExt: sealed::Sealed + ObjectSubclass {
+pub trait CellRendererImplExt: CellRendererImpl {
     fn parent_request_mode(&self) -> SizeRequestMode {
         unsafe {
             let data = Self::type_data();
