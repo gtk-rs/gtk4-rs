@@ -11,7 +11,7 @@ fn main() -> glib::ExitCode {
     app.connect_activate(build_ui);
 
     // Run the application
-    app.run()
+    app.run();
     
     // Suggesting this line, because there is a compilation error without it
     return glib::ExitCode::SUCCESS;
