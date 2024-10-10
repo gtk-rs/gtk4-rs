@@ -12,6 +12,9 @@ fn main() -> glib::ExitCode {
 
     // Run the application
     app.run()
+    
+    // Suggesting this line, because there is a compilation error without it
+    return glib::ExitCode::SUCCESS;
 }
 
 fn build_ui(app: &Application) {
