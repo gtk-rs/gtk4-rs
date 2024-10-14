@@ -287,7 +287,7 @@ checksum = "47921d14afc4daad9bedc926099bc6edcaa23e37a957448f86cdefcbafe2f632"
 dependencies = [
  "bitflags 2.6.0",
  "fnv",
- "glow",
+ "glow 0.13.1",
  "imgref",
  "log",
  "lru",
@@ -686,6 +686,18 @@ dependencies = [
 ]
 
 [[package]]
+name = "glow"
+version = "0.14.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "d51fa363f025f5c111e03f13eda21162faeacb6911fe8caa0c0349f9cf0c4483"
+dependencies = [
+ "js-sys",
+ "slotmap",
+ "wasm-bindgen",
+ "web-sys",
+]
+
+[[package]]
 name = "gobject-sys"
 version = "0.21.0"
 source = "git+https://github.com/gtk-rs/gtk-rs-core?branch=master#a1a0fdc1e02409a40fe706e18fea19abad6320fa"
@@ -790,7 +802,7 @@ dependencies = [
  "epoxy",
  "femtovg",
  "glium",
- "glow",
+ "glow 0.14.2",
  "gtk4",
  "im-rc",
  "image",
