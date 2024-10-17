@@ -1,7 +1,6 @@
 use std::env;
 use std::path::PathBuf;
 
-use anyhow::Context;
 use walkdir::WalkDir;
 use xshell::{cmd, Shell};
 
@@ -53,9 +52,7 @@ fn schema_dir() -> anyhow::Result<PathBuf> {
     let schema_dir = if cfg!(windows) {
         PathBuf::from("C:/ProgramData/glib-2.0/schemas/")
     } else {
-        dirs::data_dir()
-            .context("Could not get data dir")?
-            .join("glib-2.0/schemas")
+        gtk::glib::user_data_dir().join("glib-2.0/schemas")
     };
     Ok(schema_dir)
 }
