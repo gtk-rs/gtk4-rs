@@ -7,7 +7,6 @@ edition = "2021"
 [dependencies]
 adw = { version = "0.7", package = "libadwaita", features = ["v1_5"] }
 anyhow = "1.0"
-ashpd = { version = "0.9", features = ["gtk4"] }
 async-channel = "2.0"
 dirs = "5.0"
 gtk = { version = "0.9", package = "gtk4", features = ["v4_12"] }
@@ -19,6 +18,9 @@ serde_json = "1.0"
 tokio = { version = "1.33.0", features = ["rt-multi-thread"] }
 walkdir = "2.3"
 xshell = "0.2"
+
+[target.'cfg(target_os = "linux")'.dependencies]
+ashpd = { version = "0.9", features = ["gtk4"] }
 
 [build-dependencies]
 glib-build-tools = "0.20"
