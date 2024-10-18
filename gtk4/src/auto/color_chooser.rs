@@ -24,12 +24,7 @@ impl ColorChooser {
     pub const NONE: Option<&'static ColorChooser> = None;
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::IsA<super::ColorChooser>> Sealed for T {}
-}
-
-pub trait ColorChooserExt: IsA<ColorChooser> + sealed::Sealed + 'static {
+pub trait ColorChooserExt: IsA<ColorChooser> + 'static {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_color_chooser_get_rgba")]

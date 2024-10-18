@@ -24,12 +24,7 @@ impl TreeModel {
     pub const NONE: Option<&'static TreeModel> = None;
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::IsA<super::TreeModel>> Sealed for T {}
-}
-
-pub trait TreeModelExt: IsA<TreeModel> + sealed::Sealed + 'static {
+pub trait TreeModelExt: IsA<TreeModel> + 'static {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_tree_model_foreach")]

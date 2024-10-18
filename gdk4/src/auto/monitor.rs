@@ -23,12 +23,7 @@ impl Monitor {
     pub const NONE: Option<&'static Monitor> = None;
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::IsA<super::Monitor>> Sealed for T {}
-}
-
-pub trait MonitorExt: IsA<Monitor> + sealed::Sealed + 'static {
+pub trait MonitorExt: IsA<Monitor> + 'static {
     #[doc(alias = "gdk_monitor_get_connector")]
     #[doc(alias = "get_connector")]
     fn connector(&self) -> Option<glib::GString> {

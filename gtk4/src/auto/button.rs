@@ -338,12 +338,7 @@ impl ButtonBuilder {
     }
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::IsA<super::Button>> Sealed for T {}
-}
-
-pub trait ButtonExt: IsA<Button> + sealed::Sealed + 'static {
+pub trait ButtonExt: IsA<Button> + 'static {
     #[cfg(feature = "v4_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     #[doc(alias = "gtk_button_get_can_shrink")]

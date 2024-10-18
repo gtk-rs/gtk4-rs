@@ -23,12 +23,7 @@ impl PrintOperationPreview {
     pub const NONE: Option<&'static PrintOperationPreview> = None;
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::IsA<super::PrintOperationPreview>> Sealed for T {}
-}
-
-pub trait PrintOperationPreviewExt: IsA<PrintOperationPreview> + sealed::Sealed + 'static {
+pub trait PrintOperationPreviewExt: IsA<PrintOperationPreview> + 'static {
     #[doc(alias = "gtk_print_operation_preview_end_preview")]
     fn end_preview(&self) {
         unsafe {

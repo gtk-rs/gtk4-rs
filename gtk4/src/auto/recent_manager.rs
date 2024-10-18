@@ -43,12 +43,7 @@ impl Default for RecentManager {
     }
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::IsA<super::RecentManager>> Sealed for T {}
-}
-
-pub trait RecentManagerExt: IsA<RecentManager> + sealed::Sealed + 'static {
+pub trait RecentManagerExt: IsA<RecentManager> + 'static {
     #[doc(alias = "gtk_recent_manager_add_full")]
     fn add_full(&self, uri: &str, recent_data: &RecentData) -> bool {
         unsafe {

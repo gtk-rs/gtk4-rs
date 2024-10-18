@@ -26,12 +26,7 @@ impl Editable {
     pub const NONE: Option<&'static Editable> = None;
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::IsA<super::Editable>> Sealed for T {}
-}
-
-pub trait EditableExt: IsA<Editable> + sealed::Sealed + 'static {
+pub trait EditableExt: IsA<Editable> + 'static {
     #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "gtk_editable_delegate_get_accessible_platform_state")]

@@ -29,12 +29,7 @@ impl Native {
     }
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::IsA<super::Native>> Sealed for T {}
-}
-
-pub trait NativeExt: IsA<Native> + sealed::Sealed + 'static {
+pub trait NativeExt: IsA<Native> + 'static {
     #[doc(alias = "gtk_native_get_renderer")]
     #[doc(alias = "get_renderer")]
     fn renderer(&self) -> Option<gsk::Renderer> {

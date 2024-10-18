@@ -343,12 +343,7 @@ impl ToggleButtonBuilder {
     }
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::IsA<super::ToggleButton>> Sealed for T {}
-}
-
-pub trait ToggleButtonExt: IsA<ToggleButton> + sealed::Sealed + 'static {
+pub trait ToggleButtonExt: IsA<ToggleButton> + 'static {
     #[doc(alias = "gtk_toggle_button_get_active")]
     #[doc(alias = "get_active")]
     #[doc(alias = "active")]

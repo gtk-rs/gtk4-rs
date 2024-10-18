@@ -23,12 +23,7 @@ impl Sorter {
     pub const NONE: Option<&'static Sorter> = None;
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::IsA<super::Sorter>> Sealed for T {}
-}
-
-pub trait SorterExt: IsA<Sorter> + sealed::Sealed + 'static {
+pub trait SorterExt: IsA<Sorter> + 'static {
     #[doc(alias = "gtk_sorter_changed")]
     fn changed(&self, change: SorterChange) {
         unsafe {

@@ -23,12 +23,7 @@ impl SectionModel {
     pub const NONE: Option<&'static SectionModel> = None;
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::IsA<super::SectionModel>> Sealed for T {}
-}
-
-pub trait SectionModelExt: IsA<SectionModel> + sealed::Sealed + 'static {
+pub trait SectionModelExt: IsA<SectionModel> + 'static {
     #[doc(alias = "gtk_section_model_get_section")]
     #[doc(alias = "get_section")]
     fn section(&self, position: u32) -> (u32, u32) {

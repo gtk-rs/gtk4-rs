@@ -661,12 +661,7 @@ impl TextTagBuilder {
     }
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::IsA<super::TextTag>> Sealed for T {}
-}
-
-pub trait TextTagExt: IsA<TextTag> + sealed::Sealed + 'static {
+pub trait TextTagExt: IsA<TextTag> + 'static {
     #[doc(alias = "gtk_text_tag_changed")]
     fn changed(&self, size_changed: bool) {
         unsafe {

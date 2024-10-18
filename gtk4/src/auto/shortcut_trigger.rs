@@ -35,12 +35,7 @@ impl std::fmt::Display for ShortcutTrigger {
     }
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::IsA<super::ShortcutTrigger>> Sealed for T {}
-}
-
-pub trait ShortcutTriggerExt: IsA<ShortcutTrigger> + sealed::Sealed + 'static {
+pub trait ShortcutTriggerExt: IsA<ShortcutTrigger> + 'static {
     #[doc(alias = "gtk_shortcut_trigger_to_label")]
     fn to_label(&self, display: &impl IsA<gdk::Display>) -> glib::GString {
         unsafe {

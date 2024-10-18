@@ -328,12 +328,7 @@ impl CheckButtonBuilder {
     }
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::IsA<super::CheckButton>> Sealed for T {}
-}
-
-pub trait CheckButtonExt: IsA<CheckButton> + sealed::Sealed + 'static {
+pub trait CheckButtonExt: IsA<CheckButton> + 'static {
     #[doc(alias = "gtk_check_button_get_active")]
     #[doc(alias = "get_active")]
     #[doc(alias = "active")]

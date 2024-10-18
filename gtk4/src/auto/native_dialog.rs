@@ -23,12 +23,7 @@ impl NativeDialog {
     pub const NONE: Option<&'static NativeDialog> = None;
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::IsA<super::NativeDialog>> Sealed for T {}
-}
-
-pub trait NativeDialogExt: IsA<NativeDialog> + sealed::Sealed + 'static {
+pub trait NativeDialogExt: IsA<NativeDialog> + 'static {
     #[doc(alias = "gtk_native_dialog_destroy")]
     fn destroy(&self) {
         unsafe {

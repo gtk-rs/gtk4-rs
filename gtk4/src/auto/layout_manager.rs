@@ -18,12 +18,7 @@ impl LayoutManager {
     pub const NONE: Option<&'static LayoutManager> = None;
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::IsA<super::LayoutManager>> Sealed for T {}
-}
-
-pub trait LayoutManagerExt: IsA<LayoutManager> + sealed::Sealed + 'static {
+pub trait LayoutManagerExt: IsA<LayoutManager> + 'static {
     #[doc(alias = "gtk_layout_manager_allocate")]
     fn allocate(&self, widget: &impl IsA<Widget>, width: i32, height: i32, baseline: i32) {
         unsafe {

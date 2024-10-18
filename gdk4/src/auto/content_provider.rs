@@ -58,12 +58,7 @@ impl ContentProvider {
     }
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::IsA<super::ContentProvider>> Sealed for T {}
-}
-
-pub trait ContentProviderExt: IsA<ContentProvider> + sealed::Sealed + 'static {
+pub trait ContentProviderExt: IsA<ContentProvider> + 'static {
     #[doc(alias = "gdk_content_provider_content_changed")]
     fn content_changed(&self) {
         unsafe {

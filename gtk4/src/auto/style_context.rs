@@ -24,12 +24,7 @@ impl StyleContext {
     pub const NONE: Option<&'static StyleContext> = None;
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::IsA<super::StyleContext>> Sealed for T {}
-}
-
-pub trait StyleContextExt: IsA<StyleContext> + sealed::Sealed + 'static {
+pub trait StyleContextExt: IsA<StyleContext> + 'static {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_style_context_add_class")]

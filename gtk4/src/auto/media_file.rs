@@ -79,12 +79,7 @@ impl Default for MediaFile {
     }
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::IsA<super::MediaFile>> Sealed for T {}
-}
-
-pub trait MediaFileExt: IsA<MediaFile> + sealed::Sealed + 'static {
+pub trait MediaFileExt: IsA<MediaFile> + 'static {
     #[doc(alias = "gtk_media_file_clear")]
     fn clear(&self) {
         unsafe {

@@ -24,12 +24,7 @@ impl FileChooser {
     pub const NONE: Option<&'static FileChooser> = None;
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::IsA<super::FileChooser>> Sealed for T {}
-}
-
-pub trait FileChooserExt: IsA<FileChooser> + sealed::Sealed + 'static {
+pub trait FileChooserExt: IsA<FileChooser> + 'static {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_file_chooser_add_filter")]

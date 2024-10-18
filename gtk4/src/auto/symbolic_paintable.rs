@@ -18,12 +18,7 @@ impl SymbolicPaintable {
     pub const NONE: Option<&'static SymbolicPaintable> = None;
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::IsA<super::SymbolicPaintable>> Sealed for T {}
-}
-
-pub trait SymbolicPaintableExt: IsA<SymbolicPaintable> + sealed::Sealed + 'static {
+pub trait SymbolicPaintableExt: IsA<SymbolicPaintable> + 'static {
     #[doc(alias = "gtk_symbolic_paintable_snapshot_symbolic")]
     fn snapshot_symbolic(
         &self,
