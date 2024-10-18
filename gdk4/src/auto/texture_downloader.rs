@@ -44,6 +44,14 @@ impl TextureDownloader {
     //    unsafe { TODO: call ffi:gdk_texture_downloader_download_into() }
     //}
 
+    //#[cfg(feature = "v4_16")]
+    //#[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
+    //#[doc(alias = "gdk_texture_downloader_get_color_state")]
+    //#[doc(alias = "get_color_state")]
+    //pub fn color_state(&self) -> /*Ignored*/ColorState {
+    //    unsafe { TODO: call ffi:gdk_texture_downloader_get_color_state() }
+    //}
+
     #[doc(alias = "gdk_texture_downloader_get_format")]
     #[doc(alias = "get_format")]
     pub fn format(&self) -> MemoryFormat {
@@ -63,6 +71,13 @@ impl TextureDownloader {
             ))
         }
     }
+
+    //#[cfg(feature = "v4_16")]
+    //#[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
+    //#[doc(alias = "gdk_texture_downloader_set_color_state")]
+    //pub fn set_color_state(&mut self, color_state: /*Ignored*/&ColorState) {
+    //    unsafe { TODO: call ffi:gdk_texture_downloader_set_color_state() }
+    //}
 
     #[doc(alias = "gdk_texture_downloader_set_format")]
     pub fn set_format(&mut self, format: MemoryFormat) {
