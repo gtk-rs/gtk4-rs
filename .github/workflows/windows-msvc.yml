@@ -33,9 +33,9 @@ jobs:
         id: cache
         with:
           path: c:/gnome
-          key: ${{ runner.os }}-gtk4-15.4
+          key: ${{ runner.os }}-gtk4-17.1
           restore-keys: |
-            ${{ runner.os }}-gtk4-15.4
+            ${{ runner.os }}-gtk4-17.1
 
       - name: Set up the PATH environment
         run: |
@@ -94,17 +94,17 @@ jobs:
         uses: actions-rs/cargo@v1
         with:
           command: build
-          args: --features v4_16,xml_validation
+          args: --features v4_18,xml_validation
       - name: Clippy
         uses: actions-rs/cargo@v1
         with:
           command: clippy
-          args: --features v4_16,xml_validation
+          args: --features v4_18,xml_validation
       - name: Tests
         uses: actions-rs/cargo@v1
         with:
           command: test
-          args: --features v4_16,xml_validation
+          args: --features v4_18,xml_validation
 
       - name: Build gdk-win32
         uses: actions-rs/cargo@v1
