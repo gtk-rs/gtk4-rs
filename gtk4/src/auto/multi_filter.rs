@@ -18,12 +18,7 @@ impl MultiFilter {
     pub const NONE: Option<&'static MultiFilter> = None;
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::IsA<super::MultiFilter>> Sealed for T {}
-}
-
-pub trait MultiFilterExt: IsA<MultiFilter> + sealed::Sealed + 'static {
+pub trait MultiFilterExt: IsA<MultiFilter> + 'static {
     #[doc(alias = "gtk_multi_filter_append")]
     fn append(&self, filter: impl IsA<Filter>) {
         unsafe {

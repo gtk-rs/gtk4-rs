@@ -290,12 +290,7 @@ impl BoxBuilder {
     }
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::IsA<super::Box>> Sealed for T {}
-}
-
-pub trait BoxExt: IsA<Box> + sealed::Sealed + 'static {
+pub trait BoxExt: IsA<Box> + 'static {
     #[doc(alias = "gtk_box_append")]
     fn append(&self, child: &impl IsA<Widget>) {
         unsafe {

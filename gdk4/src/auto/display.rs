@@ -51,12 +51,7 @@ impl std::fmt::Display for Display {
     }
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::IsA<super::Display>> Sealed for T {}
-}
-
-pub trait DisplayExt: IsA<Display> + sealed::Sealed + 'static {
+pub trait DisplayExt: IsA<Display> + 'static {
     #[doc(alias = "gdk_display_beep")]
     fn beep(&self) {
         unsafe {

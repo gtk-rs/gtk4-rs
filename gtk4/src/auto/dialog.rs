@@ -421,12 +421,7 @@ impl DialogBuilder {
     }
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::IsA<super::Dialog>> Sealed for T {}
-}
-
-pub trait DialogExt: IsA<Dialog> + sealed::Sealed + 'static {
+pub trait DialogExt: IsA<Dialog> + 'static {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_dialog_add_action_widget")]

@@ -19,12 +19,7 @@ impl AppChooser {
     pub const NONE: Option<&'static AppChooser> = None;
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::IsA<super::AppChooser>> Sealed for T {}
-}
-
-pub trait AppChooserExt: IsA<AppChooser> + sealed::Sealed + 'static {
+pub trait AppChooserExt: IsA<AppChooser> + 'static {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_app_chooser_get_app_info")]

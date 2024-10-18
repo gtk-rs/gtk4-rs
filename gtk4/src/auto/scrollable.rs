@@ -23,12 +23,7 @@ impl Scrollable {
     pub const NONE: Option<&'static Scrollable> = None;
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::IsA<super::Scrollable>> Sealed for T {}
-}
-
-pub trait ScrollableExt: IsA<Scrollable> + sealed::Sealed + 'static {
+pub trait ScrollableExt: IsA<Scrollable> + 'static {
     #[doc(alias = "gtk_scrollable_get_border")]
     #[doc(alias = "get_border")]
     fn border(&self) -> Option<Border> {

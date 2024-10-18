@@ -74,12 +74,7 @@ impl IMMulticontextBuilder {
     }
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::IsA<super::IMMulticontext>> Sealed for T {}
-}
-
-pub trait IMMulticontextExt: IsA<IMMulticontext> + sealed::Sealed + 'static {
+pub trait IMMulticontextExt: IsA<IMMulticontext> + 'static {
     #[doc(alias = "gtk_im_multicontext_get_context_id")]
     #[doc(alias = "get_context_id")]
     fn context_id(&self) -> glib::GString {

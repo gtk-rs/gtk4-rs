@@ -24,12 +24,7 @@ impl FontChooser {
     pub const NONE: Option<&'static FontChooser> = None;
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::IsA<super::FontChooser>> Sealed for T {}
-}
-
-pub trait FontChooserExt: IsA<FontChooser> + sealed::Sealed + 'static {
+pub trait FontChooserExt: IsA<FontChooser> + 'static {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_font_chooser_get_font")]

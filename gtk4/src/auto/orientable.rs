@@ -23,12 +23,7 @@ impl Orientable {
     pub const NONE: Option<&'static Orientable> = None;
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::IsA<super::Orientable>> Sealed for T {}
-}
-
-pub trait OrientableExt: IsA<Orientable> + sealed::Sealed + 'static {
+pub trait OrientableExt: IsA<Orientable> + 'static {
     #[doc(alias = "gtk_orientable_get_orientation")]
     #[doc(alias = "get_orientation")]
     fn orientation(&self) -> Orientation {

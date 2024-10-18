@@ -311,12 +311,7 @@ impl ScaleButtonBuilder {
     }
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::IsA<super::ScaleButton>> Sealed for T {}
-}
-
-pub trait ScaleButtonExt: IsA<ScaleButton> + sealed::Sealed + 'static {
+pub trait ScaleButtonExt: IsA<ScaleButton> + 'static {
     #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "gtk_scale_button_get_active")]

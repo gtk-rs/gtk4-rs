@@ -266,12 +266,7 @@ impl DrawingAreaBuilder {
     }
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::IsA<super::DrawingArea>> Sealed for T {}
-}
-
-pub trait DrawingAreaExt: IsA<DrawingArea> + sealed::Sealed + 'static {
+pub trait DrawingAreaExt: IsA<DrawingArea> + 'static {
     #[doc(alias = "gtk_drawing_area_get_content_height")]
     #[doc(alias = "get_content_height")]
     #[doc(alias = "content-height")]

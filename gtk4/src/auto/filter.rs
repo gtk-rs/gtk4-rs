@@ -23,12 +23,7 @@ impl Filter {
     pub const NONE: Option<&'static Filter> = None;
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::IsA<super::Filter>> Sealed for T {}
-}
-
-pub trait FilterExt: IsA<Filter> + sealed::Sealed + 'static {
+pub trait FilterExt: IsA<Filter> + 'static {
     #[doc(alias = "gtk_filter_changed")]
     fn changed(&self, change: FilterChange) {
         unsafe {

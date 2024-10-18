@@ -43,12 +43,7 @@ impl GLContext {
     }
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::IsA<super::GLContext>> Sealed for T {}
-}
-
-pub trait GLContextExt: IsA<GLContext> + sealed::Sealed + 'static {
+pub trait GLContextExt: IsA<GLContext> + 'static {
     #[cfg(feature = "v4_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     #[doc(alias = "gdk_gl_context_get_allowed_apis")]

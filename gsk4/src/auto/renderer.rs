@@ -30,12 +30,7 @@ impl Renderer {
     }
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::IsA<super::Renderer>> Sealed for T {}
-}
-
-pub trait GskRendererExt: IsA<Renderer> + sealed::Sealed + 'static {
+pub trait GskRendererExt: IsA<Renderer> + 'static {
     #[doc(alias = "gsk_renderer_get_surface")]
     #[doc(alias = "get_surface")]
     fn surface(&self) -> Option<gdk::Surface> {

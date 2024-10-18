@@ -290,12 +290,7 @@ impl GLAreaBuilder {
     }
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::IsA<super::GLArea>> Sealed for T {}
-}
-
-pub trait GLAreaExt: IsA<GLArea> + sealed::Sealed + 'static {
+pub trait GLAreaExt: IsA<GLArea> + 'static {
     #[doc(alias = "gtk_gl_area_attach_buffers")]
     fn attach_buffers(&self) {
         unsafe {

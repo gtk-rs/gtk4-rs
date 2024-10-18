@@ -92,12 +92,7 @@ impl Texture {
 unsafe impl Send for Texture {}
 unsafe impl Sync for Texture {}
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::IsA<super::Texture>> Sealed for T {}
-}
-
-pub trait TextureExt: IsA<Texture> + sealed::Sealed + 'static {
+pub trait TextureExt: IsA<Texture> + 'static {
     #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "gdk_texture_get_format")]

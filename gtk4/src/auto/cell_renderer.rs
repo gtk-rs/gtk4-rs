@@ -27,12 +27,7 @@ impl CellRenderer {
     pub const NONE: Option<&'static CellRenderer> = None;
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::IsA<super::CellRenderer>> Sealed for T {}
-}
-
-pub trait CellRendererExt: IsA<CellRenderer> + sealed::Sealed + 'static {
+pub trait CellRendererExt: IsA<CellRenderer> + 'static {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_cell_renderer_activate")]

@@ -286,12 +286,7 @@ impl ListBoxRowBuilder {
     }
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::IsA<super::ListBoxRow>> Sealed for T {}
-}
-
-pub trait ListBoxRowExt: IsA<ListBoxRow> + sealed::Sealed + 'static {
+pub trait ListBoxRowExt: IsA<ListBoxRow> + 'static {
     #[doc(alias = "gtk_list_box_row_changed")]
     fn changed(&self) {
         unsafe {

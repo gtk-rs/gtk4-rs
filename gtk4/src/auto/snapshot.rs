@@ -31,12 +31,7 @@ impl Default for Snapshot {
     }
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::IsA<super::Snapshot>> Sealed for T {}
-}
-
-pub trait SnapshotExt: IsA<Snapshot> + sealed::Sealed + 'static {
+pub trait SnapshotExt: IsA<Snapshot> + 'static {
     #[doc(alias = "gtk_snapshot_append_cairo")]
     fn append_cairo(&self, bounds: &graphene::Rect) -> cairo::Context {
         unsafe {

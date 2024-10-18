@@ -79,12 +79,7 @@ impl TextMarkBuilder {
     }
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::IsA<super::TextMark>> Sealed for T {}
-}
-
-pub trait TextMarkExt: IsA<TextMark> + sealed::Sealed + 'static {
+pub trait TextMarkExt: IsA<TextMark> + 'static {
     #[doc(alias = "gtk_text_mark_get_buffer")]
     #[doc(alias = "get_buffer")]
     fn buffer(&self) -> Option<TextBuffer> {

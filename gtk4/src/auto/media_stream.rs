@@ -24,12 +24,7 @@ impl MediaStream {
     pub const NONE: Option<&'static MediaStream> = None;
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::IsA<super::MediaStream>> Sealed for T {}
-}
-
-pub trait MediaStreamExt: IsA<MediaStream> + sealed::Sealed + 'static {
+pub trait MediaStreamExt: IsA<MediaStream> + 'static {
     #[cfg_attr(feature = "v4_4", deprecated = "Since 4.4")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_media_stream_ended")]

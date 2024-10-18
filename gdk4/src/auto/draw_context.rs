@@ -18,12 +18,7 @@ impl DrawContext {
     pub const NONE: Option<&'static DrawContext> = None;
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::IsA<super::DrawContext>> Sealed for T {}
-}
-
-pub trait DrawContextExt: IsA<DrawContext> + sealed::Sealed + 'static {
+pub trait DrawContextExt: IsA<DrawContext> + 'static {
     #[doc(alias = "gdk_draw_context_begin_frame")]
     fn begin_frame(&self, region: &cairo::Region) {
         unsafe {

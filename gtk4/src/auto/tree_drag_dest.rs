@@ -19,12 +19,7 @@ impl TreeDragDest {
     pub const NONE: Option<&'static TreeDragDest> = None;
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::IsA<super::TreeDragDest>> Sealed for T {}
-}
-
-pub trait TreeDragDestExt: IsA<TreeDragDest> + sealed::Sealed + 'static {
+pub trait TreeDragDestExt: IsA<TreeDragDest> + 'static {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_tree_drag_dest_drag_data_received")]

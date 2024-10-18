@@ -442,12 +442,7 @@ impl CellRendererTextBuilder {
     }
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::IsA<super::CellRendererText>> Sealed for T {}
-}
-
-pub trait CellRendererTextExt: IsA<CellRendererText> + sealed::Sealed + 'static {
+pub trait CellRendererTextExt: IsA<CellRendererText> + 'static {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_cell_renderer_text_set_fixed_height_from_font")]

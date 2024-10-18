@@ -30,12 +30,7 @@ impl Default for WindowGroup {
     }
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::IsA<super::WindowGroup>> Sealed for T {}
-}
-
-pub trait WindowGroupExt: IsA<WindowGroup> + sealed::Sealed + 'static {
+pub trait WindowGroupExt: IsA<WindowGroup> + 'static {
     #[doc(alias = "gtk_window_group_add_window")]
     fn add_window(&self, window: &impl IsA<Window>) {
         unsafe {

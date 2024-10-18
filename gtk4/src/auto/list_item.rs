@@ -23,12 +23,7 @@ impl ListItem {
     pub const NONE: Option<&'static ListItem> = None;
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::IsA<super::ListItem>> Sealed for T {}
-}
-
-pub trait ListItemExt: IsA<ListItem> + sealed::Sealed + 'static {
+pub trait ListItemExt: IsA<ListItem> + 'static {
     #[cfg(feature = "v4_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     #[doc(alias = "gtk_list_item_get_accessible_description")]

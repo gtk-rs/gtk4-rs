@@ -24,12 +24,7 @@ impl IMContext {
     pub const NONE: Option<&'static IMContext> = None;
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::IsA<super::IMContext>> Sealed for T {}
-}
-
-pub trait IMContextExt: IsA<IMContext> + sealed::Sealed + 'static {
+pub trait IMContextExt: IsA<IMContext> + 'static {
     #[cfg(feature = "v4_14")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
     #[doc(alias = "gtk_im_context_activate_osk")]

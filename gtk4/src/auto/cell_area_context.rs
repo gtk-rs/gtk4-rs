@@ -24,12 +24,7 @@ impl CellAreaContext {
     pub const NONE: Option<&'static CellAreaContext> = None;
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::IsA<super::CellAreaContext>> Sealed for T {}
-}
-
-pub trait CellAreaContextExt: IsA<CellAreaContext> + sealed::Sealed + 'static {
+pub trait CellAreaContextExt: IsA<CellAreaContext> + 'static {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_cell_area_context_allocate")]

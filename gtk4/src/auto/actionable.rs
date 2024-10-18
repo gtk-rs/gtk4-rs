@@ -23,12 +23,7 @@ impl Actionable {
     pub const NONE: Option<&'static Actionable> = None;
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::IsA<super::Actionable>> Sealed for T {}
-}
-
-pub trait ActionableExt: IsA<Actionable> + sealed::Sealed + 'static {
+pub trait ActionableExt: IsA<Actionable> + 'static {
     #[doc(alias = "gtk_actionable_get_action_name")]
     #[doc(alias = "get_action_name")]
     #[doc(alias = "action-name")]

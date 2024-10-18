@@ -23,12 +23,7 @@ impl GestureSingle {
     pub const NONE: Option<&'static GestureSingle> = None;
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::IsA<super::GestureSingle>> Sealed for T {}
-}
-
-pub trait GestureSingleExt: IsA<GestureSingle> + sealed::Sealed + 'static {
+pub trait GestureSingleExt: IsA<GestureSingle> + 'static {
     #[doc(alias = "gtk_gesture_single_get_button")]
     #[doc(alias = "get_button")]
     fn button(&self) -> u32 {

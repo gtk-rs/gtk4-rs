@@ -20,12 +20,7 @@ impl TreeModelFilter {
     pub const NONE: Option<&'static TreeModelFilter> = None;
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::IsA<super::TreeModelFilter>> Sealed for T {}
-}
-
-pub trait TreeModelFilterExt: IsA<TreeModelFilter> + sealed::Sealed + 'static {
+pub trait TreeModelFilterExt: IsA<TreeModelFilter> + 'static {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_tree_model_filter_clear_cache")]

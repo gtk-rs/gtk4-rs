@@ -48,12 +48,7 @@ impl Surface {
     }
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::IsA<super::Surface>> Sealed for T {}
-}
-
-pub trait SurfaceExt: IsA<Surface> + sealed::Sealed + 'static {
+pub trait SurfaceExt: IsA<Surface> + 'static {
     #[doc(alias = "gdk_surface_beep")]
     fn beep(&self) {
         unsafe {

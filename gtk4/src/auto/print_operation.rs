@@ -172,12 +172,7 @@ impl PrintOperationBuilder {
     }
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::IsA<super::PrintOperation>> Sealed for T {}
-}
-
-pub trait PrintOperationExt: IsA<PrintOperation> + sealed::Sealed + 'static {
+pub trait PrintOperationExt: IsA<PrintOperation> + 'static {
     #[doc(alias = "gtk_print_operation_cancel")]
     fn cancel(&self) {
         unsafe {
