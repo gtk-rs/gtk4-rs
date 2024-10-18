@@ -11,15 +11,10 @@ use wayland_client::{backend::ObjectId, protocol::wl_surface::WlSurface, Proxy};
 use crate::ffi;
 use crate::{prelude::*, WaylandSurface};
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::IsA<super::WaylandSurface>> Sealed for T {}
-}
-
 // rustdoc-stripper-ignore-next
 /// Trait containing manually implemented methods of
 /// [`WaylandSurface`](crate::WaylandSurface).
-pub trait WaylandSurfaceExtManual: sealed::Sealed + IsA<WaylandSurface> + 'static {
+pub trait WaylandSurfaceExtManual: IsA<WaylandSurface> + 'static {
     #[doc(alias = "gdk_wayland_surface_get_wl_surface")]
     #[doc(alias = "get_wl_surface")]
     #[cfg(feature = "wayland_crate")]

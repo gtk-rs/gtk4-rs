@@ -3,17 +3,12 @@
 use crate::{ffi, prelude::*, FileChooser};
 use glib::translate::*;
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::IsA<super::FileChooser>> Sealed for T {}
-}
-
 // rustdoc-stripper-ignore-next
 /// Trait containing manually implemented methods of
 /// [`FileChooser`](crate::FileChooser).
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 #[allow(deprecated)]
-pub trait FileChooserExtManual: sealed::Sealed + IsA<FileChooser> + 'static {
+pub trait FileChooserExtManual: IsA<FileChooser> + 'static {
     #[doc(alias = "gtk_file_chooser_add_choice")]
     fn add_choice(&self, id: impl IntoGStr, label: impl IntoGStr, options: &[(&str, &str)]) {
         if options.is_empty() {

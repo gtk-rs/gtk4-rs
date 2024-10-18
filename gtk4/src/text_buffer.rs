@@ -10,15 +10,10 @@ use libc::{c_char, c_int};
 
 use crate::{ffi, prelude::*, TextBuffer, TextIter, TextTag};
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::IsA<super::TextBuffer>> Sealed for T {}
-}
-
 // rustdoc-stripper-ignore-next
 /// Trait containing manually implemented methods of
 /// [`TextBuffer`](crate::TextBuffer).
-pub trait TextBufferExtManual: sealed::Sealed + IsA<TextBuffer> + 'static {
+pub trait TextBufferExtManual: IsA<TextBuffer> + 'static {
     // rustdoc-stripper-ignore-next
     /// # Panics
     ///

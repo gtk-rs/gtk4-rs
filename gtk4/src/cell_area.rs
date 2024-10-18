@@ -4,17 +4,12 @@ use glib::{translate::*, value::FromValue, Value};
 
 use crate::{ffi, prelude::*, CellArea, CellRenderer};
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::IsA<super::CellArea>> Sealed for T {}
-}
-
 // rustdoc-stripper-ignore-next
 /// Trait containing manually implemented methods of
 /// [`CellArea`](crate::CellArea).
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 #[allow(deprecated)]
-pub trait CellAreaExtManual: sealed::Sealed + IsA<CellArea> {
+pub trait CellAreaExtManual: IsA<CellArea> {
     #[doc(alias = "gtk_cell_area_add_with_properties")]
     fn add_with_properties(
         &self,

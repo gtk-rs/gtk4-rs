@@ -9,15 +9,10 @@ use glib::{
 
 use crate::{ffi, prelude::*, Toplevel, ToplevelSize};
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::IsA<super::Toplevel>> Sealed for T {}
-}
-
 // rustdoc-stripper-ignore-next
 /// Trait containing manually implemented methods of
 /// [`Toplevel`](crate::Toplevel).
-pub trait ToplevelExtManual: sealed::Sealed + IsA<Toplevel> {
+pub trait ToplevelExtManual: IsA<Toplevel> {
     fn connect_compute_size<F: Fn(&Toplevel, &mut ToplevelSize) + 'static>(
         &self,
         f: F,

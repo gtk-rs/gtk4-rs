@@ -22,17 +22,12 @@ impl TreeModelFilter {
     }
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::IsA<super::TreeModelFilter>> Sealed for T {}
-}
-
 // rustdoc-stripper-ignore-next
 /// Trait containing manually implemented methods of
 /// [`TreeModelFilter`](crate::TreeModelFilter).
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 #[allow(deprecated)]
-pub trait TreeModelFilterExtManual: sealed::Sealed + IsA<TreeModelFilter> + 'static {
+pub trait TreeModelFilterExtManual: IsA<TreeModelFilter> + 'static {
     #[doc(alias = "gtk_tree_model_filter_set_modify_func")]
     fn set_modify_func<F: Fn(&TreeModel, &TreeIter, i32) -> glib::Value + 'static>(
         &self,

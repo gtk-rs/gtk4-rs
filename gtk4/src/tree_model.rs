@@ -4,17 +4,12 @@ use glib::{translate::*, value::FromValue};
 
 use crate::{ffi, prelude::*, TreeIter, TreeModel};
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::IsA<super::TreeModel>> Sealed for T {}
-}
-
 // rustdoc-stripper-ignore-next
 /// Trait containing manually implemented methods of
 /// [`TreeModel`](crate::TreeModel).
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 #[allow(deprecated)]
-pub trait TreeModelExtManual: sealed::Sealed + IsA<TreeModel> + 'static {
+pub trait TreeModelExtManual: IsA<TreeModel> + 'static {
     #[doc(alias = "gtk_tree_model_get")]
     #[doc(alias = "gtk_tree_model_get_value")]
     #[doc(alias = "gtk_tree_model_get_valist")]

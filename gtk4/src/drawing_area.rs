@@ -6,15 +6,10 @@ use glib::translate::*;
 
 use crate::{ffi, prelude::*, DrawingArea};
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::IsA<super::DrawingArea>> Sealed for T {}
-}
-
 // rustdoc-stripper-ignore-next
 /// Trait containing manually implemented methods of
 /// [`DrawingArea`](crate::DrawingArea).
-pub trait DrawingAreaExtManual: sealed::Sealed + IsA<DrawingArea> + 'static {
+pub trait DrawingAreaExtManual: IsA<DrawingArea> + 'static {
     #[doc(alias = "gtk_drawing_area_set_draw_func")]
     #[doc(alias = "set_draw_func")]
     fn unset_draw_func(&self) {

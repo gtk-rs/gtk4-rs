@@ -9,15 +9,10 @@ use glib::{
 
 use crate::{ffi, prelude::*, DragSurface, DragSurfaceSize};
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::IsA<super::DragSurface>> Sealed for T {}
-}
-
 // rustdoc-stripper-ignore-next
 /// Trait containing manually implemented methods of
 /// [`DragSurface`](crate::DragSurface).
-pub trait DragSurfaceExtManual: sealed::Sealed + IsA<DragSurface> {
+pub trait DragSurfaceExtManual: IsA<DragSurface> {
     #[cfg(feature = "v4_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     #[doc(alias = "compute-size")]

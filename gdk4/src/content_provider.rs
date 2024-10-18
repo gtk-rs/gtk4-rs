@@ -4,15 +4,10 @@ use glib::translate::*;
 
 use crate::{ffi, prelude::*, ContentProvider};
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::IsA<super::ContentProvider>> Sealed for T {}
-}
-
 // rustdoc-stripper-ignore-next
 /// Trait containing manually implemented methods of
 /// [`ContentProvider`](crate::ContentProvider).
-pub trait ContentProviderExtManual: sealed::Sealed + IsA<ContentProvider> {
+pub trait ContentProviderExtManual: IsA<ContentProvider> {
     #[doc(alias = "gdk_content_provider_get_value")]
     fn value(&self, type_: glib::Type) -> Result<glib::Value, glib::Error> {
         unsafe {
