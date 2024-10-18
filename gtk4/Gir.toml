@@ -2195,6 +2195,9 @@ manual_traits = ["TextBufferExtManual"]
     [[object.function]]
     name = "insert_with_tags_by_name"
     manual = true
+    [[object.function]]
+    name = "add_commit_notify"
+    manual = true # Ends up using from_glib_borrow for a TextBufferNotifyFlags
 
 [[object]]
 name = "Gtk.TextIter"
