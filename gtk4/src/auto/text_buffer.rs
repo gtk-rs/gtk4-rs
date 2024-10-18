@@ -2,9 +2,6 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-#[cfg(feature = "v4_16")]
-#[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
-use crate::TextBufferNotifyFlags;
 use crate::{ffi, TextChildAnchor, TextIter, TextMark, TextTag, TextTagTable};
 use glib::{
     prelude::*,
@@ -89,50 +86,6 @@ impl TextBufferBuilder {
 }
 
 pub trait TextBufferExt: IsA<TextBuffer> + 'static {
-    #[cfg(feature = "v4_16")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
-    #[doc(alias = "gtk_text_buffer_add_commit_notify")]
-    fn add_commit_notify<P: Fn(&TextBuffer, &TextBufferNotifyFlags, u32, u32) + 'static>(
-        &self,
-        flags: TextBufferNotifyFlags,
-        commit_notify: P,
-    ) -> u32 {
-        let commit_notify_data: Box_<P> = Box_::new(commit_notify);
-        unsafe extern "C" fn commit_notify_func<
-            P: Fn(&TextBuffer, &TextBufferNotifyFlags, u32, u32) + 'static,
-        >(
-            buffer: *mut ffi::GtkTextBuffer,
-            flags: ffi::GtkTextBufferNotifyFlags,
-            position: std::ffi::c_uint,
-            length: std::ffi::c_uint,
-            user_data: glib::ffi::gpointer,
-        ) {
-            let buffer = from_glib_borrow(buffer);
-            let flags = from_glib_borrow(flags);
-            let callback = &*(user_data as *mut P);
-            (*callback)(&buffer, &flags, position, length)
-        }
-        let commit_notify = Some(commit_notify_func::<P> as _);
-        unsafe extern "C" fn destroy_func<
-            P: Fn(&TextBuffer, &TextBufferNotifyFlags, u32, u32) + 'static,
-        >(
-            data: glib::ffi::gpointer,
-        ) {
-            let _callback = Box_::from_raw(data as *mut P);
-        }
-        let destroy_call4 = Some(destroy_func::<P> as _);
-        let super_callback0: Box_<P> = commit_notify_data;
-        unsafe {
-            ffi::gtk_text_buffer_add_commit_notify(
-                self.as_ref().to_glib_none().0,
-                flags.into_glib(),
-                commit_notify,
-                Box_::into_raw(super_callback0) as *mut _,
-                destroy_call4,
-            )
-        }
-    }
-
     #[doc(alias = "gtk_text_buffer_add_mark")]
     fn add_mark(&self, mark: &impl IsA<TextMark>, where_: &TextIter) {
         unsafe {
