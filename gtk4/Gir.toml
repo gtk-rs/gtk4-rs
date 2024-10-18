@@ -255,6 +255,7 @@ generate = [
     "Gtk.SymbolicColor",
     "Gtk.SymbolicPaintable",
     "Gtk.SystemSetting",
+    "Gtk.TextBufferNotifyFlags",
     "Gtk.TextChildAnchor",
     "Gtk.TextDirection",
     "Gtk.TextExtendSelection",

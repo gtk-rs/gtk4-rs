@@ -141,6 +141,120 @@ impl From<AxisUse> for glib::Value {
     }
 }
 
+#[cfg(feature = "v4_16")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
+#[doc(alias = "GdkCicpRange")]
+pub enum CicpRange {
+    #[doc(alias = "GDK_CICP_RANGE_NARROW")]
+    Narrow,
+    #[doc(alias = "GDK_CICP_RANGE_FULL")]
+    Full,
+    #[doc(hidden)]
+    __Unknown(i32),
+}
+
+#[cfg(feature = "v4_16")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
+#[doc(hidden)]
+impl IntoGlib for CicpRange {
+    type GlibType = ffi::GdkCicpRange;
+
+    #[inline]
+    fn into_glib(self) -> ffi::GdkCicpRange {
+        match self {
+            Self::Narrow => ffi::GDK_CICP_RANGE_NARROW,
+            Self::Full => ffi::GDK_CICP_RANGE_FULL,
+            Self::__Unknown(value) => value,
+        }
+    }
+}
+
+#[cfg(feature = "v4_16")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
+#[doc(hidden)]
+impl FromGlib<ffi::GdkCicpRange> for CicpRange {
+    #[inline]
+    unsafe fn from_glib(value: ffi::GdkCicpRange) -> Self {
+        skip_assert_initialized!();
+
+        match value {
+            ffi::GDK_CICP_RANGE_NARROW => Self::Narrow,
+            ffi::GDK_CICP_RANGE_FULL => Self::Full,
+            value => Self::__Unknown(value),
+        }
+    }
+}
+
+#[cfg(feature = "v4_16")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
+impl StaticType for CicpRange {
+    #[inline]
+    #[doc(alias = "gdk_cicp_range_get_type")]
+    fn static_type() -> glib::Type {
+        unsafe { from_glib(ffi::gdk_cicp_range_get_type()) }
+    }
+}
+
+#[cfg(feature = "v4_16")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
+impl glib::HasParamSpec for CicpRange {
+    type ParamSpec = glib::ParamSpecEnum;
+    type SetValue = Self;
+    type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
+
+    fn param_spec_builder() -> Self::BuilderFn {
+        Self::ParamSpec::builder_with_default
+    }
+}
+
+#[cfg(feature = "v4_16")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
+impl glib::value::ValueType for CicpRange {
+    type Type = Self;
+}
+
+#[cfg(feature = "v4_16")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
+unsafe impl<'a> glib::value::FromValue<'a> for CicpRange {
+    type Checker = glib::value::GenericValueTypeChecker<Self>;
+
+    #[inline]
+    unsafe fn from_value(value: &'a glib::Value) -> Self {
+        skip_assert_initialized!();
+        from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+    }
+}
+
+#[cfg(feature = "v4_16")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
+impl ToValue for CicpRange {
+    #[inline]
+    fn to_value(&self) -> glib::Value {
+        let mut value = glib::Value::for_value_type::<Self>();
+        unsafe {
+            glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
+        }
+        value
+    }
+
+    #[inline]
+    fn value_type(&self) -> glib::Type {
+        Self::static_type()
+    }
+}
+
+#[cfg(feature = "v4_16")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
+impl From<CicpRange> for glib::Value {
+    #[inline]
+    fn from(v: CicpRange) -> Self {
+        skip_assert_initialized!();
+        ToValue::to_value(&v)
+    }
+}
+
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GdkCrossingMode")]

@@ -2,6 +2,9 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+#[cfg(feature = "v4_16")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
+use crate::ColorState;
 use crate::{ffi, MemoryFormat, Texture};
 use glib::{prelude::*, translate::*};
 
@@ -44,13 +47,17 @@ impl TextureDownloader {
     //    unsafe { TODO: call ffi:gdk_texture_downloader_download_into() }
     //}
 
-    //#[cfg(feature = "v4_16")]
-    //#[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
-    //#[doc(alias = "gdk_texture_downloader_get_color_state")]
-    //#[doc(alias = "get_color_state")]
-    //pub fn color_state(&self) -> /*Ignored*/ColorState {
-    //    unsafe { TODO: call ffi:gdk_texture_downloader_get_color_state() }
-    //}
+    #[cfg(feature = "v4_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
+    #[doc(alias = "gdk_texture_downloader_get_color_state")]
+    #[doc(alias = "get_color_state")]
+    pub fn color_state(&self) -> ColorState {
+        unsafe {
+            from_glib_full(ffi::gdk_texture_downloader_get_color_state(
+                self.to_glib_none().0,
+            ))
+        }
+    }
 
     #[doc(alias = "gdk_texture_downloader_get_format")]
     #[doc(alias = "get_format")]
@@ -72,12 +79,17 @@ impl TextureDownloader {
         }
     }
 
-    //#[cfg(feature = "v4_16")]
-    //#[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
-    //#[doc(alias = "gdk_texture_downloader_set_color_state")]
-    //pub fn set_color_state(&mut self, color_state: /*Ignored*/&ColorState) {
-    //    unsafe { TODO: call ffi:gdk_texture_downloader_set_color_state() }
-    //}
+    #[cfg(feature = "v4_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
+    #[doc(alias = "gdk_texture_downloader_set_color_state")]
+    pub fn set_color_state(&mut self, color_state: &ColorState) {
+        unsafe {
+            ffi::gdk_texture_downloader_set_color_state(
+                self.to_glib_none_mut().0,
+                color_state.to_glib_none().0,
+            );
+        }
+    }
 
     #[doc(alias = "gdk_texture_downloader_set_format")]
     pub fn set_format(&mut self, format: MemoryFormat) {

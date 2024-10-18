@@ -1555,6 +1555,114 @@ impl From<StyleContextPrintFlags> for glib::Value {
     }
 }
 
+#[cfg(feature = "v4_16")]
+bitflags! {
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
+    #[doc(alias = "GtkTextBufferNotifyFlags")]
+    pub struct TextBufferNotifyFlags: u32 {
+        #[doc(alias = "GTK_TEXT_BUFFER_NOTIFY_BEFORE_INSERT")]
+        const BEFORE_INSERT = ffi::GTK_TEXT_BUFFER_NOTIFY_BEFORE_INSERT as _;
+        #[doc(alias = "GTK_TEXT_BUFFER_NOTIFY_AFTER_INSERT")]
+        const AFTER_INSERT = ffi::GTK_TEXT_BUFFER_NOTIFY_AFTER_INSERT as _;
+        #[doc(alias = "GTK_TEXT_BUFFER_NOTIFY_BEFORE_DELETE")]
+        const BEFORE_DELETE = ffi::GTK_TEXT_BUFFER_NOTIFY_BEFORE_DELETE as _;
+        #[doc(alias = "GTK_TEXT_BUFFER_NOTIFY_AFTER_DELETE")]
+        const AFTER_DELETE = ffi::GTK_TEXT_BUFFER_NOTIFY_AFTER_DELETE as _;
+    }
+}
+
+#[cfg(feature = "v4_16")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
+#[doc(hidden)]
+impl IntoGlib for TextBufferNotifyFlags {
+    type GlibType = ffi::GtkTextBufferNotifyFlags;
+
+    #[inline]
+    fn into_glib(self) -> ffi::GtkTextBufferNotifyFlags {
+        self.bits()
+    }
+}
+
+#[cfg(feature = "v4_16")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
+#[doc(hidden)]
+impl FromGlib<ffi::GtkTextBufferNotifyFlags> for TextBufferNotifyFlags {
+    #[inline]
+    unsafe fn from_glib(value: ffi::GtkTextBufferNotifyFlags) -> Self {
+        skip_assert_initialized!();
+        Self::from_bits_truncate(value)
+    }
+}
+
+#[cfg(feature = "v4_16")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
+impl StaticType for TextBufferNotifyFlags {
+    #[inline]
+    #[doc(alias = "gtk_text_buffer_notify_flags_get_type")]
+    fn static_type() -> glib::Type {
+        unsafe { from_glib(ffi::gtk_text_buffer_notify_flags_get_type()) }
+    }
+}
+
+#[cfg(feature = "v4_16")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
+impl glib::HasParamSpec for TextBufferNotifyFlags {
+    type ParamSpec = glib::ParamSpecFlags;
+    type SetValue = Self;
+    type BuilderFn = fn(&str) -> glib::ParamSpecFlagsBuilder<Self>;
+
+    fn param_spec_builder() -> Self::BuilderFn {
+        Self::ParamSpec::builder
+    }
+}
+
+#[cfg(feature = "v4_16")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
+impl glib::value::ValueType for TextBufferNotifyFlags {
+    type Type = Self;
+}
+
+#[cfg(feature = "v4_16")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
+unsafe impl<'a> glib::value::FromValue<'a> for TextBufferNotifyFlags {
+    type Checker = glib::value::GenericValueTypeChecker<Self>;
+
+    #[inline]
+    unsafe fn from_value(value: &'a glib::Value) -> Self {
+        skip_assert_initialized!();
+        from_glib(glib::gobject_ffi::g_value_get_flags(value.to_glib_none().0))
+    }
+}
+
+#[cfg(feature = "v4_16")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
+impl ToValue for TextBufferNotifyFlags {
+    #[inline]
+    fn to_value(&self) -> glib::Value {
+        let mut value = glib::Value::for_value_type::<Self>();
+        unsafe {
+            glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, self.into_glib());
+        }
+        value
+    }
+
+    #[inline]
+    fn value_type(&self) -> glib::Type {
+        Self::static_type()
+    }
+}
+
+#[cfg(feature = "v4_16")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
+impl From<TextBufferNotifyFlags> for glib::Value {
+    #[inline]
+    fn from(v: TextBufferNotifyFlags) -> Self {
+        skip_assert_initialized!();
+        ToValue::to_value(&v)
+    }
+}
+
 bitflags! {
     #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
     #[doc(alias = "GtkTextSearchFlags")]
