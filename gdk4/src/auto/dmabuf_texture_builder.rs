@@ -2,6 +2,9 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+#[cfg(feature = "v4_16")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
+use crate::ColorState;
 use crate::{ffi, Display, Texture};
 use glib::{
     prelude::*,
@@ -26,14 +29,18 @@ impl DmabufTextureBuilder {
         unsafe { from_glib_full(ffi::gdk_dmabuf_texture_builder_new()) }
     }
 
-    //#[cfg(feature = "v4_16")]
-    //#[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
-    //#[doc(alias = "gdk_dmabuf_texture_builder_get_color_state")]
-    //#[doc(alias = "get_color_state")]
-    //#[doc(alias = "color-state")]
-    //pub fn color_state(&self) -> /*Ignored*/Option<ColorState> {
-    //    unsafe { TODO: call ffi:gdk_dmabuf_texture_builder_get_color_state() }
-    //}
+    #[cfg(feature = "v4_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
+    #[doc(alias = "gdk_dmabuf_texture_builder_get_color_state")]
+    #[doc(alias = "get_color_state")]
+    #[doc(alias = "color-state")]
+    pub fn color_state(&self) -> Option<ColorState> {
+        unsafe {
+            from_glib_full(ffi::gdk_dmabuf_texture_builder_get_color_state(
+                self.to_glib_none().0,
+            ))
+        }
+    }
 
     #[doc(alias = "gdk_dmabuf_texture_builder_get_display")]
     #[doc(alias = "get_display")]
@@ -127,13 +134,18 @@ impl DmabufTextureBuilder {
         unsafe { ffi::gdk_dmabuf_texture_builder_get_width(self.to_glib_none().0) }
     }
 
-    //#[cfg(feature = "v4_16")]
-    //#[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
-    //#[doc(alias = "gdk_dmabuf_texture_builder_set_color_state")]
-    //#[doc(alias = "color-state")]
-    //pub fn set_color_state(&self, color_state: /*Ignored*/Option<&ColorState>) {
-    //    unsafe { TODO: call ffi:gdk_dmabuf_texture_builder_set_color_state() }
-    //}
+    #[cfg(feature = "v4_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
+    #[doc(alias = "gdk_dmabuf_texture_builder_set_color_state")]
+    #[doc(alias = "color-state")]
+    pub fn set_color_state(&self, color_state: Option<&ColorState>) {
+        unsafe {
+            ffi::gdk_dmabuf_texture_builder_set_color_state(
+                self.to_glib_none().0,
+                color_state.to_glib_none().0,
+            );
+        }
+    }
 
     #[doc(alias = "gdk_dmabuf_texture_builder_set_display")]
     #[doc(alias = "display")]

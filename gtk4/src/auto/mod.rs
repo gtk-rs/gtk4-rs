@@ -1276,6 +1276,9 @@ pub use self::flags::PrintCapabilities;
 pub use self::flags::ShortcutActionFlags;
 pub use self::flags::StateFlags;
 pub use self::flags::StyleContextPrintFlags;
+#[cfg(feature = "v4_16")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
+pub use self::flags::TextBufferNotifyFlags;
 pub use self::flags::TextSearchFlags;
 #[allow(deprecated)]
 pub use self::flags::TreeModelFlags;

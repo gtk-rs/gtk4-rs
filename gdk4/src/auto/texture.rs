@@ -2,6 +2,9 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+#[cfg(feature = "v4_16")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
+use crate::ColorState;
 #[cfg(feature = "v4_10")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 use crate::MemoryFormat;
@@ -93,14 +96,18 @@ unsafe impl Send for Texture {}
 unsafe impl Sync for Texture {}
 
 pub trait TextureExt: IsA<Texture> + 'static {
-    //#[cfg(feature = "v4_16")]
-    //#[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
-    //#[doc(alias = "gdk_texture_get_color_state")]
-    //#[doc(alias = "get_color_state")]
-    //#[doc(alias = "color-state")]
-    //fn color_state(&self) -> /*Ignored*/ColorState {
-    //    unsafe { TODO: call ffi:gdk_texture_get_color_state() }
-    //}
+    #[cfg(feature = "v4_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
+    #[doc(alias = "gdk_texture_get_color_state")]
+    #[doc(alias = "get_color_state")]
+    #[doc(alias = "color-state")]
+    fn color_state(&self) -> ColorState {
+        unsafe {
+            from_glib_none(ffi::gdk_texture_get_color_state(
+                self.as_ref().to_glib_none().0,
+            ))
+        }
+    }
 
     #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
