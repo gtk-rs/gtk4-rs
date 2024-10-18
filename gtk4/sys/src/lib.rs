@@ -1144,6 +1144,12 @@ pub const GTK_STYLE_CONTEXT_PRINT_RECURSE: GtkStyleContextPrintFlags = 1;
 pub const GTK_STYLE_CONTEXT_PRINT_SHOW_STYLE: GtkStyleContextPrintFlags = 2;
 pub const GTK_STYLE_CONTEXT_PRINT_SHOW_CHANGE: GtkStyleContextPrintFlags = 4;
 
+pub type GtkTextBufferNotifyFlags = c_uint;
+pub const GTK_TEXT_BUFFER_NOTIFY_BEFORE_INSERT: GtkTextBufferNotifyFlags = 1;
+pub const GTK_TEXT_BUFFER_NOTIFY_AFTER_INSERT: GtkTextBufferNotifyFlags = 2;
+pub const GTK_TEXT_BUFFER_NOTIFY_BEFORE_DELETE: GtkTextBufferNotifyFlags = 4;
+pub const GTK_TEXT_BUFFER_NOTIFY_AFTER_DELETE: GtkTextBufferNotifyFlags = 8;
+
 pub type GtkTextSearchFlags = c_uint;
 pub const GTK_TEXT_SEARCH_VISIBLE_ONLY: GtkTextSearchFlags = 1;
 pub const GTK_TEXT_SEARCH_TEXT_ONLY: GtkTextSearchFlags = 2;
@@ -1240,6 +1246,9 @@ pub type GtkScaleFormatValueFunc =
     Option<unsafe extern "C" fn(*mut GtkScale, c_double, gpointer) -> *mut c_char>;
 pub type GtkShortcutFunc =
     Option<unsafe extern "C" fn(*mut GtkWidget, *mut glib::GVariant, gpointer) -> gboolean>;
+pub type GtkTextBufferCommitNotify = Option<
+    unsafe extern "C" fn(*mut GtkTextBuffer, GtkTextBufferNotifyFlags, c_uint, c_uint, gpointer),
+>;
 pub type GtkTextCharPredicate = Option<unsafe extern "C" fn(u32, gpointer) -> gboolean>;
 pub type GtkTextTagTableForeach = Option<unsafe extern "C" fn(*mut GtkTextTag, gpointer)>;
 pub type GtkTickCallback =
@@ -10479,6 +10488,13 @@ extern "C" {
     pub fn gtk_style_context_print_flags_get_type() -> GType;
 
     //=========================================================================
+    // GtkTextBufferNotifyFlags
+    //=========================================================================
+    #[cfg(feature = "v4_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
+    pub fn gtk_text_buffer_notify_flags_get_type() -> GType;
+
+    //=========================================================================
     // GtkTextSearchFlags
     //=========================================================================
     pub fn gtk_text_search_flags_get_type() -> GType;
@@ -15596,6 +15612,9 @@ extern "C" {
     pub fn gtk_list_box_get_selected_rows(box_: *mut GtkListBox) -> *mut glib::GList;
     pub fn gtk_list_box_get_selection_mode(box_: *mut GtkListBox) -> GtkSelectionMode;
     pub fn gtk_list_box_get_show_separators(box_: *mut GtkListBox) -> gboolean;
+    #[cfg(feature = "v4_18")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_18")))]
+    pub fn gtk_list_box_get_tab_behavior(box_: *mut GtkListBox) -> GtkListTabBehavior;
     pub fn gtk_list_box_insert(box_: *mut GtkListBox, child: *mut GtkWidget, position: c_int);
     pub fn gtk_list_box_invalidate_filter(box_: *mut GtkListBox);
     pub fn gtk_list_box_invalidate_headers(box_: *mut GtkListBox);
@@ -15635,6 +15654,9 @@ extern "C" {
         user_data: gpointer,
         destroy: glib::GDestroyNotify,
     );
+    #[cfg(feature = "v4_18")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_18")))]
+    pub fn gtk_list_box_set_tab_behavior(box_: *mut GtkListBox, behavior: GtkListTabBehavior);
     pub fn gtk_list_box_unselect_all(box_: *mut GtkListBox);
     pub fn gtk_list_box_unselect_row(box_: *mut GtkListBox, row: *mut GtkListBoxRow);
 
@@ -18389,6 +18411,9 @@ extern "C" {
     pub fn gtk_string_list_get_type() -> GType;
     pub fn gtk_string_list_new(strings: *const *const c_char) -> *mut GtkStringList;
     pub fn gtk_string_list_append(self_: *mut GtkStringList, string: *const c_char);
+    #[cfg(feature = "v4_18")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_18")))]
+    pub fn gtk_string_list_find(self_: *mut GtkStringList, string: *const c_char) -> c_uint;
     pub fn gtk_string_list_get_string(self_: *mut GtkStringList, position: c_uint)
         -> *const c_char;
     pub fn gtk_string_list_remove(self_: *mut GtkStringList, position: c_uint);
@@ -18545,6 +18570,15 @@ extern "C" {
     //=========================================================================
     pub fn gtk_text_buffer_get_type() -> GType;
     pub fn gtk_text_buffer_new(table: *mut GtkTextTagTable) -> *mut GtkTextBuffer;
+    #[cfg(feature = "v4_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
+    pub fn gtk_text_buffer_add_commit_notify(
+        buffer: *mut GtkTextBuffer,
+        flags: GtkTextBufferNotifyFlags,
+        commit_notify: GtkTextBufferCommitNotify,
+        user_data: gpointer,
+        destroy: glib::GDestroyNotify,
+    ) -> c_uint;
     pub fn gtk_text_buffer_add_mark(
         buffer: *mut GtkTextBuffer,
         mark: *mut GtkTextMark,
@@ -18784,6 +18818,12 @@ extern "C" {
         buffer: *mut GtkTextBuffer,
         start: *const GtkTextIter,
         end: *const GtkTextIter,
+    );
+    #[cfg(feature = "v4_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
+    pub fn gtk_text_buffer_remove_commit_notify(
+        buffer: *mut GtkTextBuffer,
+        commit_notify_handler: c_uint,
     );
     pub fn gtk_text_buffer_remove_selection_clipboard(
         buffer: *mut GtkTextBuffer,

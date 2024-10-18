@@ -28,6 +28,13 @@ impl StringList {
         }
     }
 
+    #[cfg(feature = "v4_18")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_18")))]
+    #[doc(alias = "gtk_string_list_find")]
+    pub fn find(&self, string: &str) -> u32 {
+        unsafe { ffi::gtk_string_list_find(self.to_glib_none().0, string.to_glib_none().0) }
+    }
+
     #[doc(alias = "gtk_string_list_get_string")]
     #[doc(alias = "get_string")]
     pub fn string(&self, position: u32) -> Option<glib::GString> {
