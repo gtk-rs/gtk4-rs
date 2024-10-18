@@ -182,6 +182,7 @@ gtk = { git = "https://github.com/gtk-rs/gtk4-rs.git", package = "gtk4" }
 
 | Feature | Description |
 | ---     | ----------- |
+| `v4_18` | Enable the new APIs part of GTK 4.18 |
 | `v4_16` | Enable the new APIs part of GTK 4.16 |
 | `v4_14` | Enable the new APIs part of GTK 4.14 |
 | `v4_12` | Enable the new APIs part of GTK 4.12 |
