@@ -2,6 +2,9 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+#[cfg(feature = "v4_16")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
+use crate::ColorState;
 use crate::{ffi, GLContext, MemoryFormat, Texture};
 use glib::translate::*;
 #[cfg(feature = "v4_16")]
@@ -30,14 +33,18 @@ impl GLTextureBuilder {
         unsafe { from_glib_full(ffi::gdk_gl_texture_builder_new()) }
     }
 
-    //#[cfg(feature = "v4_16")]
-    //#[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
-    //#[doc(alias = "gdk_gl_texture_builder_get_color_state")]
-    //#[doc(alias = "get_color_state")]
-    //#[doc(alias = "color-state")]
-    //pub fn color_state(&self) -> /*Ignored*/ColorState {
-    //    unsafe { TODO: call ffi:gdk_gl_texture_builder_get_color_state() }
-    //}
+    #[cfg(feature = "v4_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
+    #[doc(alias = "gdk_gl_texture_builder_get_color_state")]
+    #[doc(alias = "get_color_state")]
+    #[doc(alias = "color-state")]
+    pub fn color_state(&self) -> ColorState {
+        unsafe {
+            from_glib_full(ffi::gdk_gl_texture_builder_get_color_state(
+                self.to_glib_none().0,
+            ))
+        }
+    }
 
     #[doc(alias = "gdk_gl_texture_builder_get_context")]
     #[doc(alias = "get_context")]
@@ -110,13 +117,18 @@ impl GLTextureBuilder {
         unsafe { ffi::gdk_gl_texture_builder_get_width(self.to_glib_none().0) }
     }
 
-    //#[cfg(feature = "v4_16")]
-    //#[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
-    //#[doc(alias = "gdk_gl_texture_builder_set_color_state")]
-    //#[doc(alias = "color-state")]
-    //pub fn set_color_state(&self, color_state: /*Ignored*/&ColorState) {
-    //    unsafe { TODO: call ffi:gdk_gl_texture_builder_set_color_state() }
-    //}
+    #[cfg(feature = "v4_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
+    #[doc(alias = "gdk_gl_texture_builder_set_color_state")]
+    #[doc(alias = "color-state")]
+    pub fn set_color_state(&self, color_state: &ColorState) {
+        unsafe {
+            ffi::gdk_gl_texture_builder_set_color_state(
+                self.to_glib_none().0,
+                color_state.to_glib_none().0,
+            );
+        }
+    }
 
     #[cfg(feature = "v4_16")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
