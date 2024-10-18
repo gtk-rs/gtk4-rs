@@ -4,15 +4,10 @@ use glib::{translate::*, Variant};
 
 use crate::{prelude::*, Actionable};
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::IsA<super::Actionable>> Sealed for T {}
-}
-
 // rustdoc-stripper-ignore-next
 /// Trait containing manually implemented methods of
 /// [`Actionable`](crate::Actionable).
-pub trait ActionableExtManual: sealed::Sealed + IsA<Actionable> + 'static {
+pub trait ActionableExtManual: IsA<Actionable> + 'static {
     #[doc(alias = "gtk_actionable_set_action_target")]
     #[doc(alias = "gtk_actionable_set_action_target_value")]
     fn set_action_target(&self, target: Option<impl Into<Variant>>) {

@@ -4,14 +4,9 @@ use glib::translate::*;
 
 use crate::{prelude::*, Entry};
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::IsA<super::Entry>> Sealed for T {}
-}
-
 // rustdoc-stripper-ignore-next
 /// Trait containing manually implemented methods of [`Entry`](crate::Entry).
-pub trait EntryExtManual: sealed::Sealed + IsA<Entry> + 'static {
+pub trait EntryExtManual: IsA<Entry> + 'static {
     #[doc(alias = "gtk_entry_get_invisible_char")]
     #[doc(alias = "get_invisible_char")]
     fn invisible_char(&self) -> Option<char> {

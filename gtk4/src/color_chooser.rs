@@ -6,17 +6,12 @@ use libc::c_int;
 
 use crate::{ffi, prelude::*, ColorChooser, Orientation};
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::IsA<super::ColorChooser>> Sealed for T {}
-}
-
 // rustdoc-stripper-ignore-next
 /// Trait containing manually implemented methods of
 /// [`ColorChooser`](crate::ColorChooser).
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 #[allow(deprecated)]
-pub trait ColorChooserExtManual: sealed::Sealed + IsA<ColorChooser> + 'static {
+pub trait ColorChooserExtManual: IsA<ColorChooser> + 'static {
     #[doc(alias = "gtk_color_chooser_add_palette")]
     fn add_palette(&self, orientation: Orientation, colors_per_line: i32, colors: &[RGBA]) {
         unsafe {
