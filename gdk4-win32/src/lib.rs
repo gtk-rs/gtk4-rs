@@ -4,6 +4,7 @@
 #![allow(deprecated)]
 #![cfg_attr(docsrs, feature(doc_cfg))]
 
+#[cfg(not(all(feature = "win32", windows)))]
 use std::ffi::c_void;
 
 pub use gdk;
