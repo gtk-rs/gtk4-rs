@@ -1,8 +1,7 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
 // rustdoc-stripper-ignore-next
-//! Traits intended for implementing the
-//! [`SymbolicPaintable`](crate::SymbolicPaintable) interface.
+//! Traits intended for implementing the [`SymbolicPaintable`] interface.
 
 use glib::translate::*;
 
