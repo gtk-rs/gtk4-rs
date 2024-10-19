@@ -25,6 +25,6 @@ impl Win32HCursor {
 
     pub fn handle(&self) -> HCURSOR {
         let ptr: NonNull<Pointee> = ObjectExt::property(self, "handle");
-        HCURSOR(ptr.as_ptr() as *mut c_void)
+        HCURSOR(ptr.as_ptr())
     }
 }
