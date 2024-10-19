@@ -93,7 +93,7 @@ yuraiz:
 ```rust
 #[derive(Debug, Default, gtk::CompositeTemplate)]
 #[template(string = "
-template MyWidget : Widget {
+template $MyWidget : Widget {
     Label label {
         label: 'foobar';
     }
