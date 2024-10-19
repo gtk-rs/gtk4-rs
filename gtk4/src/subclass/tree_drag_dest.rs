@@ -1,8 +1,7 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
 // rustdoc-stripper-ignore-next
-//! Traits intended for implementing the [`TreeDragDest`](crate::TreeDragDest)
-//! interface.
+//! Traits intended for implementing the [`TreeDragDest`] interface.
 
 use glib::{translate::*, Value};
 

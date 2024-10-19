@@ -1,7 +1,7 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
 // rustdoc-stripper-ignore-next
-//! Traits intended for subclassing [`Widget`](crate::Widget).
+//! Traits intended for subclassing [`Widget`].
 
 use std::{boxed::Box as Box_, collections::HashMap, fmt, future::Future};
 
