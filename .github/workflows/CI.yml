@@ -1,7 +1,7 @@
 on:
   push:
     branches:
-      - "master"
+      - "main"
     paths:
       - ".github/workflows/CI.yml"
       - "examples/**"
@@ -175,7 +175,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           repository: gtk-rs/checker
-          ref: master
+          ref: main
           path: checker
       - working-directory: checker
         run: cargo build --release
