@@ -161,6 +161,11 @@ path = "gtk_builder/main.rs"
 required-features = ["v4_10"]
 
 [[bin]]
+name = "listbox_sort_stringlist"
+path = "listbox_sort_stringlist/main.rs"
+required-features = ["v4_14"]
+
+[[bin]]
 name = "list_box_model"
 path = "list_box_model/main.rs"
 required-features = ["im-rc"]
