@@ -175,6 +175,11 @@ path = "list_box_model/main.rs"
 required-features = ["im-rc"]
 
 [[bin]]
+name = "list_box_sort_stringlist"
+path = "list_box_sort_stringlist/main.rs"
+required-features = ["v4_14"]
+
+[[bin]]
 name = "list_view_apps_launcher"
 path = "list_view_apps_launcher/main.rs"
 required-features = ["v4_10"]
