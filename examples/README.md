@@ -39,6 +39,7 @@ cargo run --bin basics
 - [Glium GL-Area](./glium_gl_area/)
 - [Grid Packing](./grid_packing)
 - [GtkBuilder example](./gtk_builder/)
+- [ListModel: StringList with Sorter](./listbox_sort_stringlist/)
 - [ListView: Applications Launcher](./list_view_apps_launcher/)
 - [Rotation Bin](./rotation_bin/)
 - [Scale](./scale/)
