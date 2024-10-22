@@ -1,5 +1,5 @@
 // Variation on ListBox model example to show use of StringList and StringSorter.
-// Issues: list disply doesn't update correctly on delete.
+// Issues: list display doesn't update correctly on delete.
 
 // TODO: add a dialog window to allow adding rows.
 // use plain gtk::Window for this per current practice.
@@ -106,8 +106,26 @@ fn build_ui(application: &gtk::Application) {
             let selected = listbox.selected_row();
 
             if let Some(selected) = selected {
-                let idx = selected.index();
-                model.remove(idx as u32);
+                let selected = selected.child()
+                .expect("Listrow child should be a widget");
+                let selected = selected.downcast_ref::<gtk::Inscription>()
+                .expect("The object should be of type `Inscription`.");
+                if let Some(selected) = selected.text() {
+                    let mut selected_index = None;
+                    for ind in 0..model.n_items() {
+                        if let Some(item) = model.item(ind) {
+                            let item = item.downcast_ref::<gtk::StringObject>()
+                            .expect("Object should be a stringobject");
+                            if item.string() == selected {
+                                selected_index = Some(ind);
+                                break;
+                            }
+                        }
+                    }
+                    if let Some(index) = selected_index {
+                        model.remove(index);
+                    }
+                }
             }
         }
     ));
