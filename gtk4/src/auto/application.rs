@@ -101,6 +101,7 @@ impl ApplicationBuilder {
     /// Build the [`Application`].
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> Application {
+        assert_initialized_main_thread!();
         let ret = self.builder.build();
         {
             Application::register_startup_hook(&ret);
