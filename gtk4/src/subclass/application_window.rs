@@ -6,7 +6,9 @@
 use crate::{prelude::*, subclass::prelude::*, ApplicationWindow};
 
 pub trait ApplicationWindowImpl:
-    WindowImpl + ObjectSubclass<Type: IsA<ApplicationWindow>> + 'static
+    WindowImpl
+    + ObjectSubclass<Type: IsA<ApplicationWindow> + IsA<gio::ActionGroup> + IsA<gio::ActionMap>>
+    + 'static
 {
 }
 

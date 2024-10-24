@@ -7,7 +7,7 @@ use crate::custom_tag::CustomTag;
 glib::wrapper! {
     pub struct CustomEditable(ObjectSubclass<imp::CustomEditable>)
         @extends gtk::Widget,
-        @implements gtk::Editable;
+        @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget, gtk::Editable;
 }
 
 impl Default for CustomEditable {

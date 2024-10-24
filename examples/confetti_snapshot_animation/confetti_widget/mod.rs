@@ -9,7 +9,9 @@ use gtk::{
 use crate::{AnimatedExplosion, ExplosionParameters};
 
 glib::wrapper! {
-    pub struct ConfettiWidget(ObjectSubclass<imp::ConfettiWidget>) @implements gtk::Widget;
+    pub struct ConfettiWidget(ObjectSubclass<imp::ConfettiWidget>)
+    @extends gtk::Widget,
+    @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget;
 }
 
 impl Default for ConfettiWidget {

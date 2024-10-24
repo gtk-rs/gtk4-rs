@@ -5,9 +5,11 @@
 
 use glib::translate::*;
 
-use crate::{ffi, prelude::*, subclass::prelude::*, Popover};
+use crate::{ffi, prelude::*, subclass::prelude::*, Native, Popover, ShortcutManager};
 
-pub trait PopoverImpl: WidgetImpl + ObjectSubclass<Type: IsA<Popover>> {
+pub trait PopoverImpl:
+    WidgetImpl + ObjectSubclass<Type: IsA<Popover> + IsA<Native> + IsA<ShortcutManager>>
+{
     fn activate_default(&self) {
         self.parent_activate_default()
     }

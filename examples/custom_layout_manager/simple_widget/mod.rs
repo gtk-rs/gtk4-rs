@@ -10,7 +10,8 @@ use crate::custom_layout::CustomLayout;
 
 glib::wrapper! {
     pub struct SimpleWidget(ObjectSubclass<imp::SimpleWidget>)
-        @extends gtk::Widget;
+        @extends gtk::Widget,
+        @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget;
 }
 
 impl Default for SimpleWidget {
