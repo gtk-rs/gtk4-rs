@@ -5,7 +5,13 @@
 
 use std::{boxed::Box as Box_, collections::HashMap, fmt, future::Future};
 
-use glib::{clone::Downgrade, subclass::SignalId, translate::*, GString, Variant};
+use glib::{
+    clone::Downgrade,
+    property::{Property, PropertyGet},
+    subclass::SignalId,
+    translate::*,
+    GString, Variant,
+};
 
 use crate::{
     ffi, prelude::*, subclass::prelude::*, Accessible, AccessibleRole, Buildable, BuilderRustScope,
@@ -1214,13 +1220,19 @@ pub unsafe trait WidgetClassExt: ClassStruct {
 unsafe impl<T: ClassStruct> WidgetClassExt for T where T::Type: WidgetImpl {}
 
 #[derive(Debug, PartialEq, Eq)]
-#[repr(C)]
+#[repr(transparent)]
 pub struct TemplateChild<T>
 where
     T: ObjectType + FromGlibPtrNone<*mut <T as ObjectType>::GlibType>,
 {
     ptr: *mut <T as ObjectType>::GlibType,
-    should_drop: bool,
+}
+
+impl<T: Property> Property for TemplateChild<T>
+where
+    T: ObjectType + FromGlibPtrNone<*mut <T as ObjectType>::GlibType>,
+{
+    type Value = T::Value;
 }
 
 impl<T> Default for TemplateChild<T>
@@ -1232,59 +1244,18 @@ where
 
         Self {
             ptr: std::ptr::null_mut(),
-            should_drop: false,
         }
     }
 }
 
-impl<T> glib::HasParamSpec for TemplateChild<T>
+impl<T> PropertyGet for TemplateChild<T>
 where
-    T: ObjectType + IsA<glib::Object> + FromGlibPtrNone<*mut <T as ObjectType>::GlibType>,
+    T: Property + ObjectType + FromGlibPtrNone<*mut <T as ObjectType>::GlibType>,
 {
-    type ParamSpec = glib::ParamSpecObject;
-    type SetValue = T;
-    type BuilderFn = fn(&str) -> glib::ParamSpecObjectBuilder<T>;
+    type Value = T;
 
-    fn param_spec_builder() -> Self::BuilderFn {
-        Self::ParamSpec::builder
-    }
-}
-
-impl<T> ToValue for TemplateChild<T>
-where
-    T: ToValue + ObjectType + FromGlibPtrNone<*mut <T as ObjectType>::GlibType>,
-{
-    #[inline]
-    fn to_value(&self) -> glib::Value {
-        T::to_value(&self.get())
-    }
-
-    #[inline]
-    fn value_type(&self) -> glib::Type {
-        T::static_type()
-    }
-}
-
-impl<T> glib::value::ValueType for TemplateChild<T>
-where
-    T: glib::value::ValueType + ObjectType + FromGlibPtrNone<*mut <T as ObjectType>::GlibType>,
-{
-    type Type = <T as glib::value::ValueType>::Type;
-}
-
-unsafe impl<'a, T> glib::value::FromValue<'a> for TemplateChild<T>
-where
-    T: ObjectType + FromGlibPtrNone<*mut <T as ObjectType>::GlibType>,
-{
-    type Checker = glib::value::GenericValueTypeChecker<T>;
-
-    #[inline]
-    unsafe fn from_value(value: &'a glib::Value) -> Self {
-        skip_assert_initialized!();
-        TemplateChild {
-            ptr: T::from_value(value).into_glib_ptr(),
-            should_drop: true,
-        }
+    fn get<R, F: Fn(&Self::Value) -> R>(&self, f: F) -> R {
+        f(&self.get())
     }
 }
 
@@ -1314,19 +1285,6 @@ where
 
     fn downgrade(&self) -> Self::Weak {
         T::downgrade(&self.get())
-    }
-}
-
-impl<T> Drop for TemplateChild<T>
-where
-    T: ObjectType + FromGlibPtrNone<*mut <T as ObjectType>::GlibType>,
-{
-    fn drop(&mut self) {
-        if self.should_drop {
-            unsafe {
-                crate::glib::gobject_ffi::g_object_unref(self.ptr as *mut _);
-            }
-        }
     }
 }
 
