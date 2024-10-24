@@ -5,9 +5,9 @@
 
 use glib::translate::*;
 
-use crate::{ffi, prelude::*, subclass::prelude::*, Entry};
+use crate::{ffi, prelude::*, subclass::prelude::*, CellEditable, Entry};
 
-pub trait EntryImpl: WidgetImpl + ObjectSubclass<Type: IsA<Entry>> {
+pub trait EntryImpl: WidgetImpl + ObjectSubclass<Type: IsA<Entry> + IsA<CellEditable>> {
     fn activate(&self) {
         self.parent_activate()
     }

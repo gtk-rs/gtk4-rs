@@ -4,7 +4,8 @@ use gtk::{gdk, glib, prelude::*};
 
 glib::wrapper! {
     pub struct GliumGLArea(ObjectSubclass<imp::GliumGLArea>)
-        @extends gtk::GLArea, gtk::Widget;
+        @extends gtk::GLArea, gtk::Widget,
+        @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget;
 }
 
 impl Default for GliumGLArea {

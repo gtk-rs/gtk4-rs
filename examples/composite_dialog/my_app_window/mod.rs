@@ -2,11 +2,14 @@
 #[allow(deprecated)]
 mod imp;
 
-use gtk::{glib, prelude::*, subclass::prelude::*};
+use gtk::{gio, glib, prelude::*, subclass::prelude::*};
 
 glib::wrapper! {
     pub struct MyAppWindow(ObjectSubclass<imp::MyAppWindow>)
-        @extends gtk::Widget, gtk::Window, gtk::ApplicationWindow;
+        @extends gtk::Widget, gtk::Window, gtk::ApplicationWindow,
+        @implements gtk::Accessible, gio::ActionGroup, gio::ActionMap,
+        gtk::Buildable, gtk::ConstraintTarget, gtk::Native, gtk::Root,
+        gtk::ShortcutManager;
 }
 
 #[gtk::template_callbacks]

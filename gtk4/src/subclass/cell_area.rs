@@ -8,8 +8,9 @@ use std::mem;
 use glib::{translate::*, ParamSpec, Value};
 
 use crate::{
-    ffi, prelude::*, subclass::prelude::*, CellArea, CellAreaContext, CellRenderer,
-    CellRendererState, DirectionType, SizeRequestMode, Snapshot, TreeIter, TreeModel, Widget,
+    ffi, prelude::*, subclass::prelude::*, Buildable, CellArea, CellAreaContext, CellLayout,
+    CellRenderer, CellRendererState, DirectionType, SizeRequestMode, Snapshot, TreeIter, TreeModel,
+    Widget,
 };
 
 #[derive(Debug)]
@@ -63,7 +64,9 @@ impl CellCallbackAllocate {
 
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 #[allow(deprecated)]
-pub trait CellAreaImpl: ObjectImpl + ObjectSubclass<Type: IsA<CellArea>> {
+pub trait CellAreaImpl:
+    ObjectImpl + ObjectSubclass<Type: IsA<CellArea> + IsA<Buildable> + IsA<CellLayout>>
+{
     fn cell_properties() -> &'static [ParamSpec] {
         &[]
     }

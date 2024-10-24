@@ -5,9 +5,11 @@
 
 use glib::translate::*;
 
-use crate::{ffi, prelude::*, subclass::prelude::*, ListBoxRow};
+use crate::{ffi, prelude::*, subclass::prelude::*, Actionable, ListBoxRow};
 
-pub trait ListBoxRowImpl: WidgetImpl + ObjectSubclass<Type: IsA<ListBoxRow>> {
+pub trait ListBoxRowImpl:
+    WidgetImpl + ObjectSubclass<Type: IsA<ListBoxRow> + IsA<Actionable>>
+{
     fn activate(&self) {
         self.parent_activate()
     }

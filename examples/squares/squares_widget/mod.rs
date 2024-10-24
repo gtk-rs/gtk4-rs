@@ -4,7 +4,8 @@ use gtk::glib;
 
 glib::wrapper! {
     pub struct SquaresWidget(ObjectSubclass<imp::SquaresWidget>)
-        @extends gtk::Widget;
+        @extends gtk::Widget,
+        @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget;
 }
 
 impl Default for SquaresWidget {

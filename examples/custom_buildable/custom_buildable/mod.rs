@@ -5,7 +5,7 @@ use gtk::{glib, prelude::*, subclass::prelude::*};
 glib::wrapper! {
     pub struct CustomBuildable(ObjectSubclass<imp::CustomBuildable>)
         @extends gtk::Widget,
-        @implements gtk::Buildable;
+        @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget;
 }
 
 impl CustomBuildable {

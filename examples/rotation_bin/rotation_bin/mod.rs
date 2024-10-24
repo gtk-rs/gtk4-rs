@@ -46,7 +46,8 @@ impl From<Rotation> for f32 {
 
 glib::wrapper! {
     pub struct RotationBin(ObjectSubclass<imp::RotationBin>)
-        @extends gtk::Widget;
+        @extends gtk::Widget,
+        @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget;
 }
 
 impl Default for RotationBin {

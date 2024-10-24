@@ -5,9 +5,11 @@
 
 use glib::translate::*;
 
-use crate::{ffi, prelude::*, subclass::prelude::*, Window};
+use crate::{ffi, prelude::*, subclass::prelude::*, Native, Root, ShortcutManager, Window};
 
-pub trait WindowImpl: WidgetImpl + ObjectSubclass<Type: IsA<Window>> {
+pub trait WindowImpl:
+    WidgetImpl + ObjectSubclass<Type: IsA<Window> + IsA<Native> + IsA<Root> + IsA<ShortcutManager>>
+{
     fn activate_focus(&self) {
         self.parent_activate_focus()
     }

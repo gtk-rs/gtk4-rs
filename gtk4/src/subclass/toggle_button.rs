@@ -5,9 +5,11 @@
 
 use glib::translate::*;
 
-use crate::{ffi, prelude::*, subclass::prelude::*, ToggleButton};
+use crate::{ffi, prelude::*, subclass::prelude::*, Actionable, ToggleButton};
 
-pub trait ToggleButtonImpl: ButtonImpl + ObjectSubclass<Type: IsA<ToggleButton>> {
+pub trait ToggleButtonImpl:
+    ButtonImpl + ObjectSubclass<Type: IsA<ToggleButton> + IsA<Actionable>>
+{
     fn toggled(&self) {
         self.parent_toggled()
     }

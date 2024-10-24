@@ -5,7 +5,7 @@ use gtk::glib;
 glib::wrapper! {
     pub struct CustomOrientable(ObjectSubclass<imp::CustomOrientable>)
         @extends gtk::Widget,
-        @implements gtk::Orientable;
+        @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget, gtk::Orientable;
 }
 
 impl Default for CustomOrientable {

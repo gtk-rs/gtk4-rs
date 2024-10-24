@@ -4,7 +4,8 @@ use gtk::glib;
 
 glib::wrapper! {
     pub struct SqueezerBin(ObjectSubclass<imp::SqueezerBin>)
-        @extends gtk::Widget;
+        @extends gtk::Widget,
+        @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget;
 }
 
 impl Default for SqueezerBin {

@@ -5,11 +5,13 @@
 
 use glib::{translate::*, GString};
 
-use crate::{ffi, prelude::*, subclass::prelude::*, ComboBox};
+use crate::{ffi, prelude::*, subclass::prelude::*, CellEditable, CellLayout, ComboBox};
 
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 #[allow(deprecated)]
-pub trait ComboBoxImpl: WidgetImpl + ObjectSubclass<Type: IsA<ComboBox>> {
+pub trait ComboBoxImpl:
+    WidgetImpl + ObjectSubclass<Type: IsA<ComboBox> + IsA<CellEditable> + IsA<CellLayout>>
+{
     #[cfg(feature = "v4_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     fn activate(&self) {

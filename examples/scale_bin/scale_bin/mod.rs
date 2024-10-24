@@ -4,7 +4,8 @@ use gtk::glib;
 
 glib::wrapper! {
     pub struct ScaleBin(ObjectSubclass<imp::ScaleBin>)
-        @extends gtk::Widget;
+        @extends gtk::Widget,
+        @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget;
 }
 
 impl Default for ScaleBin {

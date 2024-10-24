@@ -5,9 +5,9 @@
 
 use glib::translate::*;
 
-use crate::{ffi, prelude::*, subclass::prelude::*, Scale};
+use crate::{ffi, prelude::*, subclass::prelude::*, Orientable, Scale};
 
-pub trait ScaleImpl: RangeImpl + ObjectSubclass<Type: IsA<Scale>> {
+pub trait ScaleImpl: RangeImpl + ObjectSubclass<Type: IsA<Scale> + IsA<Orientable>> {
     #[doc(alias = "get_layout_offsets")]
     fn layout_offsets(&self) -> (i32, i32) {
         self.parent_layout_offsets()

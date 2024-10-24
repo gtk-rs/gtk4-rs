@@ -11,7 +11,7 @@ use crate::{
 };
 
 pub trait PrintOperationImpl:
-    PrintOperationPreviewImpl + ObjectSubclass<Type: IsA<PrintOperation>>
+    ObjectImpl + ObjectSubclass<Type: IsA<PrintOperation> + IsA<PrintOperationPreview>>
 {
     fn begin_print(&self, context: &PrintContext) {
         self.parent_begin_print(context)
