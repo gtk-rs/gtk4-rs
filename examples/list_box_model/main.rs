@@ -45,21 +45,13 @@ fn build_ui(application: &gtk::Application) {
     // The gtk::ListBoxRow can contain any possible widgets.
 
     let listbox = gtk::ListBox::new();
-    listbox.bind_model(
-        Some(&model),
-        clone!(
-            #[weak]
-            window,
-            #[upgrade_or_panic]
-            move |item| {
-                ListBoxRow::new(
-                    item.downcast_ref::<RowData>()
-                        .expect("RowData is of wrong type"),
-                )
-                .upcast::<gtk::Widget>()
-            }
-        ),
-    );
+    listbox.bind_model(Some(&model), move |item| {
+        ListBoxRow::new(
+            item.downcast_ref::<RowData>()
+                .expect("RowData is of wrong type"),
+        )
+        .upcast::<gtk::Widget>()
+    });
 
     let scrolled_window = gtk::ScrolledWindow::builder()
         .hscrollbar_policy(gtk::PolicyType::Never) // Disable horizontal scrolling
