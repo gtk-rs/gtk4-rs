@@ -5,9 +5,11 @@
 
 use glib::translate::*;
 
-use crate::{ffi, prelude::*, subclass::prelude::*, CheckButton};
+use crate::{ffi, prelude::*, subclass::prelude::*, Actionable, CheckButton};
 
-pub trait CheckButtonImpl: WidgetImpl + ObjectSubclass<Type: IsA<CheckButton>> {
+pub trait CheckButtonImpl:
+    WidgetImpl + ObjectSubclass<Type: IsA<CheckButton> + IsA<Actionable>>
+{
     fn toggled(&self) {
         self.parent_toggled()
     }

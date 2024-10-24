@@ -5,9 +5,11 @@
 
 use glib::translate::*;
 
-use crate::{ffi, prelude::*, subclass::prelude::*, ScaleButton};
+use crate::{ffi, prelude::*, subclass::prelude::*, Orientable, ScaleButton};
 
-pub trait ScaleButtonImpl: WidgetImpl + ObjectSubclass<Type: IsA<ScaleButton>> {
+pub trait ScaleButtonImpl:
+    WidgetImpl + ObjectSubclass<Type: IsA<ScaleButton> + IsA<Orientable>>
+{
     fn value_changed(&self, new_value: f64) {
         self.parent_value_changed(new_value)
     }

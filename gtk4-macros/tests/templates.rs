@@ -53,7 +53,9 @@ mod imp {
 }
 
 glib::wrapper! {
-    pub struct MyWidget(ObjectSubclass<imp::MyWidget>) @extends gtk::Widget;
+    pub struct MyWidget(ObjectSubclass<imp::MyWidget>)
+    @extends gtk::Widget,
+    @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget;
 }
 
 #[gtk::test]
@@ -145,7 +147,9 @@ mod imp2 {
 }
 
 glib::wrapper! {
-    pub struct MyWidget2(ObjectSubclass<imp2::MyWidget2>) @extends gtk::Widget;
+    pub struct MyWidget2(ObjectSubclass<imp2::MyWidget2>)
+    @extends gtk::Widget,
+    @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget;
 }
 
 #[gtk::test]
@@ -192,7 +196,9 @@ mod imp3 {
 }
 
 glib::wrapper! {
-    pub struct MyWidget3(ObjectSubclass<imp3::MyWidget3>) @extends gtk::Widget;
+    pub struct MyWidget3(ObjectSubclass<imp3::MyWidget3>)
+    @extends gtk::Widget,
+    @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget;
 }
 
 #[gtk::test]
@@ -248,7 +254,9 @@ mod imp4 {
 
 #[cfg(feature = "blueprint")]
 glib::wrapper! {
-    pub struct MyWidget4(ObjectSubclass<imp4::MyWidget4>) @extends gtk::Widget;
+    pub struct MyWidget4(ObjectSubclass<imp4::MyWidget4>)
+    @extends gtk::Widget,
+    @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget;
 }
 
 #[gtk::test]
@@ -295,7 +303,9 @@ mod imp5 {
 
 #[cfg(feature = "blueprint")]
 glib::wrapper! {
-    pub struct MyWidget5(ObjectSubclass<imp5::MyWidget5>) @extends gtk::Widget;
+    pub struct MyWidget5(ObjectSubclass<imp5::MyWidget5>)
+    @extends gtk::Widget,
+    @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget;
 }
 
 #[gtk::test]
@@ -348,5 +358,6 @@ mod imp6 {
 
 glib::wrapper! {
     pub struct TestWidget(ObjectSubclass<imp6::TestWidget>)
-    @extends gtk::Widget;
+    @extends gtk::Widget,
+    @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget;
 }

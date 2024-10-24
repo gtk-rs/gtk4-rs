@@ -132,7 +132,9 @@ pub fn include_blueprint(input: TokenStream) -> TokenStream {
 /// }
 ///
 /// glib::wrapper! {
-///     pub struct MyWidget(ObjectSubclass<imp::MyWidget>) @extends gtk::Widget, gtk::Box;
+///     pub struct MyWidget(ObjectSubclass<imp::MyWidget>)
+///     @extends gtk::Widget, gtk::Box,
+///     @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget;
 /// }
 ///
 /// impl MyWidget {
@@ -197,7 +199,9 @@ pub fn include_blueprint(input: TokenStream) -> TokenStream {
 /// }
 ///
 /// glib::wrapper! {
-///     pub struct MyWidget(ObjectSubclass<imp::MyWidget>) @extends gtk::Widget;
+///     pub struct MyWidget(ObjectSubclass<imp::MyWidget>)
+///     @extends gtk::Widget,
+///     @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget;
 /// }
 /// ```
 #[proc_macro_derive(CompositeTemplate, attributes(template, template_child))]
@@ -351,7 +355,9 @@ pub fn composite_template_derive(input: TokenStream) -> TokenStream {
 /// }
 ///
 /// glib::wrapper! {
-///     pub struct MyWidget(ObjectSubclass<imp::MyWidget>) @extends gtk::Widget, gtk::Box;
+///     pub struct MyWidget(ObjectSubclass<imp::MyWidget>)
+///     @extends gtk::Widget, gtk::Box,
+///     @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget;
 /// }
 ///
 /// #[gtk::template_callbacks]

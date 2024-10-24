@@ -6,7 +6,8 @@ use crate::row_data::RowData;
 
 glib::wrapper! {
     pub struct ListBoxRow(ObjectSubclass<imp::ListBoxRow>)
-        @extends gtk::Widget, gtk::ListBoxRow;
+        @extends gtk::Widget, gtk::ListBoxRow,
+        @implements gtk::Accessible, gtk::Actionable, gtk::Buildable, gtk::ConstraintTarget;
 }
 
 impl ListBoxRow {

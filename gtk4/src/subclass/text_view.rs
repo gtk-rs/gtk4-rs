@@ -6,11 +6,11 @@
 use glib::translate::*;
 
 use crate::{
-    ffi, prelude::*, subclass::prelude::*, DeleteType, MovementStep, Snapshot, TextExtendSelection,
-    TextIter, TextView, TextViewLayer,
+    ffi, prelude::*, subclass::prelude::*, DeleteType, MovementStep, Scrollable, Snapshot,
+    TextExtendSelection, TextIter, TextView, TextViewLayer,
 };
 
-pub trait TextViewImpl: WidgetImpl + ObjectSubclass<Type: IsA<TextView>> {
+pub trait TextViewImpl: WidgetImpl + ObjectSubclass<Type: IsA<TextView> + IsA<Scrollable>> {
     fn backspace(&self) {
         self.parent_backspace()
     }

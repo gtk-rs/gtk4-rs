@@ -3,11 +3,14 @@
 // rustdoc-stripper-ignore-next
 //! Traits intended for subclassing [`MediaStream`].
 
+use gdk::Paintable;
 use glib::translate::*;
 
 use crate::{ffi, prelude::*, subclass::prelude::*, MediaStream};
 
-pub trait MediaStreamImpl: ObjectImpl + ObjectSubclass<Type: IsA<MediaStream>> {
+pub trait MediaStreamImpl:
+    ObjectImpl + ObjectSubclass<Type: IsA<MediaStream> + IsA<Paintable>>
+{
     fn pause(&self) {
         self.parent_pause()
     }
