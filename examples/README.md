@@ -16,6 +16,7 @@ cargo run --bin basics
 
 - [Basic example](./basics/)
 - [About Dialog](./about_dialog/)
+- [Implementing the Accessible Text Interface](./accessible_text/)
 - [Using the Builder pattern](./builder_pattern/)
 - [Clipboard](./clipboard/)
 - [Clock example](./clock/)
