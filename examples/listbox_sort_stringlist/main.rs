@@ -28,12 +28,13 @@ fn build_ui(application: &gtk::Application) {
 
     let vbox = gtk::Box::new(gtk::Orientation::Vertical, 5);
 
-    // Create a StringSorter with a property expression to sort 
+    // Create a StringSorter with a property expression to sort
     // StringObjects in a StringList.  StringObject has a "string" property.
     let expression = gtk::PropertyExpression::new(
         gtk::StringObject::static_type(),
         None::<gtk::Expression>,
-        "string");
+        "string",
+    );
     let sorter = gtk::StringSorter::new(Some(expression));
     sorter.set_ignore_case(true);
 
@@ -41,9 +42,7 @@ fn build_ui(application: &gtk::Application) {
     let model = gtk::StringList::new(&["zoo", "abba", "donkey", "sunrise", "river", "phoenix"]);
 
     // Create a sort model and bind it to the ListStore and the sorter.
-    let sort_model = gtk::SortListModel::new(
-        Some(model.clone()),
-        Some(sorter.clone()));
+    let sort_model = gtk::SortListModel::new(Some(model.clone()), Some(sorter.clone()));
 
     // And then create the UI part, the listbox and bind the sort
     // model to it. Whenever the UI needs to show a new row, e.g. because
@@ -107,17 +106,18 @@ fn build_ui(application: &gtk::Application) {
 
             if let Some(selected) = selected {
                 // Find the selected text.
-                let selected = selected.child()
-                .expect("Listrow child should be a widget");
-                let selected = selected.downcast_ref::<gtk::Inscription>()
-                .expect("The object should be of type `Inscription`.");
+                let selected = selected.child().expect("Listrow child should be a widget");
+                let selected = selected
+                    .downcast_ref::<gtk::Inscription>()
+                    .expect("The object should be of type `Inscription`.");
                 if let Some(selected) = selected.text() {
                     let mut selected_index = None;
                     // Find the position in the StringList model of the selected string
                     for ind in 0..model.n_items() {
                         if let Some(item) = model.item(ind) {
-                            let item = item.downcast_ref::<gtk::StringObject>()
-                            .expect("Object should be a stringobject");
+                            let item = item
+                                .downcast_ref::<gtk::StringObject>()
+                                .expect("Object should be a stringobject");
                             if item.string() == selected {
                                 selected_index = Some(ind);
                                 break;
@@ -130,7 +130,7 @@ fn build_ui(application: &gtk::Application) {
                     }
                 }
             }
-        } 
+        }
     ));
     hbox.append(&delete_button);
 
