@@ -1,8 +1,5 @@
 // Variation on ListBox model example to show use of StringList and StringSorter.
 
-// TODO: add a dialog window to allow adding rows.
-// use plain gtk::Window for this per current practice.
-
 use gtk::{
     glib::{self, clone},
     prelude::*,
@@ -79,62 +76,6 @@ fn build_ui(application: &gtk::Application) {
 
     scrolled_window.set_child(Some(&listbox));
 
-    let hbox = gtk::Box::new(gtk::Orientation::Horizontal, 5);
-
-    // The add button opens a new dialog which is basically the same as the edit
-    // dialog, except that we don't have a corresponding item yet at that point
-    // and only create it once the Ok button in the dialog is clicked, and only
-    // then add it to the model. Once added to the model, it will immediately
-    // appear in the listbox UI
-    let add_button = gtk::Button::with_label("Add");
-    add_button.set_sensitive(false);
-
-    hbox.append(&add_button);
-
-    // Via the delete button we delete the item from the model that
-    // is at the index of the selected row. Also deleting from the
-    // model is immediately reflected in the listbox.
-    let delete_button = gtk::Button::with_label("Delete");
-    delete_button.connect_clicked(clone!(
-        #[weak]
-        model,
-        #[weak]
-        listbox,
-        move |_| {
-            let selected = listbox.selected_row();
-            //let sorted_model = listbox.model();
-
-            if let Some(selected) = selected {
-                // Find the selected text.
-                let selected = selected.child().expect("Listrow child should be a widget");
-                let selected = selected
-                    .downcast_ref::<gtk::Inscription>()
-                    .expect("The object should be of type `Inscription`.");
-                if let Some(selected) = selected.text() {
-                    let mut selected_index = None;
-                    // Find the position in the StringList model of the selected string
-                    for ind in 0..model.n_items() {
-                        if let Some(item) = model.item(ind) {
-                            let item = item
-                                .downcast_ref::<gtk::StringObject>()
-                                .expect("Object should be a stringobject");
-                            if item.string() == selected {
-                                selected_index = Some(ind);
-                                break;
-                            }
-                        }
-                    }
-                    // If the selected string is found in the stringlist model, delete it
-                    if let Some(index) = selected_index {
-                        model.remove(index);
-                    }
-                }
-            }
-        }
-    ));
-    hbox.append(&delete_button);
-
-    vbox.append(&hbox);
     vbox.append(&scrolled_window);
 
     window.set_child(Some(&vbox));
