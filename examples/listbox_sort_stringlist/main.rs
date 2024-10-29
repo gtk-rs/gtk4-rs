@@ -42,7 +42,7 @@ fn build_ui(application: &gtk::Application) {
     let model = gtk::StringList::new(&["zoo", "abba", "donkey", "sunrise", "river", "phoenix"]);
 
     // Create a sort model and bind it to the ListStore and the sorter.
-    let sort_model = gtk::SortListModel::new(Some(model.clone()), Some(sorter.clone()));
+    let sort_model = gtk::SortListModel::new(Some(model.clone()), Some(sorter));
 
     // And then create the UI part, the listbox and bind the sort
     // model to it. Whenever the UI needs to show a new row, e.g. because
