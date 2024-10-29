@@ -8,7 +8,7 @@ Libadwaita is a library augmenting GTK 4 which:
 - provides widgets to better follow GNOME's HIG
 - provides widgets to let applications [change their layout ](https://gnome.pages.gitlab.gnome.org/libadwaita/doc/main/adaptive-layouts.html) based on the available space
 - integrates the Adwaita [stylesheet](https://gnome.pages.gitlab.gnome.org/libadwaita/doc/main/styles-and-appearance.html)
-- allows runtime recoloring with [named colors](https://gnome.pages.gitlab.gnome.org/libadwaita/doc/1-latest/named-colors.html)
+- allows runtime recoloring with [CSS variables](https://gnome.pages.gitlab.gnome.org/libadwaita/doc/1-latest/css-variables.html#ui-colors)
 - adds [API](https://world.pages.gitlab.gnome.org/Rust/libadwaita-rs/stable/latest/docs/libadwaita/struct.StyleManager.html) to support the cross-desktop dark style preference
 
 In order to use the Rust bindings, add the [libadwaita crate](https://crates.io/crates/libadwaita) as dependency by executing:
