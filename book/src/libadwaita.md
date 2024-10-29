@@ -1,7 +1,7 @@
 # Libadwaita
 
 If you target a certain platform with your GUI, you will want to follow the platform's [Human Interface Guidelines](https://en.wikipedia.org/wiki/Human_interface_guidelines) (HIG).
-With a GTK application, chances are the platform is either [elementary OS](https://elementary.io) or [GNOME](https://www.gnome.org/).
+With a GTK application, chances are the platform is either [elementary OS](https://elementary.io) or [GNOME](https://www.gnome.org).
 In this chapter we will discuss how to follow GNOME's [HIG](https://developer.gnome.org/hig/) with [libadwaita](https://gnome.pages.gitlab.gnome.org/libadwaita/doc/1-latest/). 
 
 Libadwaita is a library augmenting GTK 4 which:
