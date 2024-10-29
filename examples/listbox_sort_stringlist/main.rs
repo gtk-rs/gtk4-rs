@@ -10,7 +10,7 @@ use gtk::{
 
 fn main() -> glib::ExitCode {
     let application = gtk::Application::builder()
-        .application_id("com.github.gtk-rs.examples.listbox-sorted-StringList")
+        .application_id("com.github.gtk-rs.examples.SortedStringList")
         .build();
 
     application.connect_activate(build_ui);
