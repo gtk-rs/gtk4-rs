@@ -44,6 +44,10 @@ If you are interested in contained and useful examples, we refer you to the corr
 Every valid code snippet in the book is part of a listing.
 Like the examples, the listings be found in the [repository](https://github.com/gtk-rs/gtk4-rs/tree/main/book/listings) of `gtk4-rs`.
 
+## Translations
+
+This book has been translated to Chinese by 陈竞阁 and is served under the following [website](https://mario-hero.github.io/gtk-book-zh_cn/).
+
 ## License
 
 The book itself is licensed under the [Creative Commons Attribution 4.0 International license](https://creativecommons.org/licenses/by/4.0/).
