@@ -119,7 +119,7 @@ pub enum Property<'p> {
     ValueText(&'p str),
 }
 
-impl<'p> Property<'p> {
+impl Property<'_> {
     fn to_property_value(&self) -> (AccessibleProperty, Value) {
         use Property::*;
 
@@ -173,7 +173,7 @@ pub enum Relation<'r> {
     SetSize(i32),
 }
 
-impl<'r> Relation<'r> {
+impl Relation<'_> {
     fn to_relation_value(&self) -> (AccessibleRelation, Value) {
         use Relation::*;
 

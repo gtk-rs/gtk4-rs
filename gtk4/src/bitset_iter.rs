@@ -108,7 +108,7 @@ impl<'a> BitsetIter<'a> {
     }
 }
 
-impl<'a> Iterator for BitsetIter<'a> {
+impl Iterator for BitsetIter<'_> {
     type Item = u32;
 
     #[doc(alias = "gtk_bitset_iter_next")]
@@ -129,14 +129,14 @@ impl<'a> Iterator for BitsetIter<'a> {
     }
 }
 
-impl<'a> std::iter::FusedIterator for BitsetIter<'a> {}
+impl std::iter::FusedIterator for BitsetIter<'_> {}
 
 #[doc(hidden)]
 impl<'a> ToGlibPtr<'a, *const ffi::GtkBitsetIter> for BitsetIter<'a> {
     type Storage = &'a Self;
 
     #[inline]
-    fn to_glib_none(&'a self) -> Stash<*const ffi::GtkBitsetIter, Self> {
+    fn to_glib_none(&'a self) -> Stash<'a, *const ffi::GtkBitsetIter, Self> {
         Stash(&self.0 as *const ffi::GtkBitsetIter, self)
     }
 }
