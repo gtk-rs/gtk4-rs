@@ -292,6 +292,7 @@ int main() {
     printf("%s;%zu;%zu\n", "GtkText", sizeof(GtkText), alignof(GtkText));
     printf("%s;%zu;%zu\n", "GtkTextBuffer", sizeof(GtkTextBuffer), alignof(GtkTextBuffer));
     printf("%s;%zu;%zu\n", "GtkTextBufferClass", sizeof(GtkTextBufferClass), alignof(GtkTextBufferClass));
+    printf("%s;%zu;%zu\n", "GtkTextBufferNotifyFlags", sizeof(GtkTextBufferNotifyFlags), alignof(GtkTextBufferNotifyFlags));
     printf("%s;%zu;%zu\n", "GtkTextChildAnchor", sizeof(GtkTextChildAnchor), alignof(GtkTextChildAnchor));
     printf("%s;%zu;%zu\n", "GtkTextChildAnchorClass", sizeof(GtkTextChildAnchorClass), alignof(GtkTextChildAnchorClass));
     printf("%s;%zu;%zu\n", "GtkTextDirection", sizeof(GtkTextDirection), alignof(GtkTextDirection));

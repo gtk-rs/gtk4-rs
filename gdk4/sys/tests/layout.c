@@ -10,6 +10,7 @@ int main() {
     printf("%s;%zu;%zu\n", "GdkAnchorHints", sizeof(GdkAnchorHints), alignof(GdkAnchorHints));
     printf("%s;%zu;%zu\n", "GdkAxisFlags", sizeof(GdkAxisFlags), alignof(GdkAxisFlags));
     printf("%s;%zu;%zu\n", "GdkAxisUse", sizeof(GdkAxisUse), alignof(GdkAxisUse));
+    printf("%s;%zu;%zu\n", "GdkCicpRange", sizeof(GdkCicpRange), alignof(GdkCicpRange));
     printf("%s;%zu;%zu\n", "GdkContentProvider", sizeof(GdkContentProvider), alignof(GdkContentProvider));
     printf("%s;%zu;%zu\n", "GdkContentProviderClass", sizeof(GdkContentProviderClass), alignof(GdkContentProviderClass));
     printf("%s;%zu;%zu\n", "GdkCrossingMode", sizeof(GdkCrossingMode), alignof(GdkCrossingMode));

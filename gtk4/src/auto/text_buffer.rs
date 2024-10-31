@@ -81,6 +81,7 @@ impl TextBufferBuilder {
     /// Build the [`TextBuffer`].
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> TextBuffer {
+        assert_initialized_main_thread!();
         self.builder.build()
     }
 }
@@ -91,6 +92,13 @@ mod sealed {
 }
 
 pub trait TextBufferExt: IsA<TextBuffer> + sealed::Sealed + 'static {
+    //#[cfg(feature = "v4_16")]
+    //#[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
+    //#[doc(alias = "gtk_text_buffer_add_commit_notify")]
+    //fn add_commit_notify(&self, flags: /*Ignored*/TextBufferNotifyFlags, commit_notify: /*Unimplemented*/Fn(&TextBuffer, /*Ignored*/TextBufferNotifyFlags, u32, u32), user_data: /*Unimplemented*/Option<Basic: Pointer>) -> u32 {
+    //    unsafe { TODO: call ffi:gtk_text_buffer_add_commit_notify() }
+    //}
+
     #[doc(alias = "gtk_text_buffer_add_mark")]
     fn add_mark(&self, mark: &impl IsA<TextMark>, where_: &TextIter) {
         unsafe {
@@ -771,6 +779,18 @@ pub trait TextBufferExt: IsA<TextBuffer> + sealed::Sealed + 'static {
                 self.as_ref().to_glib_none().0,
                 start.to_glib_none().0,
                 end.to_glib_none().0,
+            );
+        }
+    }
+
+    #[cfg(feature = "v4_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
+    #[doc(alias = "gtk_text_buffer_remove_commit_notify")]
+    fn remove_commit_notify(&self, commit_notify_handler: u32) {
+        unsafe {
+            ffi::gtk_text_buffer_remove_commit_notify(
+                self.as_ref().to_glib_none().0,
+                commit_notify_handler,
             );
         }
     }
