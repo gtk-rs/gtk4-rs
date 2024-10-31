@@ -2,7 +2,7 @@ name: docs
 
 on:
   push:
-    branches: [master]
+    branches: [main]
     paths:
       - ".github/workflows/docs.yml"
       - "gdk4/**"
@@ -61,7 +61,7 @@ jobs:
       - run: python3 ./generator.py --embed-docs --yes ./
       - run: echo "RELEASE=$(echo '${{ github.event.release.tag_name }}' | grep -Po '(\d+)\.(\d+)')" >> ${GITHUB_ENV}
       - run: echo "DEST=$(if [ "$GITHUB_EVENT_NAME" == "release" ]; then echo 'stable/${{ env.RELEASE }}'; else echo 'git'; fi)" >> ${GITHUB_ENV}
-      - run: echo "RUSTDOCFLAGS=$(eval python3 ./gir-rustdoc/gir-rustdoc.py --pages-url 'https://gtk-rs.org/gtk4-rs/' --default-branch 'master' pre-docs | xargs)" >> ${GITHUB_ENV}
+      - run: echo "RUSTDOCFLAGS=$(eval python3 ./gir-rustdoc/gir-rustdoc.py --pages-url 'https://gtk-rs.org/gtk4-rs/' --default-branch 'main' pre-docs | xargs)" >> ${GITHUB_ENV}
         env:
           RUSTDOCFLAGS: >
             --extern-html-root-url=wayland_client=https://smithay.github.io/wayland-rs/
@@ -107,7 +107,7 @@ jobs:
 
           sed -i 's|section-tree-widget.html|https://docs.gtk.org/gtk4/section-tree-widget.html|g' target/doc/gtk4/struct.TreeView.html
       - name: GTK Docs Images
-        if: ${{ (github.event_name == 'push' && github.ref == 'refs/heads/master') || github.event_name == 'release' }}
+        if: ${{ (github.event_name == 'push' && github.ref == 'refs/heads/main') || github.event_name == 'release' }}
         run: |
           git clone --depth=1 https://gitlab.gnome.org/GNOME/gtk --no-checkout ./gtk-src
           cd ./gtk-src
@@ -116,16 +116,16 @@ jobs:
           git checkout main
           mv ./docs/reference/gtk/images/*.png ../target/doc/gtk4
       - name: Grab gtk-rs LOGO
-        if: ${{ (github.event_name == 'push' && github.ref == 'refs/heads/master') || github.event_name == 'release' }}
+        if: ${{ (github.event_name == 'push' && github.ref == 'refs/heads/main') || github.event_name == 'release' }}
         run: |
-          wget https://raw.githubusercontent.com/gtk-rs/gtk-rs.github.io/master/logo/gtk-rs-16.png -O ./target/doc/favicon-16x16.png
-          wget https://raw.githubusercontent.com/gtk-rs/gtk-rs.github.io/master/logo/gtk-rs-32.png -O ./target/doc/favicon-32x32.png
-          wget https://raw.githubusercontent.com/gtk-rs/gtk-rs.github.io/master/logo/gtk-rs-256.png -O ./target/doc/rust-logo.png
-          wget https://raw.githubusercontent.com/gtk-rs/gtk-rs.github.io/master/logo/gtk-rs.svg -O ./target/doc/rust-logo.svg
-          wget https://raw.githubusercontent.com/gtk-rs/gtk-rs.github.io/master/logo/gtk-rs.svg -O ./target/doc/favicon.svg
+          wget https://raw.githubusercontent.com/gtk-rs/gtk-rs.github.io/main/logo/gtk-rs-16.png -O ./target/doc/favicon-16x16.png
+          wget https://raw.githubusercontent.com/gtk-rs/gtk-rs.github.io/main/logo/gtk-rs-32.png -O ./target/doc/favicon-32x32.png
+          wget https://raw.githubusercontent.com/gtk-rs/gtk-rs.github.io/main/logo/gtk-rs-256.png -O ./target/doc/rust-logo.png
+          wget https://raw.githubusercontent.com/gtk-rs/gtk-rs.github.io/main/logo/gtk-rs.svg -O ./target/doc/rust-logo.svg
+          wget https://raw.githubusercontent.com/gtk-rs/gtk-rs.github.io/main/logo/gtk-rs.svg -O ./target/doc/favicon.svg
       - name: deploy
         uses: peaceiris/actions-gh-pages@v4
-        if: ${{ (github.event_name == 'push' && github.ref == 'refs/heads/master') || github.event_name == 'release' }}
+        if: ${{ (github.event_name == 'push' && github.ref == 'refs/heads/main') || github.event_name == 'release' }}
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./target/doc/
@@ -135,7 +135,7 @@ jobs:
       - run: python3 ./gir-rustdoc/gir-rustdoc.py --project-title 'GTK 4 Rust bindings' html-index --early-section 'Book' '<ul><li><a href="stable/latest/book">Latest stable</a></li></ul>'
       - name: deploy index page
         uses: peaceiris/actions-gh-pages@v4
-        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
+        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public/

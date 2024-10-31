@@ -5,7 +5,7 @@ Therefore, it makes sense that if we want to create a custom GObject, this is do
 Let's see how this works by replacing the button in our "Hello World!" app with a custom one.
 First, we need to create an implementation struct that holds the state and overrides the virtual methods.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_subclassing/1/custom_button/imp.rs">listings/g_object_subclassing/1/custom_button/imp.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/g_object_subclassing/1/custom_button/imp.rs">listings/g_object_subclassing/1/custom_button/imp.rs</a>
 
 ```rust
 {{#rustdoc_include ../listings/g_object_subclassing/1/custom_button/imp.rs}}
@@ -20,7 +20,7 @@ Since we only want to have a plain button for now, we override nothing.
 We still have to add the empty `impl` though.
 Next, we describe the public interface of our custom GObject.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_subclassing/1/custom_button/mod.rs">listings/g_object_subclassing/1/custom_button/mod.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/g_object_subclassing/1/custom_button/mod.rs">listings/g_object_subclassing/1/custom_button/mod.rs</a>
 
 ```rust
 {{#rustdoc_include ../listings/g_object_subclassing/1/custom_button/mod.rs:mod}}
@@ -34,7 +34,7 @@ For `gtk::Button`, we can look up the ancestors and interfaces in the correspond
 
 After these steps, nothing is stopping us from replacing `gtk::Button` with our `CustomButton`.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_subclassing/1/main.rs">listings/g_object_subclassing/1/main.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/g_object_subclassing/1/main.rs">listings/g_object_subclassing/1/main.rs</a>
 
 ```rust
 {{#rustdoc_include ../listings/g_object_subclassing/1/main.rs}}
@@ -53,7 +53,7 @@ For the gain of zero benefits, it did involve quite a bit of boilerplate after a
 So let's make it a bit more interesting!
 `gtk::Button` does not hold much state, but we can let `CustomButton` hold a number.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_subclassing/2/custom_button/imp.rs">listings/g_object_subclassing/2/custom_button/imp.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/g_object_subclassing/2/custom_button/imp.rs">listings/g_object_subclassing/2/custom_button/imp.rs</a>
 
 ```rust
 {{#rustdoc_include ../listings/g_object_subclassing/2/custom_button/imp.rs}}
@@ -61,7 +61,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 We override `constructed` in `ObjectImpl` so that the label of the button initializes with `number`.
 We also override `clicked` in `ButtonImpl` so that every click increases `number` and updates the label.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_subclassing/2/main.rs">listings/g_object_subclassing/2/main.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/g_object_subclassing/2/main.rs">listings/g_object_subclassing/2/main.rs</a>
 
 ```rust
 {{#rustdoc_include ../listings/g_object_subclassing/2/main.rs:activate}}

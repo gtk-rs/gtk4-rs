@@ -11,7 +11,7 @@ Every type of widget has a corresponding CSS node.
 In the case of `gtk::Button`, this node is called `button`.
 Therefore, we create a `style.css` file with the following content:
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/css/1/style.css">listings/css/1/style.css</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/css/1/style.css">listings/css/1/style.css</a>
 
 ```css
 {{#rustdoc_include ../listings/css/1/style.css}}
@@ -20,7 +20,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 Next, we need to load the CSS file in the startup step of the application.
 As usual, the widgets are created during the "activate" step.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/css/1/main.rs">listings/css/1/main.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/css/1/main.rs">listings/css/1/main.rs</a>
 
 ```rust
 {{#rustdoc_include ../listings/css/1/main.rs:main}}
@@ -51,7 +51,7 @@ A [`gtk::Button`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.Butt
 That is why we create a new CSS rule which only applies to `button` nodes with the style class `text_button`.
 
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/css/2/style.css">listings/css/2/style.css</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/css/2/style.css">listings/css/2/style.css</a>
 
 ```css
 {{#rustdoc_include ../listings/css/2/style.css}}
@@ -69,7 +69,7 @@ For example if we have two buttons, but want only one of them to have magenta fo
 Relying on one of the style classes which GTK adds will not help since both will get the same ones.
 Which is why we add the style class `button-1` to the first one.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/css/3/main.rs">listings/css/3/main.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/css/3/main.rs">listings/css/3/main.rs</a>
 
 ```rust
 {{#rustdoc_include ../listings/css/3/main.rs:buttons}}
@@ -77,7 +77,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 
 Then, we create a CSS rule that applies to `button` nodes with the style class `button-1`.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/css/3/style.css">listings/css/3/style.css</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/css/3/style.css">listings/css/3/style.css</a>
 
 ```css
 {{#rustdoc_include ../listings/css/3/style.css}}
@@ -98,7 +98,7 @@ This way your intentions are more clear, compared to matching with style classes
 Again, we have two buttons but want to color only one of them magenta.
 We set the name of the first one with [`set_widget_name`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/prelude/trait.WidgetExt.html#tymethod.set_widget_name).
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/css/4/main.rs">listings/css/4/main.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/css/4/main.rs">listings/css/4/main.rs</a>
 
 ```rust
 {{#rustdoc_include ../listings/css/4/main.rs:buttons}}
@@ -107,7 +107,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 Then, create a CSS rule that applies to `button` nodes with the name `button-1`.
 The name is specified after the `#` symbol.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/css/4/style.css">listings/css/4/style.css</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/css/4/style.css">listings/css/4/style.css</a>
 
 ```css
 {{#rustdoc_include ../listings/css/4/style.css}}
@@ -125,7 +125,7 @@ For example, if you want to indicate that your button leads to a destructive or 
 All you have to do is to add "destructive-action" or "suggested-action" style class to your button.
 Most widgets will document these rules in their documentation under [CSS nodes](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.Button.html#css-nodes).
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/css/5/main.rs">listings/css/5/main.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/css/5/main.rs">listings/css/5/main.rs</a>
 
 ```rust
 {{#rustdoc_include ../listings/css/5/main.rs:buttons}}
@@ -140,7 +140,7 @@ Just add the `<style>` element to your widget.
 The `<style>` element is documented together with [`gtk::Widget`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.Widget.html#gtkwidget-as-gtkbuildable).
 Adding again destructive and suggested buttons, would then look like this:
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/css/6/window/window.ui">listings/css/6/window/window.ui</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/css/6/window/window.ui">listings/css/6/window/window.ui</a>
 
 ```xml
 {{#rustdoc_include ../listings/css/6/window/window.ui}}
@@ -153,7 +153,7 @@ Sometimes you want your CSS rules to apply under even more precise conditions th
 That is where [pseudo-classes](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes) come in.
 Let's use a single button with name `button-1` to demonstrate this concept.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/css/7/window/window.ui">listings/css/7/window/window.ui</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/css/7/window/window.ui">listings/css/7/window/window.ui</a>
 
 ```xml
 {{#rustdoc_include ../listings/css/7/window/window.ui}}
@@ -161,7 +161,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 
 By adding the pseudo-class `hover`, we say that we want this rule to only apply to a `button` node with name `button-1` when hovering over it with the mouse pointer.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/css/7/style.css">listings/css/7/style.css</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/css/7/style.css">listings/css/7/style.css</a>
 
 ```css
 {{#rustdoc_include ../listings/css/7/style.css}}
@@ -187,7 +187,7 @@ Let's see how that works.
 First, we create a single `MenuButton`.
 
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/css/8/window/window.ui">listings/css/8/window/window.ui</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/css/8/window/window.ui">listings/css/8/window/window.ui</a>
 
 ```xml
 {{#rustdoc_include ../listings/css/8/window/window.ui}}
@@ -207,7 +207,7 @@ menubutton
 We see that the `menubutton` node has children, which themselves have children and attached style classes.
 Now we know that we have to add a CSS rule that applies to the `arrow` node, which is a descendant of `menubutton`.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/css/8/style.css">listings/css/8/style.css</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/css/8/style.css">listings/css/8/style.css</a>
 
 ```css
 {{#rustdoc_include ../listings/css/8/style.css}}
@@ -230,7 +230,7 @@ What we will want to do instead is to give `TaskRow` its own CSS name.
 When calling [`set_css_name` ](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/subclass/widget/trait.WidgetClassExt.html#method.set_css_name), we change the name of the CSS node of the widget class.
 In our case, the widget `TaskRow` then corresponds to the node `task-row`.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/3/task_row/imp.rs">listings/todo/3/task_row/imp.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/3/task_row/imp.rs">listings/todo/3/task_row/imp.rs</a>
 
 ```rust
 {{#rustdoc_include ../listings/todo/3/task_row/imp.rs:object_subclass}}
@@ -241,7 +241,7 @@ Let's change the background color once more but this time with a twist.
 We are going to use the named color `success_color`.
 
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/3/resources/style.css">listings/todo/3/resources/style.css</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/3/resources/style.css">listings/todo/3/resources/style.css</a>
 
 ```css
 {{#rustdoc_include ../listings/todo/3/resources/style.css}}
@@ -255,7 +255,7 @@ We can then access the pre-defined color by adding an `@` in front of its name.
 
 We also have to add `style.css` to `resources.gresource.xml`.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/3/resources/resources.gresource.xml">listings/todo/3/resources/resources.gresource.xml</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/3/resources/resources.gresource.xml">listings/todo/3/resources/resources.gresource.xml</a>
 
 ```diff
  <?xml version="1.0" encoding="UTF-8"?>
@@ -272,7 +272,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 Additionally, we call `load_css()` in `connect_startup`.
 
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/3/main.rs">listings/todo/3/main.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/3/main.rs">listings/todo/3/main.rs</a>
 
 ```rust
 {{#rustdoc_include ../listings/todo/3/main.rs:connect_startup}}
@@ -296,7 +296,7 @@ Luckily, finding an actual use for CSS in our To-Do app isn't too hard.
 Until now the different tasks weren't nicely separated.
 We can change that by adding the `frame` and the `separators` style class to our `tasks_list`.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/4/resources/task_row.ui">listings/todo/4/resources/window.ui</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/4/resources/task_row.ui">listings/todo/4/resources/window.ui</a>
 
 ```diff
  <object class="GtkListView" id="tasks_list">

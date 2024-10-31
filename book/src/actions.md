@@ -7,7 +7,7 @@ Now, we will complete our set by learning about actions.
 An action is a piece of functionality bound to a certain GObject.
 Let's check out the simplest case where we activate an action without a parameter.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/actions/1/main.rs">listings/actions/1/main.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/actions/1/main.rs">listings/actions/1/main.rs</a>
 
 ```rust,no_run
 {{#rustdoc_include ../listings/actions/1/main.rs:build_ui}}
@@ -17,7 +17,7 @@ First, we created a new [`gio::ActionEntry`](https://gtk-rs.org/gtk-rs-core/stab
 We also connected a callback which closes the window when the action is activated.
 Finally, we add the action entry to the window via [`add_action_entries`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/prelude/trait.ActionMapExtManual.html#method.add_action_entries).
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/actions/1/main.rs">listings/actions/1/main.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/actions/1/main.rs">listings/actions/1/main.rs</a>
 
 ```rust,no_run
 {{#rustdoc_include ../listings/actions/1/main.rs:main}}
@@ -39,7 +39,7 @@ Let's add our action to the action group "custom-group" and add the group then t
 The action entry isn't specific to our window anymore, the first parameter of the "activate" callback is of type `SimpleActionGroup` instead of `ApplicationWindow`.
 This means we have to clone `window` into the closure.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/actions/2/main.rs">listings/actions/2/main.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/actions/2/main.rs">listings/actions/2/main.rs</a>
 
 ```rust
 {{#rustdoc_include ../listings/actions/2/main.rs:build_ui}}
@@ -47,7 +47,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 
 If we bind the accelerator to "custom-group.close", it works just as before.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/actions/2/main.rs">listings/actions/2/main.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/actions/2/main.rs">listings/actions/2/main.rs</a>
 
 ```rust
 {{#rustdoc_include ../listings/actions/2/main.rs:accel}}
@@ -67,7 +67,7 @@ An action, like most functions, can take a parameter.
 However, unlike most functions it can also be stateful.
 Let's see how this works.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/actions/3/main.rs">listings/actions/3/main.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/actions/3/main.rs">listings/actions/3/main.rs</a>
 
 ```rust
 {{#rustdoc_include ../listings/actions/3/main.rs:build_ui}}
@@ -93,7 +93,7 @@ This way, the action can be specified by setting the "action-name" property.
 If the action accepts a parameter, it can be set via the "action-target" property.
 With [`ButtonBuilder`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/builders/struct.ButtonBuilder.html), we can set everything up by calling its methods.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/actions/4/main.rs">listings/actions/4/main.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/actions/4/main.rs">listings/actions/4/main.rs</a>
 
 ```rust
 {{#rustdoc_include ../listings/actions/4/main.rs:button_builder}}
@@ -103,7 +103,7 @@ Actionable widgets are also easily accessible through the interface builder.
 As usual, we build up the window via a composite template.
 Within the template we can then set the "action-name" and "action-target" properties.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/actions/5/resources/window.ui">listings/actions/5/resources/window.ui</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/actions/5/resources/window.ui">listings/actions/5/resources/window.ui</a>
 
 ```xml
 {{#rustdoc_include ../listings/actions/5/resources/window.ui}}
@@ -111,7 +111,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 
 We will connect the actions and add them to the window in the `Window::setup_actions` method.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/actions/5/window/mod.rs">listings/actions/5/window/mod.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/actions/5/window/mod.rs">listings/actions/5/window/mod.rs</a>
 
 ```rust
 {{#rustdoc_include ../listings/actions/5/window/mod.rs:impl_window}}
@@ -119,7 +119,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 
 Finally, `setup_actions` will be called within `constructed`.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/actions/5/window/imp.rs">listings/actions/5/window/imp.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/actions/5/window/imp.rs">listings/actions/5/window/imp.rs</a>
 
 ```rust
 {{#rustdoc_include ../listings/actions/5/window/imp.rs:object_impl}}
@@ -145,7 +145,7 @@ With the action "button-frame", we manipulate the "has-frame" property of `butto
 Here, the convention is that actions with no parameter and boolean state should behave like toggle actions.
 This means that the caller can expect the boolean state to toggle after activating the action. Luckily for us, that is the default behavior for [`gio::PropertyAction`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.PropertyAction.html) with a boolean property.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/actions/6/window/mod.rs">listings/actions/6/window/mod.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/actions/6/window/mod.rs">listings/actions/6/window/mod.rs</a>
 
 ```rust
 {{#rustdoc_include ../listings/actions/6/window/mod.rs:action_button_frame}}
@@ -163,7 +163,7 @@ This action can be used to change the orientation of `gtk_box`.
 Here the convention is that the state should be set to the given parameter.
 We don't need the action state to implement orientation switching, however it is useful for making the menu display the current orientation.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/actions/6/window/mod.rs">listings/actions/6/window/mod.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/actions/6/window/mod.rs">listings/actions/6/window/mod.rs</a>
 
 ```rust
 {{#rustdoc_include ../listings/actions/6/window/mod.rs:action_orientation}}
@@ -172,7 +172,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 Even though [`gio::Menu`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.Menu.html) can also be created with the bindings, the most convenient way is to use the interface builder for that.
 We do that by adding the menu in front of the template.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/actions/6/resources/window.ui">listings/actions/6/resources/window.ui</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/actions/6/resources/window.ui">listings/actions/6/resources/window.ui</a>
 
 ```diff
  <?xml version="1.0" encoding="UTF-8"?>
@@ -255,7 +255,7 @@ The menu entries nicely display the state of our stateful actions, but after the
 As usual, we solve this problem with [`gio::Settings`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.Settings.html).
 First we create a schema with settings corresponding to the stateful actions we created before.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/actions/7/org.gtk_rs.Actions7.gschema.xml">listings/actions/7/org.gtk_rs.Actions7.gschema.xml</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/actions/7/org.gtk_rs.Actions7.gschema.xml">listings/actions/7/org.gtk_rs.Actions7.gschema.xml</a>
 
 ```xml
 {{#rustdoc_include ../listings/actions/7/org.gtk_rs.Actions7.gschema.xml}}
@@ -265,7 +265,7 @@ Again, we install the schema as described in the settings [chapter](./settings.h
 Then we add the settings to `imp::Window`.
 Since [`gio::Settings`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.Settings.html) does not implement `Default`, we wrap it in a [`std::cell::OnceCell`](https://doc.rust-lang.org/std/cell/struct.OnceCell.html).
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/actions/7/window/imp.rs">listings/actions/7/window/imp.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/actions/7/window/imp.rs">listings/actions/7/window/imp.rs</a>
 
 ```rust
 {{#rustdoc_include ../listings/actions/7/window/imp.rs:imp_struct}}
@@ -273,7 +273,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 
 Now we create functions to make it easier to access settings.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/actions/7/window/mod.rs">listings/actions/7/window/mod.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/actions/7/window/mod.rs">listings/actions/7/window/mod.rs</a>
 
 ```rust
 {{#rustdoc_include ../listings/actions/7/window/mod.rs:settings}}
@@ -283,7 +283,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 Creating stateful actions from setting entries is so common that `Settings` provides a method for that exact purpose.
 We create actions with the[ `create_action`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/prelude/trait.SettingsExt.html#tymethod.create_action) method and then add them to the action group of our window.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/actions/7/window/mod.rs">listings/actions/7/window/mod.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/actions/7/window/mod.rs">listings/actions/7/window/mod.rs</a>
 
 ```rust
 {{#rustdoc_include ../listings/actions/7/window/mod.rs:settings_create_actions}}
@@ -295,7 +295,7 @@ The action "win.button-frame" toggles its state with each activation and the sta
 We still have to specify what should happen when the actions are activated though.
 For the stateful actions, instead of adding callbacks to their "activate" signals, we bind the settings to properties we want to manipulate.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/actions/7/window/mod.rs">listings/actions/7/window/mod.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/actions/7/window/mod.rs">listings/actions/7/window/mod.rs</a>
 
 ```rust
 {{#rustdoc_include ../listings/actions/7/window/mod.rs:bind_settings}}
@@ -303,7 +303,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 
 Finally, we make sure that `bind_settings` is called within `constructed`.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/actions/7/window/imp.rs">listings/actions/7/window/imp.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/actions/7/window/imp.rs">listings/actions/7/window/imp.rs</a>
 
 ```rust
 {{#rustdoc_include ../listings/actions/7/window/imp.rs:object_impl}}

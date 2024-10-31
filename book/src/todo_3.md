@@ -5,13 +5,13 @@ Let's start by installing Libadwaita and adding the `libadwaita` crate to our de
 
 The simplest way to take advantage of Libadwaita is by replacing [`gtk::Application`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.Application.html) with [`adw::Application`](https://world.pages.gitlab.gnome.org/Rust/libadwaita-rs/stable/latest/docs/libadwaita/struct.Application.html).
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/5/main.rs">listings/todo/5/main.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/5/main.rs">listings/todo/5/main.rs</a>
 
 ```rust,no_run,noplayground
 {{#rustdoc_include ../listings/todo/5/main.rs:main}}
 ```
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/5/window/mod.rs">listings/todo/5/window/mod.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/5/window/mod.rs">listings/todo/5/window/mod.rs</a>
 
 ```rust,no_run,noplayground
 {{#rustdoc_include ../listings/todo/5/window/mod.rs:new}}
@@ -55,7 +55,7 @@ Let's implement all these changes in the `window.ui` file.
 All of the changes are confined within the second child of the `ApplicationWindow`.
 To see the complete file, just click on the link after "Filename".
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/6/resources/window.ui">listings/todo/6/resources/window.ui</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/6/resources/window.ui">listings/todo/6/resources/window.ui</a>
 
 
 ```xml
@@ -102,7 +102,7 @@ In order to follow the boxed list pattern, we switched to [`gtk::ListBox`](https
 Let's continue with `window/imp.rs`.
 The member variable `tasks_list` now describes a `ListBox` rather than a `ListView`.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/6/window/imp.rs">listings/todo/6/window/imp.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/6/window/imp.rs">listings/todo/6/window/imp.rs</a>
 
 ```rust,no_run,noplayground
 {{#rustdoc_include ../listings/todo/6/window/imp.rs:window}}
@@ -116,7 +116,7 @@ We now move on to `window/mod.rs`.
 To setup the `ListBox`, we call `bind_model` in `setup_tasks`.
 There we specify the model, as well as a closure describing how to transform the given GObject into a widget the list box can display. 
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/6/window/mod.rs">listings/todo/6/window/mod.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/6/window/mod.rs">listings/todo/6/window/mod.rs</a>
 
 ```rust,no_run,noplayground
 {{#rustdoc_include ../listings/todo/6/window/mod.rs:bind_model}}
@@ -127,7 +127,7 @@ Here, we create an [`adw::ActionRow`](https://world.pages.gitlab.gnome.org/Rust/
 Without recycling, a GObject will always belong to the same widget.
 That means we can just bind their properties without having to worry about unbinding them later on.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/6/window/mod.rs">listings/todo/6/window/mod.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/6/window/mod.rs">listings/todo/6/window/mod.rs</a>
 
 ```rust,no_run,noplayground
 {{#rustdoc_include ../listings/todo/6/window/mod.rs:create_task_row}}
@@ -135,7 +135,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 
 When using boxed lists, you also have to take care to hide the `ListBox` when there is no task present.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/6/window/mod.rs">listings/todo/6/window/mod.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/6/window/mod.rs">listings/todo/6/window/mod.rs</a>
 
 ```rust,no_run,noplayground
 {{#rustdoc_include ../listings/todo/6/window/mod.rs:connect_items_changed}}
@@ -143,7 +143,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 
 Finally, we define the `set_task_list_visible` method.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/6/window/mod.rs">listings/todo/6/window/mod.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/6/window/mod.rs">listings/todo/6/window/mod.rs</a>
 
 ```rust,no_run,noplayground
 {{#rustdoc_include ../listings/todo/6/window/mod.rs:set_task_list_visible}}
