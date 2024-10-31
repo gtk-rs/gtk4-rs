@@ -2,6 +2,9 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+#[cfg(feature = "v4_18")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_18")))]
+use crate::ListTabBehavior;
 use crate::{
     ffi, Accessible, AccessibleRole, Adjustment, Align, Buildable, ConstraintTarget, LayoutManager,
     ListBoxRow, MovementStep, Overflow, SelectionMode, Widget,
@@ -157,6 +160,15 @@ impl ListBox {
     #[doc(alias = "show-separators")]
     pub fn shows_separators(&self) -> bool {
         unsafe { from_glib(ffi::gtk_list_box_get_show_separators(self.to_glib_none().0)) }
+    }
+
+    #[cfg(feature = "v4_18")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_18")))]
+    #[doc(alias = "gtk_list_box_get_tab_behavior")]
+    #[doc(alias = "get_tab_behavior")]
+    #[doc(alias = "tab-behavior")]
+    pub fn tab_behavior(&self) -> ListTabBehavior {
+        unsafe { from_glib(ffi::gtk_list_box_get_tab_behavior(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_list_box_insert")]
@@ -367,6 +379,16 @@ impl ListBox {
                 self.to_glib_none().0,
                 show_separators.into_glib(),
             );
+        }
+    }
+
+    #[cfg(feature = "v4_18")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_18")))]
+    #[doc(alias = "gtk_list_box_set_tab_behavior")]
+    #[doc(alias = "tab-behavior")]
+    pub fn set_tab_behavior(&self, behavior: ListTabBehavior) {
+        unsafe {
+            ffi::gtk_list_box_set_tab_behavior(self.to_glib_none().0, behavior.into_glib());
         }
     }
 
@@ -721,6 +743,31 @@ impl ListBox {
             )
         }
     }
+
+    #[cfg(feature = "v4_18")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_18")))]
+    #[doc(alias = "tab-behavior")]
+    pub fn connect_tab_behavior_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_tab_behavior_trampoline<F: Fn(&ListBox) + 'static>(
+            this: *mut ffi::GtkListBox,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::tab-behavior\0".as_ptr() as *const _,
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
+                    notify_tab_behavior_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
 }
 
 impl Default for ListBox {
@@ -770,6 +817,14 @@ impl ListBoxBuilder {
     pub fn show_separators(self, show_separators: bool) -> Self {
         Self {
             builder: self.builder.property("show-separators", show_separators),
+        }
+    }
+
+    #[cfg(feature = "v4_18")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_18")))]
+    pub fn tab_behavior(self, tab_behavior: ListTabBehavior) -> Self {
+        Self {
+            builder: self.builder.property("tab-behavior", tab_behavior),
         }
     }
 
@@ -961,6 +1016,7 @@ impl ListBoxBuilder {
     /// Build the [`ListBox`].
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> ListBox {
+        assert_initialized_main_thread!();
         self.builder.build()
     }
 }

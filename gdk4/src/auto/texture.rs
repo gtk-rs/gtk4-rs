@@ -98,6 +98,15 @@ mod sealed {
 }
 
 pub trait TextureExt: IsA<Texture> + sealed::Sealed + 'static {
+    //#[cfg(feature = "v4_16")]
+    //#[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
+    //#[doc(alias = "gdk_texture_get_color_state")]
+    //#[doc(alias = "get_color_state")]
+    //#[doc(alias = "color-state")]
+    //fn color_state(&self) -> /*Ignored*/ColorState {
+    //    unsafe { TODO: call ffi:gdk_texture_get_color_state() }
+    //}
+
     #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "gdk_texture_get_format")]

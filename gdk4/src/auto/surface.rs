@@ -260,6 +260,8 @@ pub trait SurfaceExt: IsA<Surface> + sealed::Sealed + 'static {
         }
     }
 
+    #[cfg_attr(feature = "v4_16", deprecated = "Since 4.16")]
+    #[allow(deprecated)]
     #[doc(alias = "gdk_surface_set_opaque_region")]
     fn set_opaque_region(&self, region: Option<&cairo::Region>) {
         unsafe {

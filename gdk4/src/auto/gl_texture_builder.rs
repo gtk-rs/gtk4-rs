@@ -4,6 +4,15 @@
 
 use crate::{ffi, GLContext, MemoryFormat, Texture};
 use glib::translate::*;
+#[cfg(feature = "v4_16")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
+use glib::{
+    prelude::*,
+    signal::{connect_raw, SignalHandlerId},
+};
+#[cfg(feature = "v4_16")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GdkGLTextureBuilder")]
@@ -20,6 +29,15 @@ impl GLTextureBuilder {
         assert_initialized_main_thread!();
         unsafe { from_glib_full(ffi::gdk_gl_texture_builder_new()) }
     }
+
+    //#[cfg(feature = "v4_16")]
+    //#[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
+    //#[doc(alias = "gdk_gl_texture_builder_get_color_state")]
+    //#[doc(alias = "get_color_state")]
+    //#[doc(alias = "color-state")]
+    //pub fn color_state(&self) -> /*Ignored*/ColorState {
+    //    unsafe { TODO: call ffi:gdk_gl_texture_builder_get_color_state() }
+    //}
 
     #[doc(alias = "gdk_gl_texture_builder_get_context")]
     #[doc(alias = "get_context")]
@@ -90,6 +108,44 @@ impl GLTextureBuilder {
     #[doc(alias = "get_width")]
     pub fn width(&self) -> i32 {
         unsafe { ffi::gdk_gl_texture_builder_get_width(self.to_glib_none().0) }
+    }
+
+    //#[cfg(feature = "v4_16")]
+    //#[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
+    //#[doc(alias = "gdk_gl_texture_builder_set_color_state")]
+    //#[doc(alias = "color-state")]
+    //pub fn set_color_state(&self, color_state: /*Ignored*/&ColorState) {
+    //    unsafe { TODO: call ffi:gdk_gl_texture_builder_set_color_state() }
+    //}
+
+    #[cfg(feature = "v4_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
+    #[doc(alias = "color-state")]
+    pub fn connect_color_state_notify<F: Fn(&Self) + Send + Sync + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_color_state_trampoline<
+            F: Fn(&GLTextureBuilder) + Send + Sync + 'static,
+        >(
+            this: *mut ffi::GdkGLTextureBuilder,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::color-state\0".as_ptr() as *const _,
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
+                    notify_color_state_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
     }
 }
 

@@ -77,6 +77,8 @@ int main() {
     PRINT_CONSTANT(GDK_BUTTON_PRIMARY);
     PRINT_CONSTANT((gint) GDK_BUTTON_RELEASE);
     PRINT_CONSTANT(GDK_BUTTON_SECONDARY);
+    PRINT_CONSTANT((gint) GDK_CICP_RANGE_FULL);
+    PRINT_CONSTANT((gint) GDK_CICP_RANGE_NARROW);
     PRINT_CONSTANT((guint) GDK_CONTROL_MASK);
     PRINT_CONSTANT((gint) GDK_CROSSING_DEVICE_SWITCH);
     PRINT_CONSTANT((gint) GDK_CROSSING_GRAB);
@@ -1868,6 +1870,11 @@ int main() {
     PRINT_CONSTANT(GDK_KEY_circle);
     PRINT_CONSTANT(GDK_KEY_club);
     PRINT_CONSTANT(GDK_KEY_colon);
+    PRINT_CONSTANT(GDK_KEY_combining_acute);
+    PRINT_CONSTANT(GDK_KEY_combining_belowdot);
+    PRINT_CONSTANT(GDK_KEY_combining_grave);
+    PRINT_CONSTANT(GDK_KEY_combining_hook);
+    PRINT_CONSTANT(GDK_KEY_combining_tilde);
     PRINT_CONSTANT(GDK_KEY_comma);
     PRINT_CONSTANT(GDK_KEY_containsas);
     PRINT_CONSTANT(GDK_KEY_copyright);
@@ -1884,6 +1891,7 @@ int main() {
     PRINT_CONSTANT(GDK_KEY_dead_E);
     PRINT_CONSTANT(GDK_KEY_dead_I);
     PRINT_CONSTANT(GDK_KEY_dead_O);
+    PRINT_CONSTANT(GDK_KEY_dead_SCHWA);
     PRINT_CONSTANT(GDK_KEY_dead_U);
     PRINT_CONSTANT(GDK_KEY_dead_a);
     PRINT_CONSTANT(GDK_KEY_dead_abovecomma);
@@ -1914,6 +1922,7 @@ int main() {
     PRINT_CONSTANT(GDK_KEY_dead_e);
     PRINT_CONSTANT(GDK_KEY_dead_grave);
     PRINT_CONSTANT(GDK_KEY_dead_greek);
+    PRINT_CONSTANT(GDK_KEY_dead_hamza);
     PRINT_CONSTANT(GDK_KEY_dead_hook);
     PRINT_CONSTANT(GDK_KEY_dead_horn);
     PRINT_CONSTANT(GDK_KEY_dead_i);
@@ -1926,6 +1935,7 @@ int main() {
     PRINT_CONSTANT(GDK_KEY_dead_ogonek);
     PRINT_CONSTANT(GDK_KEY_dead_perispomeni);
     PRINT_CONSTANT(GDK_KEY_dead_psili);
+    PRINT_CONSTANT(GDK_KEY_dead_schwa);
     PRINT_CONSTANT(GDK_KEY_dead_semivoiced_sound);
     PRINT_CONSTANT(GDK_KEY_dead_small_schwa);
     PRINT_CONSTANT(GDK_KEY_dead_stroke);
@@ -2020,6 +2030,8 @@ int main() {
     PRINT_CONSTANT(GDK_KEY_grave);
     PRINT_CONSTANT(GDK_KEY_greater);
     PRINT_CONSTANT(GDK_KEY_greaterthanequal);
+    PRINT_CONSTANT(GDK_KEY_guillemetleft);
+    PRINT_CONSTANT(GDK_KEY_guillemetright);
     PRINT_CONSTANT(GDK_KEY_guillemotleft);
     PRINT_CONSTANT(GDK_KEY_guillemotright);
     PRINT_CONSTANT(GDK_KEY_h);
@@ -2263,6 +2275,7 @@ int main() {
     PRINT_CONSTANT(GDK_KEY_opentribulletdown);
     PRINT_CONSTANT(GDK_KEY_opentribulletup);
     PRINT_CONSTANT(GDK_KEY_ordfeminine);
+    PRINT_CONSTANT(GDK_KEY_ordmasculine);
     PRINT_CONSTANT(GDK_KEY_oslash);
     PRINT_CONSTANT(GDK_KEY_otilde);
     PRINT_CONSTANT(GDK_KEY_overbar);
