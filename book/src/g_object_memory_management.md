@@ -154,7 +154,7 @@ We need a data type with interior mutability like [`std::cell::Cell`](https://do
 > For other objects, [`RefCell`](https://doc.rust-lang.org/std/cell/struct.RefCell.html) is the way to go.
 > You can learn more about interior mutability in this [section](https://marabos.nl/atomics/basics.html#interior-mutability) of the book _Rust Atomics and Locks_.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_memory_management/2/main.rs">listings/g_object_memory_management/1/main.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/g_object_memory_management/2/main.rs">listings/g_object_memory_management/1/main.rs</a>
 
 ```rust
 {{#rustdoc_include ../listings/g_object_memory_management/1/main.rs:build_ui}}
@@ -170,7 +170,7 @@ If we want to modify the content of our [`Rc`](https://doc.rust-lang.org/std/rc/
 we can again use the [`Cell`](https://doc.rust-lang.org/std/cell/struct.Cell.html) type.
 
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_memory_management/2/main.rs">listings/g_object_memory_management/2/main.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/g_object_memory_management/2/main.rs">listings/g_object_memory_management/2/main.rs</a>
 
 ```rust
 {{#rustdoc_include ../listings/g_object_memory_management/2/main.rs:callback}}
@@ -179,7 +179,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 It is not very nice though to fill the scope with temporary variables like `number_copy`.
 We can improve that by using the [`glib::clone!`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/macro.clone.html) macro.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_memory_management/3/main.rs">listings/g_object_memory_management/3/main.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/g_object_memory_management/3/main.rs">listings/g_object_memory_management/3/main.rs</a>
 
 ```rust
 {{#rustdoc_include ../listings/g_object_memory_management/3/main.rs:callback}}
@@ -188,7 +188,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 Just like `Rc<Cell<T>>`, GObjects are reference-counted and mutable.
 Therefore, we can pass the buttons the same way to the closure as we did with `number`.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_memory_management/4/main.rs">listings/g_object_memory_management/4/main.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/g_object_memory_management/4/main.rs">listings/g_object_memory_management/4/main.rs</a>
 
 ```rust
 {{#rustdoc_include ../listings/g_object_memory_management/4/main.rs:callback}}
@@ -205,7 +205,7 @@ If this chain leads to a circle, none of the values in this cycle ever get deall
 With weak references we can break this cycle, because they don't keep their value alive but instead provide a way to retrieve a strong reference if the value is still alive.
 Since we want our apps to free unneeded memory, we should use weak references for the buttons instead.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_memory_management/5/main.rs">listings/g_object_memory_management/5/main.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/g_object_memory_management/5/main.rs">listings/g_object_memory_management/5/main.rs</a>
 
 ```rust
 {{#rustdoc_include ../listings/g_object_memory_management/5/main.rs:callback}}
@@ -222,7 +222,7 @@ If we had moved weak references in both closures, nothing would have kept `numbe
 Thinking about this, `button_increase` and `button_decrease` are also dropped at the end of the scope of `build_ui`.
 Who then keeps the buttons alive?
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_memory_management/5/main.rs">listings/g_object_memory_management/5/main.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/g_object_memory_management/5/main.rs">listings/g_object_memory_management/5/main.rs</a>
 
 ```rust
 {{#rustdoc_include ../listings/g_object_memory_management/5/main.rs:box_append}}
@@ -230,7 +230,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 
 When we append the buttons to the `gtk_box`, `gtk_box` keeps a strong reference to them.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_memory_management/5/main.rs">listings/g_object_memory_management/5/main.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/g_object_memory_management/5/main.rs">listings/g_object_memory_management/5/main.rs</a>
 
 ```rust
 {{#rustdoc_include ../listings/g_object_memory_management/5/main.rs:window_child}}

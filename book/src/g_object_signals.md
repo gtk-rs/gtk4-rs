@@ -7,7 +7,7 @@ The signal then takes care that all the registered callbacks will be executed.
 `gtk-rs` provides convenience methods for registering callbacks.
 In our "Hello World" example we [connected](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/prelude/trait.ButtonExt.html#tymethod.connect_clicked) the "clicked" signal to a closure which sets the label of the button to "Hello World" as soon as it gets called.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/hello_world/3/main.rs">listings/hello_world/3/main.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/hello_world/3/main.rs">listings/hello_world/3/main.rs</a>
 
 ```rust
 {{#rustdoc_include ../listings/hello_world/3/main.rs:callback}}
@@ -15,7 +15,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 
 If we wanted to, we could have connected to it with the generic [`connect_closure`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/object/trait.ObjectExt.html#tymethod.connect_closure) method and the [`glib::closure_local!`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/macro.closure_local.html) macro.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_signals/1/main.rs">listings/g_object_signals/1/main.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/g_object_signals/1/main.rs">listings/g_object_signals/1/main.rs</a>
 
 ```rust
 {{#rustdoc_include ../listings/g_object_signals/1/main.rs:callback}}
@@ -34,7 +34,7 @@ First we override the `signals` method in `ObjectImpl`.
 In order to do that, we need to lazily initialize a static item `SIGNALS`.
 [`std::sync::OnceLock`](https://doc.rust-lang.org/std/sync/struct.OnceLock.html) ensures that `SIGNALS` will only be initialized once.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_signals/2/custom_button/imp.rs">listings/g_object_signals/2/custom_button/imp.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/g_object_signals/2/custom_button/imp.rs">listings/g_object_signals/2/custom_button/imp.rs</a>
 
 ```rust
 {{#rustdoc_include ../listings/g_object_signals/2/custom_button/imp.rs:object_impl}}
@@ -49,7 +49,7 @@ We want the signal to be emitted, whenever `number` reaches `MAX_NUMBER`.
 Together with the signal we send the value `number` currently holds.
 After we did that, we set `number` back to 0.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_signals/2/custom_button/imp.rs">listings/g_object_signals/2/custom_button/imp.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/g_object_signals/2/custom_button/imp.rs">listings/g_object_signals/2/custom_button/imp.rs</a>
 
 ```rust
 {{#rustdoc_include ../listings/g_object_signals/2/custom_button/imp.rs:button_impl}}
@@ -59,7 +59,7 @@ If we now press on the button, the number of its label increases until it reache
 Then it emits the "max-number-reached" signal which we can nicely connect to.
 Whenever we now receive the "max-number-reached" signal, the accompanying number is printed to [standard output](https://en.wikipedia.org/wiki/Standard_streams#Standard_output_(stdout)).
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_signals/2/main.rs">listings/g_object_signals/2/main.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/g_object_signals/2/main.rs">listings/g_object_signals/2/main.rs</a>
 
 ```rust
 {{#rustdoc_include ../listings/g_object_signals/2/main.rs:signal_handling}}

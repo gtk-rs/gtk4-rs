@@ -6,7 +6,7 @@ Let's learn how to use [`gio::Settings`](https://gtk-rs.org/gtk-rs-core/stable/l
 
 At the very beginning we have to create a `GSchema` xml file in order to describe the kind of data our application plans to store in the settings.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/settings/1/org.gtk_rs.Settings1.gschema.xml">listings/settings/1/org.gtk_rs.Settings1.gschema.xml</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/settings/1/org.gtk_rs.Settings1.gschema.xml">listings/settings/1/org.gtk_rs.Settings1.gschema.xml</a>
 
 ```xml
 {{#rustdoc_include ../listings/settings/1/org.gtk_rs.Settings1.gschema.xml}}
@@ -14,7 +14,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 Let's get through it step by step.
 The `id` is the same application id we used when we created our application.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/settings/1/main.rs">listings/settings/1/main.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/settings/1/main.rs">listings/settings/1/main.rs</a>
 
 ```rust
 {{#rustdoc_include ../listings/settings/1/main.rs:application}}
@@ -45,7 +45,7 @@ Now we need to copy and compile the schema.
 
 We initialize the `Settings` object by specifying the application id.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/settings/1/main.rs">listings/settings/1/main.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/settings/1/main.rs">listings/settings/1/main.rs</a>
 
 ```rust
 {{#rustdoc_include ../listings/settings/1/main.rs:settings}}
@@ -53,7 +53,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 
 Then we get the settings key and use it when we create our `Switch`.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/settings/1/main.rs">listings/settings/1/main.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/settings/1/main.rs">listings/settings/1/main.rs</a>
 
 ```rust
 {{#rustdoc_include ../listings/settings/1/main.rs:switch}}
@@ -61,7 +61,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 
 Finally, we assure that the switch state is stored in the settings whenever we click on it.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/settings/1/main.rs">listings/settings/1/main.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/settings/1/main.rs">listings/settings/1/main.rs</a>
 
 ```rust
 {{#rustdoc_include ../listings/settings/1/main.rs:connect_state_set}}
@@ -81,7 +81,7 @@ So let's do exactly that.
 
 We can remove the [`boolean`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/prelude/trait.SettingsExt.html#tymethod.boolean) call before initializing the `Switch` as well as the [`connect_state_set`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.Switch.html#method.connect_state_set) call.
 We then bind the setting to the property by specifying the key, object and name of the property.
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/settings/2/main.rs">listings/settings/2/main.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/settings/2/main.rs">listings/settings/2/main.rs</a>
 
 ```rust
 {{#rustdoc_include ../listings/settings/2/main.rs:settings_bind}}

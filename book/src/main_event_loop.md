@@ -15,7 +15,7 @@ However, you surely saw GUIs that became unresponsive, at least for a few second
 That happens when a single task takes too long.
 The following example uses [`std::thread::sleep`](https://doc.rust-lang.org/std/thread/fn.sleep.html) to represent a long-running task.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/main_event_loop/1/main.rs">listings/main_event_loop/1/main.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/main_event_loop/1/main.rs">listings/main_event_loop/1/main.rs</a>
 
 ```rust
 {{#rustdoc_include ../listings/main_event_loop/1/main.rs}}
@@ -39,7 +39,7 @@ but frequently, we want to run a slightly longer operation in one go.
 
 In order to avoid blocking the main loop, we can spawn a new task with [`gio::spawn_blocking`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/fn.spawn_blocking.html) and let the operation run on the thread pool.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/main_event_loop/2/main.rs">listings/main_event_loop/2/main.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/main_event_loop/2/main.rs">listings/main_event_loop/2/main.rs</a>
 
 ```rust
 {{#rustdoc_include ../listings/main_event_loop/2/main.rs:callback}}
@@ -83,7 +83,7 @@ This `async` block is spawned on the `glib` main loop with [`spawn_future_local`
 
 > See also [`spawn_future`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/fn.spawn_future.html) for spawning async blocks on the main loop from outside the main thread.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/main_event_loop/3/main.rs">listings/main_event_loop/3/main.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/main_event_loop/3/main.rs">listings/main_event_loop/3/main.rs</a>
 
 ```rust
 {{#rustdoc_include ../listings/main_event_loop/3/main.rs:callback}}
@@ -105,7 +105,7 @@ Let's try [`glib::timeout_future_seconds`](https://gtk-rs.org/gtk-rs-core/stable
 It returns a [`std::future::Future`](https://doc.rust-lang.org/std/future/trait.Future.html), which means we can `await` on it within an `async` context.
 The converted code looks and behaves very similar to the multithreaded code.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/main_event_loop/4/main.rs">listings/main_event_loop/4/main.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/main_event_loop/4/main.rs">listings/main_event_loop/4/main.rs</a>
 
 ```rust
 {{#rustdoc_include ../listings/main_event_loop/4/main.rs:callback}}
@@ -113,7 +113,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 
 Since we are single-threaded again, we can even get rid of the channel while achieving the same result.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/main_event_loop/5/main.rs">listings/main_event_loop/5/main.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/main_event_loop/5/main.rs">listings/main_event_loop/5/main.rs</a>
 
 ```rust
 {{#rustdoc_include ../listings/main_event_loop/5/main.rs:callback}}
@@ -202,7 +202,7 @@ In the following listing, we want to execute a synchronous function that returns
 In order to integrate it in our `async` block, we run the function in a separate thread via `spawn_blocking`.
 We can then get the return value of the function by calling `await` on the return value of `spawn_blocking`.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/main_event_loop/6/main.rs">listings/main_event_loop/6/main.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/main_event_loop/6/main.rs">listings/main_event_loop/6/main.rs</a>
 
 ```rust
 {{#rustdoc_include ../listings/main_event_loop/6/main.rs:callback}}
@@ -226,7 +226,7 @@ We are getting a [`gtk::Native`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/g
 
 > We need to pass the `WindowIdentifier` to make the dialog modal. This means that it will be on top of the window and freezes the rest of the application from user input.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/main_event_loop/7/main.rs">listings/main_event_loop/7/main.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/main_event_loop/7/main.rs">listings/main_event_loop/7/main.rs</a>
 
 ```rust
 {{#rustdoc_include ../listings/main_event_loop/7/main.rs:callback}}
@@ -251,7 +251,7 @@ cargo add reqwest@0.12 --features rustls-tls --no-default-features
 As soon as the button is pressed, we want to send a `GET` request to [www.gtk-rs.org](https://www.gtk-rs.org).
 The response should then be sent to the main thread via a channel.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/main_event_loop/8/main.rs">listings/main_event_loop/8/main.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/main_event_loop/8/main.rs">listings/main_event_loop/8/main.rs</a>
 
 ```rust
 {{#rustdoc_include ../listings/main_event_loop/8/main.rs:callback}}
@@ -363,7 +363,7 @@ We could follow the advice directly, but the standard library also provides solu
 With [`std::sync::OnceLock`](https://doc.rust-lang.org/stable/std/sync/struct.OnceLock.html) we can initialize the static with the const function `OnceLock::new()` and initialize it the first time our function `runtime` is called.
 
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/main_event_loop/9/main.rs">listings/main_event_loop/9/main.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/main_event_loop/9/main.rs">listings/main_event_loop/9/main.rs</a>
 
 ```rust
 {{#rustdoc_include ../listings/main_event_loop/9/main.rs:tokio_runtime}}
@@ -371,7 +371,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 
 In the button callback we can now spawn the `reqwest` `async` block with `tokio` rather than with `glib`.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/main_event_loop/9/main.rs">listings/main_event_loop/9/main.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/main_event_loop/9/main.rs">listings/main_event_loop/9/main.rs</a>
 
 ```rust
 {{#rustdoc_include ../listings/main_event_loop/9/main.rs:callback}}

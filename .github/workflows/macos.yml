@@ -2,7 +2,7 @@ name: macOS
 
 on:
   push:
-    branches: [master]
+    branches: [main]
     paths:
       - ".github/workflows/macos.yml"
       - "gdk4/**"
