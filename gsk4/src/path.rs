@@ -11,7 +11,7 @@ impl Path {
         flags: PathForeachFlags,
         func: P,
     ) -> glib::ControlFlow {
-        let func_data: P = func;
+        let mut func_data: P = func;
         unsafe extern "C" fn func_func<
             P: FnMut(&PathOperation, &graphene::Point, usize, f32) -> glib::ControlFlow,
         >(
@@ -23,17 +23,17 @@ impl Path {
         ) -> glib::ffi::gboolean {
             let op = from_glib(op);
             let pts = from_glib_borrow(pts);
-            let callback: *mut P = user_data as *const _ as usize as *mut P;
+            let callback = user_data as *mut P;
             (*callback)(&op, &pts, n_pts, weight).into_glib()
         }
         let func = Some(func_func::<P> as _);
-        let super_callback0: &P = &func_data;
+        let super_callback0: &mut P = &mut func_data;
         unsafe {
             from_glib(ffi::gsk_path_foreach(
                 self.to_glib_none().0,
                 flags.into_glib(),
                 func,
-                super_callback0 as *const _ as usize as *mut _,
+                super_callback0 as *mut _ as *mut _,
             ))
         }
     }
