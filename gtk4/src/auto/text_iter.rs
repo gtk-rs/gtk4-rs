@@ -64,7 +64,7 @@ impl TextIter {
         pred: P,
         limit: Option<&TextIter>,
     ) -> bool {
-        let pred_data: P = pred;
+        let mut pred_data: P = pred;
         unsafe extern "C" fn pred_func<P: FnMut(char) -> bool>(
             ch: u32,
             user_data: glib::ffi::gpointer,
@@ -75,12 +75,12 @@ impl TextIter {
             (*callback)(ch).into_glib()
         }
         let pred = Some(pred_func::<P> as _);
-        let super_callback0: &P = &pred_data;
+        let super_callback0: &mut P = &mut pred_data;
         unsafe {
             from_glib(ffi::gtk_text_iter_backward_find_char(
                 self.to_glib_none_mut().0,
                 pred,
-                super_callback0 as *const _ as *mut _,
+                super_callback0 as *mut _ as *mut _,
                 limit.to_glib_none().0,
             ))
         }
@@ -332,7 +332,7 @@ impl TextIter {
         pred: P,
         limit: Option<&TextIter>,
     ) -> bool {
-        let pred_data: P = pred;
+        let mut pred_data: P = pred;
         unsafe extern "C" fn pred_func<P: FnMut(char) -> bool>(
             ch: u32,
             user_data: glib::ffi::gpointer,
@@ -343,12 +343,12 @@ impl TextIter {
             (*callback)(ch).into_glib()
         }
         let pred = Some(pred_func::<P> as _);
-        let super_callback0: &P = &pred_data;
+        let super_callback0: &mut P = &mut pred_data;
         unsafe {
             from_glib(ffi::gtk_text_iter_forward_find_char(
                 self.to_glib_none_mut().0,
                 pred,
-                super_callback0 as *const _ as *mut _,
+                super_callback0 as *mut _ as *mut _,
                 limit.to_glib_none().0,
             ))
         }

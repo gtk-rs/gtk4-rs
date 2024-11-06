@@ -83,7 +83,7 @@ impl PrintSettings {
 
     #[doc(alias = "gtk_print_settings_foreach")]
     pub fn foreach<P: FnMut(&str, &str)>(&self, func: P) {
-        let func_data: P = func;
+        let mut func_data: P = func;
         unsafe extern "C" fn func_func<P: FnMut(&str, &str)>(
             key: *const std::ffi::c_char,
             value: *const std::ffi::c_char,
@@ -95,12 +95,12 @@ impl PrintSettings {
             (*callback)(key.as_str(), value.as_str())
         }
         let func = Some(func_func::<P> as _);
-        let super_callback0: &P = &func_data;
+        let super_callback0: &mut P = &mut func_data;
         unsafe {
             ffi::gtk_print_settings_foreach(
                 self.to_glib_none().0,
                 func,
-                super_callback0 as *const _ as *mut _,
+                super_callback0 as *mut _ as *mut _,
             );
         }
     }

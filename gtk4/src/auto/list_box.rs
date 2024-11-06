@@ -245,7 +245,7 @@ impl ListBox {
 
     #[doc(alias = "gtk_list_box_selected_foreach")]
     pub fn selected_foreach<P: FnMut(&ListBox, &ListBoxRow)>(&self, func: P) {
-        let func_data: P = func;
+        let mut func_data: P = func;
         unsafe extern "C" fn func_func<P: FnMut(&ListBox, &ListBoxRow)>(
             box_: *mut ffi::GtkListBox,
             row: *mut ffi::GtkListBoxRow,
@@ -257,12 +257,12 @@ impl ListBox {
             (*callback)(&box_, &row)
         }
         let func = Some(func_func::<P> as _);
-        let super_callback0: &P = &func_data;
+        let super_callback0: &mut P = &mut func_data;
         unsafe {
             ffi::gtk_list_box_selected_foreach(
                 self.to_glib_none().0,
                 func,
-                super_callback0 as *const _ as *mut _,
+                super_callback0 as *mut _ as *mut _,
             );
         }
     }

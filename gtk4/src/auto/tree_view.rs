@@ -1228,7 +1228,7 @@ pub trait TreeViewExt: IsA<TreeView> + 'static {
     #[allow(deprecated)]
     #[doc(alias = "gtk_tree_view_map_expanded_rows")]
     fn map_expanded_rows<P: FnMut(&TreeView, &TreePath)>(&self, func: P) {
-        let func_data: P = func;
+        let mut func_data: P = func;
         unsafe extern "C" fn func_func<P: FnMut(&TreeView, &TreePath)>(
             tree_view: *mut ffi::GtkTreeView,
             path: *mut ffi::GtkTreePath,
@@ -1240,12 +1240,12 @@ pub trait TreeViewExt: IsA<TreeView> + 'static {
             (*callback)(&tree_view, &path)
         }
         let func = Some(func_func::<P> as _);
-        let super_callback0: &P = &func_data;
+        let super_callback0: &mut P = &mut func_data;
         unsafe {
             ffi::gtk_tree_view_map_expanded_rows(
                 self.as_ref().to_glib_none().0,
                 func,
-                super_callback0 as *const _ as *mut _,
+                super_callback0 as *mut _ as *mut _,
             );
         }
     }
