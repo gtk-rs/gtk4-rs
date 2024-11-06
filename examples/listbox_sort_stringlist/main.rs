@@ -18,7 +18,7 @@ fn main() -> glib::ExitCode {
 fn build_ui(application: &gtk::Application) {
     let window = gtk::ApplicationWindow::builder()
         .default_width(320)
-        .default_height(480)
+        .default_height(200)
         .application(application)
         .title("Sorted StringList")
         .build();
@@ -70,12 +70,51 @@ fn build_ui(application: &gtk::Application) {
 
     let scrolled_window = gtk::ScrolledWindow::builder()
         .hscrollbar_policy(gtk::PolicyType::Never) // Disable horizontal scrolling
-        .min_content_height(480)
+        .min_content_height(200)
         .min_content_width(360)
         .build();
 
     scrolled_window.set_child(Some(&listbox));
 
+    let hbox = gtk::Box::new(gtk::Orientation::Horizontal, 5);
+    // Via the delete button we delete the item from the model that
+    // is at the index of the selected row. Also deleting from the
+    // model is immediately reflected in the listbox.
+    let delete_button = gtk::Button::with_label("Delete");
+    delete_button.connect_clicked(clone!(
+        #[weak]
+        model,
+        #[weak]
+        sort_model,
+        #[weak]
+        listbox,
+        move |_| {
+            if let Some(selected) = listbox.selected_row() {
+                // Find the selected object in the sort_model.
+                let idx = selected.index(); 
+                if let Some(selected_item) = sort_model.item(idx as u32) {
+                    let mut selected_index = None;
+                    // Find the position in the StringList model of the selected_item
+                    for ind in 0..model.n_items() {
+                        if let Some(item) = model.item(ind) {
+                            if item == selected_item {
+                                selected_index = Some(ind);
+                                break;
+                            }
+                        }
+                    }
+                    // remove item from underlying stringlist model
+                    if let Some(index) = selected_index {
+                        model.remove(index);
+                    }
+                }
+            }
+        }
+    ));
+
+    hbox.append(&delete_button);
+
+    vbox.append(&hbox);
     vbox.append(&scrolled_window);
 
     window.set_child(Some(&vbox));
