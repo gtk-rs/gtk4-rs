@@ -36,7 +36,7 @@ impl RenderNode {
         error_func: P,
     ) -> Option<Self> {
         assert_initialized_main_thread!();
-        let error_func_data: P = error_func;
+        let mut error_func_data: P = error_func;
         unsafe extern "C" fn error_func_func<
             P: FnMut(&ParseLocation, &ParseLocation, &glib::Error),
         >(
@@ -48,16 +48,16 @@ impl RenderNode {
             let start = from_glib_borrow(start);
             let end = from_glib_borrow(end);
             let error = from_glib_borrow(error);
-            let callback: *mut P = user_data as *const _ as usize as *mut P;
+            let callback = user_data as *mut P;
             (*callback)(&start, &end, &error);
         }
         let error_func = Some(error_func_func::<P> as _);
-        let super_callback0: &P = &error_func_data;
+        let super_callback0: &mut P = &mut error_func_data;
         unsafe {
             from_glib_full(ffi::gsk_render_node_deserialize(
                 bytes.to_glib_none().0,
                 error_func,
-                super_callback0 as *const _ as usize as *mut _,
+                super_callback0 as *mut _ as *mut _,
             ))
         }
     }
