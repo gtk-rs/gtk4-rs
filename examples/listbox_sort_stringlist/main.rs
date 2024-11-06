@@ -91,7 +91,7 @@ fn build_ui(application: &gtk::Application) {
         move |_| {
             if let Some(selected) = listbox.selected_row() {
                 // Find the selected object in the sort_model.
-                let idx = selected.index(); 
+                let idx = selected.index();
                 if let Some(selected_item) = sort_model.item(idx as u32) {
                     let mut selected_index = None;
                     // Find the position in the StringList model of the selected_item
