@@ -5,7 +5,8 @@ use gtk::{gio, glib, prelude::*, subclass::prelude::*};
 glib::wrapper! {
     pub struct ExApplicationWindow(ObjectSubclass<imp::ExApplicationWindow>)
         @extends gtk::Widget, gtk::Window, gtk::ApplicationWindow,
-        @implements gio::ActionMap, gio::ActionGroup;
+        @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget,
+        gtk::Native, gtk::Root, gtk::ShortcutManager, gio::ActionMap, gio::ActionGroup;
 }
 
 impl ExApplicationWindow {

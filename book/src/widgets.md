@@ -29,7 +29,7 @@ In the "Hello World" app we wanted to react to a button click.
 This behavior is specific to a button, so we expect to find a suitable method in the `ButtonExt` trait.
 And indeed, `ButtonExt` includes the method [`connect_clicked`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/prelude/trait.ButtonExt.html#tymethod.connect_clicked).
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/hello_world/3/main.rs">listings/hello_world/3/main.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/hello_world/3/main.rs">listings/hello_world/3/main.rs</a>
 
 ```rust
 {{#rustdoc_include ../listings/hello_world/3/main.rs:button}}

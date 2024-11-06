@@ -11,11 +11,11 @@ A group of crates that aims to provide complete [GTK](https://gtk.org/) 4 bindin
 
 The GTK 4 crates also depends on other libraries part of the platform like:
 
-- [GLib](https://github.com/gtk-rs/gtk-rs-core/tree/master/glib)
-- [Gio](https://github.com/gtk-rs/gtk-rs-core/tree/master/gio)
-- [Graphene](https://github.com/gtk-rs/gtk-rs-core/tree/master/graphene)
-- [Cairo](https://github.com/gtk-rs/gtk-rs-core/tree/master/cairo)
-- [Pango](https://github.com/gtk-rs/gtk-rs-core/tree/master/pango)
+- [GLib](https://github.com/gtk-rs/gtk-rs-core/tree/main/glib)
+- [Gio](https://github.com/gtk-rs/gtk-rs-core/tree/main/gio)
+- [Graphene](https://github.com/gtk-rs/gtk-rs-core/tree/main/graphene)
+- [Cairo](https://github.com/gtk-rs/gtk-rs-core/tree/main/cairo)
+- [Pango](https://github.com/gtk-rs/gtk-rs-core/tree/main/pango)
 
 Those are common with the GTK 3 and GStreamer bindings and are part of the [gtk-rs-core](https://github.com/gtk-rs/gtk-rs-core) repository.
 
@@ -27,7 +27,7 @@ Currently, the minimum supported Rust version is `1.80`.
 
 ## Documentation
 
-- [Examples](https://github.com/gtk-rs/gtk4-rs/tree/master/examples)
+- [Examples](https://github.com/gtk-rs/gtk4-rs/tree/main/examples)
 - Book [Stable](https://gtk-rs.org/gtk4-rs/stable/latest/book/)
 - The Rust API [Stable](https://gtk-rs.org/gtk4-rs/stable/latest/docs/) / [Development](https://gtk-rs.org/gtk4-rs/git/docs/)
 
@@ -75,7 +75,7 @@ The bindings are composed of two parts:
 - Automatically generated ones using [gir]
 - Manual parts
 
-The automatic ones can be generated using the [`generator.py`](https://github.com/gtk-rs/gir/blob/master/generator.py) script
+The automatic ones can be generated using the [`generator.py`](https://github.com/gtk-rs/gir/blob/main/generator.py) script
 
 ```bash
 python3 ./generator.py

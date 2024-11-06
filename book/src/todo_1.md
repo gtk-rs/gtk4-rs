@@ -13,7 +13,7 @@ Something like this:
 
 This mockup can be described by the following composite template.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/1/resources/window.ui">listings/todo/1/resources/window.ui</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/1/resources/window.ui">listings/todo/1/resources/window.ui</a>
 
 ```xml
 {{#rustdoc_include ../listings/todo/1/resources/window.ui}}
@@ -24,7 +24,7 @@ In order to use the composite template, we create a custom widget.
 The `parent` is `gtk::ApplicationWindow`, so we inherit from it.
 As usual, we have to list all [ancestors](https://docs.gtk.org/gtk4/class.ApplicationWindow.html#ancestors) and [interfaces](https://docs.gtk.org/gtk4/class.ApplicationWindow.html#implements) apart from `GObject` and `GInitiallyUnowned`.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/1/window/mod.rs">listings/todo/1/window/mod.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/1/window/mod.rs">listings/todo/1/window/mod.rs</a>
 
 ```rust
 {{#rustdoc_include ../listings/todo/1/window/mod.rs:glib_wrapper}}
@@ -36,7 +36,7 @@ This will come in handy when we later add methods to our window.
 After that, we add the typical boilerplate for initializing composite templates.
 We only have to assure that the `class` attribute of the template in `window.ui` matches `NAME`.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/1/window/imp.rs">listings/todo/1/window/imp.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/1/window/imp.rs">listings/todo/1/window/imp.rs</a>
 
 ```rust
 {{#rustdoc_include ../listings/todo/1/window/imp.rs:struct_and_subclass}}
@@ -44,7 +44,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 
 `main.rs` also does not hold any surprises for us.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/1/main.rs">listings/todo/1/main.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/1/main.rs">listings/todo/1/main.rs</a>
 
 ```rust
 {{#rustdoc_include ../listings/todo/1/main.rs:main}}
@@ -53,7 +53,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 Finally, we specify our resources.
 Here, they already include `task_row.ui` which we will handle later in this chapter.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/1/resources/resources.gresource.xml">listings/todo/1/resources/resources.gresource.xml</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/1/resources/resources.gresource.xml">listings/todo/1/resources/resources.gresource.xml</a>
 
 ```xml
 {{#rustdoc_include ../listings/todo/1/resources/resources.gresource.xml}}
@@ -76,7 +76,7 @@ This object will store the state of the task consisting of:
 - a boolean describing whether the task is completed or not, and
 - a string holding the task name.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/1/task_object/mod.rs">listings/todo/1/task_object/mod.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/1/task_object/mod.rs">listings/todo/1/task_object/mod.rs</a>
 
 ```rust
 {{#rustdoc_include ../listings/todo/1/task_object/mod.rs:glib_wrapper_and_new}}
@@ -85,7 +85,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 Unlike the lists chapter, the state is stored in a struct rather than in individual members of `imp::TaskObject`.
 This will be very convenient when saving the state in one of the following chapters.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/1/task_object/mod.rs">listings/todo/1/task_object/mod.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/1/task_object/mod.rs">listings/todo/1/task_object/mod.rs</a>
 
 ```rust
 {{#rustdoc_include ../listings/todo/1/task_object/mod.rs:task_data}}
@@ -95,7 +95,7 @@ We are going to expose `completed` and `content` as properties.
 Since the data is now inside a struct rather than individual member variables we have to add more annotations.
 For each property we additionally specify the name, the type and which member variable of `TaskData` we want to access.  
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/1/task_object/imp.rs">listings/todo/1/task_object/imp.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/1/task_object/imp.rs">listings/todo/1/task_object/imp.rs</a>
 
 ```rust
 {{#rustdoc_include ../listings/todo/1/task_object/imp.rs:struct_and_subclass}}
@@ -112,7 +112,7 @@ The row of a task should look like this:
 Again, we describe the mockup with a composite template.
 
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/1/resources/task_row.ui">listings/todo/1/resources/task_row.ui</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/1/resources/task_row.ui">listings/todo/1/resources/task_row.ui</a>
 
 ```xml
 {{#rustdoc_include ../listings/todo/1/resources/task_row.ui}}
@@ -120,7 +120,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 
 In the code, we [derive](https://docs.gtk.org/gtk4/class.Box.html#hierarchy) `TaskRow` from `gtk:Box`:
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/1/task_row/mod.rs">listings/todo/1/task_row/mod.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/1/task_row/mod.rs">listings/todo/1/task_row/mod.rs</a>
 
 ```rust
 {{#rustdoc_include ../listings/todo/1/task_row/mod.rs:glib_wrapper}}
@@ -131,7 +131,7 @@ We also store a mutable vector of bindings.
 Why we need that will become clear as soon as we get to bind the state of `TaskObject` to the corresponding `TaskRow`.
 
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/1/task_row/imp.rs">listings/todo/1/task_row/imp.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/1/task_row/imp.rs">listings/todo/1/task_row/imp.rs</a>
 
 ```rust
 {{#rustdoc_include ../listings/todo/1/task_row/imp.rs:struct_and_subclass}}
@@ -140,7 +140,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 Now we can bring everything together.
 We override the `imp::Window::constructed` in order to set up window contents at the time of its construction.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/1/window/imp.rs">listings/todo/1/window/imp.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/1/window/imp.rs">listings/todo/1/window/imp.rs</a>
 
 ```rust
 {{#rustdoc_include ../listings/todo/1/window/imp.rs:constructed}}
@@ -150,7 +150,7 @@ Since we need to access the list model quite often, we add the convenience metho
 In `Window::setup_tasks` we create a new model.
 Then we store a reference to the model in `imp::Window` as well as in `gtk::ListView`.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/1/window/mod.rs">listings/todo/1/window/mod.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/1/window/mod.rs">listings/todo/1/window/mod.rs</a>
 
 ```rust
 {{#rustdoc_include ../listings/todo/1/window/mod.rs:tasks}}
@@ -158,7 +158,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 
 We also create a method `new_task` which takes the content of the entry, clears the entry and uses the content to create a new task.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/1/window/mod.rs">listings/todo/1/window/mod.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/1/window/mod.rs">listings/todo/1/window/mod.rs</a>
 
 ```rust
 {{#rustdoc_include ../listings/todo/1/window/mod.rs:new_task}}
@@ -169,7 +169,7 @@ This signal is triggered when we press the enter key in the entry.
 Then a new `TaskObject` with the content will be created and appended to the model.
 Finally, the entry will be cleared.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/1/window/mod.rs">listings/todo/1/window/mod.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/1/window/mod.rs">listings/todo/1/window/mod.rs</a>
 
 ```rust
 {{#rustdoc_include ../listings/todo/1/window/mod.rs:setup_callbacks}}
@@ -187,7 +187,7 @@ We will need to unbind them manually when they are no longer needed.
 
 We will create empty `TaskRow` objects in the "setup" step in `Window::setup_factory` and deal with binding in the "bind" and "unbind" steps.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/1/window/mod.rs">listings/todo/1/window/mod.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/1/window/mod.rs">listings/todo/1/window/mod.rs</a>
 
 ```rust
 {{#rustdoc_include ../listings/todo/1/window/mod.rs:setup_factory}}
@@ -199,7 +199,7 @@ This is necessary because a `TaskRow` will be reused as you scroll through the l
 That means that over time a `TaskRow` will need to bound to a new `TaskObject` and has to be unbound from the old one.
 Unbinding will only work if it can access the stored [`glib::Binding`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/struct.Binding.html).
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/1/task_row/mod.rs">listings/todo/1/task_row/mod.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/1/task_row/mod.rs">listings/todo/1/task_row/mod.rs</a>
 
 ```rust
 {{#rustdoc_include ../listings/todo/1/task_row/mod.rs:bind}}
@@ -209,7 +209,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 It iterates through the vector and unbinds each binding.
 In the end, it clears the vector.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/1/task_row/mod.rs">listings/todo/1/task_row/mod.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/1/task_row/mod.rs">listings/todo/1/task_row/mod.rs</a>
 
 ```rust
 {{#rustdoc_include ../listings/todo/1/task_row/mod.rs:unbind}}

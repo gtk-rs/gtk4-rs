@@ -39,12 +39,16 @@ In project chapters, we will build small programs together, applying what you've
 
 The book strives to explain essential GTK concepts paired with practical examples.
 However, if a concept can be better conveyed with a less practical example, we took this path most of the time.
-If you are interested in contained and useful examples, we refer you to the corresponding section of `gtk4-rs`' [repository](https://github.com/gtk-rs/gtk4-rs/tree/master/examples).
+If you are interested in contained and useful examples, we refer you to the corresponding section of `gtk4-rs`' [repository](https://github.com/gtk-rs/gtk4-rs/tree/main/examples).
 
 Every valid code snippet in the book is part of a listing.
-Like the examples, the listings be found in the [repository](https://github.com/gtk-rs/gtk4-rs/tree/master/book/listings) of `gtk4-rs`.
+Like the examples, the listings be found in the [repository](https://github.com/gtk-rs/gtk4-rs/tree/main/book/listings) of `gtk4-rs`.
+
+## Translations
+
+This book has been translated to Chinese by 陈竞阁 and is served under the following [website](https://mario-hero.github.io/gtk-book-zh_cn/).
 
 ## License
 
 The book itself is licensed under the [Creative Commons Attribution 4.0 International license](https://creativecommons.org/licenses/by/4.0/).
-The only exception are the code snippets which are licensed under the [MIT license](https://github.com/gtk-rs/gtk4-rs/blob/master/README.md).
+The only exception are the code snippets which are licensed under the [MIT license](https://github.com/gtk-rs/gtk4-rs/blob/main/README.md).

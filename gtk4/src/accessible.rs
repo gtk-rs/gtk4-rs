@@ -119,7 +119,7 @@ pub enum Property<'p> {
     ValueText(&'p str),
 }
 
-impl<'p> Property<'p> {
+impl Property<'_> {
     fn to_property_value(&self) -> (AccessibleProperty, Value) {
         use Property::*;
 
@@ -161,7 +161,7 @@ pub enum Relation<'r> {
     Controls(&'r [&'r Accessible]),
     DescribedBy(&'r [&'r Accessible]),
     Details(&'r [&'r Accessible]),
-    ErrorMessage(&'r Accessible),
+    ErrorMessage(&'r [&'r Accessible]),
     FlowTo(&'r [&'r Accessible]),
     LabelledBy(&'r [&'r Accessible]),
     Owns(&'r [&'r Accessible]),
@@ -173,7 +173,7 @@ pub enum Relation<'r> {
     SetSize(i32),
 }
 
-impl<'r> Relation<'r> {
+impl Relation<'_> {
     fn to_relation_value(&self) -> (AccessibleRelation, Value) {
         use Relation::*;
 
@@ -202,7 +202,7 @@ impl<'r> Relation<'r> {
             Controls(v) => (AccessibleRelation::Controls, to_ref_list_value(v)),
             DescribedBy(v) => (AccessibleRelation::DescribedBy, to_ref_list_value(v)),
             Details(v) => (AccessibleRelation::Details, to_ref_list_value(v)),
-            ErrorMessage(v) => (AccessibleRelation::ErrorMessage, v.to_value()),
+            ErrorMessage(v) => (AccessibleRelation::ErrorMessage, to_ref_list_value(v)),
             FlowTo(v) => (AccessibleRelation::FlowTo, to_ref_list_value(v)),
             LabelledBy(v) => (AccessibleRelation::LabelledBy, to_ref_list_value(v)),
             Owns(v) => (AccessibleRelation::Owns, to_ref_list_value(v)),
@@ -301,7 +301,7 @@ mod tests {
             Relation::Controls(&[other1.upcast_ref(), other2.upcast_ref()]),
             Relation::DescribedBy(&[other1.upcast_ref(), other2.upcast_ref()]),
             Relation::Details(&[other1.upcast_ref(), other2.upcast_ref()]),
-            Relation::ErrorMessage(other1.upcast_ref()),
+            Relation::ErrorMessage(&[other1.upcast_ref()]),
             Relation::FlowTo(&[other1.upcast_ref(), other2.upcast_ref()]),
             Relation::LabelledBy(&[other1.upcast_ref(), other2.upcast_ref()]),
             Relation::Owns(&[other1.upcast_ref(), other2.upcast_ref()]),

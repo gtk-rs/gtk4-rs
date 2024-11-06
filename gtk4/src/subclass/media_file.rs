@@ -3,11 +3,14 @@
 // rustdoc-stripper-ignore-next
 //! Traits intended for subclassing [`MediaFile`].
 
+use gdk::Paintable;
 use glib::translate::*;
 
 use crate::{ffi, prelude::*, subclass::prelude::*, MediaFile};
 
-pub trait MediaFileImpl: MediaStreamImpl + ObjectSubclass<Type: IsA<MediaFile>> {
+pub trait MediaFileImpl:
+    MediaStreamImpl + ObjectSubclass<Type: IsA<MediaFile> + IsA<Paintable>>
+{
     fn close(&self) {
         self.parent_close()
     }

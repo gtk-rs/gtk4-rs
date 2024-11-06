@@ -1,6 +1,6 @@
 # Examples
 
-Consists of various examples to get familiar with writing GTK 4 applications using the Rust bindings. Note there are other examples part of [gtk-rs-core](https://github.com/gtk-rs/gtk-rs-core/tree/master/examples).
+Consists of various examples to get familiar with writing GTK 4 applications using the Rust bindings. Note there are other examples part of [gtk-rs-core](https://github.com/gtk-rs/gtk-rs-core/tree/main/examples).
 
 Each example can be run by changing the current working directory to this folder and then executing:
 
@@ -15,11 +15,15 @@ cargo run --bin basics
 ```
 
 - [Basic example](./basics/)
+- [About Dialog](./about_dialog/)
+- [Implementing the Accessible Text Interface](./accessible_text/)
 - [Using the Builder pattern](./builder_pattern/)
 - [Clipboard](./clipboard/)
 - [Clock example](./clock/)
 - [Column View Datagrid Example](./column_view_datagrid/)
+- [Composite Dialog](./composite_dialog/)
 - [Composite Template](./composite_template/)
+- [Confetti Snapshot Animation](./confetti_snapshot_animation/)
 - [Content Provider](./content_provider/)
 - [CSS](./css/)
 - [Custom Application](./custom_application/)
@@ -36,11 +40,14 @@ cargo run --bin basics
 - [FemtoVG Area](./femtovg_area/)
 - [Fill and Stroke](./fill_and_stroke/)
 - [FlowBox](./flow_box/)
+- [GIF Paintable](./gif_paintable/)
 - [Glium GL-Area](./glium_gl_area/)
 - [Grid Packing](./grid_packing)
-- [GtkBuilder example](./gtk_builder/)
+- [GtkBuilder](./gtk_builder/)
 - [ListModel: StringList with Sorter](./listbox_sort_stringlist/)
+- [ListBox and ListModel](./list_box_model/)
 - [ListView: Applications Launcher](./list_view_apps_launcher/)
+- [Menubar](./menubar/)
 - [Rotation Bin](./rotation_bin/)
 - [Scale](./scale/)
 - [Scale Bin](./scale_bin/)

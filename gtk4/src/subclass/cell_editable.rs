@@ -9,7 +9,7 @@ use crate::{ffi, prelude::*, subclass::prelude::*, CellEditable};
 
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 #[allow(deprecated)]
-pub trait CellEditableImpl: ObjectImpl + ObjectSubclass<Type: IsA<CellEditable>> {
+pub trait CellEditableImpl: WidgetImpl + ObjectSubclass<Type: IsA<CellEditable>> {
     fn editing_done(&self) {
         self.parent_editing_done()
     }

@@ -2,7 +2,7 @@ name: Windows MSVC
 
 on:
   push:
-    branches: [master]
+    branches: [main]
     paths:
       - ".github/workflows/windows-msvc.yml"
       - "gdk4/**"

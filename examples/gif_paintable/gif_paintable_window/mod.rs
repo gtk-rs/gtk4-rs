@@ -7,7 +7,8 @@ use crate::gif_paintable::GifPaintable;
 glib::wrapper! {
     pub struct GifPaintableWindow(ObjectSubclass<imp::GifPaintableWindow>)
         @extends gtk::Widget, gtk::Window, gtk::ApplicationWindow,
-        @implements gio::ActionMap, gio::ActionGroup;
+        @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget,
+        gtk::Native, gtk::Root, gtk::ShortcutManager, gio::ActionMap, gio::ActionGroup;
 }
 
 impl GifPaintableWindow {

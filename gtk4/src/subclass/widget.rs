@@ -5,12 +5,18 @@
 
 use std::{boxed::Box as Box_, collections::HashMap, fmt, future::Future};
 
-use glib::{clone::Downgrade, subclass::SignalId, translate::*, GString, Variant};
+use glib::{
+    clone::Downgrade,
+    property::{Property, PropertyGet},
+    subclass::SignalId,
+    translate::*,
+    GString, Variant,
+};
 
 use crate::{
-    ffi, prelude::*, subclass::prelude::*, AccessibleRole, BuilderRustScope, BuilderScope,
-    DirectionType, LayoutManager, Orientation, Shortcut, SizeRequestMode, Snapshot, StateFlags,
-    SystemSetting, TextDirection, Tooltip, Widget,
+    ffi, prelude::*, subclass::prelude::*, Accessible, AccessibleRole, Buildable, BuilderRustScope,
+    BuilderScope, ConstraintTarget, DirectionType, LayoutManager, Orientation, Shortcut,
+    SizeRequestMode, Snapshot, StateFlags, SystemSetting, TextDirection, Tooltip, Widget,
 };
 
 #[derive(Debug, Default)]
@@ -104,7 +110,10 @@ impl Iterator for WidgetActionIter {
 
 impl std::iter::FusedIterator for WidgetActionIter {}
 
-pub trait WidgetImpl: ObjectImpl + ObjectSubclass<Type: IsA<Widget>> {
+pub trait WidgetImpl:
+    ObjectImpl
+    + ObjectSubclass<Type: IsA<Widget> + IsA<Accessible> + IsA<Buildable> + IsA<ConstraintTarget>>
+{
     fn compute_expand(&self, hexpand: &mut bool, vexpand: &mut bool) {
         self.parent_compute_expand(hexpand, vexpand)
     }
@@ -1219,6 +1228,13 @@ where
     ptr: *mut <T as ObjectType>::GlibType,
 }
 
+impl<T: Property> Property for TemplateChild<T>
+where
+    T: ObjectType + FromGlibPtrNone<*mut <T as ObjectType>::GlibType>,
+{
+    type Value = T::Value;
+}
+
 impl<T> Default for TemplateChild<T>
 where
     T: ObjectType + FromGlibPtrNone<*mut <T as ObjectType>::GlibType>,
@@ -1232,16 +1248,14 @@ where
     }
 }
 
-impl<T> glib::HasParamSpec for TemplateChild<T>
+impl<T> PropertyGet for TemplateChild<T>
 where
-    T: ObjectType + IsA<glib::Object> + FromGlibPtrNone<*mut <T as ObjectType>::GlibType>,
+    T: Property + ObjectType + FromGlibPtrNone<*mut <T as ObjectType>::GlibType>,
 {
-    type ParamSpec = glib::ParamSpecObject;
-    type SetValue = T;
-    type BuilderFn = fn(&str) -> glib::ParamSpecObjectBuilder<T>;
+    type Value = T;
 
-    fn param_spec_builder() -> Self::BuilderFn {
-        Self::ParamSpec::builder
+    fn get<R, F: Fn(&Self::Value) -> R>(&self, f: F) -> R {
+        f(&self.get())
     }
 }
 

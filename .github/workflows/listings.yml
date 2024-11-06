@@ -6,7 +6,7 @@ on:
       - "book/listings/**"
   push:
     branches:
-      - "master"
+      - "main"
     paths:
       - "book/listings/**"
   release:

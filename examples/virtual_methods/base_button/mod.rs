@@ -11,7 +11,8 @@ pub type PinnedFuture<T> = Pin<Box<dyn Future<Output = T>>>;
 glib::wrapper! {
     /// Public type for the `BaseButton` instances.
     pub struct BaseButton(ObjectSubclass<imp::BaseButton>)
-        @extends gtk::Widget, gtk::Button;
+        @extends gtk::Widget, gtk::Button,
+        @implements gtk::Accessible, gtk::Actionable, gtk::Buildable, gtk::ConstraintTarget;
 }
 
 impl Default for BaseButton {

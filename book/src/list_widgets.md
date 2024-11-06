@@ -7,7 +7,7 @@ Sometimes you want to display a list of elements in a certain arrangement.
 Let's explore this concept by adding labels to a `ListBox`.
 Each label will display an integer starting from 0 and ranging up to 100.  
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/list_widgets/1/main.rs">listings/list_widgets/1/main.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/list_widgets/1/main.rs">listings/list_widgets/1/main.rs</a>
 
 ```rust
 {{#rustdoc_include ../listings/list_widgets/1/main.rs:list_box}}
@@ -17,7 +17,7 @@ We cannot display so many widgets at once.
 Therefore, we add `ListBox` to a [`gtk::ScrolledWindow`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.ScrolledWindow.html).
 Now we can scroll through our elements.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/list_widgets/1/main.rs">listings/list_widgets/1/main.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/list_widgets/1/main.rs">listings/list_widgets/1/main.rs</a>
 
 ```rust
 {{#rustdoc_include ../listings/list_widgets/1/main.rs:scrolled_window}}
@@ -52,7 +52,7 @@ The model is an instance of [`gio::ListStore`](https://gtk-rs.org/gtk-rs-core/st
 The main limitation here is that `gio::ListStore` only accepts GObjects.
 So let's create a custom GObject `IntegerObject` that is initialized with a number.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/list_widgets/2/integer_object/mod.rs">listings/list_widgets/2/integer_object/mod.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/list_widgets/2/integer_object/mod.rs">listings/list_widgets/2/integer_object/mod.rs</a>
 
 ```rust
 {{#rustdoc_include ../listings/list_widgets/2/integer_object/mod.rs:integer_object}}
@@ -61,7 +61,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 
 This number represents the internal state of `IntegerObject`.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/list_widgets/2/integer_object/imp.rs">listings/list_widgets/2/integer_object/imp.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/list_widgets/2/integer_object/imp.rs">listings/list_widgets/2/integer_object/imp.rs</a>
 
 ```rust
 {{#rustdoc_include ../listings/list_widgets/2/integer_object/imp.rs:integer_object}}
@@ -72,7 +72,7 @@ We now fill the model with integers from 0 to 100 000.
 Please note that models only takes care of the data.
 Neither `Label` nor any other widget is mentioned here.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/list_widgets/2/main.rs">listings/list_widgets/2/main.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/list_widgets/2/main.rs">listings/list_widgets/2/main.rs</a>
 
 ```rust
 {{#rustdoc_include ../listings/list_widgets/2/main.rs:model}}
@@ -83,7 +83,7 @@ Here, we use the [`SignalListItemFactory`](https://gtk-rs.org/gtk4-rs/stable/lat
 The "setup" signal will be emitted when new widgets have to be created.
 We connect to it to create a `Label` for every requested widget.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/list_widgets/2/main.rs">listings/list_widgets/2/main.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/list_widgets/2/main.rs">listings/list_widgets/2/main.rs</a>
 
 ```rust
 {{#rustdoc_include ../listings/list_widgets/2/main.rs:factory_setup}}
@@ -91,7 +91,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 
 In the "bind" step we bind the data in our model to the individual list items.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/list_widgets/2/main.rs">listings/list_widgets/2/main.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/list_widgets/2/main.rs">listings/list_widgets/2/main.rs</a>
 
 ```rust
 {{#rustdoc_include ../listings/list_widgets/2/main.rs:factory_bind}}
@@ -101,7 +101,7 @@ We only want single items to be selectable, so we choose [`SingleSelection`](htt
 The other options would have been [`MultiSelection`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.MultiSelection.html) or [`NoSelection`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.NoSelection.html).
 Then we pass the model and the factory to the [`ListView`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.ListView.html).
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/list_widgets/2/main.rs">listings/list_widgets/2/main.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/list_widgets/2/main.rs">listings/list_widgets/2/main.rs</a>
 
 ```rust
 {{#rustdoc_include ../listings/list_widgets/2/main.rs:selection_list}}
@@ -109,7 +109,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 
 Every `ListView` has to be a direct child of a `ScrolledWindow`, so we are adding it to one.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/list_widgets/2/main.rs">listings/list_widgets/2/main.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/list_widgets/2/main.rs">listings/list_widgets/2/main.rs</a>
 
 ```rust
 {{#rustdoc_include ../listings/list_widgets/2/main.rs:scrolled_window}}
@@ -123,7 +123,7 @@ Let's see what else we can do.
 We might want to increase the number every time we activate its row.
 For that we first add the method `increase_number` to our `IntegerObject`.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/list_widgets/3/integer_object/mod.rs">listings/list_widgets/3/integer_object/mod.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/list_widgets/3/integer_object/mod.rs">listings/list_widgets/3/integer_object/mod.rs</a>
 
 ```rust
 {{#rustdoc_include ../listings/list_widgets/3/integer_object/mod.rs:integer_object}}
@@ -131,7 +131,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 
 In order to interact with our `ListView`, we connect to its "activate" signal.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/list_widgets/3/main.rs">listings/list_widgets/3/main.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/list_widgets/3/main.rs">listings/list_widgets/3/main.rs</a>
 
 ```rust
 {{#rustdoc_include ../listings/list_widgets/3/main.rs:list_view_activate}}
@@ -142,7 +142,7 @@ the corresponding "number" property of the `IntegerObject` in the model will be 
 However, just because the `IntegerObject` has been modified the corresponding `Label` does not immediately change.
 One naive approach would be to bind the properties in the "bind" step of the `SignalListItemFactory`.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/list_widgets/3/main.rs">listings/list_widgets/3/main.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/list_widgets/3/main.rs">listings/list_widgets/3/main.rs</a>
 
 ```rust
 {{#rustdoc_include ../listings/list_widgets/3/main.rs:factory_bind}}
@@ -161,7 +161,7 @@ Situations like these are so common that GTK offers an alternative to property b
 As a first step it allows us to remove the "bind" step.
 Let's see how the "setup" step now works.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/list_widgets/4/main.rs">listings/list_widgets/4/main.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/list_widgets/4/main.rs">listings/list_widgets/4/main.rs</a>
 
 ```rust
 {{#rustdoc_include ../listings/list_widgets/4/main.rs:factory_setup}}
@@ -182,7 +182,7 @@ Let's extend our app a bit more.
 We can, for example, filter our model to only allow even numbers.
 We do that by passing it to a [`gtk::FilterListModel`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.FilterListModel.html) together with a [`gtk::CustomFilter`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.CustomFilter.html) 
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/list_widgets/5/main.rs">listings/list_widgets/5/main.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/list_widgets/5/main.rs">listings/list_widgets/5/main.rs</a>
 
 ```rust
 {{#rustdoc_include ../listings/list_widgets/5/main.rs:filter}}
@@ -191,7 +191,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 Additionally, we can reverse the order of our model.
 Now we pass the filtered model to [`gtk::SortListModel`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.SortListModel.html) together with [`gtk::CustomSorter`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.CustomSorter.html).
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/list_widgets/5/main.rs">listings/list_widgets/5/main.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/list_widgets/5/main.rs">listings/list_widgets/5/main.rs</a>
 
 ```rust
 {{#rustdoc_include ../listings/list_widgets/5/main.rs:sorter}}
@@ -199,7 +199,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 
 To ensure that our filter and sorter get updated when we modify the numbers, we call the `changed` method on them.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/list_widgets/5/main.rs">listings/list_widgets/5/main.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/list_widgets/5/main.rs">listings/list_widgets/5/main.rs</a>
 
 ```rust
 {{#rustdoc_include ../listings/list_widgets/5/main.rs:activate}}
@@ -221,7 +221,7 @@ This is why we will skip this topic here.
 
 First, we add a bunch of strings to our model.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/list_widgets/6/main.rs">listings/list_widgets/6/main.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/list_widgets/6/main.rs">listings/list_widgets/6/main.rs</a>
 
 ```rust
 {{#rustdoc_include ../listings/list_widgets/6/main.rs:string_list}}
@@ -233,7 +233,7 @@ This means we don't have to create a custom GObject for our model anymore.
 As usual, we connect the label to the list item via an expression.
 Here we can use [`StringObject`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.StringObject.html), which exposes its content via the [property "string"](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.StringObject.html#string).
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/list_widgets/6/main.rs">listings/list_widgets/6/main.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/list_widgets/6/main.rs">listings/list_widgets/6/main.rs</a>
 
 ```rust
 {{#rustdoc_include ../listings/list_widgets/6/main.rs:factory_setup}}

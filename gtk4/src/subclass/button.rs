@@ -5,9 +5,9 @@
 
 use glib::translate::*;
 
-use crate::{ffi, prelude::*, subclass::prelude::*, Button};
+use crate::{ffi, prelude::*, subclass::prelude::*, Actionable, Button};
 
-pub trait ButtonImpl: WidgetImpl + ObjectSubclass<Type: IsA<Button>> {
+pub trait ButtonImpl: WidgetImpl + ObjectSubclass<Type: IsA<Button> + IsA<Actionable>> {
     fn activate(&self) {
         self.parent_activate()
     }

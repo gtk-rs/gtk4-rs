@@ -7,7 +7,7 @@ One of its properties is called [active](https://gtk-rs.org/gtk4-rs/stable/lates
 According to the GTK docs, it can be read and be written to.
 That is why `gtk-rs` provides corresponding [`is_active`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.Switch.html#method.is_active) and [`set_active`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.Switch.html#method.set_active) methods.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_properties/1/main.rs">listings/g_object_properties/1/main.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/g_object_properties/1/main.rs">listings/g_object_properties/1/main.rs</a>
 
 ```rust
 {{#rustdoc_include ../listings/g_object_properties/1/main.rs:switch}}
@@ -16,7 +16,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 Properties can not only be accessed via getters & setters, they can also be bound to each other.
 Let's see how that would look like for two `Switch` instances.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_properties/2/main.rs">listings/g_object_properties/2/main.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/g_object_properties/2/main.rs">listings/g_object_properties/2/main.rs</a>
 
 ```rust
 {{#rustdoc_include ../listings/g_object_properties/2/main.rs:switches}}
@@ -25,7 +25,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 In our case, we want to bind the "active" property of `switch_1` to the "active" property of `switch_2`.
 We also want the binding to be bidirectional, so we specify by calling the [`bidirectional`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/object/struct.BindingBuilder.html#method.bidirectional) method.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_properties/2/main.rs">listings/g_object_properties/2/main.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/g_object_properties/2/main.rs">listings/g_object_properties/2/main.rs</a>
 
 ```rust
 {{#rustdoc_include ../listings/g_object_properties/2/main.rs:bind_active}}
@@ -49,7 +49,7 @@ We tell it that the wrapper type is `super::CustomButton`.
 We also annotate `number`, so that macro knows that it should create a property "number" that is readable and writable.
 It also generates [wrapper methods](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/derive.Properties.html#generated-wrapper-methods) which we are going to use later in this chapter.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_properties/3/custom_button/imp.rs">listings/g_object_properties/3/custom_button/imp.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/g_object_properties/3/custom_button/imp.rs">listings/g_object_properties/3/custom_button/imp.rs</a>
 
 ```rust
 {{#rustdoc_include ../listings/g_object_properties/3/custom_button/imp.rs:custom_button}}
@@ -60,7 +60,7 @@ In `constructed` we use our new property "number" by binding the "label" propert
 `bind_property` converts the integer value of "number" to the string of "label" on its own.
 Now we don't have to adapt the label in the "clicked" callback anymore.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_properties/3/custom_button/imp.rs">listings/g_object_properties/3/custom_button/imp.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/g_object_properties/3/custom_button/imp.rs">listings/g_object_properties/3/custom_button/imp.rs</a>
 
 ```rust
 {{#rustdoc_include ../listings/g_object_properties/3/custom_button/imp.rs:object_impl}}
@@ -76,7 +76,7 @@ This way the "notify" signal will be emitted, which is necessary for the binding
 
 Let's see what we can do with this by creating two custom buttons.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_properties/3/main.rs">listings/g_object_properties/3/main.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/g_object_properties/3/main.rs">listings/g_object_properties/3/main.rs</a>
 
 ```rust
 {{#rustdoc_include ../listings/g_object_properties/3/main.rs:buttons}}
@@ -85,7 +85,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 We have already seen that bound properties don't necessarily have to be of the same type.
 By leveraging [`transform_to`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/object/struct.BindingBuilder.html#method.transform_to) and [`transform_from`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/object/struct.BindingBuilder.html#method.transform_from), we can assure that `button_2` always displays a number which is 1 higher than the number of `button_1`.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_properties/3/main.rs">listings/g_object_properties/3/main.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/g_object_properties/3/main.rs">listings/g_object_properties/3/main.rs</a>
 
 ```rust
 {{#rustdoc_include ../listings/g_object_properties/3/main.rs:bind_numbers}}
@@ -102,7 +102,7 @@ Now if we click on one button, the "number" and "label" properties of the other 
 Another nice feature of properties is, that you can connect a callback to the event, when a property gets changed.
 For example like this:
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_properties/3/main.rs">listings/g_object_properties/3/main.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/g_object_properties/3/main.rs">listings/g_object_properties/3/main.rs</a>
 
 ```rust
 {{#rustdoc_include ../listings/g_object_properties/3/main.rs:connect_notify}}

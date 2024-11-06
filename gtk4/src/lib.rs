@@ -2,6 +2,7 @@
 
 #![cfg_attr(docsrs, feature(doc_cfg))]
 #![allow(deprecated)]
+#![allow(clippy::manual_c_str_literals)]
 #![doc = include_str!("../README.md")]
 
 // Re-export gtk dependencies
@@ -199,6 +200,9 @@ mod tree_view;
 mod tree_view_column;
 mod widget;
 
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+pub use accessible_text_range::AccessibleTextRange;
 pub use bitset_iter::BitsetIter;
 pub use border::Border;
 pub use builder_cscope::BuilderCScope;

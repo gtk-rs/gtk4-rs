@@ -18,7 +18,7 @@ When using `adw::ApplicationWindow` the collection view and task view have their
 
 
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/7/resources/window.ui">listings/todo/7/resources/window.ui</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/7/resources/window.ui">listings/todo/7/resources/window.ui</a>
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -74,7 +74,7 @@ We add the necessary UI elements for the collection view, such as a header bar w
 We also add the style [navigations-sidebar](https://gnome.pages.gitlab.gnome.org/libadwaita/doc/1-latest/style-classes.html#sidebars) to `collections_list`.
 
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/7/resources/window.ui">listings/todo/7/resources/window.ui</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/7/resources/window.ui">listings/todo/7/resources/window.ui</a>
 
 ```xml
 <object class="AdwNavigationPage">
@@ -110,7 +110,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 We also add a header bar to the task view.
 
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/7/resources/window.ui">listings/todo/7/resources/window.ui</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/7/resources/window.ui">listings/todo/7/resources/window.ui</a>
 
 ```xml
 <object class="AdwNavigationPage">
@@ -170,7 +170,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 We also have to adapt the window implementation.
 For example, the parent type of our window is now `adw::ApplicationWindow` instead of `gtk::ApplicationWindow`. 
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/7/window/imp.rs">listings/todo/7/window/imp.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/7/window/imp.rs">listings/todo/7/window/imp.rs</a>
 
 ```rust,no_run,noplayground
 {{#rustdoc_include ../listings/todo/7/window/imp.rs:object_subclass}}
@@ -178,7 +178,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 
 That also means that we have to implement the trait `AdwApplicationWindowImpl`.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/7/window/imp.rs">listings/todo/7/window/imp.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/7/window/imp.rs">listings/todo/7/window/imp.rs</a>
 
 ```rust,no_run,noplayground
 {{#rustdoc_include ../listings/todo/7/window/imp.rs:adw_application_window_impl}}
@@ -186,7 +186,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 
 Finally, we add `adw::ApplicationWindow` to the ancestors of `Window` in `mod.rs`.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/7/window/mod.rs">listings/todo/7/window/mod.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/7/window/mod.rs">listings/todo/7/window/mod.rs</a>
 
 ```rust,no_run,noplayground
 {{#rustdoc_include ../listings/todo/7/window/mod.rs:glib_wrapper}}
@@ -209,7 +209,7 @@ We now wrap our UI in a [`gtk::Stack`](https://gtk-rs.org/gtk4-rs/stable/latest/
 One stack page describes the placeholder page, the other describes the main page.
 We will later wire up the logic to display the correct stack page in the Rust code.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/8/resources/window.ui">listings/todo/8/resources/window.ui</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/8/resources/window.ui">listings/todo/8/resources/window.ui</a>
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -259,7 +259,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 In order to create the pageholder page as displayed before, we combine a flat header bar with [`adw::StatusPage`](https://world.pages.gitlab.gnome.org/Rust/libadwaita-rs/stable/latest/docs/libadwaita/struct.StatusPage.html).
 
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/8/resources/window.ui">listings/todo/8/resources/window.ui</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/8/resources/window.ui">listings/todo/8/resources/window.ui</a>
 
 ```xml
 <object class="GtkBox">
@@ -305,7 +305,7 @@ Just like we have already created `TaskObject`, we will now introduce `Collectio
 It will have the members `title` and `tasks`, both of which will be exposed as properties.
 As usual, the full implementation can be seen by clicking at the eye symbol at the top right of the snippet. 
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/8/collection_object/imp.rs">listings/todo/8/collection_object/imp.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/8/collection_object/imp.rs">listings/todo/8/collection_object/imp.rs</a>
 
 ```rust,no_run,noplayground
 {{#rustdoc_include ../listings/todo/8/collection_object/imp.rs:collection_object}}
@@ -313,7 +313,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 
 We also add the struct `CollectionData` to aid in serialization and deserialization.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/8/collection_object/mod.rs">listings/todo/8/collection_object/mod.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/8/collection_object/mod.rs">listings/todo/8/collection_object/mod.rs</a>
 
 ```rust,no_run,noplayground
 {{#rustdoc_include ../listings/todo/8/collection_object/mod.rs:collection_data}}
@@ -325,7 +325,7 @@ Finally, we add methods to `CollectionObject` in order to
 - convert to and from `CollectionData` with `to_collection_data` and `from_collection_data`. 
 
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/8/collection_object/mod.rs">listings/todo/8/collection_object/mod.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/8/collection_object/mod.rs">listings/todo/8/collection_object/mod.rs</a>
 
 ```rust,no_run,noplayground
 {{#rustdoc_include ../listings/todo/8/collection_object/mod.rs:impl}}
@@ -339,7 +339,7 @@ Additionally, we reference the `collections` list store, the `current_collection
 We also store `tasks_changed_handler_id`.
 Its purpose will become clear in later snippets.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/7/window/imp.rs">listings/todo/8/window/imp.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/7/window/imp.rs">listings/todo/8/window/imp.rs</a>
 
 ```rust,no_run,noplayground
 {{#rustdoc_include ../listings/todo/8/window/imp.rs:struct}}
@@ -347,7 +347,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 
 Further, we add a couple of helper methods which will come in handy later on.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/8/window/imp.rs">listings/todo/8/window/mod.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/8/window/imp.rs">listings/todo/8/window/mod.rs</a>
 
 ```rust,no_run,noplayground
 {{#rustdoc_include ../listings/todo/8/window/mod.rs:helper}}
@@ -356,7 +356,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 As always, we want our data to be saved when we close the window.
 Since most of the implementation is in the method `CollectionObject::to_collection_data`, the implementation of `close_request` doesn't change much.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/8/window/imp.rs">listings/todo/8/window/imp.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/8/window/imp.rs">listings/todo/8/window/imp.rs</a>
 
 ```rust,no_run,noplayground
 {{#rustdoc_include ../listings/todo/8/window/imp.rs:window_impl}}
@@ -365,7 +365,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 `constructed` stays mostly the same as well.
 Instead of `setup_tasks` we now call `setup_collections`.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/7/window/imp.rs">listings/todo/8/window/imp.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/7/window/imp.rs">listings/todo/8/window/imp.rs</a>
 
 ```rust,no_run,noplayground
 {{#rustdoc_include ../listings/todo/8/window/imp.rs:object_impl}}
@@ -374,7 +374,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 `setup_collections` sets up the `collections` list store as well as assuring that changes in the model will be reflected in the `collections_list`.
 To do that it uses the method `create_collection_row`.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/8/window/imp.rs">listings/todo/8/window/mod.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/8/window/imp.rs">listings/todo/8/window/mod.rs</a>
 
 ```rust,no_run,noplayground
 {{#rustdoc_include ../listings/todo/8/window/mod.rs:setup_collections}}
@@ -382,7 +382,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 
 `create_collection_row` takes a `CollectionObject` and builds a [`gtk::ListBoxRow`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.ListBoxRow.html) from its information.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/8/window/imp.rs">listings/todo/8/window/mod.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/8/window/imp.rs">listings/todo/8/window/mod.rs</a>
 
 ```rust,no_run,noplayground
 {{#rustdoc_include ../listings/todo/8/window/mod.rs:create_collection_row}}
@@ -393,7 +393,7 @@ Again, the heavy lifting comes from `CollectionObject::from_collection_data`, so
 Since the rows of `collections_list` can be selected, we have to select one of them after restoring the data.
 We choose the first one and let the method `set_current_collection` do the rest.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/8/window/imp.rs">listings/todo/8/window/mod.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/8/window/imp.rs">listings/todo/8/window/mod.rs</a>
 
 ```rust,no_run,noplayground
 {{#rustdoc_include ../listings/todo/8/window/mod.rs:restore_data}}
@@ -407,7 +407,7 @@ However, we don't want to accumulate signal handlers whenever we switch collecti
 This is why we store the `tasks_changed_handler_id` and disconnect the old handler as soon as we set a new collection.
 Finally, we select the collection row.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/8/window/imp.rs">listings/todo/8/window/mod.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/8/window/imp.rs">listings/todo/8/window/mod.rs</a>
 
 ```rust,no_run,noplayground
 {{#rustdoc_include ../listings/todo/8/window/mod.rs:set_current_collection}}
@@ -416,7 +416,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 Previously, we used the method `set_task_list_visible`.
 It assures that `tasks_list` is only visible if the number of tasks is greater than 0.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/8/window/imp.rs">listings/todo/8/window/mod.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/8/window/imp.rs">listings/todo/8/window/mod.rs</a>
 
 ```rust,no_run,noplayground
 {{#rustdoc_include ../listings/todo/8/window/mod.rs:set_task_list_visible}}
@@ -424,7 +424,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 
 `select_collection_row` assures that the row for the current collection is selected in `collections_list`.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/8/window/imp.rs">listings/todo/8/window/mod.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/8/window/imp.rs">listings/todo/8/window/mod.rs</a>
 
 ```rust,no_run,noplayground
 {{#rustdoc_include ../listings/todo/8/window/mod.rs:select_collection_row}}
@@ -455,7 +455,7 @@ This action will be activated by a click on the `+` button as well as on the but
 We are using [`install_action_async`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/subclass/widget/trait.WidgetClassExt.html#method.install_action_async).
 It is a convenient way to add asynchronous actions to subclassed widgets. 
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/8/window/imp.rs">listings/todo/8/window/imp.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/8/window/imp.rs">listings/todo/8/window/imp.rs</a>
 
 ```rust,no_run,noplayground
 {{#rustdoc_include ../listings/todo/8/window/imp.rs:object_subclass}}
@@ -470,7 +470,7 @@ However, if they click "Create", we want a new collection to be created and set 
 Afterwards we navigate forward on our leaflet, which means we navigate to the task view.
 
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/8/window/imp.rs">listings/todo/8/window/mod.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/8/window/imp.rs">listings/todo/8/window/mod.rs</a>
 
 ```rust,no_run,noplayground
 {{#rustdoc_include ../listings/todo/8/window/mod.rs:new_collection}}
@@ -482,7 +482,7 @@ Whenever the items of our collections change we also want to set the stack.
 This makes sure that our placeholder page is shown if there are no collections.
 Finally, we assure that when we click on a row of `collections_list`, `current_collection` is set to the selected collection and the split view shows the task view.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/8/window/imp.rs">listings/todo/8/window/mod.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/8/window/imp.rs">listings/todo/8/window/mod.rs</a>
 
 ```rust,no_run,noplayground
 {{#rustdoc_include ../listings/todo/8/window/mod.rs:setup_callbacks}}
@@ -491,7 +491,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 Before, we called the method `set_stack`.
 This method ensure when there is at least one collection, the "main" page is shown, and the "placeholder" page otherwise.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/8/window/imp.rs">listings/todo/8/window/mod.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/8/window/imp.rs">listings/todo/8/window/mod.rs</a>
 
 ```rust,no_run,noplayground
 {{#rustdoc_include ../listings/todo/8/window/mod.rs:set_stack}}

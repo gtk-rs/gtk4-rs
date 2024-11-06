@@ -118,7 +118,7 @@ impl ValueType for ResponseType {
     type Type = Self;
 }
 
-unsafe impl<'a> FromValue<'a> for ResponseType {
+unsafe impl FromValue<'_> for ResponseType {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
     #[inline]

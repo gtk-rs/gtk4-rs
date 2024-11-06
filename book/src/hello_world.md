@@ -6,7 +6,7 @@ At the very least, we need to create a [`gtk::Application`](https://gtk-rs.org/g
 For that we use the [builder pattern](https://rust-unofficial.github.io/patterns/patterns/creational/builder.html) which many `gtk-rs` objects support.
 Note that we also import the prelude to bring the necessary traits into scope.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/hello_world/1/main.rs">listings/hello_world/1/main.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/hello_world/1/main.rs">listings/hello_world/1/main.rs</a>
 
 ```rust
 {{#rustdoc_include ../listings/hello_world/1/main.rs}}
@@ -22,7 +22,7 @@ and has no handlers connected to the 'activate' signal. It should do one of thes
 GTK tells us that something should be called in its `activate` step.
 So let's create a [`gtk::ApplicationWindow`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.ApplicationWindow.html) there.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/hello_world/2/main.rs">listings/hello_world/2/main.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/hello_world/2/main.rs">listings/hello_world/2/main.rs</a>
 
 ```rust
 {{#rustdoc_include ../listings/hello_world/2/main.rs}}
@@ -34,7 +34,7 @@ That is better!
 Normally we expect to be able to interact with the user interface.
 Also, the name of the chapter suggests that the phrase "Hello World!" will be involved.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/hello_world/3/main.rs">listings/hello_world/3/main.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/hello_world/3/main.rs">listings/hello_world/3/main.rs</a>
 
 ```rust
 {{#rustdoc_include ../listings/hello_world/3/main.rs:build_ui}}

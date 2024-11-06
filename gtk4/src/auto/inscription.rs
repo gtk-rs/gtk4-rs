@@ -788,6 +788,7 @@ impl InscriptionBuilder {
     /// Build the [`Inscription`].
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> Inscription {
+        assert_initialized_main_thread!();
         self.builder.build()
     }
 }

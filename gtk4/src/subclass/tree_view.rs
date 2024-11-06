@@ -6,13 +6,13 @@
 use glib::translate::*;
 
 use crate::{
-    ffi, prelude::*, subclass::prelude::*, MovementStep, TreeIter, TreePath, TreeView,
+    ffi, prelude::*, subclass::prelude::*, MovementStep, Scrollable, TreeIter, TreePath, TreeView,
     TreeViewColumn,
 };
 
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 #[allow(deprecated)]
-pub trait TreeViewImpl: WidgetImpl + ObjectSubclass<Type: IsA<TreeView>> {
+pub trait TreeViewImpl: WidgetImpl + ObjectSubclass<Type: IsA<TreeView> + IsA<Scrollable>> {
     fn columns_changed(&self) {
         self.parent_columns_changed()
     }

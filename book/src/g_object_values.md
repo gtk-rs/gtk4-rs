@@ -27,7 +27,7 @@ enum Value <T> {
 
 For example, this is how you would use a `Value` representing an `i32`.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_values/1/main.rs">listings/g_object_values/1/main.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/g_object_values/1/main.rs">listings/g_object_values/1/main.rs</a>
 
 ```rust
 {{#rustdoc_include ../listings/g_object_values/1/main.rs:i32}}
@@ -38,7 +38,7 @@ This comes from C, where every boxed type can potentially be `None` (or `NULL` i
 You can still access it the same way as with the `i32` above.
 [`get`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/value/struct.Value.html#method.get) will then not only return `Err` if you specified the wrong type, but also if the `Value` represents `None`.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_values/1/main.rs">listings/g_object_values/1/main.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/g_object_values/1/main.rs">listings/g_object_values/1/main.rs</a>
 
 ```rust
 {{#rustdoc_include ../listings/g_object_values/1/main.rs:string}}
@@ -46,7 +46,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 
 If you want to differentiate between specifying the wrong type and a `Value` representing `None`, just call `get::<Option<T>>` instead.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_values/1/main.rs">listings/g_object_values/1/main.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/g_object_values/1/main.rs">listings/g_object_values/1/main.rs</a>
 
 ```rust
 {{#rustdoc_include ../listings/g_object_values/1/main.rs:string_none}}
@@ -63,7 +63,7 @@ Variants can even be [derived](https://gtk-rs.org/gtk-rs-core/stable/latest/docs
 
 In the most simple case, converting Rust types to `Variant` and vice-versa is very similar to the way it worked with `Value`.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_values/2/main.rs">listings/g_object_values/2/main.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/g_object_values/2/main.rs">listings/g_object_values/2/main.rs</a>
 
 ```rust
 {{#rustdoc_include ../listings/g_object_values/2/main.rs:i32}}
@@ -73,7 +73,7 @@ However, a `Variant` is also able to represent containers such as [`HashMap`](ht
 The following snippet shows how to convert between `Vec` and `Variant`.
 More examples can be found in the [docs](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/variant/index.html).
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_values/2/main.rs">listings/g_object_values/2/main.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/g_object_values/2/main.rs">listings/g_object_values/2/main.rs</a>
 
 ```rust
 {{#rustdoc_include ../listings/g_object_values/2/main.rs:vec}}
