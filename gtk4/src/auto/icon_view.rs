@@ -543,7 +543,7 @@ impl IconView {
     #[allow(deprecated)]
     #[doc(alias = "gtk_icon_view_selected_foreach")]
     pub fn selected_foreach<P: FnMut(&IconView, &TreePath)>(&self, func: P) {
-        let func_data: P = func;
+        let mut func_data: P = func;
         unsafe extern "C" fn func_func<P: FnMut(&IconView, &TreePath)>(
             icon_view: *mut ffi::GtkIconView,
             path: *mut ffi::GtkTreePath,
@@ -555,12 +555,12 @@ impl IconView {
             (*callback)(&icon_view, &path)
         }
         let func = Some(func_func::<P> as _);
-        let super_callback0: &P = &func_data;
+        let super_callback0: &mut P = &mut func_data;
         unsafe {
             ffi::gtk_icon_view_selected_foreach(
                 self.to_glib_none().0,
                 func,
-                super_callback0 as *const _ as *mut _,
+                super_callback0 as *mut _ as *mut _,
             );
         }
     }
