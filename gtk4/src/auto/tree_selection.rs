@@ -153,7 +153,7 @@ impl TreeSelection {
     #[allow(deprecated)]
     #[doc(alias = "gtk_tree_selection_selected_foreach")]
     pub fn selected_foreach<P: FnMut(&TreeModel, &TreePath, &TreeIter)>(&self, func: P) {
-        let func_data: P = func;
+        let mut func_data: P = func;
         unsafe extern "C" fn func_func<P: FnMut(&TreeModel, &TreePath, &TreeIter)>(
             model: *mut ffi::GtkTreeModel,
             path: *mut ffi::GtkTreePath,
@@ -167,12 +167,12 @@ impl TreeSelection {
             (*callback)(&model, &path, &iter)
         }
         let func = Some(func_func::<P> as _);
-        let super_callback0: &P = &func_data;
+        let super_callback0: &mut P = &mut func_data;
         unsafe {
             ffi::gtk_tree_selection_selected_foreach(
                 self.to_glib_none().0,
                 func,
-                super_callback0 as *const _ as *mut _,
+                super_callback0 as *mut _ as *mut _,
             );
         }
     }

@@ -231,7 +231,7 @@ pub trait CellAreaExt: IsA<CellArea> + sealed::Sealed + 'static {
     #[allow(deprecated)]
     #[doc(alias = "gtk_cell_area_foreach")]
     fn foreach<P: FnMut(&CellRenderer) -> bool>(&self, callback: P) {
-        let callback_data: P = callback;
+        let mut callback_data: P = callback;
         unsafe extern "C" fn callback_func<P: FnMut(&CellRenderer) -> bool>(
             renderer: *mut ffi::GtkCellRenderer,
             data: glib::ffi::gpointer,
@@ -241,12 +241,12 @@ pub trait CellAreaExt: IsA<CellArea> + sealed::Sealed + 'static {
             (*callback)(&renderer).into_glib()
         }
         let callback = Some(callback_func::<P> as _);
-        let super_callback0: &P = &callback_data;
+        let super_callback0: &mut P = &mut callback_data;
         unsafe {
             ffi::gtk_cell_area_foreach(
                 self.as_ref().to_glib_none().0,
                 callback,
-                super_callback0 as *const _ as *mut _,
+                super_callback0 as *mut _ as *mut _,
             );
         }
     }
@@ -260,7 +260,7 @@ pub trait CellAreaExt: IsA<CellArea> + sealed::Sealed + 'static {
         background_area: &gdk::Rectangle,
         callback: P,
     ) {
-        let callback_data: P = callback;
+        let mut callback_data: P = callback;
         unsafe extern "C" fn callback_func<
             P: FnMut(&CellRenderer, &gdk::Rectangle, &gdk::Rectangle) -> bool,
         >(
@@ -276,7 +276,7 @@ pub trait CellAreaExt: IsA<CellArea> + sealed::Sealed + 'static {
             (*callback)(&renderer, &cell_area, &cell_background).into_glib()
         }
         let callback = Some(callback_func::<P> as _);
-        let super_callback0: &P = &callback_data;
+        let super_callback0: &mut P = &mut callback_data;
         unsafe {
             ffi::gtk_cell_area_foreach_alloc(
                 self.as_ref().to_glib_none().0,
@@ -285,7 +285,7 @@ pub trait CellAreaExt: IsA<CellArea> + sealed::Sealed + 'static {
                 cell_area.to_glib_none().0,
                 background_area.to_glib_none().0,
                 callback,
-                super_callback0 as *const _ as *mut _,
+                super_callback0 as *mut _ as *mut _,
             );
         }
     }
