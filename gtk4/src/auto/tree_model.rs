@@ -34,7 +34,7 @@ pub trait TreeModelExt: IsA<TreeModel> + sealed::Sealed + 'static {
     #[allow(deprecated)]
     #[doc(alias = "gtk_tree_model_foreach")]
     fn foreach<P: FnMut(&TreeModel, &TreePath, &TreeIter) -> bool>(&self, func: P) {
-        let func_data: P = func;
+        let mut func_data: P = func;
         unsafe extern "C" fn func_func<P: FnMut(&TreeModel, &TreePath, &TreeIter) -> bool>(
             model: *mut ffi::GtkTreeModel,
             path: *mut ffi::GtkTreePath,
@@ -48,12 +48,12 @@ pub trait TreeModelExt: IsA<TreeModel> + sealed::Sealed + 'static {
             (*callback)(&model, &path, &iter).into_glib()
         }
         let func = Some(func_func::<P> as _);
-        let super_callback0: &P = &func_data;
+        let super_callback0: &mut P = &mut func_data;
         unsafe {
             ffi::gtk_tree_model_foreach(
                 self.as_ref().to_glib_none().0,
                 func,
-                super_callback0 as *const _ as *mut _,
+                super_callback0 as *mut _ as *mut _,
             );
         }
     }

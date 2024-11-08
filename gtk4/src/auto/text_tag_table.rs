@@ -38,7 +38,7 @@ impl TextTagTable {
 
     #[doc(alias = "gtk_text_tag_table_foreach")]
     pub fn foreach<P: FnMut(&TextTag)>(&self, func: P) {
-        let func_data: P = func;
+        let mut func_data: P = func;
         unsafe extern "C" fn func_func<P: FnMut(&TextTag)>(
             tag: *mut ffi::GtkTextTag,
             data: glib::ffi::gpointer,
@@ -48,12 +48,12 @@ impl TextTagTable {
             (*callback)(&tag)
         }
         let func = Some(func_func::<P> as _);
-        let super_callback0: &P = &func_data;
+        let super_callback0: &mut P = &mut func_data;
         unsafe {
             ffi::gtk_text_tag_table_foreach(
                 self.to_glib_none().0,
                 func,
-                super_callback0 as *const _ as *mut _,
+                super_callback0 as *mut _ as *mut _,
             );
         }
     }

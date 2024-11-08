@@ -232,7 +232,7 @@ impl FlowBox {
 
     #[doc(alias = "gtk_flow_box_selected_foreach")]
     pub fn selected_foreach<P: FnMut(&FlowBox, &FlowBoxChild)>(&self, func: P) {
-        let func_data: P = func;
+        let mut func_data: P = func;
         unsafe extern "C" fn func_func<P: FnMut(&FlowBox, &FlowBoxChild)>(
             box_: *mut ffi::GtkFlowBox,
             child: *mut ffi::GtkFlowBoxChild,
@@ -244,12 +244,12 @@ impl FlowBox {
             (*callback)(&box_, &child)
         }
         let func = Some(func_func::<P> as _);
-        let super_callback0: &P = &func_data;
+        let super_callback0: &mut P = &mut func_data;
         unsafe {
             ffi::gtk_flow_box_selected_foreach(
                 self.to_glib_none().0,
                 func,
-                super_callback0 as *const _ as *mut _,
+                super_callback0 as *mut _ as *mut _,
             );
         }
     }
