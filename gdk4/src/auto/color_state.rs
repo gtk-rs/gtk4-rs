@@ -36,6 +36,8 @@ impl ColorState {
         }
     }
 
+    #[cfg(feature = "v4_18")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_18")))]
     #[doc(alias = "gdk_color_state_get_oklab")]
     #[doc(alias = "get_oklab")]
     pub fn oklab() -> ColorState {
@@ -43,6 +45,8 @@ impl ColorState {
         unsafe { from_glib_full(ffi::gdk_color_state_get_oklab()) }
     }
 
+    #[cfg(feature = "v4_18")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_18")))]
     #[doc(alias = "gdk_color_state_get_oklch")]
     #[doc(alias = "get_oklch")]
     pub fn oklch() -> ColorState {
