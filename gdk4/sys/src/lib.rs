@@ -4036,11 +4036,11 @@ extern "C" {
     #[cfg(feature = "v4_16")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
     pub fn gdk_color_state_unref(self_: *mut GdkColorState);
-    #[cfg(feature = "v4_16")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
+    #[cfg(feature = "v4_18")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_18")))]
     pub fn gdk_color_state_get_oklab() -> *mut GdkColorState;
-    #[cfg(feature = "v4_16")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
+    #[cfg(feature = "v4_18")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_18")))]
     pub fn gdk_color_state_get_oklch() -> *mut GdkColorState;
     #[cfg(feature = "v4_16")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
