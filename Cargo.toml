@@ -40,7 +40,7 @@ homepage = "https://gtk-rs.org/gtk4-rs"
 license = "MIT"
 repository = "https://github.com/gtk-rs/gtk4-rs"
 rust-version = "1.70"
-version = "0.9.3"
+version = "0.9.4"
 
 [workspace.dependencies]
 cairo-sys-rs = {git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.20", branch = "0.20"}
