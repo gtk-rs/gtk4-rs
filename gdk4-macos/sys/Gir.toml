@@ -12,3 +12,11 @@ external_libraries = [
 
 [external_libraries]
 gdk4 = "Gdk"
+
+
+[[object]]
+name = "GdkMacos.MacosMonitor"
+status = "generate"
+    [[object.function]]
+    name = "get_geometry"
+    ignore = true # The function does not exists
