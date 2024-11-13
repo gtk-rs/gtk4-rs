@@ -215,10 +215,6 @@ extern "C" {
     // GdkMacosMonitor
     //=========================================================================
     pub fn gdk_macos_monitor_get_type() -> GType;
-    pub fn gdk_macos_monitor_get_geometry(
-        self_: *mut gdk::GdkMonitor,
-        geometry: *mut gdk::GdkRectangle,
-    );
     pub fn gdk_macos_monitor_get_workarea(
         monitor: *mut gdk::GdkMonitor,
         geometry: *mut gdk::GdkRectangle,
