@@ -14,6 +14,7 @@ rust-version.workspace = true
 version.workspace = true
 
 [features]
+v4_8 = ["gdk4-macos-sys/v4_8"]
 
 [dependencies]
 gdk4-macos-sys.workspace = true
