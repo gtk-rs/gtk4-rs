@@ -6,6 +6,7 @@ on:
     paths:
       - ".github/workflows/docs.yml"
       - "gdk4/**"
+      - "gdk4-macos/**"
       - "gdk4-wayland/**"
       - "gdk4-win32/**"
       - "gdk4-x11/**"
@@ -17,6 +18,7 @@ on:
     paths:
       - ".github/workflows/docs.yml"
       - "gdk4/**"
+      - "gdk4-macos/**"
       - "gdk4-wayland/**"
       - "gdk4-win32/**"
       - "gdk4-x11/**"
@@ -82,6 +84,7 @@ jobs:
             -p gdk4-x11 -p gdk4-x11-sys
             -p gsk4 -p gsk4-sys
             -p gtk4 -p gtk4-sys
+            -p gdk4-macos -p gdk4-macos-sys
             -p gtk4-macros
             --all-features
             --no-deps
