@@ -1,0 +1,31 @@
+[package]
+name = "gdk4-macos"
+description = "Rust bindings of the GDK4 macos library"
+documentation = "https://gtk-rs.org/gtk4-rs/stable/latest/docs/gdk4_macos/"
+keywords = ["gdk4", "gdk4-macos", "gtk-rs", "gnome", "GUI"]
+readme = "README.md"
+authors.workspace = true
+categories.workspace = true
+edition.workspace = true
+homepage.workspace = true
+license.workspace = true
+repository.workspace = true
+rust-version.workspace = true
+version.workspace = true
+
+[features]
+
+[dependencies]
+gdk4-macos-sys.workspace = true
+gdk.workspace = true
+gio.workspace = true
+glib.workspace = true
+libc.workspace = true
+
+[dev-dependencies]
+gir-format-check.workspace = true
+
+[package.metadata.docs.rs]
+all-features = true
+rustc-args = ["--cfg", "docsrs"]
+rustdoc-args = ["--cfg", "docsrs", "--generate-link-to-definition"]

@@ -1,0 +1,33 @@
+[options]
+girs_directories = ["../gir-files"]
+library = "GdkMacos"
+version = "4.0"
+min_cfg_version = "4.0.0"
+target_path = "."
+work_mode = "normal"
+use_gi_docgen = true
+single_version_file = true
+generate_safety_asserts = true
+deprecate_by_min_version = true
+trust_return_value_nullability = true
+
+generate = [
+    "GdkMacos.MacosDevice",
+    "GdkMacos.MacosDisplay",
+    "GdkMacos.MacosGLContext",
+    "GdkMacos.MacosKeymap",
+    "GdkMacos.MacosMonitor",
+    "GdkMacos.MacosSeat",
+    "GdkMacos.MacosSurface",
+]
+
+manual = [
+    "Gdk.Device",
+    "Gdk.Display",
+    "Gdk.DrawContext",
+    "Gdk.GLContext",
+    "Gdk.Monitor",
+    "Gdk.Rectangle",
+    "Gdk.Seat",
+    "Gdk.Surface",
+]
