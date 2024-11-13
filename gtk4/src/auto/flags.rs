@@ -681,6 +681,10 @@ bitflags! {
     #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
     #[doc(alias = "GtkIconLookupFlags")]
     pub struct IconLookupFlags: u32 {
+        #[cfg(feature = "v4_18")]
+        #[cfg_attr(docsrs, doc(cfg(feature = "v4_18")))]
+        #[doc(alias = "GTK_ICON_LOOKUP_NONE")]
+        const NONE = ffi::GTK_ICON_LOOKUP_NONE as _;
         #[doc(alias = "GTK_ICON_LOOKUP_FORCE_REGULAR")]
         const FORCE_REGULAR = ffi::GTK_ICON_LOOKUP_FORCE_REGULAR as _;
         #[doc(alias = "GTK_ICON_LOOKUP_FORCE_SYMBOLIC")]

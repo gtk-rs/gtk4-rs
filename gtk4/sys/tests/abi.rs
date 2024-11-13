@@ -2996,6 +2996,7 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(gint) GTK_GRAPHICS_OFFLOAD_ENABLED", "0"),
     ("(guint) GTK_ICON_LOOKUP_FORCE_REGULAR", "1"),
     ("(guint) GTK_ICON_LOOKUP_FORCE_SYMBOLIC", "2"),
+    ("(guint) GTK_ICON_LOOKUP_NONE", "0"),
     ("(guint) GTK_ICON_LOOKUP_PRELOAD", "4"),
     ("(gint) GTK_ICON_SIZE_INHERIT", "0"),
     ("(gint) GTK_ICON_SIZE_LARGE", "2"),

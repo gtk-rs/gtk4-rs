@@ -40,7 +40,7 @@ impl GLTextureBuilder {
     #[doc(alias = "color-state")]
     pub fn color_state(&self) -> ColorState {
         unsafe {
-            from_glib_full(ffi::gdk_gl_texture_builder_get_color_state(
+            from_glib_none(ffi::gdk_gl_texture_builder_get_color_state(
                 self.to_glib_none().0,
             ))
         }

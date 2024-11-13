@@ -838,6 +838,23 @@ pub trait TextViewExt: IsA<TextView> + 'static {
         unsafe { ffi::gtk_text_view_get_top_margin(self.as_ref().to_glib_none().0) }
     }
 
+    #[cfg(feature = "v4_18")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_18")))]
+    #[doc(alias = "gtk_text_view_get_visible_offset")]
+    #[doc(alias = "get_visible_offset")]
+    fn visible_offset(&self) -> (f64, f64) {
+        unsafe {
+            let mut x_offset = std::mem::MaybeUninit::uninit();
+            let mut y_offset = std::mem::MaybeUninit::uninit();
+            ffi::gtk_text_view_get_visible_offset(
+                self.as_ref().to_glib_none().0,
+                x_offset.as_mut_ptr(),
+                y_offset.as_mut_ptr(),
+            );
+            (x_offset.assume_init(), y_offset.assume_init())
+        }
+    }
+
     #[doc(alias = "gtk_text_view_get_visible_rect")]
     #[doc(alias = "get_visible_rect")]
     fn visible_rect(&self) -> gdk::Rectangle {
