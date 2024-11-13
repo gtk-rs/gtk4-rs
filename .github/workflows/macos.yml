@@ -52,3 +52,19 @@ jobs:
     #  with:
     #    command: test
     #    args: --features v4_8,xml_validation
+
+      - name: Build gdk4-macos
+        uses: actions-rs/cargo@v1
+        with:
+          command: build
+          args: --features v4_8 --manifest-path ./gdk4-macos/Cargo.toml
+      - name: Clippy gdk4-macos
+        uses: actions-rs/cargo@v1
+        with:
+          command: clippy
+          args: --features v4_8 --manifest-path ./gdk4-macos/Cargo.toml
+      - name: Tests gdk4-macos
+        uses: actions-rs/cargo@v1
+        with:
+          command: test
+          args: --features v4_8 --manifest-path ./gdk4-macos/Cargo.toml
