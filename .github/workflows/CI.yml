@@ -166,6 +166,7 @@ jobs:
           - { name: "gtk4", is_macros_crate: false }
           - { name: "gdk4", is_macros_crate: false }
           - { name: "gsk4", is_macros_crate: false }
+          - { name: "gdk4-macos", is_macros_crate: false }
           - { name: "gdk4-x11", is_macros_crate: false }
           - { name: "gdk4-wayland", is_macros_crate: false }
           - { name: "gdk4-win32", is_macros_crate: false }
