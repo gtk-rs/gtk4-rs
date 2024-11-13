@@ -1,12 +1,12 @@
-# Rust GDK 4 X11 bindings
+# Rust GDK 4 Macos bindings
 
 The project website is [here](https://gtk-rs.org/).
 
-Rust bindings of [GDK 4's X11 backend](https://docs.gtk.org/gdk4-x11/),
+Rust bindings of GDK 4's Macos backend,
 part of [gtk4-rs](https://github.com/gtk-rs/gtk4-rs/).
 
 GDK is an intermediate layer that isolates GTK from the details of the windowing system.
-GDK X11 contains functions specific to the X11 backend.
+GDK Macos contains functions specific to the Macos backend.
 
 ## Minimum supported Rust version
 
@@ -14,8 +14,8 @@ Currently, the minimum supported Rust version is `1.80`.
 
 ## Documentation
 
-- The Rust API [Stable](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gdk4_x11)/[Development](https://gtk-rs.org/gtk4-rs/git/docs/gdk4_x11/)
-- [The C API](https://docs.gtk.org/gdk4-x11/)
+- The Rust API [Stable](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gdk4_macos)/[Development](https://gtk-rs.org/gtk4-rs/git/docs/gdk4_macos/)
+- [The C API](https://docs.gtk.org/gdk4-macos/)
 - [GTK Installation instructions](https://www.gtk.org/docs/installations/)
 
 ## Using
@@ -35,7 +35,7 @@ Avoid mixing versioned and git crates like this:
 ```toml
 # This will not compile
 [dependencies]
-gdk-x11 = {version = "0.1", package = "gdk4-x11"}
+gdk-macos = {version = "0.1", package = "gdk4-macos"}
 gdk-wayland = { git = "https://github.com/gtk-rs/gtk4-rs.git", package = "gdk4-wayland" }
 ```
 
@@ -43,11 +43,7 @@ gdk-wayland = { git = "https://github.com/gtk-rs/gtk4-rs.git", package = "gdk4-w
 
 | Feature | Description |
 | ---     | ----------- |
-| `v4_16` | Enable the new APIs part of GTK 4.16 |
-| `v4_10` | Enable the new APIs part of GTK 4.10 |
-| `v4_4` | Enable the new APIs part of GTK 4.4 |
-| `egl` | Integration with the [khronos-egl](https://crates.io/crates/khronos-egl) crate |
-| `xlib` | Integration with the [x11](https://crates.io/crates/x11) crate |
+| `v4_8` | Enable the new APIs part of GTK 4.8 |
 
 ### See Also
 
@@ -59,4 +55,4 @@ gdk-wayland = { git = "https://github.com/gtk-rs/gtk4-rs.git", package = "gdk4-w
 
 ## License
 
-The Rust bindings of __gdk4-x11__ are available under the MIT License, please refer to it.
+The Rust bindings of __gdk4-macos__ are available under the MIT License, please refer to it.
