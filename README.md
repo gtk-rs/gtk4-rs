@@ -4,6 +4,7 @@ A group of crates that aims to provide complete [GTK](https://gtk.org/) 4 bindin
 
 - [GTK](./gtk4)
 - [GDK](./gdk4): An intermediate layer which isolates GTK from the details of the windowing system.
+  - [GDK Macos](./gdk4-macos): Macos backend specific functions.
   - [GDK Wayland](./gdk4-wayland): Wayland backend specific functions.
   - [GDK Win32](./gdk4-win32): Windows backend specific functions.
   - [GDK X11](./gdk4-x11): X backend specific functions.
