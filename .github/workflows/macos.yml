@@ -6,6 +6,7 @@ on:
     paths:
       - ".github/workflows/macos.yml"
       - "gdk4/**"
+      - "gdk4-macos/**"
       - "gsk4/**"
       - "gtk4/**"
       - "gtk4-macros/**"
@@ -13,6 +14,7 @@ on:
     paths:
       - ".github/workflows/macos.yml"
       - "gdk4/**"
+      - "gdk4-macos/**"
       - "gsk4/**"
       - "gtk4/**"
       - "gtk4-macros/**"
