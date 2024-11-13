@@ -436,6 +436,30 @@ dependencies = [
 ]
 
 [[package]]
+name = "gdk4-macos"
+version = "0.10.0"
+dependencies = [
+ "gdk4",
+ "gdk4-macos-sys",
+ "gio",
+ "gir-format-check",
+ "glib",
+ "libc",
+]
+
+[[package]]
+name = "gdk4-macos-sys"
+version = "0.10.0"
+dependencies = [
+ "gdk4-sys",
+ "glib-sys",
+ "libc",
+ "shell-words",
+ "system-deps",
+ "tempfile",
+]
+
+[[package]]
 name = "gdk4-sys"
 version = "0.10.0"
 dependencies = [

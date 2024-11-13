@@ -1,0 +1,64 @@
+[package]
+name = "gdk4-macos-sys"
+build = "build.rs"
+description = "FFI bindings of GDK4 macos"
+documentation = "https://gtk-rs.org/gtk4-rs/git/docs/gdk4_macos_sys/"
+keywords = ["gdk4", "gdk4-macos", "ffi", "gtk-rs", "gnome"]
+
+[package.authors]
+workspace = true
+
+[package.categories]
+workspace = true
+
+[package.edition]
+workspace = true
+
+[package.homepage]
+workspace = true
+
+[package.license]
+workspace = true
+
+[package.repository]
+workspace = true
+
+[package.rust-version]
+workspace = true
+
+[package.version]
+workspace = true
+
+[package.metadata.docs.rs]
+rustc-args = ["--cfg", "docsrs"]
+rustdoc-args = ["--cfg", "docsrs", "--generate-link-to-definition"]
+all-features = true
+
+[package.metadata.system-deps.gtk4_macos]
+name = "gtk4-macos"
+version = "4"
+
+[package.metadata.system-deps.gtk4_macos.v4_8]
+version = "4.8"
+
+[lib]
+name = "gdk4_macos_sys"
+
+[features]
+v4_8 = []
+
+[dependencies]
+libc = "0.2"
+
+[dependencies.gdk4-sys]
+workspace = true
+
+[dependencies.glib-sys]
+workspace = true
+
+[build-dependencies]
+system-deps = "7"
+
+[dev-dependencies]
+shell-words = "1.0.0"
+tempfile = "3"
