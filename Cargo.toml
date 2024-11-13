@@ -23,6 +23,8 @@ members = [
   "gdk4-wayland/sys",
   "gdk4-win32",
   "gdk4-win32/sys",
+  "gdk4-macos",
+  "gdk4-macos/sys",
   "gsk4",
   "gsk4/sys",
   "gtk4",
@@ -67,4 +69,5 @@ gsk4-sys = {path = "gsk4/sys", version = "0.9.4"}
 gsk = {package = "gsk4", path = "gsk4", version = "0.9"}
 gtk4-macros = {path = "gtk4-macros", version = "0.9"}
 gtk4-sys = {path = "gtk4/sys", version = "0.9.4"}
+gdk4-macos-sys = {path = "gdk4-macos/sys", version = "0.9"}
 gtk = { path = "gtk4", package = "gtk4", version = "0.9" }
