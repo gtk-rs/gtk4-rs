@@ -23,6 +23,8 @@ members = [
   "gdk4-wayland/sys",
   "gdk4-win32",
   "gdk4-win32/sys",
+  "gdk4-macos",
+  "gdk4-macos/sys",
   "gsk4",
   "gsk4/sys",
   "gtk4",
@@ -58,6 +60,7 @@ libc = "0.2"
 pango-sys = {git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.21", branch = "main", features = ["v1_46"]}
 pango = {git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.21", branch = "main", features = ["v1_46"]}
 gir-format-check = "^0.1"
+gdk4-macos-sys = {path = "gdk4-macos/sys", version = "0.10"}
 gdk4-x11-sys = {path = "gdk4-x11/sys", version = "0.10"}
 gdk4-wayland-sys = {path = "gdk4-wayland/sys", version = "0.10"}
 gdk4-win32-sys = {path = "gdk4-win32/sys", version = "0.10"}
