@@ -15,18 +15,6 @@ glib::wrapper! {
 }
 
 impl MacosMonitor {
-    #[doc(alias = "gdk_macos_monitor_get_geometry")]
-    #[doc(alias = "get_geometry")]
-    pub fn geometry(self_: &impl IsA<gdk::Monitor>, geometry: &mut gdk::Rectangle) {
-        assert_initialized_main_thread!();
-        unsafe {
-            ffi::gdk_macos_monitor_get_geometry(
-                self_.as_ref().to_glib_none().0,
-                geometry.to_glib_none_mut().0,
-            );
-        }
-    }
-
     #[doc(alias = "gdk_macos_monitor_get_workarea")]
     #[doc(alias = "get_workarea")]
     pub fn workarea(monitor: &impl IsA<gdk::Monitor>) -> gdk::Rectangle {

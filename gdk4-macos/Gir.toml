@@ -16,7 +16,6 @@ generate = [
     "GdkMacos.MacosDisplay",
     "GdkMacos.MacosGLContext",
     "GdkMacos.MacosKeymap",
-    "GdkMacos.MacosMonitor",
     "GdkMacos.MacosSeat",
     "GdkMacos.MacosSurface",
 ]
@@ -31,3 +30,10 @@ manual = [
     "Gdk.Seat",
     "Gdk.Surface",
 ]
+
+[[object]]
+name = "GdkMacos.MacosMonitor"
+status = "generate"
+    [[object.function]]
+    name = "get_geometry"
+    ignore = true # The function does not exists
