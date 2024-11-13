@@ -36,7 +36,7 @@ impl DmabufTextureBuilder {
     #[doc(alias = "color-state")]
     pub fn color_state(&self) -> Option<ColorState> {
         unsafe {
-            from_glib_full(ffi::gdk_dmabuf_texture_builder_get_color_state(
+            from_glib_none(ffi::gdk_dmabuf_texture_builder_get_color_state(
                 self.to_glib_none().0,
             ))
         }
