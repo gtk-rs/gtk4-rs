@@ -37,3 +37,8 @@ allow-git = [
 [[bans.skip]]
 name = "windows-sys"
 version = "0.52.0"
+
+# wayland-scanner depends on an older version
+[[bans.skip]]
+name = "quick-xml"
+version = "0.36.0"
