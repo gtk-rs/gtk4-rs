@@ -114,6 +114,13 @@ pub use self::key_event::KeyEvent;
 mod memory_texture;
 pub use self::memory_texture::MemoryTexture;
 
+#[cfg(feature = "v4_16")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
+mod memory_texture_builder;
+#[cfg(feature = "v4_16")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
+pub use self::memory_texture_builder::MemoryTextureBuilder;
+
 mod monitor;
 pub use self::monitor::Monitor;
 

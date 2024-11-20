@@ -567,6 +567,16 @@ status = "generate"
 concurrency = "send+sync"
 
 [[object]]
+name = "Gdk.MemoryTextureBuilder"
+status = "generate"
+concurrency = "send+sync"
+    [[object.function]]
+    name = "set_update_region"
+        [[object.function.parameter]]
+        name = "region"
+        const = true
+
+[[object]]
 name = "Gdk.Monitor"
 status = "generate"
 final_type = false
