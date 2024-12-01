@@ -20,12 +20,15 @@ impl ShaderArgsBuilder {
     #[cfg_attr(feature = "v4_16", deprecated = "Since 4.16")]
     #[allow(deprecated)]
     #[doc(alias = "gsk_shader_args_builder_new")]
-    pub fn new(shader: &GLShader, initial_values: Option<&glib::Bytes>) -> ShaderArgsBuilder {
+    pub fn new<'a>(
+        shader: &GLShader,
+        initial_values: impl Into<Option<&'a glib::Bytes>>,
+    ) -> ShaderArgsBuilder {
         skip_assert_initialized!();
         unsafe {
             from_glib_full(ffi::gsk_shader_args_builder_new(
                 shader.to_glib_none().0,
-                initial_values.to_glib_none().0,
+                initial_values.into().to_glib_none().0,
             ))
         }
     }

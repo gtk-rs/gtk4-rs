@@ -57,8 +57,8 @@ impl CellRendererProgress {
         ObjectExt::property(self, "text")
     }
 
-    pub fn set_text(&self, text: Option<&str>) {
-        ObjectExt::set_property(self, "text", text)
+    pub fn set_text<'a>(&self, text: impl Into<Option<&'a str>>) {
+        ObjectExt::set_property(self, "text", text.into())
     }
 
     #[doc(alias = "text-xalign")]
@@ -266,7 +266,7 @@ impl CellRendererProgressBuilder {
         }
     }
 
-    pub fn text(self, text: impl Into<glib::GString>) -> Self {
+    pub fn text<'a>(self, text: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("text", text.into()),
         }
@@ -290,7 +290,7 @@ impl CellRendererProgressBuilder {
         }
     }
 
-    pub fn cell_background(self, cell_background: impl Into<glib::GString>) -> Self {
+    pub fn cell_background<'a>(self, cell_background: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self
                 .builder
@@ -298,11 +298,14 @@ impl CellRendererProgressBuilder {
         }
     }
 
-    pub fn cell_background_rgba(self, cell_background_rgba: &gdk::RGBA) -> Self {
+    pub fn cell_background_rgba<'a>(
+        self,
+        cell_background_rgba: impl Into<Option<&'a gdk::RGBA>>,
+    ) -> Self {
         Self {
             builder: self
                 .builder
-                .property("cell-background-rgba", cell_background_rgba),
+                .property("cell-background-rgba", cell_background_rgba.into()),
         }
     }
 

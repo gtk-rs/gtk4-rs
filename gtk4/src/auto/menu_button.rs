@@ -186,11 +186,11 @@ impl MenuButton {
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     #[doc(alias = "gtk_menu_button_set_child")]
     #[doc(alias = "child")]
-    pub fn set_child(&self, child: Option<&impl IsA<Widget>>) {
+    pub fn set_child<'a, P: IsA<Widget>>(&self, child: impl Into<Option<&'a P>>) {
         unsafe {
             ffi::gtk_menu_button_set_child(
                 self.to_glib_none().0,
-                child.map(|p| p.as_ref()).to_glib_none().0,
+                child.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
             );
         }
     }
@@ -258,22 +258,27 @@ impl MenuButton {
 
     #[doc(alias = "gtk_menu_button_set_menu_model")]
     #[doc(alias = "menu-model")]
-    pub fn set_menu_model(&self, menu_model: Option<&impl IsA<gio::MenuModel>>) {
+    pub fn set_menu_model<'a, P: IsA<gio::MenuModel>>(&self, menu_model: impl Into<Option<&'a P>>) {
         unsafe {
             ffi::gtk_menu_button_set_menu_model(
                 self.to_glib_none().0,
-                menu_model.map(|p| p.as_ref()).to_glib_none().0,
+                menu_model
+                    .into()
+                    .as_ref()
+                    .map(|p| p.as_ref())
+                    .to_glib_none()
+                    .0,
             );
         }
     }
 
     #[doc(alias = "gtk_menu_button_set_popover")]
     #[doc(alias = "popover")]
-    pub fn set_popover(&self, popover: Option<&impl IsA<Widget>>) {
+    pub fn set_popover<'a, P: IsA<Widget>>(&self, popover: impl Into<Option<&'a P>>) {
         unsafe {
             ffi::gtk_menu_button_set_popover(
                 self.to_glib_none().0,
-                popover.map(|p| p.as_ref()).to_glib_none().0,
+                popover.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
             );
         }
     }
@@ -669,9 +674,11 @@ impl MenuButtonBuilder {
 
     #[cfg(feature = "v4_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
-    pub fn child(self, child: &impl IsA<Widget>) -> Self {
+    pub fn child<'a, P: IsA<Widget>>(self, child: impl Into<Option<&'a P>>) -> Self {
         Self {
-            builder: self.builder.property("child", child.clone().upcast()),
+            builder: self
+                .builder
+                .property("child", child.into().as_ref().map(|p| p.as_ref())),
         }
     }
 
@@ -687,29 +694,34 @@ impl MenuButtonBuilder {
         }
     }
 
-    pub fn icon_name(self, icon_name: impl Into<glib::GString>) -> Self {
+    pub fn icon_name<'a>(self, icon_name: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("icon-name", icon_name.into()),
         }
     }
 
-    pub fn label(self, label: impl Into<glib::GString>) -> Self {
+    pub fn label<'a>(self, label: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("label", label.into()),
         }
     }
 
-    pub fn menu_model(self, menu_model: &impl IsA<gio::MenuModel>) -> Self {
+    pub fn menu_model<'a, P: IsA<gio::MenuModel>>(
+        self,
+        menu_model: impl Into<Option<&'a P>>,
+    ) -> Self {
         Self {
             builder: self
                 .builder
-                .property("menu-model", menu_model.clone().upcast()),
+                .property("menu-model", menu_model.into().as_ref().map(|p| p.as_ref())),
         }
     }
 
-    pub fn popover(self, popover: &impl IsA<Popover>) -> Self {
+    pub fn popover<'a, P: IsA<Popover>>(self, popover: impl Into<Option<&'a P>>) -> Self {
         Self {
-            builder: self.builder.property("popover", popover.clone().upcast()),
+            builder: self
+                .builder
+                .property("popover", popover.into().as_ref().map(|p| p.as_ref())),
         }
     }
 
@@ -745,15 +757,15 @@ impl MenuButtonBuilder {
         }
     }
 
-    pub fn css_name(self, css_name: impl Into<glib::GString>) -> Self {
+    pub fn css_name<'a>(self, css_name: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("css-name", css_name.into()),
         }
     }
 
-    pub fn cursor(self, cursor: &gdk::Cursor) -> Self {
+    pub fn cursor<'a>(self, cursor: impl Into<Option<&'a gdk::Cursor>>) -> Self {
         Self {
-            builder: self.builder.property("cursor", cursor.clone()),
+            builder: self.builder.property("cursor", cursor.into()),
         }
     }
 
@@ -799,11 +811,15 @@ impl MenuButtonBuilder {
         }
     }
 
-    pub fn layout_manager(self, layout_manager: &impl IsA<LayoutManager>) -> Self {
+    pub fn layout_manager<'a, P: IsA<LayoutManager>>(
+        self,
+        layout_manager: impl Into<Option<&'a P>>,
+    ) -> Self {
         Self {
-            builder: self
-                .builder
-                .property("layout-manager", layout_manager.clone().upcast()),
+            builder: self.builder.property(
+                "layout-manager",
+                layout_manager.into().as_ref().map(|p| p.as_ref()),
+            ),
         }
     }
 
@@ -831,7 +847,7 @@ impl MenuButtonBuilder {
         }
     }
 
-    pub fn name(self, name: impl Into<glib::GString>) -> Self {
+    pub fn name<'a>(self, name: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("name", name.into()),
         }
@@ -861,7 +877,7 @@ impl MenuButtonBuilder {
         }
     }
 
-    pub fn tooltip_markup(self, tooltip_markup: impl Into<glib::GString>) -> Self {
+    pub fn tooltip_markup<'a>(self, tooltip_markup: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self
                 .builder
@@ -869,7 +885,7 @@ impl MenuButtonBuilder {
         }
     }
 
-    pub fn tooltip_text(self, tooltip_text: impl Into<glib::GString>) -> Self {
+    pub fn tooltip_text<'a>(self, tooltip_text: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("tooltip-text", tooltip_text.into()),
         }

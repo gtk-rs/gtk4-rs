@@ -16,56 +16,66 @@ glib::wrapper! {
 
 impl Tooltip {
     #[doc(alias = "gtk_tooltip_set_custom")]
-    pub fn set_custom(&self, custom_widget: Option<&impl IsA<Widget>>) {
+    pub fn set_custom<'a, P: IsA<Widget>>(&self, custom_widget: impl Into<Option<&'a P>>) {
         unsafe {
             ffi::gtk_tooltip_set_custom(
                 self.to_glib_none().0,
-                custom_widget.map(|p| p.as_ref()).to_glib_none().0,
+                custom_widget
+                    .into()
+                    .as_ref()
+                    .map(|p| p.as_ref())
+                    .to_glib_none()
+                    .0,
             );
         }
     }
 
     #[doc(alias = "gtk_tooltip_set_icon")]
-    pub fn set_icon(&self, paintable: Option<&impl IsA<gdk::Paintable>>) {
+    pub fn set_icon<'a, P: IsA<gdk::Paintable>>(&self, paintable: impl Into<Option<&'a P>>) {
         unsafe {
             ffi::gtk_tooltip_set_icon(
                 self.to_glib_none().0,
-                paintable.map(|p| p.as_ref()).to_glib_none().0,
+                paintable
+                    .into()
+                    .as_ref()
+                    .map(|p| p.as_ref())
+                    .to_glib_none()
+                    .0,
             );
         }
     }
 
     #[doc(alias = "gtk_tooltip_set_icon_from_gicon")]
-    pub fn set_icon_from_gicon(&self, gicon: Option<&impl IsA<gio::Icon>>) {
+    pub fn set_icon_from_gicon<'a, P: IsA<gio::Icon>>(&self, gicon: impl Into<Option<&'a P>>) {
         unsafe {
             ffi::gtk_tooltip_set_icon_from_gicon(
                 self.to_glib_none().0,
-                gicon.map(|p| p.as_ref()).to_glib_none().0,
+                gicon.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
             );
         }
     }
 
     #[doc(alias = "gtk_tooltip_set_icon_from_icon_name")]
-    pub fn set_icon_from_icon_name(&self, icon_name: Option<&str>) {
+    pub fn set_icon_from_icon_name<'a>(&self, icon_name: impl Into<Option<&'a str>>) {
         unsafe {
             ffi::gtk_tooltip_set_icon_from_icon_name(
                 self.to_glib_none().0,
-                icon_name.to_glib_none().0,
+                icon_name.into().to_glib_none().0,
             );
         }
     }
 
     #[doc(alias = "gtk_tooltip_set_markup")]
-    pub fn set_markup(&self, markup: Option<&str>) {
+    pub fn set_markup<'a>(&self, markup: impl Into<Option<&'a str>>) {
         unsafe {
-            ffi::gtk_tooltip_set_markup(self.to_glib_none().0, markup.to_glib_none().0);
+            ffi::gtk_tooltip_set_markup(self.to_glib_none().0, markup.into().to_glib_none().0);
         }
     }
 
     #[doc(alias = "gtk_tooltip_set_text")]
-    pub fn set_text(&self, text: Option<&str>) {
+    pub fn set_text<'a>(&self, text: impl Into<Option<&'a str>>) {
         unsafe {
-            ffi::gtk_tooltip_set_text(self.to_glib_none().0, text.to_glib_none().0);
+            ffi::gtk_tooltip_set_text(self.to_glib_none().0, text.into().to_glib_none().0);
         }
     }
 

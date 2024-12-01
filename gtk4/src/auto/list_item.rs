@@ -153,11 +153,11 @@ pub trait ListItemExt: IsA<ListItem> + 'static {
 
     #[doc(alias = "gtk_list_item_set_child")]
     #[doc(alias = "child")]
-    fn set_child(&self, child: Option<&impl IsA<Widget>>) {
+    fn set_child<'a, P: IsA<Widget>>(&self, child: impl Into<Option<&'a P>>) {
         unsafe {
             ffi::gtk_list_item_set_child(
                 self.as_ref().to_glib_none().0,
-                child.map(|p| p.as_ref()).to_glib_none().0,
+                child.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
             );
         }
     }

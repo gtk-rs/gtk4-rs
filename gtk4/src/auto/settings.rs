@@ -126,8 +126,8 @@ impl Settings {
     }
 
     #[doc(alias = "gtk-cursor-theme-name")]
-    pub fn set_gtk_cursor_theme_name(&self, gtk_cursor_theme_name: Option<&str>) {
-        ObjectExt::set_property(self, "gtk-cursor-theme-name", gtk_cursor_theme_name)
+    pub fn set_gtk_cursor_theme_name<'a>(&self, gtk_cursor_theme_name: impl Into<Option<&'a str>>) {
+        ObjectExt::set_property(self, "gtk-cursor-theme-name", gtk_cursor_theme_name.into())
     }
 
     #[doc(alias = "gtk-cursor-theme-size")]
@@ -146,8 +146,8 @@ impl Settings {
     }
 
     #[doc(alias = "gtk-decoration-layout")]
-    pub fn set_gtk_decoration_layout(&self, gtk_decoration_layout: Option<&str>) {
-        ObjectExt::set_property(self, "gtk-decoration-layout", gtk_decoration_layout)
+    pub fn set_gtk_decoration_layout<'a>(&self, gtk_decoration_layout: impl Into<Option<&'a str>>) {
+        ObjectExt::set_property(self, "gtk-decoration-layout", gtk_decoration_layout.into())
     }
 
     #[doc(alias = "gtk-dialogs-use-header")]
@@ -284,8 +284,8 @@ impl Settings {
     }
 
     #[doc(alias = "gtk-font-name")]
-    pub fn set_gtk_font_name(&self, gtk_font_name: Option<&str>) {
-        ObjectExt::set_property(self, "gtk-font-name", gtk_font_name)
+    pub fn set_gtk_font_name<'a>(&self, gtk_font_name: impl Into<Option<&'a str>>) {
+        ObjectExt::set_property(self, "gtk-font-name", gtk_font_name.into())
     }
 
     #[cfg(feature = "v4_16")]
@@ -332,8 +332,8 @@ impl Settings {
     }
 
     #[doc(alias = "gtk-icon-theme-name")]
-    pub fn set_gtk_icon_theme_name(&self, gtk_icon_theme_name: Option<&str>) {
-        ObjectExt::set_property(self, "gtk-icon-theme-name", gtk_icon_theme_name)
+    pub fn set_gtk_icon_theme_name<'a>(&self, gtk_icon_theme_name: impl Into<Option<&'a str>>) {
+        ObjectExt::set_property(self, "gtk-icon-theme-name", gtk_icon_theme_name.into())
     }
 
     #[doc(alias = "gtk-im-module")]
@@ -342,8 +342,8 @@ impl Settings {
     }
 
     #[doc(alias = "gtk-im-module")]
-    pub fn set_gtk_im_module(&self, gtk_im_module: Option<&str>) {
-        ObjectExt::set_property(self, "gtk-im-module", gtk_im_module)
+    pub fn set_gtk_im_module<'a>(&self, gtk_im_module: impl Into<Option<&'a str>>) {
+        ObjectExt::set_property(self, "gtk-im-module", gtk_im_module.into())
     }
 
     #[doc(alias = "gtk-keynav-use-caret")]
@@ -406,8 +406,8 @@ impl Settings {
     }
 
     #[doc(alias = "gtk-print-backends")]
-    pub fn set_gtk_print_backends(&self, gtk_print_backends: Option<&str>) {
-        ObjectExt::set_property(self, "gtk-print-backends", gtk_print_backends)
+    pub fn set_gtk_print_backends<'a>(&self, gtk_print_backends: impl Into<Option<&'a str>>) {
+        ObjectExt::set_property(self, "gtk-print-backends", gtk_print_backends.into())
     }
 
     #[doc(alias = "gtk-print-preview-command")]
@@ -416,8 +416,15 @@ impl Settings {
     }
 
     #[doc(alias = "gtk-print-preview-command")]
-    pub fn set_gtk_print_preview_command(&self, gtk_print_preview_command: Option<&str>) {
-        ObjectExt::set_property(self, "gtk-print-preview-command", gtk_print_preview_command)
+    pub fn set_gtk_print_preview_command<'a>(
+        &self,
+        gtk_print_preview_command: impl Into<Option<&'a str>>,
+    ) {
+        ObjectExt::set_property(
+            self,
+            "gtk-print-preview-command",
+            gtk_print_preview_command.into(),
+        )
     }
 
     #[doc(alias = "gtk-recent-files-enabled")]
@@ -490,8 +497,8 @@ impl Settings {
     }
 
     #[doc(alias = "gtk-sound-theme-name")]
-    pub fn set_gtk_sound_theme_name(&self, gtk_sound_theme_name: Option<&str>) {
-        ObjectExt::set_property(self, "gtk-sound-theme-name", gtk_sound_theme_name)
+    pub fn set_gtk_sound_theme_name<'a>(&self, gtk_sound_theme_name: impl Into<Option<&'a str>>) {
+        ObjectExt::set_property(self, "gtk-sound-theme-name", gtk_sound_theme_name.into())
     }
 
     #[doc(alias = "gtk-split-cursor")]
@@ -510,8 +517,8 @@ impl Settings {
     }
 
     #[doc(alias = "gtk-theme-name")]
-    pub fn set_gtk_theme_name(&self, gtk_theme_name: Option<&str>) {
-        ObjectExt::set_property(self, "gtk-theme-name", gtk_theme_name)
+    pub fn set_gtk_theme_name<'a>(&self, gtk_theme_name: impl Into<Option<&'a str>>) {
+        ObjectExt::set_property(self, "gtk-theme-name", gtk_theme_name.into())
     }
 
     #[doc(alias = "gtk-titlebar-double-click")]
@@ -520,8 +527,15 @@ impl Settings {
     }
 
     #[doc(alias = "gtk-titlebar-double-click")]
-    pub fn set_gtk_titlebar_double_click(&self, gtk_titlebar_double_click: Option<&str>) {
-        ObjectExt::set_property(self, "gtk-titlebar-double-click", gtk_titlebar_double_click)
+    pub fn set_gtk_titlebar_double_click<'a>(
+        &self,
+        gtk_titlebar_double_click: impl Into<Option<&'a str>>,
+    ) {
+        ObjectExt::set_property(
+            self,
+            "gtk-titlebar-double-click",
+            gtk_titlebar_double_click.into(),
+        )
     }
 
     #[doc(alias = "gtk-titlebar-middle-click")]
@@ -530,8 +544,15 @@ impl Settings {
     }
 
     #[doc(alias = "gtk-titlebar-middle-click")]
-    pub fn set_gtk_titlebar_middle_click(&self, gtk_titlebar_middle_click: Option<&str>) {
-        ObjectExt::set_property(self, "gtk-titlebar-middle-click", gtk_titlebar_middle_click)
+    pub fn set_gtk_titlebar_middle_click<'a>(
+        &self,
+        gtk_titlebar_middle_click: impl Into<Option<&'a str>>,
+    ) {
+        ObjectExt::set_property(
+            self,
+            "gtk-titlebar-middle-click",
+            gtk_titlebar_middle_click.into(),
+        )
     }
 
     #[doc(alias = "gtk-titlebar-right-click")]
@@ -540,8 +561,15 @@ impl Settings {
     }
 
     #[doc(alias = "gtk-titlebar-right-click")]
-    pub fn set_gtk_titlebar_right_click(&self, gtk_titlebar_right_click: Option<&str>) {
-        ObjectExt::set_property(self, "gtk-titlebar-right-click", gtk_titlebar_right_click)
+    pub fn set_gtk_titlebar_right_click<'a>(
+        &self,
+        gtk_titlebar_right_click: impl Into<Option<&'a str>>,
+    ) {
+        ObjectExt::set_property(
+            self,
+            "gtk-titlebar-right-click",
+            gtk_titlebar_right_click.into(),
+        )
     }
 
     #[doc(alias = "gtk-xft-antialias")]
@@ -580,8 +608,8 @@ impl Settings {
     }
 
     #[doc(alias = "gtk-xft-hintstyle")]
-    pub fn set_gtk_xft_hintstyle(&self, gtk_xft_hintstyle: Option<&str>) {
-        ObjectExt::set_property(self, "gtk-xft-hintstyle", gtk_xft_hintstyle)
+    pub fn set_gtk_xft_hintstyle<'a>(&self, gtk_xft_hintstyle: impl Into<Option<&'a str>>) {
+        ObjectExt::set_property(self, "gtk-xft-hintstyle", gtk_xft_hintstyle.into())
     }
 
     #[doc(alias = "gtk-xft-rgba")]
@@ -590,8 +618,8 @@ impl Settings {
     }
 
     #[doc(alias = "gtk-xft-rgba")]
-    pub fn set_gtk_xft_rgba(&self, gtk_xft_rgba: Option<&str>) {
-        ObjectExt::set_property(self, "gtk-xft-rgba", gtk_xft_rgba)
+    pub fn set_gtk_xft_rgba<'a>(&self, gtk_xft_rgba: impl Into<Option<&'a str>>) {
+        ObjectExt::set_property(self, "gtk-xft-rgba", gtk_xft_rgba.into())
     }
 
     #[doc(alias = "gtk_settings_get_default")]
@@ -2071,7 +2099,10 @@ impl SettingsBuilder {
         }
     }
 
-    pub fn gtk_cursor_theme_name(self, gtk_cursor_theme_name: impl Into<glib::GString>) -> Self {
+    pub fn gtk_cursor_theme_name<'a>(
+        self,
+        gtk_cursor_theme_name: impl Into<Option<&'a str>>,
+    ) -> Self {
         Self {
             builder: self
                 .builder
@@ -2087,7 +2118,10 @@ impl SettingsBuilder {
         }
     }
 
-    pub fn gtk_decoration_layout(self, gtk_decoration_layout: impl Into<glib::GString>) -> Self {
+    pub fn gtk_decoration_layout<'a>(
+        self,
+        gtk_decoration_layout: impl Into<Option<&'a str>>,
+    ) -> Self {
         Self {
             builder: self
                 .builder
@@ -2191,7 +2225,7 @@ impl SettingsBuilder {
         }
     }
 
-    pub fn gtk_font_name(self, gtk_font_name: impl Into<glib::GString>) -> Self {
+    pub fn gtk_font_name<'a>(self, gtk_font_name: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("gtk-font-name", gtk_font_name.into()),
         }
@@ -2225,7 +2259,7 @@ impl SettingsBuilder {
         }
     }
 
-    pub fn gtk_icon_theme_name(self, gtk_icon_theme_name: impl Into<glib::GString>) -> Self {
+    pub fn gtk_icon_theme_name<'a>(self, gtk_icon_theme_name: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self
                 .builder
@@ -2233,7 +2267,7 @@ impl SettingsBuilder {
         }
     }
 
-    pub fn gtk_im_module(self, gtk_im_module: impl Into<glib::GString>) -> Self {
+    pub fn gtk_im_module<'a>(self, gtk_im_module: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("gtk-im-module", gtk_im_module.into()),
         }
@@ -2280,7 +2314,7 @@ impl SettingsBuilder {
         }
     }
 
-    pub fn gtk_print_backends(self, gtk_print_backends: impl Into<glib::GString>) -> Self {
+    pub fn gtk_print_backends<'a>(self, gtk_print_backends: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self
                 .builder
@@ -2288,9 +2322,9 @@ impl SettingsBuilder {
         }
     }
 
-    pub fn gtk_print_preview_command(
+    pub fn gtk_print_preview_command<'a>(
         self,
-        gtk_print_preview_command: impl Into<glib::GString>,
+        gtk_print_preview_command: impl Into<Option<&'a str>>,
     ) -> Self {
         Self {
             builder: self.builder.property(
@@ -2350,7 +2384,10 @@ impl SettingsBuilder {
         }
     }
 
-    pub fn gtk_sound_theme_name(self, gtk_sound_theme_name: impl Into<glib::GString>) -> Self {
+    pub fn gtk_sound_theme_name<'a>(
+        self,
+        gtk_sound_theme_name: impl Into<Option<&'a str>>,
+    ) -> Self {
         Self {
             builder: self
                 .builder
@@ -2364,7 +2401,7 @@ impl SettingsBuilder {
         }
     }
 
-    pub fn gtk_theme_name(self, gtk_theme_name: impl Into<glib::GString>) -> Self {
+    pub fn gtk_theme_name<'a>(self, gtk_theme_name: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self
                 .builder
@@ -2372,9 +2409,9 @@ impl SettingsBuilder {
         }
     }
 
-    pub fn gtk_titlebar_double_click(
+    pub fn gtk_titlebar_double_click<'a>(
         self,
-        gtk_titlebar_double_click: impl Into<glib::GString>,
+        gtk_titlebar_double_click: impl Into<Option<&'a str>>,
     ) -> Self {
         Self {
             builder: self.builder.property(
@@ -2384,9 +2421,9 @@ impl SettingsBuilder {
         }
     }
 
-    pub fn gtk_titlebar_middle_click(
+    pub fn gtk_titlebar_middle_click<'a>(
         self,
-        gtk_titlebar_middle_click: impl Into<glib::GString>,
+        gtk_titlebar_middle_click: impl Into<Option<&'a str>>,
     ) -> Self {
         Self {
             builder: self.builder.property(
@@ -2396,9 +2433,9 @@ impl SettingsBuilder {
         }
     }
 
-    pub fn gtk_titlebar_right_click(
+    pub fn gtk_titlebar_right_click<'a>(
         self,
-        gtk_titlebar_right_click: impl Into<glib::GString>,
+        gtk_titlebar_right_click: impl Into<Option<&'a str>>,
     ) -> Self {
         Self {
             builder: self
@@ -2427,7 +2464,7 @@ impl SettingsBuilder {
         }
     }
 
-    pub fn gtk_xft_hintstyle(self, gtk_xft_hintstyle: impl Into<glib::GString>) -> Self {
+    pub fn gtk_xft_hintstyle<'a>(self, gtk_xft_hintstyle: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self
                 .builder
@@ -2435,7 +2472,7 @@ impl SettingsBuilder {
         }
     }
 
-    pub fn gtk_xft_rgba(self, gtk_xft_rgba: impl Into<glib::GString>) -> Self {
+    pub fn gtk_xft_rgba<'a>(self, gtk_xft_rgba: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("gtk-xft-rgba", gtk_xft_rgba.into()),
         }

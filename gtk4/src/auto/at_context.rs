@@ -62,8 +62,8 @@ impl ATContext {
         ObjectExt::property(self, "display")
     }
 
-    pub fn set_display<P: IsA<gdk::Display>>(&self, display: Option<&P>) {
-        ObjectExt::set_property(self, "display", display)
+    pub fn set_display<'a, P: IsA<gdk::Display>>(&self, display: impl Into<Option<&'a P>>) {
+        ObjectExt::set_property(self, "display", display.into().as_ref().map(|p| p.as_ref()))
     }
 
     #[doc(alias = "state-change")]

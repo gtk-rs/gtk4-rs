@@ -23,9 +23,9 @@ impl TextBuffer {
     pub const NONE: Option<&'static TextBuffer> = None;
 
     #[doc(alias = "gtk_text_buffer_new")]
-    pub fn new(table: Option<&TextTagTable>) -> TextBuffer {
+    pub fn new<'a>(table: impl Into<Option<&'a TextTagTable>>) -> TextBuffer {
         assert_initialized_main_thread!();
-        unsafe { from_glib_full(ffi::gtk_text_buffer_new(table.to_glib_none().0)) }
+        unsafe { from_glib_full(ffi::gtk_text_buffer_new(table.into().to_glib_none().0)) }
     }
 
     // rustdoc-stripper-ignore-next
@@ -65,13 +65,13 @@ impl TextBufferBuilder {
         }
     }
 
-    pub fn tag_table(self, tag_table: &TextTagTable) -> Self {
+    pub fn tag_table<'a>(self, tag_table: impl Into<Option<&'a TextTagTable>>) -> Self {
         Self {
-            builder: self.builder.property("tag-table", tag_table.clone()),
+            builder: self.builder.property("tag-table", tag_table.into()),
         }
     }
 
-    pub fn text(self, text: impl Into<glib::GString>) -> Self {
+    pub fn text<'a>(self, text: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("text", text.into()),
         }
@@ -179,16 +179,16 @@ pub trait TextBufferExt: IsA<TextBuffer> + 'static {
     }
 
     #[doc(alias = "gtk_text_buffer_create_mark")]
-    fn create_mark(
+    fn create_mark<'a>(
         &self,
-        mark_name: Option<&str>,
+        mark_name: impl Into<Option<&'a str>>,
         where_: &TextIter,
         left_gravity: bool,
     ) -> TextMark {
         unsafe {
             from_glib_none(ffi::gtk_text_buffer_create_mark(
                 self.as_ref().to_glib_none().0,
-                mark_name.to_glib_none().0,
+                mark_name.into().to_glib_none().0,
                 where_.to_glib_none().0,
                 left_gravity.into_glib(),
             ))
@@ -727,17 +727,17 @@ pub trait TextBufferExt: IsA<TextBuffer> + 'static {
     }
 
     #[doc(alias = "gtk_text_buffer_paste_clipboard")]
-    fn paste_clipboard(
+    fn paste_clipboard<'a>(
         &self,
         clipboard: &gdk::Clipboard,
-        override_location: Option<&TextIter>,
+        override_location: impl Into<Option<&'a TextIter>>,
         default_editable: bool,
     ) {
         unsafe {
             ffi::gtk_text_buffer_paste_clipboard(
                 self.as_ref().to_glib_none().0,
                 clipboard.to_glib_none().0,
-                mut_override(override_location.to_glib_none().0),
+                mut_override(override_location.into().to_glib_none().0),
                 default_editable.into_glib(),
             );
         }

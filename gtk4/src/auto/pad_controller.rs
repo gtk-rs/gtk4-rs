@@ -18,12 +18,15 @@ glib::wrapper! {
 
 impl PadController {
     #[doc(alias = "gtk_pad_controller_new")]
-    pub fn new(group: &impl IsA<gio::ActionGroup>, pad: Option<&gdk::Device>) -> PadController {
+    pub fn new<'a>(
+        group: &impl IsA<gio::ActionGroup>,
+        pad: impl Into<Option<&'a gdk::Device>>,
+    ) -> PadController {
         assert_initialized_main_thread!();
         unsafe {
             from_glib_full(ffi::gtk_pad_controller_new(
                 group.as_ref().to_glib_none().0,
-                pad.to_glib_none().0,
+                pad.into().to_glib_none().0,
             ))
         }
     }
@@ -101,21 +104,25 @@ impl PadControllerBuilder {
         }
     }
 
-    pub fn action_group(self, action_group: &impl IsA<gio::ActionGroup>) -> Self {
+    pub fn action_group<'a, P: IsA<gio::ActionGroup>>(
+        self,
+        action_group: impl Into<Option<&'a P>>,
+    ) -> Self {
         Self {
-            builder: self
-                .builder
-                .property("action-group", action_group.clone().upcast()),
+            builder: self.builder.property(
+                "action-group",
+                action_group.into().as_ref().map(|p| p.as_ref()),
+            ),
         }
     }
 
-    pub fn pad(self, pad: &gdk::Device) -> Self {
+    pub fn pad<'a>(self, pad: impl Into<Option<&'a gdk::Device>>) -> Self {
         Self {
-            builder: self.builder.property("pad", pad.clone()),
+            builder: self.builder.property("pad", pad.into()),
         }
     }
 
-    pub fn name(self, name: impl Into<glib::GString>) -> Self {
+    pub fn name<'a>(self, name: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("name", name.into()),
         }

@@ -179,17 +179,17 @@ impl ColorDialogButtonBuilder {
 
     #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
-    pub fn dialog(self, dialog: &ColorDialog) -> Self {
+    pub fn dialog<'a>(self, dialog: impl Into<Option<&'a ColorDialog>>) -> Self {
         Self {
-            builder: self.builder.property("dialog", dialog.clone()),
+            builder: self.builder.property("dialog", dialog.into()),
         }
     }
 
     #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
-    pub fn rgba(self, rgba: &gdk::RGBA) -> Self {
+    pub fn rgba<'a>(self, rgba: impl Into<Option<&'a gdk::RGBA>>) -> Self {
         Self {
-            builder: self.builder.property("rgba", rgba),
+            builder: self.builder.property("rgba", rgba.into()),
         }
     }
 
@@ -211,15 +211,15 @@ impl ColorDialogButtonBuilder {
         }
     }
 
-    pub fn css_name(self, css_name: impl Into<glib::GString>) -> Self {
+    pub fn css_name<'a>(self, css_name: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("css-name", css_name.into()),
         }
     }
 
-    pub fn cursor(self, cursor: &gdk::Cursor) -> Self {
+    pub fn cursor<'a>(self, cursor: impl Into<Option<&'a gdk::Cursor>>) -> Self {
         Self {
-            builder: self.builder.property("cursor", cursor.clone()),
+            builder: self.builder.property("cursor", cursor.into()),
         }
     }
 
@@ -265,11 +265,15 @@ impl ColorDialogButtonBuilder {
         }
     }
 
-    pub fn layout_manager(self, layout_manager: &impl IsA<LayoutManager>) -> Self {
+    pub fn layout_manager<'a, P: IsA<LayoutManager>>(
+        self,
+        layout_manager: impl Into<Option<&'a P>>,
+    ) -> Self {
         Self {
-            builder: self
-                .builder
-                .property("layout-manager", layout_manager.clone().upcast()),
+            builder: self.builder.property(
+                "layout-manager",
+                layout_manager.into().as_ref().map(|p| p.as_ref()),
+            ),
         }
     }
 
@@ -297,7 +301,7 @@ impl ColorDialogButtonBuilder {
         }
     }
 
-    pub fn name(self, name: impl Into<glib::GString>) -> Self {
+    pub fn name<'a>(self, name: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("name", name.into()),
         }
@@ -327,7 +331,7 @@ impl ColorDialogButtonBuilder {
         }
     }
 
-    pub fn tooltip_markup(self, tooltip_markup: impl Into<glib::GString>) -> Self {
+    pub fn tooltip_markup<'a>(self, tooltip_markup: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self
                 .builder
@@ -335,7 +339,7 @@ impl ColorDialogButtonBuilder {
         }
     }
 
-    pub fn tooltip_text(self, tooltip_text: impl Into<glib::GString>) -> Self {
+    pub fn tooltip_text<'a>(self, tooltip_text: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("tooltip-text", tooltip_text.into()),
         }

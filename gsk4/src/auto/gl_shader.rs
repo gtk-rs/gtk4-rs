@@ -212,15 +212,15 @@ impl GLShaderBuilder {
         }
     }
 
-    pub fn resource(self, resource: impl Into<glib::GString>) -> Self {
+    pub fn resource<'a>(self, resource: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("resource", resource.into()),
         }
     }
 
-    pub fn source(self, source: &glib::Bytes) -> Self {
+    pub fn source<'a>(self, source: impl Into<Option<&'a glib::Bytes>>) -> Self {
         Self {
-            builder: self.builder.property("source", source.clone()),
+            builder: self.builder.property("source", source.into()),
         }
     }
 

@@ -44,8 +44,8 @@ impl ShortcutsGroup {
     }
 
     #[doc(alias = "accel-size-group")]
-    pub fn set_accel_size_group(&self, accel_size_group: Option<&SizeGroup>) {
-        ObjectExt::set_property(self, "accel-size-group", accel_size_group)
+    pub fn set_accel_size_group<'a>(&self, accel_size_group: impl Into<Option<&'a SizeGroup>>) {
+        ObjectExt::set_property(self, "accel-size-group", accel_size_group.into())
     }
 
     pub fn height(&self) -> u32 {
@@ -56,21 +56,21 @@ impl ShortcutsGroup {
         ObjectExt::property(self, "title")
     }
 
-    pub fn set_title(&self, title: Option<&str>) {
-        ObjectExt::set_property(self, "title", title)
+    pub fn set_title<'a>(&self, title: impl Into<Option<&'a str>>) {
+        ObjectExt::set_property(self, "title", title.into())
     }
 
     #[doc(alias = "title-size-group")]
-    pub fn set_title_size_group(&self, title_size_group: Option<&SizeGroup>) {
-        ObjectExt::set_property(self, "title-size-group", title_size_group)
+    pub fn set_title_size_group<'a>(&self, title_size_group: impl Into<Option<&'a SizeGroup>>) {
+        ObjectExt::set_property(self, "title-size-group", title_size_group.into())
     }
 
     pub fn view(&self) -> Option<glib::GString> {
         ObjectExt::property(self, "view")
     }
 
-    pub fn set_view(&self, view: Option<&str>) {
-        ObjectExt::set_property(self, "view", view)
+    pub fn set_view<'a>(&self, view: impl Into<Option<&'a str>>) {
+        ObjectExt::set_property(self, "view", view.into())
     }
 
     #[doc(alias = "accel-size-group")]
@@ -209,29 +209,29 @@ impl ShortcutsGroupBuilder {
         }
     }
 
-    pub fn accel_size_group(self, accel_size_group: &SizeGroup) -> Self {
+    pub fn accel_size_group<'a>(self, accel_size_group: impl Into<Option<&'a SizeGroup>>) -> Self {
         Self {
             builder: self
                 .builder
-                .property("accel-size-group", accel_size_group.clone()),
+                .property("accel-size-group", accel_size_group.into()),
         }
     }
 
-    pub fn title(self, title: impl Into<glib::GString>) -> Self {
+    pub fn title<'a>(self, title: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("title", title.into()),
         }
     }
 
-    pub fn title_size_group(self, title_size_group: &SizeGroup) -> Self {
+    pub fn title_size_group<'a>(self, title_size_group: impl Into<Option<&'a SizeGroup>>) -> Self {
         Self {
             builder: self
                 .builder
-                .property("title-size-group", title_size_group.clone()),
+                .property("title-size-group", title_size_group.into()),
         }
     }
 
-    pub fn view(self, view: impl Into<glib::GString>) -> Self {
+    pub fn view<'a>(self, view: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("view", view.into()),
         }
@@ -283,15 +283,15 @@ impl ShortcutsGroupBuilder {
         }
     }
 
-    pub fn css_name(self, css_name: impl Into<glib::GString>) -> Self {
+    pub fn css_name<'a>(self, css_name: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("css-name", css_name.into()),
         }
     }
 
-    pub fn cursor(self, cursor: &gdk::Cursor) -> Self {
+    pub fn cursor<'a>(self, cursor: impl Into<Option<&'a gdk::Cursor>>) -> Self {
         Self {
-            builder: self.builder.property("cursor", cursor.clone()),
+            builder: self.builder.property("cursor", cursor.into()),
         }
     }
 
@@ -337,11 +337,15 @@ impl ShortcutsGroupBuilder {
         }
     }
 
-    pub fn layout_manager(self, layout_manager: &impl IsA<LayoutManager>) -> Self {
+    pub fn layout_manager<'a, P: IsA<LayoutManager>>(
+        self,
+        layout_manager: impl Into<Option<&'a P>>,
+    ) -> Self {
         Self {
-            builder: self
-                .builder
-                .property("layout-manager", layout_manager.clone().upcast()),
+            builder: self.builder.property(
+                "layout-manager",
+                layout_manager.into().as_ref().map(|p| p.as_ref()),
+            ),
         }
     }
 
@@ -369,7 +373,7 @@ impl ShortcutsGroupBuilder {
         }
     }
 
-    pub fn name(self, name: impl Into<glib::GString>) -> Self {
+    pub fn name<'a>(self, name: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("name", name.into()),
         }
@@ -399,7 +403,7 @@ impl ShortcutsGroupBuilder {
         }
     }
 
-    pub fn tooltip_markup(self, tooltip_markup: impl Into<glib::GString>) -> Self {
+    pub fn tooltip_markup<'a>(self, tooltip_markup: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self
                 .builder
@@ -407,7 +411,7 @@ impl ShortcutsGroupBuilder {
         }
     }
 
-    pub fn tooltip_text(self, tooltip_text: impl Into<glib::GString>) -> Self {
+    pub fn tooltip_text<'a>(self, tooltip_text: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("tooltip-text", tooltip_text.into()),
         }

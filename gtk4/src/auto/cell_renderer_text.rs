@@ -74,21 +74,23 @@ impl CellRendererTextBuilder {
         }
     }
 
-    pub fn attributes(self, attributes: &pango::AttrList) -> Self {
+    pub fn attributes<'a>(self, attributes: impl Into<Option<&'a pango::AttrList>>) -> Self {
         Self {
-            builder: self.builder.property("attributes", attributes.clone()),
+            builder: self.builder.property("attributes", attributes.into()),
         }
     }
 
-    pub fn background(self, background: impl Into<glib::GString>) -> Self {
+    pub fn background<'a>(self, background: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("background", background.into()),
         }
     }
 
-    pub fn background_rgba(self, background_rgba: &gdk::RGBA) -> Self {
+    pub fn background_rgba<'a>(self, background_rgba: impl Into<Option<&'a gdk::RGBA>>) -> Self {
         Self {
-            builder: self.builder.property("background-rgba", background_rgba),
+            builder: self
+                .builder
+                .property("background-rgba", background_rgba.into()),
         }
     }
 
@@ -122,7 +124,7 @@ impl CellRendererTextBuilder {
         }
     }
 
-    pub fn family(self, family: impl Into<glib::GString>) -> Self {
+    pub fn family<'a>(self, family: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("family", family.into()),
         }
@@ -134,27 +136,29 @@ impl CellRendererTextBuilder {
         }
     }
 
-    pub fn font(self, font: impl Into<glib::GString>) -> Self {
+    pub fn font<'a>(self, font: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("font", font.into()),
         }
     }
 
-    pub fn font_desc(self, font_desc: &pango::FontDescription) -> Self {
+    pub fn font_desc<'a>(self, font_desc: impl Into<Option<&'a pango::FontDescription>>) -> Self {
         Self {
-            builder: self.builder.property("font-desc", font_desc),
+            builder: self.builder.property("font-desc", font_desc.into()),
         }
     }
 
-    pub fn foreground(self, foreground: impl Into<glib::GString>) -> Self {
+    pub fn foreground<'a>(self, foreground: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("foreground", foreground.into()),
         }
     }
 
-    pub fn foreground_rgba(self, foreground_rgba: &gdk::RGBA) -> Self {
+    pub fn foreground_rgba<'a>(self, foreground_rgba: impl Into<Option<&'a gdk::RGBA>>) -> Self {
         Self {
-            builder: self.builder.property("foreground-rgba", foreground_rgba),
+            builder: self
+                .builder
+                .property("foreground-rgba", foreground_rgba.into()),
         }
     }
 
@@ -164,7 +168,7 @@ impl CellRendererTextBuilder {
         }
     }
 
-    pub fn language(self, language: impl Into<glib::GString>) -> Self {
+    pub fn language<'a>(self, language: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("language", language.into()),
         }
@@ -176,7 +180,7 @@ impl CellRendererTextBuilder {
         }
     }
 
-    pub fn markup(self, markup: impl Into<glib::GString>) -> Self {
+    pub fn markup<'a>(self, markup: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("markup", markup.into()),
         }
@@ -188,7 +192,7 @@ impl CellRendererTextBuilder {
         }
     }
 
-    pub fn placeholder_text(self, placeholder_text: impl Into<glib::GString>) -> Self {
+    pub fn placeholder_text<'a>(self, placeholder_text: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self
                 .builder
@@ -284,7 +288,7 @@ impl CellRendererTextBuilder {
         }
     }
 
-    pub fn text(self, text: impl Into<glib::GString>) -> Self {
+    pub fn text<'a>(self, text: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("text", text.into()),
         }
@@ -344,7 +348,7 @@ impl CellRendererTextBuilder {
         }
     }
 
-    pub fn cell_background(self, cell_background: impl Into<glib::GString>) -> Self {
+    pub fn cell_background<'a>(self, cell_background: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self
                 .builder
@@ -352,11 +356,14 @@ impl CellRendererTextBuilder {
         }
     }
 
-    pub fn cell_background_rgba(self, cell_background_rgba: &gdk::RGBA) -> Self {
+    pub fn cell_background_rgba<'a>(
+        self,
+        cell_background_rgba: impl Into<Option<&'a gdk::RGBA>>,
+    ) -> Self {
         Self {
             builder: self
                 .builder
-                .property("cell-background-rgba", cell_background_rgba),
+                .property("cell-background-rgba", cell_background_rgba.into()),
         }
     }
 
@@ -473,12 +480,12 @@ pub trait CellRendererTextExt: IsA<CellRendererText> + 'static {
         ObjectExt::property(self.as_ref(), "attributes")
     }
 
-    fn set_attributes(&self, attributes: Option<&pango::AttrList>) {
-        ObjectExt::set_property(self.as_ref(), "attributes", attributes)
+    fn set_attributes<'a>(&self, attributes: impl Into<Option<&'a pango::AttrList>>) {
+        ObjectExt::set_property(self.as_ref(), "attributes", attributes.into())
     }
 
-    fn set_background(&self, background: Option<&str>) {
-        ObjectExt::set_property(self.as_ref(), "background", background)
+    fn set_background<'a>(&self, background: impl Into<Option<&'a str>>) {
+        ObjectExt::set_property(self.as_ref(), "background", background.into())
     }
 
     #[doc(alias = "background-rgba")]
@@ -487,8 +494,8 @@ pub trait CellRendererTextExt: IsA<CellRendererText> + 'static {
     }
 
     #[doc(alias = "background-rgba")]
-    fn set_background_rgba(&self, background_rgba: Option<&gdk::RGBA>) {
-        ObjectExt::set_property(self.as_ref(), "background-rgba", background_rgba)
+    fn set_background_rgba<'a>(&self, background_rgba: impl Into<Option<&'a gdk::RGBA>>) {
+        ObjectExt::set_property(self.as_ref(), "background-rgba", background_rgba.into())
     }
 
     #[doc(alias = "background-set")]
@@ -526,8 +533,8 @@ pub trait CellRendererTextExt: IsA<CellRendererText> + 'static {
         ObjectExt::property(self.as_ref(), "family")
     }
 
-    fn set_family(&self, family: Option<&str>) {
-        ObjectExt::set_property(self.as_ref(), "family", family)
+    fn set_family<'a>(&self, family: impl Into<Option<&'a str>>) {
+        ObjectExt::set_property(self.as_ref(), "family", family.into())
     }
 
     #[doc(alias = "family-set")]
@@ -539,8 +546,8 @@ pub trait CellRendererTextExt: IsA<CellRendererText> + 'static {
         ObjectExt::property(self.as_ref(), "font")
     }
 
-    fn set_font(&self, font: Option<&str>) {
-        ObjectExt::set_property(self.as_ref(), "font", font)
+    fn set_font<'a>(&self, font: impl Into<Option<&'a str>>) {
+        ObjectExt::set_property(self.as_ref(), "font", font.into())
     }
 
     #[doc(alias = "font-desc")]
@@ -549,12 +556,12 @@ pub trait CellRendererTextExt: IsA<CellRendererText> + 'static {
     }
 
     #[doc(alias = "font-desc")]
-    fn set_font_desc(&self, font_desc: Option<&pango::FontDescription>) {
-        ObjectExt::set_property(self.as_ref(), "font-desc", font_desc)
+    fn set_font_desc<'a>(&self, font_desc: impl Into<Option<&'a pango::FontDescription>>) {
+        ObjectExt::set_property(self.as_ref(), "font-desc", font_desc.into())
     }
 
-    fn set_foreground(&self, foreground: Option<&str>) {
-        ObjectExt::set_property(self.as_ref(), "foreground", foreground)
+    fn set_foreground<'a>(&self, foreground: impl Into<Option<&'a str>>) {
+        ObjectExt::set_property(self.as_ref(), "foreground", foreground.into())
     }
 
     #[doc(alias = "foreground-rgba")]
@@ -563,8 +570,8 @@ pub trait CellRendererTextExt: IsA<CellRendererText> + 'static {
     }
 
     #[doc(alias = "foreground-rgba")]
-    fn set_foreground_rgba(&self, foreground_rgba: Option<&gdk::RGBA>) {
-        ObjectExt::set_property(self.as_ref(), "foreground-rgba", foreground_rgba)
+    fn set_foreground_rgba<'a>(&self, foreground_rgba: impl Into<Option<&'a gdk::RGBA>>) {
+        ObjectExt::set_property(self.as_ref(), "foreground-rgba", foreground_rgba.into())
     }
 
     #[doc(alias = "foreground-set")]
@@ -576,8 +583,8 @@ pub trait CellRendererTextExt: IsA<CellRendererText> + 'static {
         ObjectExt::property(self.as_ref(), "language")
     }
 
-    fn set_language(&self, language: Option<&str>) {
-        ObjectExt::set_property(self.as_ref(), "language", language)
+    fn set_language<'a>(&self, language: impl Into<Option<&'a str>>) {
+        ObjectExt::set_property(self.as_ref(), "language", language.into())
     }
 
     #[doc(alias = "language-set")]
@@ -585,8 +592,8 @@ pub trait CellRendererTextExt: IsA<CellRendererText> + 'static {
         ObjectExt::property(self.as_ref(), "language-set")
     }
 
-    fn set_markup(&self, markup: Option<&str>) {
-        ObjectExt::set_property(self.as_ref(), "markup", markup)
+    fn set_markup<'a>(&self, markup: impl Into<Option<&'a str>>) {
+        ObjectExt::set_property(self.as_ref(), "markup", markup.into())
     }
 
     #[doc(alias = "max-width-chars")]
@@ -605,8 +612,8 @@ pub trait CellRendererTextExt: IsA<CellRendererText> + 'static {
     }
 
     #[doc(alias = "placeholder-text")]
-    fn set_placeholder_text(&self, placeholder_text: Option<&str>) {
-        ObjectExt::set_property(self.as_ref(), "placeholder-text", placeholder_text)
+    fn set_placeholder_text<'a>(&self, placeholder_text: impl Into<Option<&'a str>>) {
+        ObjectExt::set_property(self.as_ref(), "placeholder-text", placeholder_text.into())
     }
 
     fn rise(&self) -> i32 {
@@ -715,8 +722,8 @@ pub trait CellRendererTextExt: IsA<CellRendererText> + 'static {
         ObjectExt::property(self.as_ref(), "text")
     }
 
-    fn set_text(&self, text: Option<&str>) {
-        ObjectExt::set_property(self.as_ref(), "text", text)
+    fn set_text<'a>(&self, text: impl Into<Option<&'a str>>) {
+        ObjectExt::set_property(self.as_ref(), "text", text.into())
     }
 
     fn underline(&self) -> pango::Underline {

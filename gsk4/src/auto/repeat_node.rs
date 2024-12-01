@@ -23,17 +23,17 @@ impl StaticType for RepeatNode {
 
 impl RepeatNode {
     #[doc(alias = "gsk_repeat_node_new")]
-    pub fn new(
+    pub fn new<'a>(
         bounds: &graphene::Rect,
         child: impl AsRef<RenderNode>,
-        child_bounds: Option<&graphene::Rect>,
+        child_bounds: impl Into<Option<&'a graphene::Rect>>,
     ) -> RepeatNode {
         skip_assert_initialized!();
         unsafe {
             from_glib_full(ffi::gsk_repeat_node_new(
                 bounds.to_glib_none().0,
                 child.as_ref().to_glib_none().0,
-                child_bounds.to_glib_none().0,
+                child_bounds.into().to_glib_none().0,
             ))
         }
     }

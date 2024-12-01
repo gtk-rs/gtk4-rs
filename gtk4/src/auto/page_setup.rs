@@ -50,16 +50,16 @@ impl PageSetup {
 
     #[doc(alias = "gtk_page_setup_new_from_key_file")]
     #[doc(alias = "new_from_key_file")]
-    pub fn from_key_file(
+    pub fn from_key_file<'a>(
         key_file: &glib::KeyFile,
-        group_name: Option<&str>,
+        group_name: impl Into<Option<&'a str>>,
     ) -> Result<PageSetup, glib::Error> {
         assert_initialized_main_thread!();
         unsafe {
             let mut error = std::ptr::null_mut();
             let ret = ffi::gtk_page_setup_new_from_key_file(
                 key_file.to_glib_none().0,
-                group_name.to_glib_none().0,
+                group_name.into().to_glib_none().0,
                 &mut error,
             );
             if error.is_null() {
@@ -155,17 +155,17 @@ impl PageSetup {
     }
 
     #[doc(alias = "gtk_page_setup_load_key_file")]
-    pub fn load_key_file(
+    pub fn load_key_file<'a>(
         &self,
         key_file: &glib::KeyFile,
-        group_name: Option<&str>,
+        group_name: impl Into<Option<&'a str>>,
     ) -> Result<(), glib::Error> {
         unsafe {
             let mut error = std::ptr::null_mut();
             let is_ok = ffi::gtk_page_setup_load_key_file(
                 self.to_glib_none().0,
                 key_file.to_glib_none().0,
-                group_name.to_glib_none().0,
+                group_name.into().to_glib_none().0,
                 &mut error,
             );
             debug_assert_eq!(is_ok == glib::ffi::GFALSE, !error.is_null());
@@ -256,12 +256,16 @@ impl PageSetup {
     }
 
     #[doc(alias = "gtk_page_setup_to_key_file")]
-    pub fn to_key_file(&self, key_file: &glib::KeyFile, group_name: Option<&str>) {
+    pub fn to_key_file<'a>(
+        &self,
+        key_file: &glib::KeyFile,
+        group_name: impl Into<Option<&'a str>>,
+    ) {
         unsafe {
             ffi::gtk_page_setup_to_key_file(
                 self.to_glib_none().0,
                 key_file.to_glib_none().0,
-                group_name.to_glib_none().0,
+                group_name.into().to_glib_none().0,
             );
         }
     }

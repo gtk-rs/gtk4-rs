@@ -88,13 +88,17 @@ pub trait ContentProviderExt: IsA<ContentProvider> + 'static {
     }
 
     #[doc(alias = "gdk_content_provider_write_mime_type_async")]
-    fn write_mime_type_async<P: FnOnce(Result<(), glib::Error>) + 'static>(
+    fn write_mime_type_async<
+        'a,
+        P: IsA<gio::Cancellable>,
+        Q: FnOnce(Result<(), glib::Error>) + 'static,
+    >(
         &self,
         mime_type: &str,
         stream: &impl IsA<gio::OutputStream>,
         io_priority: glib::Priority,
-        cancellable: Option<&impl IsA<gio::Cancellable>>,
-        callback: P,
+        cancellable: impl Into<Option<&'a P>>,
+        callback: Q,
     ) {
         let main_context = glib::MainContext::ref_thread_default();
         let is_main_context_owner = main_context.is_owner();
@@ -106,10 +110,10 @@ pub trait ContentProviderExt: IsA<ContentProvider> + 'static {
             "Async operations only allowed if the thread is owning the MainContext"
         );
 
-        let user_data: Box_<glib::thread_guard::ThreadGuard<P>> =
+        let user_data: Box_<glib::thread_guard::ThreadGuard<Q>> =
             Box_::new(glib::thread_guard::ThreadGuard::new(callback));
         unsafe extern "C" fn write_mime_type_async_trampoline<
-            P: FnOnce(Result<(), glib::Error>) + 'static,
+            Q: FnOnce(Result<(), glib::Error>) + 'static,
         >(
             _source_object: *mut glib::gobject_ffi::GObject,
             res: *mut gio::ffi::GAsyncResult,
@@ -126,19 +130,24 @@ pub trait ContentProviderExt: IsA<ContentProvider> + 'static {
             } else {
                 Err(from_glib_full(error))
             };
-            let callback: Box_<glib::thread_guard::ThreadGuard<P>> =
+            let callback: Box_<glib::thread_guard::ThreadGuard<Q>> =
                 Box_::from_raw(user_data as *mut _);
-            let callback: P = callback.into_inner();
+            let callback: Q = callback.into_inner();
             callback(result);
         }
-        let callback = write_mime_type_async_trampoline::<P>;
+        let callback = write_mime_type_async_trampoline::<Q>;
         unsafe {
             ffi::gdk_content_provider_write_mime_type_async(
                 self.as_ref().to_glib_none().0,
                 mime_type.to_glib_none().0,
                 stream.as_ref().to_glib_none().0,
                 io_priority.into_glib(),
-                cancellable.map(|p| p.as_ref()).to_glib_none().0,
+                cancellable
+                    .into()
+                    .as_ref()
+                    .map(|p| p.as_ref())
+                    .to_glib_none()
+                    .0,
                 Some(callback),
                 Box_::into_raw(user_data) as *mut _,
             );

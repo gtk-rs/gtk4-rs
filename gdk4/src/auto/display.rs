@@ -38,9 +38,9 @@ impl Display {
     }
 
     #[doc(alias = "gdk_display_open")]
-    pub fn open(display_name: Option<&str>) -> Option<Display> {
+    pub fn open<'a>(display_name: impl Into<Option<&'a str>>) -> Option<Display> {
         assert_initialized_main_thread!();
-        unsafe { from_glib_none(ffi::gdk_display_open(display_name.to_glib_none().0)) }
+        unsafe { from_glib_none(ffi::gdk_display_open(display_name.into().to_glib_none().0)) }
     }
 }
 

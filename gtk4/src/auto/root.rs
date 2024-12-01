@@ -32,11 +32,11 @@ pub trait RootExt: IsA<Root> + 'static {
     }
 
     #[doc(alias = "gtk_root_set_focus")]
-    fn set_focus(&self, focus: Option<&impl IsA<Widget>>) {
+    fn set_focus<'a, P: IsA<Widget>>(&self, focus: impl Into<Option<&'a P>>) {
         unsafe {
             ffi::gtk_root_set_focus(
                 self.as_ref().to_glib_none().0,
-                focus.map(|p| p.as_ref()).to_glib_none().0,
+                focus.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
             );
         }
     }

@@ -47,9 +47,11 @@ impl ApplicationBuilder {
         }
     }
 
-    pub fn menubar(self, menubar: &impl IsA<gio::MenuModel>) -> Self {
+    pub fn menubar<'a, P: IsA<gio::MenuModel>>(self, menubar: impl Into<Option<&'a P>>) -> Self {
         Self {
-            builder: self.builder.property("menubar", menubar.clone().upcast()),
+            builder: self
+                .builder
+                .property("menubar", menubar.into().as_ref().map(|p| p.as_ref())),
         }
     }
 
@@ -59,7 +61,7 @@ impl ApplicationBuilder {
         }
     }
 
-    pub fn application_id(self, application_id: impl Into<glib::GString>) -> Self {
+    pub fn application_id<'a>(self, application_id: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self
                 .builder
@@ -81,7 +83,7 @@ impl ApplicationBuilder {
         }
     }
 
-    pub fn resource_base_path(self, resource_base_path: impl Into<glib::GString>) -> Self {
+    pub fn resource_base_path<'a>(self, resource_base_path: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self
                 .builder
@@ -91,7 +93,7 @@ impl ApplicationBuilder {
 
     #[cfg(feature = "gio_v2_80")]
     #[cfg_attr(docsrs, doc(cfg(feature = "gio_v2_80")))]
-    pub fn version(self, version: impl Into<glib::GString>) -> Self {
+    pub fn version<'a>(self, version: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("version", version.into()),
         }
@@ -196,18 +198,18 @@ pub trait GtkApplicationExt: IsA<Application> + 'static {
     }
 
     #[doc(alias = "gtk_application_inhibit")]
-    fn inhibit(
+    fn inhibit<'a, P: IsA<Window>>(
         &self,
-        window: Option<&impl IsA<Window>>,
+        window: impl Into<Option<&'a P>>,
         flags: ApplicationInhibitFlags,
-        reason: Option<&str>,
+        reason: impl Into<Option<&'a str>>,
     ) -> u32 {
         unsafe {
             ffi::gtk_application_inhibit(
                 self.as_ref().to_glib_none().0,
-                window.map(|p| p.as_ref()).to_glib_none().0,
+                window.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
                 flags.into_glib(),
-                reason.to_glib_none().0,
+                reason.into().to_glib_none().0,
             )
         }
     }
@@ -244,11 +246,11 @@ pub trait GtkApplicationExt: IsA<Application> + 'static {
 
     #[doc(alias = "gtk_application_set_menubar")]
     #[doc(alias = "menubar")]
-    fn set_menubar(&self, menubar: Option<&impl IsA<gio::MenuModel>>) {
+    fn set_menubar<'a, P: IsA<gio::MenuModel>>(&self, menubar: impl Into<Option<&'a P>>) {
         unsafe {
             ffi::gtk_application_set_menubar(
                 self.as_ref().to_glib_none().0,
-                menubar.map(|p| p.as_ref()).to_glib_none().0,
+                menubar.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
             );
         }
     }

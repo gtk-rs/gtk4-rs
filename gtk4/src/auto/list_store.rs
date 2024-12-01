@@ -50,13 +50,13 @@ impl ListStore {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_list_store_insert_after")]
-    pub fn insert_after(&self, sibling: Option<&TreeIter>) -> TreeIter {
+    pub fn insert_after<'a>(&self, sibling: impl Into<Option<&'a TreeIter>>) -> TreeIter {
         unsafe {
             let mut iter = TreeIter::uninitialized();
             ffi::gtk_list_store_insert_after(
                 self.to_glib_none().0,
                 iter.to_glib_none_mut().0,
-                mut_override(sibling.to_glib_none().0),
+                mut_override(sibling.into().to_glib_none().0),
             );
             iter
         }
@@ -65,13 +65,13 @@ impl ListStore {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_list_store_insert_before")]
-    pub fn insert_before(&self, sibling: Option<&TreeIter>) -> TreeIter {
+    pub fn insert_before<'a>(&self, sibling: impl Into<Option<&'a TreeIter>>) -> TreeIter {
         unsafe {
             let mut iter = TreeIter::uninitialized();
             ffi::gtk_list_store_insert_before(
                 self.to_glib_none().0,
                 iter.to_glib_none_mut().0,
-                mut_override(sibling.to_glib_none().0),
+                mut_override(sibling.into().to_glib_none().0),
             );
             iter
         }
@@ -92,12 +92,12 @@ impl ListStore {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_list_store_move_after")]
-    pub fn move_after(&self, iter: &TreeIter, position: Option<&TreeIter>) {
+    pub fn move_after<'a>(&self, iter: &TreeIter, position: impl Into<Option<&'a TreeIter>>) {
         unsafe {
             ffi::gtk_list_store_move_after(
                 self.to_glib_none().0,
                 mut_override(iter.to_glib_none().0),
-                mut_override(position.to_glib_none().0),
+                mut_override(position.into().to_glib_none().0),
             );
         }
     }
@@ -105,12 +105,12 @@ impl ListStore {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_list_store_move_before")]
-    pub fn move_before(&self, iter: &TreeIter, position: Option<&TreeIter>) {
+    pub fn move_before<'a>(&self, iter: &TreeIter, position: impl Into<Option<&'a TreeIter>>) {
         unsafe {
             ffi::gtk_list_store_move_before(
                 self.to_glib_none().0,
                 mut_override(iter.to_glib_none().0),
-                mut_override(position.to_glib_none().0),
+                mut_override(position.into().to_glib_none().0),
             );
         }
     }

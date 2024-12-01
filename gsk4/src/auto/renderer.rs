@@ -52,12 +52,12 @@ pub trait GskRendererExt: IsA<Renderer> + 'static {
     }
 
     #[doc(alias = "gsk_renderer_realize")]
-    fn realize(&self, surface: Option<&gdk::Surface>) -> Result<(), glib::Error> {
+    fn realize<'a>(&self, surface: impl Into<Option<&'a gdk::Surface>>) -> Result<(), glib::Error> {
         unsafe {
             let mut error = std::ptr::null_mut();
             let is_ok = ffi::gsk_renderer_realize(
                 self.as_ref().to_glib_none().0,
-                surface.to_glib_none().0,
+                surface.into().to_glib_none().0,
                 &mut error,
             );
             debug_assert_eq!(is_ok == glib::ffi::GFALSE, !error.is_null());
@@ -90,27 +90,31 @@ pub trait GskRendererExt: IsA<Renderer> + 'static {
     }
 
     #[doc(alias = "gsk_renderer_render")]
-    fn render(&self, root: impl AsRef<RenderNode>, region: Option<&cairo::Region>) {
+    fn render<'a>(
+        &self,
+        root: impl AsRef<RenderNode>,
+        region: impl Into<Option<&'a cairo::Region>>,
+    ) {
         unsafe {
             ffi::gsk_renderer_render(
                 self.as_ref().to_glib_none().0,
                 root.as_ref().to_glib_none().0,
-                region.to_glib_none().0,
+                region.into().to_glib_none().0,
             );
         }
     }
 
     #[doc(alias = "gsk_renderer_render_texture")]
-    fn render_texture(
+    fn render_texture<'a>(
         &self,
         root: impl AsRef<RenderNode>,
-        viewport: Option<&graphene::Rect>,
+        viewport: impl Into<Option<&'a graphene::Rect>>,
     ) -> gdk::Texture {
         unsafe {
             from_glib_full(ffi::gsk_renderer_render_texture(
                 self.as_ref().to_glib_none().0,
                 root.as_ref().to_glib_none().0,
-                viewport.to_glib_none().0,
+                viewport.into().to_glib_none().0,
             ))
         }
     }

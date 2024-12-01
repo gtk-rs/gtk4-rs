@@ -74,17 +74,23 @@ impl PopoverBuilder {
         }
     }
 
-    pub fn child(self, child: &impl IsA<Widget>) -> Self {
-        Self {
-            builder: self.builder.property("child", child.clone().upcast()),
-        }
-    }
-
-    pub fn default_widget(self, default_widget: &impl IsA<Widget>) -> Self {
+    pub fn child<'a, P: IsA<Widget>>(self, child: impl Into<Option<&'a P>>) -> Self {
         Self {
             builder: self
                 .builder
-                .property("default-widget", default_widget.clone().upcast()),
+                .property("child", child.into().as_ref().map(|p| p.as_ref())),
+        }
+    }
+
+    pub fn default_widget<'a, P: IsA<Widget>>(
+        self,
+        default_widget: impl Into<Option<&'a P>>,
+    ) -> Self {
+        Self {
+            builder: self.builder.property(
+                "default-widget",
+                default_widget.into().as_ref().map(|p| p.as_ref()),
+            ),
         }
     }
 
@@ -102,9 +108,9 @@ impl PopoverBuilder {
         }
     }
 
-    pub fn pointing_to(self, pointing_to: &gdk::Rectangle) -> Self {
+    pub fn pointing_to<'a>(self, pointing_to: impl Into<Option<&'a gdk::Rectangle>>) -> Self {
         Self {
-            builder: self.builder.property("pointing-to", pointing_to),
+            builder: self.builder.property("pointing-to", pointing_to.into()),
         }
     }
 
@@ -132,15 +138,15 @@ impl PopoverBuilder {
         }
     }
 
-    pub fn css_name(self, css_name: impl Into<glib::GString>) -> Self {
+    pub fn css_name<'a>(self, css_name: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("css-name", css_name.into()),
         }
     }
 
-    pub fn cursor(self, cursor: &gdk::Cursor) -> Self {
+    pub fn cursor<'a>(self, cursor: impl Into<Option<&'a gdk::Cursor>>) -> Self {
         Self {
-            builder: self.builder.property("cursor", cursor.clone()),
+            builder: self.builder.property("cursor", cursor.into()),
         }
     }
 
@@ -186,11 +192,15 @@ impl PopoverBuilder {
         }
     }
 
-    pub fn layout_manager(self, layout_manager: &impl IsA<LayoutManager>) -> Self {
+    pub fn layout_manager<'a, P: IsA<LayoutManager>>(
+        self,
+        layout_manager: impl Into<Option<&'a P>>,
+    ) -> Self {
         Self {
-            builder: self
-                .builder
-                .property("layout-manager", layout_manager.clone().upcast()),
+            builder: self.builder.property(
+                "layout-manager",
+                layout_manager.into().as_ref().map(|p| p.as_ref()),
+            ),
         }
     }
 
@@ -218,7 +228,7 @@ impl PopoverBuilder {
         }
     }
 
-    pub fn name(self, name: impl Into<glib::GString>) -> Self {
+    pub fn name<'a>(self, name: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("name", name.into()),
         }
@@ -248,7 +258,7 @@ impl PopoverBuilder {
         }
     }
 
-    pub fn tooltip_markup(self, tooltip_markup: impl Into<glib::GString>) -> Self {
+    pub fn tooltip_markup<'a>(self, tooltip_markup: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self
                 .builder
@@ -256,7 +266,7 @@ impl PopoverBuilder {
         }
     }
 
-    pub fn tooltip_text(self, tooltip_text: impl Into<glib::GString>) -> Self {
+    pub fn tooltip_text<'a>(self, tooltip_text: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("tooltip-text", tooltip_text.into()),
         }
@@ -439,22 +449,22 @@ pub trait PopoverExt: IsA<Popover> + 'static {
 
     #[doc(alias = "gtk_popover_set_child")]
     #[doc(alias = "child")]
-    fn set_child(&self, child: Option<&impl IsA<Widget>>) {
+    fn set_child<'a, P: IsA<Widget>>(&self, child: impl Into<Option<&'a P>>) {
         unsafe {
             ffi::gtk_popover_set_child(
                 self.as_ref().to_glib_none().0,
-                child.map(|p| p.as_ref()).to_glib_none().0,
+                child.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
             );
         }
     }
 
     #[doc(alias = "gtk_popover_set_default_widget")]
     #[doc(alias = "default-widget")]
-    fn set_default_widget(&self, widget: Option<&impl IsA<Widget>>) {
+    fn set_default_widget<'a, P: IsA<Widget>>(&self, widget: impl Into<Option<&'a P>>) {
         unsafe {
             ffi::gtk_popover_set_default_widget(
                 self.as_ref().to_glib_none().0,
-                widget.map(|p| p.as_ref()).to_glib_none().0,
+                widget.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
             );
         }
     }
@@ -487,9 +497,12 @@ pub trait PopoverExt: IsA<Popover> + 'static {
 
     #[doc(alias = "gtk_popover_set_pointing_to")]
     #[doc(alias = "pointing-to")]
-    fn set_pointing_to(&self, rect: Option<&gdk::Rectangle>) {
+    fn set_pointing_to<'a>(&self, rect: impl Into<Option<&'a gdk::Rectangle>>) {
         unsafe {
-            ffi::gtk_popover_set_pointing_to(self.as_ref().to_glib_none().0, rect.to_glib_none().0);
+            ffi::gtk_popover_set_pointing_to(
+                self.as_ref().to_glib_none().0,
+                rect.into().to_glib_none().0,
+            );
         }
     }
 

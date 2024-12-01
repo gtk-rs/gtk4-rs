@@ -58,7 +58,7 @@ impl PasswordEntryBufferBuilder {
         }
     }
 
-    pub fn text(self, text: impl Into<glib::GString>) -> Self {
+    pub fn text<'a>(self, text: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("text", text.into()),
         }

@@ -111,11 +111,14 @@ impl TreeViewBuilder {
         }
     }
 
-    pub fn expander_column(self, expander_column: &TreeViewColumn) -> Self {
+    pub fn expander_column<'a>(
+        self,
+        expander_column: impl Into<Option<&'a TreeViewColumn>>,
+    ) -> Self {
         Self {
             builder: self
                 .builder
-                .property("expander-column", expander_column.clone()),
+                .property("expander-column", expander_column.into()),
         }
     }
 
@@ -161,9 +164,11 @@ impl TreeViewBuilder {
         }
     }
 
-    pub fn model(self, model: &impl IsA<TreeModel>) -> Self {
+    pub fn model<'a, P: IsA<TreeModel>>(self, model: impl Into<Option<&'a P>>) -> Self {
         Self {
-            builder: self.builder.property("model", model.clone().upcast()),
+            builder: self
+                .builder
+                .property("model", model.into().as_ref().map(|p| p.as_ref())),
         }
     }
 
@@ -215,15 +220,15 @@ impl TreeViewBuilder {
         }
     }
 
-    pub fn css_name(self, css_name: impl Into<glib::GString>) -> Self {
+    pub fn css_name<'a>(self, css_name: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("css-name", css_name.into()),
         }
     }
 
-    pub fn cursor(self, cursor: &gdk::Cursor) -> Self {
+    pub fn cursor<'a>(self, cursor: impl Into<Option<&'a gdk::Cursor>>) -> Self {
         Self {
-            builder: self.builder.property("cursor", cursor.clone()),
+            builder: self.builder.property("cursor", cursor.into()),
         }
     }
 
@@ -269,11 +274,15 @@ impl TreeViewBuilder {
         }
     }
 
-    pub fn layout_manager(self, layout_manager: &impl IsA<LayoutManager>) -> Self {
+    pub fn layout_manager<'a, P: IsA<LayoutManager>>(
+        self,
+        layout_manager: impl Into<Option<&'a P>>,
+    ) -> Self {
         Self {
-            builder: self
-                .builder
-                .property("layout-manager", layout_manager.clone().upcast()),
+            builder: self.builder.property(
+                "layout-manager",
+                layout_manager.into().as_ref().map(|p| p.as_ref()),
+            ),
         }
     }
 
@@ -301,7 +310,7 @@ impl TreeViewBuilder {
         }
     }
 
-    pub fn name(self, name: impl Into<glib::GString>) -> Self {
+    pub fn name<'a>(self, name: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("name", name.into()),
         }
@@ -331,7 +340,7 @@ impl TreeViewBuilder {
         }
     }
 
-    pub fn tooltip_markup(self, tooltip_markup: impl Into<glib::GString>) -> Self {
+    pub fn tooltip_markup<'a>(self, tooltip_markup: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self
                 .builder
@@ -339,7 +348,7 @@ impl TreeViewBuilder {
         }
     }
 
-    pub fn tooltip_text(self, tooltip_text: impl Into<glib::GString>) -> Self {
+    pub fn tooltip_text<'a>(self, tooltip_text: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("tooltip-text", tooltip_text.into()),
         }
@@ -381,11 +390,15 @@ impl TreeViewBuilder {
         }
     }
 
-    pub fn hadjustment(self, hadjustment: &impl IsA<Adjustment>) -> Self {
+    pub fn hadjustment<'a, P: IsA<Adjustment>>(
+        self,
+        hadjustment: impl Into<Option<&'a P>>,
+    ) -> Self {
         Self {
-            builder: self
-                .builder
-                .property("hadjustment", hadjustment.clone().upcast()),
+            builder: self.builder.property(
+                "hadjustment",
+                hadjustment.into().as_ref().map(|p| p.as_ref()),
+            ),
         }
     }
 
@@ -395,11 +408,15 @@ impl TreeViewBuilder {
         }
     }
 
-    pub fn vadjustment(self, vadjustment: &impl IsA<Adjustment>) -> Self {
+    pub fn vadjustment<'a, P: IsA<Adjustment>>(
+        self,
+        vadjustment: impl Into<Option<&'a P>>,
+    ) -> Self {
         Self {
-            builder: self
-                .builder
-                .property("vadjustment", vadjustment.clone().upcast()),
+            builder: self.builder.property(
+                "vadjustment",
+                vadjustment.into().as_ref().map(|p| p.as_ref()),
+            ),
         }
     }
 
@@ -664,17 +681,17 @@ pub trait TreeViewExt: IsA<TreeView> + 'static {
     #[allow(deprecated)]
     #[doc(alias = "gtk_tree_view_get_background_area")]
     #[doc(alias = "get_background_area")]
-    fn background_area(
+    fn background_area<'a>(
         &self,
-        path: Option<&TreePath>,
-        column: Option<&TreeViewColumn>,
+        path: impl Into<Option<&'a TreePath>>,
+        column: impl Into<Option<&'a TreeViewColumn>>,
     ) -> gdk::Rectangle {
         unsafe {
             let mut rect = gdk::Rectangle::uninitialized();
             ffi::gtk_tree_view_get_background_area(
                 self.as_ref().to_glib_none().0,
-                mut_override(path.to_glib_none().0),
-                column.to_glib_none().0,
+                mut_override(path.into().to_glib_none().0),
+                column.into().to_glib_none().0,
                 rect.to_glib_none_mut().0,
             );
             rect
@@ -685,17 +702,17 @@ pub trait TreeViewExt: IsA<TreeView> + 'static {
     #[allow(deprecated)]
     #[doc(alias = "gtk_tree_view_get_cell_area")]
     #[doc(alias = "get_cell_area")]
-    fn cell_area(
+    fn cell_area<'a>(
         &self,
-        path: Option<&TreePath>,
-        column: Option<&TreeViewColumn>,
+        path: impl Into<Option<&'a TreePath>>,
+        column: impl Into<Option<&'a TreeViewColumn>>,
     ) -> gdk::Rectangle {
         unsafe {
             let mut rect = gdk::Rectangle::uninitialized();
             ffi::gtk_tree_view_get_cell_area(
                 self.as_ref().to_glib_none().0,
-                mut_override(path.to_glib_none().0),
-                column.to_glib_none().0,
+                mut_override(path.into().to_glib_none().0),
+                column.into().to_glib_none().0,
                 rect.to_glib_none_mut().0,
             );
             rect
@@ -1253,12 +1270,16 @@ pub trait TreeViewExt: IsA<TreeView> + 'static {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_tree_view_move_column_after")]
-    fn move_column_after(&self, column: &TreeViewColumn, base_column: Option<&TreeViewColumn>) {
+    fn move_column_after<'a>(
+        &self,
+        column: &TreeViewColumn,
+        base_column: impl Into<Option<&'a TreeViewColumn>>,
+    ) {
         unsafe {
             ffi::gtk_tree_view_move_column_after(
                 self.as_ref().to_glib_none().0,
                 column.to_glib_none().0,
-                base_column.to_glib_none().0,
+                base_column.into().to_glib_none().0,
             );
         }
     }
@@ -1278,12 +1299,12 @@ pub trait TreeViewExt: IsA<TreeView> + 'static {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_tree_view_row_activated")]
-    fn row_activated(&self, path: &TreePath, column: Option<&TreeViewColumn>) {
+    fn row_activated<'a>(&self, path: &TreePath, column: impl Into<Option<&'a TreeViewColumn>>) {
         unsafe {
             ffi::gtk_tree_view_row_activated(
                 self.as_ref().to_glib_none().0,
                 mut_override(path.to_glib_none().0),
-                column.to_glib_none().0,
+                column.into().to_glib_none().0,
             );
         }
     }
@@ -1303,10 +1324,10 @@ pub trait TreeViewExt: IsA<TreeView> + 'static {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_tree_view_scroll_to_cell")]
-    fn scroll_to_cell(
+    fn scroll_to_cell<'a>(
         &self,
-        path: Option<&TreePath>,
-        column: Option<&TreeViewColumn>,
+        path: impl Into<Option<&'a TreePath>>,
+        column: impl Into<Option<&'a TreeViewColumn>>,
         use_align: bool,
         row_align: f32,
         col_align: f32,
@@ -1314,8 +1335,8 @@ pub trait TreeViewExt: IsA<TreeView> + 'static {
         unsafe {
             ffi::gtk_tree_view_scroll_to_cell(
                 self.as_ref().to_glib_none().0,
-                mut_override(path.to_glib_none().0),
-                column.to_glib_none().0,
+                mut_override(path.into().to_glib_none().0),
+                column.into().to_glib_none().0,
                 use_align.into_glib(),
                 row_align,
                 col_align,
@@ -1426,17 +1447,17 @@ pub trait TreeViewExt: IsA<TreeView> + 'static {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_tree_view_set_cursor")]
-    fn set_cursor(
+    fn set_cursor<'a>(
         &self,
         path: &TreePath,
-        focus_column: Option<&TreeViewColumn>,
+        focus_column: impl Into<Option<&'a TreeViewColumn>>,
         start_editing: bool,
     ) {
         unsafe {
             ffi::gtk_tree_view_set_cursor(
                 self.as_ref().to_glib_none().0,
                 mut_override(path.to_glib_none().0),
-                focus_column.to_glib_none().0,
+                focus_column.into().to_glib_none().0,
                 start_editing.into_glib(),
             );
         }
@@ -1445,19 +1466,24 @@ pub trait TreeViewExt: IsA<TreeView> + 'static {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_tree_view_set_cursor_on_cell")]
-    fn set_cursor_on_cell(
+    fn set_cursor_on_cell<'a, P: IsA<CellRenderer>>(
         &self,
         path: &TreePath,
-        focus_column: Option<&TreeViewColumn>,
-        focus_cell: Option<&impl IsA<CellRenderer>>,
+        focus_column: impl Into<Option<&'a TreeViewColumn>>,
+        focus_cell: impl Into<Option<&'a P>>,
         start_editing: bool,
     ) {
         unsafe {
             ffi::gtk_tree_view_set_cursor_on_cell(
                 self.as_ref().to_glib_none().0,
                 mut_override(path.to_glib_none().0),
-                focus_column.to_glib_none().0,
-                focus_cell.map(|p| p.as_ref()).to_glib_none().0,
+                focus_column.into().to_glib_none().0,
+                focus_cell
+                    .into()
+                    .as_ref()
+                    .map(|p| p.as_ref())
+                    .to_glib_none()
+                    .0,
                 start_editing.into_glib(),
             );
         }
@@ -1466,11 +1492,15 @@ pub trait TreeViewExt: IsA<TreeView> + 'static {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_tree_view_set_drag_dest_row")]
-    fn set_drag_dest_row(&self, path: Option<&TreePath>, pos: TreeViewDropPosition) {
+    fn set_drag_dest_row<'a>(
+        &self,
+        path: impl Into<Option<&'a TreePath>>,
+        pos: TreeViewDropPosition,
+    ) {
         unsafe {
             ffi::gtk_tree_view_set_drag_dest_row(
                 self.as_ref().to_glib_none().0,
-                mut_override(path.to_glib_none().0),
+                mut_override(path.into().to_glib_none().0),
                 pos.into_glib(),
             );
         }
@@ -1506,11 +1536,11 @@ pub trait TreeViewExt: IsA<TreeView> + 'static {
     #[allow(deprecated)]
     #[doc(alias = "gtk_tree_view_set_expander_column")]
     #[doc(alias = "expander-column")]
-    fn set_expander_column(&self, column: Option<&TreeViewColumn>) {
+    fn set_expander_column<'a>(&self, column: impl Into<Option<&'a TreeViewColumn>>) {
         unsafe {
             ffi::gtk_tree_view_set_expander_column(
                 self.as_ref().to_glib_none().0,
-                column.to_glib_none().0,
+                column.into().to_glib_none().0,
             );
         }
     }
@@ -1603,11 +1633,11 @@ pub trait TreeViewExt: IsA<TreeView> + 'static {
     #[allow(deprecated)]
     #[doc(alias = "gtk_tree_view_set_model")]
     #[doc(alias = "model")]
-    fn set_model(&self, model: Option<&impl IsA<TreeModel>>) {
+    fn set_model<'a, P: IsA<TreeModel>>(&self, model: impl Into<Option<&'a P>>) {
         unsafe {
             ffi::gtk_tree_view_set_model(
                 self.as_ref().to_glib_none().0,
-                model.map(|p| p.as_ref()).to_glib_none().0,
+                model.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
             );
         }
     }
@@ -1684,11 +1714,11 @@ pub trait TreeViewExt: IsA<TreeView> + 'static {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_tree_view_set_search_entry")]
-    fn set_search_entry(&self, entry: Option<&impl IsA<Editable>>) {
+    fn set_search_entry<'a, P: IsA<Editable>>(&self, entry: impl Into<Option<&'a P>>) {
         unsafe {
             ffi::gtk_tree_view_set_search_entry(
                 self.as_ref().to_glib_none().0,
-                entry.map(|p| p.as_ref()).to_glib_none().0,
+                entry.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
             );
         }
     }
@@ -1752,20 +1782,20 @@ pub trait TreeViewExt: IsA<TreeView> + 'static {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_tree_view_set_tooltip_cell")]
-    fn set_tooltip_cell(
+    fn set_tooltip_cell<'a, P: IsA<CellRenderer>>(
         &self,
         tooltip: &Tooltip,
-        path: Option<&TreePath>,
-        column: Option<&TreeViewColumn>,
-        cell: Option<&impl IsA<CellRenderer>>,
+        path: impl Into<Option<&'a TreePath>>,
+        column: impl Into<Option<&'a TreeViewColumn>>,
+        cell: impl Into<Option<&'a P>>,
     ) {
         unsafe {
             ffi::gtk_tree_view_set_tooltip_cell(
                 self.as_ref().to_glib_none().0,
                 tooltip.to_glib_none().0,
-                mut_override(path.to_glib_none().0),
-                column.to_glib_none().0,
-                cell.map(|p| p.as_ref()).to_glib_none().0,
+                mut_override(path.into().to_glib_none().0),
+                column.into().to_glib_none().0,
+                cell.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
             );
         }
     }

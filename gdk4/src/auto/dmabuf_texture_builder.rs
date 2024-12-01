@@ -138,11 +138,11 @@ impl DmabufTextureBuilder {
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
     #[doc(alias = "gdk_dmabuf_texture_builder_set_color_state")]
     #[doc(alias = "color-state")]
-    pub fn set_color_state(&self, color_state: Option<&ColorState>) {
+    pub fn set_color_state<'a>(&self, color_state: impl Into<Option<&'a ColorState>>) {
         unsafe {
             ffi::gdk_dmabuf_texture_builder_set_color_state(
                 self.to_glib_none().0,
-                color_state.to_glib_none().0,
+                color_state.into().to_glib_none().0,
             );
         }
     }
@@ -224,22 +224,22 @@ impl DmabufTextureBuilder {
 
     #[doc(alias = "gdk_dmabuf_texture_builder_set_update_region")]
     #[doc(alias = "update-region")]
-    pub fn set_update_region(&self, region: Option<&cairo::Region>) {
+    pub fn set_update_region<'a>(&self, region: impl Into<Option<&'a cairo::Region>>) {
         unsafe {
             ffi::gdk_dmabuf_texture_builder_set_update_region(
                 self.to_glib_none().0,
-                mut_override(region.to_glib_none().0),
+                mut_override(region.into().to_glib_none().0),
             );
         }
     }
 
     #[doc(alias = "gdk_dmabuf_texture_builder_set_update_texture")]
     #[doc(alias = "update-texture")]
-    pub fn set_update_texture(&self, texture: Option<&impl IsA<Texture>>) {
+    pub fn set_update_texture<'a, P: IsA<Texture>>(&self, texture: impl Into<Option<&'a P>>) {
         unsafe {
             ffi::gdk_dmabuf_texture_builder_set_update_texture(
                 self.to_glib_none().0,
-                texture.map(|p| p.as_ref()).to_glib_none().0,
+                texture.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
             );
         }
     }

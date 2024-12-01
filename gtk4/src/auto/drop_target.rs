@@ -358,9 +358,9 @@ impl DropTargetBuilder {
         }
     }
 
-    pub fn formats(self, formats: &gdk::ContentFormats) -> Self {
+    pub fn formats<'a>(self, formats: impl Into<Option<&'a gdk::ContentFormats>>) -> Self {
         Self {
-            builder: self.builder.property("formats", formats.clone()),
+            builder: self.builder.property("formats", formats.into()),
         }
     }
 
@@ -370,7 +370,7 @@ impl DropTargetBuilder {
         }
     }
 
-    pub fn name(self, name: impl Into<glib::GString>) -> Self {
+    pub fn name<'a>(self, name: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("name", name.into()),
         }

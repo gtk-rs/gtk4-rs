@@ -49,8 +49,8 @@ impl ShortcutsWindow {
     }
 
     #[doc(alias = "section-name")]
-    pub fn set_section_name(&self, section_name: Option<&str>) {
-        ObjectExt::set_property(self, "section-name", section_name)
+    pub fn set_section_name<'a>(&self, section_name: impl Into<Option<&'a str>>) {
+        ObjectExt::set_property(self, "section-name", section_name.into())
     }
 
     #[doc(alias = "view-name")]
@@ -59,8 +59,8 @@ impl ShortcutsWindow {
     }
 
     #[doc(alias = "view-name")]
-    pub fn set_view_name(&self, view_name: Option<&str>) {
-        ObjectExt::set_property(self, "view-name", view_name)
+    pub fn set_view_name<'a>(&self, view_name: impl Into<Option<&'a str>>) {
+        ObjectExt::set_property(self, "view-name", view_name.into())
     }
 
     #[doc(alias = "close")]
@@ -178,29 +178,35 @@ impl ShortcutsWindowBuilder {
         }
     }
 
-    pub fn section_name(self, section_name: impl Into<glib::GString>) -> Self {
+    pub fn section_name<'a>(self, section_name: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("section-name", section_name.into()),
         }
     }
 
-    pub fn view_name(self, view_name: impl Into<glib::GString>) -> Self {
+    pub fn view_name<'a>(self, view_name: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("view-name", view_name.into()),
         }
     }
 
-    pub fn application(self, application: &impl IsA<Application>) -> Self {
+    pub fn application<'a, P: IsA<Application>>(
+        self,
+        application: impl Into<Option<&'a P>>,
+    ) -> Self {
         Self {
-            builder: self
-                .builder
-                .property("application", application.clone().upcast()),
+            builder: self.builder.property(
+                "application",
+                application.into().as_ref().map(|p| p.as_ref()),
+            ),
         }
     }
 
-    pub fn child(self, child: &impl IsA<Widget>) -> Self {
+    pub fn child<'a, P: IsA<Widget>>(self, child: impl Into<Option<&'a P>>) -> Self {
         Self {
-            builder: self.builder.property("child", child.clone().upcast()),
+            builder: self
+                .builder
+                .property("child", child.into().as_ref().map(|p| p.as_ref())),
         }
     }
 
@@ -216,11 +222,15 @@ impl ShortcutsWindowBuilder {
         }
     }
 
-    pub fn default_widget(self, default_widget: &impl IsA<Widget>) -> Self {
+    pub fn default_widget<'a, P: IsA<Widget>>(
+        self,
+        default_widget: impl Into<Option<&'a P>>,
+    ) -> Self {
         Self {
-            builder: self
-                .builder
-                .property("default-widget", default_widget.clone().upcast()),
+            builder: self.builder.property(
+                "default-widget",
+                default_widget.into().as_ref().map(|p| p.as_ref()),
+            ),
         }
     }
 
@@ -244,9 +254,11 @@ impl ShortcutsWindowBuilder {
         }
     }
 
-    pub fn display(self, display: &impl IsA<gdk::Display>) -> Self {
+    pub fn display<'a, P: IsA<gdk::Display>>(self, display: impl Into<Option<&'a P>>) -> Self {
         Self {
-            builder: self.builder.property("display", display.clone().upcast()),
+            builder: self
+                .builder
+                .property("display", display.into().as_ref().map(|p| p.as_ref())),
         }
     }
 
@@ -256,11 +268,12 @@ impl ShortcutsWindowBuilder {
         }
     }
 
-    pub fn focus_widget(self, focus_widget: &impl IsA<Widget>) -> Self {
+    pub fn focus_widget<'a, P: IsA<Widget>>(self, focus_widget: impl Into<Option<&'a P>>) -> Self {
         Self {
-            builder: self
-                .builder
-                .property("focus-widget", focus_widget.clone().upcast()),
+            builder: self.builder.property(
+                "focus-widget",
+                focus_widget.into().as_ref().map(|p| p.as_ref()),
+            ),
         }
     }
 
@@ -286,7 +299,7 @@ impl ShortcutsWindowBuilder {
         }
     }
 
-    pub fn icon_name(self, icon_name: impl Into<glib::GString>) -> Self {
+    pub fn icon_name<'a>(self, icon_name: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("icon-name", icon_name.into()),
         }
@@ -318,13 +331,13 @@ impl ShortcutsWindowBuilder {
         }
     }
 
-    pub fn startup_id(self, startup_id: impl Into<glib::GString>) -> Self {
+    pub fn startup_id<'a>(self, startup_id: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("startup-id", startup_id.into()),
         }
     }
 
-    pub fn title(self, title: impl Into<glib::GString>) -> Self {
+    pub fn title<'a>(self, title: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("title", title.into()),
         }
@@ -332,17 +345,23 @@ impl ShortcutsWindowBuilder {
 
     #[cfg(feature = "v4_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
-    pub fn titlebar(self, titlebar: &impl IsA<Widget>) -> Self {
-        Self {
-            builder: self.builder.property("titlebar", titlebar.clone().upcast()),
-        }
-    }
-
-    pub fn transient_for(self, transient_for: &impl IsA<Window>) -> Self {
+    pub fn titlebar<'a, P: IsA<Widget>>(self, titlebar: impl Into<Option<&'a P>>) -> Self {
         Self {
             builder: self
                 .builder
-                .property("transient-for", transient_for.clone().upcast()),
+                .property("titlebar", titlebar.into().as_ref().map(|p| p.as_ref())),
+        }
+    }
+
+    pub fn transient_for<'a, P: IsA<Window>>(
+        self,
+        transient_for: impl Into<Option<&'a P>>,
+    ) -> Self {
+        Self {
+            builder: self.builder.property(
+                "transient-for",
+                transient_for.into().as_ref().map(|p| p.as_ref()),
+            ),
         }
     }
 
@@ -364,15 +383,15 @@ impl ShortcutsWindowBuilder {
         }
     }
 
-    pub fn css_name(self, css_name: impl Into<glib::GString>) -> Self {
+    pub fn css_name<'a>(self, css_name: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("css-name", css_name.into()),
         }
     }
 
-    pub fn cursor(self, cursor: &gdk::Cursor) -> Self {
+    pub fn cursor<'a>(self, cursor: impl Into<Option<&'a gdk::Cursor>>) -> Self {
         Self {
-            builder: self.builder.property("cursor", cursor.clone()),
+            builder: self.builder.property("cursor", cursor.into()),
         }
     }
 
@@ -418,11 +437,15 @@ impl ShortcutsWindowBuilder {
         }
     }
 
-    pub fn layout_manager(self, layout_manager: &impl IsA<LayoutManager>) -> Self {
+    pub fn layout_manager<'a, P: IsA<LayoutManager>>(
+        self,
+        layout_manager: impl Into<Option<&'a P>>,
+    ) -> Self {
         Self {
-            builder: self
-                .builder
-                .property("layout-manager", layout_manager.clone().upcast()),
+            builder: self.builder.property(
+                "layout-manager",
+                layout_manager.into().as_ref().map(|p| p.as_ref()),
+            ),
         }
     }
 
@@ -450,7 +473,7 @@ impl ShortcutsWindowBuilder {
         }
     }
 
-    pub fn name(self, name: impl Into<glib::GString>) -> Self {
+    pub fn name<'a>(self, name: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("name", name.into()),
         }
@@ -480,7 +503,7 @@ impl ShortcutsWindowBuilder {
         }
     }
 
-    pub fn tooltip_markup(self, tooltip_markup: impl Into<glib::GString>) -> Self {
+    pub fn tooltip_markup<'a>(self, tooltip_markup: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self
                 .builder
@@ -488,7 +511,7 @@ impl ShortcutsWindowBuilder {
         }
     }
 
-    pub fn tooltip_text(self, tooltip_text: impl Into<glib::GString>) -> Self {
+    pub fn tooltip_text<'a>(self, tooltip_text: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("tooltip-text", tooltip_text.into()),
         }

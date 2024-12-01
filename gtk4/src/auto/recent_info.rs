@@ -18,15 +18,15 @@ glib::wrapper! {
 
 impl RecentInfo {
     #[doc(alias = "gtk_recent_info_create_app_info")]
-    pub fn create_app_info(
+    pub fn create_app_info<'a>(
         &self,
-        app_name: Option<&str>,
+        app_name: impl Into<Option<&'a str>>,
     ) -> Result<Option<gio::AppInfo>, glib::Error> {
         unsafe {
             let mut error = std::ptr::null_mut();
             let ret = ffi::gtk_recent_info_create_app_info(
                 self.to_glib_none().0,
-                app_name.to_glib_none().0,
+                app_name.into().to_glib_none().0,
                 &mut error,
             );
             if error.is_null() {

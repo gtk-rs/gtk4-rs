@@ -637,11 +637,16 @@ pub trait CellAreaExt: IsA<CellArea> + 'static {
     #[allow(deprecated)]
     #[doc(alias = "gtk_cell_area_set_focus_cell")]
     #[doc(alias = "focus-cell")]
-    fn set_focus_cell(&self, renderer: Option<&impl IsA<CellRenderer>>) {
+    fn set_focus_cell<'a, P: IsA<CellRenderer>>(&self, renderer: impl Into<Option<&'a P>>) {
         unsafe {
             ffi::gtk_cell_area_set_focus_cell(
                 self.as_ref().to_glib_none().0,
-                renderer.map(|p| p.as_ref()).to_glib_none().0,
+                renderer
+                    .into()
+                    .as_ref()
+                    .map(|p| p.as_ref())
+                    .to_glib_none()
+                    .0,
             );
         }
     }

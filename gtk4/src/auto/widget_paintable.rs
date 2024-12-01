@@ -21,11 +21,11 @@ glib::wrapper! {
 
 impl WidgetPaintable {
     #[doc(alias = "gtk_widget_paintable_new")]
-    pub fn new(widget: Option<&impl IsA<Widget>>) -> WidgetPaintable {
+    pub fn new<'a, P: IsA<Widget>>(widget: impl Into<Option<&'a P>>) -> WidgetPaintable {
         assert_initialized_main_thread!();
         unsafe {
             from_glib_full(ffi::gtk_widget_paintable_new(
-                widget.map(|p| p.as_ref()).to_glib_none().0,
+                widget.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
             ))
         }
     }
@@ -38,11 +38,11 @@ impl WidgetPaintable {
 
     #[doc(alias = "gtk_widget_paintable_set_widget")]
     #[doc(alias = "widget")]
-    pub fn set_widget(&self, widget: Option<&impl IsA<Widget>>) {
+    pub fn set_widget<'a, P: IsA<Widget>>(&self, widget: impl Into<Option<&'a P>>) {
         unsafe {
             ffi::gtk_widget_paintable_set_widget(
                 self.to_glib_none().0,
-                widget.map(|p| p.as_ref()).to_glib_none().0,
+                widget.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
             );
         }
     }

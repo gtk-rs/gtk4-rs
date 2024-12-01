@@ -53,11 +53,11 @@ impl ListHeader {
 
     #[doc(alias = "gtk_list_header_set_child")]
     #[doc(alias = "child")]
-    pub fn set_child(&self, child: Option<&impl IsA<Widget>>) {
+    pub fn set_child<'a, P: IsA<Widget>>(&self, child: impl Into<Option<&'a P>>) {
         unsafe {
             ffi::gtk_list_header_set_child(
                 self.to_glib_none().0,
-                child.map(|p| p.as_ref()).to_glib_none().0,
+                child.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
             );
         }
     }

@@ -42,11 +42,11 @@ impl TreeListRowSorter {
 
     #[doc(alias = "gtk_tree_list_row_sorter_set_sorter")]
     #[doc(alias = "sorter")]
-    pub fn set_sorter(&self, sorter: Option<&impl IsA<Sorter>>) {
+    pub fn set_sorter<'a, P: IsA<Sorter>>(&self, sorter: impl Into<Option<&'a P>>) {
         unsafe {
             ffi::gtk_tree_list_row_sorter_set_sorter(
                 self.to_glib_none().0,
-                sorter.map(|p| p.as_ref()).to_glib_none().0,
+                sorter.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
             );
         }
     }

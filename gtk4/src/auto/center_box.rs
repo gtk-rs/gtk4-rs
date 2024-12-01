@@ -92,22 +92,22 @@ impl CenterBox {
 
     #[doc(alias = "gtk_center_box_set_center_widget")]
     #[doc(alias = "center-widget")]
-    pub fn set_center_widget(&self, child: Option<&impl IsA<Widget>>) {
+    pub fn set_center_widget<'a, P: IsA<Widget>>(&self, child: impl Into<Option<&'a P>>) {
         unsafe {
             ffi::gtk_center_box_set_center_widget(
                 self.to_glib_none().0,
-                child.map(|p| p.as_ref()).to_glib_none().0,
+                child.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
             );
         }
     }
 
     #[doc(alias = "gtk_center_box_set_end_widget")]
     #[doc(alias = "end-widget")]
-    pub fn set_end_widget(&self, child: Option<&impl IsA<Widget>>) {
+    pub fn set_end_widget<'a, P: IsA<Widget>>(&self, child: impl Into<Option<&'a P>>) {
         unsafe {
             ffi::gtk_center_box_set_end_widget(
                 self.to_glib_none().0,
-                child.map(|p| p.as_ref()).to_glib_none().0,
+                child.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
             );
         }
     }
@@ -127,11 +127,11 @@ impl CenterBox {
 
     #[doc(alias = "gtk_center_box_set_start_widget")]
     #[doc(alias = "start-widget")]
-    pub fn set_start_widget(&self, child: Option<&impl IsA<Widget>>) {
+    pub fn set_start_widget<'a, P: IsA<Widget>>(&self, child: impl Into<Option<&'a P>>) {
         unsafe {
             ffi::gtk_center_box_set_start_widget(
                 self.to_glib_none().0,
-                child.map(|p| p.as_ref()).to_glib_none().0,
+                child.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
             );
         }
     }
@@ -298,21 +298,25 @@ impl CenterBoxBuilder {
 
     #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
-    pub fn center_widget(self, center_widget: &impl IsA<Widget>) -> Self {
+    pub fn center_widget<'a, P: IsA<Widget>>(
+        self,
+        center_widget: impl Into<Option<&'a P>>,
+    ) -> Self {
         Self {
-            builder: self
-                .builder
-                .property("center-widget", center_widget.clone().upcast()),
+            builder: self.builder.property(
+                "center-widget",
+                center_widget.into().as_ref().map(|p| p.as_ref()),
+            ),
         }
     }
 
     #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
-    pub fn end_widget(self, end_widget: &impl IsA<Widget>) -> Self {
+    pub fn end_widget<'a, P: IsA<Widget>>(self, end_widget: impl Into<Option<&'a P>>) -> Self {
         Self {
             builder: self
                 .builder
-                .property("end-widget", end_widget.clone().upcast()),
+                .property("end-widget", end_widget.into().as_ref().map(|p| p.as_ref())),
         }
     }
 
@@ -328,11 +332,12 @@ impl CenterBoxBuilder {
 
     #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
-    pub fn start_widget(self, start_widget: &impl IsA<Widget>) -> Self {
+    pub fn start_widget<'a, P: IsA<Widget>>(self, start_widget: impl Into<Option<&'a P>>) -> Self {
         Self {
-            builder: self
-                .builder
-                .property("start-widget", start_widget.clone().upcast()),
+            builder: self.builder.property(
+                "start-widget",
+                start_widget.into().as_ref().map(|p| p.as_ref()),
+            ),
         }
     }
 
@@ -354,15 +359,15 @@ impl CenterBoxBuilder {
         }
     }
 
-    pub fn css_name(self, css_name: impl Into<glib::GString>) -> Self {
+    pub fn css_name<'a>(self, css_name: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("css-name", css_name.into()),
         }
     }
 
-    pub fn cursor(self, cursor: &gdk::Cursor) -> Self {
+    pub fn cursor<'a>(self, cursor: impl Into<Option<&'a gdk::Cursor>>) -> Self {
         Self {
-            builder: self.builder.property("cursor", cursor.clone()),
+            builder: self.builder.property("cursor", cursor.into()),
         }
     }
 
@@ -408,11 +413,15 @@ impl CenterBoxBuilder {
         }
     }
 
-    pub fn layout_manager(self, layout_manager: &impl IsA<LayoutManager>) -> Self {
+    pub fn layout_manager<'a, P: IsA<LayoutManager>>(
+        self,
+        layout_manager: impl Into<Option<&'a P>>,
+    ) -> Self {
         Self {
-            builder: self
-                .builder
-                .property("layout-manager", layout_manager.clone().upcast()),
+            builder: self.builder.property(
+                "layout-manager",
+                layout_manager.into().as_ref().map(|p| p.as_ref()),
+            ),
         }
     }
 
@@ -440,7 +449,7 @@ impl CenterBoxBuilder {
         }
     }
 
-    pub fn name(self, name: impl Into<glib::GString>) -> Self {
+    pub fn name<'a>(self, name: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("name", name.into()),
         }
@@ -470,7 +479,7 @@ impl CenterBoxBuilder {
         }
     }
 
-    pub fn tooltip_markup(self, tooltip_markup: impl Into<glib::GString>) -> Self {
+    pub fn tooltip_markup<'a>(self, tooltip_markup: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self
                 .builder
@@ -478,7 +487,7 @@ impl CenterBoxBuilder {
         }
     }
 
-    pub fn tooltip_text(self, tooltip_text: impl Into<glib::GString>) -> Self {
+    pub fn tooltip_text<'a>(self, tooltip_text: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("tooltip-text", tooltip_text.into()),
         }

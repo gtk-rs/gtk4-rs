@@ -59,16 +59,16 @@ impl ShortcutsSection {
     }
 
     #[doc(alias = "section-name")]
-    pub fn set_section_name(&self, section_name: Option<&str>) {
-        ObjectExt::set_property(self, "section-name", section_name)
+    pub fn set_section_name<'a>(&self, section_name: impl Into<Option<&'a str>>) {
+        ObjectExt::set_property(self, "section-name", section_name.into())
     }
 
     pub fn title(&self) -> Option<glib::GString> {
         ObjectExt::property(self, "title")
     }
 
-    pub fn set_title(&self, title: Option<&str>) {
-        ObjectExt::set_property(self, "title", title)
+    pub fn set_title<'a>(&self, title: impl Into<Option<&'a str>>) {
+        ObjectExt::set_property(self, "title", title.into())
     }
 
     #[doc(alias = "view-name")]
@@ -77,8 +77,8 @@ impl ShortcutsSection {
     }
 
     #[doc(alias = "view-name")]
-    pub fn set_view_name(&self, view_name: Option<&str>) {
-        ObjectExt::set_property(self, "view-name", view_name)
+    pub fn set_view_name<'a>(&self, view_name: impl Into<Option<&'a str>>) {
+        ObjectExt::set_property(self, "view-name", view_name.into())
     }
 
     #[doc(alias = "max-height")]
@@ -196,19 +196,19 @@ impl ShortcutsSectionBuilder {
         }
     }
 
-    pub fn section_name(self, section_name: impl Into<glib::GString>) -> Self {
+    pub fn section_name<'a>(self, section_name: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("section-name", section_name.into()),
         }
     }
 
-    pub fn title(self, title: impl Into<glib::GString>) -> Self {
+    pub fn title<'a>(self, title: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("title", title.into()),
         }
     }
 
-    pub fn view_name(self, view_name: impl Into<glib::GString>) -> Self {
+    pub fn view_name<'a>(self, view_name: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("view-name", view_name.into()),
         }
@@ -260,15 +260,15 @@ impl ShortcutsSectionBuilder {
         }
     }
 
-    pub fn css_name(self, css_name: impl Into<glib::GString>) -> Self {
+    pub fn css_name<'a>(self, css_name: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("css-name", css_name.into()),
         }
     }
 
-    pub fn cursor(self, cursor: &gdk::Cursor) -> Self {
+    pub fn cursor<'a>(self, cursor: impl Into<Option<&'a gdk::Cursor>>) -> Self {
         Self {
-            builder: self.builder.property("cursor", cursor.clone()),
+            builder: self.builder.property("cursor", cursor.into()),
         }
     }
 
@@ -314,11 +314,15 @@ impl ShortcutsSectionBuilder {
         }
     }
 
-    pub fn layout_manager(self, layout_manager: &impl IsA<LayoutManager>) -> Self {
+    pub fn layout_manager<'a, P: IsA<LayoutManager>>(
+        self,
+        layout_manager: impl Into<Option<&'a P>>,
+    ) -> Self {
         Self {
-            builder: self
-                .builder
-                .property("layout-manager", layout_manager.clone().upcast()),
+            builder: self.builder.property(
+                "layout-manager",
+                layout_manager.into().as_ref().map(|p| p.as_ref()),
+            ),
         }
     }
 
@@ -346,7 +350,7 @@ impl ShortcutsSectionBuilder {
         }
     }
 
-    pub fn name(self, name: impl Into<glib::GString>) -> Self {
+    pub fn name<'a>(self, name: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("name", name.into()),
         }
@@ -376,7 +380,7 @@ impl ShortcutsSectionBuilder {
         }
     }
 
-    pub fn tooltip_markup(self, tooltip_markup: impl Into<glib::GString>) -> Self {
+    pub fn tooltip_markup<'a>(self, tooltip_markup: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self
                 .builder
@@ -384,7 +388,7 @@ impl ShortcutsSectionBuilder {
         }
     }
 
-    pub fn tooltip_text(self, tooltip_text: impl Into<glib::GString>) -> Self {
+    pub fn tooltip_text<'a>(self, tooltip_text: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("tooltip-text", tooltip_text.into()),
         }

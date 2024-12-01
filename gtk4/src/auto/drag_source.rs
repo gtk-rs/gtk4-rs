@@ -69,21 +69,31 @@ impl DragSource {
 
     #[doc(alias = "gtk_drag_source_set_content")]
     #[doc(alias = "content")]
-    pub fn set_content(&self, content: Option<&impl IsA<gdk::ContentProvider>>) {
+    pub fn set_content<'a, P: IsA<gdk::ContentProvider>>(&self, content: impl Into<Option<&'a P>>) {
         unsafe {
             ffi::gtk_drag_source_set_content(
                 self.to_glib_none().0,
-                content.map(|p| p.as_ref()).to_glib_none().0,
+                content.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
             );
         }
     }
 
     #[doc(alias = "gtk_drag_source_set_icon")]
-    pub fn set_icon(&self, paintable: Option<&impl IsA<gdk::Paintable>>, hot_x: i32, hot_y: i32) {
+    pub fn set_icon<'a, P: IsA<gdk::Paintable>>(
+        &self,
+        paintable: impl Into<Option<&'a P>>,
+        hot_x: i32,
+        hot_y: i32,
+    ) {
         unsafe {
             ffi::gtk_drag_source_set_icon(
                 self.to_glib_none().0,
-                paintable.map(|p| p.as_ref()).to_glib_none().0,
+                paintable
+                    .into()
+                    .as_ref()
+                    .map(|p| p.as_ref())
+                    .to_glib_none()
+                    .0,
                 hot_x,
                 hot_y,
             );
@@ -284,9 +294,14 @@ impl DragSourceBuilder {
         }
     }
 
-    pub fn content(self, content: &impl IsA<gdk::ContentProvider>) -> Self {
+    pub fn content<'a, P: IsA<gdk::ContentProvider>>(
+        self,
+        content: impl Into<Option<&'a P>>,
+    ) -> Self {
         Self {
-            builder: self.builder.property("content", content.clone().upcast()),
+            builder: self
+                .builder
+                .property("content", content.into().as_ref().map(|p| p.as_ref())),
         }
     }
 
@@ -314,7 +329,7 @@ impl DragSourceBuilder {
         }
     }
 
-    pub fn name(self, name: impl Into<glib::GString>) -> Self {
+    pub fn name<'a>(self, name: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("name", name.into()),
         }

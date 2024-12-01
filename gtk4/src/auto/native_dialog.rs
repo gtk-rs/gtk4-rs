@@ -102,11 +102,11 @@ pub trait NativeDialogExt: IsA<NativeDialog> + 'static {
 
     #[doc(alias = "gtk_native_dialog_set_transient_for")]
     #[doc(alias = "transient-for")]
-    fn set_transient_for(&self, parent: Option<&impl IsA<Window>>) {
+    fn set_transient_for<'a, P: IsA<Window>>(&self, parent: impl Into<Option<&'a P>>) {
         unsafe {
             ffi::gtk_native_dialog_set_transient_for(
                 self.as_ref().to_glib_none().0,
-                parent.map(|p| p.as_ref()).to_glib_none().0,
+                parent.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
             );
         }
     }

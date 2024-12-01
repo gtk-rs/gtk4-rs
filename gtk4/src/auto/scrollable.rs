@@ -85,11 +85,16 @@ pub trait ScrollableExt: IsA<Scrollable> + 'static {
 
     #[doc(alias = "gtk_scrollable_set_hadjustment")]
     #[doc(alias = "hadjustment")]
-    fn set_hadjustment(&self, hadjustment: Option<&impl IsA<Adjustment>>) {
+    fn set_hadjustment<'a, P: IsA<Adjustment>>(&self, hadjustment: impl Into<Option<&'a P>>) {
         unsafe {
             ffi::gtk_scrollable_set_hadjustment(
                 self.as_ref().to_glib_none().0,
-                hadjustment.map(|p| p.as_ref()).to_glib_none().0,
+                hadjustment
+                    .into()
+                    .as_ref()
+                    .map(|p| p.as_ref())
+                    .to_glib_none()
+                    .0,
             );
         }
     }
@@ -107,11 +112,16 @@ pub trait ScrollableExt: IsA<Scrollable> + 'static {
 
     #[doc(alias = "gtk_scrollable_set_vadjustment")]
     #[doc(alias = "vadjustment")]
-    fn set_vadjustment(&self, vadjustment: Option<&impl IsA<Adjustment>>) {
+    fn set_vadjustment<'a, P: IsA<Adjustment>>(&self, vadjustment: impl Into<Option<&'a P>>) {
         unsafe {
             ffi::gtk_scrollable_set_vadjustment(
                 self.as_ref().to_glib_none().0,
-                vadjustment.map(|p| p.as_ref()).to_glib_none().0,
+                vadjustment
+                    .into()
+                    .as_ref()
+                    .map(|p| p.as_ref())
+                    .to_glib_none()
+                    .0,
             );
         }
     }

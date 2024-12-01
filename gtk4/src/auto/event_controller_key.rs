@@ -63,11 +63,16 @@ impl EventControllerKey {
     }
 
     #[doc(alias = "gtk_event_controller_key_set_im_context")]
-    pub fn set_im_context(&self, im_context: Option<&impl IsA<IMContext>>) {
+    pub fn set_im_context<'a, P: IsA<IMContext>>(&self, im_context: impl Into<Option<&'a P>>) {
         unsafe {
             ffi::gtk_event_controller_key_set_im_context(
                 self.to_glib_none().0,
-                im_context.map(|p| p.as_ref()).to_glib_none().0,
+                im_context
+                    .into()
+                    .as_ref()
+                    .map(|p| p.as_ref())
+                    .to_glib_none()
+                    .0,
             );
         }
     }
@@ -145,7 +150,7 @@ impl EventControllerKeyBuilder {
         }
     }
 
-    pub fn name(self, name: impl Into<glib::GString>) -> Self {
+    pub fn name<'a>(self, name: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("name", name.into()),
         }

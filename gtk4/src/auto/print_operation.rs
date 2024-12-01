@@ -74,7 +74,7 @@ impl PrintOperationBuilder {
         }
     }
 
-    pub fn custom_tab_label(self, custom_tab_label: impl Into<glib::GString>) -> Self {
+    pub fn custom_tab_label<'a>(self, custom_tab_label: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self
                 .builder
@@ -82,11 +82,14 @@ impl PrintOperationBuilder {
         }
     }
 
-    pub fn default_page_setup(self, default_page_setup: &PageSetup) -> Self {
+    pub fn default_page_setup<'a>(
+        self,
+        default_page_setup: impl Into<Option<&'a PageSetup>>,
+    ) -> Self {
         Self {
             builder: self
                 .builder
-                .property("default-page-setup", default_page_setup.clone()),
+                .property("default-page-setup", default_page_setup.into()),
         }
     }
 
@@ -96,7 +99,7 @@ impl PrintOperationBuilder {
         }
     }
 
-    pub fn export_filename(self, export_filename: impl Into<glib::GString>) -> Self {
+    pub fn export_filename<'a>(self, export_filename: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self
                 .builder
@@ -110,7 +113,7 @@ impl PrintOperationBuilder {
         }
     }
 
-    pub fn job_name(self, job_name: impl Into<glib::GString>) -> Self {
+    pub fn job_name<'a>(self, job_name: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("job-name", job_name.into()),
         }
@@ -122,11 +125,11 @@ impl PrintOperationBuilder {
         }
     }
 
-    pub fn print_settings(self, print_settings: &PrintSettings) -> Self {
+    pub fn print_settings<'a>(self, print_settings: impl Into<Option<&'a PrintSettings>>) -> Self {
         Self {
             builder: self
                 .builder
-                .property("print-settings", print_settings.clone()),
+                .property("print-settings", print_settings.into()),
         }
     }
 
@@ -281,17 +284,17 @@ pub trait PrintOperationExt: IsA<PrintOperation> + 'static {
     }
 
     #[doc(alias = "gtk_print_operation_run")]
-    fn run(
+    fn run<'a, P: IsA<Window>>(
         &self,
         action: PrintOperationAction,
-        parent: Option<&impl IsA<Window>>,
+        parent: impl Into<Option<&'a P>>,
     ) -> Result<PrintOperationResult, glib::Error> {
         unsafe {
             let mut error = std::ptr::null_mut();
             let ret = ffi::gtk_print_operation_run(
                 self.as_ref().to_glib_none().0,
                 action.into_glib(),
-                parent.map(|p| p.as_ref()).to_glib_none().0,
+                parent.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
                 &mut error,
             );
             if error.is_null() {
@@ -323,22 +326,22 @@ pub trait PrintOperationExt: IsA<PrintOperation> + 'static {
 
     #[doc(alias = "gtk_print_operation_set_custom_tab_label")]
     #[doc(alias = "custom-tab-label")]
-    fn set_custom_tab_label(&self, label: Option<&str>) {
+    fn set_custom_tab_label<'a>(&self, label: impl Into<Option<&'a str>>) {
         unsafe {
             ffi::gtk_print_operation_set_custom_tab_label(
                 self.as_ref().to_glib_none().0,
-                label.to_glib_none().0,
+                label.into().to_glib_none().0,
             );
         }
     }
 
     #[doc(alias = "gtk_print_operation_set_default_page_setup")]
     #[doc(alias = "default-page-setup")]
-    fn set_default_page_setup(&self, default_page_setup: Option<&PageSetup>) {
+    fn set_default_page_setup<'a>(&self, default_page_setup: impl Into<Option<&'a PageSetup>>) {
         unsafe {
             ffi::gtk_print_operation_set_default_page_setup(
                 self.as_ref().to_glib_none().0,
-                default_page_setup.to_glib_none().0,
+                default_page_setup.into().to_glib_none().0,
             );
         }
     }
@@ -404,11 +407,11 @@ pub trait PrintOperationExt: IsA<PrintOperation> + 'static {
 
     #[doc(alias = "gtk_print_operation_set_print_settings")]
     #[doc(alias = "print-settings")]
-    fn set_print_settings(&self, print_settings: Option<&PrintSettings>) {
+    fn set_print_settings<'a>(&self, print_settings: impl Into<Option<&'a PrintSettings>>) {
         unsafe {
             ffi::gtk_print_operation_set_print_settings(
                 self.as_ref().to_glib_none().0,
-                print_settings.to_glib_none().0,
+                print_settings.into().to_glib_none().0,
             );
         }
     }

@@ -103,9 +103,11 @@ impl TextViewBuilder {
         }
     }
 
-    pub fn buffer(self, buffer: &impl IsA<TextBuffer>) -> Self {
+    pub fn buffer<'a, P: IsA<TextBuffer>>(self, buffer: impl Into<Option<&'a P>>) -> Self {
         Self {
-            builder: self.builder.property("buffer", buffer.clone().upcast()),
+            builder: self
+                .builder
+                .property("buffer", buffer.into().as_ref().map(|p| p.as_ref())),
         }
     }
 
@@ -121,15 +123,18 @@ impl TextViewBuilder {
         }
     }
 
-    pub fn extra_menu(self, extra_menu: &impl IsA<gio::MenuModel>) -> Self {
+    pub fn extra_menu<'a, P: IsA<gio::MenuModel>>(
+        self,
+        extra_menu: impl Into<Option<&'a P>>,
+    ) -> Self {
         Self {
             builder: self
                 .builder
-                .property("extra-menu", extra_menu.clone().upcast()),
+                .property("extra-menu", extra_menu.into().as_ref().map(|p| p.as_ref())),
         }
     }
 
-    pub fn im_module(self, im_module: impl Into<glib::GString>) -> Self {
+    pub fn im_module<'a>(self, im_module: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("im-module", im_module.into()),
         }
@@ -207,9 +212,9 @@ impl TextViewBuilder {
         }
     }
 
-    pub fn tabs(self, tabs: &pango::TabArray) -> Self {
+    pub fn tabs<'a>(self, tabs: impl Into<Option<&'a pango::TabArray>>) -> Self {
         Self {
-            builder: self.builder.property("tabs", tabs),
+            builder: self.builder.property("tabs", tabs.into()),
         }
     }
 
@@ -243,15 +248,15 @@ impl TextViewBuilder {
         }
     }
 
-    pub fn css_name(self, css_name: impl Into<glib::GString>) -> Self {
+    pub fn css_name<'a>(self, css_name: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("css-name", css_name.into()),
         }
     }
 
-    pub fn cursor(self, cursor: &gdk::Cursor) -> Self {
+    pub fn cursor<'a>(self, cursor: impl Into<Option<&'a gdk::Cursor>>) -> Self {
         Self {
-            builder: self.builder.property("cursor", cursor.clone()),
+            builder: self.builder.property("cursor", cursor.into()),
         }
     }
 
@@ -297,11 +302,15 @@ impl TextViewBuilder {
         }
     }
 
-    pub fn layout_manager(self, layout_manager: &impl IsA<LayoutManager>) -> Self {
+    pub fn layout_manager<'a, P: IsA<LayoutManager>>(
+        self,
+        layout_manager: impl Into<Option<&'a P>>,
+    ) -> Self {
         Self {
-            builder: self
-                .builder
-                .property("layout-manager", layout_manager.clone().upcast()),
+            builder: self.builder.property(
+                "layout-manager",
+                layout_manager.into().as_ref().map(|p| p.as_ref()),
+            ),
         }
     }
 
@@ -329,7 +338,7 @@ impl TextViewBuilder {
         }
     }
 
-    pub fn name(self, name: impl Into<glib::GString>) -> Self {
+    pub fn name<'a>(self, name: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("name", name.into()),
         }
@@ -359,7 +368,7 @@ impl TextViewBuilder {
         }
     }
 
-    pub fn tooltip_markup(self, tooltip_markup: impl Into<glib::GString>) -> Self {
+    pub fn tooltip_markup<'a>(self, tooltip_markup: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self
                 .builder
@@ -367,7 +376,7 @@ impl TextViewBuilder {
         }
     }
 
-    pub fn tooltip_text(self, tooltip_text: impl Into<glib::GString>) -> Self {
+    pub fn tooltip_text<'a>(self, tooltip_text: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("tooltip-text", tooltip_text.into()),
         }
@@ -409,11 +418,15 @@ impl TextViewBuilder {
         }
     }
 
-    pub fn hadjustment(self, hadjustment: &impl IsA<Adjustment>) -> Self {
+    pub fn hadjustment<'a, P: IsA<Adjustment>>(
+        self,
+        hadjustment: impl Into<Option<&'a P>>,
+    ) -> Self {
         Self {
-            builder: self
-                .builder
-                .property("hadjustment", hadjustment.clone().upcast()),
+            builder: self.builder.property(
+                "hadjustment",
+                hadjustment.into().as_ref().map(|p| p.as_ref()),
+            ),
         }
     }
 
@@ -423,11 +436,15 @@ impl TextViewBuilder {
         }
     }
 
-    pub fn vadjustment(self, vadjustment: &impl IsA<Adjustment>) -> Self {
+    pub fn vadjustment<'a, P: IsA<Adjustment>>(
+        self,
+        vadjustment: impl Into<Option<&'a P>>,
+    ) -> Self {
         Self {
-            builder: self
-                .builder
-                .property("vadjustment", vadjustment.clone().upcast()),
+            builder: self.builder.property(
+                "vadjustment",
+                vadjustment.into().as_ref().map(|p| p.as_ref()),
+            ),
         }
     }
 
@@ -562,13 +579,16 @@ pub trait TextViewExt: IsA<TextView> + 'static {
 
     #[doc(alias = "gtk_text_view_get_cursor_locations")]
     #[doc(alias = "get_cursor_locations")]
-    fn cursor_locations(&self, iter: Option<&TextIter>) -> (gdk::Rectangle, gdk::Rectangle) {
+    fn cursor_locations<'a>(
+        &self,
+        iter: impl Into<Option<&'a TextIter>>,
+    ) -> (gdk::Rectangle, gdk::Rectangle) {
         unsafe {
             let mut strong = gdk::Rectangle::uninitialized();
             let mut weak = gdk::Rectangle::uninitialized();
             ffi::gtk_text_view_get_cursor_locations(
                 self.as_ref().to_glib_none().0,
-                iter.to_glib_none().0,
+                iter.into().to_glib_none().0,
                 strong.to_glib_none_mut().0,
                 weak.to_glib_none_mut().0,
             );
@@ -1028,11 +1048,11 @@ pub trait TextViewExt: IsA<TextView> + 'static {
 
     #[doc(alias = "gtk_text_view_set_buffer")]
     #[doc(alias = "buffer")]
-    fn set_buffer(&self, buffer: Option<&impl IsA<TextBuffer>>) {
+    fn set_buffer<'a, P: IsA<TextBuffer>>(&self, buffer: impl Into<Option<&'a P>>) {
         unsafe {
             ffi::gtk_text_view_set_buffer(
                 self.as_ref().to_glib_none().0,
-                buffer.map(|p| p.as_ref()).to_glib_none().0,
+                buffer.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
             );
         }
     }
@@ -1058,22 +1078,26 @@ pub trait TextViewExt: IsA<TextView> + 'static {
 
     #[doc(alias = "gtk_text_view_set_extra_menu")]
     #[doc(alias = "extra-menu")]
-    fn set_extra_menu(&self, model: Option<&impl IsA<gio::MenuModel>>) {
+    fn set_extra_menu<'a, P: IsA<gio::MenuModel>>(&self, model: impl Into<Option<&'a P>>) {
         unsafe {
             ffi::gtk_text_view_set_extra_menu(
                 self.as_ref().to_glib_none().0,
-                model.map(|p| p.as_ref()).to_glib_none().0,
+                model.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
             );
         }
     }
 
     #[doc(alias = "gtk_text_view_set_gutter")]
-    fn set_gutter(&self, win: TextWindowType, widget: Option<&impl IsA<Widget>>) {
+    fn set_gutter<'a, P: IsA<Widget>>(
+        &self,
+        win: TextWindowType,
+        widget: impl Into<Option<&'a P>>,
+    ) {
         unsafe {
             ffi::gtk_text_view_set_gutter(
                 self.as_ref().to_glib_none().0,
                 win.into_glib(),
-                widget.map(|p| p.as_ref()).to_glib_none().0,
+                widget.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
             );
         }
     }
@@ -1246,8 +1270,8 @@ pub trait TextViewExt: IsA<TextView> + 'static {
     }
 
     #[doc(alias = "im-module")]
-    fn set_im_module(&self, im_module: Option<&str>) {
-        ObjectExt::set_property(self.as_ref(), "im-module", im_module)
+    fn set_im_module<'a>(&self, im_module: impl Into<Option<&'a str>>) {
+        ObjectExt::set_property(self.as_ref(), "im-module", im_module.into())
     }
 
     #[doc(alias = "backspace")]

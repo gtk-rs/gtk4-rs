@@ -149,44 +149,48 @@ pub fn hsv_to_rgb(h: f32, s: f32, v: f32) -> (f32, f32, f32) {
 }
 
 #[doc(alias = "gtk_print_run_page_setup_dialog")]
-pub fn print_run_page_setup_dialog(
-    parent: Option<&impl IsA<Window>>,
-    page_setup: Option<&PageSetup>,
+pub fn print_run_page_setup_dialog<'a, P: IsA<Window>>(
+    parent: impl Into<Option<&'a P>>,
+    page_setup: impl Into<Option<&'a PageSetup>>,
     settings: &PrintSettings,
 ) -> PageSetup {
     skip_assert_initialized!();
     unsafe {
         from_glib_full(ffi::gtk_print_run_page_setup_dialog(
-            parent.map(|p| p.as_ref()).to_glib_none().0,
-            page_setup.to_glib_none().0,
+            parent.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
+            page_setup.into().to_glib_none().0,
             settings.to_glib_none().0,
         ))
     }
 }
 
 #[doc(alias = "gtk_print_run_page_setup_dialog_async")]
-pub fn print_run_page_setup_dialog_async<P: FnOnce(&PageSetup) + Send + Sync + 'static>(
-    parent: Option<&impl IsA<Window>>,
-    page_setup: Option<&PageSetup>,
+pub fn print_run_page_setup_dialog_async<
+    'a,
+    P: IsA<Window>,
+    Q: FnOnce(&PageSetup) + Send + Sync + 'static,
+>(
+    parent: impl Into<Option<&'a P>>,
+    page_setup: impl Into<Option<&'a PageSetup>>,
     settings: &PrintSettings,
-    done_cb: P,
+    done_cb: Q,
 ) {
     skip_assert_initialized!();
-    let done_cb_data: Box_<P> = Box_::new(done_cb);
-    unsafe extern "C" fn done_cb_func<P: FnOnce(&PageSetup) + Send + Sync + 'static>(
+    let done_cb_data: Box_<Q> = Box_::new(done_cb);
+    unsafe extern "C" fn done_cb_func<Q: FnOnce(&PageSetup) + Send + Sync + 'static>(
         page_setup: *mut ffi::GtkPageSetup,
         data: glib::ffi::gpointer,
     ) {
         let page_setup = from_glib_borrow(page_setup);
-        let callback = Box_::from_raw(data as *mut P);
+        let callback = Box_::from_raw(data as *mut Q);
         (*callback)(&page_setup)
     }
-    let done_cb = Some(done_cb_func::<P> as _);
-    let super_callback0: Box_<P> = done_cb_data;
+    let done_cb = Some(done_cb_func::<Q> as _);
+    let super_callback0: Box_<Q> = done_cb_data;
     unsafe {
         ffi::gtk_print_run_page_setup_dialog_async(
-            parent.map(|p| p.as_ref()).to_glib_none().0,
-            page_setup.to_glib_none().0,
+            parent.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
+            page_setup.into().to_glib_none().0,
             settings.to_glib_none().0,
             done_cb,
             Box_::into_raw(super_callback0) as *mut _,
@@ -501,11 +505,11 @@ pub fn set_debug_flags(flags: DebugFlags) {
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 #[allow(deprecated)]
 #[doc(alias = "gtk_show_uri")]
-pub fn show_uri(parent: Option<&impl IsA<Window>>, uri: &str, timestamp: u32) {
+pub fn show_uri<'a, P: IsA<Window>>(parent: impl Into<Option<&'a P>>, uri: &str, timestamp: u32) {
     assert_initialized_main_thread!();
     unsafe {
         ffi::gtk_show_uri(
-            parent.map(|p| p.as_ref()).to_glib_none().0,
+            parent.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
             uri.to_glib_none().0,
             timestamp,
         );

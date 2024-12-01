@@ -131,17 +131,17 @@ impl IconView {
     #[allow(deprecated)]
     #[doc(alias = "gtk_icon_view_get_cell_rect")]
     #[doc(alias = "get_cell_rect")]
-    pub fn cell_rect(
+    pub fn cell_rect<'a, P: IsA<CellRenderer>>(
         &self,
         path: &TreePath,
-        cell: Option<&impl IsA<CellRenderer>>,
+        cell: impl Into<Option<&'a P>>,
     ) -> Option<gdk::Rectangle> {
         unsafe {
             let mut rect = gdk::Rectangle::uninitialized();
             let ret = from_glib(ffi::gtk_icon_view_get_cell_rect(
                 self.to_glib_none().0,
                 mut_override(path.to_glib_none().0),
-                cell.map(|p| p.as_ref()).to_glib_none().0,
+                cell.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
                 rect.to_glib_none_mut().0,
             ));
             if ret {
@@ -601,17 +601,17 @@ impl IconView {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_icon_view_set_cursor")]
-    pub fn set_cursor(
+    pub fn set_cursor<'a, P: IsA<CellRenderer>>(
         &self,
         path: &TreePath,
-        cell: Option<&impl IsA<CellRenderer>>,
+        cell: impl Into<Option<&'a P>>,
         start_editing: bool,
     ) {
         unsafe {
             ffi::gtk_icon_view_set_cursor(
                 self.to_glib_none().0,
                 mut_override(path.to_glib_none().0),
-                cell.map(|p| p.as_ref()).to_glib_none().0,
+                cell.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
                 start_editing.into_glib(),
             );
         }
@@ -620,11 +620,15 @@ impl IconView {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_icon_view_set_drag_dest_item")]
-    pub fn set_drag_dest_item(&self, path: Option<&TreePath>, pos: IconViewDropPosition) {
+    pub fn set_drag_dest_item<'a>(
+        &self,
+        path: impl Into<Option<&'a TreePath>>,
+        pos: IconViewDropPosition,
+    ) {
         unsafe {
             ffi::gtk_icon_view_set_drag_dest_item(
                 self.to_glib_none().0,
-                mut_override(path.to_glib_none().0),
+                mut_override(path.into().to_glib_none().0),
                 pos.into_glib(),
             );
         }
@@ -684,11 +688,11 @@ impl IconView {
     #[allow(deprecated)]
     #[doc(alias = "gtk_icon_view_set_model")]
     #[doc(alias = "model")]
-    pub fn set_model(&self, model: Option<&impl IsA<TreeModel>>) {
+    pub fn set_model<'a, P: IsA<TreeModel>>(&self, model: impl Into<Option<&'a P>>) {
         unsafe {
             ffi::gtk_icon_view_set_model(
                 self.to_glib_none().0,
-                model.map(|p| p.as_ref()).to_glib_none().0,
+                model.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
             );
         }
     }
@@ -756,18 +760,18 @@ impl IconView {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_icon_view_set_tooltip_cell")]
-    pub fn set_tooltip_cell(
+    pub fn set_tooltip_cell<'a, P: IsA<CellRenderer>>(
         &self,
         tooltip: &Tooltip,
         path: &TreePath,
-        cell: Option<&impl IsA<CellRenderer>>,
+        cell: impl Into<Option<&'a P>>,
     ) {
         unsafe {
             ffi::gtk_icon_view_set_tooltip_cell(
                 self.to_glib_none().0,
                 tooltip.to_glib_none().0,
                 mut_override(path.to_glib_none().0),
-                cell.map(|p| p.as_ref()).to_glib_none().0,
+                cell.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
             );
         }
     }
@@ -1472,11 +1476,11 @@ impl IconViewBuilder {
         }
     }
 
-    pub fn cell_area(self, cell_area: &impl IsA<CellArea>) -> Self {
+    pub fn cell_area<'a, P: IsA<CellArea>>(self, cell_area: impl Into<Option<&'a P>>) -> Self {
         Self {
             builder: self
                 .builder
-                .property("cell-area", cell_area.clone().upcast()),
+                .property("cell-area", cell_area.into().as_ref().map(|p| p.as_ref())),
         }
     }
 
@@ -1522,9 +1526,11 @@ impl IconViewBuilder {
         }
     }
 
-    pub fn model(self, model: &impl IsA<TreeModel>) -> Self {
+    pub fn model<'a, P: IsA<TreeModel>>(self, model: impl Into<Option<&'a P>>) -> Self {
         Self {
-            builder: self.builder.property("model", model.clone().upcast()),
+            builder: self
+                .builder
+                .property("model", model.into().as_ref().map(|p| p.as_ref())),
         }
     }
 
@@ -1588,15 +1594,15 @@ impl IconViewBuilder {
         }
     }
 
-    pub fn css_name(self, css_name: impl Into<glib::GString>) -> Self {
+    pub fn css_name<'a>(self, css_name: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("css-name", css_name.into()),
         }
     }
 
-    pub fn cursor(self, cursor: &gdk::Cursor) -> Self {
+    pub fn cursor<'a>(self, cursor: impl Into<Option<&'a gdk::Cursor>>) -> Self {
         Self {
-            builder: self.builder.property("cursor", cursor.clone()),
+            builder: self.builder.property("cursor", cursor.into()),
         }
     }
 
@@ -1642,11 +1648,15 @@ impl IconViewBuilder {
         }
     }
 
-    pub fn layout_manager(self, layout_manager: &impl IsA<LayoutManager>) -> Self {
+    pub fn layout_manager<'a, P: IsA<LayoutManager>>(
+        self,
+        layout_manager: impl Into<Option<&'a P>>,
+    ) -> Self {
         Self {
-            builder: self
-                .builder
-                .property("layout-manager", layout_manager.clone().upcast()),
+            builder: self.builder.property(
+                "layout-manager",
+                layout_manager.into().as_ref().map(|p| p.as_ref()),
+            ),
         }
     }
 
@@ -1674,7 +1684,7 @@ impl IconViewBuilder {
         }
     }
 
-    pub fn name(self, name: impl Into<glib::GString>) -> Self {
+    pub fn name<'a>(self, name: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("name", name.into()),
         }
@@ -1704,7 +1714,7 @@ impl IconViewBuilder {
         }
     }
 
-    pub fn tooltip_markup(self, tooltip_markup: impl Into<glib::GString>) -> Self {
+    pub fn tooltip_markup<'a>(self, tooltip_markup: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self
                 .builder
@@ -1712,7 +1722,7 @@ impl IconViewBuilder {
         }
     }
 
-    pub fn tooltip_text(self, tooltip_text: impl Into<glib::GString>) -> Self {
+    pub fn tooltip_text<'a>(self, tooltip_text: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("tooltip-text", tooltip_text.into()),
         }
@@ -1754,11 +1764,15 @@ impl IconViewBuilder {
         }
     }
 
-    pub fn hadjustment(self, hadjustment: &impl IsA<Adjustment>) -> Self {
+    pub fn hadjustment<'a, P: IsA<Adjustment>>(
+        self,
+        hadjustment: impl Into<Option<&'a P>>,
+    ) -> Self {
         Self {
-            builder: self
-                .builder
-                .property("hadjustment", hadjustment.clone().upcast()),
+            builder: self.builder.property(
+                "hadjustment",
+                hadjustment.into().as_ref().map(|p| p.as_ref()),
+            ),
         }
     }
 
@@ -1768,11 +1782,15 @@ impl IconViewBuilder {
         }
     }
 
-    pub fn vadjustment(self, vadjustment: &impl IsA<Adjustment>) -> Self {
+    pub fn vadjustment<'a, P: IsA<Adjustment>>(
+        self,
+        vadjustment: impl Into<Option<&'a P>>,
+    ) -> Self {
         Self {
-            builder: self
-                .builder
-                .property("vadjustment", vadjustment.clone().upcast()),
+            builder: self.builder.property(
+                "vadjustment",
+                vadjustment.into().as_ref().map(|p| p.as_ref()),
+            ),
         }
     }
 

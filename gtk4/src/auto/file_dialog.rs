@@ -97,11 +97,16 @@ impl FileDialog {
     }
 
     #[doc(alias = "gtk_file_dialog_open")]
-    pub fn open<P: FnOnce(Result<gio::File, glib::Error>) + 'static>(
+    pub fn open<
+        'a,
+        P: IsA<Window>,
+        Q: IsA<gio::Cancellable>,
+        R: FnOnce(Result<gio::File, glib::Error>) + 'static,
+    >(
         &self,
-        parent: Option<&impl IsA<Window>>,
-        cancellable: Option<&impl IsA<gio::Cancellable>>,
-        callback: P,
+        parent: impl Into<Option<&'a P>>,
+        cancellable: impl Into<Option<&'a Q>>,
+        callback: R,
     ) {
         let main_context = glib::MainContext::ref_thread_default();
         let is_main_context_owner = main_context.is_owner();
@@ -113,10 +118,10 @@ impl FileDialog {
             "Async operations only allowed if the thread is owning the MainContext"
         );
 
-        let user_data: Box_<glib::thread_guard::ThreadGuard<P>> =
+        let user_data: Box_<glib::thread_guard::ThreadGuard<R>> =
             Box_::new(glib::thread_guard::ThreadGuard::new(callback));
         unsafe extern "C" fn open_trampoline<
-            P: FnOnce(Result<gio::File, glib::Error>) + 'static,
+            R: FnOnce(Result<gio::File, glib::Error>) + 'static,
         >(
             _source_object: *mut glib::gobject_ffi::GObject,
             res: *mut gio::ffi::GAsyncResult,
@@ -129,28 +134,33 @@ impl FileDialog {
             } else {
                 Err(from_glib_full(error))
             };
-            let callback: Box_<glib::thread_guard::ThreadGuard<P>> =
+            let callback: Box_<glib::thread_guard::ThreadGuard<R>> =
                 Box_::from_raw(user_data as *mut _);
-            let callback: P = callback.into_inner();
+            let callback: R = callback.into_inner();
             callback(result);
         }
-        let callback = open_trampoline::<P>;
+        let callback = open_trampoline::<R>;
         unsafe {
             ffi::gtk_file_dialog_open(
                 self.to_glib_none().0,
-                parent.map(|p| p.as_ref()).to_glib_none().0,
-                cancellable.map(|p| p.as_ref()).to_glib_none().0,
+                parent.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
+                cancellable
+                    .into()
+                    .as_ref()
+                    .map(|p| p.as_ref())
+                    .to_glib_none()
+                    .0,
                 Some(callback),
                 Box_::into_raw(user_data) as *mut _,
             );
         }
     }
 
-    pub fn open_future(
+    pub fn open_future<'a, P: IsA<Window> + Clone + 'static>(
         &self,
-        parent: Option<&(impl IsA<Window> + Clone + 'static)>,
+        parent: impl Into<Option<&'a P>>,
     ) -> Pin<Box_<dyn std::future::Future<Output = Result<gio::File, glib::Error>> + 'static>> {
-        let parent = parent.map(ToOwned::to_owned);
+        let parent = parent.into().map(ToOwned::to_owned);
         Box_::pin(gio::GioFuture::new(self, move |obj, cancellable, send| {
             obj.open(
                 parent.as_ref().map(::std::borrow::Borrow::borrow),
@@ -163,11 +173,16 @@ impl FileDialog {
     }
 
     #[doc(alias = "gtk_file_dialog_open_multiple")]
-    pub fn open_multiple<P: FnOnce(Result<gio::ListModel, glib::Error>) + 'static>(
+    pub fn open_multiple<
+        'a,
+        P: IsA<Window>,
+        Q: IsA<gio::Cancellable>,
+        R: FnOnce(Result<gio::ListModel, glib::Error>) + 'static,
+    >(
         &self,
-        parent: Option<&impl IsA<Window>>,
-        cancellable: Option<&impl IsA<gio::Cancellable>>,
-        callback: P,
+        parent: impl Into<Option<&'a P>>,
+        cancellable: impl Into<Option<&'a Q>>,
+        callback: R,
     ) {
         let main_context = glib::MainContext::ref_thread_default();
         let is_main_context_owner = main_context.is_owner();
@@ -179,10 +194,10 @@ impl FileDialog {
             "Async operations only allowed if the thread is owning the MainContext"
         );
 
-        let user_data: Box_<glib::thread_guard::ThreadGuard<P>> =
+        let user_data: Box_<glib::thread_guard::ThreadGuard<R>> =
             Box_::new(glib::thread_guard::ThreadGuard::new(callback));
         unsafe extern "C" fn open_multiple_trampoline<
-            P: FnOnce(Result<gio::ListModel, glib::Error>) + 'static,
+            R: FnOnce(Result<gio::ListModel, glib::Error>) + 'static,
         >(
             _source_object: *mut glib::gobject_ffi::GObject,
             res: *mut gio::ffi::GAsyncResult,
@@ -199,29 +214,34 @@ impl FileDialog {
             } else {
                 Err(from_glib_full(error))
             };
-            let callback: Box_<glib::thread_guard::ThreadGuard<P>> =
+            let callback: Box_<glib::thread_guard::ThreadGuard<R>> =
                 Box_::from_raw(user_data as *mut _);
-            let callback: P = callback.into_inner();
+            let callback: R = callback.into_inner();
             callback(result);
         }
-        let callback = open_multiple_trampoline::<P>;
+        let callback = open_multiple_trampoline::<R>;
         unsafe {
             ffi::gtk_file_dialog_open_multiple(
                 self.to_glib_none().0,
-                parent.map(|p| p.as_ref()).to_glib_none().0,
-                cancellable.map(|p| p.as_ref()).to_glib_none().0,
+                parent.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
+                cancellable
+                    .into()
+                    .as_ref()
+                    .map(|p| p.as_ref())
+                    .to_glib_none()
+                    .0,
                 Some(callback),
                 Box_::into_raw(user_data) as *mut _,
             );
         }
     }
 
-    pub fn open_multiple_future(
+    pub fn open_multiple_future<'a, P: IsA<Window> + Clone + 'static>(
         &self,
-        parent: Option<&(impl IsA<Window> + Clone + 'static)>,
+        parent: impl Into<Option<&'a P>>,
     ) -> Pin<Box_<dyn std::future::Future<Output = Result<gio::ListModel, glib::Error>> + 'static>>
     {
-        let parent = parent.map(ToOwned::to_owned);
+        let parent = parent.into().map(ToOwned::to_owned);
         Box_::pin(gio::GioFuture::new(self, move |obj, cancellable, send| {
             obj.open_multiple(
                 parent.as_ref().map(::std::borrow::Borrow::borrow),
@@ -234,11 +254,16 @@ impl FileDialog {
     }
 
     #[doc(alias = "gtk_file_dialog_save")]
-    pub fn save<P: FnOnce(Result<gio::File, glib::Error>) + 'static>(
+    pub fn save<
+        'a,
+        P: IsA<Window>,
+        Q: IsA<gio::Cancellable>,
+        R: FnOnce(Result<gio::File, glib::Error>) + 'static,
+    >(
         &self,
-        parent: Option<&impl IsA<Window>>,
-        cancellable: Option<&impl IsA<gio::Cancellable>>,
-        callback: P,
+        parent: impl Into<Option<&'a P>>,
+        cancellable: impl Into<Option<&'a Q>>,
+        callback: R,
     ) {
         let main_context = glib::MainContext::ref_thread_default();
         let is_main_context_owner = main_context.is_owner();
@@ -250,10 +275,10 @@ impl FileDialog {
             "Async operations only allowed if the thread is owning the MainContext"
         );
 
-        let user_data: Box_<glib::thread_guard::ThreadGuard<P>> =
+        let user_data: Box_<glib::thread_guard::ThreadGuard<R>> =
             Box_::new(glib::thread_guard::ThreadGuard::new(callback));
         unsafe extern "C" fn save_trampoline<
-            P: FnOnce(Result<gio::File, glib::Error>) + 'static,
+            R: FnOnce(Result<gio::File, glib::Error>) + 'static,
         >(
             _source_object: *mut glib::gobject_ffi::GObject,
             res: *mut gio::ffi::GAsyncResult,
@@ -266,28 +291,33 @@ impl FileDialog {
             } else {
                 Err(from_glib_full(error))
             };
-            let callback: Box_<glib::thread_guard::ThreadGuard<P>> =
+            let callback: Box_<glib::thread_guard::ThreadGuard<R>> =
                 Box_::from_raw(user_data as *mut _);
-            let callback: P = callback.into_inner();
+            let callback: R = callback.into_inner();
             callback(result);
         }
-        let callback = save_trampoline::<P>;
+        let callback = save_trampoline::<R>;
         unsafe {
             ffi::gtk_file_dialog_save(
                 self.to_glib_none().0,
-                parent.map(|p| p.as_ref()).to_glib_none().0,
-                cancellable.map(|p| p.as_ref()).to_glib_none().0,
+                parent.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
+                cancellable
+                    .into()
+                    .as_ref()
+                    .map(|p| p.as_ref())
+                    .to_glib_none()
+                    .0,
                 Some(callback),
                 Box_::into_raw(user_data) as *mut _,
             );
         }
     }
 
-    pub fn save_future(
+    pub fn save_future<'a, P: IsA<Window> + Clone + 'static>(
         &self,
-        parent: Option<&(impl IsA<Window> + Clone + 'static)>,
+        parent: impl Into<Option<&'a P>>,
     ) -> Pin<Box_<dyn std::future::Future<Output = Result<gio::File, glib::Error>> + 'static>> {
-        let parent = parent.map(ToOwned::to_owned);
+        let parent = parent.into().map(ToOwned::to_owned);
         Box_::pin(gio::GioFuture::new(self, move |obj, cancellable, send| {
             obj.save(
                 parent.as_ref().map(::std::borrow::Borrow::borrow),
@@ -300,11 +330,16 @@ impl FileDialog {
     }
 
     #[doc(alias = "gtk_file_dialog_select_folder")]
-    pub fn select_folder<P: FnOnce(Result<gio::File, glib::Error>) + 'static>(
+    pub fn select_folder<
+        'a,
+        P: IsA<Window>,
+        Q: IsA<gio::Cancellable>,
+        R: FnOnce(Result<gio::File, glib::Error>) + 'static,
+    >(
         &self,
-        parent: Option<&impl IsA<Window>>,
-        cancellable: Option<&impl IsA<gio::Cancellable>>,
-        callback: P,
+        parent: impl Into<Option<&'a P>>,
+        cancellable: impl Into<Option<&'a Q>>,
+        callback: R,
     ) {
         let main_context = glib::MainContext::ref_thread_default();
         let is_main_context_owner = main_context.is_owner();
@@ -316,10 +351,10 @@ impl FileDialog {
             "Async operations only allowed if the thread is owning the MainContext"
         );
 
-        let user_data: Box_<glib::thread_guard::ThreadGuard<P>> =
+        let user_data: Box_<glib::thread_guard::ThreadGuard<R>> =
             Box_::new(glib::thread_guard::ThreadGuard::new(callback));
         unsafe extern "C" fn select_folder_trampoline<
-            P: FnOnce(Result<gio::File, glib::Error>) + 'static,
+            R: FnOnce(Result<gio::File, glib::Error>) + 'static,
         >(
             _source_object: *mut glib::gobject_ffi::GObject,
             res: *mut gio::ffi::GAsyncResult,
@@ -336,28 +371,33 @@ impl FileDialog {
             } else {
                 Err(from_glib_full(error))
             };
-            let callback: Box_<glib::thread_guard::ThreadGuard<P>> =
+            let callback: Box_<glib::thread_guard::ThreadGuard<R>> =
                 Box_::from_raw(user_data as *mut _);
-            let callback: P = callback.into_inner();
+            let callback: R = callback.into_inner();
             callback(result);
         }
-        let callback = select_folder_trampoline::<P>;
+        let callback = select_folder_trampoline::<R>;
         unsafe {
             ffi::gtk_file_dialog_select_folder(
                 self.to_glib_none().0,
-                parent.map(|p| p.as_ref()).to_glib_none().0,
-                cancellable.map(|p| p.as_ref()).to_glib_none().0,
+                parent.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
+                cancellable
+                    .into()
+                    .as_ref()
+                    .map(|p| p.as_ref())
+                    .to_glib_none()
+                    .0,
                 Some(callback),
                 Box_::into_raw(user_data) as *mut _,
             );
         }
     }
 
-    pub fn select_folder_future(
+    pub fn select_folder_future<'a, P: IsA<Window> + Clone + 'static>(
         &self,
-        parent: Option<&(impl IsA<Window> + Clone + 'static)>,
+        parent: impl Into<Option<&'a P>>,
     ) -> Pin<Box_<dyn std::future::Future<Output = Result<gio::File, glib::Error>> + 'static>> {
-        let parent = parent.map(ToOwned::to_owned);
+        let parent = parent.into().map(ToOwned::to_owned);
         Box_::pin(gio::GioFuture::new(self, move |obj, cancellable, send| {
             obj.select_folder(
                 parent.as_ref().map(::std::borrow::Borrow::borrow),
@@ -370,11 +410,16 @@ impl FileDialog {
     }
 
     #[doc(alias = "gtk_file_dialog_select_multiple_folders")]
-    pub fn select_multiple_folders<P: FnOnce(Result<gio::ListModel, glib::Error>) + 'static>(
+    pub fn select_multiple_folders<
+        'a,
+        P: IsA<Window>,
+        Q: IsA<gio::Cancellable>,
+        R: FnOnce(Result<gio::ListModel, glib::Error>) + 'static,
+    >(
         &self,
-        parent: Option<&impl IsA<Window>>,
-        cancellable: Option<&impl IsA<gio::Cancellable>>,
-        callback: P,
+        parent: impl Into<Option<&'a P>>,
+        cancellable: impl Into<Option<&'a Q>>,
+        callback: R,
     ) {
         let main_context = glib::MainContext::ref_thread_default();
         let is_main_context_owner = main_context.is_owner();
@@ -386,10 +431,10 @@ impl FileDialog {
             "Async operations only allowed if the thread is owning the MainContext"
         );
 
-        let user_data: Box_<glib::thread_guard::ThreadGuard<P>> =
+        let user_data: Box_<glib::thread_guard::ThreadGuard<R>> =
             Box_::new(glib::thread_guard::ThreadGuard::new(callback));
         unsafe extern "C" fn select_multiple_folders_trampoline<
-            P: FnOnce(Result<gio::ListModel, glib::Error>) + 'static,
+            R: FnOnce(Result<gio::ListModel, glib::Error>) + 'static,
         >(
             _source_object: *mut glib::gobject_ffi::GObject,
             res: *mut gio::ffi::GAsyncResult,
@@ -406,29 +451,34 @@ impl FileDialog {
             } else {
                 Err(from_glib_full(error))
             };
-            let callback: Box_<glib::thread_guard::ThreadGuard<P>> =
+            let callback: Box_<glib::thread_guard::ThreadGuard<R>> =
                 Box_::from_raw(user_data as *mut _);
-            let callback: P = callback.into_inner();
+            let callback: R = callback.into_inner();
             callback(result);
         }
-        let callback = select_multiple_folders_trampoline::<P>;
+        let callback = select_multiple_folders_trampoline::<R>;
         unsafe {
             ffi::gtk_file_dialog_select_multiple_folders(
                 self.to_glib_none().0,
-                parent.map(|p| p.as_ref()).to_glib_none().0,
-                cancellable.map(|p| p.as_ref()).to_glib_none().0,
+                parent.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
+                cancellable
+                    .into()
+                    .as_ref()
+                    .map(|p| p.as_ref())
+                    .to_glib_none()
+                    .0,
                 Some(callback),
                 Box_::into_raw(user_data) as *mut _,
             );
         }
     }
 
-    pub fn select_multiple_folders_future(
+    pub fn select_multiple_folders_future<'a, P: IsA<Window> + Clone + 'static>(
         &self,
-        parent: Option<&(impl IsA<Window> + Clone + 'static)>,
+        parent: impl Into<Option<&'a P>>,
     ) -> Pin<Box_<dyn std::future::Future<Output = Result<gio::ListModel, glib::Error>> + 'static>>
     {
-        let parent = parent.map(ToOwned::to_owned);
+        let parent = parent.into().map(ToOwned::to_owned);
         Box_::pin(gio::GioFuture::new(self, move |obj, cancellable, send| {
             obj.select_multiple_folders(
                 parent.as_ref().map(::std::borrow::Borrow::borrow),
@@ -442,61 +492,67 @@ impl FileDialog {
 
     #[doc(alias = "gtk_file_dialog_set_accept_label")]
     #[doc(alias = "accept-label")]
-    pub fn set_accept_label(&self, accept_label: Option<&str>) {
+    pub fn set_accept_label<'a>(&self, accept_label: impl Into<Option<&'a str>>) {
         unsafe {
             ffi::gtk_file_dialog_set_accept_label(
                 self.to_glib_none().0,
-                accept_label.to_glib_none().0,
+                accept_label.into().to_glib_none().0,
             );
         }
     }
 
     #[doc(alias = "gtk_file_dialog_set_default_filter")]
     #[doc(alias = "default-filter")]
-    pub fn set_default_filter(&self, filter: Option<&FileFilter>) {
+    pub fn set_default_filter<'a>(&self, filter: impl Into<Option<&'a FileFilter>>) {
         unsafe {
-            ffi::gtk_file_dialog_set_default_filter(self.to_glib_none().0, filter.to_glib_none().0);
+            ffi::gtk_file_dialog_set_default_filter(
+                self.to_glib_none().0,
+                filter.into().to_glib_none().0,
+            );
         }
     }
 
     #[doc(alias = "gtk_file_dialog_set_filters")]
     #[doc(alias = "filters")]
-    pub fn set_filters(&self, filters: Option<&impl IsA<gio::ListModel>>) {
+    pub fn set_filters<'a, P: IsA<gio::ListModel>>(&self, filters: impl Into<Option<&'a P>>) {
         unsafe {
             ffi::gtk_file_dialog_set_filters(
                 self.to_glib_none().0,
-                filters.map(|p| p.as_ref()).to_glib_none().0,
+                filters.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
             );
         }
     }
 
     #[doc(alias = "gtk_file_dialog_set_initial_file")]
     #[doc(alias = "initial-file")]
-    pub fn set_initial_file(&self, file: Option<&impl IsA<gio::File>>) {
+    pub fn set_initial_file<'a, P: IsA<gio::File>>(&self, file: impl Into<Option<&'a P>>) {
         unsafe {
             ffi::gtk_file_dialog_set_initial_file(
                 self.to_glib_none().0,
-                file.map(|p| p.as_ref()).to_glib_none().0,
+                file.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
             );
         }
     }
 
     #[doc(alias = "gtk_file_dialog_set_initial_folder")]
     #[doc(alias = "initial-folder")]
-    pub fn set_initial_folder(&self, folder: Option<&impl IsA<gio::File>>) {
+    pub fn set_initial_folder<'a, P: IsA<gio::File>>(&self, folder: impl Into<Option<&'a P>>) {
         unsafe {
             ffi::gtk_file_dialog_set_initial_folder(
                 self.to_glib_none().0,
-                folder.map(|p| p.as_ref()).to_glib_none().0,
+                folder.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
             );
         }
     }
 
     #[doc(alias = "gtk_file_dialog_set_initial_name")]
     #[doc(alias = "initial-name")]
-    pub fn set_initial_name(&self, name: Option<&str>) {
+    pub fn set_initial_name<'a>(&self, name: impl Into<Option<&'a str>>) {
         unsafe {
-            ffi::gtk_file_dialog_set_initial_name(self.to_glib_none().0, name.to_glib_none().0);
+            ffi::gtk_file_dialog_set_initial_name(
+                self.to_glib_none().0,
+                name.into().to_glib_none().0,
+            );
         }
     }
 
@@ -743,7 +799,7 @@ impl FileDialogBuilder {
 
     #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
-    pub fn accept_label(self, accept_label: impl Into<glib::GString>) -> Self {
+    pub fn accept_label<'a>(self, accept_label: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("accept-label", accept_label.into()),
         }
@@ -751,45 +807,55 @@ impl FileDialogBuilder {
 
     #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
-    pub fn default_filter(self, default_filter: &FileFilter) -> Self {
+    pub fn default_filter<'a>(self, default_filter: impl Into<Option<&'a FileFilter>>) -> Self {
         Self {
             builder: self
                 .builder
-                .property("default-filter", default_filter.clone()),
+                .property("default-filter", default_filter.into()),
         }
     }
 
     #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
-    pub fn filters(self, filters: &impl IsA<gio::ListModel>) -> Self {
-        Self {
-            builder: self.builder.property("filters", filters.clone().upcast()),
-        }
-    }
-
-    #[cfg(feature = "v4_10")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
-    pub fn initial_file(self, initial_file: &impl IsA<gio::File>) -> Self {
+    pub fn filters<'a, P: IsA<gio::ListModel>>(self, filters: impl Into<Option<&'a P>>) -> Self {
         Self {
             builder: self
                 .builder
-                .property("initial-file", initial_file.clone().upcast()),
+                .property("filters", filters.into().as_ref().map(|p| p.as_ref())),
         }
     }
 
     #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
-    pub fn initial_folder(self, initial_folder: &impl IsA<gio::File>) -> Self {
+    pub fn initial_file<'a, P: IsA<gio::File>>(
+        self,
+        initial_file: impl Into<Option<&'a P>>,
+    ) -> Self {
         Self {
-            builder: self
-                .builder
-                .property("initial-folder", initial_folder.clone().upcast()),
+            builder: self.builder.property(
+                "initial-file",
+                initial_file.into().as_ref().map(|p| p.as_ref()),
+            ),
         }
     }
 
     #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
-    pub fn initial_name(self, initial_name: impl Into<glib::GString>) -> Self {
+    pub fn initial_folder<'a, P: IsA<gio::File>>(
+        self,
+        initial_folder: impl Into<Option<&'a P>>,
+    ) -> Self {
+        Self {
+            builder: self.builder.property(
+                "initial-folder",
+                initial_folder.into().as_ref().map(|p| p.as_ref()),
+            ),
+        }
+    }
+
+    #[cfg(feature = "v4_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
+    pub fn initial_name<'a>(self, initial_name: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("initial-name", initial_name.into()),
         }
@@ -805,7 +871,7 @@ impl FileDialogBuilder {
 
     #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
-    pub fn title(self, title: impl Into<glib::GString>) -> Self {
+    pub fn title<'a>(self, title: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("title", title.into()),
         }

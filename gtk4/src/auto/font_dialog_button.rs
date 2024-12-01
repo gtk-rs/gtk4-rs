@@ -131,22 +131,22 @@ impl FontDialogButton {
 
     #[doc(alias = "gtk_font_dialog_button_set_font_features")]
     #[doc(alias = "font-features")]
-    pub fn set_font_features(&self, font_features: Option<&str>) {
+    pub fn set_font_features<'a>(&self, font_features: impl Into<Option<&'a str>>) {
         unsafe {
             ffi::gtk_font_dialog_button_set_font_features(
                 self.to_glib_none().0,
-                font_features.to_glib_none().0,
+                font_features.into().to_glib_none().0,
             );
         }
     }
 
     #[doc(alias = "gtk_font_dialog_button_set_language")]
     #[doc(alias = "language")]
-    pub fn set_language(&self, language: Option<&pango::Language>) {
+    pub fn set_language<'a>(&self, language: impl Into<Option<&'a pango::Language>>) {
         unsafe {
             ffi::gtk_font_dialog_button_set_language(
                 self.to_glib_none().0,
-                mut_override(language.to_glib_none().0),
+                mut_override(language.into().to_glib_none().0),
             );
         }
     }
@@ -441,23 +441,23 @@ impl FontDialogButtonBuilder {
 
     #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
-    pub fn dialog(self, dialog: &FontDialog) -> Self {
+    pub fn dialog<'a>(self, dialog: impl Into<Option<&'a FontDialog>>) -> Self {
         Self {
-            builder: self.builder.property("dialog", dialog.clone()),
+            builder: self.builder.property("dialog", dialog.into()),
         }
     }
 
     #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
-    pub fn font_desc(self, font_desc: &pango::FontDescription) -> Self {
+    pub fn font_desc<'a>(self, font_desc: impl Into<Option<&'a pango::FontDescription>>) -> Self {
         Self {
-            builder: self.builder.property("font-desc", font_desc),
+            builder: self.builder.property("font-desc", font_desc.into()),
         }
     }
 
     #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
-    pub fn font_features(self, font_features: impl Into<glib::GString>) -> Self {
+    pub fn font_features<'a>(self, font_features: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("font-features", font_features.into()),
         }
@@ -465,9 +465,9 @@ impl FontDialogButtonBuilder {
 
     #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
-    pub fn language(self, language: &pango::Language) -> Self {
+    pub fn language<'a>(self, language: impl Into<Option<&'a pango::Language>>) -> Self {
         Self {
-            builder: self.builder.property("language", language),
+            builder: self.builder.property("language", language.into()),
         }
     }
 
@@ -507,15 +507,15 @@ impl FontDialogButtonBuilder {
         }
     }
 
-    pub fn css_name(self, css_name: impl Into<glib::GString>) -> Self {
+    pub fn css_name<'a>(self, css_name: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("css-name", css_name.into()),
         }
     }
 
-    pub fn cursor(self, cursor: &gdk::Cursor) -> Self {
+    pub fn cursor<'a>(self, cursor: impl Into<Option<&'a gdk::Cursor>>) -> Self {
         Self {
-            builder: self.builder.property("cursor", cursor.clone()),
+            builder: self.builder.property("cursor", cursor.into()),
         }
     }
 
@@ -561,11 +561,15 @@ impl FontDialogButtonBuilder {
         }
     }
 
-    pub fn layout_manager(self, layout_manager: &impl IsA<LayoutManager>) -> Self {
+    pub fn layout_manager<'a, P: IsA<LayoutManager>>(
+        self,
+        layout_manager: impl Into<Option<&'a P>>,
+    ) -> Self {
         Self {
-            builder: self
-                .builder
-                .property("layout-manager", layout_manager.clone().upcast()),
+            builder: self.builder.property(
+                "layout-manager",
+                layout_manager.into().as_ref().map(|p| p.as_ref()),
+            ),
         }
     }
 
@@ -593,7 +597,7 @@ impl FontDialogButtonBuilder {
         }
     }
 
-    pub fn name(self, name: impl Into<glib::GString>) -> Self {
+    pub fn name<'a>(self, name: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("name", name.into()),
         }
@@ -623,7 +627,7 @@ impl FontDialogButtonBuilder {
         }
     }
 
-    pub fn tooltip_markup(self, tooltip_markup: impl Into<glib::GString>) -> Self {
+    pub fn tooltip_markup<'a>(self, tooltip_markup: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self
                 .builder
@@ -631,7 +635,7 @@ impl FontDialogButtonBuilder {
         }
     }
 
-    pub fn tooltip_text(self, tooltip_text: impl Into<glib::GString>) -> Self {
+    pub fn tooltip_text<'a>(self, tooltip_text: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("tooltip-text", tooltip_text.into()),
         }

@@ -41,8 +41,8 @@ impl CellRendererPixbuf {
         ObjectExt::property(self, "gicon")
     }
 
-    pub fn set_gicon<P: IsA<gio::Icon>>(&self, gicon: Option<&P>) {
-        ObjectExt::set_property(self, "gicon", gicon)
+    pub fn set_gicon<'a, P: IsA<gio::Icon>>(&self, gicon: impl Into<Option<&'a P>>) {
+        ObjectExt::set_property(self, "gicon", gicon.into().as_ref().map(|p| p.as_ref()))
     }
 
     #[doc(alias = "icon-name")]
@@ -51,8 +51,8 @@ impl CellRendererPixbuf {
     }
 
     #[doc(alias = "icon-name")]
-    pub fn set_icon_name(&self, icon_name: Option<&str>) {
-        ObjectExt::set_property(self, "icon-name", icon_name)
+    pub fn set_icon_name<'a>(&self, icon_name: impl Into<Option<&'a str>>) {
+        ObjectExt::set_property(self, "icon-name", icon_name.into())
     }
 
     #[doc(alias = "icon-size")]
@@ -65,8 +65,8 @@ impl CellRendererPixbuf {
         ObjectExt::set_property(self, "icon-size", icon_size)
     }
 
-    pub fn set_pixbuf(&self, pixbuf: Option<&gdk_pixbuf::Pixbuf>) {
-        ObjectExt::set_property(self, "pixbuf", pixbuf)
+    pub fn set_pixbuf<'a>(&self, pixbuf: impl Into<Option<&'a gdk_pixbuf::Pixbuf>>) {
+        ObjectExt::set_property(self, "pixbuf", pixbuf.into())
     }
 
     #[doc(alias = "pixbuf-expander-closed")]
@@ -75,8 +75,15 @@ impl CellRendererPixbuf {
     }
 
     #[doc(alias = "pixbuf-expander-closed")]
-    pub fn set_pixbuf_expander_closed(&self, pixbuf_expander_closed: Option<&gdk_pixbuf::Pixbuf>) {
-        ObjectExt::set_property(self, "pixbuf-expander-closed", pixbuf_expander_closed)
+    pub fn set_pixbuf_expander_closed<'a>(
+        &self,
+        pixbuf_expander_closed: impl Into<Option<&'a gdk_pixbuf::Pixbuf>>,
+    ) {
+        ObjectExt::set_property(
+            self,
+            "pixbuf-expander-closed",
+            pixbuf_expander_closed.into(),
+        )
     }
 
     #[doc(alias = "pixbuf-expander-open")]
@@ -85,16 +92,19 @@ impl CellRendererPixbuf {
     }
 
     #[doc(alias = "pixbuf-expander-open")]
-    pub fn set_pixbuf_expander_open(&self, pixbuf_expander_open: Option<&gdk_pixbuf::Pixbuf>) {
-        ObjectExt::set_property(self, "pixbuf-expander-open", pixbuf_expander_open)
+    pub fn set_pixbuf_expander_open<'a>(
+        &self,
+        pixbuf_expander_open: impl Into<Option<&'a gdk_pixbuf::Pixbuf>>,
+    ) {
+        ObjectExt::set_property(self, "pixbuf-expander-open", pixbuf_expander_open.into())
     }
 
     pub fn texture(&self) -> Option<gdk::Texture> {
         ObjectExt::property(self, "texture")
     }
 
-    pub fn set_texture<P: IsA<gdk::Texture>>(&self, texture: Option<&P>) {
-        ObjectExt::set_property(self, "texture", texture)
+    pub fn set_texture<'a, P: IsA<gdk::Texture>>(&self, texture: impl Into<Option<&'a P>>) {
+        ObjectExt::set_property(self, "texture", texture.into().as_ref().map(|p| p.as_ref()))
     }
 
     #[doc(alias = "gicon")]
@@ -291,13 +301,15 @@ impl CellRendererPixbufBuilder {
         }
     }
 
-    pub fn gicon(self, gicon: &impl IsA<gio::Icon>) -> Self {
+    pub fn gicon<'a, P: IsA<gio::Icon>>(self, gicon: impl Into<Option<&'a P>>) -> Self {
         Self {
-            builder: self.builder.property("gicon", gicon.clone().upcast()),
+            builder: self
+                .builder
+                .property("gicon", gicon.into().as_ref().map(|p| p.as_ref())),
         }
     }
 
-    pub fn icon_name(self, icon_name: impl Into<glib::GString>) -> Self {
+    pub fn icon_name<'a>(self, icon_name: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("icon-name", icon_name.into()),
         }
@@ -309,35 +321,43 @@ impl CellRendererPixbufBuilder {
         }
     }
 
-    pub fn pixbuf(self, pixbuf: &gdk_pixbuf::Pixbuf) -> Self {
+    pub fn pixbuf<'a>(self, pixbuf: impl Into<Option<&'a gdk_pixbuf::Pixbuf>>) -> Self {
         Self {
-            builder: self.builder.property("pixbuf", pixbuf.clone()),
+            builder: self.builder.property("pixbuf", pixbuf.into()),
         }
     }
 
-    pub fn pixbuf_expander_closed(self, pixbuf_expander_closed: &gdk_pixbuf::Pixbuf) -> Self {
-        Self {
-            builder: self
-                .builder
-                .property("pixbuf-expander-closed", pixbuf_expander_closed.clone()),
-        }
-    }
-
-    pub fn pixbuf_expander_open(self, pixbuf_expander_open: &gdk_pixbuf::Pixbuf) -> Self {
+    pub fn pixbuf_expander_closed<'a>(
+        self,
+        pixbuf_expander_closed: impl Into<Option<&'a gdk_pixbuf::Pixbuf>>,
+    ) -> Self {
         Self {
             builder: self
                 .builder
-                .property("pixbuf-expander-open", pixbuf_expander_open.clone()),
+                .property("pixbuf-expander-closed", pixbuf_expander_closed.into()),
         }
     }
 
-    pub fn texture(self, texture: &impl IsA<gdk::Texture>) -> Self {
+    pub fn pixbuf_expander_open<'a>(
+        self,
+        pixbuf_expander_open: impl Into<Option<&'a gdk_pixbuf::Pixbuf>>,
+    ) -> Self {
         Self {
-            builder: self.builder.property("texture", texture.clone().upcast()),
+            builder: self
+                .builder
+                .property("pixbuf-expander-open", pixbuf_expander_open.into()),
         }
     }
 
-    pub fn cell_background(self, cell_background: impl Into<glib::GString>) -> Self {
+    pub fn texture<'a, P: IsA<gdk::Texture>>(self, texture: impl Into<Option<&'a P>>) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("texture", texture.into().as_ref().map(|p| p.as_ref())),
+        }
+    }
+
+    pub fn cell_background<'a>(self, cell_background: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self
                 .builder
@@ -345,11 +365,14 @@ impl CellRendererPixbufBuilder {
         }
     }
 
-    pub fn cell_background_rgba(self, cell_background_rgba: &gdk::RGBA) -> Self {
+    pub fn cell_background_rgba<'a>(
+        self,
+        cell_background_rgba: impl Into<Option<&'a gdk::RGBA>>,
+    ) -> Self {
         Self {
             builder: self
                 .builder
-                .property("cell-background-rgba", cell_background_rgba),
+                .property("cell-background-rgba", cell_background_rgba.into()),
         }
     }
 

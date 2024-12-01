@@ -160,11 +160,11 @@ impl Builder {
     }
 
     #[doc(alias = "gtk_builder_create_closure")]
-    pub fn create_closure(
+    pub fn create_closure<'a, P: IsA<glib::Object>>(
         &self,
         function_name: &str,
         flags: BuilderClosureFlags,
-        object: Option<&impl IsA<glib::Object>>,
+        object: impl Into<Option<&'a P>>,
     ) -> Result<Option<glib::Closure>, glib::Error> {
         unsafe {
             let mut error = std::ptr::null_mut();
@@ -172,7 +172,7 @@ impl Builder {
                 self.to_glib_none().0,
                 function_name.to_glib_none().0,
                 flags.into_glib(),
-                object.map(|p| p.as_ref()).to_glib_none().0,
+                object.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
                 &mut error,
             );
             if error.is_null() {
@@ -261,31 +261,42 @@ impl Builder {
 
     #[doc(alias = "gtk_builder_set_current_object")]
     #[doc(alias = "current-object")]
-    pub fn set_current_object(&self, current_object: Option<&impl IsA<glib::Object>>) {
+    pub fn set_current_object<'a, P: IsA<glib::Object>>(
+        &self,
+        current_object: impl Into<Option<&'a P>>,
+    ) {
         unsafe {
             ffi::gtk_builder_set_current_object(
                 self.to_glib_none().0,
-                current_object.map(|p| p.as_ref()).to_glib_none().0,
+                current_object
+                    .into()
+                    .as_ref()
+                    .map(|p| p.as_ref())
+                    .to_glib_none()
+                    .0,
             );
         }
     }
 
     #[doc(alias = "gtk_builder_set_scope")]
     #[doc(alias = "scope")]
-    pub fn set_scope(&self, scope: Option<&impl IsA<BuilderScope>>) {
+    pub fn set_scope<'a, P: IsA<BuilderScope>>(&self, scope: impl Into<Option<&'a P>>) {
         unsafe {
             ffi::gtk_builder_set_scope(
                 self.to_glib_none().0,
-                scope.map(|p| p.as_ref()).to_glib_none().0,
+                scope.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
             );
         }
     }
 
     #[doc(alias = "gtk_builder_set_translation_domain")]
     #[doc(alias = "translation-domain")]
-    pub fn set_translation_domain(&self, domain: Option<&str>) {
+    pub fn set_translation_domain<'a>(&self, domain: impl Into<Option<&'a str>>) {
         unsafe {
-            ffi::gtk_builder_set_translation_domain(self.to_glib_none().0, domain.to_glib_none().0);
+            ffi::gtk_builder_set_translation_domain(
+                self.to_glib_none().0,
+                domain.into().to_glib_none().0,
+            );
         }
     }
 

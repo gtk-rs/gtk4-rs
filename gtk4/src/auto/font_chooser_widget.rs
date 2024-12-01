@@ -109,15 +109,15 @@ impl FontChooserWidgetBuilder {
         }
     }
 
-    pub fn css_name(self, css_name: impl Into<glib::GString>) -> Self {
+    pub fn css_name<'a>(self, css_name: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("css-name", css_name.into()),
         }
     }
 
-    pub fn cursor(self, cursor: &gdk::Cursor) -> Self {
+    pub fn cursor<'a>(self, cursor: impl Into<Option<&'a gdk::Cursor>>) -> Self {
         Self {
-            builder: self.builder.property("cursor", cursor.clone()),
+            builder: self.builder.property("cursor", cursor.into()),
         }
     }
 
@@ -163,11 +163,15 @@ impl FontChooserWidgetBuilder {
         }
     }
 
-    pub fn layout_manager(self, layout_manager: &impl IsA<LayoutManager>) -> Self {
+    pub fn layout_manager<'a, P: IsA<LayoutManager>>(
+        self,
+        layout_manager: impl Into<Option<&'a P>>,
+    ) -> Self {
         Self {
-            builder: self
-                .builder
-                .property("layout-manager", layout_manager.clone().upcast()),
+            builder: self.builder.property(
+                "layout-manager",
+                layout_manager.into().as_ref().map(|p| p.as_ref()),
+            ),
         }
     }
 
@@ -195,7 +199,7 @@ impl FontChooserWidgetBuilder {
         }
     }
 
-    pub fn name(self, name: impl Into<glib::GString>) -> Self {
+    pub fn name<'a>(self, name: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("name", name.into()),
         }
@@ -225,7 +229,7 @@ impl FontChooserWidgetBuilder {
         }
     }
 
-    pub fn tooltip_markup(self, tooltip_markup: impl Into<glib::GString>) -> Self {
+    pub fn tooltip_markup<'a>(self, tooltip_markup: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self
                 .builder
@@ -233,7 +237,7 @@ impl FontChooserWidgetBuilder {
         }
     }
 
-    pub fn tooltip_text(self, tooltip_text: impl Into<glib::GString>) -> Self {
+    pub fn tooltip_text<'a>(self, tooltip_text: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("tooltip-text", tooltip_text.into()),
         }
@@ -276,21 +280,21 @@ impl FontChooserWidgetBuilder {
     }
 
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    pub fn font(self, font: impl Into<glib::GString>) -> Self {
+    pub fn font<'a>(self, font: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("font", font.into()),
         }
     }
 
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    pub fn font_desc(self, font_desc: &pango::FontDescription) -> Self {
+    pub fn font_desc<'a>(self, font_desc: impl Into<Option<&'a pango::FontDescription>>) -> Self {
         Self {
-            builder: self.builder.property("font-desc", font_desc),
+            builder: self.builder.property("font-desc", font_desc.into()),
         }
     }
 
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    pub fn language(self, language: impl Into<glib::GString>) -> Self {
+    pub fn language<'a>(self, language: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("language", language.into()),
         }
@@ -304,7 +308,7 @@ impl FontChooserWidgetBuilder {
     }
 
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    pub fn preview_text(self, preview_text: impl Into<glib::GString>) -> Self {
+    pub fn preview_text<'a>(self, preview_text: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("preview-text", preview_text.into()),
         }

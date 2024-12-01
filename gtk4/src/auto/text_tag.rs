@@ -23,9 +23,9 @@ impl TextTag {
     pub const NONE: Option<&'static TextTag> = None;
 
     #[doc(alias = "gtk_text_tag_new")]
-    pub fn new(name: Option<&str>) -> TextTag {
+    pub fn new<'a>(name: impl Into<Option<&'a str>>) -> TextTag {
         assert_initialized_main_thread!();
-        unsafe { from_glib_full(ffi::gtk_text_tag_new(name.to_glib_none().0)) }
+        unsafe { from_glib_full(ffi::gtk_text_tag_new(name.into().to_glib_none().0)) }
     }
 
     // rustdoc-stripper-ignore-next
@@ -79,7 +79,7 @@ impl TextTagBuilder {
         }
     }
 
-    pub fn background(self, background: impl Into<glib::GString>) -> Self {
+    pub fn background<'a>(self, background: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("background", background.into()),
         }
@@ -101,9 +101,11 @@ impl TextTagBuilder {
         }
     }
 
-    pub fn background_rgba(self, background_rgba: &gdk::RGBA) -> Self {
+    pub fn background_rgba<'a>(self, background_rgba: impl Into<Option<&'a gdk::RGBA>>) -> Self {
         Self {
-            builder: self.builder.property("background-rgba", background_rgba),
+            builder: self
+                .builder
+                .property("background-rgba", background_rgba.into()),
         }
     }
 
@@ -143,7 +145,7 @@ impl TextTagBuilder {
         }
     }
 
-    pub fn family(self, family: impl Into<glib::GString>) -> Self {
+    pub fn family<'a>(self, family: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("family", family.into()),
         }
@@ -155,19 +157,19 @@ impl TextTagBuilder {
         }
     }
 
-    pub fn font(self, font: impl Into<glib::GString>) -> Self {
+    pub fn font<'a>(self, font: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("font", font.into()),
         }
     }
 
-    pub fn font_desc(self, font_desc: &pango::FontDescription) -> Self {
+    pub fn font_desc<'a>(self, font_desc: impl Into<Option<&'a pango::FontDescription>>) -> Self {
         Self {
-            builder: self.builder.property("font-desc", font_desc),
+            builder: self.builder.property("font-desc", font_desc.into()),
         }
     }
 
-    pub fn font_features(self, font_features: impl Into<glib::GString>) -> Self {
+    pub fn font_features<'a>(self, font_features: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("font-features", font_features.into()),
         }
@@ -181,15 +183,17 @@ impl TextTagBuilder {
         }
     }
 
-    pub fn foreground(self, foreground: impl Into<glib::GString>) -> Self {
+    pub fn foreground<'a>(self, foreground: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("foreground", foreground.into()),
         }
     }
 
-    pub fn foreground_rgba(self, foreground_rgba: &gdk::RGBA) -> Self {
+    pub fn foreground_rgba<'a>(self, foreground_rgba: impl Into<Option<&'a gdk::RGBA>>) -> Self {
         Self {
-            builder: self.builder.property("foreground-rgba", foreground_rgba),
+            builder: self
+                .builder
+                .property("foreground-rgba", foreground_rgba.into()),
         }
     }
 
@@ -251,7 +255,7 @@ impl TextTagBuilder {
         }
     }
 
-    pub fn language(self, language: impl Into<glib::GString>) -> Self {
+    pub fn language<'a>(self, language: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("language", language.into()),
         }
@@ -305,7 +309,7 @@ impl TextTagBuilder {
         }
     }
 
-    pub fn name(self, name: impl Into<glib::GString>) -> Self {
+    pub fn name<'a>(self, name: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("name", name.into()),
         }
@@ -317,9 +321,9 @@ impl TextTagBuilder {
         }
     }
 
-    pub fn overline_rgba(self, overline_rgba: &gdk::RGBA) -> Self {
+    pub fn overline_rgba<'a>(self, overline_rgba: impl Into<Option<&'a gdk::RGBA>>) -> Self {
         Self {
-            builder: self.builder.property("overline-rgba", overline_rgba),
+            builder: self.builder.property("overline-rgba", overline_rgba.into()),
         }
     }
 
@@ -337,7 +341,10 @@ impl TextTagBuilder {
         }
     }
 
-    pub fn paragraph_background(self, paragraph_background: impl Into<glib::GString>) -> Self {
+    pub fn paragraph_background<'a>(
+        self,
+        paragraph_background: impl Into<Option<&'a str>>,
+    ) -> Self {
         Self {
             builder: self
                 .builder
@@ -345,11 +352,15 @@ impl TextTagBuilder {
         }
     }
 
-    pub fn paragraph_background_rgba(self, paragraph_background_rgba: &gdk::RGBA) -> Self {
+    pub fn paragraph_background_rgba<'a>(
+        self,
+        paragraph_background_rgba: impl Into<Option<&'a gdk::RGBA>>,
+    ) -> Self {
         Self {
-            builder: self
-                .builder
-                .property("paragraph-background-rgba", paragraph_background_rgba),
+            builder: self.builder.property(
+                "paragraph-background-rgba",
+                paragraph_background_rgba.into(),
+            ),
         }
     }
 
@@ -509,11 +520,14 @@ impl TextTagBuilder {
         }
     }
 
-    pub fn strikethrough_rgba(self, strikethrough_rgba: &gdk::RGBA) -> Self {
+    pub fn strikethrough_rgba<'a>(
+        self,
+        strikethrough_rgba: impl Into<Option<&'a gdk::RGBA>>,
+    ) -> Self {
         Self {
             builder: self
                 .builder
-                .property("strikethrough-rgba", strikethrough_rgba),
+                .property("strikethrough-rgba", strikethrough_rgba.into()),
         }
     }
 
@@ -545,9 +559,9 @@ impl TextTagBuilder {
         }
     }
 
-    pub fn tabs(self, tabs: &pango::TabArray) -> Self {
+    pub fn tabs<'a>(self, tabs: impl Into<Option<&'a pango::TabArray>>) -> Self {
         Self {
-            builder: self.builder.property("tabs", tabs),
+            builder: self.builder.property("tabs", tabs.into()),
         }
     }
 
@@ -581,9 +595,11 @@ impl TextTagBuilder {
         }
     }
 
-    pub fn underline_rgba(self, underline_rgba: &gdk::RGBA) -> Self {
+    pub fn underline_rgba<'a>(self, underline_rgba: impl Into<Option<&'a gdk::RGBA>>) -> Self {
         Self {
-            builder: self.builder.property("underline-rgba", underline_rgba),
+            builder: self
+                .builder
+                .property("underline-rgba", underline_rgba.into()),
         }
     }
 
@@ -708,8 +724,8 @@ pub trait TextTagExt: IsA<TextTag> + 'static {
         ObjectExt::property(self.as_ref(), "allow-breaks-set")
     }
 
-    fn set_background(&self, background: Option<&str>) {
-        ObjectExt::set_property(self.as_ref(), "background", background)
+    fn set_background<'a>(&self, background: impl Into<Option<&'a str>>) {
+        ObjectExt::set_property(self.as_ref(), "background", background.into())
     }
 
     #[doc(alias = "background-full-height")]
@@ -737,8 +753,8 @@ pub trait TextTagExt: IsA<TextTag> + 'static {
     }
 
     #[doc(alias = "background-rgba")]
-    fn set_background_rgba(&self, background_rgba: Option<&gdk::RGBA>) {
-        ObjectExt::set_property(self.as_ref(), "background-rgba", background_rgba)
+    fn set_background_rgba<'a>(&self, background_rgba: impl Into<Option<&'a gdk::RGBA>>) {
+        ObjectExt::set_property(self.as_ref(), "background-rgba", background_rgba.into())
     }
 
     #[doc(alias = "background-set")]
@@ -784,8 +800,8 @@ pub trait TextTagExt: IsA<TextTag> + 'static {
         ObjectExt::property(self.as_ref(), "family")
     }
 
-    fn set_family(&self, family: Option<&str>) {
-        ObjectExt::set_property(self.as_ref(), "family", family)
+    fn set_family<'a>(&self, family: impl Into<Option<&'a str>>) {
+        ObjectExt::set_property(self.as_ref(), "family", family.into())
     }
 
     #[doc(alias = "family-set")]
@@ -797,8 +813,8 @@ pub trait TextTagExt: IsA<TextTag> + 'static {
         ObjectExt::property(self.as_ref(), "font")
     }
 
-    fn set_font(&self, font: Option<&str>) {
-        ObjectExt::set_property(self.as_ref(), "font", font)
+    fn set_font<'a>(&self, font: impl Into<Option<&'a str>>) {
+        ObjectExt::set_property(self.as_ref(), "font", font.into())
     }
 
     #[doc(alias = "font-desc")]
@@ -807,8 +823,8 @@ pub trait TextTagExt: IsA<TextTag> + 'static {
     }
 
     #[doc(alias = "font-desc")]
-    fn set_font_desc(&self, font_desc: Option<&pango::FontDescription>) {
-        ObjectExt::set_property(self.as_ref(), "font-desc", font_desc)
+    fn set_font_desc<'a>(&self, font_desc: impl Into<Option<&'a pango::FontDescription>>) {
+        ObjectExt::set_property(self.as_ref(), "font-desc", font_desc.into())
     }
 
     #[doc(alias = "font-features")]
@@ -817,8 +833,8 @@ pub trait TextTagExt: IsA<TextTag> + 'static {
     }
 
     #[doc(alias = "font-features")]
-    fn set_font_features(&self, font_features: Option<&str>) {
-        ObjectExt::set_property(self.as_ref(), "font-features", font_features)
+    fn set_font_features<'a>(&self, font_features: impl Into<Option<&'a str>>) {
+        ObjectExt::set_property(self.as_ref(), "font-features", font_features.into())
     }
 
     #[doc(alias = "font-features-set")]
@@ -826,8 +842,8 @@ pub trait TextTagExt: IsA<TextTag> + 'static {
         ObjectExt::property(self.as_ref(), "font-features-set")
     }
 
-    fn set_foreground(&self, foreground: Option<&str>) {
-        ObjectExt::set_property(self.as_ref(), "foreground", foreground)
+    fn set_foreground<'a>(&self, foreground: impl Into<Option<&'a str>>) {
+        ObjectExt::set_property(self.as_ref(), "foreground", foreground.into())
     }
 
     #[doc(alias = "foreground-rgba")]
@@ -836,8 +852,8 @@ pub trait TextTagExt: IsA<TextTag> + 'static {
     }
 
     #[doc(alias = "foreground-rgba")]
-    fn set_foreground_rgba(&self, foreground_rgba: Option<&gdk::RGBA>) {
-        ObjectExt::set_property(self.as_ref(), "foreground-rgba", foreground_rgba)
+    fn set_foreground_rgba<'a>(&self, foreground_rgba: impl Into<Option<&'a gdk::RGBA>>) {
+        ObjectExt::set_property(self.as_ref(), "foreground-rgba", foreground_rgba.into())
     }
 
     #[doc(alias = "foreground-set")]
@@ -903,8 +919,8 @@ pub trait TextTagExt: IsA<TextTag> + 'static {
         ObjectExt::property(self.as_ref(), "language")
     }
 
-    fn set_language(&self, language: Option<&str>) {
-        ObjectExt::set_property(self.as_ref(), "language", language)
+    fn set_language<'a>(&self, language: impl Into<Option<&'a str>>) {
+        ObjectExt::set_property(self.as_ref(), "language", language.into())
     }
 
     #[doc(alias = "language-set")]
@@ -981,8 +997,8 @@ pub trait TextTagExt: IsA<TextTag> + 'static {
     }
 
     #[doc(alias = "overline-rgba")]
-    fn set_overline_rgba(&self, overline_rgba: Option<&gdk::RGBA>) {
-        ObjectExt::set_property(self.as_ref(), "overline-rgba", overline_rgba)
+    fn set_overline_rgba<'a>(&self, overline_rgba: impl Into<Option<&'a gdk::RGBA>>) {
+        ObjectExt::set_property(self.as_ref(), "overline-rgba", overline_rgba.into())
     }
 
     #[doc(alias = "overline-rgba-set")]
@@ -996,8 +1012,12 @@ pub trait TextTagExt: IsA<TextTag> + 'static {
     }
 
     #[doc(alias = "paragraph-background")]
-    fn set_paragraph_background(&self, paragraph_background: Option<&str>) {
-        ObjectExt::set_property(self.as_ref(), "paragraph-background", paragraph_background)
+    fn set_paragraph_background<'a>(&self, paragraph_background: impl Into<Option<&'a str>>) {
+        ObjectExt::set_property(
+            self.as_ref(),
+            "paragraph-background",
+            paragraph_background.into(),
+        )
     }
 
     #[doc(alias = "paragraph-background-rgba")]
@@ -1006,11 +1026,14 @@ pub trait TextTagExt: IsA<TextTag> + 'static {
     }
 
     #[doc(alias = "paragraph-background-rgba")]
-    fn set_paragraph_background_rgba(&self, paragraph_background_rgba: Option<&gdk::RGBA>) {
+    fn set_paragraph_background_rgba<'a>(
+        &self,
+        paragraph_background_rgba: impl Into<Option<&'a gdk::RGBA>>,
+    ) {
         ObjectExt::set_property(
             self.as_ref(),
             "paragraph-background-rgba",
-            paragraph_background_rgba,
+            paragraph_background_rgba.into(),
         )
     }
 
@@ -1189,8 +1212,12 @@ pub trait TextTagExt: IsA<TextTag> + 'static {
     }
 
     #[doc(alias = "strikethrough-rgba")]
-    fn set_strikethrough_rgba(&self, strikethrough_rgba: Option<&gdk::RGBA>) {
-        ObjectExt::set_property(self.as_ref(), "strikethrough-rgba", strikethrough_rgba)
+    fn set_strikethrough_rgba<'a>(&self, strikethrough_rgba: impl Into<Option<&'a gdk::RGBA>>) {
+        ObjectExt::set_property(
+            self.as_ref(),
+            "strikethrough-rgba",
+            strikethrough_rgba.into(),
+        )
     }
 
     #[doc(alias = "strikethrough-rgba-set")]
@@ -1220,8 +1247,8 @@ pub trait TextTagExt: IsA<TextTag> + 'static {
         ObjectExt::property(self.as_ref(), "tabs")
     }
 
-    fn set_tabs(&self, tabs: Option<&pango::TabArray>) {
-        ObjectExt::set_property(self.as_ref(), "tabs", tabs)
+    fn set_tabs<'a>(&self, tabs: impl Into<Option<&'a pango::TabArray>>) {
+        ObjectExt::set_property(self.as_ref(), "tabs", tabs.into())
     }
 
     #[doc(alias = "tabs-set")]
@@ -1264,8 +1291,8 @@ pub trait TextTagExt: IsA<TextTag> + 'static {
     }
 
     #[doc(alias = "underline-rgba")]
-    fn set_underline_rgba(&self, underline_rgba: Option<&gdk::RGBA>) {
-        ObjectExt::set_property(self.as_ref(), "underline-rgba", underline_rgba)
+    fn set_underline_rgba<'a>(&self, underline_rgba: impl Into<Option<&'a gdk::RGBA>>) {
+        ObjectExt::set_property(self.as_ref(), "underline-rgba", underline_rgba.into())
     }
 
     #[doc(alias = "underline-rgba-set")]

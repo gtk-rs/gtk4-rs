@@ -134,11 +134,11 @@ impl X11Display {
     #[cfg_attr(feature = "v4_16", deprecated = "Since 4.16")]
     #[allow(deprecated)]
     #[doc(alias = "gdk_x11_display_set_cursor_theme")]
-    pub fn set_cursor_theme(&self, theme: Option<&str>, size: i32) {
+    pub fn set_cursor_theme<'a>(&self, theme: impl Into<Option<&'a str>>, size: i32) {
         unsafe {
             ffi::gdk_x11_display_set_cursor_theme(
                 self.to_glib_none().0,
-                theme.to_glib_none().0,
+                theme.into().to_glib_none().0,
                 size,
             );
         }
@@ -222,8 +222,12 @@ impl X11Display {
     }
 
     #[doc(alias = "gdk_x11_display_open")]
-    pub fn open(display_name: Option<&str>) -> Option<gdk::Display> {
+    pub fn open<'a>(display_name: impl Into<Option<&'a str>>) -> Option<gdk::Display> {
         assert_initialized_main_thread!();
-        unsafe { from_glib_full(ffi::gdk_x11_display_open(display_name.to_glib_none().0)) }
+        unsafe {
+            from_glib_full(ffi::gdk_x11_display_open(
+                display_name.into().to_glib_none().0,
+            ))
+        }
     }
 }

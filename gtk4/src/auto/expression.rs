@@ -26,18 +26,18 @@ impl Expression {
     pub const NONE: Option<&'static Expression> = None;
 
     #[doc(alias = "gtk_expression_bind")]
-    pub fn bind(
+    pub fn bind<'a, P: IsA<glib::Object>>(
         &self,
         target: &impl IsA<glib::Object>,
         property: &str,
-        this_: Option<&impl IsA<glib::Object>>,
+        this_: impl Into<Option<&'a P>>,
     ) -> ExpressionWatch {
         unsafe {
             from_glib_none(ffi::gtk_expression_bind(
                 self.as_ref().to_glib_full(),
                 target.as_ref().to_glib_none().0,
                 property.to_glib_none().0,
-                this_.map(|p| p.as_ref()).to_glib_none().0,
+                this_.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
             ))
         }
     }
@@ -62,26 +62,26 @@ impl Expression {
     }
 
     #[doc(alias = "gtk_expression_watch")]
-    pub fn watch<P: Fn() + 'static>(
+    pub fn watch<'a, P: IsA<glib::Object>, Q: Fn() + 'static>(
         &self,
-        this_: Option<&impl IsA<glib::Object>>,
-        notify: P,
+        this_: impl Into<Option<&'a P>>,
+        notify: Q,
     ) -> ExpressionWatch {
-        let notify_data: Box_<P> = Box_::new(notify);
-        unsafe extern "C" fn notify_func<P: Fn() + 'static>(user_data: glib::ffi::gpointer) {
-            let callback = &*(user_data as *mut P);
+        let notify_data: Box_<Q> = Box_::new(notify);
+        unsafe extern "C" fn notify_func<Q: Fn() + 'static>(user_data: glib::ffi::gpointer) {
+            let callback = &*(user_data as *mut Q);
             (*callback)()
         }
-        let notify = Some(notify_func::<P> as _);
-        unsafe extern "C" fn user_destroy_func<P: Fn() + 'static>(data: glib::ffi::gpointer) {
-            let _callback = Box_::from_raw(data as *mut P);
+        let notify = Some(notify_func::<Q> as _);
+        unsafe extern "C" fn user_destroy_func<Q: Fn() + 'static>(data: glib::ffi::gpointer) {
+            let _callback = Box_::from_raw(data as *mut Q);
         }
-        let destroy_call4 = Some(user_destroy_func::<P> as _);
-        let super_callback0: Box_<P> = notify_data;
+        let destroy_call4 = Some(user_destroy_func::<Q> as _);
+        let super_callback0: Box_<Q> = notify_data;
         unsafe {
             from_glib_none(ffi::gtk_expression_watch(
                 self.as_ref().to_glib_none().0,
-                this_.map(|p| p.as_ref()).to_glib_none().0,
+                this_.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
                 notify,
                 Box_::into_raw(super_callback0) as *mut _,
                 destroy_call4,

@@ -21,12 +21,15 @@ glib::wrapper! {
 
 impl DirectoryList {
     #[doc(alias = "gtk_directory_list_new")]
-    pub fn new(attributes: Option<&str>, file: Option<&impl IsA<gio::File>>) -> DirectoryList {
+    pub fn new<'a, P: IsA<gio::File>>(
+        attributes: impl Into<Option<&'a str>>,
+        file: impl Into<Option<&'a P>>,
+    ) -> DirectoryList {
         assert_initialized_main_thread!();
         unsafe {
             from_glib_full(ffi::gtk_directory_list_new(
-                attributes.to_glib_none().0,
-                file.map(|p| p.as_ref()).to_glib_none().0,
+                attributes.into().to_glib_none().0,
+                file.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
             ))
         }
     }
@@ -68,22 +71,22 @@ impl DirectoryList {
 
     #[doc(alias = "gtk_directory_list_set_attributes")]
     #[doc(alias = "attributes")]
-    pub fn set_attributes(&self, attributes: Option<&str>) {
+    pub fn set_attributes<'a>(&self, attributes: impl Into<Option<&'a str>>) {
         unsafe {
             ffi::gtk_directory_list_set_attributes(
                 self.to_glib_none().0,
-                attributes.to_glib_none().0,
+                attributes.into().to_glib_none().0,
             );
         }
     }
 
     #[doc(alias = "gtk_directory_list_set_file")]
     #[doc(alias = "file")]
-    pub fn set_file(&self, file: Option<&impl IsA<gio::File>>) {
+    pub fn set_file<'a, P: IsA<gio::File>>(&self, file: impl Into<Option<&'a P>>) {
         unsafe {
             ffi::gtk_directory_list_set_file(
                 self.to_glib_none().0,
-                file.map(|p| p.as_ref()).to_glib_none().0,
+                file.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
             );
         }
     }

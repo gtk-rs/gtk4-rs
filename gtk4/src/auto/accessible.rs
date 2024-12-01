@@ -178,16 +178,21 @@ pub trait AccessibleExt: IsA<Accessible> + 'static {
     #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "gtk_accessible_set_accessible_parent")]
-    fn set_accessible_parent(
+    fn set_accessible_parent<'a, P: IsA<Accessible>, Q: IsA<Accessible>>(
         &self,
-        parent: Option<&impl IsA<Accessible>>,
-        next_sibling: Option<&impl IsA<Accessible>>,
+        parent: impl Into<Option<&'a P>>,
+        next_sibling: impl Into<Option<&'a Q>>,
     ) {
         unsafe {
             ffi::gtk_accessible_set_accessible_parent(
                 self.as_ref().to_glib_none().0,
-                parent.map(|p| p.as_ref()).to_glib_none().0,
-                next_sibling.map(|p| p.as_ref()).to_glib_none().0,
+                parent.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
+                next_sibling
+                    .into()
+                    .as_ref()
+                    .map(|p| p.as_ref())
+                    .to_glib_none()
+                    .0,
             );
         }
     }
@@ -195,11 +200,19 @@ pub trait AccessibleExt: IsA<Accessible> + 'static {
     #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "gtk_accessible_update_next_accessible_sibling")]
-    fn update_next_accessible_sibling(&self, new_sibling: Option<&impl IsA<Accessible>>) {
+    fn update_next_accessible_sibling<'a, P: IsA<Accessible>>(
+        &self,
+        new_sibling: impl Into<Option<&'a P>>,
+    ) {
         unsafe {
             ffi::gtk_accessible_update_next_accessible_sibling(
                 self.as_ref().to_glib_none().0,
-                new_sibling.map(|p| p.as_ref()).to_glib_none().0,
+                new_sibling
+                    .into()
+                    .as_ref()
+                    .map(|p| p.as_ref())
+                    .to_glib_none()
+                    .0,
             );
         }
     }

@@ -81,15 +81,19 @@ impl AlternativeTriggerBuilder {
         }
     }
 
-    pub fn first(self, first: &impl IsA<ShortcutTrigger>) -> Self {
+    pub fn first<'a, P: IsA<ShortcutTrigger>>(self, first: impl Into<Option<&'a P>>) -> Self {
         Self {
-            builder: self.builder.property("first", first.clone().upcast()),
+            builder: self
+                .builder
+                .property("first", first.into().as_ref().map(|p| p.as_ref())),
         }
     }
 
-    pub fn second(self, second: &impl IsA<ShortcutTrigger>) -> Self {
+    pub fn second<'a, P: IsA<ShortcutTrigger>>(self, second: impl Into<Option<&'a P>>) -> Self {
         Self {
-            builder: self.builder.property("second", second.clone().upcast()),
+            builder: self
+                .builder
+                .property("second", second.into().as_ref().map(|p| p.as_ref())),
         }
     }
 

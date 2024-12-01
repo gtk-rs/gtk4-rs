@@ -111,11 +111,11 @@ pub trait EventControllerExt: IsA<EventController> + 'static {
 
     #[doc(alias = "gtk_event_controller_set_name")]
     #[doc(alias = "name")]
-    fn set_name(&self, name: Option<&str>) {
+    fn set_name<'a>(&self, name: impl Into<Option<&'a str>>) {
         unsafe {
             ffi::gtk_event_controller_set_name(
                 self.as_ref().to_glib_none().0,
-                name.to_glib_none().0,
+                name.into().to_glib_none().0,
             );
         }
     }
@@ -145,11 +145,11 @@ pub trait EventControllerExt: IsA<EventController> + 'static {
     #[cfg(feature = "v4_8")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     #[doc(alias = "gtk_event_controller_set_static_name")]
-    fn set_static_name(&self, name: Option<&str>) {
+    fn set_static_name<'a>(&self, name: impl Into<Option<&'a str>>) {
         unsafe {
             ffi::gtk_event_controller_set_static_name(
                 self.as_ref().to_glib_none().0,
-                name.to_glib_none().0,
+                name.into().to_glib_none().0,
             );
         }
     }

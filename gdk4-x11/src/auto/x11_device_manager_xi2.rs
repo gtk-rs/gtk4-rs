@@ -56,9 +56,11 @@ impl X11DeviceManagerXI2Builder {
         }
     }
 
-    pub fn display(self, display: &impl IsA<gdk::Display>) -> Self {
+    pub fn display<'a, P: IsA<gdk::Display>>(self, display: impl Into<Option<&'a P>>) -> Self {
         Self {
-            builder: self.builder.property("display", display.clone().upcast()),
+            builder: self
+                .builder
+                .property("display", display.into().as_ref().map(|p| p.as_ref())),
         }
     }
 

@@ -25,11 +25,11 @@ glib::wrapper! {
 impl PopoverMenu {
     #[doc(alias = "gtk_popover_menu_new_from_model")]
     #[doc(alias = "new_from_model")]
-    pub fn from_model(model: Option<&impl IsA<gio::MenuModel>>) -> PopoverMenu {
+    pub fn from_model<'a, P: IsA<gio::MenuModel>>(model: impl Into<Option<&'a P>>) -> PopoverMenu {
         assert_initialized_main_thread!();
         unsafe {
             Widget::from_glib_none(ffi::gtk_popover_menu_new_from_model(
-                model.map(|p| p.as_ref()).to_glib_none().0,
+                model.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
             ))
             .unsafe_cast()
         }
@@ -107,11 +107,11 @@ impl PopoverMenu {
 
     #[doc(alias = "gtk_popover_menu_set_menu_model")]
     #[doc(alias = "menu-model")]
-    pub fn set_menu_model(&self, model: Option<&impl IsA<gio::MenuModel>>) {
+    pub fn set_menu_model<'a, P: IsA<gio::MenuModel>>(&self, model: impl Into<Option<&'a P>>) {
         unsafe {
             ffi::gtk_popover_menu_set_menu_model(
                 self.to_glib_none().0,
-                model.map(|p| p.as_ref()).to_glib_none().0,
+                model.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
             );
         }
     }
@@ -122,8 +122,8 @@ impl PopoverMenu {
     }
 
     #[doc(alias = "visible-submenu")]
-    pub fn set_visible_submenu(&self, visible_submenu: Option<&str>) {
-        ObjectExt::set_property(self, "visible-submenu", visible_submenu)
+    pub fn set_visible_submenu<'a>(&self, visible_submenu: impl Into<Option<&'a str>>) {
+        ObjectExt::set_property(self, "visible-submenu", visible_submenu.into())
     }
 
     #[cfg(feature = "v4_14")]
@@ -222,15 +222,18 @@ impl PopoverMenuBuilder {
         }
     }
 
-    pub fn menu_model(self, menu_model: &impl IsA<gio::MenuModel>) -> Self {
+    pub fn menu_model<'a, P: IsA<gio::MenuModel>>(
+        self,
+        menu_model: impl Into<Option<&'a P>>,
+    ) -> Self {
         Self {
             builder: self
                 .builder
-                .property("menu-model", menu_model.clone().upcast()),
+                .property("menu-model", menu_model.into().as_ref().map(|p| p.as_ref())),
         }
     }
 
-    pub fn visible_submenu(self, visible_submenu: impl Into<glib::GString>) -> Self {
+    pub fn visible_submenu<'a>(self, visible_submenu: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self
                 .builder
@@ -250,17 +253,23 @@ impl PopoverMenuBuilder {
         }
     }
 
-    pub fn child(self, child: &impl IsA<Widget>) -> Self {
-        Self {
-            builder: self.builder.property("child", child.clone().upcast()),
-        }
-    }
-
-    pub fn default_widget(self, default_widget: &impl IsA<Widget>) -> Self {
+    pub fn child<'a, P: IsA<Widget>>(self, child: impl Into<Option<&'a P>>) -> Self {
         Self {
             builder: self
                 .builder
-                .property("default-widget", default_widget.clone().upcast()),
+                .property("child", child.into().as_ref().map(|p| p.as_ref())),
+        }
+    }
+
+    pub fn default_widget<'a, P: IsA<Widget>>(
+        self,
+        default_widget: impl Into<Option<&'a P>>,
+    ) -> Self {
+        Self {
+            builder: self.builder.property(
+                "default-widget",
+                default_widget.into().as_ref().map(|p| p.as_ref()),
+            ),
         }
     }
 
@@ -278,9 +287,9 @@ impl PopoverMenuBuilder {
         }
     }
 
-    pub fn pointing_to(self, pointing_to: &gdk::Rectangle) -> Self {
+    pub fn pointing_to<'a>(self, pointing_to: impl Into<Option<&'a gdk::Rectangle>>) -> Self {
         Self {
-            builder: self.builder.property("pointing-to", pointing_to),
+            builder: self.builder.property("pointing-to", pointing_to.into()),
         }
     }
 
@@ -308,15 +317,15 @@ impl PopoverMenuBuilder {
         }
     }
 
-    pub fn css_name(self, css_name: impl Into<glib::GString>) -> Self {
+    pub fn css_name<'a>(self, css_name: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("css-name", css_name.into()),
         }
     }
 
-    pub fn cursor(self, cursor: &gdk::Cursor) -> Self {
+    pub fn cursor<'a>(self, cursor: impl Into<Option<&'a gdk::Cursor>>) -> Self {
         Self {
-            builder: self.builder.property("cursor", cursor.clone()),
+            builder: self.builder.property("cursor", cursor.into()),
         }
     }
 
@@ -362,11 +371,15 @@ impl PopoverMenuBuilder {
         }
     }
 
-    pub fn layout_manager(self, layout_manager: &impl IsA<LayoutManager>) -> Self {
+    pub fn layout_manager<'a, P: IsA<LayoutManager>>(
+        self,
+        layout_manager: impl Into<Option<&'a P>>,
+    ) -> Self {
         Self {
-            builder: self
-                .builder
-                .property("layout-manager", layout_manager.clone().upcast()),
+            builder: self.builder.property(
+                "layout-manager",
+                layout_manager.into().as_ref().map(|p| p.as_ref()),
+            ),
         }
     }
 
@@ -394,7 +407,7 @@ impl PopoverMenuBuilder {
         }
     }
 
-    pub fn name(self, name: impl Into<glib::GString>) -> Self {
+    pub fn name<'a>(self, name: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("name", name.into()),
         }
@@ -424,7 +437,7 @@ impl PopoverMenuBuilder {
         }
     }
 
-    pub fn tooltip_markup(self, tooltip_markup: impl Into<glib::GString>) -> Self {
+    pub fn tooltip_markup<'a>(self, tooltip_markup: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self
                 .builder
@@ -432,7 +445,7 @@ impl PopoverMenuBuilder {
         }
     }
 
-    pub fn tooltip_text(self, tooltip_text: impl Into<glib::GString>) -> Self {
+    pub fn tooltip_text<'a>(self, tooltip_text: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("tooltip-text", tooltip_text.into()),
         }

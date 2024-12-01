@@ -94,12 +94,16 @@ impl ToplevelLayout {
     }
 
     #[doc(alias = "gdk_toplevel_layout_set_fullscreen")]
-    pub fn set_fullscreen(&self, fullscreen: bool, monitor: Option<&impl IsA<Monitor>>) {
+    pub fn set_fullscreen<'a, P: IsA<Monitor>>(
+        &self,
+        fullscreen: bool,
+        monitor: impl Into<Option<&'a P>>,
+    ) {
         unsafe {
             ffi::gdk_toplevel_layout_set_fullscreen(
                 self.to_glib_none().0,
                 fullscreen.into_glib(),
-                monitor.map(|p| p.as_ref()).to_glib_none().0,
+                monitor.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
             );
         }
     }

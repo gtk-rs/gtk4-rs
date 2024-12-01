@@ -87,11 +87,11 @@ pub trait IMMulticontextExt: IsA<IMMulticontext> + 'static {
     }
 
     #[doc(alias = "gtk_im_multicontext_set_context_id")]
-    fn set_context_id(&self, context_id: Option<&str>) {
+    fn set_context_id<'a>(&self, context_id: impl Into<Option<&'a str>>) {
         unsafe {
             ffi::gtk_im_multicontext_set_context_id(
                 self.as_ref().to_glib_none().0,
-                context_id.to_glib_none().0,
+                context_id.into().to_glib_none().0,
             );
         }
     }

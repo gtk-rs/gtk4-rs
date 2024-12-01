@@ -149,11 +149,14 @@ impl CellAreaBoxBuilder {
         }
     }
 
-    pub fn focus_cell(self, focus_cell: &impl IsA<CellRenderer>) -> Self {
+    pub fn focus_cell<'a, P: IsA<CellRenderer>>(
+        self,
+        focus_cell: impl Into<Option<&'a P>>,
+    ) -> Self {
         Self {
             builder: self
                 .builder
-                .property("focus-cell", focus_cell.clone().upcast()),
+                .property("focus-cell", focus_cell.into().as_ref().map(|p| p.as_ref())),
         }
     }
 

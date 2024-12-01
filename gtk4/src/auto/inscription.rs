@@ -39,10 +39,11 @@ glib::wrapper! {
 
 impl Inscription {
     #[doc(alias = "gtk_inscription_new")]
-    pub fn new(text: Option<&str>) -> Inscription {
+    pub fn new<'a>(text: impl Into<Option<&'a str>>) -> Inscription {
         assert_initialized_main_thread!();
         unsafe {
-            Widget::from_glib_none(ffi::gtk_inscription_new(text.to_glib_none().0)).unsafe_cast()
+            Widget::from_glib_none(ffi::gtk_inscription_new(text.into().to_glib_none().0))
+                .unsafe_cast()
         }
     }
 
@@ -126,17 +127,20 @@ impl Inscription {
 
     #[doc(alias = "gtk_inscription_set_attributes")]
     #[doc(alias = "attributes")]
-    pub fn set_attributes(&self, attrs: Option<&pango::AttrList>) {
+    pub fn set_attributes<'a>(&self, attrs: impl Into<Option<&'a pango::AttrList>>) {
         unsafe {
-            ffi::gtk_inscription_set_attributes(self.to_glib_none().0, attrs.to_glib_none().0);
+            ffi::gtk_inscription_set_attributes(
+                self.to_glib_none().0,
+                attrs.into().to_glib_none().0,
+            );
         }
     }
 
     #[doc(alias = "gtk_inscription_set_markup")]
     #[doc(alias = "markup")]
-    pub fn set_markup(&self, markup: Option<&str>) {
+    pub fn set_markup<'a>(&self, markup: impl Into<Option<&'a str>>) {
         unsafe {
-            ffi::gtk_inscription_set_markup(self.to_glib_none().0, markup.to_glib_none().0);
+            ffi::gtk_inscription_set_markup(self.to_glib_none().0, markup.into().to_glib_none().0);
         }
     }
 
@@ -174,9 +178,9 @@ impl Inscription {
 
     #[doc(alias = "gtk_inscription_set_text")]
     #[doc(alias = "text")]
-    pub fn set_text(&self, text: Option<&str>) {
+    pub fn set_text<'a>(&self, text: impl Into<Option<&'a str>>) {
         unsafe {
-            ffi::gtk_inscription_set_text(self.to_glib_none().0, text.to_glib_none().0);
+            ffi::gtk_inscription_set_text(self.to_glib_none().0, text.into().to_glib_none().0);
         }
     }
 
@@ -514,15 +518,15 @@ impl InscriptionBuilder {
 
     #[cfg(feature = "v4_8")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
-    pub fn attributes(self, attributes: &pango::AttrList) -> Self {
+    pub fn attributes<'a>(self, attributes: impl Into<Option<&'a pango::AttrList>>) -> Self {
         Self {
-            builder: self.builder.property("attributes", attributes.clone()),
+            builder: self.builder.property("attributes", attributes.into()),
         }
     }
 
     #[cfg(feature = "v4_8")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
-    pub fn markup(self, markup: impl Into<glib::GString>) -> Self {
+    pub fn markup<'a>(self, markup: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("markup", markup.into()),
         }
@@ -562,7 +566,7 @@ impl InscriptionBuilder {
 
     #[cfg(feature = "v4_8")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
-    pub fn text(self, text: impl Into<glib::GString>) -> Self {
+    pub fn text<'a>(self, text: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("text", text.into()),
         }
@@ -618,15 +622,15 @@ impl InscriptionBuilder {
         }
     }
 
-    pub fn css_name(self, css_name: impl Into<glib::GString>) -> Self {
+    pub fn css_name<'a>(self, css_name: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("css-name", css_name.into()),
         }
     }
 
-    pub fn cursor(self, cursor: &gdk::Cursor) -> Self {
+    pub fn cursor<'a>(self, cursor: impl Into<Option<&'a gdk::Cursor>>) -> Self {
         Self {
-            builder: self.builder.property("cursor", cursor.clone()),
+            builder: self.builder.property("cursor", cursor.into()),
         }
     }
 
@@ -672,11 +676,15 @@ impl InscriptionBuilder {
         }
     }
 
-    pub fn layout_manager(self, layout_manager: &impl IsA<LayoutManager>) -> Self {
+    pub fn layout_manager<'a, P: IsA<LayoutManager>>(
+        self,
+        layout_manager: impl Into<Option<&'a P>>,
+    ) -> Self {
         Self {
-            builder: self
-                .builder
-                .property("layout-manager", layout_manager.clone().upcast()),
+            builder: self.builder.property(
+                "layout-manager",
+                layout_manager.into().as_ref().map(|p| p.as_ref()),
+            ),
         }
     }
 
@@ -704,7 +712,7 @@ impl InscriptionBuilder {
         }
     }
 
-    pub fn name(self, name: impl Into<glib::GString>) -> Self {
+    pub fn name<'a>(self, name: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("name", name.into()),
         }
@@ -734,7 +742,7 @@ impl InscriptionBuilder {
         }
     }
 
-    pub fn tooltip_markup(self, tooltip_markup: impl Into<glib::GString>) -> Self {
+    pub fn tooltip_markup<'a>(self, tooltip_markup: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self
                 .builder
@@ -742,7 +750,7 @@ impl InscriptionBuilder {
         }
     }
 
-    pub fn tooltip_text(self, tooltip_text: impl Into<glib::GString>) -> Self {
+    pub fn tooltip_text<'a>(self, tooltip_text: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("tooltip-text", tooltip_text.into()),
         }

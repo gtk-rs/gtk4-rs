@@ -174,20 +174,20 @@ impl ColumnView {
     #[cfg(feature = "v4_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     #[doc(alias = "gtk_column_view_scroll_to")]
-    pub fn scroll_to(
+    pub fn scroll_to<'a>(
         &self,
         pos: u32,
-        column: Option<&ColumnViewColumn>,
+        column: impl Into<Option<&'a ColumnViewColumn>>,
         flags: ListScrollFlags,
-        scroll: Option<ScrollInfo>,
+        scroll: impl Into<Option<ScrollInfo>>,
     ) {
         unsafe {
             ffi::gtk_column_view_scroll_to(
                 self.to_glib_none().0,
                 pos,
-                column.to_glib_none().0,
+                column.into().to_glib_none().0,
                 flags.into_glib(),
-                scroll.into_glib_ptr(),
+                scroll.into().into_glib_ptr(),
             );
         }
     }
@@ -207,22 +207,25 @@ impl ColumnView {
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     #[doc(alias = "gtk_column_view_set_header_factory")]
     #[doc(alias = "header-factory")]
-    pub fn set_header_factory(&self, factory: Option<&impl IsA<ListItemFactory>>) {
+    pub fn set_header_factory<'a, P: IsA<ListItemFactory>>(
+        &self,
+        factory: impl Into<Option<&'a P>>,
+    ) {
         unsafe {
             ffi::gtk_column_view_set_header_factory(
                 self.to_glib_none().0,
-                factory.map(|p| p.as_ref()).to_glib_none().0,
+                factory.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
             );
         }
     }
 
     #[doc(alias = "gtk_column_view_set_model")]
     #[doc(alias = "model")]
-    pub fn set_model(&self, model: Option<&impl IsA<SelectionModel>>) {
+    pub fn set_model<'a, P: IsA<SelectionModel>>(&self, model: impl Into<Option<&'a P>>) {
         unsafe {
             ffi::gtk_column_view_set_model(
                 self.to_glib_none().0,
-                model.map(|p| p.as_ref()).to_glib_none().0,
+                model.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
             );
         }
     }
@@ -239,11 +242,11 @@ impl ColumnView {
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     #[doc(alias = "gtk_column_view_set_row_factory")]
     #[doc(alias = "row-factory")]
-    pub fn set_row_factory(&self, factory: Option<&impl IsA<ListItemFactory>>) {
+    pub fn set_row_factory<'a, P: IsA<ListItemFactory>>(&self, factory: impl Into<Option<&'a P>>) {
         unsafe {
             ffi::gtk_column_view_set_row_factory(
                 self.to_glib_none().0,
-                factory.map(|p| p.as_ref()).to_glib_none().0,
+                factory.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
             );
         }
     }
@@ -292,11 +295,15 @@ impl ColumnView {
     }
 
     #[doc(alias = "gtk_column_view_sort_by_column")]
-    pub fn sort_by_column(&self, column: Option<&ColumnViewColumn>, direction: SortType) {
+    pub fn sort_by_column<'a>(
+        &self,
+        column: impl Into<Option<&'a ColumnViewColumn>>,
+        direction: SortType,
+    ) {
         unsafe {
             ffi::gtk_column_view_sort_by_column(
                 self.to_glib_none().0,
-                column.to_glib_none().0,
+                column.into().to_glib_none().0,
                 direction.into_glib(),
             );
         }
@@ -633,17 +640,23 @@ impl ColumnViewBuilder {
 
     #[cfg(feature = "v4_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
-    pub fn header_factory(self, header_factory: &impl IsA<ListItemFactory>) -> Self {
+    pub fn header_factory<'a, P: IsA<ListItemFactory>>(
+        self,
+        header_factory: impl Into<Option<&'a P>>,
+    ) -> Self {
         Self {
-            builder: self
-                .builder
-                .property("header-factory", header_factory.clone().upcast()),
+            builder: self.builder.property(
+                "header-factory",
+                header_factory.into().as_ref().map(|p| p.as_ref()),
+            ),
         }
     }
 
-    pub fn model(self, model: &impl IsA<SelectionModel>) -> Self {
+    pub fn model<'a, P: IsA<SelectionModel>>(self, model: impl Into<Option<&'a P>>) -> Self {
         Self {
-            builder: self.builder.property("model", model.clone().upcast()),
+            builder: self
+                .builder
+                .property("model", model.into().as_ref().map(|p| p.as_ref())),
         }
     }
 
@@ -655,11 +668,15 @@ impl ColumnViewBuilder {
 
     #[cfg(feature = "v4_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
-    pub fn row_factory(self, row_factory: &impl IsA<ListItemFactory>) -> Self {
+    pub fn row_factory<'a, P: IsA<ListItemFactory>>(
+        self,
+        row_factory: impl Into<Option<&'a P>>,
+    ) -> Self {
         Self {
-            builder: self
-                .builder
-                .property("row-factory", row_factory.clone().upcast()),
+            builder: self.builder.property(
+                "row-factory",
+                row_factory.into().as_ref().map(|p| p.as_ref()),
+            ),
         }
     }
 
@@ -713,15 +730,15 @@ impl ColumnViewBuilder {
         }
     }
 
-    pub fn css_name(self, css_name: impl Into<glib::GString>) -> Self {
+    pub fn css_name<'a>(self, css_name: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("css-name", css_name.into()),
         }
     }
 
-    pub fn cursor(self, cursor: &gdk::Cursor) -> Self {
+    pub fn cursor<'a>(self, cursor: impl Into<Option<&'a gdk::Cursor>>) -> Self {
         Self {
-            builder: self.builder.property("cursor", cursor.clone()),
+            builder: self.builder.property("cursor", cursor.into()),
         }
     }
 
@@ -767,11 +784,15 @@ impl ColumnViewBuilder {
         }
     }
 
-    pub fn layout_manager(self, layout_manager: &impl IsA<LayoutManager>) -> Self {
+    pub fn layout_manager<'a, P: IsA<LayoutManager>>(
+        self,
+        layout_manager: impl Into<Option<&'a P>>,
+    ) -> Self {
         Self {
-            builder: self
-                .builder
-                .property("layout-manager", layout_manager.clone().upcast()),
+            builder: self.builder.property(
+                "layout-manager",
+                layout_manager.into().as_ref().map(|p| p.as_ref()),
+            ),
         }
     }
 
@@ -799,7 +820,7 @@ impl ColumnViewBuilder {
         }
     }
 
-    pub fn name(self, name: impl Into<glib::GString>) -> Self {
+    pub fn name<'a>(self, name: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("name", name.into()),
         }
@@ -829,7 +850,7 @@ impl ColumnViewBuilder {
         }
     }
 
-    pub fn tooltip_markup(self, tooltip_markup: impl Into<glib::GString>) -> Self {
+    pub fn tooltip_markup<'a>(self, tooltip_markup: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self
                 .builder
@@ -837,7 +858,7 @@ impl ColumnViewBuilder {
         }
     }
 
-    pub fn tooltip_text(self, tooltip_text: impl Into<glib::GString>) -> Self {
+    pub fn tooltip_text<'a>(self, tooltip_text: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("tooltip-text", tooltip_text.into()),
         }
@@ -879,11 +900,15 @@ impl ColumnViewBuilder {
         }
     }
 
-    pub fn hadjustment(self, hadjustment: &impl IsA<Adjustment>) -> Self {
+    pub fn hadjustment<'a, P: IsA<Adjustment>>(
+        self,
+        hadjustment: impl Into<Option<&'a P>>,
+    ) -> Self {
         Self {
-            builder: self
-                .builder
-                .property("hadjustment", hadjustment.clone().upcast()),
+            builder: self.builder.property(
+                "hadjustment",
+                hadjustment.into().as_ref().map(|p| p.as_ref()),
+            ),
         }
     }
 
@@ -893,11 +918,15 @@ impl ColumnViewBuilder {
         }
     }
 
-    pub fn vadjustment(self, vadjustment: &impl IsA<Adjustment>) -> Self {
+    pub fn vadjustment<'a, P: IsA<Adjustment>>(
+        self,
+        vadjustment: impl Into<Option<&'a P>>,
+    ) -> Self {
         Self {
-            builder: self
-                .builder
-                .property("vadjustment", vadjustment.clone().upcast()),
+            builder: self.builder.property(
+                "vadjustment",
+                vadjustment.into().as_ref().map(|p| p.as_ref()),
+            ),
         }
     }
 

@@ -99,9 +99,12 @@ impl StringFilter {
 
     #[doc(alias = "gtk_string_filter_set_search")]
     #[doc(alias = "search")]
-    pub fn set_search(&self, search: Option<&str>) {
+    pub fn set_search<'a>(&self, search: impl Into<Option<&'a str>>) {
         unsafe {
-            ffi::gtk_string_filter_set_search(self.to_glib_none().0, search.to_glib_none().0);
+            ffi::gtk_string_filter_set_search(
+                self.to_glib_none().0,
+                search.into().to_glib_none().0,
+            );
         }
     }
 
@@ -220,11 +223,11 @@ impl StringFilterBuilder {
         }
     }
 
-    pub fn expression(self, expression: impl AsRef<Expression>) -> Self {
+    pub fn expression(self, expression: Option<impl AsRef<Expression>>) -> Self {
         Self {
             builder: self
                 .builder
-                .property("expression", expression.as_ref().clone()),
+                .property("expression", expression.as_ref().map(|p| p.as_ref())),
         }
     }
 
@@ -240,7 +243,7 @@ impl StringFilterBuilder {
         }
     }
 
-    pub fn search(self, search: impl Into<glib::GString>) -> Self {
+    pub fn search<'a>(self, search: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("search", search.into()),
         }

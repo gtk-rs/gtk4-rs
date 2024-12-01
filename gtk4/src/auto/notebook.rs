@@ -214,19 +214,31 @@ impl Notebook {
 
     #[doc(alias = "gtk_notebook_set_group_name")]
     #[doc(alias = "group-name")]
-    pub fn set_group_name(&self, group_name: Option<&str>) {
+    pub fn set_group_name<'a>(&self, group_name: impl Into<Option<&'a str>>) {
         unsafe {
-            ffi::gtk_notebook_set_group_name(self.to_glib_none().0, group_name.to_glib_none().0);
+            ffi::gtk_notebook_set_group_name(
+                self.to_glib_none().0,
+                group_name.into().to_glib_none().0,
+            );
         }
     }
 
     #[doc(alias = "gtk_notebook_set_menu_label")]
-    pub fn set_menu_label(&self, child: &impl IsA<Widget>, menu_label: Option<&impl IsA<Widget>>) {
+    pub fn set_menu_label<'a, P: IsA<Widget>>(
+        &self,
+        child: &impl IsA<Widget>,
+        menu_label: impl Into<Option<&'a P>>,
+    ) {
         unsafe {
             ffi::gtk_notebook_set_menu_label(
                 self.to_glib_none().0,
                 child.as_ref().to_glib_none().0,
-                menu_label.map(|p| p.as_ref()).to_glib_none().0,
+                menu_label
+                    .into()
+                    .as_ref()
+                    .map(|p| p.as_ref())
+                    .to_glib_none()
+                    .0,
             );
         }
     }
@@ -278,12 +290,21 @@ impl Notebook {
     }
 
     #[doc(alias = "gtk_notebook_set_tab_label")]
-    pub fn set_tab_label(&self, child: &impl IsA<Widget>, tab_label: Option<&impl IsA<Widget>>) {
+    pub fn set_tab_label<'a, P: IsA<Widget>>(
+        &self,
+        child: &impl IsA<Widget>,
+        tab_label: impl Into<Option<&'a P>>,
+    ) {
         unsafe {
             ffi::gtk_notebook_set_tab_label(
                 self.to_glib_none().0,
                 child.as_ref().to_glib_none().0,
-                tab_label.map(|p| p.as_ref()).to_glib_none().0,
+                tab_label
+                    .into()
+                    .as_ref()
+                    .map(|p| p.as_ref())
+                    .to_glib_none()
+                    .0,
             );
         }
     }
@@ -843,7 +864,7 @@ impl NotebookBuilder {
         }
     }
 
-    pub fn group_name(self, group_name: impl Into<glib::GString>) -> Self {
+    pub fn group_name<'a>(self, group_name: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("group-name", group_name.into()),
         }
@@ -897,15 +918,15 @@ impl NotebookBuilder {
         }
     }
 
-    pub fn css_name(self, css_name: impl Into<glib::GString>) -> Self {
+    pub fn css_name<'a>(self, css_name: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("css-name", css_name.into()),
         }
     }
 
-    pub fn cursor(self, cursor: &gdk::Cursor) -> Self {
+    pub fn cursor<'a>(self, cursor: impl Into<Option<&'a gdk::Cursor>>) -> Self {
         Self {
-            builder: self.builder.property("cursor", cursor.clone()),
+            builder: self.builder.property("cursor", cursor.into()),
         }
     }
 
@@ -951,11 +972,15 @@ impl NotebookBuilder {
         }
     }
 
-    pub fn layout_manager(self, layout_manager: &impl IsA<LayoutManager>) -> Self {
+    pub fn layout_manager<'a, P: IsA<LayoutManager>>(
+        self,
+        layout_manager: impl Into<Option<&'a P>>,
+    ) -> Self {
         Self {
-            builder: self
-                .builder
-                .property("layout-manager", layout_manager.clone().upcast()),
+            builder: self.builder.property(
+                "layout-manager",
+                layout_manager.into().as_ref().map(|p| p.as_ref()),
+            ),
         }
     }
 
@@ -983,7 +1008,7 @@ impl NotebookBuilder {
         }
     }
 
-    pub fn name(self, name: impl Into<glib::GString>) -> Self {
+    pub fn name<'a>(self, name: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("name", name.into()),
         }
@@ -1013,7 +1038,7 @@ impl NotebookBuilder {
         }
     }
 
-    pub fn tooltip_markup(self, tooltip_markup: impl Into<glib::GString>) -> Self {
+    pub fn tooltip_markup<'a>(self, tooltip_markup: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self
                 .builder
@@ -1021,7 +1046,7 @@ impl NotebookBuilder {
         }
     }
 
-    pub fn tooltip_text(self, tooltip_text: impl Into<glib::GString>) -> Self {
+    pub fn tooltip_text<'a>(self, tooltip_text: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("tooltip-text", tooltip_text.into()),
         }

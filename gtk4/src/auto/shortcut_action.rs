@@ -37,18 +37,18 @@ impl std::fmt::Display for ShortcutAction {
 
 pub trait ShortcutActionExt: IsA<ShortcutAction> + 'static {
     #[doc(alias = "gtk_shortcut_action_activate")]
-    fn activate(
+    fn activate<'a>(
         &self,
         flags: ShortcutActionFlags,
         widget: &impl IsA<Widget>,
-        args: Option<&glib::Variant>,
+        args: impl Into<Option<&'a glib::Variant>>,
     ) -> bool {
         unsafe {
             from_glib(ffi::gtk_shortcut_action_activate(
                 self.as_ref().to_glib_none().0,
                 flags.into_glib(),
                 widget.as_ref().to_glib_none().0,
-                args.to_glib_none().0,
+                args.into().to_glib_none().0,
             ))
         }
     }

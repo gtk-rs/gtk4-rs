@@ -34,11 +34,16 @@ impl AlertDialog {
     }
 
     #[doc(alias = "gtk_alert_dialog_choose")]
-    pub fn choose<P: FnOnce(Result<i32, glib::Error>) + 'static>(
+    pub fn choose<
+        'a,
+        P: IsA<Window>,
+        Q: IsA<gio::Cancellable>,
+        R: FnOnce(Result<i32, glib::Error>) + 'static,
+    >(
         &self,
-        parent: Option<&impl IsA<Window>>,
-        cancellable: Option<&impl IsA<gio::Cancellable>>,
-        callback: P,
+        parent: impl Into<Option<&'a P>>,
+        cancellable: impl Into<Option<&'a Q>>,
+        callback: R,
     ) {
         let main_context = glib::MainContext::ref_thread_default();
         let is_main_context_owner = main_context.is_owner();
@@ -50,9 +55,9 @@ impl AlertDialog {
             "Async operations only allowed if the thread is owning the MainContext"
         );
 
-        let user_data: Box_<glib::thread_guard::ThreadGuard<P>> =
+        let user_data: Box_<glib::thread_guard::ThreadGuard<R>> =
             Box_::new(glib::thread_guard::ThreadGuard::new(callback));
-        unsafe extern "C" fn choose_trampoline<P: FnOnce(Result<i32, glib::Error>) + 'static>(
+        unsafe extern "C" fn choose_trampoline<R: FnOnce(Result<i32, glib::Error>) + 'static>(
             _source_object: *mut glib::gobject_ffi::GObject,
             res: *mut gio::ffi::GAsyncResult,
             user_data: glib::ffi::gpointer,
@@ -65,28 +70,33 @@ impl AlertDialog {
             } else {
                 Err(from_glib_full(error))
             };
-            let callback: Box_<glib::thread_guard::ThreadGuard<P>> =
+            let callback: Box_<glib::thread_guard::ThreadGuard<R>> =
                 Box_::from_raw(user_data as *mut _);
-            let callback: P = callback.into_inner();
+            let callback: R = callback.into_inner();
             callback(result);
         }
-        let callback = choose_trampoline::<P>;
+        let callback = choose_trampoline::<R>;
         unsafe {
             ffi::gtk_alert_dialog_choose(
                 self.to_glib_none().0,
-                parent.map(|p| p.as_ref()).to_glib_none().0,
-                cancellable.map(|p| p.as_ref()).to_glib_none().0,
+                parent.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
+                cancellable
+                    .into()
+                    .as_ref()
+                    .map(|p| p.as_ref())
+                    .to_glib_none()
+                    .0,
                 Some(callback),
                 Box_::into_raw(user_data) as *mut _,
             );
         }
     }
 
-    pub fn choose_future(
+    pub fn choose_future<'a, P: IsA<Window> + Clone + 'static>(
         &self,
-        parent: Option<&(impl IsA<Window> + Clone + 'static)>,
+        parent: impl Into<Option<&'a P>>,
     ) -> Pin<Box_<dyn std::future::Future<Output = Result<i32, glib::Error>> + 'static>> {
-        let parent = parent.map(ToOwned::to_owned);
+        let parent = parent.into().map(ToOwned::to_owned);
         Box_::pin(gio::GioFuture::new(self, move |obj, cancellable, send| {
             obj.choose(
                 parent.as_ref().map(::std::borrow::Borrow::borrow),
@@ -190,11 +200,11 @@ impl AlertDialog {
     }
 
     #[doc(alias = "gtk_alert_dialog_show")]
-    pub fn show(&self, parent: Option<&impl IsA<Window>>) {
+    pub fn show<'a, P: IsA<Window>>(&self, parent: impl Into<Option<&'a P>>) {
         unsafe {
             ffi::gtk_alert_dialog_show(
                 self.to_glib_none().0,
-                parent.map(|p| p.as_ref()).to_glib_none().0,
+                parent.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
             );
         }
     }
@@ -400,7 +410,7 @@ impl AlertDialogBuilder {
 
     #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
-    pub fn detail(self, detail: impl Into<glib::GString>) -> Self {
+    pub fn detail<'a>(self, detail: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("detail", detail.into()),
         }
@@ -408,7 +418,7 @@ impl AlertDialogBuilder {
 
     #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
-    pub fn message(self, message: impl Into<glib::GString>) -> Self {
+    pub fn message<'a>(self, message: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("message", message.into()),
         }

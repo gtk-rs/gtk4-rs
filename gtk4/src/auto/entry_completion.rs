@@ -265,11 +265,11 @@ impl EntryCompletion {
     #[allow(deprecated)]
     #[doc(alias = "gtk_entry_completion_set_model")]
     #[doc(alias = "model")]
-    pub fn set_model(&self, model: Option<&impl IsA<TreeModel>>) {
+    pub fn set_model<'a, P: IsA<TreeModel>>(&self, model: impl Into<Option<&'a P>>) {
         unsafe {
             ffi::gtk_entry_completion_set_model(
                 self.to_glib_none().0,
-                model.map(|p| p.as_ref()).to_glib_none().0,
+                model.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
             );
         }
     }
@@ -682,11 +682,11 @@ impl EntryCompletionBuilder {
         }
     }
 
-    pub fn cell_area(self, cell_area: &impl IsA<CellArea>) -> Self {
+    pub fn cell_area<'a, P: IsA<CellArea>>(self, cell_area: impl Into<Option<&'a P>>) -> Self {
         Self {
             builder: self
                 .builder
-                .property("cell-area", cell_area.clone().upcast()),
+                .property("cell-area", cell_area.into().as_ref().map(|p| p.as_ref())),
         }
     }
 
@@ -712,9 +712,11 @@ impl EntryCompletionBuilder {
         }
     }
 
-    pub fn model(self, model: &impl IsA<TreeModel>) -> Self {
+    pub fn model<'a, P: IsA<TreeModel>>(self, model: impl Into<Option<&'a P>>) -> Self {
         Self {
-            builder: self.builder.property("model", model.clone().upcast()),
+            builder: self
+                .builder
+                .property("model", model.into().as_ref().map(|p| p.as_ref())),
         }
     }
 
