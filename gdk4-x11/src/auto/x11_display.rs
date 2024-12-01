@@ -17,7 +17,7 @@ glib::wrapper! {
 
 impl X11Display {
     //#[doc(alias = "gdk_x11_display_broadcast_startup_message")]
-    //pub fn broadcast_startup_message(&self, message_type: &str, : /*Unknown conversion*//*Unimplemented*/Basic: VarArgs) {
+    //pub fn broadcast_startup_message(&self, message_type: &str, : /*Unimplemented*/Basic: VarArgs) {
     //    unsafe { TODO: call ffi:gdk_x11_display_broadcast_startup_message() }
     //}
 

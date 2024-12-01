@@ -21,7 +21,7 @@ glib::wrapper! {
 
 impl AlertDialog {
     //#[doc(alias = "gtk_alert_dialog_new")]
-    //pub fn new(format: &str, : /*Unknown conversion*//*Unimplemented*/Basic: VarArgs) -> AlertDialog {
+    //pub fn new(format: &str, : /*Unimplemented*/Basic: VarArgs) -> AlertDialog {
     //    unsafe { TODO: call ffi:gtk_alert_dialog_new() }
     //}
 

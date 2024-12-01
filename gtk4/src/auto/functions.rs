@@ -592,7 +592,7 @@ pub fn test_accessible_has_state(
 }
 
 //#[doc(alias = "gtk_test_init")]
-//pub fn test_init(argvp: /*Unimplemented*/Vec<glib::GString>, : /*Unknown conversion*//*Unimplemented*/Basic: VarArgs) {
+//pub fn test_init(argvp: /*Unimplemented*/Vec<glib::GString>, : /*Unimplemented*/Basic: VarArgs) {
 //    unsafe { TODO: call ffi:gtk_test_init() }
 //}
 
