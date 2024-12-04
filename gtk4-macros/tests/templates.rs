@@ -212,6 +212,8 @@ mod imp4 {
 
     #[derive(Debug, Default, gtk::CompositeTemplate)]
     #[template(string = "
+    using Gtk 4.0;
+
     template $MyWidget4 : Widget {
         Label label {
             label: 'foobar';

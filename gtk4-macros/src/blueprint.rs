@@ -14,7 +14,6 @@ pub(crate) fn compile_blueprint(blueprint: &[u8]) -> Result<String> {
         .unwrap_or_else(|_| panic!("blueprint-compiler not found"));
 
     let mut stdin = compiler.stdin.take().unwrap();
-    stdin.write_all(b"using Gtk 4.0;\n")?;
     stdin.write_all(blueprint)?;
     drop(stdin);
 
