@@ -76,8 +76,8 @@ fn build_ui(app: &gtk::Application) {
             let parent_window = list_view.root().and_downcast::<gtk::Window>().unwrap();
 
             gtk::AlertDialog::builder()
-                .message(format!("Failed to start {}", app_info.name()))
-                .detail(err.to_string())
+                .message(format!("Failed to start {}", app_info.name()).as_str())
+                .detail(err.to_string().as_str())
                 .modal(true)
                 .build()
                 .show(Some(&parent_window));

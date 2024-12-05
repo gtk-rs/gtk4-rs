@@ -95,7 +95,7 @@ fn build_ui(app: &Application) {
             match response {
                 Ok(response) => {
                     for pokemon in response {
-                        let label = gtk::Label::new(Some(&pokemon.name));
+                        let label = gtk::Label::new(pokemon.name.as_str());
                         label.set_halign(gtk::Align::Start);
                         list_box.append(&label);
                     }
