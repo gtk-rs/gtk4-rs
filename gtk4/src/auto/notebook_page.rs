@@ -44,8 +44,8 @@ impl NotebookPage {
     }
 
     #[doc(alias = "menu-label")]
-    pub fn set_menu_label(&self, menu_label: Option<&str>) {
-        ObjectExt::set_property(self, "menu-label", menu_label)
+    pub fn set_menu_label<'a>(&self, menu_label: impl Into<Option<&'a str>>) {
+        ObjectExt::set_property(self, "menu-label", menu_label.into())
     }
 
     pub fn position(&self) -> i32 {
@@ -94,8 +94,8 @@ impl NotebookPage {
     }
 
     #[doc(alias = "tab-label")]
-    pub fn set_tab_label(&self, tab_label: Option<&str>) {
-        ObjectExt::set_property(self, "tab-label", tab_label)
+    pub fn set_tab_label<'a>(&self, tab_label: impl Into<Option<&'a str>>) {
+        ObjectExt::set_property(self, "tab-label", tab_label.into())
     }
 
     #[doc(alias = "detachable")]

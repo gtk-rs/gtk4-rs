@@ -73,9 +73,9 @@ impl Shortcut {
 
     #[doc(alias = "gtk_shortcut_set_arguments")]
     #[doc(alias = "arguments")]
-    pub fn set_arguments(&self, args: Option<&glib::Variant>) {
+    pub fn set_arguments<'a>(&self, args: impl Into<Option<&'a glib::Variant>>) {
         unsafe {
-            ffi::gtk_shortcut_set_arguments(self.to_glib_none().0, args.to_glib_none().0);
+            ffi::gtk_shortcut_set_arguments(self.to_glib_none().0, args.into().to_glib_none().0);
         }
     }
 
@@ -182,21 +182,25 @@ impl ShortcutBuilder {
         }
     }
 
-    pub fn action(self, action: &impl IsA<ShortcutAction>) -> Self {
+    pub fn action<'a, P: IsA<ShortcutAction>>(self, action: impl Into<Option<&'a P>>) -> Self {
         Self {
-            builder: self.builder.property("action", action.clone().upcast()),
+            builder: self
+                .builder
+                .property("action", action.into().as_ref().map(|p| p.as_ref())),
         }
     }
 
-    pub fn arguments(self, arguments: &glib::Variant) -> Self {
+    pub fn arguments<'a>(self, arguments: impl Into<Option<&'a glib::Variant>>) -> Self {
         Self {
-            builder: self.builder.property("arguments", arguments.clone()),
+            builder: self.builder.property("arguments", arguments.into()),
         }
     }
 
-    pub fn trigger(self, trigger: &impl IsA<ShortcutTrigger>) -> Self {
+    pub fn trigger<'a, P: IsA<ShortcutTrigger>>(self, trigger: impl Into<Option<&'a P>>) -> Self {
         Self {
-            builder: self.builder.property("trigger", trigger.clone().upcast()),
+            builder: self
+                .builder
+                .property("trigger", trigger.into().as_ref().map(|p| p.as_ref())),
         }
     }
 

@@ -274,15 +274,15 @@ pub trait CellRendererExt: IsA<CellRenderer> + 'static {
     #[allow(deprecated)]
     #[doc(alias = "gtk_cell_renderer_get_state")]
     #[doc(alias = "get_state")]
-    fn state(
+    fn state<'a, P: IsA<Widget>>(
         &self,
-        widget: Option<&impl IsA<Widget>>,
+        widget: impl Into<Option<&'a P>>,
         cell_state: CellRendererState,
     ) -> StateFlags {
         unsafe {
             from_glib(ffi::gtk_cell_renderer_get_state(
                 self.as_ref().to_glib_none().0,
-                widget.map(|p| p.as_ref()).to_glib_none().0,
+                widget.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
                 cell_state.into_glib(),
             ))
         }
@@ -449,8 +449,8 @@ pub trait CellRendererExt: IsA<CellRenderer> + 'static {
     }
 
     #[doc(alias = "cell-background")]
-    fn set_cell_background(&self, cell_background: Option<&str>) {
-        ObjectExt::set_property(self.as_ref(), "cell-background", cell_background)
+    fn set_cell_background<'a>(&self, cell_background: impl Into<Option<&'a str>>) {
+        ObjectExt::set_property(self.as_ref(), "cell-background", cell_background.into())
     }
 
     #[doc(alias = "cell-background-rgba")]
@@ -459,8 +459,12 @@ pub trait CellRendererExt: IsA<CellRenderer> + 'static {
     }
 
     #[doc(alias = "cell-background-rgba")]
-    fn set_cell_background_rgba(&self, cell_background_rgba: Option<&gdk::RGBA>) {
-        ObjectExt::set_property(self.as_ref(), "cell-background-rgba", cell_background_rgba)
+    fn set_cell_background_rgba<'a>(&self, cell_background_rgba: impl Into<Option<&'a gdk::RGBA>>) {
+        ObjectExt::set_property(
+            self.as_ref(),
+            "cell-background-rgba",
+            cell_background_rgba.into(),
+        )
     }
 
     #[doc(alias = "cell-background-set")]

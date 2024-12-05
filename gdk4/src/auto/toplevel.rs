@@ -45,10 +45,10 @@ pub trait ToplevelExt: IsA<Toplevel> + 'static {
     }
 
     #[doc(alias = "gdk_toplevel_begin_resize")]
-    fn begin_resize(
+    fn begin_resize<'a, P: IsA<Device>>(
         &self,
         edge: SurfaceEdge,
-        device: Option<&impl IsA<Device>>,
+        device: impl Into<Option<&'a P>>,
         button: i32,
         x: f64,
         y: f64,
@@ -58,7 +58,7 @@ pub trait ToplevelExt: IsA<Toplevel> + 'static {
             ffi::gdk_toplevel_begin_resize(
                 self.as_ref().to_glib_none().0,
                 edge.into_glib(),
-                device.map(|p| p.as_ref()).to_glib_none().0,
+                device.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
                 button,
                 x,
                 y,

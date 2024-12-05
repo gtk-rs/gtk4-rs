@@ -41,8 +41,12 @@ impl CellRendererSpin {
         ObjectExt::property(self, "adjustment")
     }
 
-    pub fn set_adjustment<P: IsA<Adjustment>>(&self, adjustment: Option<&P>) {
-        ObjectExt::set_property(self, "adjustment", adjustment)
+    pub fn set_adjustment<'a, P: IsA<Adjustment>>(&self, adjustment: impl Into<Option<&'a P>>) {
+        ObjectExt::set_property(
+            self,
+            "adjustment",
+            adjustment.into().as_ref().map(|p| p.as_ref()),
+        )
     }
 
     #[doc(alias = "climb-rate")]
@@ -155,11 +159,11 @@ impl CellRendererSpinBuilder {
         }
     }
 
-    pub fn adjustment(self, adjustment: &impl IsA<Adjustment>) -> Self {
+    pub fn adjustment<'a, P: IsA<Adjustment>>(self, adjustment: impl Into<Option<&'a P>>) -> Self {
         Self {
             builder: self
                 .builder
-                .property("adjustment", adjustment.clone().upcast()),
+                .property("adjustment", adjustment.into().as_ref().map(|p| p.as_ref())),
         }
     }
 
@@ -187,21 +191,23 @@ impl CellRendererSpinBuilder {
         }
     }
 
-    pub fn attributes(self, attributes: &pango::AttrList) -> Self {
+    pub fn attributes<'a>(self, attributes: impl Into<Option<&'a pango::AttrList>>) -> Self {
         Self {
-            builder: self.builder.property("attributes", attributes.clone()),
+            builder: self.builder.property("attributes", attributes.into()),
         }
     }
 
-    pub fn background(self, background: impl Into<glib::GString>) -> Self {
+    pub fn background<'a>(self, background: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("background", background.into()),
         }
     }
 
-    pub fn background_rgba(self, background_rgba: &gdk::RGBA) -> Self {
+    pub fn background_rgba<'a>(self, background_rgba: impl Into<Option<&'a gdk::RGBA>>) -> Self {
         Self {
-            builder: self.builder.property("background-rgba", background_rgba),
+            builder: self
+                .builder
+                .property("background-rgba", background_rgba.into()),
         }
     }
 
@@ -235,7 +241,7 @@ impl CellRendererSpinBuilder {
         }
     }
 
-    pub fn family(self, family: impl Into<glib::GString>) -> Self {
+    pub fn family<'a>(self, family: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("family", family.into()),
         }
@@ -247,27 +253,29 @@ impl CellRendererSpinBuilder {
         }
     }
 
-    pub fn font(self, font: impl Into<glib::GString>) -> Self {
+    pub fn font<'a>(self, font: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("font", font.into()),
         }
     }
 
-    pub fn font_desc(self, font_desc: &pango::FontDescription) -> Self {
+    pub fn font_desc<'a>(self, font_desc: impl Into<Option<&'a pango::FontDescription>>) -> Self {
         Self {
-            builder: self.builder.property("font-desc", font_desc),
+            builder: self.builder.property("font-desc", font_desc.into()),
         }
     }
 
-    pub fn foreground(self, foreground: impl Into<glib::GString>) -> Self {
+    pub fn foreground<'a>(self, foreground: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("foreground", foreground.into()),
         }
     }
 
-    pub fn foreground_rgba(self, foreground_rgba: &gdk::RGBA) -> Self {
+    pub fn foreground_rgba<'a>(self, foreground_rgba: impl Into<Option<&'a gdk::RGBA>>) -> Self {
         Self {
-            builder: self.builder.property("foreground-rgba", foreground_rgba),
+            builder: self
+                .builder
+                .property("foreground-rgba", foreground_rgba.into()),
         }
     }
 
@@ -277,7 +285,7 @@ impl CellRendererSpinBuilder {
         }
     }
 
-    pub fn language(self, language: impl Into<glib::GString>) -> Self {
+    pub fn language<'a>(self, language: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("language", language.into()),
         }
@@ -289,7 +297,7 @@ impl CellRendererSpinBuilder {
         }
     }
 
-    pub fn markup(self, markup: impl Into<glib::GString>) -> Self {
+    pub fn markup<'a>(self, markup: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("markup", markup.into()),
         }
@@ -301,7 +309,7 @@ impl CellRendererSpinBuilder {
         }
     }
 
-    pub fn placeholder_text(self, placeholder_text: impl Into<glib::GString>) -> Self {
+    pub fn placeholder_text<'a>(self, placeholder_text: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self
                 .builder
@@ -397,7 +405,7 @@ impl CellRendererSpinBuilder {
         }
     }
 
-    pub fn text(self, text: impl Into<glib::GString>) -> Self {
+    pub fn text<'a>(self, text: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("text", text.into()),
         }
@@ -457,7 +465,7 @@ impl CellRendererSpinBuilder {
         }
     }
 
-    pub fn cell_background(self, cell_background: impl Into<glib::GString>) -> Self {
+    pub fn cell_background<'a>(self, cell_background: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self
                 .builder
@@ -465,11 +473,14 @@ impl CellRendererSpinBuilder {
         }
     }
 
-    pub fn cell_background_rgba(self, cell_background_rgba: &gdk::RGBA) -> Self {
+    pub fn cell_background_rgba<'a>(
+        self,
+        cell_background_rgba: impl Into<Option<&'a gdk::RGBA>>,
+    ) -> Self {
         Self {
             builder: self
                 .builder
-                .property("cell-background-rgba", cell_background_rgba),
+                .property("cell-background-rgba", cell_background_rgba.into()),
         }
     }
 

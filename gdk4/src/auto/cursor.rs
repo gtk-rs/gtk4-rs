@@ -17,23 +17,23 @@ glib::wrapper! {
 impl Cursor {
     #[doc(alias = "gdk_cursor_new_from_name")]
     #[doc(alias = "new_from_name")]
-    pub fn from_name(name: &str, fallback: Option<&Cursor>) -> Option<Cursor> {
+    pub fn from_name<'a>(name: &str, fallback: impl Into<Option<&'a Cursor>>) -> Option<Cursor> {
         assert_initialized_main_thread!();
         unsafe {
             from_glib_full(ffi::gdk_cursor_new_from_name(
                 name.to_glib_none().0,
-                fallback.to_glib_none().0,
+                fallback.into().to_glib_none().0,
             ))
         }
     }
 
     #[doc(alias = "gdk_cursor_new_from_texture")]
     #[doc(alias = "new_from_texture")]
-    pub fn from_texture(
+    pub fn from_texture<'a>(
         texture: &impl IsA<Texture>,
         hotspot_x: i32,
         hotspot_y: i32,
-        fallback: Option<&Cursor>,
+        fallback: impl Into<Option<&'a Cursor>>,
     ) -> Cursor {
         skip_assert_initialized!();
         unsafe {
@@ -41,7 +41,7 @@ impl Cursor {
                 texture.as_ref().to_glib_none().0,
                 hotspot_x,
                 hotspot_y,
-                fallback.to_glib_none().0,
+                fallback.into().to_glib_none().0,
             ))
         }
     }
@@ -104,9 +104,9 @@ impl CursorBuilder {
         }
     }
 
-    pub fn fallback(self, fallback: &Cursor) -> Self {
+    pub fn fallback<'a>(self, fallback: impl Into<Option<&'a Cursor>>) -> Self {
         Self {
-            builder: self.builder.property("fallback", fallback.clone()),
+            builder: self.builder.property("fallback", fallback.into()),
         }
     }
 
@@ -122,15 +122,17 @@ impl CursorBuilder {
         }
     }
 
-    pub fn name(self, name: impl Into<glib::GString>) -> Self {
+    pub fn name<'a>(self, name: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("name", name.into()),
         }
     }
 
-    pub fn texture(self, texture: &impl IsA<Texture>) -> Self {
+    pub fn texture<'a, P: IsA<Texture>>(self, texture: impl Into<Option<&'a P>>) -> Self {
         Self {
-            builder: self.builder.property("texture", texture.clone().upcast()),
+            builder: self
+                .builder
+                .property("texture", texture.into().as_ref().map(|p| p.as_ref())),
         }
     }
 

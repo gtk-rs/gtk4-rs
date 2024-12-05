@@ -51,9 +51,11 @@ impl X11DeviceXI2Builder {
         }
     }
 
-    pub fn display(self, display: &impl IsA<gdk::Display>) -> Self {
+    pub fn display<'a, P: IsA<gdk::Display>>(self, display: impl Into<Option<&'a P>>) -> Self {
         Self {
-            builder: self.builder.property("display", display.clone().upcast()),
+            builder: self
+                .builder
+                .property("display", display.into().as_ref().map(|p| p.as_ref())),
         }
     }
 
@@ -63,7 +65,7 @@ impl X11DeviceXI2Builder {
         }
     }
 
-    pub fn name(self, name: impl Into<glib::GString>) -> Self {
+    pub fn name<'a>(self, name: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("name", name.into()),
         }
@@ -75,15 +77,15 @@ impl X11DeviceXI2Builder {
         }
     }
 
-    pub fn product_id(self, product_id: impl Into<glib::GString>) -> Self {
+    pub fn product_id<'a>(self, product_id: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("product-id", product_id.into()),
         }
     }
 
-    pub fn seat(self, seat: &gdk::Seat) -> Self {
+    pub fn seat<'a>(self, seat: impl Into<Option<&'a gdk::Seat>>) -> Self {
         Self {
-            builder: self.builder.property("seat", seat.clone()),
+            builder: self.builder.property("seat", seat.into()),
         }
     }
 
@@ -93,7 +95,7 @@ impl X11DeviceXI2Builder {
         }
     }
 
-    pub fn vendor_id(self, vendor_id: impl Into<glib::GString>) -> Self {
+    pub fn vendor_id<'a>(self, vendor_id: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("vendor-id", vendor_id.into()),
         }

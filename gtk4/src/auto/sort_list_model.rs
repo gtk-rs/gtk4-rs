@@ -112,11 +112,11 @@ impl SortListModel {
 
     #[doc(alias = "gtk_sort_list_model_set_model")]
     #[doc(alias = "model")]
-    pub fn set_model(&self, model: Option<&impl IsA<gio::ListModel>>) {
+    pub fn set_model<'a, P: IsA<gio::ListModel>>(&self, model: impl Into<Option<&'a P>>) {
         unsafe {
             ffi::gtk_sort_list_model_set_model(
                 self.to_glib_none().0,
-                model.map(|p| p.as_ref()).to_glib_none().0,
+                model.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
             );
         }
     }
@@ -125,22 +125,22 @@ impl SortListModel {
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     #[doc(alias = "gtk_sort_list_model_set_section_sorter")]
     #[doc(alias = "section-sorter")]
-    pub fn set_section_sorter(&self, sorter: Option<&impl IsA<Sorter>>) {
+    pub fn set_section_sorter<'a, P: IsA<Sorter>>(&self, sorter: impl Into<Option<&'a P>>) {
         unsafe {
             ffi::gtk_sort_list_model_set_section_sorter(
                 self.to_glib_none().0,
-                sorter.map(|p| p.as_ref()).to_glib_none().0,
+                sorter.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
             );
         }
     }
 
     #[doc(alias = "gtk_sort_list_model_set_sorter")]
     #[doc(alias = "sorter")]
-    pub fn set_sorter(&self, sorter: Option<&impl IsA<Sorter>>) {
+    pub fn set_sorter<'a, P: IsA<Sorter>>(&self, sorter: impl Into<Option<&'a P>>) {
         unsafe {
             ffi::gtk_sort_list_model_set_sorter(
                 self.to_glib_none().0,
-                sorter.map(|p| p.as_ref()).to_glib_none().0,
+                sorter.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
             );
         }
     }
@@ -291,25 +291,33 @@ impl SortListModelBuilder {
         }
     }
 
-    pub fn model(self, model: &impl IsA<gio::ListModel>) -> Self {
+    pub fn model<'a, P: IsA<gio::ListModel>>(self, model: impl Into<Option<&'a P>>) -> Self {
         Self {
-            builder: self.builder.property("model", model.clone().upcast()),
+            builder: self
+                .builder
+                .property("model", model.into().as_ref().map(|p| p.as_ref())),
         }
     }
 
     #[cfg(feature = "v4_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
-    pub fn section_sorter(self, section_sorter: &impl IsA<Sorter>) -> Self {
+    pub fn section_sorter<'a, P: IsA<Sorter>>(
+        self,
+        section_sorter: impl Into<Option<&'a P>>,
+    ) -> Self {
         Self {
-            builder: self
-                .builder
-                .property("section-sorter", section_sorter.clone().upcast()),
+            builder: self.builder.property(
+                "section-sorter",
+                section_sorter.into().as_ref().map(|p| p.as_ref()),
+            ),
         }
     }
 
-    pub fn sorter(self, sorter: &impl IsA<Sorter>) -> Self {
+    pub fn sorter<'a, P: IsA<Sorter>>(self, sorter: impl Into<Option<&'a P>>) -> Self {
         Self {
-            builder: self.builder.property("sorter", sorter.clone().upcast()),
+            builder: self
+                .builder
+                .property("sorter", sorter.into().as_ref().map(|p| p.as_ref())),
         }
     }
 

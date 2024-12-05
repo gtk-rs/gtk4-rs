@@ -103,13 +103,17 @@ pub trait RecentManagerExt: IsA<RecentManager> + 'static {
     }
 
     #[doc(alias = "gtk_recent_manager_move_item")]
-    fn move_item(&self, uri: &str, new_uri: Option<&str>) -> Result<(), glib::Error> {
+    fn move_item<'a>(
+        &self,
+        uri: &str,
+        new_uri: impl Into<Option<&'a str>>,
+    ) -> Result<(), glib::Error> {
         unsafe {
             let mut error = std::ptr::null_mut();
             let is_ok = ffi::gtk_recent_manager_move_item(
                 self.as_ref().to_glib_none().0,
                 uri.to_glib_none().0,
-                new_uri.to_glib_none().0,
+                new_uri.into().to_glib_none().0,
                 &mut error,
             );
             debug_assert_eq!(is_ok == glib::ffi::GFALSE, !error.is_null());

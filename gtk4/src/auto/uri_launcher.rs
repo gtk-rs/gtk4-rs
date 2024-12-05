@@ -41,11 +41,16 @@ impl UriLauncher {
     }
 
     #[doc(alias = "gtk_uri_launcher_launch")]
-    pub fn launch<P: FnOnce(Result<(), glib::Error>) + 'static>(
+    pub fn launch<
+        'a,
+        P: IsA<Window>,
+        Q: IsA<gio::Cancellable>,
+        R: FnOnce(Result<(), glib::Error>) + 'static,
+    >(
         &self,
-        parent: Option<&impl IsA<Window>>,
-        cancellable: Option<&impl IsA<gio::Cancellable>>,
-        callback: P,
+        parent: impl Into<Option<&'a P>>,
+        cancellable: impl Into<Option<&'a Q>>,
+        callback: R,
     ) {
         let main_context = glib::MainContext::ref_thread_default();
         let is_main_context_owner = main_context.is_owner();
@@ -57,9 +62,9 @@ impl UriLauncher {
             "Async operations only allowed if the thread is owning the MainContext"
         );
 
-        let user_data: Box_<glib::thread_guard::ThreadGuard<P>> =
+        let user_data: Box_<glib::thread_guard::ThreadGuard<R>> =
             Box_::new(glib::thread_guard::ThreadGuard::new(callback));
-        unsafe extern "C" fn launch_trampoline<P: FnOnce(Result<(), glib::Error>) + 'static>(
+        unsafe extern "C" fn launch_trampoline<R: FnOnce(Result<(), glib::Error>) + 'static>(
             _source_object: *mut glib::gobject_ffi::GObject,
             res: *mut gio::ffi::GAsyncResult,
             user_data: glib::ffi::gpointer,
@@ -71,28 +76,33 @@ impl UriLauncher {
             } else {
                 Err(from_glib_full(error))
             };
-            let callback: Box_<glib::thread_guard::ThreadGuard<P>> =
+            let callback: Box_<glib::thread_guard::ThreadGuard<R>> =
                 Box_::from_raw(user_data as *mut _);
-            let callback: P = callback.into_inner();
+            let callback: R = callback.into_inner();
             callback(result);
         }
-        let callback = launch_trampoline::<P>;
+        let callback = launch_trampoline::<R>;
         unsafe {
             ffi::gtk_uri_launcher_launch(
                 self.to_glib_none().0,
-                parent.map(|p| p.as_ref()).to_glib_none().0,
-                cancellable.map(|p| p.as_ref()).to_glib_none().0,
+                parent.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
+                cancellable
+                    .into()
+                    .as_ref()
+                    .map(|p| p.as_ref())
+                    .to_glib_none()
+                    .0,
                 Some(callback),
                 Box_::into_raw(user_data) as *mut _,
             );
         }
     }
 
-    pub fn launch_future(
+    pub fn launch_future<'a, P: IsA<Window> + Clone + 'static>(
         &self,
-        parent: Option<&(impl IsA<Window> + Clone + 'static)>,
+        parent: impl Into<Option<&'a P>>,
     ) -> Pin<Box_<dyn std::future::Future<Output = Result<(), glib::Error>> + 'static>> {
-        let parent = parent.map(ToOwned::to_owned);
+        let parent = parent.into().map(ToOwned::to_owned);
         Box_::pin(gio::GioFuture::new(self, move |obj, cancellable, send| {
             obj.launch(
                 parent.as_ref().map(::std::borrow::Borrow::borrow),
@@ -106,9 +116,9 @@ impl UriLauncher {
 
     #[doc(alias = "gtk_uri_launcher_set_uri")]
     #[doc(alias = "uri")]
-    pub fn set_uri(&self, uri: Option<&str>) {
+    pub fn set_uri<'a>(&self, uri: impl Into<Option<&'a str>>) {
         unsafe {
-            ffi::gtk_uri_launcher_set_uri(self.to_glib_none().0, uri.to_glib_none().0);
+            ffi::gtk_uri_launcher_set_uri(self.to_glib_none().0, uri.into().to_glib_none().0);
         }
     }
 
@@ -164,7 +174,7 @@ impl UriLauncherBuilder {
 
     #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
-    pub fn uri(self, uri: impl Into<glib::GString>) -> Self {
+    pub fn uri<'a>(self, uri: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("uri", uri.into()),
         }

@@ -37,21 +37,21 @@ pub trait GdkAppLaunchContextExt: IsA<AppLaunchContext> + 'static {
     }
 
     #[doc(alias = "gdk_app_launch_context_set_icon")]
-    fn set_icon(&self, icon: Option<&impl IsA<gio::Icon>>) {
+    fn set_icon<'a, P: IsA<gio::Icon>>(&self, icon: impl Into<Option<&'a P>>) {
         unsafe {
             ffi::gdk_app_launch_context_set_icon(
                 self.as_ref().to_glib_none().0,
-                icon.map(|p| p.as_ref()).to_glib_none().0,
+                icon.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
             );
         }
     }
 
     #[doc(alias = "gdk_app_launch_context_set_icon_name")]
-    fn set_icon_name(&self, icon_name: Option<&str>) {
+    fn set_icon_name<'a>(&self, icon_name: impl Into<Option<&'a str>>) {
         unsafe {
             ffi::gdk_app_launch_context_set_icon_name(
                 self.as_ref().to_glib_none().0,
-                icon_name.to_glib_none().0,
+                icon_name.into().to_glib_none().0,
             );
         }
     }

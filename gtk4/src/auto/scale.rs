@@ -41,12 +41,20 @@ impl Scale {
     pub const NONE: Option<&'static Scale> = None;
 
     #[doc(alias = "gtk_scale_new")]
-    pub fn new(orientation: Orientation, adjustment: Option<&impl IsA<Adjustment>>) -> Scale {
+    pub fn new<'a, P: IsA<Adjustment>>(
+        orientation: Orientation,
+        adjustment: impl Into<Option<&'a P>>,
+    ) -> Scale {
         assert_initialized_main_thread!();
         unsafe {
             Widget::from_glib_none(ffi::gtk_scale_new(
                 orientation.into_glib(),
-                adjustment.map(|p| p.as_ref()).to_glib_none().0,
+                adjustment
+                    .into()
+                    .as_ref()
+                    .map(|p| p.as_ref())
+                    .to_glib_none()
+                    .0,
             ))
             .unsafe_cast()
         }
@@ -122,11 +130,11 @@ impl ScaleBuilder {
         }
     }
 
-    pub fn adjustment(self, adjustment: &impl IsA<Adjustment>) -> Self {
+    pub fn adjustment<'a, P: IsA<Adjustment>>(self, adjustment: impl Into<Option<&'a P>>) -> Self {
         Self {
             builder: self
                 .builder
-                .property("adjustment", adjustment.clone().upcast()),
+                .property("adjustment", adjustment.into().as_ref().map(|p| p.as_ref())),
         }
     }
 
@@ -180,15 +188,15 @@ impl ScaleBuilder {
         }
     }
 
-    pub fn css_name(self, css_name: impl Into<glib::GString>) -> Self {
+    pub fn css_name<'a>(self, css_name: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("css-name", css_name.into()),
         }
     }
 
-    pub fn cursor(self, cursor: &gdk::Cursor) -> Self {
+    pub fn cursor<'a>(self, cursor: impl Into<Option<&'a gdk::Cursor>>) -> Self {
         Self {
-            builder: self.builder.property("cursor", cursor.clone()),
+            builder: self.builder.property("cursor", cursor.into()),
         }
     }
 
@@ -234,11 +242,15 @@ impl ScaleBuilder {
         }
     }
 
-    pub fn layout_manager(self, layout_manager: &impl IsA<LayoutManager>) -> Self {
+    pub fn layout_manager<'a, P: IsA<LayoutManager>>(
+        self,
+        layout_manager: impl Into<Option<&'a P>>,
+    ) -> Self {
         Self {
-            builder: self
-                .builder
-                .property("layout-manager", layout_manager.clone().upcast()),
+            builder: self.builder.property(
+                "layout-manager",
+                layout_manager.into().as_ref().map(|p| p.as_ref()),
+            ),
         }
     }
 
@@ -266,7 +278,7 @@ impl ScaleBuilder {
         }
     }
 
-    pub fn name(self, name: impl Into<glib::GString>) -> Self {
+    pub fn name<'a>(self, name: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("name", name.into()),
         }
@@ -296,7 +308,7 @@ impl ScaleBuilder {
         }
     }
 
-    pub fn tooltip_markup(self, tooltip_markup: impl Into<glib::GString>) -> Self {
+    pub fn tooltip_markup<'a>(self, tooltip_markup: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self
                 .builder
@@ -304,7 +316,7 @@ impl ScaleBuilder {
         }
     }
 
-    pub fn tooltip_text(self, tooltip_text: impl Into<glib::GString>) -> Self {
+    pub fn tooltip_text<'a>(self, tooltip_text: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("tooltip-text", tooltip_text.into()),
         }
@@ -363,13 +375,13 @@ impl ScaleBuilder {
 
 pub trait ScaleExt: IsA<Scale> + 'static {
     #[doc(alias = "gtk_scale_add_mark")]
-    fn add_mark(&self, value: f64, position: PositionType, markup: Option<&str>) {
+    fn add_mark<'a>(&self, value: f64, position: PositionType, markup: impl Into<Option<&'a str>>) {
         unsafe {
             ffi::gtk_scale_add_mark(
                 self.as_ref().to_glib_none().0,
                 value,
                 position.into_glib(),
-                markup.to_glib_none().0,
+                markup.into().to_glib_none().0,
             );
         }
     }

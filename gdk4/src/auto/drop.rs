@@ -64,12 +64,16 @@ impl Drop {
     }
 
     #[doc(alias = "gdk_drop_read_value_async")]
-    pub fn read_value_async<P: FnOnce(Result<glib::Value, glib::Error>) + 'static>(
+    pub fn read_value_async<
+        'a,
+        P: IsA<gio::Cancellable>,
+        Q: FnOnce(Result<glib::Value, glib::Error>) + 'static,
+    >(
         &self,
         type_: glib::types::Type,
         io_priority: glib::Priority,
-        cancellable: Option<&impl IsA<gio::Cancellable>>,
-        callback: P,
+        cancellable: impl Into<Option<&'a P>>,
+        callback: Q,
     ) {
         let main_context = glib::MainContext::ref_thread_default();
         let is_main_context_owner = main_context.is_owner();
@@ -81,10 +85,10 @@ impl Drop {
             "Async operations only allowed if the thread is owning the MainContext"
         );
 
-        let user_data: Box_<glib::thread_guard::ThreadGuard<P>> =
+        let user_data: Box_<glib::thread_guard::ThreadGuard<Q>> =
             Box_::new(glib::thread_guard::ThreadGuard::new(callback));
         unsafe extern "C" fn read_value_async_trampoline<
-            P: FnOnce(Result<glib::Value, glib::Error>) + 'static,
+            Q: FnOnce(Result<glib::Value, glib::Error>) + 'static,
         >(
             _source_object: *mut glib::gobject_ffi::GObject,
             res: *mut gio::ffi::GAsyncResult,
@@ -97,18 +101,23 @@ impl Drop {
             } else {
                 Err(from_glib_full(error))
             };
-            let callback: Box_<glib::thread_guard::ThreadGuard<P>> =
+            let callback: Box_<glib::thread_guard::ThreadGuard<Q>> =
                 Box_::from_raw(user_data as *mut _);
-            let callback: P = callback.into_inner();
+            let callback: Q = callback.into_inner();
             callback(result);
         }
-        let callback = read_value_async_trampoline::<P>;
+        let callback = read_value_async_trampoline::<Q>;
         unsafe {
             ffi::gdk_drop_read_value_async(
                 self.to_glib_none().0,
                 type_.into_glib(),
                 io_priority.into_glib(),
-                cancellable.map(|p| p.as_ref()).to_glib_none().0,
+                cancellable
+                    .into()
+                    .as_ref()
+                    .map(|p| p.as_ref())
+                    .to_glib_none()
+                    .0,
                 Some(callback),
                 Box_::into_raw(user_data) as *mut _,
             );

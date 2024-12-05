@@ -48,22 +48,22 @@ pub trait ActionableExt: IsA<Actionable> + 'static {
 
     #[doc(alias = "gtk_actionable_set_action_name")]
     #[doc(alias = "action-name")]
-    fn set_action_name(&self, action_name: Option<&str>) {
+    fn set_action_name<'a>(&self, action_name: impl Into<Option<&'a str>>) {
         unsafe {
             ffi::gtk_actionable_set_action_name(
                 self.as_ref().to_glib_none().0,
-                action_name.to_glib_none().0,
+                action_name.into().to_glib_none().0,
             );
         }
     }
 
     #[doc(alias = "gtk_actionable_set_action_target_value")]
     #[doc(alias = "action-target")]
-    fn set_action_target_value(&self, target_value: Option<&glib::Variant>) {
+    fn set_action_target_value<'a>(&self, target_value: impl Into<Option<&'a glib::Variant>>) {
         unsafe {
             ffi::gtk_actionable_set_action_target_value(
                 self.as_ref().to_glib_none().0,
-                target_value.to_glib_none().0,
+                target_value.into().to_glib_none().0,
             );
         }
     }

@@ -100,12 +100,12 @@ impl X11Surface {
     }
 
     #[doc(alias = "gdk_x11_surface_set_utf8_property")]
-    pub fn set_utf8_property(&self, name: &str, value: Option<&str>) {
+    pub fn set_utf8_property<'a>(&self, name: &str, value: impl Into<Option<&'a str>>) {
         unsafe {
             ffi::gdk_x11_surface_set_utf8_property(
                 self.to_glib_none().0,
                 name.to_glib_none().0,
-                value.to_glib_none().0,
+                value.into().to_glib_none().0,
             );
         }
     }

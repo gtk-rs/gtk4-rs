@@ -71,3 +71,15 @@ gsk = {package = "gsk4", path = "gsk4", version = "0.10"}
 gtk4-macros = {path = "gtk4-macros", version = "0.10"}
 gtk4-sys = {path = "gtk4/sys", version = "0.10"}
 gtk = { path = "gtk4", package = "gtk4", version = "0.10" }
+
+
+[patch.'https://github.com/gtk-rs/gtk-rs-core']
+glib-sys = { git = "https://github.com/fengalin/gtk-rs-core", branch = "more-into-option-args" }
+gobject-sys = { git = "https://github.com/fengalin/gtk-rs-core", branch = "more-into-option-args" }
+glib = { git = "https://github.com/fengalin/gtk-rs-core", branch = "more-into-option-args" }
+gio-sys = { git = "https://github.com/fengalin/gtk-rs-core", branch = "more-into-option-args" }
+gio = { git = "https://github.com/fengalin/gtk-rs-core", branch = "more-into-option-args" }
+cairo-sys-rs = { git = "https://github.com/fengalin/gtk-rs-core", branch = "more-into-option-args" }
+cairo-rs = { git = "https://github.com/fengalin/gtk-rs-core", branch = "more-into-option-args" }
+pango-sys = { git = "https://github.com/fengalin/gtk-rs-core", branch = "more-into-option-args" }
+pango = { git = "https://github.com/fengalin/gtk-rs-core", branch = "more-into-option-args" }

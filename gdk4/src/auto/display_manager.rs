@@ -41,11 +41,11 @@ impl DisplayManager {
     }
 
     #[doc(alias = "gdk_display_manager_open_display")]
-    pub fn open_display(&self, name: Option<&str>) -> Option<Display> {
+    pub fn open_display<'a>(&self, name: impl Into<Option<&'a str>>) -> Option<Display> {
         unsafe {
             from_glib_none(ffi::gdk_display_manager_open_display(
                 self.to_glib_none().0,
-                name.to_glib_none().0,
+                name.into().to_glib_none().0,
             ))
         }
     }

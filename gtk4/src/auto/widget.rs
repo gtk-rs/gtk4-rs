@@ -69,17 +69,17 @@ pub trait WidgetExt: IsA<Widget> + 'static {
 
     #[doc(alias = "gtk_widget_activate_action_variant")]
     #[doc(alias = "activate_action_variant")]
-    fn activate_action(
+    fn activate_action<'a>(
         &self,
         name: &str,
-        args: Option<&glib::Variant>,
+        args: impl Into<Option<&'a glib::Variant>>,
     ) -> Result<(), glib::error::BoolError> {
         unsafe {
             glib::result_from_gboolean!(
                 ffi::gtk_widget_activate_action_variant(
                     self.as_ref().to_glib_none().0,
                     name.to_glib_none().0,
-                    args.to_glib_none().0
+                    args.into().to_glib_none().0
                 ),
                 "Action does not exist"
             )
@@ -124,14 +124,20 @@ pub trait WidgetExt: IsA<Widget> + 'static {
     }
 
     #[doc(alias = "gtk_widget_allocate")]
-    fn allocate(&self, width: i32, height: i32, baseline: i32, transform: Option<gsk::Transform>) {
+    fn allocate(
+        &self,
+        width: i32,
+        height: i32,
+        baseline: i32,
+        transform: impl Into<Option<gsk::Transform>>,
+    ) {
         unsafe {
             ffi::gtk_widget_allocate(
                 self.as_ref().to_glib_none().0,
                 width,
                 height,
                 baseline,
-                transform.into_glib_ptr(),
+                transform.into().into_glib_ptr(),
             );
         }
     }
@@ -233,11 +239,11 @@ pub trait WidgetExt: IsA<Widget> + 'static {
     }
 
     #[doc(alias = "gtk_widget_create_pango_layout")]
-    fn create_pango_layout(&self, text: Option<&str>) -> pango::Layout {
+    fn create_pango_layout<'a>(&self, text: impl Into<Option<&'a str>>) -> pango::Layout {
         unsafe {
             from_glib_full(ffi::gtk_widget_create_pango_layout(
                 self.as_ref().to_glib_none().0,
-                text.to_glib_none().0,
+                text.into().to_glib_none().0,
             ))
         }
     }
@@ -891,34 +897,56 @@ pub trait WidgetExt: IsA<Widget> + 'static {
     }
 
     #[doc(alias = "gtk_widget_insert_action_group")]
-    fn insert_action_group(&self, name: &str, group: Option<&impl IsA<gio::ActionGroup>>) {
+    fn insert_action_group<'a, P: IsA<gio::ActionGroup>>(
+        &self,
+        name: &str,
+        group: impl Into<Option<&'a P>>,
+    ) {
         unsafe {
             ffi::gtk_widget_insert_action_group(
                 self.as_ref().to_glib_none().0,
                 name.to_glib_none().0,
-                group.map(|p| p.as_ref()).to_glib_none().0,
+                group.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
             );
         }
     }
 
     #[doc(alias = "gtk_widget_insert_after")]
-    fn insert_after(&self, parent: &impl IsA<Widget>, previous_sibling: Option<&impl IsA<Widget>>) {
+    fn insert_after<'a, P: IsA<Widget>>(
+        &self,
+        parent: &impl IsA<Widget>,
+        previous_sibling: impl Into<Option<&'a P>>,
+    ) {
         unsafe {
             ffi::gtk_widget_insert_after(
                 self.as_ref().to_glib_none().0,
                 parent.as_ref().to_glib_none().0,
-                previous_sibling.map(|p| p.as_ref()).to_glib_none().0,
+                previous_sibling
+                    .into()
+                    .as_ref()
+                    .map(|p| p.as_ref())
+                    .to_glib_none()
+                    .0,
             );
         }
     }
 
     #[doc(alias = "gtk_widget_insert_before")]
-    fn insert_before(&self, parent: &impl IsA<Widget>, next_sibling: Option<&impl IsA<Widget>>) {
+    fn insert_before<'a, P: IsA<Widget>>(
+        &self,
+        parent: &impl IsA<Widget>,
+        next_sibling: impl Into<Option<&'a P>>,
+    ) {
         unsafe {
             ffi::gtk_widget_insert_before(
                 self.as_ref().to_glib_none().0,
                 parent.as_ref().to_glib_none().0,
-                next_sibling.map(|p| p.as_ref()).to_glib_none().0,
+                next_sibling
+                    .into()
+                    .as_ref()
+                    .map(|p| p.as_ref())
+                    .to_glib_none()
+                    .0,
             );
         }
     }
@@ -1144,18 +1172,21 @@ pub trait WidgetExt: IsA<Widget> + 'static {
 
     #[doc(alias = "gtk_widget_set_cursor")]
     #[doc(alias = "cursor")]
-    fn set_cursor(&self, cursor: Option<&gdk::Cursor>) {
+    fn set_cursor<'a>(&self, cursor: impl Into<Option<&'a gdk::Cursor>>) {
         unsafe {
-            ffi::gtk_widget_set_cursor(self.as_ref().to_glib_none().0, cursor.to_glib_none().0);
+            ffi::gtk_widget_set_cursor(
+                self.as_ref().to_glib_none().0,
+                cursor.into().to_glib_none().0,
+            );
         }
     }
 
     #[doc(alias = "gtk_widget_set_cursor_from_name")]
-    fn set_cursor_from_name(&self, name: Option<&str>) {
+    fn set_cursor_from_name<'a>(&self, name: impl Into<Option<&'a str>>) {
         unsafe {
             ffi::gtk_widget_set_cursor_from_name(
                 self.as_ref().to_glib_none().0,
-                name.to_glib_none().0,
+                name.into().to_glib_none().0,
             );
         }
     }
@@ -1168,11 +1199,11 @@ pub trait WidgetExt: IsA<Widget> + 'static {
     }
 
     #[doc(alias = "gtk_widget_set_focus_child")]
-    fn set_focus_child(&self, child: Option<&impl IsA<Widget>>) {
+    fn set_focus_child<'a, P: IsA<Widget>>(&self, child: impl Into<Option<&'a P>>) {
         unsafe {
             ffi::gtk_widget_set_focus_child(
                 self.as_ref().to_glib_none().0,
-                child.map(|p| p.as_ref()).to_glib_none().0,
+                child.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
             );
         }
     }
@@ -1197,11 +1228,16 @@ pub trait WidgetExt: IsA<Widget> + 'static {
     }
 
     #[doc(alias = "gtk_widget_set_font_map")]
-    fn set_font_map(&self, font_map: Option<&impl IsA<pango::FontMap>>) {
+    fn set_font_map<'a, P: IsA<pango::FontMap>>(&self, font_map: impl Into<Option<&'a P>>) {
         unsafe {
             ffi::gtk_widget_set_font_map(
                 self.as_ref().to_glib_none().0,
-                font_map.map(|p| p.as_ref()).to_glib_none().0,
+                font_map
+                    .into()
+                    .as_ref()
+                    .map(|p| p.as_ref())
+                    .to_glib_none()
+                    .0,
             );
         }
     }
@@ -1209,11 +1245,11 @@ pub trait WidgetExt: IsA<Widget> + 'static {
     #[cfg_attr(feature = "v4_16", deprecated = "Since 4.16")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_widget_set_font_options")]
-    fn set_font_options(&self, options: Option<&cairo::FontOptions>) {
+    fn set_font_options<'a>(&self, options: impl Into<Option<&'a cairo::FontOptions>>) {
         unsafe {
             ffi::gtk_widget_set_font_options(
                 self.as_ref().to_glib_none().0,
-                options.to_glib_none().0,
+                options.into().to_glib_none().0,
             );
         }
     }
@@ -1370,20 +1406,23 @@ pub trait WidgetExt: IsA<Widget> + 'static {
 
     #[doc(alias = "gtk_widget_set_tooltip_markup")]
     #[doc(alias = "tooltip-markup")]
-    fn set_tooltip_markup(&self, markup: Option<&str>) {
+    fn set_tooltip_markup<'a>(&self, markup: impl Into<Option<&'a str>>) {
         unsafe {
             ffi::gtk_widget_set_tooltip_markup(
                 self.as_ref().to_glib_none().0,
-                markup.to_glib_none().0,
+                markup.into().to_glib_none().0,
             );
         }
     }
 
     #[doc(alias = "gtk_widget_set_tooltip_text")]
     #[doc(alias = "tooltip-text")]
-    fn set_tooltip_text(&self, text: Option<&str>) {
+    fn set_tooltip_text<'a>(&self, text: impl Into<Option<&'a str>>) {
         unsafe {
-            ffi::gtk_widget_set_tooltip_text(self.as_ref().to_glib_none().0, text.to_glib_none().0);
+            ffi::gtk_widget_set_tooltip_text(
+                self.as_ref().to_glib_none().0,
+                text.into().to_glib_none().0,
+            );
         }
     }
 

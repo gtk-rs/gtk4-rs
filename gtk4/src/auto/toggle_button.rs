@@ -93,9 +93,11 @@ impl ToggleButtonBuilder {
         }
     }
 
-    pub fn group(self, group: &impl IsA<ToggleButton>) -> Self {
+    pub fn group<'a, P: IsA<ToggleButton>>(self, group: impl Into<Option<&'a P>>) -> Self {
         Self {
-            builder: self.builder.property("group", group.clone().upcast()),
+            builder: self
+                .builder
+                .property("group", group.into().as_ref().map(|p| p.as_ref())),
         }
     }
 
@@ -107,9 +109,11 @@ impl ToggleButtonBuilder {
         }
     }
 
-    pub fn child(self, child: &impl IsA<Widget>) -> Self {
+    pub fn child<'a, P: IsA<Widget>>(self, child: impl Into<Option<&'a P>>) -> Self {
         Self {
-            builder: self.builder.property("child", child.clone().upcast()),
+            builder: self
+                .builder
+                .property("child", child.into().as_ref().map(|p| p.as_ref())),
         }
     }
 
@@ -119,13 +123,13 @@ impl ToggleButtonBuilder {
         }
     }
 
-    pub fn icon_name(self, icon_name: impl Into<glib::GString>) -> Self {
+    pub fn icon_name<'a>(self, icon_name: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("icon-name", icon_name.into()),
         }
     }
 
-    pub fn label(self, label: impl Into<glib::GString>) -> Self {
+    pub fn label<'a>(self, label: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("label", label.into()),
         }
@@ -155,15 +159,15 @@ impl ToggleButtonBuilder {
         }
     }
 
-    pub fn css_name(self, css_name: impl Into<glib::GString>) -> Self {
+    pub fn css_name<'a>(self, css_name: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("css-name", css_name.into()),
         }
     }
 
-    pub fn cursor(self, cursor: &gdk::Cursor) -> Self {
+    pub fn cursor<'a>(self, cursor: impl Into<Option<&'a gdk::Cursor>>) -> Self {
         Self {
-            builder: self.builder.property("cursor", cursor.clone()),
+            builder: self.builder.property("cursor", cursor.into()),
         }
     }
 
@@ -209,11 +213,15 @@ impl ToggleButtonBuilder {
         }
     }
 
-    pub fn layout_manager(self, layout_manager: &impl IsA<LayoutManager>) -> Self {
+    pub fn layout_manager<'a, P: IsA<LayoutManager>>(
+        self,
+        layout_manager: impl Into<Option<&'a P>>,
+    ) -> Self {
         Self {
-            builder: self
-                .builder
-                .property("layout-manager", layout_manager.clone().upcast()),
+            builder: self.builder.property(
+                "layout-manager",
+                layout_manager.into().as_ref().map(|p| p.as_ref()),
+            ),
         }
     }
 
@@ -241,7 +249,7 @@ impl ToggleButtonBuilder {
         }
     }
 
-    pub fn name(self, name: impl Into<glib::GString>) -> Self {
+    pub fn name<'a>(self, name: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("name", name.into()),
         }
@@ -271,7 +279,7 @@ impl ToggleButtonBuilder {
         }
     }
 
-    pub fn tooltip_markup(self, tooltip_markup: impl Into<glib::GString>) -> Self {
+    pub fn tooltip_markup<'a>(self, tooltip_markup: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self
                 .builder
@@ -279,7 +287,7 @@ impl ToggleButtonBuilder {
         }
     }
 
-    pub fn tooltip_text(self, tooltip_text: impl Into<glib::GString>) -> Self {
+    pub fn tooltip_text<'a>(self, tooltip_text: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("tooltip-text", tooltip_text.into()),
         }
@@ -321,17 +329,15 @@ impl ToggleButtonBuilder {
         }
     }
 
-    pub fn action_name(self, action_name: impl Into<glib::GString>) -> Self {
+    pub fn action_name<'a>(self, action_name: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("action-name", action_name.into()),
         }
     }
 
-    pub fn action_target(self, action_target: &glib::Variant) -> Self {
+    pub fn action_target<'a>(self, action_target: impl Into<Option<&'a glib::Variant>>) -> Self {
         Self {
-            builder: self
-                .builder
-                .property("action-target", action_target.clone()),
+            builder: self.builder.property("action-target", action_target.into()),
         }
     }
 
@@ -369,11 +375,11 @@ pub trait ToggleButtonExt: IsA<ToggleButton> + 'static {
 
     #[doc(alias = "gtk_toggle_button_set_group")]
     #[doc(alias = "group")]
-    fn set_group(&self, group: Option<&impl IsA<ToggleButton>>) {
+    fn set_group<'a, P: IsA<ToggleButton>>(&self, group: impl Into<Option<&'a P>>) {
         unsafe {
             ffi::gtk_toggle_button_set_group(
                 self.as_ref().to_glib_none().0,
-                group.map(|p| p.as_ref()).to_glib_none().0,
+                group.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
             );
         }
     }

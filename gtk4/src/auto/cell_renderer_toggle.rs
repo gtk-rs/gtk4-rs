@@ -282,7 +282,7 @@ impl CellRendererToggleBuilder {
         }
     }
 
-    pub fn cell_background(self, cell_background: impl Into<glib::GString>) -> Self {
+    pub fn cell_background<'a>(self, cell_background: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self
                 .builder
@@ -290,11 +290,14 @@ impl CellRendererToggleBuilder {
         }
     }
 
-    pub fn cell_background_rgba(self, cell_background_rgba: &gdk::RGBA) -> Self {
+    pub fn cell_background_rgba<'a>(
+        self,
+        cell_background_rgba: impl Into<Option<&'a gdk::RGBA>>,
+    ) -> Self {
         Self {
             builder: self
                 .builder
-                .property("cell-background-rgba", cell_background_rgba),
+                .property("cell-background-rgba", cell_background_rgba.into()),
         }
     }
 

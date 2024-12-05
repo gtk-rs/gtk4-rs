@@ -16,11 +16,11 @@ glib::wrapper! {
 
 impl Constraint {
     #[doc(alias = "gtk_constraint_new")]
-    pub fn new(
-        target: Option<&impl IsA<ConstraintTarget>>,
+    pub fn new<'a, P: IsA<ConstraintTarget>, Q: IsA<ConstraintTarget>>(
+        target: impl Into<Option<&'a P>>,
         target_attribute: ConstraintAttribute,
         relation: ConstraintRelation,
-        source: Option<&impl IsA<ConstraintTarget>>,
+        source: impl Into<Option<&'a Q>>,
         source_attribute: ConstraintAttribute,
         multiplier: f64,
         constant: f64,
@@ -29,10 +29,10 @@ impl Constraint {
         assert_initialized_main_thread!();
         unsafe {
             from_glib_full(ffi::gtk_constraint_new(
-                target.map(|p| p.as_ref()).to_glib_none().0,
+                target.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
                 target_attribute.into_glib(),
                 relation.into_glib(),
-                source.map(|p| p.as_ref()).to_glib_none().0,
+                source.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
                 source_attribute.into_glib(),
                 multiplier,
                 constant,
@@ -42,8 +42,8 @@ impl Constraint {
     }
 
     #[doc(alias = "gtk_constraint_new_constant")]
-    pub fn new_constant(
-        target: Option<&impl IsA<ConstraintTarget>>,
+    pub fn new_constant<'a, P: IsA<ConstraintTarget>>(
+        target: impl Into<Option<&'a P>>,
         target_attribute: ConstraintAttribute,
         relation: ConstraintRelation,
         constant: f64,
@@ -52,7 +52,7 @@ impl Constraint {
         assert_initialized_main_thread!();
         unsafe {
             from_glib_full(ffi::gtk_constraint_new_constant(
-                target.map(|p| p.as_ref()).to_glib_none().0,
+                target.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
                 target_attribute.into_glib(),
                 relation.into_glib(),
                 constant,
@@ -183,9 +183,11 @@ impl ConstraintBuilder {
         }
     }
 
-    pub fn source(self, source: &impl IsA<ConstraintTarget>) -> Self {
+    pub fn source<'a, P: IsA<ConstraintTarget>>(self, source: impl Into<Option<&'a P>>) -> Self {
         Self {
-            builder: self.builder.property("source", source.clone().upcast()),
+            builder: self
+                .builder
+                .property("source", source.into().as_ref().map(|p| p.as_ref())),
         }
     }
 
@@ -201,9 +203,11 @@ impl ConstraintBuilder {
         }
     }
 
-    pub fn target(self, target: &impl IsA<ConstraintTarget>) -> Self {
+    pub fn target<'a, P: IsA<ConstraintTarget>>(self, target: impl Into<Option<&'a P>>) -> Self {
         Self {
-            builder: self.builder.property("target", target.clone().upcast()),
+            builder: self
+                .builder
+                .property("target", target.into().as_ref().map(|p| p.as_ref())),
         }
     }
 

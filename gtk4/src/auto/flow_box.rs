@@ -47,32 +47,32 @@ impl FlowBox {
     }
 
     #[doc(alias = "gtk_flow_box_bind_model")]
-    pub fn bind_model<P: Fn(&glib::Object) -> Widget + 'static>(
+    pub fn bind_model<'a, P: IsA<gio::ListModel>, Q: Fn(&glib::Object) -> Widget + 'static>(
         &self,
-        model: Option<&impl IsA<gio::ListModel>>,
-        create_widget_func: P,
+        model: impl Into<Option<&'a P>>,
+        create_widget_func: Q,
     ) {
-        let create_widget_func_data: Box_<P> = Box_::new(create_widget_func);
-        unsafe extern "C" fn create_widget_func_func<P: Fn(&glib::Object) -> Widget + 'static>(
+        let create_widget_func_data: Box_<Q> = Box_::new(create_widget_func);
+        unsafe extern "C" fn create_widget_func_func<Q: Fn(&glib::Object) -> Widget + 'static>(
             item: *mut glib::gobject_ffi::GObject,
             user_data: glib::ffi::gpointer,
         ) -> *mut ffi::GtkWidget {
             let item = from_glib_borrow(item);
-            let callback = &*(user_data as *mut P);
+            let callback = &*(user_data as *mut Q);
             (*callback)(&item).to_glib_full()
         }
-        let create_widget_func = Some(create_widget_func_func::<P> as _);
-        unsafe extern "C" fn user_data_free_func_func<P: Fn(&glib::Object) -> Widget + 'static>(
+        let create_widget_func = Some(create_widget_func_func::<Q> as _);
+        unsafe extern "C" fn user_data_free_func_func<Q: Fn(&glib::Object) -> Widget + 'static>(
             data: glib::ffi::gpointer,
         ) {
-            let _callback = Box_::from_raw(data as *mut P);
+            let _callback = Box_::from_raw(data as *mut Q);
         }
-        let destroy_call4 = Some(user_data_free_func_func::<P> as _);
-        let super_callback0: Box_<P> = create_widget_func_data;
+        let destroy_call4 = Some(user_data_free_func_func::<Q> as _);
+        let super_callback0: Box_<Q> = create_widget_func_data;
         unsafe {
             ffi::gtk_flow_box_bind_model(
                 self.to_glib_none().0,
-                model.map(|p| p.as_ref()).to_glib_none().0,
+                model.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
                 create_widget_func,
                 Box_::into_raw(super_callback0) as *mut _,
                 destroy_call4,
@@ -891,15 +891,15 @@ impl FlowBoxBuilder {
         }
     }
 
-    pub fn css_name(self, css_name: impl Into<glib::GString>) -> Self {
+    pub fn css_name<'a>(self, css_name: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("css-name", css_name.into()),
         }
     }
 
-    pub fn cursor(self, cursor: &gdk::Cursor) -> Self {
+    pub fn cursor<'a>(self, cursor: impl Into<Option<&'a gdk::Cursor>>) -> Self {
         Self {
-            builder: self.builder.property("cursor", cursor.clone()),
+            builder: self.builder.property("cursor", cursor.into()),
         }
     }
 
@@ -945,11 +945,15 @@ impl FlowBoxBuilder {
         }
     }
 
-    pub fn layout_manager(self, layout_manager: &impl IsA<LayoutManager>) -> Self {
+    pub fn layout_manager<'a, P: IsA<LayoutManager>>(
+        self,
+        layout_manager: impl Into<Option<&'a P>>,
+    ) -> Self {
         Self {
-            builder: self
-                .builder
-                .property("layout-manager", layout_manager.clone().upcast()),
+            builder: self.builder.property(
+                "layout-manager",
+                layout_manager.into().as_ref().map(|p| p.as_ref()),
+            ),
         }
     }
 
@@ -977,7 +981,7 @@ impl FlowBoxBuilder {
         }
     }
 
-    pub fn name(self, name: impl Into<glib::GString>) -> Self {
+    pub fn name<'a>(self, name: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("name", name.into()),
         }
@@ -1007,7 +1011,7 @@ impl FlowBoxBuilder {
         }
     }
 
-    pub fn tooltip_markup(self, tooltip_markup: impl Into<glib::GString>) -> Self {
+    pub fn tooltip_markup<'a>(self, tooltip_markup: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self
                 .builder
@@ -1015,7 +1019,7 @@ impl FlowBoxBuilder {
         }
     }
 
-    pub fn tooltip_text(self, tooltip_text: impl Into<glib::GString>) -> Self {
+    pub fn tooltip_text<'a>(self, tooltip_text: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("tooltip-text", tooltip_text.into()),
         }

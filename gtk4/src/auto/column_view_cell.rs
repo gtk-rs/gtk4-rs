@@ -67,11 +67,11 @@ impl ColumnViewCell {
 
     #[doc(alias = "gtk_column_view_cell_set_child")]
     #[doc(alias = "child")]
-    pub fn set_child(&self, child: Option<&impl IsA<Widget>>) {
+    pub fn set_child<'a, P: IsA<Widget>>(&self, child: impl Into<Option<&'a P>>) {
         unsafe {
             ffi::gtk_column_view_cell_set_child(
                 self.to_glib_none().0,
-                child.map(|p| p.as_ref()).to_glib_none().0,
+                child.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
             );
         }
     }
@@ -105,9 +105,11 @@ impl ColumnViewCellBuilder {
 
     #[cfg(feature = "v4_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
-    pub fn child(self, child: &impl IsA<Widget>) -> Self {
+    pub fn child<'a, P: IsA<Widget>>(self, child: impl Into<Option<&'a P>>) -> Self {
         Self {
-            builder: self.builder.property("child", child.clone().upcast()),
+            builder: self
+                .builder
+                .property("child", child.into().as_ref().map(|p| p.as_ref())),
         }
     }
 
@@ -121,7 +123,10 @@ impl ColumnViewCellBuilder {
 
     #[cfg(feature = "v4_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
-    pub fn accessible_description(self, accessible_description: impl Into<glib::GString>) -> Self {
+    pub fn accessible_description<'a>(
+        self,
+        accessible_description: impl Into<Option<&'a str>>,
+    ) -> Self {
         Self {
             builder: self
                 .builder
@@ -131,7 +136,7 @@ impl ColumnViewCellBuilder {
 
     #[cfg(feature = "v4_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
-    pub fn accessible_label(self, accessible_label: impl Into<glib::GString>) -> Self {
+    pub fn accessible_label<'a>(self, accessible_label: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self
                 .builder

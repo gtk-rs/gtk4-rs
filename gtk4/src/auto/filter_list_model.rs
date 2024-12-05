@@ -88,11 +88,11 @@ impl FilterListModel {
 
     #[doc(alias = "gtk_filter_list_model_set_filter")]
     #[doc(alias = "filter")]
-    pub fn set_filter(&self, filter: Option<&impl IsA<Filter>>) {
+    pub fn set_filter<'a, P: IsA<Filter>>(&self, filter: impl Into<Option<&'a P>>) {
         unsafe {
             ffi::gtk_filter_list_model_set_filter(
                 self.to_glib_none().0,
-                filter.map(|p| p.as_ref()).to_glib_none().0,
+                filter.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
             );
         }
     }
@@ -110,11 +110,11 @@ impl FilterListModel {
 
     #[doc(alias = "gtk_filter_list_model_set_model")]
     #[doc(alias = "model")]
-    pub fn set_model(&self, model: Option<&impl IsA<gio::ListModel>>) {
+    pub fn set_model<'a, P: IsA<gio::ListModel>>(&self, model: impl Into<Option<&'a P>>) {
         unsafe {
             ffi::gtk_filter_list_model_set_model(
                 self.to_glib_none().0,
-                model.map(|p| p.as_ref()).to_glib_none().0,
+                model.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
             );
         }
     }
@@ -234,9 +234,11 @@ impl FilterListModelBuilder {
         }
     }
 
-    pub fn filter(self, filter: &impl IsA<Filter>) -> Self {
+    pub fn filter<'a, P: IsA<Filter>>(self, filter: impl Into<Option<&'a P>>) -> Self {
         Self {
-            builder: self.builder.property("filter", filter.clone().upcast()),
+            builder: self
+                .builder
+                .property("filter", filter.into().as_ref().map(|p| p.as_ref())),
         }
     }
 
@@ -246,9 +248,11 @@ impl FilterListModelBuilder {
         }
     }
 
-    pub fn model(self, model: &impl IsA<gio::ListModel>) -> Self {
+    pub fn model<'a, P: IsA<gio::ListModel>>(self, model: impl Into<Option<&'a P>>) -> Self {
         Self {
-            builder: self.builder.property("model", model.clone().upcast()),
+            builder: self
+                .builder
+                .property("model", model.into().as_ref().map(|p| p.as_ref())),
         }
     }
 

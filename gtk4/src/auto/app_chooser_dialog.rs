@@ -27,15 +27,15 @@ impl AppChooserDialog {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_app_chooser_dialog_new")]
-    pub fn new(
-        parent: Option<&impl IsA<Window>>,
+    pub fn new<'a, P: IsA<Window>>(
+        parent: impl Into<Option<&'a P>>,
         flags: DialogFlags,
         file: &impl IsA<gio::File>,
     ) -> AppChooserDialog {
         assert_initialized_main_thread!();
         unsafe {
             Widget::from_glib_none(ffi::gtk_app_chooser_dialog_new(
-                parent.map(|p| p.as_ref()).to_glib_none().0,
+                parent.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
                 flags.into_glib(),
                 file.as_ref().to_glib_none().0,
             ))
@@ -47,15 +47,15 @@ impl AppChooserDialog {
     #[allow(deprecated)]
     #[doc(alias = "gtk_app_chooser_dialog_new_for_content_type")]
     #[doc(alias = "new_for_content_type")]
-    pub fn for_content_type(
-        parent: Option<&impl IsA<Window>>,
+    pub fn for_content_type<'a, P: IsA<Window>>(
+        parent: impl Into<Option<&'a P>>,
         flags: DialogFlags,
         content_type: &str,
     ) -> AppChooserDialog {
         assert_initialized_main_thread!();
         unsafe {
             Widget::from_glib_none(ffi::gtk_app_chooser_dialog_new_for_content_type(
-                parent.map(|p| p.as_ref()).to_glib_none().0,
+                parent.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
                 flags.into_glib(),
                 content_type.to_glib_none().0,
             ))

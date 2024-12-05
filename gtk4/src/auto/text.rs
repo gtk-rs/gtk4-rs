@@ -219,9 +219,9 @@ impl Text {
 
     #[doc(alias = "gtk_text_set_attributes")]
     #[doc(alias = "attributes")]
-    pub fn set_attributes(&self, attrs: Option<&pango::AttrList>) {
+    pub fn set_attributes<'a>(&self, attrs: impl Into<Option<&'a pango::AttrList>>) {
         unsafe {
-            ffi::gtk_text_set_attributes(self.to_glib_none().0, attrs.to_glib_none().0);
+            ffi::gtk_text_set_attributes(self.to_glib_none().0, attrs.into().to_glib_none().0);
         }
     }
 
@@ -246,11 +246,11 @@ impl Text {
 
     #[doc(alias = "gtk_text_set_extra_menu")]
     #[doc(alias = "extra-menu")]
-    pub fn set_extra_menu(&self, model: Option<&impl IsA<gio::MenuModel>>) {
+    pub fn set_extra_menu<'a, P: IsA<gio::MenuModel>>(&self, model: impl Into<Option<&'a P>>) {
         unsafe {
             ffi::gtk_text_set_extra_menu(
                 self.to_glib_none().0,
-                model.map(|p| p.as_ref()).to_glib_none().0,
+                model.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
             );
         }
     }
@@ -297,9 +297,9 @@ impl Text {
 
     #[doc(alias = "gtk_text_set_placeholder_text")]
     #[doc(alias = "placeholder-text")]
-    pub fn set_placeholder_text(&self, text: Option<&str>) {
+    pub fn set_placeholder_text<'a>(&self, text: impl Into<Option<&'a str>>) {
         unsafe {
-            ffi::gtk_text_set_placeholder_text(self.to_glib_none().0, text.to_glib_none().0);
+            ffi::gtk_text_set_placeholder_text(self.to_glib_none().0, text.into().to_glib_none().0);
         }
     }
 
@@ -316,9 +316,12 @@ impl Text {
 
     #[doc(alias = "gtk_text_set_tabs")]
     #[doc(alias = "tabs")]
-    pub fn set_tabs(&self, tabs: Option<&pango::TabArray>) {
+    pub fn set_tabs<'a>(&self, tabs: impl Into<Option<&'a pango::TabArray>>) {
         unsafe {
-            ffi::gtk_text_set_tabs(self.to_glib_none().0, mut_override(tabs.to_glib_none().0));
+            ffi::gtk_text_set_tabs(
+                self.to_glib_none().0,
+                mut_override(tabs.into().to_glib_none().0),
+            );
         }
     }
 
@@ -354,8 +357,8 @@ impl Text {
     }
 
     #[doc(alias = "im-module")]
-    pub fn set_im_module(&self, im_module: Option<&str>) {
-        ObjectExt::set_property(self, "im-module", im_module)
+    pub fn set_im_module<'a>(&self, im_module: impl Into<Option<&'a str>>) {
+        ObjectExt::set_property(self, "im-module", im_module.into())
     }
 
     #[doc(alias = "invisible-char-set")]
@@ -828,15 +831,17 @@ impl TextBuilder {
         }
     }
 
-    pub fn attributes(self, attributes: &pango::AttrList) -> Self {
+    pub fn attributes<'a>(self, attributes: impl Into<Option<&'a pango::AttrList>>) -> Self {
         Self {
-            builder: self.builder.property("attributes", attributes.clone()),
+            builder: self.builder.property("attributes", attributes.into()),
         }
     }
 
-    pub fn buffer(self, buffer: &impl IsA<EntryBuffer>) -> Self {
+    pub fn buffer<'a, P: IsA<EntryBuffer>>(self, buffer: impl Into<Option<&'a P>>) -> Self {
         Self {
-            builder: self.builder.property("buffer", buffer.clone().upcast()),
+            builder: self
+                .builder
+                .property("buffer", buffer.into().as_ref().map(|p| p.as_ref())),
         }
     }
 
@@ -848,15 +853,18 @@ impl TextBuilder {
         }
     }
 
-    pub fn extra_menu(self, extra_menu: &impl IsA<gio::MenuModel>) -> Self {
+    pub fn extra_menu<'a, P: IsA<gio::MenuModel>>(
+        self,
+        extra_menu: impl Into<Option<&'a P>>,
+    ) -> Self {
         Self {
             builder: self
                 .builder
-                .property("extra-menu", extra_menu.clone().upcast()),
+                .property("extra-menu", extra_menu.into().as_ref().map(|p| p.as_ref())),
         }
     }
 
-    pub fn im_module(self, im_module: impl Into<glib::GString>) -> Self {
+    pub fn im_module<'a>(self, im_module: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("im-module", im_module.into()),
         }
@@ -900,7 +908,7 @@ impl TextBuilder {
         }
     }
 
-    pub fn placeholder_text(self, placeholder_text: impl Into<glib::GString>) -> Self {
+    pub fn placeholder_text<'a>(self, placeholder_text: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self
                 .builder
@@ -916,9 +924,9 @@ impl TextBuilder {
         }
     }
 
-    pub fn tabs(self, tabs: &pango::TabArray) -> Self {
+    pub fn tabs<'a>(self, tabs: impl Into<Option<&'a pango::TabArray>>) -> Self {
         Self {
-            builder: self.builder.property("tabs", tabs),
+            builder: self.builder.property("tabs", tabs.into()),
         }
     }
 
@@ -954,15 +962,15 @@ impl TextBuilder {
         }
     }
 
-    pub fn css_name(self, css_name: impl Into<glib::GString>) -> Self {
+    pub fn css_name<'a>(self, css_name: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("css-name", css_name.into()),
         }
     }
 
-    pub fn cursor(self, cursor: &gdk::Cursor) -> Self {
+    pub fn cursor<'a>(self, cursor: impl Into<Option<&'a gdk::Cursor>>) -> Self {
         Self {
-            builder: self.builder.property("cursor", cursor.clone()),
+            builder: self.builder.property("cursor", cursor.into()),
         }
     }
 
@@ -1008,11 +1016,15 @@ impl TextBuilder {
         }
     }
 
-    pub fn layout_manager(self, layout_manager: &impl IsA<LayoutManager>) -> Self {
+    pub fn layout_manager<'a, P: IsA<LayoutManager>>(
+        self,
+        layout_manager: impl Into<Option<&'a P>>,
+    ) -> Self {
         Self {
-            builder: self
-                .builder
-                .property("layout-manager", layout_manager.clone().upcast()),
+            builder: self.builder.property(
+                "layout-manager",
+                layout_manager.into().as_ref().map(|p| p.as_ref()),
+            ),
         }
     }
 
@@ -1040,7 +1052,7 @@ impl TextBuilder {
         }
     }
 
-    pub fn name(self, name: impl Into<glib::GString>) -> Self {
+    pub fn name<'a>(self, name: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("name", name.into()),
         }
@@ -1070,7 +1082,7 @@ impl TextBuilder {
         }
     }
 
-    pub fn tooltip_markup(self, tooltip_markup: impl Into<glib::GString>) -> Self {
+    pub fn tooltip_markup<'a>(self, tooltip_markup: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self
                 .builder
@@ -1078,7 +1090,7 @@ impl TextBuilder {
         }
     }
 
-    pub fn tooltip_text(self, tooltip_text: impl Into<glib::GString>) -> Self {
+    pub fn tooltip_text<'a>(self, tooltip_text: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("tooltip-text", tooltip_text.into()),
         }
@@ -1138,7 +1150,7 @@ impl TextBuilder {
         }
     }
 
-    pub fn text(self, text: impl Into<glib::GString>) -> Self {
+    pub fn text<'a>(self, text: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("text", text.into()),
         }

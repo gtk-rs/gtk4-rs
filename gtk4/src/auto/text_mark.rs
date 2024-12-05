@@ -18,11 +18,11 @@ impl TextMark {
     pub const NONE: Option<&'static TextMark> = None;
 
     #[doc(alias = "gtk_text_mark_new")]
-    pub fn new(name: Option<&str>, left_gravity: bool) -> TextMark {
+    pub fn new<'a>(name: impl Into<Option<&'a str>>, left_gravity: bool) -> TextMark {
         assert_initialized_main_thread!();
         unsafe {
             from_glib_full(ffi::gtk_text_mark_new(
-                name.to_glib_none().0,
+                name.into().to_glib_none().0,
                 left_gravity.into_glib(),
             ))
         }
@@ -65,7 +65,7 @@ impl TextMarkBuilder {
         }
     }
 
-    pub fn name(self, name: impl Into<glib::GString>) -> Self {
+    pub fn name<'a>(self, name: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("name", name.into()),
         }

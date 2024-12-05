@@ -106,11 +106,11 @@ pub trait MediaFileExt: IsA<MediaFile> + 'static {
 
     #[doc(alias = "gtk_media_file_set_file")]
     #[doc(alias = "file")]
-    fn set_file(&self, file: Option<&impl IsA<gio::File>>) {
+    fn set_file<'a, P: IsA<gio::File>>(&self, file: impl Into<Option<&'a P>>) {
         unsafe {
             ffi::gtk_media_file_set_file(
                 self.as_ref().to_glib_none().0,
-                file.map(|p| p.as_ref()).to_glib_none().0,
+                file.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
             );
         }
     }
@@ -127,21 +127,21 @@ pub trait MediaFileExt: IsA<MediaFile> + 'static {
 
     #[doc(alias = "gtk_media_file_set_input_stream")]
     #[doc(alias = "input-stream")]
-    fn set_input_stream(&self, stream: Option<&impl IsA<gio::InputStream>>) {
+    fn set_input_stream<'a, P: IsA<gio::InputStream>>(&self, stream: impl Into<Option<&'a P>>) {
         unsafe {
             ffi::gtk_media_file_set_input_stream(
                 self.as_ref().to_glib_none().0,
-                stream.map(|p| p.as_ref()).to_glib_none().0,
+                stream.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
             );
         }
     }
 
     #[doc(alias = "gtk_media_file_set_resource")]
-    fn set_resource(&self, resource_path: Option<&str>) {
+    fn set_resource<'a>(&self, resource_path: impl Into<Option<&'a str>>) {
         unsafe {
             ffi::gtk_media_file_set_resource(
                 self.as_ref().to_glib_none().0,
-                resource_path.to_glib_none().0,
+                resource_path.into().to_glib_none().0,
             );
         }
     }

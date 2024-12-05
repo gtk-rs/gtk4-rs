@@ -181,14 +181,17 @@ impl IconTheme {
 
     #[doc(alias = "gtk_icon_theme_set_theme_name")]
     #[doc(alias = "theme-name")]
-    pub fn set_theme_name(&self, theme_name: Option<&str>) {
+    pub fn set_theme_name<'a>(&self, theme_name: impl Into<Option<&'a str>>) {
         unsafe {
-            ffi::gtk_icon_theme_set_theme_name(self.to_glib_none().0, theme_name.to_glib_none().0);
+            ffi::gtk_icon_theme_set_theme_name(
+                self.to_glib_none().0,
+                theme_name.into().to_glib_none().0,
+            );
         }
     }
 
-    pub fn set_display<P: IsA<gdk::Display>>(&self, display: Option<&P>) {
-        ObjectExt::set_property(self, "display", display)
+    pub fn set_display<'a, P: IsA<gdk::Display>>(&self, display: impl Into<Option<&'a P>>) {
+        ObjectExt::set_property(self, "display", display.into().as_ref().map(|p| p.as_ref()))
     }
 
     #[doc(alias = "gtk_icon_theme_get_for_display")]
@@ -362,9 +365,11 @@ impl IconThemeBuilder {
         }
     }
 
-    pub fn display(self, display: &impl IsA<gdk::Display>) -> Self {
+    pub fn display<'a, P: IsA<gdk::Display>>(self, display: impl Into<Option<&'a P>>) -> Self {
         Self {
-            builder: self.builder.property("display", display.clone().upcast()),
+            builder: self
+                .builder
+                .property("display", display.into().as_ref().map(|p| p.as_ref())),
         }
     }
 
@@ -380,7 +385,7 @@ impl IconThemeBuilder {
         }
     }
 
-    pub fn theme_name(self, theme_name: impl Into<glib::GString>) -> Self {
+    pub fn theme_name<'a>(self, theme_name: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("theme-name", theme_name.into()),
         }

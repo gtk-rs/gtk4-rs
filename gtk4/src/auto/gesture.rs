@@ -79,11 +79,14 @@ pub trait GestureExt: IsA<Gesture> + 'static {
 
     #[doc(alias = "gtk_gesture_get_last_event")]
     #[doc(alias = "get_last_event")]
-    fn last_event(&self, sequence: Option<&gdk::EventSequence>) -> Option<gdk::Event> {
+    fn last_event<'a>(
+        &self,
+        sequence: impl Into<Option<&'a gdk::EventSequence>>,
+    ) -> Option<gdk::Event> {
         unsafe {
             from_glib_none(ffi::gtk_gesture_get_last_event(
                 self.as_ref().to_glib_none().0,
-                mut_override(sequence.to_glib_none().0),
+                mut_override(sequence.into().to_glib_none().0),
             ))
         }
     }
@@ -100,13 +103,13 @@ pub trait GestureExt: IsA<Gesture> + 'static {
 
     #[doc(alias = "gtk_gesture_get_point")]
     #[doc(alias = "get_point")]
-    fn point(&self, sequence: Option<&gdk::EventSequence>) -> Option<(f64, f64)> {
+    fn point<'a>(&self, sequence: impl Into<Option<&'a gdk::EventSequence>>) -> Option<(f64, f64)> {
         unsafe {
             let mut x = std::mem::MaybeUninit::uninit();
             let mut y = std::mem::MaybeUninit::uninit();
             let ret = from_glib(ffi::gtk_gesture_get_point(
                 self.as_ref().to_glib_none().0,
-                mut_override(sequence.to_glib_none().0),
+                mut_override(sequence.into().to_glib_none().0),
                 x.as_mut_ptr(),
                 y.as_mut_ptr(),
             ));
@@ -151,11 +154,11 @@ pub trait GestureExt: IsA<Gesture> + 'static {
     }
 
     #[doc(alias = "gtk_gesture_handles_sequence")]
-    fn handles_sequence(&self, sequence: Option<&gdk::EventSequence>) -> bool {
+    fn handles_sequence<'a>(&self, sequence: impl Into<Option<&'a gdk::EventSequence>>) -> bool {
         unsafe {
             from_glib(ffi::gtk_gesture_handles_sequence(
                 self.as_ref().to_glib_none().0,
-                mut_override(sequence.to_glib_none().0),
+                mut_override(sequence.into().to_glib_none().0),
             ))
         }
     }

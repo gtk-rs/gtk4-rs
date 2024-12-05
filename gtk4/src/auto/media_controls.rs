@@ -24,11 +24,11 @@ glib::wrapper! {
 
 impl MediaControls {
     #[doc(alias = "gtk_media_controls_new")]
-    pub fn new(stream: Option<&impl IsA<MediaStream>>) -> MediaControls {
+    pub fn new<'a, P: IsA<MediaStream>>(stream: impl Into<Option<&'a P>>) -> MediaControls {
         assert_initialized_main_thread!();
         unsafe {
             Widget::from_glib_none(ffi::gtk_media_controls_new(
-                stream.map(|p| p.as_ref()).to_glib_none().0,
+                stream.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
             ))
             .unsafe_cast()
         }
@@ -55,11 +55,11 @@ impl MediaControls {
 
     #[doc(alias = "gtk_media_controls_set_media_stream")]
     #[doc(alias = "media-stream")]
-    pub fn set_media_stream(&self, stream: Option<&impl IsA<MediaStream>>) {
+    pub fn set_media_stream<'a, P: IsA<MediaStream>>(&self, stream: impl Into<Option<&'a P>>) {
         unsafe {
             ffi::gtk_media_controls_set_media_stream(
                 self.to_glib_none().0,
-                stream.map(|p| p.as_ref()).to_glib_none().0,
+                stream.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
             );
         }
     }
@@ -110,11 +110,15 @@ impl MediaControlsBuilder {
         }
     }
 
-    pub fn media_stream(self, media_stream: &impl IsA<MediaStream>) -> Self {
+    pub fn media_stream<'a, P: IsA<MediaStream>>(
+        self,
+        media_stream: impl Into<Option<&'a P>>,
+    ) -> Self {
         Self {
-            builder: self
-                .builder
-                .property("media-stream", media_stream.clone().upcast()),
+            builder: self.builder.property(
+                "media-stream",
+                media_stream.into().as_ref().map(|p| p.as_ref()),
+            ),
         }
     }
 
@@ -136,15 +140,15 @@ impl MediaControlsBuilder {
         }
     }
 
-    pub fn css_name(self, css_name: impl Into<glib::GString>) -> Self {
+    pub fn css_name<'a>(self, css_name: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("css-name", css_name.into()),
         }
     }
 
-    pub fn cursor(self, cursor: &gdk::Cursor) -> Self {
+    pub fn cursor<'a>(self, cursor: impl Into<Option<&'a gdk::Cursor>>) -> Self {
         Self {
-            builder: self.builder.property("cursor", cursor.clone()),
+            builder: self.builder.property("cursor", cursor.into()),
         }
     }
 
@@ -190,11 +194,15 @@ impl MediaControlsBuilder {
         }
     }
 
-    pub fn layout_manager(self, layout_manager: &impl IsA<LayoutManager>) -> Self {
+    pub fn layout_manager<'a, P: IsA<LayoutManager>>(
+        self,
+        layout_manager: impl Into<Option<&'a P>>,
+    ) -> Self {
         Self {
-            builder: self
-                .builder
-                .property("layout-manager", layout_manager.clone().upcast()),
+            builder: self.builder.property(
+                "layout-manager",
+                layout_manager.into().as_ref().map(|p| p.as_ref()),
+            ),
         }
     }
 
@@ -222,7 +230,7 @@ impl MediaControlsBuilder {
         }
     }
 
-    pub fn name(self, name: impl Into<glib::GString>) -> Self {
+    pub fn name<'a>(self, name: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("name", name.into()),
         }
@@ -252,7 +260,7 @@ impl MediaControlsBuilder {
         }
     }
 
-    pub fn tooltip_markup(self, tooltip_markup: impl Into<glib::GString>) -> Self {
+    pub fn tooltip_markup<'a>(self, tooltip_markup: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self
                 .builder
@@ -260,7 +268,7 @@ impl MediaControlsBuilder {
         }
     }
 
-    pub fn tooltip_text(self, tooltip_text: impl Into<glib::GString>) -> Self {
+    pub fn tooltip_text<'a>(self, tooltip_text: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("tooltip-text", tooltip_text.into()),
         }

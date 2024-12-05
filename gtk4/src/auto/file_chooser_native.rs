@@ -24,21 +24,21 @@ impl FileChooserNative {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_file_chooser_native_new")]
-    pub fn new(
-        title: Option<&str>,
-        parent: Option<&impl IsA<Window>>,
+    pub fn new<'a, P: IsA<Window>>(
+        title: impl Into<Option<&'a str>>,
+        parent: impl Into<Option<&'a P>>,
         action: FileChooserAction,
-        accept_label: Option<&str>,
-        cancel_label: Option<&str>,
+        accept_label: impl Into<Option<&'a str>>,
+        cancel_label: impl Into<Option<&'a str>>,
     ) -> FileChooserNative {
         assert_initialized_main_thread!();
         unsafe {
             from_glib_full(ffi::gtk_file_chooser_native_new(
-                title.to_glib_none().0,
-                parent.map(|p| p.as_ref()).to_glib_none().0,
+                title.into().to_glib_none().0,
+                parent.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
                 action.into_glib(),
-                accept_label.to_glib_none().0,
-                cancel_label.to_glib_none().0,
+                accept_label.into().to_glib_none().0,
+                cancel_label.into().to_glib_none().0,
             ))
         }
     }
@@ -81,11 +81,11 @@ impl FileChooserNative {
     #[allow(deprecated)]
     #[doc(alias = "gtk_file_chooser_native_set_accept_label")]
     #[doc(alias = "accept-label")]
-    pub fn set_accept_label(&self, accept_label: Option<&str>) {
+    pub fn set_accept_label<'a>(&self, accept_label: impl Into<Option<&'a str>>) {
         unsafe {
             ffi::gtk_file_chooser_native_set_accept_label(
                 self.to_glib_none().0,
-                accept_label.to_glib_none().0,
+                accept_label.into().to_glib_none().0,
             );
         }
     }
@@ -94,11 +94,11 @@ impl FileChooserNative {
     #[allow(deprecated)]
     #[doc(alias = "gtk_file_chooser_native_set_cancel_label")]
     #[doc(alias = "cancel-label")]
-    pub fn set_cancel_label(&self, cancel_label: Option<&str>) {
+    pub fn set_cancel_label<'a>(&self, cancel_label: impl Into<Option<&'a str>>) {
         unsafe {
             ffi::gtk_file_chooser_native_set_cancel_label(
                 self.to_glib_none().0,
-                cancel_label.to_glib_none().0,
+                cancel_label.into().to_glib_none().0,
             );
         }
     }
@@ -172,13 +172,13 @@ impl FileChooserNativeBuilder {
         }
     }
 
-    pub fn accept_label(self, accept_label: impl Into<glib::GString>) -> Self {
+    pub fn accept_label<'a>(self, accept_label: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("accept-label", accept_label.into()),
         }
     }
 
-    pub fn cancel_label(self, cancel_label: impl Into<glib::GString>) -> Self {
+    pub fn cancel_label<'a>(self, cancel_label: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("cancel-label", cancel_label.into()),
         }
@@ -190,17 +190,21 @@ impl FileChooserNativeBuilder {
         }
     }
 
-    pub fn title(self, title: impl Into<glib::GString>) -> Self {
+    pub fn title<'a>(self, title: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("title", title.into()),
         }
     }
 
-    pub fn transient_for(self, transient_for: &impl IsA<Window>) -> Self {
+    pub fn transient_for<'a, P: IsA<Window>>(
+        self,
+        transient_for: impl Into<Option<&'a P>>,
+    ) -> Self {
         Self {
-            builder: self
-                .builder
-                .property("transient-for", transient_for.clone().upcast()),
+            builder: self.builder.property(
+                "transient-for",
+                transient_for.into().as_ref().map(|p| p.as_ref()),
+            ),
         }
     }
 
@@ -225,9 +229,9 @@ impl FileChooserNativeBuilder {
     }
 
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    pub fn filter(self, filter: &FileFilter) -> Self {
+    pub fn filter<'a>(self, filter: impl Into<Option<&'a FileFilter>>) -> Self {
         Self {
-            builder: self.builder.property("filter", filter.clone()),
+            builder: self.builder.property("filter", filter.into()),
         }
     }
 

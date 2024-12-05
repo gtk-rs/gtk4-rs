@@ -197,22 +197,27 @@ impl ScrolledWindow {
 
     #[doc(alias = "gtk_scrolled_window_set_child")]
     #[doc(alias = "child")]
-    pub fn set_child(&self, child: Option<&impl IsA<Widget>>) {
+    pub fn set_child<'a, P: IsA<Widget>>(&self, child: impl Into<Option<&'a P>>) {
         unsafe {
             ffi::gtk_scrolled_window_set_child(
                 self.to_glib_none().0,
-                child.map(|p| p.as_ref()).to_glib_none().0,
+                child.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
             );
         }
     }
 
     #[doc(alias = "gtk_scrolled_window_set_hadjustment")]
     #[doc(alias = "hadjustment")]
-    pub fn set_hadjustment(&self, hadjustment: Option<&impl IsA<Adjustment>>) {
+    pub fn set_hadjustment<'a, P: IsA<Adjustment>>(&self, hadjustment: impl Into<Option<&'a P>>) {
         unsafe {
             ffi::gtk_scrolled_window_set_hadjustment(
                 self.to_glib_none().0,
-                hadjustment.map(|p| p.as_ref()).to_glib_none().0,
+                hadjustment
+                    .into()
+                    .as_ref()
+                    .map(|p| p.as_ref())
+                    .to_glib_none()
+                    .0,
             );
         }
     }
@@ -325,11 +330,16 @@ impl ScrolledWindow {
 
     #[doc(alias = "gtk_scrolled_window_set_vadjustment")]
     #[doc(alias = "vadjustment")]
-    pub fn set_vadjustment(&self, vadjustment: Option<&impl IsA<Adjustment>>) {
+    pub fn set_vadjustment<'a, P: IsA<Adjustment>>(&self, vadjustment: impl Into<Option<&'a P>>) {
         unsafe {
             ffi::gtk_scrolled_window_set_vadjustment(
                 self.to_glib_none().0,
-                vadjustment.map(|p| p.as_ref()).to_glib_none().0,
+                vadjustment
+                    .into()
+                    .as_ref()
+                    .map(|p| p.as_ref())
+                    .to_glib_none()
+                    .0,
             );
         }
     }
@@ -907,17 +917,23 @@ impl ScrolledWindowBuilder {
         }
     }
 
-    pub fn child(self, child: &impl IsA<Widget>) -> Self {
-        Self {
-            builder: self.builder.property("child", child.clone().upcast()),
-        }
-    }
-
-    pub fn hadjustment(self, hadjustment: &impl IsA<Adjustment>) -> Self {
+    pub fn child<'a, P: IsA<Widget>>(self, child: impl Into<Option<&'a P>>) -> Self {
         Self {
             builder: self
                 .builder
-                .property("hadjustment", hadjustment.clone().upcast()),
+                .property("child", child.into().as_ref().map(|p| p.as_ref())),
+        }
+    }
+
+    pub fn hadjustment<'a, P: IsA<Adjustment>>(
+        self,
+        hadjustment: impl Into<Option<&'a P>>,
+    ) -> Self {
+        Self {
+            builder: self.builder.property(
+                "hadjustment",
+                hadjustment.into().as_ref().map(|p| p.as_ref()),
+            ),
         }
     }
 
@@ -999,11 +1015,15 @@ impl ScrolledWindowBuilder {
         }
     }
 
-    pub fn vadjustment(self, vadjustment: &impl IsA<Adjustment>) -> Self {
+    pub fn vadjustment<'a, P: IsA<Adjustment>>(
+        self,
+        vadjustment: impl Into<Option<&'a P>>,
+    ) -> Self {
         Self {
-            builder: self
-                .builder
-                .property("vadjustment", vadjustment.clone().upcast()),
+            builder: self.builder.property(
+                "vadjustment",
+                vadjustment.into().as_ref().map(|p| p.as_ref()),
+            ),
         }
     }
 
@@ -1039,15 +1059,15 @@ impl ScrolledWindowBuilder {
         }
     }
 
-    pub fn css_name(self, css_name: impl Into<glib::GString>) -> Self {
+    pub fn css_name<'a>(self, css_name: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("css-name", css_name.into()),
         }
     }
 
-    pub fn cursor(self, cursor: &gdk::Cursor) -> Self {
+    pub fn cursor<'a>(self, cursor: impl Into<Option<&'a gdk::Cursor>>) -> Self {
         Self {
-            builder: self.builder.property("cursor", cursor.clone()),
+            builder: self.builder.property("cursor", cursor.into()),
         }
     }
 
@@ -1093,11 +1113,15 @@ impl ScrolledWindowBuilder {
         }
     }
 
-    pub fn layout_manager(self, layout_manager: &impl IsA<LayoutManager>) -> Self {
+    pub fn layout_manager<'a, P: IsA<LayoutManager>>(
+        self,
+        layout_manager: impl Into<Option<&'a P>>,
+    ) -> Self {
         Self {
-            builder: self
-                .builder
-                .property("layout-manager", layout_manager.clone().upcast()),
+            builder: self.builder.property(
+                "layout-manager",
+                layout_manager.into().as_ref().map(|p| p.as_ref()),
+            ),
         }
     }
 
@@ -1125,7 +1149,7 @@ impl ScrolledWindowBuilder {
         }
     }
 
-    pub fn name(self, name: impl Into<glib::GString>) -> Self {
+    pub fn name<'a>(self, name: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("name", name.into()),
         }
@@ -1155,7 +1179,7 @@ impl ScrolledWindowBuilder {
         }
     }
 
-    pub fn tooltip_markup(self, tooltip_markup: impl Into<glib::GString>) -> Self {
+    pub fn tooltip_markup<'a>(self, tooltip_markup: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self
                 .builder
@@ -1163,7 +1187,7 @@ impl ScrolledWindowBuilder {
         }
     }
 
-    pub fn tooltip_text(self, tooltip_text: impl Into<glib::GString>) -> Self {
+    pub fn tooltip_text<'a>(self, tooltip_text: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("tooltip-text", tooltip_text.into()),
         }

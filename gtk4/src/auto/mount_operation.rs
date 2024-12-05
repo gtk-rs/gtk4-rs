@@ -23,11 +23,11 @@ impl MountOperation {
     pub const NONE: Option<&'static MountOperation> = None;
 
     #[doc(alias = "gtk_mount_operation_new")]
-    pub fn new(parent: Option<&impl IsA<Window>>) -> MountOperation {
+    pub fn new<'a, P: IsA<Window>>(parent: impl Into<Option<&'a P>>) -> MountOperation {
         assert_initialized_main_thread!();
         unsafe {
             gio::MountOperation::from_glib_full(ffi::gtk_mount_operation_new(
-                parent.map(|p| p.as_ref()).to_glib_none().0,
+                parent.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
             ))
             .unsafe_cast()
         }
@@ -64,15 +64,19 @@ impl MountOperationBuilder {
         }
     }
 
-    pub fn display(self, display: &impl IsA<gdk::Display>) -> Self {
+    pub fn display<'a, P: IsA<gdk::Display>>(self, display: impl Into<Option<&'a P>>) -> Self {
         Self {
-            builder: self.builder.property("display", display.clone().upcast()),
+            builder: self
+                .builder
+                .property("display", display.into().as_ref().map(|p| p.as_ref())),
         }
     }
 
-    pub fn parent(self, parent: &impl IsA<Window>) -> Self {
+    pub fn parent<'a, P: IsA<Window>>(self, parent: impl Into<Option<&'a P>>) -> Self {
         Self {
-            builder: self.builder.property("parent", parent.clone().upcast()),
+            builder: self
+                .builder
+                .property("parent", parent.into().as_ref().map(|p| p.as_ref())),
         }
     }
 
@@ -88,7 +92,7 @@ impl MountOperationBuilder {
         }
     }
 
-    pub fn domain(self, domain: impl Into<glib::GString>) -> Self {
+    pub fn domain<'a>(self, domain: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("domain", domain.into()),
         }
@@ -110,7 +114,7 @@ impl MountOperationBuilder {
         }
     }
 
-    pub fn password(self, password: impl Into<glib::GString>) -> Self {
+    pub fn password<'a>(self, password: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("password", password.into()),
         }
@@ -128,7 +132,7 @@ impl MountOperationBuilder {
         }
     }
 
-    pub fn username(self, username: impl Into<glib::GString>) -> Self {
+    pub fn username<'a>(self, username: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("username", username.into()),
         }
@@ -187,11 +191,11 @@ pub trait GtkMountOperationExt: IsA<MountOperation> + 'static {
 
     #[doc(alias = "gtk_mount_operation_set_parent")]
     #[doc(alias = "parent")]
-    fn set_parent(&self, parent: Option<&impl IsA<Window>>) {
+    fn set_parent<'a, P: IsA<Window>>(&self, parent: impl Into<Option<&'a P>>) {
         unsafe {
             ffi::gtk_mount_operation_set_parent(
                 self.as_ref().to_glib_none().0,
-                parent.map(|p| p.as_ref()).to_glib_none().0,
+                parent.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
             );
         }
     }

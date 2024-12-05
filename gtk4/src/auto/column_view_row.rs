@@ -375,7 +375,10 @@ impl ColumnViewRowBuilder {
 
     #[cfg(feature = "v4_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
-    pub fn accessible_description(self, accessible_description: impl Into<glib::GString>) -> Self {
+    pub fn accessible_description<'a>(
+        self,
+        accessible_description: impl Into<Option<&'a str>>,
+    ) -> Self {
         Self {
             builder: self
                 .builder
@@ -385,7 +388,7 @@ impl ColumnViewRowBuilder {
 
     #[cfg(feature = "v4_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
-    pub fn accessible_label(self, accessible_label: impl Into<glib::GString>) -> Self {
+    pub fn accessible_label<'a>(self, accessible_label: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self
                 .builder

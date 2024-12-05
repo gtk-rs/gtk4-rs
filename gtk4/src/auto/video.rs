@@ -34,11 +34,11 @@ impl Video {
 
     #[doc(alias = "gtk_video_new_for_file")]
     #[doc(alias = "new_for_file")]
-    pub fn for_file(file: Option<&impl IsA<gio::File>>) -> Video {
+    pub fn for_file<'a, P: IsA<gio::File>>(file: impl Into<Option<&'a P>>) -> Video {
         assert_initialized_main_thread!();
         unsafe {
             Widget::from_glib_none(ffi::gtk_video_new_for_file(
-                file.map(|p| p.as_ref()).to_glib_none().0,
+                file.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
             ))
             .unsafe_cast()
         }
@@ -58,11 +58,11 @@ impl Video {
 
     #[doc(alias = "gtk_video_new_for_media_stream")]
     #[doc(alias = "new_for_media_stream")]
-    pub fn for_media_stream(stream: Option<&impl IsA<MediaStream>>) -> Video {
+    pub fn for_media_stream<'a, P: IsA<MediaStream>>(stream: impl Into<Option<&'a P>>) -> Video {
         assert_initialized_main_thread!();
         unsafe {
             Widget::from_glib_none(ffi::gtk_video_new_for_media_stream(
-                stream.map(|p| p.as_ref()).to_glib_none().0,
+                stream.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
             ))
             .unsafe_cast()
         }
@@ -70,11 +70,11 @@ impl Video {
 
     #[doc(alias = "gtk_video_new_for_resource")]
     #[doc(alias = "new_for_resource")]
-    pub fn for_resource(resource_path: Option<&str>) -> Video {
+    pub fn for_resource<'a>(resource_path: impl Into<Option<&'a str>>) -> Video {
         assert_initialized_main_thread!();
         unsafe {
             Widget::from_glib_none(ffi::gtk_video_new_for_resource(
-                resource_path.to_glib_none().0,
+                resource_path.into().to_glib_none().0,
             ))
             .unsafe_cast()
         }
@@ -134,11 +134,11 @@ impl Video {
 
     #[doc(alias = "gtk_video_set_file")]
     #[doc(alias = "file")]
-    pub fn set_file(&self, file: Option<&impl IsA<gio::File>>) {
+    pub fn set_file<'a, P: IsA<gio::File>>(&self, file: impl Into<Option<&'a P>>) {
         unsafe {
             ffi::gtk_video_set_file(
                 self.to_glib_none().0,
-                file.map(|p| p.as_ref()).to_glib_none().0,
+                file.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
             );
         }
     }
@@ -173,19 +173,22 @@ impl Video {
 
     #[doc(alias = "gtk_video_set_media_stream")]
     #[doc(alias = "media-stream")]
-    pub fn set_media_stream(&self, stream: Option<&impl IsA<MediaStream>>) {
+    pub fn set_media_stream<'a, P: IsA<MediaStream>>(&self, stream: impl Into<Option<&'a P>>) {
         unsafe {
             ffi::gtk_video_set_media_stream(
                 self.to_glib_none().0,
-                stream.map(|p| p.as_ref()).to_glib_none().0,
+                stream.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
             );
         }
     }
 
     #[doc(alias = "gtk_video_set_resource")]
-    pub fn set_resource(&self, resource_path: Option<&str>) {
+    pub fn set_resource<'a>(&self, resource_path: impl Into<Option<&'a str>>) {
         unsafe {
-            ffi::gtk_video_set_resource(self.to_glib_none().0, resource_path.to_glib_none().0);
+            ffi::gtk_video_set_resource(
+                self.to_glib_none().0,
+                resource_path.into().to_glib_none().0,
+            );
         }
     }
 
@@ -335,9 +338,11 @@ impl VideoBuilder {
         }
     }
 
-    pub fn file(self, file: &impl IsA<gio::File>) -> Self {
+    pub fn file<'a, P: IsA<gio::File>>(self, file: impl Into<Option<&'a P>>) -> Self {
         Self {
-            builder: self.builder.property("file", file.clone().upcast()),
+            builder: self
+                .builder
+                .property("file", file.into().as_ref().map(|p| p.as_ref())),
         }
     }
 
@@ -355,11 +360,15 @@ impl VideoBuilder {
         }
     }
 
-    pub fn media_stream(self, media_stream: &impl IsA<MediaStream>) -> Self {
+    pub fn media_stream<'a, P: IsA<MediaStream>>(
+        self,
+        media_stream: impl Into<Option<&'a P>>,
+    ) -> Self {
         Self {
-            builder: self
-                .builder
-                .property("media-stream", media_stream.clone().upcast()),
+            builder: self.builder.property(
+                "media-stream",
+                media_stream.into().as_ref().map(|p| p.as_ref()),
+            ),
         }
     }
 
@@ -381,15 +390,15 @@ impl VideoBuilder {
         }
     }
 
-    pub fn css_name(self, css_name: impl Into<glib::GString>) -> Self {
+    pub fn css_name<'a>(self, css_name: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("css-name", css_name.into()),
         }
     }
 
-    pub fn cursor(self, cursor: &gdk::Cursor) -> Self {
+    pub fn cursor<'a>(self, cursor: impl Into<Option<&'a gdk::Cursor>>) -> Self {
         Self {
-            builder: self.builder.property("cursor", cursor.clone()),
+            builder: self.builder.property("cursor", cursor.into()),
         }
     }
 
@@ -435,11 +444,15 @@ impl VideoBuilder {
         }
     }
 
-    pub fn layout_manager(self, layout_manager: &impl IsA<LayoutManager>) -> Self {
+    pub fn layout_manager<'a, P: IsA<LayoutManager>>(
+        self,
+        layout_manager: impl Into<Option<&'a P>>,
+    ) -> Self {
         Self {
-            builder: self
-                .builder
-                .property("layout-manager", layout_manager.clone().upcast()),
+            builder: self.builder.property(
+                "layout-manager",
+                layout_manager.into().as_ref().map(|p| p.as_ref()),
+            ),
         }
     }
 
@@ -467,7 +480,7 @@ impl VideoBuilder {
         }
     }
 
-    pub fn name(self, name: impl Into<glib::GString>) -> Self {
+    pub fn name<'a>(self, name: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("name", name.into()),
         }
@@ -497,7 +510,7 @@ impl VideoBuilder {
         }
     }
 
-    pub fn tooltip_markup(self, tooltip_markup: impl Into<glib::GString>) -> Self {
+    pub fn tooltip_markup<'a>(self, tooltip_markup: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self
                 .builder
@@ -505,7 +518,7 @@ impl VideoBuilder {
         }
     }
 
-    pub fn tooltip_text(self, tooltip_text: impl Into<glib::GString>) -> Self {
+    pub fn tooltip_text<'a>(self, tooltip_text: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("tooltip-text", tooltip_text.into()),
         }

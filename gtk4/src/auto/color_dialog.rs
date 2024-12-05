@@ -35,12 +35,17 @@ impl ColorDialog {
     }
 
     #[doc(alias = "gtk_color_dialog_choose_rgba")]
-    pub fn choose_rgba<P: FnOnce(Result<gdk::RGBA, glib::Error>) + 'static>(
+    pub fn choose_rgba<
+        'a,
+        P: IsA<Window>,
+        Q: IsA<gio::Cancellable>,
+        R: FnOnce(Result<gdk::RGBA, glib::Error>) + 'static,
+    >(
         &self,
-        parent: Option<&impl IsA<Window>>,
-        initial_color: Option<&gdk::RGBA>,
-        cancellable: Option<&impl IsA<gio::Cancellable>>,
-        callback: P,
+        parent: impl Into<Option<&'a P>>,
+        initial_color: impl Into<Option<&'a gdk::RGBA>>,
+        cancellable: impl Into<Option<&'a Q>>,
+        callback: R,
     ) {
         let main_context = glib::MainContext::ref_thread_default();
         let is_main_context_owner = main_context.is_owner();
@@ -52,10 +57,10 @@ impl ColorDialog {
             "Async operations only allowed if the thread is owning the MainContext"
         );
 
-        let user_data: Box_<glib::thread_guard::ThreadGuard<P>> =
+        let user_data: Box_<glib::thread_guard::ThreadGuard<R>> =
             Box_::new(glib::thread_guard::ThreadGuard::new(callback));
         unsafe extern "C" fn choose_rgba_trampoline<
-            P: FnOnce(Result<gdk::RGBA, glib::Error>) + 'static,
+            R: FnOnce(Result<gdk::RGBA, glib::Error>) + 'static,
         >(
             _source_object: *mut glib::gobject_ffi::GObject,
             res: *mut gio::ffi::GAsyncResult,
@@ -69,31 +74,36 @@ impl ColorDialog {
             } else {
                 Err(from_glib_full(error))
             };
-            let callback: Box_<glib::thread_guard::ThreadGuard<P>> =
+            let callback: Box_<glib::thread_guard::ThreadGuard<R>> =
                 Box_::from_raw(user_data as *mut _);
-            let callback: P = callback.into_inner();
+            let callback: R = callback.into_inner();
             callback(result);
         }
-        let callback = choose_rgba_trampoline::<P>;
+        let callback = choose_rgba_trampoline::<R>;
         unsafe {
             ffi::gtk_color_dialog_choose_rgba(
                 self.to_glib_none().0,
-                parent.map(|p| p.as_ref()).to_glib_none().0,
-                initial_color.to_glib_none().0,
-                cancellable.map(|p| p.as_ref()).to_glib_none().0,
+                parent.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
+                initial_color.into().to_glib_none().0,
+                cancellable
+                    .into()
+                    .as_ref()
+                    .map(|p| p.as_ref())
+                    .to_glib_none()
+                    .0,
                 Some(callback),
                 Box_::into_raw(user_data) as *mut _,
             );
         }
     }
 
-    pub fn choose_rgba_future(
+    pub fn choose_rgba_future<'a, P: IsA<Window> + Clone + 'static>(
         &self,
-        parent: Option<&(impl IsA<Window> + Clone + 'static)>,
-        initial_color: Option<&gdk::RGBA>,
+        parent: impl Into<Option<&'a P>>,
+        initial_color: impl Into<Option<&'a gdk::RGBA>>,
     ) -> Pin<Box_<dyn std::future::Future<Output = Result<gdk::RGBA, glib::Error>> + 'static>> {
-        let parent = parent.map(ToOwned::to_owned);
-        let initial_color = initial_color.map(ToOwned::to_owned);
+        let parent = parent.into().map(ToOwned::to_owned);
+        let initial_color = initial_color.into().map(ToOwned::to_owned);
         Box_::pin(gio::GioFuture::new(self, move |obj, cancellable, send| {
             obj.choose_rgba(
                 parent.as_ref().map(::std::borrow::Borrow::borrow),
@@ -260,7 +270,7 @@ impl ColorDialogBuilder {
 
     #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
-    pub fn title(self, title: impl Into<glib::GString>) -> Self {
+    pub fn title<'a>(self, title: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("title", title.into()),
         }

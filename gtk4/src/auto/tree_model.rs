@@ -174,13 +174,13 @@ pub trait TreeModelExt: IsA<TreeModel> + 'static {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_tree_model_iter_children")]
-    fn iter_children(&self, parent: Option<&TreeIter>) -> Option<TreeIter> {
+    fn iter_children<'a>(&self, parent: impl Into<Option<&'a TreeIter>>) -> Option<TreeIter> {
         unsafe {
             let mut iter = TreeIter::uninitialized();
             let ret = from_glib(ffi::gtk_tree_model_iter_children(
                 self.as_ref().to_glib_none().0,
                 iter.to_glib_none_mut().0,
-                mut_override(parent.to_glib_none().0),
+                mut_override(parent.into().to_glib_none().0),
             ));
             if ret {
                 Some(iter)
@@ -205,11 +205,11 @@ pub trait TreeModelExt: IsA<TreeModel> + 'static {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_tree_model_iter_n_children")]
-    fn iter_n_children(&self, iter: Option<&TreeIter>) -> i32 {
+    fn iter_n_children<'a>(&self, iter: impl Into<Option<&'a TreeIter>>) -> i32 {
         unsafe {
             ffi::gtk_tree_model_iter_n_children(
                 self.as_ref().to_glib_none().0,
-                mut_override(iter.to_glib_none().0),
+                mut_override(iter.into().to_glib_none().0),
             )
         }
     }
@@ -229,13 +229,17 @@ pub trait TreeModelExt: IsA<TreeModel> + 'static {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_tree_model_iter_nth_child")]
-    fn iter_nth_child(&self, parent: Option<&TreeIter>, n: i32) -> Option<TreeIter> {
+    fn iter_nth_child<'a>(
+        &self,
+        parent: impl Into<Option<&'a TreeIter>>,
+        n: i32,
+    ) -> Option<TreeIter> {
         unsafe {
             let mut iter = TreeIter::uninitialized();
             let ret = from_glib(ffi::gtk_tree_model_iter_nth_child(
                 self.as_ref().to_glib_none().0,
                 iter.to_glib_none_mut().0,
-                mut_override(parent.to_glib_none().0),
+                mut_override(parent.into().to_glib_none().0),
                 n,
             ));
             if ret {

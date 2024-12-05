@@ -18,15 +18,15 @@ glib::wrapper! {
 
 impl CssSection {
     #[doc(alias = "gtk_css_section_new")]
-    pub fn new(
-        file: Option<&impl IsA<gio::File>>,
+    pub fn new<'a, P: IsA<gio::File>>(
+        file: impl Into<Option<&'a P>>,
         start: &CssLocation,
         end: &CssLocation,
     ) -> CssSection {
         assert_initialized_main_thread!();
         unsafe {
             from_glib_full(ffi::gtk_css_section_new(
-                file.map(|p| p.as_ref()).to_glib_none().0,
+                file.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
                 start.to_glib_none().0,
                 end.to_glib_none().0,
             ))
@@ -37,17 +37,17 @@ impl CssSection {
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
     #[doc(alias = "gtk_css_section_new_with_bytes")]
     #[doc(alias = "new_with_bytes")]
-    pub fn with_bytes(
-        file: Option<&impl IsA<gio::File>>,
-        bytes: Option<&glib::Bytes>,
+    pub fn with_bytes<'a, P: IsA<gio::File>>(
+        file: impl Into<Option<&'a P>>,
+        bytes: impl Into<Option<&'a glib::Bytes>>,
         start: &CssLocation,
         end: &CssLocation,
     ) -> CssSection {
         assert_initialized_main_thread!();
         unsafe {
             from_glib_full(ffi::gtk_css_section_new_with_bytes(
-                file.map(|p| p.as_ref()).to_glib_none().0,
-                bytes.to_glib_none().0,
+                file.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
+                bytes.into().to_glib_none().0,
                 start.to_glib_none().0,
                 end.to_glib_none().0,
             ))

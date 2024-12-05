@@ -198,8 +198,12 @@ pub trait DeviceExt: IsA<Device> + 'static {
         ObjectExt::property(self.as_ref(), "n-axes")
     }
 
-    fn set_seat<P: IsA<Seat>>(&self, seat: Option<&P>) {
-        ObjectExt::set_property(self.as_ref(), "seat", seat)
+    fn set_seat<'a, P: IsA<Seat>>(&self, seat: impl Into<Option<&'a P>>) {
+        ObjectExt::set_property(
+            self.as_ref(),
+            "seat",
+            seat.into().as_ref().map(|p| p.as_ref()),
+        )
     }
 
     #[doc(alias = "changed")]

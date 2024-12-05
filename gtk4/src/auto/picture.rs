@@ -151,11 +151,11 @@ impl Picture {
 
     #[doc(alias = "gtk_picture_set_alternative_text")]
     #[doc(alias = "alternative-text")]
-    pub fn set_alternative_text(&self, alternative_text: Option<&str>) {
+    pub fn set_alternative_text<'a>(&self, alternative_text: impl Into<Option<&'a str>>) {
         unsafe {
             ffi::gtk_picture_set_alternative_text(
                 self.to_glib_none().0,
-                alternative_text.to_glib_none().0,
+                alternative_text.into().to_glib_none().0,
             );
         }
     }
@@ -180,11 +180,11 @@ impl Picture {
 
     #[doc(alias = "gtk_picture_set_file")]
     #[doc(alias = "file")]
-    pub fn set_file(&self, file: Option<&impl IsA<gio::File>>) {
+    pub fn set_file<'a, P: IsA<gio::File>>(&self, file: impl Into<Option<&'a P>>) {
         unsafe {
             ffi::gtk_picture_set_file(
                 self.to_glib_none().0,
-                file.map(|p| p.as_ref()).to_glib_none().0,
+                file.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
             );
         }
     }
@@ -214,11 +214,16 @@ impl Picture {
 
     #[doc(alias = "gtk_picture_set_paintable")]
     #[doc(alias = "paintable")]
-    pub fn set_paintable(&self, paintable: Option<&impl IsA<gdk::Paintable>>) {
+    pub fn set_paintable<'a, P: IsA<gdk::Paintable>>(&self, paintable: impl Into<Option<&'a P>>) {
         unsafe {
             ffi::gtk_picture_set_paintable(
                 self.to_glib_none().0,
-                paintable.map(|p| p.as_ref()).to_glib_none().0,
+                paintable
+                    .into()
+                    .as_ref()
+                    .map(|p| p.as_ref())
+                    .to_glib_none()
+                    .0,
             );
         }
     }
@@ -226,16 +231,19 @@ impl Picture {
     #[cfg_attr(feature = "v4_12", deprecated = "Since 4.12")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_picture_set_pixbuf")]
-    pub fn set_pixbuf(&self, pixbuf: Option<&gdk_pixbuf::Pixbuf>) {
+    pub fn set_pixbuf<'a>(&self, pixbuf: impl Into<Option<&'a gdk_pixbuf::Pixbuf>>) {
         unsafe {
-            ffi::gtk_picture_set_pixbuf(self.to_glib_none().0, pixbuf.to_glib_none().0);
+            ffi::gtk_picture_set_pixbuf(self.to_glib_none().0, pixbuf.into().to_glib_none().0);
         }
     }
 
     #[doc(alias = "gtk_picture_set_resource")]
-    pub fn set_resource(&self, resource_path: Option<&str>) {
+    pub fn set_resource<'a>(&self, resource_path: impl Into<Option<&'a str>>) {
         unsafe {
-            ffi::gtk_picture_set_resource(self.to_glib_none().0, resource_path.to_glib_none().0);
+            ffi::gtk_picture_set_resource(
+                self.to_glib_none().0,
+                resource_path.into().to_glib_none().0,
+            );
         }
     }
 
@@ -406,7 +414,7 @@ impl PictureBuilder {
         }
     }
 
-    pub fn alternative_text(self, alternative_text: impl Into<glib::GString>) -> Self {
+    pub fn alternative_text<'a>(self, alternative_text: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self
                 .builder
@@ -428,9 +436,11 @@ impl PictureBuilder {
         }
     }
 
-    pub fn file(self, file: &impl IsA<gio::File>) -> Self {
+    pub fn file<'a, P: IsA<gio::File>>(self, file: impl Into<Option<&'a P>>) -> Self {
         Self {
-            builder: self.builder.property("file", file.clone().upcast()),
+            builder: self
+                .builder
+                .property("file", file.into().as_ref().map(|p| p.as_ref())),
         }
     }
 
@@ -443,11 +453,14 @@ impl PictureBuilder {
         }
     }
 
-    pub fn paintable(self, paintable: &impl IsA<gdk::Paintable>) -> Self {
+    pub fn paintable<'a, P: IsA<gdk::Paintable>>(
+        self,
+        paintable: impl Into<Option<&'a P>>,
+    ) -> Self {
         Self {
             builder: self
                 .builder
-                .property("paintable", paintable.clone().upcast()),
+                .property("paintable", paintable.into().as_ref().map(|p| p.as_ref())),
         }
     }
 
@@ -469,15 +482,15 @@ impl PictureBuilder {
         }
     }
 
-    pub fn css_name(self, css_name: impl Into<glib::GString>) -> Self {
+    pub fn css_name<'a>(self, css_name: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("css-name", css_name.into()),
         }
     }
 
-    pub fn cursor(self, cursor: &gdk::Cursor) -> Self {
+    pub fn cursor<'a>(self, cursor: impl Into<Option<&'a gdk::Cursor>>) -> Self {
         Self {
-            builder: self.builder.property("cursor", cursor.clone()),
+            builder: self.builder.property("cursor", cursor.into()),
         }
     }
 
@@ -523,11 +536,15 @@ impl PictureBuilder {
         }
     }
 
-    pub fn layout_manager(self, layout_manager: &impl IsA<LayoutManager>) -> Self {
+    pub fn layout_manager<'a, P: IsA<LayoutManager>>(
+        self,
+        layout_manager: impl Into<Option<&'a P>>,
+    ) -> Self {
         Self {
-            builder: self
-                .builder
-                .property("layout-manager", layout_manager.clone().upcast()),
+            builder: self.builder.property(
+                "layout-manager",
+                layout_manager.into().as_ref().map(|p| p.as_ref()),
+            ),
         }
     }
 
@@ -555,7 +572,7 @@ impl PictureBuilder {
         }
     }
 
-    pub fn name(self, name: impl Into<glib::GString>) -> Self {
+    pub fn name<'a>(self, name: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("name", name.into()),
         }
@@ -585,7 +602,7 @@ impl PictureBuilder {
         }
     }
 
-    pub fn tooltip_markup(self, tooltip_markup: impl Into<glib::GString>) -> Self {
+    pub fn tooltip_markup<'a>(self, tooltip_markup: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self
                 .builder
@@ -593,7 +610,7 @@ impl PictureBuilder {
         }
     }
 
-    pub fn tooltip_text(self, tooltip_text: impl Into<glib::GString>) -> Self {
+    pub fn tooltip_text<'a>(self, tooltip_text: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("tooltip-text", tooltip_text.into()),
         }

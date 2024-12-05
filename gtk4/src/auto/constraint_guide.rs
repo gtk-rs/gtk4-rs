@@ -66,9 +66,9 @@ impl ConstraintGuide {
 
     #[doc(alias = "gtk_constraint_guide_set_name")]
     #[doc(alias = "name")]
-    pub fn set_name(&self, name: Option<&str>) {
+    pub fn set_name<'a>(&self, name: impl Into<Option<&'a str>>) {
         unsafe {
-            ffi::gtk_constraint_guide_set_name(self.to_glib_none().0, name.to_glib_none().0);
+            ffi::gtk_constraint_guide_set_name(self.to_glib_none().0, name.into().to_glib_none().0);
         }
     }
 
@@ -378,7 +378,7 @@ impl ConstraintGuideBuilder {
         }
     }
 
-    pub fn name(self, name: impl Into<glib::GString>) -> Self {
+    pub fn name<'a>(self, name: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("name", name.into()),
         }

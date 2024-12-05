@@ -68,11 +68,18 @@ impl Image {
 
     #[doc(alias = "gtk_image_new_from_paintable")]
     #[doc(alias = "new_from_paintable")]
-    pub fn from_paintable(paintable: Option<&impl IsA<gdk::Paintable>>) -> Image {
+    pub fn from_paintable<'a, P: IsA<gdk::Paintable>>(
+        paintable: impl Into<Option<&'a P>>,
+    ) -> Image {
         assert_initialized_main_thread!();
         unsafe {
             Widget::from_glib_none(ffi::gtk_image_new_from_paintable(
-                paintable.map(|p| p.as_ref()).to_glib_none().0,
+                paintable
+                    .into()
+                    .as_ref()
+                    .map(|p| p.as_ref())
+                    .to_glib_none()
+                    .0,
             ))
             .unsafe_cast()
         }
@@ -82,11 +89,13 @@ impl Image {
     #[allow(deprecated)]
     #[doc(alias = "gtk_image_new_from_pixbuf")]
     #[doc(alias = "new_from_pixbuf")]
-    pub fn from_pixbuf(pixbuf: Option<&gdk_pixbuf::Pixbuf>) -> Image {
+    pub fn from_pixbuf<'a>(pixbuf: impl Into<Option<&'a gdk_pixbuf::Pixbuf>>) -> Image {
         assert_initialized_main_thread!();
         unsafe {
-            Widget::from_glib_none(ffi::gtk_image_new_from_pixbuf(pixbuf.to_glib_none().0))
-                .unsafe_cast()
+            Widget::from_glib_none(ffi::gtk_image_new_from_pixbuf(
+                pixbuf.into().to_glib_none().0,
+            ))
+            .unsafe_cast()
         }
     }
 
@@ -179,20 +188,28 @@ impl Image {
     #[doc(alias = "gtk_image_set_from_icon_name")]
     #[doc(alias = "set_from_icon_name")]
     #[doc(alias = "icon-name")]
-    pub fn set_icon_name(&self, icon_name: Option<&str>) {
+    pub fn set_icon_name<'a>(&self, icon_name: impl Into<Option<&'a str>>) {
         unsafe {
-            ffi::gtk_image_set_from_icon_name(self.to_glib_none().0, icon_name.to_glib_none().0);
+            ffi::gtk_image_set_from_icon_name(
+                self.to_glib_none().0,
+                icon_name.into().to_glib_none().0,
+            );
         }
     }
 
     #[doc(alias = "gtk_image_set_from_paintable")]
     #[doc(alias = "set_from_paintable")]
     #[doc(alias = "paintable")]
-    pub fn set_paintable(&self, paintable: Option<&impl IsA<gdk::Paintable>>) {
+    pub fn set_paintable<'a, P: IsA<gdk::Paintable>>(&self, paintable: impl Into<Option<&'a P>>) {
         unsafe {
             ffi::gtk_image_set_from_paintable(
                 self.to_glib_none().0,
-                paintable.map(|p| p.as_ref()).to_glib_none().0,
+                paintable
+                    .into()
+                    .as_ref()
+                    .map(|p| p.as_ref())
+                    .to_glib_none()
+                    .0,
             );
         }
     }
@@ -200,18 +217,21 @@ impl Image {
     #[cfg_attr(feature = "v4_12", deprecated = "Since 4.12")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_image_set_from_pixbuf")]
-    pub fn set_from_pixbuf(&self, pixbuf: Option<&gdk_pixbuf::Pixbuf>) {
+    pub fn set_from_pixbuf<'a>(&self, pixbuf: impl Into<Option<&'a gdk_pixbuf::Pixbuf>>) {
         unsafe {
-            ffi::gtk_image_set_from_pixbuf(self.to_glib_none().0, pixbuf.to_glib_none().0);
+            ffi::gtk_image_set_from_pixbuf(self.to_glib_none().0, pixbuf.into().to_glib_none().0);
         }
     }
 
     #[doc(alias = "gtk_image_set_from_resource")]
     #[doc(alias = "set_from_resource")]
     #[doc(alias = "resource")]
-    pub fn set_resource(&self, resource_path: Option<&str>) {
+    pub fn set_resource<'a>(&self, resource_path: impl Into<Option<&'a str>>) {
         unsafe {
-            ffi::gtk_image_set_from_resource(self.to_glib_none().0, resource_path.to_glib_none().0);
+            ffi::gtk_image_set_from_resource(
+                self.to_glib_none().0,
+                resource_path.into().to_glib_none().0,
+            );
         }
     }
 
@@ -479,19 +499,21 @@ impl ImageBuilder {
         }
     }
 
-    pub fn file(self, file: impl Into<glib::GString>) -> Self {
+    pub fn file<'a>(self, file: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("file", file.into()),
         }
     }
 
-    pub fn gicon(self, gicon: &impl IsA<gio::Icon>) -> Self {
+    pub fn gicon<'a, P: IsA<gio::Icon>>(self, gicon: impl Into<Option<&'a P>>) -> Self {
         Self {
-            builder: self.builder.property("gicon", gicon.clone().upcast()),
+            builder: self
+                .builder
+                .property("gicon", gicon.into().as_ref().map(|p| p.as_ref())),
         }
     }
 
-    pub fn icon_name(self, icon_name: impl Into<glib::GString>) -> Self {
+    pub fn icon_name<'a>(self, icon_name: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("icon-name", icon_name.into()),
         }
@@ -503,11 +525,14 @@ impl ImageBuilder {
         }
     }
 
-    pub fn paintable(self, paintable: &impl IsA<gdk::Paintable>) -> Self {
+    pub fn paintable<'a, P: IsA<gdk::Paintable>>(
+        self,
+        paintable: impl Into<Option<&'a P>>,
+    ) -> Self {
         Self {
             builder: self
                 .builder
-                .property("paintable", paintable.clone().upcast()),
+                .property("paintable", paintable.into().as_ref().map(|p| p.as_ref())),
         }
     }
 
@@ -517,7 +542,7 @@ impl ImageBuilder {
         }
     }
 
-    pub fn resource(self, resource: impl Into<glib::GString>) -> Self {
+    pub fn resource<'a>(self, resource: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("resource", resource.into()),
         }
@@ -547,15 +572,15 @@ impl ImageBuilder {
         }
     }
 
-    pub fn css_name(self, css_name: impl Into<glib::GString>) -> Self {
+    pub fn css_name<'a>(self, css_name: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("css-name", css_name.into()),
         }
     }
 
-    pub fn cursor(self, cursor: &gdk::Cursor) -> Self {
+    pub fn cursor<'a>(self, cursor: impl Into<Option<&'a gdk::Cursor>>) -> Self {
         Self {
-            builder: self.builder.property("cursor", cursor.clone()),
+            builder: self.builder.property("cursor", cursor.into()),
         }
     }
 
@@ -601,11 +626,15 @@ impl ImageBuilder {
         }
     }
 
-    pub fn layout_manager(self, layout_manager: &impl IsA<LayoutManager>) -> Self {
+    pub fn layout_manager<'a, P: IsA<LayoutManager>>(
+        self,
+        layout_manager: impl Into<Option<&'a P>>,
+    ) -> Self {
         Self {
-            builder: self
-                .builder
-                .property("layout-manager", layout_manager.clone().upcast()),
+            builder: self.builder.property(
+                "layout-manager",
+                layout_manager.into().as_ref().map(|p| p.as_ref()),
+            ),
         }
     }
 
@@ -633,7 +662,7 @@ impl ImageBuilder {
         }
     }
 
-    pub fn name(self, name: impl Into<glib::GString>) -> Self {
+    pub fn name<'a>(self, name: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("name", name.into()),
         }
@@ -663,7 +692,7 @@ impl ImageBuilder {
         }
     }
 
-    pub fn tooltip_markup(self, tooltip_markup: impl Into<glib::GString>) -> Self {
+    pub fn tooltip_markup<'a>(self, tooltip_markup: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self
                 .builder
@@ -671,7 +700,7 @@ impl ImageBuilder {
         }
     }
 
-    pub fn tooltip_text(self, tooltip_text: impl Into<glib::GString>) -> Self {
+    pub fn tooltip_text<'a>(self, tooltip_text: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("tooltip-text", tooltip_text.into()),
         }

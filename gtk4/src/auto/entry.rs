@@ -84,22 +84,24 @@ impl EntryBuilder {
         }
     }
 
-    pub fn attributes(self, attributes: &pango::AttrList) -> Self {
+    pub fn attributes<'a>(self, attributes: impl Into<Option<&'a pango::AttrList>>) -> Self {
         Self {
-            builder: self.builder.property("attributes", attributes.clone()),
+            builder: self.builder.property("attributes", attributes.into()),
         }
     }
 
-    pub fn buffer(self, buffer: &impl IsA<EntryBuffer>) -> Self {
+    pub fn buffer<'a, P: IsA<EntryBuffer>>(self, buffer: impl Into<Option<&'a P>>) -> Self {
         Self {
-            builder: self.builder.property("buffer", buffer.clone().upcast()),
+            builder: self
+                .builder
+                .property("buffer", buffer.into().as_ref().map(|p| p.as_ref())),
         }
     }
 
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    pub fn completion(self, completion: &EntryCompletion) -> Self {
+    pub fn completion<'a>(self, completion: impl Into<Option<&'a EntryCompletion>>) -> Self {
         Self {
-            builder: self.builder.property("completion", completion.clone()),
+            builder: self.builder.property("completion", completion.into()),
         }
     }
 
@@ -111,11 +113,14 @@ impl EntryBuilder {
         }
     }
 
-    pub fn extra_menu(self, extra_menu: &impl IsA<gio::MenuModel>) -> Self {
+    pub fn extra_menu<'a, P: IsA<gio::MenuModel>>(
+        self,
+        extra_menu: impl Into<Option<&'a P>>,
+    ) -> Self {
         Self {
             builder: self
                 .builder
-                .property("extra-menu", extra_menu.clone().upcast()),
+                .property("extra-menu", extra_menu.into().as_ref().map(|p| p.as_ref())),
         }
     }
 
@@ -125,7 +130,7 @@ impl EntryBuilder {
         }
     }
 
-    pub fn im_module(self, im_module: impl Into<glib::GString>) -> Self {
+    pub fn im_module<'a>(self, im_module: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("im-module", im_module.into()),
         }
@@ -169,7 +174,7 @@ impl EntryBuilder {
         }
     }
 
-    pub fn placeholder_text(self, placeholder_text: impl Into<glib::GString>) -> Self {
+    pub fn placeholder_text<'a>(self, placeholder_text: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self
                 .builder
@@ -185,15 +190,19 @@ impl EntryBuilder {
         }
     }
 
-    pub fn primary_icon_gicon(self, primary_icon_gicon: &impl IsA<gio::Icon>) -> Self {
+    pub fn primary_icon_gicon<'a, P: IsA<gio::Icon>>(
+        self,
+        primary_icon_gicon: impl Into<Option<&'a P>>,
+    ) -> Self {
         Self {
-            builder: self
-                .builder
-                .property("primary-icon-gicon", primary_icon_gicon.clone().upcast()),
+            builder: self.builder.property(
+                "primary-icon-gicon",
+                primary_icon_gicon.into().as_ref().map(|p| p.as_ref()),
+            ),
         }
     }
 
-    pub fn primary_icon_name(self, primary_icon_name: impl Into<glib::GString>) -> Self {
+    pub fn primary_icon_name<'a>(self, primary_icon_name: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self
                 .builder
@@ -201,11 +210,14 @@ impl EntryBuilder {
         }
     }
 
-    pub fn primary_icon_paintable(self, primary_icon_paintable: &impl IsA<gdk::Paintable>) -> Self {
+    pub fn primary_icon_paintable<'a, P: IsA<gdk::Paintable>>(
+        self,
+        primary_icon_paintable: impl Into<Option<&'a P>>,
+    ) -> Self {
         Self {
             builder: self.builder.property(
                 "primary-icon-paintable",
-                primary_icon_paintable.clone().upcast(),
+                primary_icon_paintable.into().as_ref().map(|p| p.as_ref()),
             ),
         }
     }
@@ -218,9 +230,9 @@ impl EntryBuilder {
         }
     }
 
-    pub fn primary_icon_tooltip_markup(
+    pub fn primary_icon_tooltip_markup<'a>(
         self,
-        primary_icon_tooltip_markup: impl Into<glib::GString>,
+        primary_icon_tooltip_markup: impl Into<Option<&'a str>>,
     ) -> Self {
         Self {
             builder: self.builder.property(
@@ -230,9 +242,9 @@ impl EntryBuilder {
         }
     }
 
-    pub fn primary_icon_tooltip_text(
+    pub fn primary_icon_tooltip_text<'a>(
         self,
-        primary_icon_tooltip_text: impl Into<glib::GString>,
+        primary_icon_tooltip_text: impl Into<Option<&'a str>>,
     ) -> Self {
         Self {
             builder: self.builder.property(
@@ -266,16 +278,19 @@ impl EntryBuilder {
         }
     }
 
-    pub fn secondary_icon_gicon(self, secondary_icon_gicon: &impl IsA<gio::Icon>) -> Self {
+    pub fn secondary_icon_gicon<'a, P: IsA<gio::Icon>>(
+        self,
+        secondary_icon_gicon: impl Into<Option<&'a P>>,
+    ) -> Self {
         Self {
             builder: self.builder.property(
                 "secondary-icon-gicon",
-                secondary_icon_gicon.clone().upcast(),
+                secondary_icon_gicon.into().as_ref().map(|p| p.as_ref()),
             ),
         }
     }
 
-    pub fn secondary_icon_name(self, secondary_icon_name: impl Into<glib::GString>) -> Self {
+    pub fn secondary_icon_name<'a>(self, secondary_icon_name: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self
                 .builder
@@ -283,14 +298,14 @@ impl EntryBuilder {
         }
     }
 
-    pub fn secondary_icon_paintable(
+    pub fn secondary_icon_paintable<'a, P: IsA<gdk::Paintable>>(
         self,
-        secondary_icon_paintable: &impl IsA<gdk::Paintable>,
+        secondary_icon_paintable: impl Into<Option<&'a P>>,
     ) -> Self {
         Self {
             builder: self.builder.property(
                 "secondary-icon-paintable",
-                secondary_icon_paintable.clone().upcast(),
+                secondary_icon_paintable.into().as_ref().map(|p| p.as_ref()),
             ),
         }
     }
@@ -303,9 +318,9 @@ impl EntryBuilder {
         }
     }
 
-    pub fn secondary_icon_tooltip_markup(
+    pub fn secondary_icon_tooltip_markup<'a>(
         self,
-        secondary_icon_tooltip_markup: impl Into<glib::GString>,
+        secondary_icon_tooltip_markup: impl Into<Option<&'a str>>,
     ) -> Self {
         Self {
             builder: self.builder.property(
@@ -315,9 +330,9 @@ impl EntryBuilder {
         }
     }
 
-    pub fn secondary_icon_tooltip_text(
+    pub fn secondary_icon_tooltip_text<'a>(
         self,
-        secondary_icon_tooltip_text: impl Into<glib::GString>,
+        secondary_icon_tooltip_text: impl Into<Option<&'a str>>,
     ) -> Self {
         Self {
             builder: self.builder.property(
@@ -333,9 +348,9 @@ impl EntryBuilder {
         }
     }
 
-    pub fn tabs(self, tabs: &pango::TabArray) -> Self {
+    pub fn tabs<'a>(self, tabs: impl Into<Option<&'a pango::TabArray>>) -> Self {
         Self {
-            builder: self.builder.property("tabs", tabs),
+            builder: self.builder.property("tabs", tabs.into()),
         }
     }
 
@@ -371,15 +386,15 @@ impl EntryBuilder {
         }
     }
 
-    pub fn css_name(self, css_name: impl Into<glib::GString>) -> Self {
+    pub fn css_name<'a>(self, css_name: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("css-name", css_name.into()),
         }
     }
 
-    pub fn cursor(self, cursor: &gdk::Cursor) -> Self {
+    pub fn cursor<'a>(self, cursor: impl Into<Option<&'a gdk::Cursor>>) -> Self {
         Self {
-            builder: self.builder.property("cursor", cursor.clone()),
+            builder: self.builder.property("cursor", cursor.into()),
         }
     }
 
@@ -425,11 +440,15 @@ impl EntryBuilder {
         }
     }
 
-    pub fn layout_manager(self, layout_manager: &impl IsA<LayoutManager>) -> Self {
+    pub fn layout_manager<'a, P: IsA<LayoutManager>>(
+        self,
+        layout_manager: impl Into<Option<&'a P>>,
+    ) -> Self {
         Self {
-            builder: self
-                .builder
-                .property("layout-manager", layout_manager.clone().upcast()),
+            builder: self.builder.property(
+                "layout-manager",
+                layout_manager.into().as_ref().map(|p| p.as_ref()),
+            ),
         }
     }
 
@@ -457,7 +476,7 @@ impl EntryBuilder {
         }
     }
 
-    pub fn name(self, name: impl Into<glib::GString>) -> Self {
+    pub fn name<'a>(self, name: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("name", name.into()),
         }
@@ -487,7 +506,7 @@ impl EntryBuilder {
         }
     }
 
-    pub fn tooltip_markup(self, tooltip_markup: impl Into<glib::GString>) -> Self {
+    pub fn tooltip_markup<'a>(self, tooltip_markup: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self
                 .builder
@@ -495,7 +514,7 @@ impl EntryBuilder {
         }
     }
 
-    pub fn tooltip_text(self, tooltip_text: impl Into<glib::GString>) -> Self {
+    pub fn tooltip_text<'a>(self, tooltip_text: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("tooltip-text", tooltip_text.into()),
         }
@@ -561,7 +580,7 @@ impl EntryBuilder {
         }
     }
 
-    pub fn text(self, text: impl Into<glib::GString>) -> Self {
+    pub fn text<'a>(self, text: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("text", text.into()),
         }
@@ -919,22 +938,22 @@ pub trait EntryExt: IsA<Entry> + 'static {
     #[allow(deprecated)]
     #[doc(alias = "gtk_entry_set_completion")]
     #[doc(alias = "completion")]
-    fn set_completion(&self, completion: Option<&EntryCompletion>) {
+    fn set_completion<'a>(&self, completion: impl Into<Option<&'a EntryCompletion>>) {
         unsafe {
             ffi::gtk_entry_set_completion(
                 self.as_ref().to_glib_none().0,
-                completion.to_glib_none().0,
+                completion.into().to_glib_none().0,
             );
         }
     }
 
     #[doc(alias = "gtk_entry_set_extra_menu")]
     #[doc(alias = "extra-menu")]
-    fn set_extra_menu(&self, model: Option<&impl IsA<gio::MenuModel>>) {
+    fn set_extra_menu<'a, P: IsA<gio::MenuModel>>(&self, model: impl Into<Option<&'a P>>) {
         unsafe {
             ffi::gtk_entry_set_extra_menu(
                 self.as_ref().to_glib_none().0,
-                model.map(|p| p.as_ref()).to_glib_none().0,
+                model.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
             );
         }
     }
@@ -976,38 +995,51 @@ pub trait EntryExt: IsA<Entry> + 'static {
     }
 
     #[doc(alias = "gtk_entry_set_icon_from_gicon")]
-    fn set_icon_from_gicon(&self, icon_pos: EntryIconPosition, icon: Option<&impl IsA<gio::Icon>>) {
+    fn set_icon_from_gicon<'a, P: IsA<gio::Icon>>(
+        &self,
+        icon_pos: EntryIconPosition,
+        icon: impl Into<Option<&'a P>>,
+    ) {
         unsafe {
             ffi::gtk_entry_set_icon_from_gicon(
                 self.as_ref().to_glib_none().0,
                 icon_pos.into_glib(),
-                icon.map(|p| p.as_ref()).to_glib_none().0,
+                icon.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
             );
         }
     }
 
     #[doc(alias = "gtk_entry_set_icon_from_icon_name")]
-    fn set_icon_from_icon_name(&self, icon_pos: EntryIconPosition, icon_name: Option<&str>) {
+    fn set_icon_from_icon_name<'a>(
+        &self,
+        icon_pos: EntryIconPosition,
+        icon_name: impl Into<Option<&'a str>>,
+    ) {
         unsafe {
             ffi::gtk_entry_set_icon_from_icon_name(
                 self.as_ref().to_glib_none().0,
                 icon_pos.into_glib(),
-                icon_name.to_glib_none().0,
+                icon_name.into().to_glib_none().0,
             );
         }
     }
 
     #[doc(alias = "gtk_entry_set_icon_from_paintable")]
-    fn set_icon_from_paintable(
+    fn set_icon_from_paintable<'a, P: IsA<gdk::Paintable>>(
         &self,
         icon_pos: EntryIconPosition,
-        paintable: Option<&impl IsA<gdk::Paintable>>,
+        paintable: impl Into<Option<&'a P>>,
     ) {
         unsafe {
             ffi::gtk_entry_set_icon_from_paintable(
                 self.as_ref().to_glib_none().0,
                 icon_pos.into_glib(),
-                paintable.map(|p| p.as_ref()).to_glib_none().0,
+                paintable
+                    .into()
+                    .as_ref()
+                    .map(|p| p.as_ref())
+                    .to_glib_none()
+                    .0,
             );
         }
     }
@@ -1024,23 +1056,31 @@ pub trait EntryExt: IsA<Entry> + 'static {
     }
 
     #[doc(alias = "gtk_entry_set_icon_tooltip_markup")]
-    fn set_icon_tooltip_markup(&self, icon_pos: EntryIconPosition, tooltip: Option<&str>) {
+    fn set_icon_tooltip_markup<'a>(
+        &self,
+        icon_pos: EntryIconPosition,
+        tooltip: impl Into<Option<&'a str>>,
+    ) {
         unsafe {
             ffi::gtk_entry_set_icon_tooltip_markup(
                 self.as_ref().to_glib_none().0,
                 icon_pos.into_glib(),
-                tooltip.to_glib_none().0,
+                tooltip.into().to_glib_none().0,
             );
         }
     }
 
     #[doc(alias = "gtk_entry_set_icon_tooltip_text")]
-    fn set_icon_tooltip_text(&self, icon_pos: EntryIconPosition, tooltip: Option<&str>) {
+    fn set_icon_tooltip_text<'a>(
+        &self,
+        icon_pos: EntryIconPosition,
+        tooltip: impl Into<Option<&'a str>>,
+    ) {
         unsafe {
             ffi::gtk_entry_set_icon_tooltip_text(
                 self.as_ref().to_glib_none().0,
                 icon_pos.into_glib(),
-                tooltip.to_glib_none().0,
+                tooltip.into().to_glib_none().0,
             );
         }
     }
@@ -1063,9 +1103,12 @@ pub trait EntryExt: IsA<Entry> + 'static {
 
     #[doc(alias = "gtk_entry_set_invisible_char")]
     #[doc(alias = "invisible-char")]
-    fn set_invisible_char(&self, ch: Option<char>) {
+    fn set_invisible_char(&self, ch: impl Into<Option<char>>) {
         unsafe {
-            ffi::gtk_entry_set_invisible_char(self.as_ref().to_glib_none().0, ch.into_glib());
+            ffi::gtk_entry_set_invisible_char(
+                self.as_ref().to_glib_none().0,
+                ch.into().into_glib(),
+            );
         }
     }
 
@@ -1090,11 +1133,11 @@ pub trait EntryExt: IsA<Entry> + 'static {
 
     #[doc(alias = "gtk_entry_set_placeholder_text")]
     #[doc(alias = "placeholder-text")]
-    fn set_placeholder_text(&self, text: Option<&str>) {
+    fn set_placeholder_text<'a>(&self, text: impl Into<Option<&'a str>>) {
         unsafe {
             ffi::gtk_entry_set_placeholder_text(
                 self.as_ref().to_glib_none().0,
-                text.to_glib_none().0,
+                text.into().to_glib_none().0,
             );
         }
     }
@@ -1117,11 +1160,11 @@ pub trait EntryExt: IsA<Entry> + 'static {
 
     #[doc(alias = "gtk_entry_set_tabs")]
     #[doc(alias = "tabs")]
-    fn set_tabs(&self, tabs: Option<&pango::TabArray>) {
+    fn set_tabs<'a>(&self, tabs: impl Into<Option<&'a pango::TabArray>>) {
         unsafe {
             ffi::gtk_entry_set_tabs(
                 self.as_ref().to_glib_none().0,
-                mut_override(tabs.to_glib_none().0),
+                mut_override(tabs.into().to_glib_none().0),
             );
         }
     }
@@ -1161,8 +1204,8 @@ pub trait EntryExt: IsA<Entry> + 'static {
     }
 
     #[doc(alias = "im-module")]
-    fn set_im_module(&self, im_module: Option<&str>) {
-        ObjectExt::set_property(self.as_ref(), "im-module", im_module)
+    fn set_im_module<'a>(&self, im_module: impl Into<Option<&'a str>>) {
+        ObjectExt::set_property(self.as_ref(), "im-module", im_module.into())
     }
 
     #[doc(alias = "invisible-char-set")]
@@ -1190,8 +1233,15 @@ pub trait EntryExt: IsA<Entry> + 'static {
     }
 
     #[doc(alias = "primary-icon-gicon")]
-    fn set_primary_icon_gicon<P: IsA<gio::Icon>>(&self, primary_icon_gicon: Option<&P>) {
-        ObjectExt::set_property(self.as_ref(), "primary-icon-gicon", primary_icon_gicon)
+    fn set_primary_icon_gicon<'a, P: IsA<gio::Icon>>(
+        &self,
+        primary_icon_gicon: impl Into<Option<&'a P>>,
+    ) {
+        ObjectExt::set_property(
+            self.as_ref(),
+            "primary-icon-gicon",
+            primary_icon_gicon.into().as_ref().map(|p| p.as_ref()),
+        )
     }
 
     #[doc(alias = "primary-icon-name")]
@@ -1200,8 +1250,8 @@ pub trait EntryExt: IsA<Entry> + 'static {
     }
 
     #[doc(alias = "primary-icon-name")]
-    fn set_primary_icon_name(&self, primary_icon_name: Option<&str>) {
-        ObjectExt::set_property(self.as_ref(), "primary-icon-name", primary_icon_name)
+    fn set_primary_icon_name<'a>(&self, primary_icon_name: impl Into<Option<&'a str>>) {
+        ObjectExt::set_property(self.as_ref(), "primary-icon-name", primary_icon_name.into())
     }
 
     #[doc(alias = "primary-icon-paintable")]
@@ -1210,14 +1260,14 @@ pub trait EntryExt: IsA<Entry> + 'static {
     }
 
     #[doc(alias = "primary-icon-paintable")]
-    fn set_primary_icon_paintable<P: IsA<gdk::Paintable>>(
+    fn set_primary_icon_paintable<'a, P: IsA<gdk::Paintable>>(
         &self,
-        primary_icon_paintable: Option<&P>,
+        primary_icon_paintable: impl Into<Option<&'a P>>,
     ) {
         ObjectExt::set_property(
             self.as_ref(),
             "primary-icon-paintable",
-            primary_icon_paintable,
+            primary_icon_paintable.into().as_ref().map(|p| p.as_ref()),
         )
     }
 
@@ -1246,11 +1296,14 @@ pub trait EntryExt: IsA<Entry> + 'static {
     }
 
     #[doc(alias = "primary-icon-tooltip-markup")]
-    fn set_primary_icon_tooltip_markup(&self, primary_icon_tooltip_markup: Option<&str>) {
+    fn set_primary_icon_tooltip_markup<'a>(
+        &self,
+        primary_icon_tooltip_markup: impl Into<Option<&'a str>>,
+    ) {
         ObjectExt::set_property(
             self.as_ref(),
             "primary-icon-tooltip-markup",
-            primary_icon_tooltip_markup,
+            primary_icon_tooltip_markup.into(),
         )
     }
 
@@ -1260,11 +1313,14 @@ pub trait EntryExt: IsA<Entry> + 'static {
     }
 
     #[doc(alias = "primary-icon-tooltip-text")]
-    fn set_primary_icon_tooltip_text(&self, primary_icon_tooltip_text: Option<&str>) {
+    fn set_primary_icon_tooltip_text<'a>(
+        &self,
+        primary_icon_tooltip_text: impl Into<Option<&'a str>>,
+    ) {
         ObjectExt::set_property(
             self.as_ref(),
             "primary-icon-tooltip-text",
-            primary_icon_tooltip_text,
+            primary_icon_tooltip_text.into(),
         )
     }
 
@@ -1293,8 +1349,15 @@ pub trait EntryExt: IsA<Entry> + 'static {
     }
 
     #[doc(alias = "secondary-icon-gicon")]
-    fn set_secondary_icon_gicon<P: IsA<gio::Icon>>(&self, secondary_icon_gicon: Option<&P>) {
-        ObjectExt::set_property(self.as_ref(), "secondary-icon-gicon", secondary_icon_gicon)
+    fn set_secondary_icon_gicon<'a, P: IsA<gio::Icon>>(
+        &self,
+        secondary_icon_gicon: impl Into<Option<&'a P>>,
+    ) {
+        ObjectExt::set_property(
+            self.as_ref(),
+            "secondary-icon-gicon",
+            secondary_icon_gicon.into().as_ref().map(|p| p.as_ref()),
+        )
     }
 
     #[doc(alias = "secondary-icon-name")]
@@ -1303,8 +1366,12 @@ pub trait EntryExt: IsA<Entry> + 'static {
     }
 
     #[doc(alias = "secondary-icon-name")]
-    fn set_secondary_icon_name(&self, secondary_icon_name: Option<&str>) {
-        ObjectExt::set_property(self.as_ref(), "secondary-icon-name", secondary_icon_name)
+    fn set_secondary_icon_name<'a>(&self, secondary_icon_name: impl Into<Option<&'a str>>) {
+        ObjectExt::set_property(
+            self.as_ref(),
+            "secondary-icon-name",
+            secondary_icon_name.into(),
+        )
     }
 
     #[doc(alias = "secondary-icon-paintable")]
@@ -1313,14 +1380,14 @@ pub trait EntryExt: IsA<Entry> + 'static {
     }
 
     #[doc(alias = "secondary-icon-paintable")]
-    fn set_secondary_icon_paintable<P: IsA<gdk::Paintable>>(
+    fn set_secondary_icon_paintable<'a, P: IsA<gdk::Paintable>>(
         &self,
-        secondary_icon_paintable: Option<&P>,
+        secondary_icon_paintable: impl Into<Option<&'a P>>,
     ) {
         ObjectExt::set_property(
             self.as_ref(),
             "secondary-icon-paintable",
-            secondary_icon_paintable,
+            secondary_icon_paintable.into().as_ref().map(|p| p.as_ref()),
         )
     }
 
@@ -1349,11 +1416,14 @@ pub trait EntryExt: IsA<Entry> + 'static {
     }
 
     #[doc(alias = "secondary-icon-tooltip-markup")]
-    fn set_secondary_icon_tooltip_markup(&self, secondary_icon_tooltip_markup: Option<&str>) {
+    fn set_secondary_icon_tooltip_markup<'a>(
+        &self,
+        secondary_icon_tooltip_markup: impl Into<Option<&'a str>>,
+    ) {
         ObjectExt::set_property(
             self.as_ref(),
             "secondary-icon-tooltip-markup",
-            secondary_icon_tooltip_markup,
+            secondary_icon_tooltip_markup.into(),
         )
     }
 
@@ -1363,11 +1433,14 @@ pub trait EntryExt: IsA<Entry> + 'static {
     }
 
     #[doc(alias = "secondary-icon-tooltip-text")]
-    fn set_secondary_icon_tooltip_text(&self, secondary_icon_tooltip_text: Option<&str>) {
+    fn set_secondary_icon_tooltip_text<'a>(
+        &self,
+        secondary_icon_tooltip_text: impl Into<Option<&'a str>>,
+    ) {
         ObjectExt::set_property(
             self.as_ref(),
             "secondary-icon-tooltip-text",
-            secondary_icon_tooltip_text,
+            secondary_icon_tooltip_text.into(),
         )
     }
 

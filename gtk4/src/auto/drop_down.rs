@@ -160,11 +160,11 @@ impl DropDown {
 
     #[doc(alias = "gtk_drop_down_set_factory")]
     #[doc(alias = "factory")]
-    pub fn set_factory(&self, factory: Option<&impl IsA<ListItemFactory>>) {
+    pub fn set_factory<'a, P: IsA<ListItemFactory>>(&self, factory: impl Into<Option<&'a P>>) {
         unsafe {
             ffi::gtk_drop_down_set_factory(
                 self.to_glib_none().0,
-                factory.map(|p| p.as_ref()).to_glib_none().0,
+                factory.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
             );
         }
     }
@@ -173,33 +173,36 @@ impl DropDown {
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     #[doc(alias = "gtk_drop_down_set_header_factory")]
     #[doc(alias = "header-factory")]
-    pub fn set_header_factory(&self, factory: Option<&impl IsA<ListItemFactory>>) {
+    pub fn set_header_factory<'a, P: IsA<ListItemFactory>>(
+        &self,
+        factory: impl Into<Option<&'a P>>,
+    ) {
         unsafe {
             ffi::gtk_drop_down_set_header_factory(
                 self.to_glib_none().0,
-                factory.map(|p| p.as_ref()).to_glib_none().0,
+                factory.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
             );
         }
     }
 
     #[doc(alias = "gtk_drop_down_set_list_factory")]
     #[doc(alias = "list-factory")]
-    pub fn set_list_factory(&self, factory: Option<&impl IsA<ListItemFactory>>) {
+    pub fn set_list_factory<'a, P: IsA<ListItemFactory>>(&self, factory: impl Into<Option<&'a P>>) {
         unsafe {
             ffi::gtk_drop_down_set_list_factory(
                 self.to_glib_none().0,
-                factory.map(|p| p.as_ref()).to_glib_none().0,
+                factory.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
             );
         }
     }
 
     #[doc(alias = "gtk_drop_down_set_model")]
     #[doc(alias = "model")]
-    pub fn set_model(&self, model: Option<&impl IsA<gio::ListModel>>) {
+    pub fn set_model<'a, P: IsA<gio::ListModel>>(&self, model: impl Into<Option<&'a P>>) {
         unsafe {
             ffi::gtk_drop_down_set_model(
                 self.to_glib_none().0,
-                model.map(|p| p.as_ref()).to_glib_none().0,
+                model.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
             );
         }
     }
@@ -533,41 +536,53 @@ impl DropDownBuilder {
         }
     }
 
-    pub fn expression(self, expression: impl AsRef<Expression>) -> Self {
+    pub fn expression(self, expression: Option<impl AsRef<Expression>>) -> Self {
         Self {
             builder: self
                 .builder
-                .property("expression", expression.as_ref().clone()),
+                .property("expression", expression.as_ref().map(|p| p.as_ref())),
         }
     }
 
-    pub fn factory(self, factory: &impl IsA<ListItemFactory>) -> Self {
+    pub fn factory<'a, P: IsA<ListItemFactory>>(self, factory: impl Into<Option<&'a P>>) -> Self {
         Self {
-            builder: self.builder.property("factory", factory.clone().upcast()),
+            builder: self
+                .builder
+                .property("factory", factory.into().as_ref().map(|p| p.as_ref())),
         }
     }
 
     #[cfg(feature = "v4_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
-    pub fn header_factory(self, header_factory: &impl IsA<ListItemFactory>) -> Self {
+    pub fn header_factory<'a, P: IsA<ListItemFactory>>(
+        self,
+        header_factory: impl Into<Option<&'a P>>,
+    ) -> Self {
         Self {
-            builder: self
-                .builder
-                .property("header-factory", header_factory.clone().upcast()),
+            builder: self.builder.property(
+                "header-factory",
+                header_factory.into().as_ref().map(|p| p.as_ref()),
+            ),
         }
     }
 
-    pub fn list_factory(self, list_factory: &impl IsA<ListItemFactory>) -> Self {
+    pub fn list_factory<'a, P: IsA<ListItemFactory>>(
+        self,
+        list_factory: impl Into<Option<&'a P>>,
+    ) -> Self {
         Self {
-            builder: self
-                .builder
-                .property("list-factory", list_factory.clone().upcast()),
+            builder: self.builder.property(
+                "list-factory",
+                list_factory.into().as_ref().map(|p| p.as_ref()),
+            ),
         }
     }
 
-    pub fn model(self, model: &impl IsA<gio::ListModel>) -> Self {
+    pub fn model<'a, P: IsA<gio::ListModel>>(self, model: impl Into<Option<&'a P>>) -> Self {
         Self {
-            builder: self.builder.property("model", model.clone().upcast()),
+            builder: self
+                .builder
+                .property("model", model.into().as_ref().map(|p| p.as_ref())),
         }
     }
 
@@ -613,15 +628,15 @@ impl DropDownBuilder {
         }
     }
 
-    pub fn css_name(self, css_name: impl Into<glib::GString>) -> Self {
+    pub fn css_name<'a>(self, css_name: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("css-name", css_name.into()),
         }
     }
 
-    pub fn cursor(self, cursor: &gdk::Cursor) -> Self {
+    pub fn cursor<'a>(self, cursor: impl Into<Option<&'a gdk::Cursor>>) -> Self {
         Self {
-            builder: self.builder.property("cursor", cursor.clone()),
+            builder: self.builder.property("cursor", cursor.into()),
         }
     }
 
@@ -667,11 +682,15 @@ impl DropDownBuilder {
         }
     }
 
-    pub fn layout_manager(self, layout_manager: &impl IsA<LayoutManager>) -> Self {
+    pub fn layout_manager<'a, P: IsA<LayoutManager>>(
+        self,
+        layout_manager: impl Into<Option<&'a P>>,
+    ) -> Self {
         Self {
-            builder: self
-                .builder
-                .property("layout-manager", layout_manager.clone().upcast()),
+            builder: self.builder.property(
+                "layout-manager",
+                layout_manager.into().as_ref().map(|p| p.as_ref()),
+            ),
         }
     }
 
@@ -699,7 +718,7 @@ impl DropDownBuilder {
         }
     }
 
-    pub fn name(self, name: impl Into<glib::GString>) -> Self {
+    pub fn name<'a>(self, name: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("name", name.into()),
         }
@@ -729,7 +748,7 @@ impl DropDownBuilder {
         }
     }
 
-    pub fn tooltip_markup(self, tooltip_markup: impl Into<glib::GString>) -> Self {
+    pub fn tooltip_markup<'a>(self, tooltip_markup: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self
                 .builder
@@ -737,7 +756,7 @@ impl DropDownBuilder {
         }
     }
 
-    pub fn tooltip_text(self, tooltip_text: impl Into<glib::GString>) -> Self {
+    pub fn tooltip_text<'a>(self, tooltip_text: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("tooltip-text", tooltip_text.into()),
         }

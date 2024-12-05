@@ -174,11 +174,11 @@ pub trait IMContextExt: IsA<IMContext> + 'static {
     }
 
     #[doc(alias = "gtk_im_context_set_client_widget")]
-    fn set_client_widget(&self, widget: Option<&impl IsA<Widget>>) {
+    fn set_client_widget<'a, P: IsA<Widget>>(&self, widget: impl Into<Option<&'a P>>) {
         unsafe {
             ffi::gtk_im_context_set_client_widget(
                 self.as_ref().to_glib_none().0,
-                widget.map(|p| p.as_ref()).to_glib_none().0,
+                widget.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
             );
         }
     }

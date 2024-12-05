@@ -21,11 +21,13 @@ glib::wrapper! {
 
 impl SelectionFilterModel {
     #[doc(alias = "gtk_selection_filter_model_new")]
-    pub fn new(model: Option<&impl IsA<SelectionModel>>) -> SelectionFilterModel {
+    pub fn new<'a, P: IsA<SelectionModel>>(
+        model: impl Into<Option<&'a P>>,
+    ) -> SelectionFilterModel {
         assert_initialized_main_thread!();
         unsafe {
             from_glib_full(ffi::gtk_selection_filter_model_new(
-                model.map(|p| p.as_ref()).to_glib_none().0,
+                model.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
             ))
         }
     }
@@ -42,11 +44,11 @@ impl SelectionFilterModel {
 
     #[doc(alias = "gtk_selection_filter_model_set_model")]
     #[doc(alias = "model")]
-    pub fn set_model(&self, model: Option<&impl IsA<SelectionModel>>) {
+    pub fn set_model<'a, P: IsA<SelectionModel>>(&self, model: impl Into<Option<&'a P>>) {
         unsafe {
             ffi::gtk_selection_filter_model_set_model(
                 self.to_glib_none().0,
-                model.map(|p| p.as_ref()).to_glib_none().0,
+                model.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
             );
         }
     }

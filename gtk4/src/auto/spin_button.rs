@@ -40,15 +40,20 @@ glib::wrapper! {
 
 impl SpinButton {
     #[doc(alias = "gtk_spin_button_new")]
-    pub fn new(
-        adjustment: Option<&impl IsA<Adjustment>>,
+    pub fn new<'a, P: IsA<Adjustment>>(
+        adjustment: impl Into<Option<&'a P>>,
         climb_rate: f64,
         digits: u32,
     ) -> SpinButton {
         assert_initialized_main_thread!();
         unsafe {
             Widget::from_glib_none(ffi::gtk_spin_button_new(
-                adjustment.map(|p| p.as_ref()).to_glib_none().0,
+                adjustment
+                    .into()
+                    .as_ref()
+                    .map(|p| p.as_ref())
+                    .to_glib_none()
+                    .0,
                 climb_rate,
                 digits,
             ))
@@ -75,16 +80,21 @@ impl SpinButton {
     }
 
     #[doc(alias = "gtk_spin_button_configure")]
-    pub fn configure(
+    pub fn configure<'a, P: IsA<Adjustment>>(
         &self,
-        adjustment: Option<&impl IsA<Adjustment>>,
+        adjustment: impl Into<Option<&'a P>>,
         climb_rate: f64,
         digits: u32,
     ) {
         unsafe {
             ffi::gtk_spin_button_configure(
                 self.to_glib_none().0,
-                adjustment.map(|p| p.as_ref()).to_glib_none().0,
+                adjustment
+                    .into()
+                    .as_ref()
+                    .map(|p| p.as_ref())
+                    .to_glib_none()
+                    .0,
                 climb_rate,
                 digits,
             );
@@ -688,11 +698,11 @@ impl SpinButtonBuilder {
         }
     }
 
-    pub fn adjustment(self, adjustment: &impl IsA<Adjustment>) -> Self {
+    pub fn adjustment<'a, P: IsA<Adjustment>>(self, adjustment: impl Into<Option<&'a P>>) -> Self {
         Self {
             builder: self
                 .builder
-                .property("adjustment", adjustment.clone().upcast()),
+                .property("adjustment", adjustment.into().as_ref().map(|p| p.as_ref())),
         }
     }
 
@@ -756,15 +766,15 @@ impl SpinButtonBuilder {
         }
     }
 
-    pub fn css_name(self, css_name: impl Into<glib::GString>) -> Self {
+    pub fn css_name<'a>(self, css_name: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("css-name", css_name.into()),
         }
     }
 
-    pub fn cursor(self, cursor: &gdk::Cursor) -> Self {
+    pub fn cursor<'a>(self, cursor: impl Into<Option<&'a gdk::Cursor>>) -> Self {
         Self {
-            builder: self.builder.property("cursor", cursor.clone()),
+            builder: self.builder.property("cursor", cursor.into()),
         }
     }
 
@@ -810,11 +820,15 @@ impl SpinButtonBuilder {
         }
     }
 
-    pub fn layout_manager(self, layout_manager: &impl IsA<LayoutManager>) -> Self {
+    pub fn layout_manager<'a, P: IsA<LayoutManager>>(
+        self,
+        layout_manager: impl Into<Option<&'a P>>,
+    ) -> Self {
         Self {
-            builder: self
-                .builder
-                .property("layout-manager", layout_manager.clone().upcast()),
+            builder: self.builder.property(
+                "layout-manager",
+                layout_manager.into().as_ref().map(|p| p.as_ref()),
+            ),
         }
     }
 
@@ -842,7 +856,7 @@ impl SpinButtonBuilder {
         }
     }
 
-    pub fn name(self, name: impl Into<glib::GString>) -> Self {
+    pub fn name<'a>(self, name: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("name", name.into()),
         }
@@ -872,7 +886,7 @@ impl SpinButtonBuilder {
         }
     }
 
-    pub fn tooltip_markup(self, tooltip_markup: impl Into<glib::GString>) -> Self {
+    pub fn tooltip_markup<'a>(self, tooltip_markup: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self
                 .builder
@@ -880,7 +894,7 @@ impl SpinButtonBuilder {
         }
     }
 
-    pub fn tooltip_text(self, tooltip_text: impl Into<glib::GString>) -> Self {
+    pub fn tooltip_text<'a>(self, tooltip_text: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("tooltip-text", tooltip_text.into()),
         }
@@ -946,7 +960,7 @@ impl SpinButtonBuilder {
         }
     }
 
-    pub fn text(self, text: impl Into<glib::GString>) -> Self {
+    pub fn text<'a>(self, text: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("text", text.into()),
         }

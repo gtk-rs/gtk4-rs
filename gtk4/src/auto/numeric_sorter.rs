@@ -149,11 +149,11 @@ impl NumericSorterBuilder {
         }
     }
 
-    pub fn expression(self, expression: impl AsRef<Expression>) -> Self {
+    pub fn expression(self, expression: Option<impl AsRef<Expression>>) -> Self {
         Self {
             builder: self
                 .builder
-                .property("expression", expression.as_ref().clone()),
+                .property("expression", expression.as_ref().map(|p| p.as_ref())),
         }
     }
 

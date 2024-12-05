@@ -42,9 +42,11 @@ glib::wrapper! {
 
 impl Label {
     #[doc(alias = "gtk_label_new")]
-    pub fn new(str: Option<&str>) -> Label {
+    pub fn new<'a>(str: impl Into<Option<&'a str>>) -> Label {
         assert_initialized_main_thread!();
-        unsafe { Widget::from_glib_none(ffi::gtk_label_new(str.to_glib_none().0)).unsafe_cast() }
+        unsafe {
+            Widget::from_glib_none(ffi::gtk_label_new(str.into().to_glib_none().0)).unsafe_cast()
+        }
     }
 
     #[doc(alias = "gtk_label_new_with_mnemonic")]
@@ -255,9 +257,9 @@ impl Label {
 
     #[doc(alias = "gtk_label_set_attributes")]
     #[doc(alias = "attributes")]
-    pub fn set_attributes(&self, attrs: Option<&pango::AttrList>) {
+    pub fn set_attributes<'a>(&self, attrs: impl Into<Option<&'a pango::AttrList>>) {
         unsafe {
-            ffi::gtk_label_set_attributes(self.to_glib_none().0, attrs.to_glib_none().0);
+            ffi::gtk_label_set_attributes(self.to_glib_none().0, attrs.into().to_glib_none().0);
         }
     }
 
@@ -271,11 +273,11 @@ impl Label {
 
     #[doc(alias = "gtk_label_set_extra_menu")]
     #[doc(alias = "extra-menu")]
-    pub fn set_extra_menu(&self, model: Option<&impl IsA<gio::MenuModel>>) {
+    pub fn set_extra_menu<'a, P: IsA<gio::MenuModel>>(&self, model: impl Into<Option<&'a P>>) {
         unsafe {
             ffi::gtk_label_set_extra_menu(
                 self.to_glib_none().0,
-                model.map(|p| p.as_ref()).to_glib_none().0,
+                model.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
             );
         }
     }
@@ -328,11 +330,11 @@ impl Label {
 
     #[doc(alias = "gtk_label_set_mnemonic_widget")]
     #[doc(alias = "mnemonic-widget")]
-    pub fn set_mnemonic_widget(&self, widget: Option<&impl IsA<Widget>>) {
+    pub fn set_mnemonic_widget<'a, P: IsA<Widget>>(&self, widget: impl Into<Option<&'a P>>) {
         unsafe {
             ffi::gtk_label_set_mnemonic_widget(
                 self.to_glib_none().0,
-                widget.map(|p| p.as_ref()).to_glib_none().0,
+                widget.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
             );
         }
     }
@@ -370,9 +372,12 @@ impl Label {
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     #[doc(alias = "gtk_label_set_tabs")]
     #[doc(alias = "tabs")]
-    pub fn set_tabs(&self, tabs: Option<&pango::TabArray>) {
+    pub fn set_tabs<'a>(&self, tabs: impl Into<Option<&'a pango::TabArray>>) {
         unsafe {
-            ffi::gtk_label_set_tabs(self.to_glib_none().0, mut_override(tabs.to_glib_none().0));
+            ffi::gtk_label_set_tabs(
+                self.to_glib_none().0,
+                mut_override(tabs.into().to_glib_none().0),
+            );
         }
     }
 
@@ -1059,9 +1064,9 @@ impl LabelBuilder {
         }
     }
 
-    pub fn attributes(self, attributes: &pango::AttrList) -> Self {
+    pub fn attributes<'a>(self, attributes: impl Into<Option<&'a pango::AttrList>>) -> Self {
         Self {
-            builder: self.builder.property("attributes", attributes.clone()),
+            builder: self.builder.property("attributes", attributes.into()),
         }
     }
 
@@ -1071,11 +1076,14 @@ impl LabelBuilder {
         }
     }
 
-    pub fn extra_menu(self, extra_menu: &impl IsA<gio::MenuModel>) -> Self {
+    pub fn extra_menu<'a, P: IsA<gio::MenuModel>>(
+        self,
+        extra_menu: impl Into<Option<&'a P>>,
+    ) -> Self {
         Self {
             builder: self
                 .builder
-                .property("extra-menu", extra_menu.clone().upcast()),
+                .property("extra-menu", extra_menu.into().as_ref().map(|p| p.as_ref())),
         }
     }
 
@@ -1085,7 +1093,7 @@ impl LabelBuilder {
         }
     }
 
-    pub fn label(self, label: impl Into<glib::GString>) -> Self {
+    pub fn label<'a>(self, label: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("label", label.into()),
         }
@@ -1103,11 +1111,15 @@ impl LabelBuilder {
         }
     }
 
-    pub fn mnemonic_widget(self, mnemonic_widget: &impl IsA<Widget>) -> Self {
+    pub fn mnemonic_widget<'a, P: IsA<Widget>>(
+        self,
+        mnemonic_widget: impl Into<Option<&'a P>>,
+    ) -> Self {
         Self {
-            builder: self
-                .builder
-                .property("mnemonic-widget", mnemonic_widget.clone().upcast()),
+            builder: self.builder.property(
+                "mnemonic-widget",
+                mnemonic_widget.into().as_ref().map(|p| p.as_ref()),
+            ),
         }
     }
 
@@ -1135,9 +1147,9 @@ impl LabelBuilder {
 
     #[cfg(feature = "v4_8")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
-    pub fn tabs(self, tabs: &pango::TabArray) -> Self {
+    pub fn tabs<'a>(self, tabs: impl Into<Option<&'a pango::TabArray>>) -> Self {
         Self {
-            builder: self.builder.property("tabs", tabs),
+            builder: self.builder.property("tabs", tabs.into()),
         }
     }
 
@@ -1201,15 +1213,15 @@ impl LabelBuilder {
         }
     }
 
-    pub fn css_name(self, css_name: impl Into<glib::GString>) -> Self {
+    pub fn css_name<'a>(self, css_name: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("css-name", css_name.into()),
         }
     }
 
-    pub fn cursor(self, cursor: &gdk::Cursor) -> Self {
+    pub fn cursor<'a>(self, cursor: impl Into<Option<&'a gdk::Cursor>>) -> Self {
         Self {
-            builder: self.builder.property("cursor", cursor.clone()),
+            builder: self.builder.property("cursor", cursor.into()),
         }
     }
 
@@ -1255,11 +1267,15 @@ impl LabelBuilder {
         }
     }
 
-    pub fn layout_manager(self, layout_manager: &impl IsA<LayoutManager>) -> Self {
+    pub fn layout_manager<'a, P: IsA<LayoutManager>>(
+        self,
+        layout_manager: impl Into<Option<&'a P>>,
+    ) -> Self {
         Self {
-            builder: self
-                .builder
-                .property("layout-manager", layout_manager.clone().upcast()),
+            builder: self.builder.property(
+                "layout-manager",
+                layout_manager.into().as_ref().map(|p| p.as_ref()),
+            ),
         }
     }
 
@@ -1287,7 +1303,7 @@ impl LabelBuilder {
         }
     }
 
-    pub fn name(self, name: impl Into<glib::GString>) -> Self {
+    pub fn name<'a>(self, name: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("name", name.into()),
         }
@@ -1317,7 +1333,7 @@ impl LabelBuilder {
         }
     }
 
-    pub fn tooltip_markup(self, tooltip_markup: impl Into<glib::GString>) -> Self {
+    pub fn tooltip_markup<'a>(self, tooltip_markup: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self
                 .builder
@@ -1325,7 +1341,7 @@ impl LabelBuilder {
         }
     }
 
-    pub fn tooltip_text(self, tooltip_text: impl Into<glib::GString>) -> Self {
+    pub fn tooltip_text<'a>(self, tooltip_text: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("tooltip-text", tooltip_text.into()),
         }

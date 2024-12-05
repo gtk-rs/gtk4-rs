@@ -77,12 +77,17 @@ impl PrintDialog {
     }
 
     #[doc(alias = "gtk_print_dialog_print")]
-    pub fn print<P: FnOnce(Result<gio::OutputStream, glib::Error>) + 'static>(
+    pub fn print<
+        'a,
+        P: IsA<Window>,
+        Q: IsA<gio::Cancellable>,
+        R: FnOnce(Result<gio::OutputStream, glib::Error>) + 'static,
+    >(
         &self,
-        parent: Option<&impl IsA<Window>>,
-        setup: Option<&PrintSetup>,
-        cancellable: Option<&impl IsA<gio::Cancellable>>,
-        callback: P,
+        parent: impl Into<Option<&'a P>>,
+        setup: impl Into<Option<&'a PrintSetup>>,
+        cancellable: impl Into<Option<&'a Q>>,
+        callback: R,
     ) {
         let main_context = glib::MainContext::ref_thread_default();
         let is_main_context_owner = main_context.is_owner();
@@ -94,10 +99,10 @@ impl PrintDialog {
             "Async operations only allowed if the thread is owning the MainContext"
         );
 
-        let user_data: Box_<glib::thread_guard::ThreadGuard<P>> =
+        let user_data: Box_<glib::thread_guard::ThreadGuard<R>> =
             Box_::new(glib::thread_guard::ThreadGuard::new(callback));
         unsafe extern "C" fn print_trampoline<
-            P: FnOnce(Result<gio::OutputStream, glib::Error>) + 'static,
+            R: FnOnce(Result<gio::OutputStream, glib::Error>) + 'static,
         >(
             _source_object: *mut glib::gobject_ffi::GObject,
             res: *mut gio::ffi::GAsyncResult,
@@ -110,32 +115,37 @@ impl PrintDialog {
             } else {
                 Err(from_glib_full(error))
             };
-            let callback: Box_<glib::thread_guard::ThreadGuard<P>> =
+            let callback: Box_<glib::thread_guard::ThreadGuard<R>> =
                 Box_::from_raw(user_data as *mut _);
-            let callback: P = callback.into_inner();
+            let callback: R = callback.into_inner();
             callback(result);
         }
-        let callback = print_trampoline::<P>;
+        let callback = print_trampoline::<R>;
         unsafe {
             ffi::gtk_print_dialog_print(
                 self.to_glib_none().0,
-                parent.map(|p| p.as_ref()).to_glib_none().0,
-                setup.to_glib_none().0,
-                cancellable.map(|p| p.as_ref()).to_glib_none().0,
+                parent.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
+                setup.into().to_glib_none().0,
+                cancellable
+                    .into()
+                    .as_ref()
+                    .map(|p| p.as_ref())
+                    .to_glib_none()
+                    .0,
                 Some(callback),
                 Box_::into_raw(user_data) as *mut _,
             );
         }
     }
 
-    pub fn print_future(
+    pub fn print_future<'a, P: IsA<Window> + Clone + 'static>(
         &self,
-        parent: Option<&(impl IsA<Window> + Clone + 'static)>,
-        setup: Option<&PrintSetup>,
+        parent: impl Into<Option<&'a P>>,
+        setup: impl Into<Option<&'a PrintSetup>>,
     ) -> Pin<Box_<dyn std::future::Future<Output = Result<gio::OutputStream, glib::Error>> + 'static>>
     {
-        let parent = parent.map(ToOwned::to_owned);
-        let setup = setup.map(ToOwned::to_owned);
+        let parent = parent.into().map(ToOwned::to_owned);
+        let setup = setup.into().map(ToOwned::to_owned);
         Box_::pin(gio::GioFuture::new(self, move |obj, cancellable, send| {
             obj.print(
                 parent.as_ref().map(::std::borrow::Borrow::borrow),
@@ -149,13 +159,18 @@ impl PrintDialog {
     }
 
     #[doc(alias = "gtk_print_dialog_print_file")]
-    pub fn print_file<P: FnOnce(Result<(), glib::Error>) + 'static>(
+    pub fn print_file<
+        'a,
+        P: IsA<Window>,
+        Q: IsA<gio::Cancellable>,
+        R: FnOnce(Result<(), glib::Error>) + 'static,
+    >(
         &self,
-        parent: Option<&impl IsA<Window>>,
-        setup: Option<&PrintSetup>,
+        parent: impl Into<Option<&'a P>>,
+        setup: impl Into<Option<&'a PrintSetup>>,
         file: &impl IsA<gio::File>,
-        cancellable: Option<&impl IsA<gio::Cancellable>>,
-        callback: P,
+        cancellable: impl Into<Option<&'a Q>>,
+        callback: R,
     ) {
         let main_context = glib::MainContext::ref_thread_default();
         let is_main_context_owner = main_context.is_owner();
@@ -167,9 +182,9 @@ impl PrintDialog {
             "Async operations only allowed if the thread is owning the MainContext"
         );
 
-        let user_data: Box_<glib::thread_guard::ThreadGuard<P>> =
+        let user_data: Box_<glib::thread_guard::ThreadGuard<R>> =
             Box_::new(glib::thread_guard::ThreadGuard::new(callback));
-        unsafe extern "C" fn print_file_trampoline<P: FnOnce(Result<(), glib::Error>) + 'static>(
+        unsafe extern "C" fn print_file_trampoline<R: FnOnce(Result<(), glib::Error>) + 'static>(
             _source_object: *mut glib::gobject_ffi::GObject,
             res: *mut gio::ffi::GAsyncResult,
             user_data: glib::ffi::gpointer,
@@ -182,33 +197,38 @@ impl PrintDialog {
             } else {
                 Err(from_glib_full(error))
             };
-            let callback: Box_<glib::thread_guard::ThreadGuard<P>> =
+            let callback: Box_<glib::thread_guard::ThreadGuard<R>> =
                 Box_::from_raw(user_data as *mut _);
-            let callback: P = callback.into_inner();
+            let callback: R = callback.into_inner();
             callback(result);
         }
-        let callback = print_file_trampoline::<P>;
+        let callback = print_file_trampoline::<R>;
         unsafe {
             ffi::gtk_print_dialog_print_file(
                 self.to_glib_none().0,
-                parent.map(|p| p.as_ref()).to_glib_none().0,
-                setup.to_glib_none().0,
+                parent.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
+                setup.into().to_glib_none().0,
                 file.as_ref().to_glib_none().0,
-                cancellable.map(|p| p.as_ref()).to_glib_none().0,
+                cancellable
+                    .into()
+                    .as_ref()
+                    .map(|p| p.as_ref())
+                    .to_glib_none()
+                    .0,
                 Some(callback),
                 Box_::into_raw(user_data) as *mut _,
             );
         }
     }
 
-    pub fn print_file_future(
+    pub fn print_file_future<'a, P: IsA<Window> + Clone + 'static>(
         &self,
-        parent: Option<&(impl IsA<Window> + Clone + 'static)>,
-        setup: Option<&PrintSetup>,
+        parent: impl Into<Option<&'a P>>,
+        setup: impl Into<Option<&'a PrintSetup>>,
         file: &(impl IsA<gio::File> + Clone + 'static),
     ) -> Pin<Box_<dyn std::future::Future<Output = Result<(), glib::Error>> + 'static>> {
-        let parent = parent.map(ToOwned::to_owned);
-        let setup = setup.map(ToOwned::to_owned);
+        let parent = parent.into().map(ToOwned::to_owned);
+        let setup = setup.into().map(ToOwned::to_owned);
         let file = file.clone();
         Box_::pin(gio::GioFuture::new(self, move |obj, cancellable, send| {
             obj.print_file(
@@ -273,11 +293,16 @@ impl PrintDialog {
     }
 
     #[doc(alias = "gtk_print_dialog_setup")]
-    pub fn setup<P: FnOnce(Result<PrintSetup, glib::Error>) + 'static>(
+    pub fn setup<
+        'a,
+        P: IsA<Window>,
+        Q: IsA<gio::Cancellable>,
+        R: FnOnce(Result<PrintSetup, glib::Error>) + 'static,
+    >(
         &self,
-        parent: Option<&impl IsA<Window>>,
-        cancellable: Option<&impl IsA<gio::Cancellable>>,
-        callback: P,
+        parent: impl Into<Option<&'a P>>,
+        cancellable: impl Into<Option<&'a Q>>,
+        callback: R,
     ) {
         let main_context = glib::MainContext::ref_thread_default();
         let is_main_context_owner = main_context.is_owner();
@@ -289,10 +314,10 @@ impl PrintDialog {
             "Async operations only allowed if the thread is owning the MainContext"
         );
 
-        let user_data: Box_<glib::thread_guard::ThreadGuard<P>> =
+        let user_data: Box_<glib::thread_guard::ThreadGuard<R>> =
             Box_::new(glib::thread_guard::ThreadGuard::new(callback));
         unsafe extern "C" fn setup_trampoline<
-            P: FnOnce(Result<PrintSetup, glib::Error>) + 'static,
+            R: FnOnce(Result<PrintSetup, glib::Error>) + 'static,
         >(
             _source_object: *mut glib::gobject_ffi::GObject,
             res: *mut gio::ffi::GAsyncResult,
@@ -305,29 +330,34 @@ impl PrintDialog {
             } else {
                 Err(from_glib_full(error))
             };
-            let callback: Box_<glib::thread_guard::ThreadGuard<P>> =
+            let callback: Box_<glib::thread_guard::ThreadGuard<R>> =
                 Box_::from_raw(user_data as *mut _);
-            let callback: P = callback.into_inner();
+            let callback: R = callback.into_inner();
             callback(result);
         }
-        let callback = setup_trampoline::<P>;
+        let callback = setup_trampoline::<R>;
         unsafe {
             ffi::gtk_print_dialog_setup(
                 self.to_glib_none().0,
-                parent.map(|p| p.as_ref()).to_glib_none().0,
-                cancellable.map(|p| p.as_ref()).to_glib_none().0,
+                parent.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
+                cancellable
+                    .into()
+                    .as_ref()
+                    .map(|p| p.as_ref())
+                    .to_glib_none()
+                    .0,
                 Some(callback),
                 Box_::into_raw(user_data) as *mut _,
             );
         }
     }
 
-    pub fn setup_future(
+    pub fn setup_future<'a, P: IsA<Window> + Clone + 'static>(
         &self,
-        parent: Option<&(impl IsA<Window> + Clone + 'static)>,
+        parent: impl Into<Option<&'a P>>,
     ) -> Pin<Box_<dyn std::future::Future<Output = Result<PrintSetup, glib::Error>> + 'static>>
     {
-        let parent = parent.map(ToOwned::to_owned);
+        let parent = parent.into().map(ToOwned::to_owned);
         Box_::pin(gio::GioFuture::new(self, move |obj, cancellable, send| {
             obj.setup(
                 parent.as_ref().map(::std::borrow::Borrow::borrow),
@@ -491,7 +521,7 @@ impl PrintDialogBuilder {
 
     #[cfg(feature = "v4_14")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
-    pub fn accept_label(self, accept_label: impl Into<glib::GString>) -> Self {
+    pub fn accept_label<'a>(self, accept_label: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("accept-label", accept_label.into()),
         }
@@ -507,25 +537,25 @@ impl PrintDialogBuilder {
 
     #[cfg(feature = "v4_14")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
-    pub fn page_setup(self, page_setup: &PageSetup) -> Self {
+    pub fn page_setup<'a>(self, page_setup: impl Into<Option<&'a PageSetup>>) -> Self {
         Self {
-            builder: self.builder.property("page-setup", page_setup.clone()),
+            builder: self.builder.property("page-setup", page_setup.into()),
         }
     }
 
     #[cfg(feature = "v4_14")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
-    pub fn print_settings(self, print_settings: &PrintSettings) -> Self {
+    pub fn print_settings<'a>(self, print_settings: impl Into<Option<&'a PrintSettings>>) -> Self {
         Self {
             builder: self
                 .builder
-                .property("print-settings", print_settings.clone()),
+                .property("print-settings", print_settings.into()),
         }
     }
 
     #[cfg(feature = "v4_14")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
-    pub fn title(self, title: impl Into<glib::GString>) -> Self {
+    pub fn title<'a>(self, title: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("title", title.into()),
         }

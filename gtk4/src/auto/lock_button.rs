@@ -27,11 +27,16 @@ impl LockButton {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_lock_button_new")]
-    pub fn new(permission: Option<&impl IsA<gio::Permission>>) -> LockButton {
+    pub fn new<'a, P: IsA<gio::Permission>>(permission: impl Into<Option<&'a P>>) -> LockButton {
         assert_initialized_main_thread!();
         unsafe {
             Widget::from_glib_none(ffi::gtk_lock_button_new(
-                permission.map(|p| p.as_ref()).to_glib_none().0,
+                permission
+                    .into()
+                    .as_ref()
+                    .map(|p| p.as_ref())
+                    .to_glib_none()
+                    .0,
             ))
             .unsafe_cast()
         }
@@ -57,11 +62,19 @@ impl LockButton {
     #[allow(deprecated)]
     #[doc(alias = "gtk_lock_button_set_permission")]
     #[doc(alias = "permission")]
-    pub fn set_permission(&self, permission: Option<&impl IsA<gio::Permission>>) {
+    pub fn set_permission<'a, P: IsA<gio::Permission>>(
+        &self,
+        permission: impl Into<Option<&'a P>>,
+    ) {
         unsafe {
             ffi::gtk_lock_button_set_permission(
                 self.to_glib_none().0,
-                permission.map(|p| p.as_ref()).to_glib_none().0,
+                permission
+                    .into()
+                    .as_ref()
+                    .map(|p| p.as_ref())
+                    .to_glib_none()
+                    .0,
             );
         }
     }
@@ -74,8 +87,8 @@ impl LockButton {
 
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "text-lock")]
-    pub fn set_text_lock(&self, text_lock: Option<&str>) {
-        ObjectExt::set_property(self, "text-lock", text_lock)
+    pub fn set_text_lock<'a>(&self, text_lock: impl Into<Option<&'a str>>) {
+        ObjectExt::set_property(self, "text-lock", text_lock.into())
     }
 
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
@@ -86,8 +99,8 @@ impl LockButton {
 
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "text-unlock")]
-    pub fn set_text_unlock(&self, text_unlock: Option<&str>) {
-        ObjectExt::set_property(self, "text-unlock", text_unlock)
+    pub fn set_text_unlock<'a>(&self, text_unlock: impl Into<Option<&'a str>>) {
+        ObjectExt::set_property(self, "text-unlock", text_unlock.into())
     }
 
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
@@ -98,8 +111,8 @@ impl LockButton {
 
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "tooltip-lock")]
-    pub fn set_tooltip_lock(&self, tooltip_lock: Option<&str>) {
-        ObjectExt::set_property(self, "tooltip-lock", tooltip_lock)
+    pub fn set_tooltip_lock<'a>(&self, tooltip_lock: impl Into<Option<&'a str>>) {
+        ObjectExt::set_property(self, "tooltip-lock", tooltip_lock.into())
     }
 
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
@@ -110,8 +123,15 @@ impl LockButton {
 
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "tooltip-not-authorized")]
-    pub fn set_tooltip_not_authorized(&self, tooltip_not_authorized: Option<&str>) {
-        ObjectExt::set_property(self, "tooltip-not-authorized", tooltip_not_authorized)
+    pub fn set_tooltip_not_authorized<'a>(
+        &self,
+        tooltip_not_authorized: impl Into<Option<&'a str>>,
+    ) {
+        ObjectExt::set_property(
+            self,
+            "tooltip-not-authorized",
+            tooltip_not_authorized.into(),
+        )
     }
 
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
@@ -122,8 +142,8 @@ impl LockButton {
 
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "tooltip-unlock")]
-    pub fn set_tooltip_unlock(&self, tooltip_unlock: Option<&str>) {
-        ObjectExt::set_property(self, "tooltip-unlock", tooltip_unlock)
+    pub fn set_tooltip_unlock<'a>(&self, tooltip_unlock: impl Into<Option<&'a str>>) {
+        ObjectExt::set_property(self, "tooltip-unlock", tooltip_unlock.into())
     }
 
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
@@ -299,37 +319,43 @@ impl LockButtonBuilder {
     }
 
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    pub fn permission(self, permission: &impl IsA<gio::Permission>) -> Self {
+    pub fn permission<'a, P: IsA<gio::Permission>>(
+        self,
+        permission: impl Into<Option<&'a P>>,
+    ) -> Self {
         Self {
             builder: self
                 .builder
-                .property("permission", permission.clone().upcast()),
+                .property("permission", permission.into().as_ref().map(|p| p.as_ref())),
         }
     }
 
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    pub fn text_lock(self, text_lock: impl Into<glib::GString>) -> Self {
+    pub fn text_lock<'a>(self, text_lock: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("text-lock", text_lock.into()),
         }
     }
 
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    pub fn text_unlock(self, text_unlock: impl Into<glib::GString>) -> Self {
+    pub fn text_unlock<'a>(self, text_unlock: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("text-unlock", text_unlock.into()),
         }
     }
 
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    pub fn tooltip_lock(self, tooltip_lock: impl Into<glib::GString>) -> Self {
+    pub fn tooltip_lock<'a>(self, tooltip_lock: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("tooltip-lock", tooltip_lock.into()),
         }
     }
 
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    pub fn tooltip_not_authorized(self, tooltip_not_authorized: impl Into<glib::GString>) -> Self {
+    pub fn tooltip_not_authorized<'a>(
+        self,
+        tooltip_not_authorized: impl Into<Option<&'a str>>,
+    ) -> Self {
         Self {
             builder: self
                 .builder
@@ -338,7 +364,7 @@ impl LockButtonBuilder {
     }
 
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    pub fn tooltip_unlock(self, tooltip_unlock: impl Into<glib::GString>) -> Self {
+    pub fn tooltip_unlock<'a>(self, tooltip_unlock: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self
                 .builder
@@ -354,9 +380,11 @@ impl LockButtonBuilder {
         }
     }
 
-    pub fn child(self, child: &impl IsA<Widget>) -> Self {
+    pub fn child<'a, P: IsA<Widget>>(self, child: impl Into<Option<&'a P>>) -> Self {
         Self {
-            builder: self.builder.property("child", child.clone().upcast()),
+            builder: self
+                .builder
+                .property("child", child.into().as_ref().map(|p| p.as_ref())),
         }
     }
 
@@ -366,13 +394,13 @@ impl LockButtonBuilder {
         }
     }
 
-    pub fn icon_name(self, icon_name: impl Into<glib::GString>) -> Self {
+    pub fn icon_name<'a>(self, icon_name: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("icon-name", icon_name.into()),
         }
     }
 
-    pub fn label(self, label: impl Into<glib::GString>) -> Self {
+    pub fn label<'a>(self, label: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("label", label.into()),
         }
@@ -402,15 +430,15 @@ impl LockButtonBuilder {
         }
     }
 
-    pub fn css_name(self, css_name: impl Into<glib::GString>) -> Self {
+    pub fn css_name<'a>(self, css_name: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("css-name", css_name.into()),
         }
     }
 
-    pub fn cursor(self, cursor: &gdk::Cursor) -> Self {
+    pub fn cursor<'a>(self, cursor: impl Into<Option<&'a gdk::Cursor>>) -> Self {
         Self {
-            builder: self.builder.property("cursor", cursor.clone()),
+            builder: self.builder.property("cursor", cursor.into()),
         }
     }
 
@@ -456,11 +484,15 @@ impl LockButtonBuilder {
         }
     }
 
-    pub fn layout_manager(self, layout_manager: &impl IsA<LayoutManager>) -> Self {
+    pub fn layout_manager<'a, P: IsA<LayoutManager>>(
+        self,
+        layout_manager: impl Into<Option<&'a P>>,
+    ) -> Self {
         Self {
-            builder: self
-                .builder
-                .property("layout-manager", layout_manager.clone().upcast()),
+            builder: self.builder.property(
+                "layout-manager",
+                layout_manager.into().as_ref().map(|p| p.as_ref()),
+            ),
         }
     }
 
@@ -488,7 +520,7 @@ impl LockButtonBuilder {
         }
     }
 
-    pub fn name(self, name: impl Into<glib::GString>) -> Self {
+    pub fn name<'a>(self, name: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("name", name.into()),
         }
@@ -518,7 +550,7 @@ impl LockButtonBuilder {
         }
     }
 
-    pub fn tooltip_markup(self, tooltip_markup: impl Into<glib::GString>) -> Self {
+    pub fn tooltip_markup<'a>(self, tooltip_markup: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self
                 .builder
@@ -526,7 +558,7 @@ impl LockButtonBuilder {
         }
     }
 
-    pub fn tooltip_text(self, tooltip_text: impl Into<glib::GString>) -> Self {
+    pub fn tooltip_text<'a>(self, tooltip_text: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("tooltip-text", tooltip_text.into()),
         }
@@ -568,17 +600,15 @@ impl LockButtonBuilder {
         }
     }
 
-    pub fn action_name(self, action_name: impl Into<glib::GString>) -> Self {
+    pub fn action_name<'a>(self, action_name: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("action-name", action_name.into()),
         }
     }
 
-    pub fn action_target(self, action_target: &glib::Variant) -> Self {
+    pub fn action_target<'a>(self, action_target: impl Into<Option<&'a glib::Variant>>) -> Self {
         Self {
-            builder: self
-                .builder
-                .property("action-target", action_target.clone()),
+            builder: self.builder.property("action-target", action_target.into()),
         }
     }
 

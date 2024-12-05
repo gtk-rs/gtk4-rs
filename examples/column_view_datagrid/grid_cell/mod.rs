@@ -19,6 +19,6 @@ impl Default for GridCell {
 
 impl GridCell {
     pub fn set_entry(&self, entry: &Entry) {
-        self.imp().name.set_text(Some(&entry.name));
+        self.imp().name.set_text(entry.name.as_str());
     }
 }

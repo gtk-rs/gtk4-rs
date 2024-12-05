@@ -21,11 +21,14 @@ glib::wrapper! {
 
 impl DropTargetAsync {
     #[doc(alias = "gtk_drop_target_async_new")]
-    pub fn new(formats: Option<gdk::ContentFormats>, actions: gdk::DragAction) -> DropTargetAsync {
+    pub fn new(
+        formats: impl Into<Option<gdk::ContentFormats>>,
+        actions: gdk::DragAction,
+    ) -> DropTargetAsync {
         assert_initialized_main_thread!();
         unsafe {
             from_glib_full(ffi::gtk_drop_target_async_new(
-                formats.into_glib_ptr(),
+                formats.into().into_glib_ptr(),
                 actions.into_glib(),
             ))
         }
@@ -76,9 +79,12 @@ impl DropTargetAsync {
 
     #[doc(alias = "gtk_drop_target_async_set_formats")]
     #[doc(alias = "formats")]
-    pub fn set_formats(&self, formats: Option<&gdk::ContentFormats>) {
+    pub fn set_formats<'a>(&self, formats: impl Into<Option<&'a gdk::ContentFormats>>) {
         unsafe {
-            ffi::gtk_drop_target_async_set_formats(self.to_glib_none().0, formats.to_glib_none().0);
+            ffi::gtk_drop_target_async_set_formats(
+                self.to_glib_none().0,
+                formats.into().to_glib_none().0,
+            );
         }
     }
 
@@ -300,13 +306,13 @@ impl DropTargetAsyncBuilder {
         }
     }
 
-    pub fn formats(self, formats: &gdk::ContentFormats) -> Self {
+    pub fn formats<'a>(self, formats: impl Into<Option<&'a gdk::ContentFormats>>) -> Self {
         Self {
-            builder: self.builder.property("formats", formats.clone()),
+            builder: self.builder.property("formats", formats.into()),
         }
     }
 
-    pub fn name(self, name: impl Into<glib::GString>) -> Self {
+    pub fn name<'a>(self, name: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("name", name.into()),
         }

@@ -406,12 +406,16 @@ pub trait SnapshotExt: IsA<Snapshot> + 'static {
     }
 
     #[doc(alias = "gtk_snapshot_push_repeat")]
-    fn push_repeat(&self, bounds: &graphene::Rect, child_bounds: Option<&graphene::Rect>) {
+    fn push_repeat<'a>(
+        &self,
+        bounds: &graphene::Rect,
+        child_bounds: impl Into<Option<&'a graphene::Rect>>,
+    ) {
         unsafe {
             ffi::gtk_snapshot_push_repeat(
                 self.as_ref().to_glib_none().0,
                 bounds.to_glib_none().0,
-                child_bounds.to_glib_none().0,
+                child_bounds.into().to_glib_none().0,
             );
         }
     }
@@ -623,19 +627,25 @@ pub trait SnapshotExt: IsA<Snapshot> + 'static {
     }
 
     #[doc(alias = "gtk_snapshot_to_paintable")]
-    fn to_paintable(self, size: Option<&graphene::Size>) -> Option<gdk::Paintable> {
+    fn to_paintable<'a>(
+        self,
+        size: impl Into<Option<&'a graphene::Size>>,
+    ) -> Option<gdk::Paintable> {
         unsafe {
             from_glib_full(ffi::gtk_snapshot_to_paintable(
                 self.upcast().into_glib_ptr(),
-                size.to_glib_none().0,
+                size.into().to_glib_none().0,
             ))
         }
     }
 
     #[doc(alias = "gtk_snapshot_transform")]
-    fn transform(&self, transform: Option<&gsk::Transform>) {
+    fn transform<'a>(&self, transform: impl Into<Option<&'a gsk::Transform>>) {
         unsafe {
-            ffi::gtk_snapshot_transform(self.as_ref().to_glib_none().0, transform.to_glib_none().0);
+            ffi::gtk_snapshot_transform(
+                self.as_ref().to_glib_none().0,
+                transform.into().to_glib_none().0,
+            );
         }
     }
 

@@ -631,11 +631,11 @@ impl TreeViewColumn {
     #[allow(deprecated)]
     #[doc(alias = "gtk_tree_view_column_set_widget")]
     #[doc(alias = "widget")]
-    pub fn set_widget(&self, widget: Option<&impl IsA<Widget>>) {
+    pub fn set_widget<'a, P: IsA<Widget>>(&self, widget: impl Into<Option<&'a P>>) {
         unsafe {
             ffi::gtk_tree_view_column_set_widget(
                 self.to_glib_none().0,
-                widget.map(|p| p.as_ref()).to_glib_none().0,
+                widget.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
             );
         }
     }
@@ -1110,11 +1110,11 @@ impl TreeViewColumnBuilder {
         }
     }
 
-    pub fn cell_area(self, cell_area: &impl IsA<CellArea>) -> Self {
+    pub fn cell_area<'a, P: IsA<CellArea>>(self, cell_area: impl Into<Option<&'a P>>) -> Self {
         Self {
             builder: self
                 .builder
-                .property("cell-area", cell_area.clone().upcast()),
+                .property("cell-area", cell_area.into().as_ref().map(|p| p.as_ref())),
         }
     }
 
@@ -1190,7 +1190,7 @@ impl TreeViewColumnBuilder {
         }
     }
 
-    pub fn title(self, title: impl Into<glib::GString>) -> Self {
+    pub fn title<'a>(self, title: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("title", title.into()),
         }
@@ -1202,9 +1202,11 @@ impl TreeViewColumnBuilder {
         }
     }
 
-    pub fn widget(self, widget: &impl IsA<Widget>) -> Self {
+    pub fn widget<'a, P: IsA<Widget>>(self, widget: impl Into<Option<&'a P>>) -> Self {
         Self {
-            builder: self.builder.property("widget", widget.clone().upcast()),
+            builder: self
+                .builder
+                .property("widget", widget.into().as_ref().map(|p| p.as_ref())),
         }
     }
 

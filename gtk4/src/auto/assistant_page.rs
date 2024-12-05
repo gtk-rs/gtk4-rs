@@ -57,8 +57,8 @@ impl AssistantPage {
     }
 
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    pub fn set_title(&self, title: Option<&str>) {
-        ObjectExt::set_property(self, "title", title)
+    pub fn set_title<'a>(&self, title: impl Into<Option<&'a str>>) {
+        ObjectExt::set_property(self, "title", title.into())
     }
 
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]

@@ -55,16 +55,16 @@ impl PrintSettings {
 
     #[doc(alias = "gtk_print_settings_new_from_key_file")]
     #[doc(alias = "new_from_key_file")]
-    pub fn from_key_file(
+    pub fn from_key_file<'a>(
         key_file: &glib::KeyFile,
-        group_name: Option<&str>,
+        group_name: impl Into<Option<&'a str>>,
     ) -> Result<PrintSettings, glib::Error> {
         assert_initialized_main_thread!();
         unsafe {
             let mut error = std::ptr::null_mut();
             let ret = ffi::gtk_print_settings_new_from_key_file(
                 key_file.to_glib_none().0,
-                group_name.to_glib_none().0,
+                group_name.into().to_glib_none().0,
                 &mut error,
             );
             if error.is_null() {
@@ -401,17 +401,17 @@ impl PrintSettings {
     }
 
     #[doc(alias = "gtk_print_settings_load_key_file")]
-    pub fn load_key_file(
+    pub fn load_key_file<'a>(
         &self,
         key_file: &glib::KeyFile,
-        group_name: Option<&str>,
+        group_name: impl Into<Option<&'a str>>,
     ) -> Result<(), glib::Error> {
         unsafe {
             let mut error = std::ptr::null_mut();
             let is_ok = ffi::gtk_print_settings_load_key_file(
                 self.to_glib_none().0,
                 key_file.to_glib_none().0,
-                group_name.to_glib_none().0,
+                group_name.into().to_glib_none().0,
                 &mut error,
             );
             debug_assert_eq!(is_ok == glib::ffi::GFALSE, !error.is_null());
@@ -424,12 +424,12 @@ impl PrintSettings {
     }
 
     #[doc(alias = "gtk_print_settings_set")]
-    pub fn set(&self, key: &str, value: Option<&str>) {
+    pub fn set<'a>(&self, key: &str, value: impl Into<Option<&'a str>>) {
         unsafe {
             ffi::gtk_print_settings_set(
                 self.to_glib_none().0,
                 key.to_glib_none().0,
-                value.to_glib_none().0,
+                value.into().to_glib_none().0,
             );
         }
     }
@@ -689,12 +689,16 @@ impl PrintSettings {
     }
 
     #[doc(alias = "gtk_print_settings_to_key_file")]
-    pub fn to_key_file(&self, key_file: &glib::KeyFile, group_name: Option<&str>) {
+    pub fn to_key_file<'a>(
+        &self,
+        key_file: &glib::KeyFile,
+        group_name: impl Into<Option<&'a str>>,
+    ) {
         unsafe {
             ffi::gtk_print_settings_to_key_file(
                 self.to_glib_none().0,
                 key_file.to_glib_none().0,
-                group_name.to_glib_none().0,
+                group_name.into().to_glib_none().0,
             );
         }
     }

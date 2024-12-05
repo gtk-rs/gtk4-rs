@@ -226,11 +226,11 @@ pub trait FontChooserExt: IsA<FontChooser> + 'static {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_font_chooser_set_font_map")]
-    fn set_font_map(&self, fontmap: Option<&impl IsA<pango::FontMap>>) {
+    fn set_font_map<'a, P: IsA<pango::FontMap>>(&self, fontmap: impl Into<Option<&'a P>>) {
         unsafe {
             ffi::gtk_font_chooser_set_font_map(
                 self.as_ref().to_glib_none().0,
-                fontmap.map(|p| p.as_ref()).to_glib_none().0,
+                fontmap.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
             );
         }
     }

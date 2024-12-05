@@ -119,11 +119,11 @@ impl SingleSelection {
 
     #[doc(alias = "gtk_single_selection_set_model")]
     #[doc(alias = "model")]
-    pub fn set_model(&self, model: Option<&impl IsA<gio::ListModel>>) {
+    pub fn set_model<'a, P: IsA<gio::ListModel>>(&self, model: impl Into<Option<&'a P>>) {
         unsafe {
             ffi::gtk_single_selection_set_model(
                 self.to_glib_none().0,
-                model.map(|p| p.as_ref()).to_glib_none().0,
+                model.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
             );
         }
     }
@@ -286,9 +286,11 @@ impl SingleSelectionBuilder {
         }
     }
 
-    pub fn model(self, model: &impl IsA<gio::ListModel>) -> Self {
+    pub fn model<'a, P: IsA<gio::ListModel>>(self, model: impl Into<Option<&'a P>>) -> Self {
         Self {
-            builder: self.builder.property("model", model.clone().upcast()),
+            builder: self
+                .builder
+                .property("model", model.into().as_ref().map(|p| p.as_ref())),
         }
     }
 

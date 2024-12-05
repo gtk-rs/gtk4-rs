@@ -209,17 +209,23 @@ impl AboutDialog {
 
     #[doc(alias = "gtk_about_dialog_set_comments")]
     #[doc(alias = "comments")]
-    pub fn set_comments(&self, comments: Option<&str>) {
+    pub fn set_comments<'a>(&self, comments: impl Into<Option<&'a str>>) {
         unsafe {
-            ffi::gtk_about_dialog_set_comments(self.to_glib_none().0, comments.to_glib_none().0);
+            ffi::gtk_about_dialog_set_comments(
+                self.to_glib_none().0,
+                comments.into().to_glib_none().0,
+            );
         }
     }
 
     #[doc(alias = "gtk_about_dialog_set_copyright")]
     #[doc(alias = "copyright")]
-    pub fn set_copyright(&self, copyright: Option<&str>) {
+    pub fn set_copyright<'a>(&self, copyright: impl Into<Option<&'a str>>) {
         unsafe {
-            ffi::gtk_about_dialog_set_copyright(self.to_glib_none().0, copyright.to_glib_none().0);
+            ffi::gtk_about_dialog_set_copyright(
+                self.to_glib_none().0,
+                copyright.into().to_glib_none().0,
+            );
         }
     }
 
@@ -236,9 +242,12 @@ impl AboutDialog {
 
     #[doc(alias = "gtk_about_dialog_set_license")]
     #[doc(alias = "license")]
-    pub fn set_license(&self, license: Option<&str>) {
+    pub fn set_license<'a>(&self, license: impl Into<Option<&'a str>>) {
         unsafe {
-            ffi::gtk_about_dialog_set_license(self.to_glib_none().0, license.to_glib_none().0);
+            ffi::gtk_about_dialog_set_license(
+                self.to_glib_none().0,
+                license.into().to_glib_none().0,
+            );
         }
     }
 
@@ -252,69 +261,78 @@ impl AboutDialog {
 
     #[doc(alias = "gtk_about_dialog_set_logo")]
     #[doc(alias = "logo")]
-    pub fn set_logo(&self, logo: Option<&impl IsA<gdk::Paintable>>) {
+    pub fn set_logo<'a, P: IsA<gdk::Paintable>>(&self, logo: impl Into<Option<&'a P>>) {
         unsafe {
             ffi::gtk_about_dialog_set_logo(
                 self.to_glib_none().0,
-                logo.map(|p| p.as_ref()).to_glib_none().0,
+                logo.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
             );
         }
     }
 
     #[doc(alias = "gtk_about_dialog_set_logo_icon_name")]
     #[doc(alias = "logo-icon-name")]
-    pub fn set_logo_icon_name(&self, icon_name: Option<&str>) {
+    pub fn set_logo_icon_name<'a>(&self, icon_name: impl Into<Option<&'a str>>) {
         unsafe {
             ffi::gtk_about_dialog_set_logo_icon_name(
                 self.to_glib_none().0,
-                icon_name.to_glib_none().0,
+                icon_name.into().to_glib_none().0,
             );
         }
     }
 
     #[doc(alias = "gtk_about_dialog_set_program_name")]
     #[doc(alias = "program-name")]
-    pub fn set_program_name(&self, name: Option<&str>) {
+    pub fn set_program_name<'a>(&self, name: impl Into<Option<&'a str>>) {
         unsafe {
-            ffi::gtk_about_dialog_set_program_name(self.to_glib_none().0, name.to_glib_none().0);
+            ffi::gtk_about_dialog_set_program_name(
+                self.to_glib_none().0,
+                name.into().to_glib_none().0,
+            );
         }
     }
 
     #[doc(alias = "gtk_about_dialog_set_system_information")]
     #[doc(alias = "system-information")]
-    pub fn set_system_information(&self, system_information: Option<&str>) {
+    pub fn set_system_information<'a>(&self, system_information: impl Into<Option<&'a str>>) {
         unsafe {
             ffi::gtk_about_dialog_set_system_information(
                 self.to_glib_none().0,
-                system_information.to_glib_none().0,
+                system_information.into().to_glib_none().0,
             );
         }
     }
 
     #[doc(alias = "gtk_about_dialog_set_translator_credits")]
     #[doc(alias = "translator-credits")]
-    pub fn set_translator_credits(&self, translator_credits: Option<&str>) {
+    pub fn set_translator_credits<'a>(&self, translator_credits: impl Into<Option<&'a str>>) {
         unsafe {
             ffi::gtk_about_dialog_set_translator_credits(
                 self.to_glib_none().0,
-                translator_credits.to_glib_none().0,
+                translator_credits.into().to_glib_none().0,
             );
         }
     }
 
     #[doc(alias = "gtk_about_dialog_set_version")]
     #[doc(alias = "version")]
-    pub fn set_version(&self, version: Option<&str>) {
+    pub fn set_version<'a>(&self, version: impl Into<Option<&'a str>>) {
         unsafe {
-            ffi::gtk_about_dialog_set_version(self.to_glib_none().0, version.to_glib_none().0);
+            ffi::gtk_about_dialog_set_version(
+                self.to_glib_none().0,
+                version.into().to_glib_none().0,
+            );
         }
     }
 
     #[doc(alias = "gtk_about_dialog_set_website")]
     #[doc(alias = "website")]
-    pub fn set_website(&self, website: Option<&str>) {
+    pub fn set_website<'a>(&self, website: impl Into<Option<&'a str>>) {
         unsafe {
-            ffi::gtk_about_dialog_set_website(self.to_glib_none().0, website.to_glib_none().0);
+            ffi::gtk_about_dialog_set_website(
+                self.to_glib_none().0,
+                website.into().to_glib_none().0,
+            );
         }
     }
 
@@ -778,13 +796,13 @@ impl AboutDialogBuilder {
         }
     }
 
-    pub fn comments(self, comments: impl Into<glib::GString>) -> Self {
+    pub fn comments<'a>(self, comments: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("comments", comments.into()),
         }
     }
 
-    pub fn copyright(self, copyright: impl Into<glib::GString>) -> Self {
+    pub fn copyright<'a>(self, copyright: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("copyright", copyright.into()),
         }
@@ -796,7 +814,7 @@ impl AboutDialogBuilder {
         }
     }
 
-    pub fn license(self, license: impl Into<glib::GString>) -> Self {
+    pub fn license<'a>(self, license: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("license", license.into()),
         }
@@ -808,13 +826,15 @@ impl AboutDialogBuilder {
         }
     }
 
-    pub fn logo(self, logo: &impl IsA<gdk::Paintable>) -> Self {
+    pub fn logo<'a, P: IsA<gdk::Paintable>>(self, logo: impl Into<Option<&'a P>>) -> Self {
         Self {
-            builder: self.builder.property("logo", logo.clone().upcast()),
+            builder: self
+                .builder
+                .property("logo", logo.into().as_ref().map(|p| p.as_ref())),
         }
     }
 
-    pub fn logo_icon_name(self, logo_icon_name: impl Into<glib::GString>) -> Self {
+    pub fn logo_icon_name<'a>(self, logo_icon_name: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self
                 .builder
@@ -822,13 +842,13 @@ impl AboutDialogBuilder {
         }
     }
 
-    pub fn program_name(self, program_name: impl Into<glib::GString>) -> Self {
+    pub fn program_name<'a>(self, program_name: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("program-name", program_name.into()),
         }
     }
 
-    pub fn system_information(self, system_information: impl Into<glib::GString>) -> Self {
+    pub fn system_information<'a>(self, system_information: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self
                 .builder
@@ -836,7 +856,7 @@ impl AboutDialogBuilder {
         }
     }
 
-    pub fn translator_credits(self, translator_credits: impl Into<glib::GString>) -> Self {
+    pub fn translator_credits<'a>(self, translator_credits: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self
                 .builder
@@ -844,19 +864,19 @@ impl AboutDialogBuilder {
         }
     }
 
-    pub fn version(self, version: impl Into<glib::GString>) -> Self {
+    pub fn version<'a>(self, version: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("version", version.into()),
         }
     }
 
-    pub fn website(self, website: impl Into<glib::GString>) -> Self {
+    pub fn website<'a>(self, website: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("website", website.into()),
         }
     }
 
-    pub fn website_label(self, website_label: impl Into<glib::GString>) -> Self {
+    pub fn website_label<'a>(self, website_label: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("website-label", website_label.into()),
         }
@@ -868,17 +888,23 @@ impl AboutDialogBuilder {
         }
     }
 
-    pub fn application(self, application: &impl IsA<Application>) -> Self {
+    pub fn application<'a, P: IsA<Application>>(
+        self,
+        application: impl Into<Option<&'a P>>,
+    ) -> Self {
         Self {
-            builder: self
-                .builder
-                .property("application", application.clone().upcast()),
+            builder: self.builder.property(
+                "application",
+                application.into().as_ref().map(|p| p.as_ref()),
+            ),
         }
     }
 
-    pub fn child(self, child: &impl IsA<Widget>) -> Self {
+    pub fn child<'a, P: IsA<Widget>>(self, child: impl Into<Option<&'a P>>) -> Self {
         Self {
-            builder: self.builder.property("child", child.clone().upcast()),
+            builder: self
+                .builder
+                .property("child", child.into().as_ref().map(|p| p.as_ref())),
         }
     }
 
@@ -894,11 +920,15 @@ impl AboutDialogBuilder {
         }
     }
 
-    pub fn default_widget(self, default_widget: &impl IsA<Widget>) -> Self {
+    pub fn default_widget<'a, P: IsA<Widget>>(
+        self,
+        default_widget: impl Into<Option<&'a P>>,
+    ) -> Self {
         Self {
-            builder: self
-                .builder
-                .property("default-widget", default_widget.clone().upcast()),
+            builder: self.builder.property(
+                "default-widget",
+                default_widget.into().as_ref().map(|p| p.as_ref()),
+            ),
         }
     }
 
@@ -922,9 +952,11 @@ impl AboutDialogBuilder {
         }
     }
 
-    pub fn display(self, display: &impl IsA<gdk::Display>) -> Self {
+    pub fn display<'a, P: IsA<gdk::Display>>(self, display: impl Into<Option<&'a P>>) -> Self {
         Self {
-            builder: self.builder.property("display", display.clone().upcast()),
+            builder: self
+                .builder
+                .property("display", display.into().as_ref().map(|p| p.as_ref())),
         }
     }
 
@@ -934,11 +966,12 @@ impl AboutDialogBuilder {
         }
     }
 
-    pub fn focus_widget(self, focus_widget: &impl IsA<Widget>) -> Self {
+    pub fn focus_widget<'a, P: IsA<Widget>>(self, focus_widget: impl Into<Option<&'a P>>) -> Self {
         Self {
-            builder: self
-                .builder
-                .property("focus-widget", focus_widget.clone().upcast()),
+            builder: self.builder.property(
+                "focus-widget",
+                focus_widget.into().as_ref().map(|p| p.as_ref()),
+            ),
         }
     }
 
@@ -964,7 +997,7 @@ impl AboutDialogBuilder {
         }
     }
 
-    pub fn icon_name(self, icon_name: impl Into<glib::GString>) -> Self {
+    pub fn icon_name<'a>(self, icon_name: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("icon-name", icon_name.into()),
         }
@@ -996,13 +1029,13 @@ impl AboutDialogBuilder {
         }
     }
 
-    pub fn startup_id(self, startup_id: impl Into<glib::GString>) -> Self {
+    pub fn startup_id<'a>(self, startup_id: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("startup-id", startup_id.into()),
         }
     }
 
-    pub fn title(self, title: impl Into<glib::GString>) -> Self {
+    pub fn title<'a>(self, title: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("title", title.into()),
         }
@@ -1010,17 +1043,23 @@ impl AboutDialogBuilder {
 
     #[cfg(feature = "v4_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
-    pub fn titlebar(self, titlebar: &impl IsA<Widget>) -> Self {
-        Self {
-            builder: self.builder.property("titlebar", titlebar.clone().upcast()),
-        }
-    }
-
-    pub fn transient_for(self, transient_for: &impl IsA<Window>) -> Self {
+    pub fn titlebar<'a, P: IsA<Widget>>(self, titlebar: impl Into<Option<&'a P>>) -> Self {
         Self {
             builder: self
                 .builder
-                .property("transient-for", transient_for.clone().upcast()),
+                .property("titlebar", titlebar.into().as_ref().map(|p| p.as_ref())),
+        }
+    }
+
+    pub fn transient_for<'a, P: IsA<Window>>(
+        self,
+        transient_for: impl Into<Option<&'a P>>,
+    ) -> Self {
+        Self {
+            builder: self.builder.property(
+                "transient-for",
+                transient_for.into().as_ref().map(|p| p.as_ref()),
+            ),
         }
     }
 
@@ -1042,15 +1081,15 @@ impl AboutDialogBuilder {
         }
     }
 
-    pub fn css_name(self, css_name: impl Into<glib::GString>) -> Self {
+    pub fn css_name<'a>(self, css_name: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("css-name", css_name.into()),
         }
     }
 
-    pub fn cursor(self, cursor: &gdk::Cursor) -> Self {
+    pub fn cursor<'a>(self, cursor: impl Into<Option<&'a gdk::Cursor>>) -> Self {
         Self {
-            builder: self.builder.property("cursor", cursor.clone()),
+            builder: self.builder.property("cursor", cursor.into()),
         }
     }
 
@@ -1096,11 +1135,15 @@ impl AboutDialogBuilder {
         }
     }
 
-    pub fn layout_manager(self, layout_manager: &impl IsA<LayoutManager>) -> Self {
+    pub fn layout_manager<'a, P: IsA<LayoutManager>>(
+        self,
+        layout_manager: impl Into<Option<&'a P>>,
+    ) -> Self {
         Self {
-            builder: self
-                .builder
-                .property("layout-manager", layout_manager.clone().upcast()),
+            builder: self.builder.property(
+                "layout-manager",
+                layout_manager.into().as_ref().map(|p| p.as_ref()),
+            ),
         }
     }
 
@@ -1128,7 +1171,7 @@ impl AboutDialogBuilder {
         }
     }
 
-    pub fn name(self, name: impl Into<glib::GString>) -> Self {
+    pub fn name<'a>(self, name: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("name", name.into()),
         }
@@ -1158,7 +1201,7 @@ impl AboutDialogBuilder {
         }
     }
 
-    pub fn tooltip_markup(self, tooltip_markup: impl Into<glib::GString>) -> Self {
+    pub fn tooltip_markup<'a>(self, tooltip_markup: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self
                 .builder
@@ -1166,7 +1209,7 @@ impl AboutDialogBuilder {
         }
     }
 
-    pub fn tooltip_text(self, tooltip_text: impl Into<glib::GString>) -> Self {
+    pub fn tooltip_text<'a>(self, tooltip_text: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("tooltip-text", tooltip_text.into()),
         }

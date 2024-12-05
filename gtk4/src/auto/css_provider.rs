@@ -90,12 +90,12 @@ impl CssProvider {
     }
 
     #[doc(alias = "gtk_css_provider_load_named")]
-    pub fn load_named(&self, name: &str, variant: Option<&str>) {
+    pub fn load_named<'a>(&self, name: &str, variant: impl Into<Option<&'a str>>) {
         unsafe {
             ffi::gtk_css_provider_load_named(
                 self.to_glib_none().0,
                 name.to_glib_none().0,
-                variant.to_glib_none().0,
+                variant.into().to_glib_none().0,
             );
         }
     }

@@ -56,7 +56,7 @@ async fn dialog<W: IsA<gtk::Window>>(window: W) {
     let info_dialog = gtk::AlertDialog::builder()
         .modal(true)
         .message("You answered")
-        .detail(format!("Your answer: {answer:?}"))
+        .detail(format!("Your answer: {answer:?}").as_str())
         .build();
 
     info_dialog.show(Some(&window));

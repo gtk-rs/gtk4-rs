@@ -35,12 +35,18 @@ impl FontDialog {
     }
 
     #[doc(alias = "gtk_font_dialog_choose_face")]
-    pub fn choose_face<P: FnOnce(Result<pango::FontFace, glib::Error>) + 'static>(
+    pub fn choose_face<
+        'a,
+        P: IsA<Window>,
+        Q: IsA<pango::FontFace>,
+        R: IsA<gio::Cancellable>,
+        S: FnOnce(Result<pango::FontFace, glib::Error>) + 'static,
+    >(
         &self,
-        parent: Option<&impl IsA<Window>>,
-        initial_value: Option<&impl IsA<pango::FontFace>>,
-        cancellable: Option<&impl IsA<gio::Cancellable>>,
-        callback: P,
+        parent: impl Into<Option<&'a P>>,
+        initial_value: impl Into<Option<&'a Q>>,
+        cancellable: impl Into<Option<&'a R>>,
+        callback: S,
     ) {
         let main_context = glib::MainContext::ref_thread_default();
         let is_main_context_owner = main_context.is_owner();
@@ -52,10 +58,10 @@ impl FontDialog {
             "Async operations only allowed if the thread is owning the MainContext"
         );
 
-        let user_data: Box_<glib::thread_guard::ThreadGuard<P>> =
+        let user_data: Box_<glib::thread_guard::ThreadGuard<S>> =
             Box_::new(glib::thread_guard::ThreadGuard::new(callback));
         unsafe extern "C" fn choose_face_trampoline<
-            P: FnOnce(Result<pango::FontFace, glib::Error>) + 'static,
+            S: FnOnce(Result<pango::FontFace, glib::Error>) + 'static,
         >(
             _source_object: *mut glib::gobject_ffi::GObject,
             res: *mut gio::ffi::GAsyncResult,
@@ -69,32 +75,46 @@ impl FontDialog {
             } else {
                 Err(from_glib_full(error))
             };
-            let callback: Box_<glib::thread_guard::ThreadGuard<P>> =
+            let callback: Box_<glib::thread_guard::ThreadGuard<S>> =
                 Box_::from_raw(user_data as *mut _);
-            let callback: P = callback.into_inner();
+            let callback: S = callback.into_inner();
             callback(result);
         }
-        let callback = choose_face_trampoline::<P>;
+        let callback = choose_face_trampoline::<S>;
         unsafe {
             ffi::gtk_font_dialog_choose_face(
                 self.to_glib_none().0,
-                parent.map(|p| p.as_ref()).to_glib_none().0,
-                initial_value.map(|p| p.as_ref()).to_glib_none().0,
-                cancellable.map(|p| p.as_ref()).to_glib_none().0,
+                parent.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
+                initial_value
+                    .into()
+                    .as_ref()
+                    .map(|p| p.as_ref())
+                    .to_glib_none()
+                    .0,
+                cancellable
+                    .into()
+                    .as_ref()
+                    .map(|p| p.as_ref())
+                    .to_glib_none()
+                    .0,
                 Some(callback),
                 Box_::into_raw(user_data) as *mut _,
             );
         }
     }
 
-    pub fn choose_face_future(
+    pub fn choose_face_future<
+        'a,
+        P: IsA<Window> + Clone + 'static,
+        Q: IsA<pango::FontFace> + Clone + 'static,
+    >(
         &self,
-        parent: Option<&(impl IsA<Window> + Clone + 'static)>,
-        initial_value: Option<&(impl IsA<pango::FontFace> + Clone + 'static)>,
+        parent: impl Into<Option<&'a P>>,
+        initial_value: impl Into<Option<&'a Q>>,
     ) -> Pin<Box_<dyn std::future::Future<Output = Result<pango::FontFace, glib::Error>> + 'static>>
     {
-        let parent = parent.map(ToOwned::to_owned);
-        let initial_value = initial_value.map(ToOwned::to_owned);
+        let parent = parent.into().map(ToOwned::to_owned);
+        let initial_value = initial_value.into().map(ToOwned::to_owned);
         Box_::pin(gio::GioFuture::new(self, move |obj, cancellable, send| {
             obj.choose_face(
                 parent.as_ref().map(::std::borrow::Borrow::borrow),
@@ -108,12 +128,18 @@ impl FontDialog {
     }
 
     #[doc(alias = "gtk_font_dialog_choose_family")]
-    pub fn choose_family<P: FnOnce(Result<pango::FontFamily, glib::Error>) + 'static>(
+    pub fn choose_family<
+        'a,
+        P: IsA<Window>,
+        Q: IsA<pango::FontFamily>,
+        R: IsA<gio::Cancellable>,
+        S: FnOnce(Result<pango::FontFamily, glib::Error>) + 'static,
+    >(
         &self,
-        parent: Option<&impl IsA<Window>>,
-        initial_value: Option<&impl IsA<pango::FontFamily>>,
-        cancellable: Option<&impl IsA<gio::Cancellable>>,
-        callback: P,
+        parent: impl Into<Option<&'a P>>,
+        initial_value: impl Into<Option<&'a Q>>,
+        cancellable: impl Into<Option<&'a R>>,
+        callback: S,
     ) {
         let main_context = glib::MainContext::ref_thread_default();
         let is_main_context_owner = main_context.is_owner();
@@ -125,10 +151,10 @@ impl FontDialog {
             "Async operations only allowed if the thread is owning the MainContext"
         );
 
-        let user_data: Box_<glib::thread_guard::ThreadGuard<P>> =
+        let user_data: Box_<glib::thread_guard::ThreadGuard<S>> =
             Box_::new(glib::thread_guard::ThreadGuard::new(callback));
         unsafe extern "C" fn choose_family_trampoline<
-            P: FnOnce(Result<pango::FontFamily, glib::Error>) + 'static,
+            S: FnOnce(Result<pango::FontFamily, glib::Error>) + 'static,
         >(
             _source_object: *mut glib::gobject_ffi::GObject,
             res: *mut gio::ffi::GAsyncResult,
@@ -145,32 +171,46 @@ impl FontDialog {
             } else {
                 Err(from_glib_full(error))
             };
-            let callback: Box_<glib::thread_guard::ThreadGuard<P>> =
+            let callback: Box_<glib::thread_guard::ThreadGuard<S>> =
                 Box_::from_raw(user_data as *mut _);
-            let callback: P = callback.into_inner();
+            let callback: S = callback.into_inner();
             callback(result);
         }
-        let callback = choose_family_trampoline::<P>;
+        let callback = choose_family_trampoline::<S>;
         unsafe {
             ffi::gtk_font_dialog_choose_family(
                 self.to_glib_none().0,
-                parent.map(|p| p.as_ref()).to_glib_none().0,
-                initial_value.map(|p| p.as_ref()).to_glib_none().0,
-                cancellable.map(|p| p.as_ref()).to_glib_none().0,
+                parent.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
+                initial_value
+                    .into()
+                    .as_ref()
+                    .map(|p| p.as_ref())
+                    .to_glib_none()
+                    .0,
+                cancellable
+                    .into()
+                    .as_ref()
+                    .map(|p| p.as_ref())
+                    .to_glib_none()
+                    .0,
                 Some(callback),
                 Box_::into_raw(user_data) as *mut _,
             );
         }
     }
 
-    pub fn choose_family_future(
+    pub fn choose_family_future<
+        'a,
+        P: IsA<Window> + Clone + 'static,
+        Q: IsA<pango::FontFamily> + Clone + 'static,
+    >(
         &self,
-        parent: Option<&(impl IsA<Window> + Clone + 'static)>,
-        initial_value: Option<&(impl IsA<pango::FontFamily> + Clone + 'static)>,
+        parent: impl Into<Option<&'a P>>,
+        initial_value: impl Into<Option<&'a Q>>,
     ) -> Pin<Box_<dyn std::future::Future<Output = Result<pango::FontFamily, glib::Error>> + 'static>>
     {
-        let parent = parent.map(ToOwned::to_owned);
-        let initial_value = initial_value.map(ToOwned::to_owned);
+        let parent = parent.into().map(ToOwned::to_owned);
+        let initial_value = initial_value.into().map(ToOwned::to_owned);
         Box_::pin(gio::GioFuture::new(self, move |obj, cancellable, send| {
             obj.choose_family(
                 parent.as_ref().map(::std::borrow::Borrow::borrow),
@@ -184,12 +224,17 @@ impl FontDialog {
     }
 
     #[doc(alias = "gtk_font_dialog_choose_font")]
-    pub fn choose_font<P: FnOnce(Result<pango::FontDescription, glib::Error>) + 'static>(
+    pub fn choose_font<
+        'a,
+        P: IsA<Window>,
+        Q: IsA<gio::Cancellable>,
+        R: FnOnce(Result<pango::FontDescription, glib::Error>) + 'static,
+    >(
         &self,
-        parent: Option<&impl IsA<Window>>,
-        initial_value: Option<&pango::FontDescription>,
-        cancellable: Option<&impl IsA<gio::Cancellable>>,
-        callback: P,
+        parent: impl Into<Option<&'a P>>,
+        initial_value: impl Into<Option<&'a pango::FontDescription>>,
+        cancellable: impl Into<Option<&'a Q>>,
+        callback: R,
     ) {
         let main_context = glib::MainContext::ref_thread_default();
         let is_main_context_owner = main_context.is_owner();
@@ -201,10 +246,10 @@ impl FontDialog {
             "Async operations only allowed if the thread is owning the MainContext"
         );
 
-        let user_data: Box_<glib::thread_guard::ThreadGuard<P>> =
+        let user_data: Box_<glib::thread_guard::ThreadGuard<R>> =
             Box_::new(glib::thread_guard::ThreadGuard::new(callback));
         unsafe extern "C" fn choose_font_trampoline<
-            P: FnOnce(Result<pango::FontDescription, glib::Error>) + 'static,
+            R: FnOnce(Result<pango::FontDescription, glib::Error>) + 'static,
         >(
             _source_object: *mut glib::gobject_ffi::GObject,
             res: *mut gio::ffi::GAsyncResult,
@@ -218,35 +263,40 @@ impl FontDialog {
             } else {
                 Err(from_glib_full(error))
             };
-            let callback: Box_<glib::thread_guard::ThreadGuard<P>> =
+            let callback: Box_<glib::thread_guard::ThreadGuard<R>> =
                 Box_::from_raw(user_data as *mut _);
-            let callback: P = callback.into_inner();
+            let callback: R = callback.into_inner();
             callback(result);
         }
-        let callback = choose_font_trampoline::<P>;
+        let callback = choose_font_trampoline::<R>;
         unsafe {
             ffi::gtk_font_dialog_choose_font(
                 self.to_glib_none().0,
-                parent.map(|p| p.as_ref()).to_glib_none().0,
-                mut_override(initial_value.to_glib_none().0),
-                cancellable.map(|p| p.as_ref()).to_glib_none().0,
+                parent.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
+                mut_override(initial_value.into().to_glib_none().0),
+                cancellable
+                    .into()
+                    .as_ref()
+                    .map(|p| p.as_ref())
+                    .to_glib_none()
+                    .0,
                 Some(callback),
                 Box_::into_raw(user_data) as *mut _,
             );
         }
     }
 
-    pub fn choose_font_future(
+    pub fn choose_font_future<'a, P: IsA<Window> + Clone + 'static>(
         &self,
-        parent: Option<&(impl IsA<Window> + Clone + 'static)>,
-        initial_value: Option<&pango::FontDescription>,
+        parent: impl Into<Option<&'a P>>,
+        initial_value: impl Into<Option<&'a pango::FontDescription>>,
     ) -> Pin<
         Box_<
             dyn std::future::Future<Output = Result<pango::FontDescription, glib::Error>> + 'static,
         >,
     > {
-        let parent = parent.map(ToOwned::to_owned);
-        let initial_value = initial_value.map(ToOwned::to_owned);
+        let parent = parent.into().map(ToOwned::to_owned);
+        let initial_value = initial_value.into().map(ToOwned::to_owned);
         Box_::pin(gio::GioFuture::new(self, move |obj, cancellable, send| {
             obj.choose_font(
                 parent.as_ref().map(::std::borrow::Borrow::borrow),
@@ -293,22 +343,22 @@ impl FontDialog {
 
     #[doc(alias = "gtk_font_dialog_set_filter")]
     #[doc(alias = "filter")]
-    pub fn set_filter(&self, filter: Option<&impl IsA<Filter>>) {
+    pub fn set_filter<'a, P: IsA<Filter>>(&self, filter: impl Into<Option<&'a P>>) {
         unsafe {
             ffi::gtk_font_dialog_set_filter(
                 self.to_glib_none().0,
-                filter.map(|p| p.as_ref()).to_glib_none().0,
+                filter.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
             );
         }
     }
 
     #[doc(alias = "gtk_font_dialog_set_font_map")]
     #[doc(alias = "font-map")]
-    pub fn set_font_map(&self, fontmap: Option<&impl IsA<pango::FontMap>>) {
+    pub fn set_font_map<'a, P: IsA<pango::FontMap>>(&self, fontmap: impl Into<Option<&'a P>>) {
         unsafe {
             ffi::gtk_font_dialog_set_font_map(
                 self.to_glib_none().0,
-                fontmap.map(|p| p.as_ref()).to_glib_none().0,
+                fontmap.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
             );
         }
     }
@@ -492,25 +542,29 @@ impl FontDialogBuilder {
 
     #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
-    pub fn filter(self, filter: &impl IsA<Filter>) -> Self {
+    pub fn filter<'a, P: IsA<Filter>>(self, filter: impl Into<Option<&'a P>>) -> Self {
         Self {
-            builder: self.builder.property("filter", filter.clone().upcast()),
+            builder: self
+                .builder
+                .property("filter", filter.into().as_ref().map(|p| p.as_ref())),
         }
     }
 
     #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
-    pub fn font_map(self, font_map: &impl IsA<pango::FontMap>) -> Self {
+    pub fn font_map<'a, P: IsA<pango::FontMap>>(self, font_map: impl Into<Option<&'a P>>) -> Self {
         Self {
-            builder: self.builder.property("font-map", font_map.clone().upcast()),
+            builder: self
+                .builder
+                .property("font-map", font_map.into().as_ref().map(|p| p.as_ref())),
         }
     }
 
     #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
-    pub fn language(self, language: &pango::Language) -> Self {
+    pub fn language<'a>(self, language: impl Into<Option<&'a pango::Language>>) -> Self {
         Self {
-            builder: self.builder.property("language", language),
+            builder: self.builder.property("language", language.into()),
         }
     }
 
@@ -524,7 +578,7 @@ impl FontDialogBuilder {
 
     #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
-    pub fn title(self, title: impl Into<glib::GString>) -> Self {
+    pub fn title<'a>(self, title: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("title", title.into()),
         }

@@ -19,13 +19,13 @@ impl TreeStore {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_tree_store_append")]
-    pub fn append(&self, parent: Option<&TreeIter>) -> TreeIter {
+    pub fn append<'a>(&self, parent: impl Into<Option<&'a TreeIter>>) -> TreeIter {
         unsafe {
             let mut iter = TreeIter::uninitialized();
             ffi::gtk_tree_store_append(
                 self.to_glib_none().0,
                 iter.to_glib_none_mut().0,
-                mut_override(parent.to_glib_none().0),
+                mut_override(parent.into().to_glib_none().0),
             );
             iter
         }
@@ -43,13 +43,13 @@ impl TreeStore {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_tree_store_insert")]
-    pub fn insert(&self, parent: Option<&TreeIter>, position: i32) -> TreeIter {
+    pub fn insert<'a>(&self, parent: impl Into<Option<&'a TreeIter>>, position: i32) -> TreeIter {
         unsafe {
             let mut iter = TreeIter::uninitialized();
             ffi::gtk_tree_store_insert(
                 self.to_glib_none().0,
                 iter.to_glib_none_mut().0,
-                mut_override(parent.to_glib_none().0),
+                mut_override(parent.into().to_glib_none().0),
                 position,
             );
             iter
@@ -59,14 +59,18 @@ impl TreeStore {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_tree_store_insert_after")]
-    pub fn insert_after(&self, parent: Option<&TreeIter>, sibling: Option<&TreeIter>) -> TreeIter {
+    pub fn insert_after<'a>(
+        &self,
+        parent: impl Into<Option<&'a TreeIter>>,
+        sibling: impl Into<Option<&'a TreeIter>>,
+    ) -> TreeIter {
         unsafe {
             let mut iter = TreeIter::uninitialized();
             ffi::gtk_tree_store_insert_after(
                 self.to_glib_none().0,
                 iter.to_glib_none_mut().0,
-                mut_override(parent.to_glib_none().0),
-                mut_override(sibling.to_glib_none().0),
+                mut_override(parent.into().to_glib_none().0),
+                mut_override(sibling.into().to_glib_none().0),
             );
             iter
         }
@@ -75,14 +79,18 @@ impl TreeStore {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_tree_store_insert_before")]
-    pub fn insert_before(&self, parent: Option<&TreeIter>, sibling: Option<&TreeIter>) -> TreeIter {
+    pub fn insert_before<'a>(
+        &self,
+        parent: impl Into<Option<&'a TreeIter>>,
+        sibling: impl Into<Option<&'a TreeIter>>,
+    ) -> TreeIter {
         unsafe {
             let mut iter = TreeIter::uninitialized();
             ffi::gtk_tree_store_insert_before(
                 self.to_glib_none().0,
                 iter.to_glib_none_mut().0,
-                mut_override(parent.to_glib_none().0),
-                mut_override(sibling.to_glib_none().0),
+                mut_override(parent.into().to_glib_none().0),
+                mut_override(sibling.into().to_glib_none().0),
             );
             iter
         }
@@ -128,12 +136,12 @@ impl TreeStore {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_tree_store_move_after")]
-    pub fn move_after(&self, iter: &TreeIter, position: Option<&TreeIter>) {
+    pub fn move_after<'a>(&self, iter: &TreeIter, position: impl Into<Option<&'a TreeIter>>) {
         unsafe {
             ffi::gtk_tree_store_move_after(
                 self.to_glib_none().0,
                 mut_override(iter.to_glib_none().0),
-                mut_override(position.to_glib_none().0),
+                mut_override(position.into().to_glib_none().0),
             );
         }
     }
@@ -141,12 +149,12 @@ impl TreeStore {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_tree_store_move_before")]
-    pub fn move_before(&self, iter: &TreeIter, position: Option<&TreeIter>) {
+    pub fn move_before<'a>(&self, iter: &TreeIter, position: impl Into<Option<&'a TreeIter>>) {
         unsafe {
             ffi::gtk_tree_store_move_before(
                 self.to_glib_none().0,
                 mut_override(iter.to_glib_none().0),
-                mut_override(position.to_glib_none().0),
+                mut_override(position.into().to_glib_none().0),
             );
         }
     }
@@ -154,13 +162,13 @@ impl TreeStore {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_tree_store_prepend")]
-    pub fn prepend(&self, parent: Option<&TreeIter>) -> TreeIter {
+    pub fn prepend<'a>(&self, parent: impl Into<Option<&'a TreeIter>>) -> TreeIter {
         unsafe {
             let mut iter = TreeIter::uninitialized();
             ffi::gtk_tree_store_prepend(
                 self.to_glib_none().0,
                 iter.to_glib_none_mut().0,
-                mut_override(parent.to_glib_none().0),
+                mut_override(parent.into().to_glib_none().0),
             );
             iter
         }

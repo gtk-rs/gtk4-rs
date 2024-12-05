@@ -17,14 +17,14 @@ glib::wrapper! {
 impl BuilderListItemFactory {
     #[doc(alias = "gtk_builder_list_item_factory_new_from_bytes")]
     #[doc(alias = "new_from_bytes")]
-    pub fn from_bytes(
-        scope: Option<&impl IsA<BuilderScope>>,
+    pub fn from_bytes<'a, P: IsA<BuilderScope>>(
+        scope: impl Into<Option<&'a P>>,
         bytes: &glib::Bytes,
     ) -> BuilderListItemFactory {
         assert_initialized_main_thread!();
         unsafe {
             ListItemFactory::from_glib_full(ffi::gtk_builder_list_item_factory_new_from_bytes(
-                scope.map(|p| p.as_ref()).to_glib_none().0,
+                scope.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
                 bytes.to_glib_none().0,
             ))
             .unsafe_cast()
@@ -33,14 +33,14 @@ impl BuilderListItemFactory {
 
     #[doc(alias = "gtk_builder_list_item_factory_new_from_resource")]
     #[doc(alias = "new_from_resource")]
-    pub fn from_resource(
-        scope: Option<&impl IsA<BuilderScope>>,
+    pub fn from_resource<'a, P: IsA<BuilderScope>>(
+        scope: impl Into<Option<&'a P>>,
         resource_path: &str,
     ) -> BuilderListItemFactory {
         assert_initialized_main_thread!();
         unsafe {
             ListItemFactory::from_glib_full(ffi::gtk_builder_list_item_factory_new_from_resource(
-                scope.map(|p| p.as_ref()).to_glib_none().0,
+                scope.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
                 resource_path.to_glib_none().0,
             ))
             .unsafe_cast()

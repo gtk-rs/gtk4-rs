@@ -32,9 +32,9 @@ pub fn x11_get_server_time(surface: &X11Surface) -> u32 {
 }
 
 #[doc(alias = "gdk_x11_set_sm_client_id")]
-pub fn x11_set_sm_client_id(sm_client_id: Option<&str>) {
+pub fn x11_set_sm_client_id<'a>(sm_client_id: impl Into<Option<&'a str>>) {
     assert_initialized_main_thread!();
     unsafe {
-        ffi::gdk_x11_set_sm_client_id(sm_client_id.to_glib_none().0);
+        ffi::gdk_x11_set_sm_client_id(sm_client_id.into().to_glib_none().0);
     }
 }

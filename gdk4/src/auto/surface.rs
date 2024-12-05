@@ -228,9 +228,12 @@ pub trait SurfaceExt: IsA<Surface> + 'static {
 
     #[doc(alias = "gdk_surface_set_cursor")]
     #[doc(alias = "cursor")]
-    fn set_cursor(&self, cursor: Option<&Cursor>) {
+    fn set_cursor<'a>(&self, cursor: impl Into<Option<&'a Cursor>>) {
         unsafe {
-            ffi::gdk_surface_set_cursor(self.as_ref().to_glib_none().0, cursor.to_glib_none().0);
+            ffi::gdk_surface_set_cursor(
+                self.as_ref().to_glib_none().0,
+                cursor.into().to_glib_none().0,
+            );
         }
     }
 
@@ -258,11 +261,11 @@ pub trait SurfaceExt: IsA<Surface> + 'static {
     #[cfg_attr(feature = "v4_16", deprecated = "Since 4.16")]
     #[allow(deprecated)]
     #[doc(alias = "gdk_surface_set_opaque_region")]
-    fn set_opaque_region(&self, region: Option<&cairo::Region>) {
+    fn set_opaque_region<'a>(&self, region: impl Into<Option<&'a cairo::Region>>) {
         unsafe {
             ffi::gdk_surface_set_opaque_region(
                 self.as_ref().to_glib_none().0,
-                mut_override(region.to_glib_none().0),
+                mut_override(region.into().to_glib_none().0),
             );
         }
     }

@@ -21,14 +21,14 @@ glib::wrapper! {
 
 impl ColumnViewColumn {
     #[doc(alias = "gtk_column_view_column_new")]
-    pub fn new(
-        title: Option<&str>,
+    pub fn new<'a>(
+        title: impl Into<Option<&'a str>>,
         factory: Option<impl IsA<ListItemFactory>>,
     ) -> ColumnViewColumn {
         assert_initialized_main_thread!();
         unsafe {
             from_glib_full(ffi::gtk_column_view_column_new(
-                title.to_glib_none().0,
+                title.into().to_glib_none().0,
                 factory.map(|p| p.upcast()).into_glib_ptr(),
             ))
         }
@@ -148,11 +148,11 @@ impl ColumnViewColumn {
 
     #[doc(alias = "gtk_column_view_column_set_factory")]
     #[doc(alias = "factory")]
-    pub fn set_factory(&self, factory: Option<&impl IsA<ListItemFactory>>) {
+    pub fn set_factory<'a, P: IsA<ListItemFactory>>(&self, factory: impl Into<Option<&'a P>>) {
         unsafe {
             ffi::gtk_column_view_column_set_factory(
                 self.to_glib_none().0,
-                factory.map(|p| p.as_ref()).to_glib_none().0,
+                factory.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
             );
         }
     }
@@ -167,11 +167,11 @@ impl ColumnViewColumn {
 
     #[doc(alias = "gtk_column_view_column_set_header_menu")]
     #[doc(alias = "header-menu")]
-    pub fn set_header_menu(&self, menu: Option<&impl IsA<gio::MenuModel>>) {
+    pub fn set_header_menu<'a, P: IsA<gio::MenuModel>>(&self, menu: impl Into<Option<&'a P>>) {
         unsafe {
             ffi::gtk_column_view_column_set_header_menu(
                 self.to_glib_none().0,
-                menu.map(|p| p.as_ref()).to_glib_none().0,
+                menu.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
             );
         }
     }
@@ -180,9 +180,9 @@ impl ColumnViewColumn {
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "gtk_column_view_column_set_id")]
     #[doc(alias = "id")]
-    pub fn set_id(&self, id: Option<&str>) {
+    pub fn set_id<'a>(&self, id: impl Into<Option<&'a str>>) {
         unsafe {
-            ffi::gtk_column_view_column_set_id(self.to_glib_none().0, id.to_glib_none().0);
+            ffi::gtk_column_view_column_set_id(self.to_glib_none().0, id.into().to_glib_none().0);
         }
     }
 
@@ -196,20 +196,23 @@ impl ColumnViewColumn {
 
     #[doc(alias = "gtk_column_view_column_set_sorter")]
     #[doc(alias = "sorter")]
-    pub fn set_sorter(&self, sorter: Option<&impl IsA<Sorter>>) {
+    pub fn set_sorter<'a, P: IsA<Sorter>>(&self, sorter: impl Into<Option<&'a P>>) {
         unsafe {
             ffi::gtk_column_view_column_set_sorter(
                 self.to_glib_none().0,
-                sorter.map(|p| p.as_ref()).to_glib_none().0,
+                sorter.into().as_ref().map(|p| p.as_ref()).to_glib_none().0,
             );
         }
     }
 
     #[doc(alias = "gtk_column_view_column_set_title")]
     #[doc(alias = "title")]
-    pub fn set_title(&self, title: Option<&str>) {
+    pub fn set_title<'a>(&self, title: impl Into<Option<&'a str>>) {
         unsafe {
-            ffi::gtk_column_view_column_set_title(self.to_glib_none().0, title.to_glib_none().0);
+            ffi::gtk_column_view_column_set_title(
+                self.to_glib_none().0,
+                title.into().to_glib_none().0,
+            );
         }
     }
 
@@ -482,9 +485,11 @@ impl ColumnViewColumnBuilder {
         }
     }
 
-    pub fn factory(self, factory: &impl IsA<ListItemFactory>) -> Self {
+    pub fn factory<'a, P: IsA<ListItemFactory>>(self, factory: impl Into<Option<&'a P>>) -> Self {
         Self {
-            builder: self.builder.property("factory", factory.clone().upcast()),
+            builder: self
+                .builder
+                .property("factory", factory.into().as_ref().map(|p| p.as_ref())),
         }
     }
 
@@ -494,17 +499,21 @@ impl ColumnViewColumnBuilder {
         }
     }
 
-    pub fn header_menu(self, header_menu: &impl IsA<gio::MenuModel>) -> Self {
+    pub fn header_menu<'a, P: IsA<gio::MenuModel>>(
+        self,
+        header_menu: impl Into<Option<&'a P>>,
+    ) -> Self {
         Self {
-            builder: self
-                .builder
-                .property("header-menu", header_menu.clone().upcast()),
+            builder: self.builder.property(
+                "header-menu",
+                header_menu.into().as_ref().map(|p| p.as_ref()),
+            ),
         }
     }
 
     #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
-    pub fn id(self, id: impl Into<glib::GString>) -> Self {
+    pub fn id<'a>(self, id: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("id", id.into()),
         }
@@ -516,13 +525,15 @@ impl ColumnViewColumnBuilder {
         }
     }
 
-    pub fn sorter(self, sorter: &impl IsA<Sorter>) -> Self {
+    pub fn sorter<'a, P: IsA<Sorter>>(self, sorter: impl Into<Option<&'a P>>) -> Self {
         Self {
-            builder: self.builder.property("sorter", sorter.clone().upcast()),
+            builder: self
+                .builder
+                .property("sorter", sorter.into().as_ref().map(|p| p.as_ref())),
         }
     }
 
-    pub fn title(self, title: impl Into<glib::GString>) -> Self {
+    pub fn title<'a>(self, title: impl Into<Option<&'a str>>) -> Self {
         Self {
             builder: self.builder.property("title", title.into()),
         }

@@ -27,11 +27,11 @@ impl Win32Display {
     }
 
     #[doc(alias = "gdk_win32_display_set_cursor_theme")]
-    pub fn set_cursor_theme(&self, name: Option<&str>, size: i32) {
+    pub fn set_cursor_theme<'a>(&self, name: impl Into<Option<&'a str>>, size: i32) {
         unsafe {
             ffi::gdk_win32_display_set_cursor_theme(
                 self.to_glib_none().0,
-                name.to_glib_none().0,
+                name.into().to_glib_none().0,
                 size,
             );
         }
