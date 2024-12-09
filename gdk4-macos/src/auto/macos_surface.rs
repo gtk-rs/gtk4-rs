@@ -20,18 +20,6 @@ glib::wrapper! {
 }
 
 impl MacosSurface {
-    //#[cfg(feature = "v4_8")]
-    //#[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
-    //#[doc(alias = "gdk_macos_surface_get_native_window")]
-    //#[doc(alias = "get_native_window")]
-    //pub fn native_window(&self) -> /*Unimplemented*/Option<Basic: Pointer> {
-    //    unsafe { TODO: call ffi:gdk_macos_surface_get_native_window() }
-    //}
-
-    //pub fn native(&self) -> /*Unimplemented*/Basic: Pointer {
-    //    ObjectExt::property(self, "native")
-    //}
-
     #[doc(alias = "native")]
     pub fn connect_native_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_native_trampoline<F: Fn(&MacosSurface) + 'static>(
