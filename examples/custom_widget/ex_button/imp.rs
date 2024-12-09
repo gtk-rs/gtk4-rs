@@ -66,7 +66,7 @@ impl ObjectImpl for ExButton {
     }
 
     fn dispose(&self) {
-        // Child widgets need to be manually unparented in `dispose()`.
+        // Child widgets need to be manually un-parented in `dispose()`.
         if let Some(child) = self.child.borrow_mut().take() {
             child.unparent();
         }
