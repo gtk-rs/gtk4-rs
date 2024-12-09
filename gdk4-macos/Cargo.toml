@@ -15,6 +15,7 @@ version.workspace = true
 
 [features]
 v4_8 = ["gdk4-macos-sys/v4_8"]
+cocoa = ["dep:cocoa"]
 
 [dependencies]
 gdk4-macos-sys.workspace = true
@@ -22,6 +23,7 @@ gdk.workspace = true
 gio.workspace = true
 glib.workspace = true
 libc.workspace = true
+cocoa = { version = "0.26", default-features = false, optional = true }
 
 [dev-dependencies]
 gir-format-check.workspace = true

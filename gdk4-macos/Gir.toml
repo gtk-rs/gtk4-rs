@@ -17,7 +17,6 @@ generate = [
     "GdkMacos.MacosGLContext",
     "GdkMacos.MacosKeymap",
     "GdkMacos.MacosSeat",
-    "GdkMacos.MacosSurface",
 ]
 
 manual = [
@@ -37,3 +36,14 @@ status = "generate"
     [[object.function]]
     name = "get_geometry"
     ignore = true # The function does not exists
+
+[[object]]
+name = "GdkMacos.MacosSurface"
+status = "generate"
+    [[object.function]]
+    name = "get_native_window"
+    manual = true
+    rename = "native"
+    [[object.property]]
+    name = "native"
+    generate = ["notify"]
