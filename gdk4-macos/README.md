@@ -27,7 +27,7 @@ If you want to track the bleeding edge, use the git dependency instead:
 
 ```toml
 [dependencies]
-gdk-wayland = { git = "https://github.com/gtk-rs/gtk4-rs.git", package = "gdk4-wayland" }
+gdk-macos = { git = "https://github.com/gtk-rs/gtk4-rs.git", package = "gdk4-macos" }
 ```
 
 Avoid mixing versioned and git crates like this:
@@ -44,6 +44,7 @@ gdk-wayland = { git = "https://github.com/gtk-rs/gtk4-rs.git", package = "gdk4-w
 | Feature | Description |
 | ---     | ----------- |
 | `v4_8` | Enable the new APIs part of GTK 4.8 |
+| `cocoa` | Integration with the [cocoa](https://crates.io/crates/cocoa) crate |
 
 ### See Also
 
