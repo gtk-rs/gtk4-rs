@@ -27,7 +27,7 @@ impl CicpParams {
     }
 
     #[doc(alias = "gdk_cicp_params_build_color_state")]
-    pub fn build_color_state(&self) -> Result<Option<ColorState>, glib::Error> {
+    pub fn build_color_state(&self) -> Result<ColorState, glib::Error> {
         unsafe {
             let mut error = std::ptr::null_mut();
             let ret = ffi::gdk_cicp_params_build_color_state(self.to_glib_none().0, &mut error);
@@ -117,7 +117,7 @@ impl CicpParams {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::color-primaries\0".as_ptr() as *const _,
+                c"notify::color-primaries".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_color_primaries_trampoline::<F> as *const (),
                 )),
@@ -145,7 +145,7 @@ impl CicpParams {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::matrix-coefficients\0".as_ptr() as *const _,
+                c"notify::matrix-coefficients".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_matrix_coefficients_trampoline::<F> as *const (),
                 )),
@@ -170,7 +170,7 @@ impl CicpParams {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::range\0".as_ptr() as *const _,
+                c"notify::range".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_range_trampoline::<F> as *const (),
                 )),
@@ -198,7 +198,7 @@ impl CicpParams {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::transfer-function\0".as_ptr() as *const _,
+                c"notify::transfer-function".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_transfer_function_trampoline::<F> as *const (),
                 )),

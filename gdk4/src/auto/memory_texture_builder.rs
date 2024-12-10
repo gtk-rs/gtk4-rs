@@ -199,7 +199,7 @@ impl MemoryTextureBuilder {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::bytes\0".as_ptr() as *const _,
+                c"notify::bytes".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_bytes_trampoline::<F> as *const (),
                 )),
@@ -229,7 +229,7 @@ impl MemoryTextureBuilder {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::color-state\0".as_ptr() as *const _,
+                c"notify::color-state".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_color_state_trampoline::<F> as *const (),
                 )),
@@ -259,7 +259,7 @@ impl MemoryTextureBuilder {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::format\0".as_ptr() as *const _,
+                c"notify::format".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_format_trampoline::<F> as *const (),
                 )),
@@ -289,7 +289,7 @@ impl MemoryTextureBuilder {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::height\0".as_ptr() as *const _,
+                c"notify::height".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_height_trampoline::<F> as *const (),
                 )),
@@ -319,7 +319,7 @@ impl MemoryTextureBuilder {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::stride\0".as_ptr() as *const _,
+                c"notify::stride".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_stride_trampoline::<F> as *const (),
                 )),
@@ -349,7 +349,7 @@ impl MemoryTextureBuilder {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::update-region\0".as_ptr() as *const _,
+                c"notify::update-region".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_update_region_trampoline::<F> as *const (),
                 )),
@@ -379,7 +379,7 @@ impl MemoryTextureBuilder {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::update-texture\0".as_ptr() as *const _,
+                c"notify::update-texture".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_update_texture_trampoline::<F> as *const (),
                 )),
@@ -409,7 +409,7 @@ impl MemoryTextureBuilder {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::width\0".as_ptr() as *const _,
+                c"notify::width".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_width_trampoline::<F> as *const (),
                 )),

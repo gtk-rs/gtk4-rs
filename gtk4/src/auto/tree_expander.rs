@@ -167,7 +167,7 @@ impl TreeExpander {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::child\0".as_ptr() as *const _,
+                c"notify::child".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_child_trampoline::<F> as *const (),
                 )),
@@ -192,7 +192,7 @@ impl TreeExpander {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::hide-expander\0".as_ptr() as *const _,
+                c"notify::hide-expander".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_hide_expander_trampoline::<F> as *const (),
                 )),
@@ -217,7 +217,7 @@ impl TreeExpander {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::indent-for-depth\0".as_ptr() as *const _,
+                c"notify::indent-for-depth".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_indent_for_depth_trampoline::<F> as *const (),
                 )),
@@ -242,7 +242,7 @@ impl TreeExpander {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::indent-for-icon\0".as_ptr() as *const _,
+                c"notify::indent-for-icon".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_indent_for_icon_trampoline::<F> as *const (),
                 )),
@@ -265,7 +265,7 @@ impl TreeExpander {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::item\0".as_ptr() as *const _,
+                c"notify::item".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_item_trampoline::<F> as *const (),
                 )),
@@ -288,7 +288,7 @@ impl TreeExpander {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::list-row\0".as_ptr() as *const _,
+                c"notify::list-row".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_list_row_trampoline::<F> as *const (),
                 )),

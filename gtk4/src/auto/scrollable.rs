@@ -144,7 +144,7 @@ pub trait ScrollableExt: IsA<Scrollable> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::hadjustment\0".as_ptr() as *const _,
+                c"notify::hadjustment".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_hadjustment_trampoline::<Self, F> as *const (),
                 )),
@@ -170,7 +170,7 @@ pub trait ScrollableExt: IsA<Scrollable> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::hscroll-policy\0".as_ptr() as *const _,
+                c"notify::hscroll-policy".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_hscroll_policy_trampoline::<Self, F> as *const (),
                 )),
@@ -196,7 +196,7 @@ pub trait ScrollableExt: IsA<Scrollable> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::vadjustment\0".as_ptr() as *const _,
+                c"notify::vadjustment".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_vadjustment_trampoline::<Self, F> as *const (),
                 )),
@@ -222,7 +222,7 @@ pub trait ScrollableExt: IsA<Scrollable> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::vscroll-policy\0".as_ptr() as *const _,
+                c"notify::vscroll-policy".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_vscroll_policy_trampoline::<Self, F> as *const (),
                 )),

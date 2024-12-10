@@ -77,7 +77,7 @@ impl CellRendererSpin {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::adjustment\0".as_ptr() as *const _,
+                c"notify::adjustment".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_adjustment_trampoline::<F> as *const (),
                 )),
@@ -100,7 +100,7 @@ impl CellRendererSpin {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::climb-rate\0".as_ptr() as *const _,
+                c"notify::climb-rate".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_climb_rate_trampoline::<F> as *const (),
                 )),
@@ -123,7 +123,7 @@ impl CellRendererSpin {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::digits\0".as_ptr() as *const _,
+                c"notify::digits".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_digits_trampoline::<F> as *const (),
                 )),

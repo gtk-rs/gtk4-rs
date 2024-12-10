@@ -244,7 +244,7 @@ pub trait GestureExt: IsA<Gesture> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"begin\0".as_ptr() as *const _,
+                c"begin".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     begin_trampoline::<Self, F> as *const (),
                 )),
@@ -278,7 +278,7 @@ pub trait GestureExt: IsA<Gesture> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"cancel\0".as_ptr() as *const _,
+                c"cancel".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     cancel_trampoline::<Self, F> as *const (),
                 )),
@@ -312,7 +312,7 @@ pub trait GestureExt: IsA<Gesture> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"end\0".as_ptr() as *const _,
+                c"end".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     end_trampoline::<Self, F> as *const (),
                 )),
@@ -350,7 +350,7 @@ pub trait GestureExt: IsA<Gesture> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"sequence-state-changed\0".as_ptr() as *const _,
+                c"sequence-state-changed".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     sequence_state_changed_trampoline::<Self, F> as *const (),
                 )),
@@ -384,7 +384,7 @@ pub trait GestureExt: IsA<Gesture> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"update\0".as_ptr() as *const _,
+                c"update".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     update_trampoline::<Self, F> as *const (),
                 )),

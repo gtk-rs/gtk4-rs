@@ -489,7 +489,7 @@ pub trait GLAreaExt: IsA<GLArea> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"create-context\0".as_ptr() as *const _,
+                c"create-context".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     create_context_trampoline::<Self, F> as *const (),
                 )),
@@ -522,7 +522,7 @@ pub trait GLAreaExt: IsA<GLArea> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"render\0".as_ptr() as *const _,
+                c"render".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     render_trampoline::<Self, F> as *const (),
                 )),
@@ -550,7 +550,7 @@ pub trait GLAreaExt: IsA<GLArea> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"resize\0".as_ptr() as *const _,
+                c"resize".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     resize_trampoline::<Self, F> as *const (),
                 )),
@@ -575,7 +575,7 @@ pub trait GLAreaExt: IsA<GLArea> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::allowed-apis\0".as_ptr() as *const _,
+                c"notify::allowed-apis".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_allowed_apis_trampoline::<Self, F> as *const (),
                 )),
@@ -600,7 +600,7 @@ pub trait GLAreaExt: IsA<GLArea> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::api\0".as_ptr() as *const _,
+                c"notify::api".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_api_trampoline::<Self, F> as *const (),
                 )),
@@ -623,7 +623,7 @@ pub trait GLAreaExt: IsA<GLArea> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::auto-render\0".as_ptr() as *const _,
+                c"notify::auto-render".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_auto_render_trampoline::<Self, F> as *const (),
                 )),
@@ -646,7 +646,7 @@ pub trait GLAreaExt: IsA<GLArea> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::context\0".as_ptr() as *const _,
+                c"notify::context".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_context_trampoline::<Self, F> as *const (),
                 )),
@@ -672,7 +672,7 @@ pub trait GLAreaExt: IsA<GLArea> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::has-depth-buffer\0".as_ptr() as *const _,
+                c"notify::has-depth-buffer".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_has_depth_buffer_trampoline::<Self, F> as *const (),
                 )),
@@ -698,7 +698,7 @@ pub trait GLAreaExt: IsA<GLArea> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::has-stencil-buffer\0".as_ptr() as *const _,
+                c"notify::has-stencil-buffer".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_has_stencil_buffer_trampoline::<Self, F> as *const (),
                 )),
@@ -722,7 +722,7 @@ pub trait GLAreaExt: IsA<GLArea> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::use-es\0".as_ptr() as *const _,
+                c"notify::use-es".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_use_es_trampoline::<Self, F> as *const (),
                 )),

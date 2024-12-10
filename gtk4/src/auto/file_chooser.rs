@@ -346,7 +346,7 @@ pub trait FileChooserExt: IsA<FileChooser> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::action\0".as_ptr() as *const _,
+                c"notify::action".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_action_trampoline::<Self, F> as *const (),
                 )),
@@ -373,7 +373,7 @@ pub trait FileChooserExt: IsA<FileChooser> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::create-folders\0".as_ptr() as *const _,
+                c"notify::create-folders".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_create_folders_trampoline::<Self, F> as *const (),
                 )),
@@ -397,7 +397,7 @@ pub trait FileChooserExt: IsA<FileChooser> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::filter\0".as_ptr() as *const _,
+                c"notify::filter".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_filter_trampoline::<Self, F> as *const (),
                 )),
@@ -421,7 +421,7 @@ pub trait FileChooserExt: IsA<FileChooser> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::filters\0".as_ptr() as *const _,
+                c"notify::filters".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_filters_trampoline::<Self, F> as *const (),
                 )),
@@ -448,7 +448,7 @@ pub trait FileChooserExt: IsA<FileChooser> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::select-multiple\0".as_ptr() as *const _,
+                c"notify::select-multiple".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_select_multiple_trampoline::<Self, F> as *const (),
                 )),
@@ -475,7 +475,7 @@ pub trait FileChooserExt: IsA<FileChooser> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::shortcut-folders\0".as_ptr() as *const _,
+                c"notify::shortcut-folders".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_shortcut_folders_trampoline::<Self, F> as *const (),
                 )),

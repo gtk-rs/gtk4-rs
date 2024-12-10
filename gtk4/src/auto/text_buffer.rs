@@ -908,7 +908,7 @@ pub trait TextBufferExt: IsA<TextBuffer> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"apply-tag\0".as_ptr() as *const _,
+                c"apply-tag".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     apply_tag_trampoline::<Self, F> as *const (),
                 )),
@@ -933,7 +933,7 @@ pub trait TextBufferExt: IsA<TextBuffer> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"begin-user-action\0".as_ptr() as *const _,
+                c"begin-user-action".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     begin_user_action_trampoline::<Self, F> as *const (),
                 )),
@@ -955,7 +955,7 @@ pub trait TextBufferExt: IsA<TextBuffer> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"changed\0".as_ptr() as *const _,
+                c"changed".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     changed_trampoline::<Self, F> as *const (),
                 )),
@@ -989,7 +989,7 @@ pub trait TextBufferExt: IsA<TextBuffer> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"delete-range\0".as_ptr() as *const _,
+                c"delete-range".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     delete_range_trampoline::<Self, F> as *const (),
                 )),
@@ -1011,7 +1011,7 @@ pub trait TextBufferExt: IsA<TextBuffer> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"end-user-action\0".as_ptr() as *const _,
+                c"end-user-action".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     end_user_action_trampoline::<Self, F> as *const (),
                 )),
@@ -1045,7 +1045,7 @@ pub trait TextBufferExt: IsA<TextBuffer> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"insert-child-anchor\0".as_ptr() as *const _,
+                c"insert-child-anchor".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     insert_child_anchor_trampoline::<Self, F> as *const (),
                 )),
@@ -1079,7 +1079,7 @@ pub trait TextBufferExt: IsA<TextBuffer> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"insert-paintable\0".as_ptr() as *const _,
+                c"insert-paintable".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     insert_paintable_trampoline::<Self, F> as *const (),
                 )),
@@ -1108,7 +1108,7 @@ pub trait TextBufferExt: IsA<TextBuffer> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"mark-deleted\0".as_ptr() as *const _,
+                c"mark-deleted".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     mark_deleted_trampoline::<Self, F> as *const (),
                 )),
@@ -1142,7 +1142,7 @@ pub trait TextBufferExt: IsA<TextBuffer> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"mark-set\0".as_ptr() as *const _,
+                c"mark-set".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     mark_set_trampoline::<Self, F> as *const (),
                 )),
@@ -1167,7 +1167,7 @@ pub trait TextBufferExt: IsA<TextBuffer> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"modified-changed\0".as_ptr() as *const _,
+                c"modified-changed".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     modified_changed_trampoline::<Self, F> as *const (),
                 )),
@@ -1196,7 +1196,7 @@ pub trait TextBufferExt: IsA<TextBuffer> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"paste-done\0".as_ptr() as *const _,
+                c"paste-done".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     paste_done_trampoline::<Self, F> as *const (),
                 )),
@@ -1218,7 +1218,7 @@ pub trait TextBufferExt: IsA<TextBuffer> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"redo\0".as_ptr() as *const _,
+                c"redo".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     redo_trampoline::<Self, F> as *const (),
                 )),
@@ -1254,7 +1254,7 @@ pub trait TextBufferExt: IsA<TextBuffer> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"remove-tag\0".as_ptr() as *const _,
+                c"remove-tag".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     remove_tag_trampoline::<Self, F> as *const (),
                 )),
@@ -1276,7 +1276,7 @@ pub trait TextBufferExt: IsA<TextBuffer> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"undo\0".as_ptr() as *const _,
+                c"undo".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     undo_trampoline::<Self, F> as *const (),
                 )),
@@ -1299,7 +1299,7 @@ pub trait TextBufferExt: IsA<TextBuffer> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::can-redo\0".as_ptr() as *const _,
+                c"notify::can-redo".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_can_redo_trampoline::<Self, F> as *const (),
                 )),
@@ -1322,7 +1322,7 @@ pub trait TextBufferExt: IsA<TextBuffer> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::can-undo\0".as_ptr() as *const _,
+                c"notify::can-undo".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_can_undo_trampoline::<Self, F> as *const (),
                 )),
@@ -1348,7 +1348,7 @@ pub trait TextBufferExt: IsA<TextBuffer> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::cursor-position\0".as_ptr() as *const _,
+                c"notify::cursor-position".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_cursor_position_trampoline::<Self, F> as *const (),
                 )),
@@ -1374,7 +1374,7 @@ pub trait TextBufferExt: IsA<TextBuffer> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::enable-undo\0".as_ptr() as *const _,
+                c"notify::enable-undo".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_enable_undo_trampoline::<Self, F> as *const (),
                 )),
@@ -1400,7 +1400,7 @@ pub trait TextBufferExt: IsA<TextBuffer> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::has-selection\0".as_ptr() as *const _,
+                c"notify::has-selection".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_has_selection_trampoline::<Self, F> as *const (),
                 )),
@@ -1423,7 +1423,7 @@ pub trait TextBufferExt: IsA<TextBuffer> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::text\0".as_ptr() as *const _,
+                c"notify::text".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_text_trampoline::<Self, F> as *const (),
                 )),

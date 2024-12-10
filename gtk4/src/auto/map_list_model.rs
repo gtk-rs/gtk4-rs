@@ -133,7 +133,7 @@ impl MapListModel {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::has-map\0".as_ptr() as *const _,
+                c"notify::has-map".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_has_map_trampoline::<F> as *const (),
                 )),

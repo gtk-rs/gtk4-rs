@@ -79,7 +79,7 @@ impl ATContext {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"state-change\0".as_ptr() as *const _,
+                c"state-change".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     state_change_trampoline::<F> as *const (),
                 )),
@@ -102,7 +102,7 @@ impl ATContext {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::accessible-role\0".as_ptr() as *const _,
+                c"notify::accessible-role".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_accessible_role_trampoline::<F> as *const (),
                 )),
@@ -125,7 +125,7 @@ impl ATContext {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::display\0".as_ptr() as *const _,
+                c"notify::display".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_display_trampoline::<F> as *const (),
                 )),

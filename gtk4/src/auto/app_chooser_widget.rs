@@ -214,7 +214,7 @@ impl AppChooserWidget {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"application-activated\0".as_ptr() as *const _,
+                c"application-activated".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     application_activated_trampoline::<F> as *const (),
                 )),
@@ -242,7 +242,7 @@ impl AppChooserWidget {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"application-selected\0".as_ptr() as *const _,
+                c"application-selected".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     application_selected_trampoline::<F> as *const (),
                 )),
@@ -265,7 +265,7 @@ impl AppChooserWidget {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::default-text\0".as_ptr() as *const _,
+                c"notify::default-text".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_default_text_trampoline::<F> as *const (),
                 )),
@@ -288,7 +288,7 @@ impl AppChooserWidget {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::show-all\0".as_ptr() as *const _,
+                c"notify::show-all".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_show_all_trampoline::<F> as *const (),
                 )),
@@ -311,7 +311,7 @@ impl AppChooserWidget {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::show-default\0".as_ptr() as *const _,
+                c"notify::show-default".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_show_default_trampoline::<F> as *const (),
                 )),
@@ -334,7 +334,7 @@ impl AppChooserWidget {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::show-fallback\0".as_ptr() as *const _,
+                c"notify::show-fallback".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_show_fallback_trampoline::<F> as *const (),
                 )),
@@ -357,7 +357,7 @@ impl AppChooserWidget {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::show-other\0".as_ptr() as *const _,
+                c"notify::show-other".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_show_other_trampoline::<F> as *const (),
                 )),
@@ -382,7 +382,7 @@ impl AppChooserWidget {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::show-recommended\0".as_ptr() as *const _,
+                c"notify::show-recommended".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_show_recommended_trampoline::<F> as *const (),
                 )),

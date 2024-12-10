@@ -288,7 +288,7 @@ pub trait GtkApplicationExt: IsA<Application> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"query-end\0".as_ptr() as *const _,
+                c"query-end".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     query_end_trampoline::<Self, F> as *const (),
                 )),
@@ -317,7 +317,7 @@ pub trait GtkApplicationExt: IsA<Application> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"window-added\0".as_ptr() as *const _,
+                c"window-added".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     window_added_trampoline::<Self, F> as *const (),
                 )),
@@ -346,7 +346,7 @@ pub trait GtkApplicationExt: IsA<Application> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"window-removed\0".as_ptr() as *const _,
+                c"window-removed".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     window_removed_trampoline::<Self, F> as *const (),
                 )),
@@ -372,7 +372,7 @@ pub trait GtkApplicationExt: IsA<Application> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::active-window\0".as_ptr() as *const _,
+                c"notify::active-window".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_active_window_trampoline::<Self, F> as *const (),
                 )),
@@ -395,7 +395,7 @@ pub trait GtkApplicationExt: IsA<Application> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::menubar\0".as_ptr() as *const _,
+                c"notify::menubar".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_menubar_trampoline::<Self, F> as *const (),
                 )),
@@ -421,7 +421,7 @@ pub trait GtkApplicationExt: IsA<Application> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::register-session\0".as_ptr() as *const _,
+                c"notify::register-session".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_register_session_trampoline::<Self, F> as *const (),
                 )),
@@ -447,7 +447,7 @@ pub trait GtkApplicationExt: IsA<Application> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::screensaver-active\0".as_ptr() as *const _,
+                c"notify::screensaver-active".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_screensaver_active_trampoline::<Self, F> as *const (),
                 )),

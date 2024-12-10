@@ -264,7 +264,7 @@ pub trait GLContextExt: IsA<GLContext> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::allowed-apis\0".as_ptr() as *const _,
+                c"notify::allowed-apis".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_allowed_apis_trampoline::<Self, F> as *const (),
                 )),
@@ -289,7 +289,7 @@ pub trait GLContextExt: IsA<GLContext> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::api\0".as_ptr() as *const _,
+                c"notify::api".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_api_trampoline::<Self, F> as *const (),
                 )),

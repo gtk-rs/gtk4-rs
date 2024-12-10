@@ -117,7 +117,7 @@ impl ShortcutController {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::mnemonic-modifiers\0".as_ptr() as *const _,
+                c"notify::mnemonic-modifiers".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_mnemonic_modifiers_trampoline::<F> as *const (),
                 )),
@@ -140,7 +140,7 @@ impl ShortcutController {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::scope\0".as_ptr() as *const _,
+                c"notify::scope".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_scope_trampoline::<F> as *const (),
                 )),

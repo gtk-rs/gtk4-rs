@@ -215,7 +215,7 @@ impl AlertDialog {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::buttons\0".as_ptr() as *const _,
+                c"notify::buttons".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_buttons_trampoline::<F> as *const (),
                 )),
@@ -240,7 +240,7 @@ impl AlertDialog {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::cancel-button\0".as_ptr() as *const _,
+                c"notify::cancel-button".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_cancel_button_trampoline::<F> as *const (),
                 )),
@@ -265,7 +265,7 @@ impl AlertDialog {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::default-button\0".as_ptr() as *const _,
+                c"notify::default-button".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_default_button_trampoline::<F> as *const (),
                 )),
@@ -290,7 +290,7 @@ impl AlertDialog {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::detail\0".as_ptr() as *const _,
+                c"notify::detail".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_detail_trampoline::<F> as *const (),
                 )),
@@ -315,7 +315,7 @@ impl AlertDialog {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::message\0".as_ptr() as *const _,
+                c"notify::message".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_message_trampoline::<F> as *const (),
                 )),
@@ -340,7 +340,7 @@ impl AlertDialog {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::modal\0".as_ptr() as *const _,
+                c"notify::modal".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_modal_trampoline::<F> as *const (),
                 )),
