@@ -29,7 +29,7 @@ impl SignalListItemFactory {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"bind\0".as_ptr() as *const _,
+                c"bind".as_ptr() as *const _,
                 Some(transmute::<*const (), unsafe extern "C" fn()>(
                     bind_trampoline::<F> as *const (),
                 )),
@@ -55,7 +55,7 @@ impl SignalListItemFactory {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"setup\0".as_ptr() as *const _,
+                c"setup".as_ptr() as *const _,
                 Some(transmute::<*const (), unsafe extern "C" fn()>(
                     setup_trampoline::<F> as *const (),
                 )),
@@ -81,7 +81,7 @@ impl SignalListItemFactory {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"teardown\0".as_ptr() as *const _,
+                c"teardown".as_ptr() as *const _,
                 Some(transmute::<*const (), unsafe extern "C" fn()>(
                     teardown_trampoline::<F> as *const (),
                 )),
@@ -107,7 +107,7 @@ impl SignalListItemFactory {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"unbind\0".as_ptr() as *const _,
+                c"unbind".as_ptr() as *const _,
                 Some(transmute::<*const (), unsafe extern "C" fn()>(
                     unbind_trampoline::<F> as *const (),
                 )),
