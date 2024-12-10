@@ -31,7 +31,7 @@ pub trait ToplevelExtManual: IsA<Toplevel> {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"compute-size\0".as_ptr() as *const _,
+                c"compute-size".as_ptr() as *const _,
                 Some(transmute::<*const (), unsafe extern "C" fn()>(
                     compute_size_trampoline::<F> as *const (),
                 )),

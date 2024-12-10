@@ -89,7 +89,7 @@ impl X11Display {
         let f: Box_<F> = Box_::new(f);
         connect_raw(
             self.as_ptr() as *mut _,
-            b"xevent\0".as_ptr() as *const _,
+            c"xevent".as_ptr() as *const _,
             Some(transmute::<*const (), unsafe extern "C" fn()>(
                 xevent_trampoline::<F> as *const (),
             )),

@@ -22,7 +22,7 @@ pub trait EditableExtManual: IsA<Editable> + 'static {
             let f: Box<F> = Box::new(f);
             connect_raw(
                 self.to_glib_none().0 as *mut _,
-                b"insert-text\0".as_ptr() as *mut _,
+                c"insert-text".as_ptr() as *mut _,
                 Some(transmute::<usize, unsafe extern "C" fn()>(
                     insert_text_trampoline::<Self, F> as usize,
                 )),
