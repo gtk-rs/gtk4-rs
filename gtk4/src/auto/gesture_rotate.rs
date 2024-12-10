@@ -55,7 +55,7 @@ impl GestureRotate {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"angle-changed\0".as_ptr() as *const _,
+                c"angle-changed".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     angle_changed_trampoline::<F> as *const (),
                 )),

@@ -76,7 +76,7 @@ pub trait CellEditableExt: IsA<CellEditable> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"editing-done\0".as_ptr() as *const _,
+                c"editing-done".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     editing_done_trampoline::<Self, F> as *const (),
                 )),
@@ -98,7 +98,7 @@ pub trait CellEditableExt: IsA<CellEditable> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"remove-widget\0".as_ptr() as *const _,
+                c"remove-widget".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     remove_widget_trampoline::<Self, F> as *const (),
                 )),
@@ -124,7 +124,7 @@ pub trait CellEditableExt: IsA<CellEditable> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::editing-canceled\0".as_ptr() as *const _,
+                c"notify::editing-canceled".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_editing_canceled_trampoline::<Self, F> as *const (),
                 )),

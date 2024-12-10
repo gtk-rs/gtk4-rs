@@ -101,7 +101,7 @@ impl DropTargetAsync {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"accept\0".as_ptr() as *const _,
+                c"accept".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     accept_trampoline::<F> as *const (),
                 )),
@@ -131,7 +131,7 @@ impl DropTargetAsync {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"drag-enter\0".as_ptr() as *const _,
+                c"drag-enter".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     drag_enter_trampoline::<F> as *const (),
                 )),
@@ -156,7 +156,7 @@ impl DropTargetAsync {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"drag-leave\0".as_ptr() as *const _,
+                c"drag-leave".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     drag_leave_trampoline::<F> as *const (),
                 )),
@@ -186,7 +186,7 @@ impl DropTargetAsync {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"drag-motion\0".as_ptr() as *const _,
+                c"drag-motion".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     drag_motion_trampoline::<F> as *const (),
                 )),
@@ -216,7 +216,7 @@ impl DropTargetAsync {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"drop\0".as_ptr() as *const _,
+                c"drop".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     drop_trampoline::<F> as *const (),
                 )),
@@ -239,7 +239,7 @@ impl DropTargetAsync {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::actions\0".as_ptr() as *const _,
+                c"notify::actions".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_actions_trampoline::<F> as *const (),
                 )),
@@ -262,7 +262,7 @@ impl DropTargetAsync {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::formats\0".as_ptr() as *const _,
+                c"notify::formats".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_formats_trampoline::<F> as *const (),
                 )),

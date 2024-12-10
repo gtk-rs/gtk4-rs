@@ -4080,6 +4080,9 @@ extern "C" {
         formats: *const GdkContentFormats,
         n_mime_types: *mut size_t,
     ) -> *const *const c_char;
+    #[cfg(feature = "v4_18")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_18")))]
+    pub fn gdk_content_formats_is_empty(formats: *mut GdkContentFormats) -> gboolean;
     pub fn gdk_content_formats_match(
         first: *const GdkContentFormats,
         second: *const GdkContentFormats,

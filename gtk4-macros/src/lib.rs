@@ -158,6 +158,7 @@ pub fn include_blueprint(input: TokenStream) -> TokenStream {
 ///
 ///     #[derive(Debug, Default, gtk::CompositeTemplate)]
 ///     #[template(string = "
+///     using Gtk 4.0;
 ///     template $MyWidget : Widget {
 ///         Label label {
 ///             label: 'foobar';

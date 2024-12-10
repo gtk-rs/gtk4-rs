@@ -353,7 +353,7 @@ pub trait TreeModelExt: IsA<TreeModel> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"row-changed\0".as_ptr() as *const _,
+                c"row-changed".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     row_changed_trampoline::<Self, F> as *const (),
                 )),
@@ -382,7 +382,7 @@ pub trait TreeModelExt: IsA<TreeModel> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"row-deleted\0".as_ptr() as *const _,
+                c"row-deleted".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     row_deleted_trampoline::<Self, F> as *const (),
                 )),
@@ -416,7 +416,7 @@ pub trait TreeModelExt: IsA<TreeModel> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"row-has-child-toggled\0".as_ptr() as *const _,
+                c"row-has-child-toggled".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     row_has_child_toggled_trampoline::<Self, F> as *const (),
                 )),
@@ -450,7 +450,7 @@ pub trait TreeModelExt: IsA<TreeModel> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"row-inserted\0".as_ptr() as *const _,
+                c"row-inserted".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     row_inserted_trampoline::<Self, F> as *const (),
                 )),

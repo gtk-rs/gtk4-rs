@@ -75,7 +75,7 @@ pub trait SectionModelExt: IsA<SectionModel> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"sections-changed\0".as_ptr() as *const _,
+                c"sections-changed".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     sections_changed_trampoline::<Self, F> as *const (),
                 )),

@@ -104,7 +104,7 @@ impl DragSource {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"drag-begin\0".as_ptr() as *const _,
+                c"drag-begin".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     drag_begin_trampoline::<F> as *const (),
                 )),
@@ -140,7 +140,7 @@ impl DragSource {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"drag-cancel\0".as_ptr() as *const _,
+                c"drag-cancel".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     drag_cancel_trampoline::<F> as *const (),
                 )),
@@ -171,7 +171,7 @@ impl DragSource {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"drag-end\0".as_ptr() as *const _,
+                c"drag-end".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     drag_end_trampoline::<F> as *const (),
                 )),
@@ -200,7 +200,7 @@ impl DragSource {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"prepare\0".as_ptr() as *const _,
+                c"prepare".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     prepare_trampoline::<F> as *const (),
                 )),
@@ -223,7 +223,7 @@ impl DragSource {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::actions\0".as_ptr() as *const _,
+                c"notify::actions".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_actions_trampoline::<F> as *const (),
                 )),
@@ -246,7 +246,7 @@ impl DragSource {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::content\0".as_ptr() as *const _,
+                c"notify::content".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_content_trampoline::<F> as *const (),
                 )),

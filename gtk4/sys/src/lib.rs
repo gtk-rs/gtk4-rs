@@ -21264,6 +21264,9 @@ extern "C" {
     ) -> *const c_char;
     pub fn gtk_css_parser_error_quark() -> glib::GQuark;
     pub fn gtk_css_parser_warning_quark() -> glib::GQuark;
+    #[cfg(feature = "v4_18")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_18")))]
+    pub fn gtk_disable_portals();
     pub fn gtk_disable_setlocale();
     pub fn gtk_distribute_natural_allocation(
         extra_space: c_int,

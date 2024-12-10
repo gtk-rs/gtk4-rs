@@ -18,7 +18,7 @@ impl Overlay {
             let f: Box<F> = Box::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"get-child-position\0".as_ptr() as *mut _,
+                c"get-child-position".as_ptr() as *mut _,
                 Some(transmute::<usize, unsafe extern "C" fn()>(
                     get_child_position_trampoline::<F> as usize,
                 )),

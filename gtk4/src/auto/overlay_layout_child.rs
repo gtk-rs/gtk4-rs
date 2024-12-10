@@ -77,7 +77,7 @@ impl OverlayLayoutChild {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::clip-overlay\0".as_ptr() as *const _,
+                c"notify::clip-overlay".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_clip_overlay_trampoline::<F> as *const (),
                 )),
@@ -100,7 +100,7 @@ impl OverlayLayoutChild {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::measure\0".as_ptr() as *const _,
+                c"notify::measure".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_measure_trampoline::<F> as *const (),
                 )),

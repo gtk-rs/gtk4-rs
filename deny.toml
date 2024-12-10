@@ -18,6 +18,7 @@ allow = [
   "Apache-2.0 WITH LLVM-exception",
   "Unicode-DFS-2016",
   "ISC",
+  "Unicode-3.0"
 ]
 confidence-threshold = 0.8
 

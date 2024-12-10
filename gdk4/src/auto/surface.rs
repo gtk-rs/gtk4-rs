@@ -287,7 +287,7 @@ pub trait SurfaceExt: IsA<Surface> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"enter-monitor\0".as_ptr() as *const _,
+                c"enter-monitor".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     enter_monitor_trampoline::<Self, F> as *const (),
                 )),
@@ -317,7 +317,7 @@ pub trait SurfaceExt: IsA<Surface> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"event\0".as_ptr() as *const _,
+                c"event".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     event_trampoline::<Self, F> as *const (),
                 )),
@@ -345,7 +345,7 @@ pub trait SurfaceExt: IsA<Surface> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"layout\0".as_ptr() as *const _,
+                c"layout".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     layout_trampoline::<Self, F> as *const (),
                 )),
@@ -374,7 +374,7 @@ pub trait SurfaceExt: IsA<Surface> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"leave-monitor\0".as_ptr() as *const _,
+                c"leave-monitor".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     leave_monitor_trampoline::<Self, F> as *const (),
                 )),
@@ -407,7 +407,7 @@ pub trait SurfaceExt: IsA<Surface> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"render\0".as_ptr() as *const _,
+                c"render".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     render_trampoline::<Self, F> as *const (),
                 )),
@@ -430,7 +430,7 @@ pub trait SurfaceExt: IsA<Surface> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::cursor\0".as_ptr() as *const _,
+                c"notify::cursor".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_cursor_trampoline::<Self, F> as *const (),
                 )),
@@ -453,7 +453,7 @@ pub trait SurfaceExt: IsA<Surface> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::height\0".as_ptr() as *const _,
+                c"notify::height".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_height_trampoline::<Self, F> as *const (),
                 )),
@@ -476,7 +476,7 @@ pub trait SurfaceExt: IsA<Surface> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::mapped\0".as_ptr() as *const _,
+                c"notify::mapped".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_mapped_trampoline::<Self, F> as *const (),
                 )),
@@ -501,7 +501,7 @@ pub trait SurfaceExt: IsA<Surface> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::scale\0".as_ptr() as *const _,
+                c"notify::scale".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_scale_trampoline::<Self, F> as *const (),
                 )),
@@ -527,7 +527,7 @@ pub trait SurfaceExt: IsA<Surface> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::scale-factor\0".as_ptr() as *const _,
+                c"notify::scale-factor".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_scale_factor_trampoline::<Self, F> as *const (),
                 )),
@@ -550,7 +550,7 @@ pub trait SurfaceExt: IsA<Surface> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::width\0".as_ptr() as *const _,
+                c"notify::width".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_width_trampoline::<Self, F> as *const (),
                 )),

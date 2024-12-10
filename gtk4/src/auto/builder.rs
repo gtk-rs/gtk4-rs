@@ -353,7 +353,7 @@ impl Builder {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::current-object\0".as_ptr() as *const _,
+                c"notify::current-object".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_current_object_trampoline::<F> as *const (),
                 )),
@@ -376,7 +376,7 @@ impl Builder {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::scope\0".as_ptr() as *const _,
+                c"notify::scope".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_scope_trampoline::<F> as *const (),
                 )),
@@ -402,7 +402,7 @@ impl Builder {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::translation-domain\0".as_ptr() as *const _,
+                c"notify::translation-domain".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_translation_domain_trampoline::<F> as *const (),
                 )),

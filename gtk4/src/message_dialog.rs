@@ -27,7 +27,7 @@ impl MessageDialog {
                     flags.into_glib(),
                     type_.into_glib(),
                     buttons.into_glib(),
-                    b"%s\0".as_ptr() as *const libc::c_char,
+                    c"%s".as_ptr() as *const libc::c_char,
                     message.as_ptr(),
                     ptr::null::<libc::c_char>(),
                 ))

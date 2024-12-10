@@ -154,7 +154,7 @@ impl SearchEntry {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"activate\0".as_ptr() as *const _,
+                c"activate".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     activate_trampoline::<F> as *const (),
                 )),
@@ -180,7 +180,7 @@ impl SearchEntry {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"next-match\0".as_ptr() as *const _,
+                c"next-match".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     next_match_trampoline::<F> as *const (),
                 )),
@@ -206,7 +206,7 @@ impl SearchEntry {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"previous-match\0".as_ptr() as *const _,
+                c"previous-match".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     previous_match_trampoline::<F> as *const (),
                 )),
@@ -232,7 +232,7 @@ impl SearchEntry {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"search-changed\0".as_ptr() as *const _,
+                c"search-changed".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     search_changed_trampoline::<F> as *const (),
                 )),
@@ -254,7 +254,7 @@ impl SearchEntry {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"search-started\0".as_ptr() as *const _,
+                c"search-started".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     search_started_trampoline::<F> as *const (),
                 )),
@@ -276,7 +276,7 @@ impl SearchEntry {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"stop-search\0".as_ptr() as *const _,
+                c"stop-search".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     stop_search_trampoline::<F> as *const (),
                 )),
@@ -306,7 +306,7 @@ impl SearchEntry {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::activates-default\0".as_ptr() as *const _,
+                c"notify::activates-default".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_activates_default_trampoline::<F> as *const (),
                 )),
@@ -331,7 +331,7 @@ impl SearchEntry {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::input-hints\0".as_ptr() as *const _,
+                c"notify::input-hints".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_input_hints_trampoline::<F> as *const (),
                 )),
@@ -356,7 +356,7 @@ impl SearchEntry {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::input-purpose\0".as_ptr() as *const _,
+                c"notify::input-purpose".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_input_purpose_trampoline::<F> as *const (),
                 )),
@@ -379,7 +379,7 @@ impl SearchEntry {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::placeholder-text\0".as_ptr() as *const _,
+                c"notify::placeholder-text".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_placeholder_text_trampoline::<F> as *const (),
                 )),
@@ -404,7 +404,7 @@ impl SearchEntry {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::search-delay\0".as_ptr() as *const _,
+                c"notify::search-delay".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_search_delay_trampoline::<F> as *const (),
                 )),

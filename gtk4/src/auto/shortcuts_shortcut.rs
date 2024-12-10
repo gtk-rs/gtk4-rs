@@ -119,7 +119,7 @@ impl ShortcutsShortcut {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::accel-size-group\0".as_ptr() as *const _,
+                c"notify::accel-size-group".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_accel_size_group_trampoline::<F> as *const (),
                 )),
@@ -142,7 +142,7 @@ impl ShortcutsShortcut {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::accelerator\0".as_ptr() as *const _,
+                c"notify::accelerator".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_accelerator_trampoline::<F> as *const (),
                 )),
@@ -165,7 +165,7 @@ impl ShortcutsShortcut {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::action-name\0".as_ptr() as *const _,
+                c"notify::action-name".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_action_name_trampoline::<F> as *const (),
                 )),
@@ -188,7 +188,7 @@ impl ShortcutsShortcut {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::direction\0".as_ptr() as *const _,
+                c"notify::direction".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_direction_trampoline::<F> as *const (),
                 )),
@@ -211,7 +211,7 @@ impl ShortcutsShortcut {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::icon\0".as_ptr() as *const _,
+                c"notify::icon".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_icon_trampoline::<F> as *const (),
                 )),
@@ -234,7 +234,7 @@ impl ShortcutsShortcut {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::icon-set\0".as_ptr() as *const _,
+                c"notify::icon-set".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_icon_set_trampoline::<F> as *const (),
                 )),
@@ -259,7 +259,7 @@ impl ShortcutsShortcut {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::shortcut-type\0".as_ptr() as *const _,
+                c"notify::shortcut-type".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_shortcut_type_trampoline::<F> as *const (),
                 )),
@@ -282,7 +282,7 @@ impl ShortcutsShortcut {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::subtitle\0".as_ptr() as *const _,
+                c"notify::subtitle".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_subtitle_trampoline::<F> as *const (),
                 )),
@@ -305,7 +305,7 @@ impl ShortcutsShortcut {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::subtitle-set\0".as_ptr() as *const _,
+                c"notify::subtitle-set".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_subtitle_set_trampoline::<F> as *const (),
                 )),
@@ -328,7 +328,7 @@ impl ShortcutsShortcut {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::title\0".as_ptr() as *const _,
+                c"notify::title".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_title_trampoline::<F> as *const (),
                 )),
@@ -353,7 +353,7 @@ impl ShortcutsShortcut {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::title-size-group\0".as_ptr() as *const _,
+                c"notify::title-size-group".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_title_size_group_trampoline::<F> as *const (),
                 )),

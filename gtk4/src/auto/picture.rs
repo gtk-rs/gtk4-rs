@@ -253,7 +253,7 @@ impl Picture {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::alternative-text\0".as_ptr() as *const _,
+                c"notify::alternative-text".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_alternative_text_trampoline::<F> as *const (),
                 )),
@@ -276,7 +276,7 @@ impl Picture {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::can-shrink\0".as_ptr() as *const _,
+                c"notify::can-shrink".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_can_shrink_trampoline::<F> as *const (),
                 )),
@@ -301,7 +301,7 @@ impl Picture {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::content-fit\0".as_ptr() as *const _,
+                c"notify::content-fit".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_content_fit_trampoline::<F> as *const (),
                 )),
@@ -324,7 +324,7 @@ impl Picture {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::file\0".as_ptr() as *const _,
+                c"notify::file".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_file_trampoline::<F> as *const (),
                 )),
@@ -351,7 +351,7 @@ impl Picture {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::keep-aspect-ratio\0".as_ptr() as *const _,
+                c"notify::keep-aspect-ratio".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_keep_aspect_ratio_trampoline::<F> as *const (),
                 )),
@@ -374,7 +374,7 @@ impl Picture {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::paintable\0".as_ptr() as *const _,
+                c"notify::paintable".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_paintable_trampoline::<F> as *const (),
                 )),

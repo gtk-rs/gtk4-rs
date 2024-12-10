@@ -263,7 +263,7 @@ impl Image {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::file\0".as_ptr() as *const _,
+                c"notify::file".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_file_trampoline::<F> as *const (),
                 )),
@@ -286,7 +286,7 @@ impl Image {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::gicon\0".as_ptr() as *const _,
+                c"notify::gicon".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_gicon_trampoline::<F> as *const (),
                 )),
@@ -309,7 +309,7 @@ impl Image {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::icon-name\0".as_ptr() as *const _,
+                c"notify::icon-name".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_icon_name_trampoline::<F> as *const (),
                 )),
@@ -332,7 +332,7 @@ impl Image {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::icon-size\0".as_ptr() as *const _,
+                c"notify::icon-size".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_icon_size_trampoline::<F> as *const (),
                 )),
@@ -355,7 +355,7 @@ impl Image {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::paintable\0".as_ptr() as *const _,
+                c"notify::paintable".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_paintable_trampoline::<F> as *const (),
                 )),
@@ -378,7 +378,7 @@ impl Image {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::pixel-size\0".as_ptr() as *const _,
+                c"notify::pixel-size".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_pixel_size_trampoline::<F> as *const (),
                 )),
@@ -401,7 +401,7 @@ impl Image {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::resource\0".as_ptr() as *const _,
+                c"notify::resource".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_resource_trampoline::<F> as *const (),
                 )),
@@ -424,7 +424,7 @@ impl Image {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::storage-type\0".as_ptr() as *const _,
+                c"notify::storage-type".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_storage_type_trampoline::<F> as *const (),
                 )),
@@ -447,7 +447,7 @@ impl Image {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::use-fallback\0".as_ptr() as *const _,
+                c"notify::use-fallback".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_use_fallback_trampoline::<F> as *const (),
                 )),

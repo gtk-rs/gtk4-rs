@@ -78,7 +78,7 @@ impl ListHeader {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::child\0".as_ptr() as *const _,
+                c"notify::child".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_child_trampoline::<F> as *const (),
                 )),
@@ -103,7 +103,7 @@ impl ListHeader {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::end\0".as_ptr() as *const _,
+                c"notify::end".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_end_trampoline::<F> as *const (),
                 )),
@@ -128,7 +128,7 @@ impl ListHeader {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::item\0".as_ptr() as *const _,
+                c"notify::item".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_item_trampoline::<F> as *const (),
                 )),
@@ -153,7 +153,7 @@ impl ListHeader {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::n-items\0".as_ptr() as *const _,
+                c"notify::n-items".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_n_items_trampoline::<F> as *const (),
                 )),
@@ -178,7 +178,7 @@ impl ListHeader {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::start\0".as_ptr() as *const _,
+                c"notify::start".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_start_trampoline::<F> as *const (),
                 )),

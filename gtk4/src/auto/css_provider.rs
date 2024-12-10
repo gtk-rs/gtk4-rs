@@ -130,7 +130,7 @@ impl CssProvider {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"parsing-error\0".as_ptr() as *const _,
+                c"parsing-error".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     parsing_error_trampoline::<F> as *const (),
                 )),

@@ -35,6 +35,16 @@ pub fn check_version(
     }
 }
 
+#[cfg(feature = "v4_18")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_18")))]
+#[doc(alias = "gtk_disable_portals")]
+pub fn disable_portals() {
+    assert_initialized_main_thread!();
+    unsafe {
+        ffi::gtk_disable_portals();
+    }
+}
+
 #[doc(alias = "gtk_disable_setlocale")]
 pub fn disable_setlocale() {
     assert_not_initialized!();

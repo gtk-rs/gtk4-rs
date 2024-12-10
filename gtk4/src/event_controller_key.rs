@@ -36,7 +36,7 @@ impl EventControllerKey {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"key-pressed\0".as_ptr() as *const _,
+                c"key-pressed".as_ptr() as *const _,
                 Some(transmute::<*const (), unsafe extern "C" fn()>(
                     key_pressed_trampoline::<F> as *const (),
                 )),
@@ -72,7 +72,7 @@ impl EventControllerKey {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"key-released\0".as_ptr() as *const _,
+                c"key-released".as_ptr() as *const _,
                 Some(transmute::<*const (), unsafe extern "C" fn()>(
                     key_released_trampoline::<F> as *const (),
                 )),

@@ -82,7 +82,7 @@ impl VolumeButton {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::use-symbolic\0".as_ptr() as *const _,
+                c"notify::use-symbolic".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_use_symbolic_trampoline::<F> as *const (),
                 )),

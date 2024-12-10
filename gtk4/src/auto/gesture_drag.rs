@@ -175,7 +175,7 @@ pub trait GestureDragExt: IsA<GestureDrag> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"drag-begin\0".as_ptr() as *const _,
+                c"drag-begin".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     drag_begin_trampoline::<Self, F> as *const (),
                 )),
@@ -206,7 +206,7 @@ pub trait GestureDragExt: IsA<GestureDrag> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"drag-end\0".as_ptr() as *const _,
+                c"drag-end".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     drag_end_trampoline::<Self, F> as *const (),
                 )),
@@ -237,7 +237,7 @@ pub trait GestureDragExt: IsA<GestureDrag> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"drag-update\0".as_ptr() as *const _,
+                c"drag-update".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     drag_update_trampoline::<Self, F> as *const (),
                 )),

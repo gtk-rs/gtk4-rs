@@ -205,7 +205,7 @@ impl Paned {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"accept-position\0".as_ptr() as *const _,
+                c"accept-position".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     accept_position_trampoline::<F> as *const (),
                 )),
@@ -231,7 +231,7 @@ impl Paned {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"cancel-position\0".as_ptr() as *const _,
+                c"cancel-position".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     cancel_position_trampoline::<F> as *const (),
                 )),
@@ -261,7 +261,7 @@ impl Paned {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"cycle-child-focus\0".as_ptr() as *const _,
+                c"cycle-child-focus".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     cycle_child_focus_trampoline::<F> as *const (),
                 )),
@@ -293,7 +293,7 @@ impl Paned {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"cycle-handle-focus\0".as_ptr() as *const _,
+                c"cycle-handle-focus".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     cycle_handle_focus_trampoline::<F> as *const (),
                 )),
@@ -323,7 +323,7 @@ impl Paned {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"move-handle\0".as_ptr() as *const _,
+                c"move-handle".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     move_handle_trampoline::<F> as *const (),
                 )),
@@ -352,7 +352,7 @@ impl Paned {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"toggle-handle-focus\0".as_ptr() as *const _,
+                c"toggle-handle-focus".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     toggle_handle_focus_trampoline::<F> as *const (),
                 )),
@@ -379,7 +379,7 @@ impl Paned {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::end-child\0".as_ptr() as *const _,
+                c"notify::end-child".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_end_child_trampoline::<F> as *const (),
                 )),
@@ -402,7 +402,7 @@ impl Paned {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::max-position\0".as_ptr() as *const _,
+                c"notify::max-position".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_max_position_trampoline::<F> as *const (),
                 )),
@@ -425,7 +425,7 @@ impl Paned {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::min-position\0".as_ptr() as *const _,
+                c"notify::min-position".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_min_position_trampoline::<F> as *const (),
                 )),
@@ -448,7 +448,7 @@ impl Paned {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::position\0".as_ptr() as *const _,
+                c"notify::position".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_position_trampoline::<F> as *const (),
                 )),
@@ -471,7 +471,7 @@ impl Paned {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::position-set\0".as_ptr() as *const _,
+                c"notify::position-set".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_position_set_trampoline::<F> as *const (),
                 )),
@@ -494,7 +494,7 @@ impl Paned {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::resize-end-child\0".as_ptr() as *const _,
+                c"notify::resize-end-child".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_resize_end_child_trampoline::<F> as *const (),
                 )),
@@ -520,7 +520,7 @@ impl Paned {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::resize-start-child\0".as_ptr() as *const _,
+                c"notify::resize-start-child".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_resize_start_child_trampoline::<F> as *const (),
                 )),
@@ -543,7 +543,7 @@ impl Paned {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::shrink-end-child\0".as_ptr() as *const _,
+                c"notify::shrink-end-child".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_shrink_end_child_trampoline::<F> as *const (),
                 )),
@@ -569,7 +569,7 @@ impl Paned {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::shrink-start-child\0".as_ptr() as *const _,
+                c"notify::shrink-start-child".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_shrink_start_child_trampoline::<F> as *const (),
                 )),
@@ -592,7 +592,7 @@ impl Paned {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::start-child\0".as_ptr() as *const _,
+                c"notify::start-child".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_start_child_trampoline::<F> as *const (),
                 )),
@@ -615,7 +615,7 @@ impl Paned {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::wide-handle\0".as_ptr() as *const _,
+                c"notify::wide-handle".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_wide_handle_trampoline::<F> as *const (),
                 )),

@@ -73,7 +73,7 @@ pub trait PrintOperationPreviewExt: IsA<PrintOperationPreview> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"got-page-size\0".as_ptr() as *const _,
+                c"got-page-size".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     got_page_size_trampoline::<Self, F> as *const (),
                 )),
@@ -102,7 +102,7 @@ pub trait PrintOperationPreviewExt: IsA<PrintOperationPreview> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"ready\0".as_ptr() as *const _,
+                c"ready".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     ready_trampoline::<Self, F> as *const (),
                 )),

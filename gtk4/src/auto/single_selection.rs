@@ -150,7 +150,7 @@ impl SingleSelection {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::autoselect\0".as_ptr() as *const _,
+                c"notify::autoselect".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_autoselect_trampoline::<F> as *const (),
                 )),
@@ -173,7 +173,7 @@ impl SingleSelection {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::can-unselect\0".as_ptr() as *const _,
+                c"notify::can-unselect".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_can_unselect_trampoline::<F> as *const (),
                 )),
@@ -196,7 +196,7 @@ impl SingleSelection {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::model\0".as_ptr() as *const _,
+                c"notify::model".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_model_trampoline::<F> as *const (),
                 )),
@@ -219,7 +219,7 @@ impl SingleSelection {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::selected\0".as_ptr() as *const _,
+                c"notify::selected".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_selected_trampoline::<F> as *const (),
                 )),
@@ -242,7 +242,7 @@ impl SingleSelection {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::selected-item\0".as_ptr() as *const _,
+                c"notify::selected-item".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_selected_item_trampoline::<F> as *const (),
                 )),

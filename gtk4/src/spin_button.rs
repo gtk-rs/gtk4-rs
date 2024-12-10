@@ -19,7 +19,7 @@ impl SpinButton {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"input\0".as_ptr() as *mut _,
+                c"input".as_ptr() as *mut _,
                 Some(transmute::<usize, unsafe extern "C" fn()>(
                     input_trampoline::<F> as usize,
                 )),

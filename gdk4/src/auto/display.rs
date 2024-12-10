@@ -307,7 +307,7 @@ pub trait DisplayExt: IsA<Display> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"closed\0".as_ptr() as *const _,
+                c"closed".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     closed_trampoline::<Self, F> as *const (),
                 )),
@@ -329,7 +329,7 @@ pub trait DisplayExt: IsA<Display> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"opened\0".as_ptr() as *const _,
+                c"opened".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     opened_trampoline::<Self, F> as *const (),
                 )),
@@ -355,7 +355,7 @@ pub trait DisplayExt: IsA<Display> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"seat-added\0".as_ptr() as *const _,
+                c"seat-added".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     seat_added_trampoline::<Self, F> as *const (),
                 )),
@@ -384,7 +384,7 @@ pub trait DisplayExt: IsA<Display> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"seat-removed\0".as_ptr() as *const _,
+                c"seat-removed".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     seat_removed_trampoline::<Self, F> as *const (),
                 )),
@@ -413,7 +413,7 @@ pub trait DisplayExt: IsA<Display> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"setting-changed\0".as_ptr() as *const _,
+                c"setting-changed".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     setting_changed_trampoline::<Self, F> as *const (),
                 )),
@@ -436,7 +436,7 @@ pub trait DisplayExt: IsA<Display> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::composited\0".as_ptr() as *const _,
+                c"notify::composited".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_composited_trampoline::<Self, F> as *const (),
                 )),
@@ -464,7 +464,7 @@ pub trait DisplayExt: IsA<Display> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::dmabuf-formats\0".as_ptr() as *const _,
+                c"notify::dmabuf-formats".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_dmabuf_formats_trampoline::<Self, F> as *const (),
                 )),
@@ -490,7 +490,7 @@ pub trait DisplayExt: IsA<Display> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::input-shapes\0".as_ptr() as *const _,
+                c"notify::input-shapes".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_input_shapes_trampoline::<Self, F> as *const (),
                 )),
@@ -513,7 +513,7 @@ pub trait DisplayExt: IsA<Display> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::rgba\0".as_ptr() as *const _,
+                c"notify::rgba".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_rgba_trampoline::<Self, F> as *const (),
                 )),
@@ -541,7 +541,7 @@ pub trait DisplayExt: IsA<Display> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::shadow-width\0".as_ptr() as *const _,
+                c"notify::shadow-width".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_shadow_width_trampoline::<Self, F> as *const (),
                 )),

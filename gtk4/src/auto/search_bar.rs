@@ -134,7 +134,7 @@ impl SearchBar {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::child\0".as_ptr() as *const _,
+                c"notify::child".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_child_trampoline::<F> as *const (),
                 )),
@@ -160,7 +160,7 @@ impl SearchBar {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::key-capture-widget\0".as_ptr() as *const _,
+                c"notify::key-capture-widget".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_key_capture_widget_trampoline::<F> as *const (),
                 )),
@@ -186,7 +186,7 @@ impl SearchBar {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::search-mode-enabled\0".as_ptr() as *const _,
+                c"notify::search-mode-enabled".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_search_mode_enabled_trampoline::<F> as *const (),
                 )),
@@ -212,7 +212,7 @@ impl SearchBar {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::show-close-button\0".as_ptr() as *const _,
+                c"notify::show-close-button".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_show_close_button_trampoline::<F> as *const (),
                 )),
