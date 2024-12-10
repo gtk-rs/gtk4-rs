@@ -107,7 +107,7 @@ impl Statusbar {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"text-popped\0".as_ptr() as *const _,
+                c"text-popped".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     text_popped_trampoline::<F> as *const (),
                 )),
@@ -136,7 +136,7 @@ impl Statusbar {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"text-pushed\0".as_ptr() as *const _,
+                c"text-pushed".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     text_pushed_trampoline::<F> as *const (),
                 )),

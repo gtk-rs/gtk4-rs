@@ -142,7 +142,7 @@ impl PopoverMenu {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::flags\0".as_ptr() as *const _,
+                c"notify::flags".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_flags_trampoline::<F> as *const (),
                 )),
@@ -165,7 +165,7 @@ impl PopoverMenu {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::menu-model\0".as_ptr() as *const _,
+                c"notify::menu-model".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_menu_model_trampoline::<F> as *const (),
                 )),
@@ -188,7 +188,7 @@ impl PopoverMenu {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::visible-submenu\0".as_ptr() as *const _,
+                c"notify::visible-submenu".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_visible_submenu_trampoline::<F> as *const (),
                 )),

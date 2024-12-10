@@ -117,7 +117,7 @@ impl GraphicsOffload {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::black-background\0".as_ptr() as *const _,
+                c"notify::black-background".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_black_background_trampoline::<F> as *const (),
                 )),
@@ -142,7 +142,7 @@ impl GraphicsOffload {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::child\0".as_ptr() as *const _,
+                c"notify::child".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_child_trampoline::<F> as *const (),
                 )),
@@ -167,7 +167,7 @@ impl GraphicsOffload {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::enabled\0".as_ptr() as *const _,
+                c"notify::enabled".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_enabled_trampoline::<F> as *const (),
                 )),

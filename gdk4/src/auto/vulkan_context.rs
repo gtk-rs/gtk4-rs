@@ -33,7 +33,7 @@ impl VulkanContext {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"images-updated\0".as_ptr() as *const _,
+                c"images-updated".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     images_updated_trampoline::<F> as *const (),
                 )),

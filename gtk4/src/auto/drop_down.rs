@@ -250,7 +250,7 @@ impl DropDown {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"activate\0".as_ptr() as *const _,
+                c"activate".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     activate_trampoline::<F> as *const (),
                 )),
@@ -279,7 +279,7 @@ impl DropDown {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::enable-search\0".as_ptr() as *const _,
+                c"notify::enable-search".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_enable_search_trampoline::<F> as *const (),
                 )),
@@ -302,7 +302,7 @@ impl DropDown {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::expression\0".as_ptr() as *const _,
+                c"notify::expression".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_expression_trampoline::<F> as *const (),
                 )),
@@ -325,7 +325,7 @@ impl DropDown {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::factory\0".as_ptr() as *const _,
+                c"notify::factory".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_factory_trampoline::<F> as *const (),
                 )),
@@ -350,7 +350,7 @@ impl DropDown {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::header-factory\0".as_ptr() as *const _,
+                c"notify::header-factory".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_header_factory_trampoline::<F> as *const (),
                 )),
@@ -373,7 +373,7 @@ impl DropDown {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::list-factory\0".as_ptr() as *const _,
+                c"notify::list-factory".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_list_factory_trampoline::<F> as *const (),
                 )),
@@ -396,7 +396,7 @@ impl DropDown {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::model\0".as_ptr() as *const _,
+                c"notify::model".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_model_trampoline::<F> as *const (),
                 )),
@@ -424,7 +424,7 @@ impl DropDown {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::search-match-mode\0".as_ptr() as *const _,
+                c"notify::search-match-mode".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_search_match_mode_trampoline::<F> as *const (),
                 )),
@@ -447,7 +447,7 @@ impl DropDown {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::selected\0".as_ptr() as *const _,
+                c"notify::selected".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_selected_trampoline::<F> as *const (),
                 )),
@@ -470,7 +470,7 @@ impl DropDown {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::selected-item\0".as_ptr() as *const _,
+                c"notify::selected-item".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_selected_item_trampoline::<F> as *const (),
                 )),
@@ -495,7 +495,7 @@ impl DropDown {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::show-arrow\0".as_ptr() as *const _,
+                c"notify::show-arrow".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_show_arrow_trampoline::<F> as *const (),
                 )),

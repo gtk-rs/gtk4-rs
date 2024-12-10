@@ -77,7 +77,7 @@ impl FileChooserWidget {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"desktop-folder\0".as_ptr() as *const _,
+                c"desktop-folder".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     desktop_folder_trampoline::<F> as *const (),
                 )),
@@ -103,7 +103,7 @@ impl FileChooserWidget {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"down-folder\0".as_ptr() as *const _,
+                c"down-folder".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     down_folder_trampoline::<F> as *const (),
                 )),
@@ -129,7 +129,7 @@ impl FileChooserWidget {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"home-folder\0".as_ptr() as *const _,
+                c"home-folder".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     home_folder_trampoline::<F> as *const (),
                 )),
@@ -161,7 +161,7 @@ impl FileChooserWidget {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"location-popup\0".as_ptr() as *const _,
+                c"location-popup".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     location_popup_trampoline::<F> as *const (),
                 )),
@@ -189,7 +189,7 @@ impl FileChooserWidget {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"location-popup-on-paste\0".as_ptr() as *const _,
+                c"location-popup-on-paste".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     location_popup_on_paste_trampoline::<F> as *const (),
                 )),
@@ -217,7 +217,7 @@ impl FileChooserWidget {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"location-toggle-popup\0".as_ptr() as *const _,
+                c"location-toggle-popup".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     location_toggle_popup_trampoline::<F> as *const (),
                 )),
@@ -243,7 +243,7 @@ impl FileChooserWidget {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"places-shortcut\0".as_ptr() as *const _,
+                c"places-shortcut".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     places_shortcut_trampoline::<F> as *const (),
                 )),
@@ -270,7 +270,7 @@ impl FileChooserWidget {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"quick-bookmark\0".as_ptr() as *const _,
+                c"quick-bookmark".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     quick_bookmark_trampoline::<F> as *const (),
                 )),
@@ -296,7 +296,7 @@ impl FileChooserWidget {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"recent-shortcut\0".as_ptr() as *const _,
+                c"recent-shortcut".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     recent_shortcut_trampoline::<F> as *const (),
                 )),
@@ -322,7 +322,7 @@ impl FileChooserWidget {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"search-shortcut\0".as_ptr() as *const _,
+                c"search-shortcut".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     search_shortcut_trampoline::<F> as *const (),
                 )),
@@ -348,7 +348,7 @@ impl FileChooserWidget {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"show-hidden\0".as_ptr() as *const _,
+                c"show-hidden".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     show_hidden_trampoline::<F> as *const (),
                 )),
@@ -374,7 +374,7 @@ impl FileChooserWidget {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"up-folder\0".as_ptr() as *const _,
+                c"up-folder".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     up_folder_trampoline::<F> as *const (),
                 )),
@@ -401,7 +401,7 @@ impl FileChooserWidget {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::search-mode\0".as_ptr() as *const _,
+                c"notify::search-mode".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_search_mode_trampoline::<F> as *const (),
                 )),
@@ -426,7 +426,7 @@ impl FileChooserWidget {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::show-time\0".as_ptr() as *const _,
+                c"notify::show-time".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_show_time_trampoline::<F> as *const (),
                 )),
@@ -449,7 +449,7 @@ impl FileChooserWidget {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::subtitle\0".as_ptr() as *const _,
+                c"notify::subtitle".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_subtitle_trampoline::<F> as *const (),
                 )),

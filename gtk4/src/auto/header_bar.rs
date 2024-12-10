@@ -134,7 +134,7 @@ impl HeaderBar {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::decoration-layout\0".as_ptr() as *const _,
+                c"notify::decoration-layout".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_decoration_layout_trampoline::<F> as *const (),
                 )),
@@ -160,7 +160,7 @@ impl HeaderBar {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::show-title-buttons\0".as_ptr() as *const _,
+                c"notify::show-title-buttons".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_show_title_buttons_trampoline::<F> as *const (),
                 )),
@@ -183,7 +183,7 @@ impl HeaderBar {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::title-widget\0".as_ptr() as *const _,
+                c"notify::title-widget".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_title_widget_trampoline::<F> as *const (),
                 )),

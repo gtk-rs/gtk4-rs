@@ -714,7 +714,7 @@ pub trait CellAreaExt: IsA<CellArea> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"add-editable\0".as_ptr() as *const _,
+                c"add-editable".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     add_editable_trampoline::<Self, F> as *const (),
                 )),
@@ -752,7 +752,7 @@ pub trait CellAreaExt: IsA<CellArea> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"apply-attributes\0".as_ptr() as *const _,
+                c"apply-attributes".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     apply_attributes_trampoline::<Self, F> as *const (),
                 )),
@@ -787,7 +787,7 @@ pub trait CellAreaExt: IsA<CellArea> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"focus-changed\0".as_ptr() as *const _,
+                c"focus-changed".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     focus_changed_trampoline::<Self, F> as *const (),
                 )),
@@ -821,7 +821,7 @@ pub trait CellAreaExt: IsA<CellArea> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"remove-editable\0".as_ptr() as *const _,
+                c"remove-editable".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     remove_editable_trampoline::<Self, F> as *const (),
                 )),
@@ -847,7 +847,7 @@ pub trait CellAreaExt: IsA<CellArea> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::edit-widget\0".as_ptr() as *const _,
+                c"notify::edit-widget".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_edit_widget_trampoline::<Self, F> as *const (),
                 )),
@@ -873,7 +873,7 @@ pub trait CellAreaExt: IsA<CellArea> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::edited-cell\0".as_ptr() as *const _,
+                c"notify::edited-cell".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_edited_cell_trampoline::<Self, F> as *const (),
                 )),
@@ -896,7 +896,7 @@ pub trait CellAreaExt: IsA<CellArea> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::focus-cell\0".as_ptr() as *const _,
+                c"notify::focus-cell".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_focus_cell_trampoline::<Self, F> as *const (),
                 )),

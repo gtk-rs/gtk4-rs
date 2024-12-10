@@ -50,7 +50,7 @@ impl GestureClick {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"pressed\0".as_ptr() as *const _,
+                c"pressed".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     pressed_trampoline::<F> as *const (),
                 )),
@@ -75,7 +75,7 @@ impl GestureClick {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"released\0".as_ptr() as *const _,
+                c"released".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     released_trampoline::<F> as *const (),
                 )),
@@ -97,7 +97,7 @@ impl GestureClick {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"stopped\0".as_ptr() as *const _,
+                c"stopped".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     stopped_trampoline::<F> as *const (),
                 )),
@@ -138,7 +138,7 @@ impl GestureClick {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"unpaired-release\0".as_ptr() as *const _,
+                c"unpaired-release".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     unpaired_release_trampoline::<F> as *const (),
                 )),

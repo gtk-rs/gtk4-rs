@@ -114,7 +114,7 @@ impl PasswordEntry {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"activate\0".as_ptr() as *const _,
+                c"activate".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     activate_trampoline::<F> as *const (),
                 )),
@@ -146,7 +146,7 @@ impl PasswordEntry {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::activates-default\0".as_ptr() as *const _,
+                c"notify::activates-default".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_activates_default_trampoline::<F> as *const (),
                 )),
@@ -169,7 +169,7 @@ impl PasswordEntry {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::extra-menu\0".as_ptr() as *const _,
+                c"notify::extra-menu".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_extra_menu_trampoline::<F> as *const (),
                 )),
@@ -192,7 +192,7 @@ impl PasswordEntry {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::placeholder-text\0".as_ptr() as *const _,
+                c"notify::placeholder-text".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_placeholder_text_trampoline::<F> as *const (),
                 )),
@@ -215,7 +215,7 @@ impl PasswordEntry {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::show-peek-icon\0".as_ptr() as *const _,
+                c"notify::show-peek-icon".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_show_peek_icon_trampoline::<F> as *const (),
                 )),

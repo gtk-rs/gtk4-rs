@@ -318,7 +318,7 @@ pub trait FlowBoxChildExt: IsA<FlowBoxChild> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"activate\0".as_ptr() as *const _,
+                c"activate".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     activate_trampoline::<Self, F> as *const (),
                 )),
@@ -345,7 +345,7 @@ pub trait FlowBoxChildExt: IsA<FlowBoxChild> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::child\0".as_ptr() as *const _,
+                c"notify::child".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_child_trampoline::<Self, F> as *const (),
                 )),

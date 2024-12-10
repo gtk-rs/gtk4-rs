@@ -83,7 +83,7 @@ impl ColumnViewSorter {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::primary-sort-column\0".as_ptr() as *const _,
+                c"notify::primary-sort-column".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_primary_sort_column_trampoline::<F> as *const (),
                 )),
@@ -113,7 +113,7 @@ impl ColumnViewSorter {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::primary-sort-order\0".as_ptr() as *const _,
+                c"notify::primary-sort-order".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_primary_sort_order_trampoline::<F> as *const (),
                 )),
