@@ -1,28 +1,36 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
 use std::{
-    io::{Error, ErrorKind, Read, Result, Write},
+    io::Write,
     process::{Command, Stdio},
 };
 
-pub(crate) fn compile_blueprint(blueprint: &[u8]) -> Result<String> {
+pub(crate) fn compile_blueprint(blueprint: &[u8]) -> Result<String, String> {
     let mut compiler = Command::new("blueprint-compiler")
         .args(["compile", "-"])
         .stdin(Stdio::piped())
         .stdout(Stdio::piped())
         .spawn()
-        .unwrap_or_else(|_| panic!("blueprint-compiler not found"));
-
+        .map_err(|e| format!("blueprint-compiler couldn't be spawned: {e}"))?;
     let mut stdin = compiler.stdin.take().unwrap();
-    stdin.write_all(b"using Gtk 4.0;\n")?;
-    stdin.write_all(blueprint)?;
+    if let Err(e) = stdin
+        .write_all(b"using Gtk 4.0;\n")
+        .and_then(|_| stdin.write_all(blueprint))
+    {
+        let _ = compiler.wait();
+        return Err(format!(
+            "Couldn't send blueprint to blueprint-compiler: {e}"
+        ));
+    }
     drop(stdin);
 
-    let mut buf = String::new();
-    compiler.stdout.unwrap().read_to_string(&mut buf)?;
+    let output = compiler
+        .wait_with_output()
+        .map_err(|e| format!("blueprint-compiler process failed: {e}"))?;
 
+    let buf = String::from_utf8(output.stdout).unwrap();
     if !buf.starts_with('<') {
-        return Err(Error::new(ErrorKind::Other, buf));
+        return Err(format!("blueprint-compiler failed: {buf}"));
     }
 
     Ok(buf)
