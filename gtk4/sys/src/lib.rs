@@ -1070,6 +1070,9 @@ pub const GTK_FONT_CHOOSER_LEVEL_VARIATIONS: GtkFontChooserLevel = 4;
 pub const GTK_FONT_CHOOSER_LEVEL_FEATURES: GtkFontChooserLevel = 8;
 
 pub type GtkIconLookupFlags = c_uint;
+#[cfg(feature = "v4_18")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_18")))]
+pub const GTK_ICON_LOOKUP_NONE: GtkIconLookupFlags = 0;
 pub const GTK_ICON_LOOKUP_FORCE_REGULAR: GtkIconLookupFlags = 1;
 pub const GTK_ICON_LOOKUP_FORCE_SYMBOLIC: GtkIconLookupFlags = 2;
 pub const GTK_ICON_LOOKUP_PRELOAD: GtkIconLookupFlags = 4;
@@ -19013,6 +19016,13 @@ extern "C" {
     pub fn gtk_text_view_get_rtl_context(text_view: *mut GtkTextView) -> *mut pango::PangoContext;
     pub fn gtk_text_view_get_tabs(text_view: *mut GtkTextView) -> *mut pango::PangoTabArray;
     pub fn gtk_text_view_get_top_margin(text_view: *mut GtkTextView) -> c_int;
+    #[cfg(feature = "v4_18")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_18")))]
+    pub fn gtk_text_view_get_visible_offset(
+        text_view: *mut GtkTextView,
+        x_offset: *mut c_double,
+        y_offset: *mut c_double,
+    );
     pub fn gtk_text_view_get_visible_rect(
         text_view: *mut GtkTextView,
         visible_rect: *mut gdk::GdkRectangle,
@@ -21254,6 +21264,9 @@ extern "C" {
     ) -> *const c_char;
     pub fn gtk_css_parser_error_quark() -> glib::GQuark;
     pub fn gtk_css_parser_warning_quark() -> glib::GQuark;
+    #[cfg(feature = "v4_18")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_18")))]
+    pub fn gtk_disable_portals();
     pub fn gtk_disable_setlocale();
     pub fn gtk_distribute_natural_allocation(
         extra_space: c_int,

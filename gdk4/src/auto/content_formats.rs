@@ -73,6 +73,13 @@ impl ContentFormats {
         }
     }
 
+    #[cfg(feature = "v4_18")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_18")))]
+    #[doc(alias = "gdk_content_formats_is_empty")]
+    pub fn is_empty(&self) -> bool {
+        unsafe { from_glib(ffi::gdk_content_formats_is_empty(self.to_glib_none().0)) }
+    }
+
     #[doc(alias = "gdk_content_formats_match")]
     #[doc(alias = "match")]
     pub fn match_(&self, second: &ContentFormats) -> bool {
