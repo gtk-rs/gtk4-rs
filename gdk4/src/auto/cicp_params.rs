@@ -27,7 +27,7 @@ impl CicpParams {
     }
 
     #[doc(alias = "gdk_cicp_params_build_color_state")]
-    pub fn build_color_state(&self) -> Result<Option<ColorState>, glib::Error> {
+    pub fn build_color_state(&self) -> Result<ColorState, glib::Error> {
         unsafe {
             let mut error = std::ptr::null_mut();
             let ret = ffi::gdk_cicp_params_build_color_state(self.to_glib_none().0, &mut error);
