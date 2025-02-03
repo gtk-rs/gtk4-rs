@@ -2081,19 +2081,20 @@ status = "generate"
 final_type = false
 manual_traits = ["SnapshotExtManual"]
     [[object.function]]
-    pattern = "free_to_(node|paintable)"
-    ignore = true # C convenience functions
-    [[object.function]]
     name = "append_border"
     manual = true
     [[object.function]]
     name = "push_debug"
     manual = true # ignore format args
     [[object.function]]
+    pattern = "free_to_node"
+    rename = "to_node"
+    [[object.function]]
+    pattern = "free_to_paintable"
+    rename = "to_paintable"
+    [[object.function]]
     pattern = "to_(node|paintable)"
-        [[object.function.parameter]]
-        name = "snapshot"
-        move = true
+    ignore = true
 
 [[object]]
 name = "Gtk.SortListModel"
