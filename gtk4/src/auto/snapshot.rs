@@ -295,6 +295,27 @@ pub trait SnapshotExt: IsA<Snapshot> + 'static {
         }
     }
 
+    #[doc(alias = "gtk_snapshot_free_to_node")]
+    #[doc(alias = "free_to_node")]
+    fn to_node(self) -> Option<gsk::RenderNode> {
+        unsafe {
+            from_glib_full(ffi::gtk_snapshot_free_to_node(
+                self.upcast().into_glib_ptr(),
+            ))
+        }
+    }
+
+    #[doc(alias = "gtk_snapshot_free_to_paintable")]
+    #[doc(alias = "free_to_paintable")]
+    fn to_paintable(self, size: Option<&graphene::Size>) -> Option<gdk::Paintable> {
+        unsafe {
+            from_glib_full(ffi::gtk_snapshot_free_to_paintable(
+                self.upcast().into_glib_ptr(),
+                size.to_glib_none().0,
+            ))
+        }
+    }
+
     #[cfg_attr(feature = "v4_16", deprecated = "Since 4.16")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_snapshot_gl_shader_pop_texture")]
@@ -614,21 +635,6 @@ pub trait SnapshotExt: IsA<Snapshot> + 'static {
                 factor_y,
                 factor_z,
             );
-        }
-    }
-
-    #[doc(alias = "gtk_snapshot_to_node")]
-    fn to_node(self) -> Option<gsk::RenderNode> {
-        unsafe { from_glib_full(ffi::gtk_snapshot_to_node(self.upcast().into_glib_ptr())) }
-    }
-
-    #[doc(alias = "gtk_snapshot_to_paintable")]
-    fn to_paintable(self, size: Option<&graphene::Size>) -> Option<gdk::Paintable> {
-        unsafe {
-            from_glib_full(ffi::gtk_snapshot_to_paintable(
-                self.upcast().into_glib_ptr(),
-                size.to_glib_none().0,
-            ))
         }
     }
 
