@@ -1,0 +1,55 @@
+name: Auto updates
+
+on:
+  repository_dispatch:
+    types: [internal-merge-event]
+
+jobs:
+  regen:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout current repository
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+        
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Configure Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git submodule update --checkout
+
+      - name: Update Git submodules
+        run: |
+          cd ./gir && git fetch --all && git reset --hard origin/main && cd ../
+          git add .
+          git diff --cached --exit-code || git commit -m "Update gir"
+          python generator.py
+          git add .
+          git diff --cached --exit-code || git commit -m "Regenerate with latest gir"
+          cd ./gir-files && git fetch --all && git reset --hard origin/main && cd ../
+          git add .
+          git diff --cached --exit-code || git commit -m "Update gir-files"
+          python generator.py
+          git add .
+          git diff --cached --exit-code || git commit -m "Regenerate with latest gir-files"
+
+      - name: Push changes
+        run: |
+          git push origin "auto-pr-branch" || echo "Branch already exists"
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: "auto-pr-branch"
+          title: "Automated PR: Changes from updating gir/gir-files"
+          body: "This PR contains auto-generated changes after a merge in the external gir-files repository."
+          commit-message: "Auto-generated changes from updating gir/gir-files"
+          author: "github-actions[bot] <github-actions[bot]@users.noreply.github.com>"
