@@ -65,7 +65,7 @@ The adaptive behavior of the leaflet allows the To-Do app to work on smaller scr
 <div style="text-align:center">
  <video autoplay muted loop>
   <source src="vid/todo_7_navigation_sidebar.webm" type="video/webm">
-   <p>A video which shows that reduzing the width of the app let's the sidebar collapse</p>
+   <p>A video which shows that reducing the width of the app let's the sidebar collapse</p>
  </video>
 </div>
 
