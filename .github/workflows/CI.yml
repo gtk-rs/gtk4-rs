@@ -3,6 +3,7 @@ on:
     branches:
       - "main"
     paths:
+      - "Cargo.lock"
       - ".github/workflows/CI.yml"
       - "examples/**"
       - "gdk4/**"
@@ -15,6 +16,7 @@ on:
       - "gtk4-macros/**"
   pull_request:
     paths:
+      - "Cargo.lock"
       - ".github/workflows/CI.yml"
       - "examples/**"
       - "gdk4/**"
