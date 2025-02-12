@@ -1,3 +1,5 @@
+env:
+ GSK_RENDERER: "cairo"
 on:
   push:
     branches:
