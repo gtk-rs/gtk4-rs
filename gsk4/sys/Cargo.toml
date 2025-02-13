@@ -52,7 +52,7 @@ version = "4.14"
 version = "4.16"
 
 [package.metadata.system-deps.gtk4.v4_18]
-version = "4.18"
+version = "4.17"
 
 [package.metadata.docs.rs]
 rustc-args = ["--cfg", "docsrs"]
