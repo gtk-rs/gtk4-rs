@@ -54,6 +54,7 @@ macro_rules! skip_assert_initialized {
 
 #[allow(clippy::derived_hash_with_manual_eq)]
 #[allow(clippy::type_complexity)]
+#[allow(unused_imports)]
 mod auto;
 
 #[macro_use]
