@@ -7,6 +7,7 @@ use crate::{
     LayoutManager, MovementStep, Orientable, Orientation, Overflow, SelectionMode, Widget,
 };
 use glib::{
+    object::ObjectType as _,
     prelude::*,
     signal::{connect_raw, SignalHandlerId},
     translate::*,

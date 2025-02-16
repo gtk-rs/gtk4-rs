@@ -7,6 +7,7 @@ use crate::{
     Printer,
 };
 use glib::{
+    object::ObjectType as _,
     prelude::*,
     signal::{connect_raw, SignalHandlerId},
     translate::*,

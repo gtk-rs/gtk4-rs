@@ -7,6 +7,7 @@ use crate::{
     LayoutManager, License, Native, Overflow, Root, ShortcutManager, Widget, Window,
 };
 use glib::{
+    object::ObjectType as _,
     prelude::*,
     signal::{connect_raw, SignalHandlerId},
     translate::*,

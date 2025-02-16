@@ -7,6 +7,7 @@ use crate::{
     LayoutManager, Overflow, Widget,
 };
 use glib::{
+    object::ObjectType as _,
     prelude::*,
     signal::{connect_raw, SignalHandlerId},
     translate::*,

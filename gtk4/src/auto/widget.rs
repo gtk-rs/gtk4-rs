@@ -9,6 +9,7 @@ use crate::{
     Settings, SizeRequestMode, Snapshot, StateFlags, StyleContext, TextDirection, Tooltip,
 };
 use glib::{
+    object::ObjectType as _,
     prelude::*,
     signal::{connect_raw, SignalHandlerId},
     translate::*,
