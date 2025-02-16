@@ -6,6 +6,9 @@ use crate::{
     ffi, Accessible, AccessibleRole, Align, ArrowType, Buildable, ConstraintTarget, LayoutManager,
     Overflow, Popover, Widget,
 };
+#[cfg(feature = "v4_4")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
+use glib::object::ObjectType as _;
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},
@@ -804,6 +807,14 @@ impl MenuButtonBuilder {
             builder: self
                 .builder
                 .property("layout-manager", layout_manager.clone().upcast()),
+        }
+    }
+
+    #[cfg(feature = "v4_18")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_18")))]
+    pub fn limit_events(self, limit_events: bool) -> Self {
+        Self {
+            builder: self.builder.property("limit-events", limit_events),
         }
     }
 

@@ -9,6 +9,9 @@ use crate::{
     ffi, Accessible, AccessibleRole, Align, Buildable, ConstraintTarget, Expression, LayoutManager,
     ListItemFactory, Overflow, Widget,
 };
+#[cfg(feature = "v4_6")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
+use glib::object::ObjectType as _;
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},
@@ -672,6 +675,14 @@ impl DropDownBuilder {
             builder: self
                 .builder
                 .property("layout-manager", layout_manager.clone().upcast()),
+        }
+    }
+
+    #[cfg(feature = "v4_18")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_18")))]
+    pub fn limit_events(self, limit_events: bool) -> Self {
+        Self {
+            builder: self.builder.property("limit-events", limit_events),
         }
     }
 

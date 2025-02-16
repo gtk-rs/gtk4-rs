@@ -6,6 +6,9 @@ use crate::{
     ffi, Accessible, AccessibleRole, Align, Buildable, ConstraintTarget, FontDialog, FontLevel,
     LayoutManager, Overflow, Widget,
 };
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+use glib::object::ObjectType as _;
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},
@@ -566,6 +569,14 @@ impl FontDialogButtonBuilder {
             builder: self
                 .builder
                 .property("layout-manager", layout_manager.clone().upcast()),
+        }
+    }
+
+    #[cfg(feature = "v4_18")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_18")))]
+    pub fn limit_events(self, limit_events: bool) -> Self {
+        Self {
+            builder: self.builder.property("limit-events", limit_events),
         }
     }
 

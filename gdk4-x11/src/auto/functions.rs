@@ -5,12 +5,16 @@
 use crate::{ffi, X11DeviceManagerXI2, X11DeviceXI2, X11Surface};
 use glib::translate::*;
 
+#[cfg_attr(feature = "v4_18", deprecated = "Since 4.18")]
+#[allow(deprecated)]
 #[doc(alias = "gdk_x11_device_get_id")]
 pub fn x11_device_get_id(device: &X11DeviceXI2) -> i32 {
     skip_assert_initialized!();
     unsafe { ffi::gdk_x11_device_get_id(device.to_glib_none().0) }
 }
 
+#[cfg_attr(feature = "v4_18", deprecated = "Since 4.18")]
+#[allow(deprecated)]
 #[doc(alias = "gdk_x11_device_manager_lookup")]
 pub fn x11_device_manager_lookup(
     device_manager: &X11DeviceManagerXI2,
@@ -25,6 +29,8 @@ pub fn x11_device_manager_lookup(
     }
 }
 
+#[cfg_attr(feature = "v4_18", deprecated = "Since 4.18")]
+#[allow(deprecated)]
 #[doc(alias = "gdk_x11_get_server_time")]
 pub fn x11_get_server_time(surface: &X11Surface) -> u32 {
     skip_assert_initialized!();

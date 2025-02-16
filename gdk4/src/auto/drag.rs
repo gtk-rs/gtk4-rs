@@ -6,6 +6,7 @@ use crate::{
     ffi, ContentFormats, ContentProvider, Device, Display, DragAction, DragCancelReason, Surface,
 };
 use glib::{
+    object::ObjectType as _,
     prelude::*,
     signal::{connect_raw, SignalHandlerId},
     translate::*,

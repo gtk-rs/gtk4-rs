@@ -22,8 +22,6 @@ impl GLRenderer {
     }
 }
 
-#[cfg(feature = "v4_2")]
-#[cfg_attr(docsrs, doc(cfg(feature = "v4_2")))]
 impl Default for GLRenderer {
     fn default() -> Self {
         Self::new()

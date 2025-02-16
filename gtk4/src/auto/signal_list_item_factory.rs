@@ -5,7 +5,10 @@
 use crate::{ffi, ListItemFactory};
 #[cfg(feature = "v4_8")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
-use glib::signal::{connect_raw, SignalHandlerId};
+use glib::{
+    object::ObjectType as _,
+    signal::{connect_raw, SignalHandlerId},
+};
 use glib::{prelude::*, translate::*};
 #[cfg(feature = "v4_8")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]

@@ -5,6 +5,7 @@
 
 use crate::{ffi, CellRenderer, CellRendererMode, CellRendererText, TreeIter, TreeModel, TreePath};
 use glib::{
+    object::ObjectType as _,
     prelude::*,
     signal::{connect_raw, SignalHandlerId},
     translate::*,

@@ -1751,7 +1751,7 @@ extern "C" {
         border_width: *const [c_float; 4],
         border_color: *const [gdk::GdkRGBA; 4],
     ) -> *mut GskBorderNode;
-    pub fn gsk_border_node_get_colors(node: *const GskBorderNode) -> *const gdk::GdkRGBA;
+    pub fn gsk_border_node_get_colors(node: *const GskBorderNode) -> *const [gdk::GdkRGBA; 4];
     pub fn gsk_border_node_get_outline(node: *const GskBorderNode) -> *const GskRoundedRect;
     pub fn gsk_border_node_get_widths(node: *const GskBorderNode) -> *const [c_float; 4];
 
@@ -2066,11 +2066,7 @@ extern "C" {
     //=========================================================================
     // GskNglRenderer
     //=========================================================================
-    #[cfg(feature = "v4_2")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v4_2")))]
     pub fn gsk_ngl_renderer_get_type() -> GType;
-    #[cfg(feature = "v4_2")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v4_2")))]
     pub fn gsk_ngl_renderer_new() -> *mut GskRenderer;
 
     //=========================================================================
