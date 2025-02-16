@@ -557,6 +557,19 @@ pub trait WidgetExt: IsA<Widget> + 'static {
         }
     }
 
+    #[cfg(feature = "v4_18")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_18")))]
+    #[doc(alias = "gtk_widget_get_limit_events")]
+    #[doc(alias = "get_limit_events")]
+    #[doc(alias = "limit-events")]
+    fn is_limit_events(&self) -> bool {
+        unsafe {
+            from_glib(ffi::gtk_widget_get_limit_events(
+                self.as_ref().to_glib_none().0,
+            ))
+        }
+    }
+
     #[doc(alias = "gtk_widget_get_mapped")]
     #[doc(alias = "get_mapped")]
     fn is_mapped(&self) -> bool {
@@ -1261,6 +1274,19 @@ pub trait WidgetExt: IsA<Widget> + 'static {
             ffi::gtk_widget_set_layout_manager(
                 self.as_ref().to_glib_none().0,
                 layout_manager.map(|p| p.upcast()).into_glib_ptr(),
+            );
+        }
+    }
+
+    #[cfg(feature = "v4_18")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_18")))]
+    #[doc(alias = "gtk_widget_set_limit_events")]
+    #[doc(alias = "limit-events")]
+    fn set_limit_events(&self, limit_events: bool) {
+        unsafe {
+            ffi::gtk_widget_set_limit_events(
+                self.as_ref().to_glib_none().0,
+                limit_events.into_glib(),
             );
         }
     }
@@ -2224,6 +2250,31 @@ pub trait WidgetExt: IsA<Widget> + 'static {
                 c"notify::layout-manager".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_layout_manager_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg(feature = "v4_18")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_18")))]
+    #[doc(alias = "limit-events")]
+    fn connect_limit_events_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_limit_events_trampoline<P: IsA<Widget>, F: Fn(&P) + 'static>(
+            this: *mut ffi::GtkWidget,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(Widget::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                c"notify::limit-events".as_ptr() as *const _,
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
+                    notify_limit_events_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )

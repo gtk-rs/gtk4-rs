@@ -50,8 +50,10 @@ impl X11Display {
         }
     }
 
+    #[cfg_attr(feature = "v4_18", deprecated = "Since 4.18")]
     #[cfg(feature = "v4_4")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
+    #[allow(deprecated)]
     #[doc(alias = "gdk_x11_display_get_egl_version")]
     #[doc(alias = "get_egl_version")]
     pub fn egl_version(&self) -> Option<(i32, i32)> {
@@ -71,6 +73,8 @@ impl X11Display {
         }
     }
 
+    #[cfg_attr(feature = "v4_18", deprecated = "Since 4.18")]
+    #[allow(deprecated)]
     #[doc(alias = "gdk_x11_display_get_glx_version")]
     #[doc(alias = "get_glx_version")]
     pub fn glx_version(&self) -> Option<(i32, i32)> {
@@ -163,6 +167,8 @@ impl X11Display {
         }
     }
 
+    #[cfg_attr(feature = "v4_18", deprecated = "Since 4.18")]
+    #[allow(deprecated)]
     #[doc(alias = "gdk_x11_display_string_to_compound_text")]
     pub fn string_to_compound_text(&self, str: &str) -> (i32, glib::GString, i32, Vec<u8>) {
         unsafe {
@@ -194,6 +200,8 @@ impl X11Display {
         }
     }
 
+    #[cfg_attr(feature = "v4_18", deprecated = "Since 4.18")]
+    #[allow(deprecated)]
     #[doc(alias = "gdk_x11_display_utf8_to_compound_text")]
     pub fn utf8_to_compound_text(&self, str: &str) -> Option<(glib::GString, i32, Vec<u8>)> {
         unsafe {
@@ -221,6 +229,8 @@ impl X11Display {
         }
     }
 
+    #[cfg_attr(feature = "v4_18", deprecated = "Since 4.18")]
+    #[allow(deprecated)]
     #[doc(alias = "gdk_x11_display_open")]
     pub fn open(display_name: Option<&str>) -> Option<gdk::Display> {
         assert_initialized_main_thread!();

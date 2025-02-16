@@ -32,6 +32,15 @@ impl std::fmt::Display for Device {
 }
 
 pub trait DeviceExt: IsA<Device> + 'static {
+    #[cfg(feature = "v4_18")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_18")))]
+    #[doc(alias = "gdk_device_get_active_layout_index")]
+    #[doc(alias = "get_active_layout_index")]
+    #[doc(alias = "active-layout-index")]
+    fn active_layout_index(&self) -> i32 {
+        unsafe { ffi::gdk_device_get_active_layout_index(self.as_ref().to_glib_none().0) }
+    }
+
     #[doc(alias = "gdk_device_get_caps_lock_state")]
     #[doc(alias = "get_caps_lock_state")]
     #[doc(alias = "caps-lock-state")]
@@ -76,6 +85,19 @@ pub trait DeviceExt: IsA<Device> + 'static {
     fn has_cursor(&self) -> bool {
         unsafe {
             from_glib(ffi::gdk_device_get_has_cursor(
+                self.as_ref().to_glib_none().0,
+            ))
+        }
+    }
+
+    #[cfg(feature = "v4_18")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_18")))]
+    #[doc(alias = "gdk_device_get_layout_names")]
+    #[doc(alias = "get_layout_names")]
+    #[doc(alias = "layout-names")]
+    fn layout_names(&self) -> Vec<glib::GString> {
+        unsafe {
+            FromGlibPtrContainer::from_glib_full(ffi::gdk_device_get_layout_names(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -254,6 +276,34 @@ pub trait DeviceExt: IsA<Device> + 'static {
         }
     }
 
+    #[cfg(feature = "v4_18")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_18")))]
+    #[doc(alias = "active-layout-index")]
+    fn connect_active_layout_index_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_active_layout_index_trampoline<
+            P: IsA<Device>,
+            F: Fn(&P) + 'static,
+        >(
+            this: *mut ffi::GdkDevice,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(Device::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                c"notify::active-layout-index".as_ptr() as *const _,
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
+                    notify_active_layout_index_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
     #[doc(alias = "caps-lock-state")]
     fn connect_caps_lock_state_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_caps_lock_state_trampoline<
@@ -323,6 +373,31 @@ pub trait DeviceExt: IsA<Device> + 'static {
                 c"notify::has-bidi-layouts".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_has_bidi_layouts_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg(feature = "v4_18")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_18")))]
+    #[doc(alias = "layout-names")]
+    fn connect_layout_names_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_layout_names_trampoline<P: IsA<Device>, F: Fn(&P) + 'static>(
+            this: *mut ffi::GdkDevice,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(Device::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                c"notify::layout-names".as_ptr() as *const _,
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
+                    notify_layout_names_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )

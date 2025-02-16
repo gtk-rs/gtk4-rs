@@ -3,6 +3,10 @@
 // DO NOT EDIT
 
 use crate::ffi;
+use glib::prelude::*;
+#[cfg(feature = "v4_18")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_18")))]
+use glib::translate::*;
 
 glib::wrapper! {
     #[doc(alias = "GdkWaylandSurface")]
@@ -16,3 +20,16 @@ glib::wrapper! {
 impl WaylandSurface {
     pub const NONE: Option<&'static WaylandSurface> = None;
 }
+
+pub trait WaylandSurfaceExt: IsA<WaylandSurface> + 'static {
+    #[cfg(feature = "v4_18")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_18")))]
+    #[doc(alias = "gdk_wayland_surface_force_next_commit")]
+    fn force_next_commit(&self) {
+        unsafe {
+            ffi::gdk_wayland_surface_force_next_commit(self.as_ref().to_glib_none().0);
+        }
+    }
+}
+
+impl<O: IsA<WaylandSurface>> WaylandSurfaceExt for O {}
