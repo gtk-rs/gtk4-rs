@@ -11,6 +11,7 @@ use crate::DmabufFormats;
 use crate::GLContext;
 use crate::{ffi, AppLaunchContext, Clipboard, Device, Event, Monitor, Seat, Surface};
 use glib::{
+    object::ObjectType as _,
     prelude::*,
     signal::{connect_raw, SignalHandlerId},
     translate::*,

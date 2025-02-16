@@ -10,6 +10,7 @@ use crate::{
     Orientation, Overflow, ScrollType, Widget,
 };
 use glib::{
+    object::ObjectType as _,
     prelude::*,
     signal::{connect_raw, SignalHandlerId},
     translate::*,

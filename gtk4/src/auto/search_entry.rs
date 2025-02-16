@@ -10,6 +10,7 @@ use crate::{
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
 use crate::{InputHints, InputPurpose};
 use glib::{
+    object::ObjectType as _,
     prelude::*,
     signal::{connect_raw, SignalHandlerId},
     translate::*,

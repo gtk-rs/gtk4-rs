@@ -9,6 +9,9 @@ use crate::{
     ffi, Accessible, AccessibleRole, Align, Buildable, ConstraintTarget, Expression, LayoutManager,
     ListItemFactory, Overflow, Widget,
 };
+#[cfg(feature = "v4_6")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
+use glib::object::ObjectType as _;
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},

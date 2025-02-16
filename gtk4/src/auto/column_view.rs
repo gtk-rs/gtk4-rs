@@ -11,6 +11,7 @@ use crate::{
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
 use crate::{ListItemFactory, ListScrollFlags, ListTabBehavior, ScrollInfo};
 use glib::{
+    object::ObjectType as _,
     prelude::*,
     signal::{connect_raw, SignalHandlerId},
     translate::*,

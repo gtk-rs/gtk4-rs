@@ -6,6 +6,9 @@ use crate::{
     ffi, Accessible, AccessibleRole, Align, Buildable, ConstraintTarget, FontDialog, FontLevel,
     LayoutManager, Overflow, Widget,
 };
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+use glib::object::ObjectType as _;
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},
