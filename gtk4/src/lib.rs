@@ -2,6 +2,7 @@
 
 #![cfg_attr(docsrs, feature(doc_cfg))]
 #![allow(deprecated)]
+#![allow(clippy::manual_c_str_literals)]
 #![doc = include_str!("../README.md")]
 
 // Re-export gtk dependencies
@@ -88,6 +89,7 @@ where
 #[allow(clippy::derived_hash_with_manual_eq)]
 #[allow(clippy::too_many_arguments)]
 #[allow(clippy::type_complexity)]
+#[allow(unused_imports)]
 mod auto;
 
 #[macro_use]

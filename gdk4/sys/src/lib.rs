@@ -4750,11 +4750,17 @@ extern "C" {
     // GdkDevice
     //=========================================================================
     pub fn gdk_device_get_type() -> GType;
+    #[cfg(feature = "v4_18")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_18")))]
+    pub fn gdk_device_get_active_layout_index(device: *mut GdkDevice) -> c_int;
     pub fn gdk_device_get_caps_lock_state(device: *mut GdkDevice) -> gboolean;
     pub fn gdk_device_get_device_tool(device: *mut GdkDevice) -> *mut GdkDeviceTool;
     pub fn gdk_device_get_direction(device: *mut GdkDevice) -> pango::PangoDirection;
     pub fn gdk_device_get_display(device: *mut GdkDevice) -> *mut GdkDisplay;
     pub fn gdk_device_get_has_cursor(device: *mut GdkDevice) -> gboolean;
+    #[cfg(feature = "v4_18")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_18")))]
+    pub fn gdk_device_get_layout_names(device: *mut GdkDevice) -> *mut *mut c_char;
     pub fn gdk_device_get_modifier_state(device: *mut GdkDevice) -> GdkModifierType;
     pub fn gdk_device_get_name(device: *mut GdkDevice) -> *const c_char;
     pub fn gdk_device_get_num_lock_state(device: *mut GdkDevice) -> gboolean;

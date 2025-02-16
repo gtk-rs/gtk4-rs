@@ -11,6 +11,7 @@ use crate::{
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
 use crate::{ListItemFactory, ListScrollFlags, ListTabBehavior, ScrollInfo};
 use glib::{
+    object::ObjectType as _,
     prelude::*,
     signal::{connect_raw, SignalHandlerId},
     translate::*,
@@ -772,6 +773,14 @@ impl ColumnViewBuilder {
             builder: self
                 .builder
                 .property("layout-manager", layout_manager.clone().upcast()),
+        }
+    }
+
+    #[cfg(feature = "v4_18")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_18")))]
+    pub fn limit_events(self, limit_events: bool) -> Self {
+        Self {
+            builder: self.builder.property("limit-events", limit_events),
         }
     }
 

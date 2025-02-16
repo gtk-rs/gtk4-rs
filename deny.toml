@@ -32,7 +32,3 @@ unknown-git = "deny"
 allow-git = [
   "https://github.com/gtk-rs/gtk-rs-core",
 ]
-
-[[bans.skip]]
-name = "quick-xml"
-version = "0.36.0"

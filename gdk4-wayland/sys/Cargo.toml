@@ -45,6 +45,9 @@ version = "4.12"
 [package.metadata.system-deps.gtk4_wayland.v4_16]
 version = "4.16"
 
+[package.metadata.system-deps.gtk4_wayland.v4_18]
+version = "4.17"
+
 [package.metadata.docs.rs]
 rustc-args = ["--cfg", "docsrs"]
 rustdoc-args = ["--cfg", "docsrs", "--generate-link-to-definition"]
@@ -58,6 +61,7 @@ v4_4 = []
 v4_10 = ["v4_4"]
 v4_12 = ["v4_10"]
 v4_16 = ["v4_12"]
+v4_18 = ["v4_16"]
 
 [dependencies]
 libc = "0.2"

@@ -5,6 +5,7 @@
 
 use crate::{ffi, InputHints, InputPurpose, Widget};
 use glib::{
+    object::ObjectType as _,
     prelude::*,
     signal::{connect_raw, SignalHandlerId},
     translate::*,

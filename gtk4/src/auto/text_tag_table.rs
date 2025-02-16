@@ -4,6 +4,7 @@
 
 use crate::{ffi, Buildable, TextTag};
 use glib::{
+    object::ObjectType as _,
     prelude::*,
     signal::{connect_raw, SignalHandlerId},
     translate::*,

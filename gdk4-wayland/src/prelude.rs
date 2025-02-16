@@ -6,4 +6,5 @@
 #[doc(hidden)]
 pub use gdk::prelude::*;
 
+pub use crate::auto::traits::*;
 pub use crate::wayland_surface::WaylandSurfaceExtManual;

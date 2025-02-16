@@ -1,3 +1,5 @@
+env:
+ GSK_RENDERER: "cairo"
 on:
   push:
     branches:
@@ -48,14 +50,14 @@ jobs:
               features: "v4_18,xml_validation,blueprint",
               test_sys: false,
             }
-          - { name: "gsk4", features: "v4_14,broadway,vulkan", test_sys: true }
-          - { name: "gdk4", features: "v4_16,gl", test_sys: true }
+          - { name: "gsk4", features: "v4_18,broadway,vulkan", test_sys: true }
+          - { name: "gdk4", features: "v4_18,gl", test_sys: true }
           - {
               name: "gdk4-wayland",
-              features: "v4_12,wayland_crate,egl",
+              features: "v4_18,wayland_crate,egl",
               test_sys: true,
             }
-          - { name: "gdk4-x11", features: "v4_16,xlib,egl", test_sys: true }
+          - { name: "gdk4-x11", features: "v4_18,xlib,egl", test_sys: true }
           - {
               name: "gtk4-macros",
               features: "xml_validation,blueprint",

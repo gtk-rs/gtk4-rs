@@ -233,6 +233,174 @@ impl FileDialog {
         }))
     }
 
+    #[cfg(feature = "v4_18")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_18")))]
+    #[doc(alias = "gtk_file_dialog_open_multiple_text_files")]
+    pub fn open_multiple_text_files<
+        P: FnOnce(Result<(Option<gio::ListModel>, glib::GString), glib::Error>) + 'static,
+    >(
+        &self,
+        parent: Option<&impl IsA<Window>>,
+        cancellable: Option<&impl IsA<gio::Cancellable>>,
+        callback: P,
+    ) {
+        let main_context = glib::MainContext::ref_thread_default();
+        let is_main_context_owner = main_context.is_owner();
+        let has_acquired_main_context = (!is_main_context_owner)
+            .then(|| main_context.acquire().ok())
+            .flatten();
+        assert!(
+            is_main_context_owner || has_acquired_main_context.is_some(),
+            "Async operations only allowed if the thread is owning the MainContext"
+        );
+
+        let user_data: Box_<glib::thread_guard::ThreadGuard<P>> =
+            Box_::new(glib::thread_guard::ThreadGuard::new(callback));
+        unsafe extern "C" fn open_multiple_text_files_trampoline<
+            P: FnOnce(Result<(Option<gio::ListModel>, glib::GString), glib::Error>) + 'static,
+        >(
+            _source_object: *mut glib::gobject_ffi::GObject,
+            res: *mut gio::ffi::GAsyncResult,
+            user_data: glib::ffi::gpointer,
+        ) {
+            let mut error = std::ptr::null_mut();
+            let mut encoding = std::ptr::null();
+            let ret = ffi::gtk_file_dialog_open_multiple_text_files_finish(
+                _source_object as *mut _,
+                res,
+                &mut encoding,
+                &mut error,
+            );
+            let result = if error.is_null() {
+                Ok((from_glib_full(ret), from_glib_none(encoding)))
+            } else {
+                Err(from_glib_full(error))
+            };
+            let callback: Box_<glib::thread_guard::ThreadGuard<P>> =
+                Box_::from_raw(user_data as *mut _);
+            let callback: P = callback.into_inner();
+            callback(result);
+        }
+        let callback = open_multiple_text_files_trampoline::<P>;
+        unsafe {
+            ffi::gtk_file_dialog_open_multiple_text_files(
+                self.to_glib_none().0,
+                parent.map(|p| p.as_ref()).to_glib_none().0,
+                cancellable.map(|p| p.as_ref()).to_glib_none().0,
+                Some(callback),
+                Box_::into_raw(user_data) as *mut _,
+            );
+        }
+    }
+
+    #[cfg(feature = "v4_18")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_18")))]
+    pub fn open_multiple_text_files_future(
+        &self,
+        parent: Option<&(impl IsA<Window> + Clone + 'static)>,
+    ) -> Pin<
+        Box_<
+            dyn std::future::Future<
+                    Output = Result<(Option<gio::ListModel>, glib::GString), glib::Error>,
+                > + 'static,
+        >,
+    > {
+        let parent = parent.map(ToOwned::to_owned);
+        Box_::pin(gio::GioFuture::new(self, move |obj, cancellable, send| {
+            obj.open_multiple_text_files(
+                parent.as_ref().map(::std::borrow::Borrow::borrow),
+                Some(cancellable),
+                move |res| {
+                    send.resolve(res);
+                },
+            );
+        }))
+    }
+
+    #[cfg(feature = "v4_18")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_18")))]
+    #[doc(alias = "gtk_file_dialog_open_text_file")]
+    pub fn open_text_file<
+        P: FnOnce(Result<(Option<gio::File>, glib::GString), glib::Error>) + 'static,
+    >(
+        &self,
+        parent: Option<&impl IsA<Window>>,
+        cancellable: Option<&impl IsA<gio::Cancellable>>,
+        callback: P,
+    ) {
+        let main_context = glib::MainContext::ref_thread_default();
+        let is_main_context_owner = main_context.is_owner();
+        let has_acquired_main_context = (!is_main_context_owner)
+            .then(|| main_context.acquire().ok())
+            .flatten();
+        assert!(
+            is_main_context_owner || has_acquired_main_context.is_some(),
+            "Async operations only allowed if the thread is owning the MainContext"
+        );
+
+        let user_data: Box_<glib::thread_guard::ThreadGuard<P>> =
+            Box_::new(glib::thread_guard::ThreadGuard::new(callback));
+        unsafe extern "C" fn open_text_file_trampoline<
+            P: FnOnce(Result<(Option<gio::File>, glib::GString), glib::Error>) + 'static,
+        >(
+            _source_object: *mut glib::gobject_ffi::GObject,
+            res: *mut gio::ffi::GAsyncResult,
+            user_data: glib::ffi::gpointer,
+        ) {
+            let mut error = std::ptr::null_mut();
+            let mut encoding = std::ptr::null();
+            let ret = ffi::gtk_file_dialog_open_text_file_finish(
+                _source_object as *mut _,
+                res,
+                &mut encoding,
+                &mut error,
+            );
+            let result = if error.is_null() {
+                Ok((from_glib_full(ret), from_glib_none(encoding)))
+            } else {
+                Err(from_glib_full(error))
+            };
+            let callback: Box_<glib::thread_guard::ThreadGuard<P>> =
+                Box_::from_raw(user_data as *mut _);
+            let callback: P = callback.into_inner();
+            callback(result);
+        }
+        let callback = open_text_file_trampoline::<P>;
+        unsafe {
+            ffi::gtk_file_dialog_open_text_file(
+                self.to_glib_none().0,
+                parent.map(|p| p.as_ref()).to_glib_none().0,
+                cancellable.map(|p| p.as_ref()).to_glib_none().0,
+                Some(callback),
+                Box_::into_raw(user_data) as *mut _,
+            );
+        }
+    }
+
+    #[cfg(feature = "v4_18")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_18")))]
+    pub fn open_text_file_future(
+        &self,
+        parent: Option<&(impl IsA<Window> + Clone + 'static)>,
+    ) -> Pin<
+        Box_<
+            dyn std::future::Future<
+                    Output = Result<(Option<gio::File>, glib::GString), glib::Error>,
+                > + 'static,
+        >,
+    > {
+        let parent = parent.map(ToOwned::to_owned);
+        Box_::pin(gio::GioFuture::new(self, move |obj, cancellable, send| {
+            obj.open_text_file(
+                parent.as_ref().map(::std::borrow::Borrow::borrow),
+                Some(cancellable),
+                move |res| {
+                    send.resolve(res);
+                },
+            );
+        }))
+    }
+
     #[doc(alias = "gtk_file_dialog_save")]
     pub fn save<P: FnOnce(Result<gio::File, glib::Error>) + 'static>(
         &self,
@@ -290,6 +458,97 @@ impl FileDialog {
         let parent = parent.map(ToOwned::to_owned);
         Box_::pin(gio::GioFuture::new(self, move |obj, cancellable, send| {
             obj.save(
+                parent.as_ref().map(::std::borrow::Borrow::borrow),
+                Some(cancellable),
+                move |res| {
+                    send.resolve(res);
+                },
+            );
+        }))
+    }
+
+    #[cfg(feature = "v4_18")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_18")))]
+    #[doc(alias = "gtk_file_dialog_save_text_file")]
+    pub fn save_text_file<
+        P: FnOnce(Result<(Option<gio::File>, glib::GString, glib::GString), glib::Error>) + 'static,
+    >(
+        &self,
+        parent: Option<&impl IsA<Window>>,
+        cancellable: Option<&impl IsA<gio::Cancellable>>,
+        callback: P,
+    ) {
+        let main_context = glib::MainContext::ref_thread_default();
+        let is_main_context_owner = main_context.is_owner();
+        let has_acquired_main_context = (!is_main_context_owner)
+            .then(|| main_context.acquire().ok())
+            .flatten();
+        assert!(
+            is_main_context_owner || has_acquired_main_context.is_some(),
+            "Async operations only allowed if the thread is owning the MainContext"
+        );
+
+        let user_data: Box_<glib::thread_guard::ThreadGuard<P>> =
+            Box_::new(glib::thread_guard::ThreadGuard::new(callback));
+        unsafe extern "C" fn save_text_file_trampoline<
+            P: FnOnce(Result<(Option<gio::File>, glib::GString, glib::GString), glib::Error>)
+                + 'static,
+        >(
+            _source_object: *mut glib::gobject_ffi::GObject,
+            res: *mut gio::ffi::GAsyncResult,
+            user_data: glib::ffi::gpointer,
+        ) {
+            let mut error = std::ptr::null_mut();
+            let mut encoding = std::ptr::null();
+            let mut line_ending = std::ptr::null();
+            let ret = ffi::gtk_file_dialog_save_text_file_finish(
+                _source_object as *mut _,
+                res,
+                &mut encoding,
+                &mut line_ending,
+                &mut error,
+            );
+            let result = if error.is_null() {
+                Ok((
+                    from_glib_full(ret),
+                    from_glib_none(encoding),
+                    from_glib_none(line_ending),
+                ))
+            } else {
+                Err(from_glib_full(error))
+            };
+            let callback: Box_<glib::thread_guard::ThreadGuard<P>> =
+                Box_::from_raw(user_data as *mut _);
+            let callback: P = callback.into_inner();
+            callback(result);
+        }
+        let callback = save_text_file_trampoline::<P>;
+        unsafe {
+            ffi::gtk_file_dialog_save_text_file(
+                self.to_glib_none().0,
+                parent.map(|p| p.as_ref()).to_glib_none().0,
+                cancellable.map(|p| p.as_ref()).to_glib_none().0,
+                Some(callback),
+                Box_::into_raw(user_data) as *mut _,
+            );
+        }
+    }
+
+    #[cfg(feature = "v4_18")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_18")))]
+    pub fn save_text_file_future(
+        &self,
+        parent: Option<&(impl IsA<Window> + Clone + 'static)>,
+    ) -> Pin<
+        Box_<
+            dyn std::future::Future<
+                    Output = Result<(Option<gio::File>, glib::GString, glib::GString), glib::Error>,
+                > + 'static,
+        >,
+    > {
+        let parent = parent.map(ToOwned::to_owned);
+        Box_::pin(gio::GioFuture::new(self, move |obj, cancellable, send| {
+            obj.save_text_file(
                 parent.as_ref().map(::std::borrow::Borrow::borrow),
                 Some(cancellable),
                 move |res| {
