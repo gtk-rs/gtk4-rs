@@ -204,6 +204,18 @@ pub trait AccessibleExt: IsA<Accessible> + 'static {
         }
     }
 
+    #[cfg(feature = "v4_18")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_18")))]
+    #[doc(alias = "gtk_accessible_update_platform_state")]
+    fn update_platform_state(&self, state: AccessiblePlatformState) {
+        unsafe {
+            ffi::gtk_accessible_update_platform_state(
+                self.as_ref().to_glib_none().0,
+                state.into_glib(),
+            );
+        }
+    }
+
     #[doc(alias = "accessible-role")]
     fn set_accessible_role(&self, accessible_role: AccessibleRole) {
         ObjectExt::set_property(self.as_ref(), "accessible-role", accessible_role)

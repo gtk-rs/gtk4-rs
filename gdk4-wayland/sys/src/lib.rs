@@ -255,6 +255,9 @@ extern "C" {
     // GdkWaylandSurface
     //=========================================================================
     pub fn gdk_wayland_surface_get_type() -> GType;
+    #[cfg(feature = "v4_18")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_18")))]
+    pub fn gdk_wayland_surface_force_next_commit(surface: *mut GdkWaylandSurface);
     pub fn gdk_wayland_surface_get_wl_surface(surface: *mut GdkWaylandSurface) -> gpointer;
 
     //=========================================================================

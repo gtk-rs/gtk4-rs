@@ -849,7 +849,9 @@ pub use self::shortcut_action::ShortcutAction;
 mod shortcut_controller;
 pub use self::shortcut_controller::ShortcutController;
 
+#[cfg_attr(feature = "v4_18", deprecated = "Since 4.18")]
 mod shortcut_label;
+#[cfg_attr(feature = "v4_18", deprecated = "Since 4.18")]
 pub use self::shortcut_label::ShortcutLabel;
 
 mod shortcut_manager;
@@ -858,16 +860,24 @@ pub use self::shortcut_manager::ShortcutManager;
 mod shortcut_trigger;
 pub use self::shortcut_trigger::ShortcutTrigger;
 
+#[cfg_attr(feature = "v4_18", deprecated = "Since 4.18")]
 mod shortcuts_group;
+#[cfg_attr(feature = "v4_18", deprecated = "Since 4.18")]
 pub use self::shortcuts_group::ShortcutsGroup;
 
+#[cfg_attr(feature = "v4_18", deprecated = "Since 4.18")]
 mod shortcuts_section;
+#[cfg_attr(feature = "v4_18", deprecated = "Since 4.18")]
 pub use self::shortcuts_section::ShortcutsSection;
 
+#[cfg_attr(feature = "v4_18", deprecated = "Since 4.18")]
 mod shortcuts_shortcut;
+#[cfg_attr(feature = "v4_18", deprecated = "Since 4.18")]
 pub use self::shortcuts_shortcut::ShortcutsShortcut;
 
+#[cfg_attr(feature = "v4_18", deprecated = "Since 4.18")]
 mod shortcuts_window;
+#[cfg_attr(feature = "v4_18", deprecated = "Since 4.18")]
 pub use self::shortcuts_window::ShortcutsWindow;
 
 mod signal_action;
@@ -1746,10 +1756,15 @@ pub(crate) mod builders {
     pub use super::separator::SeparatorBuilder;
     pub use super::settings::SettingsBuilder;
     pub use super::shortcut::ShortcutBuilder;
+    #[cfg_attr(feature = "v4_18", deprecated = "Since 4.18")]
     pub use super::shortcut_label::ShortcutLabelBuilder;
+    #[cfg_attr(feature = "v4_18", deprecated = "Since 4.18")]
     pub use super::shortcuts_group::ShortcutsGroupBuilder;
+    #[cfg_attr(feature = "v4_18", deprecated = "Since 4.18")]
     pub use super::shortcuts_section::ShortcutsSectionBuilder;
+    #[cfg_attr(feature = "v4_18", deprecated = "Since 4.18")]
     pub use super::shortcuts_shortcut::ShortcutsShortcutBuilder;
+    #[cfg_attr(feature = "v4_18", deprecated = "Since 4.18")]
     pub use super::shortcuts_window::ShortcutsWindowBuilder;
     pub use super::single_selection::SingleSelectionBuilder;
     pub use super::slice_list_model::SliceListModelBuilder;

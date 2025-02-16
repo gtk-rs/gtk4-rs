@@ -25,3 +25,7 @@ pub use self::wayland_surface::WaylandSurface;
 
 mod wayland_toplevel;
 pub use self::wayland_toplevel::WaylandToplevel;
+
+pub(crate) mod traits {
+    pub use super::wayland_surface::WaylandSurfaceExt;
+}

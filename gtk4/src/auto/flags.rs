@@ -293,8 +293,8 @@ bitflags! {
         const ICONTHEME = ffi::GTK_DEBUG_ICONTHEME as _;
         #[doc(alias = "GTK_DEBUG_PRINTING")]
         const PRINTING = ffi::GTK_DEBUG_PRINTING as _;
-        #[doc(alias = "GTK_DEBUG_BUILDER")]
-        const BUILDER = ffi::GTK_DEBUG_BUILDER as _;
+        #[doc(alias = "GTK_DEBUG_BUILDER_TRACE")]
+        const BUILDER_TRACE = ffi::GTK_DEBUG_BUILDER_TRACE as _;
         #[doc(alias = "GTK_DEBUG_SIZE_REQUEST")]
         const SIZE_REQUEST = ffi::GTK_DEBUG_SIZE_REQUEST as _;
         #[doc(alias = "GTK_DEBUG_NO_CSS_CACHE")]
@@ -325,6 +325,8 @@ bitflags! {
         #[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
         #[doc(alias = "GTK_DEBUG_CSS")]
         const CSS = ffi::GTK_DEBUG_CSS as _;
+        #[doc(alias = "GTK_DEBUG_BUILDER")]
+        const BUILDER = ffi::GTK_DEBUG_BUILDER as _;
     }
 }
 

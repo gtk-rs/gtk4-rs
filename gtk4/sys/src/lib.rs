@@ -105,6 +105,24 @@ pub const GTK_ACCESSIBLE_RELATION_ROW_INDEX: GtkAccessibleRelation = 14;
 pub const GTK_ACCESSIBLE_RELATION_ROW_INDEX_TEXT: GtkAccessibleRelation = 15;
 pub const GTK_ACCESSIBLE_RELATION_ROW_SPAN: GtkAccessibleRelation = 16;
 pub const GTK_ACCESSIBLE_RELATION_SET_SIZE: GtkAccessibleRelation = 17;
+#[cfg(feature = "v4_18")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_18")))]
+pub const GTK_ACCESSIBLE_RELATION_LABEL_FOR: GtkAccessibleRelation = 18;
+#[cfg(feature = "v4_18")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_18")))]
+pub const GTK_ACCESSIBLE_RELATION_DESCRIPTION_FOR: GtkAccessibleRelation = 19;
+#[cfg(feature = "v4_18")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_18")))]
+pub const GTK_ACCESSIBLE_RELATION_CONTROLLED_BY: GtkAccessibleRelation = 20;
+#[cfg(feature = "v4_18")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_18")))]
+pub const GTK_ACCESSIBLE_RELATION_DETAILS_FOR: GtkAccessibleRelation = 21;
+#[cfg(feature = "v4_18")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_18")))]
+pub const GTK_ACCESSIBLE_RELATION_ERROR_MESSAGE_FOR: GtkAccessibleRelation = 22;
+#[cfg(feature = "v4_18")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_18")))]
+pub const GTK_ACCESSIBLE_RELATION_FLOW_FROM: GtkAccessibleRelation = 23;
 
 pub type GtkAccessibleRole = c_int;
 pub const GTK_ACCESSIBLE_ROLE_ALERT: GtkAccessibleRole = 0;
@@ -1029,7 +1047,7 @@ pub const GTK_DEBUG_MODULES: GtkDebugFlags = 8;
 pub const GTK_DEBUG_GEOMETRY: GtkDebugFlags = 16;
 pub const GTK_DEBUG_ICONTHEME: GtkDebugFlags = 32;
 pub const GTK_DEBUG_PRINTING: GtkDebugFlags = 64;
-pub const GTK_DEBUG_BUILDER: GtkDebugFlags = 128;
+pub const GTK_DEBUG_BUILDER_TRACE: GtkDebugFlags = 128;
 pub const GTK_DEBUG_SIZE_REQUEST: GtkDebugFlags = 256;
 pub const GTK_DEBUG_NO_CSS_CACHE: GtkDebugFlags = 512;
 pub const GTK_DEBUG_INTERACTIVE: GtkDebugFlags = 1024;
@@ -1048,6 +1066,7 @@ pub const GTK_DEBUG_INVERT_TEXT_DIR: GtkDebugFlags = 524288;
 #[cfg(feature = "v4_16")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
 pub const GTK_DEBUG_CSS: GtkDebugFlags = 1048576;
+pub const GTK_DEBUG_BUILDER: GtkDebugFlags = 2097152;
 
 pub type GtkDialogFlags = c_uint;
 pub const GTK_DIALOG_MODAL: GtkDialogFlags = 1;
@@ -13995,6 +14014,40 @@ extern "C" {
         result: *mut gio::GAsyncResult,
         error: *mut *mut glib::GError,
     ) -> *mut gio::GListModel;
+    #[cfg(feature = "v4_18")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_18")))]
+    pub fn gtk_file_dialog_open_multiple_text_files(
+        self_: *mut GtkFileDialog,
+        parent: *mut GtkWindow,
+        cancellable: *mut gio::GCancellable,
+        callback: gio::GAsyncReadyCallback,
+        user_data: gpointer,
+    );
+    #[cfg(feature = "v4_18")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_18")))]
+    pub fn gtk_file_dialog_open_multiple_text_files_finish(
+        self_: *mut GtkFileDialog,
+        result: *mut gio::GAsyncResult,
+        encoding: *mut *const c_char,
+        error: *mut *mut glib::GError,
+    ) -> *mut gio::GListModel;
+    #[cfg(feature = "v4_18")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_18")))]
+    pub fn gtk_file_dialog_open_text_file(
+        self_: *mut GtkFileDialog,
+        parent: *mut GtkWindow,
+        cancellable: *mut gio::GCancellable,
+        callback: gio::GAsyncReadyCallback,
+        user_data: gpointer,
+    );
+    #[cfg(feature = "v4_18")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_18")))]
+    pub fn gtk_file_dialog_open_text_file_finish(
+        self_: *mut GtkFileDialog,
+        result: *mut gio::GAsyncResult,
+        encoding: *mut *const c_char,
+        error: *mut *mut glib::GError,
+    ) -> *mut gio::GFile;
     #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_file_dialog_save(
@@ -14009,6 +14062,24 @@ extern "C" {
     pub fn gtk_file_dialog_save_finish(
         self_: *mut GtkFileDialog,
         result: *mut gio::GAsyncResult,
+        error: *mut *mut glib::GError,
+    ) -> *mut gio::GFile;
+    #[cfg(feature = "v4_18")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_18")))]
+    pub fn gtk_file_dialog_save_text_file(
+        self_: *mut GtkFileDialog,
+        parent: *mut GtkWindow,
+        cancellable: *mut gio::GCancellable,
+        callback: gio::GAsyncReadyCallback,
+        user_data: gpointer,
+    );
+    #[cfg(feature = "v4_18")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_18")))]
+    pub fn gtk_file_dialog_save_text_file_finish(
+        self_: *mut GtkFileDialog,
+        result: *mut gio::GAsyncResult,
+        encoding: *mut *const c_char,
+        line_ending: *mut *const c_char,
         error: *mut *mut glib::GError,
     ) -> *mut gio::GFile;
     #[cfg(feature = "v4_10")]
@@ -20142,6 +20213,9 @@ extern "C" {
     pub fn gtk_widget_get_hexpand_set(widget: *mut GtkWidget) -> gboolean;
     pub fn gtk_widget_get_last_child(widget: *mut GtkWidget) -> *mut GtkWidget;
     pub fn gtk_widget_get_layout_manager(widget: *mut GtkWidget) -> *mut GtkLayoutManager;
+    #[cfg(feature = "v4_18")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_18")))]
+    pub fn gtk_widget_get_limit_events(widget: *mut GtkWidget) -> gboolean;
     pub fn gtk_widget_get_mapped(widget: *mut GtkWidget) -> gboolean;
     pub fn gtk_widget_get_margin_bottom(widget: *mut GtkWidget) -> c_int;
     pub fn gtk_widget_get_margin_end(widget: *mut GtkWidget) -> c_int;
@@ -20277,6 +20351,9 @@ extern "C" {
         widget: *mut GtkWidget,
         layout_manager: *mut GtkLayoutManager,
     );
+    #[cfg(feature = "v4_18")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_18")))]
+    pub fn gtk_widget_set_limit_events(widget: *mut GtkWidget, limit_events: gboolean);
     pub fn gtk_widget_set_margin_bottom(widget: *mut GtkWidget, margin: c_int);
     pub fn gtk_widget_set_margin_end(widget: *mut GtkWidget, margin: c_int);
     pub fn gtk_widget_set_margin_start(widget: *mut GtkWidget, margin: c_int);
@@ -20513,6 +20590,12 @@ extern "C" {
     pub fn gtk_accessible_update_next_accessible_sibling(
         self_: *mut GtkAccessible,
         new_sibling: *mut GtkAccessible,
+    );
+    #[cfg(feature = "v4_18")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_18")))]
+    pub fn gtk_accessible_update_platform_state(
+        self_: *mut GtkAccessible,
+        state: GtkAccessiblePlatformState,
     );
     pub fn gtk_accessible_update_property(
         self_: *mut GtkAccessible,

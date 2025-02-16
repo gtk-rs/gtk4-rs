@@ -669,6 +669,30 @@ pub enum AccessibleRelation {
     RowSpan,
     #[doc(alias = "GTK_ACCESSIBLE_RELATION_SET_SIZE")]
     SetSize,
+    #[cfg(feature = "v4_18")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_18")))]
+    #[doc(alias = "GTK_ACCESSIBLE_RELATION_LABEL_FOR")]
+    LabelFor,
+    #[cfg(feature = "v4_18")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_18")))]
+    #[doc(alias = "GTK_ACCESSIBLE_RELATION_DESCRIPTION_FOR")]
+    DescriptionFor,
+    #[cfg(feature = "v4_18")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_18")))]
+    #[doc(alias = "GTK_ACCESSIBLE_RELATION_CONTROLLED_BY")]
+    ControlledBy,
+    #[cfg(feature = "v4_18")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_18")))]
+    #[doc(alias = "GTK_ACCESSIBLE_RELATION_DETAILS_FOR")]
+    DetailsFor,
+    #[cfg(feature = "v4_18")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_18")))]
+    #[doc(alias = "GTK_ACCESSIBLE_RELATION_ERROR_MESSAGE_FOR")]
+    ErrorMessageFor,
+    #[cfg(feature = "v4_18")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_18")))]
+    #[doc(alias = "GTK_ACCESSIBLE_RELATION_FLOW_FROM")]
+    FlowFrom,
     #[doc(hidden)]
     __Unknown(i32),
 }
@@ -707,6 +731,18 @@ impl IntoGlib for AccessibleRelation {
             Self::RowIndexText => ffi::GTK_ACCESSIBLE_RELATION_ROW_INDEX_TEXT,
             Self::RowSpan => ffi::GTK_ACCESSIBLE_RELATION_ROW_SPAN,
             Self::SetSize => ffi::GTK_ACCESSIBLE_RELATION_SET_SIZE,
+            #[cfg(feature = "v4_18")]
+            Self::LabelFor => ffi::GTK_ACCESSIBLE_RELATION_LABEL_FOR,
+            #[cfg(feature = "v4_18")]
+            Self::DescriptionFor => ffi::GTK_ACCESSIBLE_RELATION_DESCRIPTION_FOR,
+            #[cfg(feature = "v4_18")]
+            Self::ControlledBy => ffi::GTK_ACCESSIBLE_RELATION_CONTROLLED_BY,
+            #[cfg(feature = "v4_18")]
+            Self::DetailsFor => ffi::GTK_ACCESSIBLE_RELATION_DETAILS_FOR,
+            #[cfg(feature = "v4_18")]
+            Self::ErrorMessageFor => ffi::GTK_ACCESSIBLE_RELATION_ERROR_MESSAGE_FOR,
+            #[cfg(feature = "v4_18")]
+            Self::FlowFrom => ffi::GTK_ACCESSIBLE_RELATION_FLOW_FROM,
             Self::__Unknown(value) => value,
         }
     }
@@ -736,6 +772,18 @@ impl FromGlib<ffi::GtkAccessibleRelation> for AccessibleRelation {
             ffi::GTK_ACCESSIBLE_RELATION_ROW_INDEX_TEXT => Self::RowIndexText,
             ffi::GTK_ACCESSIBLE_RELATION_ROW_SPAN => Self::RowSpan,
             ffi::GTK_ACCESSIBLE_RELATION_SET_SIZE => Self::SetSize,
+            #[cfg(feature = "v4_18")]
+            ffi::GTK_ACCESSIBLE_RELATION_LABEL_FOR => Self::LabelFor,
+            #[cfg(feature = "v4_18")]
+            ffi::GTK_ACCESSIBLE_RELATION_DESCRIPTION_FOR => Self::DescriptionFor,
+            #[cfg(feature = "v4_18")]
+            ffi::GTK_ACCESSIBLE_RELATION_CONTROLLED_BY => Self::ControlledBy,
+            #[cfg(feature = "v4_18")]
+            ffi::GTK_ACCESSIBLE_RELATION_DETAILS_FOR => Self::DetailsFor,
+            #[cfg(feature = "v4_18")]
+            ffi::GTK_ACCESSIBLE_RELATION_ERROR_MESSAGE_FOR => Self::ErrorMessageFor,
+            #[cfg(feature = "v4_18")]
+            ffi::GTK_ACCESSIBLE_RELATION_FLOW_FROM => Self::FlowFrom,
             value => Self::__Unknown(value),
         }
     }
