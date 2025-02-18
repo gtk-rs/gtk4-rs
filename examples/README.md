@@ -44,6 +44,7 @@ cargo run --bin basics
 - [Glium GL-Area](./glium_gl_area/)
 - [Grid Packing](./grid_packing)
 - [GtkBuilder](./gtk_builder/)
+- [ListModel: StringList with Sorter](./listbox_sort_stringlist/)
 - [ListBox and ListModel](./list_box_model/)
 - [ListView: Applications Launcher](./list_view_apps_launcher/)
 - [Menubar](./menubar/)
