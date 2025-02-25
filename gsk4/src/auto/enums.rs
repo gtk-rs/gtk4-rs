@@ -373,6 +373,7 @@ impl From<FillRule> for glib::Value {
     }
 }
 
+#[cfg_attr(feature = "v4_16", deprecated = "Since 4.16")]
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GskGLUniformType")]
@@ -397,6 +398,7 @@ pub enum GLUniformType {
     __Unknown(i32),
 }
 
+#[allow(deprecated)]
 #[doc(hidden)]
 impl IntoGlib for GLUniformType {
     type GlibType = ffi::GskGLUniformType;
@@ -417,6 +419,7 @@ impl IntoGlib for GLUniformType {
     }
 }
 
+#[allow(deprecated)]
 #[doc(hidden)]
 impl FromGlib<ffi::GskGLUniformType> for GLUniformType {
     #[inline]
@@ -437,6 +440,7 @@ impl FromGlib<ffi::GskGLUniformType> for GLUniformType {
     }
 }
 
+#[allow(deprecated)]
 impl StaticType for GLUniformType {
     #[inline]
     #[doc(alias = "gsk_gl_uniform_type_get_type")]
@@ -445,6 +449,7 @@ impl StaticType for GLUniformType {
     }
 }
 
+#[allow(deprecated)]
 impl glib::HasParamSpec for GLUniformType {
     type ParamSpec = glib::ParamSpecEnum;
     type SetValue = Self;
@@ -455,10 +460,12 @@ impl glib::HasParamSpec for GLUniformType {
     }
 }
 
+#[allow(deprecated)]
 impl glib::value::ValueType for GLUniformType {
     type Type = Self;
 }
 
+#[allow(deprecated)]
 unsafe impl<'a> glib::value::FromValue<'a> for GLUniformType {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
@@ -469,6 +476,7 @@ unsafe impl<'a> glib::value::FromValue<'a> for GLUniformType {
     }
 }
 
+#[allow(deprecated)]
 impl ToValue for GLUniformType {
     #[inline]
     fn to_value(&self) -> glib::Value {
@@ -485,6 +493,7 @@ impl ToValue for GLUniformType {
     }
 }
 
+#[allow(deprecated)]
 impl From<GLUniformType> for glib::Value {
     #[inline]
     fn from(v: GLUniformType) -> Self {

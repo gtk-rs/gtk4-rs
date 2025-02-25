@@ -59,7 +59,9 @@ mod gl_renderer;
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_2")))]
 pub use self::gl_renderer::GLRenderer;
 
+#[cfg_attr(feature = "v4_16", deprecated = "Since 4.16")]
 mod gl_shader;
+#[cfg_attr(feature = "v4_16", deprecated = "Since 4.16")]
 pub use self::gl_shader::GLShader;
 
 mod gl_shader_node;
@@ -185,6 +187,7 @@ pub use self::enums::Corner;
 #[cfg(feature = "v4_14")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
 pub use self::enums::FillRule;
+#[allow(deprecated)]
 pub use self::enums::GLUniformType;
 #[cfg(feature = "v4_14")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
@@ -215,5 +218,6 @@ pub(crate) mod traits {
     pub use super::renderer::GskRendererExt;
 }
 pub(crate) mod builders {
+    #[cfg_attr(feature = "v4_16", deprecated = "Since 4.16")]
     pub use super::gl_shader::GLShaderBuilder;
 }
