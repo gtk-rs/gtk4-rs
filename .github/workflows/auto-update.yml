@@ -3,6 +3,7 @@ name: Auto updates
 on:
   repository_dispatch:
     types: [internal-merge-event]
+  workflow_dispatch:
 
 jobs:
   regen:
