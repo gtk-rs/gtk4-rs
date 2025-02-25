@@ -1989,6 +1989,7 @@ impl From<ArrowType> for glib::Value {
     }
 }
 
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GtkAssistantPageType")]
@@ -2009,6 +2010,7 @@ pub enum AssistantPageType {
     __Unknown(i32),
 }
 
+#[allow(deprecated)]
 #[doc(hidden)]
 impl IntoGlib for AssistantPageType {
     type GlibType = ffi::GtkAssistantPageType;
@@ -2027,6 +2029,7 @@ impl IntoGlib for AssistantPageType {
     }
 }
 
+#[allow(deprecated)]
 #[doc(hidden)]
 impl FromGlib<ffi::GtkAssistantPageType> for AssistantPageType {
     #[inline]
@@ -2045,6 +2048,7 @@ impl FromGlib<ffi::GtkAssistantPageType> for AssistantPageType {
     }
 }
 
+#[allow(deprecated)]
 impl StaticType for AssistantPageType {
     #[inline]
     #[doc(alias = "gtk_assistant_page_type_get_type")]
@@ -2053,6 +2057,7 @@ impl StaticType for AssistantPageType {
     }
 }
 
+#[allow(deprecated)]
 impl glib::HasParamSpec for AssistantPageType {
     type ParamSpec = glib::ParamSpecEnum;
     type SetValue = Self;
@@ -2063,10 +2068,12 @@ impl glib::HasParamSpec for AssistantPageType {
     }
 }
 
+#[allow(deprecated)]
 impl glib::value::ValueType for AssistantPageType {
     type Type = Self;
 }
 
+#[allow(deprecated)]
 unsafe impl<'a> glib::value::FromValue<'a> for AssistantPageType {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
@@ -2077,6 +2084,7 @@ unsafe impl<'a> glib::value::FromValue<'a> for AssistantPageType {
     }
 }
 
+#[allow(deprecated)]
 impl ToValue for AssistantPageType {
     #[inline]
     fn to_value(&self) -> glib::Value {
@@ -2093,6 +2101,7 @@ impl ToValue for AssistantPageType {
     }
 }
 
+#[allow(deprecated)]
 impl From<AssistantPageType> for glib::Value {
     #[inline]
     fn from(v: AssistantPageType) -> Self {

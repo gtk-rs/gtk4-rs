@@ -1152,6 +1152,7 @@ pub use self::enums::AccessibleTextContentChange;
 pub use self::enums::AccessibleTextGranularity;
 pub use self::enums::AccessibleTristate;
 pub use self::enums::ArrowType;
+#[allow(deprecated)]
 pub use self::enums::AssistantPageType;
 pub use self::enums::BaselinePosition;
 pub use self::enums::BorderStyle;
