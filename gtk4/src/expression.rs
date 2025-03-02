@@ -341,7 +341,7 @@ macro_rules! define_expression {
         #[doc(hidden)]
         impl IntoGlibPtr<*mut crate::ffi::GtkExpression> for $rust_type {
             #[inline]
-            unsafe fn into_glib_ptr(self) -> *mut crate::ffi::GtkExpression {
+            fn into_glib_ptr(self) -> *mut crate::ffi::GtkExpression {
                 let s = std::mem::ManuallyDrop::new(self);
                 s.to_glib_none().0
             }
@@ -350,7 +350,7 @@ macro_rules! define_expression {
         #[doc(hidden)]
         impl IntoGlibPtr<*const crate::ffi::GtkExpression> for $rust_type {
             #[inline]
-            unsafe fn into_glib_ptr(self) -> *const crate::ffi::GtkExpression {
+            fn into_glib_ptr(self) -> *const crate::ffi::GtkExpression {
                 let s = std::mem::ManuallyDrop::new(self);
                 s.to_glib_none().0
             }

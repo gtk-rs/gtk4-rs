@@ -70,7 +70,7 @@ impl<'a> ToGlibPtr<'a, *mut gobject_ffi::GParamSpec> for ParamSpecExpression {
 #[doc(hidden)]
 impl IntoGlibPtr<*mut gobject_ffi::GParamSpec> for ParamSpecExpression {
     #[inline]
-    unsafe fn into_glib_ptr(self) -> *mut gobject_ffi::GParamSpec {
+    fn into_glib_ptr(self) -> *mut gobject_ffi::GParamSpec {
         let s = std::mem::ManuallyDrop::new(self);
         s.to_glib_none().0
     }
@@ -79,7 +79,7 @@ impl IntoGlibPtr<*mut gobject_ffi::GParamSpec> for ParamSpecExpression {
 #[doc(hidden)]
 impl IntoGlibPtr<*const gobject_ffi::GParamSpec> for ParamSpecExpression {
     #[inline]
-    unsafe fn into_glib_ptr(self) -> *const gobject_ffi::GParamSpec {
+    fn into_glib_ptr(self) -> *const gobject_ffi::GParamSpec {
         let s = std::mem::ManuallyDrop::new(self);
         s.to_glib_none().0
     }
