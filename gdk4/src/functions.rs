@@ -7,7 +7,7 @@ use glib::translate::*;
 pub use crate::auto::functions::*;
 use crate::{ffi, prelude::*, ContentDeserializer, ContentSerializer};
 
-#[repr(packed)]
+#[repr(C, packed)]
 pub struct GRange(pub i32, pub i32);
 
 #[doc(alias = "gdk_pango_layout_get_clip_region")]
