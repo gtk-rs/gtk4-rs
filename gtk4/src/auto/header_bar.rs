@@ -66,6 +66,19 @@ impl HeaderBar {
         unsafe { from_glib_none(ffi::gtk_header_bar_get_title_widget(self.to_glib_none().0)) }
     }
 
+    #[cfg(feature = "v4_18")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_18")))]
+    #[doc(alias = "gtk_header_bar_get_use_native_controls")]
+    #[doc(alias = "get_use_native_controls")]
+    #[doc(alias = "use-native-controls")]
+    pub fn uses_native_controls(&self) -> bool {
+        unsafe {
+            from_glib(ffi::gtk_header_bar_get_use_native_controls(
+                self.to_glib_none().0,
+            ))
+        }
+    }
+
     #[doc(alias = "gtk_header_bar_pack_end")]
     pub fn pack_end(&self, child: &impl IsA<Widget>) {
         unsafe {
@@ -114,6 +127,16 @@ impl HeaderBar {
                 self.to_glib_none().0,
                 title_widget.map(|p| p.as_ref()).to_glib_none().0,
             );
+        }
+    }
+
+    #[cfg(feature = "v4_18")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_18")))]
+    #[doc(alias = "gtk_header_bar_set_use_native_controls")]
+    #[doc(alias = "use-native-controls")]
+    pub fn set_use_native_controls(&self, setting: bool) {
+        unsafe {
+            ffi::gtk_header_bar_set_use_native_controls(self.to_glib_none().0, setting.into_glib());
         }
     }
 
@@ -191,6 +214,34 @@ impl HeaderBar {
             )
         }
     }
+
+    #[cfg(feature = "v4_18")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_18")))]
+    #[doc(alias = "use-native-controls")]
+    pub fn connect_use_native_controls_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_use_native_controls_trampoline<F: Fn(&HeaderBar) + 'static>(
+            this: *mut ffi::GtkHeaderBar,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                c"notify::use-native-controls".as_ptr() as *const _,
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
+                    notify_use_native_controls_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
 }
 
 impl Default for HeaderBar {
@@ -236,6 +287,16 @@ impl HeaderBarBuilder {
             builder: self
                 .builder
                 .property("title-widget", title_widget.clone().upcast()),
+        }
+    }
+
+    #[cfg(feature = "v4_18")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_18")))]
+    pub fn use_native_controls(self, use_native_controls: bool) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("use-native-controls", use_native_controls),
         }
     }
 
