@@ -15017,12 +15017,18 @@ extern "C" {
     pub fn gtk_header_bar_get_decoration_layout(bar: *mut GtkHeaderBar) -> *const c_char;
     pub fn gtk_header_bar_get_show_title_buttons(bar: *mut GtkHeaderBar) -> gboolean;
     pub fn gtk_header_bar_get_title_widget(bar: *mut GtkHeaderBar) -> *mut GtkWidget;
+    #[cfg(feature = "v4_18")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_18")))]
+    pub fn gtk_header_bar_get_use_native_controls(bar: *mut GtkHeaderBar) -> gboolean;
     pub fn gtk_header_bar_pack_end(bar: *mut GtkHeaderBar, child: *mut GtkWidget);
     pub fn gtk_header_bar_pack_start(bar: *mut GtkHeaderBar, child: *mut GtkWidget);
     pub fn gtk_header_bar_remove(bar: *mut GtkHeaderBar, child: *mut GtkWidget);
     pub fn gtk_header_bar_set_decoration_layout(bar: *mut GtkHeaderBar, layout: *const c_char);
     pub fn gtk_header_bar_set_show_title_buttons(bar: *mut GtkHeaderBar, setting: gboolean);
     pub fn gtk_header_bar_set_title_widget(bar: *mut GtkHeaderBar, title_widget: *mut GtkWidget);
+    #[cfg(feature = "v4_18")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_18")))]
+    pub fn gtk_header_bar_set_use_native_controls(bar: *mut GtkHeaderBar, setting: gboolean);
 
     //=========================================================================
     // GtkIMContext
@@ -20500,11 +20506,20 @@ extern "C" {
     ) -> *const c_char;
     pub fn gtk_window_controls_get_empty(self_: *mut GtkWindowControls) -> gboolean;
     pub fn gtk_window_controls_get_side(self_: *mut GtkWindowControls) -> GtkPackType;
+    #[cfg(feature = "v4_18")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_18")))]
+    pub fn gtk_window_controls_get_use_native_controls(self_: *mut GtkWindowControls) -> gboolean;
     pub fn gtk_window_controls_set_decoration_layout(
         self_: *mut GtkWindowControls,
         layout: *const c_char,
     );
     pub fn gtk_window_controls_set_side(self_: *mut GtkWindowControls, side: GtkPackType);
+    #[cfg(feature = "v4_18")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_18")))]
+    pub fn gtk_window_controls_set_use_native_controls(
+        self_: *mut GtkWindowControls,
+        setting: gboolean,
+    );
 
     //=========================================================================
     // GtkWindowGroup
