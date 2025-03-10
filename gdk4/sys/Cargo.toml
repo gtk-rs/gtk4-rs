@@ -102,7 +102,7 @@ workspace = true
 
 [build-dependencies]
 system-deps = "7"
-pkg-config = "0.3.31"
+pkg-config = "0.3.32"
 
 [dev-dependencies]
 shell-words = "1.0.0"
