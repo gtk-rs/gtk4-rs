@@ -294,7 +294,7 @@ impl Clipboard {
             user_data: glib::ffi::gpointer,
         ) {
             let mut error = std::ptr::null_mut();
-            let _ = ffi::gdk_clipboard_store_finish(_source_object as *mut _, res, &mut error);
+            ffi::gdk_clipboard_store_finish(_source_object as *mut _, res, &mut error);
             let result = if error.is_null() {
                 Ok(())
             } else {

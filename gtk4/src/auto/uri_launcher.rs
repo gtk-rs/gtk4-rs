@@ -65,7 +65,7 @@ impl UriLauncher {
             user_data: glib::ffi::gpointer,
         ) {
             let mut error = std::ptr::null_mut();
-            let _ = ffi::gtk_uri_launcher_launch_finish(_source_object as *mut _, res, &mut error);
+            ffi::gtk_uri_launcher_launch_finish(_source_object as *mut _, res, &mut error);
             let result = if error.is_null() {
                 Ok(())
             } else {

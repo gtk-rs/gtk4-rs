@@ -79,7 +79,7 @@ impl FileLauncher {
             user_data: glib::ffi::gpointer,
         ) {
             let mut error = std::ptr::null_mut();
-            let _ = ffi::gtk_file_launcher_launch_finish(_source_object as *mut _, res, &mut error);
+            ffi::gtk_file_launcher_launch_finish(_source_object as *mut _, res, &mut error);
             let result = if error.is_null() {
                 Ok(())
             } else {
@@ -145,7 +145,7 @@ impl FileLauncher {
             user_data: glib::ffi::gpointer,
         ) {
             let mut error = std::ptr::null_mut();
-            let _ = ffi::gtk_file_launcher_open_containing_folder_finish(
+            ffi::gtk_file_launcher_open_containing_folder_finish(
                 _source_object as *mut _,
                 res,
                 &mut error,
