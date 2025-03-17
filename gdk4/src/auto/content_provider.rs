@@ -117,7 +117,7 @@ pub trait ContentProviderExt: IsA<ContentProvider> + 'static {
             user_data: glib::ffi::gpointer,
         ) {
             let mut error = std::ptr::null_mut();
-            let _ = ffi::gdk_content_provider_write_mime_type_finish(
+            ffi::gdk_content_provider_write_mime_type_finish(
                 _source_object as *mut _,
                 res,
                 &mut error,
