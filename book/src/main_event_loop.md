@@ -237,6 +237,10 @@ If you decide to share it, you user name will be printed on the console.
 
 <div style="text-align:center"><img src="img/main_event_loop_ashpd.png" alt="Dialog requesting user information."/></div>
 
+## Custom structs and multithreading
+
+If you have a custom structure that needs to perform its function on a separate thread to avoid blocking, Rust's [Arc](https://doc.rust-lang.org/std/sync/struct.Arc.html) and [Mutex](https://doc.rust-lang.org/std/sync/struct.Mutex.html) are required for safe data transport. `Mutex` (mutual exclusion) allows data access from another thread while guaranteeing exclusivity of the request call. To request data from another thread, `lock()` is called on the `Mutext` to signal the attempt. But Rust's ownership system does not allow `Mutext` data to be safely exchanged between threads. To perform data transfer between threads, you need to utilize Rust's `Arc` structure. These `Arc`s (Atomic Reference Counting) are safe to share between the application threads. But keep in mind that this safety comes with the price and will affect the performance. In some cases it is cheaper to run operations on a single thread without spending resources on locks and reference counting.
+
 ## Tokio
 
 [`tokio`](https://docs.rs/tokio/latest/tokio/) is Rust's most popular asynchronous platform.
