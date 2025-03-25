@@ -254,7 +254,7 @@ impl AppChooserButton {
                 detail.map(|name| format!("custom-item-activated::{name}\0"));
             let signal_name: &[u8] = detailed_signal_name
                 .as_ref()
-                .map_or(&b"custom-item-activated\0"[..], |n| n.as_bytes());
+                .map_or(c"custom-item-activated".to_bytes(), |n| n.as_bytes());
             connect_raw(
                 self.as_ptr() as *mut _,
                 signal_name.as_ptr() as *const _,
