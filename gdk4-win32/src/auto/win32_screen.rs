@@ -3,6 +3,7 @@
 // DO NOT EDIT
 
 use crate::ffi;
+use glib::{prelude::*, translate::*};
 
 glib::wrapper! {
     #[doc(alias = "GdkWin32Screen")]
@@ -13,4 +14,8 @@ glib::wrapper! {
     }
 }
 
-impl Win32Screen {}
+impl Win32Screen {
+    pub fn display(&self) -> Option<gdk::Display> {
+        ObjectExt::property(self, "display")
+    }
+}

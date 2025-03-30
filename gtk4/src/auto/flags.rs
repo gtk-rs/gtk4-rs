@@ -180,6 +180,7 @@ impl From<BuilderClosureFlags> for glib::Value {
 }
 
 bitflags! {
+    #[cfg_attr(feature = "v4_20", deprecated = "Since 4.20")]
     #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
     #[doc(alias = "GtkCellRendererState")]
     pub struct CellRendererState: u32 {
@@ -200,6 +201,7 @@ bitflags! {
     }
 }
 
+#[allow(deprecated)]
 #[doc(hidden)]
 impl IntoGlib for CellRendererState {
     type GlibType = ffi::GtkCellRendererState;
@@ -210,6 +212,7 @@ impl IntoGlib for CellRendererState {
     }
 }
 
+#[allow(deprecated)]
 #[doc(hidden)]
 impl FromGlib<ffi::GtkCellRendererState> for CellRendererState {
     #[inline]
@@ -219,6 +222,7 @@ impl FromGlib<ffi::GtkCellRendererState> for CellRendererState {
     }
 }
 
+#[allow(deprecated)]
 impl StaticType for CellRendererState {
     #[inline]
     #[doc(alias = "gtk_cell_renderer_state_get_type")]
@@ -227,6 +231,7 @@ impl StaticType for CellRendererState {
     }
 }
 
+#[allow(deprecated)]
 impl glib::HasParamSpec for CellRendererState {
     type ParamSpec = glib::ParamSpecFlags;
     type SetValue = Self;
@@ -237,10 +242,12 @@ impl glib::HasParamSpec for CellRendererState {
     }
 }
 
+#[allow(deprecated)]
 impl glib::value::ValueType for CellRendererState {
     type Type = Self;
 }
 
+#[allow(deprecated)]
 unsafe impl<'a> glib::value::FromValue<'a> for CellRendererState {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
@@ -251,6 +258,7 @@ unsafe impl<'a> glib::value::FromValue<'a> for CellRendererState {
     }
 }
 
+#[allow(deprecated)]
 impl ToValue for CellRendererState {
     #[inline]
     fn to_value(&self) -> glib::Value {
@@ -267,6 +275,7 @@ impl ToValue for CellRendererState {
     }
 }
 
+#[allow(deprecated)]
 impl From<CellRendererState> for glib::Value {
     #[inline]
     fn from(v: CellRendererState) -> Self {
@@ -406,6 +415,7 @@ impl From<DebugFlags> for glib::Value {
 }
 
 bitflags! {
+    #[cfg_attr(feature = "v4_20", deprecated = "Since 4.20")]
     #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
     #[doc(alias = "GtkDialogFlags")]
     pub struct DialogFlags: u32 {
@@ -418,6 +428,7 @@ bitflags! {
     }
 }
 
+#[allow(deprecated)]
 #[doc(hidden)]
 impl IntoGlib for DialogFlags {
     type GlibType = ffi::GtkDialogFlags;
@@ -428,6 +439,7 @@ impl IntoGlib for DialogFlags {
     }
 }
 
+#[allow(deprecated)]
 #[doc(hidden)]
 impl FromGlib<ffi::GtkDialogFlags> for DialogFlags {
     #[inline]
@@ -437,6 +449,7 @@ impl FromGlib<ffi::GtkDialogFlags> for DialogFlags {
     }
 }
 
+#[allow(deprecated)]
 impl StaticType for DialogFlags {
     #[inline]
     #[doc(alias = "gtk_dialog_flags_get_type")]
@@ -445,6 +458,7 @@ impl StaticType for DialogFlags {
     }
 }
 
+#[allow(deprecated)]
 impl glib::HasParamSpec for DialogFlags {
     type ParamSpec = glib::ParamSpecFlags;
     type SetValue = Self;
@@ -455,10 +469,12 @@ impl glib::HasParamSpec for DialogFlags {
     }
 }
 
+#[allow(deprecated)]
 impl glib::value::ValueType for DialogFlags {
     type Type = Self;
 }
 
+#[allow(deprecated)]
 unsafe impl<'a> glib::value::FromValue<'a> for DialogFlags {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
@@ -469,6 +485,7 @@ unsafe impl<'a> glib::value::FromValue<'a> for DialogFlags {
     }
 }
 
+#[allow(deprecated)]
 impl ToValue for DialogFlags {
     #[inline]
     fn to_value(&self) -> glib::Value {
@@ -485,6 +502,7 @@ impl ToValue for DialogFlags {
     }
 }
 
+#[allow(deprecated)]
 impl From<DialogFlags> for glib::Value {
     #[inline]
     fn from(v: DialogFlags) -> Self {
@@ -588,6 +606,7 @@ impl From<EventControllerScrollFlags> for glib::Value {
 }
 
 bitflags! {
+    #[cfg_attr(feature = "v4_20", deprecated = "Since 4.20")]
     #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
     #[doc(alias = "GtkFontChooserLevel")]
     pub struct FontChooserLevel: u32 {
@@ -604,6 +623,7 @@ bitflags! {
     }
 }
 
+#[allow(deprecated)]
 #[doc(hidden)]
 impl IntoGlib for FontChooserLevel {
     type GlibType = ffi::GtkFontChooserLevel;
@@ -614,6 +634,7 @@ impl IntoGlib for FontChooserLevel {
     }
 }
 
+#[allow(deprecated)]
 #[doc(hidden)]
 impl FromGlib<ffi::GtkFontChooserLevel> for FontChooserLevel {
     #[inline]
@@ -623,6 +644,7 @@ impl FromGlib<ffi::GtkFontChooserLevel> for FontChooserLevel {
     }
 }
 
+#[allow(deprecated)]
 impl StaticType for FontChooserLevel {
     #[inline]
     #[doc(alias = "gtk_font_chooser_level_get_type")]
@@ -631,6 +653,7 @@ impl StaticType for FontChooserLevel {
     }
 }
 
+#[allow(deprecated)]
 impl glib::HasParamSpec for FontChooserLevel {
     type ParamSpec = glib::ParamSpecFlags;
     type SetValue = Self;
@@ -641,10 +664,12 @@ impl glib::HasParamSpec for FontChooserLevel {
     }
 }
 
+#[allow(deprecated)]
 impl glib::value::ValueType for FontChooserLevel {
     type Type = Self;
 }
 
+#[allow(deprecated)]
 unsafe impl<'a> glib::value::FromValue<'a> for FontChooserLevel {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
@@ -655,6 +680,7 @@ unsafe impl<'a> glib::value::FromValue<'a> for FontChooserLevel {
     }
 }
 
+#[allow(deprecated)]
 impl ToValue for FontChooserLevel {
     #[inline]
     fn to_value(&self) -> glib::Value {
@@ -671,6 +697,7 @@ impl ToValue for FontChooserLevel {
     }
 }
 
+#[allow(deprecated)]
 impl From<FontChooserLevel> for glib::Value {
     #[inline]
     fn from(v: FontChooserLevel) -> Self {

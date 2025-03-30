@@ -2619,6 +2619,7 @@ impl From<ButtonsType> for glib::Value {
     }
 }
 
+#[cfg_attr(feature = "v4_20", deprecated = "Since 4.20")]
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GtkCellRendererAccelMode")]
@@ -2631,6 +2632,7 @@ pub enum CellRendererAccelMode {
     __Unknown(i32),
 }
 
+#[allow(deprecated)]
 #[doc(hidden)]
 impl IntoGlib for CellRendererAccelMode {
     type GlibType = ffi::GtkCellRendererAccelMode;
@@ -2645,6 +2647,7 @@ impl IntoGlib for CellRendererAccelMode {
     }
 }
 
+#[allow(deprecated)]
 #[doc(hidden)]
 impl FromGlib<ffi::GtkCellRendererAccelMode> for CellRendererAccelMode {
     #[inline]
@@ -2659,6 +2662,7 @@ impl FromGlib<ffi::GtkCellRendererAccelMode> for CellRendererAccelMode {
     }
 }
 
+#[allow(deprecated)]
 impl StaticType for CellRendererAccelMode {
     #[inline]
     #[doc(alias = "gtk_cell_renderer_accel_mode_get_type")]
@@ -2667,6 +2671,7 @@ impl StaticType for CellRendererAccelMode {
     }
 }
 
+#[allow(deprecated)]
 impl glib::HasParamSpec for CellRendererAccelMode {
     type ParamSpec = glib::ParamSpecEnum;
     type SetValue = Self;
@@ -2677,10 +2682,12 @@ impl glib::HasParamSpec for CellRendererAccelMode {
     }
 }
 
+#[allow(deprecated)]
 impl glib::value::ValueType for CellRendererAccelMode {
     type Type = Self;
 }
 
+#[allow(deprecated)]
 unsafe impl<'a> glib::value::FromValue<'a> for CellRendererAccelMode {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
@@ -2691,6 +2698,7 @@ unsafe impl<'a> glib::value::FromValue<'a> for CellRendererAccelMode {
     }
 }
 
+#[allow(deprecated)]
 impl ToValue for CellRendererAccelMode {
     #[inline]
     fn to_value(&self) -> glib::Value {
@@ -2707,6 +2715,7 @@ impl ToValue for CellRendererAccelMode {
     }
 }
 
+#[allow(deprecated)]
 impl From<CellRendererAccelMode> for glib::Value {
     #[inline]
     fn from(v: CellRendererAccelMode) -> Self {
@@ -2715,6 +2724,7 @@ impl From<CellRendererAccelMode> for glib::Value {
     }
 }
 
+#[cfg_attr(feature = "v4_20", deprecated = "Since 4.20")]
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GtkCellRendererMode")]
@@ -2729,6 +2739,7 @@ pub enum CellRendererMode {
     __Unknown(i32),
 }
 
+#[allow(deprecated)]
 #[doc(hidden)]
 impl IntoGlib for CellRendererMode {
     type GlibType = ffi::GtkCellRendererMode;
@@ -2744,6 +2755,7 @@ impl IntoGlib for CellRendererMode {
     }
 }
 
+#[allow(deprecated)]
 #[doc(hidden)]
 impl FromGlib<ffi::GtkCellRendererMode> for CellRendererMode {
     #[inline]
@@ -2759,6 +2771,7 @@ impl FromGlib<ffi::GtkCellRendererMode> for CellRendererMode {
     }
 }
 
+#[allow(deprecated)]
 impl StaticType for CellRendererMode {
     #[inline]
     #[doc(alias = "gtk_cell_renderer_mode_get_type")]
@@ -2767,6 +2780,7 @@ impl StaticType for CellRendererMode {
     }
 }
 
+#[allow(deprecated)]
 impl glib::HasParamSpec for CellRendererMode {
     type ParamSpec = glib::ParamSpecEnum;
     type SetValue = Self;
@@ -2777,10 +2791,12 @@ impl glib::HasParamSpec for CellRendererMode {
     }
 }
 
+#[allow(deprecated)]
 impl glib::value::ValueType for CellRendererMode {
     type Type = Self;
 }
 
+#[allow(deprecated)]
 unsafe impl<'a> glib::value::FromValue<'a> for CellRendererMode {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
@@ -2791,6 +2807,7 @@ unsafe impl<'a> glib::value::FromValue<'a> for CellRendererMode {
     }
 }
 
+#[allow(deprecated)]
 impl ToValue for CellRendererMode {
     #[inline]
     fn to_value(&self) -> glib::Value {
@@ -2807,6 +2824,7 @@ impl ToValue for CellRendererMode {
     }
 }
 
+#[allow(deprecated)]
 impl From<CellRendererMode> for glib::Value {
     #[inline]
     fn from(v: CellRendererMode) -> Self {
@@ -4550,6 +4568,7 @@ impl From<FileChooserAction> for glib::Value {
     }
 }
 
+#[cfg_attr(feature = "v4_20", deprecated = "Since 4.20")]
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GtkFileChooserError")]
@@ -4566,6 +4585,7 @@ pub enum FileChooserError {
     __Unknown(i32),
 }
 
+#[allow(deprecated)]
 #[doc(hidden)]
 impl IntoGlib for FileChooserError {
     type GlibType = ffi::GtkFileChooserError;
@@ -4582,6 +4602,7 @@ impl IntoGlib for FileChooserError {
     }
 }
 
+#[allow(deprecated)]
 #[doc(hidden)]
 impl FromGlib<ffi::GtkFileChooserError> for FileChooserError {
     #[inline]
@@ -4598,6 +4619,7 @@ impl FromGlib<ffi::GtkFileChooserError> for FileChooserError {
     }
 }
 
+#[allow(deprecated)]
 impl glib::error::ErrorDomain for FileChooserError {
     #[inline]
     fn domain() -> glib::Quark {
@@ -4621,6 +4643,7 @@ impl glib::error::ErrorDomain for FileChooserError {
     }
 }
 
+#[allow(deprecated)]
 impl StaticType for FileChooserError {
     #[inline]
     #[doc(alias = "gtk_file_chooser_error_get_type")]
@@ -4629,6 +4652,7 @@ impl StaticType for FileChooserError {
     }
 }
 
+#[allow(deprecated)]
 impl glib::HasParamSpec for FileChooserError {
     type ParamSpec = glib::ParamSpecEnum;
     type SetValue = Self;
@@ -4639,10 +4663,12 @@ impl glib::HasParamSpec for FileChooserError {
     }
 }
 
+#[allow(deprecated)]
 impl glib::value::ValueType for FileChooserError {
     type Type = Self;
 }
 
+#[allow(deprecated)]
 unsafe impl<'a> glib::value::FromValue<'a> for FileChooserError {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
@@ -4653,6 +4679,7 @@ unsafe impl<'a> glib::value::FromValue<'a> for FileChooserError {
     }
 }
 
+#[allow(deprecated)]
 impl ToValue for FileChooserError {
     #[inline]
     fn to_value(&self) -> glib::Value {
@@ -4669,6 +4696,7 @@ impl ToValue for FileChooserError {
     }
 }
 
+#[allow(deprecated)]
 impl From<FileChooserError> for glib::Value {
     #[inline]
     fn from(v: FileChooserError) -> Self {
@@ -5447,6 +5475,7 @@ impl From<IconThemeError> for glib::Value {
     }
 }
 
+#[cfg_attr(feature = "v4_20", deprecated = "Since 4.20")]
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GtkIconViewDropPosition")]
@@ -5467,6 +5496,7 @@ pub enum IconViewDropPosition {
     __Unknown(i32),
 }
 
+#[allow(deprecated)]
 #[doc(hidden)]
 impl IntoGlib for IconViewDropPosition {
     type GlibType = ffi::GtkIconViewDropPosition;
@@ -5485,6 +5515,7 @@ impl IntoGlib for IconViewDropPosition {
     }
 }
 
+#[allow(deprecated)]
 #[doc(hidden)]
 impl FromGlib<ffi::GtkIconViewDropPosition> for IconViewDropPosition {
     #[inline]
@@ -5503,6 +5534,7 @@ impl FromGlib<ffi::GtkIconViewDropPosition> for IconViewDropPosition {
     }
 }
 
+#[allow(deprecated)]
 impl StaticType for IconViewDropPosition {
     #[inline]
     #[doc(alias = "gtk_icon_view_drop_position_get_type")]
@@ -5511,6 +5543,7 @@ impl StaticType for IconViewDropPosition {
     }
 }
 
+#[allow(deprecated)]
 impl glib::HasParamSpec for IconViewDropPosition {
     type ParamSpec = glib::ParamSpecEnum;
     type SetValue = Self;
@@ -5521,10 +5554,12 @@ impl glib::HasParamSpec for IconViewDropPosition {
     }
 }
 
+#[allow(deprecated)]
 impl glib::value::ValueType for IconViewDropPosition {
     type Type = Self;
 }
 
+#[allow(deprecated)]
 unsafe impl<'a> glib::value::FromValue<'a> for IconViewDropPosition {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
@@ -5535,6 +5570,7 @@ unsafe impl<'a> glib::value::FromValue<'a> for IconViewDropPosition {
     }
 }
 
+#[allow(deprecated)]
 impl ToValue for IconViewDropPosition {
     #[inline]
     fn to_value(&self) -> glib::Value {
@@ -5551,6 +5587,7 @@ impl ToValue for IconViewDropPosition {
     }
 }
 
+#[allow(deprecated)]
 impl From<IconViewDropPosition> for glib::Value {
     #[inline]
     fn from(v: IconViewDropPosition) -> Self {
@@ -11631,6 +11668,7 @@ impl From<TextWindowType> for glib::Value {
     }
 }
 
+#[cfg_attr(feature = "v4_20", deprecated = "Since 4.20")]
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GtkTreeViewColumnSizing")]
@@ -11645,6 +11683,7 @@ pub enum TreeViewColumnSizing {
     __Unknown(i32),
 }
 
+#[allow(deprecated)]
 #[doc(hidden)]
 impl IntoGlib for TreeViewColumnSizing {
     type GlibType = ffi::GtkTreeViewColumnSizing;
@@ -11660,6 +11699,7 @@ impl IntoGlib for TreeViewColumnSizing {
     }
 }
 
+#[allow(deprecated)]
 #[doc(hidden)]
 impl FromGlib<ffi::GtkTreeViewColumnSizing> for TreeViewColumnSizing {
     #[inline]
@@ -11675,6 +11715,7 @@ impl FromGlib<ffi::GtkTreeViewColumnSizing> for TreeViewColumnSizing {
     }
 }
 
+#[allow(deprecated)]
 impl StaticType for TreeViewColumnSizing {
     #[inline]
     #[doc(alias = "gtk_tree_view_column_sizing_get_type")]
@@ -11683,6 +11724,7 @@ impl StaticType for TreeViewColumnSizing {
     }
 }
 
+#[allow(deprecated)]
 impl glib::HasParamSpec for TreeViewColumnSizing {
     type ParamSpec = glib::ParamSpecEnum;
     type SetValue = Self;
@@ -11693,10 +11735,12 @@ impl glib::HasParamSpec for TreeViewColumnSizing {
     }
 }
 
+#[allow(deprecated)]
 impl glib::value::ValueType for TreeViewColumnSizing {
     type Type = Self;
 }
 
+#[allow(deprecated)]
 unsafe impl<'a> glib::value::FromValue<'a> for TreeViewColumnSizing {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
@@ -11707,6 +11751,7 @@ unsafe impl<'a> glib::value::FromValue<'a> for TreeViewColumnSizing {
     }
 }
 
+#[allow(deprecated)]
 impl ToValue for TreeViewColumnSizing {
     #[inline]
     fn to_value(&self) -> glib::Value {
@@ -11723,6 +11768,7 @@ impl ToValue for TreeViewColumnSizing {
     }
 }
 
+#[allow(deprecated)]
 impl From<TreeViewColumnSizing> for glib::Value {
     #[inline]
     fn from(v: TreeViewColumnSizing) -> Self {
@@ -11731,6 +11777,7 @@ impl From<TreeViewColumnSizing> for glib::Value {
     }
 }
 
+#[cfg_attr(feature = "v4_20", deprecated = "Since 4.20")]
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GtkTreeViewDropPosition")]
@@ -11747,6 +11794,7 @@ pub enum TreeViewDropPosition {
     __Unknown(i32),
 }
 
+#[allow(deprecated)]
 #[doc(hidden)]
 impl IntoGlib for TreeViewDropPosition {
     type GlibType = ffi::GtkTreeViewDropPosition;
@@ -11763,6 +11811,7 @@ impl IntoGlib for TreeViewDropPosition {
     }
 }
 
+#[allow(deprecated)]
 #[doc(hidden)]
 impl FromGlib<ffi::GtkTreeViewDropPosition> for TreeViewDropPosition {
     #[inline]
@@ -11779,6 +11828,7 @@ impl FromGlib<ffi::GtkTreeViewDropPosition> for TreeViewDropPosition {
     }
 }
 
+#[allow(deprecated)]
 impl StaticType for TreeViewDropPosition {
     #[inline]
     #[doc(alias = "gtk_tree_view_drop_position_get_type")]
@@ -11787,6 +11837,7 @@ impl StaticType for TreeViewDropPosition {
     }
 }
 
+#[allow(deprecated)]
 impl glib::HasParamSpec for TreeViewDropPosition {
     type ParamSpec = glib::ParamSpecEnum;
     type SetValue = Self;
@@ -11797,10 +11848,12 @@ impl glib::HasParamSpec for TreeViewDropPosition {
     }
 }
 
+#[allow(deprecated)]
 impl glib::value::ValueType for TreeViewDropPosition {
     type Type = Self;
 }
 
+#[allow(deprecated)]
 unsafe impl<'a> glib::value::FromValue<'a> for TreeViewDropPosition {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
@@ -11811,6 +11864,7 @@ unsafe impl<'a> glib::value::FromValue<'a> for TreeViewDropPosition {
     }
 }
 
+#[allow(deprecated)]
 impl ToValue for TreeViewDropPosition {
     #[inline]
     fn to_value(&self) -> glib::Value {
@@ -11827,6 +11881,7 @@ impl ToValue for TreeViewDropPosition {
     }
 }
 
+#[allow(deprecated)]
 impl From<TreeViewDropPosition> for glib::Value {
     #[inline]
     fn from(v: TreeViewDropPosition) -> Self {
@@ -11835,6 +11890,7 @@ impl From<TreeViewDropPosition> for glib::Value {
     }
 }
 
+#[cfg_attr(feature = "v4_20", deprecated = "Since 4.20")]
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GtkTreeViewGridLines")]
@@ -11851,6 +11907,7 @@ pub enum TreeViewGridLines {
     __Unknown(i32),
 }
 
+#[allow(deprecated)]
 #[doc(hidden)]
 impl IntoGlib for TreeViewGridLines {
     type GlibType = ffi::GtkTreeViewGridLines;
@@ -11867,6 +11924,7 @@ impl IntoGlib for TreeViewGridLines {
     }
 }
 
+#[allow(deprecated)]
 #[doc(hidden)]
 impl FromGlib<ffi::GtkTreeViewGridLines> for TreeViewGridLines {
     #[inline]
@@ -11883,6 +11941,7 @@ impl FromGlib<ffi::GtkTreeViewGridLines> for TreeViewGridLines {
     }
 }
 
+#[allow(deprecated)]
 impl StaticType for TreeViewGridLines {
     #[inline]
     #[doc(alias = "gtk_tree_view_grid_lines_get_type")]
@@ -11891,6 +11950,7 @@ impl StaticType for TreeViewGridLines {
     }
 }
 
+#[allow(deprecated)]
 impl glib::HasParamSpec for TreeViewGridLines {
     type ParamSpec = glib::ParamSpecEnum;
     type SetValue = Self;
@@ -11901,10 +11961,12 @@ impl glib::HasParamSpec for TreeViewGridLines {
     }
 }
 
+#[allow(deprecated)]
 impl glib::value::ValueType for TreeViewGridLines {
     type Type = Self;
 }
 
+#[allow(deprecated)]
 unsafe impl<'a> glib::value::FromValue<'a> for TreeViewGridLines {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
@@ -11915,6 +11977,7 @@ unsafe impl<'a> glib::value::FromValue<'a> for TreeViewGridLines {
     }
 }
 
+#[allow(deprecated)]
 impl ToValue for TreeViewGridLines {
     #[inline]
     fn to_value(&self) -> glib::Value {
@@ -11931,6 +11994,7 @@ impl ToValue for TreeViewGridLines {
     }
 }
 
+#[allow(deprecated)]
 impl From<TreeViewGridLines> for glib::Value {
     #[inline]
     fn from(v: TreeViewGridLines) -> Self {

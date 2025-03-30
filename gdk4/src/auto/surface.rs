@@ -57,6 +57,8 @@ pub trait SurfaceExt: IsA<Surface> + 'static {
         }
     }
 
+    #[cfg_attr(feature = "v4_18", deprecated = "Since 4.18")]
+    #[allow(deprecated)]
     #[doc(alias = "gdk_surface_create_cairo_context")]
     fn create_cairo_context(&self) -> CairoContext {
         unsafe {

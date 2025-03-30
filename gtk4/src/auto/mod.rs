@@ -1158,7 +1158,9 @@ pub use self::enums::BaselinePosition;
 pub use self::enums::BorderStyle;
 pub use self::enums::BuilderError;
 pub use self::enums::ButtonsType;
+#[allow(deprecated)]
 pub use self::enums::CellRendererAccelMode;
+#[allow(deprecated)]
 pub use self::enums::CellRendererMode;
 #[cfg(feature = "v4_10")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
@@ -1182,6 +1184,7 @@ pub use self::enums::EditableProperties;
 pub use self::enums::EntryIconPosition;
 pub use self::enums::EventSequenceState;
 pub use self::enums::FileChooserAction;
+#[allow(deprecated)]
 pub use self::enums::FileChooserError;
 pub use self::enums::FilterChange;
 pub use self::enums::FilterMatch;
@@ -1196,6 +1199,7 @@ pub use self::enums::FontRendering;
 pub use self::enums::GraphicsOffloadEnabled;
 pub use self::enums::IconSize;
 pub use self::enums::IconThemeError;
+#[allow(deprecated)]
 pub use self::enums::IconViewDropPosition;
 pub use self::enums::ImageType;
 pub use self::enums::InputPurpose;
@@ -1260,8 +1264,11 @@ pub use self::enums::TextDirection;
 pub use self::enums::TextExtendSelection;
 pub use self::enums::TextViewLayer;
 pub use self::enums::TextWindowType;
+#[allow(deprecated)]
 pub use self::enums::TreeViewColumnSizing;
+#[allow(deprecated)]
 pub use self::enums::TreeViewDropPosition;
+#[allow(deprecated)]
 pub use self::enums::TreeViewGridLines;
 pub use self::enums::Unit;
 pub use self::enums::WrapMode;
@@ -1269,10 +1276,13 @@ pub use self::enums::WrapMode;
 mod flags;
 pub use self::flags::ApplicationInhibitFlags;
 pub use self::flags::BuilderClosureFlags;
+#[allow(deprecated)]
 pub use self::flags::CellRendererState;
 pub use self::flags::DebugFlags;
+#[allow(deprecated)]
 pub use self::flags::DialogFlags;
 pub use self::flags::EventControllerScrollFlags;
+#[allow(deprecated)]
 pub use self::flags::FontChooserLevel;
 pub use self::flags::IconLookupFlags;
 pub use self::flags::InputHints;
