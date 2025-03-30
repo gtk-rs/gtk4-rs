@@ -43,6 +43,7 @@ gdk-win32 = { git = "https://github.com/gtk-rs/gtk4-rs.git", package = "gdk4-win
 
 | Feature | Description |
 | ---     | ----------- |
+| `v4_18` | Enable the new APIs part of GTK 4.18 |
 | `v4_4` | Enable the new APIs part of GTK 4.4 |
 | `egl` | Integration with the [khronos-egl](https://crates.io/crates/khronos-egl) crate |
 | `win32` | Integration with the [windows](https://crates.io/crates/windows) crate |

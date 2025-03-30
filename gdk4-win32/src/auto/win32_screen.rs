@@ -3,6 +3,8 @@
 // DO NOT EDIT
 
 use crate::ffi;
+#[cfg(feature = "v4_18")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_18")))]
 use glib::{prelude::*, translate::*};
 
 glib::wrapper! {
@@ -15,6 +17,8 @@ glib::wrapper! {
 }
 
 impl Win32Screen {
+    #[cfg(feature = "v4_18")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_18")))]
     pub fn display(&self) -> Option<gdk::Display> {
         ObjectExt::property(self, "display")
     }
