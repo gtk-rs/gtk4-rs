@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/auto/text.rs`."><title>text.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-916cea96.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.87.0-nightly (3ea711f17 2025-03-09)" data-channel="nightly" data-search-js="search-e7298875.js" data-settings-js="settings-d72f25bb.js" ><script src="../../../static.files/storage-d8ac8691.js"></script><script defer src="../../../static.files/src-script-b8d3f215.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-a7bf3405.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-893ab5e7.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-6580c154.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/auto/text.rs`."><title>text.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-916cea96.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.88.0-nightly (1799887bb 2025-03-29)" data-channel="nightly" data-search-js="search-e7298875.js" data-settings-js="settings-d72f25bb.js" ><script src="../../../static.files/storage-82c7156e.js"></script><script defer src="../../../static.files/src-script-63605ae7.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-fb8c74a8.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-893ab5e7.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-6580c154.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
 
@@ -80,7 +80,7 @@
 <a href=#7 id=7 data-nosnippet>7</a></span><span class="kw">use </span><a href="accessible_text.rs.html#8-27"><span class="kw">crate</span>::AccessibleText</a>;
 <a href=#8 id=8 data-nosnippet>8</a><span class="kw">use crate</span>::{
 <a href=#9 id=9 data-nosnippet>9</a>    <a href="../../../gtk4_sys/index.html">ffi</a>, <a href="accessible.rs.html#19-70">Accessible</a>, <a href="enums.rs.html#1021-1321">AccessibleRole</a>, <a href="../enums.rs.html#77-107">Align</a>, <a href="buildable.rs.html#8-31">Buildable</a>, <a href="constraint_target.rs.html#8-23">ConstraintTarget</a>, <a href="editable.rs.html#17-688">Editable</a>, <a href="entry_buffer.rs.html#13-71">EntryBuffer</a>,
-<a href=#10 id=10 data-nosnippet>10</a>    <a href="flags.rs.html#856-915">InputHints</a>, <a href="enums.rs.html#6380-6416">InputPurpose</a>, <a href="layout_manager.rs.html#8-70">LayoutManager</a>, <a href="enums.rs.html#8009-8020">Overflow</a>, <a href="widget.rs.html#19-864">Widget</a>,
+<a href=#10 id=10 data-nosnippet>10</a>    <a href="flags.rs.html#895-954">InputHints</a>, <a href="enums.rs.html#6433-6469">InputPurpose</a>, <a href="layout_manager.rs.html#8-70">LayoutManager</a>, <a href="enums.rs.html#8062-8073">Overflow</a>, <a href="widget.rs.html#19-864">Widget</a>,
 <a href=#11 id=11 data-nosnippet>11</a>};
 <a href=#12 id=12 data-nosnippet>12</a><span class="kw">use </span>glib::{
 <a href=#13 id=13 data-nosnippet>13</a>    <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/prelude/index.html">prelude</a>::<span class="kw-2">*</span>,
@@ -1170,7 +1170,7 @@
 <a href=#1097 id=1097 data-nosnippet>1097</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_text_get_input_hints"</span>)]
 <a href=#1098 id=1098 data-nosnippet>1098</a>    #[doc(alias = <span class="string">"get_input_hints"</span>)]
 <a href=#1099 id=1099 data-nosnippet>1099</a>    #[doc(alias = <span class="string">"input-hints"</span>)]
-<a href=#1100 id=1100 data-nosnippet>1100</a>    </span><span class="kw">pub fn </span>input_hints(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="flags.rs.html#856-915">InputHints</a> {
+<a href=#1100 id=1100 data-nosnippet>1100</a>    </span><span class="kw">pub fn </span>input_hints(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="flags.rs.html#895-954">InputHints</a> {
 <a href=#1101 id=1101 data-nosnippet>1101</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(<a href="../../../gtk4_sys/fn.gtk_text_get_input_hints.html">ffi::gtk_text_get_input_hints</a>(<a class="self" href="#1100">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#1102 id=1102 data-nosnippet>1102</a>    }
 <a href=#1103 id=1103 data-nosnippet>1103</a>
@@ -1182,7 +1182,7 @@
 <a href=#1109 id=1109 data-nosnippet>1109</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_text_get_input_purpose"</span>)]
 <a href=#1110 id=1110 data-nosnippet>1110</a>    #[doc(alias = <span class="string">"get_input_purpose"</span>)]
 <a href=#1111 id=1111 data-nosnippet>1111</a>    #[doc(alias = <span class="string">"input-purpose"</span>)]
-<a href=#1112 id=1112 data-nosnippet>1112</a>    </span><span class="kw">pub fn </span>input_purpose(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="enums.rs.html#6380-6416">InputPurpose</a> {
+<a href=#1112 id=1112 data-nosnippet>1112</a>    </span><span class="kw">pub fn </span>input_purpose(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="enums.rs.html#6433-6469">InputPurpose</a> {
 <a href=#1113 id=1113 data-nosnippet>1113</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(<a href="../../../gtk4_sys/fn.gtk_text_get_input_purpose.html">ffi::gtk_text_get_input_purpose</a>(<a class="self" href="#1112">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#1114 id=1114 data-nosnippet>1114</a>    }
 <a href=#1115 id=1115 data-nosnippet>1115</a>
@@ -1419,7 +1419,7 @@
 <a href=#1346 id=1346 data-nosnippet>1346</a>    /// input hints
 <a href=#1347 id=1347 data-nosnippet>1347</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_text_set_input_hints"</span>)]
 <a href=#1348 id=1348 data-nosnippet>1348</a>    #[doc(alias = <span class="string">"input-hints"</span>)]
-<a href=#1349 id=1349 data-nosnippet>1349</a>    </span><span class="kw">pub fn </span>set_input_hints(<span class="kw-2">&amp;</span><span class="self">self</span>, hints: <a href="flags.rs.html#856-915">InputHints</a>) {
+<a href=#1349 id=1349 data-nosnippet>1349</a>    </span><span class="kw">pub fn </span>set_input_hints(<span class="kw-2">&amp;</span><span class="self">self</span>, hints: <a href="flags.rs.html#895-954">InputHints</a>) {
 <a href=#1350 id=1350 data-nosnippet>1350</a>        <span class="kw">unsafe </span>{
 <a href=#1351 id=1351 data-nosnippet>1351</a>            <a href="../../../gtk4_sys/fn.gtk_text_set_input_hints.html">ffi::gtk_text_set_input_hints</a>(<a class="self" href="#1349">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>, <a href="#1349">hints</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>());
 <a href=#1352 id=1352 data-nosnippet>1352</a>        }
@@ -1433,7 +1433,7 @@
 <a href=#1360 id=1360 data-nosnippet>1360</a>    /// the input purpose
 <a href=#1361 id=1361 data-nosnippet>1361</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_text_set_input_purpose"</span>)]
 <a href=#1362 id=1362 data-nosnippet>1362</a>    #[doc(alias = <span class="string">"input-purpose"</span>)]
-<a href=#1363 id=1363 data-nosnippet>1363</a>    </span><span class="kw">pub fn </span>set_input_purpose(<span class="kw-2">&amp;</span><span class="self">self</span>, purpose: <a href="enums.rs.html#6380-6416">InputPurpose</a>) {
+<a href=#1363 id=1363 data-nosnippet>1363</a>    </span><span class="kw">pub fn </span>set_input_purpose(<span class="kw-2">&amp;</span><span class="self">self</span>, purpose: <a href="enums.rs.html#6433-6469">InputPurpose</a>) {
 <a href=#1364 id=1364 data-nosnippet>1364</a>        <span class="kw">unsafe </span>{
 <a href=#1365 id=1365 data-nosnippet>1365</a>            <a href="../../../gtk4_sys/fn.gtk_text_set_input_purpose.html">ffi::gtk_text_set_input_purpose</a>(<a class="self" href="#1363">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>, <a href="#1363">purpose</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>());
 <a href=#1366 id=1366 data-nosnippet>1366</a>        }
@@ -2124,7 +2124,7 @@
 <a href=#2051 id=2051 data-nosnippet>2051</a>
 <a href=#2052 id=2052 data-nosnippet>2052</a>    <span class="doccomment">/// Additional hints that allow input methods to fine-tune
 <a href=#2053 id=2053 data-nosnippet>2053</a>    /// their behaviour.
-<a href=#2054 id=2054 data-nosnippet>2054</a>    </span><span class="kw">pub fn </span>input_hints(<span class="self">self</span>, input_hints: <a href="flags.rs.html#856-915">InputHints</a>) -&gt; <span class="self">Self </span>{
+<a href=#2054 id=2054 data-nosnippet>2054</a>    </span><span class="kw">pub fn </span>input_hints(<span class="self">self</span>, input_hints: <a href="flags.rs.html#895-954">InputHints</a>) -&gt; <span class="self">Self </span>{
 <a href=#2055 id=2055 data-nosnippet>2055</a>        <span class="self">Self </span>{
 <a href=#2056 id=2056 data-nosnippet>2056</a>            builder: <a class="self" href="#2054">self</a>.builder.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/struct.ObjectBuilder.html#method.property">property</a>(<span class="string">"input-hints"</span>, <a href="#2054">input_hints</a>),
 <a href=#2057 id=2057 data-nosnippet>2057</a>        }
@@ -2138,7 +2138,7 @@
 <a href=#2065 id=2065 data-nosnippet>2065</a>    /// Note that setting the purpose to [enum@Gtk.InputPurpose.password]
 <a href=#2066 id=2066 data-nosnippet>2066</a>    /// or [enum@Gtk.InputPurpose.pin] is independent from setting
 <a href=#2067 id=2067 data-nosnippet>2067</a>    /// [`visibility`][struct@crate::Text#visibility].
-<a href=#2068 id=2068 data-nosnippet>2068</a>    </span><span class="kw">pub fn </span>input_purpose(<span class="self">self</span>, input_purpose: <a href="enums.rs.html#6380-6416">InputPurpose</a>) -&gt; <span class="self">Self </span>{
+<a href=#2068 id=2068 data-nosnippet>2068</a>    </span><span class="kw">pub fn </span>input_purpose(<span class="self">self</span>, input_purpose: <a href="enums.rs.html#6433-6469">InputPurpose</a>) -&gt; <span class="self">Self </span>{
 <a href=#2069 id=2069 data-nosnippet>2069</a>        <span class="self">Self </span>{
 <a href=#2070 id=2070 data-nosnippet>2070</a>            builder: <a class="self" href="#2068">self</a>.builder.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/struct.ObjectBuilder.html#method.property">property</a>(<span class="string">"input-purpose"</span>, <a href="#2068">input_purpose</a>),
 <a href=#2071 id=2071 data-nosnippet>2071</a>        }
@@ -2413,7 +2413,7 @@
 <a href=#2340 id=2340 data-nosnippet>2340</a>    ///
 <a href=#2341 id=2341 data-nosnippet>2341</a>    /// This property is meant to be set by widget implementations,
 <a href=#2342 id=2342 data-nosnippet>2342</a>    /// typically in their instance init function.
-<a href=#2343 id=2343 data-nosnippet>2343</a>    </span><span class="kw">pub fn </span>overflow(<span class="self">self</span>, overflow: <a href="enums.rs.html#8009-8020">Overflow</a>) -&gt; <span class="self">Self </span>{
+<a href=#2343 id=2343 data-nosnippet>2343</a>    </span><span class="kw">pub fn </span>overflow(<span class="self">self</span>, overflow: <a href="enums.rs.html#8062-8073">Overflow</a>) -&gt; <span class="self">Self </span>{
 <a href=#2344 id=2344 data-nosnippet>2344</a>        <span class="self">Self </span>{
 <a href=#2345 id=2345 data-nosnippet>2345</a>            builder: <a class="self" href="#2343">self</a>.builder.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/struct.ObjectBuilder.html#method.property">property</a>(<span class="string">"overflow"</span>, <a href="#2343">overflow</a>),
 <a href=#2346 id=2346 data-nosnippet>2346</a>        }

@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/auto/tree_model_filter.rs`."><title>tree_model_filter.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-916cea96.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.87.0-nightly (3ea711f17 2025-03-09)" data-channel="nightly" data-search-js="search-e7298875.js" data-settings-js="settings-d72f25bb.js" ><script src="../../../static.files/storage-d8ac8691.js"></script><script defer src="../../../static.files/src-script-b8d3f215.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-a7bf3405.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-893ab5e7.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-6580c154.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/auto/tree_model_filter.rs`."><title>tree_model_filter.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-916cea96.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.88.0-nightly (1799887bb 2025-03-29)" data-channel="nightly" data-search-js="search-e7298875.js" data-settings-js="settings-d72f25bb.js" ><script src="../../../static.files/storage-82c7156e.js"></script><script defer src="../../../static.files/src-script-63605ae7.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-fb8c74a8.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-893ab5e7.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-6580c154.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
 
@@ -385,75 +385,73 @@
 <a href=#312 id=312 data-nosnippet>312</a>    /// be empty. The visible function should therefore take special care of empty
 <a href=#313 id=313 data-nosnippet>313</a>    /// rows, like in the example below.
 <a href=#314 id=314 data-nosnippet>314</a>    ///
-<a href=#315 id=315 data-nosnippet>315</a>    ///
+<a href=#315 id=315 data-nosnippet>315</a>    /// **⚠️ The following code is in c ⚠️**
 <a href=#316 id=316 data-nosnippet>316</a>    ///
-<a href=#317 id=317 data-nosnippet>317</a>    /// **⚠️ The following code is in C ⚠️**
-<a href=#318 id=318 data-nosnippet>318</a>    ///
-<a href=#319 id=319 data-nosnippet>319</a>    /// ```C
-<a href=#320 id=320 data-nosnippet>320</a>    /// static gboolean
-<a href=#321 id=321 data-nosnippet>321</a>    /// visible_func (GtkTreeModel *model,
-<a href=#322 id=322 data-nosnippet>322</a>    ///               GtkTreeIter  *iter,
-<a href=#323 id=323 data-nosnippet>323</a>    ///               gpointer      data)
-<a href=#324 id=324 data-nosnippet>324</a>    /// {
-<a href=#325 id=325 data-nosnippet>325</a>    ///   // Visible if row is non-empty and first column is “HI”
-<a href=#326 id=326 data-nosnippet>326</a>    ///   char *str;
-<a href=#327 id=327 data-nosnippet>327</a>    ///   gboolean visible = FALSE;
-<a href=#328 id=328 data-nosnippet>328</a>    ///
-<a href=#329 id=329 data-nosnippet>329</a>    ///   gtk_tree_model_get (model, iter, 0, &amp;str, -1);
-<a href=#330 id=330 data-nosnippet>330</a>    ///   if (str &amp;&amp; strcmp (str, "HI") == 0)
-<a href=#331 id=331 data-nosnippet>331</a>    ///     visible = TRUE;
-<a href=#332 id=332 data-nosnippet>332</a>    ///   g_free (str);
-<a href=#333 id=333 data-nosnippet>333</a>    ///
-<a href=#334 id=334 data-nosnippet>334</a>    ///   return visible;
-<a href=#335 id=335 data-nosnippet>335</a>    /// }
-<a href=#336 id=336 data-nosnippet>336</a>    /// ```
-<a href=#337 id=337 data-nosnippet>337</a>    ///
-<a href=#338 id=338 data-nosnippet>338</a>    /// Note that gtk_tree_model_filter_set_visible_func() or
-<a href=#339 id=339 data-nosnippet>339</a>    /// gtk_tree_model_filter_set_visible_column() can only be called
-<a href=#340 id=340 data-nosnippet>340</a>    /// once for a given filter model.
+<a href=#317 id=317 data-nosnippet>317</a>    /// ```c
+<a href=#318 id=318 data-nosnippet>318</a>    /// static gboolean
+<a href=#319 id=319 data-nosnippet>319</a>    /// visible_func (GtkTreeModel *model,
+<a href=#320 id=320 data-nosnippet>320</a>    ///               GtkTreeIter  *iter,
+<a href=#321 id=321 data-nosnippet>321</a>    ///               gpointer      data)
+<a href=#322 id=322 data-nosnippet>322</a>    /// {
+<a href=#323 id=323 data-nosnippet>323</a>    ///   // Visible if row is non-empty and first column is “HI”
+<a href=#324 id=324 data-nosnippet>324</a>    ///   char *str;
+<a href=#325 id=325 data-nosnippet>325</a>    ///   gboolean visible = FALSE;
+<a href=#326 id=326 data-nosnippet>326</a>    ///
+<a href=#327 id=327 data-nosnippet>327</a>    ///   gtk_tree_model_get (model, iter, 0, &amp;str, -1);
+<a href=#328 id=328 data-nosnippet>328</a>    ///   if (str &amp;&amp; strcmp (str, "HI") == 0)
+<a href=#329 id=329 data-nosnippet>329</a>    ///     visible = TRUE;
+<a href=#330 id=330 data-nosnippet>330</a>    ///   g_free (str);
+<a href=#331 id=331 data-nosnippet>331</a>    ///
+<a href=#332 id=332 data-nosnippet>332</a>    ///   return visible;
+<a href=#333 id=333 data-nosnippet>333</a>    /// }
+<a href=#334 id=334 data-nosnippet>334</a>    /// ```
+<a href=#335 id=335 data-nosnippet>335</a>    ///
+<a href=#336 id=336 data-nosnippet>336</a>    /// Note that gtk_tree_model_filter_set_visible_func() or
+<a href=#337 id=337 data-nosnippet>337</a>    /// gtk_tree_model_filter_set_visible_column() can only be called
+<a href=#338 id=338 data-nosnippet>338</a>    /// once for a given filter model.
+<a href=#339 id=339 data-nosnippet>339</a>    ///
+<a href=#340 id=340 data-nosnippet>340</a>    /// # Deprecated since 4.10
 <a href=#341 id=341 data-nosnippet>341</a>    ///
-<a href=#342 id=342 data-nosnippet>342</a>    /// # Deprecated since 4.10
-<a href=#343 id=343 data-nosnippet>343</a>    ///
-<a href=#344 id=344 data-nosnippet>344</a>    /// ## `func`
-<a href=#345 id=345 data-nosnippet>345</a>    /// A `GtkTreeModelFilterVisibleFunc`, the visible function
-<a href=#346 id=346 data-nosnippet>346</a>    </span><span class="attr">#[cfg_attr(feature = <span class="string">"v4_10"</span>, deprecated = <span class="string">"Since 4.10"</span>)]
-<a href=#347 id=347 data-nosnippet>347</a>    #[allow(deprecated)]
-<a href=#348 id=348 data-nosnippet>348</a>    #[doc(alias = <span class="string">"gtk_tree_model_filter_set_visible_func"</span>)]
-<a href=#349 id=349 data-nosnippet>349</a>    </span><span class="kw">fn </span>set_visible_func&lt;P: <a href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html">Fn</a>(<span class="kw-2">&amp;</span><a href="tree_model.rs.html#15-277">TreeModel</a>, <span class="kw-2">&amp;</span><a href="tree_iter.rs.html#8-25">TreeIter</a>) -&gt; <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> + <span class="lifetime">'static</span>&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, func: P) {
-<a href=#350 id=350 data-nosnippet>350</a>        <span class="kw">let </span>func_data: <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">Box_</a>&lt;P&gt; = <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html#method.new">Box_::new</a>(<a href="#349">func</a>);
-<a href=#351 id=351 data-nosnippet>351</a>        <span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn </span>func_func&lt;P: <a href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html">Fn</a>(<span class="kw-2">&amp;</span><a href="tree_model.rs.html#15-277">TreeModel</a>, <span class="kw-2">&amp;</span><a href="tree_iter.rs.html#8-25">TreeIter</a>) -&gt; <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> + <span class="lifetime">'static</span>&gt;(
-<a href=#352 id=352 data-nosnippet>352</a>            model: <span class="kw-2">*mut </span><a href="../../../gtk4_sys/struct.GtkTreeModel.html">ffi::GtkTreeModel</a>,
-<a href=#353 id=353 data-nosnippet>353</a>            iter: <span class="kw-2">*mut </span><a href="../../../gtk4_sys/struct.GtkTreeIter.html">ffi::GtkTreeIter</a>,
-<a href=#354 id=354 data-nosnippet>354</a>            data: glib::ffi::gpointer,
-<a href=#355 id=355 data-nosnippet>355</a>        ) -&gt; glib::ffi::gboolean {
-<a href=#356 id=356 data-nosnippet>356</a>            <span class="kw">let </span>model = <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib_borrow.html">from_glib_borrow</a>(<a href="#352">model</a>);
-<a href=#357 id=357 data-nosnippet>357</a>            <span class="kw">let </span>iter = <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib_borrow.html">from_glib_borrow</a>(<a href="#353">iter</a>);
-<a href=#358 id=358 data-nosnippet>358</a>            <span class="kw">let </span>callback = <span class="kw-2">&amp;*</span>(<a href="#354">data</a> <span class="kw">as </span><span class="kw-2">*mut </span>P);
-<a href=#359 id=359 data-nosnippet>359</a>            (<span class="kw-2">*</span><a href="#358">callback</a>)(<span class="kw-2">&amp;</span><a href="#356">model</a>, <span class="kw-2">&amp;</span><a href="#357">iter</a>).<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>()
-<a href=#360 id=360 data-nosnippet>360</a>        }
-<a href=#361 id=361 data-nosnippet>361</a>        <span class="kw">let </span>func = <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.Some">Some</a>(<a href="#351-360">func_func</a>::&lt;P&gt; <span class="kw">as _</span>);
-<a href=#362 id=362 data-nosnippet>362</a>        <span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn </span>destroy_func&lt;P: <a href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html">Fn</a>(<span class="kw-2">&amp;</span><a href="tree_model.rs.html#15-277">TreeModel</a>, <span class="kw-2">&amp;</span><a href="tree_iter.rs.html#8-25">TreeIter</a>) -&gt; <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> + <span class="lifetime">'static</span>&gt;(
-<a href=#363 id=363 data-nosnippet>363</a>            data: glib::ffi::gpointer,
-<a href=#364 id=364 data-nosnippet>364</a>        ) {
-<a href=#365 id=365 data-nosnippet>365</a>            <span class="kw">let </span>_callback = <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html#method.from_raw">Box_::from_raw</a>(<a href="#363">data</a> <span class="kw">as </span><span class="kw-2">*mut </span>P);
-<a href=#366 id=366 data-nosnippet>366</a>        }
-<a href=#367 id=367 data-nosnippet>367</a>        <span class="kw">let </span>destroy_call3 = <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.Some">Some</a>(<a href="#362-366">destroy_func</a>::&lt;P&gt; <span class="kw">as _</span>);
-<a href=#368 id=368 data-nosnippet>368</a>        <span class="kw">let </span>super_callback0: <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">Box_</a>&lt;P&gt; = <a href="#350">func_data</a>;
-<a href=#369 id=369 data-nosnippet>369</a>        <span class="kw">unsafe </span>{
-<a href=#370 id=370 data-nosnippet>370</a>            <a href="../../../gtk4_sys/fn.gtk_tree_model_filter_set_visible_func.html">ffi::gtk_tree_model_filter_set_visible_func</a>(
-<a href=#371 id=371 data-nosnippet>371</a>                <a class="self" href="#349">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
-<a href=#372 id=372 data-nosnippet>372</a>                <a href="#361">func</a>,
-<a href=#373 id=373 data-nosnippet>373</a>                <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html#method.into_raw">Box_::into_raw</a>(<a href="#368">super_callback0</a>) <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>,
-<a href=#374 id=374 data-nosnippet>374</a>                <a href="#367">destroy_call3</a>,
-<a href=#375 id=375 data-nosnippet>375</a>            );
-<a href=#376 id=376 data-nosnippet>376</a>        }
-<a href=#377 id=377 data-nosnippet>377</a>    }
-<a href=#378 id=378 data-nosnippet>378</a>
-<a href=#379 id=379 data-nosnippet>379</a>    <span class="doccomment">/// The child model of the tree model filter.
-<a href=#380 id=380 data-nosnippet>380</a>    </span><span class="attr">#[doc(alias = <span class="string">"child-model"</span>)]
-<a href=#381 id=381 data-nosnippet>381</a>    </span><span class="kw">fn </span>child_model(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;<a href="tree_model.rs.html#15-277">TreeModel</a>&gt; {
-<a href=#382 id=382 data-nosnippet>382</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.ObjectExt.html#tymethod.property">ObjectExt::property</a>(<a class="self" href="#381">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>(), <span class="string">"child-model"</span>)
-<a href=#383 id=383 data-nosnippet>383</a>    }
-<a href=#384 id=384 data-nosnippet>384</a>}
-<a href=#385 id=385 data-nosnippet>385</a>
-<a href=#386 id=386 data-nosnippet>386</a><span class="kw">impl</span>&lt;O: <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html">IsA</a>&lt;<a href="#10-103">TreeModelFilter</a>&gt;&gt; <a href="#114-384">TreeModelFilterExt</a> <span class="kw">for </span>O {}</code></pre></div></section></main></body></html>
+<a href=#342 id=342 data-nosnippet>342</a>    /// ## `func`
+<a href=#343 id=343 data-nosnippet>343</a>    /// A `GtkTreeModelFilterVisibleFunc`, the visible function
+<a href=#344 id=344 data-nosnippet>344</a>    </span><span class="attr">#[cfg_attr(feature = <span class="string">"v4_10"</span>, deprecated = <span class="string">"Since 4.10"</span>)]
+<a href=#345 id=345 data-nosnippet>345</a>    #[allow(deprecated)]
+<a href=#346 id=346 data-nosnippet>346</a>    #[doc(alias = <span class="string">"gtk_tree_model_filter_set_visible_func"</span>)]
+<a href=#347 id=347 data-nosnippet>347</a>    </span><span class="kw">fn </span>set_visible_func&lt;P: <a href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html">Fn</a>(<span class="kw-2">&amp;</span><a href="tree_model.rs.html#15-277">TreeModel</a>, <span class="kw-2">&amp;</span><a href="tree_iter.rs.html#8-25">TreeIter</a>) -&gt; <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> + <span class="lifetime">'static</span>&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, func: P) {
+<a href=#348 id=348 data-nosnippet>348</a>        <span class="kw">let </span>func_data: <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">Box_</a>&lt;P&gt; = <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html#method.new">Box_::new</a>(<a href="#347">func</a>);
+<a href=#349 id=349 data-nosnippet>349</a>        <span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn </span>func_func&lt;P: <a href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html">Fn</a>(<span class="kw-2">&amp;</span><a href="tree_model.rs.html#15-277">TreeModel</a>, <span class="kw-2">&amp;</span><a href="tree_iter.rs.html#8-25">TreeIter</a>) -&gt; <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> + <span class="lifetime">'static</span>&gt;(
+<a href=#350 id=350 data-nosnippet>350</a>            model: <span class="kw-2">*mut </span><a href="../../../gtk4_sys/struct.GtkTreeModel.html">ffi::GtkTreeModel</a>,
+<a href=#351 id=351 data-nosnippet>351</a>            iter: <span class="kw-2">*mut </span><a href="../../../gtk4_sys/struct.GtkTreeIter.html">ffi::GtkTreeIter</a>,
+<a href=#352 id=352 data-nosnippet>352</a>            data: glib::ffi::gpointer,
+<a href=#353 id=353 data-nosnippet>353</a>        ) -&gt; glib::ffi::gboolean {
+<a href=#354 id=354 data-nosnippet>354</a>            <span class="kw">let </span>model = <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib_borrow.html">from_glib_borrow</a>(<a href="#350">model</a>);
+<a href=#355 id=355 data-nosnippet>355</a>            <span class="kw">let </span>iter = <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib_borrow.html">from_glib_borrow</a>(<a href="#351">iter</a>);
+<a href=#356 id=356 data-nosnippet>356</a>            <span class="kw">let </span>callback = <span class="kw-2">&amp;*</span>(<a href="#352">data</a> <span class="kw">as </span><span class="kw-2">*mut </span>P);
+<a href=#357 id=357 data-nosnippet>357</a>            (<span class="kw-2">*</span><a href="#356">callback</a>)(<span class="kw-2">&amp;</span><a href="#354">model</a>, <span class="kw-2">&amp;</span><a href="#355">iter</a>).<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>()
+<a href=#358 id=358 data-nosnippet>358</a>        }
+<a href=#359 id=359 data-nosnippet>359</a>        <span class="kw">let </span>func = <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.Some">Some</a>(<a href="#349-358">func_func</a>::&lt;P&gt; <span class="kw">as _</span>);
+<a href=#360 id=360 data-nosnippet>360</a>        <span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn </span>destroy_func&lt;P: <a href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html">Fn</a>(<span class="kw-2">&amp;</span><a href="tree_model.rs.html#15-277">TreeModel</a>, <span class="kw-2">&amp;</span><a href="tree_iter.rs.html#8-25">TreeIter</a>) -&gt; <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> + <span class="lifetime">'static</span>&gt;(
+<a href=#361 id=361 data-nosnippet>361</a>            data: glib::ffi::gpointer,
+<a href=#362 id=362 data-nosnippet>362</a>        ) {
+<a href=#363 id=363 data-nosnippet>363</a>            <span class="kw">let </span>_callback = <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html#method.from_raw">Box_::from_raw</a>(<a href="#361">data</a> <span class="kw">as </span><span class="kw-2">*mut </span>P);
+<a href=#364 id=364 data-nosnippet>364</a>        }
+<a href=#365 id=365 data-nosnippet>365</a>        <span class="kw">let </span>destroy_call3 = <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.Some">Some</a>(<a href="#360-364">destroy_func</a>::&lt;P&gt; <span class="kw">as _</span>);
+<a href=#366 id=366 data-nosnippet>366</a>        <span class="kw">let </span>super_callback0: <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">Box_</a>&lt;P&gt; = <a href="#348">func_data</a>;
+<a href=#367 id=367 data-nosnippet>367</a>        <span class="kw">unsafe </span>{
+<a href=#368 id=368 data-nosnippet>368</a>            <a href="../../../gtk4_sys/fn.gtk_tree_model_filter_set_visible_func.html">ffi::gtk_tree_model_filter_set_visible_func</a>(
+<a href=#369 id=369 data-nosnippet>369</a>                <a class="self" href="#347">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
+<a href=#370 id=370 data-nosnippet>370</a>                <a href="#359">func</a>,
+<a href=#371 id=371 data-nosnippet>371</a>                <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html#method.into_raw">Box_::into_raw</a>(<a href="#366">super_callback0</a>) <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>,
+<a href=#372 id=372 data-nosnippet>372</a>                <a href="#365">destroy_call3</a>,
+<a href=#373 id=373 data-nosnippet>373</a>            );
+<a href=#374 id=374 data-nosnippet>374</a>        }
+<a href=#375 id=375 data-nosnippet>375</a>    }
+<a href=#376 id=376 data-nosnippet>376</a>
+<a href=#377 id=377 data-nosnippet>377</a>    <span class="doccomment">/// The child model of the tree model filter.
+<a href=#378 id=378 data-nosnippet>378</a>    </span><span class="attr">#[doc(alias = <span class="string">"child-model"</span>)]
+<a href=#379 id=379 data-nosnippet>379</a>    </span><span class="kw">fn </span>child_model(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;<a href="tree_model.rs.html#15-277">TreeModel</a>&gt; {
+<a href=#380 id=380 data-nosnippet>380</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.ObjectExt.html#tymethod.property">ObjectExt::property</a>(<a class="self" href="#379">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>(), <span class="string">"child-model"</span>)
+<a href=#381 id=381 data-nosnippet>381</a>    }
+<a href=#382 id=382 data-nosnippet>382</a>}
+<a href=#383 id=383 data-nosnippet>383</a>
+<a href=#384 id=384 data-nosnippet>384</a><span class="kw">impl</span>&lt;O: <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html">IsA</a>&lt;<a href="#10-103">TreeModelFilter</a>&gt;&gt; <a href="#114-382">TreeModelFilterExt</a> <span class="kw">for </span>O {}</code></pre></div></section></main></body></html>

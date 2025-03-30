@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/auto/image.rs`."><title>image.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-916cea96.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.87.0-nightly (3ea711f17 2025-03-09)" data-channel="nightly" data-search-js="search-e7298875.js" data-settings-js="settings-d72f25bb.js" ><script src="../../../static.files/storage-d8ac8691.js"></script><script defer src="../../../static.files/src-script-b8d3f215.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-a7bf3405.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-893ab5e7.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-6580c154.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/auto/image.rs`."><title>image.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-916cea96.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.88.0-nightly (1799887bb 2025-03-29)" data-channel="nightly" data-search-js="search-e7298875.js" data-settings-js="settings-d72f25bb.js" ><script src="../../../static.files/storage-82c7156e.js"></script><script defer src="../../../static.files/src-script-63605ae7.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-fb8c74a8.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-893ab5e7.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-6580c154.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
 
@@ -77,8 +77,8 @@
 <a href=#4 id=4 data-nosnippet>4</a></span><span class="attr">#![allow(deprecated)]
 <a href=#5 id=5 data-nosnippet>5</a>
 <a href=#6 id=6 data-nosnippet>6</a></span><span class="kw">use crate</span>::{
-<a href=#7 id=7 data-nosnippet>7</a>    <a href="../../../gtk4_sys/index.html">ffi</a>, <a href="accessible.rs.html#19-70">Accessible</a>, <a href="enums.rs.html#1021-1321">AccessibleRole</a>, <a href="../enums.rs.html#77-107">Align</a>, <a href="buildable.rs.html#8-31">Buildable</a>, <a href="constraint_target.rs.html#8-23">ConstraintTarget</a>, <a href="enums.rs.html#5900-5912">IconSize</a>, <a href="enums.rs.html#6253-6268">ImageType</a>,
-<a href=#8 id=8 data-nosnippet>8</a>    <a href="layout_manager.rs.html#8-70">LayoutManager</a>, <a href="enums.rs.html#8009-8020">Overflow</a>, <a href="widget.rs.html#19-864">Widget</a>,
+<a href=#7 id=7 data-nosnippet>7</a>    <a href="../../../gtk4_sys/index.html">ffi</a>, <a href="accessible.rs.html#19-70">Accessible</a>, <a href="enums.rs.html#1021-1321">AccessibleRole</a>, <a href="../enums.rs.html#77-107">Align</a>, <a href="buildable.rs.html#8-31">Buildable</a>, <a href="constraint_target.rs.html#8-23">ConstraintTarget</a>, <a href="enums.rs.html#5940-5952">IconSize</a>, <a href="enums.rs.html#6306-6321">ImageType</a>,
+<a href=#8 id=8 data-nosnippet>8</a>    <a href="layout_manager.rs.html#8-70">LayoutManager</a>, <a href="enums.rs.html#8062-8073">Overflow</a>, <a href="widget.rs.html#19-864">Widget</a>,
 <a href=#9 id=9 data-nosnippet>9</a>};
 <a href=#10 id=10 data-nosnippet>10</a><span class="kw">use </span>glib::{
 <a href=#11 id=11 data-nosnippet>11</a>    <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/prelude/index.html">prelude</a>::<span class="kw-2">*</span>,
@@ -750,7 +750,7 @@
 <a href=#677 id=677 data-nosnippet>677</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_image_get_icon_size"</span>)]
 <a href=#678 id=678 data-nosnippet>678</a>    #[doc(alias = <span class="string">"get_icon_size"</span>)]
 <a href=#679 id=679 data-nosnippet>679</a>    #[doc(alias = <span class="string">"icon-size"</span>)]
-<a href=#680 id=680 data-nosnippet>680</a>    </span><span class="kw">pub fn </span>icon_size(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="enums.rs.html#5900-5912">IconSize</a> {
+<a href=#680 id=680 data-nosnippet>680</a>    </span><span class="kw">pub fn </span>icon_size(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="enums.rs.html#5940-5952">IconSize</a> {
 <a href=#681 id=681 data-nosnippet>681</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(<a href="../../../gtk4_sys/fn.gtk_image_get_icon_size.html">ffi::gtk_image_get_icon_size</a>(<a class="self" href="#680">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#682 id=682 data-nosnippet>682</a>    }
 <a href=#683 id=683 data-nosnippet>683</a>
@@ -794,7 +794,7 @@
 <a href=#721 id=721 data-nosnippet>721</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_image_get_storage_type"</span>)]
 <a href=#722 id=722 data-nosnippet>722</a>    #[doc(alias = <span class="string">"get_storage_type"</span>)]
 <a href=#723 id=723 data-nosnippet>723</a>    #[doc(alias = <span class="string">"storage-type"</span>)]
-<a href=#724 id=724 data-nosnippet>724</a>    </span><span class="kw">pub fn </span>storage_type(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="enums.rs.html#6253-6268">ImageType</a> {
+<a href=#724 id=724 data-nosnippet>724</a>    </span><span class="kw">pub fn </span>storage_type(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="enums.rs.html#6306-6321">ImageType</a> {
 <a href=#725 id=725 data-nosnippet>725</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(<a href="../../../gtk4_sys/fn.gtk_image_get_storage_type.html">ffi::gtk_image_get_storage_type</a>(<a class="self" href="#724">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#726 id=726 data-nosnippet>726</a>    }
 <a href=#727 id=727 data-nosnippet>727</a>
@@ -899,7 +899,7 @@
 <a href=#826 id=826 data-nosnippet>826</a>    /// the new icon size
 <a href=#827 id=827 data-nosnippet>827</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_image_set_icon_size"</span>)]
 <a href=#828 id=828 data-nosnippet>828</a>    #[doc(alias = <span class="string">"icon-size"</span>)]
-<a href=#829 id=829 data-nosnippet>829</a>    </span><span class="kw">pub fn </span>set_icon_size(<span class="kw-2">&amp;</span><span class="self">self</span>, icon_size: <a href="enums.rs.html#5900-5912">IconSize</a>) {
+<a href=#829 id=829 data-nosnippet>829</a>    </span><span class="kw">pub fn </span>set_icon_size(<span class="kw-2">&amp;</span><span class="self">self</span>, icon_size: <a href="enums.rs.html#5940-5952">IconSize</a>) {
 <a href=#830 id=830 data-nosnippet>830</a>        <span class="kw">unsafe </span>{
 <a href=#831 id=831 data-nosnippet>831</a>            <a href="../../../gtk4_sys/fn.gtk_image_set_icon_size.html">ffi::gtk_image_set_icon_size</a>(<a class="self" href="#829">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>, <a href="#829">icon_size</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>());
 <a href=#832 id=832 data-nosnippet>832</a>        }
@@ -1206,7 +1206,7 @@
 <a href=#1133 id=1133 data-nosnippet>1133</a>    }
 <a href=#1134 id=1134 data-nosnippet>1134</a>
 <a href=#1135 id=1135 data-nosnippet>1135</a>    <span class="doccomment">/// The symbolic size to display icons at.
-<a href=#1136 id=1136 data-nosnippet>1136</a>    </span><span class="kw">pub fn </span>icon_size(<span class="self">self</span>, icon_size: <a href="enums.rs.html#5900-5912">IconSize</a>) -&gt; <span class="self">Self </span>{
+<a href=#1136 id=1136 data-nosnippet>1136</a>    </span><span class="kw">pub fn </span>icon_size(<span class="self">self</span>, icon_size: <a href="enums.rs.html#5940-5952">IconSize</a>) -&gt; <span class="self">Self </span>{
 <a href=#1137 id=1137 data-nosnippet>1137</a>        <span class="self">Self </span>{
 <a href=#1138 id=1138 data-nosnippet>1138</a>            builder: <a class="self" href="#1136">self</a>.builder.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/struct.ObjectBuilder.html#method.property">property</a>(<span class="string">"icon-size"</span>, <a href="#1136">icon_size</a>),
 <a href=#1139 id=1139 data-nosnippet>1139</a>        }
@@ -1445,7 +1445,7 @@
 <a href=#1372 id=1372 data-nosnippet>1372</a>    ///
 <a href=#1373 id=1373 data-nosnippet>1373</a>    /// This property is meant to be set by widget implementations,
 <a href=#1374 id=1374 data-nosnippet>1374</a>    /// typically in their instance init function.
-<a href=#1375 id=1375 data-nosnippet>1375</a>    </span><span class="kw">pub fn </span>overflow(<span class="self">self</span>, overflow: <a href="enums.rs.html#8009-8020">Overflow</a>) -&gt; <span class="self">Self </span>{
+<a href=#1375 id=1375 data-nosnippet>1375</a>    </span><span class="kw">pub fn </span>overflow(<span class="self">self</span>, overflow: <a href="enums.rs.html#8062-8073">Overflow</a>) -&gt; <span class="self">Self </span>{
 <a href=#1376 id=1376 data-nosnippet>1376</a>        <span class="self">Self </span>{
 <a href=#1377 id=1377 data-nosnippet>1377</a>            builder: <a class="self" href="#1375">self</a>.builder.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/struct.ObjectBuilder.html#method.property">property</a>(<span class="string">"overflow"</span>, <a href="#1375">overflow</a>),
 <a href=#1378 id=1378 data-nosnippet>1378</a>        }
