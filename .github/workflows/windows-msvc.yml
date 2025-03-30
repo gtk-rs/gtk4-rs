@@ -33,9 +33,9 @@ jobs:
         id: cache
         with:
           path: c:/gnome
-          key: ${{ runner.os }}-gtk4-17.2
+          key: ${{ runner.os }}-gtk4-18
           restore-keys: |
-            ${{ runner.os }}-gtk4-17.2
+            ${{ runner.os }}-gtk4-18
 
       - name: Set up the PATH environment
         run: |
@@ -110,7 +110,7 @@ jobs:
         uses: actions-rs/cargo@v1
         with:
           command: build
-          args: --features egl,win32 --manifest-path ./gdk4-win32/Cargo.toml
+          args: --features v4_18,egl,win32 --manifest-path ./gdk4-win32/Cargo.toml
       - name: Clippy gdk-win32
         uses: actions-rs/cargo@v1
         with:
