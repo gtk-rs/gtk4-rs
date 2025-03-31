@@ -400,9 +400,9 @@ checksum = "37909eebbb50d72f9059c3b6d82c0463f2ff062c9e95845c43a6c9c0355411be"
 
 [[package]]
 name = "femtovg"
-version = "0.13.0"
+version = "0.14.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "e9893dbf48a85e6d92e461d8417b883b647b01b1049c9068f30149a1e1d8e483"
+checksum = "47e15d51b37323a171a49399d46f0b0a9ec729d1106976f8fa70d68068b15504"
 dependencies = [
  "bitflags 2.9.0",
  "bytemuck",
