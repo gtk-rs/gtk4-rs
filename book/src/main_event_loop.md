@@ -210,11 +210,11 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/b
 Asynchronous functions from the `glib` ecosystem can always be spawned on the `glib` main loop.
 Typically, crates depending on `async-std` or `smol` work as well.
 Let us take `ashpd` for example which allows sandboxed applications to interact with the desktop.
-Per default it depends on `async-std`.
+It can be configured to depend on `async-std`.
 We can add it to our dependencies by running the following command.
 
 ```
-cargo add ashpd --features gtk4
+cargo add ashpd --no-default-features --features "gtk4 async-std"
 ```
 
 You need to use a Linux desktop environment in order to run the following example locally.
