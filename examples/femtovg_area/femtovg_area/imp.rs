@@ -89,8 +89,9 @@ impl GLAreaImpl for FemtoVGArea {
         let canvas = canvas.as_mut().unwrap();
 
         let area = self.obj();
-        let w = area.width() as u32;
-        let h = area.height() as u32;
+        let scale_factor = self.obj().scale_factor();
+        let w = (area.width() * scale_factor) as u32;
+        let h = (area.height() * scale_factor) as u32;
         canvas.reset_transform();
         canvas.clear_rect(0, 0, w, h, Color::rgba(0, 0, 0, 0));
 
