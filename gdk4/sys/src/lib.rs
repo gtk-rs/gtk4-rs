@@ -2835,6 +2835,32 @@ pub const GDK_SEAT_CAPABILITY_TABLET_PAD: GdkSeatCapabilities = 16;
 pub const GDK_SEAT_CAPABILITY_ALL_POINTING: GdkSeatCapabilities = 7;
 pub const GDK_SEAT_CAPABILITY_ALL: GdkSeatCapabilities = 31;
 
+pub type GdkToplevelCapabilities = c_uint;
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+pub const GDK_TOPLEVEL_CAPABILITIES_EDGE_CONSTRAINTS: GdkToplevelCapabilities = 1;
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+pub const GDK_TOPLEVEL_CAPABILITIES_INHIBIT_SHORTCUTS: GdkToplevelCapabilities = 2;
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+pub const GDK_TOPLEVEL_CAPABILITIES_TITLEBAR_GESTURES: GdkToplevelCapabilities = 4;
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+pub const GDK_TOPLEVEL_CAPABILITIES_WINDOW_MENU: GdkToplevelCapabilities = 8;
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+pub const GDK_TOPLEVEL_CAPABILITIES_MAXIMIZE: GdkToplevelCapabilities = 16;
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+pub const GDK_TOPLEVEL_CAPABILITIES_FULLSCREEN: GdkToplevelCapabilities = 32;
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+pub const GDK_TOPLEVEL_CAPABILITIES_MINIMIZE: GdkToplevelCapabilities = 64;
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+pub const GDK_TOPLEVEL_CAPABILITIES_LOWER: GdkToplevelCapabilities = 128;
+
 pub type GdkToplevelState = c_uint;
 pub const GDK_TOPLEVEL_STATE_MINIMIZED: GdkToplevelState = 1;
 pub const GDK_TOPLEVEL_STATE_MAXIMIZED: GdkToplevelState = 2;
@@ -4173,6 +4199,13 @@ extern "C" {
     // GdkSeatCapabilities
     //=========================================================================
     pub fn gdk_seat_capabilities_get_type() -> GType;
+
+    //=========================================================================
+    // GdkToplevelCapabilities
+    //=========================================================================
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    pub fn gdk_toplevel_capabilities_get_type() -> GType;
 
     //=========================================================================
     // GdkToplevelState
@@ -5973,6 +6006,9 @@ extern "C" {
         timestamp: u32,
     );
     pub fn gdk_toplevel_focus(toplevel: *mut GdkToplevel, timestamp: u32);
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    pub fn gdk_toplevel_get_capabilities(toplevel: *mut GdkToplevel) -> GdkToplevelCapabilities;
     pub fn gdk_toplevel_get_state(toplevel: *mut GdkToplevel) -> GdkToplevelState;
     pub fn gdk_toplevel_inhibit_system_shortcuts(toplevel: *mut GdkToplevel, event: *mut GdkEvent);
     pub fn gdk_toplevel_lower(toplevel: *mut GdkToplevel) -> gboolean;
