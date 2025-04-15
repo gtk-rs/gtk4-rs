@@ -192,6 +192,7 @@ gtk = { git = "https://github.com/gtk-rs/gtk4-rs.git", package = "gtk4" }
 | `v4_6` | Enable the new APIs part of GTK 4.6 |
 | `v4_4` | Enable the new APIs part of GTK 4.4 |
 | `v4_2` | Enable the new APIs part of GTK 4.2 |
+| `gnome_48` | Enable all version feature flags of this crate and its dependencies to match the GNOME 48 SDK |
 | `gnome_47` | Enable all version feature flags of this crate and its dependencies to match the GNOME 47 SDK |
 | `gnome_46` | Enable all version feature flags of this crate and its dependencies to match the GNOME 46 SDK |
 | `gnome_45` | Enable all version feature flags of this crate and its dependencies to match the GNOME 45 SDK |
