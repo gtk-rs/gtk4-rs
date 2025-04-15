@@ -461,6 +461,13 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
+        "GdkToplevelCapabilities",
+        Layout {
+            size: size_of::<GdkToplevelCapabilities>(),
+            alignment: align_of::<GdkToplevelCapabilities>(),
+        },
+    ),
+    (
         "GdkToplevelState",
         Layout {
             size: size_of::<GdkToplevelState>(),
@@ -3159,6 +3166,14 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(gint) GDK_TITLEBAR_GESTURE_DOUBLE_CLICK", "1"),
     ("(gint) GDK_TITLEBAR_GESTURE_MIDDLE_CLICK", "3"),
     ("(gint) GDK_TITLEBAR_GESTURE_RIGHT_CLICK", "2"),
+    ("(guint) GDK_TOPLEVEL_CAPABILITIES_EDGE_CONSTRAINTS", "1"),
+    ("(guint) GDK_TOPLEVEL_CAPABILITIES_FULLSCREEN", "32"),
+    ("(guint) GDK_TOPLEVEL_CAPABILITIES_INHIBIT_SHORTCUTS", "2"),
+    ("(guint) GDK_TOPLEVEL_CAPABILITIES_LOWER", "128"),
+    ("(guint) GDK_TOPLEVEL_CAPABILITIES_MAXIMIZE", "16"),
+    ("(guint) GDK_TOPLEVEL_CAPABILITIES_MINIMIZE", "64"),
+    ("(guint) GDK_TOPLEVEL_CAPABILITIES_TITLEBAR_GESTURES", "4"),
+    ("(guint) GDK_TOPLEVEL_CAPABILITIES_WINDOW_MENU", "8"),
     ("(guint) GDK_TOPLEVEL_STATE_ABOVE", "16"),
     ("(guint) GDK_TOPLEVEL_STATE_BELOW", "32"),
     ("(guint) GDK_TOPLEVEL_STATE_BOTTOM_RESIZABLE", "8192"),

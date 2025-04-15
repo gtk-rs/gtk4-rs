@@ -74,6 +74,14 @@ pub trait ToplevelExt: IsA<Toplevel> + 'static {
         }
     }
 
+    //#[cfg(feature = "v4_20")]
+    //#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    //#[doc(alias = "gdk_toplevel_get_capabilities")]
+    //#[doc(alias = "get_capabilities")]
+    //fn capabilities(&self) -> /*Ignored*/ToplevelCapabilities {
+    //    unsafe { TODO: call ffi:gdk_toplevel_get_capabilities() }
+    //}
+
     #[doc(alias = "gdk_toplevel_get_state")]
     #[doc(alias = "get_state")]
     fn state(&self) -> ToplevelState {
@@ -254,6 +262,34 @@ pub trait ToplevelExt: IsA<Toplevel> + 'static {
     #[doc(alias = "transient-for")]
     fn transient_for(&self) -> Option<Surface> {
         ObjectExt::property(self.as_ref(), "transient-for")
+    }
+
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    #[doc(alias = "capabilities")]
+    fn connect_capabilities_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_capabilities_trampoline<
+            P: IsA<Toplevel>,
+            F: Fn(&P) + 'static,
+        >(
+            this: *mut ffi::GdkToplevel,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(Toplevel::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                c"notify::capabilities".as_ptr() as *const _,
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
+                    notify_capabilities_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
     }
 
     #[doc(alias = "decorated")]

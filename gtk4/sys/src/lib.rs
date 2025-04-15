@@ -11999,6 +11999,9 @@ extern "C" {
     pub fn gtk_calendar_get_year(self_: *mut GtkCalendar) -> c_int;
     pub fn gtk_calendar_mark_day(calendar: *mut GtkCalendar, day: c_uint);
     pub fn gtk_calendar_select_day(self_: *mut GtkCalendar, date: *mut glib::GDateTime);
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    pub fn gtk_calendar_set_date(self_: *mut GtkCalendar, date: *mut glib::GDateTime);
     #[cfg(feature = "v4_14")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
     pub fn gtk_calendar_set_day(self_: *mut GtkCalendar, day: c_int);
