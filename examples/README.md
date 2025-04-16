@@ -45,7 +45,7 @@ cargo run --bin basics
 - [Grid Packing](./grid_packing)
 - [GtkBuilder](./gtk_builder/)
 - [ListBox and ListModel](./list_box_model/)
-- [ListBox: StringList with Sorter](./listbox_sort_stringlist/)
+- [ListBox: StringList with Sorter](./list_box_sort_stringlist/)
 - [ListView: Applications Launcher](./list_view_apps_launcher/)
 - [Menubar](./menubar/)
 - [Rotation Bin](./rotation_bin/)
