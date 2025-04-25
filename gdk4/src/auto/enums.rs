@@ -1737,6 +1737,98 @@ pub enum MemoryFormat {
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
     #[doc(alias = "GDK_MEMORY_X8B8G8R8")]
     X8b8g8r8,
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    #[doc(alias = "GDK_MEMORY_G8_B8R8_420")]
+    G8B8r8420,
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    #[doc(alias = "GDK_MEMORY_G8_R8B8_420")]
+    G8R8b8420,
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    #[doc(alias = "GDK_MEMORY_G8_B8R8_422")]
+    G8B8r8422,
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    #[doc(alias = "GDK_MEMORY_G8_R8B8_422")]
+    G8R8b8422,
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    #[doc(alias = "GDK_MEMORY_G8_B8R8_444")]
+    G8B8r8444,
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    #[doc(alias = "GDK_MEMORY_G8_R8B8_444")]
+    G8R8b8444,
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    #[doc(alias = "GDK_MEMORY_G10X6_B10X6R10X6_420")]
+    G10x6B10x6r10x6420,
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    #[doc(alias = "GDK_MEMORY_G12X4_B12X4R12X4_420")]
+    G12x4B12x4r12x4420,
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    #[doc(alias = "GDK_MEMORY_G16_B16R16_420")]
+    G16B16r16420,
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    #[doc(alias = "GDK_MEMORY_G8_B8_R8_410")]
+    G8B8R8410,
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    #[doc(alias = "GDK_MEMORY_G8_R8_B8_410")]
+    G8R8B8410,
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    #[doc(alias = "GDK_MEMORY_G8_B8_R8_411")]
+    G8B8R8411,
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    #[doc(alias = "GDK_MEMORY_G8_R8_B8_411")]
+    G8R8B8411,
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    #[doc(alias = "GDK_MEMORY_G8_B8_R8_420")]
+    G8B8R8420,
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    #[doc(alias = "GDK_MEMORY_G8_R8_B8_420")]
+    G8R8B8420,
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    #[doc(alias = "GDK_MEMORY_G8_B8_R8_422")]
+    G8B8R8422,
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    #[doc(alias = "GDK_MEMORY_G8_R8_B8_422")]
+    G8R8B8422,
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    #[doc(alias = "GDK_MEMORY_G8_B8_R8_444")]
+    G8B8R8444,
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    #[doc(alias = "GDK_MEMORY_G8_R8_B8_444")]
+    G8R8B8444,
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    #[doc(alias = "GDK_MEMORY_G8B8G8R8_422")]
+    G8b8g8r8422,
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    #[doc(alias = "GDK_MEMORY_G8R8G8B8_422")]
+    G8r8g8b8422,
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    #[doc(alias = "GDK_MEMORY_R8G8B8G8_422")]
+    R8g8b8g8422,
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    #[doc(alias = "GDK_MEMORY_B8G8R8G8_422")]
+    B8g8r8g8422,
     #[doc(hidden)]
     __Unknown(i32),
 }
@@ -1808,6 +1900,52 @@ impl IntoGlib for MemoryFormat {
             Self::R8g8b8x8 => ffi::GDK_MEMORY_R8G8B8X8,
             #[cfg(feature = "v4_14")]
             Self::X8b8g8r8 => ffi::GDK_MEMORY_X8B8G8R8,
+            #[cfg(feature = "v4_20")]
+            Self::G8B8r8420 => ffi::GDK_MEMORY_G8_B8R8_420,
+            #[cfg(feature = "v4_20")]
+            Self::G8R8b8420 => ffi::GDK_MEMORY_G8_R8B8_420,
+            #[cfg(feature = "v4_20")]
+            Self::G8B8r8422 => ffi::GDK_MEMORY_G8_B8R8_422,
+            #[cfg(feature = "v4_20")]
+            Self::G8R8b8422 => ffi::GDK_MEMORY_G8_R8B8_422,
+            #[cfg(feature = "v4_20")]
+            Self::G8B8r8444 => ffi::GDK_MEMORY_G8_B8R8_444,
+            #[cfg(feature = "v4_20")]
+            Self::G8R8b8444 => ffi::GDK_MEMORY_G8_R8B8_444,
+            #[cfg(feature = "v4_20")]
+            Self::G10x6B10x6r10x6420 => ffi::GDK_MEMORY_G10X6_B10X6R10X6_420,
+            #[cfg(feature = "v4_20")]
+            Self::G12x4B12x4r12x4420 => ffi::GDK_MEMORY_G12X4_B12X4R12X4_420,
+            #[cfg(feature = "v4_20")]
+            Self::G16B16r16420 => ffi::GDK_MEMORY_G16_B16R16_420,
+            #[cfg(feature = "v4_20")]
+            Self::G8B8R8410 => ffi::GDK_MEMORY_G8_B8_R8_410,
+            #[cfg(feature = "v4_20")]
+            Self::G8R8B8410 => ffi::GDK_MEMORY_G8_R8_B8_410,
+            #[cfg(feature = "v4_20")]
+            Self::G8B8R8411 => ffi::GDK_MEMORY_G8_B8_R8_411,
+            #[cfg(feature = "v4_20")]
+            Self::G8R8B8411 => ffi::GDK_MEMORY_G8_R8_B8_411,
+            #[cfg(feature = "v4_20")]
+            Self::G8B8R8420 => ffi::GDK_MEMORY_G8_B8_R8_420,
+            #[cfg(feature = "v4_20")]
+            Self::G8R8B8420 => ffi::GDK_MEMORY_G8_R8_B8_420,
+            #[cfg(feature = "v4_20")]
+            Self::G8B8R8422 => ffi::GDK_MEMORY_G8_B8_R8_422,
+            #[cfg(feature = "v4_20")]
+            Self::G8R8B8422 => ffi::GDK_MEMORY_G8_R8_B8_422,
+            #[cfg(feature = "v4_20")]
+            Self::G8B8R8444 => ffi::GDK_MEMORY_G8_B8_R8_444,
+            #[cfg(feature = "v4_20")]
+            Self::G8R8B8444 => ffi::GDK_MEMORY_G8_R8_B8_444,
+            #[cfg(feature = "v4_20")]
+            Self::G8b8g8r8422 => ffi::GDK_MEMORY_G8B8G8R8_422,
+            #[cfg(feature = "v4_20")]
+            Self::G8r8g8b8422 => ffi::GDK_MEMORY_G8R8G8B8_422,
+            #[cfg(feature = "v4_20")]
+            Self::R8g8b8g8422 => ffi::GDK_MEMORY_R8G8B8G8_422,
+            #[cfg(feature = "v4_20")]
+            Self::B8g8r8g8422 => ffi::GDK_MEMORY_B8G8R8G8_422,
             Self::__Unknown(value) => value,
         }
     }
@@ -1880,6 +2018,52 @@ impl FromGlib<ffi::GdkMemoryFormat> for MemoryFormat {
             ffi::GDK_MEMORY_R8G8B8X8 => Self::R8g8b8x8,
             #[cfg(feature = "v4_14")]
             ffi::GDK_MEMORY_X8B8G8R8 => Self::X8b8g8r8,
+            #[cfg(feature = "v4_20")]
+            ffi::GDK_MEMORY_G8_B8R8_420 => Self::G8B8r8420,
+            #[cfg(feature = "v4_20")]
+            ffi::GDK_MEMORY_G8_R8B8_420 => Self::G8R8b8420,
+            #[cfg(feature = "v4_20")]
+            ffi::GDK_MEMORY_G8_B8R8_422 => Self::G8B8r8422,
+            #[cfg(feature = "v4_20")]
+            ffi::GDK_MEMORY_G8_R8B8_422 => Self::G8R8b8422,
+            #[cfg(feature = "v4_20")]
+            ffi::GDK_MEMORY_G8_B8R8_444 => Self::G8B8r8444,
+            #[cfg(feature = "v4_20")]
+            ffi::GDK_MEMORY_G8_R8B8_444 => Self::G8R8b8444,
+            #[cfg(feature = "v4_20")]
+            ffi::GDK_MEMORY_G10X6_B10X6R10X6_420 => Self::G10x6B10x6r10x6420,
+            #[cfg(feature = "v4_20")]
+            ffi::GDK_MEMORY_G12X4_B12X4R12X4_420 => Self::G12x4B12x4r12x4420,
+            #[cfg(feature = "v4_20")]
+            ffi::GDK_MEMORY_G16_B16R16_420 => Self::G16B16r16420,
+            #[cfg(feature = "v4_20")]
+            ffi::GDK_MEMORY_G8_B8_R8_410 => Self::G8B8R8410,
+            #[cfg(feature = "v4_20")]
+            ffi::GDK_MEMORY_G8_R8_B8_410 => Self::G8R8B8410,
+            #[cfg(feature = "v4_20")]
+            ffi::GDK_MEMORY_G8_B8_R8_411 => Self::G8B8R8411,
+            #[cfg(feature = "v4_20")]
+            ffi::GDK_MEMORY_G8_R8_B8_411 => Self::G8R8B8411,
+            #[cfg(feature = "v4_20")]
+            ffi::GDK_MEMORY_G8_B8_R8_420 => Self::G8B8R8420,
+            #[cfg(feature = "v4_20")]
+            ffi::GDK_MEMORY_G8_R8_B8_420 => Self::G8R8B8420,
+            #[cfg(feature = "v4_20")]
+            ffi::GDK_MEMORY_G8_B8_R8_422 => Self::G8B8R8422,
+            #[cfg(feature = "v4_20")]
+            ffi::GDK_MEMORY_G8_R8_B8_422 => Self::G8R8B8422,
+            #[cfg(feature = "v4_20")]
+            ffi::GDK_MEMORY_G8_B8_R8_444 => Self::G8B8R8444,
+            #[cfg(feature = "v4_20")]
+            ffi::GDK_MEMORY_G8_R8_B8_444 => Self::G8R8B8444,
+            #[cfg(feature = "v4_20")]
+            ffi::GDK_MEMORY_G8B8G8R8_422 => Self::G8b8g8r8422,
+            #[cfg(feature = "v4_20")]
+            ffi::GDK_MEMORY_G8R8G8B8_422 => Self::G8r8g8b8422,
+            #[cfg(feature = "v4_20")]
+            ffi::GDK_MEMORY_R8G8B8G8_422 => Self::R8g8b8g8422,
+            #[cfg(feature = "v4_20")]
+            ffi::GDK_MEMORY_B8G8R8G8_422 => Self::B8g8r8g8422,
             value => Self::__Unknown(value),
         }
     }

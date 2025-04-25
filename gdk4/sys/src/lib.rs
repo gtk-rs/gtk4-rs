@@ -238,7 +238,76 @@ pub const GDK_MEMORY_R8G8B8X8: GdkMemoryFormat = 31;
 #[cfg(feature = "v4_14")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
 pub const GDK_MEMORY_X8B8G8R8: GdkMemoryFormat = 32;
-pub const GDK_MEMORY_N_FORMATS: GdkMemoryFormat = 33;
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+pub const GDK_MEMORY_G8_B8R8_420: GdkMemoryFormat = 33;
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+pub const GDK_MEMORY_G8_R8B8_420: GdkMemoryFormat = 34;
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+pub const GDK_MEMORY_G8_B8R8_422: GdkMemoryFormat = 35;
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+pub const GDK_MEMORY_G8_R8B8_422: GdkMemoryFormat = 36;
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+pub const GDK_MEMORY_G8_B8R8_444: GdkMemoryFormat = 37;
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+pub const GDK_MEMORY_G8_R8B8_444: GdkMemoryFormat = 38;
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+pub const GDK_MEMORY_G10X6_B10X6R10X6_420: GdkMemoryFormat = 39;
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+pub const GDK_MEMORY_G12X4_B12X4R12X4_420: GdkMemoryFormat = 40;
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+pub const GDK_MEMORY_G16_B16R16_420: GdkMemoryFormat = 41;
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+pub const GDK_MEMORY_G8_B8_R8_410: GdkMemoryFormat = 42;
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+pub const GDK_MEMORY_G8_R8_B8_410: GdkMemoryFormat = 43;
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+pub const GDK_MEMORY_G8_B8_R8_411: GdkMemoryFormat = 44;
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+pub const GDK_MEMORY_G8_R8_B8_411: GdkMemoryFormat = 45;
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+pub const GDK_MEMORY_G8_B8_R8_420: GdkMemoryFormat = 46;
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+pub const GDK_MEMORY_G8_R8_B8_420: GdkMemoryFormat = 47;
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+pub const GDK_MEMORY_G8_B8_R8_422: GdkMemoryFormat = 48;
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+pub const GDK_MEMORY_G8_R8_B8_422: GdkMemoryFormat = 49;
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+pub const GDK_MEMORY_G8_B8_R8_444: GdkMemoryFormat = 50;
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+pub const GDK_MEMORY_G8_R8_B8_444: GdkMemoryFormat = 51;
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+pub const GDK_MEMORY_G8B8G8R8_422: GdkMemoryFormat = 52;
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+pub const GDK_MEMORY_G8R8G8B8_422: GdkMemoryFormat = 53;
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+pub const GDK_MEMORY_R8G8B8G8_422: GdkMemoryFormat = 54;
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+pub const GDK_MEMORY_B8G8R8G8_422: GdkMemoryFormat = 55;
+pub const GDK_MEMORY_N_FORMATS: GdkMemoryFormat = 56;
 
 pub type GdkNotifyType = c_int;
 pub const GDK_NOTIFY_ANCESTOR: GdkNotifyType = 0;
@@ -2835,6 +2904,32 @@ pub const GDK_SEAT_CAPABILITY_TABLET_PAD: GdkSeatCapabilities = 16;
 pub const GDK_SEAT_CAPABILITY_ALL_POINTING: GdkSeatCapabilities = 7;
 pub const GDK_SEAT_CAPABILITY_ALL: GdkSeatCapabilities = 31;
 
+pub type GdkToplevelCapabilities = c_uint;
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+pub const GDK_TOPLEVEL_CAPABILITIES_EDGE_CONSTRAINTS: GdkToplevelCapabilities = 1;
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+pub const GDK_TOPLEVEL_CAPABILITIES_INHIBIT_SHORTCUTS: GdkToplevelCapabilities = 2;
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+pub const GDK_TOPLEVEL_CAPABILITIES_TITLEBAR_GESTURES: GdkToplevelCapabilities = 4;
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+pub const GDK_TOPLEVEL_CAPABILITIES_WINDOW_MENU: GdkToplevelCapabilities = 8;
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+pub const GDK_TOPLEVEL_CAPABILITIES_MAXIMIZE: GdkToplevelCapabilities = 16;
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+pub const GDK_TOPLEVEL_CAPABILITIES_FULLSCREEN: GdkToplevelCapabilities = 32;
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+pub const GDK_TOPLEVEL_CAPABILITIES_MINIMIZE: GdkToplevelCapabilities = 64;
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+pub const GDK_TOPLEVEL_CAPABILITIES_LOWER: GdkToplevelCapabilities = 128;
+
 pub type GdkToplevelState = c_uint;
 pub const GDK_TOPLEVEL_STATE_MINIMIZED: GdkToplevelState = 1;
 pub const GDK_TOPLEVEL_STATE_MAXIMIZED: GdkToplevelState = 2;
@@ -4175,6 +4270,13 @@ extern "C" {
     pub fn gdk_seat_capabilities_get_type() -> GType;
 
     //=========================================================================
+    // GdkToplevelCapabilities
+    //=========================================================================
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    pub fn gdk_toplevel_capabilities_get_type() -> GType;
+
+    //=========================================================================
     // GdkToplevelState
     //=========================================================================
     pub fn gdk_toplevel_state_get_type() -> GType;
@@ -4496,6 +4598,13 @@ extern "C" {
     pub fn gdk_texture_downloader_download_bytes(
         self_: *const GdkTextureDownloader,
         out_stride: *mut size_t,
+    ) -> *mut glib::GBytes;
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    pub fn gdk_texture_downloader_download_bytes_with_planes(
+        self_: *const GdkTextureDownloader,
+        out_offsets: *mut [size_t; 4],
+        out_strides: *mut [size_t; 4],
     ) -> *mut glib::GBytes;
     #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
@@ -5595,9 +5704,21 @@ extern "C" {
     #[cfg(feature = "v4_16")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
     pub fn gdk_memory_texture_builder_get_height(self_: *mut GdkMemoryTextureBuilder) -> c_int;
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    pub fn gdk_memory_texture_builder_get_offset(
+        self_: *mut GdkMemoryTextureBuilder,
+        plane: c_uint,
+    ) -> size_t;
     #[cfg(feature = "v4_16")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
     pub fn gdk_memory_texture_builder_get_stride(self_: *mut GdkMemoryTextureBuilder) -> size_t;
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    pub fn gdk_memory_texture_builder_get_stride_for_plane(
+        self_: *mut GdkMemoryTextureBuilder,
+        plane: c_uint,
+    ) -> size_t;
     #[cfg(feature = "v4_16")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
     pub fn gdk_memory_texture_builder_get_update_region(
@@ -5635,10 +5756,24 @@ extern "C" {
         self_: *mut GdkMemoryTextureBuilder,
         height: c_int,
     );
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    pub fn gdk_memory_texture_builder_set_offset(
+        self_: *mut GdkMemoryTextureBuilder,
+        plane: c_uint,
+        offset: size_t,
+    );
     #[cfg(feature = "v4_16")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
     pub fn gdk_memory_texture_builder_set_stride(
         self_: *mut GdkMemoryTextureBuilder,
+        stride: size_t,
+    );
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    pub fn gdk_memory_texture_builder_set_stride_for_plane(
+        self_: *mut GdkMemoryTextureBuilder,
+        plane: c_uint,
         stride: size_t,
     );
     #[cfg(feature = "v4_16")]
@@ -5973,6 +6108,12 @@ extern "C" {
         timestamp: u32,
     );
     pub fn gdk_toplevel_focus(toplevel: *mut GdkToplevel, timestamp: u32);
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    pub fn gdk_toplevel_get_capabilities(toplevel: *mut GdkToplevel) -> GdkToplevelCapabilities;
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    pub fn gdk_toplevel_get_gravity(toplevel: *mut GdkToplevel) -> GdkGravity;
     pub fn gdk_toplevel_get_state(toplevel: *mut GdkToplevel) -> GdkToplevelState;
     pub fn gdk_toplevel_inhibit_system_shortcuts(toplevel: *mut GdkToplevel, event: *mut GdkEvent);
     pub fn gdk_toplevel_lower(toplevel: *mut GdkToplevel) -> gboolean;
@@ -5981,6 +6122,9 @@ extern "C" {
     pub fn gdk_toplevel_restore_system_shortcuts(toplevel: *mut GdkToplevel);
     pub fn gdk_toplevel_set_decorated(toplevel: *mut GdkToplevel, decorated: gboolean);
     pub fn gdk_toplevel_set_deletable(toplevel: *mut GdkToplevel, deletable: gboolean);
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    pub fn gdk_toplevel_set_gravity(toplevel: *mut GdkToplevel, gravity: GdkGravity);
     pub fn gdk_toplevel_set_icon_list(toplevel: *mut GdkToplevel, surfaces: *mut glib::GList);
     pub fn gdk_toplevel_set_modal(toplevel: *mut GdkToplevel, modal: gboolean);
     pub fn gdk_toplevel_set_startup_id(toplevel: *mut GdkToplevel, startup_id: *const c_char);

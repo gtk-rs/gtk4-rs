@@ -44,6 +44,7 @@ int main() {
     printf("%s;%zu;%zu\n", "GdkTextureError", sizeof(GdkTextureError), alignof(GdkTextureError));
     printf("%s;%zu;%zu\n", "GdkTimeCoord", sizeof(GdkTimeCoord), alignof(GdkTimeCoord));
     printf("%s;%zu;%zu\n", "GdkTitlebarGesture", sizeof(GdkTitlebarGesture), alignof(GdkTitlebarGesture));
+    printf("%s;%zu;%zu\n", "GdkToplevelCapabilities", sizeof(GdkToplevelCapabilities), alignof(GdkToplevelCapabilities));
     printf("%s;%zu;%zu\n", "GdkToplevelState", sizeof(GdkToplevelState), alignof(GdkToplevelState));
     printf("%s;%zu;%zu\n", "GdkTouchpadGesturePhase", sizeof(GdkTouchpadGesturePhase), alignof(GdkTouchpadGesturePhase));
     printf("%s;%zu;%zu\n", "GdkVulkanError", sizeof(GdkVulkanError), alignof(GdkVulkanError));

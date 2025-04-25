@@ -2,6 +2,9 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+use crate::Gravity;
 #[cfg(feature = "v4_4")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
 use crate::TitlebarGesture;
@@ -74,6 +77,26 @@ pub trait ToplevelExt: IsA<Toplevel> + 'static {
         }
     }
 
+    //#[cfg(feature = "v4_20")]
+    //#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    //#[doc(alias = "gdk_toplevel_get_capabilities")]
+    //#[doc(alias = "get_capabilities")]
+    //fn capabilities(&self) -> /*Ignored*/ToplevelCapabilities {
+    //    unsafe { TODO: call ffi:gdk_toplevel_get_capabilities() }
+    //}
+
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    #[doc(alias = "gdk_toplevel_get_gravity")]
+    #[doc(alias = "get_gravity")]
+    fn gravity(&self) -> Gravity {
+        unsafe {
+            from_glib(ffi::gdk_toplevel_get_gravity(
+                self.as_ref().to_glib_none().0,
+            ))
+        }
+    }
+
     #[doc(alias = "gdk_toplevel_get_state")]
     #[doc(alias = "get_state")]
     fn state(&self) -> ToplevelState {
@@ -127,6 +150,16 @@ pub trait ToplevelExt: IsA<Toplevel> + 'static {
     fn set_deletable(&self, deletable: bool) {
         unsafe {
             ffi::gdk_toplevel_set_deletable(self.as_ref().to_glib_none().0, deletable.into_glib());
+        }
+    }
+
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    #[doc(alias = "gdk_toplevel_set_gravity")]
+    #[doc(alias = "gravity")]
+    fn set_gravity(&self, gravity: Gravity) {
+        unsafe {
+            ffi::gdk_toplevel_set_gravity(self.as_ref().to_glib_none().0, gravity.into_glib());
         }
     }
 
@@ -256,6 +289,34 @@ pub trait ToplevelExt: IsA<Toplevel> + 'static {
         ObjectExt::property(self.as_ref(), "transient-for")
     }
 
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    #[doc(alias = "capabilities")]
+    fn connect_capabilities_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_capabilities_trampoline<
+            P: IsA<Toplevel>,
+            F: Fn(&P) + 'static,
+        >(
+            this: *mut ffi::GdkToplevel,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(Toplevel::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                c"notify::capabilities".as_ptr() as *const _,
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
+                    notify_capabilities_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
     #[doc(alias = "decorated")]
     fn connect_decorated_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_decorated_trampoline<P: IsA<Toplevel>, F: Fn(&P) + 'static>(
@@ -322,6 +383,31 @@ pub trait ToplevelExt: IsA<Toplevel> + 'static {
                 c"notify::fullscreen-mode".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_fullscreen_mode_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    #[doc(alias = "gravity")]
+    fn connect_gravity_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_gravity_trampoline<P: IsA<Toplevel>, F: Fn(&P) + 'static>(
+            this: *mut ffi::GdkToplevel,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(Toplevel::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                c"notify::gravity".as_ptr() as *const _,
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
+                    notify_gravity_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
