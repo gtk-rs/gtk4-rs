@@ -920,6 +920,23 @@ pub const GTK_UNIT_POINTS: GtkUnit = 1;
 pub const GTK_UNIT_INCH: GtkUnit = 2;
 pub const GTK_UNIT_MM: GtkUnit = 3;
 
+pub type GtkWindowGravity = c_int;
+pub const GTK_WINDOW_GRAVITY_TOP_LEFT: GtkWindowGravity = 0;
+pub const GTK_WINDOW_GRAVITY_TOP: GtkWindowGravity = 1;
+pub const GTK_WINDOW_GRAVITY_TOP_RIGHT: GtkWindowGravity = 2;
+pub const GTK_WINDOW_GRAVITY_LEFT: GtkWindowGravity = 3;
+pub const GTK_WINDOW_GRAVITY_CENTER: GtkWindowGravity = 4;
+pub const GTK_WINDOW_GRAVITY_RIGHT: GtkWindowGravity = 5;
+pub const GTK_WINDOW_GRAVITY_BOTTOM_LEFT: GtkWindowGravity = 6;
+pub const GTK_WINDOW_GRAVITY_BOTTOM: GtkWindowGravity = 7;
+pub const GTK_WINDOW_GRAVITY_BOTTOM_RIGHT: GtkWindowGravity = 8;
+pub const GTK_WINDOW_GRAVITY_TOP_START: GtkWindowGravity = 9;
+pub const GTK_WINDOW_GRAVITY_TOP_END: GtkWindowGravity = 10;
+pub const GTK_WINDOW_GRAVITY_START: GtkWindowGravity = 11;
+pub const GTK_WINDOW_GRAVITY_END: GtkWindowGravity = 12;
+pub const GTK_WINDOW_GRAVITY_BOTTOM_START: GtkWindowGravity = 13;
+pub const GTK_WINDOW_GRAVITY_BOTTOM_END: GtkWindowGravity = 14;
+
 pub type GtkWrapMode = c_int;
 pub const GTK_WRAP_NONE: GtkWrapMode = 0;
 pub const GTK_WRAP_CHAR: GtkWrapMode = 1;
@@ -1051,6 +1068,9 @@ pub const GTK_DEBUG_BUILDER_TRACE: GtkDebugFlags = 128;
 pub const GTK_DEBUG_SIZE_REQUEST: GtkDebugFlags = 256;
 pub const GTK_DEBUG_NO_CSS_CACHE: GtkDebugFlags = 512;
 pub const GTK_DEBUG_INTERACTIVE: GtkDebugFlags = 1024;
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+pub const GTK_DEBUG_TOUCHSCREEN: GtkDebugFlags = 2048;
 pub const GTK_DEBUG_ACTIONS: GtkDebugFlags = 4096;
 pub const GTK_DEBUG_LAYOUT: GtkDebugFlags = 8192;
 pub const GTK_DEBUG_SNAPSHOT: GtkDebugFlags = 16384;
@@ -1066,6 +1086,8 @@ pub const GTK_DEBUG_INVERT_TEXT_DIR: GtkDebugFlags = 524288;
 #[cfg(feature = "v4_16")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
 pub const GTK_DEBUG_CSS: GtkDebugFlags = 1048576;
+#[cfg(feature = "v4_18")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_18")))]
 pub const GTK_DEBUG_BUILDER: GtkDebugFlags = 2097152;
 
 pub type GtkDialogFlags = c_uint;
@@ -10423,6 +10445,13 @@ extern "C" {
     pub fn gtk_unit_get_type() -> GType;
 
     //=========================================================================
+    // GtkWindowGravity
+    //=========================================================================
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    pub fn gtk_window_gravity_get_type() -> GType;
+
+    //=========================================================================
     // GtkWrapMode
     //=========================================================================
     pub fn gtk_wrap_mode_get_type() -> GType;
@@ -11999,6 +12028,9 @@ extern "C" {
     pub fn gtk_calendar_get_year(self_: *mut GtkCalendar) -> c_int;
     pub fn gtk_calendar_mark_day(calendar: *mut GtkCalendar, day: c_uint);
     pub fn gtk_calendar_select_day(self_: *mut GtkCalendar, date: *mut glib::GDateTime);
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    pub fn gtk_calendar_set_date(self_: *mut GtkCalendar, date: *mut glib::GDateTime);
     #[cfg(feature = "v4_14")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
     pub fn gtk_calendar_set_day(self_: *mut GtkCalendar, day: c_int);
@@ -20444,6 +20476,9 @@ extern "C" {
     pub fn gtk_window_get_destroy_with_parent(window: *mut GtkWindow) -> gboolean;
     pub fn gtk_window_get_focus(window: *mut GtkWindow) -> *mut GtkWidget;
     pub fn gtk_window_get_focus_visible(window: *mut GtkWindow) -> gboolean;
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    pub fn gtk_window_get_gravity(window: *mut GtkWindow) -> GtkWindowGravity;
     pub fn gtk_window_get_group(window: *mut GtkWindow) -> *mut GtkWindowGroup;
     #[cfg(feature = "v4_2")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_2")))]
@@ -20477,6 +20512,9 @@ extern "C" {
     pub fn gtk_window_set_display(window: *mut GtkWindow, display: *mut gdk::GdkDisplay);
     pub fn gtk_window_set_focus(window: *mut GtkWindow, focus: *mut GtkWidget);
     pub fn gtk_window_set_focus_visible(window: *mut GtkWindow, setting: gboolean);
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    pub fn gtk_window_set_gravity(window: *mut GtkWindow, gravity: GtkWindowGravity);
     #[cfg(feature = "v4_2")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_2")))]
     pub fn gtk_window_set_handle_menubar_accel(

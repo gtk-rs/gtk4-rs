@@ -42,6 +42,13 @@ impl TextureDownloader {
         }
     }
 
+    //#[cfg(feature = "v4_20")]
+    //#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    //#[doc(alias = "gdk_texture_downloader_download_bytes_with_planes")]
+    //pub fn download_bytes_with_planes(&self, out_offsets: /*Unimplemented*/FixedArray TypeId { ns_id: 0, id: 18 }; 4, out_strides: /*Unimplemented*/FixedArray TypeId { ns_id: 0, id: 18 }; 4) -> glib::Bytes {
+    //    unsafe { TODO: call ffi:gdk_texture_downloader_download_bytes_with_planes() }
+    //}
+
     //#[doc(alias = "gdk_texture_downloader_download_into")]
     //pub fn download_into(&self, data: &[u8], stride: usize) {
     //    unsafe { TODO: call ffi:gdk_texture_downloader_download_into() }

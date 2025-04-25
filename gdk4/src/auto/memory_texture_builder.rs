@@ -68,10 +68,28 @@ impl MemoryTextureBuilder {
         unsafe { ffi::gdk_memory_texture_builder_get_height(self.to_glib_none().0) }
     }
 
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    #[doc(alias = "gdk_memory_texture_builder_get_offset")]
+    #[doc(alias = "get_offset")]
+    pub fn offset(&self, plane: u32) -> usize {
+        unsafe { ffi::gdk_memory_texture_builder_get_offset(self.to_glib_none().0, plane) }
+    }
+
     #[doc(alias = "gdk_memory_texture_builder_get_stride")]
     #[doc(alias = "get_stride")]
     pub fn stride(&self) -> usize {
         unsafe { ffi::gdk_memory_texture_builder_get_stride(self.to_glib_none().0) }
+    }
+
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    #[doc(alias = "gdk_memory_texture_builder_get_stride_for_plane")]
+    #[doc(alias = "get_stride_for_plane")]
+    pub fn stride_for_plane(&self, plane: u32) -> usize {
+        unsafe {
+            ffi::gdk_memory_texture_builder_get_stride_for_plane(self.to_glib_none().0, plane)
+        }
     }
 
     #[doc(alias = "gdk_memory_texture_builder_get_update_region")]
@@ -140,11 +158,33 @@ impl MemoryTextureBuilder {
         }
     }
 
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    #[doc(alias = "gdk_memory_texture_builder_set_offset")]
+    pub fn set_offset(&self, plane: u32, offset: usize) {
+        unsafe {
+            ffi::gdk_memory_texture_builder_set_offset(self.to_glib_none().0, plane, offset);
+        }
+    }
+
     #[doc(alias = "gdk_memory_texture_builder_set_stride")]
     #[doc(alias = "stride")]
     pub fn set_stride(&self, stride: usize) {
         unsafe {
             ffi::gdk_memory_texture_builder_set_stride(self.to_glib_none().0, stride);
+        }
+    }
+
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    #[doc(alias = "gdk_memory_texture_builder_set_stride_for_plane")]
+    pub fn set_stride_for_plane(&self, plane: u32, stride: usize) {
+        unsafe {
+            ffi::gdk_memory_texture_builder_set_stride_for_plane(
+                self.to_glib_none().0,
+                plane,
+                stride,
+            );
         }
     }
 

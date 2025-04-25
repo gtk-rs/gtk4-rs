@@ -188,6 +188,11 @@ impl WindowBuilder {
         }
     }
 
+    //    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    //pub fn gravity(self, gravity: /*Ignored*/WindowGravity) -> Self {
+    //    Self { builder: self.builder.property("gravity", gravity), }
+    //}
     #[cfg(feature = "v4_2")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_2")))]
     pub fn handle_menubar_accel(self, handle_menubar_accel: bool) -> Self {
@@ -590,6 +595,14 @@ pub trait GtkWindowExt: IsA<Window> + 'static {
         }
     }
 
+    //#[cfg(feature = "v4_20")]
+    //#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    //#[doc(alias = "gtk_window_get_gravity")]
+    //#[doc(alias = "get_gravity")]
+    //fn gravity(&self) -> /*Ignored*/WindowGravity {
+    //    unsafe { TODO: call ffi:gtk_window_get_gravity() }
+    //}
+
     #[doc(alias = "gtk_window_get_group")]
     #[doc(alias = "get_group")]
     fn group(&self) -> WindowGroup {
@@ -845,6 +858,14 @@ pub trait GtkWindowExt: IsA<Window> + 'static {
             ffi::gtk_window_set_focus_visible(self.as_ref().to_glib_none().0, setting.into_glib());
         }
     }
+
+    //#[cfg(feature = "v4_20")]
+    //#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    //#[doc(alias = "gtk_window_set_gravity")]
+    //#[doc(alias = "gravity")]
+    //fn set_gravity(&self, gravity: /*Ignored*/WindowGravity) {
+    //    unsafe { TODO: call ffi:gtk_window_set_gravity() }
+    //}
 
     #[cfg(feature = "v4_2")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_2")))]
@@ -1417,6 +1438,31 @@ pub trait GtkWindowExt: IsA<Window> + 'static {
                 c"notify::fullscreened".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_fullscreened_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    #[doc(alias = "gravity")]
+    fn connect_gravity_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_gravity_trampoline<P: IsA<Window>, F: Fn(&P) + 'static>(
+            this: *mut ffi::GtkWindow,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(Window::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                c"notify::gravity".as_ptr() as *const _,
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
+                    notify_gravity_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )

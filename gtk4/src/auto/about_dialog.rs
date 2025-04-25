@@ -949,6 +949,11 @@ impl AboutDialogBuilder {
         }
     }
 
+    //    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    //pub fn gravity(self, gravity: /*Ignored*/WindowGravity) -> Self {
+    //    Self { builder: self.builder.property("gravity", gravity), }
+    //}
     #[cfg(feature = "v4_2")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_2")))]
     pub fn handle_menubar_accel(self, handle_menubar_accel: bool) -> Self {

@@ -340,6 +340,7 @@ int main() {
     printf("%s;%zu;%zu\n", "GtkWindow", sizeof(GtkWindow), alignof(GtkWindow));
     printf("%s;%zu;%zu\n", "GtkWindowClass", sizeof(GtkWindowClass), alignof(GtkWindowClass));
     printf("%s;%zu;%zu\n", "GtkWindowControlsClass", sizeof(GtkWindowControlsClass), alignof(GtkWindowControlsClass));
+    printf("%s;%zu;%zu\n", "GtkWindowGravity", sizeof(GtkWindowGravity), alignof(GtkWindowGravity));
     printf("%s;%zu;%zu\n", "GtkWindowGroup", sizeof(GtkWindowGroup), alignof(GtkWindowGroup));
     printf("%s;%zu;%zu\n", "GtkWindowGroupClass", sizeof(GtkWindowGroupClass), alignof(GtkWindowGroupClass));
     printf("%s;%zu;%zu\n", "GtkWindowHandleClass", sizeof(GtkWindowHandleClass), alignof(GtkWindowHandleClass));
