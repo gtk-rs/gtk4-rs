@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gdk4/src/auto/drop.rs`."><title>drop.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-7dda4a46.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gdk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.88.0-nightly (38c560ae6 2025-04-15)" data-channel="nightly" data-search-js="search-f7877310.js" data-settings-js="settings-5514c975.js" ><script src="../../../static.files/storage-4e99c027.js"></script><script defer src="../../../static.files/src-script-63605ae7.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-7ef8a74a.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-893ab5e7.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-6580c154.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gdk4/src/auto/drop.rs`."><title>drop.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-20739d33.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gdk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.88.0-nightly (b4c8b0c3f 2025-04-25)" data-channel="nightly" data-search-js="search-f7877310.js" data-settings-js="settings-5514c975.js" ><script src="../../../static.files/storage-4e99c027.js"></script><script defer src="../../../static.files/src-script-63605ae7.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-7ef8a74a.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-893ab5e7.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-6580c154.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
 
@@ -87,8 +87,8 @@
 <a href=#14 id=14 data-nosnippet>14</a>    <span class="doccomment">/// Represents the target of an ongoing DND operation.
 <a href=#15 id=15 data-nosnippet>15</a>    ///
 <a href=#16 id=16 data-nosnippet>16</a>    /// Possible drop sites get informed about the status of the ongoing drag
-<a href=#17 id=17 data-nosnippet>17</a>    /// operation with events of type [`EventType::DragEnter`][crate::EventType::DragEnter], [`EventType::DragLeave`][crate::EventType::DragLeave],
-<a href=#18 id=18 data-nosnippet>18</a>    /// [`EventType::DragMotion`][crate::EventType::DragMotion] and [`EventType::DropStart`][crate::EventType::DropStart]. The [`Drop`][crate::Drop] object can be obtained
+<a href=#17 id=17 data-nosnippet>17</a>    /// operation with events of type `GDK_DRAG_ENTER`, `GDK_DRAG_LEAVE`,
+<a href=#18 id=18 data-nosnippet>18</a>    /// `GDK_DRAG_MOTION` and `GDK_DROP_START`. The [`Drop`][crate::Drop] object can be obtained
 <a href=#19 id=19 data-nosnippet>19</a>    /// from these [`Event`][crate::Event] types using [`DNDEvent::drop()`][crate::DNDEvent::drop()].
 <a href=#20 id=20 data-nosnippet>20</a>    ///
 <a href=#21 id=21 data-nosnippet>21</a>    /// The actual data transfer is initiated from the target side via an async
@@ -163,11 +163,11 @@
 <a href=#90 id=90 data-nosnippet>90</a>    <span class="doccomment">/// Returns the possible actions for this [`Drop`][crate::Drop].
 <a href=#91 id=91 data-nosnippet>91</a>    ///
 <a href=#92 id=92 data-nosnippet>92</a>    /// If this value contains multiple actions - i.e.
-<a href=#93 id=93 data-nosnippet>93</a>    /// [`DragAction::is_unique()`][crate::DragAction::is_unique()] returns [`false`] for the result -
+<a href=#93 id=93 data-nosnippet>93</a>    /// [`DragAction::is_unique()`][crate::DragAction::is_unique()] returns false for the result -
 <a href=#94 id=94 data-nosnippet>94</a>    /// [`finish()`][Self::finish()] must choose the action to use when
 <a href=#95 id=95 data-nosnippet>95</a>    /// accepting the drop. This will only happen if you passed
-<a href=#96 id=96 data-nosnippet>96</a>    /// [`DragAction::ASK`][crate::DragAction::ASK] as one of the possible actions in
-<a href=#97 id=97 data-nosnippet>97</a>    /// [`status()`][Self::status()]. [`DragAction::ASK`][crate::DragAction::ASK] itself will not
+<a href=#96 id=96 data-nosnippet>96</a>    /// `GDK_ACTION_ASK` as one of the possible actions in
+<a href=#97 id=97 data-nosnippet>97</a>    /// [`status()`][Self::status()]. `GDK_ACTION_ASK` itself will not
 <a href=#98 id=98 data-nosnippet>98</a>    /// be included in the actions returned by this function.
 <a href=#99 id=99 data-nosnippet>99</a>    ///
 <a href=#100 id=100 data-nosnippet>100</a>    /// This value may change over the lifetime of the [`Drop`][crate::Drop]
@@ -209,7 +209,7 @@
 <a href=#136 id=136 data-nosnippet>136</a>    <span class="doccomment">/// If this is an in-app drag-and-drop operation, returns the [`Drag`][crate::Drag]
 <a href=#137 id=137 data-nosnippet>137</a>    /// that corresponds to this drop.
 <a href=#138 id=138 data-nosnippet>138</a>    ///
-<a href=#139 id=139 data-nosnippet>139</a>    /// If it is not, [`None`] is returned.
+<a href=#139 id=139 data-nosnippet>139</a>    /// If it is not, `NULL` is returned.
 <a href=#140 id=140 data-nosnippet>140</a>    ///
 <a href=#141 id=141 data-nosnippet>141</a>    /// # Returns
 <a href=#142 id=142 data-nosnippet>142</a>    ///
@@ -332,7 +332,7 @@
 <a href=#259 id=259 data-nosnippet>259</a>    /// action to use when multiple actions are possible.
 <a href=#260 id=260 data-nosnippet>260</a>    ///
 <a href=#261 id=261 data-nosnippet>261</a>    /// This function should be called by drag destinations in response to
-<a href=#262 id=262 data-nosnippet>262</a>    /// [`EventType::DragEnter`][crate::EventType::DragEnter] or [`EventType::DragMotion`][crate::EventType::DragMotion] events. If the destination does
+<a href=#262 id=262 data-nosnippet>262</a>    /// `GDK_DRAG_ENTER` or `GDK_DRAG_MOTION` events. If the destination does
 <a href=#263 id=263 data-nosnippet>263</a>    /// not yet know the exact actions it supports, it should set any possible
 <a href=#264 id=264 data-nosnippet>264</a>    /// actions first and then later call this function again.
 <a href=#265 id=265 data-nosnippet>265</a>    /// ## `actions`

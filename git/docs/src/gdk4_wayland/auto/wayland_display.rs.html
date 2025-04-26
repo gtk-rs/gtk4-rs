@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gdk4-wayland/src/auto/wayland_display.rs`."><title>wayland_display.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-7dda4a46.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gdk4_wayland" data-themes="" data-resource-suffix="" data-rustdoc-version="1.88.0-nightly (38c560ae6 2025-04-15)" data-channel="nightly" data-search-js="search-f7877310.js" data-settings-js="settings-5514c975.js" ><script src="../../../static.files/storage-4e99c027.js"></script><script defer src="../../../static.files/src-script-63605ae7.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-7ef8a74a.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-893ab5e7.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-6580c154.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gdk4-wayland/src/auto/wayland_display.rs`."><title>wayland_display.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-20739d33.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gdk4_wayland" data-themes="" data-resource-suffix="" data-rustdoc-version="1.88.0-nightly (b4c8b0c3f 2025-04-25)" data-channel="nightly" data-search-js="search-f7877310.js" data-settings-js="settings-5514c975.js" ><script src="../../../static.files/storage-4e99c027.js"></script><script defer src="../../../static.files/src-script-63605ae7.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-7ef8a74a.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-893ab5e7.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-6580c154.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
 
@@ -102,7 +102,7 @@
 <a href=#29 id=29 data-nosnippet>29</a>}
 <a href=#30 id=30 data-nosnippet>30</a>
 <a href=#31 id=31 data-nosnippet>31</a><span class="kw">impl </span><a href="#9-29">WaylandDisplay</a> {
-<a href=#32 id=32 data-nosnippet>32</a>    <span class="doccomment">/// Gets the startup notification ID for a Wayland display, or [`None`]
+<a href=#32 id=32 data-nosnippet>32</a>    <span class="doccomment">/// Gets the startup notification ID for a Wayland display, or `NULL`
 <a href=#33 id=33 data-nosnippet>33</a>    /// if no ID has been defined.
 <a href=#34 id=34 data-nosnippet>34</a>    ///
 <a href=#35 id=35 data-nosnippet>35</a>    /// # Deprecated since 4.10
@@ -123,14 +123,14 @@
 <a href=#50 id=50 data-nosnippet>50</a>        }
 <a href=#51 id=51 data-nosnippet>51</a>    }
 <a href=#52 id=52 data-nosnippet>52</a>
-<a href=#53 id=53 data-nosnippet>53</a>    <span class="doccomment">/// Returns [`true`] if the interface was found in the display
+<a href=#53 id=53 data-nosnippet>53</a>    <span class="doccomment">/// Returns true if the interface was found in the display
 <a href=#54 id=54 data-nosnippet>54</a>    /// `wl_registry.global` handler.
 <a href=#55 id=55 data-nosnippet>55</a>    /// ## `global`
 <a href=#56 id=56 data-nosnippet>56</a>    /// global interface to query in the registry
 <a href=#57 id=57 data-nosnippet>57</a>    ///
 <a href=#58 id=58 data-nosnippet>58</a>    /// # Returns
 <a href=#59 id=59 data-nosnippet>59</a>    ///
-<a href=#60 id=60 data-nosnippet>60</a>    /// [`true`] if the global is offered by the compositor
+<a href=#60 id=60 data-nosnippet>60</a>    /// true if the global is offered by the compositor
 <a href=#61 id=61 data-nosnippet>61</a>    </span><span class="attr">#[doc(alias = <span class="string">"gdk_wayland_display_query_registry"</span>)]
 <a href=#62 id=62 data-nosnippet>62</a>    </span><span class="kw">pub fn </span>query_registry(<span class="kw-2">&amp;</span><span class="self">self</span>, global: <span class="kw-2">&amp;</span><a href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>) -&gt; <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> {
 <a href=#63 id=63 data-nosnippet>63</a>        <span class="kw">unsafe </span>{

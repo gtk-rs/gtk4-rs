@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/auto/enums.rs`."><title>enums.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-7dda4a46.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.88.0-nightly (38c560ae6 2025-04-15)" data-channel="nightly" data-search-js="search-f7877310.js" data-settings-js="settings-5514c975.js" ><script src="../../../static.files/storage-4e99c027.js"></script><script defer src="../../../static.files/src-script-63605ae7.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-7ef8a74a.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-893ab5e7.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-6580c154.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/auto/enums.rs`."><title>enums.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-20739d33.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.88.0-nightly (b4c8b0c3f 2025-04-25)" data-channel="nightly" data-search-js="search-f7877310.js" data-settings-js="settings-5514c975.js" ><script src="../../../static.files/storage-4e99c027.js"></script><script defer src="../../../static.files/src-script-63605ae7.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-7ef8a74a.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-893ab5e7.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-6580c154.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
 
@@ -13416,114 +13416,301 @@
 <a href=#13343 id=13343 data-nosnippet>13343</a>    }
 <a href=#13344 id=13344 data-nosnippet>13344</a>}
 <a href=#13345 id=13345 data-nosnippet>13345</a>
-<a href=#13346 id=13346 data-nosnippet>13346</a><span class="doccomment">/// Describes a type of line wrapping.
-<a href=#13347 id=13347 data-nosnippet>13347</a></span><span class="attr">#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
-<a href=#13348 id=13348 data-nosnippet>13348</a>#[non_exhaustive]
-<a href=#13349 id=13349 data-nosnippet>13349</a>#[doc(alias = <span class="string">"GtkWrapMode"</span>)]
-<a href=#13350 id=13350 data-nosnippet>13350</a></span><span class="kw">pub enum </span><a href="../../../gtk4/enum.WrapMode.html">WrapMode</a> {
-<a href=#13351 id=13351 data-nosnippet>13351</a>    <span class="doccomment">/// do not wrap lines; just make the text area wider
-<a href=#13352 id=13352 data-nosnippet>13352</a>    </span><span class="attr">#[doc(alias = <span class="string">"GTK_WRAP_NONE"</span>)]
-<a href=#13353 id=13353 data-nosnippet>13353</a>    </span><span class="prelude-val">None</span>,
-<a href=#13354 id=13354 data-nosnippet>13354</a>    <span class="doccomment">/// wrap text, breaking lines anywhere the cursor can
-<a href=#13355 id=13355 data-nosnippet>13355</a>    ///   appear (between characters, usually - if you want to be technical,
-<a href=#13356 id=13356 data-nosnippet>13356</a>    ///   between graphemes, see pango_get_log_attrs())
-<a href=#13357 id=13357 data-nosnippet>13357</a>    </span><span class="attr">#[doc(alias = <span class="string">"GTK_WRAP_CHAR"</span>)]
-<a href=#13358 id=13358 data-nosnippet>13358</a>    </span>Char,
-<a href=#13359 id=13359 data-nosnippet>13359</a>    <span class="doccomment">/// wrap text, breaking lines in between words
-<a href=#13360 id=13360 data-nosnippet>13360</a>    </span><span class="attr">#[doc(alias = <span class="string">"GTK_WRAP_WORD"</span>)]
-<a href=#13361 id=13361 data-nosnippet>13361</a>    </span>Word,
-<a href=#13362 id=13362 data-nosnippet>13362</a>    <span class="doccomment">/// wrap text, breaking lines in between words, or if
-<a href=#13363 id=13363 data-nosnippet>13363</a>    ///   that is not enough, also between graphemes
-<a href=#13364 id=13364 data-nosnippet>13364</a>    </span><span class="attr">#[doc(alias = <span class="string">"GTK_WRAP_WORD_CHAR"</span>)]
-<a href=#13365 id=13365 data-nosnippet>13365</a>    </span>WordChar,
-<a href=#13366 id=13366 data-nosnippet>13366</a>    <span class="attr">#[doc(hidden)]
-<a href=#13367 id=13367 data-nosnippet>13367</a>    </span>__Unknown(<a href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>),
-<a href=#13368 id=13368 data-nosnippet>13368</a>}
-<a href=#13369 id=13369 data-nosnippet>13369</a>
-<a href=#13370 id=13370 data-nosnippet>13370</a><span class="attr">#[doc(hidden)]
-<a href=#13371 id=13371 data-nosnippet>13371</a></span><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.IntoGlib.html">IntoGlib</a> <span class="kw">for </span><a href="#13350-13368">WrapMode</a> {
-<a href=#13372 id=13372 data-nosnippet>13372</a>    <span class="kw">type </span>GlibType = <a href="../../../gtk4_sys/type.GtkWrapMode.html">ffi::GtkWrapMode</a>;
-<a href=#13373 id=13373 data-nosnippet>13373</a>
-<a href=#13374 id=13374 data-nosnippet>13374</a>    <span class="attr">#[inline]
-<a href=#13375 id=13375 data-nosnippet>13375</a>    </span><span class="kw">fn </span>into_glib(<span class="self">self</span>) -&gt; <a href="../../../gtk4_sys/type.GtkWrapMode.html">ffi::GtkWrapMode</a> {
-<a href=#13376 id=13376 data-nosnippet>13376</a>        <span class="kw">match </span><span class="self"><a href="#13375">self</a> </span>{
-<a href=#13377 id=13377 data-nosnippet>13377</a>            <a href="#13353"><span class="self">Self</span>::None</a> =&gt; <a href="../../../gtk4_sys/constant.GTK_WRAP_NONE.html">ffi::GTK_WRAP_NONE</a>,
-<a href=#13378 id=13378 data-nosnippet>13378</a>            <a href="#13358"><span class="self">Self</span>::Char</a> =&gt; <a href="../../../gtk4_sys/constant.GTK_WRAP_CHAR.html">ffi::GTK_WRAP_CHAR</a>,
-<a href=#13379 id=13379 data-nosnippet>13379</a>            <a href="#13361"><span class="self">Self</span>::Word</a> =&gt; <a href="../../../gtk4_sys/constant.GTK_WRAP_WORD.html">ffi::GTK_WRAP_WORD</a>,
-<a href=#13380 id=13380 data-nosnippet>13380</a>            <a href="#13365"><span class="self">Self</span>::WordChar</a> =&gt; <a href="../../../gtk4_sys/constant.GTK_WRAP_WORD_CHAR.html">ffi::GTK_WRAP_WORD_CHAR</a>,
-<a href=#13381 id=13381 data-nosnippet>13381</a>            <a href="#13367"><span class="self">Self</span>::__Unknown</a>(value) =&gt; <a href="#13381">value</a>,
-<a href=#13382 id=13382 data-nosnippet>13382</a>        }
-<a href=#13383 id=13383 data-nosnippet>13383</a>    }
-<a href=#13384 id=13384 data-nosnippet>13384</a>}
-<a href=#13385 id=13385 data-nosnippet>13385</a>
-<a href=#13386 id=13386 data-nosnippet>13386</a><span class="attr">#[doc(hidden)]
-<a href=#13387 id=13387 data-nosnippet>13387</a></span><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.FromGlib.html">FromGlib</a>&lt;<a href="../../../gtk4_sys/type.GtkWrapMode.html">ffi::GtkWrapMode</a>&gt; <span class="kw">for </span><a href="#13350-13368">WrapMode</a> {
-<a href=#13388 id=13388 data-nosnippet>13388</a>    <span class="attr">#[inline]
-<a href=#13389 id=13389 data-nosnippet>13389</a>    </span><span class="kw">unsafe fn </span>from_glib(value: <a href="../../../gtk4_sys/type.GtkWrapMode.html">ffi::GtkWrapMode</a>) -&gt; <span class="self">Self </span>{
-<a href=#13390 id=13390 data-nosnippet>13390</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#13391 id=13391 data-nosnippet>13391</a>
-<a href=#13392 id=13392 data-nosnippet>13392</a>        <span class="kw">match </span><a href="#13389">value</a> {
-<a href=#13393 id=13393 data-nosnippet>13393</a>            <a href="../../../gtk4_sys/constant.GTK_WRAP_NONE.html">ffi::GTK_WRAP_NONE</a> =&gt; <span class="self">Self</span>::None,
-<a href=#13394 id=13394 data-nosnippet>13394</a>            <a href="../../../gtk4_sys/constant.GTK_WRAP_CHAR.html">ffi::GTK_WRAP_CHAR</a> =&gt; <span class="self">Self</span>::Char,
-<a href=#13395 id=13395 data-nosnippet>13395</a>            <a href="../../../gtk4_sys/constant.GTK_WRAP_WORD.html">ffi::GTK_WRAP_WORD</a> =&gt; <span class="self">Self</span>::Word,
-<a href=#13396 id=13396 data-nosnippet>13396</a>            <a href="../../../gtk4_sys/constant.GTK_WRAP_WORD_CHAR.html">ffi::GTK_WRAP_WORD_CHAR</a> =&gt; <span class="self">Self</span>::WordChar,
-<a href=#13397 id=13397 data-nosnippet>13397</a>            value =&gt; <a href="#13367"><span class="self">Self</span>::__Unknown</a>(<a href="#13397">value</a>),
-<a href=#13398 id=13398 data-nosnippet>13398</a>        }
-<a href=#13399 id=13399 data-nosnippet>13399</a>    }
-<a href=#13400 id=13400 data-nosnippet>13400</a>}
-<a href=#13401 id=13401 data-nosnippet>13401</a>
-<a href=#13402 id=13402 data-nosnippet>13402</a><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/types/trait.StaticType.html">StaticType</a> <span class="kw">for </span><a href="#13350-13368">WrapMode</a> {
-<a href=#13403 id=13403 data-nosnippet>13403</a>    <span class="attr">#[inline]
-<a href=#13404 id=13404 data-nosnippet>13404</a>    #[doc(alias = <span class="string">"gtk_wrap_mode_get_type"</span>)]
-<a href=#13405 id=13405 data-nosnippet>13405</a>    </span><span class="kw">fn </span>static_type() -&gt; <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/types/struct.Type.html">glib::Type</a> {
-<a href=#13406 id=13406 data-nosnippet>13406</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(<a href="../../../gtk4_sys/fn.gtk_wrap_mode_get_type.html">ffi::gtk_wrap_mode_get_type</a>()) }
-<a href=#13407 id=13407 data-nosnippet>13407</a>    }
-<a href=#13408 id=13408 data-nosnippet>13408</a>}
-<a href=#13409 id=13409 data-nosnippet>13409</a>
-<a href=#13410 id=13410 data-nosnippet>13410</a><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/param_spec/trait.HasParamSpec.html">glib::HasParamSpec</a> <span class="kw">for </span><a href="#13350-13368">WrapMode</a> {
-<a href=#13411 id=13411 data-nosnippet>13411</a>    <span class="kw">type </span>ParamSpec = <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/param_spec/struct.ParamSpecEnum.html">glib::ParamSpecEnum</a>;
-<a href=#13412 id=13412 data-nosnippet>13412</a>    <span class="kw">type </span>SetValue = <span class="self">Self</span>;
-<a href=#13413 id=13413 data-nosnippet>13413</a>    <span class="kw">type </span>BuilderFn = <span class="kw">fn</span>(<span class="kw-2">&amp;</span><a href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>, <span class="self">Self</span>) -&gt; <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/param_spec/struct.ParamSpecEnumBuilder.html">glib::ParamSpecEnumBuilder</a>&lt;<span class="self">Self</span>&gt;;
+<a href=#13346 id=13346 data-nosnippet>13346</a><span class="doccomment">/// Determines which point or edge of a window is meant to remain fixed
+<a href=#13347 id=13347 data-nosnippet>13347</a>/// when a window changes size.
+<a href=#13348 id=13348 data-nosnippet>13348</a></span><span class="attr">#[cfg(feature = <span class="string">"v4_20"</span>)]
+<a href=#13349 id=13349 data-nosnippet>13349</a>#[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_20"</span>)))]
+<a href=#13350 id=13350 data-nosnippet>13350</a>#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+<a href=#13351 id=13351 data-nosnippet>13351</a>#[non_exhaustive]
+<a href=#13352 id=13352 data-nosnippet>13352</a>#[doc(alias = <span class="string">"GtkWindowGravity"</span>)]
+<a href=#13353 id=13353 data-nosnippet>13353</a></span><span class="kw">pub enum </span><a href="../../../gtk4/enum.WindowGravity.html">WindowGravity</a> {
+<a href=#13354 id=13354 data-nosnippet>13354</a>    <span class="doccomment">/// The top left corner
+<a href=#13355 id=13355 data-nosnippet>13355</a>    </span><span class="attr">#[doc(alias = <span class="string">"GTK_WINDOW_GRAVITY_TOP_LEFT"</span>)]
+<a href=#13356 id=13356 data-nosnippet>13356</a>    </span>TopLeft,
+<a href=#13357 id=13357 data-nosnippet>13357</a>    <span class="doccomment">/// The top edge
+<a href=#13358 id=13358 data-nosnippet>13358</a>    </span><span class="attr">#[doc(alias = <span class="string">"GTK_WINDOW_GRAVITY_TOP"</span>)]
+<a href=#13359 id=13359 data-nosnippet>13359</a>    </span>Top,
+<a href=#13360 id=13360 data-nosnippet>13360</a>    <span class="doccomment">/// The top right corner
+<a href=#13361 id=13361 data-nosnippet>13361</a>    </span><span class="attr">#[doc(alias = <span class="string">"GTK_WINDOW_GRAVITY_TOP_RIGHT"</span>)]
+<a href=#13362 id=13362 data-nosnippet>13362</a>    </span>TopRight,
+<a href=#13363 id=13363 data-nosnippet>13363</a>    <span class="doccomment">/// The left edge
+<a href=#13364 id=13364 data-nosnippet>13364</a>    </span><span class="attr">#[doc(alias = <span class="string">"GTK_WINDOW_GRAVITY_LEFT"</span>)]
+<a href=#13365 id=13365 data-nosnippet>13365</a>    </span>Left,
+<a href=#13366 id=13366 data-nosnippet>13366</a>    <span class="doccomment">/// The center pointer
+<a href=#13367 id=13367 data-nosnippet>13367</a>    </span><span class="attr">#[doc(alias = <span class="string">"GTK_WINDOW_GRAVITY_CENTER"</span>)]
+<a href=#13368 id=13368 data-nosnippet>13368</a>    </span>Center,
+<a href=#13369 id=13369 data-nosnippet>13369</a>    <span class="doccomment">/// The right edge
+<a href=#13370 id=13370 data-nosnippet>13370</a>    </span><span class="attr">#[doc(alias = <span class="string">"GTK_WINDOW_GRAVITY_RIGHT"</span>)]
+<a href=#13371 id=13371 data-nosnippet>13371</a>    </span>Right,
+<a href=#13372 id=13372 data-nosnippet>13372</a>    <span class="doccomment">/// The bottom left corner
+<a href=#13373 id=13373 data-nosnippet>13373</a>    </span><span class="attr">#[doc(alias = <span class="string">"GTK_WINDOW_GRAVITY_BOTTOM_LEFT"</span>)]
+<a href=#13374 id=13374 data-nosnippet>13374</a>    </span>BottomLeft,
+<a href=#13375 id=13375 data-nosnippet>13375</a>    <span class="doccomment">/// the bottom edge
+<a href=#13376 id=13376 data-nosnippet>13376</a>    </span><span class="attr">#[doc(alias = <span class="string">"GTK_WINDOW_GRAVITY_BOTTOM"</span>)]
+<a href=#13377 id=13377 data-nosnippet>13377</a>    </span>Bottom,
+<a href=#13378 id=13378 data-nosnippet>13378</a>    <span class="doccomment">/// The bottom right corner
+<a href=#13379 id=13379 data-nosnippet>13379</a>    </span><span class="attr">#[doc(alias = <span class="string">"GTK_WINDOW_GRAVITY_BOTTOM_RIGHT"</span>)]
+<a href=#13380 id=13380 data-nosnippet>13380</a>    </span>BottomRight,
+<a href=#13381 id=13381 data-nosnippet>13381</a>    <span class="doccomment">/// The top left or top right corner,
+<a href=#13382 id=13382 data-nosnippet>13382</a>    ///   depending on the text direction
+<a href=#13383 id=13383 data-nosnippet>13383</a>    </span><span class="attr">#[doc(alias = <span class="string">"GTK_WINDOW_GRAVITY_TOP_START"</span>)]
+<a href=#13384 id=13384 data-nosnippet>13384</a>    </span>TopStart,
+<a href=#13385 id=13385 data-nosnippet>13385</a>    <span class="doccomment">/// The top right or top left corner,
+<a href=#13386 id=13386 data-nosnippet>13386</a>    ///   depending on the text direction
+<a href=#13387 id=13387 data-nosnippet>13387</a>    </span><span class="attr">#[doc(alias = <span class="string">"GTK_WINDOW_GRAVITY_TOP_END"</span>)]
+<a href=#13388 id=13388 data-nosnippet>13388</a>    </span>TopEnd,
+<a href=#13389 id=13389 data-nosnippet>13389</a>    <span class="doccomment">/// The left or right edge,
+<a href=#13390 id=13390 data-nosnippet>13390</a>    ///   depending on the text direction
+<a href=#13391 id=13391 data-nosnippet>13391</a>    </span><span class="attr">#[doc(alias = <span class="string">"GTK_WINDOW_GRAVITY_START"</span>)]
+<a href=#13392 id=13392 data-nosnippet>13392</a>    </span>Start,
+<a href=#13393 id=13393 data-nosnippet>13393</a>    <span class="doccomment">/// The right or left edge,
+<a href=#13394 id=13394 data-nosnippet>13394</a>    ///   depending on the text direction
+<a href=#13395 id=13395 data-nosnippet>13395</a>    </span><span class="attr">#[doc(alias = <span class="string">"GTK_WINDOW_GRAVITY_END"</span>)]
+<a href=#13396 id=13396 data-nosnippet>13396</a>    </span>End,
+<a href=#13397 id=13397 data-nosnippet>13397</a>    <span class="doccomment">/// The bottom left or top right corner,
+<a href=#13398 id=13398 data-nosnippet>13398</a>    ///   depending on the text direction
+<a href=#13399 id=13399 data-nosnippet>13399</a>    </span><span class="attr">#[doc(alias = <span class="string">"GTK_WINDOW_GRAVITY_BOTTOM_START"</span>)]
+<a href=#13400 id=13400 data-nosnippet>13400</a>    </span>BottomStart,
+<a href=#13401 id=13401 data-nosnippet>13401</a>    <span class="doccomment">/// The bottom right or top left corner,
+<a href=#13402 id=13402 data-nosnippet>13402</a>    ///   depending on the text direction
+<a href=#13403 id=13403 data-nosnippet>13403</a>    </span><span class="attr">#[doc(alias = <span class="string">"GTK_WINDOW_GRAVITY_BOTTOM_END"</span>)]
+<a href=#13404 id=13404 data-nosnippet>13404</a>    </span>BottomEnd,
+<a href=#13405 id=13405 data-nosnippet>13405</a>    <span class="attr">#[doc(hidden)]
+<a href=#13406 id=13406 data-nosnippet>13406</a>    </span>__Unknown(<a href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>),
+<a href=#13407 id=13407 data-nosnippet>13407</a>}
+<a href=#13408 id=13408 data-nosnippet>13408</a>
+<a href=#13409 id=13409 data-nosnippet>13409</a><span class="attr">#[cfg(feature = <span class="string">"v4_20"</span>)]
+<a href=#13410 id=13410 data-nosnippet>13410</a>#[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_20"</span>)))]
+<a href=#13411 id=13411 data-nosnippet>13411</a>#[doc(hidden)]
+<a href=#13412 id=13412 data-nosnippet>13412</a></span><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.IntoGlib.html">IntoGlib</a> <span class="kw">for </span><a href="#13353-13407">WindowGravity</a> {
+<a href=#13413 id=13413 data-nosnippet>13413</a>    <span class="kw">type </span>GlibType = <a href="../../../gtk4_sys/type.GtkWindowGravity.html">ffi::GtkWindowGravity</a>;
 <a href=#13414 id=13414 data-nosnippet>13414</a>
-<a href=#13415 id=13415 data-nosnippet>13415</a>    <span class="kw">fn </span>param_spec_builder() -&gt; <span class="self">Self</span>::BuilderFn {
-<a href=#13416 id=13416 data-nosnippet>13416</a>        <span class="self">Self</span>::ParamSpec::builder_with_default
-<a href=#13417 id=13417 data-nosnippet>13417</a>    }
-<a href=#13418 id=13418 data-nosnippet>13418</a>}
-<a href=#13419 id=13419 data-nosnippet>13419</a>
-<a href=#13420 id=13420 data-nosnippet>13420</a><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/trait.ValueType.html">glib::value::ValueType</a> <span class="kw">for </span><a href="#13350-13368">WrapMode</a> {
-<a href=#13421 id=13421 data-nosnippet>13421</a>    <span class="kw">type </span>Type = <span class="self">Self</span>;
-<a href=#13422 id=13422 data-nosnippet>13422</a>}
-<a href=#13423 id=13423 data-nosnippet>13423</a>
-<a href=#13424 id=13424 data-nosnippet>13424</a><span class="kw">unsafe impl</span>&lt;<span class="lifetime">'a</span>&gt; <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/trait.FromValue.html">glib::value::FromValue</a>&lt;<span class="lifetime">'a</span>&gt; <span class="kw">for </span><a href="#13350-13368">WrapMode</a> {
-<a href=#13425 id=13425 data-nosnippet>13425</a>    <span class="kw">type </span>Checker = <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.GenericValueTypeChecker.html">glib::value::GenericValueTypeChecker</a>&lt;<span class="self">Self</span>&gt;;
-<a href=#13426 id=13426 data-nosnippet>13426</a>
-<a href=#13427 id=13427 data-nosnippet>13427</a>    <span class="attr">#[inline]
-<a href=#13428 id=13428 data-nosnippet>13428</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">glib::Value</a>) -&gt; <span class="self">Self </span>{
-<a href=#13429 id=13429 data-nosnippet>13429</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#13430 id=13430 data-nosnippet>13430</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#13428">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
-<a href=#13431 id=13431 data-nosnippet>13431</a>    }
-<a href=#13432 id=13432 data-nosnippet>13432</a>}
-<a href=#13433 id=13433 data-nosnippet>13433</a>
-<a href=#13434 id=13434 data-nosnippet>13434</a><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/trait.ToValue.html">ToValue</a> <span class="kw">for </span><a href="#13350-13368">WrapMode</a> {
-<a href=#13435 id=13435 data-nosnippet>13435</a>    <span class="attr">#[inline]
-<a href=#13436 id=13436 data-nosnippet>13436</a>    </span><span class="kw">fn </span>to_value(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">glib::Value</a> {
-<a href=#13437 id=13437 data-nosnippet>13437</a>        <span class="kw">let </span><span class="kw-2">mut </span>value = glib::Value::for_value_type::&lt;<span class="self">Self</span>&gt;();
-<a href=#13438 id=13438 data-nosnippet>13438</a>        <span class="kw">unsafe </span>{
-<a href=#13439 id=13439 data-nosnippet>13439</a>            glib::gobject_ffi::g_value_set_enum(<a href="#13437">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtrMut.html#tymethod.to_glib_none_mut">to_glib_none_mut</a>().<span class="number">0</span>, <a class="self" href="#13436">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>());
-<a href=#13440 id=13440 data-nosnippet>13440</a>        }
-<a href=#13441 id=13441 data-nosnippet>13441</a>        <a href="#13437">value</a>
-<a href=#13442 id=13442 data-nosnippet>13442</a>    }
+<a href=#13415 id=13415 data-nosnippet>13415</a>    <span class="kw">fn </span>into_glib(<span class="self">self</span>) -&gt; <a href="../../../gtk4_sys/type.GtkWindowGravity.html">ffi::GtkWindowGravity</a> {
+<a href=#13416 id=13416 data-nosnippet>13416</a>        <span class="kw">match </span><span class="self"><a href="#13415">self</a> </span>{
+<a href=#13417 id=13417 data-nosnippet>13417</a>            <a href="#13356"><span class="self">Self</span>::TopLeft</a> =&gt; <a href="../../../gtk4_sys/constant.GTK_WINDOW_GRAVITY_TOP_LEFT.html">ffi::GTK_WINDOW_GRAVITY_TOP_LEFT</a>,
+<a href=#13418 id=13418 data-nosnippet>13418</a>            <a href="#13359"><span class="self">Self</span>::Top</a> =&gt; <a href="../../../gtk4_sys/constant.GTK_WINDOW_GRAVITY_TOP.html">ffi::GTK_WINDOW_GRAVITY_TOP</a>,
+<a href=#13419 id=13419 data-nosnippet>13419</a>            <a href="#13362"><span class="self">Self</span>::TopRight</a> =&gt; <a href="../../../gtk4_sys/constant.GTK_WINDOW_GRAVITY_TOP_RIGHT.html">ffi::GTK_WINDOW_GRAVITY_TOP_RIGHT</a>,
+<a href=#13420 id=13420 data-nosnippet>13420</a>            <a href="#13365"><span class="self">Self</span>::Left</a> =&gt; <a href="../../../gtk4_sys/constant.GTK_WINDOW_GRAVITY_LEFT.html">ffi::GTK_WINDOW_GRAVITY_LEFT</a>,
+<a href=#13421 id=13421 data-nosnippet>13421</a>            <a href="#13368"><span class="self">Self</span>::Center</a> =&gt; <a href="../../../gtk4_sys/constant.GTK_WINDOW_GRAVITY_CENTER.html">ffi::GTK_WINDOW_GRAVITY_CENTER</a>,
+<a href=#13422 id=13422 data-nosnippet>13422</a>            <a href="#13371"><span class="self">Self</span>::Right</a> =&gt; <a href="../../../gtk4_sys/constant.GTK_WINDOW_GRAVITY_RIGHT.html">ffi::GTK_WINDOW_GRAVITY_RIGHT</a>,
+<a href=#13423 id=13423 data-nosnippet>13423</a>            <a href="#13374"><span class="self">Self</span>::BottomLeft</a> =&gt; <a href="../../../gtk4_sys/constant.GTK_WINDOW_GRAVITY_BOTTOM_LEFT.html">ffi::GTK_WINDOW_GRAVITY_BOTTOM_LEFT</a>,
+<a href=#13424 id=13424 data-nosnippet>13424</a>            <a href="#13377"><span class="self">Self</span>::Bottom</a> =&gt; <a href="../../../gtk4_sys/constant.GTK_WINDOW_GRAVITY_BOTTOM.html">ffi::GTK_WINDOW_GRAVITY_BOTTOM</a>,
+<a href=#13425 id=13425 data-nosnippet>13425</a>            <a href="#13380"><span class="self">Self</span>::BottomRight</a> =&gt; <a href="../../../gtk4_sys/constant.GTK_WINDOW_GRAVITY_BOTTOM_RIGHT.html">ffi::GTK_WINDOW_GRAVITY_BOTTOM_RIGHT</a>,
+<a href=#13426 id=13426 data-nosnippet>13426</a>            <a href="#13384"><span class="self">Self</span>::TopStart</a> =&gt; <a href="../../../gtk4_sys/constant.GTK_WINDOW_GRAVITY_TOP_START.html">ffi::GTK_WINDOW_GRAVITY_TOP_START</a>,
+<a href=#13427 id=13427 data-nosnippet>13427</a>            <a href="#13388"><span class="self">Self</span>::TopEnd</a> =&gt; <a href="../../../gtk4_sys/constant.GTK_WINDOW_GRAVITY_TOP_END.html">ffi::GTK_WINDOW_GRAVITY_TOP_END</a>,
+<a href=#13428 id=13428 data-nosnippet>13428</a>            <a href="#13392"><span class="self">Self</span>::Start</a> =&gt; <a href="../../../gtk4_sys/constant.GTK_WINDOW_GRAVITY_START.html">ffi::GTK_WINDOW_GRAVITY_START</a>,
+<a href=#13429 id=13429 data-nosnippet>13429</a>            <a href="#13396"><span class="self">Self</span>::End</a> =&gt; <a href="../../../gtk4_sys/constant.GTK_WINDOW_GRAVITY_END.html">ffi::GTK_WINDOW_GRAVITY_END</a>,
+<a href=#13430 id=13430 data-nosnippet>13430</a>            <a href="#13400"><span class="self">Self</span>::BottomStart</a> =&gt; <a href="../../../gtk4_sys/constant.GTK_WINDOW_GRAVITY_BOTTOM_START.html">ffi::GTK_WINDOW_GRAVITY_BOTTOM_START</a>,
+<a href=#13431 id=13431 data-nosnippet>13431</a>            <a href="#13404"><span class="self">Self</span>::BottomEnd</a> =&gt; <a href="../../../gtk4_sys/constant.GTK_WINDOW_GRAVITY_BOTTOM_END.html">ffi::GTK_WINDOW_GRAVITY_BOTTOM_END</a>,
+<a href=#13432 id=13432 data-nosnippet>13432</a>            <a href="#13406"><span class="self">Self</span>::__Unknown</a>(value) =&gt; <a href="#13432">value</a>,
+<a href=#13433 id=13433 data-nosnippet>13433</a>        }
+<a href=#13434 id=13434 data-nosnippet>13434</a>    }
+<a href=#13435 id=13435 data-nosnippet>13435</a>}
+<a href=#13436 id=13436 data-nosnippet>13436</a>
+<a href=#13437 id=13437 data-nosnippet>13437</a><span class="attr">#[cfg(feature = <span class="string">"v4_20"</span>)]
+<a href=#13438 id=13438 data-nosnippet>13438</a>#[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_20"</span>)))]
+<a href=#13439 id=13439 data-nosnippet>13439</a>#[doc(hidden)]
+<a href=#13440 id=13440 data-nosnippet>13440</a></span><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.FromGlib.html">FromGlib</a>&lt;<a href="../../../gtk4_sys/type.GtkWindowGravity.html">ffi::GtkWindowGravity</a>&gt; <span class="kw">for </span><a href="#13353-13407">WindowGravity</a> {
+<a href=#13441 id=13441 data-nosnippet>13441</a>    <span class="kw">unsafe fn </span>from_glib(value: <a href="../../../gtk4_sys/type.GtkWindowGravity.html">ffi::GtkWindowGravity</a>) -&gt; <span class="self">Self </span>{
+<a href=#13442 id=13442 data-nosnippet>13442</a>        <span class="macro">skip_assert_initialized!</span>();
 <a href=#13443 id=13443 data-nosnippet>13443</a>
-<a href=#13444 id=13444 data-nosnippet>13444</a>    <span class="attr">#[inline]
-<a href=#13445 id=13445 data-nosnippet>13445</a>    </span><span class="kw">fn </span>value_type(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/types/struct.Type.html">glib::Type</a> {
-<a href=#13446 id=13446 data-nosnippet>13446</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/types/trait.StaticType.html#tymethod.static_type"><span class="self">Self</span>::static_type</a>()
-<a href=#13447 id=13447 data-nosnippet>13447</a>    }
-<a href=#13448 id=13448 data-nosnippet>13448</a>}
-<a href=#13449 id=13449 data-nosnippet>13449</a>
-<a href=#13450 id=13450 data-nosnippet>13450</a><span class="kw">impl </span><a href="https://doc.rust-lang.org/nightly/core/convert/trait.From.html">From</a>&lt;<a href="#13350-13368">WrapMode</a>&gt; <span class="kw">for </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">glib::Value</a> {
-<a href=#13451 id=13451 data-nosnippet>13451</a>    <span class="attr">#[inline]
-<a href=#13452 id=13452 data-nosnippet>13452</a>    </span><span class="kw">fn </span>from(v: <a href="#13350-13368">WrapMode</a>) -&gt; <span class="self">Self </span>{
-<a href=#13453 id=13453 data-nosnippet>13453</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#13454 id=13454 data-nosnippet>13454</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/trait.ToValue.html#tymethod.to_value">ToValue::to_value</a>(<span class="kw-2">&amp;</span><a href="#13452">v</a>)
-<a href=#13455 id=13455 data-nosnippet>13455</a>    }
-<a href=#13456 id=13456 data-nosnippet>13456</a>}</code></pre></div></section></main></body></html>
+<a href=#13444 id=13444 data-nosnippet>13444</a>        <span class="kw">match </span><a href="#13441">value</a> {
+<a href=#13445 id=13445 data-nosnippet>13445</a>            <a href="../../../gtk4_sys/constant.GTK_WINDOW_GRAVITY_TOP_LEFT.html">ffi::GTK_WINDOW_GRAVITY_TOP_LEFT</a> =&gt; <span class="self">Self</span>::TopLeft,
+<a href=#13446 id=13446 data-nosnippet>13446</a>            <a href="../../../gtk4_sys/constant.GTK_WINDOW_GRAVITY_TOP.html">ffi::GTK_WINDOW_GRAVITY_TOP</a> =&gt; <span class="self">Self</span>::Top,
+<a href=#13447 id=13447 data-nosnippet>13447</a>            <a href="../../../gtk4_sys/constant.GTK_WINDOW_GRAVITY_TOP_RIGHT.html">ffi::GTK_WINDOW_GRAVITY_TOP_RIGHT</a> =&gt; <span class="self">Self</span>::TopRight,
+<a href=#13448 id=13448 data-nosnippet>13448</a>            <a href="../../../gtk4_sys/constant.GTK_WINDOW_GRAVITY_LEFT.html">ffi::GTK_WINDOW_GRAVITY_LEFT</a> =&gt; <span class="self">Self</span>::Left,
+<a href=#13449 id=13449 data-nosnippet>13449</a>            <a href="../../../gtk4_sys/constant.GTK_WINDOW_GRAVITY_CENTER.html">ffi::GTK_WINDOW_GRAVITY_CENTER</a> =&gt; <span class="self">Self</span>::Center,
+<a href=#13450 id=13450 data-nosnippet>13450</a>            <a href="../../../gtk4_sys/constant.GTK_WINDOW_GRAVITY_RIGHT.html">ffi::GTK_WINDOW_GRAVITY_RIGHT</a> =&gt; <span class="self">Self</span>::Right,
+<a href=#13451 id=13451 data-nosnippet>13451</a>            <a href="../../../gtk4_sys/constant.GTK_WINDOW_GRAVITY_BOTTOM_LEFT.html">ffi::GTK_WINDOW_GRAVITY_BOTTOM_LEFT</a> =&gt; <span class="self">Self</span>::BottomLeft,
+<a href=#13452 id=13452 data-nosnippet>13452</a>            <a href="../../../gtk4_sys/constant.GTK_WINDOW_GRAVITY_BOTTOM.html">ffi::GTK_WINDOW_GRAVITY_BOTTOM</a> =&gt; <span class="self">Self</span>::Bottom,
+<a href=#13453 id=13453 data-nosnippet>13453</a>            <a href="../../../gtk4_sys/constant.GTK_WINDOW_GRAVITY_BOTTOM_RIGHT.html">ffi::GTK_WINDOW_GRAVITY_BOTTOM_RIGHT</a> =&gt; <span class="self">Self</span>::BottomRight,
+<a href=#13454 id=13454 data-nosnippet>13454</a>            <a href="../../../gtk4_sys/constant.GTK_WINDOW_GRAVITY_TOP_START.html">ffi::GTK_WINDOW_GRAVITY_TOP_START</a> =&gt; <span class="self">Self</span>::TopStart,
+<a href=#13455 id=13455 data-nosnippet>13455</a>            <a href="../../../gtk4_sys/constant.GTK_WINDOW_GRAVITY_TOP_END.html">ffi::GTK_WINDOW_GRAVITY_TOP_END</a> =&gt; <span class="self">Self</span>::TopEnd,
+<a href=#13456 id=13456 data-nosnippet>13456</a>            <a href="../../../gtk4_sys/constant.GTK_WINDOW_GRAVITY_START.html">ffi::GTK_WINDOW_GRAVITY_START</a> =&gt; <span class="self">Self</span>::Start,
+<a href=#13457 id=13457 data-nosnippet>13457</a>            <a href="../../../gtk4_sys/constant.GTK_WINDOW_GRAVITY_END.html">ffi::GTK_WINDOW_GRAVITY_END</a> =&gt; <span class="self">Self</span>::End,
+<a href=#13458 id=13458 data-nosnippet>13458</a>            <a href="../../../gtk4_sys/constant.GTK_WINDOW_GRAVITY_BOTTOM_START.html">ffi::GTK_WINDOW_GRAVITY_BOTTOM_START</a> =&gt; <span class="self">Self</span>::BottomStart,
+<a href=#13459 id=13459 data-nosnippet>13459</a>            <a href="../../../gtk4_sys/constant.GTK_WINDOW_GRAVITY_BOTTOM_END.html">ffi::GTK_WINDOW_GRAVITY_BOTTOM_END</a> =&gt; <span class="self">Self</span>::BottomEnd,
+<a href=#13460 id=13460 data-nosnippet>13460</a>            value =&gt; <a href="#13406"><span class="self">Self</span>::__Unknown</a>(<a href="#13460">value</a>),
+<a href=#13461 id=13461 data-nosnippet>13461</a>        }
+<a href=#13462 id=13462 data-nosnippet>13462</a>    }
+<a href=#13463 id=13463 data-nosnippet>13463</a>}
+<a href=#13464 id=13464 data-nosnippet>13464</a>
+<a href=#13465 id=13465 data-nosnippet>13465</a><span class="attr">#[cfg(feature = <span class="string">"v4_20"</span>)]
+<a href=#13466 id=13466 data-nosnippet>13466</a>#[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_20"</span>)))]
+<a href=#13467 id=13467 data-nosnippet>13467</a></span><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/types/trait.StaticType.html">StaticType</a> <span class="kw">for </span><a href="#13353-13407">WindowGravity</a> {
+<a href=#13468 id=13468 data-nosnippet>13468</a>    <span class="attr">#[inline]
+<a href=#13469 id=13469 data-nosnippet>13469</a>    #[doc(alias = <span class="string">"gtk_window_gravity_get_type"</span>)]
+<a href=#13470 id=13470 data-nosnippet>13470</a>    </span><span class="kw">fn </span>static_type() -&gt; <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/types/struct.Type.html">glib::Type</a> {
+<a href=#13471 id=13471 data-nosnippet>13471</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(<a href="../../../gtk4_sys/fn.gtk_window_gravity_get_type.html">ffi::gtk_window_gravity_get_type</a>()) }
+<a href=#13472 id=13472 data-nosnippet>13472</a>    }
+<a href=#13473 id=13473 data-nosnippet>13473</a>}
+<a href=#13474 id=13474 data-nosnippet>13474</a>
+<a href=#13475 id=13475 data-nosnippet>13475</a><span class="attr">#[cfg(feature = <span class="string">"v4_20"</span>)]
+<a href=#13476 id=13476 data-nosnippet>13476</a>#[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_20"</span>)))]
+<a href=#13477 id=13477 data-nosnippet>13477</a></span><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/param_spec/trait.HasParamSpec.html">glib::HasParamSpec</a> <span class="kw">for </span><a href="#13353-13407">WindowGravity</a> {
+<a href=#13478 id=13478 data-nosnippet>13478</a>    <span class="kw">type </span>ParamSpec = <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/param_spec/struct.ParamSpecEnum.html">glib::ParamSpecEnum</a>;
+<a href=#13479 id=13479 data-nosnippet>13479</a>    <span class="kw">type </span>SetValue = <span class="self">Self</span>;
+<a href=#13480 id=13480 data-nosnippet>13480</a>    <span class="kw">type </span>BuilderFn = <span class="kw">fn</span>(<span class="kw-2">&amp;</span><a href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>, <span class="self">Self</span>) -&gt; <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/param_spec/struct.ParamSpecEnumBuilder.html">glib::ParamSpecEnumBuilder</a>&lt;<span class="self">Self</span>&gt;;
+<a href=#13481 id=13481 data-nosnippet>13481</a>
+<a href=#13482 id=13482 data-nosnippet>13482</a>    <span class="kw">fn </span>param_spec_builder() -&gt; <span class="self">Self</span>::BuilderFn {
+<a href=#13483 id=13483 data-nosnippet>13483</a>        <span class="self">Self</span>::ParamSpec::builder_with_default
+<a href=#13484 id=13484 data-nosnippet>13484</a>    }
+<a href=#13485 id=13485 data-nosnippet>13485</a>}
+<a href=#13486 id=13486 data-nosnippet>13486</a>
+<a href=#13487 id=13487 data-nosnippet>13487</a><span class="attr">#[cfg(feature = <span class="string">"v4_20"</span>)]
+<a href=#13488 id=13488 data-nosnippet>13488</a>#[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_20"</span>)))]
+<a href=#13489 id=13489 data-nosnippet>13489</a></span><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/trait.ValueType.html">glib::value::ValueType</a> <span class="kw">for </span><a href="#13353-13407">WindowGravity</a> {
+<a href=#13490 id=13490 data-nosnippet>13490</a>    <span class="kw">type </span>Type = <span class="self">Self</span>;
+<a href=#13491 id=13491 data-nosnippet>13491</a>}
+<a href=#13492 id=13492 data-nosnippet>13492</a>
+<a href=#13493 id=13493 data-nosnippet>13493</a><span class="attr">#[cfg(feature = <span class="string">"v4_20"</span>)]
+<a href=#13494 id=13494 data-nosnippet>13494</a>#[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_20"</span>)))]
+<a href=#13495 id=13495 data-nosnippet>13495</a></span><span class="kw">unsafe impl</span>&lt;<span class="lifetime">'a</span>&gt; <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/trait.FromValue.html">glib::value::FromValue</a>&lt;<span class="lifetime">'a</span>&gt; <span class="kw">for </span><a href="#13353-13407">WindowGravity</a> {
+<a href=#13496 id=13496 data-nosnippet>13496</a>    <span class="kw">type </span>Checker = <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.GenericValueTypeChecker.html">glib::value::GenericValueTypeChecker</a>&lt;<span class="self">Self</span>&gt;;
+<a href=#13497 id=13497 data-nosnippet>13497</a>
+<a href=#13498 id=13498 data-nosnippet>13498</a>    <span class="attr">#[inline]
+<a href=#13499 id=13499 data-nosnippet>13499</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">glib::Value</a>) -&gt; <span class="self">Self </span>{
+<a href=#13500 id=13500 data-nosnippet>13500</a>        <span class="macro">skip_assert_initialized!</span>();
+<a href=#13501 id=13501 data-nosnippet>13501</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#13499">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#13502 id=13502 data-nosnippet>13502</a>    }
+<a href=#13503 id=13503 data-nosnippet>13503</a>}
+<a href=#13504 id=13504 data-nosnippet>13504</a>
+<a href=#13505 id=13505 data-nosnippet>13505</a><span class="attr">#[cfg(feature = <span class="string">"v4_20"</span>)]
+<a href=#13506 id=13506 data-nosnippet>13506</a>#[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_20"</span>)))]
+<a href=#13507 id=13507 data-nosnippet>13507</a></span><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/trait.ToValue.html">ToValue</a> <span class="kw">for </span><a href="#13353-13407">WindowGravity</a> {
+<a href=#13508 id=13508 data-nosnippet>13508</a>    <span class="attr">#[inline]
+<a href=#13509 id=13509 data-nosnippet>13509</a>    </span><span class="kw">fn </span>to_value(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">glib::Value</a> {
+<a href=#13510 id=13510 data-nosnippet>13510</a>        <span class="kw">let </span><span class="kw-2">mut </span>value = glib::Value::for_value_type::&lt;<span class="self">Self</span>&gt;();
+<a href=#13511 id=13511 data-nosnippet>13511</a>        <span class="kw">unsafe </span>{
+<a href=#13512 id=13512 data-nosnippet>13512</a>            glib::gobject_ffi::g_value_set_enum(<a href="#13510">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtrMut.html#tymethod.to_glib_none_mut">to_glib_none_mut</a>().<span class="number">0</span>, <a class="self" href="#13509">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>());
+<a href=#13513 id=13513 data-nosnippet>13513</a>        }
+<a href=#13514 id=13514 data-nosnippet>13514</a>        <a href="#13510">value</a>
+<a href=#13515 id=13515 data-nosnippet>13515</a>    }
+<a href=#13516 id=13516 data-nosnippet>13516</a>
+<a href=#13517 id=13517 data-nosnippet>13517</a>    <span class="attr">#[inline]
+<a href=#13518 id=13518 data-nosnippet>13518</a>    </span><span class="kw">fn </span>value_type(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/types/struct.Type.html">glib::Type</a> {
+<a href=#13519 id=13519 data-nosnippet>13519</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/types/trait.StaticType.html#tymethod.static_type"><span class="self">Self</span>::static_type</a>()
+<a href=#13520 id=13520 data-nosnippet>13520</a>    }
+<a href=#13521 id=13521 data-nosnippet>13521</a>}
+<a href=#13522 id=13522 data-nosnippet>13522</a>
+<a href=#13523 id=13523 data-nosnippet>13523</a><span class="attr">#[cfg(feature = <span class="string">"v4_20"</span>)]
+<a href=#13524 id=13524 data-nosnippet>13524</a>#[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_20"</span>)))]
+<a href=#13525 id=13525 data-nosnippet>13525</a></span><span class="kw">impl </span><a href="https://doc.rust-lang.org/nightly/core/convert/trait.From.html">From</a>&lt;<a href="#13353-13407">WindowGravity</a>&gt; <span class="kw">for </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">glib::Value</a> {
+<a href=#13526 id=13526 data-nosnippet>13526</a>    <span class="attr">#[inline]
+<a href=#13527 id=13527 data-nosnippet>13527</a>    </span><span class="kw">fn </span>from(v: <a href="#13353-13407">WindowGravity</a>) -&gt; <span class="self">Self </span>{
+<a href=#13528 id=13528 data-nosnippet>13528</a>        <span class="macro">skip_assert_initialized!</span>();
+<a href=#13529 id=13529 data-nosnippet>13529</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/trait.ToValue.html#tymethod.to_value">ToValue::to_value</a>(<span class="kw-2">&amp;</span><a href="#13527">v</a>)
+<a href=#13530 id=13530 data-nosnippet>13530</a>    }
+<a href=#13531 id=13531 data-nosnippet>13531</a>}
+<a href=#13532 id=13532 data-nosnippet>13532</a>
+<a href=#13533 id=13533 data-nosnippet>13533</a><span class="doccomment">/// Describes a type of line wrapping.
+<a href=#13534 id=13534 data-nosnippet>13534</a></span><span class="attr">#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+<a href=#13535 id=13535 data-nosnippet>13535</a>#[non_exhaustive]
+<a href=#13536 id=13536 data-nosnippet>13536</a>#[doc(alias = <span class="string">"GtkWrapMode"</span>)]
+<a href=#13537 id=13537 data-nosnippet>13537</a></span><span class="kw">pub enum </span><a href="../../../gtk4/enum.WrapMode.html">WrapMode</a> {
+<a href=#13538 id=13538 data-nosnippet>13538</a>    <span class="doccomment">/// do not wrap lines; just make the text area wider
+<a href=#13539 id=13539 data-nosnippet>13539</a>    </span><span class="attr">#[doc(alias = <span class="string">"GTK_WRAP_NONE"</span>)]
+<a href=#13540 id=13540 data-nosnippet>13540</a>    </span><span class="prelude-val">None</span>,
+<a href=#13541 id=13541 data-nosnippet>13541</a>    <span class="doccomment">/// wrap text, breaking lines anywhere the cursor can
+<a href=#13542 id=13542 data-nosnippet>13542</a>    ///   appear (between characters, usually - if you want to be technical,
+<a href=#13543 id=13543 data-nosnippet>13543</a>    ///   between graphemes, see pango_get_log_attrs())
+<a href=#13544 id=13544 data-nosnippet>13544</a>    </span><span class="attr">#[doc(alias = <span class="string">"GTK_WRAP_CHAR"</span>)]
+<a href=#13545 id=13545 data-nosnippet>13545</a>    </span>Char,
+<a href=#13546 id=13546 data-nosnippet>13546</a>    <span class="doccomment">/// wrap text, breaking lines in between words
+<a href=#13547 id=13547 data-nosnippet>13547</a>    </span><span class="attr">#[doc(alias = <span class="string">"GTK_WRAP_WORD"</span>)]
+<a href=#13548 id=13548 data-nosnippet>13548</a>    </span>Word,
+<a href=#13549 id=13549 data-nosnippet>13549</a>    <span class="doccomment">/// wrap text, breaking lines in between words, or if
+<a href=#13550 id=13550 data-nosnippet>13550</a>    ///   that is not enough, also between graphemes
+<a href=#13551 id=13551 data-nosnippet>13551</a>    </span><span class="attr">#[doc(alias = <span class="string">"GTK_WRAP_WORD_CHAR"</span>)]
+<a href=#13552 id=13552 data-nosnippet>13552</a>    </span>WordChar,
+<a href=#13553 id=13553 data-nosnippet>13553</a>    <span class="attr">#[doc(hidden)]
+<a href=#13554 id=13554 data-nosnippet>13554</a>    </span>__Unknown(<a href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>),
+<a href=#13555 id=13555 data-nosnippet>13555</a>}
+<a href=#13556 id=13556 data-nosnippet>13556</a>
+<a href=#13557 id=13557 data-nosnippet>13557</a><span class="attr">#[doc(hidden)]
+<a href=#13558 id=13558 data-nosnippet>13558</a></span><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.IntoGlib.html">IntoGlib</a> <span class="kw">for </span><a href="#13537-13555">WrapMode</a> {
+<a href=#13559 id=13559 data-nosnippet>13559</a>    <span class="kw">type </span>GlibType = <a href="../../../gtk4_sys/type.GtkWrapMode.html">ffi::GtkWrapMode</a>;
+<a href=#13560 id=13560 data-nosnippet>13560</a>
+<a href=#13561 id=13561 data-nosnippet>13561</a>    <span class="attr">#[inline]
+<a href=#13562 id=13562 data-nosnippet>13562</a>    </span><span class="kw">fn </span>into_glib(<span class="self">self</span>) -&gt; <a href="../../../gtk4_sys/type.GtkWrapMode.html">ffi::GtkWrapMode</a> {
+<a href=#13563 id=13563 data-nosnippet>13563</a>        <span class="kw">match </span><span class="self"><a href="#13562">self</a> </span>{
+<a href=#13564 id=13564 data-nosnippet>13564</a>            <a href="#13540"><span class="self">Self</span>::None</a> =&gt; <a href="../../../gtk4_sys/constant.GTK_WRAP_NONE.html">ffi::GTK_WRAP_NONE</a>,
+<a href=#13565 id=13565 data-nosnippet>13565</a>            <a href="#13545"><span class="self">Self</span>::Char</a> =&gt; <a href="../../../gtk4_sys/constant.GTK_WRAP_CHAR.html">ffi::GTK_WRAP_CHAR</a>,
+<a href=#13566 id=13566 data-nosnippet>13566</a>            <a href="#13548"><span class="self">Self</span>::Word</a> =&gt; <a href="../../../gtk4_sys/constant.GTK_WRAP_WORD.html">ffi::GTK_WRAP_WORD</a>,
+<a href=#13567 id=13567 data-nosnippet>13567</a>            <a href="#13552"><span class="self">Self</span>::WordChar</a> =&gt; <a href="../../../gtk4_sys/constant.GTK_WRAP_WORD_CHAR.html">ffi::GTK_WRAP_WORD_CHAR</a>,
+<a href=#13568 id=13568 data-nosnippet>13568</a>            <a href="#13554"><span class="self">Self</span>::__Unknown</a>(value) =&gt; <a href="#13568">value</a>,
+<a href=#13569 id=13569 data-nosnippet>13569</a>        }
+<a href=#13570 id=13570 data-nosnippet>13570</a>    }
+<a href=#13571 id=13571 data-nosnippet>13571</a>}
+<a href=#13572 id=13572 data-nosnippet>13572</a>
+<a href=#13573 id=13573 data-nosnippet>13573</a><span class="attr">#[doc(hidden)]
+<a href=#13574 id=13574 data-nosnippet>13574</a></span><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.FromGlib.html">FromGlib</a>&lt;<a href="../../../gtk4_sys/type.GtkWrapMode.html">ffi::GtkWrapMode</a>&gt; <span class="kw">for </span><a href="#13537-13555">WrapMode</a> {
+<a href=#13575 id=13575 data-nosnippet>13575</a>    <span class="attr">#[inline]
+<a href=#13576 id=13576 data-nosnippet>13576</a>    </span><span class="kw">unsafe fn </span>from_glib(value: <a href="../../../gtk4_sys/type.GtkWrapMode.html">ffi::GtkWrapMode</a>) -&gt; <span class="self">Self </span>{
+<a href=#13577 id=13577 data-nosnippet>13577</a>        <span class="macro">skip_assert_initialized!</span>();
+<a href=#13578 id=13578 data-nosnippet>13578</a>
+<a href=#13579 id=13579 data-nosnippet>13579</a>        <span class="kw">match </span><a href="#13576">value</a> {
+<a href=#13580 id=13580 data-nosnippet>13580</a>            <a href="../../../gtk4_sys/constant.GTK_WRAP_NONE.html">ffi::GTK_WRAP_NONE</a> =&gt; <span class="self">Self</span>::None,
+<a href=#13581 id=13581 data-nosnippet>13581</a>            <a href="../../../gtk4_sys/constant.GTK_WRAP_CHAR.html">ffi::GTK_WRAP_CHAR</a> =&gt; <span class="self">Self</span>::Char,
+<a href=#13582 id=13582 data-nosnippet>13582</a>            <a href="../../../gtk4_sys/constant.GTK_WRAP_WORD.html">ffi::GTK_WRAP_WORD</a> =&gt; <span class="self">Self</span>::Word,
+<a href=#13583 id=13583 data-nosnippet>13583</a>            <a href="../../../gtk4_sys/constant.GTK_WRAP_WORD_CHAR.html">ffi::GTK_WRAP_WORD_CHAR</a> =&gt; <span class="self">Self</span>::WordChar,
+<a href=#13584 id=13584 data-nosnippet>13584</a>            value =&gt; <a href="#13554"><span class="self">Self</span>::__Unknown</a>(<a href="#13584">value</a>),
+<a href=#13585 id=13585 data-nosnippet>13585</a>        }
+<a href=#13586 id=13586 data-nosnippet>13586</a>    }
+<a href=#13587 id=13587 data-nosnippet>13587</a>}
+<a href=#13588 id=13588 data-nosnippet>13588</a>
+<a href=#13589 id=13589 data-nosnippet>13589</a><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/types/trait.StaticType.html">StaticType</a> <span class="kw">for </span><a href="#13537-13555">WrapMode</a> {
+<a href=#13590 id=13590 data-nosnippet>13590</a>    <span class="attr">#[inline]
+<a href=#13591 id=13591 data-nosnippet>13591</a>    #[doc(alias = <span class="string">"gtk_wrap_mode_get_type"</span>)]
+<a href=#13592 id=13592 data-nosnippet>13592</a>    </span><span class="kw">fn </span>static_type() -&gt; <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/types/struct.Type.html">glib::Type</a> {
+<a href=#13593 id=13593 data-nosnippet>13593</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(<a href="../../../gtk4_sys/fn.gtk_wrap_mode_get_type.html">ffi::gtk_wrap_mode_get_type</a>()) }
+<a href=#13594 id=13594 data-nosnippet>13594</a>    }
+<a href=#13595 id=13595 data-nosnippet>13595</a>}
+<a href=#13596 id=13596 data-nosnippet>13596</a>
+<a href=#13597 id=13597 data-nosnippet>13597</a><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/param_spec/trait.HasParamSpec.html">glib::HasParamSpec</a> <span class="kw">for </span><a href="#13537-13555">WrapMode</a> {
+<a href=#13598 id=13598 data-nosnippet>13598</a>    <span class="kw">type </span>ParamSpec = <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/param_spec/struct.ParamSpecEnum.html">glib::ParamSpecEnum</a>;
+<a href=#13599 id=13599 data-nosnippet>13599</a>    <span class="kw">type </span>SetValue = <span class="self">Self</span>;
+<a href=#13600 id=13600 data-nosnippet>13600</a>    <span class="kw">type </span>BuilderFn = <span class="kw">fn</span>(<span class="kw-2">&amp;</span><a href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>, <span class="self">Self</span>) -&gt; <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/param_spec/struct.ParamSpecEnumBuilder.html">glib::ParamSpecEnumBuilder</a>&lt;<span class="self">Self</span>&gt;;
+<a href=#13601 id=13601 data-nosnippet>13601</a>
+<a href=#13602 id=13602 data-nosnippet>13602</a>    <span class="kw">fn </span>param_spec_builder() -&gt; <span class="self">Self</span>::BuilderFn {
+<a href=#13603 id=13603 data-nosnippet>13603</a>        <span class="self">Self</span>::ParamSpec::builder_with_default
+<a href=#13604 id=13604 data-nosnippet>13604</a>    }
+<a href=#13605 id=13605 data-nosnippet>13605</a>}
+<a href=#13606 id=13606 data-nosnippet>13606</a>
+<a href=#13607 id=13607 data-nosnippet>13607</a><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/trait.ValueType.html">glib::value::ValueType</a> <span class="kw">for </span><a href="#13537-13555">WrapMode</a> {
+<a href=#13608 id=13608 data-nosnippet>13608</a>    <span class="kw">type </span>Type = <span class="self">Self</span>;
+<a href=#13609 id=13609 data-nosnippet>13609</a>}
+<a href=#13610 id=13610 data-nosnippet>13610</a>
+<a href=#13611 id=13611 data-nosnippet>13611</a><span class="kw">unsafe impl</span>&lt;<span class="lifetime">'a</span>&gt; <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/trait.FromValue.html">glib::value::FromValue</a>&lt;<span class="lifetime">'a</span>&gt; <span class="kw">for </span><a href="#13537-13555">WrapMode</a> {
+<a href=#13612 id=13612 data-nosnippet>13612</a>    <span class="kw">type </span>Checker = <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.GenericValueTypeChecker.html">glib::value::GenericValueTypeChecker</a>&lt;<span class="self">Self</span>&gt;;
+<a href=#13613 id=13613 data-nosnippet>13613</a>
+<a href=#13614 id=13614 data-nosnippet>13614</a>    <span class="attr">#[inline]
+<a href=#13615 id=13615 data-nosnippet>13615</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">glib::Value</a>) -&gt; <span class="self">Self </span>{
+<a href=#13616 id=13616 data-nosnippet>13616</a>        <span class="macro">skip_assert_initialized!</span>();
+<a href=#13617 id=13617 data-nosnippet>13617</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#13615">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#13618 id=13618 data-nosnippet>13618</a>    }
+<a href=#13619 id=13619 data-nosnippet>13619</a>}
+<a href=#13620 id=13620 data-nosnippet>13620</a>
+<a href=#13621 id=13621 data-nosnippet>13621</a><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/trait.ToValue.html">ToValue</a> <span class="kw">for </span><a href="#13537-13555">WrapMode</a> {
+<a href=#13622 id=13622 data-nosnippet>13622</a>    <span class="attr">#[inline]
+<a href=#13623 id=13623 data-nosnippet>13623</a>    </span><span class="kw">fn </span>to_value(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">glib::Value</a> {
+<a href=#13624 id=13624 data-nosnippet>13624</a>        <span class="kw">let </span><span class="kw-2">mut </span>value = glib::Value::for_value_type::&lt;<span class="self">Self</span>&gt;();
+<a href=#13625 id=13625 data-nosnippet>13625</a>        <span class="kw">unsafe </span>{
+<a href=#13626 id=13626 data-nosnippet>13626</a>            glib::gobject_ffi::g_value_set_enum(<a href="#13624">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtrMut.html#tymethod.to_glib_none_mut">to_glib_none_mut</a>().<span class="number">0</span>, <a class="self" href="#13623">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>());
+<a href=#13627 id=13627 data-nosnippet>13627</a>        }
+<a href=#13628 id=13628 data-nosnippet>13628</a>        <a href="#13624">value</a>
+<a href=#13629 id=13629 data-nosnippet>13629</a>    }
+<a href=#13630 id=13630 data-nosnippet>13630</a>
+<a href=#13631 id=13631 data-nosnippet>13631</a>    <span class="attr">#[inline]
+<a href=#13632 id=13632 data-nosnippet>13632</a>    </span><span class="kw">fn </span>value_type(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/types/struct.Type.html">glib::Type</a> {
+<a href=#13633 id=13633 data-nosnippet>13633</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/types/trait.StaticType.html#tymethod.static_type"><span class="self">Self</span>::static_type</a>()
+<a href=#13634 id=13634 data-nosnippet>13634</a>    }
+<a href=#13635 id=13635 data-nosnippet>13635</a>}
+<a href=#13636 id=13636 data-nosnippet>13636</a>
+<a href=#13637 id=13637 data-nosnippet>13637</a><span class="kw">impl </span><a href="https://doc.rust-lang.org/nightly/core/convert/trait.From.html">From</a>&lt;<a href="#13537-13555">WrapMode</a>&gt; <span class="kw">for </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">glib::Value</a> {
+<a href=#13638 id=13638 data-nosnippet>13638</a>    <span class="attr">#[inline]
+<a href=#13639 id=13639 data-nosnippet>13639</a>    </span><span class="kw">fn </span>from(v: <a href="#13537-13555">WrapMode</a>) -&gt; <span class="self">Self </span>{
+<a href=#13640 id=13640 data-nosnippet>13640</a>        <span class="macro">skip_assert_initialized!</span>();
+<a href=#13641 id=13641 data-nosnippet>13641</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/trait.ToValue.html#tymethod.to_value">ToValue::to_value</a>(<span class="kw-2">&amp;</span><a href="#13639">v</a>)
+<a href=#13642 id=13642 data-nosnippet>13642</a>    }
+<a href=#13643 id=13643 data-nosnippet>13643</a>}</code></pre></div></section></main></body></html>

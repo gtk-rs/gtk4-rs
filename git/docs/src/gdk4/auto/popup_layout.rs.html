@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gdk4/src/auto/popup_layout.rs`."><title>popup_layout.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-7dda4a46.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gdk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.88.0-nightly (38c560ae6 2025-04-15)" data-channel="nightly" data-search-js="search-f7877310.js" data-settings-js="settings-5514c975.js" ><script src="../../../static.files/storage-4e99c027.js"></script><script defer src="../../../static.files/src-script-63605ae7.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-7ef8a74a.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-893ab5e7.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-6580c154.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gdk4/src/auto/popup_layout.rs`."><title>popup_layout.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-20739d33.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gdk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.88.0-nightly (b4c8b0c3f 2025-04-25)" data-channel="nightly" data-search-js="search-f7877310.js" data-settings-js="settings-5514c975.js" ><script src="../../../static.files/storage-4e99c027.js"></script><script defer src="../../../static.files/src-script-63605ae7.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-7ef8a74a.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-893ab5e7.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-6580c154.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
 
@@ -136,7 +136,7 @@
 <a href=#63 id=63 data-nosnippet>63</a>    /// [`set_offset()`][Self::set_offset()], which is equivalent to offsetting the
 <a href=#64 id=64 data-nosnippet>64</a>    /// position of surface.
 <a href=#65 id=65 data-nosnippet>65</a>    /// ## `anchor_rect`
-<a href=#66 id=66 data-nosnippet>66</a>    /// the anchor [`Rectangle`][crate::Rectangle] to align @surface with
+<a href=#66 id=66 data-nosnippet>66</a>    /// the anchor rectangle to align @surface with
 <a href=#67 id=67 data-nosnippet>67</a>    /// ## `rect_anchor`
 <a href=#68 id=68 data-nosnippet>68</a>    /// the point on @anchor_rect to align with @surface's anchor point
 <a href=#69 id=69 data-nosnippet>69</a>    /// ## `surface_anchor`
@@ -177,11 +177,11 @@
 <a href=#104 id=104 data-nosnippet>104</a>        }
 <a href=#105 id=105 data-nosnippet>105</a>    }
 <a href=#106 id=106 data-nosnippet>106</a>
-<a href=#107 id=107 data-nosnippet>107</a>    <span class="doccomment">/// Get the [`AnchorHints`][crate::AnchorHints].
+<a href=#107 id=107 data-nosnippet>107</a>    <span class="doccomment">/// Get the anchor hints.
 <a href=#108 id=108 data-nosnippet>108</a>    ///
 <a href=#109 id=109 data-nosnippet>109</a>    /// # Returns
 <a href=#110 id=110 data-nosnippet>110</a>    ///
-<a href=#111 id=111 data-nosnippet>111</a>    /// the [`AnchorHints`][crate::AnchorHints]
+<a href=#111 id=111 data-nosnippet>111</a>    /// the anchor hints
 <a href=#112 id=112 data-nosnippet>112</a>    </span><span class="attr">#[doc(alias = <span class="string">"gdk_popup_layout_get_anchor_hints"</span>)]
 <a href=#113 id=113 data-nosnippet>113</a>    #[doc(alias = <span class="string">"get_anchor_hints"</span>)]
 <a href=#114 id=114 data-nosnippet>114</a>    </span><span class="kw">pub fn </span>anchor_hints(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="flags.rs.html#8-55">AnchorHints</a> {
@@ -275,11 +275,11 @@
 <a href=#202 id=202 data-nosnippet>202</a>    ///
 <a href=#203 id=203 data-nosnippet>203</a>    /// The set @anchor_hints determines how @surface will be moved
 <a href=#204 id=204 data-nosnippet>204</a>    /// if the anchor points cause it to move off-screen. For example,
-<a href=#205 id=205 data-nosnippet>205</a>    /// [`AnchorHints::FLIP_X`][crate::AnchorHints::FLIP_X] will replace [`Gravity::NorthWest`][crate::Gravity::NorthWest] with
-<a href=#206 id=206 data-nosnippet>206</a>    /// [`Gravity::NorthEast`][crate::Gravity::NorthEast] and vice versa if @surface extends
+<a href=#205 id=205 data-nosnippet>205</a>    /// `GDK_ANCHOR_FLIP_X` will replace `GDK_GRAVITY_NORTH_WEST` with
+<a href=#206 id=206 data-nosnippet>206</a>    /// `GDK_GRAVITY_NORTH_EAST` and vice versa if @surface extends
 <a href=#207 id=207 data-nosnippet>207</a>    /// beyond the left or right edges of the monitor.
 <a href=#208 id=208 data-nosnippet>208</a>    /// ## `anchor_hints`
-<a href=#209 id=209 data-nosnippet>209</a>    /// the new [`AnchorHints`][crate::AnchorHints]
+<a href=#209 id=209 data-nosnippet>209</a>    /// the new anchor hints
 <a href=#210 id=210 data-nosnippet>210</a>    </span><span class="attr">#[doc(alias = <span class="string">"gdk_popup_layout_set_anchor_hints"</span>)]
 <a href=#211 id=211 data-nosnippet>211</a>    </span><span class="kw">pub fn </span>set_anchor_hints(<span class="kw-2">&amp;</span><span class="self">self</span>, anchor_hints: <a href="flags.rs.html#8-55">AnchorHints</a>) {
 <a href=#212 id=212 data-nosnippet>212</a>        <span class="kw">unsafe </span>{
