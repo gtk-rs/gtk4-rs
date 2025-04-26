@@ -144,7 +144,7 @@ generate = [
     "Gtk.IconViewDropPosition",
     "Gtk.ImageType",
     "Gtk.IMContext",
-    "Gtk.IMMulticontext",   
+    "Gtk.IMMulticontext",
     "Gtk.InputHints",
     "Gtk.InputPurpose",
     "Gtk.Inscription",
@@ -276,6 +276,7 @@ generate = [
     "Gtk.Viewport",
     "Gtk.VolumeButton",
     "Gtk.WindowControls",
+    "Gtk.WindowGravity",
     "Gtk.WindowGroup",
     "Gtk.WindowHandle",
     "Gtk.WrapMode",
@@ -906,7 +907,7 @@ manual_traits = ["ComboBoxExtManual"]
         const = true # iter shouldn't be mutable here
     [[object.function]]
     name = "set_active"
-    manual = true # use Option<u32> so we can allow -1 to unselect the active item 
+    manual = true # use Option<u32> so we can allow -1 to unselect the active item
     doc_trait_name = "ComboBoxExtManual"
     [[object.function]]
     name = "get_active"
@@ -998,7 +999,7 @@ status = "generate"
 manual_traits = ["DialogExtManual"]
     [[object.function]]
     name = "add_buttons"
-    manual = true # to call Dialog::add_button 
+    manual = true # to call Dialog::add_button
     doc_trait_name = "DialogExtManual"
     [[object.function]]
     name = "new_with_buttons"
@@ -2335,7 +2336,7 @@ manual_traits = ["TreeModelExtManual"]
     ignore = true # unsafe
     [[object.function]]
     pattern = "(get_value|get_valist)"
-    ignore = true # generated manually to check for column 
+    ignore = true # generated manually to check for column
     [[object.function]]
     name = "get"
     manual = true
@@ -2524,7 +2525,7 @@ generate_builder = false
         nullable = false # use unset_select_function
     [[object.function]]
     name = "get_user_data"
-    ignore = true # unsafe 
+    ignore = true # unsafe
 
 [[object]]
 name = "Gtk.TreeSortable"
@@ -2689,7 +2690,7 @@ status = "generate"
     [[object.function]]
     name = "new"
         [[object.function.parameter]]
-        name = "uri" # we have Default for creating instances without "uri" 
+        name = "uri" # we have Default for creating instances without "uri"
         nullable = false
 
 [[object]]

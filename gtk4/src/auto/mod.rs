@@ -1271,6 +1271,9 @@ pub use self::enums::TreeViewDropPosition;
 #[allow(deprecated)]
 pub use self::enums::TreeViewGridLines;
 pub use self::enums::Unit;
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+pub use self::enums::WindowGravity;
 pub use self::enums::WrapMode;
 
 mod flags;

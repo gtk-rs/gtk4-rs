@@ -2,9 +2,6 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-#[cfg(feature = "v4_20")]
-#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
-use crate::Gravity;
 #[cfg(feature = "v4_4")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
 use crate::TitlebarGesture;
@@ -12,6 +9,9 @@ use crate::{
     ffi, Device, Event, FullscreenMode, Surface, SurfaceEdge, Texture, ToplevelLayout,
     ToplevelState,
 };
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+use crate::{Gravity, ToplevelCapabilities};
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},
@@ -77,13 +77,17 @@ pub trait ToplevelExt: IsA<Toplevel> + 'static {
         }
     }
 
-    //#[cfg(feature = "v4_20")]
-    //#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
-    //#[doc(alias = "gdk_toplevel_get_capabilities")]
-    //#[doc(alias = "get_capabilities")]
-    //fn capabilities(&self) -> /*Ignored*/ToplevelCapabilities {
-    //    unsafe { TODO: call ffi:gdk_toplevel_get_capabilities() }
-    //}
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    #[doc(alias = "gdk_toplevel_get_capabilities")]
+    #[doc(alias = "get_capabilities")]
+    fn capabilities(&self) -> ToplevelCapabilities {
+        unsafe {
+            from_glib(ffi::gdk_toplevel_get_capabilities(
+                self.as_ref().to_glib_none().0,
+            ))
+        }
+    }
 
     #[cfg(feature = "v4_20")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]

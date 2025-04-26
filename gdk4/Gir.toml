@@ -62,6 +62,7 @@ generate = [
     "Gdk.TextureDownloader",
     "Gdk.TextureError",
     "Gdk.TitlebarGesture",
+    "Gdk.ToplevelCapabilities",
     "Gdk.ToplevelLayout",
     "Gdk.TouchEvent",
     "Gdk.TouchpadEvent",
@@ -144,11 +145,11 @@ status = "generate"
     [[object.function]]
     name = "pango_layout_get_clip_region"
     manual = true
-    doc_ignore_parameters = ["n_ranges"] 
+    doc_ignore_parameters = ["n_ranges"]
     [[object.function]]
     name = "pango_layout_line_get_clip_region"
     manual = true
-    doc_ignore_parameters = ["n_ranges"] 
+    doc_ignore_parameters = ["n_ranges"]
     [[object.function]]
     name = "content_register_deserializer"
     manual = true

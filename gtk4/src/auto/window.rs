@@ -3,6 +3,9 @@
 // DO NOT EDIT
 #![allow(deprecated)]
 
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+use crate::WindowGravity;
 use crate::{
     ffi, Accessible, AccessibleRole, Align, Application, Buildable, ConstraintTarget,
     LayoutManager, Native, Overflow, Root, ShortcutManager, Widget, WindowGroup,
@@ -188,11 +191,14 @@ impl WindowBuilder {
         }
     }
 
-    //    #[cfg(feature = "v4_20")]
+    #[cfg(feature = "v4_20")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
-    //pub fn gravity(self, gravity: /*Ignored*/WindowGravity) -> Self {
-    //    Self { builder: self.builder.property("gravity", gravity), }
-    //}
+    pub fn gravity(self, gravity: WindowGravity) -> Self {
+        Self {
+            builder: self.builder.property("gravity", gravity),
+        }
+    }
+
     #[cfg(feature = "v4_2")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_2")))]
     pub fn handle_menubar_accel(self, handle_menubar_accel: bool) -> Self {
@@ -595,13 +601,13 @@ pub trait GtkWindowExt: IsA<Window> + 'static {
         }
     }
 
-    //#[cfg(feature = "v4_20")]
-    //#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
-    //#[doc(alias = "gtk_window_get_gravity")]
-    //#[doc(alias = "get_gravity")]
-    //fn gravity(&self) -> /*Ignored*/WindowGravity {
-    //    unsafe { TODO: call ffi:gtk_window_get_gravity() }
-    //}
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    #[doc(alias = "gtk_window_get_gravity")]
+    #[doc(alias = "get_gravity")]
+    fn gravity(&self) -> WindowGravity {
+        unsafe { from_glib(ffi::gtk_window_get_gravity(self.as_ref().to_glib_none().0)) }
+    }
 
     #[doc(alias = "gtk_window_get_group")]
     #[doc(alias = "get_group")]
@@ -859,13 +865,15 @@ pub trait GtkWindowExt: IsA<Window> + 'static {
         }
     }
 
-    //#[cfg(feature = "v4_20")]
-    //#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
-    //#[doc(alias = "gtk_window_set_gravity")]
-    //#[doc(alias = "gravity")]
-    //fn set_gravity(&self, gravity: /*Ignored*/WindowGravity) {
-    //    unsafe { TODO: call ffi:gtk_window_set_gravity() }
-    //}
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    #[doc(alias = "gtk_window_set_gravity")]
+    #[doc(alias = "gravity")]
+    fn set_gravity(&self, gravity: WindowGravity) {
+        unsafe {
+            ffi::gtk_window_set_gravity(self.as_ref().to_glib_none().0, gravity.into_glib());
+        }
+    }
 
     #[cfg(feature = "v4_2")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_2")))]
