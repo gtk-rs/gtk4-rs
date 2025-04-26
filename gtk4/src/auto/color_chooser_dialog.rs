@@ -3,6 +3,9 @@
 // DO NOT EDIT
 #![allow(deprecated)]
 
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+use crate::WindowGravity;
 use crate::{
     ffi, Accessible, AccessibleRole, Align, Application, Buildable, ColorChooser, ConstraintTarget,
     Dialog, LayoutManager, Native, Overflow, Root, ShortcutManager, Widget, Window,
@@ -195,11 +198,14 @@ impl ColorChooserDialogBuilder {
         }
     }
 
-    //    #[cfg(feature = "v4_20")]
+    #[cfg(feature = "v4_20")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
-    //pub fn gravity(self, gravity: /*Ignored*/WindowGravity) -> Self {
-    //    Self { builder: self.builder.property("gravity", gravity), }
-    //}
+    pub fn gravity(self, gravity: WindowGravity) -> Self {
+        Self {
+            builder: self.builder.property("gravity", gravity),
+        }
+    }
+
     #[cfg(feature = "v4_2")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_2")))]
     pub fn handle_menubar_accel(self, handle_menubar_accel: bool) -> Self {

@@ -6,6 +6,9 @@
 #[cfg(feature = "v4_14")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
 use crate::ShortcutsSection;
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+use crate::WindowGravity;
 use crate::{
     ffi, Accessible, AccessibleRole, Align, Application, Buildable, ConstraintTarget,
     LayoutManager, Native, Overflow, Root, ShortcutManager, Widget, Window,
@@ -286,11 +289,14 @@ impl ShortcutsWindowBuilder {
         }
     }
 
-    //    #[cfg(feature = "v4_20")]
+    #[cfg(feature = "v4_20")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
-    //pub fn gravity(self, gravity: /*Ignored*/WindowGravity) -> Self {
-    //    Self { builder: self.builder.property("gravity", gravity), }
-    //}
+    pub fn gravity(self, gravity: WindowGravity) -> Self {
+        Self {
+            builder: self.builder.property("gravity", gravity),
+        }
+    }
+
     #[cfg(feature = "v4_2")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_2")))]
     pub fn handle_menubar_accel(self, handle_menubar_accel: bool) -> Self {

@@ -12107,6 +12107,170 @@ impl From<Unit> for glib::Value {
     }
 }
 
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
+#[doc(alias = "GtkWindowGravity")]
+pub enum WindowGravity {
+    #[doc(alias = "GTK_WINDOW_GRAVITY_TOP_LEFT")]
+    TopLeft,
+    #[doc(alias = "GTK_WINDOW_GRAVITY_TOP")]
+    Top,
+    #[doc(alias = "GTK_WINDOW_GRAVITY_TOP_RIGHT")]
+    TopRight,
+    #[doc(alias = "GTK_WINDOW_GRAVITY_LEFT")]
+    Left,
+    #[doc(alias = "GTK_WINDOW_GRAVITY_CENTER")]
+    Center,
+    #[doc(alias = "GTK_WINDOW_GRAVITY_RIGHT")]
+    Right,
+    #[doc(alias = "GTK_WINDOW_GRAVITY_BOTTOM_LEFT")]
+    BottomLeft,
+    #[doc(alias = "GTK_WINDOW_GRAVITY_BOTTOM")]
+    Bottom,
+    #[doc(alias = "GTK_WINDOW_GRAVITY_BOTTOM_RIGHT")]
+    BottomRight,
+    #[doc(alias = "GTK_WINDOW_GRAVITY_TOP_START")]
+    TopStart,
+    #[doc(alias = "GTK_WINDOW_GRAVITY_TOP_END")]
+    TopEnd,
+    #[doc(alias = "GTK_WINDOW_GRAVITY_START")]
+    Start,
+    #[doc(alias = "GTK_WINDOW_GRAVITY_END")]
+    End,
+    #[doc(alias = "GTK_WINDOW_GRAVITY_BOTTOM_START")]
+    BottomStart,
+    #[doc(alias = "GTK_WINDOW_GRAVITY_BOTTOM_END")]
+    BottomEnd,
+    #[doc(hidden)]
+    __Unknown(i32),
+}
+
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+#[doc(hidden)]
+impl IntoGlib for WindowGravity {
+    type GlibType = ffi::GtkWindowGravity;
+
+    fn into_glib(self) -> ffi::GtkWindowGravity {
+        match self {
+            Self::TopLeft => ffi::GTK_WINDOW_GRAVITY_TOP_LEFT,
+            Self::Top => ffi::GTK_WINDOW_GRAVITY_TOP,
+            Self::TopRight => ffi::GTK_WINDOW_GRAVITY_TOP_RIGHT,
+            Self::Left => ffi::GTK_WINDOW_GRAVITY_LEFT,
+            Self::Center => ffi::GTK_WINDOW_GRAVITY_CENTER,
+            Self::Right => ffi::GTK_WINDOW_GRAVITY_RIGHT,
+            Self::BottomLeft => ffi::GTK_WINDOW_GRAVITY_BOTTOM_LEFT,
+            Self::Bottom => ffi::GTK_WINDOW_GRAVITY_BOTTOM,
+            Self::BottomRight => ffi::GTK_WINDOW_GRAVITY_BOTTOM_RIGHT,
+            Self::TopStart => ffi::GTK_WINDOW_GRAVITY_TOP_START,
+            Self::TopEnd => ffi::GTK_WINDOW_GRAVITY_TOP_END,
+            Self::Start => ffi::GTK_WINDOW_GRAVITY_START,
+            Self::End => ffi::GTK_WINDOW_GRAVITY_END,
+            Self::BottomStart => ffi::GTK_WINDOW_GRAVITY_BOTTOM_START,
+            Self::BottomEnd => ffi::GTK_WINDOW_GRAVITY_BOTTOM_END,
+            Self::__Unknown(value) => value,
+        }
+    }
+}
+
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+#[doc(hidden)]
+impl FromGlib<ffi::GtkWindowGravity> for WindowGravity {
+    unsafe fn from_glib(value: ffi::GtkWindowGravity) -> Self {
+        skip_assert_initialized!();
+
+        match value {
+            ffi::GTK_WINDOW_GRAVITY_TOP_LEFT => Self::TopLeft,
+            ffi::GTK_WINDOW_GRAVITY_TOP => Self::Top,
+            ffi::GTK_WINDOW_GRAVITY_TOP_RIGHT => Self::TopRight,
+            ffi::GTK_WINDOW_GRAVITY_LEFT => Self::Left,
+            ffi::GTK_WINDOW_GRAVITY_CENTER => Self::Center,
+            ffi::GTK_WINDOW_GRAVITY_RIGHT => Self::Right,
+            ffi::GTK_WINDOW_GRAVITY_BOTTOM_LEFT => Self::BottomLeft,
+            ffi::GTK_WINDOW_GRAVITY_BOTTOM => Self::Bottom,
+            ffi::GTK_WINDOW_GRAVITY_BOTTOM_RIGHT => Self::BottomRight,
+            ffi::GTK_WINDOW_GRAVITY_TOP_START => Self::TopStart,
+            ffi::GTK_WINDOW_GRAVITY_TOP_END => Self::TopEnd,
+            ffi::GTK_WINDOW_GRAVITY_START => Self::Start,
+            ffi::GTK_WINDOW_GRAVITY_END => Self::End,
+            ffi::GTK_WINDOW_GRAVITY_BOTTOM_START => Self::BottomStart,
+            ffi::GTK_WINDOW_GRAVITY_BOTTOM_END => Self::BottomEnd,
+            value => Self::__Unknown(value),
+        }
+    }
+}
+
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+impl StaticType for WindowGravity {
+    #[inline]
+    #[doc(alias = "gtk_window_gravity_get_type")]
+    fn static_type() -> glib::Type {
+        unsafe { from_glib(ffi::gtk_window_gravity_get_type()) }
+    }
+}
+
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+impl glib::HasParamSpec for WindowGravity {
+    type ParamSpec = glib::ParamSpecEnum;
+    type SetValue = Self;
+    type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
+
+    fn param_spec_builder() -> Self::BuilderFn {
+        Self::ParamSpec::builder_with_default
+    }
+}
+
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+impl glib::value::ValueType for WindowGravity {
+    type Type = Self;
+}
+
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+unsafe impl<'a> glib::value::FromValue<'a> for WindowGravity {
+    type Checker = glib::value::GenericValueTypeChecker<Self>;
+
+    #[inline]
+    unsafe fn from_value(value: &'a glib::Value) -> Self {
+        skip_assert_initialized!();
+        from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+    }
+}
+
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+impl ToValue for WindowGravity {
+    #[inline]
+    fn to_value(&self) -> glib::Value {
+        let mut value = glib::Value::for_value_type::<Self>();
+        unsafe {
+            glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
+        }
+        value
+    }
+
+    #[inline]
+    fn value_type(&self) -> glib::Type {
+        Self::static_type()
+    }
+}
+
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+impl From<WindowGravity> for glib::Value {
+    #[inline]
+    fn from(v: WindowGravity) -> Self {
+        skip_assert_initialized!();
+        ToValue::to_value(&v)
+    }
+}
+
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GtkWrapMode")]

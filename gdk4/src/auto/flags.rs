@@ -803,6 +803,138 @@ impl From<SeatCapabilities> for glib::Value {
     }
 }
 
+#[cfg(feature = "v4_20")]
+bitflags! {
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
+    #[doc(alias = "GdkToplevelCapabilities")]
+    pub struct ToplevelCapabilities: u32 {
+        #[cfg(feature = "v4_20")]
+        #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+        #[doc(alias = "GDK_TOPLEVEL_CAPABILITIES_EDGE_CONSTRAINTS")]
+        const EDGE_CONSTRAINTS = ffi::GDK_TOPLEVEL_CAPABILITIES_EDGE_CONSTRAINTS as _;
+        #[cfg(feature = "v4_20")]
+        #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+        #[doc(alias = "GDK_TOPLEVEL_CAPABILITIES_INHIBIT_SHORTCUTS")]
+        const INHIBIT_SHORTCUTS = ffi::GDK_TOPLEVEL_CAPABILITIES_INHIBIT_SHORTCUTS as _;
+        #[cfg(feature = "v4_20")]
+        #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+        #[doc(alias = "GDK_TOPLEVEL_CAPABILITIES_TITLEBAR_GESTURES")]
+        const TITLEBAR_GESTURES = ffi::GDK_TOPLEVEL_CAPABILITIES_TITLEBAR_GESTURES as _;
+        #[cfg(feature = "v4_20")]
+        #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+        #[doc(alias = "GDK_TOPLEVEL_CAPABILITIES_WINDOW_MENU")]
+        const WINDOW_MENU = ffi::GDK_TOPLEVEL_CAPABILITIES_WINDOW_MENU as _;
+        #[cfg(feature = "v4_20")]
+        #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+        #[doc(alias = "GDK_TOPLEVEL_CAPABILITIES_MAXIMIZE")]
+        const MAXIMIZE = ffi::GDK_TOPLEVEL_CAPABILITIES_MAXIMIZE as _;
+        #[cfg(feature = "v4_20")]
+        #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+        #[doc(alias = "GDK_TOPLEVEL_CAPABILITIES_FULLSCREEN")]
+        const FULLSCREEN = ffi::GDK_TOPLEVEL_CAPABILITIES_FULLSCREEN as _;
+        #[cfg(feature = "v4_20")]
+        #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+        #[doc(alias = "GDK_TOPLEVEL_CAPABILITIES_MINIMIZE")]
+        const MINIMIZE = ffi::GDK_TOPLEVEL_CAPABILITIES_MINIMIZE as _;
+        #[cfg(feature = "v4_20")]
+        #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+        #[doc(alias = "GDK_TOPLEVEL_CAPABILITIES_LOWER")]
+        const LOWER = ffi::GDK_TOPLEVEL_CAPABILITIES_LOWER as _;
+    }
+}
+
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+#[doc(hidden)]
+impl IntoGlib for ToplevelCapabilities {
+    type GlibType = ffi::GdkToplevelCapabilities;
+
+    #[inline]
+    fn into_glib(self) -> ffi::GdkToplevelCapabilities {
+        self.bits()
+    }
+}
+
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+#[doc(hidden)]
+impl FromGlib<ffi::GdkToplevelCapabilities> for ToplevelCapabilities {
+    #[inline]
+    unsafe fn from_glib(value: ffi::GdkToplevelCapabilities) -> Self {
+        skip_assert_initialized!();
+        Self::from_bits_truncate(value)
+    }
+}
+
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+impl StaticType for ToplevelCapabilities {
+    #[inline]
+    #[doc(alias = "gdk_toplevel_capabilities_get_type")]
+    fn static_type() -> glib::Type {
+        unsafe { from_glib(ffi::gdk_toplevel_capabilities_get_type()) }
+    }
+}
+
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+impl glib::HasParamSpec for ToplevelCapabilities {
+    type ParamSpec = glib::ParamSpecFlags;
+    type SetValue = Self;
+    type BuilderFn = fn(&str) -> glib::ParamSpecFlagsBuilder<Self>;
+
+    fn param_spec_builder() -> Self::BuilderFn {
+        Self::ParamSpec::builder
+    }
+}
+
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+impl glib::value::ValueType for ToplevelCapabilities {
+    type Type = Self;
+}
+
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+unsafe impl<'a> glib::value::FromValue<'a> for ToplevelCapabilities {
+    type Checker = glib::value::GenericValueTypeChecker<Self>;
+
+    #[inline]
+    unsafe fn from_value(value: &'a glib::Value) -> Self {
+        skip_assert_initialized!();
+        from_glib(glib::gobject_ffi::g_value_get_flags(value.to_glib_none().0))
+    }
+}
+
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+impl ToValue for ToplevelCapabilities {
+    #[inline]
+    fn to_value(&self) -> glib::Value {
+        let mut value = glib::Value::for_value_type::<Self>();
+        unsafe {
+            glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, self.into_glib());
+        }
+        value
+    }
+
+    #[inline]
+    fn value_type(&self) -> glib::Type {
+        Self::static_type()
+    }
+}
+
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+impl From<ToplevelCapabilities> for glib::Value {
+    #[inline]
+    fn from(v: ToplevelCapabilities) -> Self {
+        skip_assert_initialized!();
+        ToValue::to_value(&v)
+    }
+}
+
 bitflags! {
     #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
     #[doc(alias = "GdkToplevelState")]
