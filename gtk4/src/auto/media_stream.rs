@@ -307,10 +307,6 @@ pub trait MediaStreamExt: IsA<MediaStream> + 'static {
         }
     }
 
-    fn set_prepared(&self, prepared: bool) {
-        ObjectExt::set_property(self.as_ref(), "prepared", prepared)
-    }
-
     #[doc(alias = "duration")]
     fn connect_duration_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_duration_trampoline<
