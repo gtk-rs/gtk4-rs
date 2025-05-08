@@ -2,6 +2,8 @@
 
 use glib::{prelude::*, translate::*};
 
+#[cfg(feature = "v4_16")]
+use crate::ColorState;
 use crate::{ffi, GLContext, GLTextureBuilder, MemoryFormat, Texture};
 
 #[cfg(not(feature = "gl"))]
@@ -41,6 +43,21 @@ impl GLTextureBuilder {
             Some(destroy_closure::<F>),
             Box::into_raw(released_func) as glib::ffi::gpointer,
         ))
+    }
+
+    #[cfg(feature = "v4_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
+    #[doc(alias = "gdk_gl_texture_builder_set_color_state")]
+    #[doc(alias = "color-state")]
+    pub fn set_color_state(self, color_state: &ColorState) -> Self {
+        unsafe {
+            ffi::gdk_gl_texture_builder_set_color_state(
+                self.to_glib_none().0,
+                color_state.to_glib_none().0,
+            );
+        }
+
+        self
     }
 
     #[doc(alias = "gdk_gl_texture_builder_set_context")]
