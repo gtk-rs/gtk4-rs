@@ -449,8 +449,19 @@ status = "generate"
         name = "region"
         const = true
     [[object.function]]
+    pattern = "set_(color_state|display|fd|fourcc|height|modifier|n_planes|offset|premultiplied|stride|update_region|update_texture|width)"
+    # Take by value and return self
+    manual = true
+    [[object.function]]
+    pattern = "get_fd"
+    # Use BorrowedFd
+    manual = true
+    [[object.function]]
     name = "build"
     manual = true # Can't be auto-generated
+    [[object.property]]
+    pattern = "(color-state|display|fourcc|height|modifier|n-planes|premultiplied|update-region|update-texture|width)"
+    generate = [] # ignore get/set/notify
 
 [[object]]
 name = "Gdk.Drag"
@@ -527,7 +538,8 @@ generate_builder = false
         name = "region"
         const = true
     [[object.function]]
-    pattern = "set_(context|format|has_mipmap|height|id|update_region|update_texture|width)"
+    pattern = "set_(color_state|context|format|has_mipmap|height|id|update_region|update_texture|width)"
+    # Take by value and return self
     manual = true
     [[object.function]]
     pattern = "(set|get)_sync"
@@ -536,7 +548,7 @@ generate_builder = false
     name = "build"
     manual = true
     [[object.property]]
-    pattern = "(context|format|has-mipmap|height|id|sync|update-region|update-texture|width)"
+    pattern = "(color-state|context|format|has-mipmap|height|id|sync|update-region|update-texture|width)"
     generate = [] # ignore get/set/notify
 
 [[object]]
@@ -576,6 +588,13 @@ concurrency = "send+sync"
         [[object.function.parameter]]
         name = "region"
         const = true
+    [[object.function]]
+    pattern = "set_(bytes|color_state|format|height|offset|stride|stride_for_plane|update_region|update_texture|width)"
+    # Take by value and return self
+    manual = true
+    [[object.property]]
+    pattern = "(bytes|color-state|format|height|stride|update-region|update-texture|width)"
+    generate = [] # ignore get/set/notify
 
 [[object]]
 name = "Gdk.Monitor"
