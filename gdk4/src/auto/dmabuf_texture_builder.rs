@@ -47,12 +47,6 @@ impl DmabufTextureBuilder {
         }
     }
 
-    #[doc(alias = "gdk_dmabuf_texture_builder_get_fd")]
-    #[doc(alias = "get_fd")]
-    pub fn fd(&self, plane: u32) -> i32 {
-        unsafe { ffi::gdk_dmabuf_texture_builder_get_fd(self.to_glib_none().0, plane) }
-    }
-
     #[doc(alias = "gdk_dmabuf_texture_builder_get_fourcc")]
     #[doc(alias = "get_fourcc")]
     pub fn fourcc(&self) -> u32 {

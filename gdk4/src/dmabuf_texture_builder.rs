@@ -35,13 +35,32 @@ impl DmabufTextureBuilder {
         self
     }
 
+    // rustdoc-stripper-ignore-next
+    /// # Safety
+    ///
+    /// The caller must ensure that `fd` says valid for at least as long as the texture, e.g. by
+    /// using `build_with_release_func()` to get notified when `fd` is not used anymore.
     #[doc(alias = "gdk_dmabuf_texture_builder_set_fd")]
-    pub fn set_fd(self, plane: u32, fd: i32) -> Self {
+    pub unsafe fn set_fd(self, plane: u32, fd: std::os::fd::RawFd) -> Self {
         unsafe {
             ffi::gdk_dmabuf_texture_builder_set_fd(self.to_glib_none().0, plane, fd);
         }
 
         self
+    }
+
+    #[doc(alias = "gdk_dmabuf_texture_builder_get_fd")]
+    #[doc(alias = "get_fd")]
+    pub fn fd(&self, plane: u32) -> Option<std::os::fd::BorrowedFd<'_>> {
+        unsafe {
+            let fd = ffi::gdk_dmabuf_texture_builder_get_fd(self.to_glib_none().0, plane);
+
+            if fd == -1 {
+                None
+            } else {
+                Some(std::os::fd::BorrowedFd::borrow_raw(fd))
+            }
+        }
     }
 
     #[doc(alias = "gdk_dmabuf_texture_builder_set_fourcc")]
