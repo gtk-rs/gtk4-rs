@@ -587,6 +587,13 @@ concurrency = "send+sync"
         [[object.function.parameter]]
         name = "region"
         const = true
+    [[object.function]]
+    pattern = "set_(bytes|color_state|format|height|offset|stride|stride_for_plane|update_region|update_texture|width)"
+    # Take by value and return self
+    manual = true
+    [[object.property]]
+    pattern = "(bytes|color-state|format|height|stride|update-region|update-texture|width)"
+    generate = [] # ignore get/set/notify
 
 [[object]]
 name = "Gdk.Monitor"
