@@ -453,6 +453,10 @@ status = "generate"
     # Take by value and return self
     manual = true
     [[object.function]]
+    pattern = "get_fd"
+    # Use BorrowedFd
+    manual = true
+    [[object.function]]
     name = "build"
     manual = true # Can't be auto-generated
     [[object.property]]
