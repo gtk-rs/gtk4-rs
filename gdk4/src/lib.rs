@@ -100,6 +100,9 @@ mod grab_broken_event;
 mod key_event;
 mod keymap_key;
 mod keys;
+#[cfg(feature = "v4_16")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
+mod memory_texture_builder;
 mod motion_event;
 mod pad_event;
 mod popup_layout;
