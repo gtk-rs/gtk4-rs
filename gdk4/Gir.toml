@@ -537,7 +537,7 @@ generate_builder = false
         name = "region"
         const = true
     [[object.function]]
-    pattern = "set_(context|format|has_mipmap|height|id|update_region|update_texture|width)"
+    pattern = "set_(color_state|context|format|has_mipmap|height|id|update_region|update_texture|width)"
     # Take by value and return self
     manual = true
     [[object.function]]
@@ -547,7 +547,7 @@ generate_builder = false
     name = "build"
     manual = true
     [[object.property]]
-    pattern = "(context|format|has-mipmap|height|id|sync|update-region|update-texture|width)"
+    pattern = "(color-state|context|format|has-mipmap|height|id|sync|update-region|update-texture|width)"
     generate = [] # ignore get/set/notify
 
 [[object]]
