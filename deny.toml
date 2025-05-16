@@ -25,6 +25,17 @@ confidence-threshold = 0.8
 multiple-versions = "deny"
 wildcards = "allow"
 highlight = "all"
+skip = [
+    {name = "windows-targets", version = "0.52.6"},
+    {name = "windows_aarch64_gnullvm", version = "0.52.6"},
+    {name = "windows_aarch64_msvc", version = "0.52.6"},
+    {name = "windows_i686_gnu", version = "0.52.6"},
+    {name = "windows_i686_gnullvm", version = "0.52.6"},
+    {name = "windows_i686_msvc", version = "0.52.6"},
+    {name = "windows_x86_64_gnu", version = "0.52.6"},
+    {name = "windows_x86_64_gnullvm", version = "0.52.6"},
+    {name = "windows_x86_64_msvc", version = "0.52.6"},
+]
 
 [sources]
 unknown-registry = "deny"
