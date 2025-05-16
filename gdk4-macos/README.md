@@ -10,7 +10,7 @@ GDK Macos contains functions specific to the Macos backend.
 
 ## Minimum supported Rust version
 
-Currently, the minimum supported Rust version is `1.80`.
+Currently, the minimum supported Rust version is `1.83`.
 
 ## Documentation
 

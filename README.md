@@ -24,7 +24,7 @@ For more information about each crate, please refer to their `README.md` file in
 
 ## Minimum supported Rust version
 
-Currently, the minimum supported Rust version is `1.80`.
+Currently, the minimum supported Rust version is `1.83`.
 
 ## Documentation
 
@@ -91,7 +91,7 @@ $ git submodule update --checkout
 All the crates except `gtk4-macros` follow this structure
 
 ```text
-   ./crate 
+   ./crate
    ├── Gir.toml
    ├── README.md
    ├── src

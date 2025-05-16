@@ -7,7 +7,7 @@ of [gtk4-rs](https://github.com/gtk-rs/gtk4-rs/).
 
 ## Minimum supported Rust version
 
-Currently, the minimum supported Rust version is `1.80`.
+Currently, the minimum supported Rust version is `1.83`.
 
 ## Documentation
 

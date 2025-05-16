@@ -23,7 +23,7 @@ See also:
 
 ## Minimum supported Rust version
 
-Currently, the minimum supported Rust version is `1.80`.
+Currently, the minimum supported Rust version is `1.83`.
 
 ## "Hello, World!" example program
 
