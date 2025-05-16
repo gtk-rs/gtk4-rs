@@ -19,6 +19,7 @@ v4_10 = ["gdk4-wayland-sys/v4_10", "v4_4", "gdk/v4_10"]
 v4_12 = ["gdk4-wayland-sys/v4_12", "v4_10", "gdk/v4_12"]
 v4_16 = ["gdk4-wayland-sys/v4_16", "v4_12", "gdk/v4_16"]
 v4_18 = ["gdk4-wayland-sys/v4_18", "v4_16", "gdk/v4_18"]
+v4_20 = ["gdk4-wayland-sys/v4_20", "v4_18", "gdk/v4_20"]
 wayland_crate = ["wayland-client", "wayland-backend"]
 egl = ["khronos-egl"]
 
