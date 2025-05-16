@@ -488,6 +488,9 @@ status = "generate"
     name = "touchpad_hold"
     version = "4.8"
     [[object.member]]
+    name = "pad_dial"
+    version = "4.20"
+    [[object.member]]
     name = "event_last"
     ignore = true # not useful
 
