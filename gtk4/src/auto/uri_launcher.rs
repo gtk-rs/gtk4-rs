@@ -34,6 +34,18 @@ impl UriLauncher {
         UriLauncherBuilder::new()
     }
 
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    #[doc(alias = "gtk_uri_launcher_can_launch")]
+    pub fn can_launch(&self, parent: Option<&impl IsA<Window>>) -> bool {
+        unsafe {
+            from_glib(ffi::gtk_uri_launcher_can_launch(
+                self.to_glib_none().0,
+                parent.map(|p| p.as_ref()).to_glib_none().0,
+            ))
+        }
+    }
+
     #[doc(alias = "gtk_uri_launcher_get_uri")]
     #[doc(alias = "get_uri")]
     pub fn uri(&self) -> Option<glib::GString> {

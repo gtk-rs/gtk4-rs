@@ -3159,6 +3159,7 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(gint) GTK_PACK_END", "1"),
     ("(gint) GTK_PACK_START", "0"),
     ("(gint) GTK_PAD_ACTION_BUTTON", "0"),
+    ("(gint) GTK_PAD_ACTION_DIAL", "3"),
     ("(gint) GTK_PAD_ACTION_RING", "1"),
     ("(gint) GTK_PAD_ACTION_STRIP", "2"),
     ("(gint) GTK_PAGE_ORIENTATION_LANDSCAPE", "1"),

@@ -906,6 +906,8 @@ pub enum EventType {
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     #[doc(alias = "GDK_TOUCHPAD_HOLD")]
     TouchpadHold,
+    #[doc(alias = "GDK_PAD_DIAL")]
+    PadDial,
     #[doc(hidden)]
     __Unknown(i32),
 }
@@ -946,6 +948,7 @@ impl IntoGlib for EventType {
             Self::PadGroupMode => ffi::GDK_PAD_GROUP_MODE,
             #[cfg(feature = "v4_8")]
             Self::TouchpadHold => ffi::GDK_TOUCHPAD_HOLD,
+            Self::PadDial => ffi::GDK_PAD_DIAL,
             Self::__Unknown(value) => value,
         }
     }
@@ -987,6 +990,7 @@ impl FromGlib<ffi::GdkEventType> for EventType {
             ffi::GDK_PAD_GROUP_MODE => Self::PadGroupMode,
             #[cfg(feature = "v4_8")]
             ffi::GDK_TOUCHPAD_HOLD => Self::TouchpadHold,
+            ffi::GDK_PAD_DIAL => Self::PadDial,
             value => Self::__Unknown(value),
         }
     }

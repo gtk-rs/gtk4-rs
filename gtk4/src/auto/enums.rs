@@ -7406,6 +7406,8 @@ pub enum PadActionType {
     Ring,
     #[doc(alias = "GTK_PAD_ACTION_STRIP")]
     Strip,
+    #[doc(alias = "GTK_PAD_ACTION_DIAL")]
+    Dial,
     #[doc(hidden)]
     __Unknown(i32),
 }
@@ -7420,6 +7422,7 @@ impl IntoGlib for PadActionType {
             Self::Button => ffi::GTK_PAD_ACTION_BUTTON,
             Self::Ring => ffi::GTK_PAD_ACTION_RING,
             Self::Strip => ffi::GTK_PAD_ACTION_STRIP,
+            Self::Dial => ffi::GTK_PAD_ACTION_DIAL,
             Self::__Unknown(value) => value,
         }
     }
@@ -7435,6 +7438,7 @@ impl FromGlib<ffi::GtkPadActionType> for PadActionType {
             ffi::GTK_PAD_ACTION_BUTTON => Self::Button,
             ffi::GTK_PAD_ACTION_RING => Self::Ring,
             ffi::GTK_PAD_ACTION_STRIP => Self::Strip,
+            ffi::GTK_PAD_ACTION_DIAL => Self::Dial,
             value => Self::__Unknown(value),
         }
     }

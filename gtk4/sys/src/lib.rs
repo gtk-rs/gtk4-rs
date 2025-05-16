@@ -616,6 +616,7 @@ pub type GtkPadActionType = c_int;
 pub const GTK_PAD_ACTION_BUTTON: GtkPadActionType = 0;
 pub const GTK_PAD_ACTION_RING: GtkPadActionType = 1;
 pub const GTK_PAD_ACTION_STRIP: GtkPadActionType = 2;
+pub const GTK_PAD_ACTION_DIAL: GtkPadActionType = 3;
 
 pub type GtkPageOrientation = c_int;
 pub const GTK_PAGE_ORIENTATION_PORTRAIT: GtkPageOrientation = 0;
@@ -20062,6 +20063,12 @@ extern "C" {
     #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_uri_launcher_new(uri: *const c_char) -> *mut GtkUriLauncher;
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    pub fn gtk_uri_launcher_can_launch(
+        self_: *mut GtkUriLauncher,
+        parent: *mut GtkWindow,
+    ) -> gboolean;
     #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_uri_launcher_get_uri(self_: *mut GtkUriLauncher) -> *const c_char;
