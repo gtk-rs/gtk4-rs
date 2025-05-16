@@ -100,7 +100,7 @@ impl ListStore {
                 "Incorrect `new_order` slice length. Expected `{count}`, found `{}`.",
                 new_order.len()
             );
-            let safe_values = new_order.iter().max().map_or(true, |&max| {
+            let safe_values = new_order.iter().max().is_none_or(|&max| {
                 let max = max as i32;
                 max >= 0 && max < count
             });
