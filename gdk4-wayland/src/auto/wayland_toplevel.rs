@@ -28,6 +28,14 @@ impl WaylandToplevel {
         }
     }
 
+    //#[cfg(feature = "v4_20")]
+    //#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    //#[doc(alias = "gdk_wayland_toplevel_get_xdg_toplevel")]
+    //#[doc(alias = "get_xdg_toplevel")]
+    //pub fn xdg_toplevel(&self) -> /*Unimplemented*/Option<Basic: Pointer> {
+    //    unsafe { TODO: call ffi:gdk_wayland_toplevel_get_xdg_toplevel() }
+    //}
+
     #[doc(alias = "gdk_wayland_toplevel_set_application_id")]
     pub fn set_application_id(&self, application_id: &str) {
         unsafe {

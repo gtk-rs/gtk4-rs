@@ -119,7 +119,8 @@ pub const GDK_PAD_GROUP_MODE: GdkEventType = 27;
 #[cfg(feature = "v4_6")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
 pub const GDK_TOUCHPAD_HOLD: GdkEventType = 28;
-pub const GDK_EVENT_LAST: GdkEventType = 29;
+pub const GDK_PAD_DIAL: GdkEventType = 29;
+pub const GDK_EVENT_LAST: GdkEventType = 30;
 
 pub type GdkFullscreenMode = c_int;
 pub const GDK_FULLSCREEN_ON_CURRENT_MONITOR: GdkFullscreenMode = 0;
@@ -4293,6 +4294,12 @@ extern "C" {
     #[cfg(feature = "v4_16")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
     pub fn gdk_color_state_equal(self_: *mut GdkColorState, other: *mut GdkColorState) -> gboolean;
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    pub fn gdk_color_state_equivalent(
+        self_: *mut GdkColorState,
+        other: *mut GdkColorState,
+    ) -> gboolean;
     #[cfg(feature = "v4_16")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
     pub fn gdk_color_state_ref(self_: *mut GdkColorState) -> *mut GdkColorState;

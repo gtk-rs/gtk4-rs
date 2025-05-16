@@ -36,6 +36,18 @@ impl ColorState {
         }
     }
 
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    #[doc(alias = "gdk_color_state_equivalent")]
+    pub fn equivalent(&self, other: &ColorState) -> bool {
+        unsafe {
+            from_glib(ffi::gdk_color_state_equivalent(
+                self.to_glib_none().0,
+                other.to_glib_none().0,
+            ))
+        }
+    }
+
     #[cfg(feature = "v4_18")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_18")))]
     #[doc(alias = "gdk_color_state_get_oklab")]
