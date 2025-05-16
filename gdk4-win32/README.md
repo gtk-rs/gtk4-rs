@@ -10,7 +10,7 @@ GDK Win32 contains functions specific to the Win32 backend.
 
 ## Minimum supported Rust version
 
-Currently, the minimum supported Rust version is `1.80`.
+Currently, the minimum supported Rust version is `1.83`.
 
 ## Documentation
 
