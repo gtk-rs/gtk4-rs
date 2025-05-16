@@ -4,7 +4,35 @@ use crate::{ffi, WaylandToplevel};
 use glib::translate::*;
 use std::boxed::Box as Box_;
 
+#[cfg(all(feature = "v4_20", feature = "wayland_crate"))]
+#[cfg_attr(docsrs, doc(cfg(all(feature = "v4_20", feature = "wayland_crate"))))]
+use wayland_client::{backend::ObjectId, Proxy};
+#[cfg(all(feature = "v4_20", feature = "wayland_crate"))]
+#[cfg_attr(docsrs, doc(cfg(all(feature = "v4_20", feature = "wayland_crate"))))]
+use wayland_protocols::xdg::shell::client::xdg_toplevel::XdgToplevel;
+
 impl WaylandToplevel {
+    #[cfg(all(feature = "v4_20", feature = "wayland_crate"))]
+    #[cfg_attr(docsrs, doc(cfg(all(feature = "v4_20", feature = "wayland_crate"))))]
+    #[doc(alias = "gdk_wayland_toplevel_get_xdg_toplevel")]
+    #[doc(alias = "get_xdg_toplevel")]
+    pub fn xdg_toplevel(&self) -> Option<XdgToplevel> {
+        use gdk::prelude::*;
+        let display = self.display().downcast::<crate::WaylandDisplay>().unwrap();
+        unsafe {
+            let toplevel_ptr = ffi::gdk_wayland_toplevel_get_xdg_toplevel(self.to_glib_none().0);
+            if toplevel_ptr.is_null() {
+                None
+            } else {
+                let cnx = display.connection();
+                let id =
+                    ObjectId::from_ptr(XdgToplevel::interface(), toplevel_ptr as *mut _).unwrap();
+
+                XdgToplevel::from_id(&cnx, id).ok()
+            }
+        }
+    }
+
     #[doc(alias = "gdk_wayland_toplevel_export_handle")]
     pub fn export_handle<P: Fn(&WaylandToplevel, Result<&str, glib::BoolError>) + 'static>(
         &self,
