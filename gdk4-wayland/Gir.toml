@@ -114,3 +114,7 @@ status = "generate"
     [[object.function]]
     name = "export_handle"
     manual = true
+    [[object.function]]
+    name = "get_xdg_toplevel"
+    rename = "xdg_toplevel"
+    manual = true
