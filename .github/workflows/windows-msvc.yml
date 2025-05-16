@@ -33,9 +33,9 @@ jobs:
         id: cache
         with:
           path: c:/gnome
-          key: ${{ runner.os }}-gtk4-18
+          key: ${{ runner.os }}-gtk4-19
           restore-keys: |
-            ${{ runner.os }}-gtk4-18
+            ${{ runner.os }}-gtk4-19
 
       - name: Set up the PATH environment
         run: |
@@ -75,7 +75,7 @@ jobs:
         working-directory: /gtk
         if: steps.cache.outputs.cache-hit != 'true'
         run: |
-          meson setup builddir --prefix=C:/gnome -Dbackend_max_links=1 -Dbuild-demos=false -Dbuild-tests=false -Dvulkan=disabled -Dmedia-gstreamer=disabled -Dbuild-examples=false -Dglib:tests=false -Dharfbuzz:tests=disabled -Dharfbuzz:docs=disabled -Dgraphene:tests=false -Dgdk-pixbuf:tests=false -Dcairo:tests=disabled
+          meson setup builddir --prefix=C:/gnome -Dbuild-demos=false -Dbuild-tests=false -Dvulkan=disabled -Dmedia-gstreamer=disabled -Dbuild-examples=false -Dglib:tests=false -Dharfbuzz:tests=disabled -Dharfbuzz:docs=disabled -Dgraphene:tests=false -Dgdk-pixbuf:tests=false -Dcairo:tests=disabled
 
       - name: Build and install GTK
         working-directory: /gtk
