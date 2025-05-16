@@ -56,7 +56,7 @@ jobs:
           - { name: "gdk4", features: "v4_20,gl", test_sys: true }
           - {
               name: "gdk4-wayland",
-              features: "v4_18,wayland_crate,egl",
+              features: "v4_20,wayland_crate,egl",
               test_sys: true,
             }
           - { name: "gdk4-x11", features: "v4_18,xlib,egl", test_sys: true }
