@@ -28,8 +28,6 @@ generate = [
     "Gdk.DevicePad",
     "Gdk.DevicePadFeature",
     "Gdk.DeviceToolType",
-    "Gdk.DmabufError",
-    "Gdk.DmabufTexture",
     "Gdk.DNDEvent",
     "Gdk.DragAction",
     "Gdk.DragCancelReason",
@@ -422,9 +420,15 @@ manual_traits = ["DisplayExtManual"]
     [[object.function]]
     pattern = "map_key(code|val)"
     manual = true # make use of Key
+    [[object.function]]
+    name = "get_dmabuf_formats"
+    cfg_condition = "target_os = \"linux\""
     [[object.property]]
     name = "shadow-width"
     generate = ["notify"]
+    [[object.property]]
+    name = "dmabuf-formats"
+    cfg_condition = "target_os = \"linux\""
 
 [[object]]
 name = "Gdk.DisplayManager"
@@ -432,8 +436,14 @@ status = "generate"
 generate_builder = false
 
 [[object]]
+name = "Gdk.DmabufError"
+status = "generate"
+cfg_condition = "target_os = \"linux\""
+
+[[object]]
 name = "Gdk.DmabufFormats"
 status = "generate"
+cfg_condition = "target_os = \"linux\""
     [[object.function]]
     name = "equal"
         [[object.function.parameter]]
@@ -441,8 +451,14 @@ status = "generate"
         nullable = false
 
 [[object]]
+name = "Gdk.DmabufTexture"
+status = "generate"
+cfg_condition = "target_os = \"linux\""
+
+[[object]]
 name = "Gdk.DmabufTextureBuilder"
 status = "generate"
+cfg_condition = "target_os = \"linux\""
     [[object.function]]
     name = "set_update_region"
         [[object.function.parameter]]

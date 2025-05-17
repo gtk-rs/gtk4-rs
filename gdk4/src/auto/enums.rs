@@ -601,6 +601,8 @@ impl From<DeviceToolType> for glib::Value {
 
 #[cfg(feature = "v4_14")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+#[cfg(target_os = "linux")]
+#[cfg_attr(docsrs, doc(cfg(target_os = "linux")))]
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GdkDmabufError")]
@@ -617,6 +619,7 @@ pub enum DmabufError {
 
 #[cfg(feature = "v4_14")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+#[cfg(target_os = "linux")]
 #[doc(hidden)]
 impl IntoGlib for DmabufError {
     type GlibType = ffi::GdkDmabufError;
@@ -634,6 +637,7 @@ impl IntoGlib for DmabufError {
 
 #[cfg(feature = "v4_14")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+#[cfg(target_os = "linux")]
 #[doc(hidden)]
 impl FromGlib<ffi::GdkDmabufError> for DmabufError {
     #[inline]
@@ -651,6 +655,7 @@ impl FromGlib<ffi::GdkDmabufError> for DmabufError {
 
 #[cfg(feature = "v4_14")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+#[cfg(target_os = "linux")]
 impl glib::error::ErrorDomain for DmabufError {
     #[inline]
     fn domain() -> glib::Quark {
@@ -676,6 +681,7 @@ impl glib::error::ErrorDomain for DmabufError {
 
 #[cfg(feature = "v4_14")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+#[cfg(target_os = "linux")]
 impl StaticType for DmabufError {
     #[inline]
     #[doc(alias = "gdk_dmabuf_error_get_type")]
@@ -686,6 +692,7 @@ impl StaticType for DmabufError {
 
 #[cfg(feature = "v4_14")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+#[cfg(target_os = "linux")]
 impl glib::HasParamSpec for DmabufError {
     type ParamSpec = glib::ParamSpecEnum;
     type SetValue = Self;
@@ -698,12 +705,14 @@ impl glib::HasParamSpec for DmabufError {
 
 #[cfg(feature = "v4_14")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+#[cfg(target_os = "linux")]
 impl glib::value::ValueType for DmabufError {
     type Type = Self;
 }
 
 #[cfg(feature = "v4_14")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+#[cfg(target_os = "linux")]
 unsafe impl<'a> glib::value::FromValue<'a> for DmabufError {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
@@ -716,6 +725,7 @@ unsafe impl<'a> glib::value::FromValue<'a> for DmabufError {
 
 #[cfg(feature = "v4_14")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+#[cfg(target_os = "linux")]
 impl ToValue for DmabufError {
     #[inline]
     fn to_value(&self) -> glib::Value {
@@ -734,6 +744,7 @@ impl ToValue for DmabufError {
 
 #[cfg(feature = "v4_14")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+#[cfg(target_os = "linux")]
 impl From<DmabufError> for glib::Value {
     #[inline]
     fn from(v: DmabufError) -> Self {

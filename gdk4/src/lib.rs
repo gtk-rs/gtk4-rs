@@ -78,6 +78,8 @@ mod crossing_event;
 mod cursor;
 mod delete_event;
 mod display;
+#[cfg(target_os = "linux")]
+#[cfg_attr(docsrs, doc(cfg(target_os = "linux")))]
 #[cfg(feature = "v4_14")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
 mod dmabuf_texture_builder;

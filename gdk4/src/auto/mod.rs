@@ -57,16 +57,24 @@ pub use self::display::Display;
 mod display_manager;
 pub use self::display_manager::DisplayManager;
 
+#[cfg(target_os = "linux")]
+#[cfg_attr(docsrs, doc(cfg(target_os = "linux")))]
 #[cfg(feature = "v4_14")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
 mod dmabuf_texture;
+#[cfg(target_os = "linux")]
+#[cfg_attr(docsrs, doc(cfg(target_os = "linux")))]
 #[cfg(feature = "v4_14")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
 pub use self::dmabuf_texture::DmabufTexture;
 
+#[cfg(target_os = "linux")]
+#[cfg_attr(docsrs, doc(cfg(target_os = "linux")))]
 #[cfg(feature = "v4_14")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
 mod dmabuf_texture_builder;
+#[cfg(target_os = "linux")]
+#[cfg_attr(docsrs, doc(cfg(target_os = "linux")))]
 #[cfg(feature = "v4_14")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
 pub use self::dmabuf_texture_builder::DmabufTextureBuilder;
@@ -181,9 +189,13 @@ pub use self::content_formats::ContentFormats;
 mod content_formats_builder;
 pub use self::content_formats_builder::ContentFormatsBuilder;
 
+#[cfg(target_os = "linux")]
+#[cfg_attr(docsrs, doc(cfg(target_os = "linux")))]
 #[cfg(feature = "v4_14")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
 mod dmabuf_formats;
+#[cfg(target_os = "linux")]
+#[cfg_attr(docsrs, doc(cfg(target_os = "linux")))]
 #[cfg(feature = "v4_14")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
 pub use self::dmabuf_formats::DmabufFormats;
@@ -230,6 +242,8 @@ pub use self::enums::DevicePadFeature;
 pub use self::enums::DeviceToolType;
 #[cfg(feature = "v4_14")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+#[cfg(target_os = "linux")]
+#[cfg_attr(docsrs, doc(cfg(target_os = "linux")))]
 pub use self::enums::DmabufError;
 pub use self::enums::DragCancelReason;
 pub use self::enums::EventType;
