@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gdk4/src/auto/toplevel.rs`."><title>toplevel.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-0ce1a80b.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gdk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.89.0-nightly (d97326eab 2025-05-15)" data-channel="nightly" data-search-js="search-f7877310.js" data-settings-js="settings-5514c975.js" ><script src="../../../static.files/storage-4e99c027.js"></script><script defer src="../../../static.files/src-script-63605ae7.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-7ef8a74a.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-32bb7600.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-6580c154.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gdk4/src/auto/toplevel.rs`."><title>toplevel.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-0ce1a80b.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gdk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.89.0-nightly (16d2276fa 2025-05-16)" data-channel="nightly" data-search-js="search-f7877310.js" data-settings-js="settings-5514c975.js" ><script src="../../../static.files/storage-4e99c027.js"></script><script defer src="../../../static.files/src-script-63605ae7.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-7ef8a74a.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-32bb7600.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-6580c154.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
 
@@ -77,14 +77,14 @@
 <a href=#4 id=4 data-nosnippet>4</a>
 <a href=#5 id=5 data-nosnippet>5</a></span><span class="attr">#[cfg(feature = <span class="string">"v4_4"</span>)]
 <a href=#6 id=6 data-nosnippet>6</a>#[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_4"</span>)))]
-<a href=#7 id=7 data-nosnippet>7</a></span><span class="kw">use </span><a href="enums.rs.html#3384-3396"><span class="kw">crate</span>::TitlebarGesture</a>;
+<a href=#7 id=7 data-nosnippet>7</a></span><span class="kw">use </span><a href="enums.rs.html#3395-3407"><span class="kw">crate</span>::TitlebarGesture</a>;
 <a href=#8 id=8 data-nosnippet>8</a><span class="kw">use crate</span>::{
-<a href=#9 id=9 data-nosnippet>9</a>    <a href="../../../gdk4_sys/index.html">ffi</a>, <a href="device.rs.html#14-186">Device</a>, <a href="event.rs.html#11-28">Event</a>, <a href="enums.rs.html#1166-1175">FullscreenMode</a>, <a href="surface.rs.html#18-129">Surface</a>, <a href="enums.rs.html#3099-3126">SurfaceEdge</a>, <a href="texture.rs.html#15-74">Texture</a>, <a href="toplevel_layout.rs.html#8-26">ToplevelLayout</a>,
+<a href=#9 id=9 data-nosnippet>9</a>    <a href="../../../gdk4_sys/index.html">ffi</a>, <a href="device.rs.html#14-186">Device</a>, <a href="event.rs.html#11-28">Event</a>, <a href="enums.rs.html#1177-1186">FullscreenMode</a>, <a href="surface.rs.html#18-129">Surface</a>, <a href="enums.rs.html#3110-3137">SurfaceEdge</a>, <a href="texture.rs.html#15-74">Texture</a>, <a href="toplevel_layout.rs.html#8-26">ToplevelLayout</a>,
 <a href=#10 id=10 data-nosnippet>10</a>    <a href="flags.rs.html#1054-1119">ToplevelState</a>,
 <a href=#11 id=11 data-nosnippet>11</a>};
 <a href=#12 id=12 data-nosnippet>12</a><span class="attr">#[cfg(feature = <span class="string">"v4_20"</span>)]
 <a href=#13 id=13 data-nosnippet>13</a>#[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_20"</span>)))]
-<a href=#14 id=14 data-nosnippet>14</a></span><span class="kw">use crate</span>::{<a href="enums.rs.html#1402-1436">Gravity</a>, <a href="flags.rs.html#909-961">ToplevelCapabilities</a>};
+<a href=#14 id=14 data-nosnippet>14</a></span><span class="kw">use crate</span>::{<a href="enums.rs.html#1413-1447">Gravity</a>, <a href="flags.rs.html#909-961">ToplevelCapabilities</a>};
 <a href=#15 id=15 data-nosnippet>15</a><span class="kw">use </span>glib::{
 <a href=#16 id=16 data-nosnippet>16</a>    <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/prelude/index.html">prelude</a>::<span class="kw-2">*</span>,
 <a href=#17 id=17 data-nosnippet>17</a>    signal::{<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/fn.connect_raw.html">connect_raw</a>, <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html">SignalHandlerId</a>},
@@ -362,7 +362,7 @@
 <a href=#289 id=289 data-nosnippet>289</a>    </span><span class="attr">#[doc(alias = <span class="string">"gdk_toplevel_begin_resize"</span>)]
 <a href=#290 id=290 data-nosnippet>290</a>    </span><span class="kw">fn </span>begin_resize(
 <a href=#291 id=291 data-nosnippet>291</a>        <span class="kw-2">&amp;</span><span class="self">self</span>,
-<a href=#292 id=292 data-nosnippet>292</a>        edge: <a href="enums.rs.html#3099-3126">SurfaceEdge</a>,
+<a href=#292 id=292 data-nosnippet>292</a>        edge: <a href="enums.rs.html#3110-3137">SurfaceEdge</a>,
 <a href=#293 id=293 data-nosnippet>293</a>        device: <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;<span class="kw-2">&amp;</span><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html">IsA</a>&lt;<a href="device.rs.html#14-186">Device</a>&gt;&gt;,
 <a href=#294 id=294 data-nosnippet>294</a>        button: <a href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>,
 <a href=#295 id=295 data-nosnippet>295</a>        x: <a href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>,
@@ -419,7 +419,7 @@
 <a href=#346 id=346 data-nosnippet>346</a>    #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_20"</span>)))]
 <a href=#347 id=347 data-nosnippet>347</a>    #[doc(alias = <span class="string">"gdk_toplevel_get_gravity"</span>)]
 <a href=#348 id=348 data-nosnippet>348</a>    #[doc(alias = <span class="string">"get_gravity"</span>)]
-<a href=#349 id=349 data-nosnippet>349</a>    </span><span class="kw">fn </span>gravity(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="enums.rs.html#1402-1436">Gravity</a> {
+<a href=#349 id=349 data-nosnippet>349</a>    </span><span class="kw">fn </span>gravity(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="enums.rs.html#1413-1447">Gravity</a> {
 <a href=#350 id=350 data-nosnippet>350</a>        <span class="kw">unsafe </span>{
 <a href=#351 id=351 data-nosnippet>351</a>            <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(<a href="../../../gdk4_sys/fn.gdk_toplevel_get_gravity.html">ffi::gdk_toplevel_get_gravity</a>(
 <a href=#352 id=352 data-nosnippet>352</a>                <a class="self" href="#349">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
@@ -565,7 +565,7 @@
 <a href=#492 id=492 data-nosnippet>492</a>    #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_20"</span>)))]
 <a href=#493 id=493 data-nosnippet>493</a>    #[doc(alias = <span class="string">"gdk_toplevel_set_gravity"</span>)]
 <a href=#494 id=494 data-nosnippet>494</a>    #[doc(alias = <span class="string">"gravity"</span>)]
-<a href=#495 id=495 data-nosnippet>495</a>    </span><span class="kw">fn </span>set_gravity(<span class="kw-2">&amp;</span><span class="self">self</span>, gravity: <a href="enums.rs.html#1402-1436">Gravity</a>) {
+<a href=#495 id=495 data-nosnippet>495</a>    </span><span class="kw">fn </span>set_gravity(<span class="kw-2">&amp;</span><span class="self">self</span>, gravity: <a href="enums.rs.html#1413-1447">Gravity</a>) {
 <a href=#496 id=496 data-nosnippet>496</a>        <span class="kw">unsafe </span>{
 <a href=#497 id=497 data-nosnippet>497</a>            <a href="../../../gdk4_sys/fn.gdk_toplevel_set_gravity.html">ffi::gdk_toplevel_set_gravity</a>(<a class="self" href="#495">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>, <a href="#495">gravity</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>());
 <a href=#498 id=498 data-nosnippet>498</a>        }
@@ -714,7 +714,7 @@
 <a href=#641 id=641 data-nosnippet>641</a>    </span><span class="attr">#[cfg(feature = <span class="string">"v4_4"</span>)]
 <a href=#642 id=642 data-nosnippet>642</a>    #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_4"</span>)))]
 <a href=#643 id=643 data-nosnippet>643</a>    #[doc(alias = <span class="string">"gdk_toplevel_titlebar_gesture"</span>)]
-<a href=#644 id=644 data-nosnippet>644</a>    </span><span class="kw">fn </span>titlebar_gesture(<span class="kw-2">&amp;</span><span class="self">self</span>, gesture: <a href="enums.rs.html#3384-3396">TitlebarGesture</a>) -&gt; <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> {
+<a href=#644 id=644 data-nosnippet>644</a>    </span><span class="kw">fn </span>titlebar_gesture(<span class="kw-2">&amp;</span><span class="self">self</span>, gesture: <a href="enums.rs.html#3395-3407">TitlebarGesture</a>) -&gt; <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> {
 <a href=#645 id=645 data-nosnippet>645</a>        <span class="kw">unsafe </span>{
 <a href=#646 id=646 data-nosnippet>646</a>            <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(<a href="../../../gdk4_sys/fn.gdk_toplevel_titlebar_gesture.html">ffi::gdk_toplevel_titlebar_gesture</a>(
 <a href=#647 id=647 data-nosnippet>647</a>                <a class="self" href="#644">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
@@ -735,13 +735,13 @@
 <a href=#662 id=662 data-nosnippet>662</a>
 <a href=#663 id=663 data-nosnippet>663</a>    <span class="doccomment">/// The fullscreen mode of the surface.
 <a href=#664 id=664 data-nosnippet>664</a>    </span><span class="attr">#[doc(alias = <span class="string">"fullscreen-mode"</span>)]
-<a href=#665 id=665 data-nosnippet>665</a>    </span><span class="kw">fn </span>fullscreen_mode(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="enums.rs.html#1166-1175">FullscreenMode</a> {
+<a href=#665 id=665 data-nosnippet>665</a>    </span><span class="kw">fn </span>fullscreen_mode(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="enums.rs.html#1177-1186">FullscreenMode</a> {
 <a href=#666 id=666 data-nosnippet>666</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.ObjectExt.html#tymethod.property">ObjectExt::property</a>(<a class="self" href="#665">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>(), <span class="string">"fullscreen-mode"</span>)
 <a href=#667 id=667 data-nosnippet>667</a>    }
 <a href=#668 id=668 data-nosnippet>668</a>
 <a href=#669 id=669 data-nosnippet>669</a>    <span class="doccomment">/// The fullscreen mode of the surface.
 <a href=#670 id=670 data-nosnippet>670</a>    </span><span class="attr">#[doc(alias = <span class="string">"fullscreen-mode"</span>)]
-<a href=#671 id=671 data-nosnippet>671</a>    </span><span class="kw">fn </span>set_fullscreen_mode(<span class="kw-2">&amp;</span><span class="self">self</span>, fullscreen_mode: <a href="enums.rs.html#1166-1175">FullscreenMode</a>) {
+<a href=#671 id=671 data-nosnippet>671</a>    </span><span class="kw">fn </span>set_fullscreen_mode(<span class="kw-2">&amp;</span><span class="self">self</span>, fullscreen_mode: <a href="enums.rs.html#1177-1186">FullscreenMode</a>) {
 <a href=#672 id=672 data-nosnippet>672</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.ObjectExt.html#tymethod.set_property">ObjectExt::set_property</a>(<a class="self" href="#671">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>(), <span class="string">"fullscreen-mode"</span>, <a href="#671">fullscreen_mode</a>)
 <a href=#673 id=673 data-nosnippet>673</a>    }
 <a href=#674 id=674 data-nosnippet>674</a>
