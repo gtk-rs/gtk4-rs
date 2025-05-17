@@ -3,6 +3,8 @@
 // DO NOT EDIT
 #![allow(deprecated)]
 
+#[cfg(target_os = "linux")]
+#[cfg_attr(docsrs, doc(cfg(target_os = "linux")))]
 #[cfg(feature = "v4_14")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
 use crate::DmabufFormats;
@@ -130,6 +132,8 @@ pub trait DisplayExt: IsA<Display> + 'static {
         }
     }
 
+    #[cfg(target_os = "linux")]
+    #[cfg_attr(docsrs, doc(cfg(target_os = "linux")))]
     #[cfg(feature = "v4_14")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
     #[doc(alias = "gdk_display_get_dmabuf_formats")]
