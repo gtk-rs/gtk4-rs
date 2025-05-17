@@ -139,6 +139,7 @@ mod entry;
 mod entry_buffer;
 mod entry_completion;
 mod enums;
+mod event_controller;
 mod event_controller_key;
 mod expression_watch;
 mod file_chooser;

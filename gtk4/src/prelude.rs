@@ -21,6 +21,7 @@ pub use crate::{
     editable::EditableExtManual,
     entry::EntryExtManual,
     entry_buffer::EntryBufferExtManual,
+    event_controller::EventControllerExtManual,
     expression::{GObjectPropertyExpressionExt, IsExpression},
     file_chooser::FileChooserExtManual,
     font_chooser::FontChooserExtManual,
