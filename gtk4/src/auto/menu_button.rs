@@ -272,7 +272,7 @@ impl MenuButton {
 
     #[doc(alias = "gtk_menu_button_set_popover")]
     #[doc(alias = "popover")]
-    pub fn set_popover(&self, popover: Option<&impl IsA<Widget>>) {
+    pub fn set_popover(&self, popover: Option<&impl IsA<Popover>>) {
         unsafe {
             ffi::gtk_menu_button_set_popover(
                 self.to_glib_none().0,

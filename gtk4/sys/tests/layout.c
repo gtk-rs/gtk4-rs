@@ -158,6 +158,7 @@ int main() {
     printf("%s;%zu;%zu\n", "GtkIMMulticontext", sizeof(GtkIMMulticontext), alignof(GtkIMMulticontext));
     printf("%s;%zu;%zu\n", "GtkIMMulticontextClass", sizeof(GtkIMMulticontextClass), alignof(GtkIMMulticontextClass));
     printf("%s;%zu;%zu\n", "GtkIconLookupFlags", sizeof(GtkIconLookupFlags), alignof(GtkIconLookupFlags));
+    printf("%s;%zu;%zu\n", "GtkIconPaintableClass", sizeof(GtkIconPaintableClass), alignof(GtkIconPaintableClass));
     printf("%s;%zu;%zu\n", "GtkIconSize", sizeof(GtkIconSize), alignof(GtkIconSize));
     printf("%s;%zu;%zu\n", "GtkIconThemeError", sizeof(GtkIconThemeError), alignof(GtkIconThemeError));
     printf("%s;%zu;%zu\n", "GtkIconViewDropPosition", sizeof(GtkIconViewDropPosition), alignof(GtkIconViewDropPosition));
