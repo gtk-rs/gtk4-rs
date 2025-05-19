@@ -103,7 +103,6 @@ generate = [
     "Gtk.EditableProperties",
     "Gtk.EmojiChooser",
     "Gtk.EntryIconPosition",
-    "Gtk.EventController",
     "Gtk.EventControllerFocus",
     "Gtk.EventControllerMotion",
     "Gtk.EventControllerScrollFlags",
@@ -1173,6 +1172,14 @@ status = "generate"
     name = "get_entry"
     rename = "entry"
     manual = true # upcast to Entry
+
+[[object]]
+name = "Gtk.EventController"
+status = "generate"
+manual_traits = ["EventControllerExtManual"]
+    [[object.function]]
+    name = "set_static_name"
+    manual = true # to make use of a static lifetimed string
 
 [[object]]
 name = "Gtk.EventControllerKey"
