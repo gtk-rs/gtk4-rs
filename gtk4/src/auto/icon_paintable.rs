@@ -12,7 +12,7 @@ use glib::{prelude::*, translate::*};
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
 glib::wrapper! {
     #[doc(alias = "GtkIconPaintable")]
-    pub struct IconPaintable(Object<ffi::GtkIconPaintable>) @implements gdk::Paintable, SymbolicPaintable;
+    pub struct IconPaintable(Object<ffi::GtkIconPaintable, ffi::GtkIconPaintableClass>) @implements gdk::Paintable, SymbolicPaintable;
 
     match fn {
         type_ => || ffi::gtk_icon_paintable_get_type(),
@@ -22,7 +22,7 @@ glib::wrapper! {
 #[cfg(not(any(feature = "v4_6")))]
 glib::wrapper! {
     #[doc(alias = "GtkIconPaintable")]
-    pub struct IconPaintable(Object<ffi::GtkIconPaintable>) @implements gdk::Paintable;
+    pub struct IconPaintable(Object<ffi::GtkIconPaintable, ffi::GtkIconPaintableClass>) @implements gdk::Paintable;
 
     match fn {
         type_ => || ffi::gtk_icon_paintable_get_type(),

@@ -1259,6 +1259,13 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
+        "GtkIconPaintableClass",
+        Layout {
+            size: size_of::<GtkIconPaintableClass>(),
+            alignment: align_of::<GtkIconPaintableClass>(),
+        },
+    ),
+    (
         "GtkIconSize",
         Layout {
             size: size_of::<GtkIconSize>(),

@@ -3606,6 +3606,20 @@ pub type GtkIMMulticontextPrivate = _GtkIMMulticontextPrivate;
 
 #[derive(Copy, Clone)]
 #[repr(C)]
+pub struct GtkIconPaintableClass {
+    pub parent_class: gobject::GObjectClass,
+}
+
+impl ::std::fmt::Debug for GtkIconPaintableClass {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GtkIconPaintableClass @ {self:p}"))
+            .field("parent_class", &self.parent_class)
+            .finish()
+    }
+}
+
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkInscriptionClass {
     pub parent_class: GtkWidgetClass,
 }
@@ -16169,7 +16183,7 @@ extern "C" {
         menu_button: *mut GtkMenuButton,
         menu_model: *mut gio::GMenuModel,
     );
-    pub fn gtk_menu_button_set_popover(menu_button: *mut GtkMenuButton, popover: *mut GtkWidget);
+    pub fn gtk_menu_button_set_popover(menu_button: *mut GtkMenuButton, popover: *mut GtkPopover);
     #[cfg(feature = "v4_4")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
     pub fn gtk_menu_button_set_primary(menu_button: *mut GtkMenuButton, primary: gboolean);
