@@ -99,12 +99,6 @@ status = "generate"
     [[object.function]]
     name = "new"
     manual = true
-    [[object.function]]
-    name = "get_widths"
-    manual = true
-    [[object.function]]
-    name = "get_colors"
-    manual = true
 
 [[object]]
 name = "Gsk.BroadwayRenderer"
