@@ -19,7 +19,7 @@ impl MemoryTextureBuilder {
 
     #[doc(alias = "gdk_memory_texture_builder_set_color_state")]
     #[doc(alias = "color-state")]
-    pub fn set_color_state(self, color_state: Option<&ColorState>) -> Self {
+    pub fn set_color_state(self, color_state: &ColorState) -> Self {
         unsafe {
             ffi::gdk_memory_texture_builder_set_color_state(
                 self.to_glib_none().0,
