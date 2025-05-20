@@ -839,33 +839,33 @@ Let's bite the bullet and add <code>tokio</code>:</p>
 For this reason, we <strong>avoid</strong> using the <code>#[tokio::main]</code> macro or using a top-level <code>block_on</code> call.
 Doing this will block one of the runtime's threads with the GLib main loop, which is a waste of resources and a potential source of strange bugs.</p>
 <p>Instead, we bind <a href="https://docs.rs/tokio/latest/tokio/runtime/struct.Runtime.html"><code>tokio::runtime::Runtime</code></a> to a static variable.</p>
-<pre><code class="language-rust">#use std::sync::OnceLock;
-<span class="boring">
-</span>#use glib::clone;
-#use gtk::glib;
-#use gtk::prelude::*;
-#use gtk::{Application, ApplicationWindow, Button};
-#use tokio::runtime::Runtime;
-<span class="boring">
-</span>#const APP_ID: &amp;str = "org.gtk_rs.MainEventLoop0";
-<span class="boring">
+<pre><code class="language-rust"><span class="boring">use std::sync::OnceLock;
+</span><span class="boring">
+</span><span class="boring">use glib::clone;
+</span><span class="boring">use gtk::glib;
+</span><span class="boring">use gtk::prelude::*;
+</span><span class="boring">use gtk::{Application, ApplicationWindow, Button};
+</span><span class="boring">use tokio::runtime::Runtime;
+</span><span class="boring">
+</span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.MainEventLoop0";
+</span><span class="boring">
 </span>// DOES NOT COMPILE!
 static RUNTIME: Runtime =
     Runtime::new().expect("Setting up tokio runtime needs to succeed.");
 <span class="boring">
-</span>#fn main() -&gt; glib::ExitCode {
-<span class="boring">   // Create a new application
-</span><span class="boring">   let app = Application::builder().application_id(APP_ID).build();
+</span><span class="boring">fn main() -&gt; glib::ExitCode {
+</span><span class="boring">    // Create a new application
+</span><span class="boring">    let app = Application::builder().application_id(APP_ID).build();
 </span><span class="boring">
-</span><span class="boring">   // Connect to "activate" signal of `app`
-</span><span class="boring">   app.connect_activate(build_ui);
+</span><span class="boring">    // Connect to "activate" signal of `app`
+</span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
-</span><span class="boring">   // Run the application
-</span><span class="boring">   app.run()
-</span>#}
-<span class="boring">
-</span>#fn build_ui(app: &amp;Application) {
-<span class="boring">   // Create a button
+</span><span class="boring">    // Run the application
+</span><span class="boring">    app.run()
+</span><span class="boring">}
+</span><span class="boring">
+</span><span class="boring">fn build_ui(app: &amp;Application) {
+</span><span class="boring">   // Create a button
 </span><span class="boring">   let button = Button::builder()
 </span><span class="boring">       .label("Press me!")
 </span><span class="boring">       .margin_top(12)
@@ -905,7 +905,7 @@ static RUNTIME: Runtime =
 </span><span class="boring">
 </span><span class="boring">   // Present window
 </span><span class="boring">   window.present();
-</span>#}</code></pre>
+</span><span class="boring">}</span></code></pre>
 <p>Unfortunately, this doesn't compile.
 As usual, Rust's error messages are really helpful.</p>
 <pre><code>cannot call non-const fn `tokio::runtime::Runtime::new` in statics
