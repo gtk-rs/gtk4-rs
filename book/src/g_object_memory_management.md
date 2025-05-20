@@ -7,10 +7,10 @@ With our first example, we have window with a single button.
 Every button click should increment an integer `number` by one.
 
 ```rust ,no_run,compile_fail
-#use gtk::prelude::*;
-#use gtk::{self, glib, Application, ApplicationWindow, Button};
+# use gtk::prelude::*;
+# use gtk::{self, glib, Application, ApplicationWindow, Button};
 #
-#const APP_ID: &str = "org.gtk_rs.GObjectMemoryManagement0";
+# const APP_ID: &str = "org.gtk_rs.GObjectMemoryManagement0";
 #
 // DOES NOT COMPILE!
 fn main() -> glib::ExitCode {
@@ -72,7 +72,7 @@ note: function requires argument type to outlive `'static`
 help: to force the closure to take ownership of `number` (and any other referenced variables), use the `move` keyword
    |
 32 |     button_increase.connect_clicked(move |_| number += 1);
-   |  
+   |
 ```
 
 Our closure only borrows `number`.
@@ -81,31 +81,31 @@ The compiler also suggests how to fix this.
 By adding the `move` keyword in front of the closure, `number` will be moved into the closure.
 
 ```rust ,no_run,compile_fail
-#use gtk::prelude::*;
-#use gtk::{self, glib, Application, ApplicationWindow, Button};
+# use gtk::prelude::*;
+# use gtk::{self, glib, Application, ApplicationWindow, Button};
 #
-#const APP_ID: &str = "org.gtk_rs.GObjectMemoryManagement0";
+# const APP_ID: &str = "org.gtk_rs.GObjectMemoryManagement0";
 #
-#fn main() -> glib::ExitCode {
-#    // Create a new application
-#    let app = Application::builder().application_id(APP_ID).build();
+# fn main() -> glib::ExitCode {
+#     // Create a new application
+#     let app = Application::builder().application_id(APP_ID).build();
 #
-#    // Connect to "activate" signal of `app`
-#    app.connect_activate(build_ui);
+#     // Connect to "activate" signal of `app`
+#     app.connect_activate(build_ui);
 #
-#    // Run the application
-#    app.run()
-#}
+#     // Run the application
+#     app.run()
+# }
 #
-#fn build_ui(application: &Application) {
-#    // Create two buttons
-#    let button_increase = Button::builder()
-#        .label("Increase")
-#        .margin_top(12)
-#        .margin_bottom(12)
-#        .margin_start(12)
-#        .margin_end(12)
-#        .build();
+# fn build_ui(application: &Application) {
+#     // Create two buttons
+#     let button_increase = Button::builder()
+#         .label("Increase")
+#         .margin_top(12)
+#         .margin_bottom(12)
+#         .margin_start(12)
+#         .margin_end(12)
+#         .build();
 #
     // DOES NOT COMPILE!
     // A mutable integer
@@ -124,7 +124,7 @@ By adding the `move` keyword in front of the closure, `number` will be moved int
 #
 #    // Present the window
 #    window.present();
-#}
+# }
 ```
 
 This still leaves the following error message:
@@ -168,7 +168,6 @@ That is exactly what the [`std::rc::Rc`](https://doc.rust-lang.org/std/rc/struct
 `Rc` counts the number of strong references created via [`Clone::clone`](https://doc.rust-lang.org/std/clone/trait.Clone.html#tymethod.clone) and released via [`Drop::drop`](https://doc.rust-lang.org/std/ops/trait.Drop.html#tymethod.drop), and only deallocates the value when this number drops to zero.
 If we want to modify the content of our [`Rc`](https://doc.rust-lang.org/std/rc/struct.Rc.html),
 we can again use the [`Cell`](https://doc.rust-lang.org/std/cell/struct.Cell.html) type.
-
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/g_object_memory_management/2/main.rs">listings/g_object_memory_management/2/main.rs</a>
 
