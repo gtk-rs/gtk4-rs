@@ -22,9 +22,21 @@ impl StaticType for BorderNode {
 }
 
 impl BorderNode {
+    //#[doc(alias = "gsk_border_node_get_colors")]
+    //#[doc(alias = "get_colors")]
+    //pub fn colors(&self) -> /*Unimplemented*/FixedArray TypeId { ns_id: 12, id: 96 }; 4 {
+    //    unsafe { TODO: call ffi:gsk_border_node_get_colors() }
+    //}
+
     #[doc(alias = "gsk_border_node_get_outline")]
     #[doc(alias = "get_outline")]
     pub fn outline(&self) -> RoundedRect {
         unsafe { from_glib_none(ffi::gsk_border_node_get_outline(self.to_glib_none().0)) }
     }
+
+    //#[doc(alias = "gsk_border_node_get_widths")]
+    //#[doc(alias = "get_widths")]
+    //pub fn widths(&self) -> /*Unimplemented*/FixedArray TypeId { ns_id: 0, id: 20 }; 4 {
+    //    unsafe { TODO: call ffi:gsk_border_node_get_widths() }
+    //}
 }
