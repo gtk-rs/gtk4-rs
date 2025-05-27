@@ -72,9 +72,9 @@ impl IconTheme {
     #[doc(alias = "gtk_icon_theme_get_resource_path")]
     #[doc(alias = "get_resource_path")]
     #[doc(alias = "resource-path")]
-    pub fn resource_path(&self) -> Vec<glib::GString> {
+    pub fn resource_path(&self) -> Option<Vec<glib::GString>> {
         unsafe {
-            FromGlibPtrContainer::from_glib_full(ffi::gtk_icon_theme_get_resource_path(
+            MaybeFromGlibPtrContainer::maybe_from_glib_full(ffi::gtk_icon_theme_get_resource_path(
                 self.to_glib_none().0,
             ))
         }
@@ -83,9 +83,9 @@ impl IconTheme {
     #[doc(alias = "gtk_icon_theme_get_search_path")]
     #[doc(alias = "get_search_path")]
     #[doc(alias = "search-path")]
-    pub fn search_path(&self) -> Vec<std::path::PathBuf> {
+    pub fn search_path(&self) -> Option<Vec<std::path::PathBuf>> {
         unsafe {
-            FromGlibPtrContainer::from_glib_full(ffi::gtk_icon_theme_get_search_path(
+            MaybeFromGlibPtrContainer::maybe_from_glib_full(ffi::gtk_icon_theme_get_search_path(
                 self.to_glib_none().0,
             ))
         }
@@ -145,7 +145,7 @@ impl IconTheme {
     pub fn lookup_icon(
         &self,
         icon_name: &str,
-        fallbacks: &[&str],
+        fallbacks: Option<&[&str]>,
         size: i32,
         scale: i32,
         direction: TextDirection,
@@ -166,7 +166,7 @@ impl IconTheme {
 
     #[doc(alias = "gtk_icon_theme_set_resource_path")]
     #[doc(alias = "resource-path")]
-    pub fn set_resource_path(&self, path: &[&str]) {
+    pub fn set_resource_path(&self, path: Option<&[&str]>) {
         unsafe {
             ffi::gtk_icon_theme_set_resource_path(self.to_glib_none().0, path.to_glib_none().0);
         }
@@ -174,7 +174,7 @@ impl IconTheme {
 
     #[doc(alias = "gtk_icon_theme_set_search_path")]
     #[doc(alias = "search-path")]
-    pub fn set_search_path(&self, path: &[&std::path::Path]) {
+    pub fn set_search_path(&self, path: Option<&[&std::path::Path]>) {
         unsafe {
             ffi::gtk_icon_theme_set_search_path(self.to_glib_none().0, path.to_glib_none().0);
         }

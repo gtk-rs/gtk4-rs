@@ -95,9 +95,9 @@ pub trait DeviceExt: IsA<Device> + 'static {
     #[doc(alias = "gdk_device_get_layout_names")]
     #[doc(alias = "get_layout_names")]
     #[doc(alias = "layout-names")]
-    fn layout_names(&self) -> Vec<glib::GString> {
+    fn layout_names(&self) -> Option<Vec<glib::GString>> {
         unsafe {
-            FromGlibPtrContainer::from_glib_full(ffi::gdk_device_get_layout_names(
+            MaybeFromGlibPtrContainer::maybe_from_glib_full(ffi::gdk_device_get_layout_names(
                 self.as_ref().to_glib_none().0,
             ))
         }
