@@ -67,8 +67,8 @@ impl Stroke {
     }
 
     #[doc(alias = "gsk_stroke_set_dash")]
-    pub fn set_dash(&self, dash: &[f32]) {
-        let n_dash = dash.len() as _;
+    pub fn set_dash(&self, dash: Option<&[f32]>) {
+        let n_dash = dash.map(|arr| arr.len()).unwrap_or(0) as _;
         unsafe {
             ffi::gsk_stroke_set_dash(
                 mut_override(self.to_glib_none().0),

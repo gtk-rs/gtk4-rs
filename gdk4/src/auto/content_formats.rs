@@ -18,9 +18,9 @@ glib::wrapper! {
 
 impl ContentFormats {
     #[doc(alias = "gdk_content_formats_new")]
-    pub fn new(mime_types: &[&str]) -> ContentFormats {
+    pub fn new(mime_types: Option<&[&str]>) -> ContentFormats {
         assert_initialized_main_thread!();
-        let n_mime_types = mime_types.len() as _;
+        let n_mime_types = mime_types.map(|arr| arr.len()).unwrap_or(0) as _;
         unsafe {
             from_glib_full(ffi::gdk_content_formats_new(
                 mime_types.to_glib_none().0,

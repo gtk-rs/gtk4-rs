@@ -47,9 +47,9 @@ impl ContentProvider {
     }
 
     #[doc(alias = "gdk_content_provider_new_union")]
-    pub fn new_union(providers: &[ContentProvider]) -> ContentProvider {
+    pub fn new_union(providers: Option<&[ContentProvider]>) -> ContentProvider {
         assert_initialized_main_thread!();
-        let n_providers = providers.len() as _;
+        let n_providers = providers.map(|arr| arr.len()).unwrap_or(0) as _;
         unsafe {
             from_glib_full(ffi::gdk_content_provider_new_union(
                 providers.to_glib_full(),
