@@ -30,10 +30,10 @@ impl GLShaderNode {
         shader: &GLShader,
         bounds: &graphene::Rect,
         args: &glib::Bytes,
-        children: &[RenderNode],
+        children: Option<&[RenderNode]>,
     ) -> GLShaderNode {
         skip_assert_initialized!();
-        let n_children = children.len() as _;
+        let n_children = children.map(|arr| arr.len()).unwrap_or(0) as _;
         unsafe {
             from_glib_full(ffi::gsk_gl_shader_node_new(
                 shader.to_glib_none().0,

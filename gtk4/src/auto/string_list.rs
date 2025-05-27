@@ -16,7 +16,7 @@ glib::wrapper! {
 
 impl StringList {
     #[doc(alias = "gtk_string_list_new")]
-    pub fn new(strings: &[&str]) -> StringList {
+    pub fn new(strings: Option<&[&str]>) -> StringList {
         assert_initialized_main_thread!();
         unsafe { from_glib_full(ffi::gtk_string_list_new(strings.to_glib_none().0)) }
     }
@@ -54,7 +54,7 @@ impl StringList {
     }
 
     #[doc(alias = "gtk_string_list_splice")]
-    pub fn splice(&self, position: u32, n_removals: u32, additions: &[&str]) {
+    pub fn splice(&self, position: u32, n_removals: u32, additions: Option<&[&str]>) {
         unsafe {
             ffi::gtk_string_list_splice(
                 self.to_glib_none().0,
