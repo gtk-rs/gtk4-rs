@@ -54,7 +54,7 @@ impl StringList {
     }
 
     #[doc(alias = "gtk_string_list_splice")]
-    pub fn splice(&self, position: u32, n_removals: u32, additions: &[&str]) {
+    pub fn splice(&self, position: u32, n_removals: u32, additions: Option<&[&str]>) {
         unsafe {
             ffi::gtk_string_list_splice(
                 self.to_glib_none().0,
