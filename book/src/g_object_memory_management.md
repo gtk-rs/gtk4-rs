@@ -25,7 +25,7 @@ fn main() -> glib::ExitCode {
 }
 
 fn build_ui(application: &Application) {
-    // Create two buttons
+    // Create a button
     let button_increase = Button::builder()
         .label("Increase")
         .margin_top(12)
@@ -98,7 +98,7 @@ By adding the `move` keyword in front of the closure, `number` will be moved int
 # }
 #
 # fn build_ui(application: &Application) {
-#     // Create two buttons
+#     // Create a button
 #     let button_increase = Button::builder()
 #         .label("Increase")
 #         .margin_top(12)
