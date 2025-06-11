@@ -544,6 +544,9 @@ status = "generate"
     name = "accelerator_parse"
     manual = true # to make use of gdk::Key
     [[object.function]]
+    name = "disable_portals"
+    assertion = "not-initialized"
+    [[object.function]]
     name = "disable_setlocale"
     assertion = "not-initialized"
     [[object.function]]
