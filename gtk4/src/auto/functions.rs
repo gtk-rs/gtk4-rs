@@ -39,7 +39,7 @@ pub fn check_version(
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_18")))]
 #[doc(alias = "gtk_disable_portals")]
 pub fn disable_portals() {
-    assert_initialized_main_thread!();
+    assert_not_initialized!();
     unsafe {
         ffi::gtk_disable_portals();
     }
