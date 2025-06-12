@@ -5,7 +5,7 @@ use crate::{prelude::*, StringList};
 impl FromIterator<&'static str> for StringList {
     fn from_iter<I: IntoIterator<Item = &'static str>>(iter: I) -> Self {
         assert_initialized_main_thread!();
-        StringList::new(iter.into_iter().collect::<Vec<_>>().as_slice())
+        StringList::new(Some(iter.into_iter().collect::<Vec<_>>().as_slice()))
     }
 }
 
@@ -14,7 +14,7 @@ impl Extend<&'static str> for StringList {
         self.splice(
             self.n_items(),
             0,
-            iter.into_iter().collect::<Vec<_>>().as_slice(),
+            Some(iter.into_iter().collect::<Vec<_>>().as_slice()),
         );
     }
 }
@@ -22,7 +22,7 @@ impl Extend<&'static str> for StringList {
 impl FromIterator<String> for StringList {
     fn from_iter<I: IntoIterator<Item = String>>(iter: I) -> Self {
         assert_initialized_main_thread!();
-        let string_list = StringList::new(&[]);
+        let string_list = StringList::new(None);
         for s in iter {
             string_list.append(&s);
         }
@@ -40,7 +40,7 @@ impl Extend<String> for StringList {
 
 impl Default for StringList {
     fn default() -> Self {
-        Self::new(&[])
+        Self::new(None)
     }
 }
 
