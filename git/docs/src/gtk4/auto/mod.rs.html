@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/auto/mod.rs`."><title>mod.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-84e720fa.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.89.0-nightly (1677d46cb 2025-06-10)" data-channel="nightly" data-search-js="search-f7877310.js" data-settings-js="settings-5514c975.js" ><script src="../../../static.files/storage-4e99c027.js"></script><script defer src="../../../static.files/src-script-63605ae7.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-fd3af306.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-32bb7600.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-6580c154.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/auto/mod.rs`."><title>mod.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-84e720fa.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.89.0-nightly (f3db63916 2025-06-17)" data-channel="nightly" data-search-js="search-f7877310.js" data-settings-js="settings-5514c975.js" ><script src="../../../static.files/storage-4e99c027.js"></script><script defer src="../../../static.files/src-script-63605ae7.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-fd3af306.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-32bb7600.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-6580c154.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
 
@@ -621,8 +621,8 @@
 <a href=#548 id=548 data-nosnippet>548</a><span class="kw">mod </span><a href="im_multicontext.rs.html#5-140">im_multicontext</a>;
 <a href=#549 id=549 data-nosnippet>549</a><span class="kw">pub use </span><a href="im_multicontext.rs.html#8-24"><span class="self">self</span>::im_multicontext::IMMulticontext</a>;
 <a href=#550 id=550 data-nosnippet>550</a>
-<a href=#551 id=551 data-nosnippet>551</a><span class="kw">mod </span><a href="icon_paintable.rs.html#5-134">icon_paintable</a>;
-<a href=#552 id=552 data-nosnippet>552</a><span class="kw">pub use </span><a href="icon_paintable.rs.html#13-47"><span class="self">self</span>::icon_paintable::IconPaintable</a>;
+<a href=#551 id=551 data-nosnippet>551</a><span class="kw">mod </span><a href="icon_paintable.rs.html#4-255">icon_paintable</a>;
+<a href=#552 id=552 data-nosnippet>552</a><span class="kw">pub use </span><a href="icon_paintable.rs.html#19-62"><span class="self">self</span>::icon_paintable::IconPaintable</a>;
 <a href=#553 id=553 data-nosnippet>553</a>
 <a href=#554 id=554 data-nosnippet>554</a><span class="kw">mod </span><a href="icon_theme.rs.html#5-707">icon_theme</a>;
 <a href=#555 id=555 data-nosnippet>555</a><span class="kw">pub use </span><a href="icon_theme.rs.html#14-120"><span class="self">self</span>::icon_theme::IconTheme</a>;
@@ -632,7 +632,7 @@
 <a href=#559 id=559 data-nosnippet>559</a><span class="attr">#[cfg_attr(feature = <span class="string">"v4_10"</span>, deprecated = <span class="string">"Since 4.10"</span>)]
 <a href=#560 id=560 data-nosnippet>560</a></span><span class="kw">pub use </span><a href="icon_view.rs.html#20-759"><span class="self">self</span>::icon_view::IconView</a>;
 <a href=#561 id=561 data-nosnippet>561</a>
-<a href=#562 id=562 data-nosnippet>562</a><span class="kw">mod </span><a href="image.rs.html#4-1492">image</a>;
+<a href=#562 id=562 data-nosnippet>562</a><span class="kw">mod </span><a href="image.rs.html#4-1500">image</a>;
 <a href=#563 id=563 data-nosnippet>563</a><span class="kw">pub use </span><a href="image.rs.html#17-440"><span class="self">self</span>::image::Image</a>;
 <a href=#564 id=564 data-nosnippet>564</a>
 <a href=#565 id=565 data-nosnippet>565</a><span class="attr">#[cfg_attr(feature = <span class="string">"v4_10"</span>, deprecated = <span class="string">"Since 4.10"</span>)]
@@ -803,11 +803,11 @@
 <a href=#730 id=730 data-nosnippet>730</a>#[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_4"</span>)))]
 <a href=#731 id=731 data-nosnippet>731</a></span><span class="kw">pub use </span><a href="password_entry_buffer.rs.html#8-23"><span class="self">self</span>::password_entry_buffer::PasswordEntryBuffer</a>;
 <a href=#732 id=732 data-nosnippet>732</a>
-<a href=#733 id=733 data-nosnippet>733</a><span class="kw">mod </span><a href="picture.rs.html#4-1358">picture</a>;
+<a href=#733 id=733 data-nosnippet>733</a><span class="kw">mod </span><a href="picture.rs.html#4-1360">picture</a>;
 <a href=#734 id=734 data-nosnippet>734</a><span class="kw">pub use </span><a href="picture.rs.html#20-420"><span class="self">self</span>::picture::Picture</a>;
 <a href=#735 id=735 data-nosnippet>735</a>
-<a href=#736 id=736 data-nosnippet>736</a><span class="kw">mod </span><a href="popover.rs.html#5-1617">popover</a>;
-<a href=#737 id=737 data-nosnippet>737</a><span class="kw">pub use </span><a href="popover.rs.html#17-617"><span class="self">self</span>::popover::Popover</a>;
+<a href=#736 id=736 data-nosnippet>736</a><span class="kw">mod </span><a href="popover.rs.html#5-1622">popover</a>;
+<a href=#737 id=737 data-nosnippet>737</a><span class="kw">pub use </span><a href="popover.rs.html#17-622"><span class="self">self</span>::popover::Popover</a>;
 <a href=#738 id=738 data-nosnippet>738</a>
 <a href=#739 id=739 data-nosnippet>739</a><span class="kw">mod </span><a href="popover_menu.rs.html#5-1192">popover_menu</a>;
 <a href=#740 id=740 data-nosnippet>740</a><span class="kw">pub use </span><a href="popover_menu.rs.html#16-520"><span class="self">self</span>::popover_menu::PopoverMenu</a>;
@@ -968,7 +968,7 @@
 <a href=#895 id=895 data-nosnippet>895</a><span class="kw">mod </span><a href="slice_list_model.rs.html#5-313">slice_list_model</a>;
 <a href=#896 id=896 data-nosnippet>896</a><span class="kw">pub use </span><a href="slice_list_model.rs.html#18-68"><span class="self">self</span>::slice_list_model::SliceListModel</a>;
 <a href=#897 id=897 data-nosnippet>897</a>
-<a href=#898 id=898 data-nosnippet>898</a><span class="kw">mod </span><a href="snapshot.rs.html#4-1187">snapshot</a>;
+<a href=#898 id=898 data-nosnippet>898</a><span class="kw">mod </span><a href="snapshot.rs.html#4-1188">snapshot</a>;
 <a href=#899 id=899 data-nosnippet>899</a><span class="kw">pub use </span><a href="snapshot.rs.html#9-32"><span class="self">self</span>::snapshot::Snapshot</a>;
 <a href=#900 id=900 data-nosnippet>900</a>
 <a href=#901 id=901 data-nosnippet>901</a><span class="kw">mod </span><a href="sort_list_model.rs.html#5-487">sort_list_model</a>;
@@ -1605,7 +1605,7 @@
 <a href=#1532 id=1532 data-nosnippet>1532</a>    <span class="kw">pub use </span><a href="native.rs.html#62-132"><span class="kw">super</span>::native::NativeExt</a>;
 <a href=#1533 id=1533 data-nosnippet>1533</a>    <span class="kw">pub use </span><a href="native_dialog.rs.html#94-386"><span class="kw">super</span>::native_dialog::NativeDialogExt</a>;
 <a href=#1534 id=1534 data-nosnippet>1534</a>    <span class="kw">pub use </span><a href="orientable.rs.html#53-108"><span class="kw">super</span>::orientable::OrientableExt</a>;
-<a href=#1535 id=1535 data-nosnippet>1535</a>    <span class="kw">pub use </span><a href="popover.rs.html#1040-1615"><span class="kw">super</span>::popover::PopoverExt</a>;
+<a href=#1535 id=1535 data-nosnippet>1535</a>    <span class="kw">pub use </span><a href="popover.rs.html#1045-1620"><span class="kw">super</span>::popover::PopoverExt</a>;
 <a href=#1536 id=1536 data-nosnippet>1536</a>    <span class="kw">pub use </span><a href="print_operation.rs.html#751-2431"><span class="kw">super</span>::print_operation::PrintOperationExt</a>;
 <a href=#1537 id=1537 data-nosnippet>1537</a>    <span class="kw">pub use </span><a href="print_operation_preview.rs.html#62-188"><span class="kw">super</span>::print_operation_preview::PrintOperationPreviewExt</a>;
 <a href=#1538 id=1538 data-nosnippet>1538</a>    <span class="kw">pub use </span><a href="range.rs.html#586-1247"><span class="kw">super</span>::range::RangeExt</a>;
@@ -1621,7 +1621,7 @@
 <a href=#1548 id=1548 data-nosnippet>1548</a>    <span class="kw">pub use </span><a href="shortcut_action.rs.html#93-145"><span class="kw">super</span>::shortcut_action::ShortcutActionExt</a>;
 <a href=#1549 id=1549 data-nosnippet>1549</a>    <span class="kw">pub use </span><a href="shortcut_manager.rs.html#41"><span class="kw">super</span>::shortcut_manager::ShortcutManagerExt</a>;
 <a href=#1550 id=1550 data-nosnippet>1550</a>    <span class="kw">pub use </span><a href="shortcut_trigger.rs.html#82-150"><span class="kw">super</span>::shortcut_trigger::ShortcutTriggerExt</a>;
-<a href=#1551 id=1551 data-nosnippet>1551</a>    <span class="kw">pub use </span><a href="snapshot.rs.html#60-1185"><span class="kw">super</span>::snapshot::SnapshotExt</a>;
+<a href=#1551 id=1551 data-nosnippet>1551</a>    <span class="kw">pub use </span><a href="snapshot.rs.html#60-1186"><span class="kw">super</span>::snapshot::SnapshotExt</a>;
 <a href=#1552 id=1552 data-nosnippet>1552</a>    <span class="kw">pub use </span><a href="sorter.rs.html#73-162"><span class="kw">super</span>::sorter::SorterExt</a>;
 <a href=#1553 id=1553 data-nosnippet>1553</a>    <span class="attr">#[cfg_attr(feature = <span class="string">"v4_10"</span>, deprecated = <span class="string">"Since 4.10"</span>)]
 <a href=#1554 id=1554 data-nosnippet>1554</a>    </span><span class="kw">pub use </span><a href="style_context.rs.html#84-571"><span class="kw">super</span>::style_context::StyleContextExt</a>;
@@ -1790,7 +1790,7 @@
 <a href=#1717 id=1717 data-nosnippet>1717</a>    </span><span class="kw">pub use </span><a href="icon_view.rs.html#3002-3004"><span class="kw">super</span>::icon_view::IconViewBuilder</a>;
 <a href=#1718 id=1718 data-nosnippet>1718</a>    <span class="kw">pub use </span><a href="im_context_simple.rs.html#93-95"><span class="kw">super</span>::im_context_simple::IMContextSimpleBuilder</a>;
 <a href=#1719 id=1719 data-nosnippet>1719</a>    <span class="kw">pub use </span><a href="im_multicontext.rs.html#60-62"><span class="kw">super</span>::im_multicontext::IMMulticontextBuilder</a>;
-<a href=#1720 id=1720 data-nosnippet>1720</a>    <span class="kw">pub use </span><a href="image.rs.html#1103-1105"><span class="kw">super</span>::image::ImageBuilder</a>;
+<a href=#1720 id=1720 data-nosnippet>1720</a>    <span class="kw">pub use </span><a href="image.rs.html#1111-1113"><span class="kw">super</span>::image::ImageBuilder</a>;
 <a href=#1721 id=1721 data-nosnippet>1721</a>    <span class="attr">#[cfg_attr(feature = <span class="string">"v4_10"</span>, deprecated = <span class="string">"Since 4.10"</span>)]
 <a href=#1722 id=1722 data-nosnippet>1722</a>    </span><span class="kw">pub use </span><a href="info_bar.rs.html#1038-1040"><span class="kw">super</span>::info_bar::InfoBarBuilder</a>;
 <a href=#1723 id=1723 data-nosnippet>1723</a>    <span class="attr">#[cfg(feature = <span class="string">"v4_8"</span>)]
@@ -1821,8 +1821,8 @@
 <a href=#1748 id=1748 data-nosnippet>1748</a>    <span class="attr">#[cfg(feature = <span class="string">"v4_4"</span>)]
 <a href=#1749 id=1749 data-nosnippet>1749</a>    #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_4"</span>)))]
 <a href=#1750 id=1750 data-nosnippet>1750</a>    </span><span class="kw">pub use </span><a href="password_entry_buffer.rs.html#57-59"><span class="kw">super</span>::password_entry_buffer::PasswordEntryBufferBuilder</a>;
-<a href=#1751 id=1751 data-nosnippet>1751</a>    <span class="kw">pub use </span><a href="picture.rs.html#987-989"><span class="kw">super</span>::picture::PictureBuilder</a>;
-<a href=#1752 id=1752 data-nosnippet>1752</a>    <span class="kw">pub use </span><a href="popover.rs.html#653-655"><span class="kw">super</span>::popover::PopoverBuilder</a>;
+<a href=#1751 id=1751 data-nosnippet>1751</a>    <span class="kw">pub use </span><a href="picture.rs.html#989-991"><span class="kw">super</span>::picture::PictureBuilder</a>;
+<a href=#1752 id=1752 data-nosnippet>1752</a>    <span class="kw">pub use </span><a href="popover.rs.html#658-660"><span class="kw">super</span>::popover::PopoverBuilder</a>;
 <a href=#1753 id=1753 data-nosnippet>1753</a>    <span class="kw">pub use </span><a href="popover_menu.rs.html#782-784"><span class="kw">super</span>::popover_menu::PopoverMenuBuilder</a>;
 <a href=#1754 id=1754 data-nosnippet>1754</a>    <span class="kw">pub use </span><a href="popover_menu_bar.rs.html#498-500"><span class="kw">super</span>::popover_menu_bar::PopoverMenuBarBuilder</a>;
 <a href=#1755 id=1755 data-nosnippet>1755</a>    <span class="attr">#[cfg(feature = <span class="string">"v4_14"</span>)]
