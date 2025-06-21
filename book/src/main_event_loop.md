@@ -26,14 +26,12 @@ We can't even move the window.
 The `sleep` call is an artificial example,
 but frequently, we want to run a slightly longer operation in one go.
 
-
 <div style="text-align:center">
  <video autoplay muted loop>
   <source src="vid/main_event_loop_1.webm" type="video/webm">
   <p>A video which shows that after pressing the button, the window can still be moved</p>
  </video>
 </div>
-
 
 ## How to Avoid Blocking the Main Loop
 
@@ -55,7 +53,6 @@ This is not necessarily what we want.
   <p>A video which shows that after pressing the button, the window can still be moved</p>
  </video>
 </div>
-
 
 > If you come from another language than Rust, you might be uncomfortable with the thought of running tasks in separate threads before even looking at other options.
 > Luckily, Rust's safety guarantees allow you to stop worrying about the nasty bugs that concurrency tends to bring.
@@ -123,12 +120,12 @@ But why did we not do the same thing with our multithreaded example?
 
 ```rust ,no_run,compile_fail
 # use std::{thread, time::Duration};
-# 
+#
 # use glib::{clone, MainContext, PRIORITY_DEFAULT};
 # use gtk::{glib, gio};
 # use gtk::prelude::*;
 # use gtk::{Application, ApplicationWindow, Button};
-# 
+#
 # fn main() {
 #     // Create a new application
 #     let app = Application::builder()
@@ -137,13 +134,13 @@ But why did we not do the same thing with our multithreaded example?
 #
 #     // Connect to "activate" signal
 #     app.connect_activate(build_ui);
-# 
+#
 #     // Get command-line arguments
 #     let args: Vec<String> = args().collect();
 #     // Run the application
 #     app.run(&args);
 # }
-# 
+#
 # // When the application is launched…
 # fn build_ui(application: &Application) {
 #     // Create a window
@@ -151,7 +148,7 @@ But why did we not do the same thing with our multithreaded example?
 #         .application(application)
 #         .title("My GTK App")
 #         .build();
-# 
+#
 #     // Create a button
 #     let button = Button::builder()
 #         .label("Press me!")
@@ -160,7 +157,7 @@ But why did we not do the same thing with our multithreaded example?
 #         .margin_start(12)
 #         .margin_end(12)
 #         .build();
-# 
+#
     // DOES NOT COMPILE!
     // Connect to "clicked" signal of `button`
     button.connect_clicked(move |button| {
@@ -175,7 +172,7 @@ But why did we not do the same thing with our multithreaded example?
             button.set_sensitive(true);
         });
     });
-# 
+#
 #     // Add button
 #     window.set_child(Some(&button));
 #     window.present();
@@ -213,11 +210,11 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/b
 Asynchronous functions from the `glib` ecosystem can always be spawned on the `glib` main loop.
 Typically, crates depending on `async-std` or `smol` work as well.
 Let us take `ashpd` for example which allows sandboxed applications to interact with the desktop.
-Per default it depends on `async-std`.
+It can be configured to depend on `async-std`.
 We can add it to our dependencies by running the following command.
 
 ```
-cargo add ashpd --features gtk4
+cargo add ashpd --no-default-features --features "gtk4 async-std"
 ```
 
 You need to use a Linux desktop environment in order to run the following example locally.
@@ -281,32 +278,32 @@ Doing this will block one of the runtime's threads with the GLib main loop, whic
 Instead, we bind [`tokio::runtime::Runtime`](https://docs.rs/tokio/latest/tokio/runtime/struct.Runtime.html) to a static variable.
 
 ```rust
-#use std::sync::OnceLock;
+# use std::sync::OnceLock;
 #
-#use glib::clone;
-#use gtk::glib;
-#use gtk::prelude::*;
-#use gtk::{Application, ApplicationWindow, Button};
-#use tokio::runtime::Runtime;
+# use glib::clone;
+# use gtk::glib;
+# use gtk::prelude::*;
+# use gtk::{Application, ApplicationWindow, Button};
+# use tokio::runtime::Runtime;
 #
-#const APP_ID: &str = "org.gtk_rs.MainEventLoop0";
+# const APP_ID: &str = "org.gtk_rs.MainEventLoop0";
 #
 // DOES NOT COMPILE!
 static RUNTIME: Runtime =
     Runtime::new().expect("Setting up tokio runtime needs to succeed.");
 #
-#fn main() -> glib::ExitCode {
-#    // Create a new application
-#    let app = Application::builder().application_id(APP_ID).build();
+# fn main() -> glib::ExitCode {
+#     // Create a new application
+#     let app = Application::builder().application_id(APP_ID).build();
 #
-#    // Connect to "activate" signal of `app`
-#    app.connect_activate(build_ui);
+#     // Connect to "activate" signal of `app`
+#     app.connect_activate(build_ui);
 #
-#    // Run the application
-#    app.run()
-#}
+#     // Run the application
+#     app.run()
+# }
 #
-#fn build_ui(app: &Application) {
+# fn build_ui(app: &Application) {
 #    // Create a button
 #    let button = Button::builder()
 #        .label("Press me!")
@@ -347,7 +344,7 @@ static RUNTIME: Runtime =
 #
 #    // Present window
 #    window.present();
-#}
+# }
 ```
 
 Unfortunately, this doesn't compile.
@@ -361,7 +358,6 @@ consider wrapping this expression in `Lazy::new(|| ...)` from the `once_cell` cr
 
 We could follow the advice directly, but the standard library also provides solutions for that.
 With [`std::sync::OnceLock`](https://doc.rust-lang.org/stable/std/sync/struct.OnceLock.html) we can initialize the static with the const function `OnceLock::new()` and initialize it the first time our function `runtime` is called.
-
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/main_event_loop/9/main.rs">listings/main_event_loop/9/main.rs</a>
 
@@ -391,11 +387,11 @@ cargo remove tokio reqwest ashpd
 
 How to find out whether you can spawn an `async` task on the `glib` main loop?
 `glib` should be able to spawn the task when the called functions come from libraries that either:
+
 - come from the `glib` ecosystem,
 - don't depend on a runtime but only on the `futures` family of crates (`futures-io`, `futures-core` etc),
 - depend on the `async-std` or `smol` runtimes, or
 - have cargo features that let them depend on `async-std`/`smol` instead of `tokio`.
-
 
 ## Conclusion
 
@@ -408,7 +404,7 @@ That means you have to run the task in a separate thread and let it send results
 
 If your task is [IO bound](https://en.wikipedia.org/wiki/I/O_bound), the answer depends on the crates at your disposal and the type of work to be done.
 
--  Light I/O work with functions from crates using `glib`, `smol`, `async-std` or the `futures` trait family can be spawned on the main loop. This way, you can often avoid synchronization via channels.
+- Light I/O work with functions from crates using `glib`, `smol`, `async-std` or the `futures` trait family can be spawned on the main loop. This way, you can often avoid synchronization via channels.
 - Heavy I/O work might still benefit from running in a separate thread / an async executor to avoid saturating the main loop. If you are unsure, benchmarking is advised.
 
 If the best crate for the job relies on `tokio`, you will have to spawn it with the tokio runtime and communicate via channels.
