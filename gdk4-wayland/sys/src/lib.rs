@@ -276,9 +276,6 @@ extern "C" {
         user_data: gpointer,
         destroy_func: glib::GDestroyNotify,
     ) -> gboolean;
-    #[cfg(feature = "v4_20")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
-    pub fn gdk_wayland_toplevel_get_xdg_toplevel(toplevel: *mut GdkWaylandToplevel) -> gpointer;
     pub fn gdk_wayland_toplevel_set_application_id(
         toplevel: *mut GdkWaylandToplevel,
         application_id: *const c_char,
