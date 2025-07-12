@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gsk4/src/auto/mod.rs`."><title>mod.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-84e720fa.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gsk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.90.0-nightly (35f603652 2025-06-29)" data-channel="nightly" data-search-js="search-179e01a3.js" data-settings-js="settings-5514c975.js" ><script src="../../../static.files/storage-4e99c027.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-340f468f.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-32bb7600.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-6580c154.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gsk4/src/auto/mod.rs`."><title>mod.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-aa0817cf.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gsk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.90.0-nightly (855e0fe46 2025-07-11)" data-channel="nightly" data-search-js="search-179e01a3.js" data-settings-js="settings-5514c975.js" ><script src="../../../static.files/storage-4e99c027.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-673ee1e0.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-32bb7600.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-6580c154.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
 
@@ -254,7 +254,7 @@
 <a href=#181 id=181 data-nosnippet>181</a><span class="kw">mod </span><a href="transform.rs.html#5-456">transform</a>;
 <a href=#182 id=182 data-nosnippet>182</a><span class="kw">pub use </span><a href="transform.rs.html#8-26"><span class="self">self</span>::transform::Transform</a>;
 <a href=#183 id=183 data-nosnippet>183</a>
-<a href=#184 id=184 data-nosnippet>184</a><span class="kw">mod </span><a href="enums.rs.html#5-1900">enums</a>;
+<a href=#184 id=184 data-nosnippet>184</a><span class="kw">mod </span><a href="enums.rs.html#5-2029">enums</a>;
 <a href=#185 id=185 data-nosnippet>185</a><span class="kw">pub use </span><a href="enums.rs.html#18-72"><span class="self">self</span>::enums::BlendMode</a>;
 <a href=#186 id=186 data-nosnippet>186</a><span class="kw">pub use </span><a href="enums.rs.html#188-203"><span class="self">self</span>::enums::Corner</a>;
 <a href=#187 id=187 data-nosnippet>187</a><span class="attr">#[cfg(feature = <span class="string">"v4_14"</span>)]
@@ -274,23 +274,26 @@
 <a href=#201 id=201 data-nosnippet>201</a><span class="attr">#[cfg(feature = <span class="string">"v4_14"</span>)]
 <a href=#202 id=202 data-nosnippet>202</a>#[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_14"</span>)))]
 <a href=#203 id=203 data-nosnippet>203</a></span><span class="kw">pub use </span><a href="enums.rs.html#990-1009"><span class="self">self</span>::enums::PathDirection</a>;
-<a href=#204 id=204 data-nosnippet>204</a><span class="attr">#[cfg(feature = <span class="string">"v4_14"</span>)]
-<a href=#205 id=205 data-nosnippet>205</a>#[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_14"</span>)))]
-<a href=#206 id=206 data-nosnippet>206</a></span><span class="kw">pub use </span><a href="enums.rs.html#1123-1152"><span class="self">self</span>::enums::PathOperation</a>;
-<a href=#207 id=207 data-nosnippet>207</a><span class="kw">pub use </span><a href="enums.rs.html#1266-1372"><span class="self">self</span>::enums::RenderNodeType</a>;
-<a href=#208 id=208 data-nosnippet>208</a><span class="kw">pub use </span><a href="enums.rs.html#1531-1545"><span class="self">self</span>::enums::ScalingFilter</a>;
-<a href=#209 id=209 data-nosnippet>209</a><span class="kw">pub use </span><a href="enums.rs.html#1637-1651"><span class="self">self</span>::enums::SerializationError</a>;
-<a href=#210 id=210 data-nosnippet>210</a><span class="kw">pub use </span><a href="enums.rs.html#1775-1806"><span class="self">self</span>::enums::TransformCategory</a>;
-<a href=#211 id=211 data-nosnippet>211</a>
-<a href=#212 id=212 data-nosnippet>212</a><span class="kw">mod </span><a href="flags.rs.html#5-127">flags</a>;
-<a href=#213 id=213 data-nosnippet>213</a><span class="attr">#[cfg(feature = <span class="string">"v4_14"</span>)]
-<a href=#214 id=214 data-nosnippet>214</a>#[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_14"</span>)))]
-<a href=#215 id=215 data-nosnippet>215</a></span><span class="kw">pub use </span><a href="flags.rs.html#11-36"><span class="self">self</span>::flags::PathForeachFlags</a>;
-<a href=#216 id=216 data-nosnippet>216</a>
-<a href=#217 id=217 data-nosnippet>217</a><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">mod </span>traits {
-<a href=#218 id=218 data-nosnippet>218</a>    <span class="kw">pub use </span><a href="renderer.rs.html#81-289"><span class="kw">super</span>::renderer::GskRendererExt</a>;
-<a href=#219 id=219 data-nosnippet>219</a>}
-<a href=#220 id=220 data-nosnippet>220</a><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">mod </span>builders {
-<a href=#221 id=221 data-nosnippet>221</a>    <span class="attr">#[cfg_attr(feature = <span class="string">"v4_16"</span>, deprecated = <span class="string">"Since 4.16"</span>)]
-<a href=#222 id=222 data-nosnippet>222</a>    </span><span class="kw">pub use </span><a href="gl_shader.rs.html#579-581"><span class="kw">super</span>::gl_shader::GLShaderBuilder</a>;
-<a href=#223 id=223 data-nosnippet>223</a>}</code></pre></div></section></main></body></html>
+<a href=#204 id=204 data-nosnippet>204</a><span class="attr">#[cfg(feature = <span class="string">"v4_20"</span>)]
+<a href=#205 id=205 data-nosnippet>205</a>#[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_20"</span>)))]
+<a href=#206 id=206 data-nosnippet>206</a></span><span class="kw">pub use </span><a href="enums.rs.html#1122-1138"><span class="self">self</span>::enums::PathIntersection</a>;
+<a href=#207 id=207 data-nosnippet>207</a><span class="attr">#[cfg(feature = <span class="string">"v4_14"</span>)]
+<a href=#208 id=208 data-nosnippet>208</a>#[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_14"</span>)))]
+<a href=#209 id=209 data-nosnippet>209</a></span><span class="kw">pub use </span><a href="enums.rs.html#1252-1281"><span class="self">self</span>::enums::PathOperation</a>;
+<a href=#210 id=210 data-nosnippet>210</a><span class="kw">pub use </span><a href="enums.rs.html#1395-1501"><span class="self">self</span>::enums::RenderNodeType</a>;
+<a href=#211 id=211 data-nosnippet>211</a><span class="kw">pub use </span><a href="enums.rs.html#1660-1674"><span class="self">self</span>::enums::ScalingFilter</a>;
+<a href=#212 id=212 data-nosnippet>212</a><span class="kw">pub use </span><a href="enums.rs.html#1766-1780"><span class="self">self</span>::enums::SerializationError</a>;
+<a href=#213 id=213 data-nosnippet>213</a><span class="kw">pub use </span><a href="enums.rs.html#1904-1935"><span class="self">self</span>::enums::TransformCategory</a>;
+<a href=#214 id=214 data-nosnippet>214</a>
+<a href=#215 id=215 data-nosnippet>215</a><span class="kw">mod </span><a href="flags.rs.html#5-127">flags</a>;
+<a href=#216 id=216 data-nosnippet>216</a><span class="attr">#[cfg(feature = <span class="string">"v4_14"</span>)]
+<a href=#217 id=217 data-nosnippet>217</a>#[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_14"</span>)))]
+<a href=#218 id=218 data-nosnippet>218</a></span><span class="kw">pub use </span><a href="flags.rs.html#11-36"><span class="self">self</span>::flags::PathForeachFlags</a>;
+<a href=#219 id=219 data-nosnippet>219</a>
+<a href=#220 id=220 data-nosnippet>220</a><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">mod </span>traits {
+<a href=#221 id=221 data-nosnippet>221</a>    <span class="kw">pub use </span><a href="renderer.rs.html#81-289"><span class="kw">super</span>::renderer::GskRendererExt</a>;
+<a href=#222 id=222 data-nosnippet>222</a>}
+<a href=#223 id=223 data-nosnippet>223</a><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">mod </span>builders {
+<a href=#224 id=224 data-nosnippet>224</a>    <span class="attr">#[cfg_attr(feature = <span class="string">"v4_16"</span>, deprecated = <span class="string">"Since 4.16"</span>)]
+<a href=#225 id=225 data-nosnippet>225</a>    </span><span class="kw">pub use </span><a href="gl_shader.rs.html#579-581"><span class="kw">super</span>::gl_shader::GLShaderBuilder</a>;
+<a href=#226 id=226 data-nosnippet>226</a>}</code></pre></div></section></main></body></html>
