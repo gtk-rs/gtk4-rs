@@ -35,6 +35,7 @@ skip = [
     {name = "windows_x86_64_gnu", version = "0.52.6"},
     {name = "windows_x86_64_gnullvm", version = "0.52.6"},
     {name = "windows_x86_64_msvc", version = "0.52.6"},
+    {name = "windows-sys", version = "0.59.0"},
 ]
 
 [sources]
