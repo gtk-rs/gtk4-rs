@@ -173,6 +173,9 @@ status = "generate"
     [[object.function]]
     name = "foreach"
     manual = true # tries to call from_glib_borrow on an enum
+    [[object.function]]
+    name = "foreach_intersection"
+    manual = true # tries to call from_glib_borrow on an enum
 
 [[object]]
 name = "Gsk.PathBuilder"
