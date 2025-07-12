@@ -52,7 +52,7 @@ jobs:
               features: "v4_20,xml_validation,blueprint",
               test_sys: false,
             }
-          - { name: "gsk4", features: "v4_18,broadway,vulkan", test_sys: true }
+          - { name: "gsk4", features: "v4_20,broadway,vulkan", test_sys: true }
           - { name: "gdk4", features: "v4_20,gl", test_sys: true }
           - {
               name: "gdk4-wayland",
