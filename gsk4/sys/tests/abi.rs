@@ -286,6 +286,13 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
+        "GskPathIntersection",
+        Layout {
+            size: size_of::<GskPathIntersection>(),
+            alignment: align_of::<GskPathIntersection>(),
+        },
+    ),
+    (
         "GskPathOperation",
         Layout {
             size: size_of::<GskPathOperation>(),
@@ -412,6 +419,10 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(guint) GSK_PATH_FOREACH_ALLOW_QUAD", "1"),
     ("(gint) GSK_PATH_FROM_END", "3"),
     ("(gint) GSK_PATH_FROM_START", "0"),
+    ("(gint) GSK_PATH_INTERSECTION_END", "3"),
+    ("(gint) GSK_PATH_INTERSECTION_NONE", "0"),
+    ("(gint) GSK_PATH_INTERSECTION_NORMAL", "1"),
+    ("(gint) GSK_PATH_INTERSECTION_START", "2"),
     ("(gint) GSK_PATH_LINE", "2"),
     ("(gint) GSK_PATH_MOVE", "0"),
     ("(gint) GSK_PATH_QUAD", "3"),

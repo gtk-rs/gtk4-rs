@@ -17,6 +17,13 @@ glib::wrapper! {
 }
 
 impl Path {
+    //#[cfg(feature = "v4_20")]
+    //#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    //#[doc(alias = "gsk_path_foreach_intersection")]
+    //pub fn foreach_intersection(&self, path2: Option<&Path>, func: /*Unimplemented*/FnMut(&Path, &PathPoint, &Path, &PathPoint, /*Ignored*/PathIntersection) -> bool, user_data: /*Unimplemented*/Option<Basic: Pointer>) -> bool {
+    //    unsafe { TODO: call ffi:gsk_path_foreach_intersection() }
+    //}
+
     #[doc(alias = "gsk_path_get_bounds")]
     #[doc(alias = "get_bounds")]
     pub fn bounds(&self) -> Option<graphene::Rect> {

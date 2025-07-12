@@ -19,6 +19,7 @@ int main() {
     printf("%s;%zu;%zu\n", "GskParseLocation", sizeof(GskParseLocation), alignof(GskParseLocation));
     printf("%s;%zu;%zu\n", "GskPathDirection", sizeof(GskPathDirection), alignof(GskPathDirection));
     printf("%s;%zu;%zu\n", "GskPathForeachFlags", sizeof(GskPathForeachFlags), alignof(GskPathForeachFlags));
+    printf("%s;%zu;%zu\n", "GskPathIntersection", sizeof(GskPathIntersection), alignof(GskPathIntersection));
     printf("%s;%zu;%zu\n", "GskPathOperation", sizeof(GskPathOperation), alignof(GskPathOperation));
     printf("%s;%zu;%zu\n", "GskPathPoint", sizeof(GskPathPoint), alignof(GskPathPoint));
     printf("%s;%zu;%zu\n", "GskRenderNodeType", sizeof(GskRenderNodeType), alignof(GskRenderNodeType));
