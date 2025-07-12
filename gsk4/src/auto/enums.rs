@@ -982,6 +982,128 @@ impl From<PathDirection> for glib::Value {
     }
 }
 
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
+#[doc(alias = "GskPathIntersection")]
+pub enum PathIntersection {
+    #[doc(alias = "GSK_PATH_INTERSECTION_NONE")]
+    None,
+    #[doc(alias = "GSK_PATH_INTERSECTION_NORMAL")]
+    Normal,
+    #[doc(alias = "GSK_PATH_INTERSECTION_START")]
+    Start,
+    #[doc(alias = "GSK_PATH_INTERSECTION_END")]
+    End,
+    #[doc(hidden)]
+    __Unknown(i32),
+}
+
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+#[doc(hidden)]
+impl IntoGlib for PathIntersection {
+    type GlibType = ffi::GskPathIntersection;
+
+    #[inline]
+    fn into_glib(self) -> ffi::GskPathIntersection {
+        match self {
+            Self::None => ffi::GSK_PATH_INTERSECTION_NONE,
+            Self::Normal => ffi::GSK_PATH_INTERSECTION_NORMAL,
+            Self::Start => ffi::GSK_PATH_INTERSECTION_START,
+            Self::End => ffi::GSK_PATH_INTERSECTION_END,
+            Self::__Unknown(value) => value,
+        }
+    }
+}
+
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+#[doc(hidden)]
+impl FromGlib<ffi::GskPathIntersection> for PathIntersection {
+    #[inline]
+    unsafe fn from_glib(value: ffi::GskPathIntersection) -> Self {
+        skip_assert_initialized!();
+
+        match value {
+            ffi::GSK_PATH_INTERSECTION_NONE => Self::None,
+            ffi::GSK_PATH_INTERSECTION_NORMAL => Self::Normal,
+            ffi::GSK_PATH_INTERSECTION_START => Self::Start,
+            ffi::GSK_PATH_INTERSECTION_END => Self::End,
+            value => Self::__Unknown(value),
+        }
+    }
+}
+
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+impl StaticType for PathIntersection {
+    #[inline]
+    #[doc(alias = "gsk_path_intersection_get_type")]
+    fn static_type() -> glib::Type {
+        unsafe { from_glib(ffi::gsk_path_intersection_get_type()) }
+    }
+}
+
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+impl glib::HasParamSpec for PathIntersection {
+    type ParamSpec = glib::ParamSpecEnum;
+    type SetValue = Self;
+    type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
+
+    fn param_spec_builder() -> Self::BuilderFn {
+        Self::ParamSpec::builder_with_default
+    }
+}
+
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+impl glib::value::ValueType for PathIntersection {
+    type Type = Self;
+}
+
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+unsafe impl<'a> glib::value::FromValue<'a> for PathIntersection {
+    type Checker = glib::value::GenericValueTypeChecker<Self>;
+
+    #[inline]
+    unsafe fn from_value(value: &'a glib::Value) -> Self {
+        skip_assert_initialized!();
+        from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+    }
+}
+
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+impl ToValue for PathIntersection {
+    #[inline]
+    fn to_value(&self) -> glib::Value {
+        let mut value = glib::Value::for_value_type::<Self>();
+        unsafe {
+            glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
+        }
+        value
+    }
+
+    #[inline]
+    fn value_type(&self) -> glib::Type {
+        Self::static_type()
+    }
+}
+
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+impl From<PathIntersection> for glib::Value {
+    #[inline]
+    fn from(v: PathIntersection) -> Self {
+        skip_assert_initialized!();
+        ToValue::to_value(&v)
+    }
+}
+
 #[cfg(feature = "v4_14")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]

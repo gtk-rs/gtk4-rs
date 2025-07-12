@@ -38,6 +38,7 @@ generate = [
     "Gsk.OutsetShadowNode",
     "Gsk.PathDirection",
     "Gsk.PathForeachFlags",
+    "Gsk.PathIntersection",
     "Gsk.PathMeasure",
     "Gsk.PathOperation",
     "Gsk.RadialGradientNode",
