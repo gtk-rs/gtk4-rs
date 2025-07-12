@@ -92,6 +92,12 @@ pub const GSK_PATH_TO_START: GskPathDirection = 1;
 pub const GSK_PATH_TO_END: GskPathDirection = 2;
 pub const GSK_PATH_FROM_END: GskPathDirection = 3;
 
+pub type GskPathIntersection = c_int;
+pub const GSK_PATH_INTERSECTION_NONE: GskPathIntersection = 0;
+pub const GSK_PATH_INTERSECTION_NORMAL: GskPathIntersection = 1;
+pub const GSK_PATH_INTERSECTION_START: GskPathIntersection = 2;
+pub const GSK_PATH_INTERSECTION_END: GskPathIntersection = 3;
+
 pub type GskPathOperation = c_int;
 pub const GSK_PATH_MOVE: GskPathOperation = 0;
 pub const GSK_PATH_CLOSE: GskPathOperation = 1;
@@ -203,6 +209,16 @@ pub type GskPathForeachFunc = Option<
         *const graphene::graphene_point_t,
         size_t,
         c_float,
+        gpointer,
+    ) -> gboolean,
+>;
+pub type GskPathIntersectionFunc = Option<
+    unsafe extern "C" fn(
+        *mut GskPath,
+        *const GskPathPoint,
+        *mut GskPath,
+        *const GskPathPoint,
+        GskPathIntersection,
         gpointer,
     ) -> gboolean,
 >;
@@ -1045,6 +1061,13 @@ extern "C" {
     pub fn gsk_path_direction_get_type() -> GType;
 
     //=========================================================================
+    // GskPathIntersection
+    //=========================================================================
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    pub fn gsk_path_intersection_get_type() -> GType;
+
+    //=========================================================================
     // GskPathOperation
     //=========================================================================
     #[cfg(feature = "v4_14")]
@@ -1091,6 +1114,14 @@ extern "C" {
         self_: *mut GskPath,
         flags: GskPathForeachFlags,
         func: GskPathForeachFunc,
+        user_data: gpointer,
+    ) -> gboolean;
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    pub fn gsk_path_foreach_intersection(
+        path1: *mut GskPath,
+        path2: *mut GskPath,
+        func: GskPathIntersectionFunc,
         user_data: gpointer,
     ) -> gboolean;
     #[cfg(feature = "v4_14")]
