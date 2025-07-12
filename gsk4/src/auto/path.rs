@@ -2,6 +2,9 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+use crate::PathIntersection;
 use crate::{ffi, FillRule, PathPoint, Stroke};
 use glib::translate::*;
 
@@ -17,12 +20,46 @@ glib::wrapper! {
 }
 
 impl Path {
-    //#[cfg(feature = "v4_20")]
-    //#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
-    //#[doc(alias = "gsk_path_foreach_intersection")]
-    //pub fn foreach_intersection(&self, path2: Option<&Path>, func: /*Unimplemented*/FnMut(&Path, &PathPoint, &Path, &PathPoint, /*Ignored*/PathIntersection) -> bool, user_data: /*Unimplemented*/Option<Basic: Pointer>) -> bool {
-    //    unsafe { TODO: call ffi:gsk_path_foreach_intersection() }
-    //}
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    #[doc(alias = "gsk_path_foreach_intersection")]
+    pub fn foreach_intersection<
+        P: FnMut(&Path, &PathPoint, &Path, &PathPoint, &PathIntersection) -> bool,
+    >(
+        &self,
+        path2: Option<&Path>,
+        func: P,
+    ) -> bool {
+        let mut func_data: P = func;
+        unsafe extern "C" fn func_func<
+            P: FnMut(&Path, &PathPoint, &Path, &PathPoint, &PathIntersection) -> bool,
+        >(
+            path1: *mut ffi::GskPath,
+            point1: *const ffi::GskPathPoint,
+            path2: *mut ffi::GskPath,
+            point2: *const ffi::GskPathPoint,
+            kind: ffi::GskPathIntersection,
+            user_data: glib::ffi::gpointer,
+        ) -> glib::ffi::gboolean {
+            let path1 = from_glib_borrow(path1);
+            let point1 = from_glib_borrow(point1);
+            let path2 = from_glib_borrow(path2);
+            let point2 = from_glib_borrow(point2);
+            let kind = from_glib_borrow(kind);
+            let callback = user_data as *mut P;
+            (*callback)(&path1, &point1, &path2, &point2, &kind).into_glib()
+        }
+        let func = Some(func_func::<P> as _);
+        let super_callback0: &mut P = &mut func_data;
+        unsafe {
+            from_glib(ffi::gsk_path_foreach_intersection(
+                self.to_glib_none().0,
+                path2.to_glib_none().0,
+                func,
+                super_callback0 as *mut _ as *mut _,
+            ))
+        }
+    }
 
     #[doc(alias = "gsk_path_get_bounds")]
     #[doc(alias = "get_bounds")]
