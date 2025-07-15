@@ -75,6 +75,26 @@ jobs:
             --extern-html-root-url=gl=https://docs.rs/gl/latest/
             --cfg docsrs
             -Zunstable-options --generate-link-to-definition
+
+      - name: Get features excluding some
+        run: |
+          FEATURES=$(cargo metadata --no-deps --format-version=1 | jq -r '
+            [
+              .packages[] 
+              | select(.manifest_path | test("book/listings|examples") | not)
+              | {
+                  features: (.features | keys),
+                  optional_deps: [.dependencies[] | select(.optional == true) | .name]
+                }
+            ] 
+            | map(.features - .optional_deps) 
+            | add 
+            | unique 
+            | map(select(. != "win32" and . != "default" and . != "unsafe-assume-initialized")) 
+            | join(",")')
+
+          echo "FEATURES=$FEATURES" >> $GITHUB_ENV
+
       - uses: actions-rs/cargo@v1
         with:
           command: doc
@@ -87,7 +107,7 @@ jobs:
             -p gtk4 -p gtk4-sys
             -p gdk4-macos -p gdk4-macos-sys
             -p gtk4-macros
-            --all-features
+            --no-default-features --features "$FEATURES"
             --no-deps
 
       - name: Fix broken URLs
