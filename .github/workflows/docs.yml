@@ -76,6 +76,7 @@ jobs:
             --cfg docsrs
             -Zunstable-options --generate-link-to-definition
 
+      - run: sudo dnf install jq -y
       - name: Get features excluding some
         run: |
           FEATURES=$(cargo metadata --no-deps --format-version=1 | jq -r '
