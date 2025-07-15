@@ -108,7 +108,7 @@ jobs:
             -p gtk4 -p gtk4-sys
             -p gdk4-macos -p gdk4-macos-sys
             -p gtk4-macros
-            --no-default-features --features "$FEATURES"
+            --no-default-features --features "${{ env.FEATURES }}"
             --no-deps
 
       - name: Fix broken URLs
