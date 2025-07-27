@@ -496,6 +496,7 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(guint) GDK_ACTION_COPY", "1"),
     ("(guint) GDK_ACTION_LINK", "4"),
     ("(guint) GDK_ACTION_MOVE", "2"),
+    ("(guint) GDK_ACTION_NONE", "0"),
     ("(guint) GDK_ALT_MASK", "8"),
     ("(guint) GDK_ANCHOR_FLIP", "3"),
     ("(guint) GDK_ANCHOR_FLIP_X", "1"),

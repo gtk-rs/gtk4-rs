@@ -1659,6 +1659,17 @@ extern "C" {
         next: *mut GskTransform,
         matrix: *const graphene::graphene_matrix_t,
     ) -> *mut GskTransform;
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    pub fn gsk_transform_matrix_2d(
+        next: *mut GskTransform,
+        xx: c_float,
+        yx: c_float,
+        xy: c_float,
+        yy: c_float,
+        dx: c_float,
+        dy: c_float,
+    ) -> *mut GskTransform;
     pub fn gsk_transform_perspective(next: *mut GskTransform, depth: c_float) -> *mut GskTransform;
     pub fn gsk_transform_print(self_: *mut GskTransform, string: *mut glib::GString);
     pub fn gsk_transform_ref(self_: *mut GskTransform) -> *mut GskTransform;

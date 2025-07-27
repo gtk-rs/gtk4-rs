@@ -2855,6 +2855,9 @@ pub const GDK_AXIS_FLAG_ROTATION: GdkAxisFlags = 1024;
 pub const GDK_AXIS_FLAG_SLIDER: GdkAxisFlags = 2048;
 
 pub type GdkDragAction = c_uint;
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+pub const GDK_ACTION_NONE: GdkDragAction = 0;
 pub const GDK_ACTION_COPY: GdkDragAction = 1;
 pub const GDK_ACTION_MOVE: GdkDragAction = 2;
 pub const GDK_ACTION_LINK: GdkDragAction = 4;

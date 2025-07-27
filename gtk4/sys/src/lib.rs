@@ -459,6 +459,9 @@ pub type GtkFilterChange = c_int;
 pub const GTK_FILTER_CHANGE_DIFFERENT: GtkFilterChange = 0;
 pub const GTK_FILTER_CHANGE_LESS_STRICT: GtkFilterChange = 1;
 pub const GTK_FILTER_CHANGE_MORE_STRICT: GtkFilterChange = 2;
+pub const GTK_FILTER_CHANGE_DIFFERENT_REWATCH: GtkFilterChange = 3;
+pub const GTK_FILTER_CHANGE_LESS_STRICT_REWATCH: GtkFilterChange = 4;
+pub const GTK_FILTER_CHANGE_MORE_STRICT_REWATCH: GtkFilterChange = 5;
 
 pub type GtkFilterMatch = c_int;
 pub const GTK_FILTER_MATCH_SOME: GtkFilterMatch = 0;
@@ -14286,6 +14289,9 @@ extern "C" {
     pub fn gtk_filter_list_model_get_incremental(self_: *mut GtkFilterListModel) -> gboolean;
     pub fn gtk_filter_list_model_get_model(self_: *mut GtkFilterListModel) -> *mut gio::GListModel;
     pub fn gtk_filter_list_model_get_pending(self_: *mut GtkFilterListModel) -> c_uint;
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    pub fn gtk_filter_list_model_get_watch_items(self_: *mut GtkFilterListModel) -> gboolean;
     pub fn gtk_filter_list_model_set_filter(self_: *mut GtkFilterListModel, filter: *mut GtkFilter);
     pub fn gtk_filter_list_model_set_incremental(
         self_: *mut GtkFilterListModel,
@@ -14294,6 +14300,12 @@ extern "C" {
     pub fn gtk_filter_list_model_set_model(
         self_: *mut GtkFilterListModel,
         model: *mut gio::GListModel,
+    );
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    pub fn gtk_filter_list_model_set_watch_items(
+        self_: *mut GtkFilterListModel,
+        watch_items: gboolean,
     );
 
     //=========================================================================

@@ -54,6 +54,7 @@ impl ApplicationBuilder {
         }
     }
 
+    #[cfg_attr(feature = "v4_20", deprecated = "Since 4.20")]
     pub fn register_session(self, register_session: bool) -> Self {
         Self {
             builder: self.builder.property("register-session", register_session),
@@ -261,11 +262,13 @@ pub trait GtkApplicationExt: IsA<Application> + 'static {
         }
     }
 
+    #[cfg_attr(feature = "v4_20", deprecated = "Since 4.20")]
     #[doc(alias = "register-session")]
     fn is_register_session(&self) -> bool {
         ObjectExt::property(self.as_ref(), "register-session")
     }
 
+    #[cfg_attr(feature = "v4_20", deprecated = "Since 4.20")]
     #[doc(alias = "register-session")]
     fn set_register_session(&self, register_session: bool) {
         ObjectExt::set_property(self.as_ref(), "register-session", register_session)
@@ -405,6 +408,7 @@ pub trait GtkApplicationExt: IsA<Application> + 'static {
         }
     }
 
+    #[cfg_attr(feature = "v4_20", deprecated = "Since 4.20")]
     #[doc(alias = "register-session")]
     fn connect_register_session_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_register_session_trampoline<
