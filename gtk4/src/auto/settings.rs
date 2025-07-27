@@ -440,31 +440,37 @@ impl Settings {
         ObjectExt::set_property(self, "gtk-recent-files-max-age", gtk_recent_files_max_age)
     }
 
+    #[cfg_attr(feature = "v4_20", deprecated = "Since 4.20")]
     #[doc(alias = "gtk-shell-shows-app-menu")]
     pub fn is_gtk_shell_shows_app_menu(&self) -> bool {
         ObjectExt::property(self, "gtk-shell-shows-app-menu")
     }
 
+    #[cfg_attr(feature = "v4_20", deprecated = "Since 4.20")]
     #[doc(alias = "gtk-shell-shows-app-menu")]
     pub fn set_gtk_shell_shows_app_menu(&self, gtk_shell_shows_app_menu: bool) {
         ObjectExt::set_property(self, "gtk-shell-shows-app-menu", gtk_shell_shows_app_menu)
     }
 
+    #[cfg_attr(feature = "v4_20", deprecated = "Since 4.20")]
     #[doc(alias = "gtk-shell-shows-desktop")]
     pub fn is_gtk_shell_shows_desktop(&self) -> bool {
         ObjectExt::property(self, "gtk-shell-shows-desktop")
     }
 
+    #[cfg_attr(feature = "v4_20", deprecated = "Since 4.20")]
     #[doc(alias = "gtk-shell-shows-desktop")]
     pub fn set_gtk_shell_shows_desktop(&self, gtk_shell_shows_desktop: bool) {
         ObjectExt::set_property(self, "gtk-shell-shows-desktop", gtk_shell_shows_desktop)
     }
 
+    #[cfg_attr(feature = "v4_20", deprecated = "Since 4.20")]
     #[doc(alias = "gtk-shell-shows-menubar")]
     pub fn is_gtk_shell_shows_menubar(&self) -> bool {
         ObjectExt::property(self, "gtk-shell-shows-menubar")
     }
 
+    #[cfg_attr(feature = "v4_20", deprecated = "Since 4.20")]
     #[doc(alias = "gtk-shell-shows-menubar")]
     pub fn set_gtk_shell_shows_menubar(&self, gtk_shell_shows_menubar: bool) {
         ObjectExt::set_property(self, "gtk-shell-shows-menubar", gtk_shell_shows_menubar)
@@ -1605,6 +1611,7 @@ impl Settings {
         }
     }
 
+    #[cfg_attr(feature = "v4_20", deprecated = "Since 4.20")]
     #[doc(alias = "gtk-shell-shows-app-menu")]
     pub fn connect_gtk_shell_shows_app_menu_notify<F: Fn(&Self) + 'static>(
         &self,
@@ -1633,6 +1640,7 @@ impl Settings {
         }
     }
 
+    #[cfg_attr(feature = "v4_20", deprecated = "Since 4.20")]
     #[doc(alias = "gtk-shell-shows-desktop")]
     pub fn connect_gtk_shell_shows_desktop_notify<F: Fn(&Self) + 'static>(
         &self,
@@ -1661,6 +1669,7 @@ impl Settings {
         }
     }
 
+    #[cfg_attr(feature = "v4_20", deprecated = "Since 4.20")]
     #[doc(alias = "gtk-shell-shows-menubar")]
     pub fn connect_gtk_shell_shows_menubar_notify<F: Fn(&Self) + 'static>(
         &self,
@@ -2316,6 +2325,7 @@ impl SettingsBuilder {
         }
     }
 
+    #[cfg_attr(feature = "v4_20", deprecated = "Since 4.20")]
     pub fn gtk_shell_shows_app_menu(self, gtk_shell_shows_app_menu: bool) -> Self {
         Self {
             builder: self
@@ -2324,6 +2334,7 @@ impl SettingsBuilder {
         }
     }
 
+    #[cfg_attr(feature = "v4_20", deprecated = "Since 4.20")]
     pub fn gtk_shell_shows_desktop(self, gtk_shell_shows_desktop: bool) -> Self {
         Self {
             builder: self
@@ -2332,6 +2343,7 @@ impl SettingsBuilder {
         }
     }
 
+    #[cfg_attr(feature = "v4_20", deprecated = "Since 4.20")]
     pub fn gtk_shell_shows_menubar(self, gtk_shell_shows_menubar: bool) -> Self {
         Self {
             builder: self

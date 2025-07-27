@@ -213,6 +213,10 @@ bitflags! {
     #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
     #[doc(alias = "GdkDragAction")]
     pub struct DragAction: u32 {
+        #[cfg(feature = "v4_20")]
+        #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+        #[doc(alias = "GDK_ACTION_NONE")]
+        const NONE = ffi::GDK_ACTION_NONE as _;
         #[doc(alias = "GDK_ACTION_COPY")]
         const COPY = ffi::GDK_ACTION_COPY as _;
         #[doc(alias = "GDK_ACTION_MOVE")]

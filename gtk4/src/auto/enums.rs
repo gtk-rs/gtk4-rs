@@ -4715,6 +4715,12 @@ pub enum FilterChange {
     LessStrict,
     #[doc(alias = "GTK_FILTER_CHANGE_MORE_STRICT")]
     MoreStrict,
+    #[doc(alias = "GTK_FILTER_CHANGE_DIFFERENT_REWATCH")]
+    DifferentRewatch,
+    #[doc(alias = "GTK_FILTER_CHANGE_LESS_STRICT_REWATCH")]
+    LessStrictRewatch,
+    #[doc(alias = "GTK_FILTER_CHANGE_MORE_STRICT_REWATCH")]
+    MoreStrictRewatch,
     #[doc(hidden)]
     __Unknown(i32),
 }
@@ -4729,6 +4735,9 @@ impl IntoGlib for FilterChange {
             Self::Different => ffi::GTK_FILTER_CHANGE_DIFFERENT,
             Self::LessStrict => ffi::GTK_FILTER_CHANGE_LESS_STRICT,
             Self::MoreStrict => ffi::GTK_FILTER_CHANGE_MORE_STRICT,
+            Self::DifferentRewatch => ffi::GTK_FILTER_CHANGE_DIFFERENT_REWATCH,
+            Self::LessStrictRewatch => ffi::GTK_FILTER_CHANGE_LESS_STRICT_REWATCH,
+            Self::MoreStrictRewatch => ffi::GTK_FILTER_CHANGE_MORE_STRICT_REWATCH,
             Self::__Unknown(value) => value,
         }
     }
@@ -4744,6 +4753,9 @@ impl FromGlib<ffi::GtkFilterChange> for FilterChange {
             ffi::GTK_FILTER_CHANGE_DIFFERENT => Self::Different,
             ffi::GTK_FILTER_CHANGE_LESS_STRICT => Self::LessStrict,
             ffi::GTK_FILTER_CHANGE_MORE_STRICT => Self::MoreStrict,
+            ffi::GTK_FILTER_CHANGE_DIFFERENT_REWATCH => Self::DifferentRewatch,
+            ffi::GTK_FILTER_CHANGE_LESS_STRICT_REWATCH => Self::LessStrictRewatch,
+            ffi::GTK_FILTER_CHANGE_MORE_STRICT_REWATCH => Self::MoreStrictRewatch,
             value => Self::__Unknown(value),
         }
     }
