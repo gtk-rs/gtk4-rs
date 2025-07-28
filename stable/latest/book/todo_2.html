@@ -37,6 +37,7 @@
             const path_to_root = "";
             const default_light_theme = "rust";
             const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "searchindex.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc.js"></script>
@@ -93,10 +94,13 @@
                 sidebar = sidebar || 'visible';
             } else {
                 sidebar = 'hidden';
+                sidebar_toggle.checked = false;
             }
-            sidebar_toggle.checked = sidebar === 'visible';
-            html.classList.remove('sidebar-visible');
-            html.classList.add("sidebar-" + sidebar);
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
@@ -150,7 +154,12 @@
 
                 <div id="search-wrapper" class="hidden">
                     <form id="searchbar-outer" class="searchbar-outer">
-                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                        <div class="search-wrapper">
+                            <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <i class="fa fa-spinner fa-spin"></i>
+                            </div>
+                        </div>
                     </form>
                     <div id="searchresults-outer" class="searchresults-outer hidden">
                         <div id="searchresults-header" class="searchresults-header"></div>
@@ -1884,7 +1893,7 @@ pub struct TaskData {
     pub content: String,
 }</code></pre>
 <p>We plan to store our data as a file, so we create a utility function to provide a suitable file path for us.
-We use <a href="https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/fn.user_config_dir.html"><code>glib::user_config_dir</code></a> to get the path to the config directory and create a new subdirectory for our app.
+We use <a href="https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/fn.user_data_dir.html"><code>glib::user_data_dir</code></a> to get the path for storing application data and create a new subdirectory for our app.
 Then we return the file path.</p>
 <p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/2/utils.rs">listings/todo/2/utils.rs</a></p>
 <pre><code class="language-rust"><span class="boring">use std::path::PathBuf;
@@ -2412,6 +2421,7 @@ Not only can we filter tasks, we also retain our tasks between sessions.</p>
         <script src="book.js"></script>
 
         <!-- Custom JS scripts -->
+
 
 
     </div>
