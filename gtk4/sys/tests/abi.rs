@@ -1322,6 +1322,20 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
+        "GtkInterfaceColorScheme",
+        Layout {
+            size: size_of::<GtkInterfaceColorScheme>(),
+            alignment: align_of::<GtkInterfaceColorScheme>(),
+        },
+    ),
+    (
+        "GtkInterfaceContrast",
+        Layout {
+            size: size_of::<GtkInterfaceContrast>(),
+            alignment: align_of::<GtkInterfaceContrast>(),
+        },
+    ),
+    (
         "GtkJustification",
         Layout {
             size: size_of::<GtkJustification>(),
@@ -2998,8 +3012,11 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(gint) GTK_FILE_CHOOSER_ERROR_INCOMPLETE_HOSTNAME", "3"),
     ("(gint) GTK_FILE_CHOOSER_ERROR_NONEXISTENT", "0"),
     ("(gint) GTK_FILTER_CHANGE_DIFFERENT", "0"),
+    ("(gint) GTK_FILTER_CHANGE_DIFFERENT_REWATCH", "3"),
     ("(gint) GTK_FILTER_CHANGE_LESS_STRICT", "1"),
+    ("(gint) GTK_FILTER_CHANGE_LESS_STRICT_REWATCH", "4"),
     ("(gint) GTK_FILTER_CHANGE_MORE_STRICT", "2"),
+    ("(gint) GTK_FILTER_CHANGE_MORE_STRICT_REWATCH", "5"),
     ("(gint) GTK_FILTER_MATCH_ALL", "2"),
     ("(gint) GTK_FILTER_MATCH_NONE", "1"),
     ("(gint) GTK_FILTER_MATCH_SOME", "0"),
@@ -3065,6 +3082,14 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(gint) GTK_INSCRIPTION_OVERFLOW_ELLIPSIZE_END", "3"),
     ("(gint) GTK_INSCRIPTION_OVERFLOW_ELLIPSIZE_MIDDLE", "2"),
     ("(gint) GTK_INSCRIPTION_OVERFLOW_ELLIPSIZE_START", "1"),
+    ("(gint) GTK_INTERFACE_COLOR_SCHEME_DARK", "2"),
+    ("(gint) GTK_INTERFACE_COLOR_SCHEME_DEFAULT", "1"),
+    ("(gint) GTK_INTERFACE_COLOR_SCHEME_LIGHT", "3"),
+    ("(gint) GTK_INTERFACE_COLOR_SCHEME_UNSUPPORTED", "0"),
+    ("(gint) GTK_INTERFACE_CONTRAST_LESS", "3"),
+    ("(gint) GTK_INTERFACE_CONTRAST_MORE", "2"),
+    ("(gint) GTK_INTERFACE_CONTRAST_NO_PREFERENCE", "1"),
+    ("(gint) GTK_INTERFACE_CONTRAST_UNSUPPORTED", "0"),
     ("GTK_INVALID_LIST_POSITION", "4294967295"),
     ("(gint) GTK_JUSTIFY_CENTER", "2"),
     ("(gint) GTK_JUSTIFY_FILL", "3"),
