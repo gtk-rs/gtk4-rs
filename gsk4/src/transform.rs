@@ -137,6 +137,25 @@ impl Transform {
             res.unwrap_or_default()
         }
     }
+
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    #[doc(alias = "gsk_transform_matrix_2d")]
+    #[must_use]
+    pub fn matrix_2d(self, xx: f32, yx: f32, xy: f32, yy: f32, dx: f32, dy: f32) -> Transform {
+        unsafe {
+            let res: Option<Self> = from_glib_full(ffi::gsk_transform_matrix_2d(
+                self.into_glib_ptr(),
+                xx,
+                yx,
+                xy,
+                yy,
+                dx,
+                dy,
+            ));
+            res.unwrap_or_default()
+        }
+    }
 }
 
 impl std::str::FromStr for Transform {
