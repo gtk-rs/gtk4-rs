@@ -5978,6 +5978,250 @@ impl From<InscriptionOverflow> for glib::Value {
     }
 }
 
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
+#[doc(alias = "GtkInterfaceColorScheme")]
+pub enum InterfaceColorScheme {
+    #[doc(alias = "GTK_INTERFACE_COLOR_SCHEME_UNSUPPORTED")]
+    Unsupported,
+    #[doc(alias = "GTK_INTERFACE_COLOR_SCHEME_DEFAULT")]
+    Default,
+    #[doc(alias = "GTK_INTERFACE_COLOR_SCHEME_DARK")]
+    Dark,
+    #[doc(alias = "GTK_INTERFACE_COLOR_SCHEME_LIGHT")]
+    Light,
+    #[doc(hidden)]
+    __Unknown(i32),
+}
+
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+#[doc(hidden)]
+impl IntoGlib for InterfaceColorScheme {
+    type GlibType = ffi::GtkInterfaceColorScheme;
+
+    #[inline]
+    fn into_glib(self) -> ffi::GtkInterfaceColorScheme {
+        match self {
+            Self::Unsupported => ffi::GTK_INTERFACE_COLOR_SCHEME_UNSUPPORTED,
+            Self::Default => ffi::GTK_INTERFACE_COLOR_SCHEME_DEFAULT,
+            Self::Dark => ffi::GTK_INTERFACE_COLOR_SCHEME_DARK,
+            Self::Light => ffi::GTK_INTERFACE_COLOR_SCHEME_LIGHT,
+            Self::__Unknown(value) => value,
+        }
+    }
+}
+
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+#[doc(hidden)]
+impl FromGlib<ffi::GtkInterfaceColorScheme> for InterfaceColorScheme {
+    #[inline]
+    unsafe fn from_glib(value: ffi::GtkInterfaceColorScheme) -> Self {
+        skip_assert_initialized!();
+
+        match value {
+            ffi::GTK_INTERFACE_COLOR_SCHEME_UNSUPPORTED => Self::Unsupported,
+            ffi::GTK_INTERFACE_COLOR_SCHEME_DEFAULT => Self::Default,
+            ffi::GTK_INTERFACE_COLOR_SCHEME_DARK => Self::Dark,
+            ffi::GTK_INTERFACE_COLOR_SCHEME_LIGHT => Self::Light,
+            value => Self::__Unknown(value),
+        }
+    }
+}
+
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+impl StaticType for InterfaceColorScheme {
+    #[inline]
+    #[doc(alias = "gtk_interface_color_scheme_get_type")]
+    fn static_type() -> glib::Type {
+        unsafe { from_glib(ffi::gtk_interface_color_scheme_get_type()) }
+    }
+}
+
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+impl glib::HasParamSpec for InterfaceColorScheme {
+    type ParamSpec = glib::ParamSpecEnum;
+    type SetValue = Self;
+    type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
+
+    fn param_spec_builder() -> Self::BuilderFn {
+        Self::ParamSpec::builder_with_default
+    }
+}
+
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+impl glib::value::ValueType for InterfaceColorScheme {
+    type Type = Self;
+}
+
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+unsafe impl<'a> glib::value::FromValue<'a> for InterfaceColorScheme {
+    type Checker = glib::value::GenericValueTypeChecker<Self>;
+
+    #[inline]
+    unsafe fn from_value(value: &'a glib::Value) -> Self {
+        skip_assert_initialized!();
+        from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+    }
+}
+
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+impl ToValue for InterfaceColorScheme {
+    #[inline]
+    fn to_value(&self) -> glib::Value {
+        let mut value = glib::Value::for_value_type::<Self>();
+        unsafe {
+            glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
+        }
+        value
+    }
+
+    #[inline]
+    fn value_type(&self) -> glib::Type {
+        Self::static_type()
+    }
+}
+
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+impl From<InterfaceColorScheme> for glib::Value {
+    #[inline]
+    fn from(v: InterfaceColorScheme) -> Self {
+        skip_assert_initialized!();
+        ToValue::to_value(&v)
+    }
+}
+
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
+#[doc(alias = "GtkInterfaceContrast")]
+pub enum InterfaceContrast {
+    #[doc(alias = "GTK_INTERFACE_CONTRAST_UNSUPPORTED")]
+    Unsupported,
+    #[doc(alias = "GTK_INTERFACE_CONTRAST_NO_PREFERENCE")]
+    NoPreference,
+    #[doc(alias = "GTK_INTERFACE_CONTRAST_MORE")]
+    More,
+    #[doc(alias = "GTK_INTERFACE_CONTRAST_LESS")]
+    Less,
+    #[doc(hidden)]
+    __Unknown(i32),
+}
+
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+#[doc(hidden)]
+impl IntoGlib for InterfaceContrast {
+    type GlibType = ffi::GtkInterfaceContrast;
+
+    #[inline]
+    fn into_glib(self) -> ffi::GtkInterfaceContrast {
+        match self {
+            Self::Unsupported => ffi::GTK_INTERFACE_CONTRAST_UNSUPPORTED,
+            Self::NoPreference => ffi::GTK_INTERFACE_CONTRAST_NO_PREFERENCE,
+            Self::More => ffi::GTK_INTERFACE_CONTRAST_MORE,
+            Self::Less => ffi::GTK_INTERFACE_CONTRAST_LESS,
+            Self::__Unknown(value) => value,
+        }
+    }
+}
+
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+#[doc(hidden)]
+impl FromGlib<ffi::GtkInterfaceContrast> for InterfaceContrast {
+    #[inline]
+    unsafe fn from_glib(value: ffi::GtkInterfaceContrast) -> Self {
+        skip_assert_initialized!();
+
+        match value {
+            ffi::GTK_INTERFACE_CONTRAST_UNSUPPORTED => Self::Unsupported,
+            ffi::GTK_INTERFACE_CONTRAST_NO_PREFERENCE => Self::NoPreference,
+            ffi::GTK_INTERFACE_CONTRAST_MORE => Self::More,
+            ffi::GTK_INTERFACE_CONTRAST_LESS => Self::Less,
+            value => Self::__Unknown(value),
+        }
+    }
+}
+
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+impl StaticType for InterfaceContrast {
+    #[inline]
+    #[doc(alias = "gtk_interface_contrast_get_type")]
+    fn static_type() -> glib::Type {
+        unsafe { from_glib(ffi::gtk_interface_contrast_get_type()) }
+    }
+}
+
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+impl glib::HasParamSpec for InterfaceContrast {
+    type ParamSpec = glib::ParamSpecEnum;
+    type SetValue = Self;
+    type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
+
+    fn param_spec_builder() -> Self::BuilderFn {
+        Self::ParamSpec::builder_with_default
+    }
+}
+
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+impl glib::value::ValueType for InterfaceContrast {
+    type Type = Self;
+}
+
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+unsafe impl<'a> glib::value::FromValue<'a> for InterfaceContrast {
+    type Checker = glib::value::GenericValueTypeChecker<Self>;
+
+    #[inline]
+    unsafe fn from_value(value: &'a glib::Value) -> Self {
+        skip_assert_initialized!();
+        from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+    }
+}
+
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+impl ToValue for InterfaceContrast {
+    #[inline]
+    fn to_value(&self) -> glib::Value {
+        let mut value = glib::Value::for_value_type::<Self>();
+        unsafe {
+            glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
+        }
+        value
+    }
+
+    #[inline]
+    fn value_type(&self) -> glib::Type {
+        Self::static_type()
+    }
+}
+
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+impl From<InterfaceContrast> for glib::Value {
+    #[inline]
+    fn from(v: InterfaceContrast) -> Self {
+        skip_assert_initialized!();
+        ToValue::to_value(&v)
+    }
+}
+
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GtkJustification")]

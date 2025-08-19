@@ -4,6 +4,9 @@
 #![allow(deprecated)]
 
 use crate::{ffi, CssSection, StyleProvider};
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+use crate::{InterfaceColorScheme, InterfaceContrast};
 use glib::{
     object::ObjectType as _,
     prelude::*,
@@ -117,33 +120,33 @@ impl CssProvider {
         unsafe { from_glib_full(ffi::gtk_css_provider_to_string(self.to_glib_none().0)) }
     }
 
-    //#[cfg(feature = "v4_20")]
-    //#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
-    //#[doc(alias = "prefers-color-scheme")]
-    //pub fn prefers_color_scheme(&self) -> /*Ignored*/InterfaceColorScheme {
-    //    ObjectExt::property(self, "prefers-color-scheme")
-    //}
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    #[doc(alias = "prefers-color-scheme")]
+    pub fn prefers_color_scheme(&self) -> InterfaceColorScheme {
+        ObjectExt::property(self, "prefers-color-scheme")
+    }
 
-    //#[cfg(feature = "v4_20")]
-    //#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
-    //#[doc(alias = "prefers-color-scheme")]
-    //pub fn set_prefers_color_scheme(&self, prefers_color_scheme: /*Ignored*/InterfaceColorScheme) {
-    //    ObjectExt::set_property(self,"prefers-color-scheme", prefers_color_scheme)
-    //}
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    #[doc(alias = "prefers-color-scheme")]
+    pub fn set_prefers_color_scheme(&self, prefers_color_scheme: InterfaceColorScheme) {
+        ObjectExt::set_property(self, "prefers-color-scheme", prefers_color_scheme)
+    }
 
-    //#[cfg(feature = "v4_20")]
-    //#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
-    //#[doc(alias = "prefers-contrast")]
-    //pub fn prefers_contrast(&self) -> /*Ignored*/InterfaceContrast {
-    //    ObjectExt::property(self, "prefers-contrast")
-    //}
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    #[doc(alias = "prefers-contrast")]
+    pub fn prefers_contrast(&self) -> InterfaceContrast {
+        ObjectExt::property(self, "prefers-contrast")
+    }
 
-    //#[cfg(feature = "v4_20")]
-    //#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
-    //#[doc(alias = "prefers-contrast")]
-    //pub fn set_prefers_contrast(&self, prefers_contrast: /*Ignored*/InterfaceContrast) {
-    //    ObjectExt::set_property(self,"prefers-contrast", prefers_contrast)
-    //}
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    #[doc(alias = "prefers-contrast")]
+    pub fn set_prefers_contrast(&self, prefers_contrast: InterfaceContrast) {
+        ObjectExt::set_property(self, "prefers-contrast", prefers_contrast)
+    }
 
     #[doc(alias = "parsing-error")]
     pub fn connect_parsing_error<F: Fn(&Self, &CssSection, &glib::Error) + 'static>(
@@ -263,17 +266,23 @@ impl CssProviderBuilder {
         }
     }
 
-    //    #[cfg(feature = "v4_20")]
+    #[cfg(feature = "v4_20")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
-    //pub fn prefers_color_scheme(self, prefers_color_scheme: /*Ignored*/InterfaceColorScheme) -> Self {
-    //    Self { builder: self.builder.property("prefers-color-scheme", prefers_color_scheme), }
-    //}
+    pub fn prefers_color_scheme(self, prefers_color_scheme: InterfaceColorScheme) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("prefers-color-scheme", prefers_color_scheme),
+        }
+    }
 
-    //    #[cfg(feature = "v4_20")]
+    #[cfg(feature = "v4_20")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
-    //pub fn prefers_contrast(self, prefers_contrast: /*Ignored*/InterfaceContrast) -> Self {
-    //    Self { builder: self.builder.property("prefers-contrast", prefers_contrast), }
-    //}
+    pub fn prefers_contrast(self, prefers_contrast: InterfaceContrast) -> Self {
+        Self {
+            builder: self.builder.property("prefers-contrast", prefers_contrast),
+        }
+    }
 
     // rustdoc-stripper-ignore-next
     /// Build the [`CssProvider`].
