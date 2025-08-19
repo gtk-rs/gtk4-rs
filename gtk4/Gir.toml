@@ -148,6 +148,8 @@ generate = [
     "Gtk.InputPurpose",
     "Gtk.Inscription",
     "Gtk.InscriptionOverflow",
+    "Gtk.InterfaceColorScheme",
+    "Gtk.InterfaceContrast",
     "Gtk.Justification",
     "Gtk.LayoutChild",
     "Gtk.LayoutManager",

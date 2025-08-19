@@ -6,6 +6,9 @@
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
 use crate::FontRendering;
 use crate::{ffi, StyleProvider};
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+use crate::{InterfaceColorScheme, InterfaceContrast};
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},
@@ -348,33 +351,37 @@ impl Settings {
         ObjectExt::set_property(self, "gtk-im-module", gtk_im_module)
     }
 
-    //#[cfg(feature = "v4_20")]
-    //#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
-    //#[doc(alias = "gtk-interface-color-scheme")]
-    //pub fn gtk_interface_color_scheme(&self) -> /*Ignored*/InterfaceColorScheme {
-    //    ObjectExt::property(self, "gtk-interface-color-scheme")
-    //}
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    #[doc(alias = "gtk-interface-color-scheme")]
+    pub fn gtk_interface_color_scheme(&self) -> InterfaceColorScheme {
+        ObjectExt::property(self, "gtk-interface-color-scheme")
+    }
 
-    //#[cfg(feature = "v4_20")]
-    //#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
-    //#[doc(alias = "gtk-interface-color-scheme")]
-    //pub fn set_gtk_interface_color_scheme(&self, gtk_interface_color_scheme: /*Ignored*/InterfaceColorScheme) {
-    //    ObjectExt::set_property(self,"gtk-interface-color-scheme", gtk_interface_color_scheme)
-    //}
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    #[doc(alias = "gtk-interface-color-scheme")]
+    pub fn set_gtk_interface_color_scheme(&self, gtk_interface_color_scheme: InterfaceColorScheme) {
+        ObjectExt::set_property(
+            self,
+            "gtk-interface-color-scheme",
+            gtk_interface_color_scheme,
+        )
+    }
 
-    //#[cfg(feature = "v4_20")]
-    //#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
-    //#[doc(alias = "gtk-interface-contrast")]
-    //pub fn gtk_interface_contrast(&self) -> /*Ignored*/InterfaceContrast {
-    //    ObjectExt::property(self, "gtk-interface-contrast")
-    //}
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    #[doc(alias = "gtk-interface-contrast")]
+    pub fn gtk_interface_contrast(&self) -> InterfaceContrast {
+        ObjectExt::property(self, "gtk-interface-contrast")
+    }
 
-    //#[cfg(feature = "v4_20")]
-    //#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
-    //#[doc(alias = "gtk-interface-contrast")]
-    //pub fn set_gtk_interface_contrast(&self, gtk_interface_contrast: /*Ignored*/InterfaceContrast) {
-    //    ObjectExt::set_property(self,"gtk-interface-contrast", gtk_interface_contrast)
-    //}
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    #[doc(alias = "gtk-interface-contrast")]
+    pub fn set_gtk_interface_contrast(&self, gtk_interface_contrast: InterfaceContrast) {
+        ObjectExt::set_property(self, "gtk-interface-contrast", gtk_interface_contrast)
+    }
 
     #[doc(alias = "gtk-keynav-use-caret")]
     pub fn is_gtk_keynav_use_caret(&self) -> bool {
@@ -2340,17 +2347,28 @@ impl SettingsBuilder {
         }
     }
 
-    //    #[cfg(feature = "v4_20")]
+    #[cfg(feature = "v4_20")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
-    //pub fn gtk_interface_color_scheme(self, gtk_interface_color_scheme: /*Ignored*/InterfaceColorScheme) -> Self {
-    //    Self { builder: self.builder.property("gtk-interface-color-scheme", gtk_interface_color_scheme), }
-    //}
+    pub fn gtk_interface_color_scheme(
+        self,
+        gtk_interface_color_scheme: InterfaceColorScheme,
+    ) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("gtk-interface-color-scheme", gtk_interface_color_scheme),
+        }
+    }
 
-    //    #[cfg(feature = "v4_20")]
+    #[cfg(feature = "v4_20")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
-    //pub fn gtk_interface_contrast(self, gtk_interface_contrast: /*Ignored*/InterfaceContrast) -> Self {
-    //    Self { builder: self.builder.property("gtk-interface-contrast", gtk_interface_contrast), }
-    //}
+    pub fn gtk_interface_contrast(self, gtk_interface_contrast: InterfaceContrast) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("gtk-interface-contrast", gtk_interface_contrast),
+        }
+    }
 
     pub fn gtk_keynav_use_caret(self, gtk_keynav_use_caret: bool) -> Self {
         Self {
