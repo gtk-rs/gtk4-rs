@@ -20,6 +20,8 @@ generate = [
     "Gsk.ClipNode",
     "Gsk.ColorMatrixNode",
     "Gsk.ColorNode",
+    "Gsk.ComponentTransfer",
+    "Gsk.ComponentTransferNode",
     "Gsk.ConicGradientNode",
     "Gsk.Corner",
     "Gsk.CrossFadeNode",
