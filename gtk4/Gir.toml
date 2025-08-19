@@ -364,6 +364,7 @@ manual = [
     "Gsk.BlendMode",
     "Gsk.CairoNode", # docs only
     "Gsk.ColorStop",
+    "Gsk.ComponentTransfer",
     "Gsk.FillRule",
     "Gsk.GLShaderNode", # docs only
     "Gsk.MaskMode",
