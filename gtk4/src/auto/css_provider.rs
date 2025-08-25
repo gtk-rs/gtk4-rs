@@ -28,6 +28,14 @@ impl CssProvider {
         unsafe { from_glib_full(ffi::gtk_css_provider_new()) }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-pattern struct instance to construct [`CssProvider`] objects.
+    ///
+    /// This method returns an instance of [`CssProviderBuilder`](crate::builders::CssProviderBuilder) which can be used to create [`CssProvider`] objects.
+    pub fn builder() -> CssProviderBuilder {
+        CssProviderBuilder::new()
+    }
+
     #[cfg(feature = "v4_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     #[doc(alias = "gtk_css_provider_load_from_bytes")]
@@ -90,6 +98,8 @@ impl CssProvider {
         }
     }
 
+    #[cfg_attr(feature = "v4_20", deprecated = "Since 4.20")]
+    #[allow(deprecated)]
     #[doc(alias = "gtk_css_provider_load_named")]
     pub fn load_named(&self, name: &str, variant: Option<&str>) {
         unsafe {
@@ -106,6 +116,34 @@ impl CssProvider {
     pub fn to_str(&self) -> glib::GString {
         unsafe { from_glib_full(ffi::gtk_css_provider_to_string(self.to_glib_none().0)) }
     }
+
+    //#[cfg(feature = "v4_20")]
+    //#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    //#[doc(alias = "prefers-color-scheme")]
+    //pub fn prefers_color_scheme(&self) -> /*Ignored*/InterfaceColorScheme {
+    //    ObjectExt::property(self, "prefers-color-scheme")
+    //}
+
+    //#[cfg(feature = "v4_20")]
+    //#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    //#[doc(alias = "prefers-color-scheme")]
+    //pub fn set_prefers_color_scheme(&self, prefers_color_scheme: /*Ignored*/InterfaceColorScheme) {
+    //    ObjectExt::set_property(self,"prefers-color-scheme", prefers_color_scheme)
+    //}
+
+    //#[cfg(feature = "v4_20")]
+    //#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    //#[doc(alias = "prefers-contrast")]
+    //pub fn prefers_contrast(&self) -> /*Ignored*/InterfaceContrast {
+    //    ObjectExt::property(self, "prefers-contrast")
+    //}
+
+    //#[cfg(feature = "v4_20")]
+    //#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    //#[doc(alias = "prefers-contrast")]
+    //pub fn set_prefers_contrast(&self, prefers_contrast: /*Ignored*/InterfaceContrast) {
+    //    ObjectExt::set_property(self,"prefers-contrast", prefers_contrast)
+    //}
 
     #[doc(alias = "parsing-error")]
     pub fn connect_parsing_error<F: Fn(&Self, &CssSection, &glib::Error) + 'static>(
@@ -139,6 +177,61 @@ impl CssProvider {
             )
         }
     }
+
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    #[doc(alias = "prefers-color-scheme")]
+    pub fn connect_prefers_color_scheme_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_prefers_color_scheme_trampoline<
+            F: Fn(&CssProvider) + 'static,
+        >(
+            this: *mut ffi::GtkCssProvider,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                c"notify::prefers-color-scheme".as_ptr() as *const _,
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
+                    notify_prefers_color_scheme_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    #[doc(alias = "prefers-contrast")]
+    pub fn connect_prefers_contrast_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_prefers_contrast_trampoline<F: Fn(&CssProvider) + 'static>(
+            this: *mut ffi::GtkCssProvider,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                c"notify::prefers-contrast".as_ptr() as *const _,
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
+                    notify_prefers_contrast_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
 }
 
 impl Default for CssProvider {
@@ -151,5 +244,42 @@ impl std::fmt::Display for CssProvider {
     #[inline]
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
         f.write_str(&self.to_str())
+    }
+}
+
+// rustdoc-stripper-ignore-next
+/// A [builder-pattern] type to construct [`CssProvider`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
+#[must_use = "The builder must be built to be used"]
+pub struct CssProviderBuilder {
+    builder: glib::object::ObjectBuilder<'static, CssProvider>,
+}
+
+impl CssProviderBuilder {
+    fn new() -> Self {
+        Self {
+            builder: glib::object::Object::builder(),
+        }
+    }
+
+    //    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    //pub fn prefers_color_scheme(self, prefers_color_scheme: /*Ignored*/InterfaceColorScheme) -> Self {
+    //    Self { builder: self.builder.property("prefers-color-scheme", prefers_color_scheme), }
+    //}
+
+    //    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    //pub fn prefers_contrast(self, prefers_contrast: /*Ignored*/InterfaceContrast) -> Self {
+    //    Self { builder: self.builder.property("prefers-contrast", prefers_contrast), }
+    //}
+
+    // rustdoc-stripper-ignore-next
+    /// Build the [`CssProvider`].
+    #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
+    pub fn build(self) -> CssProvider {
+        assert_initialized_main_thread!();
+        self.builder.build()
     }
 }

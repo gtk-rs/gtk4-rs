@@ -531,6 +531,10 @@ bitflags! {
         const DISCRETE = ffi::GTK_EVENT_CONTROLLER_SCROLL_DISCRETE as _;
         #[doc(alias = "GTK_EVENT_CONTROLLER_SCROLL_KINETIC")]
         const KINETIC = ffi::GTK_EVENT_CONTROLLER_SCROLL_KINETIC as _;
+        #[cfg(feature = "v4_20")]
+        #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+        #[doc(alias = "GTK_EVENT_CONTROLLER_SCROLL_PHYSICAL_DIRECTION")]
+        const PHYSICAL_DIRECTION = ffi::GTK_EVENT_CONTROLLER_SCROLL_PHYSICAL_DIRECTION as _;
         #[doc(alias = "GTK_EVENT_CONTROLLER_SCROLL_BOTH_AXES")]
         const BOTH_AXES = ffi::GTK_EVENT_CONTROLLER_SCROLL_BOTH_AXES as _;
     }

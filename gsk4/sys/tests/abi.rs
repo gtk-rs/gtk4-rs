@@ -374,6 +374,7 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(gint) GSK_CLIP_NODE", "17"),
     ("(gint) GSK_COLOR_MATRIX_NODE", "15"),
     ("(gint) GSK_COLOR_NODE", "3"),
+    ("(gint) GSK_COMPONENT_TRANSFER_NODE", "31"),
     ("(gint) GSK_CONIC_GRADIENT_NODE", "8"),
     ("(gint) GSK_CONTAINER_NODE", "1"),
     ("(gint) GSK_CORNER_BOTTOM_LEFT", "3"),

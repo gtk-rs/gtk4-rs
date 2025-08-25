@@ -459,6 +459,15 @@ pub type GtkFilterChange = c_int;
 pub const GTK_FILTER_CHANGE_DIFFERENT: GtkFilterChange = 0;
 pub const GTK_FILTER_CHANGE_LESS_STRICT: GtkFilterChange = 1;
 pub const GTK_FILTER_CHANGE_MORE_STRICT: GtkFilterChange = 2;
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+pub const GTK_FILTER_CHANGE_DIFFERENT_REWATCH: GtkFilterChange = 3;
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+pub const GTK_FILTER_CHANGE_LESS_STRICT_REWATCH: GtkFilterChange = 4;
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+pub const GTK_FILTER_CHANGE_MORE_STRICT_REWATCH: GtkFilterChange = 5;
 
 pub type GtkFilterMatch = c_int;
 pub const GTK_FILTER_MATCH_SOME: GtkFilterMatch = 0;
@@ -520,6 +529,18 @@ pub const GTK_INSCRIPTION_OVERFLOW_CLIP: GtkInscriptionOverflow = 0;
 pub const GTK_INSCRIPTION_OVERFLOW_ELLIPSIZE_START: GtkInscriptionOverflow = 1;
 pub const GTK_INSCRIPTION_OVERFLOW_ELLIPSIZE_MIDDLE: GtkInscriptionOverflow = 2;
 pub const GTK_INSCRIPTION_OVERFLOW_ELLIPSIZE_END: GtkInscriptionOverflow = 3;
+
+pub type GtkInterfaceColorScheme = c_int;
+pub const GTK_INTERFACE_COLOR_SCHEME_UNSUPPORTED: GtkInterfaceColorScheme = 0;
+pub const GTK_INTERFACE_COLOR_SCHEME_DEFAULT: GtkInterfaceColorScheme = 1;
+pub const GTK_INTERFACE_COLOR_SCHEME_DARK: GtkInterfaceColorScheme = 2;
+pub const GTK_INTERFACE_COLOR_SCHEME_LIGHT: GtkInterfaceColorScheme = 3;
+
+pub type GtkInterfaceContrast = c_int;
+pub const GTK_INTERFACE_CONTRAST_UNSUPPORTED: GtkInterfaceContrast = 0;
+pub const GTK_INTERFACE_CONTRAST_NO_PREFERENCE: GtkInterfaceContrast = 1;
+pub const GTK_INTERFACE_CONTRAST_MORE: GtkInterfaceContrast = 2;
+pub const GTK_INTERFACE_CONTRAST_LESS: GtkInterfaceContrast = 3;
 
 pub type GtkJustification = c_int;
 pub const GTK_JUSTIFY_LEFT: GtkJustification = 0;
@@ -1102,6 +1123,9 @@ pub const GTK_EVENT_CONTROLLER_SCROLL_VERTICAL: GtkEventControllerScrollFlags = 
 pub const GTK_EVENT_CONTROLLER_SCROLL_HORIZONTAL: GtkEventControllerScrollFlags = 2;
 pub const GTK_EVENT_CONTROLLER_SCROLL_DISCRETE: GtkEventControllerScrollFlags = 4;
 pub const GTK_EVENT_CONTROLLER_SCROLL_KINETIC: GtkEventControllerScrollFlags = 8;
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+pub const GTK_EVENT_CONTROLLER_SCROLL_PHYSICAL_DIRECTION: GtkEventControllerScrollFlags = 16;
 pub const GTK_EVENT_CONTROLLER_SCROLL_BOTH_AXES: GtkEventControllerScrollFlags = 3;
 
 pub type GtkFontChooserLevel = c_uint;
@@ -10164,6 +10188,20 @@ extern "C" {
     pub fn gtk_inscription_overflow_get_type() -> GType;
 
     //=========================================================================
+    // GtkInterfaceColorScheme
+    //=========================================================================
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    pub fn gtk_interface_color_scheme_get_type() -> GType;
+
+    //=========================================================================
+    // GtkInterfaceContrast
+    //=========================================================================
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    pub fn gtk_interface_contrast_get_type() -> GType;
+
+    //=========================================================================
     // GtkJustification
     //=========================================================================
     pub fn gtk_justification_get_type() -> GType;
@@ -13610,6 +13648,12 @@ extern "C" {
     pub fn gtk_entry_get_input_purpose(entry: *mut GtkEntry) -> GtkInputPurpose;
     pub fn gtk_entry_get_invisible_char(entry: *mut GtkEntry) -> u32;
     pub fn gtk_entry_get_max_length(entry: *mut GtkEntry) -> c_int;
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    pub fn gtk_entry_get_menu_entry_icon_text(
+        entry: *mut GtkEntry,
+        icon_pos: GtkEntryIconPosition,
+    ) -> *const c_char;
     pub fn gtk_entry_get_overwrite_mode(entry: *mut GtkEntry) -> gboolean;
     pub fn gtk_entry_get_placeholder_text(entry: *mut GtkEntry) -> *const c_char;
     pub fn gtk_entry_get_progress_fraction(entry: *mut GtkEntry) -> c_double;
@@ -13672,6 +13716,13 @@ extern "C" {
     pub fn gtk_entry_set_input_purpose(entry: *mut GtkEntry, purpose: GtkInputPurpose);
     pub fn gtk_entry_set_invisible_char(entry: *mut GtkEntry, ch: u32);
     pub fn gtk_entry_set_max_length(entry: *mut GtkEntry, max: c_int);
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    pub fn gtk_entry_set_menu_entry_icon_text(
+        entry: *mut GtkEntry,
+        icon_pos: GtkEntryIconPosition,
+        text: *const c_char,
+    );
     pub fn gtk_entry_set_overwrite_mode(entry: *mut GtkEntry, overwrite: gboolean);
     pub fn gtk_entry_set_placeholder_text(entry: *mut GtkEntry, text: *const c_char);
     pub fn gtk_entry_set_progress_fraction(entry: *mut GtkEntry, fraction: c_double);
@@ -14286,6 +14337,9 @@ extern "C" {
     pub fn gtk_filter_list_model_get_incremental(self_: *mut GtkFilterListModel) -> gboolean;
     pub fn gtk_filter_list_model_get_model(self_: *mut GtkFilterListModel) -> *mut gio::GListModel;
     pub fn gtk_filter_list_model_get_pending(self_: *mut GtkFilterListModel) -> c_uint;
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    pub fn gtk_filter_list_model_get_watch_items(self_: *mut GtkFilterListModel) -> gboolean;
     pub fn gtk_filter_list_model_set_filter(self_: *mut GtkFilterListModel, filter: *mut GtkFilter);
     pub fn gtk_filter_list_model_set_incremental(
         self_: *mut GtkFilterListModel,
@@ -14294,6 +14348,12 @@ extern "C" {
     pub fn gtk_filter_list_model_set_model(
         self_: *mut GtkFilterListModel,
         model: *mut gio::GListModel,
+    );
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    pub fn gtk_filter_list_model_set_watch_items(
+        self_: *mut GtkFilterListModel,
+        watch_items: gboolean,
     );
 
     //=========================================================================
@@ -18169,6 +18229,15 @@ extern "C" {
         snapshot: *mut GtkSnapshot,
         color_matrix: *const graphene::graphene_matrix_t,
         color_offset: *const graphene::graphene_vec4_t,
+    );
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    pub fn gtk_snapshot_push_component_transfer(
+        snapshot: *mut GtkSnapshot,
+        red: *const gsk::GskComponentTransfer,
+        green: *const gsk::GskComponentTransfer,
+        blue: *const gsk::GskComponentTransfer,
+        alpha: *const gsk::GskComponentTransfer,
     );
     pub fn gtk_snapshot_push_cross_fade(snapshot: *mut GtkSnapshot, progress: c_double);
     pub fn gtk_snapshot_push_debug(snapshot: *mut GtkSnapshot, message: *const c_char, ...);
