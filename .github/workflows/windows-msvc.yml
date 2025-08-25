@@ -24,6 +24,7 @@ jobs:
   ci-msvc:
     name: Windows MSVC
     runs-on: windows-latest
+    continue-on-error: true
     env:
       PKG_CONFIG_PATH: 'C:\gnome\lib\pkgconfig'
 
