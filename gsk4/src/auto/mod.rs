@@ -33,7 +33,11 @@ pub use self::color_matrix_node::ColorMatrixNode;
 mod color_node;
 pub use self::color_node::ColorNode;
 
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
 mod component_transfer_node;
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
 pub use self::component_transfer_node::ComponentTransferNode;
 
 mod conic_gradient_node;

@@ -2,10 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::ffi;
-#[cfg(feature = "v4_20")]
-#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
-use crate::{ComponentTransfer, RenderNode};
+use crate::{ffi, ComponentTransfer, RenderNode};
 use glib::{prelude::*, translate::*};
 
 glib::wrapper! {
@@ -25,8 +22,6 @@ impl StaticType for ComponentTransferNode {
 }
 
 impl ComponentTransferNode {
-    #[cfg(feature = "v4_20")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
     #[doc(alias = "gsk_component_transfer_node_new")]
     pub fn new(
         child: impl AsRef<RenderNode>,
@@ -47,8 +42,6 @@ impl ComponentTransferNode {
         }
     }
 
-    #[cfg(feature = "v4_20")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
     #[doc(alias = "gsk_component_transfer_node_get_child")]
     #[doc(alias = "get_child")]
     pub fn child(&self) -> RenderNode {
@@ -59,8 +52,6 @@ impl ComponentTransferNode {
         }
     }
 
-    #[cfg(feature = "v4_20")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
     #[doc(alias = "gsk_component_transfer_node_get_transfer")]
     #[doc(alias = "get_transfer")]
     pub fn transfer(&self, component: u32) -> ComponentTransfer {
