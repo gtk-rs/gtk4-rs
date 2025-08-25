@@ -188,7 +188,7 @@
 <a href=#115 id=115 data-nosnippet>115</a>                <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.Some">Some</a>(glib::ffi::g_str_hash),
 <a href=#116 id=116 data-nosnippet>116</a>                <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.Some">Some</a>(glib::ffi::g_str_equal),
 <a href=#117 id=117 data-nosnippet>117</a>                <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.Some">Some</a>(glib::ffi::g_free),
-<a href=#118 id=118 data-nosnippet>118</a>                <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.Some">Some</a>(glib::ffi::g_free),
+<a href=#118 id=118 data-nosnippet>118</a>                <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None">None</a>,
 <a href=#119 id=119 data-nosnippet>119</a>            );
 <a href=#120 id=120 data-nosnippet>120</a>
 <a href=#121 id=121 data-nosnippet>121</a>            <span class="kw">for </span>(key, widget) <span class="kw">in </span>views {
@@ -196,7 +196,7 @@
 <a href=#123 id=123 data-nosnippet>123</a>                glib::ffi::g_hash_table_insert(
 <a href=#124 id=124 data-nosnippet>124</a>                    hash_table,
 <a href=#125 id=125 data-nosnippet>125</a>                    key_ptr <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>,
-<a href=#126 id=126 data-nosnippet>126</a>                    widget.to_glib_full() <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>,
+<a href=#126 id=126 data-nosnippet>126</a>                    widget.as_ptr() <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>,
 <a href=#127 id=127 data-nosnippet>127</a>                );
 <a href=#128 id=128 data-nosnippet>128</a>            }
 <a href=#129 id=129 data-nosnippet>129</a>
@@ -210,12 +210,15 @@
 <a href=#137 id=137 data-nosnippet>137</a>                    <a href="#114">hash_table</a>,
 <a href=#138 id=138 data-nosnippet>138</a>                    <span class="kw-2">&amp;mut </span><a href="#113">err</a>,
 <a href=#139 id=139 data-nosnippet>139</a>                );
-<a href=#140 id=140 data-nosnippet>140</a>                <span class="kw">if </span>!<a href="#113">err</a>.<a href="https://doc.rust-lang.org/nightly/core/ptr/foreigntype.mut_ptr.html#method.is_null">is_null</a>() {
-<a href=#141 id=141 data-nosnippet>141</a>                    <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html#variant.Err">Err</a>(<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib_full.html">from_glib_full</a>(<a href="#113">err</a>))
-<a href=#142 id=142 data-nosnippet>142</a>                } <span class="kw">else </span>{
-<a href=#143 id=143 data-nosnippet>143</a>                    <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html#variant.Ok">Ok</a>(<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.FromGlibPtrContainer.html#tymethod.from_glib_container">FromGlibPtrContainer::from_glib_container</a>(<a href="#131">out</a>))
-<a href=#144 id=144 data-nosnippet>144</a>                }
-<a href=#145 id=145 data-nosnippet>145</a>            })
-<a href=#146 id=146 data-nosnippet>146</a>        }
-<a href=#147 id=147 data-nosnippet>147</a>    }
-<a href=#148 id=148 data-nosnippet>148</a>}</code></pre></div></section></main></body></html>
+<a href=#140 id=140 data-nosnippet>140</a>
+<a href=#141 id=141 data-nosnippet>141</a>                glib::ffi::g_hash_table_unref(<a href="#114">hash_table</a>);
+<a href=#142 id=142 data-nosnippet>142</a>
+<a href=#143 id=143 data-nosnippet>143</a>                <span class="kw">if </span>!<a href="#113">err</a>.<a href="https://doc.rust-lang.org/nightly/core/ptr/foreigntype.mut_ptr.html#method.is_null">is_null</a>() {
+<a href=#144 id=144 data-nosnippet>144</a>                    <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html#variant.Err">Err</a>(<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib_full.html">from_glib_full</a>(<a href="#113">err</a>))
+<a href=#145 id=145 data-nosnippet>145</a>                } <span class="kw">else </span>{
+<a href=#146 id=146 data-nosnippet>146</a>                    <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html#variant.Ok">Ok</a>(<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.FromGlibPtrContainer.html#tymethod.from_glib_container">FromGlibPtrContainer::from_glib_container</a>(<a href="#131">out</a>))
+<a href=#147 id=147 data-nosnippet>147</a>                }
+<a href=#148 id=148 data-nosnippet>148</a>            })
+<a href=#149 id=149 data-nosnippet>149</a>        }
+<a href=#150 id=150 data-nosnippet>150</a>    }
+<a href=#151 id=151 data-nosnippet>151</a>}</code></pre></div></section></main></body></html>
