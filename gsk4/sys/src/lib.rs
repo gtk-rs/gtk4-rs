@@ -1939,6 +1939,8 @@ extern "C" {
     //=========================================================================
     // GskComponentTransferNode
     //=========================================================================
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
     pub fn gsk_component_transfer_node_get_type() -> GType;
     #[cfg(feature = "v4_20")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]

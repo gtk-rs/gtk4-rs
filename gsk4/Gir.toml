@@ -21,7 +21,6 @@ generate = [
     "Gsk.ColorMatrixNode",
     "Gsk.ColorNode",
     "Gsk.ComponentTransfer",
-    "Gsk.ComponentTransferNode",
     "Gsk.ConicGradientNode",
     "Gsk.Corner",
     "Gsk.CrossFadeNode",
@@ -118,6 +117,12 @@ cfg_condition = "feature = \"broadway\""
 name = "Gsk.ColorStop"
 status = "manual"
 boxed_inline = true
+
+[[object]]
+name = "Gsk.ComponentTransferNode"
+status = "generate"
+# See https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/8880
+version = "4.20"
 
 [[object]]
 name = "Gsk.ContainerNode"
