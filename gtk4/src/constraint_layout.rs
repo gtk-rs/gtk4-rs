@@ -21,7 +21,7 @@ impl ConstraintLayout {
                 Some(glib::ffi::g_str_hash),
                 Some(glib::ffi::g_str_equal),
                 Some(glib::ffi::g_free),
-                Some(glib::ffi::g_free),
+                None,
             );
 
             for (key, widget) in views {
@@ -29,7 +29,7 @@ impl ConstraintLayout {
                 glib::ffi::g_hash_table_insert(
                     hash_table,
                     key_ptr as *mut _,
-                    widget.to_glib_full() as *mut _,
+                    widget.as_ptr() as *mut _,
                 );
             }
 
@@ -43,6 +43,9 @@ impl ConstraintLayout {
                     hash_table,
                     &mut err,
                 );
+
+                glib::ffi::g_hash_table_unref(hash_table);
+
                 if !err.is_null() {
                     Err(from_glib_full(err))
                 } else {
