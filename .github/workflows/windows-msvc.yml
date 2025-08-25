@@ -65,7 +65,7 @@ jobs:
           python-version: "3.x"
 
       - name: Install Python Dependencies
-        run: pip install meson==1.8.4 ninja setuptools packaging
+        run: pip install meson==1.7.2 ninja setuptools packaging
 
       - name: Setup MSVC
         uses: bus1/cabuild/action/msdevshell@v1
