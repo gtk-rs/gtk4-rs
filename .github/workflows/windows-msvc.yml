@@ -75,7 +75,7 @@ jobs:
         working-directory: /gtk
         if: steps.cache.outputs.cache-hit != 'true'
         run: |
-          meson setup builddir --prefix=C:/gnome -Dbuild-demos=false -Dbuild-tests=false -Dvulkan=disabled -Dmedia-gstreamer=disabled -Dbuild-examples=false -Dglib:tests=false -Dharfbuzz:tests=disabled -Dharfbuzz:docs=disabled -Dgraphene:tests=false -Dgdk-pixbuf:tests=false -Dcairo:tests=disabled -Dglib:sysprof=disabled
+          meson setup builddir --prefix=C:/gnome -Dbuild-demos=false -Dbuild-tests=false -Dvulkan=disabled -Dmedia-gstreamer=disabled -Dbuild-examples=false -Dglib:tests=false -Dharfbuzz:tests=disabled -Dharfbuzz:docs=disabled -Dgraphene:tests=false -Dgdk-pixbuf:tests=false -Dcairo:tests=disabled -Dglib:sysprof=disabled -Dgdk-pixbuf:documentation=false
 
       - name: Build and install GTK
         working-directory: /gtk
