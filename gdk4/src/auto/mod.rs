@@ -255,6 +255,9 @@ pub use self::enums::KeyMatch;
 pub use self::enums::MemoryFormat;
 pub use self::enums::NotifyType;
 pub use self::enums::ScrollDirection;
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+pub use self::enums::ScrollRelativeDirection;
 #[cfg(feature = "v4_8")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
 pub use self::enums::ScrollUnit;
