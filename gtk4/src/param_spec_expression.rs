@@ -127,7 +127,7 @@ impl ParamSpecExpression {
     /// This method returns an instance of
     /// [`ParamSpecExpressionBuilder`](crate::builders::ParamSpecExpressionBuilder)
     /// which can be used to create [`ParamSpecExpression`] objects.
-    pub fn builder(name: &str) -> ParamSpecExpressionBuilder {
+    pub fn builder(name: &str) -> ParamSpecExpressionBuilder<'_> {
         assert_initialized_main_thread!();
         ParamSpecExpressionBuilder::new(name)
     }
