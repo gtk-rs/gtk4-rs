@@ -371,6 +371,13 @@ pub trait SnapshotExt: IsA<Snapshot> + 'static {
         }
     }
 
+    //#[cfg(feature = "v4_20")]
+    //#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    //#[doc(alias = "gtk_snapshot_push_component_transfer")]
+    //fn push_component_transfer(&self, red: /*Ignored*/&gsk::ComponentTransfer, green: /*Ignored*/&gsk::ComponentTransfer, blue: /*Ignored*/&gsk::ComponentTransfer, alpha: /*Ignored*/&gsk::ComponentTransfer) {
+    //    unsafe { TODO: call ffi:gtk_snapshot_push_component_transfer() }
+    //}
+
     #[doc(alias = "gtk_snapshot_push_cross_fade")]
     fn push_cross_fade(&self, progress: f64) {
         unsafe {

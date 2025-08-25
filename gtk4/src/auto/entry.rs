@@ -164,6 +164,34 @@ impl EntryBuilder {
         }
     }
 
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    pub fn menu_entry_icon_primary_text(
+        self,
+        menu_entry_icon_primary_text: impl Into<glib::GString>,
+    ) -> Self {
+        Self {
+            builder: self.builder.property(
+                "menu-entry-icon-primary-text",
+                menu_entry_icon_primary_text.into(),
+            ),
+        }
+    }
+
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    pub fn menu_entry_icon_secondary_text(
+        self,
+        menu_entry_icon_secondary_text: impl Into<glib::GString>,
+    ) -> Self {
+        Self {
+            builder: self.builder.property(
+                "menu-entry-icon-secondary-text",
+                menu_entry_icon_secondary_text.into(),
+            ),
+        }
+    }
+
     pub fn overwrite_mode(self, overwrite_mode: bool) -> Self {
         Self {
             builder: self.builder.property("overwrite-mode", overwrite_mode),
@@ -804,6 +832,19 @@ pub trait EntryExt: IsA<Entry> + 'static {
         unsafe { ffi::gtk_entry_get_max_length(self.as_ref().to_glib_none().0) }
     }
 
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    #[doc(alias = "gtk_entry_get_menu_entry_icon_text")]
+    #[doc(alias = "get_menu_entry_icon_text")]
+    fn menu_entry_icon_text(&self, icon_pos: EntryIconPosition) -> Option<glib::GString> {
+        unsafe {
+            from_glib_none(ffi::gtk_entry_get_menu_entry_icon_text(
+                self.as_ref().to_glib_none().0,
+                icon_pos.into_glib(),
+            ))
+        }
+    }
+
     #[doc(alias = "gtk_entry_get_overwrite_mode")]
     #[doc(alias = "get_overwrite_mode")]
     #[doc(alias = "overwrite-mode")]
@@ -1086,6 +1127,19 @@ pub trait EntryExt: IsA<Entry> + 'static {
         }
     }
 
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    #[doc(alias = "gtk_entry_set_menu_entry_icon_text")]
+    fn set_menu_entry_icon_text(&self, icon_pos: EntryIconPosition, text: &str) {
+        unsafe {
+            ffi::gtk_entry_set_menu_entry_icon_text(
+                self.as_ref().to_glib_none().0,
+                icon_pos.into_glib(),
+                text.to_glib_none().0,
+            );
+        }
+    }
+
     #[doc(alias = "gtk_entry_set_overwrite_mode")]
     #[doc(alias = "overwrite-mode")]
     fn set_overwrite_mode(&self, overwrite: bool) {
@@ -1177,6 +1231,42 @@ pub trait EntryExt: IsA<Entry> + 'static {
     #[doc(alias = "invisible-char-set")]
     fn is_invisible_char_set(&self) -> bool {
         ObjectExt::property(self.as_ref(), "invisible-char-set")
+    }
+
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    #[doc(alias = "menu-entry-icon-primary-text")]
+    fn menu_entry_icon_primary_text(&self) -> Option<glib::GString> {
+        ObjectExt::property(self.as_ref(), "menu-entry-icon-primary-text")
+    }
+
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    #[doc(alias = "menu-entry-icon-primary-text")]
+    fn set_menu_entry_icon_primary_text(&self, menu_entry_icon_primary_text: Option<&str>) {
+        ObjectExt::set_property(
+            self.as_ref(),
+            "menu-entry-icon-primary-text",
+            menu_entry_icon_primary_text,
+        )
+    }
+
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    #[doc(alias = "menu-entry-icon-secondary-text")]
+    fn menu_entry_icon_secondary_text(&self) -> Option<glib::GString> {
+        ObjectExt::property(self.as_ref(), "menu-entry-icon-secondary-text")
+    }
+
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    #[doc(alias = "menu-entry-icon-secondary-text")]
+    fn set_menu_entry_icon_secondary_text(&self, menu_entry_icon_secondary_text: Option<&str>) {
+        ObjectExt::set_property(
+            self.as_ref(),
+            "menu-entry-icon-secondary-text",
+            menu_entry_icon_secondary_text,
+        )
     }
 
     #[doc(alias = "primary-icon-activatable")]
@@ -1799,6 +1889,68 @@ pub trait EntryExt: IsA<Entry> + 'static {
                 c"notify::max-length".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_max_length_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    #[doc(alias = "menu-entry-icon-primary-text")]
+    fn connect_menu_entry_icon_primary_text_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_menu_entry_icon_primary_text_trampoline<
+            P: IsA<Entry>,
+            F: Fn(&P) + 'static,
+        >(
+            this: *mut ffi::GtkEntry,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(Entry::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                c"notify::menu-entry-icon-primary-text".as_ptr() as *const _,
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
+                    notify_menu_entry_icon_primary_text_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    #[doc(alias = "menu-entry-icon-secondary-text")]
+    fn connect_menu_entry_icon_secondary_text_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_menu_entry_icon_secondary_text_trampoline<
+            P: IsA<Entry>,
+            F: Fn(&P) + 'static,
+        >(
+            this: *mut ffi::GtkEntry,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(Entry::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                c"notify::menu-entry-icon-secondary-text".as_ptr() as *const _,
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
+                    notify_menu_entry_icon_secondary_text_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )

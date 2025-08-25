@@ -308,7 +308,34 @@ pub const GDK_MEMORY_R8G8B8G8_422: GdkMemoryFormat = 54;
 #[cfg(feature = "v4_20")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
 pub const GDK_MEMORY_B8G8R8G8_422: GdkMemoryFormat = 55;
-pub const GDK_MEMORY_N_FORMATS: GdkMemoryFormat = 56;
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+pub const GDK_MEMORY_X6G10_X6B10_X6R10_420: GdkMemoryFormat = 56;
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+pub const GDK_MEMORY_X6G10_X6B10_X6R10_422: GdkMemoryFormat = 57;
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+pub const GDK_MEMORY_X6G10_X6B10_X6R10_444: GdkMemoryFormat = 58;
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+pub const GDK_MEMORY_X4G12_X4B12_X4R12_420: GdkMemoryFormat = 59;
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+pub const GDK_MEMORY_X4G12_X4B12_X4R12_422: GdkMemoryFormat = 60;
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+pub const GDK_MEMORY_X4G12_X4B12_X4R12_444: GdkMemoryFormat = 61;
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+pub const GDK_MEMORY_G16_B16_R16_420: GdkMemoryFormat = 62;
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+pub const GDK_MEMORY_G16_B16_R16_422: GdkMemoryFormat = 63;
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+pub const GDK_MEMORY_G16_B16_R16_444: GdkMemoryFormat = 64;
+pub const GDK_MEMORY_N_FORMATS: GdkMemoryFormat = 65;
 
 pub type GdkNotifyType = c_int;
 pub const GDK_NOTIFY_ANCESTOR: GdkNotifyType = 0;
@@ -324,6 +351,11 @@ pub const GDK_SCROLL_DOWN: GdkScrollDirection = 1;
 pub const GDK_SCROLL_LEFT: GdkScrollDirection = 2;
 pub const GDK_SCROLL_RIGHT: GdkScrollDirection = 3;
 pub const GDK_SCROLL_SMOOTH: GdkScrollDirection = 4;
+
+pub type GdkScrollRelativeDirection = c_int;
+pub const GDK_SCROLL_RELATIVE_DIRECTION_IDENTICAL: GdkScrollRelativeDirection = 0;
+pub const GDK_SCROLL_RELATIVE_DIRECTION_INVERTED: GdkScrollRelativeDirection = 1;
+pub const GDK_SCROLL_RELATIVE_DIRECTION_UNKNOWN: GdkScrollRelativeDirection = 2;
 
 pub type GdkScrollUnit = c_int;
 pub const GDK_SCROLL_UNIT_WHEEL: GdkScrollUnit = 0;
@@ -2855,6 +2887,9 @@ pub const GDK_AXIS_FLAG_ROTATION: GdkAxisFlags = 1024;
 pub const GDK_AXIS_FLAG_SLIDER: GdkAxisFlags = 2048;
 
 pub type GdkDragAction = c_uint;
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+pub const GDK_ACTION_NONE: GdkDragAction = 0;
 pub const GDK_ACTION_COPY: GdkDragAction = 1;
 pub const GDK_ACTION_MOVE: GdkDragAction = 2;
 pub const GDK_ACTION_LINK: GdkDragAction = 4;
@@ -4181,6 +4216,13 @@ extern "C" {
     // GdkScrollDirection
     //=========================================================================
     pub fn gdk_scroll_direction_get_type() -> GType;
+
+    //=========================================================================
+    // GdkScrollRelativeDirection
+    //=========================================================================
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    pub fn gdk_scroll_relative_direction_get_type() -> GType;
 
     //=========================================================================
     // GdkScrollUnit
@@ -5851,6 +5893,11 @@ extern "C" {
     // GdkScrollEvent
     //=========================================================================
     pub fn gdk_scroll_event_get_type() -> GType;
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    pub fn gdk_scroll_event_get_relative_direction(
+        event: *mut GdkEvent,
+    ) -> GdkScrollRelativeDirection;
     pub fn gdk_scroll_event_get_deltas(
         event: *mut GdkScrollEvent,
         delta_x: *mut c_double,

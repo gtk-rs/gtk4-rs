@@ -1310,6 +1310,10 @@ pub enum RenderNodeType {
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
     #[doc(alias = "GSK_SUBSURFACE_NODE")]
     SubsurfaceNode,
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    #[doc(alias = "GSK_COMPONENT_TRANSFER_NODE")]
+    ComponentTransferNode,
     #[doc(hidden)]
     __Unknown(i32),
 }
@@ -1356,6 +1360,8 @@ impl IntoGlib for RenderNodeType {
             Self::StrokeNode => ffi::GSK_STROKE_NODE,
             #[cfg(feature = "v4_14")]
             Self::SubsurfaceNode => ffi::GSK_SUBSURFACE_NODE,
+            #[cfg(feature = "v4_20")]
+            Self::ComponentTransferNode => ffi::GSK_COMPONENT_TRANSFER_NODE,
             Self::__Unknown(value) => value,
         }
     }
@@ -1403,6 +1409,8 @@ impl FromGlib<ffi::GskRenderNodeType> for RenderNodeType {
             ffi::GSK_STROKE_NODE => Self::StrokeNode,
             #[cfg(feature = "v4_14")]
             ffi::GSK_SUBSURFACE_NODE => Self::SubsurfaceNode,
+            #[cfg(feature = "v4_20")]
+            ffi::GSK_COMPONENT_TRANSFER_NODE => Self::ComponentTransferNode,
             value => Self::__Unknown(value),
         }
     }
