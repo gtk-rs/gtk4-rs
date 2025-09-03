@@ -107,7 +107,7 @@ fn build_ui(application: &gtk::Application) {
         .spacing(24)
         .build();
 
-    let file = gio::File::for_path("./examples/clipboard/asset.png");
+    let file = gio::File::for_path("./clipboard/asset.png");
     let asset_paintable = gdk::Texture::from_file(&file).unwrap();
 
     let image_from = gtk::Image::builder()
