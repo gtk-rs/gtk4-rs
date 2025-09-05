@@ -2147,6 +2147,11 @@ generate_builder = false
     pattern = "(n-items|item-type)"
     generate = [] # disable generated getter/notify, use the ones from GListModel iface
     [[object.function]]
+    name = "new"
+        [[object.function.parameter]]
+        name = "strings"
+        nullable = false
+    [[object.function]]
     name = "take"
     ignore = true # A C helper, bindings should use append instead
 
