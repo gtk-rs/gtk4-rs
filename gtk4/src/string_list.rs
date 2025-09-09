@@ -14,7 +14,7 @@ impl Extend<&'static str> for StringList {
         self.splice(
             self.n_items(),
             0,
-            iter.into_iter().collect::<Vec<_>>().as_slice(),
+            Some(iter.into_iter().collect::<Vec<_>>().as_slice()),
         );
     }
 }

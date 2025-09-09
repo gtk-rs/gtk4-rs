@@ -100,9 +100,9 @@ impl AlertDialog {
 
     #[doc(alias = "gtk_alert_dialog_get_buttons")]
     #[doc(alias = "get_buttons")]
-    pub fn buttons(&self) -> Vec<glib::GString> {
+    pub fn buttons(&self) -> Option<Vec<glib::GString>> {
         unsafe {
-            FromGlibPtrContainer::from_glib_none(ffi::gtk_alert_dialog_get_buttons(
+            MaybeFromGlibPtrContainer::maybe_from_glib_none(ffi::gtk_alert_dialog_get_buttons(
                 self.to_glib_none().0,
             ))
         }

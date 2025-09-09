@@ -72,7 +72,7 @@ fn build_ui(app: &gtk::Application) {
         let app_info = model.item(position).and_downcast::<gio::AppInfo>().unwrap();
 
         let context = list_view.display().app_launch_context();
-        if let Err(err) = app_info.launch(&[], Some(&context)) {
+        if let Err(err) = app_info.launch(None, Some(&context)) {
             let parent_window = list_view.root().and_downcast::<gtk::Window>().unwrap();
 
             gtk::AlertDialog::builder()
