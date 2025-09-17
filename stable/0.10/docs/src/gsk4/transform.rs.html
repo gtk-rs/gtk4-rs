@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gsk4/src/transform.rs`."><title>transform.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-aa0817cf.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gsk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.90.0-nightly (a00149764 2025-07-14)" data-channel="nightly" data-search-js="search-179e01a3.js" data-settings-js="settings-5514c975.js" ><script src="../../static.files/storage-4e99c027.js"></script><script defer src="../../static.files/src-script-813739b1.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-673ee1e0.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-32bb7600.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-6580c154.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gsk4/src/transform.rs`."><title>transform.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-e56847b5.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gsk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.92.0-nightly (a9d0a6f15 2025-09-16)" data-channel="nightly" data-search-js="search-cb266a1a.js" data-stringdex-js="stringdex-5af928a3.js" data-settings-js="settings-c38705f0.js" ><script src="../../static.files/storage-e2aeef58.js"></script><script defer src="../../static.files/src-script-813739b1.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-6dc2a7f3.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-263c88ec.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
 
@@ -71,7 +71,7 @@
 </script>
 
 
-<nav class="sidebar"><div class="src-sidebar-title"><h2>Files</h2></div></nav><div class="sidebar-resizer" title="Drag to resize sidebar"></div><main><rustdoc-search></rustdoc-search><section id="main-content" class="content"><div class="main-heading"><h1><div class="sub-heading">gsk4/</div>transform.rs</h1><rustdoc-toolbar></rustdoc-toolbar></div><div class="example-wrap digits-3"><pre class="rust"><code><a href=#1 id=1 data-nosnippet>1</a><span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.
+<nav class="sidebar"><div class="src-sidebar-title"><h2>Files</h2></div></nav><div class="sidebar-resizer" title="Drag to resize sidebar"></div><main><section id="main-content" class="content"><div class="main-heading"><h1><div class="sub-heading">gsk4/</div>transform.rs</h1><rustdoc-toolbar></rustdoc-toolbar></div><div class="example-wrap digits-3"><pre class="rust"><code><a href=#1 id=1 data-nosnippet>1</a><span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.
 <a href=#2 id=2 data-nosnippet>2</a>
 <a href=#3 id=3 data-nosnippet>3</a></span><span class="kw">use </span><a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/index.html">glib::translate</a>::<span class="kw-2">*</span>;
 <a href=#4 id=4 data-nosnippet>4</a>
@@ -336,19 +336,62 @@
 <a href=#263 id=263 data-nosnippet>263</a>            <a href="#259">res</a>.<a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#method.unwrap_or_default">unwrap_or_default</a>()
 <a href=#264 id=264 data-nosnippet>264</a>        }
 <a href=#265 id=265 data-nosnippet>265</a>    }
-<a href=#266 id=266 data-nosnippet>266</a>}
-<a href=#267 id=267 data-nosnippet>267</a>
-<a href=#268 id=268 data-nosnippet>268</a><span class="kw">impl </span><a href="https://doc.rust-lang.org/nightly/core/str/traits/trait.FromStr.html">std::str::FromStr</a> <span class="kw">for </span><a href="auto/transform.rs.html#8-26">Transform</a> {
-<a href=#269 id=269 data-nosnippet>269</a>    <span class="kw">type </span><span class="prelude-val">Err </span>= <a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/error/struct.BoolError.html">glib::BoolError</a>;
-<a href=#270 id=270 data-nosnippet>270</a>    <span class="kw">fn </span>from_str(s: <span class="kw-2">&amp;</span><a href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>) -&gt; <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html">Result</a>&lt;<span class="self">Self</span>, <span class="self">Self</span>::Err&gt; {
-<a href=#271 id=271 data-nosnippet>271</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#272 id=272 data-nosnippet>272</a>        <a href="#25-41"><span class="self">Self</span>::parse</a>(<a href="#270">s</a>)
-<a href=#273 id=273 data-nosnippet>273</a>    }
-<a href=#274 id=274 data-nosnippet>274</a>}
-<a href=#275 id=275 data-nosnippet>275</a>
-<a href=#276 id=276 data-nosnippet>276</a><span class="attr">#[test]
-<a href=#277 id=277 data-nosnippet>277</a></span><span class="kw">fn </span>invert_identity_is_identity() {
-<a href=#278 id=278 data-nosnippet>278</a>    <span class="kw">let </span>transform = Transform::new();
-<a href=#279 id=279 data-nosnippet>279</a>    <span class="kw">let </span>output = transform.clone().invert();
-<a href=#280 id=280 data-nosnippet>280</a>    <span class="macro">assert_eq!</span>(output.unwrap(), transform);
-<a href=#281 id=281 data-nosnippet>281</a>}</code></pre></div></section></main></body></html>
+<a href=#266 id=266 data-nosnippet>266</a>
+<a href=#267 id=267 data-nosnippet>267</a>    <span class="doccomment">/// Multiplies @self with the matrix [ xx yx x0; xy yy y0; 0 0 1 ].
+<a href=#268 id=268 data-nosnippet>268</a>    ///
+<a href=#269 id=269 data-nosnippet>269</a>    /// The result of calling [`to_2d()`][Self::to_2d()] on the returned
+<a href=#270 id=270 data-nosnippet>270</a>    /// [`Transform`][crate::Transform] should match the input passed to this
+<a href=#271 id=271 data-nosnippet>271</a>    /// function.
+<a href=#272 id=272 data-nosnippet>272</a>    ///
+<a href=#273 id=273 data-nosnippet>273</a>    /// This function consumes @self. Use `Gsk::Transform::ref()` first
+<a href=#274 id=274 data-nosnippet>274</a>    /// if you want to keep it around.
+<a href=#275 id=275 data-nosnippet>275</a>    /// ## `xx`
+<a href=#276 id=276 data-nosnippet>276</a>    /// the xx member
+<a href=#277 id=277 data-nosnippet>277</a>    /// ## `yx`
+<a href=#278 id=278 data-nosnippet>278</a>    /// the yx member
+<a href=#279 id=279 data-nosnippet>279</a>    /// ## `xy`
+<a href=#280 id=280 data-nosnippet>280</a>    /// the xy member
+<a href=#281 id=281 data-nosnippet>281</a>    /// ## `yy`
+<a href=#282 id=282 data-nosnippet>282</a>    /// the yy member
+<a href=#283 id=283 data-nosnippet>283</a>    /// ## `dx`
+<a href=#284 id=284 data-nosnippet>284</a>    /// the x0 member
+<a href=#285 id=285 data-nosnippet>285</a>    /// ## `dy`
+<a href=#286 id=286 data-nosnippet>286</a>    /// the y0 member
+<a href=#287 id=287 data-nosnippet>287</a>    ///
+<a href=#288 id=288 data-nosnippet>288</a>    /// # Returns
+<a href=#289 id=289 data-nosnippet>289</a>    ///
+<a href=#290 id=290 data-nosnippet>290</a>    /// The new transform
+<a href=#291 id=291 data-nosnippet>291</a>    </span><span class="attr">#[cfg(feature = <span class="string">"v4_20"</span>)]
+<a href=#292 id=292 data-nosnippet>292</a>    #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_20"</span>)))]
+<a href=#293 id=293 data-nosnippet>293</a>    #[doc(alias = <span class="string">"gsk_transform_matrix_2d"</span>)]
+<a href=#294 id=294 data-nosnippet>294</a>    #[must_use]
+<a href=#295 id=295 data-nosnippet>295</a>    </span><span class="kw">pub fn </span>matrix_2d(<span class="self">self</span>, xx: <a href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>, yx: <a href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>, xy: <a href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>, yy: <a href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>, dx: <a href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>, dy: <a href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>) -&gt; <a href="auto/transform.rs.html#8-26">Transform</a> {
+<a href=#296 id=296 data-nosnippet>296</a>        <span class="kw">unsafe </span>{
+<a href=#297 id=297 data-nosnippet>297</a>            <span class="kw">let </span>res: <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;<span class="self">Self</span>&gt; = <a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/fn.from_glib_full.html">from_glib_full</a>(<a href="../../gsk4_sys/fn.gsk_transform_matrix_2d.html">ffi::gsk_transform_matrix_2d</a>(
+<a href=#298 id=298 data-nosnippet>298</a>                <a class="self" href="#295">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.IntoGlibPtr.html#tymethod.into_glib_ptr">into_glib_ptr</a>(),
+<a href=#299 id=299 data-nosnippet>299</a>                <a href="#295">xx</a>,
+<a href=#300 id=300 data-nosnippet>300</a>                <a href="#295">yx</a>,
+<a href=#301 id=301 data-nosnippet>301</a>                <a href="#295">xy</a>,
+<a href=#302 id=302 data-nosnippet>302</a>                <a href="#295">yy</a>,
+<a href=#303 id=303 data-nosnippet>303</a>                <a href="#295">dx</a>,
+<a href=#304 id=304 data-nosnippet>304</a>                <a href="#295">dy</a>,
+<a href=#305 id=305 data-nosnippet>305</a>            ));
+<a href=#306 id=306 data-nosnippet>306</a>            <a href="#297">res</a>.<a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#method.unwrap_or_default">unwrap_or_default</a>()
+<a href=#307 id=307 data-nosnippet>307</a>        }
+<a href=#308 id=308 data-nosnippet>308</a>    }
+<a href=#309 id=309 data-nosnippet>309</a>}
+<a href=#310 id=310 data-nosnippet>310</a>
+<a href=#311 id=311 data-nosnippet>311</a><span class="kw">impl </span><a href="https://doc.rust-lang.org/nightly/core/str/traits/trait.FromStr.html">std::str::FromStr</a> <span class="kw">for </span><a href="auto/transform.rs.html#8-26">Transform</a> {
+<a href=#312 id=312 data-nosnippet>312</a>    <span class="kw">type </span><span class="prelude-val">Err </span>= <a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/error/struct.BoolError.html">glib::BoolError</a>;
+<a href=#313 id=313 data-nosnippet>313</a>    <span class="kw">fn </span>from_str(s: <span class="kw-2">&amp;</span><a href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>) -&gt; <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html">Result</a>&lt;<span class="self">Self</span>, <span class="self">Self</span>::Err&gt; {
+<a href=#314 id=314 data-nosnippet>314</a>        <span class="macro">skip_assert_initialized!</span>();
+<a href=#315 id=315 data-nosnippet>315</a>        <a href="#25-41"><span class="self">Self</span>::parse</a>(<a href="#313">s</a>)
+<a href=#316 id=316 data-nosnippet>316</a>    }
+<a href=#317 id=317 data-nosnippet>317</a>}
+<a href=#318 id=318 data-nosnippet>318</a>
+<a href=#319 id=319 data-nosnippet>319</a><span class="attr">#[test]
+<a href=#320 id=320 data-nosnippet>320</a></span><span class="kw">fn </span>invert_identity_is_identity() {
+<a href=#321 id=321 data-nosnippet>321</a>    <span class="kw">let </span>transform = Transform::new();
+<a href=#322 id=322 data-nosnippet>322</a>    <span class="kw">let </span>output = transform.clone().invert();
+<a href=#323 id=323 data-nosnippet>323</a>    <span class="macro">assert_eq!</span>(output.unwrap(), transform);
+<a href=#324 id=324 data-nosnippet>324</a>}</code></pre></div></section></main></body></html>
