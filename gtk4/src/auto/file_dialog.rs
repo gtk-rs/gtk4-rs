@@ -237,7 +237,7 @@ impl FileDialog {
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_18")))]
     #[doc(alias = "gtk_file_dialog_open_multiple_text_files")]
     pub fn open_multiple_text_files<
-        P: FnOnce(Result<(Option<gio::ListModel>, glib::GString), glib::Error>) + 'static,
+        P: FnOnce(Result<(gio::ListModel, glib::GString), glib::Error>) + 'static,
     >(
         &self,
         parent: Option<&impl IsA<Window>>,
@@ -257,7 +257,7 @@ impl FileDialog {
         let user_data: Box_<glib::thread_guard::ThreadGuard<P>> =
             Box_::new(glib::thread_guard::ThreadGuard::new(callback));
         unsafe extern "C" fn open_multiple_text_files_trampoline<
-            P: FnOnce(Result<(Option<gio::ListModel>, glib::GString), glib::Error>) + 'static,
+            P: FnOnce(Result<(gio::ListModel, glib::GString), glib::Error>) + 'static,
         >(
             _source_object: *mut glib::gobject_ffi::GObject,
             res: *mut gio::ffi::GAsyncResult,
@@ -300,9 +300,8 @@ impl FileDialog {
         parent: Option<&(impl IsA<Window> + Clone + 'static)>,
     ) -> Pin<
         Box_<
-            dyn std::future::Future<
-                    Output = Result<(Option<gio::ListModel>, glib::GString), glib::Error>,
-                > + 'static,
+            dyn std::future::Future<Output = Result<(gio::ListModel, glib::GString), glib::Error>>
+                + 'static,
         >,
     > {
         let parent = parent.map(ToOwned::to_owned);
@@ -320,9 +319,7 @@ impl FileDialog {
     #[cfg(feature = "v4_18")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_18")))]
     #[doc(alias = "gtk_file_dialog_open_text_file")]
-    pub fn open_text_file<
-        P: FnOnce(Result<(Option<gio::File>, glib::GString), glib::Error>) + 'static,
-    >(
+    pub fn open_text_file<P: FnOnce(Result<(gio::File, glib::GString), glib::Error>) + 'static>(
         &self,
         parent: Option<&impl IsA<Window>>,
         cancellable: Option<&impl IsA<gio::Cancellable>>,
@@ -341,7 +338,7 @@ impl FileDialog {
         let user_data: Box_<glib::thread_guard::ThreadGuard<P>> =
             Box_::new(glib::thread_guard::ThreadGuard::new(callback));
         unsafe extern "C" fn open_text_file_trampoline<
-            P: FnOnce(Result<(Option<gio::File>, glib::GString), glib::Error>) + 'static,
+            P: FnOnce(Result<(gio::File, glib::GString), glib::Error>) + 'static,
         >(
             _source_object: *mut glib::gobject_ffi::GObject,
             res: *mut gio::ffi::GAsyncResult,
@@ -384,9 +381,8 @@ impl FileDialog {
         parent: Option<&(impl IsA<Window> + Clone + 'static)>,
     ) -> Pin<
         Box_<
-            dyn std::future::Future<
-                    Output = Result<(Option<gio::File>, glib::GString), glib::Error>,
-                > + 'static,
+            dyn std::future::Future<Output = Result<(gio::File, glib::GString), glib::Error>>
+                + 'static,
         >,
     > {
         let parent = parent.map(ToOwned::to_owned);
@@ -471,7 +467,7 @@ impl FileDialog {
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_18")))]
     #[doc(alias = "gtk_file_dialog_save_text_file")]
     pub fn save_text_file<
-        P: FnOnce(Result<(Option<gio::File>, glib::GString, glib::GString), glib::Error>) + 'static,
+        P: FnOnce(Result<(gio::File, glib::GString, glib::GString), glib::Error>) + 'static,
     >(
         &self,
         parent: Option<&impl IsA<Window>>,
@@ -491,8 +487,7 @@ impl FileDialog {
         let user_data: Box_<glib::thread_guard::ThreadGuard<P>> =
             Box_::new(glib::thread_guard::ThreadGuard::new(callback));
         unsafe extern "C" fn save_text_file_trampoline<
-            P: FnOnce(Result<(Option<gio::File>, glib::GString, glib::GString), glib::Error>)
-                + 'static,
+            P: FnOnce(Result<(gio::File, glib::GString, glib::GString), glib::Error>) + 'static,
         >(
             _source_object: *mut glib::gobject_ffi::GObject,
             res: *mut gio::ffi::GAsyncResult,
@@ -542,7 +537,7 @@ impl FileDialog {
     ) -> Pin<
         Box_<
             dyn std::future::Future<
-                    Output = Result<(Option<gio::File>, glib::GString, glib::GString), glib::Error>,
+                    Output = Result<(gio::File, glib::GString, glib::GString), glib::Error>,
                 > + 'static,
         >,
     > {

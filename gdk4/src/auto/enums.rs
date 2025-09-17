@@ -1848,6 +1848,42 @@ pub enum MemoryFormat {
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
     #[doc(alias = "GDK_MEMORY_B8G8R8G8_422")]
     B8g8r8g8422,
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    #[doc(alias = "GDK_MEMORY_X6G10_X6B10_X6R10_420")]
+    X6g10X6b10X6r10420,
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    #[doc(alias = "GDK_MEMORY_X6G10_X6B10_X6R10_422")]
+    X6g10X6b10X6r10422,
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    #[doc(alias = "GDK_MEMORY_X6G10_X6B10_X6R10_444")]
+    X6g10X6b10X6r10444,
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    #[doc(alias = "GDK_MEMORY_X4G12_X4B12_X4R12_420")]
+    X4g12X4b12X4r12420,
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    #[doc(alias = "GDK_MEMORY_X4G12_X4B12_X4R12_422")]
+    X4g12X4b12X4r12422,
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    #[doc(alias = "GDK_MEMORY_X4G12_X4B12_X4R12_444")]
+    X4g12X4b12X4r12444,
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    #[doc(alias = "GDK_MEMORY_G16_B16_R16_420")]
+    G16B16R16420,
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    #[doc(alias = "GDK_MEMORY_G16_B16_R16_422")]
+    G16B16R16422,
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    #[doc(alias = "GDK_MEMORY_G16_B16_R16_444")]
+    G16B16R16444,
     #[doc(hidden)]
     __Unknown(i32),
 }
@@ -1965,6 +2001,24 @@ impl IntoGlib for MemoryFormat {
             Self::R8g8b8g8422 => ffi::GDK_MEMORY_R8G8B8G8_422,
             #[cfg(feature = "v4_20")]
             Self::B8g8r8g8422 => ffi::GDK_MEMORY_B8G8R8G8_422,
+            #[cfg(feature = "v4_20")]
+            Self::X6g10X6b10X6r10420 => ffi::GDK_MEMORY_X6G10_X6B10_X6R10_420,
+            #[cfg(feature = "v4_20")]
+            Self::X6g10X6b10X6r10422 => ffi::GDK_MEMORY_X6G10_X6B10_X6R10_422,
+            #[cfg(feature = "v4_20")]
+            Self::X6g10X6b10X6r10444 => ffi::GDK_MEMORY_X6G10_X6B10_X6R10_444,
+            #[cfg(feature = "v4_20")]
+            Self::X4g12X4b12X4r12420 => ffi::GDK_MEMORY_X4G12_X4B12_X4R12_420,
+            #[cfg(feature = "v4_20")]
+            Self::X4g12X4b12X4r12422 => ffi::GDK_MEMORY_X4G12_X4B12_X4R12_422,
+            #[cfg(feature = "v4_20")]
+            Self::X4g12X4b12X4r12444 => ffi::GDK_MEMORY_X4G12_X4B12_X4R12_444,
+            #[cfg(feature = "v4_20")]
+            Self::G16B16R16420 => ffi::GDK_MEMORY_G16_B16_R16_420,
+            #[cfg(feature = "v4_20")]
+            Self::G16B16R16422 => ffi::GDK_MEMORY_G16_B16_R16_422,
+            #[cfg(feature = "v4_20")]
+            Self::G16B16R16444 => ffi::GDK_MEMORY_G16_B16_R16_444,
             Self::__Unknown(value) => value,
         }
     }
@@ -2083,6 +2137,24 @@ impl FromGlib<ffi::GdkMemoryFormat> for MemoryFormat {
             ffi::GDK_MEMORY_R8G8B8G8_422 => Self::R8g8b8g8422,
             #[cfg(feature = "v4_20")]
             ffi::GDK_MEMORY_B8G8R8G8_422 => Self::B8g8r8g8422,
+            #[cfg(feature = "v4_20")]
+            ffi::GDK_MEMORY_X6G10_X6B10_X6R10_420 => Self::X6g10X6b10X6r10420,
+            #[cfg(feature = "v4_20")]
+            ffi::GDK_MEMORY_X6G10_X6B10_X6R10_422 => Self::X6g10X6b10X6r10422,
+            #[cfg(feature = "v4_20")]
+            ffi::GDK_MEMORY_X6G10_X6B10_X6R10_444 => Self::X6g10X6b10X6r10444,
+            #[cfg(feature = "v4_20")]
+            ffi::GDK_MEMORY_X4G12_X4B12_X4R12_420 => Self::X4g12X4b12X4r12420,
+            #[cfg(feature = "v4_20")]
+            ffi::GDK_MEMORY_X4G12_X4B12_X4R12_422 => Self::X4g12X4b12X4r12422,
+            #[cfg(feature = "v4_20")]
+            ffi::GDK_MEMORY_X4G12_X4B12_X4R12_444 => Self::X4g12X4b12X4r12444,
+            #[cfg(feature = "v4_20")]
+            ffi::GDK_MEMORY_G16_B16_R16_420 => Self::G16B16R16420,
+            #[cfg(feature = "v4_20")]
+            ffi::GDK_MEMORY_G16_B16_R16_422 => Self::G16B16R16422,
+            #[cfg(feature = "v4_20")]
+            ffi::GDK_MEMORY_G16_B16_R16_444 => Self::G16B16R16444,
             value => Self::__Unknown(value),
         }
     }
