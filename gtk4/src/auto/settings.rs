@@ -6,6 +6,9 @@
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
 use crate::FontRendering;
 use crate::{ffi, StyleProvider};
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+use crate::{InterfaceColorScheme, InterfaceContrast};
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},
@@ -66,11 +69,13 @@ impl Settings {
         )
     }
 
+    #[cfg_attr(feature = "v4_20", deprecated = "Since 4.20")]
     #[doc(alias = "gtk-application-prefer-dark-theme")]
     pub fn is_gtk_application_prefer_dark_theme(&self) -> bool {
         ObjectExt::property(self, "gtk-application-prefer-dark-theme")
     }
 
+    #[cfg_attr(feature = "v4_20", deprecated = "Since 4.20")]
     #[doc(alias = "gtk-application-prefer-dark-theme")]
     pub fn set_gtk_application_prefer_dark_theme(&self, gtk_application_prefer_dark_theme: bool) {
         ObjectExt::set_property(
@@ -346,6 +351,38 @@ impl Settings {
         ObjectExt::set_property(self, "gtk-im-module", gtk_im_module)
     }
 
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    #[doc(alias = "gtk-interface-color-scheme")]
+    pub fn gtk_interface_color_scheme(&self) -> InterfaceColorScheme {
+        ObjectExt::property(self, "gtk-interface-color-scheme")
+    }
+
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    #[doc(alias = "gtk-interface-color-scheme")]
+    pub fn set_gtk_interface_color_scheme(&self, gtk_interface_color_scheme: InterfaceColorScheme) {
+        ObjectExt::set_property(
+            self,
+            "gtk-interface-color-scheme",
+            gtk_interface_color_scheme,
+        )
+    }
+
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    #[doc(alias = "gtk-interface-contrast")]
+    pub fn gtk_interface_contrast(&self) -> InterfaceContrast {
+        ObjectExt::property(self, "gtk-interface-contrast")
+    }
+
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    #[doc(alias = "gtk-interface-contrast")]
+    pub fn set_gtk_interface_contrast(&self, gtk_interface_contrast: InterfaceContrast) {
+        ObjectExt::set_property(self, "gtk-interface-contrast", gtk_interface_contrast)
+    }
+
     #[doc(alias = "gtk-keynav-use-caret")]
     pub fn is_gtk_keynav_use_caret(&self) -> bool {
         ObjectExt::property(self, "gtk-keynav-use-caret")
@@ -440,31 +477,37 @@ impl Settings {
         ObjectExt::set_property(self, "gtk-recent-files-max-age", gtk_recent_files_max_age)
     }
 
+    #[cfg_attr(feature = "v4_20", deprecated = "Since 4.20")]
     #[doc(alias = "gtk-shell-shows-app-menu")]
     pub fn is_gtk_shell_shows_app_menu(&self) -> bool {
         ObjectExt::property(self, "gtk-shell-shows-app-menu")
     }
 
+    #[cfg_attr(feature = "v4_20", deprecated = "Since 4.20")]
     #[doc(alias = "gtk-shell-shows-app-menu")]
     pub fn set_gtk_shell_shows_app_menu(&self, gtk_shell_shows_app_menu: bool) {
         ObjectExt::set_property(self, "gtk-shell-shows-app-menu", gtk_shell_shows_app_menu)
     }
 
+    #[cfg_attr(feature = "v4_20", deprecated = "Since 4.20")]
     #[doc(alias = "gtk-shell-shows-desktop")]
     pub fn is_gtk_shell_shows_desktop(&self) -> bool {
         ObjectExt::property(self, "gtk-shell-shows-desktop")
     }
 
+    #[cfg_attr(feature = "v4_20", deprecated = "Since 4.20")]
     #[doc(alias = "gtk-shell-shows-desktop")]
     pub fn set_gtk_shell_shows_desktop(&self, gtk_shell_shows_desktop: bool) {
         ObjectExt::set_property(self, "gtk-shell-shows-desktop", gtk_shell_shows_desktop)
     }
 
+    #[cfg_attr(feature = "v4_20", deprecated = "Since 4.20")]
     #[doc(alias = "gtk-shell-shows-menubar")]
     pub fn is_gtk_shell_shows_menubar(&self) -> bool {
         ObjectExt::property(self, "gtk-shell-shows-menubar")
     }
 
+    #[cfg_attr(feature = "v4_20", deprecated = "Since 4.20")]
     #[doc(alias = "gtk-shell-shows-menubar")]
     pub fn set_gtk_shell_shows_menubar(&self, gtk_shell_shows_menubar: bool) {
         ObjectExt::set_property(self, "gtk-shell-shows-menubar", gtk_shell_shows_menubar)
@@ -669,6 +712,7 @@ impl Settings {
         }
     }
 
+    #[cfg_attr(feature = "v4_20", deprecated = "Since 4.20")]
     #[doc(alias = "gtk-application-prefer-dark-theme")]
     pub fn connect_gtk_application_prefer_dark_theme_notify<F: Fn(&Self) + 'static>(
         &self,
@@ -1361,6 +1405,66 @@ impl Settings {
         }
     }
 
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    #[doc(alias = "gtk-interface-color-scheme")]
+    pub fn connect_gtk_interface_color_scheme_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_gtk_interface_color_scheme_trampoline<
+            F: Fn(&Settings) + 'static,
+        >(
+            this: *mut ffi::GtkSettings,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                c"notify::gtk-interface-color-scheme".as_ptr() as *const _,
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
+                    notify_gtk_interface_color_scheme_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    #[doc(alias = "gtk-interface-contrast")]
+    pub fn connect_gtk_interface_contrast_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_gtk_interface_contrast_trampoline<
+            F: Fn(&Settings) + 'static,
+        >(
+            this: *mut ffi::GtkSettings,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                c"notify::gtk-interface-contrast".as_ptr() as *const _,
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
+                    notify_gtk_interface_contrast_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
     #[doc(alias = "gtk-keynav-use-caret")]
     pub fn connect_gtk_keynav_use_caret_notify<F: Fn(&Self) + 'static>(
         &self,
@@ -1605,6 +1709,7 @@ impl Settings {
         }
     }
 
+    #[cfg_attr(feature = "v4_20", deprecated = "Since 4.20")]
     #[doc(alias = "gtk-shell-shows-app-menu")]
     pub fn connect_gtk_shell_shows_app_menu_notify<F: Fn(&Self) + 'static>(
         &self,
@@ -1633,6 +1738,7 @@ impl Settings {
         }
     }
 
+    #[cfg_attr(feature = "v4_20", deprecated = "Since 4.20")]
     #[doc(alias = "gtk-shell-shows-desktop")]
     pub fn connect_gtk_shell_shows_desktop_notify<F: Fn(&Self) + 'static>(
         &self,
@@ -1661,6 +1767,7 @@ impl Settings {
         }
     }
 
+    #[cfg_attr(feature = "v4_20", deprecated = "Since 4.20")]
     #[doc(alias = "gtk-shell-shows-menubar")]
     pub fn connect_gtk_shell_shows_menubar_notify<F: Fn(&Self) + 'static>(
         &self,
@@ -2029,6 +2136,7 @@ impl SettingsBuilder {
         }
     }
 
+    #[cfg_attr(feature = "v4_20", deprecated = "Since 4.20")]
     pub fn gtk_application_prefer_dark_theme(
         self,
         gtk_application_prefer_dark_theme: bool,
@@ -2239,6 +2347,29 @@ impl SettingsBuilder {
         }
     }
 
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    pub fn gtk_interface_color_scheme(
+        self,
+        gtk_interface_color_scheme: InterfaceColorScheme,
+    ) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("gtk-interface-color-scheme", gtk_interface_color_scheme),
+        }
+    }
+
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    pub fn gtk_interface_contrast(self, gtk_interface_contrast: InterfaceContrast) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("gtk-interface-contrast", gtk_interface_contrast),
+        }
+    }
+
     pub fn gtk_keynav_use_caret(self, gtk_keynav_use_caret: bool) -> Self {
         Self {
             builder: self
@@ -2316,6 +2447,7 @@ impl SettingsBuilder {
         }
     }
 
+    #[cfg_attr(feature = "v4_20", deprecated = "Since 4.20")]
     pub fn gtk_shell_shows_app_menu(self, gtk_shell_shows_app_menu: bool) -> Self {
         Self {
             builder: self
@@ -2324,6 +2456,7 @@ impl SettingsBuilder {
         }
     }
 
+    #[cfg_attr(feature = "v4_20", deprecated = "Since 4.20")]
     pub fn gtk_shell_shows_desktop(self, gtk_shell_shows_desktop: bool) -> Self {
         Self {
             builder: self
@@ -2332,6 +2465,7 @@ impl SettingsBuilder {
         }
     }
 
+    #[cfg_attr(feature = "v4_20", deprecated = "Since 4.20")]
     pub fn gtk_shell_shows_menubar(self, gtk_shell_shows_menubar: bool) -> Self {
         Self {
             builder: self

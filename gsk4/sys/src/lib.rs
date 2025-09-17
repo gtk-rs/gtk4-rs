@@ -148,6 +148,9 @@ pub const GSK_STROKE_NODE: GskRenderNodeType = 29;
 #[cfg(feature = "v4_14")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
 pub const GSK_SUBSURFACE_NODE: GskRenderNodeType = 30;
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+pub const GSK_COMPONENT_TRANSFER_NODE: GskRenderNodeType = 31;
 
 pub type GskScalingFilter = c_int;
 pub const GSK_SCALING_FILTER_LINEAR: GskScalingFilter = 0;
@@ -258,6 +261,20 @@ impl ::std::fmt::Debug for GskColorStop {
         f.debug_struct(&format!("GskColorStop @ {self:p}"))
             .field("offset", &self.offset)
             .field("color", &self.color)
+            .finish()
+    }
+}
+
+#[repr(C)]
+#[allow(dead_code)]
+pub struct GskComponentTransfer {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+impl ::std::fmt::Debug for GskComponentTransfer {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GskComponentTransfer @ {self:p}"))
             .finish()
     }
 }
@@ -601,6 +618,20 @@ pub struct GskColorNode {
 impl ::std::fmt::Debug for GskColorNode {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("GskColorNode @ {self:p}")).finish()
+    }
+}
+
+#[repr(C)]
+#[allow(dead_code)]
+pub struct GskComponentTransferNode {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+impl ::std::fmt::Debug for GskComponentTransferNode {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GskComponentTransferNode @ {self:p}"))
+            .finish()
     }
 }
 
@@ -1101,6 +1132,52 @@ extern "C" {
     #[cfg(feature = "v4_14")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
     pub fn gsk_path_foreach_flags_get_type() -> GType;
+
+    //=========================================================================
+    // GskComponentTransfer
+    //=========================================================================
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    pub fn gsk_component_transfer_get_type() -> GType;
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    pub fn gsk_component_transfer_new_discrete(
+        n: c_uint,
+        values: *mut c_float,
+    ) -> *mut GskComponentTransfer;
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    pub fn gsk_component_transfer_new_gamma(
+        amp: c_float,
+        exp: c_float,
+        ofs: c_float,
+    ) -> *mut GskComponentTransfer;
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    pub fn gsk_component_transfer_new_identity() -> *mut GskComponentTransfer;
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    pub fn gsk_component_transfer_new_levels(n: c_float) -> *mut GskComponentTransfer;
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    pub fn gsk_component_transfer_new_linear(m: c_float, b: c_float) -> *mut GskComponentTransfer;
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    pub fn gsk_component_transfer_new_table(
+        n: c_uint,
+        values: *mut c_float,
+    ) -> *mut GskComponentTransfer;
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    pub fn gsk_component_transfer_copy(
+        other: *const GskComponentTransfer,
+    ) -> *mut GskComponentTransfer;
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    pub fn gsk_component_transfer_free(self_: *mut GskComponentTransfer);
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    pub fn gsk_component_transfer_equal(self_: gconstpointer, other: gconstpointer) -> gboolean;
 
     //=========================================================================
     // GskPath
@@ -1659,6 +1736,17 @@ extern "C" {
         next: *mut GskTransform,
         matrix: *const graphene::graphene_matrix_t,
     ) -> *mut GskTransform;
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    pub fn gsk_transform_matrix_2d(
+        next: *mut GskTransform,
+        xx: c_float,
+        yx: c_float,
+        xy: c_float,
+        yy: c_float,
+        dx: c_float,
+        dy: c_float,
+    ) -> *mut GskTransform;
     pub fn gsk_transform_perspective(next: *mut GskTransform, depth: c_float) -> *mut GskTransform;
     pub fn gsk_transform_print(self_: *mut GskTransform, string: *mut glib::GString);
     pub fn gsk_transform_ref(self_: *mut GskTransform) -> *mut GskTransform;
@@ -1847,6 +1935,33 @@ extern "C" {
         bounds: *const graphene::graphene_rect_t,
     ) -> *mut GskColorNode;
     pub fn gsk_color_node_get_color(node: *const GskColorNode) -> *const gdk::GdkRGBA;
+
+    //=========================================================================
+    // GskComponentTransferNode
+    //=========================================================================
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    pub fn gsk_component_transfer_node_get_type() -> GType;
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    pub fn gsk_component_transfer_node_new(
+        child: *mut GskRenderNode,
+        r: *const GskComponentTransfer,
+        g: *const GskComponentTransfer,
+        b: *const GskComponentTransfer,
+        a: *const GskComponentTransfer,
+    ) -> *mut GskComponentTransferNode;
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    pub fn gsk_component_transfer_node_get_child(
+        node: *const GskComponentTransferNode,
+    ) -> *mut GskRenderNode;
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    pub fn gsk_component_transfer_node_get_transfer(
+        node: *const GskComponentTransferNode,
+        component: c_uint,
+    ) -> *const GskComponentTransfer;
 
     //=========================================================================
     // GskConicGradientNode

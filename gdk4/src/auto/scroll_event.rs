@@ -6,6 +6,9 @@
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
 use crate::ScrollUnit;
 use crate::{ffi, ScrollDirection};
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+use crate::{Event, ScrollRelativeDirection};
 use glib::{prelude::*, translate::*};
 
 glib::wrapper! {
@@ -57,5 +60,18 @@ impl ScrollEvent {
     #[doc(alias = "gdk_scroll_event_is_stop")]
     pub fn is_stop(&self) -> bool {
         unsafe { from_glib(ffi::gdk_scroll_event_is_stop(self.to_glib_none().0)) }
+    }
+
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    #[doc(alias = "gdk_scroll_event_get_relative_direction")]
+    #[doc(alias = "get_relative_direction")]
+    pub fn relative_direction(event: impl AsRef<Event>) -> ScrollRelativeDirection {
+        skip_assert_initialized!();
+        unsafe {
+            from_glib(ffi::gdk_scroll_event_get_relative_direction(
+                event.as_ref().to_glib_none().0,
+            ))
+        }
     }
 }

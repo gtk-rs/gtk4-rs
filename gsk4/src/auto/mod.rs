@@ -33,6 +33,13 @@ pub use self::color_matrix_node::ColorMatrixNode;
 mod color_node;
 pub use self::color_node::ColorNode;
 
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+mod component_transfer_node;
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+pub use self::component_transfer_node::ComponentTransferNode;
+
 mod conic_gradient_node;
 pub use self::conic_gradient_node::ConicGradientNode;
 
@@ -139,6 +146,13 @@ mod vulkan_renderer;
 #[cfg(feature = "vulkan")]
 #[cfg_attr(docsrs, doc(cfg(feature = "vulkan")))]
 pub use self::vulkan_renderer::VulkanRenderer;
+
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+mod component_transfer;
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+pub use self::component_transfer::ComponentTransfer;
 
 #[cfg(feature = "v4_14")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]

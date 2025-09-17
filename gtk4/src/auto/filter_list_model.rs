@@ -86,6 +86,19 @@ impl FilterListModel {
         unsafe { ffi::gtk_filter_list_model_get_pending(self.to_glib_none().0) }
     }
 
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    #[doc(alias = "gtk_filter_list_model_get_watch_items")]
+    #[doc(alias = "get_watch_items")]
+    #[doc(alias = "watch-items")]
+    pub fn is_watch_items(&self) -> bool {
+        unsafe {
+            from_glib(ffi::gtk_filter_list_model_get_watch_items(
+                self.to_glib_none().0,
+            ))
+        }
+    }
+
     #[doc(alias = "gtk_filter_list_model_set_filter")]
     #[doc(alias = "filter")]
     pub fn set_filter(&self, filter: Option<&impl IsA<Filter>>) {
@@ -115,6 +128,19 @@ impl FilterListModel {
             ffi::gtk_filter_list_model_set_model(
                 self.to_glib_none().0,
                 model.map(|p| p.as_ref()).to_glib_none().0,
+            );
+        }
+    }
+
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    #[doc(alias = "gtk_filter_list_model_set_watch_items")]
+    #[doc(alias = "watch-items")]
+    pub fn set_watch_items(&self, watch_items: bool) {
+        unsafe {
+            ffi::gtk_filter_list_model_set_watch_items(
+                self.to_glib_none().0,
+                watch_items.into_glib(),
             );
         }
     }
@@ -210,6 +236,31 @@ impl FilterListModel {
             )
         }
     }
+
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    #[doc(alias = "watch-items")]
+    pub fn connect_watch_items_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_watch_items_trampoline<F: Fn(&FilterListModel) + 'static>(
+            this: *mut ffi::GtkFilterListModel,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                c"notify::watch-items".as_ptr() as *const _,
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
+                    notify_watch_items_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
 }
 
 impl Default for FilterListModel {
@@ -249,6 +300,14 @@ impl FilterListModelBuilder {
     pub fn model(self, model: &impl IsA<gio::ListModel>) -> Self {
         Self {
             builder: self.builder.property("model", model.clone().upcast()),
+        }
+    }
+
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    pub fn watch_items(self, watch_items: bool) -> Self {
+        Self {
+            builder: self.builder.property("watch-items", watch_items),
         }
     }
 

@@ -1206,6 +1206,12 @@ pub use self::enums::InputPurpose;
 #[cfg(feature = "v4_8")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
 pub use self::enums::InscriptionOverflow;
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+pub use self::enums::InterfaceColorScheme;
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+pub use self::enums::InterfaceContrast;
 pub use self::enums::Justification;
 pub use self::enums::LevelBarMode;
 pub use self::enums::License;
@@ -1650,6 +1656,7 @@ pub(crate) mod builders {
     pub use super::combo_box_text::ComboBoxTextBuilder;
     pub use super::constraint::ConstraintBuilder;
     pub use super::constraint_guide::ConstraintGuideBuilder;
+    pub use super::css_provider::CssProviderBuilder;
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub use super::dialog::DialogBuilder;
     pub use super::drag_source::DragSourceBuilder;
