@@ -316,6 +316,41 @@ pub trait IMContextExt: IsA<IMContext> + 'static {
         }
     }
 
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    #[doc(alias = "invalid-composition")]
+    fn connect_invalid_composition<F: Fn(&Self, &str) -> bool + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn invalid_composition_trampoline<
+            P: IsA<IMContext>,
+            F: Fn(&P, &str) -> bool + 'static,
+        >(
+            this: *mut ffi::GtkIMContext,
+            str: *mut std::ffi::c_char,
+            f: glib::ffi::gpointer,
+        ) -> glib::ffi::gboolean {
+            let f: &F = &*(f as *const F);
+            f(
+                IMContext::from_glib_borrow(this).unsafe_cast_ref(),
+                &glib::GString::from_glib_borrow(str),
+            )
+            .into_glib()
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                c"invalid-composition".as_ptr() as *const _,
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
+                    invalid_composition_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
     #[doc(alias = "preedit-changed")]
     fn connect_preedit_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn preedit_changed_trampoline<P: IsA<IMContext>, F: Fn(&P) + 'static>(

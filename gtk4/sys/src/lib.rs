@@ -890,6 +890,9 @@ pub const GTK_SYMBOLIC_COLOR_FOREGROUND: GtkSymbolicColor = 0;
 pub const GTK_SYMBOLIC_COLOR_ERROR: GtkSymbolicColor = 1;
 pub const GTK_SYMBOLIC_COLOR_WARNING: GtkSymbolicColor = 2;
 pub const GTK_SYMBOLIC_COLOR_SUCCESS: GtkSymbolicColor = 3;
+#[cfg(feature = "v4_22")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+pub const GTK_SYMBOLIC_COLOR_ACCENT: GtkSymbolicColor = 4;
 
 pub type GtkSystemSetting = c_int;
 pub const GTK_SYSTEM_SETTING_DPI: GtkSystemSetting = 0;
@@ -1527,6 +1530,15 @@ pub struct GtkAccessibleTextInterface {
             *mut c_uint,
         ) -> gboolean,
     >,
+    pub set_caret_position:
+        Option<unsafe extern "C" fn(*mut GtkAccessibleText, c_uint) -> gboolean>,
+    pub set_selection: Option<
+        unsafe extern "C" fn(
+            *mut GtkAccessibleText,
+            size_t,
+            *mut GtkAccessibleTextRange,
+        ) -> gboolean,
+    >,
 }
 
 impl ::std::fmt::Debug for GtkAccessibleTextInterface {
@@ -1540,6 +1552,8 @@ impl ::std::fmt::Debug for GtkAccessibleTextInterface {
             .field("get_default_attributes", &self.get_default_attributes)
             .field("get_extents", &self.get_extents)
             .field("get_offset", &self.get_offset)
+            .field("set_caret_position", &self.set_caret_position)
+            .field("set_selection", &self.set_selection)
             .finish()
     }
 }
@@ -3533,7 +3547,8 @@ pub struct GtkIMContextClass {
     pub activate_osk: Option<unsafe extern "C" fn(*mut GtkIMContext)>,
     pub activate_osk_with_event:
         Option<unsafe extern "C" fn(*mut GtkIMContext, *mut gdk::GdkEvent) -> gboolean>,
-    pub _gtk_reserved2: Option<unsafe extern "C" fn()>,
+    pub invalid_composition:
+        Option<unsafe extern "C" fn(*mut GtkIMContext, *const c_char) -> gboolean>,
     pub _gtk_reserved3: Option<unsafe extern "C" fn()>,
     pub _gtk_reserved4: Option<unsafe extern "C" fn()>,
 }
@@ -3567,7 +3582,7 @@ impl ::std::fmt::Debug for GtkIMContextClass {
             )
             .field("activate_osk", &self.activate_osk)
             .field("activate_osk_with_event", &self.activate_osk_with_event)
-            .field("_gtk_reserved2", &self._gtk_reserved2)
+            .field("invalid_composition", &self.invalid_composition)
             .field("_gtk_reserved3", &self._gtk_reserved3)
             .field("_gtk_reserved4", &self._gtk_reserved4)
             .finish()
@@ -4217,6 +4232,15 @@ pub struct _GtkPasswordEntryClass {
 }
 
 pub type GtkPasswordEntryClass = _GtkPasswordEntryClass;
+
+#[repr(C)]
+#[allow(dead_code)]
+pub struct _GtkPathPaintableClass {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+pub type GtkPathPaintableClass = _GtkPathPaintableClass;
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -4975,12 +4999,24 @@ pub struct GtkSymbolicPaintableInterface {
             size_t,
         ),
     >,
+    pub snapshot_with_weight: Option<
+        unsafe extern "C" fn(
+            *mut GtkSymbolicPaintable,
+            *mut gdk::GdkSnapshot,
+            c_double,
+            c_double,
+            *const gdk::GdkRGBA,
+            size_t,
+            c_double,
+        ),
+    >,
 }
 
 impl ::std::fmt::Debug for GtkSymbolicPaintableInterface {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("GtkSymbolicPaintableInterface @ {self:p}"))
             .field("snapshot_symbolic", &self.snapshot_symbolic)
+            .field("snapshot_with_weight", &self.snapshot_with_weight)
             .finish()
     }
 }
@@ -8373,6 +8409,20 @@ pub struct GtkPasswordEntryBuffer {
 impl ::std::fmt::Debug for GtkPasswordEntryBuffer {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("GtkPasswordEntryBuffer @ {self:p}"))
+            .finish()
+    }
+}
+
+#[repr(C)]
+#[allow(dead_code)]
+pub struct GtkPathPaintable {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+impl ::std::fmt::Debug for GtkPathPaintable {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GtkPathPaintable @ {self:p}"))
             .finish()
     }
 }
@@ -16769,6 +16819,37 @@ extern "C" {
     pub fn gtk_password_entry_buffer_new() -> *mut GtkEntryBuffer;
 
     //=========================================================================
+    // GtkPathPaintable
+    //=========================================================================
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    pub fn gtk_path_paintable_get_type() -> GType;
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    pub fn gtk_path_paintable_new_from_bytes(
+        bytes: *mut glib::GBytes,
+        error: *mut *mut glib::GError,
+    ) -> *mut GtkPathPaintable;
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    pub fn gtk_path_paintable_new_from_resource(path: *const c_char) -> *mut GtkPathPaintable;
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    pub fn gtk_path_paintable_get_max_state(self_: *mut GtkPathPaintable) -> c_uint;
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    pub fn gtk_path_paintable_get_state(self_: *mut GtkPathPaintable) -> c_uint;
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    pub fn gtk_path_paintable_get_weight(self_: *mut GtkPathPaintable) -> c_float;
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    pub fn gtk_path_paintable_set_state(self_: *mut GtkPathPaintable, state: c_uint);
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    pub fn gtk_path_paintable_set_weight(self_: *mut GtkPathPaintable, weight: c_float);
+
+    //=========================================================================
     // GtkPicture
     //=========================================================================
     pub fn gtk_picture_get_type() -> GType;
@@ -21272,6 +21353,17 @@ extern "C" {
         height: c_double,
         colors: *const gdk::GdkRGBA,
         n_colors: size_t,
+    );
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    pub fn gtk_symbolic_paintable_snapshot_with_weight(
+        paintable: *mut GtkSymbolicPaintable,
+        snapshot: *mut gdk::GdkSnapshot,
+        width: c_double,
+        height: c_double,
+        colors: *const gdk::GdkRGBA,
+        n_colors: size_t,
+        weight: c_double,
     );
 
     //=========================================================================

@@ -249,7 +249,7 @@ pub trait SurfaceExt: IsA<Surface> + 'static {
     }
 
     #[doc(alias = "gdk_surface_set_input_region")]
-    fn set_input_region(&self, region: &cairo::Region) {
+    fn set_input_region(&self, region: Option<&cairo::Region>) {
         unsafe {
             ffi::gdk_surface_set_input_region(
                 self.as_ref().to_glib_none().0,
