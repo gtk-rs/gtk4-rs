@@ -49,7 +49,7 @@ jobs:
         conf:
           - {
               name: "gtk4",
-              features: "v4_20,xml_validation,blueprint",
+              features: "v4_22,xml_validation,blueprint",
               test_sys: false,
             }
           - { name: "gsk4", features: "v4_20,broadway,vulkan", test_sys: true }
