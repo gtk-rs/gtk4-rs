@@ -57,6 +57,18 @@ pub trait AccessibleTextImpl: WidgetImpl {
     fn selection(&self) -> Vec<AccessibleTextRange> {
         self.parent_selection()
     }
+
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    fn set_caret_position(&self, position: u32) -> bool {
+        self.parent_set_caret_position(position)
+    }
+
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    fn set_selection(&self, selection: usize, range: AccessibleTextRange) -> bool {
+        self.parent_set_selection(selection, range)
+    }
 }
 
 pub trait AccessibleTextImplExt: AccessibleTextImpl {
@@ -314,6 +326,51 @@ pub trait AccessibleTextImplExt: AccessibleTextImpl {
             }
         }
     }
+
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    fn parent_set_caret_position(&self, position: u32) -> bool {
+        unsafe {
+            let type_data = Self::type_data();
+            let parent_iface = type_data.as_ref().parent_interface::<AccessibleText>()
+                as *const ffi::GtkAccessibleTextInterface;
+
+            let func = (*parent_iface)
+                .set_caret_position
+                .expect("no parent \"set_caret_position\" implementation");
+
+            from_glib(func(
+                self.obj()
+                    .unsafe_cast_ref::<AccessibleText>()
+                    .to_glib_none()
+                    .0,
+                position,
+            ))
+        }
+    }
+
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    fn parent_set_selection(&self, selection: usize, range: AccessibleTextRange) -> bool {
+        unsafe {
+            let type_data = Self::type_data();
+            let parent_iface = type_data.as_ref().parent_interface::<AccessibleText>()
+                as *const ffi::GtkAccessibleTextInterface;
+
+            let func = (*parent_iface)
+                .set_selection
+                .expect("no parent \"set_selection\" implementation");
+
+            from_glib(func(
+                self.obj()
+                    .unsafe_cast_ref::<AccessibleText>()
+                    .to_glib_none()
+                    .0,
+                selection,
+                mut_override(range.to_glib_none().0),
+            ))
+        }
+    }
 }
 
 impl<T: AccessibleTextImpl> AccessibleTextImplExt for T {}
@@ -333,6 +390,12 @@ unsafe impl<T: AccessibleTextImpl> IsImplementable<T> for AccessibleText {
         {
             iface.get_extents = Some(accessible_text_get_extents::<T>);
             iface.get_offset = Some(accessible_text_get_offset::<T>);
+        }
+
+        #[cfg(feature = "v4_22")]
+        {
+            iface.set_caret_position = Some(accessible_text_set_caret_position::<T>);
+            iface.set_selection = Some(accessible_text_set_selection::<T>);
         }
     }
 }
@@ -497,7 +560,6 @@ unsafe extern "C" fn accessible_text_get_extents<T: AccessibleTextImpl>(
 }
 
 #[cfg(feature = "v4_16")]
-#[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
 unsafe extern "C" fn accessible_text_get_offset<T: AccessibleTextImpl>(
     accessible_text: *mut ffi::GtkAccessibleText,
     point: *const graphene::ffi::graphene_point_t,
@@ -517,6 +579,30 @@ unsafe extern "C" fn accessible_text_get_offset<T: AccessibleTextImpl>(
         false
     }
     .into_glib()
+}
+
+#[cfg(feature = "v4_22")]
+unsafe extern "C" fn accessible_text_set_caret_position<T: AccessibleTextImpl>(
+    accessible_text: *mut ffi::GtkAccessibleText,
+    position: u32,
+) -> glib::ffi::gboolean {
+    let instance = &*(accessible_text as *mut T::Instance);
+    let imp = instance.imp();
+
+    imp.set_caret_position(position).into_glib()
+}
+
+#[cfg(feature = "v4_22")]
+unsafe extern "C" fn accessible_text_set_selection<T: AccessibleTextImpl>(
+    accessible_text: *mut ffi::GtkAccessibleText,
+    selection: usize,
+    range: *mut ffi::GtkAccessibleTextRange,
+) -> glib::ffi::gboolean {
+    let instance = &*(accessible_text as *mut T::Instance);
+    let imp = instance.imp();
+
+    imp.set_selection(selection, from_glib_none(range))
+        .into_glib()
 }
 
 #[cfg(test)]
