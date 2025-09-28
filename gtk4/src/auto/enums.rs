@@ -11320,6 +11320,10 @@ pub enum SymbolicColor {
     Warning,
     #[doc(alias = "GTK_SYMBOLIC_COLOR_SUCCESS")]
     Success,
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    #[doc(alias = "GTK_SYMBOLIC_COLOR_ACCENT")]
+    Accent,
     #[doc(hidden)]
     __Unknown(i32),
 }
@@ -11337,6 +11341,8 @@ impl IntoGlib for SymbolicColor {
             Self::Error => ffi::GTK_SYMBOLIC_COLOR_ERROR,
             Self::Warning => ffi::GTK_SYMBOLIC_COLOR_WARNING,
             Self::Success => ffi::GTK_SYMBOLIC_COLOR_SUCCESS,
+            #[cfg(feature = "v4_22")]
+            Self::Accent => ffi::GTK_SYMBOLIC_COLOR_ACCENT,
             Self::__Unknown(value) => value,
         }
     }
@@ -11355,6 +11361,8 @@ impl FromGlib<ffi::GtkSymbolicColor> for SymbolicColor {
             ffi::GTK_SYMBOLIC_COLOR_ERROR => Self::Error,
             ffi::GTK_SYMBOLIC_COLOR_WARNING => Self::Warning,
             ffi::GTK_SYMBOLIC_COLOR_SUCCESS => Self::Success,
+            #[cfg(feature = "v4_22")]
+            ffi::GTK_SYMBOLIC_COLOR_ACCENT => Self::Accent,
             value => Self::__Unknown(value),
         }
     }
