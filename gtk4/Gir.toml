@@ -187,6 +187,7 @@ generate = [
     "Gtk.PanDirection",
     "Gtk.PasswordEntry",
     "Gtk.PasswordEntryBuffer",
+    "Gtk.PathPaintable",
     "Gtk.PickFlags",
     "Gtk.PolicyType",
     "Gtk.PopoverMenu",
