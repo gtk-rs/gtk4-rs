@@ -140,6 +140,7 @@ jobs:
           profile: minimal
           toolchain: stable
           override: true
+          components: rustfmt
       - run: git submodule update --checkout
       - run: python3 ./generator.py --yes ./
       - run: git diff --exit-code
@@ -157,6 +158,7 @@ jobs:
           profile: minimal
           toolchain: stable
           override: true
+          components: rustfmt
       - run: git submodule update --checkout
       - run: cargo install rustdoc-stripper
       - run: python3 generator.py --embed-docs
