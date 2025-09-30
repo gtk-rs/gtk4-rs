@@ -1,11 +1,18 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-#[cfg(feature = "wayland_crate")]
-#[cfg_attr(docsrs, doc(cfg(feature = "wayland_crate")))]
+#[cfg(any(feature = "wayland_crate", all(feature = "v4_4", feature = "egl")))]
+#[cfg_attr(
+    docsrs,
+    doc(any(feature = "wayland_crate", all(feature = "v4_4", feature = "egl")))
+)]
 use crate::ffi;
+#[cfg(any(feature = "wayland_crate", all(feature = "v4_4", feature = "egl")))]
+#[cfg_attr(docsrs, doc(cfg(feature = "wayland_crate")))]
+use glib::translate::*;
 #[cfg(feature = "wayland_crate")]
 #[cfg_attr(docsrs, doc(cfg(feature = "wayland_crate")))]
-use glib::{prelude::*, translate::*, Quark};
+use glib::{prelude::*, Quark};
+
 #[cfg(all(feature = "v4_4", feature = "egl"))]
 #[cfg_attr(docsrs, doc(cfg(all(feature = "v4_4", feature = "egl"))))]
 use khronos_egl as egl;
