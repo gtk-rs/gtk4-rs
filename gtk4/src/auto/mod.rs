@@ -11,6 +11,20 @@ pub use self::about_dialog::AboutDialog;
 mod accessible;
 pub use self::accessible::Accessible;
 
+#[cfg(feature = "v4_22")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+mod accessible_hyperlink;
+#[cfg(feature = "v4_22")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+pub use self::accessible_hyperlink::AccessibleHyperlink;
+
+#[cfg(feature = "v4_22")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+mod accessible_hypertext;
+#[cfg(feature = "v4_22")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+pub use self::accessible_hypertext::AccessibleHypertext;
+
 #[cfg(feature = "v4_10")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 mod accessible_range;
@@ -1275,6 +1289,9 @@ pub use self::enums::SpinButtonUpdatePolicy;
 pub use self::enums::SpinType;
 pub use self::enums::StackTransitionType;
 pub use self::enums::StringFilterMatchMode;
+#[cfg(feature = "v4_22")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+pub use self::enums::SvgError;
 #[cfg(feature = "v4_6")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
 pub use self::enums::SymbolicColor;
@@ -1319,6 +1336,9 @@ pub use self::flags::PrintCapabilities;
 pub use self::flags::ShortcutActionFlags;
 pub use self::flags::StateFlags;
 pub use self::flags::StyleContextPrintFlags;
+#[cfg(feature = "v4_22")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+pub use self::flags::SvgFeatures;
 #[cfg(feature = "v4_16")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
 pub use self::flags::TextBufferNotifyFlags;
@@ -1484,6 +1504,9 @@ pub use self::constants::PRINT_SETTINGS_WIN32_DRIVER_VERSION;
 
 pub(crate) mod traits {
     pub use super::accessible::AccessibleExt;
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    pub use super::accessible_hypertext::AccessibleHypertextExt;
     #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub use super::accessible_range::AccessibleRangeExt;
@@ -1601,6 +1624,9 @@ pub(crate) mod traits {
 }
 pub(crate) mod builders {
     pub use super::about_dialog::AboutDialogBuilder;
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    pub use super::accessible_hyperlink::AccessibleHyperlinkBuilder;
     pub use super::action_bar::ActionBarBuilder;
     pub use super::adjustment::AdjustmentBuilder;
     #[cfg(feature = "v4_10")]

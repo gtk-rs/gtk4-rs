@@ -91,6 +91,13 @@ pub use self::gl_shader_node::GLShaderNode;
 mod inset_shadow_node;
 pub use self::inset_shadow_node::InsetShadowNode;
 
+#[cfg(feature = "v4_22")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+mod isolation_node;
+#[cfg(feature = "v4_22")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+pub use self::isolation_node::IsolationNode;
+
 mod linear_gradient_node;
 pub use self::linear_gradient_node::LinearGradientNode;
 
@@ -144,6 +151,13 @@ mod stroke_node;
 #[cfg(feature = "v4_14")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
 pub use self::stroke_node::StrokeNode;
+
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+mod subsurface_node;
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+pub use self::subsurface_node::SubsurfaceNode;
 
 mod text_node;
 pub use self::text_node::TextNode;
@@ -251,6 +265,9 @@ pub use self::enums::SerializationError;
 pub use self::enums::TransformCategory;
 
 mod flags;
+#[cfg(feature = "v4_22")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+pub use self::flags::Isolation;
 #[cfg(feature = "v4_14")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
 pub use self::flags::PathForeachFlags;

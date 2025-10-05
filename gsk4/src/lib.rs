@@ -61,6 +61,9 @@ mod fill_node;
 mod gl_shader;
 mod gl_shader_node;
 mod inset_shadow_node;
+#[cfg(feature = "v4_22")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+mod isolation_node;
 mod linear_gradient_node;
 #[cfg(feature = "v4_10")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
@@ -98,6 +101,9 @@ mod stroke;
 #[cfg(feature = "v4_14")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
 mod stroke_node;
+#[cfg(feature = "v4_22")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+mod subsurface_node;
 mod text_node;
 mod texture_node;
 #[cfg(feature = "v4_10")]

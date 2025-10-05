@@ -7,6 +7,114 @@ use crate::ffi;
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
 use glib::{bitflags::bitflags, prelude::*, translate::*};
 
+#[cfg(feature = "v4_22")]
+bitflags! {
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
+    #[doc(alias = "GskIsolation")]
+    pub struct Isolation: u32 {
+        #[doc(alias = "GSK_ISOLATION_NONE")]
+        const NONE = ffi::GSK_ISOLATION_NONE as _;
+        #[doc(alias = "GSK_ISOLATION_BACKGROUND")]
+        const BACKGROUND = ffi::GSK_ISOLATION_BACKGROUND as _;
+        #[doc(alias = "GSK_ISOLATION_COPY_PASTE")]
+        const COPY_PASTE = ffi::GSK_ISOLATION_COPY_PASTE as _;
+        #[doc(alias = "GSK_ISOLATION_ALL")]
+        const ALL = ffi::GSK_ISOLATION_ALL as _;
+    }
+}
+
+#[cfg(feature = "v4_22")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+#[doc(hidden)]
+impl IntoGlib for Isolation {
+    type GlibType = ffi::GskIsolation;
+
+    #[inline]
+    fn into_glib(self) -> ffi::GskIsolation {
+        self.bits()
+    }
+}
+
+#[cfg(feature = "v4_22")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+#[doc(hidden)]
+impl FromGlib<ffi::GskIsolation> for Isolation {
+    #[inline]
+    unsafe fn from_glib(value: ffi::GskIsolation) -> Self {
+        skip_assert_initialized!();
+        Self::from_bits_truncate(value)
+    }
+}
+
+#[cfg(feature = "v4_22")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+impl StaticType for Isolation {
+    #[inline]
+    #[doc(alias = "gsk_isolation_get_type")]
+    fn static_type() -> glib::Type {
+        unsafe { from_glib(ffi::gsk_isolation_get_type()) }
+    }
+}
+
+#[cfg(feature = "v4_22")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+impl glib::HasParamSpec for Isolation {
+    type ParamSpec = glib::ParamSpecFlags;
+    type SetValue = Self;
+    type BuilderFn = fn(&str) -> glib::ParamSpecFlagsBuilder<Self>;
+
+    fn param_spec_builder() -> Self::BuilderFn {
+        Self::ParamSpec::builder
+    }
+}
+
+#[cfg(feature = "v4_22")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+impl glib::value::ValueType for Isolation {
+    type Type = Self;
+}
+
+#[cfg(feature = "v4_22")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+unsafe impl<'a> glib::value::FromValue<'a> for Isolation {
+    type Checker = glib::value::GenericValueTypeChecker<Self>;
+
+    #[inline]
+    unsafe fn from_value(value: &'a glib::Value) -> Self {
+        skip_assert_initialized!();
+        from_glib(glib::gobject_ffi::g_value_get_flags(value.to_glib_none().0))
+    }
+}
+
+#[cfg(feature = "v4_22")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+impl ToValue for Isolation {
+    #[inline]
+    fn to_value(&self) -> glib::Value {
+        let mut value = glib::Value::for_value_type::<Self>();
+        unsafe {
+            glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, self.into_glib());
+        }
+        value
+    }
+
+    #[inline]
+    fn value_type(&self) -> glib::Type {
+        Self::static_type()
+    }
+}
+
+#[cfg(feature = "v4_22")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+impl From<Isolation> for glib::Value {
+    #[inline]
+    fn from(v: Isolation) -> Self {
+        skip_assert_initialized!();
+        ToValue::to_value(&v)
+    }
+}
+
 #[cfg(feature = "v4_14")]
 bitflags! {
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]

@@ -11572,6 +11572,201 @@ impl From<StringFilterMatchMode> for glib::Value {
     }
 }
 
+#[cfg(feature = "v4_22")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
+#[doc(alias = "GtkSvgError")]
+pub enum SvgError {
+    #[doc(alias = "GTK_SVG_ERROR_INVALID_ELEMENT")]
+    InvalidElement,
+    #[doc(alias = "GTK_SVG_ERROR_INVALID_ATTRIBUTE")]
+    InvalidAttribute,
+    #[doc(alias = "GTK_SVG_ERROR_MISSING_ATTRIBUTE")]
+    MissingAttribute,
+    #[doc(alias = "GTK_SVG_ERROR_INVALID_REFERENCE")]
+    InvalidReference,
+    #[doc(alias = "GTK_SVG_ERROR_FAILED_UPDATE")]
+    FailedUpdate,
+    #[doc(alias = "GTK_SVG_ERROR_FAILED_RENDERING")]
+    FailedRendering,
+    #[doc(hidden)]
+    __Unknown(i32),
+}
+
+#[cfg(feature = "v4_22")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+impl SvgError {
+    #[doc(alias = "gtk_svg_error_get_attribute")]
+    #[doc(alias = "get_attribute")]
+    pub fn attribute(error: &glib::Error) -> Option<glib::GString> {
+        assert_initialized_main_thread!();
+        unsafe { from_glib_none(ffi::gtk_svg_error_get_attribute(error.to_glib_none().0)) }
+    }
+
+    #[doc(alias = "gtk_svg_error_get_element")]
+    #[doc(alias = "get_element")]
+    pub fn element(error: &glib::Error) -> Option<glib::GString> {
+        assert_initialized_main_thread!();
+        unsafe { from_glib_none(ffi::gtk_svg_error_get_element(error.to_glib_none().0)) }
+    }
+
+    //#[doc(alias = "gtk_svg_error_get_end")]
+    //#[doc(alias = "get_end")]
+    //pub fn end(error: &glib::Error) -> /*Ignored*/Option<SvgLocation> {
+    //    unsafe { TODO: call ffi:gtk_svg_error_get_end() }
+    //}
+
+    //#[doc(alias = "gtk_svg_error_get_start")]
+    //#[doc(alias = "get_start")]
+    //pub fn start(error: &glib::Error) -> /*Ignored*/Option<SvgLocation> {
+    //    unsafe { TODO: call ffi:gtk_svg_error_get_start() }
+    //}
+
+    #[doc(alias = "gtk_svg_error_quark")]
+    pub fn quark() -> glib::Quark {
+        assert_initialized_main_thread!();
+        unsafe { from_glib(ffi::gtk_svg_error_quark()) }
+    }
+}
+
+#[cfg(feature = "v4_22")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+#[doc(hidden)]
+impl IntoGlib for SvgError {
+    type GlibType = ffi::GtkSvgError;
+
+    #[inline]
+    fn into_glib(self) -> ffi::GtkSvgError {
+        match self {
+            Self::InvalidElement => ffi::GTK_SVG_ERROR_INVALID_ELEMENT,
+            Self::InvalidAttribute => ffi::GTK_SVG_ERROR_INVALID_ATTRIBUTE,
+            Self::MissingAttribute => ffi::GTK_SVG_ERROR_MISSING_ATTRIBUTE,
+            Self::InvalidReference => ffi::GTK_SVG_ERROR_INVALID_REFERENCE,
+            Self::FailedUpdate => ffi::GTK_SVG_ERROR_FAILED_UPDATE,
+            Self::FailedRendering => ffi::GTK_SVG_ERROR_FAILED_RENDERING,
+            Self::__Unknown(value) => value,
+        }
+    }
+}
+
+#[cfg(feature = "v4_22")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+#[doc(hidden)]
+impl FromGlib<ffi::GtkSvgError> for SvgError {
+    #[inline]
+    unsafe fn from_glib(value: ffi::GtkSvgError) -> Self {
+        skip_assert_initialized!();
+
+        match value {
+            ffi::GTK_SVG_ERROR_INVALID_ELEMENT => Self::InvalidElement,
+            ffi::GTK_SVG_ERROR_INVALID_ATTRIBUTE => Self::InvalidAttribute,
+            ffi::GTK_SVG_ERROR_MISSING_ATTRIBUTE => Self::MissingAttribute,
+            ffi::GTK_SVG_ERROR_INVALID_REFERENCE => Self::InvalidReference,
+            ffi::GTK_SVG_ERROR_FAILED_UPDATE => Self::FailedUpdate,
+            ffi::GTK_SVG_ERROR_FAILED_RENDERING => Self::FailedRendering,
+            value => Self::__Unknown(value),
+        }
+    }
+}
+
+#[cfg(feature = "v4_22")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+impl glib::error::ErrorDomain for SvgError {
+    #[inline]
+    fn domain() -> glib::Quark {
+        skip_assert_initialized!();
+
+        static QUARK: ::std::sync::OnceLock<glib::ffi::GQuark> = ::std::sync::OnceLock::new();
+        let quark = *QUARK.get_or_init(|| unsafe {
+            glib::ffi::g_quark_from_static_string(b"GtkSvgError\0".as_ptr() as *const _)
+        });
+        unsafe { from_glib(quark) }
+    }
+
+    #[inline]
+    fn code(self) -> i32 {
+        self.into_glib()
+    }
+
+    #[inline]
+    #[allow(clippy::match_single_binding)]
+    fn from(code: i32) -> Option<Self> {
+        skip_assert_initialized!();
+        match unsafe { from_glib(code) } {
+            value => Some(value),
+        }
+    }
+}
+
+#[cfg(feature = "v4_22")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+impl StaticType for SvgError {
+    #[inline]
+    #[doc(alias = "gtk_svg_error_get_type")]
+    fn static_type() -> glib::Type {
+        unsafe { from_glib(ffi::gtk_svg_error_get_type()) }
+    }
+}
+
+#[cfg(feature = "v4_22")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+impl glib::HasParamSpec for SvgError {
+    type ParamSpec = glib::ParamSpecEnum;
+    type SetValue = Self;
+    type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
+
+    fn param_spec_builder() -> Self::BuilderFn {
+        Self::ParamSpec::builder_with_default
+    }
+}
+
+#[cfg(feature = "v4_22")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+impl glib::value::ValueType for SvgError {
+    type Type = Self;
+}
+
+#[cfg(feature = "v4_22")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+unsafe impl<'a> glib::value::FromValue<'a> for SvgError {
+    type Checker = glib::value::GenericValueTypeChecker<Self>;
+
+    #[inline]
+    unsafe fn from_value(value: &'a glib::Value) -> Self {
+        skip_assert_initialized!();
+        from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+    }
+}
+
+#[cfg(feature = "v4_22")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+impl ToValue for SvgError {
+    #[inline]
+    fn to_value(&self) -> glib::Value {
+        let mut value = glib::Value::for_value_type::<Self>();
+        unsafe {
+            glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
+        }
+        value
+    }
+
+    #[inline]
+    fn value_type(&self) -> glib::Type {
+        Self::static_type()
+    }
+}
+
+#[cfg(feature = "v4_22")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+impl From<SvgError> for glib::Value {
+    #[inline]
+    fn from(v: SvgError) -> Self {
+        skip_assert_initialized!();
+        ToValue::to_value(&v)
+    }
+}
+
 #[cfg(feature = "v4_6")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]

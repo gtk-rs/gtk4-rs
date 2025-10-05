@@ -2,7 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::{ffi, SymbolicPaintable};
+use crate::{ffi, SvgFeatures, SymbolicPaintable};
 use glib::{
     object::ObjectType as _,
     prelude::*,
@@ -41,11 +41,11 @@ impl Svg {
         unsafe { from_glib_full(ffi::gtk_svg_new_from_resource(path.to_glib_none().0)) }
     }
 
-    //#[doc(alias = "gtk_svg_get_features")]
-    //#[doc(alias = "get_features")]
-    //pub fn features(&self) -> /*Ignored*/SvgFeatures {
-    //    unsafe { TODO: call ffi:gtk_svg_get_features() }
-    //}
+    #[doc(alias = "gtk_svg_get_features")]
+    #[doc(alias = "get_features")]
+    pub fn features(&self) -> SvgFeatures {
+        unsafe { from_glib(ffi::gtk_svg_get_features(self.to_glib_none().0)) }
+    }
 
     #[doc(alias = "gtk_svg_get_n_states")]
     #[doc(alias = "get_n_states")]
@@ -98,11 +98,13 @@ impl Svg {
         unsafe { from_glib_full(ffi::gtk_svg_serialize(self.to_glib_none().0)) }
     }
 
-    //#[doc(alias = "gtk_svg_set_features")]
-    //#[doc(alias = "features")]
-    //pub fn set_features(&self, features: /*Ignored*/SvgFeatures) {
-    //    unsafe { TODO: call ffi:gtk_svg_set_features() }
-    //}
+    #[doc(alias = "gtk_svg_set_features")]
+    #[doc(alias = "features")]
+    pub fn set_features(&self, features: SvgFeatures) {
+        unsafe {
+            ffi::gtk_svg_set_features(self.to_glib_none().0, features.into_glib());
+        }
+    }
 
     #[doc(alias = "gtk_svg_set_frame_clock")]
     pub fn set_frame_clock(&self, clock: &gdk::FrameClock) {

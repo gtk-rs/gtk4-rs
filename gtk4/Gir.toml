@@ -20,6 +20,8 @@ generate = [
     # "Gtk.PrintBackend", a record without a gtype
     "Gtk.AccessibleAnnouncementPriority",
     "Gtk.AccessibleAutocomplete",
+    "Gtk.AccessibleHyperlink",
+    "Gtk.AccessibleHypertext",
     "Gtk.AccessibleInvalidState",
     "Gtk.AccessiblePlatformState",
     "Gtk.AccessibleProperty",
@@ -256,6 +258,8 @@ generate = [
     "Gtk.StringSorter",
     "Gtk.StyleContextPrintFlags",
     "Gtk.StyleProvider",
+    "Gtk.SvgError",
+    "Gtk.SvgFeatures",
     "Gtk.SymbolicColor",
     "Gtk.SymbolicPaintable",
     "Gtk.SystemSetting",
@@ -1002,6 +1006,9 @@ status = "generate"
     [[object.member]]
     name = "invert_text_dir"
     version = "4.8"
+    [[object.member]]
+    name = "session"
+    version = "4.22"
 
 [[object]]
 name = "Gtk.Dialog"
