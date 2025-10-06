@@ -746,6 +746,12 @@ pub const GTK_RESPONSE_NO: GtkResponseType = -9;
 pub const GTK_RESPONSE_APPLY: GtkResponseType = -10;
 pub const GTK_RESPONSE_HELP: GtkResponseType = -11;
 
+pub type GtkRestoreReason = c_int;
+pub const GTK_RESTORE_REASON_PRISTINE: GtkRestoreReason = 0;
+pub const GTK_RESTORE_REASON_LAUNCH: GtkRestoreReason = 1;
+pub const GTK_RESTORE_REASON_RECOVER: GtkRestoreReason = 2;
+pub const GTK_RESTORE_REASON_RESTORE: GtkRestoreReason = 3;
+
 pub type GtkRevealerTransitionType = c_int;
 pub const GTK_REVEALER_TRANSITION_TYPE_NONE: GtkRevealerTransitionType = 0;
 pub const GTK_REVEALER_TRANSITION_TYPE_CROSSFADE: GtkRevealerTransitionType = 1;
@@ -1114,6 +1120,7 @@ pub const GTK_DEBUG_CSS: GtkDebugFlags = 1048576;
 #[cfg(feature = "v4_18")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_18")))]
 pub const GTK_DEBUG_BUILDER: GtkDebugFlags = 2097152;
+pub const GTK_DEBUG_SESSION: GtkDebugFlags = 4194304;
 
 pub type GtkDialogFlags = c_uint;
 pub const GTK_DIALOG_MODAL: GtkDialogFlags = 1;
@@ -1406,6 +1413,41 @@ pub type GtkATContextClass = _GtkATContextClass;
 
 #[derive(Copy, Clone)]
 #[repr(C)]
+pub struct GtkAccessibleHyperlinkClass {
+    pub parent_class: gobject::GObjectClass,
+}
+
+impl ::std::fmt::Debug for GtkAccessibleHyperlinkClass {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GtkAccessibleHyperlinkClass @ {self:p}"))
+            .field("parent_class", &self.parent_class)
+            .finish()
+    }
+}
+
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct GtkAccessibleHypertextInterface {
+    pub g_iface: gobject::GTypeInterface,
+    pub get_n_links: Option<unsafe extern "C" fn(*mut GtkAccessibleHypertext) -> c_uint>,
+    pub get_link: Option<
+        unsafe extern "C" fn(*mut GtkAccessibleHypertext, c_uint) -> *mut GtkAccessibleHyperlink,
+    >,
+    pub get_link_at: Option<unsafe extern "C" fn(*mut GtkAccessibleHypertext, c_uint) -> c_uint>,
+}
+
+impl ::std::fmt::Debug for GtkAccessibleHypertextInterface {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GtkAccessibleHypertextInterface @ {self:p}"))
+            .field("get_n_links", &self.get_n_links)
+            .field("get_link", &self.get_link)
+            .field("get_link_at", &self.get_link_at)
+            .finish()
+    }
+}
+
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkAccessibleInterface {
     pub g_iface: gobject::GTypeInterface,
     pub get_at_context: Option<unsafe extern "C" fn(*mut GtkAccessible) -> *mut GtkATContext>,
@@ -1670,7 +1712,18 @@ pub struct GtkApplicationClass {
     pub parent_class: gio::GApplicationClass,
     pub window_added: Option<unsafe extern "C" fn(*mut GtkApplication, *mut GtkWindow)>,
     pub window_removed: Option<unsafe extern "C" fn(*mut GtkApplication, *mut GtkWindow)>,
-    pub padding: [gpointer; 8],
+    pub save_state:
+        Option<unsafe extern "C" fn(*mut GtkApplication, *mut glib::GVariantDict) -> gboolean>,
+    pub restore_state: Option<
+        unsafe extern "C" fn(
+            *mut GtkApplication,
+            GtkRestoreReason,
+            *mut glib::GVariant,
+        ) -> gboolean,
+    >,
+    pub restore_window:
+        Option<unsafe extern "C" fn(*mut GtkApplication, GtkRestoreReason, *mut glib::GVariant)>,
+    pub padding: [gpointer; 5],
 }
 
 impl ::std::fmt::Debug for GtkApplicationClass {
@@ -1679,6 +1732,9 @@ impl ::std::fmt::Debug for GtkApplicationClass {
             .field("parent_class", &self.parent_class)
             .field("window_added", &self.window_added)
             .field("window_removed", &self.window_removed)
+            .field("save_state", &self.save_state)
+            .field("restore_state", &self.restore_state)
+            .field("restore_window", &self.restore_window)
             .finish()
     }
 }
@@ -1687,13 +1743,17 @@ impl ::std::fmt::Debug for GtkApplicationClass {
 #[repr(C)]
 pub struct GtkApplicationWindowClass {
     pub parent_class: GtkWindowClass,
-    pub padding: [gpointer; 8],
+    pub save_state: Option<
+        unsafe extern "C" fn(*mut GtkApplicationWindow, *mut glib::GVariantDict) -> gboolean,
+    >,
+    pub padding: [gpointer; 7],
 }
 
 impl ::std::fmt::Debug for GtkApplicationWindowClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("GtkApplicationWindowClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
+            .field("save_state", &self.save_state)
             .finish()
     }
 }
@@ -5946,6 +6006,20 @@ impl ::std::fmt::Debug for GtkAboutDialog {
 
 #[repr(C)]
 #[allow(dead_code)]
+pub struct GtkAccessibleHyperlink {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+impl ::std::fmt::Debug for GtkAccessibleHyperlink {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GtkAccessibleHyperlink @ {self:p}"))
+            .finish()
+    }
+}
+
+#[repr(C)]
+#[allow(dead_code)]
 pub struct GtkActionBar {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -9613,6 +9687,19 @@ impl ::std::fmt::Debug for GtkAccessible {
 
 #[repr(C)]
 #[allow(dead_code)]
+pub struct GtkAccessibleHypertext {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+impl ::std::fmt::Debug for GtkAccessibleHypertext {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        write!(f, "GtkAccessibleHypertext @ {self:p}")
+    }
+}
+
+#[repr(C)]
+#[allow(dead_code)]
 pub struct GtkAccessibleRange {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -10409,6 +10496,13 @@ extern "C" {
     // GtkResponseType
     //=========================================================================
     pub fn gtk_response_type_get_type() -> GType;
+
+    //=========================================================================
+    // GtkRestoreReason
+    //=========================================================================
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    pub fn gtk_restore_reason_get_type() -> GType;
 
     //=========================================================================
     // GtkRevealerTransitionType
@@ -11436,6 +11530,28 @@ extern "C" {
     pub fn gtk_about_dialog_set_wrap_license(about: *mut GtkAboutDialog, wrap_license: gboolean);
 
     //=========================================================================
+    // GtkAccessibleHyperlink
+    //=========================================================================
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    pub fn gtk_accessible_hyperlink_get_type() -> GType;
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    pub fn gtk_accessible_hyperlink_new(
+        parent: *mut GtkAccessibleHypertext,
+        index: c_uint,
+        uri: *const c_char,
+        bounds: *mut GtkAccessibleTextRange,
+    ) -> *mut GtkAccessibleHyperlink;
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    pub fn gtk_accessible_hyperlink_set_platform_state(
+        self_: *mut GtkAccessibleHyperlink,
+        state: GtkAccessiblePlatformState,
+        enabled: gboolean,
+    );
+
+    //=========================================================================
     // GtkActionBar
     //=========================================================================
     pub fn gtk_action_bar_get_type() -> GType;
@@ -11692,6 +11808,9 @@ extern "C" {
         flags: gio::GApplicationFlags,
     ) -> *mut GtkApplication;
     pub fn gtk_application_add_window(application: *mut GtkApplication, window: *mut GtkWindow);
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    pub fn gtk_application_forget(application: *mut GtkApplication);
     pub fn gtk_application_get_accels_for_action(
         application: *mut GtkApplication,
         detailed_action_name: *const c_char,
@@ -11721,6 +11840,9 @@ extern "C" {
         application: *mut GtkApplication,
     ) -> *mut *mut c_char;
     pub fn gtk_application_remove_window(application: *mut GtkApplication, window: *mut GtkWindow);
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    pub fn gtk_application_save(application: *mut GtkApplication);
     pub fn gtk_application_set_accels_for_action(
         application: *mut GtkApplication,
         detailed_action_name: *const c_char,
@@ -20854,6 +20976,13 @@ extern "C" {
         states: *mut GtkAccessibleState,
         values: *const gobject::GValue,
     );
+
+    //=========================================================================
+    // GtkAccessibleHypertext
+    //=========================================================================
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    pub fn gtk_accessible_hypertext_get_type() -> GType;
 
     //=========================================================================
     // GtkAccessibleRange

@@ -495,6 +495,11 @@ pub trait ApplicationWindowExt: IsA<ApplicationWindow> + 'static {
         }
     }
 
+    //#[doc(alias = "save-state")]
+    //fn connect_save_state<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId {
+    //    Ignored object: GLib.VariantDict
+    //}
+
     #[doc(alias = "show-menubar")]
     fn connect_show_menubar_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_show_menubar_trampoline<

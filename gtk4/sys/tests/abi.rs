@@ -216,6 +216,20 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
+        "GtkAccessibleHyperlinkClass",
+        Layout {
+            size: size_of::<GtkAccessibleHyperlinkClass>(),
+            alignment: align_of::<GtkAccessibleHyperlinkClass>(),
+        },
+    ),
+    (
+        "GtkAccessibleHypertextInterface",
+        Layout {
+            size: size_of::<GtkAccessibleHypertextInterface>(),
+            alignment: align_of::<GtkAccessibleHypertextInterface>(),
+        },
+    ),
+    (
         "GtkAccessibleInterface",
         Layout {
             size: size_of::<GtkAccessibleInterface>(),
@@ -1882,6 +1896,13 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
+        "GtkRestoreReason",
+        Layout {
+            size: size_of::<GtkRestoreReason>(),
+            alignment: align_of::<GtkRestoreReason>(),
+        },
+    ),
+    (
         "GtkRevealerTransitionType",
         Layout {
             size: size_of::<GtkRevealerTransitionType>(),
@@ -2959,6 +2980,7 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(guint) GTK_DEBUG_MODULES", "8"),
     ("(guint) GTK_DEBUG_NO_CSS_CACHE", "512"),
     ("(guint) GTK_DEBUG_PRINTING", "64"),
+    ("(guint) GTK_DEBUG_SESSION", "4194304"),
     ("(guint) GTK_DEBUG_SIZE_REQUEST", "256"),
     ("(guint) GTK_DEBUG_SNAPSHOT", "16384"),
     ("(guint) GTK_DEBUG_TEXT", "1"),
@@ -3335,6 +3357,10 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(gint) GTK_RESPONSE_OK", "-5"),
     ("(gint) GTK_RESPONSE_REJECT", "-2"),
     ("(gint) GTK_RESPONSE_YES", "-8"),
+    ("(gint) GTK_RESTORE_REASON_LAUNCH", "1"),
+    ("(gint) GTK_RESTORE_REASON_PRISTINE", "0"),
+    ("(gint) GTK_RESTORE_REASON_RECOVER", "2"),
+    ("(gint) GTK_RESTORE_REASON_RESTORE", "3"),
     ("(gint) GTK_REVEALER_TRANSITION_TYPE_CROSSFADE", "1"),
     ("(gint) GTK_REVEALER_TRANSITION_TYPE_NONE", "0"),
     ("(gint) GTK_REVEALER_TRANSITION_TYPE_SLIDE_DOWN", "5"),
