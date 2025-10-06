@@ -176,7 +176,7 @@ impl Builder {
                 &mut error,
             );
             if error.is_null() {
-                Ok(from_glib_full(ret))
+                Ok(from_glib_none(ret))
             } else {
                 Err(from_glib_full(error))
             }

@@ -3296,17 +3296,17 @@ impl From<ConstraintStrength> for glib::Value {
 #[doc(alias = "GtkConstraintVflParserError")]
 pub enum ConstraintVflParserError {
     #[doc(alias = "GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_SYMBOL")]
-    Symbol,
+    InvalidSymbol,
     #[doc(alias = "GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_ATTRIBUTE")]
-    Attribute,
+    InvalidAttribute,
     #[doc(alias = "GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_VIEW")]
-    View,
+    InvalidView,
     #[doc(alias = "GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_METRIC")]
-    Metric,
+    InvalidMetric,
     #[doc(alias = "GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_PRIORITY")]
-    Priority,
+    InvalidPriority,
     #[doc(alias = "GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_RELATION")]
-    Relation,
+    InvalidRelation,
     #[doc(hidden)]
     __Unknown(i32),
 }
@@ -3318,12 +3318,12 @@ impl IntoGlib for ConstraintVflParserError {
     #[inline]
     fn into_glib(self) -> ffi::GtkConstraintVflParserError {
         match self {
-            Self::Symbol => ffi::GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_SYMBOL,
-            Self::Attribute => ffi::GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_ATTRIBUTE,
-            Self::View => ffi::GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_VIEW,
-            Self::Metric => ffi::GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_METRIC,
-            Self::Priority => ffi::GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_PRIORITY,
-            Self::Relation => ffi::GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_RELATION,
+            Self::InvalidSymbol => ffi::GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_SYMBOL,
+            Self::InvalidAttribute => ffi::GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_ATTRIBUTE,
+            Self::InvalidView => ffi::GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_VIEW,
+            Self::InvalidMetric => ffi::GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_METRIC,
+            Self::InvalidPriority => ffi::GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_PRIORITY,
+            Self::InvalidRelation => ffi::GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_RELATION,
             Self::__Unknown(value) => value,
         }
     }
@@ -3336,12 +3336,12 @@ impl FromGlib<ffi::GtkConstraintVflParserError> for ConstraintVflParserError {
         skip_assert_initialized!();
 
         match value {
-            ffi::GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_SYMBOL => Self::Symbol,
-            ffi::GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_ATTRIBUTE => Self::Attribute,
-            ffi::GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_VIEW => Self::View,
-            ffi::GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_METRIC => Self::Metric,
-            ffi::GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_PRIORITY => Self::Priority,
-            ffi::GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_RELATION => Self::Relation,
+            ffi::GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_SYMBOL => Self::InvalidSymbol,
+            ffi::GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_ATTRIBUTE => Self::InvalidAttribute,
+            ffi::GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_VIEW => Self::InvalidView,
+            ffi::GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_METRIC => Self::InvalidMetric,
+            ffi::GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_PRIORITY => Self::InvalidPriority,
+            ffi::GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_RELATION => Self::InvalidRelation,
             value => Self::__Unknown(value),
         }
     }
