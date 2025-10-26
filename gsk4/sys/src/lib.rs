@@ -1185,6 +1185,9 @@ extern "C" {
     #[cfg(feature = "v4_14")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
     pub fn gsk_path_get_type() -> GType;
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    pub fn gsk_path_equal(path1: *const GskPath, path2: *const GskPath) -> gboolean;
     #[cfg(feature = "v4_14")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
     pub fn gsk_path_foreach(

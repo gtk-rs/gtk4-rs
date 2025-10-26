@@ -9,6 +9,8 @@
 int main() {
     printf("%s;%zu;%zu\n", "GtkAccessibleAnnouncementPriority", sizeof(GtkAccessibleAnnouncementPriority), alignof(GtkAccessibleAnnouncementPriority));
     printf("%s;%zu;%zu\n", "GtkAccessibleAutocomplete", sizeof(GtkAccessibleAutocomplete), alignof(GtkAccessibleAutocomplete));
+    printf("%s;%zu;%zu\n", "GtkAccessibleHyperlinkClass", sizeof(GtkAccessibleHyperlinkClass), alignof(GtkAccessibleHyperlinkClass));
+    printf("%s;%zu;%zu\n", "GtkAccessibleHypertextInterface", sizeof(GtkAccessibleHypertextInterface), alignof(GtkAccessibleHypertextInterface));
     printf("%s;%zu;%zu\n", "GtkAccessibleInterface", sizeof(GtkAccessibleInterface), alignof(GtkAccessibleInterface));
     printf("%s;%zu;%zu\n", "GtkAccessibleInvalidState", sizeof(GtkAccessibleInvalidState), alignof(GtkAccessibleInvalidState));
     printf("%s;%zu;%zu\n", "GtkAccessiblePlatformState", sizeof(GtkAccessiblePlatformState), alignof(GtkAccessiblePlatformState));
@@ -247,6 +249,7 @@ int main() {
     printf("%s;%zu;%zu\n", "GtkRequestedSize", sizeof(GtkRequestedSize), alignof(GtkRequestedSize));
     printf("%s;%zu;%zu\n", "GtkRequisition", sizeof(GtkRequisition), alignof(GtkRequisition));
     printf("%s;%zu;%zu\n", "GtkResponseType", sizeof(GtkResponseType), alignof(GtkResponseType));
+    printf("%s;%zu;%zu\n", "GtkRestoreReason", sizeof(GtkRestoreReason), alignof(GtkRestoreReason));
     printf("%s;%zu;%zu\n", "GtkRevealerTransitionType", sizeof(GtkRevealerTransitionType), alignof(GtkRevealerTransitionType));
     printf("%s;%zu;%zu\n", "GtkScale", sizeof(GtkScale), alignof(GtkScale));
     printf("%s;%zu;%zu\n", "GtkScaleButton", sizeof(GtkScaleButton), alignof(GtkScaleButton));

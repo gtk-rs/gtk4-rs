@@ -342,6 +342,8 @@ bitflags! {
         #[cfg_attr(docsrs, doc(cfg(feature = "v4_18")))]
         #[doc(alias = "GTK_DEBUG_BUILDER")]
         const BUILDER = ffi::GTK_DEBUG_BUILDER as _;
+        #[doc(alias = "GTK_DEBUG_SESSION")]
+        const SESSION = ffi::GTK_DEBUG_SESSION as _;
     }
 }
 
