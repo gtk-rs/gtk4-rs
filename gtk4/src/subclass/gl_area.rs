@@ -30,11 +30,7 @@ pub trait GLAreaImplExt: GLAreaImpl {
             let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkGLAreaClass;
             if let Some(f) = (*parent_class).create_context {
-                return Some(from_glib_none(f(self
-                    .obj()
-                    .unsafe_cast_ref::<GLArea>()
-                    .to_glib_none()
-                    .0)));
+                return from_glib_none(f(self.obj().unsafe_cast_ref::<GLArea>().to_glib_none().0));
             };
             None
         }
