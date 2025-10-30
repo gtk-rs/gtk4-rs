@@ -5,6 +5,7 @@ use glib::translate::*;
 use crate::{ffi, prelude::*, StyleContext, StyleProvider};
 
 impl StyleContext {
+    #[deprecated(note = "Use gtk::style_context_add_provider_for_display instead.")]
     #[doc(alias = "gtk_style_context_add_provider_for_display")]
     pub fn add_provider_for_display(
         display: &impl IsA<gdk::Display>,
@@ -21,6 +22,7 @@ impl StyleContext {
         }
     }
 
+    #[deprecated(note = "Use gtk::style_context_remove_provider_for_display instead.")]
     #[doc(alias = "gtk_style_context_remove_provider_for_display")]
     pub fn remove_provider_for_display(
         display: &impl IsA<gdk::Display>,
