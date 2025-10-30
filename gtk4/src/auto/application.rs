@@ -54,10 +54,18 @@ impl ApplicationBuilder {
         }
     }
 
-    #[cfg_attr(feature = "v4_20", deprecated = "Since 4.20")]
+    #[cfg_attr(feature = "v4_22", deprecated = "Since 4.22")]
     pub fn register_session(self, register_session: bool) -> Self {
         Self {
             builder: self.builder.property("register-session", register_session),
+        }
+    }
+
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    pub fn support_save(self, support_save: bool) -> Self {
+        Self {
+            builder: self.builder.property("support-save", support_save),
         }
     }
 
@@ -119,6 +127,15 @@ pub trait GtkApplicationExt: IsA<Application> + 'static {
                 self.as_ref().to_glib_none().0,
                 window.as_ref().to_glib_none().0,
             );
+        }
+    }
+
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    #[doc(alias = "gtk_application_forget")]
+    fn forget(&self) {
+        unsafe {
+            ffi::gtk_application_forget(self.as_ref().to_glib_none().0);
         }
     }
 
@@ -233,6 +250,15 @@ pub trait GtkApplicationExt: IsA<Application> + 'static {
         }
     }
 
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    #[doc(alias = "gtk_application_save")]
+    fn save(&self) {
+        unsafe {
+            ffi::gtk_application_save(self.as_ref().to_glib_none().0);
+        }
+    }
+
     #[doc(alias = "gtk_application_set_accels_for_action")]
     fn set_accels_for_action(&self, detailed_action_name: &str, accels: &[&str]) {
         unsafe {
@@ -262,13 +288,13 @@ pub trait GtkApplicationExt: IsA<Application> + 'static {
         }
     }
 
-    #[cfg_attr(feature = "v4_20", deprecated = "Since 4.20")]
+    #[cfg_attr(feature = "v4_22", deprecated = "Since 4.22")]
     #[doc(alias = "register-session")]
     fn is_register_session(&self) -> bool {
         ObjectExt::property(self.as_ref(), "register-session")
     }
 
-    #[cfg_attr(feature = "v4_20", deprecated = "Since 4.20")]
+    #[cfg_attr(feature = "v4_22", deprecated = "Since 4.22")]
     #[doc(alias = "register-session")]
     fn set_register_session(&self, register_session: bool) {
         ObjectExt::set_property(self.as_ref(), "register-session", register_session)
@@ -277,6 +303,20 @@ pub trait GtkApplicationExt: IsA<Application> + 'static {
     #[doc(alias = "screensaver-active")]
     fn is_screensaver_active(&self) -> bool {
         ObjectExt::property(self.as_ref(), "screensaver-active")
+    }
+
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    #[doc(alias = "support-save")]
+    fn supports_save(&self) -> bool {
+        ObjectExt::property(self.as_ref(), "support-save")
+    }
+
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    #[doc(alias = "support-save")]
+    fn set_support_save(&self, support_save: bool) {
+        ObjectExt::set_property(self.as_ref(), "support-save", support_save)
     }
 
     #[doc(alias = "query-end")]
@@ -300,6 +340,27 @@ pub trait GtkApplicationExt: IsA<Application> + 'static {
             )
         }
     }
+
+    //#[cfg(feature = "v4_22")]
+    //#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    //#[doc(alias = "restore-state")]
+    //fn connect_restore_state<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId {
+    //    Ignored reason: Gtk.RestoreReason
+    //}
+
+    //#[cfg(feature = "v4_22")]
+    //#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    //#[doc(alias = "restore-window")]
+    //fn connect_restore_window<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId {
+    //    Ignored reason: Gtk.RestoreReason
+    //}
+
+    //#[cfg(feature = "v4_22")]
+    //#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    //#[doc(alias = "save-state")]
+    //fn connect_save_state<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId {
+    //    Ignored dict: GLib.VariantDict
+    //}
 
     #[doc(alias = "window-added")]
     fn connect_window_added<F: Fn(&Self, &Window) + 'static>(&self, f: F) -> SignalHandlerId {
@@ -408,7 +469,7 @@ pub trait GtkApplicationExt: IsA<Application> + 'static {
         }
     }
 
-    #[cfg_attr(feature = "v4_20", deprecated = "Since 4.20")]
+    #[cfg_attr(feature = "v4_22", deprecated = "Since 4.22")]
     #[doc(alias = "register-session")]
     fn connect_register_session_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_register_session_trampoline<
@@ -455,6 +516,34 @@ pub trait GtkApplicationExt: IsA<Application> + 'static {
                 c"notify::screensaver-active".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_screensaver_active_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    #[doc(alias = "support-save")]
+    fn connect_support_save_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_support_save_trampoline<
+            P: IsA<Application>,
+            F: Fn(&P) + 'static,
+        >(
+            this: *mut ffi::GtkApplication,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(Application::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                c"notify::support-save".as_ptr() as *const _,
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
+                    notify_support_save_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )

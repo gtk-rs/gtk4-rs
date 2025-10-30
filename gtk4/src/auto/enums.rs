@@ -3296,17 +3296,17 @@ impl From<ConstraintStrength> for glib::Value {
 #[doc(alias = "GtkConstraintVflParserError")]
 pub enum ConstraintVflParserError {
     #[doc(alias = "GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_SYMBOL")]
-    Symbol,
+    InvalidSymbol,
     #[doc(alias = "GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_ATTRIBUTE")]
-    Attribute,
+    InvalidAttribute,
     #[doc(alias = "GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_VIEW")]
-    View,
+    InvalidView,
     #[doc(alias = "GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_METRIC")]
-    Metric,
+    InvalidMetric,
     #[doc(alias = "GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_PRIORITY")]
-    Priority,
+    InvalidPriority,
     #[doc(alias = "GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_RELATION")]
-    Relation,
+    InvalidRelation,
     #[doc(hidden)]
     __Unknown(i32),
 }
@@ -3318,12 +3318,12 @@ impl IntoGlib for ConstraintVflParserError {
     #[inline]
     fn into_glib(self) -> ffi::GtkConstraintVflParserError {
         match self {
-            Self::Symbol => ffi::GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_SYMBOL,
-            Self::Attribute => ffi::GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_ATTRIBUTE,
-            Self::View => ffi::GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_VIEW,
-            Self::Metric => ffi::GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_METRIC,
-            Self::Priority => ffi::GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_PRIORITY,
-            Self::Relation => ffi::GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_RELATION,
+            Self::InvalidSymbol => ffi::GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_SYMBOL,
+            Self::InvalidAttribute => ffi::GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_ATTRIBUTE,
+            Self::InvalidView => ffi::GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_VIEW,
+            Self::InvalidMetric => ffi::GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_METRIC,
+            Self::InvalidPriority => ffi::GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_PRIORITY,
+            Self::InvalidRelation => ffi::GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_RELATION,
             Self::__Unknown(value) => value,
         }
     }
@@ -3336,12 +3336,12 @@ impl FromGlib<ffi::GtkConstraintVflParserError> for ConstraintVflParserError {
         skip_assert_initialized!();
 
         match value {
-            ffi::GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_SYMBOL => Self::Symbol,
-            ffi::GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_ATTRIBUTE => Self::Attribute,
-            ffi::GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_VIEW => Self::View,
-            ffi::GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_METRIC => Self::Metric,
-            ffi::GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_PRIORITY => Self::Priority,
-            ffi::GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_RELATION => Self::Relation,
+            ffi::GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_SYMBOL => Self::InvalidSymbol,
+            ffi::GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_ATTRIBUTE => Self::InvalidAttribute,
+            ffi::GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_VIEW => Self::InvalidView,
+            ffi::GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_METRIC => Self::InvalidMetric,
+            ffi::GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_PRIORITY => Self::InvalidPriority,
+            ffi::GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_RELATION => Self::InvalidRelation,
             value => Self::__Unknown(value),
         }
     }
@@ -9414,6 +9414,22 @@ pub enum RevealerTransitionType {
     SwingUp,
     #[doc(alias = "GTK_REVEALER_TRANSITION_TYPE_SWING_DOWN")]
     SwingDown,
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    #[doc(alias = "GTK_REVEALER_TRANSITION_TYPE_FADE_SLIDE_RIGHT")]
+    FadeSlideRight,
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    #[doc(alias = "GTK_REVEALER_TRANSITION_TYPE_FADE_SLIDE_LEFT")]
+    FadeSlideLeft,
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    #[doc(alias = "GTK_REVEALER_TRANSITION_TYPE_FADE_SLIDE_UP")]
+    FadeSlideUp,
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    #[doc(alias = "GTK_REVEALER_TRANSITION_TYPE_FADE_SLIDE_DOWN")]
+    FadeSlideDown,
     #[doc(hidden)]
     __Unknown(i32),
 }
@@ -9422,7 +9438,6 @@ pub enum RevealerTransitionType {
 impl IntoGlib for RevealerTransitionType {
     type GlibType = ffi::GtkRevealerTransitionType;
 
-    #[inline]
     fn into_glib(self) -> ffi::GtkRevealerTransitionType {
         match self {
             Self::None => ffi::GTK_REVEALER_TRANSITION_TYPE_NONE,
@@ -9435,6 +9450,14 @@ impl IntoGlib for RevealerTransitionType {
             Self::SwingLeft => ffi::GTK_REVEALER_TRANSITION_TYPE_SWING_LEFT,
             Self::SwingUp => ffi::GTK_REVEALER_TRANSITION_TYPE_SWING_UP,
             Self::SwingDown => ffi::GTK_REVEALER_TRANSITION_TYPE_SWING_DOWN,
+            #[cfg(feature = "v4_22")]
+            Self::FadeSlideRight => ffi::GTK_REVEALER_TRANSITION_TYPE_FADE_SLIDE_RIGHT,
+            #[cfg(feature = "v4_22")]
+            Self::FadeSlideLeft => ffi::GTK_REVEALER_TRANSITION_TYPE_FADE_SLIDE_LEFT,
+            #[cfg(feature = "v4_22")]
+            Self::FadeSlideUp => ffi::GTK_REVEALER_TRANSITION_TYPE_FADE_SLIDE_UP,
+            #[cfg(feature = "v4_22")]
+            Self::FadeSlideDown => ffi::GTK_REVEALER_TRANSITION_TYPE_FADE_SLIDE_DOWN,
             Self::__Unknown(value) => value,
         }
     }
@@ -9442,7 +9465,6 @@ impl IntoGlib for RevealerTransitionType {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkRevealerTransitionType> for RevealerTransitionType {
-    #[inline]
     unsafe fn from_glib(value: ffi::GtkRevealerTransitionType) -> Self {
         skip_assert_initialized!();
 
@@ -9457,6 +9479,14 @@ impl FromGlib<ffi::GtkRevealerTransitionType> for RevealerTransitionType {
             ffi::GTK_REVEALER_TRANSITION_TYPE_SWING_LEFT => Self::SwingLeft,
             ffi::GTK_REVEALER_TRANSITION_TYPE_SWING_UP => Self::SwingUp,
             ffi::GTK_REVEALER_TRANSITION_TYPE_SWING_DOWN => Self::SwingDown,
+            #[cfg(feature = "v4_22")]
+            ffi::GTK_REVEALER_TRANSITION_TYPE_FADE_SLIDE_RIGHT => Self::FadeSlideRight,
+            #[cfg(feature = "v4_22")]
+            ffi::GTK_REVEALER_TRANSITION_TYPE_FADE_SLIDE_LEFT => Self::FadeSlideLeft,
+            #[cfg(feature = "v4_22")]
+            ffi::GTK_REVEALER_TRANSITION_TYPE_FADE_SLIDE_UP => Self::FadeSlideUp,
+            #[cfg(feature = "v4_22")]
+            ffi::GTK_REVEALER_TRANSITION_TYPE_FADE_SLIDE_DOWN => Self::FadeSlideDown,
             value => Self::__Unknown(value),
         }
     }
