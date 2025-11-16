@@ -628,9 +628,9 @@ bitflags! {
     #[doc(alias = "GdkPaintableFlags")]
     pub struct PaintableFlags: u32 {
         #[doc(alias = "GDK_PAINTABLE_STATIC_SIZE")]
-        const SIZE = ffi::GDK_PAINTABLE_STATIC_SIZE as _;
+        const STATIC_SIZE = ffi::GDK_PAINTABLE_STATIC_SIZE as _;
         #[doc(alias = "GDK_PAINTABLE_STATIC_CONTENTS")]
-        const CONTENTS = ffi::GDK_PAINTABLE_STATIC_CONTENTS as _;
+        const STATIC_CONTENTS = ffi::GDK_PAINTABLE_STATIC_CONTENTS as _;
     }
 }
 

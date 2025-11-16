@@ -148,6 +148,20 @@ impl CssProvider {
         ObjectExt::set_property(self, "prefers-contrast", prefers_contrast)
     }
 
+    //#[cfg(feature = "v4_22")]
+    //#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    //#[doc(alias = "prefers-reduced-motion")]
+    //pub fn prefers_reduced_motion(&self) -> /*Ignored*/ReducedMotion {
+    //    ObjectExt::property(self, "prefers-reduced-motion")
+    //}
+
+    //#[cfg(feature = "v4_22")]
+    //#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    //#[doc(alias = "prefers-reduced-motion")]
+    //pub fn set_prefers_reduced_motion(&self, prefers_reduced_motion: /*Ignored*/ReducedMotion) {
+    //    ObjectExt::set_property(self,"prefers-reduced-motion", prefers_reduced_motion)
+    //}
+
     #[doc(alias = "parsing-error")]
     pub fn connect_parsing_error<F: Fn(&Self, &CssSection, &glib::Error) + 'static>(
         &self,
@@ -235,6 +249,36 @@ impl CssProvider {
             )
         }
     }
+
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    #[doc(alias = "prefers-reduced-motion")]
+    pub fn connect_prefers_reduced_motion_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_prefers_reduced_motion_trampoline<
+            F: Fn(&CssProvider) + 'static,
+        >(
+            this: *mut ffi::GtkCssProvider,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                c"notify::prefers-reduced-motion".as_ptr() as *const _,
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
+                    notify_prefers_reduced_motion_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
 }
 
 impl Default for CssProvider {
@@ -283,6 +327,12 @@ impl CssProviderBuilder {
             builder: self.builder.property("prefers-contrast", prefers_contrast),
         }
     }
+
+    //    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    //pub fn prefers_reduced_motion(self, prefers_reduced_motion: /*Ignored*/ReducedMotion) -> Self {
+    //    Self { builder: self.builder.property("prefers-reduced-motion", prefers_reduced_motion), }
+    //}
 
     // rustdoc-stripper-ignore-next
     /// Build the [`CssProvider`].

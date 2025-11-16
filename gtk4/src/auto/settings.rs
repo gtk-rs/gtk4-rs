@@ -383,6 +383,20 @@ impl Settings {
         ObjectExt::set_property(self, "gtk-interface-contrast", gtk_interface_contrast)
     }
 
+    //#[cfg(feature = "v4_22")]
+    //#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    //#[doc(alias = "gtk-interface-reduced-motion")]
+    //pub fn gtk_interface_reduced_motion(&self) -> /*Ignored*/ReducedMotion {
+    //    ObjectExt::property(self, "gtk-interface-reduced-motion")
+    //}
+
+    //#[cfg(feature = "v4_22")]
+    //#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    //#[doc(alias = "gtk-interface-reduced-motion")]
+    //pub fn set_gtk_interface_reduced_motion(&self, gtk_interface_reduced_motion: /*Ignored*/ReducedMotion) {
+    //    ObjectExt::set_property(self,"gtk-interface-reduced-motion", gtk_interface_reduced_motion)
+    //}
+
     #[doc(alias = "gtk-keynav-use-caret")]
     pub fn is_gtk_keynav_use_caret(&self) -> bool {
         ObjectExt::property(self, "gtk-keynav-use-caret")
@@ -1465,6 +1479,36 @@ impl Settings {
         }
     }
 
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    #[doc(alias = "gtk-interface-reduced-motion")]
+    pub fn connect_gtk_interface_reduced_motion_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_gtk_interface_reduced_motion_trampoline<
+            F: Fn(&Settings) + 'static,
+        >(
+            this: *mut ffi::GtkSettings,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                c"notify::gtk-interface-reduced-motion".as_ptr() as *const _,
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
+                    notify_gtk_interface_reduced_motion_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
     #[doc(alias = "gtk-keynav-use-caret")]
     pub fn connect_gtk_keynav_use_caret_notify<F: Fn(&Self) + 'static>(
         &self,
@@ -2369,6 +2413,12 @@ impl SettingsBuilder {
                 .property("gtk-interface-contrast", gtk_interface_contrast),
         }
     }
+
+    //    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    //pub fn gtk_interface_reduced_motion(self, gtk_interface_reduced_motion: /*Ignored*/ReducedMotion) -> Self {
+    //    Self { builder: self.builder.property("gtk-interface-reduced-motion", gtk_interface_reduced_motion), }
+    //}
 
     pub fn gtk_keynav_use_caret(self, gtk_keynav_use_caret: bool) -> Self {
         Self {
