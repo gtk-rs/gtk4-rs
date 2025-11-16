@@ -216,6 +216,20 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
+        "GtkAccessibleHyperlinkClass",
+        Layout {
+            size: size_of::<GtkAccessibleHyperlinkClass>(),
+            alignment: align_of::<GtkAccessibleHyperlinkClass>(),
+        },
+    ),
+    (
+        "GtkAccessibleHypertextInterface",
+        Layout {
+            size: size_of::<GtkAccessibleHypertextInterface>(),
+            alignment: align_of::<GtkAccessibleHypertextInterface>(),
+        },
+    ),
+    (
         "GtkAccessibleInterface",
         Layout {
             size: size_of::<GtkAccessibleInterface>(),
@@ -1861,6 +1875,13 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
+        "GtkReducedMotion",
+        Layout {
+            size: size_of::<GtkReducedMotion>(),
+            alignment: align_of::<GtkReducedMotion>(),
+        },
+    ),
+    (
         "GtkRequestedSize",
         Layout {
             size: size_of::<GtkRequestedSize>(),
@@ -1879,6 +1900,13 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         Layout {
             size: size_of::<GtkResponseType>(),
             alignment: align_of::<GtkResponseType>(),
+        },
+    ),
+    (
+        "GtkRestoreReason",
+        Layout {
+            size: size_of::<GtkRestoreReason>(),
+            alignment: align_of::<GtkRestoreReason>(),
         },
     ),
     (
@@ -2173,6 +2201,27 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         Layout {
             size: size_of::<GtkStyleContextPrintFlags>(),
             alignment: align_of::<GtkStyleContextPrintFlags>(),
+        },
+    ),
+    (
+        "GtkSvgClass",
+        Layout {
+            size: size_of::<GtkSvgClass>(),
+            alignment: align_of::<GtkSvgClass>(),
+        },
+    ),
+    (
+        "GtkSvgError",
+        Layout {
+            size: size_of::<GtkSvgError>(),
+            alignment: align_of::<GtkSvgError>(),
+        },
+    ),
+    (
+        "GtkSvgLocation",
+        Layout {
+            size: size_of::<GtkSvgLocation>(),
+            alignment: align_of::<GtkSvgLocation>(),
         },
     ),
     (
@@ -2959,6 +3008,7 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(guint) GTK_DEBUG_MODULES", "8"),
     ("(guint) GTK_DEBUG_NO_CSS_CACHE", "512"),
     ("(guint) GTK_DEBUG_PRINTING", "64"),
+    ("(guint) GTK_DEBUG_SESSION", "4194304"),
     ("(guint) GTK_DEBUG_SIZE_REQUEST", "256"),
     ("(guint) GTK_DEBUG_SNAPSHOT", "16384"),
     ("(guint) GTK_DEBUG_TEXT", "1"),
@@ -3324,6 +3374,8 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(gint) GTK_RECENT_MANAGER_ERROR_READ", "4"),
     ("(gint) GTK_RECENT_MANAGER_ERROR_UNKNOWN", "6"),
     ("(gint) GTK_RECENT_MANAGER_ERROR_WRITE", "5"),
+    ("(gint) GTK_REDUCED_MOTION_NO_PREFERENCE", "0"),
+    ("(gint) GTK_REDUCED_MOTION_REDUCE", "1"),
     ("(gint) GTK_RESPONSE_ACCEPT", "-3"),
     ("(gint) GTK_RESPONSE_APPLY", "-10"),
     ("(gint) GTK_RESPONSE_CANCEL", "-6"),
@@ -3335,7 +3387,15 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(gint) GTK_RESPONSE_OK", "-5"),
     ("(gint) GTK_RESPONSE_REJECT", "-2"),
     ("(gint) GTK_RESPONSE_YES", "-8"),
+    ("(gint) GTK_RESTORE_REASON_LAUNCH", "1"),
+    ("(gint) GTK_RESTORE_REASON_PRISTINE", "0"),
+    ("(gint) GTK_RESTORE_REASON_RECOVER", "2"),
+    ("(gint) GTK_RESTORE_REASON_RESTORE", "3"),
     ("(gint) GTK_REVEALER_TRANSITION_TYPE_CROSSFADE", "1"),
+    ("(gint) GTK_REVEALER_TRANSITION_TYPE_FADE_SLIDE_DOWN", "13"),
+    ("(gint) GTK_REVEALER_TRANSITION_TYPE_FADE_SLIDE_LEFT", "11"),
+    ("(gint) GTK_REVEALER_TRANSITION_TYPE_FADE_SLIDE_RIGHT", "10"),
+    ("(gint) GTK_REVEALER_TRANSITION_TYPE_FADE_SLIDE_UP", "12"),
     ("(gint) GTK_REVEALER_TRANSITION_TYPE_NONE", "0"),
     ("(gint) GTK_REVEALER_TRANSITION_TYPE_SLIDE_DOWN", "5"),
     ("(gint) GTK_REVEALER_TRANSITION_TYPE_SLIDE_LEFT", "3"),
@@ -3464,6 +3524,12 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("GTK_STYLE_PROVIDER_PRIORITY_SETTINGS", "400"),
     ("GTK_STYLE_PROVIDER_PRIORITY_THEME", "200"),
     ("GTK_STYLE_PROVIDER_PRIORITY_USER", "800"),
+    ("(gint) GTK_SVG_ERROR_FAILED_RENDERING", "5"),
+    ("(gint) GTK_SVG_ERROR_FAILED_UPDATE", "4"),
+    ("(gint) GTK_SVG_ERROR_INVALID_ATTRIBUTE", "1"),
+    ("(gint) GTK_SVG_ERROR_INVALID_ELEMENT", "0"),
+    ("(gint) GTK_SVG_ERROR_INVALID_REFERENCE", "3"),
+    ("(gint) GTK_SVG_ERROR_MISSING_ATTRIBUTE", "2"),
     ("(gint) GTK_SYMBOLIC_COLOR_ACCENT", "4"),
     ("(gint) GTK_SYMBOLIC_COLOR_ERROR", "1"),
     ("(gint) GTK_SYMBOLIC_COLOR_FOREGROUND", "0"),

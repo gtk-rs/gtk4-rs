@@ -4609,6 +4609,7 @@ extern "C" {
     pub fn gdk_rgba_is_clear(rgba: *const GdkRGBA) -> gboolean;
     pub fn gdk_rgba_is_opaque(rgba: *const GdkRGBA) -> gboolean;
     pub fn gdk_rgba_parse(rgba: *mut GdkRGBA, spec: *const c_char) -> gboolean;
+    pub fn gdk_rgba_print(rgba: *const GdkRGBA, string: *mut glib::GString) -> *mut glib::GString;
     pub fn gdk_rgba_to_string(rgba: *const GdkRGBA) -> *mut c_char;
 
     //=========================================================================
@@ -5893,11 +5894,9 @@ extern "C" {
     // GdkScrollEvent
     //=========================================================================
     pub fn gdk_scroll_event_get_type() -> GType;
-    #[cfg(feature = "v4_20")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
-    pub fn gdk_scroll_event_get_relative_direction(
-        event: *mut GdkEvent,
-    ) -> GdkScrollRelativeDirection;
+    //#[cfg(feature = "v4_20")]
+    //#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    //pub fn gdk_scroll_event_get_relative_direction(event: /*Metadata mismatch*/*mut [c:type mismatch GdkEvent != GdkScrollRelativeDirection of ScrollRelativeDirection]) -> GdkScrollRelativeDirection;
     pub fn gdk_scroll_event_get_deltas(
         event: *mut GdkScrollEvent,
         delta_x: *mut c_double,
