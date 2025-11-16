@@ -9,6 +9,8 @@
 int main() {
     printf("%s;%zu;%zu\n", "GtkAccessibleAnnouncementPriority", sizeof(GtkAccessibleAnnouncementPriority), alignof(GtkAccessibleAnnouncementPriority));
     printf("%s;%zu;%zu\n", "GtkAccessibleAutocomplete", sizeof(GtkAccessibleAutocomplete), alignof(GtkAccessibleAutocomplete));
+    printf("%s;%zu;%zu\n", "GtkAccessibleHyperlinkClass", sizeof(GtkAccessibleHyperlinkClass), alignof(GtkAccessibleHyperlinkClass));
+    printf("%s;%zu;%zu\n", "GtkAccessibleHypertextInterface", sizeof(GtkAccessibleHypertextInterface), alignof(GtkAccessibleHypertextInterface));
     printf("%s;%zu;%zu\n", "GtkAccessibleInterface", sizeof(GtkAccessibleInterface), alignof(GtkAccessibleInterface));
     printf("%s;%zu;%zu\n", "GtkAccessibleInvalidState", sizeof(GtkAccessibleInvalidState), alignof(GtkAccessibleInvalidState));
     printf("%s;%zu;%zu\n", "GtkAccessiblePlatformState", sizeof(GtkAccessiblePlatformState), alignof(GtkAccessiblePlatformState));
@@ -244,9 +246,11 @@ int main() {
     printf("%s;%zu;%zu\n", "GtkRecentManager", sizeof(GtkRecentManager), alignof(GtkRecentManager));
     printf("%s;%zu;%zu\n", "GtkRecentManagerClass", sizeof(GtkRecentManagerClass), alignof(GtkRecentManagerClass));
     printf("%s;%zu;%zu\n", "GtkRecentManagerError", sizeof(GtkRecentManagerError), alignof(GtkRecentManagerError));
+    printf("%s;%zu;%zu\n", "GtkReducedMotion", sizeof(GtkReducedMotion), alignof(GtkReducedMotion));
     printf("%s;%zu;%zu\n", "GtkRequestedSize", sizeof(GtkRequestedSize), alignof(GtkRequestedSize));
     printf("%s;%zu;%zu\n", "GtkRequisition", sizeof(GtkRequisition), alignof(GtkRequisition));
     printf("%s;%zu;%zu\n", "GtkResponseType", sizeof(GtkResponseType), alignof(GtkResponseType));
+    printf("%s;%zu;%zu\n", "GtkRestoreReason", sizeof(GtkRestoreReason), alignof(GtkRestoreReason));
     printf("%s;%zu;%zu\n", "GtkRevealerTransitionType", sizeof(GtkRevealerTransitionType), alignof(GtkRevealerTransitionType));
     printf("%s;%zu;%zu\n", "GtkScale", sizeof(GtkScale), alignof(GtkScale));
     printf("%s;%zu;%zu\n", "GtkScaleButton", sizeof(GtkScaleButton), alignof(GtkScaleButton));
@@ -289,6 +293,9 @@ int main() {
     printf("%s;%zu;%zu\n", "GtkStyleContext", sizeof(GtkStyleContext), alignof(GtkStyleContext));
     printf("%s;%zu;%zu\n", "GtkStyleContextClass", sizeof(GtkStyleContextClass), alignof(GtkStyleContextClass));
     printf("%s;%zu;%zu\n", "GtkStyleContextPrintFlags", sizeof(GtkStyleContextPrintFlags), alignof(GtkStyleContextPrintFlags));
+    printf("%s;%zu;%zu\n", "GtkSvgClass", sizeof(GtkSvgClass), alignof(GtkSvgClass));
+    printf("%s;%zu;%zu\n", "GtkSvgError", sizeof(GtkSvgError), alignof(GtkSvgError));
+    printf("%s;%zu;%zu\n", "GtkSvgLocation", sizeof(GtkSvgLocation), alignof(GtkSvgLocation));
     printf("%s;%zu;%zu\n", "GtkSymbolicColor", sizeof(GtkSymbolicColor), alignof(GtkSymbolicColor));
     printf("%s;%zu;%zu\n", "GtkSymbolicPaintableInterface", sizeof(GtkSymbolicPaintableInterface), alignof(GtkSymbolicPaintableInterface));
     printf("%s;%zu;%zu\n", "GtkSystemSetting", sizeof(GtkSystemSetting), alignof(GtkSystemSetting));

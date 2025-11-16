@@ -730,13 +730,6 @@ mod password_entry_buffer;
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
 pub use self::password_entry_buffer::PasswordEntryBuffer;
 
-#[cfg(feature = "v4_22")]
-#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
-mod path_paintable;
-#[cfg(feature = "v4_22")]
-#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
-pub use self::path_paintable::PathPaintable;
-
 mod picture;
 pub use self::picture::Picture;
 
@@ -1762,9 +1755,6 @@ pub(crate) mod builders {
     #[cfg(feature = "v4_4")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
     pub use super::password_entry_buffer::PasswordEntryBufferBuilder;
-    #[cfg(feature = "v4_22")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
-    pub use super::path_paintable::PathPaintableBuilder;
     pub use super::picture::PictureBuilder;
     pub use super::popover::PopoverBuilder;
     pub use super::popover_menu::PopoverMenuBuilder;

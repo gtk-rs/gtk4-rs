@@ -6,7 +6,7 @@ use crate::{ffi, FillRule, PathPoint, Stroke};
 use glib::translate::*;
 
 glib::wrapper! {
-    #[derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
+    #[derive(Debug, PartialOrd, Ord, Hash)]
     pub struct Path(Shared<ffi::GskPath>);
 
     match fn {
@@ -17,6 +17,18 @@ glib::wrapper! {
 }
 
 impl Path {
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    #[doc(alias = "gsk_path_equal")]
+    fn equal(&self, path2: &Path) -> bool {
+        unsafe {
+            from_glib(ffi::gsk_path_equal(
+                self.to_glib_none().0,
+                path2.to_glib_none().0,
+            ))
+        }
+    }
+
     #[doc(alias = "gsk_path_get_bounds")]
     #[doc(alias = "get_bounds")]
     pub fn bounds(&self) -> Option<graphene::Rect> {
@@ -154,6 +166,19 @@ impl Path {
         }
     }
 }
+
+#[cfg(feature = "v4_22")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+impl PartialEq for Path {
+    #[inline]
+    fn eq(&self, other: &Self) -> bool {
+        self.equal(other)
+    }
+}
+#[cfg(feature = "v4_22")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+
+impl Eq for Path {}
 
 impl std::fmt::Display for Path {
     #[inline]
