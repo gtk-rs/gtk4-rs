@@ -17,7 +17,7 @@ walkdir = "2.5"
 xshell = "0.2"
 
 [target.'cfg(target_os = "linux")'.dependencies]
-ashpd = { version = "0.11", features = ["gtk4"] }
+ashpd = { version = "0.11", default-features = false, features = ["gtk4", "async-std"] }
 
 [build-dependencies]
 glib-build-tools = "0.20"
