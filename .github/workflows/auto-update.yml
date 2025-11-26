@@ -11,7 +11,7 @@ jobs:
 
     steps:
       - name: Checkout current repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           submodules: true
         
