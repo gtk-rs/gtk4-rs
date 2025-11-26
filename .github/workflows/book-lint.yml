@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     name: build
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - uses: actions-rs/toolchain@v1
         with:
           profile: minimal
