@@ -2,6 +2,9 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+#[cfg(feature = "v4_22")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+use crate::RestoreReason;
 use crate::{ffi, ApplicationInhibitFlags, Window};
 use glib::{
     object::ObjectType as _,
@@ -365,26 +368,113 @@ pub trait GtkApplicationExt: IsA<Application> + 'static {
         }
     }
 
-    //#[cfg(feature = "v4_22")]
-    //#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
-    //#[doc(alias = "restore-state")]
-    //fn connect_restore_state<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId {
-    //    Ignored reason: Gtk.RestoreReason
-    //}
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    #[doc(alias = "restore-state")]
+    fn connect_restore_state<F: Fn(&Self, RestoreReason, &glib::Variant) -> bool + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn restore_state_trampoline<
+            P: IsA<Application>,
+            F: Fn(&P, RestoreReason, &glib::Variant) -> bool + 'static,
+        >(
+            this: *mut ffi::GtkApplication,
+            reason: ffi::GtkRestoreReason,
+            state: *mut glib::ffi::GVariant,
+            f: glib::ffi::gpointer,
+        ) -> glib::ffi::gboolean {
+            let f: &F = &*(f as *const F);
+            f(
+                Application::from_glib_borrow(this).unsafe_cast_ref(),
+                from_glib(reason),
+                &from_glib_borrow(state),
+            )
+            .into_glib()
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                c"restore-state".as_ptr() as *const _,
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
+                    restore_state_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
 
-    //#[cfg(feature = "v4_22")]
-    //#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
-    //#[doc(alias = "restore-window")]
-    //fn connect_restore_window<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId {
-    //    Ignored reason: Gtk.RestoreReason
-    //}
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    #[doc(alias = "restore-window")]
+    fn connect_restore_window<F: Fn(&Self, RestoreReason, &glib::Variant) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn restore_window_trampoline<
+            P: IsA<Application>,
+            F: Fn(&P, RestoreReason, &glib::Variant) + 'static,
+        >(
+            this: *mut ffi::GtkApplication,
+            reason: ffi::GtkRestoreReason,
+            state: *mut glib::ffi::GVariant,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(
+                Application::from_glib_borrow(this).unsafe_cast_ref(),
+                from_glib(reason),
+                &from_glib_borrow(state),
+            )
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                c"restore-window".as_ptr() as *const _,
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
+                    restore_window_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
 
-    //#[cfg(feature = "v4_22")]
-    //#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
-    //#[doc(alias = "save-state")]
-    //fn connect_save_state<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId {
-    //    Ignored dict: GLib.VariantDict
-    //}
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    #[doc(alias = "save-state")]
+    fn connect_save_state<F: Fn(&Self, &glib::VariantDict) -> bool + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn save_state_trampoline<
+            P: IsA<Application>,
+            F: Fn(&P, &glib::VariantDict) -> bool + 'static,
+        >(
+            this: *mut ffi::GtkApplication,
+            dict: *mut glib::ffi::GVariantDict,
+            f: glib::ffi::gpointer,
+        ) -> glib::ffi::gboolean {
+            let f: &F = &*(f as *const F);
+            f(
+                Application::from_glib_borrow(this).unsafe_cast_ref(),
+                &from_glib_borrow(dict),
+            )
+            .into_glib()
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                c"save-state".as_ptr() as *const _,
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
+                    save_state_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
 
     #[doc(alias = "window-added")]
     fn connect_window_added<F: Fn(&Self, &Window) + 'static>(&self, f: F) -> SignalHandlerId {
