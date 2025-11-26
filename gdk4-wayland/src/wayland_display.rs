@@ -3,7 +3,7 @@
 #[cfg(any(feature = "wayland_crate", all(feature = "v4_4", feature = "egl")))]
 #[cfg_attr(
     docsrs,
-    doc(any(feature = "wayland_crate", all(feature = "v4_4", feature = "egl")))
+    doc(cfg(any(feature = "wayland_crate", all(feature = "v4_4", feature = "egl"))))
 )]
 use crate::ffi;
 #[cfg(any(feature = "wayland_crate", all(feature = "v4_4", feature = "egl")))]
