@@ -54,6 +54,7 @@ jobs:
         --extern-html-root-url=gl=https://docs.rs/gl/latest/
         --cfg docsrs
         -Zunstable-options --generate-link-to-definition
+      DOCS_RS: 1
     steps:
       - uses: actions/checkout@v4
         with:
