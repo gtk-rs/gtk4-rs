@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/auto/app_chooser_dialog.rs`."><title>app_chooser_dialog.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-e56847b5.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.92.0-nightly (4645a7988 2025-09-17)" data-channel="nightly" data-search-js="search-cb266a1a.js" data-stringdex-js="stringdex-5af928a3.js" data-settings-js="settings-c38705f0.js" ><script src="../../../static.files/storage-e2aeef58.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-6dc2a7f3.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-263c88ec.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/auto/app_chooser_dialog.rs`."><title>app_chooser_dialog.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-ca0dd0c4.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.93.0-nightly (80d8f292d 2025-11-25)" data-channel="nightly" data-search-js="search-680b2199.js" data-stringdex-js="stringdex-a3946164.js" data-settings-js="settings-c38705f0.js" ><script src="../../../static.files/storage-e2aeef58.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-a410ff4d.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-263c88ec.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
 
@@ -87,7 +87,7 @@
 <a href=#14 id=14 data-nosnippet>14</a>};
 <a href=#15 id=15 data-nosnippet>15</a><span class="kw">use </span><a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">std::boxed::Box</a> <span class="kw">as </span>Box_;
 <a href=#16 id=16 data-nosnippet>16</a>
-<a href=#17 id=17 data-nosnippet>17</a><a class="macro" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/macro.wrapper.html">glib::wrapper!</a> {
+<a href=#17 id=17 data-nosnippet>17</a><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/macro.wrapper.html">glib::wrapper!</a> {
 <a href=#18 id=18 data-nosnippet>18</a>    <span class="doccomment">/// The application selection widgets should be
 <a href=#19 id=19 data-nosnippet>19</a>    ///   implemented according to the design of each platform and/or
 <a href=#20 id=20 data-nosnippet>20</a>    ///   application requiring them.
@@ -666,7 +666,7 @@
 <a href=#593 id=593 data-nosnippet>593</a>    ///
 <a href=#594 id=594 data-nosnippet>594</a>    /// [`DialogExt`][trait@crate::prelude::DialogExt], [`GtkWindowExt`][trait@crate::prelude::GtkWindowExt], [`WidgetExt`][trait@crate::prelude::WidgetExt], [`trait@glib::ObjectExt`], [`AccessibleExt`][trait@crate::prelude::AccessibleExt], [`BuildableExt`][trait@crate::prelude::BuildableExt], [`ConstraintTargetExt`][trait@crate::prelude::ConstraintTargetExt], [`NativeExt`][trait@crate::prelude::NativeExt], [`RootExt`][trait@crate::prelude::RootExt], [`ShortcutManagerExt`][trait@crate::prelude::ShortcutManagerExt], [`AppChooserExt`][trait@crate::prelude::AppChooserExt], [`DialogExtManual`][trait@crate::prelude::DialogExtManual], [`WidgetExtManual`][trait@crate::prelude::WidgetExtManual], [`AccessibleExtManual`][trait@crate::prelude::AccessibleExtManual]
 <a href=#595 id=595 data-nosnippet>595</a>    </span><span class="attr">#[doc(alias = <span class="string">"GtkAppChooserDialog"</span>)]
-<a href=#596 id=596 data-nosnippet>596</a>    </span><span class="kw">pub struct </span><a href="../../../gtk4/struct.AppChooserDialog.html">AppChooserDialog</a>(Object&lt;<a href="../../../gtk4_sys/struct.GtkAppChooserDialog.html">ffi::GtkAppChooserDialog</a>&gt;) @extends <a href="dialog.rs.html#22-885">Dialog</a>, <a href="window.rs.html#21-781">Window</a>, <a href="widget.rs.html#19-864">Widget</a>, @implements <a href="accessible.rs.html#19-70">Accessible</a>, <a href="buildable.rs.html#8-31">Buildable</a>, <a href="constraint_target.rs.html#8-23">ConstraintTarget</a>, <a href="native.rs.html#8-33">Native</a>, <a href="root.rs.html#8-32">Root</a>, <a href="shortcut_manager.rs.html#8-30">ShortcutManager</a>, <a href="app_chooser.rs.html#9-351">AppChooser</a>;
+<a href=#596 id=596 data-nosnippet>596</a>    </span><span class="kw">pub struct </span><a href="#17-601">AppChooserDialog</a>(Object&lt;ffi::<a href="../../../gtk4_sys/struct.GtkAppChooserDialog.html">GtkAppChooserDialog</a>&gt;) @extends <a href="dialog.rs.html#22-885">Dialog</a>, <a href="window.rs.html#21-781">Window</a>, <a href="widget.rs.html#19-864">Widget</a>, @implements <a href="accessible.rs.html#19-70">Accessible</a>, <a href="buildable.rs.html#8-31">Buildable</a>, <a href="constraint_target.rs.html#8-23">ConstraintTarget</a>, <a href="native.rs.html#8-33">Native</a>, <a href="root.rs.html#8-32">Root</a>, <a href="shortcut_manager.rs.html#8-30">ShortcutManager</a>, <a href="app_chooser.rs.html#9-351">AppChooser</a>;
 <a href=#597 id=597 data-nosnippet>597</a>
 <a href=#598 id=598 data-nosnippet>598</a>    <span class="kw">match fn </span>{
 <a href=#599 id=599 data-nosnippet>599</a>        type_ =&gt; || ffi::gtk_app_chooser_dialog_get_type(),
@@ -697,16 +697,16 @@
 <a href=#624 id=624 data-nosnippet>624</a>    </span><span class="kw">pub fn </span>new(
 <a href=#625 id=625 data-nosnippet>625</a>        parent: <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;<span class="kw-2">&amp;</span><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html">IsA</a>&lt;<a href="window.rs.html#21-781">Window</a>&gt;&gt;,
 <a href=#626 id=626 data-nosnippet>626</a>        flags: <a href="flags.rs.html#481-502">DialogFlags</a>,
-<a href=#627 id=627 data-nosnippet>627</a>        file: <span class="kw-2">&amp;</span><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html">IsA</a>&lt;<a href="https://gtk-rs.org/gtk-rs-core/git/docs/gio/auto/file/struct.File.html">gio::File</a>&gt;,
+<a href=#627 id=627 data-nosnippet>627</a>        file: <span class="kw-2">&amp;</span><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html">IsA</a>&lt;gio::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/gio/auto/file/struct.File.html">File</a>&gt;,
 <a href=#628 id=628 data-nosnippet>628</a>    ) -&gt; <a href="#17-601">AppChooserDialog</a> {
-<a href=#629 id=629 data-nosnippet>629</a>        <a class="macro" href="../rt.rs.html#24-36">assert_initialized_main_thread!</a>();
+<a href=#629 id=629 data-nosnippet>629</a>        <a href="../rt.rs.html#24-36">assert_initialized_main_thread!</a>();
 <a href=#630 id=630 data-nosnippet>630</a>        <span class="kw">unsafe </span>{
-<a href=#631 id=631 data-nosnippet>631</a>            <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.FromGlibPtrNone.html#tymethod.from_glib_none">Widget::from_glib_none</a>(<a href="../../../gtk4_sys/fn.gtk_app_chooser_dialog_new.html">ffi::gtk_app_chooser_dialog_new</a>(
+<a href=#631 id=631 data-nosnippet>631</a>            <a href="widget.rs.html#19-864">Widget</a>::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.FromGlibPtrNone.html#tymethod.from_glib_none">from_glib_none</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_app_chooser_dialog_new.html">gtk_app_chooser_dialog_new</a>(
 <a href=#632 id=632 data-nosnippet>632</a>                <a href="#625">parent</a>.<a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#method.map">map</a>(|p| <a href="#632">p</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>()).<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
 <a href=#633 id=633 data-nosnippet>633</a>                <a href="#626">flags</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>(),
 <a href=#634 id=634 data-nosnippet>634</a>                <a href="#627">file</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
 <a href=#635 id=635 data-nosnippet>635</a>            ))
-<a href=#636 id=636 data-nosnippet>636</a>            .<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.Cast.html#tymethod.unsafe_cast">unsafe_cast</a>()
+<a href=#636 id=636 data-nosnippet>636</a>            .<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.Cast.html#method.unsafe_cast">unsafe_cast</a>()
 <a href=#637 id=637 data-nosnippet>637</a>        }
 <a href=#638 id=638 data-nosnippet>638</a>    }
 <a href=#639 id=639 data-nosnippet>639</a>
@@ -736,14 +736,14 @@
 <a href=#663 id=663 data-nosnippet>663</a>        flags: <a href="flags.rs.html#481-502">DialogFlags</a>,
 <a href=#664 id=664 data-nosnippet>664</a>        content_type: <span class="kw-2">&amp;</span><a href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>,
 <a href=#665 id=665 data-nosnippet>665</a>    ) -&gt; <a href="#17-601">AppChooserDialog</a> {
-<a href=#666 id=666 data-nosnippet>666</a>        <a class="macro" href="../rt.rs.html#24-36">assert_initialized_main_thread!</a>();
+<a href=#666 id=666 data-nosnippet>666</a>        <a href="../rt.rs.html#24-36">assert_initialized_main_thread!</a>();
 <a href=#667 id=667 data-nosnippet>667</a>        <span class="kw">unsafe </span>{
-<a href=#668 id=668 data-nosnippet>668</a>            <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.FromGlibPtrNone.html#tymethod.from_glib_none">Widget::from_glib_none</a>(<a href="../../../gtk4_sys/fn.gtk_app_chooser_dialog_new_for_content_type.html">ffi::gtk_app_chooser_dialog_new_for_content_type</a>(
+<a href=#668 id=668 data-nosnippet>668</a>            <a href="widget.rs.html#19-864">Widget</a>::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.FromGlibPtrNone.html#tymethod.from_glib_none">from_glib_none</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_app_chooser_dialog_new_for_content_type.html">gtk_app_chooser_dialog_new_for_content_type</a>(
 <a href=#669 id=669 data-nosnippet>669</a>                <a href="#662">parent</a>.<a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#method.map">map</a>(|p| <a href="#669">p</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>()).<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
 <a href=#670 id=670 data-nosnippet>670</a>                <a href="#663">flags</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>(),
 <a href=#671 id=671 data-nosnippet>671</a>                <a href="#664">content_type</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
 <a href=#672 id=672 data-nosnippet>672</a>            ))
-<a href=#673 id=673 data-nosnippet>673</a>            .<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.Cast.html#tymethod.unsafe_cast">unsafe_cast</a>()
+<a href=#673 id=673 data-nosnippet>673</a>            .<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.Cast.html#method.unsafe_cast">unsafe_cast</a>()
 <a href=#674 id=674 data-nosnippet>674</a>        }
 <a href=#675 id=675 data-nosnippet>675</a>    }
 <a href=#676 id=676 data-nosnippet>676</a>
@@ -761,9 +761,9 @@
 <a href=#688 id=688 data-nosnippet>688</a>    #[allow(deprecated)]
 <a href=#689 id=689 data-nosnippet>689</a>    #[doc(alias = <span class="string">"gtk_app_chooser_dialog_get_heading"</span>)]
 <a href=#690 id=690 data-nosnippet>690</a>    #[doc(alias = <span class="string">"get_heading"</span>)]
-<a href=#691 id=691 data-nosnippet>691</a>    </span><span class="kw">pub fn </span>heading(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/gstring/struct.GString.html">glib::GString</a>&gt; {
+<a href=#691 id=691 data-nosnippet>691</a>    </span><span class="kw">pub fn </span>heading(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/gstring/struct.GString.html">GString</a>&gt; {
 <a href=#692 id=692 data-nosnippet>692</a>        <span class="kw">unsafe </span>{
-<a href=#693 id=693 data-nosnippet>693</a>            <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib_none.html">from_glib_none</a>(<a href="../../../gtk4_sys/fn.gtk_app_chooser_dialog_get_heading.html">ffi::gtk_app_chooser_dialog_get_heading</a>(
+<a href=#693 id=693 data-nosnippet>693</a>            <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib_none.html">from_glib_none</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_app_chooser_dialog_get_heading.html">gtk_app_chooser_dialog_get_heading</a>(
 <a href=#694 id=694 data-nosnippet>694</a>                <a class="self" href="#691">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
 <a href=#695 id=695 data-nosnippet>695</a>            ))
 <a href=#696 id=696 data-nosnippet>696</a>        }
@@ -784,7 +784,7 @@
 <a href=#711 id=711 data-nosnippet>711</a>    #[doc(alias = <span class="string">"get_widget"</span>)]
 <a href=#712 id=712 data-nosnippet>712</a>    </span><span class="kw">pub fn </span>widget(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="widget.rs.html#19-864">Widget</a> {
 <a href=#713 id=713 data-nosnippet>713</a>        <span class="kw">unsafe </span>{
-<a href=#714 id=714 data-nosnippet>714</a>            <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib_none.html">from_glib_none</a>(<a href="../../../gtk4_sys/fn.gtk_app_chooser_dialog_get_widget.html">ffi::gtk_app_chooser_dialog_get_widget</a>(
+<a href=#714 id=714 data-nosnippet>714</a>            <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib_none.html">from_glib_none</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_app_chooser_dialog_get_widget.html">gtk_app_chooser_dialog_get_widget</a>(
 <a href=#715 id=715 data-nosnippet>715</a>                <a class="self" href="#712">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
 <a href=#716 id=716 data-nosnippet>716</a>            ))
 <a href=#717 id=717 data-nosnippet>717</a>        }
@@ -805,7 +805,7 @@
 <a href=#732 id=732 data-nosnippet>732</a>    #[doc(alias = <span class="string">"heading"</span>)]
 <a href=#733 id=733 data-nosnippet>733</a>    </span><span class="kw">pub fn </span>set_heading(<span class="kw-2">&amp;</span><span class="self">self</span>, heading: <span class="kw-2">&amp;</span><a href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>) {
 <a href=#734 id=734 data-nosnippet>734</a>        <span class="kw">unsafe </span>{
-<a href=#735 id=735 data-nosnippet>735</a>            <a href="../../../gtk4_sys/fn.gtk_app_chooser_dialog_set_heading.html">ffi::gtk_app_chooser_dialog_set_heading</a>(
+<a href=#735 id=735 data-nosnippet>735</a>            ffi::<a href="../../../gtk4_sys/fn.gtk_app_chooser_dialog_set_heading.html">gtk_app_chooser_dialog_set_heading</a>(
 <a href=#736 id=736 data-nosnippet>736</a>                <a class="self" href="#733">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
 <a href=#737 id=737 data-nosnippet>737</a>                <a href="#733">heading</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
 <a href=#738 id=738 data-nosnippet>738</a>            );
@@ -816,14 +816,14 @@
 <a href=#743 id=743 data-nosnippet>743</a>    ///
 <a href=#744 id=744 data-nosnippet>744</a>    /// The dialog's [`AppChooserWidget`][crate::AppChooserWidget] content type will
 <a href=#745 id=745 data-nosnippet>745</a>    /// be guessed from the file, if present.
-<a href=#746 id=746 data-nosnippet>746</a>    </span><span class="kw">pub fn </span>gfile(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;<a href="https://gtk-rs.org/gtk-rs-core/git/docs/gio/auto/file/struct.File.html">gio::File</a>&gt; {
-<a href=#747 id=747 data-nosnippet>747</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.ObjectExt.html#tymethod.property">ObjectExt::property</a>(<a class="self" href="#746">self</a>, <span class="string">"gfile"</span>)
+<a href=#746 id=746 data-nosnippet>746</a>    </span><span class="kw">pub fn </span>gfile(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;gio::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/gio/auto/file/struct.File.html">File</a>&gt; {
+<a href=#747 id=747 data-nosnippet>747</a>        ObjectExt::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.ObjectExt.html#tymethod.property">property</a>(<a class="self" href="#746">self</a>, <span class="string">"gfile"</span>)
 <a href=#748 id=748 data-nosnippet>748</a>    }
 <a href=#749 id=749 data-nosnippet>749</a>
 <a href=#750 id=750 data-nosnippet>750</a>    <span class="attr">#[doc(alias = <span class="string">"heading"</span>)]
 <a href=#751 id=751 data-nosnippet>751</a>    </span><span class="kw">pub fn </span>connect_heading_notify&lt;F: <a href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html">Fn</a>(<span class="kw-2">&amp;</span><span class="self">Self</span>) + <span class="lifetime">'static</span>&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, f: F) -&gt; <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html">SignalHandlerId</a> {
 <a href=#752 id=752 data-nosnippet>752</a>        <span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn </span>notify_heading_trampoline&lt;F: <a href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html">Fn</a>(<span class="kw-2">&amp;</span><a href="#17-601">AppChooserDialog</a>) + <span class="lifetime">'static</span>&gt;(
-<a href=#753 id=753 data-nosnippet>753</a>            this: <span class="kw-2">*mut </span><a href="../../../gtk4_sys/struct.GtkAppChooserDialog.html">ffi::GtkAppChooserDialog</a>,
+<a href=#753 id=753 data-nosnippet>753</a>            this: <span class="kw-2">*mut </span>ffi::<a href="../../../gtk4_sys/struct.GtkAppChooserDialog.html">GtkAppChooserDialog</a>,
 <a href=#754 id=754 data-nosnippet>754</a>            _param_spec: glib::ffi::gpointer,
 <a href=#755 id=755 data-nosnippet>755</a>            f: glib::ffi::gpointer,
 <a href=#756 id=756 data-nosnippet>756</a>        ) {
@@ -831,15 +831,16 @@
 <a href=#758 id=758 data-nosnippet>758</a>            <a href="#757">f</a>(<span class="kw-2">&amp;</span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib_borrow.html">from_glib_borrow</a>(<a href="#753">this</a>))
 <a href=#759 id=759 data-nosnippet>759</a>        }
 <a href=#760 id=760 data-nosnippet>760</a>        <span class="kw">unsafe </span>{
-<a href=#761 id=761 data-nosnippet>761</a>            <span class="kw">let </span>f: <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">Box_</a>&lt;F&gt; = <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html#method.new">Box_::new</a>(<a href="#751">f</a>);
+<a href=#761 id=761 data-nosnippet>761</a>            <span class="kw">let </span>f: <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">Box_</a>&lt;F&gt; = <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">Box_</a>::<a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html#method.new">new</a>(<a href="#751">f</a>);
 <a href=#762 id=762 data-nosnippet>762</a>            <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/fn.connect_raw.html">connect_raw</a>(
 <a href=#763 id=763 data-nosnippet>763</a>                <a class="self" href="#751">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.ObjectType.html#tymethod.as_ptr">as_ptr</a>() <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>,
 <a href=#764 id=764 data-nosnippet>764</a>                <span class="string">c"notify::heading"</span>.<a href="https://doc.rust-lang.org/nightly/core/ffi/c_str/struct.CStr.html#method.as_ptr">as_ptr</a>() <span class="kw">as </span><span class="kw-2">*const </span><span class="kw">_</span>,
-<a href=#765 id=765 data-nosnippet>765</a>                <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.Some">Some</a>(<a href="https://doc.rust-lang.org/nightly/core/intrinsics/fn.transmute.html">std::mem::transmute</a>::&lt;<span class="kw-2">*const </span>(), <span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn</span>()&gt;(
+<a href=#765 id=765 data-nosnippet>765</a>                <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.Some">Some</a>(std::mem::<a href="https://doc.rust-lang.org/nightly/core/intrinsics/fn.transmute.html">transmute</a>::&lt;<span class="kw-2">*const </span>(), <span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn</span>()&gt;(
 <a href=#766 id=766 data-nosnippet>766</a>                    <a href="#752-759">notify_heading_trampoline</a>::&lt;F&gt; <span class="kw">as </span><span class="kw-2">*const </span>(),
 <a href=#767 id=767 data-nosnippet>767</a>                )),
-<a href=#768 id=768 data-nosnippet>768</a>                <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html#method.into_raw">Box_::into_raw</a>(<a href="#761">f</a>),
+<a href=#768 id=768 data-nosnippet>768</a>                <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">Box_</a>::<a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html#method.into_raw">into_raw</a>(<a href="#761">f</a>),
 <a href=#769 id=769 data-nosnippet>769</a>            )
 <a href=#770 id=770 data-nosnippet>770</a>        }
 <a href=#771 id=771 data-nosnippet>771</a>    }
-<a href=#772 id=772 data-nosnippet>772</a>}</code></pre></div></section></main></body></html>
+<a href=#772 id=772 data-nosnippet>772</a>}
+</code></pre></div></section></main></body></html>

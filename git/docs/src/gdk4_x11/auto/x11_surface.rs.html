@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gdk4-x11/src/auto/x11_surface.rs`."><title>x11_surface.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-e56847b5.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gdk4_x11" data-themes="" data-resource-suffix="" data-rustdoc-version="1.92.0-nightly (4645a7988 2025-09-17)" data-channel="nightly" data-search-js="search-cb266a1a.js" data-stringdex-js="stringdex-5af928a3.js" data-settings-js="settings-c38705f0.js" ><script src="../../../static.files/storage-e2aeef58.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-6dc2a7f3.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-263c88ec.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gdk4-x11/src/auto/x11_surface.rs`."><title>x11_surface.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-ca0dd0c4.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gdk4_x11" data-themes="" data-resource-suffix="" data-rustdoc-version="1.93.0-nightly (80d8f292d 2025-11-25)" data-channel="nightly" data-search-js="search-680b2199.js" data-stringdex-js="stringdex-a3946164.js" data-settings-js="settings-c38705f0.js" ><script src="../../../static.files/storage-e2aeef58.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-a410ff4d.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-263c88ec.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
 
@@ -79,14 +79,14 @@
 <a href=#6 id=6 data-nosnippet>6</a></span><span class="kw">use </span><a href="../../../gdk4_x11_sys/index.html"><span class="kw">crate</span>::ffi</a>;
 <a href=#7 id=7 data-nosnippet>7</a><span class="kw">use </span>glib::{<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/prelude/index.html">prelude</a>::<span class="kw-2">*</span>, <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/index.html">translate</a>::<span class="kw-2">*</span>};
 <a href=#8 id=8 data-nosnippet>8</a>
-<a href=#9 id=9 data-nosnippet>9</a><a class="macro" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/macro.wrapper.html">glib::wrapper!</a> {
+<a href=#9 id=9 data-nosnippet>9</a><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/macro.wrapper.html">glib::wrapper!</a> {
 <a href=#10 id=10 data-nosnippet>10</a>    <span class="doccomment">///
 <a href=#11 id=11 data-nosnippet>11</a>    ///
 <a href=#12 id=12 data-nosnippet>12</a>    /// # Implements
 <a href=#13 id=13 data-nosnippet>13</a>    ///
 <a href=#14 id=14 data-nosnippet>14</a>    /// [`trait@gdk::prelude::SurfaceExt`]
 <a href=#15 id=15 data-nosnippet>15</a>    </span><span class="attr">#[doc(alias = <span class="string">"GdkX11Surface"</span>)]
-<a href=#16 id=16 data-nosnippet>16</a>    </span><span class="kw">pub struct </span><a href="../../../gdk4_x11/struct.X11Surface.html">X11Surface</a>(Object&lt;<a href="../../../gdk4_x11_sys/struct.GdkX11Surface.html">ffi::GdkX11Surface</a>, <a href="../../../gdk4_x11_sys/type.GdkX11SurfaceClass.html">ffi::GdkX11SurfaceClass</a>&gt;) @extends <a href="../../../gdk4/auto/surface/struct.Surface.html">gdk::Surface</a>;
+<a href=#16 id=16 data-nosnippet>16</a>    </span><span class="kw">pub struct </span><a href="#9-21">X11Surface</a>(Object&lt;ffi::<a href="../../../gdk4_x11_sys/struct.GdkX11Surface.html">GdkX11Surface</a>, ffi::<a href="../../../gdk4_x11_sys/type.GdkX11SurfaceClass.html">GdkX11SurfaceClass</a>&gt;) @extends gdk::<a href="../../../gdk4/auto/surface/struct.Surface.html">Surface</a>;
 <a href=#17 id=17 data-nosnippet>17</a>
 <a href=#18 id=18 data-nosnippet>18</a>    <span class="kw">match fn </span>{
 <a href=#19 id=19 data-nosnippet>19</a>        type_ =&gt; || ffi::gdk_x11_surface_get_type(),
@@ -107,7 +107,7 @@
 <a href=#34 id=34 data-nosnippet>34</a>    #[doc(alias = <span class="string">"gdk_x11_surface_get_desktop"</span>)]
 <a href=#35 id=35 data-nosnippet>35</a>    #[doc(alias = <span class="string">"get_desktop"</span>)]
 <a href=#36 id=36 data-nosnippet>36</a>    </span><span class="kw">pub fn </span>desktop(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a> {
-<a href=#37 id=37 data-nosnippet>37</a>        <span class="kw">unsafe </span>{ <a href="../../../gdk4_x11_sys/fn.gdk_x11_surface_get_desktop.html">ffi::gdk_x11_surface_get_desktop</a>(<a class="self" href="#36">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>) }
+<a href=#37 id=37 data-nosnippet>37</a>        <span class="kw">unsafe </span>{ ffi::<a href="../../../gdk4_x11_sys/fn.gdk_x11_surface_get_desktop.html">gdk_x11_surface_get_desktop</a>(<a class="self" href="#36">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>) }
 <a href=#38 id=38 data-nosnippet>38</a>    }
 <a href=#39 id=39 data-nosnippet>39</a>
 <a href=#40 id=40 data-nosnippet>40</a>    <span class="doccomment">/// Returns the group this surface belongs to.
@@ -122,8 +122,8 @@
 <a href=#49 id=49 data-nosnippet>49</a>    #[allow(deprecated)]
 <a href=#50 id=50 data-nosnippet>50</a>    #[doc(alias = <span class="string">"gdk_x11_surface_get_group"</span>)]
 <a href=#51 id=51 data-nosnippet>51</a>    #[doc(alias = <span class="string">"get_group"</span>)]
-<a href=#52 id=52 data-nosnippet>52</a>    </span><span class="kw">pub fn </span>group(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;<a href="../../../gdk4/auto/surface/struct.Surface.html">gdk::Surface</a>&gt; {
-<a href=#53 id=53 data-nosnippet>53</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib_none.html">from_glib_none</a>(<a href="../../../gdk4_x11_sys/fn.gdk_x11_surface_get_group.html">ffi::gdk_x11_surface_get_group</a>(<a class="self" href="#52">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
+<a href=#52 id=52 data-nosnippet>52</a>    </span><span class="kw">pub fn </span>group(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;gdk::<a href="../../../gdk4/auto/surface/struct.Surface.html">Surface</a>&gt; {
+<a href=#53 id=53 data-nosnippet>53</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib_none.html">from_glib_none</a>(ffi::<a href="../../../gdk4_x11_sys/fn.gdk_x11_surface_get_group.html">gdk_x11_surface_get_group</a>(<a class="self" href="#52">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#54 id=54 data-nosnippet>54</a>    }
 <a href=#55 id=55 data-nosnippet>55</a>
 <a href=#56 id=56 data-nosnippet>56</a>    <span class="doccomment">/// Moves the surface to the correct workspace when running under a
@@ -138,7 +138,7 @@
 <a href=#65 id=65 data-nosnippet>65</a>    #[doc(alias = <span class="string">"gdk_x11_surface_move_to_current_desktop"</span>)]
 <a href=#66 id=66 data-nosnippet>66</a>    </span><span class="kw">pub fn </span>move_to_current_desktop(<span class="kw-2">&amp;</span><span class="self">self</span>) {
 <a href=#67 id=67 data-nosnippet>67</a>        <span class="kw">unsafe </span>{
-<a href=#68 id=68 data-nosnippet>68</a>            <a href="../../../gdk4_x11_sys/fn.gdk_x11_surface_move_to_current_desktop.html">ffi::gdk_x11_surface_move_to_current_desktop</a>(<a class="self" href="#66">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>);
+<a href=#68 id=68 data-nosnippet>68</a>            ffi::<a href="../../../gdk4_x11_sys/fn.gdk_x11_surface_move_to_current_desktop.html">gdk_x11_surface_move_to_current_desktop</a>(<a class="self" href="#66">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>);
 <a href=#69 id=69 data-nosnippet>69</a>        }
 <a href=#70 id=70 data-nosnippet>70</a>    }
 <a href=#71 id=71 data-nosnippet>71</a>
@@ -155,7 +155,7 @@
 <a href=#82 id=82 data-nosnippet>82</a>    #[doc(alias = <span class="string">"gdk_x11_surface_move_to_desktop"</span>)]
 <a href=#83 id=83 data-nosnippet>83</a>    </span><span class="kw">pub fn </span>move_to_desktop(<span class="kw-2">&amp;</span><span class="self">self</span>, desktop: <a href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>) {
 <a href=#84 id=84 data-nosnippet>84</a>        <span class="kw">unsafe </span>{
-<a href=#85 id=85 data-nosnippet>85</a>            <a href="../../../gdk4_x11_sys/fn.gdk_x11_surface_move_to_desktop.html">ffi::gdk_x11_surface_move_to_desktop</a>(<a class="self" href="#83">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>, <a href="#83">desktop</a>);
+<a href=#85 id=85 data-nosnippet>85</a>            ffi::<a href="../../../gdk4_x11_sys/fn.gdk_x11_surface_move_to_desktop.html">gdk_x11_surface_move_to_desktop</a>(<a class="self" href="#83">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>, <a href="#83">desktop</a>);
 <a href=#86 id=86 data-nosnippet>86</a>        }
 <a href=#87 id=87 data-nosnippet>87</a>    }
 <a href=#88 id=88 data-nosnippet>88</a>
@@ -175,7 +175,7 @@
 <a href=#102 id=102 data-nosnippet>102</a>    #[doc(alias = <span class="string">"gdk_x11_surface_set_frame_sync_enabled"</span>)]
 <a href=#103 id=103 data-nosnippet>103</a>    </span><span class="kw">pub fn </span>set_frame_sync_enabled(<span class="kw-2">&amp;</span><span class="self">self</span>, frame_sync_enabled: <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) {
 <a href=#104 id=104 data-nosnippet>104</a>        <span class="kw">unsafe </span>{
-<a href=#105 id=105 data-nosnippet>105</a>            <a href="../../../gdk4_x11_sys/fn.gdk_x11_surface_set_frame_sync_enabled.html">ffi::gdk_x11_surface_set_frame_sync_enabled</a>(
+<a href=#105 id=105 data-nosnippet>105</a>            ffi::<a href="../../../gdk4_x11_sys/fn.gdk_x11_surface_set_frame_sync_enabled.html">gdk_x11_surface_set_frame_sync_enabled</a>(
 <a href=#106 id=106 data-nosnippet>106</a>                <a class="self" href="#103">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
 <a href=#107 id=107 data-nosnippet>107</a>                <a href="#103">frame_sync_enabled</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>(),
 <a href=#108 id=108 data-nosnippet>108</a>            );
@@ -192,9 +192,9 @@
 <a href=#119 id=119 data-nosnippet>119</a>    </span><span class="attr">#[cfg_attr(feature = <span class="string">"v4_18"</span>, deprecated = <span class="string">"Since 4.18"</span>)]
 <a href=#120 id=120 data-nosnippet>120</a>    #[allow(deprecated)]
 <a href=#121 id=121 data-nosnippet>121</a>    #[doc(alias = <span class="string">"gdk_x11_surface_set_group"</span>)]
-<a href=#122 id=122 data-nosnippet>122</a>    </span><span class="kw">pub fn </span>set_group(<span class="kw-2">&amp;</span><span class="self">self</span>, leader: <span class="kw-2">&amp;</span><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html">IsA</a>&lt;<a href="../../../gdk4/auto/surface/struct.Surface.html">gdk::Surface</a>&gt;) {
+<a href=#122 id=122 data-nosnippet>122</a>    </span><span class="kw">pub fn </span>set_group(<span class="kw-2">&amp;</span><span class="self">self</span>, leader: <span class="kw-2">&amp;</span><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html">IsA</a>&lt;gdk::<a href="../../../gdk4/auto/surface/struct.Surface.html">Surface</a>&gt;) {
 <a href=#123 id=123 data-nosnippet>123</a>        <span class="kw">unsafe </span>{
-<a href=#124 id=124 data-nosnippet>124</a>            <a href="../../../gdk4_x11_sys/fn.gdk_x11_surface_set_group.html">ffi::gdk_x11_surface_set_group</a>(<a class="self" href="#122">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>, <a href="#122">leader</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>);
+<a href=#124 id=124 data-nosnippet>124</a>            ffi::<a href="../../../gdk4_x11_sys/fn.gdk_x11_surface_set_group.html">gdk_x11_surface_set_group</a>(<a class="self" href="#122">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>, <a href="#122">leader</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>);
 <a href=#125 id=125 data-nosnippet>125</a>        }
 <a href=#126 id=126 data-nosnippet>126</a>    }
 <a href=#127 id=127 data-nosnippet>127</a>
@@ -210,7 +210,7 @@
 <a href=#137 id=137 data-nosnippet>137</a>    #[doc(alias = <span class="string">"gdk_x11_surface_set_skip_pager_hint"</span>)]
 <a href=#138 id=138 data-nosnippet>138</a>    </span><span class="kw">pub fn </span>set_skip_pager_hint(<span class="kw-2">&amp;</span><span class="self">self</span>, skips_pager: <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) {
 <a href=#139 id=139 data-nosnippet>139</a>        <span class="kw">unsafe </span>{
-<a href=#140 id=140 data-nosnippet>140</a>            <a href="../../../gdk4_x11_sys/fn.gdk_x11_surface_set_skip_pager_hint.html">ffi::gdk_x11_surface_set_skip_pager_hint</a>(
+<a href=#140 id=140 data-nosnippet>140</a>            ffi::<a href="../../../gdk4_x11_sys/fn.gdk_x11_surface_set_skip_pager_hint.html">gdk_x11_surface_set_skip_pager_hint</a>(
 <a href=#141 id=141 data-nosnippet>141</a>                <a class="self" href="#138">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
 <a href=#142 id=142 data-nosnippet>142</a>                <a href="#138">skips_pager</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>(),
 <a href=#143 id=143 data-nosnippet>143</a>            );
@@ -229,7 +229,7 @@
 <a href=#156 id=156 data-nosnippet>156</a>    #[doc(alias = <span class="string">"gdk_x11_surface_set_skip_taskbar_hint"</span>)]
 <a href=#157 id=157 data-nosnippet>157</a>    </span><span class="kw">pub fn </span>set_skip_taskbar_hint(<span class="kw-2">&amp;</span><span class="self">self</span>, skips_taskbar: <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) {
 <a href=#158 id=158 data-nosnippet>158</a>        <span class="kw">unsafe </span>{
-<a href=#159 id=159 data-nosnippet>159</a>            <a href="../../../gdk4_x11_sys/fn.gdk_x11_surface_set_skip_taskbar_hint.html">ffi::gdk_x11_surface_set_skip_taskbar_hint</a>(
+<a href=#159 id=159 data-nosnippet>159</a>            ffi::<a href="../../../gdk4_x11_sys/fn.gdk_x11_surface_set_skip_taskbar_hint.html">gdk_x11_surface_set_skip_taskbar_hint</a>(
 <a href=#160 id=160 data-nosnippet>160</a>                <a class="self" href="#157">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
 <a href=#161 id=161 data-nosnippet>161</a>                <a href="#157">skips_taskbar</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>(),
 <a href=#162 id=162 data-nosnippet>162</a>            );
@@ -255,7 +255,7 @@
 <a href=#182 id=182 data-nosnippet>182</a>    #[doc(alias = <span class="string">"gdk_x11_surface_set_theme_variant"</span>)]
 <a href=#183 id=183 data-nosnippet>183</a>    </span><span class="kw">pub fn </span>set_theme_variant(<span class="kw-2">&amp;</span><span class="self">self</span>, variant: <span class="kw-2">&amp;</span><a href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>) {
 <a href=#184 id=184 data-nosnippet>184</a>        <span class="kw">unsafe </span>{
-<a href=#185 id=185 data-nosnippet>185</a>            <a href="../../../gdk4_x11_sys/fn.gdk_x11_surface_set_theme_variant.html">ffi::gdk_x11_surface_set_theme_variant</a>(<a class="self" href="#183">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>, <a href="#183">variant</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>);
+<a href=#185 id=185 data-nosnippet>185</a>            ffi::<a href="../../../gdk4_x11_sys/fn.gdk_x11_surface_set_theme_variant.html">gdk_x11_surface_set_theme_variant</a>(<a class="self" href="#183">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>, <a href="#183">variant</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>);
 <a href=#186 id=186 data-nosnippet>186</a>        }
 <a href=#187 id=187 data-nosnippet>187</a>    }
 <a href=#188 id=188 data-nosnippet>188</a>
@@ -271,7 +271,7 @@
 <a href=#198 id=198 data-nosnippet>198</a>    #[doc(alias = <span class="string">"gdk_x11_surface_set_urgency_hint"</span>)]
 <a href=#199 id=199 data-nosnippet>199</a>    </span><span class="kw">pub fn </span>set_urgency_hint(<span class="kw-2">&amp;</span><span class="self">self</span>, urgent: <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) {
 <a href=#200 id=200 data-nosnippet>200</a>        <span class="kw">unsafe </span>{
-<a href=#201 id=201 data-nosnippet>201</a>            <a href="../../../gdk4_x11_sys/fn.gdk_x11_surface_set_urgency_hint.html">ffi::gdk_x11_surface_set_urgency_hint</a>(<a class="self" href="#199">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>, <a href="#199">urgent</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>());
+<a href=#201 id=201 data-nosnippet>201</a>            ffi::<a href="../../../gdk4_x11_sys/fn.gdk_x11_surface_set_urgency_hint.html">gdk_x11_surface_set_urgency_hint</a>(<a class="self" href="#199">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>, <a href="#199">urgent</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>());
 <a href=#202 id=202 data-nosnippet>202</a>        }
 <a href=#203 id=203 data-nosnippet>203</a>    }
 <a href=#204 id=204 data-nosnippet>204</a>
@@ -297,7 +297,7 @@
 <a href=#224 id=224 data-nosnippet>224</a>    #[doc(alias = <span class="string">"gdk_x11_surface_set_user_time"</span>)]
 <a href=#225 id=225 data-nosnippet>225</a>    </span><span class="kw">pub fn </span>set_user_time(<span class="kw-2">&amp;</span><span class="self">self</span>, timestamp: <a href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>) {
 <a href=#226 id=226 data-nosnippet>226</a>        <span class="kw">unsafe </span>{
-<a href=#227 id=227 data-nosnippet>227</a>            <a href="../../../gdk4_x11_sys/fn.gdk_x11_surface_set_user_time.html">ffi::gdk_x11_surface_set_user_time</a>(<a class="self" href="#225">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>, <a href="#225">timestamp</a>);
+<a href=#227 id=227 data-nosnippet>227</a>            ffi::<a href="../../../gdk4_x11_sys/fn.gdk_x11_surface_set_user_time.html">gdk_x11_surface_set_user_time</a>(<a class="self" href="#225">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>, <a href="#225">timestamp</a>);
 <a href=#228 id=228 data-nosnippet>228</a>        }
 <a href=#229 id=229 data-nosnippet>229</a>    }
 <a href=#230 id=230 data-nosnippet>230</a>
@@ -316,11 +316,12 @@
 <a href=#243 id=243 data-nosnippet>243</a>    #[doc(alias = <span class="string">"gdk_x11_surface_set_utf8_property"</span>)]
 <a href=#244 id=244 data-nosnippet>244</a>    </span><span class="kw">pub fn </span>set_utf8_property(<span class="kw-2">&amp;</span><span class="self">self</span>, name: <span class="kw-2">&amp;</span><a href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>, value: <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;<span class="kw-2">&amp;</span><a href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>&gt;) {
 <a href=#245 id=245 data-nosnippet>245</a>        <span class="kw">unsafe </span>{
-<a href=#246 id=246 data-nosnippet>246</a>            <a href="../../../gdk4_x11_sys/fn.gdk_x11_surface_set_utf8_property.html">ffi::gdk_x11_surface_set_utf8_property</a>(
+<a href=#246 id=246 data-nosnippet>246</a>            ffi::<a href="../../../gdk4_x11_sys/fn.gdk_x11_surface_set_utf8_property.html">gdk_x11_surface_set_utf8_property</a>(
 <a href=#247 id=247 data-nosnippet>247</a>                <a class="self" href="#244">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
 <a href=#248 id=248 data-nosnippet>248</a>                <a href="#244">name</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
 <a href=#249 id=249 data-nosnippet>249</a>                <a href="#244">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
 <a href=#250 id=250 data-nosnippet>250</a>            );
 <a href=#251 id=251 data-nosnippet>251</a>        }
 <a href=#252 id=252 data-nosnippet>252</a>    }
-<a href=#253 id=253 data-nosnippet>253</a>}</code></pre></div></section></main></body></html>
+<a href=#253 id=253 data-nosnippet>253</a>}
+</code></pre></div></section></main></body></html>

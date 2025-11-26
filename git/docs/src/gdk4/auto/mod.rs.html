@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gdk4/src/auto/mod.rs`."><title>mod.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-e56847b5.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gdk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.92.0-nightly (4645a7988 2025-09-17)" data-channel="nightly" data-search-js="search-cb266a1a.js" data-stringdex-js="stringdex-5af928a3.js" data-settings-js="settings-c38705f0.js" ><script src="../../../static.files/storage-e2aeef58.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-6dc2a7f3.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-263c88ec.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gdk4/src/auto/mod.rs`."><title>mod.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-ca0dd0c4.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gdk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.93.0-nightly (80d8f292d 2025-11-25)" data-channel="nightly" data-search-js="search-680b2199.js" data-stringdex-js="stringdex-a3946164.js" data-settings-js="settings-c38705f0.js" ><script src="../../../static.files/storage-e2aeef58.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-a410ff4d.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-263c88ec.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
 
@@ -124,7 +124,7 @@
 <a href=#51 id=51 data-nosnippet>51</a><span class="kw">mod </span><a href="device_tool.rs.html#5-105">device_tool</a>;
 <a href=#52 id=52 data-nosnippet>52</a><span class="kw">pub use </span><a href="device_tool.rs.html#8-42"><span class="self">self</span>::device_tool::DeviceTool</a>;
 <a href=#53 id=53 data-nosnippet>53</a>
-<a href=#54 id=54 data-nosnippet>54</a><span class="kw">mod </span><a href="display.rs.html#4-899">display</a>;
+<a href=#54 id=54 data-nosnippet>54</a><span class="kw">mod </span><a href="display.rs.html#4-901">display</a>;
 <a href=#55 id=55 data-nosnippet>55</a><span class="kw">pub use </span><a href="display.rs.html#23-112"><span class="self">self</span>::display::Display</a>;
 <a href=#56 id=56 data-nosnippet>56</a>
 <a href=#57 id=57 data-nosnippet>57</a><span class="kw">mod </span><a href="display_manager.rs.html#5-220">display_manager</a>;
@@ -229,7 +229,7 @@
 <a href=#156 id=156 data-nosnippet>156</a><span class="kw">mod </span><a href="snapshot.rs.html#5-23">snapshot</a>;
 <a href=#157 id=157 data-nosnippet>157</a><span class="kw">pub use </span><a href="snapshot.rs.html#7-19"><span class="self">self</span>::snapshot::Snapshot</a>;
 <a href=#158 id=158 data-nosnippet>158</a>
-<a href=#159 id=159 data-nosnippet>159</a><span class="kw">mod </span><a href="surface.rs.html#4-946">surface</a>;
+<a href=#159 id=159 data-nosnippet>159</a><span class="kw">mod </span><a href="surface.rs.html#4-947">surface</a>;
 <a href=#160 id=160 data-nosnippet>160</a><span class="kw">pub use </span><a href="surface.rs.html#18-129"><span class="self">self</span>::surface::Surface</a>;
 <a href=#161 id=161 data-nosnippet>161</a>
 <a href=#162 id=162 data-nosnippet>162</a><span class="kw">mod </span><a href="texture.rs.html#4-431">texture</a>;
@@ -368,7 +368,7 @@
 <a href=#295 id=295 data-nosnippet>295</a>    <span class="kw">pub use </span><a href="content_provider.rs.html#143-362"><span class="kw">super</span>::content_provider::ContentProviderExt</a>;
 <a href=#296 id=296 data-nosnippet>296</a>    <span class="kw">pub use </span><a href="device.rs.html#204-908"><span class="kw">super</span>::device::DeviceExt</a>;
 <a href=#297 id=297 data-nosnippet>297</a>    <span class="kw">pub use </span><a href="device_pad.rs.html#46-112"><span class="kw">super</span>::device_pad::DevicePadExt</a>;
-<a href=#298 id=298 data-nosnippet>298</a>    <span class="kw">pub use </span><a href="display.rs.html#163-897"><span class="kw">super</span>::display::DisplayExt</a>;
+<a href=#298 id=298 data-nosnippet>298</a>    <span class="kw">pub use </span><a href="display.rs.html#163-899"><span class="kw">super</span>::display::DisplayExt</a>;
 <a href=#299 id=299 data-nosnippet>299</a>    <span class="kw">pub use </span><a href="drag.rs.html#168-469"><span class="kw">super</span>::drag::DragExt</a>;
 <a href=#300 id=300 data-nosnippet>300</a>    <span class="kw">pub use </span><a href="drag_surface.rs.html#87-107"><span class="kw">super</span>::drag_surface::DragSurfaceExt</a>;
 <a href=#301 id=301 data-nosnippet>301</a>    <span class="kw">pub use </span><a href="draw_context.rs.html#56-177"><span class="kw">super</span>::draw_context::DrawContextExt</a>;
@@ -377,10 +377,11 @@
 <a href=#304 id=304 data-nosnippet>304</a>    <span class="kw">pub use </span><a href="paintable.rs.html#132-409"><span class="kw">super</span>::paintable::PaintableExt</a>;
 <a href=#305 id=305 data-nosnippet>305</a>    <span class="kw">pub use </span><a href="popup.rs.html#104-222"><span class="kw">super</span>::popup::PopupExt</a>;
 <a href=#306 id=306 data-nosnippet>306</a>    <span class="kw">pub use </span><a href="seat.rs.html#79-297"><span class="kw">super</span>::seat::SeatExt</a>;
-<a href=#307 id=307 data-nosnippet>307</a>    <span class="kw">pub use </span><a href="surface.rs.html#180-944"><span class="kw">super</span>::surface::SurfaceExt</a>;
+<a href=#307 id=307 data-nosnippet>307</a>    <span class="kw">pub use </span><a href="surface.rs.html#180-945"><span class="kw">super</span>::surface::SurfaceExt</a>;
 <a href=#308 id=308 data-nosnippet>308</a>    <span class="kw">pub use </span><a href="texture.rs.html#256-429"><span class="kw">super</span>::texture::TextureExt</a>;
 <a href=#309 id=309 data-nosnippet>309</a>    <span class="kw">pub use </span><a href="toplevel.rs.html#244-1002"><span class="kw">super</span>::toplevel::ToplevelExt</a>;
 <a href=#310 id=310 data-nosnippet>310</a>}
 <a href=#311 id=311 data-nosnippet>311</a><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">mod </span>builders {
 <a href=#312 id=312 data-nosnippet>312</a>    <span class="kw">pub use </span><a href="cursor.rs.html#285-287"><span class="kw">super</span>::cursor::CursorBuilder</a>;
-<a href=#313 id=313 data-nosnippet>313</a>}</code></pre></div></section></main></body></html>
+<a href=#313 id=313 data-nosnippet>313</a>}
+</code></pre></div></section></main></body></html>

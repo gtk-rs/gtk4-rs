@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/auto/shortcut_controller.rs`."><title>shortcut_controller.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-e56847b5.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.92.0-nightly (4645a7988 2025-09-17)" data-channel="nightly" data-search-js="search-cb266a1a.js" data-stringdex-js="stringdex-5af928a3.js" data-settings-js="settings-c38705f0.js" ><script src="../../../static.files/storage-e2aeef58.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-6dc2a7f3.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-263c88ec.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/auto/shortcut_controller.rs`."><title>shortcut_controller.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-ca0dd0c4.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.93.0-nightly (80d8f292d 2025-11-25)" data-channel="nightly" data-search-js="search-680b2199.js" data-stringdex-js="stringdex-a3946164.js" data-settings-js="settings-c38705f0.js" ><script src="../../../static.files/storage-e2aeef58.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-a410ff4d.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-263c88ec.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
 
@@ -83,7 +83,7 @@
 <a href=#10 id=10 data-nosnippet>10</a>};
 <a href=#11 id=11 data-nosnippet>11</a><span class="kw">use </span><a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">std::boxed::Box</a> <span class="kw">as </span>Box_;
 <a href=#12 id=12 data-nosnippet>12</a>
-<a href=#13 id=13 data-nosnippet>13</a><a class="macro" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/macro.wrapper.html">glib::wrapper!</a> {
+<a href=#13 id=13 data-nosnippet>13</a><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/macro.wrapper.html">glib::wrapper!</a> {
 <a href=#14 id=14 data-nosnippet>14</a>    <span class="doccomment">/// Manages keyboard shortcuts and their activation.
 <a href=#15 id=15 data-nosnippet>15</a>    ///
 <a href=#16 id=16 data-nosnippet>16</a>    /// Most common shortcuts are using this controller implicitly, e.g. by
@@ -187,7 +187,7 @@
 <a href=#114 id=114 data-nosnippet>114</a>    ///
 <a href=#115 id=115 data-nosnippet>115</a>    /// [`EventControllerExt`][trait@crate::prelude::EventControllerExt], [`trait@glib::ObjectExt`], [`trait@gio::prelude::ListModelExt`], [`BuildableExt`][trait@crate::prelude::BuildableExt], [`EventControllerExtManual`][trait@crate::prelude::EventControllerExtManual]
 <a href=#116 id=116 data-nosnippet>116</a>    </span><span class="attr">#[doc(alias = <span class="string">"GtkShortcutController"</span>)]
-<a href=#117 id=117 data-nosnippet>117</a>    </span><span class="kw">pub struct </span><a href="../../../gtk4/struct.ShortcutController.html">ShortcutController</a>(Object&lt;<a href="../../../gtk4_sys/struct.GtkShortcutController.html">ffi::GtkShortcutController</a>, <a href="../../../gtk4_sys/type.GtkShortcutControllerClass.html">ffi::GtkShortcutControllerClass</a>&gt;) @extends <a href="event_controller.rs.html#13-64">EventController</a>, @implements <a href="https://gtk-rs.org/gtk-rs-core/git/docs/gio/auto/list_model/struct.ListModel.html">gio::ListModel</a>, <a href="buildable.rs.html#8-31">Buildable</a>;
+<a href=#117 id=117 data-nosnippet>117</a>    </span><span class="kw">pub struct </span><a href="#13-122">ShortcutController</a>(Object&lt;ffi::<a href="../../../gtk4_sys/struct.GtkShortcutController.html">GtkShortcutController</a>, ffi::<a href="../../../gtk4_sys/type.GtkShortcutControllerClass.html">GtkShortcutControllerClass</a>&gt;) @extends <a href="event_controller.rs.html#13-64">EventController</a>, @implements gio::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/gio/auto/list_model/struct.ListModel.html">ListModel</a>, <a href="buildable.rs.html#8-31">Buildable</a>;
 <a href=#118 id=118 data-nosnippet>118</a>
 <a href=#119 id=119 data-nosnippet>119</a>    <span class="kw">match fn </span>{
 <a href=#120 id=120 data-nosnippet>120</a>        type_ =&gt; || ffi::gtk_shortcut_controller_get_type(),
@@ -202,8 +202,8 @@
 <a href=#129 id=129 data-nosnippet>129</a>    /// a newly created shortcut controller
 <a href=#130 id=130 data-nosnippet>130</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_shortcut_controller_new"</span>)]
 <a href=#131 id=131 data-nosnippet>131</a>    </span><span class="kw">pub fn </span>new() -&gt; <a href="#13-122">ShortcutController</a> {
-<a href=#132 id=132 data-nosnippet>132</a>        <a class="macro" href="../rt.rs.html#24-36">assert_initialized_main_thread!</a>();
-<a href=#133 id=133 data-nosnippet>133</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.FromGlibPtrFull.html#tymethod.from_glib_full">EventController::from_glib_full</a>(<a href="../../../gtk4_sys/fn.gtk_shortcut_controller_new.html">ffi::gtk_shortcut_controller_new</a>()).<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.Cast.html#tymethod.unsafe_cast">unsafe_cast</a>() }
+<a href=#132 id=132 data-nosnippet>132</a>        <a href="../rt.rs.html#24-36">assert_initialized_main_thread!</a>();
+<a href=#133 id=133 data-nosnippet>133</a>        <span class="kw">unsafe </span>{ <a href="event_controller.rs.html#13-64">EventController</a>::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.FromGlibPtrFull.html#tymethod.from_glib_full">from_glib_full</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_shortcut_controller_new.html">gtk_shortcut_controller_new</a>()).<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.Cast.html#method.unsafe_cast">unsafe_cast</a>() }
 <a href=#134 id=134 data-nosnippet>134</a>    }
 <a href=#135 id=135 data-nosnippet>135</a>
 <a href=#136 id=136 data-nosnippet>136</a>    <span class="doccomment">/// Creates a new shortcut controller that takes its shortcuts from
@@ -220,13 +220,13 @@
 <a href=#147 id=147 data-nosnippet>147</a>    /// a newly created shortcut controller
 <a href=#148 id=148 data-nosnippet>148</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_shortcut_controller_new_for_model"</span>)]
 <a href=#149 id=149 data-nosnippet>149</a>    #[doc(alias = <span class="string">"new_for_model"</span>)]
-<a href=#150 id=150 data-nosnippet>150</a>    </span><span class="kw">pub fn </span>for_model(model: <span class="kw-2">&amp;</span><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html">IsA</a>&lt;<a href="https://gtk-rs.org/gtk-rs-core/git/docs/gio/auto/list_model/struct.ListModel.html">gio::ListModel</a>&gt;) -&gt; <a href="#13-122">ShortcutController</a> {
-<a href=#151 id=151 data-nosnippet>151</a>        <a class="macro" href="../rt.rs.html#24-36">assert_initialized_main_thread!</a>();
+<a href=#150 id=150 data-nosnippet>150</a>    </span><span class="kw">pub fn </span>for_model(model: <span class="kw-2">&amp;</span><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html">IsA</a>&lt;gio::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/gio/auto/list_model/struct.ListModel.html">ListModel</a>&gt;) -&gt; <a href="#13-122">ShortcutController</a> {
+<a href=#151 id=151 data-nosnippet>151</a>        <a href="../rt.rs.html#24-36">assert_initialized_main_thread!</a>();
 <a href=#152 id=152 data-nosnippet>152</a>        <span class="kw">unsafe </span>{
-<a href=#153 id=153 data-nosnippet>153</a>            <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.FromGlibPtrFull.html#tymethod.from_glib_full">EventController::from_glib_full</a>(<a href="../../../gtk4_sys/fn.gtk_shortcut_controller_new_for_model.html">ffi::gtk_shortcut_controller_new_for_model</a>(
+<a href=#153 id=153 data-nosnippet>153</a>            <a href="event_controller.rs.html#13-64">EventController</a>::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.FromGlibPtrFull.html#tymethod.from_glib_full">from_glib_full</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_shortcut_controller_new_for_model.html">gtk_shortcut_controller_new_for_model</a>(
 <a href=#154 id=154 data-nosnippet>154</a>                <a href="#150">model</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
 <a href=#155 id=155 data-nosnippet>155</a>            ))
-<a href=#156 id=156 data-nosnippet>156</a>            .<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.Cast.html#tymethod.unsafe_cast">unsafe_cast</a>()
+<a href=#156 id=156 data-nosnippet>156</a>            .<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.Cast.html#method.unsafe_cast">unsafe_cast</a>()
 <a href=#157 id=157 data-nosnippet>157</a>        }
 <a href=#158 id=158 data-nosnippet>158</a>    }
 <a href=#159 id=159 data-nosnippet>159</a>
@@ -239,7 +239,7 @@
 <a href=#166 id=166 data-nosnippet>166</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_shortcut_controller_add_shortcut"</span>)]
 <a href=#167 id=167 data-nosnippet>167</a>    </span><span class="kw">pub fn </span>add_shortcut(<span class="kw-2">&amp;</span><span class="self">self</span>, shortcut: <a href="shortcut.rs.html#13-59">Shortcut</a>) {
 <a href=#168 id=168 data-nosnippet>168</a>        <span class="kw">unsafe </span>{
-<a href=#169 id=169 data-nosnippet>169</a>            <a href="../../../gtk4_sys/fn.gtk_shortcut_controller_add_shortcut.html">ffi::gtk_shortcut_controller_add_shortcut</a>(
+<a href=#169 id=169 data-nosnippet>169</a>            ffi::<a href="../../../gtk4_sys/fn.gtk_shortcut_controller_add_shortcut.html">gtk_shortcut_controller_add_shortcut</a>(
 <a href=#170 id=170 data-nosnippet>170</a>                <a class="self" href="#167">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
 <a href=#171 id=171 data-nosnippet>171</a>                <a href="#167">shortcut</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.IntoGlibPtr.html#tymethod.into_glib_ptr">into_glib_ptr</a>(),
 <a href=#172 id=172 data-nosnippet>172</a>            );
@@ -254,9 +254,9 @@
 <a href=#181 id=181 data-nosnippet>181</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_shortcut_controller_get_mnemonics_modifiers"</span>)]
 <a href=#182 id=182 data-nosnippet>182</a>    #[doc(alias = <span class="string">"get_mnemonics_modifiers"</span>)]
 <a href=#183 id=183 data-nosnippet>183</a>    #[doc(alias = <span class="string">"mnemonic-modifiers"</span>)]
-<a href=#184 id=184 data-nosnippet>184</a>    </span><span class="kw">pub fn </span>mnemonics_modifiers(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="../../../gdk4/auto/flags/struct.ModifierType.html">gdk::ModifierType</a> {
+<a href=#184 id=184 data-nosnippet>184</a>    </span><span class="kw">pub fn </span>mnemonics_modifiers(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; gdk::<a href="../../../gdk4/auto/flags/struct.ModifierType.html">ModifierType</a> {
 <a href=#185 id=185 data-nosnippet>185</a>        <span class="kw">unsafe </span>{
-<a href=#186 id=186 data-nosnippet>186</a>            <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(<a href="../../../gtk4_sys/fn.gtk_shortcut_controller_get_mnemonics_modifiers.html">ffi::gtk_shortcut_controller_get_mnemonics_modifiers</a>(
+<a href=#186 id=186 data-nosnippet>186</a>            <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_shortcut_controller_get_mnemonics_modifiers.html">gtk_shortcut_controller_get_mnemonics_modifiers</a>(
 <a href=#187 id=187 data-nosnippet>187</a>                <a class="self" href="#184">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
 <a href=#188 id=188 data-nosnippet>188</a>            ))
 <a href=#189 id=189 data-nosnippet>189</a>        }
@@ -273,7 +273,7 @@
 <a href=#200 id=200 data-nosnippet>200</a>    #[doc(alias = <span class="string">"get_scope"</span>)]
 <a href=#201 id=201 data-nosnippet>201</a>    </span><span class="kw">pub fn </span>scope(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="enums.rs.html#11174-11189">ShortcutScope</a> {
 <a href=#202 id=202 data-nosnippet>202</a>        <span class="kw">unsafe </span>{
-<a href=#203 id=203 data-nosnippet>203</a>            <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(<a href="../../../gtk4_sys/fn.gtk_shortcut_controller_get_scope.html">ffi::gtk_shortcut_controller_get_scope</a>(
+<a href=#203 id=203 data-nosnippet>203</a>            <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_shortcut_controller_get_scope.html">gtk_shortcut_controller_get_scope</a>(
 <a href=#204 id=204 data-nosnippet>204</a>                <a class="self" href="#201">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
 <a href=#205 id=205 data-nosnippet>205</a>            ))
 <a href=#206 id=206 data-nosnippet>206</a>        }
@@ -288,7 +288,7 @@
 <a href=#215 id=215 data-nosnippet>215</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_shortcut_controller_remove_shortcut"</span>)]
 <a href=#216 id=216 data-nosnippet>216</a>    </span><span class="kw">pub fn </span>remove_shortcut(<span class="kw-2">&amp;</span><span class="self">self</span>, shortcut: <span class="kw-2">&amp;</span><a href="shortcut.rs.html#13-59">Shortcut</a>) {
 <a href=#217 id=217 data-nosnippet>217</a>        <span class="kw">unsafe </span>{
-<a href=#218 id=218 data-nosnippet>218</a>            <a href="../../../gtk4_sys/fn.gtk_shortcut_controller_remove_shortcut.html">ffi::gtk_shortcut_controller_remove_shortcut</a>(
+<a href=#218 id=218 data-nosnippet>218</a>            ffi::<a href="../../../gtk4_sys/fn.gtk_shortcut_controller_remove_shortcut.html">gtk_shortcut_controller_remove_shortcut</a>(
 <a href=#219 id=219 data-nosnippet>219</a>                <a class="self" href="#216">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
 <a href=#220 id=220 data-nosnippet>220</a>                <a href="#216">shortcut</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
 <a href=#221 id=221 data-nosnippet>221</a>            );
@@ -312,9 +312,9 @@
 <a href=#239 id=239 data-nosnippet>239</a>    /// the new mnemonics_modifiers to use
 <a href=#240 id=240 data-nosnippet>240</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_shortcut_controller_set_mnemonics_modifiers"</span>)]
 <a href=#241 id=241 data-nosnippet>241</a>    #[doc(alias = <span class="string">"mnemonic-modifiers"</span>)]
-<a href=#242 id=242 data-nosnippet>242</a>    </span><span class="kw">pub fn </span>set_mnemonics_modifiers(<span class="kw-2">&amp;</span><span class="self">self</span>, modifiers: <a href="../../../gdk4/auto/flags/struct.ModifierType.html">gdk::ModifierType</a>) {
+<a href=#242 id=242 data-nosnippet>242</a>    </span><span class="kw">pub fn </span>set_mnemonics_modifiers(<span class="kw-2">&amp;</span><span class="self">self</span>, modifiers: gdk::<a href="../../../gdk4/auto/flags/struct.ModifierType.html">ModifierType</a>) {
 <a href=#243 id=243 data-nosnippet>243</a>        <span class="kw">unsafe </span>{
-<a href=#244 id=244 data-nosnippet>244</a>            <a href="../../../gtk4_sys/fn.gtk_shortcut_controller_set_mnemonics_modifiers.html">ffi::gtk_shortcut_controller_set_mnemonics_modifiers</a>(
+<a href=#244 id=244 data-nosnippet>244</a>            ffi::<a href="../../../gtk4_sys/fn.gtk_shortcut_controller_set_mnemonics_modifiers.html">gtk_shortcut_controller_set_mnemonics_modifiers</a>(
 <a href=#245 id=245 data-nosnippet>245</a>                <a class="self" href="#242">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
 <a href=#246 id=246 data-nosnippet>246</a>                <a href="#242">modifiers</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>(),
 <a href=#247 id=247 data-nosnippet>247</a>            );
@@ -336,7 +336,7 @@
 <a href=#263 id=263 data-nosnippet>263</a>    #[doc(alias = <span class="string">"scope"</span>)]
 <a href=#264 id=264 data-nosnippet>264</a>    </span><span class="kw">pub fn </span>set_scope(<span class="kw-2">&amp;</span><span class="self">self</span>, scope: <a href="enums.rs.html#11174-11189">ShortcutScope</a>) {
 <a href=#265 id=265 data-nosnippet>265</a>        <span class="kw">unsafe </span>{
-<a href=#266 id=266 data-nosnippet>266</a>            <a href="../../../gtk4_sys/fn.gtk_shortcut_controller_set_scope.html">ffi::gtk_shortcut_controller_set_scope</a>(<a class="self" href="#264">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>, <a href="#264">scope</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>());
+<a href=#266 id=266 data-nosnippet>266</a>            ffi::<a href="../../../gtk4_sys/fn.gtk_shortcut_controller_set_scope.html">gtk_shortcut_controller_set_scope</a>(<a class="self" href="#264">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>, <a href="#264">scope</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>());
 <a href=#267 id=267 data-nosnippet>267</a>        }
 <a href=#268 id=268 data-nosnippet>268</a>    }
 <a href=#269 id=269 data-nosnippet>269</a>
@@ -348,7 +348,7 @@
 <a href=#275 id=275 data-nosnippet>275</a>        <span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn </span>notify_mnemonic_modifiers_trampoline&lt;
 <a href=#276 id=276 data-nosnippet>276</a>            F: <a href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html">Fn</a>(<span class="kw-2">&amp;</span><a href="#13-122">ShortcutController</a>) + <span class="lifetime">'static</span>,
 <a href=#277 id=277 data-nosnippet>277</a>        &gt;(
-<a href=#278 id=278 data-nosnippet>278</a>            this: <span class="kw-2">*mut </span><a href="../../../gtk4_sys/struct.GtkShortcutController.html">ffi::GtkShortcutController</a>,
+<a href=#278 id=278 data-nosnippet>278</a>            this: <span class="kw-2">*mut </span>ffi::<a href="../../../gtk4_sys/struct.GtkShortcutController.html">GtkShortcutController</a>,
 <a href=#279 id=279 data-nosnippet>279</a>            _param_spec: glib::ffi::gpointer,
 <a href=#280 id=280 data-nosnippet>280</a>            f: glib::ffi::gpointer,
 <a href=#281 id=281 data-nosnippet>281</a>        ) {
@@ -356,14 +356,14 @@
 <a href=#283 id=283 data-nosnippet>283</a>            <a href="#282">f</a>(<span class="kw-2">&amp;</span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib_borrow.html">from_glib_borrow</a>(<a href="#278">this</a>))
 <a href=#284 id=284 data-nosnippet>284</a>        }
 <a href=#285 id=285 data-nosnippet>285</a>        <span class="kw">unsafe </span>{
-<a href=#286 id=286 data-nosnippet>286</a>            <span class="kw">let </span>f: <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">Box_</a>&lt;F&gt; = <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html#method.new">Box_::new</a>(<a href="#273">f</a>);
+<a href=#286 id=286 data-nosnippet>286</a>            <span class="kw">let </span>f: <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">Box_</a>&lt;F&gt; = <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">Box_</a>::<a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html#method.new">new</a>(<a href="#273">f</a>);
 <a href=#287 id=287 data-nosnippet>287</a>            <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/fn.connect_raw.html">connect_raw</a>(
 <a href=#288 id=288 data-nosnippet>288</a>                <a class="self" href="#272">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.ObjectType.html#tymethod.as_ptr">as_ptr</a>() <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>,
 <a href=#289 id=289 data-nosnippet>289</a>                <span class="string">c"notify::mnemonic-modifiers"</span>.<a href="https://doc.rust-lang.org/nightly/core/ffi/c_str/struct.CStr.html#method.as_ptr">as_ptr</a>() <span class="kw">as </span><span class="kw-2">*const </span><span class="kw">_</span>,
-<a href=#290 id=290 data-nosnippet>290</a>                <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.Some">Some</a>(<a href="https://doc.rust-lang.org/nightly/core/intrinsics/fn.transmute.html">std::mem::transmute</a>::&lt;<span class="kw-2">*const </span>(), <span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn</span>()&gt;(
+<a href=#290 id=290 data-nosnippet>290</a>                <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.Some">Some</a>(std::mem::<a href="https://doc.rust-lang.org/nightly/core/intrinsics/fn.transmute.html">transmute</a>::&lt;<span class="kw-2">*const </span>(), <span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn</span>()&gt;(
 <a href=#291 id=291 data-nosnippet>291</a>                    <a href="#275-284">notify_mnemonic_modifiers_trampoline</a>::&lt;F&gt; <span class="kw">as </span><span class="kw-2">*const </span>(),
 <a href=#292 id=292 data-nosnippet>292</a>                )),
-<a href=#293 id=293 data-nosnippet>293</a>                <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html#method.into_raw">Box_::into_raw</a>(<a href="#286">f</a>),
+<a href=#293 id=293 data-nosnippet>293</a>                <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">Box_</a>::<a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html#method.into_raw">into_raw</a>(<a href="#286">f</a>),
 <a href=#294 id=294 data-nosnippet>294</a>            )
 <a href=#295 id=295 data-nosnippet>295</a>        }
 <a href=#296 id=296 data-nosnippet>296</a>    }
@@ -371,7 +371,7 @@
 <a href=#298 id=298 data-nosnippet>298</a>    <span class="attr">#[doc(alias = <span class="string">"scope"</span>)]
 <a href=#299 id=299 data-nosnippet>299</a>    </span><span class="kw">pub fn </span>connect_scope_notify&lt;F: <a href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html">Fn</a>(<span class="kw-2">&amp;</span><span class="self">Self</span>) + <span class="lifetime">'static</span>&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, f: F) -&gt; <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html">SignalHandlerId</a> {
 <a href=#300 id=300 data-nosnippet>300</a>        <span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn </span>notify_scope_trampoline&lt;F: <a href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html">Fn</a>(<span class="kw-2">&amp;</span><a href="#13-122">ShortcutController</a>) + <span class="lifetime">'static</span>&gt;(
-<a href=#301 id=301 data-nosnippet>301</a>            this: <span class="kw-2">*mut </span><a href="../../../gtk4_sys/struct.GtkShortcutController.html">ffi::GtkShortcutController</a>,
+<a href=#301 id=301 data-nosnippet>301</a>            this: <span class="kw-2">*mut </span>ffi::<a href="../../../gtk4_sys/struct.GtkShortcutController.html">GtkShortcutController</a>,
 <a href=#302 id=302 data-nosnippet>302</a>            _param_spec: glib::ffi::gpointer,
 <a href=#303 id=303 data-nosnippet>303</a>            f: glib::ffi::gpointer,
 <a href=#304 id=304 data-nosnippet>304</a>        ) {
@@ -379,14 +379,14 @@
 <a href=#306 id=306 data-nosnippet>306</a>            <a href="#305">f</a>(<span class="kw-2">&amp;</span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib_borrow.html">from_glib_borrow</a>(<a href="#301">this</a>))
 <a href=#307 id=307 data-nosnippet>307</a>        }
 <a href=#308 id=308 data-nosnippet>308</a>        <span class="kw">unsafe </span>{
-<a href=#309 id=309 data-nosnippet>309</a>            <span class="kw">let </span>f: <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">Box_</a>&lt;F&gt; = <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html#method.new">Box_::new</a>(<a href="#299">f</a>);
+<a href=#309 id=309 data-nosnippet>309</a>            <span class="kw">let </span>f: <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">Box_</a>&lt;F&gt; = <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">Box_</a>::<a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html#method.new">new</a>(<a href="#299">f</a>);
 <a href=#310 id=310 data-nosnippet>310</a>            <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/fn.connect_raw.html">connect_raw</a>(
 <a href=#311 id=311 data-nosnippet>311</a>                <a class="self" href="#299">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.ObjectType.html#tymethod.as_ptr">as_ptr</a>() <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>,
 <a href=#312 id=312 data-nosnippet>312</a>                <span class="string">c"notify::scope"</span>.<a href="https://doc.rust-lang.org/nightly/core/ffi/c_str/struct.CStr.html#method.as_ptr">as_ptr</a>() <span class="kw">as </span><span class="kw-2">*const </span><span class="kw">_</span>,
-<a href=#313 id=313 data-nosnippet>313</a>                <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.Some">Some</a>(<a href="https://doc.rust-lang.org/nightly/core/intrinsics/fn.transmute.html">std::mem::transmute</a>::&lt;<span class="kw-2">*const </span>(), <span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn</span>()&gt;(
+<a href=#313 id=313 data-nosnippet>313</a>                <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.Some">Some</a>(std::mem::<a href="https://doc.rust-lang.org/nightly/core/intrinsics/fn.transmute.html">transmute</a>::&lt;<span class="kw-2">*const </span>(), <span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn</span>()&gt;(
 <a href=#314 id=314 data-nosnippet>314</a>                    <a href="#300-307">notify_scope_trampoline</a>::&lt;F&gt; <span class="kw">as </span><span class="kw-2">*const </span>(),
 <a href=#315 id=315 data-nosnippet>315</a>                )),
-<a href=#316 id=316 data-nosnippet>316</a>                <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html#method.into_raw">Box_::into_raw</a>(<a href="#309">f</a>),
+<a href=#316 id=316 data-nosnippet>316</a>                <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">Box_</a>::<a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html#method.into_raw">into_raw</a>(<a href="#309">f</a>),
 <a href=#317 id=317 data-nosnippet>317</a>            )
 <a href=#318 id=318 data-nosnippet>318</a>        }
 <a href=#319 id=319 data-nosnippet>319</a>    }
@@ -394,6 +394,7 @@
 <a href=#321 id=321 data-nosnippet>321</a>
 <a href=#322 id=322 data-nosnippet>322</a><span class="kw">impl </span><a href="https://doc.rust-lang.org/nightly/core/default/trait.Default.html">Default</a> <span class="kw">for </span><a href="#13-122">ShortcutController</a> {
 <a href=#323 id=323 data-nosnippet>323</a>    <span class="kw">fn </span>default() -&gt; <span class="self">Self </span>{
-<a href=#324 id=324 data-nosnippet>324</a>        <a href="#131-134"><span class="self">Self</span>::new</a>()
+<a href=#324 id=324 data-nosnippet>324</a>        <span class="self">Self</span>::<a href="#131-134">new</a>()
 <a href=#325 id=325 data-nosnippet>325</a>    }
-<a href=#326 id=326 data-nosnippet>326</a>}</code></pre></div></section></main></body></html>
+<a href=#326 id=326 data-nosnippet>326</a>}
+</code></pre></div></section></main></body></html>

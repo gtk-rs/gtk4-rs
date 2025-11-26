@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/auto/print_job.rs`."><title>print_job.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-e56847b5.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.92.0-nightly (4645a7988 2025-09-17)" data-channel="nightly" data-search-js="search-cb266a1a.js" data-stringdex-js="stringdex-5af928a3.js" data-settings-js="settings-c38705f0.js" ><script src="../../../static.files/storage-e2aeef58.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-6dc2a7f3.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-263c88ec.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/auto/print_job.rs`."><title>print_job.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-ca0dd0c4.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.93.0-nightly (80d8f292d 2025-11-25)" data-channel="nightly" data-search-js="search-680b2199.js" data-stringdex-js="stringdex-a3946164.js" data-settings-js="settings-c38705f0.js" ><script src="../../../static.files/storage-e2aeef58.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-a410ff4d.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-263c88ec.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
 
@@ -87,7 +87,7 @@
 <a href=#14 id=14 data-nosnippet>14</a>};
 <a href=#15 id=15 data-nosnippet>15</a><span class="kw">use </span><a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">std::boxed::Box</a> <span class="kw">as </span>Box_;
 <a href=#16 id=16 data-nosnippet>16</a>
-<a href=#17 id=17 data-nosnippet>17</a><a class="macro" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/macro.wrapper.html">glib::wrapper!</a> {
+<a href=#17 id=17 data-nosnippet>17</a><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/macro.wrapper.html">glib::wrapper!</a> {
 <a href=#18 id=18 data-nosnippet>18</a>    <span class="doccomment">/// Represents a job that is sent to a printer.
 <a href=#19 id=19 data-nosnippet>19</a>    ///
 <a href=#20 id=20 data-nosnippet>20</a>    /// You only need to deal directly with print jobs if you use the
@@ -147,7 +147,7 @@
 <a href=#74 id=74 data-nosnippet>74</a>    ///
 <a href=#75 id=75 data-nosnippet>75</a>    /// [`trait@glib::ObjectExt`]
 <a href=#76 id=76 data-nosnippet>76</a>    </span><span class="attr">#[doc(alias = <span class="string">"GtkPrintJob"</span>)]
-<a href=#77 id=77 data-nosnippet>77</a>    </span><span class="kw">pub struct </span><a href="../../../gtk4/struct.PrintJob.html">PrintJob</a>(Object&lt;<a href="../../../gtk4_sys/struct.GtkPrintJob.html">ffi::GtkPrintJob</a>&gt;);
+<a href=#77 id=77 data-nosnippet>77</a>    </span><span class="kw">pub struct </span><a href="#17-82">PrintJob</a>(Object&lt;ffi::<a href="../../../gtk4_sys/struct.GtkPrintJob.html">GtkPrintJob</a>&gt;);
 <a href=#78 id=78 data-nosnippet>78</a>
 <a href=#79 id=79 data-nosnippet>79</a>    <span class="kw">match fn </span>{
 <a href=#80 id=80 data-nosnippet>80</a>        type_ =&gt; || ffi::gtk_print_job_get_type(),
@@ -177,7 +177,7 @@
 <a href=#104 id=104 data-nosnippet>104</a>    ) -&gt; <a href="#17-82">PrintJob</a> {
 <a href=#105 id=105 data-nosnippet>105</a>        <span class="macro">skip_assert_initialized!</span>();
 <a href=#106 id=106 data-nosnippet>106</a>        <span class="kw">unsafe </span>{
-<a href=#107 id=107 data-nosnippet>107</a>            <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib_full.html">from_glib_full</a>(<a href="../../../gtk4_sys/fn.gtk_print_job_new.html">ffi::gtk_print_job_new</a>(
+<a href=#107 id=107 data-nosnippet>107</a>            <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib_full.html">from_glib_full</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_print_job_new.html">gtk_print_job_new</a>(
 <a href=#108 id=108 data-nosnippet>108</a>                <a href="#100">title</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
 <a href=#109 id=109 data-nosnippet>109</a>                <a href="#101">printer</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
 <a href=#110 id=110 data-nosnippet>110</a>                <a href="#102">settings</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
@@ -194,7 +194,7 @@
 <a href=#121 id=121 data-nosnippet>121</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_print_job_get_collate"</span>)]
 <a href=#122 id=122 data-nosnippet>122</a>    #[doc(alias = <span class="string">"get_collate"</span>)]
 <a href=#123 id=123 data-nosnippet>123</a>    </span><span class="kw">pub fn </span>is_collate(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> {
-<a href=#124 id=124 data-nosnippet>124</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(<a href="../../../gtk4_sys/fn.gtk_print_job_get_collate.html">ffi::gtk_print_job_get_collate</a>(<a class="self" href="#123">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
+<a href=#124 id=124 data-nosnippet>124</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_print_job_get_collate.html">gtk_print_job_get_collate</a>(<a class="self" href="#123">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#125 id=125 data-nosnippet>125</a>    }
 <a href=#126 id=126 data-nosnippet>126</a>
 <a href=#127 id=127 data-nosnippet>127</a>    <span class="doccomment">/// Gets the n-up setting for this job.
@@ -205,7 +205,7 @@
 <a href=#132 id=132 data-nosnippet>132</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_print_job_get_n_up"</span>)]
 <a href=#133 id=133 data-nosnippet>133</a>    #[doc(alias = <span class="string">"get_n_up"</span>)]
 <a href=#134 id=134 data-nosnippet>134</a>    </span><span class="kw">pub fn </span>n_up(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a> {
-<a href=#135 id=135 data-nosnippet>135</a>        <span class="kw">unsafe </span>{ <a href="../../../gtk4_sys/fn.gtk_print_job_get_n_up.html">ffi::gtk_print_job_get_n_up</a>(<a class="self" href="#134">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>) }
+<a href=#135 id=135 data-nosnippet>135</a>        <span class="kw">unsafe </span>{ ffi::<a href="../../../gtk4_sys/fn.gtk_print_job_get_n_up.html">gtk_print_job_get_n_up</a>(<a class="self" href="#134">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>) }
 <a href=#136 id=136 data-nosnippet>136</a>    }
 <a href=#137 id=137 data-nosnippet>137</a>
 <a href=#138 id=138 data-nosnippet>138</a>    <span class="doccomment">/// Gets the n-up layout setting for this job.
@@ -216,7 +216,7 @@
 <a href=#143 id=143 data-nosnippet>143</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_print_job_get_n_up_layout"</span>)]
 <a href=#144 id=144 data-nosnippet>144</a>    #[doc(alias = <span class="string">"get_n_up_layout"</span>)]
 <a href=#145 id=145 data-nosnippet>145</a>    </span><span class="kw">pub fn </span>n_up_layout(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="enums.rs.html#8025-8052">NumberUpLayout</a> {
-<a href=#146 id=146 data-nosnippet>146</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(<a href="../../../gtk4_sys/fn.gtk_print_job_get_n_up_layout.html">ffi::gtk_print_job_get_n_up_layout</a>(<a class="self" href="#145">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
+<a href=#146 id=146 data-nosnippet>146</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_print_job_get_n_up_layout.html">gtk_print_job_get_n_up_layout</a>(<a class="self" href="#145">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#147 id=147 data-nosnippet>147</a>    }
 <a href=#148 id=148 data-nosnippet>148</a>
 <a href=#149 id=149 data-nosnippet>149</a>    <span class="doccomment">/// Gets the number of copies of this job.
@@ -227,7 +227,7 @@
 <a href=#154 id=154 data-nosnippet>154</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_print_job_get_num_copies"</span>)]
 <a href=#155 id=155 data-nosnippet>155</a>    #[doc(alias = <span class="string">"get_num_copies"</span>)]
 <a href=#156 id=156 data-nosnippet>156</a>    </span><span class="kw">pub fn </span>num_copies(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a> {
-<a href=#157 id=157 data-nosnippet>157</a>        <span class="kw">unsafe </span>{ <a href="../../../gtk4_sys/fn.gtk_print_job_get_num_copies.html">ffi::gtk_print_job_get_num_copies</a>(<a class="self" href="#156">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>) }
+<a href=#157 id=157 data-nosnippet>157</a>        <span class="kw">unsafe </span>{ ffi::<a href="../../../gtk4_sys/fn.gtk_print_job_get_num_copies.html">gtk_print_job_get_num_copies</a>(<a class="self" href="#156">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>) }
 <a href=#158 id=158 data-nosnippet>158</a>    }
 <a href=#159 id=159 data-nosnippet>159</a>
 <a href=#160 id=160 data-nosnippet>160</a>    <span class="doccomment">/// Gets the page ranges for this job.
@@ -240,9 +240,9 @@
 <a href=#167 id=167 data-nosnippet>167</a>    #[doc(alias = <span class="string">"get_page_ranges"</span>)]
 <a href=#168 id=168 data-nosnippet>168</a>    </span><span class="kw">pub fn </span>page_ranges(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html">Vec</a>&lt;<a href="../page_range.rs.html#8-14">PageRange</a>&gt; {
 <a href=#169 id=169 data-nosnippet>169</a>        <span class="kw">unsafe </span>{
-<a href=#170 id=170 data-nosnippet>170</a>            <span class="kw">let </span><span class="kw-2">mut </span>n_ranges = <a href="https://doc.rust-lang.org/nightly/core/mem/maybe_uninit/union.MaybeUninit.html#method.uninit">std::mem::MaybeUninit::uninit</a>();
-<a href=#171 id=171 data-nosnippet>171</a>            <span class="kw">let </span>ret = <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.FromGlibContainer.html#tymethod.from_glib_none_num">FromGlibContainer::from_glib_none_num</a>(
-<a href=#172 id=172 data-nosnippet>172</a>                <a href="../../../gtk4_sys/fn.gtk_print_job_get_page_ranges.html">ffi::gtk_print_job_get_page_ranges</a>(<a class="self" href="#168">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>, <a href="#170">n_ranges</a>.<a href="https://doc.rust-lang.org/nightly/core/mem/maybe_uninit/union.MaybeUninit.html#method.as_mut_ptr">as_mut_ptr</a>()),
+<a href=#170 id=170 data-nosnippet>170</a>            <span class="kw">let </span><span class="kw-2">mut </span>n_ranges = std::mem::<a href="https://doc.rust-lang.org/nightly/core/mem/maybe_uninit/union.MaybeUninit.html">MaybeUninit</a>::<a href="https://doc.rust-lang.org/nightly/core/mem/maybe_uninit/union.MaybeUninit.html#method.uninit">uninit</a>();
+<a href=#171 id=171 data-nosnippet>171</a>            <span class="kw">let </span>ret = FromGlibContainer::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.FromGlibContainer.html#tymethod.from_glib_none_num">from_glib_none_num</a>(
+<a href=#172 id=172 data-nosnippet>172</a>                ffi::<a href="../../../gtk4_sys/fn.gtk_print_job_get_page_ranges.html">gtk_print_job_get_page_ranges</a>(<a class="self" href="#168">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>, <a href="#170">n_ranges</a>.<a href="https://doc.rust-lang.org/nightly/core/mem/maybe_uninit/union.MaybeUninit.html#method.as_mut_ptr">as_mut_ptr</a>()),
 <a href=#173 id=173 data-nosnippet>173</a>                <a href="#170">n_ranges</a>.<a href="https://doc.rust-lang.org/nightly/core/mem/maybe_uninit/union.MaybeUninit.html#method.assume_init">assume_init</a>() <span class="kw">as _</span>,
 <a href=#174 id=174 data-nosnippet>174</a>            );
 <a href=#175 id=175 data-nosnippet>175</a>            <a href="#171">ret</a>
@@ -257,7 +257,7 @@
 <a href=#184 id=184 data-nosnippet>184</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_print_job_get_page_set"</span>)]
 <a href=#185 id=185 data-nosnippet>185</a>    #[doc(alias = <span class="string">"get_page_set"</span>)]
 <a href=#186 id=186 data-nosnippet>186</a>    </span><span class="kw">pub fn </span>page_set(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="enums.rs.html#8788-8800">PageSet</a> {
-<a href=#187 id=187 data-nosnippet>187</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(<a href="../../../gtk4_sys/fn.gtk_print_job_get_page_set.html">ffi::gtk_print_job_get_page_set</a>(<a class="self" href="#186">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
+<a href=#187 id=187 data-nosnippet>187</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_print_job_get_page_set.html">gtk_print_job_get_page_set</a>(<a class="self" href="#186">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#188 id=188 data-nosnippet>188</a>    }
 <a href=#189 id=189 data-nosnippet>189</a>
 <a href=#190 id=190 data-nosnippet>190</a>    <span class="doccomment">/// Gets the [`PrintPages`][crate::PrintPages] setting for this job.
@@ -268,7 +268,7 @@
 <a href=#195 id=195 data-nosnippet>195</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_print_job_get_pages"</span>)]
 <a href=#196 id=196 data-nosnippet>196</a>    #[doc(alias = <span class="string">"get_pages"</span>)]
 <a href=#197 id=197 data-nosnippet>197</a>    </span><span class="kw">pub fn </span>pages(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="enums.rs.html#9693-9708">PrintPages</a> {
-<a href=#198 id=198 data-nosnippet>198</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(<a href="../../../gtk4_sys/fn.gtk_print_job_get_pages.html">ffi::gtk_print_job_get_pages</a>(<a class="self" href="#197">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
+<a href=#198 id=198 data-nosnippet>198</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_print_job_get_pages.html">gtk_print_job_get_pages</a>(<a class="self" href="#197">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#199 id=199 data-nosnippet>199</a>    }
 <a href=#200 id=200 data-nosnippet>200</a>
 <a href=#201 id=201 data-nosnippet>201</a>    <span class="doccomment">/// Gets the [`Printer`][crate::Printer] of the print job.
@@ -279,7 +279,7 @@
 <a href=#206 id=206 data-nosnippet>206</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_print_job_get_printer"</span>)]
 <a href=#207 id=207 data-nosnippet>207</a>    #[doc(alias = <span class="string">"get_printer"</span>)]
 <a href=#208 id=208 data-nosnippet>208</a>    </span><span class="kw">pub fn </span>printer(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="printer.rs.html#14-111">Printer</a> {
-<a href=#209 id=209 data-nosnippet>209</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib_none.html">from_glib_none</a>(<a href="../../../gtk4_sys/fn.gtk_print_job_get_printer.html">ffi::gtk_print_job_get_printer</a>(<a class="self" href="#208">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
+<a href=#209 id=209 data-nosnippet>209</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib_none.html">from_glib_none</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_print_job_get_printer.html">gtk_print_job_get_printer</a>(<a class="self" href="#208">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#210 id=210 data-nosnippet>210</a>    }
 <a href=#211 id=211 data-nosnippet>211</a>
 <a href=#212 id=212 data-nosnippet>212</a>    <span class="doccomment">/// Gets whether this job is printed reversed.
@@ -290,7 +290,7 @@
 <a href=#217 id=217 data-nosnippet>217</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_print_job_get_reverse"</span>)]
 <a href=#218 id=218 data-nosnippet>218</a>    #[doc(alias = <span class="string">"get_reverse"</span>)]
 <a href=#219 id=219 data-nosnippet>219</a>    </span><span class="kw">pub fn </span>is_reverse(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> {
-<a href=#220 id=220 data-nosnippet>220</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(<a href="../../../gtk4_sys/fn.gtk_print_job_get_reverse.html">ffi::gtk_print_job_get_reverse</a>(<a class="self" href="#219">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
+<a href=#220 id=220 data-nosnippet>220</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_print_job_get_reverse.html">gtk_print_job_get_reverse</a>(<a class="self" href="#219">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#221 id=221 data-nosnippet>221</a>    }
 <a href=#222 id=222 data-nosnippet>222</a>
 <a href=#223 id=223 data-nosnippet>223</a>    <span class="doccomment">/// Gets whether the job is printed rotated.
@@ -301,7 +301,7 @@
 <a href=#228 id=228 data-nosnippet>228</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_print_job_get_rotate"</span>)]
 <a href=#229 id=229 data-nosnippet>229</a>    #[doc(alias = <span class="string">"get_rotate"</span>)]
 <a href=#230 id=230 data-nosnippet>230</a>    </span><span class="kw">pub fn </span>is_rotate(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> {
-<a href=#231 id=231 data-nosnippet>231</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(<a href="../../../gtk4_sys/fn.gtk_print_job_get_rotate.html">ffi::gtk_print_job_get_rotate</a>(<a class="self" href="#230">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
+<a href=#231 id=231 data-nosnippet>231</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_print_job_get_rotate.html">gtk_print_job_get_rotate</a>(<a class="self" href="#230">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#232 id=232 data-nosnippet>232</a>    }
 <a href=#233 id=233 data-nosnippet>233</a>
 <a href=#234 id=234 data-nosnippet>234</a>    <span class="doccomment">/// Gets the scale for this job.
@@ -312,7 +312,7 @@
 <a href=#239 id=239 data-nosnippet>239</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_print_job_get_scale"</span>)]
 <a href=#240 id=240 data-nosnippet>240</a>    #[doc(alias = <span class="string">"get_scale"</span>)]
 <a href=#241 id=241 data-nosnippet>241</a>    </span><span class="kw">pub fn </span>scale(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a> {
-<a href=#242 id=242 data-nosnippet>242</a>        <span class="kw">unsafe </span>{ <a href="../../../gtk4_sys/fn.gtk_print_job_get_scale.html">ffi::gtk_print_job_get_scale</a>(<a class="self" href="#241">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>) }
+<a href=#242 id=242 data-nosnippet>242</a>        <span class="kw">unsafe </span>{ ffi::<a href="../../../gtk4_sys/fn.gtk_print_job_get_scale.html">gtk_print_job_get_scale</a>(<a class="self" href="#241">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>) }
 <a href=#243 id=243 data-nosnippet>243</a>    }
 <a href=#244 id=244 data-nosnippet>244</a>
 <a href=#245 id=245 data-nosnippet>245</a>    <span class="doccomment">/// Gets the [`PrintSettings`][crate::PrintSettings] of the print job.
@@ -323,7 +323,7 @@
 <a href=#250 id=250 data-nosnippet>250</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_print_job_get_settings"</span>)]
 <a href=#251 id=251 data-nosnippet>251</a>    #[doc(alias = <span class="string">"get_settings"</span>)]
 <a href=#252 id=252 data-nosnippet>252</a>    </span><span class="kw">pub fn </span>settings(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="print_settings.rs.html#11-33">PrintSettings</a> {
-<a href=#253 id=253 data-nosnippet>253</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib_none.html">from_glib_none</a>(<a href="../../../gtk4_sys/fn.gtk_print_job_get_settings.html">ffi::gtk_print_job_get_settings</a>(<a class="self" href="#252">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
+<a href=#253 id=253 data-nosnippet>253</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib_none.html">from_glib_none</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_print_job_get_settings.html">gtk_print_job_get_settings</a>(<a class="self" href="#252">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#254 id=254 data-nosnippet>254</a>    }
 <a href=#255 id=255 data-nosnippet>255</a>
 <a href=#256 id=256 data-nosnippet>256</a>    <span class="doccomment">/// Gets the status of the print job.
@@ -334,7 +334,7 @@
 <a href=#261 id=261 data-nosnippet>261</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_print_job_get_status"</span>)]
 <a href=#262 id=262 data-nosnippet>262</a>    #[doc(alias = <span class="string">"get_status"</span>)]
 <a href=#263 id=263 data-nosnippet>263</a>    </span><span class="kw">pub fn </span>status(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="enums.rs.html#9912-9948">PrintStatus</a> {
-<a href=#264 id=264 data-nosnippet>264</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(<a href="../../../gtk4_sys/fn.gtk_print_job_get_status.html">ffi::gtk_print_job_get_status</a>(<a class="self" href="#263">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
+<a href=#264 id=264 data-nosnippet>264</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_print_job_get_status.html">gtk_print_job_get_status</a>(<a class="self" href="#263">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#265 id=265 data-nosnippet>265</a>    }
 <a href=#266 id=266 data-nosnippet>266</a>
 <a href=#267 id=267 data-nosnippet>267</a>    <span class="doccomment">/// Gets a cairo surface onto which the pages of
@@ -345,10 +345,10 @@
 <a href=#272 id=272 data-nosnippet>272</a>    /// the cairo surface of @self
 <a href=#273 id=273 data-nosnippet>273</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_print_job_get_surface"</span>)]
 <a href=#274 id=274 data-nosnippet>274</a>    #[doc(alias = <span class="string">"get_surface"</span>)]
-<a href=#275 id=275 data-nosnippet>275</a>    </span><span class="kw">pub fn </span>surface(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html">Result</a>&lt;<a href="https://gtk-rs.org/gtk-rs-core/git/docs/cairo/surface/struct.Surface.html">cairo::Surface</a>, <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/error/struct.Error.html">glib::Error</a>&gt; {
+<a href=#275 id=275 data-nosnippet>275</a>    </span><span class="kw">pub fn </span>surface(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html">Result</a>&lt;cairo::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/cairo/surface/struct.Surface.html">Surface</a>, glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/error/struct.Error.html">Error</a>&gt; {
 <a href=#276 id=276 data-nosnippet>276</a>        <span class="kw">unsafe </span>{
-<a href=#277 id=277 data-nosnippet>277</a>            <span class="kw">let </span><span class="kw-2">mut </span>error = <a href="https://doc.rust-lang.org/nightly/core/ptr/fn.null_mut.html">std::ptr::null_mut</a>();
-<a href=#278 id=278 data-nosnippet>278</a>            <span class="kw">let </span>ret = <a href="../../../gtk4_sys/fn.gtk_print_job_get_surface.html">ffi::gtk_print_job_get_surface</a>(<a class="self" href="#275">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>, <span class="kw-2">&amp;mut </span><a href="#277">error</a>);
+<a href=#277 id=277 data-nosnippet>277</a>            <span class="kw">let </span><span class="kw-2">mut </span>error = std::ptr::<a href="https://doc.rust-lang.org/nightly/core/ptr/fn.null_mut.html">null_mut</a>();
+<a href=#278 id=278 data-nosnippet>278</a>            <span class="kw">let </span>ret = ffi::<a href="../../../gtk4_sys/fn.gtk_print_job_get_surface.html">gtk_print_job_get_surface</a>(<a class="self" href="#275">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>, <span class="kw-2">&amp;mut </span><a href="#277">error</a>);
 <a href=#279 id=279 data-nosnippet>279</a>            <span class="kw">if </span><a href="#277">error</a>.<a href="https://doc.rust-lang.org/nightly/core/ptr/foreigntype.mut_ptr.html#method.is_null">is_null</a>() {
 <a href=#280 id=280 data-nosnippet>280</a>                <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html#variant.Ok">Ok</a>(<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib_none.html">from_glib_none</a>(<a href="#278">ret</a>))
 <a href=#281 id=281 data-nosnippet>281</a>            } <span class="kw">else </span>{
@@ -364,8 +364,8 @@
 <a href=#291 id=291 data-nosnippet>291</a>    /// the title of @self
 <a href=#292 id=292 data-nosnippet>292</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_print_job_get_title"</span>)]
 <a href=#293 id=293 data-nosnippet>293</a>    #[doc(alias = <span class="string">"get_title"</span>)]
-<a href=#294 id=294 data-nosnippet>294</a>    </span><span class="kw">pub fn </span>title(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/gstring/struct.GString.html">glib::GString</a> {
-<a href=#295 id=295 data-nosnippet>295</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib_none.html">from_glib_none</a>(<a href="../../../gtk4_sys/fn.gtk_print_job_get_title.html">ffi::gtk_print_job_get_title</a>(<a class="self" href="#294">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
+<a href=#294 id=294 data-nosnippet>294</a>    </span><span class="kw">pub fn </span>title(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/gstring/struct.GString.html">GString</a> {
+<a href=#295 id=295 data-nosnippet>295</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib_none.html">from_glib_none</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_print_job_get_title.html">gtk_print_job_get_title</a>(<a class="self" href="#294">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#296 id=296 data-nosnippet>296</a>    }
 <a href=#297 id=297 data-nosnippet>297</a>
 <a href=#298 id=298 data-nosnippet>298</a>    <span class="doccomment">/// Returns whether jobs will be tracked after printing.
@@ -380,7 +380,7 @@
 <a href=#307 id=307 data-nosnippet>307</a>    #[doc(alias = <span class="string">"track-print-status"</span>)]
 <a href=#308 id=308 data-nosnippet>308</a>    </span><span class="kw">pub fn </span>tracks_print_status(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> {
 <a href=#309 id=309 data-nosnippet>309</a>        <span class="kw">unsafe </span>{
-<a href=#310 id=310 data-nosnippet>310</a>            <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(<a href="../../../gtk4_sys/fn.gtk_print_job_get_track_print_status.html">ffi::gtk_print_job_get_track_print_status</a>(
+<a href=#310 id=310 data-nosnippet>310</a>            <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_print_job_get_track_print_status.html">gtk_print_job_get_track_print_status</a>(
 <a href=#311 id=311 data-nosnippet>311</a>                <a class="self" href="#308">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
 <a href=#312 id=312 data-nosnippet>312</a>            ))
 <a href=#313 id=313 data-nosnippet>313</a>        }
@@ -392,7 +392,7 @@
 <a href=#319 id=319 data-nosnippet>319</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_print_job_set_collate"</span>)]
 <a href=#320 id=320 data-nosnippet>320</a>    </span><span class="kw">pub fn </span>set_collate(<span class="kw-2">&amp;</span><span class="self">self</span>, collate: <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) {
 <a href=#321 id=321 data-nosnippet>321</a>        <span class="kw">unsafe </span>{
-<a href=#322 id=322 data-nosnippet>322</a>            <a href="../../../gtk4_sys/fn.gtk_print_job_set_collate.html">ffi::gtk_print_job_set_collate</a>(<a class="self" href="#320">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>, <a href="#320">collate</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>());
+<a href=#322 id=322 data-nosnippet>322</a>            ffi::<a href="../../../gtk4_sys/fn.gtk_print_job_set_collate.html">gtk_print_job_set_collate</a>(<a class="self" href="#320">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>, <a href="#320">collate</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>());
 <a href=#323 id=323 data-nosnippet>323</a>        }
 <a href=#324 id=324 data-nosnippet>324</a>    }
 <a href=#325 id=325 data-nosnippet>325</a>
@@ -402,7 +402,7 @@
 <a href=#329 id=329 data-nosnippet>329</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_print_job_set_n_up"</span>)]
 <a href=#330 id=330 data-nosnippet>330</a>    </span><span class="kw">pub fn </span>set_n_up(<span class="kw-2">&amp;</span><span class="self">self</span>, n_up: <a href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>) {
 <a href=#331 id=331 data-nosnippet>331</a>        <span class="kw">unsafe </span>{
-<a href=#332 id=332 data-nosnippet>332</a>            <a href="../../../gtk4_sys/fn.gtk_print_job_set_n_up.html">ffi::gtk_print_job_set_n_up</a>(<a class="self" href="#330">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>, <a href="#330">n_up</a>);
+<a href=#332 id=332 data-nosnippet>332</a>            ffi::<a href="../../../gtk4_sys/fn.gtk_print_job_set_n_up.html">gtk_print_job_set_n_up</a>(<a class="self" href="#330">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>, <a href="#330">n_up</a>);
 <a href=#333 id=333 data-nosnippet>333</a>        }
 <a href=#334 id=334 data-nosnippet>334</a>    }
 <a href=#335 id=335 data-nosnippet>335</a>
@@ -412,7 +412,7 @@
 <a href=#339 id=339 data-nosnippet>339</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_print_job_set_n_up_layout"</span>)]
 <a href=#340 id=340 data-nosnippet>340</a>    </span><span class="kw">pub fn </span>set_n_up_layout(<span class="kw-2">&amp;</span><span class="self">self</span>, layout: <a href="enums.rs.html#8025-8052">NumberUpLayout</a>) {
 <a href=#341 id=341 data-nosnippet>341</a>        <span class="kw">unsafe </span>{
-<a href=#342 id=342 data-nosnippet>342</a>            <a href="../../../gtk4_sys/fn.gtk_print_job_set_n_up_layout.html">ffi::gtk_print_job_set_n_up_layout</a>(<a class="self" href="#340">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>, <a href="#340">layout</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>());
+<a href=#342 id=342 data-nosnippet>342</a>            ffi::<a href="../../../gtk4_sys/fn.gtk_print_job_set_n_up_layout.html">gtk_print_job_set_n_up_layout</a>(<a class="self" href="#340">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>, <a href="#340">layout</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>());
 <a href=#343 id=343 data-nosnippet>343</a>        }
 <a href=#344 id=344 data-nosnippet>344</a>    }
 <a href=#345 id=345 data-nosnippet>345</a>
@@ -422,7 +422,7 @@
 <a href=#349 id=349 data-nosnippet>349</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_print_job_set_num_copies"</span>)]
 <a href=#350 id=350 data-nosnippet>350</a>    </span><span class="kw">pub fn </span>set_num_copies(<span class="kw-2">&amp;</span><span class="self">self</span>, num_copies: <a href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) {
 <a href=#351 id=351 data-nosnippet>351</a>        <span class="kw">unsafe </span>{
-<a href=#352 id=352 data-nosnippet>352</a>            <a href="../../../gtk4_sys/fn.gtk_print_job_set_num_copies.html">ffi::gtk_print_job_set_num_copies</a>(<a class="self" href="#350">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>, <a href="#350">num_copies</a>);
+<a href=#352 id=352 data-nosnippet>352</a>            ffi::<a href="../../../gtk4_sys/fn.gtk_print_job_set_num_copies.html">gtk_print_job_set_num_copies</a>(<a class="self" href="#350">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>, <a href="#350">num_copies</a>);
 <a href=#353 id=353 data-nosnippet>353</a>        }
 <a href=#354 id=354 data-nosnippet>354</a>    }
 <a href=#355 id=355 data-nosnippet>355</a>
@@ -434,9 +434,9 @@
 <a href=#361 id=361 data-nosnippet>361</a>    </span><span class="kw">pub fn </span>set_page_ranges(<span class="kw-2">&amp;</span><span class="self">self</span>, ranges: <span class="kw-2">&amp;</span>[<a href="../page_range.rs.html#8-14">PageRange</a>]) {
 <a href=#362 id=362 data-nosnippet>362</a>        <span class="kw">let </span>n_ranges = <a href="#361">ranges</a>.<a href="https://doc.rust-lang.org/nightly/core/foreigntype.slice.html#method.len">len</a>() <span class="kw">as _</span>;
 <a href=#363 id=363 data-nosnippet>363</a>        <span class="kw">unsafe </span>{
-<a href=#364 id=364 data-nosnippet>364</a>            <a href="../../../gtk4_sys/fn.gtk_print_job_set_page_ranges.html">ffi::gtk_print_job_set_page_ranges</a>(
+<a href=#364 id=364 data-nosnippet>364</a>            ffi::<a href="../../../gtk4_sys/fn.gtk_print_job_set_page_ranges.html">gtk_print_job_set_page_ranges</a>(
 <a href=#365 id=365 data-nosnippet>365</a>                <a class="self" href="#361">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
-<a href=#366 id=366 data-nosnippet>366</a>                <a href="#361">ranges</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_full">to_glib_full</a>(),
+<a href=#366 id=366 data-nosnippet>366</a>                <a href="#361">ranges</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#method.to_glib_full">to_glib_full</a>(),
 <a href=#367 id=367 data-nosnippet>367</a>                <a href="#362">n_ranges</a>,
 <a href=#368 id=368 data-nosnippet>368</a>            );
 <a href=#369 id=369 data-nosnippet>369</a>        }
@@ -448,7 +448,7 @@
 <a href=#375 id=375 data-nosnippet>375</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_print_job_set_page_set"</span>)]
 <a href=#376 id=376 data-nosnippet>376</a>    </span><span class="kw">pub fn </span>set_page_set(<span class="kw-2">&amp;</span><span class="self">self</span>, page_set: <a href="enums.rs.html#8788-8800">PageSet</a>) {
 <a href=#377 id=377 data-nosnippet>377</a>        <span class="kw">unsafe </span>{
-<a href=#378 id=378 data-nosnippet>378</a>            <a href="../../../gtk4_sys/fn.gtk_print_job_set_page_set.html">ffi::gtk_print_job_set_page_set</a>(<a class="self" href="#376">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>, <a href="#376">page_set</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>());
+<a href=#378 id=378 data-nosnippet>378</a>            ffi::<a href="../../../gtk4_sys/fn.gtk_print_job_set_page_set.html">gtk_print_job_set_page_set</a>(<a class="self" href="#376">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>, <a href="#376">page_set</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>());
 <a href=#379 id=379 data-nosnippet>379</a>        }
 <a href=#380 id=380 data-nosnippet>380</a>    }
 <a href=#381 id=381 data-nosnippet>381</a>
@@ -458,7 +458,7 @@
 <a href=#385 id=385 data-nosnippet>385</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_print_job_set_pages"</span>)]
 <a href=#386 id=386 data-nosnippet>386</a>    </span><span class="kw">pub fn </span>set_pages(<span class="kw-2">&amp;</span><span class="self">self</span>, pages: <a href="enums.rs.html#9693-9708">PrintPages</a>) {
 <a href=#387 id=387 data-nosnippet>387</a>        <span class="kw">unsafe </span>{
-<a href=#388 id=388 data-nosnippet>388</a>            <a href="../../../gtk4_sys/fn.gtk_print_job_set_pages.html">ffi::gtk_print_job_set_pages</a>(<a class="self" href="#386">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>, <a href="#386">pages</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>());
+<a href=#388 id=388 data-nosnippet>388</a>            ffi::<a href="../../../gtk4_sys/fn.gtk_print_job_set_pages.html">gtk_print_job_set_pages</a>(<a class="self" href="#386">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>, <a href="#386">pages</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>());
 <a href=#389 id=389 data-nosnippet>389</a>        }
 <a href=#390 id=390 data-nosnippet>390</a>    }
 <a href=#391 id=391 data-nosnippet>391</a>
@@ -468,7 +468,7 @@
 <a href=#395 id=395 data-nosnippet>395</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_print_job_set_reverse"</span>)]
 <a href=#396 id=396 data-nosnippet>396</a>    </span><span class="kw">pub fn </span>set_reverse(<span class="kw-2">&amp;</span><span class="self">self</span>, reverse: <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) {
 <a href=#397 id=397 data-nosnippet>397</a>        <span class="kw">unsafe </span>{
-<a href=#398 id=398 data-nosnippet>398</a>            <a href="../../../gtk4_sys/fn.gtk_print_job_set_reverse.html">ffi::gtk_print_job_set_reverse</a>(<a class="self" href="#396">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>, <a href="#396">reverse</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>());
+<a href=#398 id=398 data-nosnippet>398</a>            ffi::<a href="../../../gtk4_sys/fn.gtk_print_job_set_reverse.html">gtk_print_job_set_reverse</a>(<a class="self" href="#396">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>, <a href="#396">reverse</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>());
 <a href=#399 id=399 data-nosnippet>399</a>        }
 <a href=#400 id=400 data-nosnippet>400</a>    }
 <a href=#401 id=401 data-nosnippet>401</a>
@@ -478,7 +478,7 @@
 <a href=#405 id=405 data-nosnippet>405</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_print_job_set_rotate"</span>)]
 <a href=#406 id=406 data-nosnippet>406</a>    </span><span class="kw">pub fn </span>set_rotate(<span class="kw-2">&amp;</span><span class="self">self</span>, rotate: <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) {
 <a href=#407 id=407 data-nosnippet>407</a>        <span class="kw">unsafe </span>{
-<a href=#408 id=408 data-nosnippet>408</a>            <a href="../../../gtk4_sys/fn.gtk_print_job_set_rotate.html">ffi::gtk_print_job_set_rotate</a>(<a class="self" href="#406">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>, <a href="#406">rotate</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>());
+<a href=#408 id=408 data-nosnippet>408</a>            ffi::<a href="../../../gtk4_sys/fn.gtk_print_job_set_rotate.html">gtk_print_job_set_rotate</a>(<a class="self" href="#406">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>, <a href="#406">rotate</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>());
 <a href=#409 id=409 data-nosnippet>409</a>        }
 <a href=#410 id=410 data-nosnippet>410</a>    }
 <a href=#411 id=411 data-nosnippet>411</a>
@@ -490,7 +490,7 @@
 <a href=#417 id=417 data-nosnippet>417</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_print_job_set_scale"</span>)]
 <a href=#418 id=418 data-nosnippet>418</a>    </span><span class="kw">pub fn </span>set_scale(<span class="kw-2">&amp;</span><span class="self">self</span>, scale: <a href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>) {
 <a href=#419 id=419 data-nosnippet>419</a>        <span class="kw">unsafe </span>{
-<a href=#420 id=420 data-nosnippet>420</a>            <a href="../../../gtk4_sys/fn.gtk_print_job_set_scale.html">ffi::gtk_print_job_set_scale</a>(<a class="self" href="#418">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>, <a href="#418">scale</a>);
+<a href=#420 id=420 data-nosnippet>420</a>            ffi::<a href="../../../gtk4_sys/fn.gtk_print_job_set_scale.html">gtk_print_job_set_scale</a>(<a class="self" href="#418">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>, <a href="#418">scale</a>);
 <a href=#421 id=421 data-nosnippet>421</a>        }
 <a href=#422 id=422 data-nosnippet>422</a>    }
 <a href=#423 id=423 data-nosnippet>423</a>
@@ -512,11 +512,11 @@
 <a href=#439 id=439 data-nosnippet>439</a>    ///
 <a href=#440 id=440 data-nosnippet>440</a>    /// [`false`] if an error occurred
 <a href=#441 id=441 data-nosnippet>441</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_print_job_set_source_fd"</span>)]
-<a href=#442 id=442 data-nosnippet>442</a>    </span><span class="kw">pub fn </span>set_source_fd(<span class="kw-2">&amp;</span><span class="self">self</span>, fd: <a href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) -&gt; <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html">Result</a>&lt;(), <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/error/struct.Error.html">glib::Error</a>&gt; {
+<a href=#442 id=442 data-nosnippet>442</a>    </span><span class="kw">pub fn </span>set_source_fd(<span class="kw-2">&amp;</span><span class="self">self</span>, fd: <a href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) -&gt; <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html">Result</a>&lt;(), glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/error/struct.Error.html">Error</a>&gt; {
 <a href=#443 id=443 data-nosnippet>443</a>        <span class="kw">unsafe </span>{
-<a href=#444 id=444 data-nosnippet>444</a>            <span class="kw">let </span><span class="kw-2">mut </span>error = <a href="https://doc.rust-lang.org/nightly/core/ptr/fn.null_mut.html">std::ptr::null_mut</a>();
-<a href=#445 id=445 data-nosnippet>445</a>            <span class="kw">let </span>is_ok = <a href="../../../gtk4_sys/fn.gtk_print_job_set_source_fd.html">ffi::gtk_print_job_set_source_fd</a>(<a class="self" href="#442">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>, <a href="#442">fd</a>, <span class="kw-2">&amp;mut </span><a href="#444">error</a>);
-<a href=#446 id=446 data-nosnippet>446</a>            <a class="macro" href="https://doc.rust-lang.org/nightly/core/macro.debug_assert_eq.html">debug_assert_eq!</a>(is_ok == glib::ffi::GFALSE, !error.is_null());
+<a href=#444 id=444 data-nosnippet>444</a>            <span class="kw">let </span><span class="kw-2">mut </span>error = std::ptr::<a href="https://doc.rust-lang.org/nightly/core/ptr/fn.null_mut.html">null_mut</a>();
+<a href=#445 id=445 data-nosnippet>445</a>            <span class="kw">let </span>is_ok = ffi::<a href="../../../gtk4_sys/fn.gtk_print_job_set_source_fd.html">gtk_print_job_set_source_fd</a>(<a class="self" href="#442">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>, <a href="#442">fd</a>, <span class="kw-2">&amp;mut </span><a href="#444">error</a>);
+<a href=#446 id=446 data-nosnippet>446</a>            <a href="https://doc.rust-lang.org/nightly/core/macro.debug_assert_eq.html">debug_assert_eq!</a>(is_ok == glib::ffi::GFALSE, !error.is_null());
 <a href=#447 id=447 data-nosnippet>447</a>            <span class="kw">if </span><a href="#444">error</a>.<a href="https://doc.rust-lang.org/nightly/core/ptr/foreigntype.mut_ptr.html#method.is_null">is_null</a>() {
 <a href=#448 id=448 data-nosnippet>448</a>                <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html#variant.Ok">Ok</a>(())
 <a href=#449 id=449 data-nosnippet>449</a>            } <span class="kw">else </span>{
@@ -541,16 +541,16 @@
 <a href=#468 id=468 data-nosnippet>468</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_print_job_set_source_file"</span>)]
 <a href=#469 id=469 data-nosnippet>469</a>    </span><span class="kw">pub fn </span>set_source_file(
 <a href=#470 id=470 data-nosnippet>470</a>        <span class="kw-2">&amp;</span><span class="self">self</span>,
-<a href=#471 id=471 data-nosnippet>471</a>        filename: <span class="kw">impl </span><a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html">AsRef</a>&lt;<a href="https://doc.rust-lang.org/nightly/std/path/struct.Path.html">std::path::Path</a>&gt;,
-<a href=#472 id=472 data-nosnippet>472</a>    ) -&gt; <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html">Result</a>&lt;(), <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/error/struct.Error.html">glib::Error</a>&gt; {
+<a href=#471 id=471 data-nosnippet>471</a>        filename: <span class="kw">impl </span><a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html">AsRef</a>&lt;std::path::<a href="https://doc.rust-lang.org/nightly/std/path/struct.Path.html">Path</a>&gt;,
+<a href=#472 id=472 data-nosnippet>472</a>    ) -&gt; <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html">Result</a>&lt;(), glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/error/struct.Error.html">Error</a>&gt; {
 <a href=#473 id=473 data-nosnippet>473</a>        <span class="kw">unsafe </span>{
-<a href=#474 id=474 data-nosnippet>474</a>            <span class="kw">let </span><span class="kw-2">mut </span>error = <a href="https://doc.rust-lang.org/nightly/core/ptr/fn.null_mut.html">std::ptr::null_mut</a>();
-<a href=#475 id=475 data-nosnippet>475</a>            <span class="kw">let </span>is_ok = <a href="../../../gtk4_sys/fn.gtk_print_job_set_source_file.html">ffi::gtk_print_job_set_source_file</a>(
+<a href=#474 id=474 data-nosnippet>474</a>            <span class="kw">let </span><span class="kw-2">mut </span>error = std::ptr::<a href="https://doc.rust-lang.org/nightly/core/ptr/fn.null_mut.html">null_mut</a>();
+<a href=#475 id=475 data-nosnippet>475</a>            <span class="kw">let </span>is_ok = ffi::<a href="../../../gtk4_sys/fn.gtk_print_job_set_source_file.html">gtk_print_job_set_source_file</a>(
 <a href=#476 id=476 data-nosnippet>476</a>                <a class="self" href="#470">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
 <a href=#477 id=477 data-nosnippet>477</a>                <a href="#471">filename</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
 <a href=#478 id=478 data-nosnippet>478</a>                <span class="kw-2">&amp;mut </span><a href="#474">error</a>,
 <a href=#479 id=479 data-nosnippet>479</a>            );
-<a href=#480 id=480 data-nosnippet>480</a>            <a class="macro" href="https://doc.rust-lang.org/nightly/core/macro.debug_assert_eq.html">debug_assert_eq!</a>(is_ok == glib::ffi::GFALSE, !error.is_null());
+<a href=#480 id=480 data-nosnippet>480</a>            <a href="https://doc.rust-lang.org/nightly/core/macro.debug_assert_eq.html">debug_assert_eq!</a>(is_ok == glib::ffi::GFALSE, !error.is_null());
 <a href=#481 id=481 data-nosnippet>481</a>            <span class="kw">if </span><a href="#474">error</a>.<a href="https://doc.rust-lang.org/nightly/core/ptr/foreigntype.mut_ptr.html#method.is_null">is_null</a>() {
 <a href=#482 id=482 data-nosnippet>482</a>                <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html#variant.Ok">Ok</a>(())
 <a href=#483 id=483 data-nosnippet>483</a>            } <span class="kw">else </span>{
@@ -573,7 +573,7 @@
 <a href=#500 id=500 data-nosnippet>500</a>    #[doc(alias = <span class="string">"track-print-status"</span>)]
 <a href=#501 id=501 data-nosnippet>501</a>    </span><span class="kw">pub fn </span>set_track_print_status(<span class="kw-2">&amp;</span><span class="self">self</span>, track_status: <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) {
 <a href=#502 id=502 data-nosnippet>502</a>        <span class="kw">unsafe </span>{
-<a href=#503 id=503 data-nosnippet>503</a>            <a href="../../../gtk4_sys/fn.gtk_print_job_set_track_print_status.html">ffi::gtk_print_job_set_track_print_status</a>(
+<a href=#503 id=503 data-nosnippet>503</a>            ffi::<a href="../../../gtk4_sys/fn.gtk_print_job_set_track_print_status.html">gtk_print_job_set_track_print_status</a>(
 <a href=#504 id=504 data-nosnippet>504</a>                <a class="self" href="#501">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
 <a href=#505 id=505 data-nosnippet>505</a>                <a href="#501">track_status</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>(),
 <a href=#506 id=506 data-nosnippet>506</a>            );
@@ -583,7 +583,7 @@
 <a href=#510 id=510 data-nosnippet>510</a>    <span class="doccomment">/// Page setup.
 <a href=#511 id=511 data-nosnippet>511</a>    </span><span class="attr">#[doc(alias = <span class="string">"page-setup"</span>)]
 <a href=#512 id=512 data-nosnippet>512</a>    </span><span class="kw">pub fn </span>page_setup(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;<a href="page_setup.rs.html#8-63">PageSetup</a>&gt; {
-<a href=#513 id=513 data-nosnippet>513</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.ObjectExt.html#tymethod.property">ObjectExt::property</a>(<a class="self" href="#512">self</a>, <span class="string">"page-setup"</span>)
+<a href=#513 id=513 data-nosnippet>513</a>        ObjectExt::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.ObjectExt.html#tymethod.property">property</a>(<a class="self" href="#512">self</a>, <span class="string">"page-setup"</span>)
 <a href=#514 id=514 data-nosnippet>514</a>    }
 <a href=#515 id=515 data-nosnippet>515</a>
 <a href=#516 id=516 data-nosnippet>516</a>    <span class="doccomment">/// Emitted when the status of a job changes.
@@ -593,21 +593,21 @@
 <a href=#520 id=520 data-nosnippet>520</a>    </span><span class="attr">#[doc(alias = <span class="string">"status-changed"</span>)]
 <a href=#521 id=521 data-nosnippet>521</a>    </span><span class="kw">pub fn </span>connect_status_changed&lt;F: <a href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html">Fn</a>(<span class="kw-2">&amp;</span><span class="self">Self</span>) + <span class="lifetime">'static</span>&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, f: F) -&gt; <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html">SignalHandlerId</a> {
 <a href=#522 id=522 data-nosnippet>522</a>        <span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn </span>status_changed_trampoline&lt;F: <a href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html">Fn</a>(<span class="kw-2">&amp;</span><a href="#17-82">PrintJob</a>) + <span class="lifetime">'static</span>&gt;(
-<a href=#523 id=523 data-nosnippet>523</a>            this: <span class="kw-2">*mut </span><a href="../../../gtk4_sys/struct.GtkPrintJob.html">ffi::GtkPrintJob</a>,
+<a href=#523 id=523 data-nosnippet>523</a>            this: <span class="kw-2">*mut </span>ffi::<a href="../../../gtk4_sys/struct.GtkPrintJob.html">GtkPrintJob</a>,
 <a href=#524 id=524 data-nosnippet>524</a>            f: glib::ffi::gpointer,
 <a href=#525 id=525 data-nosnippet>525</a>        ) {
 <a href=#526 id=526 data-nosnippet>526</a>            <span class="kw">let </span>f: <span class="kw-2">&amp;</span>F = <span class="kw-2">&amp;*</span>(<a href="#524">f</a> <span class="kw">as </span><span class="kw-2">*const </span>F);
 <a href=#527 id=527 data-nosnippet>527</a>            <a href="#526">f</a>(<span class="kw-2">&amp;</span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib_borrow.html">from_glib_borrow</a>(<a href="#523">this</a>))
 <a href=#528 id=528 data-nosnippet>528</a>        }
 <a href=#529 id=529 data-nosnippet>529</a>        <span class="kw">unsafe </span>{
-<a href=#530 id=530 data-nosnippet>530</a>            <span class="kw">let </span>f: <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">Box_</a>&lt;F&gt; = <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html#method.new">Box_::new</a>(<a href="#521">f</a>);
+<a href=#530 id=530 data-nosnippet>530</a>            <span class="kw">let </span>f: <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">Box_</a>&lt;F&gt; = <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">Box_</a>::<a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html#method.new">new</a>(<a href="#521">f</a>);
 <a href=#531 id=531 data-nosnippet>531</a>            <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/fn.connect_raw.html">connect_raw</a>(
 <a href=#532 id=532 data-nosnippet>532</a>                <a class="self" href="#521">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.ObjectType.html#tymethod.as_ptr">as_ptr</a>() <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>,
 <a href=#533 id=533 data-nosnippet>533</a>                <span class="string">c"status-changed"</span>.<a href="https://doc.rust-lang.org/nightly/core/ffi/c_str/struct.CStr.html#method.as_ptr">as_ptr</a>() <span class="kw">as </span><span class="kw-2">*const </span><span class="kw">_</span>,
-<a href=#534 id=534 data-nosnippet>534</a>                <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.Some">Some</a>(<a href="https://doc.rust-lang.org/nightly/core/intrinsics/fn.transmute.html">std::mem::transmute</a>::&lt;<span class="kw-2">*const </span>(), <span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn</span>()&gt;(
+<a href=#534 id=534 data-nosnippet>534</a>                <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.Some">Some</a>(std::mem::<a href="https://doc.rust-lang.org/nightly/core/intrinsics/fn.transmute.html">transmute</a>::&lt;<span class="kw-2">*const </span>(), <span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn</span>()&gt;(
 <a href=#535 id=535 data-nosnippet>535</a>                    <a href="#522-528">status_changed_trampoline</a>::&lt;F&gt; <span class="kw">as </span><span class="kw-2">*const </span>(),
 <a href=#536 id=536 data-nosnippet>536</a>                )),
-<a href=#537 id=537 data-nosnippet>537</a>                <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html#method.into_raw">Box_::into_raw</a>(<a href="#530">f</a>),
+<a href=#537 id=537 data-nosnippet>537</a>                <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">Box_</a>::<a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html#method.into_raw">into_raw</a>(<a href="#530">f</a>),
 <a href=#538 id=538 data-nosnippet>538</a>            )
 <a href=#539 id=539 data-nosnippet>539</a>        }
 <a href=#540 id=540 data-nosnippet>540</a>    }
@@ -618,7 +618,7 @@
 <a href=#545 id=545 data-nosnippet>545</a>        f: F,
 <a href=#546 id=546 data-nosnippet>546</a>    ) -&gt; <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html">SignalHandlerId</a> {
 <a href=#547 id=547 data-nosnippet>547</a>        <span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn </span>notify_track_print_status_trampoline&lt;F: <a href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html">Fn</a>(<span class="kw-2">&amp;</span><a href="#17-82">PrintJob</a>) + <span class="lifetime">'static</span>&gt;(
-<a href=#548 id=548 data-nosnippet>548</a>            this: <span class="kw-2">*mut </span><a href="../../../gtk4_sys/struct.GtkPrintJob.html">ffi::GtkPrintJob</a>,
+<a href=#548 id=548 data-nosnippet>548</a>            this: <span class="kw-2">*mut </span>ffi::<a href="../../../gtk4_sys/struct.GtkPrintJob.html">GtkPrintJob</a>,
 <a href=#549 id=549 data-nosnippet>549</a>            _param_spec: glib::ffi::gpointer,
 <a href=#550 id=550 data-nosnippet>550</a>            f: glib::ffi::gpointer,
 <a href=#551 id=551 data-nosnippet>551</a>        ) {
@@ -626,15 +626,16 @@
 <a href=#553 id=553 data-nosnippet>553</a>            <a href="#552">f</a>(<span class="kw-2">&amp;</span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib_borrow.html">from_glib_borrow</a>(<a href="#548">this</a>))
 <a href=#554 id=554 data-nosnippet>554</a>        }
 <a href=#555 id=555 data-nosnippet>555</a>        <span class="kw">unsafe </span>{
-<a href=#556 id=556 data-nosnippet>556</a>            <span class="kw">let </span>f: <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">Box_</a>&lt;F&gt; = <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html#method.new">Box_::new</a>(<a href="#545">f</a>);
+<a href=#556 id=556 data-nosnippet>556</a>            <span class="kw">let </span>f: <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">Box_</a>&lt;F&gt; = <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">Box_</a>::<a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html#method.new">new</a>(<a href="#545">f</a>);
 <a href=#557 id=557 data-nosnippet>557</a>            <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/fn.connect_raw.html">connect_raw</a>(
 <a href=#558 id=558 data-nosnippet>558</a>                <a class="self" href="#544">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.ObjectType.html#tymethod.as_ptr">as_ptr</a>() <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>,
 <a href=#559 id=559 data-nosnippet>559</a>                <span class="string">c"notify::track-print-status"</span>.<a href="https://doc.rust-lang.org/nightly/core/ffi/c_str/struct.CStr.html#method.as_ptr">as_ptr</a>() <span class="kw">as </span><span class="kw-2">*const </span><span class="kw">_</span>,
-<a href=#560 id=560 data-nosnippet>560</a>                <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.Some">Some</a>(<a href="https://doc.rust-lang.org/nightly/core/intrinsics/fn.transmute.html">std::mem::transmute</a>::&lt;<span class="kw-2">*const </span>(), <span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn</span>()&gt;(
+<a href=#560 id=560 data-nosnippet>560</a>                <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.Some">Some</a>(std::mem::<a href="https://doc.rust-lang.org/nightly/core/intrinsics/fn.transmute.html">transmute</a>::&lt;<span class="kw-2">*const </span>(), <span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn</span>()&gt;(
 <a href=#561 id=561 data-nosnippet>561</a>                    <a href="#547-554">notify_track_print_status_trampoline</a>::&lt;F&gt; <span class="kw">as </span><span class="kw-2">*const </span>(),
 <a href=#562 id=562 data-nosnippet>562</a>                )),
-<a href=#563 id=563 data-nosnippet>563</a>                <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html#method.into_raw">Box_::into_raw</a>(<a href="#556">f</a>),
+<a href=#563 id=563 data-nosnippet>563</a>                <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">Box_</a>::<a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html#method.into_raw">into_raw</a>(<a href="#556">f</a>),
 <a href=#564 id=564 data-nosnippet>564</a>            )
 <a href=#565 id=565 data-nosnippet>565</a>        }
 <a href=#566 id=566 data-nosnippet>566</a>    }
-<a href=#567 id=567 data-nosnippet>567</a>}</code></pre></div></section></main></body></html>
+<a href=#567 id=567 data-nosnippet>567</a>}
+</code></pre></div></section></main></body></html>

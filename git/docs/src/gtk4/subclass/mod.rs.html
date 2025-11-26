@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/subclass/mod.rs`."><title>mod.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-e56847b5.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.92.0-nightly (4645a7988 2025-09-17)" data-channel="nightly" data-search-js="search-cb266a1a.js" data-stringdex-js="stringdex-5af928a3.js" data-settings-js="settings-c38705f0.js" ><script src="../../../static.files/storage-e2aeef58.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-6dc2a7f3.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-263c88ec.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/subclass/mod.rs`."><title>mod.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-ca0dd0c4.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.93.0-nightly (80d8f292d 2025-11-25)" data-channel="nightly" data-search-js="search-680b2199.js" data-stringdex-js="stringdex-a3946164.js" data-settings-js="settings-c38705f0.js" ><script src="../../../static.files/storage-e2aeef58.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-a410ff4d.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-263c88ec.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
 
@@ -95,7 +95,7 @@
 <a href=#22 id=22 data-nosnippet>22</a></span><span class="kw">pub mod </span><a href="accessible_range.rs.html#4-57">accessible_range</a>;
 <a href=#23 id=23 data-nosnippet>23</a><span class="attr">#[cfg(feature = <span class="string">"v4_14"</span>)]
 <a href=#24 id=24 data-nosnippet>24</a>#[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_14"</span>)))]
-<a href=#25 id=25 data-nosnippet>25</a></span><span class="kw">pub mod </span><a href="accessible_text.rs.html#4-688">accessible_text</a>;
+<a href=#25 id=25 data-nosnippet>25</a></span><span class="kw">pub mod </span><a href="accessible_text.rs.html#4-774">accessible_text</a>;
 <a href=#26 id=26 data-nosnippet>26</a><span class="kw">pub mod </span><a href="actionable.rs.html#4-137">actionable</a>;
 <a href=#27 id=27 data-nosnippet>27</a><span class="kw">pub mod </span><a href="adjustment.rs.html#4-68">adjustment</a>;
 <a href=#28 id=28 data-nosnippet>28</a><span class="kw">pub mod </span><a href="application.rs.html#4-116">application</a>;
@@ -123,9 +123,9 @@
 <a href=#50 id=50 data-nosnippet>50</a><span class="kw">pub mod </span><a href="flow_box_child.rs.html#4-48">flow_box_child</a>;
 <a href=#51 id=51 data-nosnippet>51</a><span class="kw">pub mod </span><a href="font_chooser.rs.html#4-337">font_chooser</a>;
 <a href=#52 id=52 data-nosnippet>52</a><span class="kw">pub mod </span><a href="frame.rs.html#4-58">frame</a>;
-<a href=#53 id=53 data-nosnippet>53</a><span class="kw">pub mod </span><a href="gl_area.rs.html#4-116">gl_area</a>;
+<a href=#53 id=53 data-nosnippet>53</a><span class="kw">pub mod </span><a href="gl_area.rs.html#4-112">gl_area</a>;
 <a href=#54 id=54 data-nosnippet>54</a><span class="kw">pub mod </span><a href="grid.rs.html#4-10">grid</a>;
-<a href=#55 id=55 data-nosnippet>55</a><span class="kw">pub mod </span><a href="im_context.rs.html#4-713">im_context</a>;
+<a href=#55 id=55 data-nosnippet>55</a><span class="kw">pub mod </span><a href="im_context.rs.html#4-752">im_context</a>;
 <a href=#56 id=56 data-nosnippet>56</a><span class="kw">pub mod </span><a href="layout_child.rs.html#4-16">layout_child</a>;
 <a href=#57 id=57 data-nosnippet>57</a><span class="kw">pub mod </span><a href="layout_manager.rs.html#4-333">layout_manager</a>;
 <a href=#58 id=58 data-nosnippet>58</a><span class="kw">pub mod </span><a href="list_box_row.rs.html#4-46">list_box_row</a>;
@@ -150,7 +150,7 @@
 <a href=#77 id=77 data-nosnippet>77</a><span class="kw">pub mod </span><a href="style_context.rs.html#4-53">style_context</a>;
 <a href=#78 id=78 data-nosnippet>78</a><span class="attr">#[cfg(feature = <span class="string">"v4_6"</span>)]
 <a href=#79 id=79 data-nosnippet>79</a>#[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_6"</span>)))]
-<a href=#80 id=80 data-nosnippet>80</a></span><span class="kw">pub mod </span><a href="symbolic_paintable.rs.html#4-88">symbolic_paintable</a>;
+<a href=#80 id=80 data-nosnippet>80</a></span><span class="kw">pub mod </span><a href="symbolic_paintable.rs.html#4-164">symbolic_paintable</a>;
 <a href=#81 id=81 data-nosnippet>81</a><span class="kw">pub mod </span><a href="text_buffer.rs.html#4-526">text_buffer</a>;
 <a href=#82 id=82 data-nosnippet>82</a><span class="kw">pub mod </span><a href="text_view.rs.html#4-385">text_view</a>;
 <a href=#83 id=83 data-nosnippet>83</a><span class="kw">pub mod </span><a href="toggle_button.rs.html#4-55">toggle_button</a>;
@@ -176,14 +176,14 @@
 <a href=#103 id=103 data-nosnippet>103</a>    </span><span class="kw">pub use </span><span class="kw">super</span>::accessible_range::{<a href="accessible_range.rs.html#10-14">AccessibleRangeImpl</a>, <a href="accessible_range.rs.html#16-37">AccessibleRangeImplExt</a>};
 <a href=#104 id=104 data-nosnippet>104</a>    <span class="attr">#[cfg(feature = <span class="string">"v4_14"</span>)]
 <a href=#105 id=105 data-nosnippet>105</a>    #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_14"</span>)))]
-<a href=#106 id=106 data-nosnippet>106</a>    </span><span class="kw">pub use </span><span class="kw">super</span>::accessible_text::{<a href="accessible_text.rs.html#12-60">AccessibleTextImpl</a>, <a href="accessible_text.rs.html#62-317">AccessibleTextImplExt</a>};
+<a href=#106 id=106 data-nosnippet>106</a>    </span><span class="kw">pub use </span><span class="kw">super</span>::accessible_text::{<a href="accessible_text.rs.html#12-72">AccessibleTextImpl</a>, <a href="accessible_text.rs.html#74-374">AccessibleTextImplExt</a>};
 <a href=#107 id=107 data-nosnippet>107</a>    <span class="attr">#[cfg(feature = <span class="string">"v4_12"</span>)]
 <a href=#108 id=108 data-nosnippet>108</a>    #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_12"</span>)))]
 <a href=#109 id=109 data-nosnippet>109</a>    </span><span class="kw">pub use </span><span class="kw">super</span>::section_model::{<a href="section_model.rs.html#10-15">SectionModelImpl</a>, <a href="section_model.rs.html#17-42">SectionModelImplExt</a>};
 <a href=#110 id=110 data-nosnippet>110</a>    <span class="attr">#[cfg(feature = <span class="string">"v4_6"</span>)]
 <a href=#111 id=111 data-nosnippet>111</a>    #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_6"</span>)))]
 <a href=#112 id=112 data-nosnippet>112</a>    #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_6"</span>)))]
-<a href=#113 id=113 data-nosnippet>113</a>    </span><span class="kw">pub use </span><span class="kw">super</span>::symbolic_paintable::{<a href="symbolic_paintable.rs.html#10-22">SymbolicPaintableImpl</a>, <a href="symbolic_paintable.rs.html#24-51">SymbolicPaintableImplExt</a>};
+<a href=#113 id=113 data-nosnippet>113</a>    </span><span class="kw">pub use </span><span class="kw">super</span>::symbolic_paintable::{<a href="symbolic_paintable.rs.html#10-35">SymbolicPaintableImpl</a>, <a href="symbolic_paintable.rs.html#37-95">SymbolicPaintableImplExt</a>};
 <a href=#114 id=114 data-nosnippet>114</a>    <span class="kw">pub use super</span>::{
 <a href=#115 id=115 data-nosnippet>115</a>        actionable::{<a href="actionable.rs.html#10-17">ActionableImpl</a>, <a href="actionable.rs.html#19-85">ActionableImplExt</a>},
 <a href=#116 id=116 data-nosnippet>116</a>        adjustment::{<a href="adjustment.rs.html#10-18">AdjustmentImpl</a>, <a href="adjustment.rs.html#20-40">AdjustmentImplExt</a>},
@@ -212,9 +212,9 @@
 <a href=#139 id=139 data-nosnippet>139</a>        flow_box_child::{<a href="flow_box_child.rs.html#10-14">FlowBoxChildImpl</a>, <a href="flow_box_child.rs.html#16-30">FlowBoxChildImplExt</a>},
 <a href=#140 id=140 data-nosnippet>140</a>        font_chooser::{<a href="font_chooser.rs.html#51-79">FontChooserImpl</a>, <a href="font_chooser.rs.html#83-207">FontChooserImplExt</a>},
 <a href=#141 id=141 data-nosnippet>141</a>        frame::{<a href="frame.rs.html#12-16">FrameImpl</a>, <a href="frame.rs.html#20-36">FrameImplExt</a>},
-<a href=#142 id=142 data-nosnippet>142</a>        gl_area::{<a href="gl_area.rs.html#12-27">GLAreaImpl</a>, <a href="gl_area.rs.html#30-73">GLAreaImplExt</a>},
+<a href=#142 id=142 data-nosnippet>142</a>        gl_area::{<a href="gl_area.rs.html#12-27">GLAreaImpl</a>, <a href="gl_area.rs.html#30-69">GLAreaImplExt</a>},
 <a href=#143 id=143 data-nosnippet>143</a>        <a href="grid.rs.html#8">grid::GridImpl</a>,
-<a href=#144 id=144 data-nosnippet>144</a>        im_context::{<a href="im_context.rs.html#12-226">IMContextImpl</a>, <a href="im_context.rs.html#229-481">IMContextImplExt</a>},
+<a href=#144 id=144 data-nosnippet>144</a>        im_context::{<a href="im_context.rs.html#12-233">IMContextImpl</a>, <a href="im_context.rs.html#236-505">IMContextImplExt</a>},
 <a href=#145 id=145 data-nosnippet>145</a>        <a href="layout_child.rs.html#8">layout_child::LayoutChildImpl</a>,
 <a href=#146 id=146 data-nosnippet>146</a>        layout_manager::{<a href="layout_manager.rs.html#14-111">LayoutManagerImpl</a>, <a href="layout_manager.rs.html#113-229">LayoutManagerImplExt</a>},
 <a href=#147 id=147 data-nosnippet>147</a>        list_box_row::{<a href="list_box_row.rs.html#10-16">ListBoxRowImpl</a>, <a href="list_box_row.rs.html#18-28">ListBoxRowImplExt</a>},
@@ -250,4 +250,5 @@
 <a href=#177 id=177 data-nosnippet>177</a>        window::{<a href="window.rs.html#10-43">WindowImpl</a>, <a href="window.rs.html#45-104">WindowImplExt</a>},
 <a href=#178 id=178 data-nosnippet>178</a>        <a href="window_group.rs.html#8">window_group::WindowGroupImpl</a>,
 <a href=#179 id=179 data-nosnippet>179</a>    };
-<a href=#180 id=180 data-nosnippet>180</a>}</code></pre></div></section></main></body></html>
+<a href=#180 id=180 data-nosnippet>180</a>}
+</code></pre></div></section></main></body></html>

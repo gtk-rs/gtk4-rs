@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gdk4-win32/src/win32_display.rs`."><title>win32_display.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-e56847b5.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gdk4_win32" data-themes="" data-resource-suffix="" data-rustdoc-version="1.92.0-nightly (4645a7988 2025-09-17)" data-channel="nightly" data-search-js="search-cb266a1a.js" data-stringdex-js="stringdex-5af928a3.js" data-settings-js="settings-c38705f0.js" ><script src="../../static.files/storage-e2aeef58.js"></script><script defer src="../../static.files/src-script-813739b1.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-6dc2a7f3.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-263c88ec.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gdk4-win32/src/win32_display.rs`."><title>win32_display.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-ca0dd0c4.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gdk4_win32" data-themes="" data-resource-suffix="" data-rustdoc-version="1.93.0-nightly (80d8f292d 2025-11-25)" data-channel="nightly" data-search-js="search-680b2199.js" data-stringdex-js="stringdex-a3946164.js" data-settings-js="settings-c38705f0.js" ><script src="../../static.files/storage-e2aeef58.js"></script><script defer src="../../static.files/src-script-813739b1.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-a410ff4d.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-263c88ec.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
 
@@ -90,13 +90,13 @@
 <a href=#17 id=17 data-nosnippet>17</a>    #[cfg_attr(docsrs, doc(cfg(all(feature = <span class="string">"v4_4"</span>, feature = <span class="string">"egl"</span>))))]
 <a href=#18 id=18 data-nosnippet>18</a>    #[doc(alias = <span class="string">"gdk_win32_display_get_egl_display"</span>)]
 <a href=#19 id=19 data-nosnippet>19</a>    #[doc(alias = <span class="string">"get_egl_display"</span>)]
-<a href=#20 id=20 data-nosnippet>20</a>    </span><span class="kw">pub fn </span>egl_display(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;<a href="https://docs.rs/khronos-egl/latest/khronos_egl/egl1_0/struct.Display.html">egl::Display</a>&gt; {
+<a href=#20 id=20 data-nosnippet>20</a>    </span><span class="kw">pub fn </span>egl_display(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;egl::<a href="https://docs.rs/khronos-egl/latest/khronos_egl/egl1_0/struct.Display.html">Display</a>&gt; {
 <a href=#21 id=21 data-nosnippet>21</a>        <span class="kw">unsafe </span>{
-<a href=#22 id=22 data-nosnippet>22</a>            <span class="kw">let </span>ptr = <a href="../../gdk4_win32_sys/fn.gdk_win32_display_get_egl_display.html">ffi::gdk_win32_display_get_egl_display</a>(<a class="self" href="#20">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>);
+<a href=#22 id=22 data-nosnippet>22</a>            <span class="kw">let </span>ptr = ffi::<a href="../../gdk4_win32_sys/fn.gdk_win32_display_get_egl_display.html">gdk_win32_display_get_egl_display</a>(<a class="self" href="#20">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>);
 <a href=#23 id=23 data-nosnippet>23</a>            <span class="kw">if </span><a href="#22">ptr</a>.<a href="https://doc.rust-lang.org/nightly/core/ptr/foreigntype.mut_ptr.html#method.is_null">is_null</a>() {
-<a href=#24 id=24 data-nosnippet>24</a>                <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None"><a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None">None</a>
-<a href=#25 id=25 data-nosnippet>25</a>            </a>} <span class="kw">else </span>{
-<a href=#26 id=26 data-nosnippet>26</a>                <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.Some">Some</a>(<a href="https://docs.rs/khronos-egl/latest/khronos_egl/egl1_0/struct.Display.html#method.from_ptr">egl::Display::from_ptr</a>(<a href="#22">ptr</a>))
+<a href=#24 id=24 data-nosnippet>24</a>                <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None">None</a>
+<a href=#25 id=25 data-nosnippet>25</a>            } <span class="kw">else </span>{
+<a href=#26 id=26 data-nosnippet>26</a>                <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.Some">Some</a>(egl::<a href="https://docs.rs/khronos-egl/latest/khronos_egl/egl1_0/struct.Display.html">Display</a>::<a href="https://docs.rs/khronos-egl/latest/khronos_egl/egl1_0/struct.Display.html#method.from_ptr">from_ptr</a>(<a href="#22">ptr</a>))
 <a href=#27 id=27 data-nosnippet>27</a>            }
 <a href=#28 id=28 data-nosnippet>28</a>        }
 <a href=#29 id=29 data-nosnippet>29</a>    }
@@ -115,7 +115,7 @@
 <a href=#42 id=42 data-nosnippet>42</a>        <span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn </span>trampoline&lt;
 <a href=#43 id=43 data-nosnippet>43</a>            F: <a href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html">Fn</a>(<span class="kw-2">&amp;</span><a href="auto/win32_display.rs.html#8-20">Win32Display</a>, <span class="kw-2">&amp;mut </span><a href="lib.rs.html#61-68">MSG</a>, <span class="kw-2">&amp;mut </span><a href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) -&gt; <a href="auto/enums.rs.html#12-21">Win32MessageFilterReturn</a> + <span class="lifetime">'static</span>,
 <a href=#44 id=44 data-nosnippet>44</a>        &gt;(
-<a href=#45 id=45 data-nosnippet>45</a>            display: <span class="kw-2">*mut </span><a href="../../gdk4_win32_sys/struct.GdkWin32Display.html">ffi::GdkWin32Display</a>,
+<a href=#45 id=45 data-nosnippet>45</a>            display: <span class="kw-2">*mut </span>ffi::<a href="../../gdk4_win32_sys/struct.GdkWin32Display.html">GdkWin32Display</a>,
 <a href=#46 id=46 data-nosnippet>46</a>            msg: glib::ffi::gpointer,
 <a href=#47 id=47 data-nosnippet>47</a>            return_value: <span class="kw-2">*mut </span>libc::c_int,
 <a href=#48 id=48 data-nosnippet>48</a>            box_: glib::ffi::gpointer,
@@ -129,18 +129,18 @@
 <a href=#56 id=56 data-nosnippet>56</a>            .<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>()
 <a href=#57 id=57 data-nosnippet>57</a>        }
 <a href=#58 id=58 data-nosnippet>58</a>
-<a href=#59 id=59 data-nosnippet>59</a>        <span class="kw">let </span>box_ = <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html#method.into_raw">Box::into_raw</a>(<a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html#method.new">Box::new</a>(<a href="#38">filter_func</a>)) <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>;
+<a href=#59 id=59 data-nosnippet>59</a>        <span class="kw">let </span>box_ = <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">Box</a>::<a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html#method.into_raw">into_raw</a>(<a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">Box</a>::<a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html#method.new">new</a>(<a href="#38">filter_func</a>)) <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>;
 <a href=#60 id=60 data-nosnippet>60</a>        <span class="kw">let </span>func = <span class="kw">unsafe </span>{
-<a href=#61 id=61 data-nosnippet>61</a>            <span class="kw">let </span>func: <a href="../../gdk4_win32_sys/type.GdkWin32MessageFilterFunc.html">ffi::GdkWin32MessageFilterFunc</a> = <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.Some">Some</a>(<a href="#42-57">trampoline</a>::&lt;F&gt;);
-<a href=#62 id=62 data-nosnippet>62</a>            <a href="../../gdk4_win32_sys/fn.gdk_win32_display_add_filter.html">ffi::gdk_win32_display_add_filter</a>(<a class="self" href="#38">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>, <a href="#61">func</a>, <a href="#59">box_</a>);
+<a href=#61 id=61 data-nosnippet>61</a>            <span class="kw">let </span>func: ffi::<a href="../../gdk4_win32_sys/type.GdkWin32MessageFilterFunc.html">GdkWin32MessageFilterFunc</a> = <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.Some">Some</a>(<a href="#42-57">trampoline</a>::&lt;F&gt;);
+<a href=#62 id=62 data-nosnippet>62</a>            ffi::<a href="../../gdk4_win32_sys/fn.gdk_win32_display_add_filter.html">gdk_win32_display_add_filter</a>(<a class="self" href="#38">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>, <a href="#61">func</a>, <a href="#59">box_</a>);
 <a href=#63 id=63 data-nosnippet>63</a>            <a href="#61">func</a>
 <a href=#64 id=64 data-nosnippet>64</a>        };
 <a href=#65 id=65 data-nosnippet>65</a>
-<a href=#66 id=66 data-nosnippet>66</a>        <span class="kw">let </span>display = <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/struct.WeakRef.html#method.new">glib::WeakRef::new</a>();
+<a href=#66 id=66 data-nosnippet>66</a>        <span class="kw">let </span>display = glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/struct.WeakRef.html">WeakRef</a>::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/struct.WeakRef.html#method.new">new</a>();
 <a href=#67 id=67 data-nosnippet>67</a>        <a href="#66">display</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/struct.WeakRef.html#method.set">set</a>(<a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.Some">Some</a>(<a class="self" href="#38">self</a>));
 <a href=#68 id=68 data-nosnippet>68</a>
 <a href=#69 id=69 data-nosnippet>69</a>        <span class="kw">let </span>drop_ = |b| <span class="kw">unsafe </span>{
-<a href=#70 id=70 data-nosnippet>70</a>            <span class="kw">let _ </span>= <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">Box</a>::&lt;F&gt;::from_raw(<a href="#69">b</a> <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>);
+<a href=#70 id=70 data-nosnippet>70</a>            <span class="kw">let _ </span>= <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">Box</a>::&lt;F&gt;::<a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html#method.from_raw">from_raw</a>(<a href="#69">b</a> <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>);
 <a href=#71 id=71 data-nosnippet>71</a>        };
 <a href=#72 id=72 data-nosnippet>72</a>        <a href="#87-92">Win32DisplayFilterHandle</a> {
 <a href=#73 id=73 data-nosnippet>73</a>            <a href="#66">display</a>,
@@ -156,12 +156,12 @@
 <a href=#83 id=83 data-nosnippet>83</a>///
 <a href=#84 id=84 data-nosnippet>84</a>/// A `Win32DisplayFilterHandle` removes itself from the `Win32Display` it is
 <a href=#85 id=85 data-nosnippet>85</a>/// attached to when it is dropped.
-<a href=#86 id=86 data-nosnippet>86</a></span><span class="attr">#[derive(Debug)]
+<a href=#86 id=86 data-nosnippet>86</a></span><span class="attr">#[derive(<a href="https://doc.rust-lang.org/nightly/core/fmt/macros/derive.Debug.html">Debug</a>)]
 <a href=#87 id=87 data-nosnippet>87</a></span><span class="kw">pub struct </span><a href="../../gdk4_win32/struct.Win32DisplayFilterHandle.html">Win32DisplayFilterHandle</a> {
-<a href=#88 id=88 data-nosnippet>88</a>    display: <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/struct.WeakRef.html">glib::WeakRef</a>&lt;<a href="auto/win32_display.rs.html#8-20">Win32Display</a>&gt;,
-<a href=#89 id=89 data-nosnippet>89</a>    func: <a href="../../gdk4_win32_sys/type.GdkWin32MessageFilterFunc.html">ffi::GdkWin32MessageFilterFunc</a>,
+<a href=#88 id=88 data-nosnippet>88</a>    display: glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/struct.WeakRef.html">WeakRef</a>&lt;<a href="auto/win32_display.rs.html#8-20">Win32Display</a>&gt;,
+<a href=#89 id=89 data-nosnippet>89</a>    func: ffi::<a href="../../gdk4_win32_sys/type.GdkWin32MessageFilterFunc.html">GdkWin32MessageFilterFunc</a>,
 <a href=#90 id=90 data-nosnippet>90</a>    box_: glib::ffi::gpointer,
-<a href=#91 id=91 data-nosnippet>91</a>    drop_: <span class="kw">fn</span>(<span class="kw-2">*mut </span><a href="https://doc.rust-lang.org/nightly/core/ffi/enum.c_void.html">libc::c_void</a>),
+<a href=#91 id=91 data-nosnippet>91</a>    drop_: <span class="kw">fn</span>(<span class="kw-2">*mut </span>libc::<a href="https://doc.rust-lang.org/nightly/core/ffi/enum.c_void.html">c_void</a>),
 <a href=#92 id=92 data-nosnippet>92</a>}
 <a href=#93 id=93 data-nosnippet>93</a>
 <a href=#94 id=94 data-nosnippet>94</a><span class="kw">impl </span><a href="https://doc.rust-lang.org/nightly/core/ops/drop/trait.Drop.html">Drop</a> <span class="kw">for </span><a href="#87-92">Win32DisplayFilterHandle</a> {
@@ -169,7 +169,7 @@
 <a href=#96 id=96 data-nosnippet>96</a>    </span><span class="kw">fn </span>drop(<span class="kw-2">&amp;mut </span><span class="self">self</span>) {
 <a href=#97 id=97 data-nosnippet>97</a>        <span class="kw">unsafe </span>{
 <a href=#98 id=98 data-nosnippet>98</a>            <span class="kw">if let </span><a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.Some">Some</a>(display) = <a class="self" href="#96">self</a>.display.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/struct.WeakRef.html#method.upgrade">upgrade</a>() {
-<a href=#99 id=99 data-nosnippet>99</a>                <a href="../../gdk4_win32_sys/fn.gdk_win32_display_remove_filter.html">ffi::gdk_win32_display_remove_filter</a>(
+<a href=#99 id=99 data-nosnippet>99</a>                ffi::<a href="../../gdk4_win32_sys/fn.gdk_win32_display_remove_filter.html">gdk_win32_display_remove_filter</a>(
 <a href=#100 id=100 data-nosnippet>100</a>                    <a href="#98">display</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
 <a href=#101 id=101 data-nosnippet>101</a>                    <a class="self" href="#96">self</a>.func,
 <a href=#102 id=102 data-nosnippet>102</a>                    <a class="self" href="#96">self</a>.box_,
@@ -178,4 +178,5 @@
 <a href=#105 id=105 data-nosnippet>105</a>            (<a class="self" href="#96">self</a>.drop_)(<a class="self" href="#96">self</a>.box_);
 <a href=#106 id=106 data-nosnippet>106</a>        }
 <a href=#107 id=107 data-nosnippet>107</a>    }
-<a href=#108 id=108 data-nosnippet>108</a>}</code></pre></div></section></main></body></html>
+<a href=#108 id=108 data-nosnippet>108</a>}
+</code></pre></div></section></main></body></html>

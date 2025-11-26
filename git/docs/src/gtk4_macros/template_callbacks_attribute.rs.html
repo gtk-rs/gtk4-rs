@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4-macros/src/template_callbacks_attribute.rs`."><title>template_callbacks_attribute.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-e56847b5.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gtk4_macros" data-themes="" data-resource-suffix="" data-rustdoc-version="1.92.0-nightly (4645a7988 2025-09-17)" data-channel="nightly" data-search-js="search-cb266a1a.js" data-stringdex-js="stringdex-5af928a3.js" data-settings-js="settings-c38705f0.js" ><script src="../../static.files/storage-e2aeef58.js"></script><script defer src="../../static.files/src-script-813739b1.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-6dc2a7f3.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-263c88ec.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4-macros/src/template_callbacks_attribute.rs`."><title>template_callbacks_attribute.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-ca0dd0c4.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gtk4_macros" data-themes="" data-resource-suffix="" data-rustdoc-version="1.93.0-nightly (80d8f292d 2025-11-25)" data-channel="nightly" data-search-js="search-680b2199.js" data-stringdex-js="stringdex-a3946164.js" data-settings-js="settings-c38705f0.js" ><script src="../../static.files/storage-e2aeef58.js"></script><script defer src="../../static.files/src-script-813739b1.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-a410ff4d.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-263c88ec.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
 
@@ -73,9 +73,9 @@
 
 <nav class="sidebar"><div class="src-sidebar-title"><h2>Files</h2></div></nav><div class="sidebar-resizer" title="Drag to resize sidebar"></div><main><section id="main-content" class="content"><div class="main-heading"><h1><div class="sub-heading">gtk4_macros/</div>template_callbacks_attribute.rs</h1><rustdoc-toolbar></rustdoc-toolbar></div><div class="example-wrap digits-3"><pre class="rust"><code><a href=#1 id=1 data-nosnippet>1</a><span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.
 <a href=#2 id=2 data-nosnippet>2</a>
-<a href=#3 id=3 data-nosnippet>3</a></span><span class="kw">use </span>proc_macro2::{<a href="https://docs.rs/proc-macro2/1.0.101/proc_macro2/struct.Span.html">Span</a>, <a href="https://docs.rs/proc-macro2/1.0.101/proc_macro2/struct.TokenStream.html">TokenStream</a>};
-<a href=#4 id=4 data-nosnippet>4</a><span class="kw">use </span>quote::{<a href="https://docs.rs/quote/1.0.40/quote/macro.quote.html">quote</a>, <a href="https://docs.rs/quote/1.0.40/quote/to_tokens/trait.ToTokens.html">ToTokens</a>, <a href="https://docs.rs/quote/1.0.40/quote/ext/trait.TokenStreamExt.html">TokenStreamExt</a>};
-<a href=#5 id=5 data-nosnippet>5</a><span class="kw">use </span>syn::{<a href="https://docs.rs/syn/2.0.106/syn/parse/trait.Parse.html">parse::Parse</a>, <a href="https://docs.rs/syn/2.0.106/syn/error/struct.Error.html">Error</a>, <a href="https://docs.rs/syn/2.0.106/syn/attr/enum.Meta.html">Meta</a>, <a class="prelude-ty" href="https://docs.rs/syn/2.0.106/syn/error/type.Result.html">Result</a>, <a href="https://docs.rs/syn/2.0.106/syn/macro.Token.html">Token</a>};
+<a href=#3 id=3 data-nosnippet>3</a></span><span class="kw">use </span>proc_macro2::{<a href="https://docs.rs/proc-macro2/1.0.103/proc_macro2/struct.Span.html">Span</a>, <a href="https://docs.rs/proc-macro2/1.0.103/proc_macro2/struct.TokenStream.html">TokenStream</a>};
+<a href=#4 id=4 data-nosnippet>4</a><span class="kw">use </span>quote::{<a href="https://docs.rs/quote/1.0.42/quote/macro.quote.html">quote</a>, <a href="https://docs.rs/quote/1.0.42/quote/to_tokens/trait.ToTokens.html">ToTokens</a>, <a href="https://docs.rs/quote/1.0.42/quote/ext/trait.TokenStreamExt.html">TokenStreamExt</a>};
+<a href=#5 id=5 data-nosnippet>5</a><span class="kw">use </span>syn::{<a href="https://docs.rs/syn/2.0.108/syn/parse/trait.Parse.html">parse::Parse</a>, <a href="https://docs.rs/syn/2.0.108/syn/error/struct.Error.html">Error</a>, <a href="https://docs.rs/syn/2.0.108/syn/attr/enum.Meta.html">Meta</a>, <a class="prelude-ty" href="https://docs.rs/syn/2.0.108/syn/error/type.Result.html">Result</a>, <a href="https://docs.rs/syn/2.0.108/syn/macro.Token.html">Token</a>};
 <a href=#6 id=6 data-nosnippet>6</a>
 <a href=#7 id=7 data-nosnippet>7</a><span class="kw">use </span><a href="lib.rs.html#12"><span class="kw">crate</span>::util</a>::<span class="kw-2">*</span>;
 <a href=#8 id=8 data-nosnippet>8</a>
@@ -83,17 +83,17 @@
 <a href=#10 id=10 data-nosnippet>10</a>    <span class="string">"This macro should be used on the `impl` block for a CompositeTemplate widget"</span>;
 <a href=#11 id=11 data-nosnippet>11</a>
 <a href=#12 id=12 data-nosnippet>12</a><span class="kw">mod </span>keywords {
-<a href=#13 id=13 data-nosnippet>13</a>    <a class="macro" href="https://docs.rs/syn/2.0.106/syn/macro.custom_keyword.html">syn::custom_keyword!</a>(functions);
-<a href=#14 id=14 data-nosnippet>14</a>    <a class="macro" href="https://docs.rs/syn/2.0.106/syn/macro.custom_keyword.html">syn::custom_keyword!</a>(function);
-<a href=#15 id=15 data-nosnippet>15</a>    <a class="macro" href="https://docs.rs/syn/2.0.106/syn/macro.custom_keyword.html">syn::custom_keyword!</a>(name);
+<a href=#13 id=13 data-nosnippet>13</a>    <a href="https://docs.rs/syn/2.0.108/syn/macro.custom_keyword.html">syn::custom_keyword!</a>(<a href="#13">functions</a>);
+<a href=#14 id=14 data-nosnippet>14</a>    <a href="https://docs.rs/syn/2.0.108/syn/macro.custom_keyword.html">syn::custom_keyword!</a>(<a href="#14">function</a>);
+<a href=#15 id=15 data-nosnippet>15</a>    <a href="https://docs.rs/syn/2.0.108/syn/macro.custom_keyword.html">syn::custom_keyword!</a>(<a href="#15">name</a>);
 <a href=#16 id=16 data-nosnippet>16</a>}
 <a href=#17 id=17 data-nosnippet>17</a>
 <a href=#18 id=18 data-nosnippet>18</a><span class="kw">pub struct </span>Args {
 <a href=#19 id=19 data-nosnippet>19</a>    functions: <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>,
 <a href=#20 id=20 data-nosnippet>20</a>}
 <a href=#21 id=21 data-nosnippet>21</a>
-<a href=#22 id=22 data-nosnippet>22</a><span class="kw">impl </span><a href="https://docs.rs/syn/2.0.106/syn/parse/trait.Parse.html">Parse</a> <span class="kw">for </span><a href="#18-20">Args</a> {
-<a href=#23 id=23 data-nosnippet>23</a>    <span class="kw">fn </span>parse(input: <a href="https://docs.rs/syn/2.0.106/syn/parse/type.ParseStream.html">syn::parse::ParseStream</a>) -&gt; <a class="prelude-ty" href="https://docs.rs/syn/2.0.106/syn/error/type.Result.html">Result</a>&lt;<span class="self">Self</span>&gt; {
+<a href=#22 id=22 data-nosnippet>22</a><span class="kw">impl </span><a href="https://docs.rs/syn/2.0.108/syn/parse/trait.Parse.html">Parse</a> <span class="kw">for </span><a href="#18-20">Args</a> {
+<a href=#23 id=23 data-nosnippet>23</a>    <span class="kw">fn </span>parse(input: syn::parse::<a href="https://docs.rs/syn/2.0.108/syn/parse/type.ParseStream.html">ParseStream</a>) -&gt; <a class="prelude-ty" href="https://docs.rs/syn/2.0.108/syn/error/type.Result.html">Result</a>&lt;<span class="self">Self</span>&gt; {
 <a href=#24 id=24 data-nosnippet>24</a>        <span class="kw">let </span><span class="kw-2">mut </span>args = <span class="self">Self </span>{ functions: <span class="bool-val">false </span>};
 <a href=#25 id=25 data-nosnippet>25</a>        <span class="kw">while </span>!input.is_empty() {
 <a href=#26 id=26 data-nosnippet>26</a>            <span class="kw">let </span>lookahead = input.lookahead1();
@@ -111,7 +111,7 @@
 <a href=#38 id=38 data-nosnippet>38</a>    }
 <a href=#39 id=39 data-nosnippet>39</a>}
 <a href=#40 id=40 data-nosnippet>40</a>
-<a href=#41 id=41 data-nosnippet>41</a><span class="attr">#[derive(Default)]
+<a href=#41 id=41 data-nosnippet>41</a><span class="attr">#[derive(<a href="https://doc.rust-lang.org/nightly/core/default/derive.Default.html">Default</a>)]
 <a href=#42 id=42 data-nosnippet>42</a></span><span class="kw">pub struct </span>CallbackArgs {
 <a href=#43 id=43 data-nosnippet>43</a>    name: <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;<a href="https://doc.rust-lang.org/nightly/alloc/string/struct.String.html">String</a>&gt;,
 <a href=#44 id=44 data-nosnippet>44</a>    function: <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;<a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>&gt;,
@@ -129,8 +129,8 @@
 <a href=#56 id=56 data-nosnippet>56</a>    }
 <a href=#57 id=57 data-nosnippet>57</a>}
 <a href=#58 id=58 data-nosnippet>58</a>
-<a href=#59 id=59 data-nosnippet>59</a><span class="kw">impl </span><a href="https://docs.rs/syn/2.0.106/syn/parse/trait.Parse.html">Parse</a> <span class="kw">for </span><a href="#42-45">CallbackArgs</a> {
-<a href=#60 id=60 data-nosnippet>60</a>    <span class="kw">fn </span>parse(input: <a href="https://docs.rs/syn/2.0.106/syn/parse/type.ParseStream.html">syn::parse::ParseStream</a>) -&gt; <a class="prelude-ty" href="https://docs.rs/syn/2.0.106/syn/error/type.Result.html">Result</a>&lt;<span class="self">Self</span>&gt; {
+<a href=#59 id=59 data-nosnippet>59</a><span class="kw">impl </span><a href="https://docs.rs/syn/2.0.108/syn/parse/trait.Parse.html">Parse</a> <span class="kw">for </span><a href="#42-45">CallbackArgs</a> {
+<a href=#60 id=60 data-nosnippet>60</a>    <span class="kw">fn </span>parse(input: syn::parse::<a href="https://docs.rs/syn/2.0.108/syn/parse/type.ParseStream.html">ParseStream</a>) -&gt; <a class="prelude-ty" href="https://docs.rs/syn/2.0.108/syn/error/type.Result.html">Result</a>&lt;<span class="self">Self</span>&gt; {
 <a href=#61 id=61 data-nosnippet>61</a>        <span class="kw">let </span><span class="kw-2">mut </span>args = <span class="self">Self </span>{
 <a href=#62 id=62 data-nosnippet>62</a>            name: <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None">None</a>,
 <a href=#63 id=63 data-nosnippet>63</a>            function: <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None">None</a>,
@@ -172,8 +172,8 @@
 <a href=#99 id=99 data-nosnippet>99</a>    }
 <a href=#100 id=100 data-nosnippet>100</a>}
 <a href=#101 id=101 data-nosnippet>101</a>
-<a href=#102 id=102 data-nosnippet>102</a><span class="kw">pub fn </span>impl_template_callbacks(<span class="kw-2">mut </span>input: <a href="https://docs.rs/syn/2.0.106/syn/item/struct.ItemImpl.html">syn::ItemImpl</a>, args: <a href="#18-20">Args</a>) -&gt; <a class="prelude-ty" href="https://docs.rs/syn/2.0.106/syn/error/type.Result.html">Result</a>&lt;<a href="https://docs.rs/proc-macro2/1.0.101/proc_macro2/struct.TokenStream.html">TokenStream</a>&gt; {
-<a href=#103 id=103 data-nosnippet>103</a>    <span class="kw">let </span><a href="https://docs.rs/syn/2.0.106/syn/item/struct.ItemImpl.html">syn::ItemImpl</a> {
+<a href=#102 id=102 data-nosnippet>102</a><span class="kw">pub fn </span>impl_template_callbacks(<span class="kw-2">mut </span>input: syn::<a href="https://docs.rs/syn/2.0.108/syn/item/struct.ItemImpl.html">ItemImpl</a>, args: <a href="#18-20">Args</a>) -&gt; <a class="prelude-ty" href="https://docs.rs/syn/2.0.108/syn/error/type.Result.html">Result</a>&lt;<a href="https://docs.rs/proc-macro2/1.0.103/proc_macro2/struct.TokenStream.html">TokenStream</a>&gt; {
+<a href=#103 id=103 data-nosnippet>103</a>    <span class="kw">let </span>syn::<a href="https://docs.rs/syn/2.0.108/syn/item/struct.ItemImpl.html">ItemImpl</a> {
 <a href=#104 id=104 data-nosnippet>104</a>        attrs,
 <a href=#105 id=105 data-nosnippet>105</a>        generics,
 <a href=#106 id=106 data-nosnippet>106</a>        trait_,
@@ -182,11 +182,11 @@
 <a href=#109 id=109 data-nosnippet>109</a>        ..
 <a href=#110 id=110 data-nosnippet>110</a>    } = <span class="kw-2">&amp;mut </span><a href="#102">input</a>;
 <a href=#111 id=111 data-nosnippet>111</a>    <span class="kw">if </span><a href="#106">trait_</a>.<a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#method.is_some">is_some</a>() {
-<a href=#112 id=112 data-nosnippet>112</a>        <span class="kw">return </span><a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html#variant.Err">Err</a>(<a href="https://docs.rs/syn/2.0.106/syn/error/struct.Error.html#method.new">Error::new</a>(<a href="https://docs.rs/proc-macro2/1.0.101/proc_macro2/struct.Span.html#method.call_site">Span::call_site</a>(), <a href="#9-10">WRONG_PLACE_MSG</a>));
+<a href=#112 id=112 data-nosnippet>112</a>        <span class="kw">return </span><a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html#variant.Err">Err</a>(<a href="https://docs.rs/syn/2.0.108/syn/error/struct.Error.html">Error</a>::<a href="https://docs.rs/syn/2.0.108/syn/error/struct.Error.html#method.new">new</a>(<a href="https://docs.rs/proc-macro2/1.0.103/proc_macro2/struct.Span.html">Span</a>::<a href="https://docs.rs/proc-macro2/1.0.103/proc_macro2/struct.Span.html#method.call_site">call_site</a>(), <a href="#9-10">WRONG_PLACE_MSG</a>));
 <a href=#113 id=113 data-nosnippet>113</a>    }
 <a href=#114 id=114 data-nosnippet>114</a>    <span class="kw">let </span>crate_ident = <a href="util.rs.html#6-17">crate_ident_new</a>();
 <a href=#115 id=115 data-nosnippet>115</a>
-<a href=#116 id=116 data-nosnippet>116</a>    <span class="kw">let </span><span class="kw-2">mut </span>callbacks = <a class="macro" href="https://doc.rust-lang.org/nightly/alloc/macro.vec.html">vec!</a>[];
+<a href=#116 id=116 data-nosnippet>116</a>    <span class="kw">let </span><span class="kw-2">mut </span>callbacks = <a href="https://doc.rust-lang.org/nightly/alloc/macro.vec.html">vec!</a>[];
 <a href=#117 id=117 data-nosnippet>117</a>    <span class="kw">for </span>item <span class="kw">in </span>items.iter_mut() {
 <a href=#118 id=118 data-nosnippet>118</a>        <span class="kw">if let </span>syn::ImplItem::Fn(method) = item {
 <a href=#119 id=119 data-nosnippet>119</a>            <span class="kw">let </span><span class="kw-2">mut </span>i = <span class="number">0</span>;
@@ -348,7 +348,7 @@
 <a href=#275 id=275 data-nosnippet>275</a>        }
 <a href=#276 id=276 data-nosnippet>276</a>    }
 <a href=#277 id=277 data-nosnippet>277</a>
-<a href=#278 id=278 data-nosnippet>278</a>    <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html#variant.Ok">Ok</a>(<a class="macro" href="https://docs.rs/quote/1.0.40/quote/macro.quote.html">quote!</a> {
+<a href=#278 id=278 data-nosnippet>278</a>    <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html#variant.Ok">Ok</a>(<a href="https://docs.rs/quote/1.0.42/quote/macro.quote.html">quote!</a> {
 <a href=#279 id=279 data-nosnippet>279</a>        #(#attrs)*
 <a href=#280 id=280 data-nosnippet>280</a>        <span class="kw">impl </span>#generics #self_ty {
 <a href=#281 id=281 data-nosnippet>281</a>            #(#items)*
@@ -360,4 +360,5 @@
 <a href=#287 id=287 data-nosnippet>287</a>            ];
 <a href=#288 id=288 data-nosnippet>288</a>        }
 <a href=#289 id=289 data-nosnippet>289</a>    })
-<a href=#290 id=290 data-nosnippet>290</a>}</code></pre></div></section></main></body></html>
+<a href=#290 id=290 data-nosnippet>290</a>}
+</code></pre></div></section></main></body></html>
