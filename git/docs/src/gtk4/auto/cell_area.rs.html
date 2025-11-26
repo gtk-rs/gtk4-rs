@@ -78,7 +78,7 @@
 <a href=#5 id=5 data-nosnippet>5</a>
 <a href=#6 id=6 data-nosnippet>6</a></span><span class="kw">use crate</span>::{
 <a href=#7 id=7 data-nosnippet>7</a>    <a href="../../../gtk4_sys/index.html">ffi</a>, <a href="buildable.rs.html#8-31">Buildable</a>, <a href="cell_area_context.rs.html#14-78">CellAreaContext</a>, <a href="cell_editable.rs.html#15-504">CellEditable</a>, <a href="cell_layout.rs.html#10-135">CellLayout</a>, <a href="cell_renderer.rs.html#18-183">CellRenderer</a>, <a href="flags.rs.html#200-233">CellRendererState</a>,
-<a href=#8 id=8 data-nosnippet>8</a>    <a href="enums.rs.html#4621-4642">DirectionType</a>, <a href="enums.rs.html#8265-8274">Orientation</a>, <a href="enums.rs.html#11539-11551">SizeRequestMode</a>, <a href="snapshot.rs.html#9-32">Snapshot</a>, <a href="tree_iter.rs.html#8-25">TreeIter</a>, <a href="tree_model.rs.html#15-277">TreeModel</a>, <a href="tree_path.rs.html#8-21">TreePath</a>, <a href="widget.rs.html#19-864">Widget</a>,
+<a href=#8 id=8 data-nosnippet>8</a>    <a href="enums.rs.html#4621-4642">DirectionType</a>, <a href="enums.rs.html#8265-8274">Orientation</a>, <a href="enums.rs.html#11830-11842">SizeRequestMode</a>, <a href="snapshot.rs.html#9-32">Snapshot</a>, <a href="tree_iter.rs.html#8-25">TreeIter</a>, <a href="tree_model.rs.html#15-277">TreeModel</a>, <a href="tree_path.rs.html#8-21">TreePath</a>, <a href="widget.rs.html#19-864">Widget</a>,
 <a href=#9 id=9 data-nosnippet>9</a>};
 <a href=#10 id=10 data-nosnippet>10</a><span class="kw">use </span>glib::{
 <a href=#11 id=11 data-nosnippet>11</a>    <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.ObjectType.html">object::ObjectType</a> <span class="kw">as _</span>,
@@ -1403,7 +1403,7 @@
 <a href=#1330 id=1330 data-nosnippet>1330</a>    /// The [`SizeRequestMode`][crate::SizeRequestMode] preferred by @self.
 <a href=#1331 id=1331 data-nosnippet>1331</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_cell_area_get_request_mode"</span>)]
 <a href=#1332 id=1332 data-nosnippet>1332</a>    #[doc(alias = <span class="string">"get_request_mode"</span>)]
-<a href=#1333 id=1333 data-nosnippet>1333</a>    </span><span class="kw">fn </span>request_mode(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="enums.rs.html#11539-11551">SizeRequestMode</a> {
+<a href=#1333 id=1333 data-nosnippet>1333</a>    </span><span class="kw">fn </span>request_mode(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="enums.rs.html#11830-11842">SizeRequestMode</a> {
 <a href=#1334 id=1334 data-nosnippet>1334</a>        <span class="kw">unsafe </span>{
 <a href=#1335 id=1335 data-nosnippet>1335</a>            <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_cell_area_get_request_mode.html">gtk_cell_area_get_request_mode</a>(
 <a href=#1336 id=1336 data-nosnippet>1336</a>                <a class="self" href="#1333">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,

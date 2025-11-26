@@ -77,9 +77,9 @@
 <a href=#4 id=4 data-nosnippet>4</a>
 <a href=#5 id=5 data-nosnippet>5</a></span><span class="attr">#[cfg(feature = <span class="string">"v4_20"</span>)]
 <a href=#6 id=6 data-nosnippet>6</a>#[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_20"</span>)))]
-<a href=#7 id=7 data-nosnippet>7</a></span><span class="kw">use </span><a href="enums.rs.html#13673-13727"><span class="kw">crate</span>::WindowGravity</a>;
+<a href=#7 id=7 data-nosnippet>7</a></span><span class="kw">use </span><a href="enums.rs.html#13964-14018"><span class="kw">crate</span>::WindowGravity</a>;
 <a href=#8 id=8 data-nosnippet>8</a><span class="kw">use crate</span>::{
-<a href=#9 id=9 data-nosnippet>9</a>    <a href="../../../gtk4_sys/index.html">ffi</a>, <a href="accessible.rs.html#19-70">Accessible</a>, <a href="enums.rs.html#1021-1321">AccessibleRole</a>, <a href="../enums.rs.html#77-107">Align</a>, <a href="application.rs.html#14-338">Application</a>, <a href="buildable.rs.html#8-31">Buildable</a>, <a href="constraint_target.rs.html#8-23">ConstraintTarget</a>,
+<a href=#9 id=9 data-nosnippet>9</a>    <a href="../../../gtk4_sys/index.html">ffi</a>, <a href="accessible.rs.html#19-70">Accessible</a>, <a href="enums.rs.html#1021-1321">AccessibleRole</a>, <a href="../enums.rs.html#77-107">Align</a>, <a href="application.rs.html#17-450">Application</a>, <a href="buildable.rs.html#8-31">Buildable</a>, <a href="constraint_target.rs.html#8-23">ConstraintTarget</a>,
 <a href=#10 id=10 data-nosnippet>10</a>    <a href="layout_manager.rs.html#8-70">LayoutManager</a>, <a href="enums.rs.html#7224-7287">License</a>, <a href="native.rs.html#8-33">Native</a>, <a href="enums.rs.html#8368-8379">Overflow</a>, <a href="root.rs.html#8-32">Root</a>, <a href="shortcut_manager.rs.html#8-30">ShortcutManager</a>, <a href="widget.rs.html#19-864">Widget</a>, <a href="window.rs.html#21-781">Window</a>,
 <a href=#11 id=11 data-nosnippet>11</a>};
 <a href=#12 id=12 data-nosnippet>12</a><span class="kw">use </span>glib::{
@@ -2145,7 +2145,7 @@
 <a href=#2072 id=2072 data-nosnippet>2072</a>    /// Normally, the connection between the application and the window
 <a href=#2073 id=2073 data-nosnippet>2073</a>    /// will remain until the window is destroyed, but you can explicitly
 <a href=#2074 id=2074 data-nosnippet>2074</a>    /// remove it by setting the this property to `NULL`.
-<a href=#2075 id=2075 data-nosnippet>2075</a>    </span><span class="kw">pub fn </span>application(<span class="self">self</span>, application: <span class="kw-2">&amp;</span><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html">IsA</a>&lt;<a href="application.rs.html#14-338">Application</a>&gt;) -&gt; <span class="self">Self </span>{
+<a href=#2075 id=2075 data-nosnippet>2075</a>    </span><span class="kw">pub fn </span>application(<span class="self">self</span>, application: <span class="kw-2">&amp;</span><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html">IsA</a>&lt;<a href="application.rs.html#17-450">Application</a>&gt;) -&gt; <span class="self">Self </span>{
 <a href=#2076 id=2076 data-nosnippet>2076</a>        <span class="self">Self </span>{
 <a href=#2077 id=2077 data-nosnippet>2077</a>            builder: <a class="self" href="#2075">self</a>
 <a href=#2078 id=2078 data-nosnippet>2078</a>                .builder
@@ -2253,7 +2253,7 @@
 <a href=#2180 id=2180 data-nosnippet>2180</a>    /// want the to fix top right corner of the window.
 <a href=#2181 id=2181 data-nosnippet>2181</a>    </span><span class="attr">#[cfg(feature = <span class="string">"v4_20"</span>)]
 <a href=#2182 id=2182 data-nosnippet>2182</a>    #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_20"</span>)))]
-<a href=#2183 id=2183 data-nosnippet>2183</a>    </span><span class="kw">pub fn </span>gravity(<span class="self">self</span>, gravity: <a href="enums.rs.html#13673-13727">WindowGravity</a>) -&gt; <span class="self">Self </span>{
+<a href=#2183 id=2183 data-nosnippet>2183</a>    </span><span class="kw">pub fn </span>gravity(<span class="self">self</span>, gravity: <a href="enums.rs.html#13964-14018">WindowGravity</a>) -&gt; <span class="self">Self </span>{
 <a href=#2184 id=2184 data-nosnippet>2184</a>        <span class="self">Self </span>{
 <a href=#2185 id=2185 data-nosnippet>2185</a>            builder: <a class="self" href="#2183">self</a>.builder.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/struct.ObjectBuilder.html#method.property">property</a>(<span class="string">"gravity"</span>, <a href="#2183">gravity</a>),
 <a href=#2186 id=2186 data-nosnippet>2186</a>        }

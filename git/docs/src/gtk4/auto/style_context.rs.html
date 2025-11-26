@@ -76,7 +76,7 @@
 <a href=#3 id=3 data-nosnippet>3</a>// DO NOT EDIT
 <a href=#4 id=4 data-nosnippet>4</a></span><span class="attr">#![allow(deprecated)]
 <a href=#5 id=5 data-nosnippet>5</a>
-<a href=#6 id=6 data-nosnippet>6</a></span><span class="kw">use crate</span>::{<a href="../../../gtk4_sys/index.html">ffi</a>, <a href="../border.rs.html#8-20">Border</a>, <a href="flags.rs.html#1563-1621">StateFlags</a>, <a href="flags.rs.html#1698-1721">StyleContextPrintFlags</a>, <a href="style_provider.rs.html#14-39">StyleProvider</a>};
+<a href=#6 id=6 data-nosnippet>6</a></span><span class="kw">use crate</span>::{<a href="../../../gtk4_sys/index.html">ffi</a>, <a href="../border.rs.html#8-20">Border</a>, <a href="flags.rs.html#1565-1623">StateFlags</a>, <a href="flags.rs.html#1700-1723">StyleContextPrintFlags</a>, <a href="style_provider.rs.html#14-39">StyleProvider</a>};
 <a href=#7 id=7 data-nosnippet>7</a><span class="kw">use </span>glib::{
 <a href=#8 id=8 data-nosnippet>8</a>    <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/prelude/index.html">prelude</a>::<span class="kw-2">*</span>,
 <a href=#9 id=9 data-nosnippet>9</a>    signal::{<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/fn.connect_raw.html">connect_raw</a>, <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html">SignalHandlerId</a>},
@@ -384,7 +384,7 @@
 <a href=#311 id=311 data-nosnippet>311</a>    #[allow(deprecated)]
 <a href=#312 id=312 data-nosnippet>312</a>    #[doc(alias = <span class="string">"gtk_style_context_get_state"</span>)]
 <a href=#313 id=313 data-nosnippet>313</a>    #[doc(alias = <span class="string">"get_state"</span>)]
-<a href=#314 id=314 data-nosnippet>314</a>    </span><span class="kw">fn </span>state(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="flags.rs.html#1563-1621">StateFlags</a> {
+<a href=#314 id=314 data-nosnippet>314</a>    </span><span class="kw">fn </span>state(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="flags.rs.html#1565-1623">StateFlags</a> {
 <a href=#315 id=315 data-nosnippet>315</a>        <span class="kw">unsafe </span>{
 <a href=#316 id=316 data-nosnippet>316</a>            <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_style_context_get_state.html">gtk_style_context_get_state</a>(
 <a href=#317 id=317 data-nosnippet>317</a>                <a class="self" href="#314">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
@@ -578,7 +578,7 @@
 <a href=#505 id=505 data-nosnippet>505</a>    </span><span class="attr">#[cfg_attr(feature = <span class="string">"v4_10"</span>, deprecated = <span class="string">"Since 4.10"</span>)]
 <a href=#506 id=506 data-nosnippet>506</a>    #[allow(deprecated)]
 <a href=#507 id=507 data-nosnippet>507</a>    #[doc(alias = <span class="string">"gtk_style_context_set_state"</span>)]
-<a href=#508 id=508 data-nosnippet>508</a>    </span><span class="kw">fn </span>set_state(<span class="kw-2">&amp;</span><span class="self">self</span>, flags: <a href="flags.rs.html#1563-1621">StateFlags</a>) {
+<a href=#508 id=508 data-nosnippet>508</a>    </span><span class="kw">fn </span>set_state(<span class="kw-2">&amp;</span><span class="self">self</span>, flags: <a href="flags.rs.html#1565-1623">StateFlags</a>) {
 <a href=#509 id=509 data-nosnippet>509</a>        <span class="kw">unsafe </span>{
 <a href=#510 id=510 data-nosnippet>510</a>            ffi::<a href="../../../gtk4_sys/fn.gtk_style_context_set_state.html">gtk_style_context_set_state</a>(<a class="self" href="#508">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>, <a href="#508">flags</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>());
 <a href=#511 id=511 data-nosnippet>511</a>        }
@@ -607,7 +607,7 @@
 <a href=#534 id=534 data-nosnippet>534</a>    </span><span class="attr">#[cfg_attr(feature = <span class="string">"v4_10"</span>, deprecated = <span class="string">"Since 4.10"</span>)]
 <a href=#535 id=535 data-nosnippet>535</a>    #[allow(deprecated)]
 <a href=#536 id=536 data-nosnippet>536</a>    #[doc(alias = <span class="string">"gtk_style_context_to_string"</span>)]
-<a href=#537 id=537 data-nosnippet>537</a>    </span><span class="kw">fn </span>to_string(<span class="kw-2">&amp;</span><span class="self">self</span>, flags: <a href="flags.rs.html#1698-1721">StyleContextPrintFlags</a>) -&gt; glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/gstring/struct.GString.html">GString</a> {
+<a href=#537 id=537 data-nosnippet>537</a>    </span><span class="kw">fn </span>to_string(<span class="kw-2">&amp;</span><span class="self">self</span>, flags: <a href="flags.rs.html#1700-1723">StyleContextPrintFlags</a>) -&gt; glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/gstring/struct.GString.html">GString</a> {
 <a href=#538 id=538 data-nosnippet>538</a>        <span class="kw">unsafe </span>{
 <a href=#539 id=539 data-nosnippet>539</a>            <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib_full.html">from_glib_full</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_style_context_to_string.html">gtk_style_context_to_string</a>(
 <a href=#540 id=540 data-nosnippet>540</a>                <a class="self" href="#537">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,

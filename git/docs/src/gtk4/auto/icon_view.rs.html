@@ -79,7 +79,7 @@
 <a href=#6 id=6 data-nosnippet>6</a></span><span class="kw">use crate</span>::{
 <a href=#7 id=7 data-nosnippet>7</a>    <a href="../../../gtk4_sys/index.html">ffi</a>, <a href="accessible.rs.html#19-70">Accessible</a>, <a href="enums.rs.html#1021-1321">AccessibleRole</a>, <a href="adjustment.rs.html#14-99">Adjustment</a>, <a href="../enums.rs.html#77-107">Align</a>, <a href="buildable.rs.html#8-31">Buildable</a>, <a href="cell_area.rs.html#18-415">CellArea</a>, <a href="cell_layout.rs.html#10-135">CellLayout</a>,
 <a href=#8 id=8 data-nosnippet>8</a>    <a href="cell_renderer.rs.html#18-183">CellRenderer</a>, <a href="constraint_target.rs.html#8-23">ConstraintTarget</a>, <a href="enums.rs.html#6210-6231">IconViewDropPosition</a>, <a href="layout_manager.rs.html#8-70">LayoutManager</a>, <a href="enums.rs.html#7656-7689">MovementStep</a>, <a href="enums.rs.html#8265-8274">Orientation</a>,
-<a href=#9 id=9 data-nosnippet>9</a>    <a href="enums.rs.html#8368-8379">Overflow</a>, <a href="scrollable.rs.html#13-82">Scrollable</a>, <a href="enums.rs.html#10851-10860">ScrollablePolicy</a>, <a href="enums.rs.html#10950-10973">SelectionMode</a>, <a href="tooltip.rs.html#8-46">Tooltip</a>, <a href="tree_iter.rs.html#8-25">TreeIter</a>, <a href="tree_model.rs.html#15-277">TreeModel</a>, <a href="tree_path.rs.html#8-21">TreePath</a>,
+<a href=#9 id=9 data-nosnippet>9</a>    <a href="enums.rs.html#8368-8379">Overflow</a>, <a href="scrollable.rs.html#13-82">Scrollable</a>, <a href="enums.rs.html#11142-11151">ScrollablePolicy</a>, <a href="enums.rs.html#11241-11264">SelectionMode</a>, <a href="tooltip.rs.html#8-46">Tooltip</a>, <a href="tree_iter.rs.html#8-25">TreeIter</a>, <a href="tree_model.rs.html#15-277">TreeModel</a>, <a href="tree_path.rs.html#8-21">TreePath</a>,
 <a href=#10 id=10 data-nosnippet>10</a>    <a href="widget.rs.html#19-864">Widget</a>,
 <a href=#11 id=11 data-nosnippet>11</a>};
 <a href=#12 id=12 data-nosnippet>12</a><span class="kw">use </span>glib::{
@@ -1550,7 +1550,7 @@
 <a href=#1477 id=1477 data-nosnippet>1477</a>    #[doc(alias = <span class="string">"gtk_icon_view_get_selection_mode"</span>)]
 <a href=#1478 id=1478 data-nosnippet>1478</a>    #[doc(alias = <span class="string">"get_selection_mode"</span>)]
 <a href=#1479 id=1479 data-nosnippet>1479</a>    #[doc(alias = <span class="string">"selection-mode"</span>)]
-<a href=#1480 id=1480 data-nosnippet>1480</a>    </span><span class="kw">pub fn </span>selection_mode(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="enums.rs.html#10950-10973">SelectionMode</a> {
+<a href=#1480 id=1480 data-nosnippet>1480</a>    </span><span class="kw">pub fn </span>selection_mode(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="enums.rs.html#11241-11264">SelectionMode</a> {
 <a href=#1481 id=1481 data-nosnippet>1481</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_icon_view_get_selection_mode.html">gtk_icon_view_get_selection_mode</a>(<a class="self" href="#1480">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#1482 id=1482 data-nosnippet>1482</a>    }
 <a href=#1483 id=1483 data-nosnippet>1483</a>
@@ -2175,7 +2175,7 @@
 <a href=#2102 id=2102 data-nosnippet>2102</a>    #[allow(deprecated)]
 <a href=#2103 id=2103 data-nosnippet>2103</a>    #[doc(alias = <span class="string">"gtk_icon_view_set_selection_mode"</span>)]
 <a href=#2104 id=2104 data-nosnippet>2104</a>    #[doc(alias = <span class="string">"selection-mode"</span>)]
-<a href=#2105 id=2105 data-nosnippet>2105</a>    </span><span class="kw">pub fn </span>set_selection_mode(<span class="kw-2">&amp;</span><span class="self">self</span>, mode: <a href="enums.rs.html#10950-10973">SelectionMode</a>) {
+<a href=#2105 id=2105 data-nosnippet>2105</a>    </span><span class="kw">pub fn </span>set_selection_mode(<span class="kw-2">&amp;</span><span class="self">self</span>, mode: <a href="enums.rs.html#11241-11264">SelectionMode</a>) {
 <a href=#2106 id=2106 data-nosnippet>2106</a>        <span class="kw">unsafe </span>{
 <a href=#2107 id=2107 data-nosnippet>2107</a>            ffi::<a href="../../../gtk4_sys/fn.gtk_icon_view_set_selection_mode.html">gtk_icon_view_set_selection_mode</a>(<a class="self" href="#2105">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>, <a href="#2105">mode</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>());
 <a href=#2108 id=2108 data-nosnippet>2108</a>        }
@@ -3202,7 +3202,7 @@
 <a href=#3129 id=3129 data-nosnippet>3129</a>    <span class="doccomment">/// The ::selection-mode property specifies the selection mode of
 <a href=#3130 id=3130 data-nosnippet>3130</a>    /// icon view. If the mode is [`SelectionMode::Multiple`][crate::SelectionMode::Multiple], rubberband selection
 <a href=#3131 id=3131 data-nosnippet>3131</a>    /// is enabled, for the other modes, only keyboard selection is possible.
-<a href=#3132 id=3132 data-nosnippet>3132</a>    </span><span class="kw">pub fn </span>selection_mode(<span class="self">self</span>, selection_mode: <a href="enums.rs.html#10950-10973">SelectionMode</a>) -&gt; <span class="self">Self </span>{
+<a href=#3132 id=3132 data-nosnippet>3132</a>    </span><span class="kw">pub fn </span>selection_mode(<span class="self">self</span>, selection_mode: <a href="enums.rs.html#11241-11264">SelectionMode</a>) -&gt; <span class="self">Self </span>{
 <a href=#3133 id=3133 data-nosnippet>3133</a>        <span class="self">Self </span>{
 <a href=#3134 id=3134 data-nosnippet>3134</a>            builder: <a class="self" href="#3132">self</a>.builder.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/struct.ObjectBuilder.html#method.property">property</a>(<span class="string">"selection-mode"</span>, <a href="#3132">selection_mode</a>),
 <a href=#3135 id=3135 data-nosnippet>3135</a>        }
@@ -3546,7 +3546,7 @@
 <a href=#3473 id=3473 data-nosnippet>3473</a>    }
 <a href=#3474 id=3474 data-nosnippet>3474</a>
 <a href=#3475 id=3475 data-nosnippet>3475</a>    <span class="doccomment">/// Determines when horizontal scrolling should start.
-<a href=#3476 id=3476 data-nosnippet>3476</a>    </span><span class="kw">pub fn </span>hscroll_policy(<span class="self">self</span>, hscroll_policy: <a href="enums.rs.html#10851-10860">ScrollablePolicy</a>) -&gt; <span class="self">Self </span>{
+<a href=#3476 id=3476 data-nosnippet>3476</a>    </span><span class="kw">pub fn </span>hscroll_policy(<span class="self">self</span>, hscroll_policy: <a href="enums.rs.html#11142-11151">ScrollablePolicy</a>) -&gt; <span class="self">Self </span>{
 <a href=#3477 id=3477 data-nosnippet>3477</a>        <span class="self">Self </span>{
 <a href=#3478 id=3478 data-nosnippet>3478</a>            builder: <a class="self" href="#3476">self</a>.builder.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/struct.ObjectBuilder.html#method.property">property</a>(<span class="string">"hscroll-policy"</span>, <a href="#3476">hscroll_policy</a>),
 <a href=#3479 id=3479 data-nosnippet>3479</a>        }
@@ -3564,7 +3564,7 @@
 <a href=#3491 id=3491 data-nosnippet>3491</a>    }
 <a href=#3492 id=3492 data-nosnippet>3492</a>
 <a href=#3493 id=3493 data-nosnippet>3493</a>    <span class="doccomment">/// Determines when vertical scrolling should start.
-<a href=#3494 id=3494 data-nosnippet>3494</a>    </span><span class="kw">pub fn </span>vscroll_policy(<span class="self">self</span>, vscroll_policy: <a href="enums.rs.html#10851-10860">ScrollablePolicy</a>) -&gt; <span class="self">Self </span>{
+<a href=#3494 id=3494 data-nosnippet>3494</a>    </span><span class="kw">pub fn </span>vscroll_policy(<span class="self">self</span>, vscroll_policy: <a href="enums.rs.html#11142-11151">ScrollablePolicy</a>) -&gt; <span class="self">Self </span>{
 <a href=#3495 id=3495 data-nosnippet>3495</a>        <span class="self">Self </span>{
 <a href=#3496 id=3496 data-nosnippet>3496</a>            builder: <a class="self" href="#3494">self</a>.builder.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/struct.ObjectBuilder.html#method.property">property</a>(<span class="string">"vscroll-policy"</span>, <a href="#3494">vscroll_policy</a>),
 <a href=#3497 id=3497 data-nosnippet>3497</a>        }

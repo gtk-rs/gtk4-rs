@@ -75,7 +75,7 @@
 <a href=#2 id=2 data-nosnippet>2</a>// from gir-files (https://github.com/gtk-rs/gir-files)
 <a href=#3 id=3 data-nosnippet>3</a>// DO NOT EDIT
 <a href=#4 id=4 data-nosnippet>4</a>
-<a href=#5 id=5 data-nosnippet>5</a></span><span class="kw">use crate</span>::{<a href="../../../gtk4_sys/index.html">ffi</a>, <a href="layout_child.rs.html#8-43">LayoutChild</a>, <a href="enums.rs.html#8265-8274">Orientation</a>, <a href="enums.rs.html#11539-11551">SizeRequestMode</a>, <a href="widget.rs.html#19-864">Widget</a>};
+<a href=#5 id=5 data-nosnippet>5</a></span><span class="kw">use crate</span>::{<a href="../../../gtk4_sys/index.html">ffi</a>, <a href="layout_child.rs.html#8-43">LayoutChild</a>, <a href="enums.rs.html#8265-8274">Orientation</a>, <a href="enums.rs.html#11830-11842">SizeRequestMode</a>, <a href="widget.rs.html#19-864">Widget</a>};
 <a href=#6 id=6 data-nosnippet>6</a><span class="kw">use </span>glib::{<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/prelude/index.html">prelude</a>::<span class="kw-2">*</span>, <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/index.html">translate</a>::<span class="kw-2">*</span>};
 <a href=#7 id=7 data-nosnippet>7</a>
 <a href=#8 id=8 data-nosnippet>8</a><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/macro.wrapper.html">glib::wrapper!</a> {
@@ -208,7 +208,7 @@
 <a href=#135 id=135 data-nosnippet>135</a>    /// a [`SizeRequestMode`][crate::SizeRequestMode]
 <a href=#136 id=136 data-nosnippet>136</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_layout_manager_get_request_mode"</span>)]
 <a href=#137 id=137 data-nosnippet>137</a>    #[doc(alias = <span class="string">"get_request_mode"</span>)]
-<a href=#138 id=138 data-nosnippet>138</a>    </span><span class="kw">fn </span>request_mode(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="enums.rs.html#11539-11551">SizeRequestMode</a> {
+<a href=#138 id=138 data-nosnippet>138</a>    </span><span class="kw">fn </span>request_mode(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="enums.rs.html#11830-11842">SizeRequestMode</a> {
 <a href=#139 id=139 data-nosnippet>139</a>        <span class="kw">unsafe </span>{
 <a href=#140 id=140 data-nosnippet>140</a>            <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_layout_manager_get_request_mode.html">gtk_layout_manager_get_request_mode</a>(
 <a href=#141 id=141 data-nosnippet>141</a>                <a class="self" href="#138">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,

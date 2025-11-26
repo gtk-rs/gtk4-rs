@@ -77,7 +77,7 @@
 <a href=#4 id=4 data-nosnippet>4</a></span><span class="attr">#![allow(deprecated)]
 <a href=#5 id=5 data-nosnippet>5</a>
 <a href=#6 id=6 data-nosnippet>6</a></span><span class="kw">use crate</span>::{
-<a href=#7 id=7 data-nosnippet>7</a>    <a href="../../../gtk4_sys/index.html">ffi</a>, <a href="accessible.rs.html#19-70">Accessible</a>, <a href="app_chooser.rs.html#9-351">AppChooser</a>, <a href="buildable.rs.html#8-31">Buildable</a>, <a href="constraint_target.rs.html#8-23">ConstraintTarget</a>, <a href="dialog.rs.html#22-885">Dialog</a>, <a href="flags.rs.html#481-502">DialogFlags</a>, <a href="native.rs.html#8-33">Native</a>, <a href="root.rs.html#8-32">Root</a>,
+<a href=#7 id=7 data-nosnippet>7</a>    <a href="../../../gtk4_sys/index.html">ffi</a>, <a href="accessible.rs.html#19-70">Accessible</a>, <a href="app_chooser.rs.html#9-351">AppChooser</a>, <a href="buildable.rs.html#8-31">Buildable</a>, <a href="constraint_target.rs.html#8-23">ConstraintTarget</a>, <a href="dialog.rs.html#22-885">Dialog</a>, <a href="flags.rs.html#483-504">DialogFlags</a>, <a href="native.rs.html#8-33">Native</a>, <a href="root.rs.html#8-32">Root</a>,
 <a href=#8 id=8 data-nosnippet>8</a>    <a href="shortcut_manager.rs.html#8-30">ShortcutManager</a>, <a href="widget.rs.html#19-864">Widget</a>, <a href="window.rs.html#21-781">Window</a>,
 <a href=#9 id=9 data-nosnippet>9</a>};
 <a href=#10 id=10 data-nosnippet>10</a><span class="kw">use </span>glib::{
@@ -696,7 +696,7 @@
 <a href=#623 id=623 data-nosnippet>623</a>    #[doc(alias = <span class="string">"gtk_app_chooser_dialog_new"</span>)]
 <a href=#624 id=624 data-nosnippet>624</a>    </span><span class="kw">pub fn </span>new(
 <a href=#625 id=625 data-nosnippet>625</a>        parent: <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;<span class="kw-2">&amp;</span><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html">IsA</a>&lt;<a href="window.rs.html#21-781">Window</a>&gt;&gt;,
-<a href=#626 id=626 data-nosnippet>626</a>        flags: <a href="flags.rs.html#481-502">DialogFlags</a>,
+<a href=#626 id=626 data-nosnippet>626</a>        flags: <a href="flags.rs.html#483-504">DialogFlags</a>,
 <a href=#627 id=627 data-nosnippet>627</a>        file: <span class="kw-2">&amp;</span><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html">IsA</a>&lt;gio::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/gio/auto/file/struct.File.html">File</a>&gt;,
 <a href=#628 id=628 data-nosnippet>628</a>    ) -&gt; <a href="#17-601">AppChooserDialog</a> {
 <a href=#629 id=629 data-nosnippet>629</a>        <a href="../rt.rs.html#24-36">assert_initialized_main_thread!</a>();
@@ -733,7 +733,7 @@
 <a href=#660 id=660 data-nosnippet>660</a>    #[doc(alias = <span class="string">"new_for_content_type"</span>)]
 <a href=#661 id=661 data-nosnippet>661</a>    </span><span class="kw">pub fn </span>for_content_type(
 <a href=#662 id=662 data-nosnippet>662</a>        parent: <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;<span class="kw-2">&amp;</span><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html">IsA</a>&lt;<a href="window.rs.html#21-781">Window</a>&gt;&gt;,
-<a href=#663 id=663 data-nosnippet>663</a>        flags: <a href="flags.rs.html#481-502">DialogFlags</a>,
+<a href=#663 id=663 data-nosnippet>663</a>        flags: <a href="flags.rs.html#483-504">DialogFlags</a>,
 <a href=#664 id=664 data-nosnippet>664</a>        content_type: <span class="kw-2">&amp;</span><a href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>,
 <a href=#665 id=665 data-nosnippet>665</a>    ) -&gt; <a href="#17-601">AppChooserDialog</a> {
 <a href=#666 id=666 data-nosnippet>666</a>        <a href="../rt.rs.html#24-36">assert_initialized_main_thread!</a>();

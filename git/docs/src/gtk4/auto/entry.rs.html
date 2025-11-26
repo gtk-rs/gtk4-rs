@@ -78,7 +78,7 @@
 <a href=#5 id=5 data-nosnippet>5</a>
 <a href=#6 id=6 data-nosnippet>6</a></span><span class="kw">use crate</span>::{
 <a href=#7 id=7 data-nosnippet>7</a>    <a href="../../../gtk4_sys/index.html">ffi</a>, <a href="accessible.rs.html#19-70">Accessible</a>, <a href="enums.rs.html#1021-1321">AccessibleRole</a>, <a href="../enums.rs.html#77-107">Align</a>, <a href="buildable.rs.html#8-31">Buildable</a>, <a href="cell_editable.rs.html#15-504">CellEditable</a>, <a href="constraint_target.rs.html#8-23">ConstraintTarget</a>, <a href="editable.rs.html#17-688">Editable</a>,
-<a href=#8 id=8 data-nosnippet>8</a>    <a href="entry_buffer.rs.html#13-71">EntryBuffer</a>, <a href="entry_completion.rs.html#15-188">EntryCompletion</a>, <a href="enums.rs.html#4877-4886">EntryIconPosition</a>, <a href="enums.rs.html#6344-6359">ImageType</a>, <a href="flags.rs.html#909-968">InputHints</a>, <a href="enums.rs.html#6471-6507">InputPurpose</a>,
+<a href=#8 id=8 data-nosnippet>8</a>    <a href="entry_buffer.rs.html#13-71">EntryBuffer</a>, <a href="entry_completion.rs.html#15-188">EntryCompletion</a>, <a href="enums.rs.html#4877-4886">EntryIconPosition</a>, <a href="enums.rs.html#6344-6359">ImageType</a>, <a href="flags.rs.html#911-970">InputHints</a>, <a href="enums.rs.html#6471-6507">InputPurpose</a>,
 <a href=#9 id=9 data-nosnippet>9</a>    <a href="layout_manager.rs.html#8-70">LayoutManager</a>, <a href="enums.rs.html#8368-8379">Overflow</a>, <a href="widget.rs.html#19-864">Widget</a>,
 <a href=#10 id=10 data-nosnippet>10</a>};
 <a href=#11 id=11 data-nosnippet>11</a><span class="kw">use </span>glib::{
@@ -1254,7 +1254,7 @@
 <a href=#1181 id=1181 data-nosnippet>1181</a>    <span class="doccomment">/// Additional hints that allow input methods to fine-tune their behavior.
 <a href=#1182 id=1182 data-nosnippet>1182</a>    ///
 <a href=#1183 id=1183 data-nosnippet>1183</a>    /// Also see [`input-purpose`][struct@crate::Entry#input-purpose]
-<a href=#1184 id=1184 data-nosnippet>1184</a>    </span><span class="kw">pub fn </span>input_hints(<span class="self">self</span>, input_hints: <a href="flags.rs.html#909-968">InputHints</a>) -&gt; <span class="self">Self </span>{
+<a href=#1184 id=1184 data-nosnippet>1184</a>    </span><span class="kw">pub fn </span>input_hints(<span class="self">self</span>, input_hints: <a href="flags.rs.html#911-970">InputHints</a>) -&gt; <span class="self">Self </span>{
 <a href=#1185 id=1185 data-nosnippet>1185</a>        <span class="self">Self </span>{
 <a href=#1186 id=1186 data-nosnippet>1186</a>            builder: <a class="self" href="#1184">self</a>.builder.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/struct.ObjectBuilder.html#method.property">property</a>(<span class="string">"input-hints"</span>, <a href="#1184">input_hints</a>),
 <a href=#1187 id=1187 data-nosnippet>1187</a>        }
@@ -2310,7 +2310,7 @@
 <a href=#2237 id=2237 data-nosnippet>2237</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_entry_get_input_hints"</span>)]
 <a href=#2238 id=2238 data-nosnippet>2238</a>    #[doc(alias = <span class="string">"get_input_hints"</span>)]
 <a href=#2239 id=2239 data-nosnippet>2239</a>    #[doc(alias = <span class="string">"input-hints"</span>)]
-<a href=#2240 id=2240 data-nosnippet>2240</a>    </span><span class="kw">fn </span>input_hints(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="flags.rs.html#909-968">InputHints</a> {
+<a href=#2240 id=2240 data-nosnippet>2240</a>    </span><span class="kw">fn </span>input_hints(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="flags.rs.html#911-970">InputHints</a> {
 <a href=#2241 id=2241 data-nosnippet>2241</a>        <span class="kw">unsafe </span>{
 <a href=#2242 id=2242 data-nosnippet>2242</a>            <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_entry_get_input_hints.html">gtk_entry_get_input_hints</a>(
 <a href=#2243 id=2243 data-nosnippet>2243</a>                <a class="self" href="#2240">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
@@ -2838,7 +2838,7 @@
 <a href=#2765 id=2765 data-nosnippet>2765</a>    /// the hints
 <a href=#2766 id=2766 data-nosnippet>2766</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_entry_set_input_hints"</span>)]
 <a href=#2767 id=2767 data-nosnippet>2767</a>    #[doc(alias = <span class="string">"input-hints"</span>)]
-<a href=#2768 id=2768 data-nosnippet>2768</a>    </span><span class="kw">fn </span>set_input_hints(<span class="kw-2">&amp;</span><span class="self">self</span>, hints: <a href="flags.rs.html#909-968">InputHints</a>) {
+<a href=#2768 id=2768 data-nosnippet>2768</a>    </span><span class="kw">fn </span>set_input_hints(<span class="kw-2">&amp;</span><span class="self">self</span>, hints: <a href="flags.rs.html#911-970">InputHints</a>) {
 <a href=#2769 id=2769 data-nosnippet>2769</a>        <span class="kw">unsafe </span>{
 <a href=#2770 id=2770 data-nosnippet>2770</a>            ffi::<a href="../../../gtk4_sys/fn.gtk_entry_set_input_hints.html">gtk_entry_set_input_hints</a>(<a class="self" href="#2768">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>, <a href="#2768">hints</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>());
 <a href=#2771 id=2771 data-nosnippet>2771</a>        }

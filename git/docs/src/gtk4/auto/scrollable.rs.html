@@ -75,7 +75,7 @@
 <a href=#2 id=2 data-nosnippet>2</a>// from gir-files (https://github.com/gtk-rs/gir-files)
 <a href=#3 id=3 data-nosnippet>3</a>// DO NOT EDIT
 <a href=#4 id=4 data-nosnippet>4</a>
-<a href=#5 id=5 data-nosnippet>5</a></span><span class="kw">use crate</span>::{<a href="../../../gtk4_sys/index.html">ffi</a>, <a href="adjustment.rs.html#14-99">Adjustment</a>, <a href="../border.rs.html#8-20">Border</a>, <a href="enums.rs.html#10851-10860">ScrollablePolicy</a>};
+<a href=#5 id=5 data-nosnippet>5</a></span><span class="kw">use crate</span>::{<a href="../../../gtk4_sys/index.html">ffi</a>, <a href="adjustment.rs.html#14-99">Adjustment</a>, <a href="../border.rs.html#8-20">Border</a>, <a href="enums.rs.html#11142-11151">ScrollablePolicy</a>};
 <a href=#6 id=6 data-nosnippet>6</a><span class="kw">use </span>glib::{
 <a href=#7 id=7 data-nosnippet>7</a>    <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/prelude/index.html">prelude</a>::<span class="kw-2">*</span>,
 <a href=#8 id=8 data-nosnippet>8</a>    signal::{<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/fn.connect_raw.html">connect_raw</a>, <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html">SignalHandlerId</a>},
@@ -217,7 +217,7 @@
 <a href=#144 id=144 data-nosnippet>144</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_scrollable_get_hscroll_policy"</span>)]
 <a href=#145 id=145 data-nosnippet>145</a>    #[doc(alias = <span class="string">"get_hscroll_policy"</span>)]
 <a href=#146 id=146 data-nosnippet>146</a>    #[doc(alias = <span class="string">"hscroll-policy"</span>)]
-<a href=#147 id=147 data-nosnippet>147</a>    </span><span class="kw">fn </span>hscroll_policy(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="enums.rs.html#10851-10860">ScrollablePolicy</a> {
+<a href=#147 id=147 data-nosnippet>147</a>    </span><span class="kw">fn </span>hscroll_policy(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="enums.rs.html#11142-11151">ScrollablePolicy</a> {
 <a href=#148 id=148 data-nosnippet>148</a>        <span class="kw">unsafe </span>{
 <a href=#149 id=149 data-nosnippet>149</a>            <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_scrollable_get_hscroll_policy.html">gtk_scrollable_get_hscroll_policy</a>(
 <a href=#150 id=150 data-nosnippet>150</a>                <a class="self" href="#147">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
@@ -248,7 +248,7 @@
 <a href=#175 id=175 data-nosnippet>175</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_scrollable_get_vscroll_policy"</span>)]
 <a href=#176 id=176 data-nosnippet>176</a>    #[doc(alias = <span class="string">"get_vscroll_policy"</span>)]
 <a href=#177 id=177 data-nosnippet>177</a>    #[doc(alias = <span class="string">"vscroll-policy"</span>)]
-<a href=#178 id=178 data-nosnippet>178</a>    </span><span class="kw">fn </span>vscroll_policy(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="enums.rs.html#10851-10860">ScrollablePolicy</a> {
+<a href=#178 id=178 data-nosnippet>178</a>    </span><span class="kw">fn </span>vscroll_policy(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="enums.rs.html#11142-11151">ScrollablePolicy</a> {
 <a href=#179 id=179 data-nosnippet>179</a>        <span class="kw">unsafe </span>{
 <a href=#180 id=180 data-nosnippet>180</a>            <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_scrollable_get_vscroll_policy.html">gtk_scrollable_get_vscroll_policy</a>(
 <a href=#181 id=181 data-nosnippet>181</a>                <a class="self" href="#178">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
@@ -278,7 +278,7 @@
 <a href=#205 id=205 data-nosnippet>205</a>    /// the horizontal [`ScrollablePolicy`][crate::ScrollablePolicy]
 <a href=#206 id=206 data-nosnippet>206</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_scrollable_set_hscroll_policy"</span>)]
 <a href=#207 id=207 data-nosnippet>207</a>    #[doc(alias = <span class="string">"hscroll-policy"</span>)]
-<a href=#208 id=208 data-nosnippet>208</a>    </span><span class="kw">fn </span>set_hscroll_policy(<span class="kw-2">&amp;</span><span class="self">self</span>, policy: <a href="enums.rs.html#10851-10860">ScrollablePolicy</a>) {
+<a href=#208 id=208 data-nosnippet>208</a>    </span><span class="kw">fn </span>set_hscroll_policy(<span class="kw-2">&amp;</span><span class="self">self</span>, policy: <a href="enums.rs.html#11142-11151">ScrollablePolicy</a>) {
 <a href=#209 id=209 data-nosnippet>209</a>        <span class="kw">unsafe </span>{
 <a href=#210 id=210 data-nosnippet>210</a>            ffi::<a href="../../../gtk4_sys/fn.gtk_scrollable_set_hscroll_policy.html">gtk_scrollable_set_hscroll_policy</a>(
 <a href=#211 id=211 data-nosnippet>211</a>                <a class="self" href="#208">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
@@ -309,7 +309,7 @@
 <a href=#236 id=236 data-nosnippet>236</a>    /// the vertical [`ScrollablePolicy`][crate::ScrollablePolicy]
 <a href=#237 id=237 data-nosnippet>237</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_scrollable_set_vscroll_policy"</span>)]
 <a href=#238 id=238 data-nosnippet>238</a>    #[doc(alias = <span class="string">"vscroll-policy"</span>)]
-<a href=#239 id=239 data-nosnippet>239</a>    </span><span class="kw">fn </span>set_vscroll_policy(<span class="kw-2">&amp;</span><span class="self">self</span>, policy: <a href="enums.rs.html#10851-10860">ScrollablePolicy</a>) {
+<a href=#239 id=239 data-nosnippet>239</a>    </span><span class="kw">fn </span>set_vscroll_policy(<span class="kw-2">&amp;</span><span class="self">self</span>, policy: <a href="enums.rs.html#11142-11151">ScrollablePolicy</a>) {
 <a href=#240 id=240 data-nosnippet>240</a>        <span class="kw">unsafe </span>{
 <a href=#241 id=241 data-nosnippet>241</a>            ffi::<a href="../../../gtk4_sys/fn.gtk_scrollable_set_vscroll_policy.html">gtk_scrollable_set_vscroll_policy</a>(
 <a href=#242 id=242 data-nosnippet>242</a>                <a class="self" href="#239">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,

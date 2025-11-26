@@ -80,7 +80,7 @@
 <a href=#7 id=7 data-nosnippet>7</a></span><span class="kw">use </span><a href="printer.rs.html#14-111"><span class="kw">crate</span>::Printer</a>;
 <a href=#8 id=8 data-nosnippet>8</a><span class="kw">use crate</span>::{
 <a href=#9 id=9 data-nosnippet>9</a>    <a href="../../../gtk4_sys/index.html">ffi</a>, <a href="accessible.rs.html#19-70">Accessible</a>, <a href="enums.rs.html#497-593">AccessibleProperty</a>, <a href="enums.rs.html#732-864">AccessibleRelation</a>, <a href="enums.rs.html#1021-1321">AccessibleRole</a>, <a href="enums.rs.html#1700-1746">AccessibleState</a>,
-<a href=#10 id=10 data-nosnippet>10</a>    <a href="flags.rs.html#318-404">DebugFlags</a>, <a href="page_setup.rs.html#8-63">PageSetup</a>, <a href="print_settings.rs.html#11-33">PrintSettings</a>, <a href="style_context.rs.html#14-73">StyleContext</a>, <a href="enums.rs.html#12773-12785">TextDirection</a>, <a href="tree_model.rs.html#15-277">TreeModel</a>, <a href="tree_path.rs.html#8-21">TreePath</a>, <a href="widget.rs.html#19-864">Widget</a>,
+<a href=#10 id=10 data-nosnippet>10</a>    <a href="flags.rs.html#318-406">DebugFlags</a>, <a href="page_setup.rs.html#8-63">PageSetup</a>, <a href="print_settings.rs.html#11-33">PrintSettings</a>, <a href="style_context.rs.html#14-73">StyleContext</a>, <a href="enums.rs.html#13064-13076">TextDirection</a>, <a href="tree_model.rs.html#15-277">TreeModel</a>, <a href="tree_path.rs.html#8-21">TreePath</a>, <a href="widget.rs.html#19-864">Widget</a>,
 <a href=#11 id=11 data-nosnippet>11</a>    <a href="window.rs.html#21-781">Window</a>,
 <a href=#12 id=12 data-nosnippet>12</a>};
 <a href=#13 id=13 data-nosnippet>13</a><span class="kw">use </span>glib::{<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/prelude/index.html">prelude</a>::<span class="kw-2">*</span>, <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/index.html">translate</a>::<span class="kw-2">*</span>};
@@ -252,7 +252,7 @@
 <a href=#179 id=179 data-nosnippet>179</a>/// the GTK debug flags.
 <a href=#180 id=180 data-nosnippet>180</a></span><span class="attr">#[doc(alias = <span class="string">"gtk_get_debug_flags"</span>)]
 <a href=#181 id=181 data-nosnippet>181</a>#[doc(alias = <span class="string">"get_debug_flags"</span>)]
-<a href=#182 id=182 data-nosnippet>182</a></span><span class="kw">pub fn </span><a href="../../../gtk4/fn.debug_flags.html">debug_flags</a>() -&gt; <a href="flags.rs.html#318-404">DebugFlags</a> {
+<a href=#182 id=182 data-nosnippet>182</a></span><span class="kw">pub fn </span><a href="../../../gtk4/fn.debug_flags.html">debug_flags</a>() -&gt; <a href="flags.rs.html#318-406">DebugFlags</a> {
 <a href=#183 id=183 data-nosnippet>183</a>    <a href="../rt.rs.html#24-36">assert_initialized_main_thread!</a>();
 <a href=#184 id=184 data-nosnippet>184</a>    <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_get_debug_flags.html">gtk_get_debug_flags</a>()) }
 <a href=#185 id=185 data-nosnippet>185</a>}
@@ -328,7 +328,7 @@
 <a href=#255 id=255 data-nosnippet>255</a>/// the direction of the current locale
 <a href=#256 id=256 data-nosnippet>256</a></span><span class="attr">#[doc(alias = <span class="string">"gtk_get_locale_direction"</span>)]
 <a href=#257 id=257 data-nosnippet>257</a>#[doc(alias = <span class="string">"get_locale_direction"</span>)]
-<a href=#258 id=258 data-nosnippet>258</a></span><span class="kw">pub fn </span><a href="../../../gtk4/fn.locale_direction.html">locale_direction</a>() -&gt; <a href="enums.rs.html#12773-12785">TextDirection</a> {
+<a href=#258 id=258 data-nosnippet>258</a></span><span class="kw">pub fn </span><a href="../../../gtk4/fn.locale_direction.html">locale_direction</a>() -&gt; <a href="enums.rs.html#13064-13076">TextDirection</a> {
 <a href=#259 id=259 data-nosnippet>259</a>    <a href="../rt.rs.html#24-36">assert_initialized_main_thread!</a>();
 <a href=#260 id=260 data-nosnippet>260</a>    <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_get_locale_direction.html">gtk_get_locale_direction</a>()) }
 <a href=#261 id=261 data-nosnippet>261</a>}
@@ -1062,7 +1062,7 @@
 <a href=#989 id=989 data-nosnippet>989</a>/// ## `flags`
 <a href=#990 id=990 data-nosnippet>990</a>/// the debug flags to set
 <a href=#991 id=991 data-nosnippet>991</a></span><span class="attr">#[doc(alias = <span class="string">"gtk_set_debug_flags"</span>)]
-<a href=#992 id=992 data-nosnippet>992</a></span><span class="kw">pub fn </span><a href="../../../gtk4/fn.set_debug_flags.html">set_debug_flags</a>(flags: <a href="flags.rs.html#318-404">DebugFlags</a>) {
+<a href=#992 id=992 data-nosnippet>992</a></span><span class="kw">pub fn </span><a href="../../../gtk4/fn.set_debug_flags.html">set_debug_flags</a>(flags: <a href="flags.rs.html#318-406">DebugFlags</a>) {
 <a href=#993 id=993 data-nosnippet>993</a>    <a href="../rt.rs.html#24-36">assert_initialized_main_thread!</a>();
 <a href=#994 id=994 data-nosnippet>994</a>    <span class="kw">unsafe </span>{
 <a href=#995 id=995 data-nosnippet>995</a>        ffi::<a href="../../../gtk4_sys/fn.gtk_set_debug_flags.html">gtk_set_debug_flags</a>(<a href="#992">flags</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>());

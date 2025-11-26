@@ -77,8 +77,8 @@
 <a href=#4 id=4 data-nosnippet>4</a></span><span class="attr">#![allow(deprecated)]
 <a href=#5 id=5 data-nosnippet>5</a>
 <a href=#6 id=6 data-nosnippet>6</a></span><span class="kw">use crate</span>::{
-<a href=#7 id=7 data-nosnippet>7</a>    <a href="../../../gtk4_sys/index.html">ffi</a>, <a href="cell_editable.rs.html#15-504">CellEditable</a>, <a href="enums.rs.html#3186-3201">CellRendererMode</a>, <a href="flags.rs.html#200-233">CellRendererState</a>, <a href="requisition.rs.html#8-20">Requisition</a>, <a href="enums.rs.html#11539-11551">SizeRequestMode</a>, <a href="snapshot.rs.html#9-32">Snapshot</a>,
-<a href=#8 id=8 data-nosnippet>8</a>    <a href="flags.rs.html#1563-1621">StateFlags</a>, <a href="tree_path.rs.html#8-21">TreePath</a>, <a href="widget.rs.html#19-864">Widget</a>,
+<a href=#7 id=7 data-nosnippet>7</a>    <a href="../../../gtk4_sys/index.html">ffi</a>, <a href="cell_editable.rs.html#15-504">CellEditable</a>, <a href="enums.rs.html#3186-3201">CellRendererMode</a>, <a href="flags.rs.html#200-233">CellRendererState</a>, <a href="requisition.rs.html#8-20">Requisition</a>, <a href="enums.rs.html#11830-11842">SizeRequestMode</a>, <a href="snapshot.rs.html#9-32">Snapshot</a>,
+<a href=#8 id=8 data-nosnippet>8</a>    <a href="flags.rs.html#1565-1623">StateFlags</a>, <a href="tree_path.rs.html#8-21">TreePath</a>, <a href="widget.rs.html#19-864">Widget</a>,
 <a href=#9 id=9 data-nosnippet>9</a>};
 <a href=#10 id=10 data-nosnippet>10</a><span class="kw">use </span>glib::{
 <a href=#11 id=11 data-nosnippet>11</a>    <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.ObjectType.html">object::ObjectType</a> <span class="kw">as _</span>,
@@ -673,7 +673,7 @@
 <a href=#600 id=600 data-nosnippet>600</a>    #[allow(deprecated)]
 <a href=#601 id=601 data-nosnippet>601</a>    #[doc(alias = <span class="string">"gtk_cell_renderer_get_request_mode"</span>)]
 <a href=#602 id=602 data-nosnippet>602</a>    #[doc(alias = <span class="string">"get_request_mode"</span>)]
-<a href=#603 id=603 data-nosnippet>603</a>    </span><span class="kw">fn </span>request_mode(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="enums.rs.html#11539-11551">SizeRequestMode</a> {
+<a href=#603 id=603 data-nosnippet>603</a>    </span><span class="kw">fn </span>request_mode(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="enums.rs.html#11830-11842">SizeRequestMode</a> {
 <a href=#604 id=604 data-nosnippet>604</a>        <span class="kw">unsafe </span>{
 <a href=#605 id=605 data-nosnippet>605</a>            <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_cell_renderer_get_request_mode.html">gtk_cell_renderer_get_request_mode</a>(
 <a href=#606 id=606 data-nosnippet>606</a>                <a class="self" href="#603">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
@@ -724,7 +724,7 @@
 <a href=#651 id=651 data-nosnippet>651</a>        <span class="kw-2">&amp;</span><span class="self">self</span>,
 <a href=#652 id=652 data-nosnippet>652</a>        widget: <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;<span class="kw-2">&amp;</span><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html">IsA</a>&lt;<a href="widget.rs.html#19-864">Widget</a>&gt;&gt;,
 <a href=#653 id=653 data-nosnippet>653</a>        cell_state: <a href="flags.rs.html#200-233">CellRendererState</a>,
-<a href=#654 id=654 data-nosnippet>654</a>    ) -&gt; <a href="flags.rs.html#1563-1621">StateFlags</a> {
+<a href=#654 id=654 data-nosnippet>654</a>    ) -&gt; <a href="flags.rs.html#1565-1623">StateFlags</a> {
 <a href=#655 id=655 data-nosnippet>655</a>        <span class="kw">unsafe </span>{
 <a href=#656 id=656 data-nosnippet>656</a>            <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_cell_renderer_get_state.html">gtk_cell_renderer_get_state</a>(
 <a href=#657 id=657 data-nosnippet>657</a>                <a class="self" href="#651">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,

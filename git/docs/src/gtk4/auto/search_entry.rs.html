@@ -81,7 +81,7 @@
 <a href=#8 id=8 data-nosnippet>8</a>};
 <a href=#9 id=9 data-nosnippet>9</a><span class="attr">#[cfg(feature = <span class="string">"v4_14"</span>)]
 <a href=#10 id=10 data-nosnippet>10</a>#[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_14"</span>)))]
-<a href=#11 id=11 data-nosnippet>11</a></span><span class="kw">use crate</span>::{<a href="flags.rs.html#909-968">InputHints</a>, <a href="enums.rs.html#6471-6507">InputPurpose</a>};
+<a href=#11 id=11 data-nosnippet>11</a></span><span class="kw">use crate</span>::{<a href="flags.rs.html#911-970">InputHints</a>, <a href="enums.rs.html#6471-6507">InputPurpose</a>};
 <a href=#12 id=12 data-nosnippet>12</a><span class="kw">use </span>glib::{
 <a href=#13 id=13 data-nosnippet>13</a>    <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.ObjectType.html">object::ObjectType</a> <span class="kw">as _</span>,
 <a href=#14 id=14 data-nosnippet>14</a>    <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/prelude/index.html">prelude</a>::<span class="kw-2">*</span>,
@@ -810,7 +810,7 @@
 <a href=#737 id=737 data-nosnippet>737</a>    #[doc(alias = <span class="string">"gtk_search_entry_get_input_hints"</span>)]
 <a href=#738 id=738 data-nosnippet>738</a>    #[doc(alias = <span class="string">"get_input_hints"</span>)]
 <a href=#739 id=739 data-nosnippet>739</a>    #[doc(alias = <span class="string">"input-hints"</span>)]
-<a href=#740 id=740 data-nosnippet>740</a>    </span><span class="kw">pub fn </span>input_hints(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="flags.rs.html#909-968">InputHints</a> {
+<a href=#740 id=740 data-nosnippet>740</a>    </span><span class="kw">pub fn </span>input_hints(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="flags.rs.html#911-970">InputHints</a> {
 <a href=#741 id=741 data-nosnippet>741</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_search_entry_get_input_hints.html">gtk_search_entry_get_input_hints</a>(<a class="self" href="#740">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#742 id=742 data-nosnippet>742</a>    }
 <a href=#743 id=743 data-nosnippet>743</a>
@@ -869,7 +869,7 @@
 <a href=#796 id=796 data-nosnippet>796</a>    #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_14"</span>)))]
 <a href=#797 id=797 data-nosnippet>797</a>    #[doc(alias = <span class="string">"gtk_search_entry_set_input_hints"</span>)]
 <a href=#798 id=798 data-nosnippet>798</a>    #[doc(alias = <span class="string">"input-hints"</span>)]
-<a href=#799 id=799 data-nosnippet>799</a>    </span><span class="kw">pub fn </span>set_input_hints(<span class="kw-2">&amp;</span><span class="self">self</span>, hints: <a href="flags.rs.html#909-968">InputHints</a>) {
+<a href=#799 id=799 data-nosnippet>799</a>    </span><span class="kw">pub fn </span>set_input_hints(<span class="kw-2">&amp;</span><span class="self">self</span>, hints: <a href="flags.rs.html#911-970">InputHints</a>) {
 <a href=#800 id=800 data-nosnippet>800</a>        <span class="kw">unsafe </span>{
 <a href=#801 id=801 data-nosnippet>801</a>            ffi::<a href="../../../gtk4_sys/fn.gtk_search_entry_set_input_hints.html">gtk_search_entry_set_input_hints</a>(<a class="self" href="#799">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>, <a href="#799">hints</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>());
 <a href=#802 id=802 data-nosnippet>802</a>        }
@@ -1295,7 +1295,7 @@
 <a href=#1222 id=1222 data-nosnippet>1222</a>    /// behaviour of input methods.
 <a href=#1223 id=1223 data-nosnippet>1223</a>    </span><span class="attr">#[cfg(feature = <span class="string">"v4_14"</span>)]
 <a href=#1224 id=1224 data-nosnippet>1224</a>    #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_14"</span>)))]
-<a href=#1225 id=1225 data-nosnippet>1225</a>    </span><span class="kw">pub fn </span>input_hints(<span class="self">self</span>, input_hints: <a href="flags.rs.html#909-968">InputHints</a>) -&gt; <span class="self">Self </span>{
+<a href=#1225 id=1225 data-nosnippet>1225</a>    </span><span class="kw">pub fn </span>input_hints(<span class="self">self</span>, input_hints: <a href="flags.rs.html#911-970">InputHints</a>) -&gt; <span class="self">Self </span>{
 <a href=#1226 id=1226 data-nosnippet>1226</a>        <span class="self">Self </span>{
 <a href=#1227 id=1227 data-nosnippet>1227</a>            builder: <a class="self" href="#1225">self</a>.builder.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/struct.ObjectBuilder.html#method.property">property</a>(<span class="string">"input-hints"</span>, <a href="#1225">input_hints</a>),
 <a href=#1228 id=1228 data-nosnippet>1228</a>        }

@@ -80,7 +80,7 @@
 <a href=#7 id=7 data-nosnippet>7</a></span><span class="kw">use </span><a href="scroll_info.rs.html#8-21"><span class="kw">crate</span>::ScrollInfo</a>;
 <a href=#8 id=8 data-nosnippet>8</a><span class="kw">use crate</span>::{
 <a href=#9 id=9 data-nosnippet>9</a>    <a href="../../../gtk4_sys/index.html">ffi</a>, <a href="accessible.rs.html#19-70">Accessible</a>, <a href="enums.rs.html#1021-1321">AccessibleRole</a>, <a href="adjustment.rs.html#14-99">Adjustment</a>, <a href="../enums.rs.html#77-107">Align</a>, <a href="buildable.rs.html#8-31">Buildable</a>, <a href="constraint_target.rs.html#8-23">ConstraintTarget</a>, <a href="layout_manager.rs.html#8-70">LayoutManager</a>,
-<a href=#10 id=10 data-nosnippet>10</a>    <a href="enums.rs.html#8368-8379">Overflow</a>, <a href="scrollable.rs.html#13-82">Scrollable</a>, <a href="enums.rs.html#10851-10860">ScrollablePolicy</a>, <a href="widget.rs.html#19-864">Widget</a>,
+<a href=#10 id=10 data-nosnippet>10</a>    <a href="enums.rs.html#8368-8379">Overflow</a>, <a href="scrollable.rs.html#13-82">Scrollable</a>, <a href="enums.rs.html#11142-11151">ScrollablePolicy</a>, <a href="widget.rs.html#19-864">Widget</a>,
 <a href=#11 id=11 data-nosnippet>11</a>};
 <a href=#12 id=12 data-nosnippet>12</a><span class="kw">use </span>glib::{
 <a href=#13 id=13 data-nosnippet>13</a>    <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/prelude/index.html">prelude</a>::<span class="kw-2">*</span>,
@@ -977,7 +977,7 @@
 <a href=#904 id=904 data-nosnippet>904</a>    }
 <a href=#905 id=905 data-nosnippet>905</a>
 <a href=#906 id=906 data-nosnippet>906</a>    <span class="doccomment">/// Determines when horizontal scrolling should start.
-<a href=#907 id=907 data-nosnippet>907</a>    </span><span class="kw">pub fn </span>hscroll_policy(<span class="self">self</span>, hscroll_policy: <a href="enums.rs.html#10851-10860">ScrollablePolicy</a>) -&gt; <span class="self">Self </span>{
+<a href=#907 id=907 data-nosnippet>907</a>    </span><span class="kw">pub fn </span>hscroll_policy(<span class="self">self</span>, hscroll_policy: <a href="enums.rs.html#11142-11151">ScrollablePolicy</a>) -&gt; <span class="self">Self </span>{
 <a href=#908 id=908 data-nosnippet>908</a>        <span class="self">Self </span>{
 <a href=#909 id=909 data-nosnippet>909</a>            builder: <a class="self" href="#907">self</a>.builder.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/struct.ObjectBuilder.html#method.property">property</a>(<span class="string">"hscroll-policy"</span>, <a href="#907">hscroll_policy</a>),
 <a href=#910 id=910 data-nosnippet>910</a>        }
@@ -995,7 +995,7 @@
 <a href=#922 id=922 data-nosnippet>922</a>    }
 <a href=#923 id=923 data-nosnippet>923</a>
 <a href=#924 id=924 data-nosnippet>924</a>    <span class="doccomment">/// Determines when vertical scrolling should start.
-<a href=#925 id=925 data-nosnippet>925</a>    </span><span class="kw">pub fn </span>vscroll_policy(<span class="self">self</span>, vscroll_policy: <a href="enums.rs.html#10851-10860">ScrollablePolicy</a>) -&gt; <span class="self">Self </span>{
+<a href=#925 id=925 data-nosnippet>925</a>    </span><span class="kw">pub fn </span>vscroll_policy(<span class="self">self</span>, vscroll_policy: <a href="enums.rs.html#11142-11151">ScrollablePolicy</a>) -&gt; <span class="self">Self </span>{
 <a href=#926 id=926 data-nosnippet>926</a>        <span class="self">Self </span>{
 <a href=#927 id=927 data-nosnippet>927</a>            builder: <a class="self" href="#925">self</a>.builder.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/struct.ObjectBuilder.html#method.property">property</a>(<span class="string">"vscroll-policy"</span>, <a href="#925">vscroll_policy</a>),
 <a href=#928 id=928 data-nosnippet>928</a>        }

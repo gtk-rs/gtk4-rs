@@ -78,8 +78,8 @@
 <a href=#5 id=5 data-nosnippet>5</a>
 <a href=#6 id=6 data-nosnippet>6</a></span><span class="kw">use crate</span>::{
 <a href=#7 id=7 data-nosnippet>7</a>    <a href="../../../gtk4_sys/index.html">ffi</a>, <a href="accessible.rs.html#19-70">Accessible</a>, <a href="../enums.rs.html#77-107">Align</a>, <a href="alias.rs.html#9">Allocation</a>, <a href="buildable.rs.html#8-31">Buildable</a>, <a href="constraint_target.rs.html#8-23">ConstraintTarget</a>, <a href="enums.rs.html#4621-4642">DirectionType</a>,
-<a href=#8 id=8 data-nosnippet>8</a>    <a href="event_controller.rs.html#13-64">EventController</a>, <a href="layout_manager.rs.html#8-70">LayoutManager</a>, <a href="native.rs.html#8-33">Native</a>, <a href="enums.rs.html#8265-8274">Orientation</a>, <a href="enums.rs.html#8368-8379">Overflow</a>, <a href="flags.rs.html#1157-1172">PickFlags</a>, <a href="requisition.rs.html#8-20">Requisition</a>, <a href="root.rs.html#8-32">Root</a>,
-<a href=#9 id=9 data-nosnippet>9</a>    <a href="settings.rs.html#19-573">Settings</a>, <a href="enums.rs.html#11539-11551">SizeRequestMode</a>, <a href="snapshot.rs.html#9-32">Snapshot</a>, <a href="flags.rs.html#1563-1621">StateFlags</a>, <a href="style_context.rs.html#14-73">StyleContext</a>, <a href="enums.rs.html#12773-12785">TextDirection</a>, <a href="tooltip.rs.html#8-46">Tooltip</a>,
+<a href=#8 id=8 data-nosnippet>8</a>    <a href="event_controller.rs.html#13-64">EventController</a>, <a href="layout_manager.rs.html#8-70">LayoutManager</a>, <a href="native.rs.html#8-33">Native</a>, <a href="enums.rs.html#8265-8274">Orientation</a>, <a href="enums.rs.html#8368-8379">Overflow</a>, <a href="flags.rs.html#1159-1174">PickFlags</a>, <a href="requisition.rs.html#8-20">Requisition</a>, <a href="root.rs.html#8-32">Root</a>,
+<a href=#9 id=9 data-nosnippet>9</a>    <a href="settings.rs.html#22-589">Settings</a>, <a href="enums.rs.html#11830-11842">SizeRequestMode</a>, <a href="snapshot.rs.html#9-32">Snapshot</a>, <a href="flags.rs.html#1565-1623">StateFlags</a>, <a href="style_context.rs.html#14-73">StyleContext</a>, <a href="enums.rs.html#13064-13076">TextDirection</a>, <a href="tooltip.rs.html#8-46">Tooltip</a>,
 <a href=#10 id=10 data-nosnippet>10</a>};
 <a href=#11 id=11 data-nosnippet>11</a><span class="kw">use </span>glib::{
 <a href=#12 id=12 data-nosnippet>12</a>    <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.ObjectType.html">object::ObjectType</a> <span class="kw">as _</span>,
@@ -948,7 +948,7 @@
 <a href=#875 id=875 data-nosnippet>875</a>    /// the current default direction
 <a href=#876 id=876 data-nosnippet>876</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_widget_get_default_direction"</span>)]
 <a href=#877 id=877 data-nosnippet>877</a>    #[doc(alias = <span class="string">"get_default_direction"</span>)]
-<a href=#878 id=878 data-nosnippet>878</a>    </span><span class="kw">pub fn </span>default_direction() -&gt; <a href="enums.rs.html#12773-12785">TextDirection</a> {
+<a href=#878 id=878 data-nosnippet>878</a>    </span><span class="kw">pub fn </span>default_direction() -&gt; <a href="enums.rs.html#13064-13076">TextDirection</a> {
 <a href=#879 id=879 data-nosnippet>879</a>        <a href="../rt.rs.html#24-36">assert_initialized_main_thread!</a>();
 <a href=#880 id=880 data-nosnippet>880</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_widget_get_default_direction.html">gtk_widget_get_default_direction</a>()) }
 <a href=#881 id=881 data-nosnippet>881</a>    }
@@ -960,7 +960,7 @@
 <a href=#887 id=887 data-nosnippet>887</a>    /// the new default direction, either [enum@Gtk.TextDirection.ltr]
 <a href=#888 id=888 data-nosnippet>888</a>    ///   or [enum@Gtk.TextDirection.rtl]
 <a href=#889 id=889 data-nosnippet>889</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_widget_set_default_direction"</span>)]
-<a href=#890 id=890 data-nosnippet>890</a>    </span><span class="kw">pub fn </span>set_default_direction(dir: <a href="enums.rs.html#12773-12785">TextDirection</a>) {
+<a href=#890 id=890 data-nosnippet>890</a>    </span><span class="kw">pub fn </span>set_default_direction(dir: <a href="enums.rs.html#13064-13076">TextDirection</a>) {
 <a href=#891 id=891 data-nosnippet>891</a>        <a href="../rt.rs.html#24-36">assert_initialized_main_thread!</a>();
 <a href=#892 id=892 data-nosnippet>892</a>        <span class="kw">unsafe </span>{
 <a href=#893 id=893 data-nosnippet>893</a>            ffi::<a href="../../../gtk4_sys/fn.gtk_widget_set_default_direction.html">gtk_widget_set_default_direction</a>(<a href="#890">dir</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>());
@@ -1753,7 +1753,7 @@
 <a href=#1680 id=1680 data-nosnippet>1680</a>    /// the reading direction for the widget
 <a href=#1681 id=1681 data-nosnippet>1681</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_widget_get_direction"</span>)]
 <a href=#1682 id=1682 data-nosnippet>1682</a>    #[doc(alias = <span class="string">"get_direction"</span>)]
-<a href=#1683 id=1683 data-nosnippet>1683</a>    </span><span class="kw">fn </span>direction(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="enums.rs.html#12773-12785">TextDirection</a> {
+<a href=#1683 id=1683 data-nosnippet>1683</a>    </span><span class="kw">fn </span>direction(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="enums.rs.html#13064-13076">TextDirection</a> {
 <a href=#1684 id=1684 data-nosnippet>1684</a>        <span class="kw">unsafe </span>{
 <a href=#1685 id=1685 data-nosnippet>1685</a>            <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_widget_get_direction.html">gtk_widget_get_direction</a>(
 <a href=#1686 id=1686 data-nosnippet>1686</a>                <a class="self" href="#1683">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
@@ -2365,7 +2365,7 @@
 <a href=#2292 id=2292 data-nosnippet>2292</a>    /// The [`SizeRequestMode`][crate::SizeRequestMode] preferred by @self.
 <a href=#2293 id=2293 data-nosnippet>2293</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_widget_get_request_mode"</span>)]
 <a href=#2294 id=2294 data-nosnippet>2294</a>    #[doc(alias = <span class="string">"get_request_mode"</span>)]
-<a href=#2295 id=2295 data-nosnippet>2295</a>    </span><span class="kw">fn </span>request_mode(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="enums.rs.html#11539-11551">SizeRequestMode</a> {
+<a href=#2295 id=2295 data-nosnippet>2295</a>    </span><span class="kw">fn </span>request_mode(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="enums.rs.html#11830-11842">SizeRequestMode</a> {
 <a href=#2296 id=2296 data-nosnippet>2296</a>        <span class="kw">unsafe </span>{
 <a href=#2297 id=2297 data-nosnippet>2297</a>            <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_widget_get_request_mode.html">gtk_widget_get_request_mode</a>(
 <a href=#2298 id=2298 data-nosnippet>2298</a>                <a class="self" href="#2295">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
@@ -2447,7 +2447,7 @@
 <a href=#2374 id=2374 data-nosnippet>2374</a>    /// the relevant settings object
 <a href=#2375 id=2375 data-nosnippet>2375</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_widget_get_settings"</span>)]
 <a href=#2376 id=2376 data-nosnippet>2376</a>    #[doc(alias = <span class="string">"get_settings"</span>)]
-<a href=#2377 id=2377 data-nosnippet>2377</a>    </span><span class="kw">fn </span>settings(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="settings.rs.html#19-573">Settings</a> {
+<a href=#2377 id=2377 data-nosnippet>2377</a>    </span><span class="kw">fn </span>settings(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="settings.rs.html#22-589">Settings</a> {
 <a href=#2378 id=2378 data-nosnippet>2378</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib_none.html">from_glib_none</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_widget_get_settings.html">gtk_widget_get_settings</a>(<a class="self" href="#2377">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#2379 id=2379 data-nosnippet>2379</a>    }
 <a href=#2380 id=2380 data-nosnippet>2380</a>
@@ -2524,7 +2524,7 @@
 <a href=#2451 id=2451 data-nosnippet>2451</a>    /// the state flags of widget
 <a href=#2452 id=2452 data-nosnippet>2452</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_widget_get_state_flags"</span>)]
 <a href=#2453 id=2453 data-nosnippet>2453</a>    #[doc(alias = <span class="string">"get_state_flags"</span>)]
-<a href=#2454 id=2454 data-nosnippet>2454</a>    </span><span class="kw">fn </span>state_flags(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="flags.rs.html#1563-1621">StateFlags</a> {
+<a href=#2454 id=2454 data-nosnippet>2454</a>    </span><span class="kw">fn </span>state_flags(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="flags.rs.html#1565-1623">StateFlags</a> {
 <a href=#2455 id=2455 data-nosnippet>2455</a>        <span class="kw">unsafe </span>{
 <a href=#2456 id=2456 data-nosnippet>2456</a>            <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_widget_get_state_flags.html">gtk_widget_get_state_flags</a>(
 <a href=#2457 id=2457 data-nosnippet>2457</a>                <a class="self" href="#2454">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
@@ -3193,7 +3193,7 @@
 <a href=#3120 id=3120 data-nosnippet>3120</a>    /// the widget's descendant at (x, y)
 <a href=#3121 id=3121 data-nosnippet>3121</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_widget_pick"</span>)]
 <a href=#3122 id=3122 data-nosnippet>3122</a>    #[must_use]
-<a href=#3123 id=3123 data-nosnippet>3123</a>    </span><span class="kw">fn </span>pick(<span class="kw-2">&amp;</span><span class="self">self</span>, x: <a href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>, y: <a href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>, flags: <a href="flags.rs.html#1157-1172">PickFlags</a>) -&gt; <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;<a href="#19-864">Widget</a>&gt; {
+<a href=#3123 id=3123 data-nosnippet>3123</a>    </span><span class="kw">fn </span>pick(<span class="kw-2">&amp;</span><span class="self">self</span>, x: <a href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>, y: <a href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>, flags: <a href="flags.rs.html#1159-1174">PickFlags</a>) -&gt; <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;<a href="#19-864">Widget</a>&gt; {
 <a href=#3124 id=3124 data-nosnippet>3124</a>        <span class="kw">unsafe </span>{
 <a href=#3125 id=3125 data-nosnippet>3125</a>            <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib_none.html">from_glib_none</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_widget_pick.html">gtk_widget_pick</a>(
 <a href=#3126 id=3126 data-nosnippet>3126</a>                <a class="self" href="#3123">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
@@ -3467,7 +3467,7 @@
 <a href=#3394 id=3394 data-nosnippet>3394</a>    /// ## `dir`
 <a href=#3395 id=3395 data-nosnippet>3395</a>    /// the new direction
 <a href=#3396 id=3396 data-nosnippet>3396</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_widget_set_direction"</span>)]
-<a href=#3397 id=3397 data-nosnippet>3397</a>    </span><span class="kw">fn </span>set_direction(<span class="kw-2">&amp;</span><span class="self">self</span>, dir: <a href="enums.rs.html#12773-12785">TextDirection</a>) {
+<a href=#3397 id=3397 data-nosnippet>3397</a>    </span><span class="kw">fn </span>set_direction(<span class="kw-2">&amp;</span><span class="self">self</span>, dir: <a href="enums.rs.html#13064-13076">TextDirection</a>) {
 <a href=#3398 id=3398 data-nosnippet>3398</a>        <span class="kw">unsafe </span>{
 <a href=#3399 id=3399 data-nosnippet>3399</a>            ffi::<a href="../../../gtk4_sys/fn.gtk_widget_set_direction.html">gtk_widget_set_direction</a>(<a class="self" href="#3397">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>, <a href="#3397">dir</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>());
 <a href=#3400 id=3400 data-nosnippet>3400</a>        }
@@ -3923,7 +3923,7 @@
 <a href=#3850 id=3850 data-nosnippet>3850</a>    /// ## `clear`
 <a href=#3851 id=3851 data-nosnippet>3851</a>    /// whether to clear state before turning on @flags
 <a href=#3852 id=3852 data-nosnippet>3852</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_widget_set_state_flags"</span>)]
-<a href=#3853 id=3853 data-nosnippet>3853</a>    </span><span class="kw">fn </span>set_state_flags(<span class="kw-2">&amp;</span><span class="self">self</span>, flags: <a href="flags.rs.html#1563-1621">StateFlags</a>, clear: <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) {
+<a href=#3853 id=3853 data-nosnippet>3853</a>    </span><span class="kw">fn </span>set_state_flags(<span class="kw-2">&amp;</span><span class="self">self</span>, flags: <a href="flags.rs.html#1565-1623">StateFlags</a>, clear: <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) {
 <a href=#3854 id=3854 data-nosnippet>3854</a>        <span class="kw">unsafe </span>{
 <a href=#3855 id=3855 data-nosnippet>3855</a>            ffi::<a href="../../../gtk4_sys/fn.gtk_widget_set_state_flags.html">gtk_widget_set_state_flags</a>(
 <a href=#3856 id=3856 data-nosnippet>3856</a>                <a class="self" href="#3853">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
@@ -4224,7 +4224,7 @@
 <a href=#4151 id=4151 data-nosnippet>4151</a>    /// ## `flags`
 <a href=#4152 id=4152 data-nosnippet>4152</a>    /// state flags to turn off
 <a href=#4153 id=4153 data-nosnippet>4153</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_widget_unset_state_flags"</span>)]
-<a href=#4154 id=4154 data-nosnippet>4154</a>    </span><span class="kw">fn </span>unset_state_flags(<span class="kw-2">&amp;</span><span class="self">self</span>, flags: <a href="flags.rs.html#1563-1621">StateFlags</a>) {
+<a href=#4154 id=4154 data-nosnippet>4154</a>    </span><span class="kw">fn </span>unset_state_flags(<span class="kw-2">&amp;</span><span class="self">self</span>, flags: <a href="flags.rs.html#1565-1623">StateFlags</a>) {
 <a href=#4155 id=4155 data-nosnippet>4155</a>        <span class="kw">unsafe </span>{
 <a href=#4156 id=4156 data-nosnippet>4156</a>            ffi::<a href="../../../gtk4_sys/fn.gtk_widget_unset_state_flags.html">gtk_widget_unset_state_flags</a>(<a class="self" href="#4154">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>, <a href="#4154">flags</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>());
 <a href=#4157 id=4157 data-nosnippet>4157</a>        }
@@ -4294,13 +4294,13 @@
 <a href=#4221 id=4221 data-nosnippet>4221</a>    /// ## `previous_direction`
 <a href=#4222 id=4222 data-nosnippet>4222</a>    /// the previous text direction
 <a href=#4223 id=4223 data-nosnippet>4223</a>    </span><span class="attr">#[doc(alias = <span class="string">"direction-changed"</span>)]
-<a href=#4224 id=4224 data-nosnippet>4224</a>    </span><span class="kw">fn </span>connect_direction_changed&lt;F: <a href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html">Fn</a>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <a href="enums.rs.html#12773-12785">TextDirection</a>) + <span class="lifetime">'static</span>&gt;(
+<a href=#4224 id=4224 data-nosnippet>4224</a>    </span><span class="kw">fn </span>connect_direction_changed&lt;F: <a href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html">Fn</a>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <a href="enums.rs.html#13064-13076">TextDirection</a>) + <span class="lifetime">'static</span>&gt;(
 <a href=#4225 id=4225 data-nosnippet>4225</a>        <span class="kw-2">&amp;</span><span class="self">self</span>,
 <a href=#4226 id=4226 data-nosnippet>4226</a>        f: F,
 <a href=#4227 id=4227 data-nosnippet>4227</a>    ) -&gt; <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html">SignalHandlerId</a> {
 <a href=#4228 id=4228 data-nosnippet>4228</a>        <span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn </span>direction_changed_trampoline&lt;
 <a href=#4229 id=4229 data-nosnippet>4229</a>            P: <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html">IsA</a>&lt;<a href="#19-864">Widget</a>&gt;,
-<a href=#4230 id=4230 data-nosnippet>4230</a>            F: <a href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html">Fn</a>(<span class="kw-2">&amp;</span>P, <a href="enums.rs.html#12773-12785">TextDirection</a>) + <span class="lifetime">'static</span>,
+<a href=#4230 id=4230 data-nosnippet>4230</a>            F: <a href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html">Fn</a>(<span class="kw-2">&amp;</span>P, <a href="enums.rs.html#13064-13076">TextDirection</a>) + <span class="lifetime">'static</span>,
 <a href=#4231 id=4231 data-nosnippet>4231</a>        &gt;(
 <a href=#4232 id=4232 data-nosnippet>4232</a>            this: <span class="kw-2">*mut </span>ffi::<a href="../../../gtk4_sys/struct.GtkWidget.html">GtkWidget</a>,
 <a href=#4233 id=4233 data-nosnippet>4233</a>            previous_direction: ffi::<a href="../../../gtk4_sys/type.GtkTextDirection.html">GtkTextDirection</a>,
@@ -4627,13 +4627,13 @@
 <a href=#4554 id=4554 data-nosnippet>4554</a>    /// ## `flags`
 <a href=#4555 id=4555 data-nosnippet>4555</a>    /// the previous state flags
 <a href=#4556 id=4556 data-nosnippet>4556</a>    </span><span class="attr">#[doc(alias = <span class="string">"state-flags-changed"</span>)]
-<a href=#4557 id=4557 data-nosnippet>4557</a>    </span><span class="kw">fn </span>connect_state_flags_changed&lt;F: <a href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html">Fn</a>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <a href="flags.rs.html#1563-1621">StateFlags</a>) + <span class="lifetime">'static</span>&gt;(
+<a href=#4557 id=4557 data-nosnippet>4557</a>    </span><span class="kw">fn </span>connect_state_flags_changed&lt;F: <a href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html">Fn</a>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <a href="flags.rs.html#1565-1623">StateFlags</a>) + <span class="lifetime">'static</span>&gt;(
 <a href=#4558 id=4558 data-nosnippet>4558</a>        <span class="kw-2">&amp;</span><span class="self">self</span>,
 <a href=#4559 id=4559 data-nosnippet>4559</a>        f: F,
 <a href=#4560 id=4560 data-nosnippet>4560</a>    ) -&gt; <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html">SignalHandlerId</a> {
 <a href=#4561 id=4561 data-nosnippet>4561</a>        <span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn </span>state_flags_changed_trampoline&lt;
 <a href=#4562 id=4562 data-nosnippet>4562</a>            P: <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html">IsA</a>&lt;<a href="#19-864">Widget</a>&gt;,
-<a href=#4563 id=4563 data-nosnippet>4563</a>            F: <a href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html">Fn</a>(<span class="kw-2">&amp;</span>P, <a href="flags.rs.html#1563-1621">StateFlags</a>) + <span class="lifetime">'static</span>,
+<a href=#4563 id=4563 data-nosnippet>4563</a>            F: <a href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html">Fn</a>(<span class="kw-2">&amp;</span>P, <a href="flags.rs.html#1565-1623">StateFlags</a>) + <span class="lifetime">'static</span>,
 <a href=#4564 id=4564 data-nosnippet>4564</a>        &gt;(
 <a href=#4565 id=4565 data-nosnippet>4565</a>            this: <span class="kw-2">*mut </span>ffi::<a href="../../../gtk4_sys/struct.GtkWidget.html">GtkWidget</a>,
 <a href=#4566 id=4566 data-nosnippet>4566</a>            flags: ffi::<a href="../../../gtk4_sys/type.GtkStateFlags.html">GtkStateFlags</a>,

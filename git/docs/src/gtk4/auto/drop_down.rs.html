@@ -77,7 +77,7 @@
 <a href=#4 id=4 data-nosnippet>4</a>
 <a href=#5 id=5 data-nosnippet>5</a></span><span class="attr">#[cfg(feature = <span class="string">"v4_12"</span>)]
 <a href=#6 id=6 data-nosnippet>6</a>#[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_12"</span>)))]
-<a href=#7 id=7 data-nosnippet>7</a></span><span class="kw">use </span><a href="enums.rs.html#12398-12413"><span class="kw">crate</span>::StringFilterMatchMode</a>;
+<a href=#7 id=7 data-nosnippet>7</a></span><span class="kw">use </span><a href="enums.rs.html#12689-12704"><span class="kw">crate</span>::StringFilterMatchMode</a>;
 <a href=#8 id=8 data-nosnippet>8</a><span class="kw">use crate</span>::{
 <a href=#9 id=9 data-nosnippet>9</a>    <a href="../../../gtk4_sys/index.html">ffi</a>, <a href="accessible.rs.html#19-70">Accessible</a>, <a href="enums.rs.html#1021-1321">AccessibleRole</a>, <a href="../enums.rs.html#77-107">Align</a>, <a href="buildable.rs.html#8-31">Buildable</a>, <a href="constraint_target.rs.html#8-23">ConstraintTarget</a>, <a href="expression.rs.html#9-193">Expression</a>, <a href="layout_manager.rs.html#8-70">LayoutManager</a>,
 <a href=#10 id=10 data-nosnippet>10</a>    <a href="list_item_factory.rs.html#7-65">ListItemFactory</a>, <a href="enums.rs.html#8368-8379">Overflow</a>, <a href="widget.rs.html#19-864">Widget</a>,
@@ -822,7 +822,7 @@
 <a href=#749 id=749 data-nosnippet>749</a>    #[doc(alias = <span class="string">"gtk_drop_down_get_search_match_mode"</span>)]
 <a href=#750 id=750 data-nosnippet>750</a>    #[doc(alias = <span class="string">"get_search_match_mode"</span>)]
 <a href=#751 id=751 data-nosnippet>751</a>    #[doc(alias = <span class="string">"search-match-mode"</span>)]
-<a href=#752 id=752 data-nosnippet>752</a>    </span><span class="kw">pub fn </span>search_match_mode(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="enums.rs.html#12398-12413">StringFilterMatchMode</a> {
+<a href=#752 id=752 data-nosnippet>752</a>    </span><span class="kw">pub fn </span>search_match_mode(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="enums.rs.html#12689-12704">StringFilterMatchMode</a> {
 <a href=#753 id=753 data-nosnippet>753</a>        <span class="kw">unsafe </span>{
 <a href=#754 id=754 data-nosnippet>754</a>            <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_drop_down_get_search_match_mode.html">gtk_drop_down_get_search_match_mode</a>(
 <a href=#755 id=755 data-nosnippet>755</a>                <a class="self" href="#752">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
@@ -965,7 +965,7 @@
 <a href=#892 id=892 data-nosnippet>892</a>    #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_12"</span>)))]
 <a href=#893 id=893 data-nosnippet>893</a>    #[doc(alias = <span class="string">"gtk_drop_down_set_search_match_mode"</span>)]
 <a href=#894 id=894 data-nosnippet>894</a>    #[doc(alias = <span class="string">"search-match-mode"</span>)]
-<a href=#895 id=895 data-nosnippet>895</a>    </span><span class="kw">pub fn </span>set_search_match_mode(<span class="kw-2">&amp;</span><span class="self">self</span>, search_match_mode: <a href="enums.rs.html#12398-12413">StringFilterMatchMode</a>) {
+<a href=#895 id=895 data-nosnippet>895</a>    </span><span class="kw">pub fn </span>set_search_match_mode(<span class="kw-2">&amp;</span><span class="self">self</span>, search_match_mode: <a href="enums.rs.html#12689-12704">StringFilterMatchMode</a>) {
 <a href=#896 id=896 data-nosnippet>896</a>        <span class="kw">unsafe </span>{
 <a href=#897 id=897 data-nosnippet>897</a>            ffi::<a href="../../../gtk4_sys/fn.gtk_drop_down_set_search_match_mode.html">gtk_drop_down_set_search_match_mode</a>(
 <a href=#898 id=898 data-nosnippet>898</a>                <a class="self" href="#895">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
@@ -1357,7 +1357,7 @@
 <a href=#1284 id=1284 data-nosnippet>1284</a>    <span class="doccomment">/// The match mode for the search filter.
 <a href=#1285 id=1285 data-nosnippet>1285</a>    </span><span class="attr">#[cfg(feature = <span class="string">"v4_12"</span>)]
 <a href=#1286 id=1286 data-nosnippet>1286</a>    #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_12"</span>)))]
-<a href=#1287 id=1287 data-nosnippet>1287</a>    </span><span class="kw">pub fn </span>search_match_mode(<span class="self">self</span>, search_match_mode: <a href="enums.rs.html#12398-12413">StringFilterMatchMode</a>) -&gt; <span class="self">Self </span>{
+<a href=#1287 id=1287 data-nosnippet>1287</a>    </span><span class="kw">pub fn </span>search_match_mode(<span class="self">self</span>, search_match_mode: <a href="enums.rs.html#12689-12704">StringFilterMatchMode</a>) -&gt; <span class="self">Self </span>{
 <a href=#1288 id=1288 data-nosnippet>1288</a>        <span class="self">Self </span>{
 <a href=#1289 id=1289 data-nosnippet>1289</a>            builder: <a class="self" href="#1287">self</a>
 <a href=#1290 id=1290 data-nosnippet>1290</a>                .builder

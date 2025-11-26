@@ -78,7 +78,7 @@
 <a href=#5 id=5 data-nosnippet>5</a>
 <a href=#6 id=6 data-nosnippet>6</a></span><span class="kw">use crate</span>::{
 <a href=#7 id=7 data-nosnippet>7</a>    <a href="../../../gtk4_sys/index.html">ffi</a>, <a href="accessible.rs.html#19-70">Accessible</a>, <a href="enums.rs.html#1021-1321">AccessibleRole</a>, <a href="../enums.rs.html#77-107">Align</a>, <a href="buildable.rs.html#8-31">Buildable</a>, <a href="cell_editable.rs.html#15-504">CellEditable</a>, <a href="cell_layout.rs.html#10-135">CellLayout</a>, <a href="constraint_target.rs.html#8-23">ConstraintTarget</a>,
-<a href=#8 id=8 data-nosnippet>8</a>    <a href="layout_manager.rs.html#8-70">LayoutManager</a>, <a href="enums.rs.html#8368-8379">Overflow</a>, <a href="enums.rs.html#10683-10734">ScrollType</a>, <a href="enums.rs.html#11068-11081">SensitivityType</a>, <a href="tree_iter.rs.html#8-25">TreeIter</a>, <a href="tree_model.rs.html#15-277">TreeModel</a>, <a href="widget.rs.html#19-864">Widget</a>,
+<a href=#8 id=8 data-nosnippet>8</a>    <a href="layout_manager.rs.html#8-70">LayoutManager</a>, <a href="enums.rs.html#8368-8379">Overflow</a>, <a href="enums.rs.html#10974-11025">ScrollType</a>, <a href="enums.rs.html#11359-11372">SensitivityType</a>, <a href="tree_iter.rs.html#8-25">TreeIter</a>, <a href="tree_model.rs.html#15-277">TreeModel</a>, <a href="widget.rs.html#19-864">Widget</a>,
 <a href=#9 id=9 data-nosnippet>9</a>};
 <a href=#10 id=10 data-nosnippet>10</a><span class="kw">use </span>glib::{
 <a href=#11 id=11 data-nosnippet>11</a>    <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.ObjectType.html">object::ObjectType</a> <span class="kw">as _</span>,
@@ -951,7 +951,7 @@
 <a href=#878 id=878 data-nosnippet>878</a>
 <a href=#879 id=879 data-nosnippet>879</a>    <span class="doccomment">/// Whether the dropdown button is sensitive when
 <a href=#880 id=880 data-nosnippet>880</a>    /// the model is empty.
-<a href=#881 id=881 data-nosnippet>881</a>    </span><span class="kw">pub fn </span>button_sensitivity(<span class="self">self</span>, button_sensitivity: <a href="enums.rs.html#11068-11081">SensitivityType</a>) -&gt; <span class="self">Self </span>{
+<a href=#881 id=881 data-nosnippet>881</a>    </span><span class="kw">pub fn </span>button_sensitivity(<span class="self">self</span>, button_sensitivity: <a href="enums.rs.html#11359-11372">SensitivityType</a>) -&gt; <span class="self">Self </span>{
 <a href=#882 id=882 data-nosnippet>882</a>        <span class="self">Self </span>{
 <a href=#883 id=883 data-nosnippet>883</a>            builder: <a class="self" href="#881">self</a>
 <a href=#884 id=884 data-nosnippet>884</a>                .builder
@@ -1425,7 +1425,7 @@
 <a href=#1352 id=1352 data-nosnippet>1352</a>    #[doc(alias = <span class="string">"gtk_combo_box_get_button_sensitivity"</span>)]
 <a href=#1353 id=1353 data-nosnippet>1353</a>    #[doc(alias = <span class="string">"get_button_sensitivity"</span>)]
 <a href=#1354 id=1354 data-nosnippet>1354</a>    #[doc(alias = <span class="string">"button-sensitivity"</span>)]
-<a href=#1355 id=1355 data-nosnippet>1355</a>    </span><span class="kw">fn </span>button_sensitivity(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="enums.rs.html#11068-11081">SensitivityType</a> {
+<a href=#1355 id=1355 data-nosnippet>1355</a>    </span><span class="kw">fn </span>button_sensitivity(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="enums.rs.html#11359-11372">SensitivityType</a> {
 <a href=#1356 id=1356 data-nosnippet>1356</a>        <span class="kw">unsafe </span>{
 <a href=#1357 id=1357 data-nosnippet>1357</a>            <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_combo_box_get_button_sensitivity.html">gtk_combo_box_get_button_sensitivity</a>(
 <a href=#1358 id=1358 data-nosnippet>1358</a>                <a class="self" href="#1355">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
@@ -1677,7 +1677,7 @@
 <a href=#1604 id=1604 data-nosnippet>1604</a>    #[allow(deprecated)]
 <a href=#1605 id=1605 data-nosnippet>1605</a>    #[doc(alias = <span class="string">"gtk_combo_box_set_button_sensitivity"</span>)]
 <a href=#1606 id=1606 data-nosnippet>1606</a>    #[doc(alias = <span class="string">"button-sensitivity"</span>)]
-<a href=#1607 id=1607 data-nosnippet>1607</a>    </span><span class="kw">fn </span>set_button_sensitivity(<span class="kw-2">&amp;</span><span class="self">self</span>, sensitivity: <a href="enums.rs.html#11068-11081">SensitivityType</a>) {
+<a href=#1607 id=1607 data-nosnippet>1607</a>    </span><span class="kw">fn </span>set_button_sensitivity(<span class="kw-2">&amp;</span><span class="self">self</span>, sensitivity: <a href="enums.rs.html#11359-11372">SensitivityType</a>) {
 <a href=#1608 id=1608 data-nosnippet>1608</a>        <span class="kw">unsafe </span>{
 <a href=#1609 id=1609 data-nosnippet>1609</a>            ffi::<a href="../../../gtk4_sys/fn.gtk_combo_box_set_button_sensitivity.html">gtk_combo_box_set_button_sensitivity</a>(
 <a href=#1610 id=1610 data-nosnippet>1610</a>                <a class="self" href="#1607">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
@@ -2011,10 +2011,10 @@
 <a href=#1938 id=1938 data-nosnippet>1938</a>    /// ## `scroll_type`
 <a href=#1939 id=1939 data-nosnippet>1939</a>    /// a [`ScrollType`][crate::ScrollType]
 <a href=#1940 id=1940 data-nosnippet>1940</a>    </span><span class="attr">#[doc(alias = <span class="string">"move-active"</span>)]
-<a href=#1941 id=1941 data-nosnippet>1941</a>    </span><span class="kw">fn </span>connect_move_active&lt;F: <a href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html">Fn</a>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <a href="enums.rs.html#10683-10734">ScrollType</a>) + <span class="lifetime">'static</span>&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, f: F) -&gt; <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html">SignalHandlerId</a> {
+<a href=#1941 id=1941 data-nosnippet>1941</a>    </span><span class="kw">fn </span>connect_move_active&lt;F: <a href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html">Fn</a>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <a href="enums.rs.html#10974-11025">ScrollType</a>) + <span class="lifetime">'static</span>&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, f: F) -&gt; <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html">SignalHandlerId</a> {
 <a href=#1942 id=1942 data-nosnippet>1942</a>        <span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn </span>move_active_trampoline&lt;
 <a href=#1943 id=1943 data-nosnippet>1943</a>            P: <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html">IsA</a>&lt;<a href="#18-733">ComboBox</a>&gt;,
-<a href=#1944 id=1944 data-nosnippet>1944</a>            F: <a href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html">Fn</a>(<span class="kw-2">&amp;</span>P, <a href="enums.rs.html#10683-10734">ScrollType</a>) + <span class="lifetime">'static</span>,
+<a href=#1944 id=1944 data-nosnippet>1944</a>            F: <a href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html">Fn</a>(<span class="kw-2">&amp;</span>P, <a href="enums.rs.html#10974-11025">ScrollType</a>) + <span class="lifetime">'static</span>,
 <a href=#1945 id=1945 data-nosnippet>1945</a>        &gt;(
 <a href=#1946 id=1946 data-nosnippet>1946</a>            this: <span class="kw-2">*mut </span>ffi::<a href="../../../gtk4_sys/struct.GtkComboBox.html">GtkComboBox</a>,
 <a href=#1947 id=1947 data-nosnippet>1947</a>            scroll_type: ffi::<a href="../../../gtk4_sys/type.GtkScrollType.html">GtkScrollType</a>,
@@ -2039,7 +2039,7 @@
 <a href=#1966 id=1966 data-nosnippet>1966</a>        }
 <a href=#1967 id=1967 data-nosnippet>1967</a>    }
 <a href=#1968 id=1968 data-nosnippet>1968</a>
-<a href=#1969 id=1969 data-nosnippet>1969</a>    <span class="kw">fn </span>emit_move_active(<span class="kw-2">&amp;</span><span class="self">self</span>, scroll_type: <a href="enums.rs.html#10683-10734">ScrollType</a>) {
+<a href=#1969 id=1969 data-nosnippet>1969</a>    <span class="kw">fn </span>emit_move_active(<span class="kw-2">&amp;</span><span class="self">self</span>, scroll_type: <a href="enums.rs.html#10974-11025">ScrollType</a>) {
 <a href=#1970 id=1970 data-nosnippet>1970</a>        <a class="self" href="#1969">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.ObjectExt.html#tymethod.emit_by_name">emit_by_name</a>::&lt;()&gt;(<span class="string">"move-active"</span>, <span class="kw-2">&amp;</span>[<span class="kw-2">&amp;</span><a href="#1969">scroll_type</a>]);
 <a href=#1971 id=1971 data-nosnippet>1971</a>    }
 <a href=#1972 id=1972 data-nosnippet>1972</a>

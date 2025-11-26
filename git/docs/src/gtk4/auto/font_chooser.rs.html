@@ -76,7 +76,7 @@
 <a href=#3 id=3 data-nosnippet>3</a>// DO NOT EDIT
 <a href=#4 id=4 data-nosnippet>4</a></span><span class="attr">#![allow(deprecated)]
 <a href=#5 id=5 data-nosnippet>5</a>
-<a href=#6 id=6 data-nosnippet>6</a></span><span class="kw">use crate</span>::{<a href="../../../gtk4_sys/index.html">ffi</a>, <a href="flags.rs.html#694-724">FontChooserLevel</a>};
+<a href=#6 id=6 data-nosnippet>6</a></span><span class="kw">use crate</span>::{<a href="../../../gtk4_sys/index.html">ffi</a>, <a href="flags.rs.html#696-726">FontChooserLevel</a>};
 <a href=#7 id=7 data-nosnippet>7</a><span class="kw">use </span>glib::{
 <a href=#8 id=8 data-nosnippet>8</a>    <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.ObjectType.html">object::ObjectType</a> <span class="kw">as _</span>,
 <a href=#9 id=9 data-nosnippet>9</a>    <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/prelude/index.html">prelude</a>::<span class="kw-2">*</span>,
@@ -398,7 +398,7 @@
 <a href=#325 id=325 data-nosnippet>325</a>    #[allow(deprecated)]
 <a href=#326 id=326 data-nosnippet>326</a>    #[doc(alias = <span class="string">"gtk_font_chooser_get_level"</span>)]
 <a href=#327 id=327 data-nosnippet>327</a>    #[doc(alias = <span class="string">"get_level"</span>)]
-<a href=#328 id=328 data-nosnippet>328</a>    </span><span class="kw">fn </span>level(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="flags.rs.html#694-724">FontChooserLevel</a> {
+<a href=#328 id=328 data-nosnippet>328</a>    </span><span class="kw">fn </span>level(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="flags.rs.html#696-726">FontChooserLevel</a> {
 <a href=#329 id=329 data-nosnippet>329</a>        <span class="kw">unsafe </span>{
 <a href=#330 id=330 data-nosnippet>330</a>            <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_font_chooser_get_level.html">gtk_font_chooser_get_level</a>(
 <a href=#331 id=331 data-nosnippet>331</a>                <a class="self" href="#328">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
@@ -624,7 +624,7 @@
 <a href=#551 id=551 data-nosnippet>551</a>    #[allow(deprecated)]
 <a href=#552 id=552 data-nosnippet>552</a>    #[doc(alias = <span class="string">"gtk_font_chooser_set_level"</span>)]
 <a href=#553 id=553 data-nosnippet>553</a>    #[doc(alias = <span class="string">"level"</span>)]
-<a href=#554 id=554 data-nosnippet>554</a>    </span><span class="kw">fn </span>set_level(<span class="kw-2">&amp;</span><span class="self">self</span>, level: <a href="flags.rs.html#694-724">FontChooserLevel</a>) {
+<a href=#554 id=554 data-nosnippet>554</a>    </span><span class="kw">fn </span>set_level(<span class="kw-2">&amp;</span><span class="self">self</span>, level: <a href="flags.rs.html#696-726">FontChooserLevel</a>) {
 <a href=#555 id=555 data-nosnippet>555</a>        <span class="kw">unsafe </span>{
 <a href=#556 id=556 data-nosnippet>556</a>            ffi::<a href="../../../gtk4_sys/fn.gtk_font_chooser_set_level.html">gtk_font_chooser_set_level</a>(<a class="self" href="#554">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>, <a href="#554">level</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>());
 <a href=#557 id=557 data-nosnippet>557</a>        }

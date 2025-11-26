@@ -77,10 +77,10 @@
 <a href=#4 id=4 data-nosnippet>4</a>
 <a href=#5 id=5 data-nosnippet>5</a></span><span class="attr">#[cfg(feature = <span class="string">"v4_20"</span>)]
 <a href=#6 id=6 data-nosnippet>6</a>#[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_20"</span>)))]
-<a href=#7 id=7 data-nosnippet>7</a></span><span class="kw">use </span><a href="enums.rs.html#13673-13727"><span class="kw">crate</span>::WindowGravity</a>;
+<a href=#7 id=7 data-nosnippet>7</a></span><span class="kw">use </span><a href="enums.rs.html#13964-14018"><span class="kw">crate</span>::WindowGravity</a>;
 <a href=#8 id=8 data-nosnippet>8</a><span class="kw">use crate</span>::{
-<a href=#9 id=9 data-nosnippet>9</a>    <a href="../../../gtk4_sys/index.html">ffi</a>, <a href="accessible.rs.html#19-70">Accessible</a>, <a href="enums.rs.html#1021-1321">AccessibleRole</a>, <a href="../enums.rs.html#77-107">Align</a>, <a href="application.rs.html#14-338">Application</a>, <a href="buildable.rs.html#8-31">Buildable</a>, <a href="constraint_target.rs.html#8-23">ConstraintTarget</a>, <a href="dialog.rs.html#22-885">Dialog</a>,
-<a href=#10 id=10 data-nosnippet>10</a>    <a href="layout_manager.rs.html#8-70">LayoutManager</a>, <a href="native.rs.html#8-33">Native</a>, <a href="enums.rs.html#8368-8379">Overflow</a>, <a href="page_setup.rs.html#8-63">PageSetup</a>, <a href="flags.rs.html#1343-1388">PrintCapabilities</a>, <a href="print_settings.rs.html#11-33">PrintSettings</a>, <a href="printer.rs.html#14-111">Printer</a>, <a href="root.rs.html#8-32">Root</a>,
+<a href=#9 id=9 data-nosnippet>9</a>    <a href="../../../gtk4_sys/index.html">ffi</a>, <a href="accessible.rs.html#19-70">Accessible</a>, <a href="enums.rs.html#1021-1321">AccessibleRole</a>, <a href="../enums.rs.html#77-107">Align</a>, <a href="application.rs.html#17-450">Application</a>, <a href="buildable.rs.html#8-31">Buildable</a>, <a href="constraint_target.rs.html#8-23">ConstraintTarget</a>, <a href="dialog.rs.html#22-885">Dialog</a>,
+<a href=#10 id=10 data-nosnippet>10</a>    <a href="layout_manager.rs.html#8-70">LayoutManager</a>, <a href="native.rs.html#8-33">Native</a>, <a href="enums.rs.html#8368-8379">Overflow</a>, <a href="page_setup.rs.html#8-63">PageSetup</a>, <a href="flags.rs.html#1345-1390">PrintCapabilities</a>, <a href="print_settings.rs.html#11-33">PrintSettings</a>, <a href="printer.rs.html#14-111">Printer</a>, <a href="root.rs.html#8-32">Root</a>,
 <a href=#11 id=11 data-nosnippet>11</a>    <a href="shortcut_manager.rs.html#8-30">ShortcutManager</a>, <a href="widget.rs.html#19-864">Widget</a>, <a href="window.rs.html#21-781">Window</a>,
 <a href=#12 id=12 data-nosnippet>12</a>};
 <a href=#13 id=13 data-nosnippet>13</a><span class="kw">use </span>glib::{
@@ -831,7 +831,7 @@
 <a href=#758 id=758 data-nosnippet>758</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_print_unix_dialog_get_manual_capabilities"</span>)]
 <a href=#759 id=759 data-nosnippet>759</a>    #[doc(alias = <span class="string">"get_manual_capabilities"</span>)]
 <a href=#760 id=760 data-nosnippet>760</a>    #[doc(alias = <span class="string">"manual-capabilities"</span>)]
-<a href=#761 id=761 data-nosnippet>761</a>    </span><span class="kw">pub fn </span>manual_capabilities(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="flags.rs.html#1343-1388">PrintCapabilities</a> {
+<a href=#761 id=761 data-nosnippet>761</a>    </span><span class="kw">pub fn </span>manual_capabilities(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="flags.rs.html#1345-1390">PrintCapabilities</a> {
 <a href=#762 id=762 data-nosnippet>762</a>        <span class="kw">unsafe </span>{
 <a href=#763 id=763 data-nosnippet>763</a>            <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_print_unix_dialog_get_manual_capabilities.html">gtk_print_unix_dialog_get_manual_capabilities</a>(
 <a href=#764 id=764 data-nosnippet>764</a>                <a class="self" href="#761">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
@@ -975,7 +975,7 @@
 <a href=#902 id=902 data-nosnippet>902</a>    /// the printing capabilities of your application
 <a href=#903 id=903 data-nosnippet>903</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_print_unix_dialog_set_manual_capabilities"</span>)]
 <a href=#904 id=904 data-nosnippet>904</a>    #[doc(alias = <span class="string">"manual-capabilities"</span>)]
-<a href=#905 id=905 data-nosnippet>905</a>    </span><span class="kw">pub fn </span>set_manual_capabilities(<span class="kw-2">&amp;</span><span class="self">self</span>, capabilities: <a href="flags.rs.html#1343-1388">PrintCapabilities</a>) {
+<a href=#905 id=905 data-nosnippet>905</a>    </span><span class="kw">pub fn </span>set_manual_capabilities(<span class="kw-2">&amp;</span><span class="self">self</span>, capabilities: <a href="flags.rs.html#1345-1390">PrintCapabilities</a>) {
 <a href=#906 id=906 data-nosnippet>906</a>        <span class="kw">unsafe </span>{
 <a href=#907 id=907 data-nosnippet>907</a>            ffi::<a href="../../../gtk4_sys/fn.gtk_print_unix_dialog_set_manual_capabilities.html">gtk_print_unix_dialog_set_manual_capabilities</a>(
 <a href=#908 id=908 data-nosnippet>908</a>                <a class="self" href="#905">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
@@ -1273,7 +1273,7 @@
 <a href=#1200 id=1200 data-nosnippet>1200</a>    }
 <a href=#1201 id=1201 data-nosnippet>1201</a>
 <a href=#1202 id=1202 data-nosnippet>1202</a>    <span class="doccomment">/// Capabilities the application can handle.
-<a href=#1203 id=1203 data-nosnippet>1203</a>    </span><span class="kw">pub fn </span>manual_capabilities(<span class="self">self</span>, manual_capabilities: <a href="flags.rs.html#1343-1388">PrintCapabilities</a>) -&gt; <span class="self">Self </span>{
+<a href=#1203 id=1203 data-nosnippet>1203</a>    </span><span class="kw">pub fn </span>manual_capabilities(<span class="self">self</span>, manual_capabilities: <a href="flags.rs.html#1345-1390">PrintCapabilities</a>) -&gt; <span class="self">Self </span>{
 <a href=#1204 id=1204 data-nosnippet>1204</a>        <span class="self">Self </span>{
 <a href=#1205 id=1205 data-nosnippet>1205</a>            builder: <a class="self" href="#1203">self</a>
 <a href=#1206 id=1206 data-nosnippet>1206</a>                .builder
@@ -1343,7 +1343,7 @@
 <a href=#1270 id=1270 data-nosnippet>1270</a>    /// Normally, the connection between the application and the window
 <a href=#1271 id=1271 data-nosnippet>1271</a>    /// will remain until the window is destroyed, but you can explicitly
 <a href=#1272 id=1272 data-nosnippet>1272</a>    /// remove it by setting the this property to `NULL`.
-<a href=#1273 id=1273 data-nosnippet>1273</a>    </span><span class="kw">pub fn </span>application(<span class="self">self</span>, application: <span class="kw-2">&amp;</span><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html">IsA</a>&lt;<a href="application.rs.html#14-338">Application</a>&gt;) -&gt; <span class="self">Self </span>{
+<a href=#1273 id=1273 data-nosnippet>1273</a>    </span><span class="kw">pub fn </span>application(<span class="self">self</span>, application: <span class="kw-2">&amp;</span><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html">IsA</a>&lt;<a href="application.rs.html#17-450">Application</a>&gt;) -&gt; <span class="self">Self </span>{
 <a href=#1274 id=1274 data-nosnippet>1274</a>        <span class="self">Self </span>{
 <a href=#1275 id=1275 data-nosnippet>1275</a>            builder: <a class="self" href="#1273">self</a>
 <a href=#1276 id=1276 data-nosnippet>1276</a>                .builder
@@ -1451,7 +1451,7 @@
 <a href=#1378 id=1378 data-nosnippet>1378</a>    /// want the to fix top right corner of the window.
 <a href=#1379 id=1379 data-nosnippet>1379</a>    </span><span class="attr">#[cfg(feature = <span class="string">"v4_20"</span>)]
 <a href=#1380 id=1380 data-nosnippet>1380</a>    #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_20"</span>)))]
-<a href=#1381 id=1381 data-nosnippet>1381</a>    </span><span class="kw">pub fn </span>gravity(<span class="self">self</span>, gravity: <a href="enums.rs.html#13673-13727">WindowGravity</a>) -&gt; <span class="self">Self </span>{
+<a href=#1381 id=1381 data-nosnippet>1381</a>    </span><span class="kw">pub fn </span>gravity(<span class="self">self</span>, gravity: <a href="enums.rs.html#13964-14018">WindowGravity</a>) -&gt; <span class="self">Self </span>{
 <a href=#1382 id=1382 data-nosnippet>1382</a>        <span class="self">Self </span>{
 <a href=#1383 id=1383 data-nosnippet>1383</a>            builder: <a class="self" href="#1381">self</a>.builder.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/struct.ObjectBuilder.html#method.property">property</a>(<span class="string">"gravity"</span>, <a href="#1381">gravity</a>),
 <a href=#1384 id=1384 data-nosnippet>1384</a>        }

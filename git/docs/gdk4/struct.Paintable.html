@@ -92,7 +92,7 @@ will however always produce the same output for the same snapshot.</p>
 a different output with the same snapshot. Once that happens, it will call
 <a href="prelude/trait.PaintableExt.html#method.invalidate_contents" title="method gdk4::prelude::PaintableExt::invalidate_contents"><code>PaintableExt::invalidate_contents()</code></a> which will emit the
 <a href="struct.Paintable.html#invalidate-contents" title="struct gdk4::Paintable"><code>invalidate-contents</code></a> signal. If a paintable is known
-to never change its contents, it will set the <a href="struct.PaintableFlags.html#associatedconstant.CONTENTS" title="associated constant gdk4::PaintableFlags::CONTENTS"><code>PaintableFlags::CONTENTS</code></a>
+to never change its contents, it will set the <a href="struct.PaintableFlags.html#associatedconstant.STATIC_CONTENTS" title="associated constant gdk4::PaintableFlags::STATIC_CONTENTS"><code>PaintableFlags::STATIC_CONTENTS</code></a>
 flag. If a consumer cannot deal with changing contents, it may call
 <a href="prelude/trait.PaintableExt.html#method.current_image" title="method gdk4::prelude::PaintableExt::current_image"><code>PaintableExt::current_image()</code></a> which will return a static
 paintable and use that.</p>
@@ -103,7 +103,7 @@ contents, the size of a paintable can change. A paintable will indicate this
 by calling <a href="prelude/trait.PaintableExt.html#method.invalidate_size" title="method gdk4::prelude::PaintableExt::invalidate_size"><code>PaintableExt::invalidate_size()</code></a> which will emit the
 <a href="struct.Paintable.html#invalidate-size" title="struct gdk4::Paintable"><code>invalidate-size</code></a> signal. And just like for contents,
 if a paintable is known to never change its size, it will set the
-<a href="struct.PaintableFlags.html#associatedconstant.SIZE" title="associated constant gdk4::PaintableFlags::SIZE"><code>PaintableFlags::SIZE</code></a> flag.</p>
+<a href="struct.PaintableFlags.html#associatedconstant.STATIC_SIZE" title="associated constant gdk4::PaintableFlags::STATIC_SIZE"><code>PaintableFlags::STATIC_SIZE</code></a> flag.</p>
 <p>Besides API for applications, there are some functions that are only
 useful for implementing subclasses and should not be used by applications:
 <a href="prelude/trait.PaintableExt.html#method.invalidate_contents" title="method gdk4::prelude::PaintableExt::invalidate_contents"><code>PaintableExt::invalidate_contents()</code></a>,

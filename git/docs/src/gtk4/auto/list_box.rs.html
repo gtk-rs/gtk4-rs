@@ -80,7 +80,7 @@
 <a href=#7 id=7 data-nosnippet>7</a></span><span class="kw">use </span><a href="enums.rs.html#7415-7433"><span class="kw">crate</span>::ListTabBehavior</a>;
 <a href=#8 id=8 data-nosnippet>8</a><span class="kw">use crate</span>::{
 <a href=#9 id=9 data-nosnippet>9</a>    <a href="../../../gtk4_sys/index.html">ffi</a>, <a href="accessible.rs.html#19-70">Accessible</a>, <a href="enums.rs.html#1021-1321">AccessibleRole</a>, <a href="adjustment.rs.html#14-99">Adjustment</a>, <a href="../enums.rs.html#77-107">Align</a>, <a href="buildable.rs.html#8-31">Buildable</a>, <a href="constraint_target.rs.html#8-23">ConstraintTarget</a>, <a href="layout_manager.rs.html#8-70">LayoutManager</a>,
-<a href=#10 id=10 data-nosnippet>10</a>    <a href="list_box_row.rs.html#17-507">ListBoxRow</a>, <a href="enums.rs.html#7656-7689">MovementStep</a>, <a href="enums.rs.html#8368-8379">Overflow</a>, <a href="enums.rs.html#10950-10973">SelectionMode</a>, <a href="widget.rs.html#19-864">Widget</a>,
+<a href=#10 id=10 data-nosnippet>10</a>    <a href="list_box_row.rs.html#17-507">ListBoxRow</a>, <a href="enums.rs.html#7656-7689">MovementStep</a>, <a href="enums.rs.html#8368-8379">Overflow</a>, <a href="enums.rs.html#11241-11264">SelectionMode</a>, <a href="widget.rs.html#19-864">Widget</a>,
 <a href=#11 id=11 data-nosnippet>11</a>};
 <a href=#12 id=12 data-nosnippet>12</a><span class="kw">use </span>glib::{
 <a href=#13 id=13 data-nosnippet>13</a>    <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.ObjectType.html">object::ObjectType</a> <span class="kw">as _</span>,
@@ -928,7 +928,7 @@
 <a href=#855 id=855 data-nosnippet>855</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_list_box_get_selection_mode"</span>)]
 <a href=#856 id=856 data-nosnippet>856</a>    #[doc(alias = <span class="string">"get_selection_mode"</span>)]
 <a href=#857 id=857 data-nosnippet>857</a>    #[doc(alias = <span class="string">"selection-mode"</span>)]
-<a href=#858 id=858 data-nosnippet>858</a>    </span><span class="kw">pub fn </span>selection_mode(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="enums.rs.html#10950-10973">SelectionMode</a> {
+<a href=#858 id=858 data-nosnippet>858</a>    </span><span class="kw">pub fn </span>selection_mode(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="enums.rs.html#11241-11264">SelectionMode</a> {
 <a href=#859 id=859 data-nosnippet>859</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_list_box_get_selection_mode.html">gtk_list_box_get_selection_mode</a>(<a class="self" href="#858">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#860 id=860 data-nosnippet>860</a>    }
 <a href=#861 id=861 data-nosnippet>861</a>
@@ -1269,7 +1269,7 @@
 <a href=#1196 id=1196 data-nosnippet>1196</a>    /// The [`SelectionMode`][crate::SelectionMode]
 <a href=#1197 id=1197 data-nosnippet>1197</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_list_box_set_selection_mode"</span>)]
 <a href=#1198 id=1198 data-nosnippet>1198</a>    #[doc(alias = <span class="string">"selection-mode"</span>)]
-<a href=#1199 id=1199 data-nosnippet>1199</a>    </span><span class="kw">pub fn </span>set_selection_mode(<span class="kw-2">&amp;</span><span class="self">self</span>, mode: <a href="enums.rs.html#10950-10973">SelectionMode</a>) {
+<a href=#1199 id=1199 data-nosnippet>1199</a>    </span><span class="kw">pub fn </span>set_selection_mode(<span class="kw-2">&amp;</span><span class="self">self</span>, mode: <a href="enums.rs.html#11241-11264">SelectionMode</a>) {
 <a href=#1200 id=1200 data-nosnippet>1200</a>        <span class="kw">unsafe </span>{
 <a href=#1201 id=1201 data-nosnippet>1201</a>            ffi::<a href="../../../gtk4_sys/fn.gtk_list_box_set_selection_mode.html">gtk_list_box_set_selection_mode</a>(<a class="self" href="#1199">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>, <a href="#1199">mode</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>());
 <a href=#1202 id=1202 data-nosnippet>1202</a>        }
@@ -1777,7 +1777,7 @@
 <a href=#1704 id=1704 data-nosnippet>1704</a>    }
 <a href=#1705 id=1705 data-nosnippet>1705</a>
 <a href=#1706 id=1706 data-nosnippet>1706</a>    <span class="doccomment">/// The selection mode used by the list box.
-<a href=#1707 id=1707 data-nosnippet>1707</a>    </span><span class="kw">pub fn </span>selection_mode(<span class="self">self</span>, selection_mode: <a href="enums.rs.html#10950-10973">SelectionMode</a>) -&gt; <span class="self">Self </span>{
+<a href=#1707 id=1707 data-nosnippet>1707</a>    </span><span class="kw">pub fn </span>selection_mode(<span class="self">self</span>, selection_mode: <a href="enums.rs.html#11241-11264">SelectionMode</a>) -&gt; <span class="self">Self </span>{
 <a href=#1708 id=1708 data-nosnippet>1708</a>        <span class="self">Self </span>{
 <a href=#1709 id=1709 data-nosnippet>1709</a>            builder: <a class="self" href="#1707">self</a>.builder.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/struct.ObjectBuilder.html#method.property">property</a>(<span class="string">"selection-mode"</span>, <a href="#1707">selection_mode</a>),
 <a href=#1710 id=1710 data-nosnippet>1710</a>        }

@@ -110,7 +110,7 @@
 <a href=#37 id=37 data-nosnippet>37</a>    /// a different output with the same snapshot. Once that happens, it will call
 <a href=#38 id=38 data-nosnippet>38</a>    /// [`PaintableExt::invalidate_contents()`][crate::prelude::PaintableExt::invalidate_contents()] which will emit the
 <a href=#39 id=39 data-nosnippet>39</a>    /// [`invalidate-contents`][struct@crate::Paintable#invalidate-contents] signal. If a paintable is known
-<a href=#40 id=40 data-nosnippet>40</a>    /// to never change its contents, it will set the [`PaintableFlags::CONTENTS`][crate::PaintableFlags::CONTENTS]
+<a href=#40 id=40 data-nosnippet>40</a>    /// to never change its contents, it will set the [`PaintableFlags::STATIC_CONTENTS`][crate::PaintableFlags::STATIC_CONTENTS]
 <a href=#41 id=41 data-nosnippet>41</a>    /// flag. If a consumer cannot deal with changing contents, it may call
 <a href=#42 id=42 data-nosnippet>42</a>    /// [`PaintableExt::current_image()`][crate::prelude::PaintableExt::current_image()] which will return a static
 <a href=#43 id=43 data-nosnippet>43</a>    /// paintable and use that.
@@ -122,7 +122,7 @@
 <a href=#49 id=49 data-nosnippet>49</a>    /// by calling [`PaintableExt::invalidate_size()`][crate::prelude::PaintableExt::invalidate_size()] which will emit the
 <a href=#50 id=50 data-nosnippet>50</a>    /// [`invalidate-size`][struct@crate::Paintable#invalidate-size] signal. And just like for contents,
 <a href=#51 id=51 data-nosnippet>51</a>    /// if a paintable is known to never change its size, it will set the
-<a href=#52 id=52 data-nosnippet>52</a>    /// [`PaintableFlags::SIZE`][crate::PaintableFlags::SIZE] flag.
+<a href=#52 id=52 data-nosnippet>52</a>    /// [`PaintableFlags::STATIC_SIZE`][crate::PaintableFlags::STATIC_SIZE] flag.
 <a href=#53 id=53 data-nosnippet>53</a>    ///
 <a href=#54 id=54 data-nosnippet>54</a>    /// Besides API for applications, there are some functions that are only
 <a href=#55 id=55 data-nosnippet>55</a>    /// useful for implementing subclasses and should not be used by applications:
@@ -370,7 +370,7 @@
 <a href=#297 id=297 data-nosnippet>297</a>    /// This function will emit the [`invalidate-contents`][struct@crate::Paintable#invalidate-contents]
 <a href=#298 id=298 data-nosnippet>298</a>    /// signal.
 <a href=#299 id=299 data-nosnippet>299</a>    ///
-<a href=#300 id=300 data-nosnippet>300</a>    /// If a @self reports the [`PaintableFlags::CONTENTS`][crate::PaintableFlags::CONTENTS] flag,
+<a href=#300 id=300 data-nosnippet>300</a>    /// If a @self reports the [`PaintableFlags::STATIC_CONTENTS`][crate::PaintableFlags::STATIC_CONTENTS] flag,
 <a href=#301 id=301 data-nosnippet>301</a>    /// it must not call this function.
 <a href=#302 id=302 data-nosnippet>302</a>    </span><span class="attr">#[doc(alias = <span class="string">"gdk_paintable_invalidate_contents"</span>)]
 <a href=#303 id=303 data-nosnippet>303</a>    </span><span class="kw">fn </span>invalidate_contents(<span class="kw-2">&amp;</span><span class="self">self</span>) {
@@ -387,7 +387,7 @@
 <a href=#314 id=314 data-nosnippet>314</a>    /// This function will emit the [`invalidate-size`][struct@crate::Paintable#invalidate-size]
 <a href=#315 id=315 data-nosnippet>315</a>    /// signal.
 <a href=#316 id=316 data-nosnippet>316</a>    ///
-<a href=#317 id=317 data-nosnippet>317</a>    /// If a @self reports the [`PaintableFlags::SIZE`][crate::PaintableFlags::SIZE] flag,
+<a href=#317 id=317 data-nosnippet>317</a>    /// If a @self reports the [`PaintableFlags::STATIC_SIZE`][crate::PaintableFlags::STATIC_SIZE] flag,
 <a href=#318 id=318 data-nosnippet>318</a>    /// it must not call this function.
 <a href=#319 id=319 data-nosnippet>319</a>    </span><span class="attr">#[doc(alias = <span class="string">"gdk_paintable_invalidate_size"</span>)]
 <a href=#320 id=320 data-nosnippet>320</a>    </span><span class="kw">fn </span>invalidate_size(<span class="kw-2">&amp;</span><span class="self">self</span>) {

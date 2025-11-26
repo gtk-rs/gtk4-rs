@@ -77,12 +77,12 @@
 <a href=#4 id=4 data-nosnippet>4</a>
 <a href=#5 id=5 data-nosnippet>5</a></span><span class="kw">use crate</span>::{
 <a href=#6 id=6 data-nosnippet>6</a>    <a href="../../../gtk4_sys/index.html">ffi</a>, <a href="accessible.rs.html#19-70">Accessible</a>, <a href="enums.rs.html#1021-1321">AccessibleRole</a>, <a href="adjustment.rs.html#14-99">Adjustment</a>, <a href="../enums.rs.html#77-107">Align</a>, <a href="buildable.rs.html#8-31">Buildable</a>, <a href="column_view_column.rs.html#13-107">ColumnViewColumn</a>,
-<a href=#7 id=7 data-nosnippet>7</a>    <a href="constraint_target.rs.html#8-23">ConstraintTarget</a>, <a href="layout_manager.rs.html#8-70">LayoutManager</a>, <a href="enums.rs.html#8368-8379">Overflow</a>, <a href="scrollable.rs.html#13-82">Scrollable</a>, <a href="enums.rs.html#10851-10860">ScrollablePolicy</a>, <a href="selection_model.rs.html#14-88">SelectionModel</a>,
-<a href=#8 id=8 data-nosnippet>8</a>    <a href="enums.rs.html#11643-11652">SortType</a>, <a href="sorter.rs.html#14-62">Sorter</a>, <a href="widget.rs.html#19-864">Widget</a>,
+<a href=#7 id=7 data-nosnippet>7</a>    <a href="constraint_target.rs.html#8-23">ConstraintTarget</a>, <a href="layout_manager.rs.html#8-70">LayoutManager</a>, <a href="enums.rs.html#8368-8379">Overflow</a>, <a href="scrollable.rs.html#13-82">Scrollable</a>, <a href="enums.rs.html#11142-11151">ScrollablePolicy</a>, <a href="selection_model.rs.html#14-88">SelectionModel</a>,
+<a href=#8 id=8 data-nosnippet>8</a>    <a href="enums.rs.html#11934-11943">SortType</a>, <a href="sorter.rs.html#14-62">Sorter</a>, <a href="widget.rs.html#19-864">Widget</a>,
 <a href=#9 id=9 data-nosnippet>9</a>};
 <a href=#10 id=10 data-nosnippet>10</a><span class="attr">#[cfg(feature = <span class="string">"v4_12"</span>)]
 <a href=#11 id=11 data-nosnippet>11</a>#[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_12"</span>)))]
-<a href=#12 id=12 data-nosnippet>12</a></span><span class="kw">use crate</span>::{<a href="list_item_factory.rs.html#7-65">ListItemFactory</a>, <a href="flags.rs.html#1046-1064">ListScrollFlags</a>, <a href="enums.rs.html#7415-7433">ListTabBehavior</a>, <a href="scroll_info.rs.html#8-21">ScrollInfo</a>};
+<a href=#12 id=12 data-nosnippet>12</a></span><span class="kw">use crate</span>::{<a href="list_item_factory.rs.html#7-65">ListItemFactory</a>, <a href="flags.rs.html#1048-1066">ListScrollFlags</a>, <a href="enums.rs.html#7415-7433">ListTabBehavior</a>, <a href="scroll_info.rs.html#8-21">ScrollInfo</a>};
 <a href=#13 id=13 data-nosnippet>13</a><span class="kw">use </span>glib::{
 <a href=#14 id=14 data-nosnippet>14</a>    <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.ObjectType.html">object::ObjectType</a> <span class="kw">as _</span>,
 <a href=#15 id=15 data-nosnippet>15</a>    <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/prelude/index.html">prelude</a>::<span class="kw-2">*</span>,
@@ -982,7 +982,7 @@
 <a href=#909 id=909 data-nosnippet>909</a>        <span class="kw-2">&amp;</span><span class="self">self</span>,
 <a href=#910 id=910 data-nosnippet>910</a>        pos: <a href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>,
 <a href=#911 id=911 data-nosnippet>911</a>        column: <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;<span class="kw-2">&amp;</span><a href="column_view_column.rs.html#13-107">ColumnViewColumn</a>&gt;,
-<a href=#912 id=912 data-nosnippet>912</a>        flags: <a href="flags.rs.html#1046-1064">ListScrollFlags</a>,
+<a href=#912 id=912 data-nosnippet>912</a>        flags: <a href="flags.rs.html#1048-1066">ListScrollFlags</a>,
 <a href=#913 id=913 data-nosnippet>913</a>        scroll: <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;<a href="scroll_info.rs.html#8-21">ScrollInfo</a>&gt;,
 <a href=#914 id=914 data-nosnippet>914</a>    ) {
 <a href=#915 id=915 data-nosnippet>915</a>        <span class="kw">unsafe </span>{
@@ -1159,7 +1159,7 @@
 <a href=#1086 id=1086 data-nosnippet>1086</a>    /// ## `direction`
 <a href=#1087 id=1087 data-nosnippet>1087</a>    /// the direction to sort in
 <a href=#1088 id=1088 data-nosnippet>1088</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_column_view_sort_by_column"</span>)]
-<a href=#1089 id=1089 data-nosnippet>1089</a>    </span><span class="kw">pub fn </span>sort_by_column(<span class="kw-2">&amp;</span><span class="self">self</span>, column: <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;<span class="kw-2">&amp;</span><a href="column_view_column.rs.html#13-107">ColumnViewColumn</a>&gt;, direction: <a href="enums.rs.html#11643-11652">SortType</a>) {
+<a href=#1089 id=1089 data-nosnippet>1089</a>    </span><span class="kw">pub fn </span>sort_by_column(<span class="kw-2">&amp;</span><span class="self">self</span>, column: <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;<span class="kw-2">&amp;</span><a href="column_view_column.rs.html#13-107">ColumnViewColumn</a>&gt;, direction: <a href="enums.rs.html#11934-11943">SortType</a>) {
 <a href=#1090 id=1090 data-nosnippet>1090</a>        <span class="kw">unsafe </span>{
 <a href=#1091 id=1091 data-nosnippet>1091</a>            ffi::<a href="../../../gtk4_sys/fn.gtk_column_view_sort_by_column.html">gtk_column_view_sort_by_column</a>(
 <a href=#1092 id=1092 data-nosnippet>1092</a>                <a class="self" href="#1089">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
@@ -1895,7 +1895,7 @@
 <a href=#1822 id=1822 data-nosnippet>1822</a>    }
 <a href=#1823 id=1823 data-nosnippet>1823</a>
 <a href=#1824 id=1824 data-nosnippet>1824</a>    <span class="doccomment">/// Determines when horizontal scrolling should start.
-<a href=#1825 id=1825 data-nosnippet>1825</a>    </span><span class="kw">pub fn </span>hscroll_policy(<span class="self">self</span>, hscroll_policy: <a href="enums.rs.html#10851-10860">ScrollablePolicy</a>) -&gt; <span class="self">Self </span>{
+<a href=#1825 id=1825 data-nosnippet>1825</a>    </span><span class="kw">pub fn </span>hscroll_policy(<span class="self">self</span>, hscroll_policy: <a href="enums.rs.html#11142-11151">ScrollablePolicy</a>) -&gt; <span class="self">Self </span>{
 <a href=#1826 id=1826 data-nosnippet>1826</a>        <span class="self">Self </span>{
 <a href=#1827 id=1827 data-nosnippet>1827</a>            builder: <a class="self" href="#1825">self</a>.builder.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/struct.ObjectBuilder.html#method.property">property</a>(<span class="string">"hscroll-policy"</span>, <a href="#1825">hscroll_policy</a>),
 <a href=#1828 id=1828 data-nosnippet>1828</a>        }
@@ -1913,7 +1913,7 @@
 <a href=#1840 id=1840 data-nosnippet>1840</a>    }
 <a href=#1841 id=1841 data-nosnippet>1841</a>
 <a href=#1842 id=1842 data-nosnippet>1842</a>    <span class="doccomment">/// Determines when vertical scrolling should start.
-<a href=#1843 id=1843 data-nosnippet>1843</a>    </span><span class="kw">pub fn </span>vscroll_policy(<span class="self">self</span>, vscroll_policy: <a href="enums.rs.html#10851-10860">ScrollablePolicy</a>) -&gt; <span class="self">Self </span>{
+<a href=#1843 id=1843 data-nosnippet>1843</a>    </span><span class="kw">pub fn </span>vscroll_policy(<span class="self">self</span>, vscroll_policy: <a href="enums.rs.html#11142-11151">ScrollablePolicy</a>) -&gt; <span class="self">Self </span>{
 <a href=#1844 id=1844 data-nosnippet>1844</a>        <span class="self">Self </span>{
 <a href=#1845 id=1845 data-nosnippet>1845</a>            builder: <a class="self" href="#1843">self</a>.builder.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/struct.ObjectBuilder.html#method.property">property</a>(<span class="string">"vscroll-policy"</span>, <a href="#1843">vscroll_policy</a>),
 <a href=#1846 id=1846 data-nosnippet>1846</a>        }

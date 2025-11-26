@@ -75,7 +75,7 @@
 <a href=#2 id=2 data-nosnippet>2</a>// from gir-files (https://github.com/gtk-rs/gir-files)
 <a href=#3 id=3 data-nosnippet>3</a>// DO NOT EDIT
 <a href=#4 id=4 data-nosnippet>4</a>
-<a href=#5 id=5 data-nosnippet>5</a></span><span class="kw">use crate</span>::{<a href="../../../gtk4_sys/index.html">ffi</a>, <a href="expression.rs.html#9-193">Expression</a>, <a href="enums.rs.html#11643-11652">SortType</a>, <a href="sorter.rs.html#14-62">Sorter</a>};
+<a href=#5 id=5 data-nosnippet>5</a></span><span class="kw">use crate</span>::{<a href="../../../gtk4_sys/index.html">ffi</a>, <a href="expression.rs.html#9-193">Expression</a>, <a href="enums.rs.html#11934-11943">SortType</a>, <a href="sorter.rs.html#14-62">Sorter</a>};
 <a href=#6 id=6 data-nosnippet>6</a><span class="kw">use </span>glib::{
 <a href=#7 id=7 data-nosnippet>7</a>    <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/prelude/index.html">prelude</a>::<span class="kw-2">*</span>,
 <a href=#8 id=8 data-nosnippet>8</a>    signal::{<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/fn.connect_raw.html">connect_raw</a>, <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html">SignalHandlerId</a>},
@@ -168,7 +168,7 @@
 <a href=#95 id=95 data-nosnippet>95</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_numeric_sorter_get_sort_order"</span>)]
 <a href=#96 id=96 data-nosnippet>96</a>    #[doc(alias = <span class="string">"get_sort_order"</span>)]
 <a href=#97 id=97 data-nosnippet>97</a>    #[doc(alias = <span class="string">"sort-order"</span>)]
-<a href=#98 id=98 data-nosnippet>98</a>    </span><span class="kw">pub fn </span>sort_order(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="enums.rs.html#11643-11652">SortType</a> {
+<a href=#98 id=98 data-nosnippet>98</a>    </span><span class="kw">pub fn </span>sort_order(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="enums.rs.html#11934-11943">SortType</a> {
 <a href=#99 id=99 data-nosnippet>99</a>        <span class="kw">unsafe </span>{
 <a href=#100 id=100 data-nosnippet>100</a>            <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_numeric_sorter_get_sort_order.html">gtk_numeric_sorter_get_sort_order</a>(
 <a href=#101 id=101 data-nosnippet>101</a>                <a class="self" href="#98">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
@@ -201,7 +201,7 @@
 <a href=#128 id=128 data-nosnippet>128</a>    /// whether to sort smaller numbers first
 <a href=#129 id=129 data-nosnippet>129</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_numeric_sorter_set_sort_order"</span>)]
 <a href=#130 id=130 data-nosnippet>130</a>    #[doc(alias = <span class="string">"sort-order"</span>)]
-<a href=#131 id=131 data-nosnippet>131</a>    </span><span class="kw">pub fn </span>set_sort_order(<span class="kw-2">&amp;</span><span class="self">self</span>, sort_order: <a href="enums.rs.html#11643-11652">SortType</a>) {
+<a href=#131 id=131 data-nosnippet>131</a>    </span><span class="kw">pub fn </span>set_sort_order(<span class="kw-2">&amp;</span><span class="self">self</span>, sort_order: <a href="enums.rs.html#11934-11943">SortType</a>) {
 <a href=#132 id=132 data-nosnippet>132</a>        <span class="kw">unsafe </span>{
 <a href=#133 id=133 data-nosnippet>133</a>            ffi::<a href="../../../gtk4_sys/fn.gtk_numeric_sorter_set_sort_order.html">gtk_numeric_sorter_set_sort_order</a>(<a class="self" href="#131">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>, <a href="#131">sort_order</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>());
 <a href=#134 id=134 data-nosnippet>134</a>        }
@@ -286,7 +286,7 @@
 <a href=#213 id=213 data-nosnippet>213</a>    }
 <a href=#214 id=214 data-nosnippet>214</a>
 <a href=#215 id=215 data-nosnippet>215</a>    <span class="doccomment">/// Whether the sorter will sort smaller numbers first.
-<a href=#216 id=216 data-nosnippet>216</a>    </span><span class="kw">pub fn </span>sort_order(<span class="self">self</span>, sort_order: <a href="enums.rs.html#11643-11652">SortType</a>) -&gt; <span class="self">Self </span>{
+<a href=#216 id=216 data-nosnippet>216</a>    </span><span class="kw">pub fn </span>sort_order(<span class="self">self</span>, sort_order: <a href="enums.rs.html#11934-11943">SortType</a>) -&gt; <span class="self">Self </span>{
 <a href=#217 id=217 data-nosnippet>217</a>        <span class="self">Self </span>{
 <a href=#218 id=218 data-nosnippet>218</a>            builder: <a class="self" href="#216">self</a>.builder.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/struct.ObjectBuilder.html#method.property">property</a>(<span class="string">"sort-order"</span>, <a href="#216">sort_order</a>),
 <a href=#219 id=219 data-nosnippet>219</a>        }

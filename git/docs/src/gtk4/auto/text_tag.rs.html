@@ -75,7 +75,7 @@
 <a href=#2 id=2 data-nosnippet>2</a>// from gir-files (https://github.com/gtk-rs/gir-files)
 <a href=#3 id=3 data-nosnippet>3</a>// DO NOT EDIT
 <a href=#4 id=4 data-nosnippet>4</a>
-<a href=#5 id=5 data-nosnippet>5</a></span><span class="kw">use crate</span>::{<a href="../../../gtk4_sys/index.html">ffi</a>, <a href="enums.rs.html#7011-7026">Justification</a>, <a href="enums.rs.html#12773-12785">TextDirection</a>, <a href="enums.rs.html#13857-13875">WrapMode</a>};
+<a href=#5 id=5 data-nosnippet>5</a></span><span class="kw">use crate</span>::{<a href="../../../gtk4_sys/index.html">ffi</a>, <a href="enums.rs.html#7011-7026">Justification</a>, <a href="enums.rs.html#13064-13076">TextDirection</a>, <a href="enums.rs.html#14148-14166">WrapMode</a>};
 <a href=#6 id=6 data-nosnippet>6</a><span class="kw">use </span>glib::{
 <a href=#7 id=7 data-nosnippet>7</a>    <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/prelude/index.html">prelude</a>::<span class="kw-2">*</span>,
 <a href=#8 id=8 data-nosnippet>8</a>    signal::{<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/fn.connect_raw.html">connect_raw</a>, <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html">SignalHandlerId</a>},
@@ -812,7 +812,7 @@
 <a href=#739 id=739 data-nosnippet>739</a>    }
 <a href=#740 id=740 data-nosnippet>740</a>
 <a href=#741 id=741 data-nosnippet>741</a>    <span class="doccomment">/// Text direction, e.g. right-to-left or left-to-right.
-<a href=#742 id=742 data-nosnippet>742</a>    </span><span class="kw">pub fn </span>direction(<span class="self">self</span>, direction: <a href="enums.rs.html#12773-12785">TextDirection</a>) -&gt; <span class="self">Self </span>{
+<a href=#742 id=742 data-nosnippet>742</a>    </span><span class="kw">pub fn </span>direction(<span class="self">self</span>, direction: <a href="enums.rs.html#13064-13076">TextDirection</a>) -&gt; <span class="self">Self </span>{
 <a href=#743 id=743 data-nosnippet>743</a>        <span class="self">Self </span>{
 <a href=#744 id=744 data-nosnippet>744</a>            builder: <a class="self" href="#742">self</a>.builder.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/struct.ObjectBuilder.html#method.property">property</a>(<span class="string">"direction"</span>, <a href="#742">direction</a>),
 <a href=#745 id=745 data-nosnippet>745</a>        }
@@ -1461,7 +1461,7 @@
 <a href=#1388 id=1388 data-nosnippet>1388</a>
 <a href=#1389 id=1389 data-nosnippet>1389</a>    <span class="doccomment">/// Whether to wrap lines never, at word boundaries, or
 <a href=#1390 id=1390 data-nosnippet>1390</a>    /// at character boundaries.
-<a href=#1391 id=1391 data-nosnippet>1391</a>    </span><span class="kw">pub fn </span>wrap_mode(<span class="self">self</span>, wrap_mode: <a href="enums.rs.html#13857-13875">WrapMode</a>) -&gt; <span class="self">Self </span>{
+<a href=#1391 id=1391 data-nosnippet>1391</a>    </span><span class="kw">pub fn </span>wrap_mode(<span class="self">self</span>, wrap_mode: <a href="enums.rs.html#14148-14166">WrapMode</a>) -&gt; <span class="self">Self </span>{
 <a href=#1392 id=1392 data-nosnippet>1392</a>        <span class="self">Self </span>{
 <a href=#1393 id=1393 data-nosnippet>1393</a>            builder: <a class="self" href="#1391">self</a>.builder.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/struct.ObjectBuilder.html#method.property">property</a>(<span class="string">"wrap-mode"</span>, <a href="#1391">wrap_mode</a>),
 <a href=#1394 id=1394 data-nosnippet>1394</a>        }
@@ -1623,12 +1623,12 @@
 <a href=#1550 id=1550 data-nosnippet>1550</a>    }
 <a href=#1551 id=1551 data-nosnippet>1551</a>
 <a href=#1552 id=1552 data-nosnippet>1552</a>    <span class="doccomment">/// Text direction, e.g. right-to-left or left-to-right.
-<a href=#1553 id=1553 data-nosnippet>1553</a>    </span><span class="kw">fn </span>direction(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="enums.rs.html#12773-12785">TextDirection</a> {
+<a href=#1553 id=1553 data-nosnippet>1553</a>    </span><span class="kw">fn </span>direction(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="enums.rs.html#13064-13076">TextDirection</a> {
 <a href=#1554 id=1554 data-nosnippet>1554</a>        ObjectExt::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.ObjectExt.html#tymethod.property">property</a>(<a class="self" href="#1553">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>(), <span class="string">"direction"</span>)
 <a href=#1555 id=1555 data-nosnippet>1555</a>    }
 <a href=#1556 id=1556 data-nosnippet>1556</a>
 <a href=#1557 id=1557 data-nosnippet>1557</a>    <span class="doccomment">/// Text direction, e.g. right-to-left or left-to-right.
-<a href=#1558 id=1558 data-nosnippet>1558</a>    </span><span class="kw">fn </span>set_direction(<span class="kw-2">&amp;</span><span class="self">self</span>, direction: <a href="enums.rs.html#12773-12785">TextDirection</a>) {
+<a href=#1558 id=1558 data-nosnippet>1558</a>    </span><span class="kw">fn </span>set_direction(<span class="kw-2">&amp;</span><span class="self">self</span>, direction: <a href="enums.rs.html#13064-13076">TextDirection</a>) {
 <a href=#1559 id=1559 data-nosnippet>1559</a>        ObjectExt::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.ObjectExt.html#tymethod.set_property">set_property</a>(<a class="self" href="#1558">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>(), <span class="string">"direction"</span>, <a href="#1558">direction</a>)
 <a href=#1560 id=1560 data-nosnippet>1560</a>    }
 <a href=#1561 id=1561 data-nosnippet>1561</a>
@@ -2401,14 +2401,14 @@
 <a href=#2328 id=2328 data-nosnippet>2328</a>    <span class="doccomment">/// Whether to wrap lines never, at word boundaries, or
 <a href=#2329 id=2329 data-nosnippet>2329</a>    /// at character boundaries.
 <a href=#2330 id=2330 data-nosnippet>2330</a>    </span><span class="attr">#[doc(alias = <span class="string">"wrap-mode"</span>)]
-<a href=#2331 id=2331 data-nosnippet>2331</a>    </span><span class="kw">fn </span>wrap_mode(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="enums.rs.html#13857-13875">WrapMode</a> {
+<a href=#2331 id=2331 data-nosnippet>2331</a>    </span><span class="kw">fn </span>wrap_mode(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="enums.rs.html#14148-14166">WrapMode</a> {
 <a href=#2332 id=2332 data-nosnippet>2332</a>        ObjectExt::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.ObjectExt.html#tymethod.property">property</a>(<a class="self" href="#2331">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>(), <span class="string">"wrap-mode"</span>)
 <a href=#2333 id=2333 data-nosnippet>2333</a>    }
 <a href=#2334 id=2334 data-nosnippet>2334</a>
 <a href=#2335 id=2335 data-nosnippet>2335</a>    <span class="doccomment">/// Whether to wrap lines never, at word boundaries, or
 <a href=#2336 id=2336 data-nosnippet>2336</a>    /// at character boundaries.
 <a href=#2337 id=2337 data-nosnippet>2337</a>    </span><span class="attr">#[doc(alias = <span class="string">"wrap-mode"</span>)]
-<a href=#2338 id=2338 data-nosnippet>2338</a>    </span><span class="kw">fn </span>set_wrap_mode(<span class="kw-2">&amp;</span><span class="self">self</span>, wrap_mode: <a href="enums.rs.html#13857-13875">WrapMode</a>) {
+<a href=#2338 id=2338 data-nosnippet>2338</a>    </span><span class="kw">fn </span>set_wrap_mode(<span class="kw-2">&amp;</span><span class="self">self</span>, wrap_mode: <a href="enums.rs.html#14148-14166">WrapMode</a>) {
 <a href=#2339 id=2339 data-nosnippet>2339</a>        ObjectExt::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.ObjectExt.html#tymethod.set_property">set_property</a>(<a class="self" href="#2338">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>(), <span class="string">"wrap-mode"</span>, <a href="#2338">wrap_mode</a>)
 <a href=#2340 id=2340 data-nosnippet>2340</a>    }
 <a href=#2341 id=2341 data-nosnippet>2341</a>

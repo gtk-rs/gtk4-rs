@@ -80,7 +80,7 @@
 <a href=#7 id=7 data-nosnippet>7</a></span><span class="kw">use </span><a href="accessible_range.rs.html#8-44"><span class="kw">crate</span>::AccessibleRange</a>;
 <a href=#8 id=8 data-nosnippet>8</a><span class="kw">use crate</span>::{
 <a href=#9 id=9 data-nosnippet>9</a>    <a href="../../../gtk4_sys/index.html">ffi</a>, <a href="accessible.rs.html#19-70">Accessible</a>, <a href="enums.rs.html#1021-1321">AccessibleRole</a>, <a href="../enums.rs.html#77-107">Align</a>, <a href="buildable.rs.html#8-31">Buildable</a>, <a href="constraint_target.rs.html#8-23">ConstraintTarget</a>, <a href="layout_manager.rs.html#8-70">LayoutManager</a>, <a href="orientable.rs.html#13-42">Orientable</a>,
-<a href=#10 id=10 data-nosnippet>10</a>    <a href="enums.rs.html#8265-8274">Orientation</a>, <a href="enums.rs.html#8368-8379">Overflow</a>, <a href="enums.rs.html#10683-10734">ScrollType</a>, <a href="widget.rs.html#19-864">Widget</a>,
+<a href=#10 id=10 data-nosnippet>10</a>    <a href="enums.rs.html#8265-8274">Orientation</a>, <a href="enums.rs.html#8368-8379">Overflow</a>, <a href="enums.rs.html#10974-11025">ScrollType</a>, <a href="widget.rs.html#19-864">Widget</a>,
 <a href=#11 id=11 data-nosnippet>11</a>};
 <a href=#12 id=12 data-nosnippet>12</a><span class="kw">use </span>glib::{
 <a href=#13 id=13 data-nosnippet>13</a>    <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.ObjectType.html">object::ObjectType</a> <span class="kw">as _</span>,
@@ -1212,11 +1212,11 @@
 <a href=#1139 id=1139 data-nosnippet>1139</a>    ///
 <a href=#1140 id=1140 data-nosnippet>1140</a>    /// whether the handle was moved
 <a href=#1141 id=1141 data-nosnippet>1141</a>    </span><span class="attr">#[doc(alias = <span class="string">"move-handle"</span>)]
-<a href=#1142 id=1142 data-nosnippet>1142</a>    </span><span class="kw">pub fn </span>connect_move_handle&lt;F: <a href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html">Fn</a>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <a href="enums.rs.html#10683-10734">ScrollType</a>) -&gt; <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> + <span class="lifetime">'static</span>&gt;(
+<a href=#1142 id=1142 data-nosnippet>1142</a>    </span><span class="kw">pub fn </span>connect_move_handle&lt;F: <a href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html">Fn</a>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <a href="enums.rs.html#10974-11025">ScrollType</a>) -&gt; <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> + <span class="lifetime">'static</span>&gt;(
 <a href=#1143 id=1143 data-nosnippet>1143</a>        <span class="kw-2">&amp;</span><span class="self">self</span>,
 <a href=#1144 id=1144 data-nosnippet>1144</a>        f: F,
 <a href=#1145 id=1145 data-nosnippet>1145</a>    ) -&gt; <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html">SignalHandlerId</a> {
-<a href=#1146 id=1146 data-nosnippet>1146</a>        <span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn </span>move_handle_trampoline&lt;F: <a href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html">Fn</a>(<span class="kw-2">&amp;</span><a href="#22-710">Paned</a>, <a href="enums.rs.html#10683-10734">ScrollType</a>) -&gt; <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> + <span class="lifetime">'static</span>&gt;(
+<a href=#1146 id=1146 data-nosnippet>1146</a>        <span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn </span>move_handle_trampoline&lt;F: <a href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html">Fn</a>(<span class="kw-2">&amp;</span><a href="#22-710">Paned</a>, <a href="enums.rs.html#10974-11025">ScrollType</a>) -&gt; <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> + <span class="lifetime">'static</span>&gt;(
 <a href=#1147 id=1147 data-nosnippet>1147</a>            this: <span class="kw-2">*mut </span>ffi::<a href="../../../gtk4_sys/struct.GtkPaned.html">GtkPaned</a>,
 <a href=#1148 id=1148 data-nosnippet>1148</a>            scroll_type: ffi::<a href="../../../gtk4_sys/type.GtkScrollType.html">GtkScrollType</a>,
 <a href=#1149 id=1149 data-nosnippet>1149</a>            f: glib::ffi::gpointer,
@@ -1237,7 +1237,7 @@
 <a href=#1164 id=1164 data-nosnippet>1164</a>        }
 <a href=#1165 id=1165 data-nosnippet>1165</a>    }
 <a href=#1166 id=1166 data-nosnippet>1166</a>
-<a href=#1167 id=1167 data-nosnippet>1167</a>    <span class="kw">pub fn </span>emit_move_handle(<span class="kw-2">&amp;</span><span class="self">self</span>, scroll_type: <a href="enums.rs.html#10683-10734">ScrollType</a>) -&gt; <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> {
+<a href=#1167 id=1167 data-nosnippet>1167</a>    <span class="kw">pub fn </span>emit_move_handle(<span class="kw-2">&amp;</span><span class="self">self</span>, scroll_type: <a href="enums.rs.html#10974-11025">ScrollType</a>) -&gt; <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> {
 <a href=#1168 id=1168 data-nosnippet>1168</a>        <a class="self" href="#1167">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.ObjectExt.html#tymethod.emit_by_name">emit_by_name</a>(<span class="string">"move-handle"</span>, <span class="kw-2">&amp;</span>[<span class="kw-2">&amp;</span><a href="#1167">scroll_type</a>])
 <a href=#1169 id=1169 data-nosnippet>1169</a>    }
 <a href=#1170 id=1170 data-nosnippet>1170</a>

@@ -77,7 +77,7 @@
 <a href=#4 id=4 data-nosnippet>4</a>
 <a href=#5 id=5 data-nosnippet>5</a></span><span class="kw">use crate</span>::{
 <a href=#6 id=6 data-nosnippet>6</a>    <a href="../../../gtk4_sys/index.html">ffi</a>, <a href="accessible.rs.html#19-70">Accessible</a>, <a href="enums.rs.html#1021-1321">AccessibleRole</a>, <a href="adjustment.rs.html#14-99">Adjustment</a>, <a href="../enums.rs.html#77-107">Align</a>, <a href="buildable.rs.html#8-31">Buildable</a>, <a href="constraint_target.rs.html#8-23">ConstraintTarget</a>, <a href="enums.rs.html#4083-4102">CornerType</a>,
-<a href=#7 id=7 data-nosnippet>7</a>    <a href="enums.rs.html#4621-4642">DirectionType</a>, <a href="layout_manager.rs.html#8-70">LayoutManager</a>, <a href="enums.rs.html#8368-8379">Overflow</a>, <a href="enums.rs.html#9002-9022">PolicyType</a>, <a href="enums.rs.html#9119-9134">PositionType</a>, <a href="enums.rs.html#10683-10734">ScrollType</a>, <a href="widget.rs.html#19-864">Widget</a>,
+<a href=#7 id=7 data-nosnippet>7</a>    <a href="enums.rs.html#4621-4642">DirectionType</a>, <a href="layout_manager.rs.html#8-70">LayoutManager</a>, <a href="enums.rs.html#8368-8379">Overflow</a>, <a href="enums.rs.html#9002-9022">PolicyType</a>, <a href="enums.rs.html#9119-9134">PositionType</a>, <a href="enums.rs.html#10974-11025">ScrollType</a>, <a href="widget.rs.html#19-864">Widget</a>,
 <a href=#8 id=8 data-nosnippet>8</a>};
 <a href=#9 id=9 data-nosnippet>9</a><span class="kw">use </span>glib::{
 <a href=#10 id=10 data-nosnippet>10</a>    <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.ObjectType.html">object::ObjectType</a> <span class="kw">as _</span>,
@@ -1477,12 +1477,12 @@
 <a href=#1404 id=1404 data-nosnippet>1404</a>    ///
 <a href=#1405 id=1405 data-nosnippet>1405</a>    /// whether the scroll happened
 <a href=#1406 id=1406 data-nosnippet>1406</a>    </span><span class="attr">#[doc(alias = <span class="string">"scroll-child"</span>)]
-<a href=#1407 id=1407 data-nosnippet>1407</a>    </span><span class="kw">pub fn </span>connect_scroll_child&lt;F: <a href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html">Fn</a>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <a href="enums.rs.html#10683-10734">ScrollType</a>, <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) -&gt; <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> + <span class="lifetime">'static</span>&gt;(
+<a href=#1407 id=1407 data-nosnippet>1407</a>    </span><span class="kw">pub fn </span>connect_scroll_child&lt;F: <a href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html">Fn</a>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <a href="enums.rs.html#10974-11025">ScrollType</a>, <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) -&gt; <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> + <span class="lifetime">'static</span>&gt;(
 <a href=#1408 id=1408 data-nosnippet>1408</a>        <span class="kw-2">&amp;</span><span class="self">self</span>,
 <a href=#1409 id=1409 data-nosnippet>1409</a>        f: F,
 <a href=#1410 id=1410 data-nosnippet>1410</a>    ) -&gt; <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html">SignalHandlerId</a> {
 <a href=#1411 id=1411 data-nosnippet>1411</a>        <span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn </span>scroll_child_trampoline&lt;
-<a href=#1412 id=1412 data-nosnippet>1412</a>            F: <a href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html">Fn</a>(<span class="kw-2">&amp;</span><a href="#17-709">ScrolledWindow</a>, <a href="enums.rs.html#10683-10734">ScrollType</a>, <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) -&gt; <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> + <span class="lifetime">'static</span>,
+<a href=#1412 id=1412 data-nosnippet>1412</a>            F: <a href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html">Fn</a>(<span class="kw-2">&amp;</span><a href="#17-709">ScrolledWindow</a>, <a href="enums.rs.html#10974-11025">ScrollType</a>, <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) -&gt; <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> + <span class="lifetime">'static</span>,
 <a href=#1413 id=1413 data-nosnippet>1413</a>        &gt;(
 <a href=#1414 id=1414 data-nosnippet>1414</a>            this: <span class="kw-2">*mut </span>ffi::<a href="../../../gtk4_sys/struct.GtkScrolledWindow.html">GtkScrolledWindow</a>,
 <a href=#1415 id=1415 data-nosnippet>1415</a>            scroll: ffi::<a href="../../../gtk4_sys/type.GtkScrollType.html">GtkScrollType</a>,
@@ -1510,7 +1510,7 @@
 <a href=#1437 id=1437 data-nosnippet>1437</a>        }
 <a href=#1438 id=1438 data-nosnippet>1438</a>    }
 <a href=#1439 id=1439 data-nosnippet>1439</a>
-<a href=#1440 id=1440 data-nosnippet>1440</a>    <span class="kw">pub fn </span>emit_scroll_child(<span class="kw-2">&amp;</span><span class="self">self</span>, scroll: <a href="enums.rs.html#10683-10734">ScrollType</a>, horizontal: <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) -&gt; <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> {
+<a href=#1440 id=1440 data-nosnippet>1440</a>    <span class="kw">pub fn </span>emit_scroll_child(<span class="kw-2">&amp;</span><span class="self">self</span>, scroll: <a href="enums.rs.html#10974-11025">ScrollType</a>, horizontal: <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) -&gt; <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> {
 <a href=#1441 id=1441 data-nosnippet>1441</a>        <a class="self" href="#1440">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.ObjectExt.html#tymethod.emit_by_name">emit_by_name</a>(<span class="string">"scroll-child"</span>, <span class="kw-2">&amp;</span>[<span class="kw-2">&amp;</span><a href="#1440">scroll</a>, <span class="kw-2">&amp;</span><a href="#1440">horizontal</a>])
 <a href=#1442 id=1442 data-nosnippet>1442</a>    }
 <a href=#1443 id=1443 data-nosnippet>1443</a>

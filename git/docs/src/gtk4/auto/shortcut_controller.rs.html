@@ -75,7 +75,7 @@
 <a href=#2 id=2 data-nosnippet>2</a>// from gir-files (https://github.com/gtk-rs/gir-files)
 <a href=#3 id=3 data-nosnippet>3</a>// DO NOT EDIT
 <a href=#4 id=4 data-nosnippet>4</a>
-<a href=#5 id=5 data-nosnippet>5</a></span><span class="kw">use crate</span>::{<a href="../../../gtk4_sys/index.html">ffi</a>, <a href="buildable.rs.html#8-31">Buildable</a>, <a href="event_controller.rs.html#13-64">EventController</a>, <a href="shortcut.rs.html#13-59">Shortcut</a>, <a href="enums.rs.html#11174-11189">ShortcutScope</a>};
+<a href=#5 id=5 data-nosnippet>5</a></span><span class="kw">use crate</span>::{<a href="../../../gtk4_sys/index.html">ffi</a>, <a href="buildable.rs.html#8-31">Buildable</a>, <a href="event_controller.rs.html#13-64">EventController</a>, <a href="shortcut.rs.html#13-59">Shortcut</a>, <a href="enums.rs.html#11465-11480">ShortcutScope</a>};
 <a href=#6 id=6 data-nosnippet>6</a><span class="kw">use </span>glib::{
 <a href=#7 id=7 data-nosnippet>7</a>    <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/prelude/index.html">prelude</a>::<span class="kw-2">*</span>,
 <a href=#8 id=8 data-nosnippet>8</a>    signal::{<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/fn.connect_raw.html">connect_raw</a>, <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html">SignalHandlerId</a>},
@@ -271,7 +271,7 @@
 <a href=#198 id=198 data-nosnippet>198</a>    /// the controller's scope
 <a href=#199 id=199 data-nosnippet>199</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_shortcut_controller_get_scope"</span>)]
 <a href=#200 id=200 data-nosnippet>200</a>    #[doc(alias = <span class="string">"get_scope"</span>)]
-<a href=#201 id=201 data-nosnippet>201</a>    </span><span class="kw">pub fn </span>scope(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="enums.rs.html#11174-11189">ShortcutScope</a> {
+<a href=#201 id=201 data-nosnippet>201</a>    </span><span class="kw">pub fn </span>scope(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="enums.rs.html#11465-11480">ShortcutScope</a> {
 <a href=#202 id=202 data-nosnippet>202</a>        <span class="kw">unsafe </span>{
 <a href=#203 id=203 data-nosnippet>203</a>            <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_shortcut_controller_get_scope.html">gtk_shortcut_controller_get_scope</a>(
 <a href=#204 id=204 data-nosnippet>204</a>                <a class="self" href="#201">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
@@ -334,7 +334,7 @@
 <a href=#261 id=261 data-nosnippet>261</a>    /// the new scope to use
 <a href=#262 id=262 data-nosnippet>262</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_shortcut_controller_set_scope"</span>)]
 <a href=#263 id=263 data-nosnippet>263</a>    #[doc(alias = <span class="string">"scope"</span>)]
-<a href=#264 id=264 data-nosnippet>264</a>    </span><span class="kw">pub fn </span>set_scope(<span class="kw-2">&amp;</span><span class="self">self</span>, scope: <a href="enums.rs.html#11174-11189">ShortcutScope</a>) {
+<a href=#264 id=264 data-nosnippet>264</a>    </span><span class="kw">pub fn </span>set_scope(<span class="kw-2">&amp;</span><span class="self">self</span>, scope: <a href="enums.rs.html#11465-11480">ShortcutScope</a>) {
 <a href=#265 id=265 data-nosnippet>265</a>        <span class="kw">unsafe </span>{
 <a href=#266 id=266 data-nosnippet>266</a>            ffi::<a href="../../../gtk4_sys/fn.gtk_shortcut_controller_set_scope.html">gtk_shortcut_controller_set_scope</a>(<a class="self" href="#264">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>, <a href="#264">scope</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>());
 <a href=#267 id=267 data-nosnippet>267</a>        }

@@ -179,14 +179,14 @@ Negative values are never returned.</p>
 multiple calls of <a href="trait.PaintableExt.html#method.snapshot"><code>snapshot()</code></a> produce the same output.</p>
 <p>This function will emit the <a href="../struct.Paintable.html#invalidate-contents" title="struct gdk4::Paintable"><code>invalidate-contents</code></a>
 signal.</p>
-<p>If a @self reports the <a href="../struct.PaintableFlags.html#associatedconstant.CONTENTS" title="associated constant gdk4::PaintableFlags::CONTENTS"><code>PaintableFlags::CONTENTS</code></a> flag,
+<p>If a @self reports the <a href="../struct.PaintableFlags.html#associatedconstant.STATIC_CONTENTS" title="associated constant gdk4::PaintableFlags::STATIC_CONTENTS"><code>PaintableFlags::STATIC_CONTENTS</code></a> flag,
 it must not call this function.</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.invalidate_size" class="method"><a class="src rightside" href="../../src/gdk4/auto/paintable.rs.html#320-324">Source</a><h4 class="code-header">fn <a href="#method.invalidate_size" class="fn">invalidate_size</a>(&amp;self)</h4></section></summary><div class="docblock"><p>Called by implementations of <a href="../struct.Paintable.html" title="struct gdk4::Paintable"><code>Paintable</code></a> to invalidate their size.</p>
 <p>As long as the size is not invalidated, @self must return the same
 values for its intrinsic width, height and aspect ratio.</p>
 <p>This function will emit the <a href="../struct.Paintable.html#invalidate-size" title="struct gdk4::Paintable"><code>invalidate-size</code></a>
 signal.</p>
-<p>If a @self reports the <a href="../struct.PaintableFlags.html#associatedconstant.SIZE" title="associated constant gdk4::PaintableFlags::SIZE"><code>PaintableFlags::SIZE</code></a> flag,
+<p>If a @self reports the <a href="../struct.PaintableFlags.html#associatedconstant.STATIC_SIZE" title="associated constant gdk4::PaintableFlags::STATIC_SIZE"><code>PaintableFlags::STATIC_SIZE</code></a> flag,
 it must not call this function.</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.snapshot" class="method"><a class="src rightside" href="../../src/gdk4/auto/paintable.rs.html#338-347">Source</a><h4 class="code-header">fn <a href="#method.snapshot" class="fn">snapshot</a>(&amp;self, snapshot: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Snapshot.html" title="struct gdk4::Snapshot">Snapshot</a>&gt;, width: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>, height: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>)</h4></section></summary><div class="docblock"><p>Snapshots the given paintable with the given @width and @height.</p>
 <p>The paintable is drawn at the current (0,0) offset of the @snapshot.
