@@ -42,7 +42,16 @@ jobs:
         0.9=0.9
         0.8=0.8
         0.7=0.7
-      RUSTFLAGS: --cfg docsrs
+      RUSTDOCFLAGS: >
+        --extern-html-root-url=wayland_client=https://smithay.github.io/wayland-rs/
+        --extern-html-root-url=x11=https://docs.rs/x11/latest/
+        --extern-html-root-url=khronos_egl=https://docs.rs/khronos-egl/latest/
+        --extern-html-root-url=xkb=https://docs.rs/xkb/latest/
+        --extern-html-root-url=windows=https://microsoft.github.io/windows-docs-rs/doc/
+        --extern-html-root-url=gl=https://docs.rs/gl/latest/
+        --cfg docsrs
+        -Zunstable-options --generate-link-to-definition
+      DOCS_RS: 1
     steps:
       - uses: actions/checkout@v5
         with:
@@ -62,17 +71,6 @@ jobs:
       - run: echo "RELEASE=$(echo '${{ github.event.release.tag_name }}' | grep -Po '(\d+)\.(\d+)')" >> ${GITHUB_ENV}
       - run: echo "DEST=$(if [ "$GITHUB_EVENT_NAME" == "release" ]; then echo 'stable/${{ env.RELEASE }}'; else echo 'git'; fi)" >> ${GITHUB_ENV}
       - run: echo "RUSTDOCFLAGS=$(eval python3 ./gir-rustdoc/gir-rustdoc.py --pages-url 'https://gtk-rs.org/gtk4-rs/' --default-branch 'main' pre-docs | xargs)" >> ${GITHUB_ENV}
-        env:
-          RUSTDOCFLAGS: >
-            --extern-html-root-url=wayland_client=https://smithay.github.io/wayland-rs/
-            --extern-html-root-url=x11=https://docs.rs/x11/latest/
-            --extern-html-root-url=khronos_egl=https://docs.rs/khronos-egl/latest/
-            --extern-html-root-url=xkb=https://docs.rs/xkb/latest/
-            --extern-html-root-url=windows=https://microsoft.github.io/windows-docs-rs/doc/
-            --extern-html-root-url=gl=https://docs.rs/gl/latest/
-            --cfg docsrs
-            -Zunstable-options --generate-link-to-definition
-
       - run: sudo dnf install jq -y
       - name: Get features excluding some
         run: |
