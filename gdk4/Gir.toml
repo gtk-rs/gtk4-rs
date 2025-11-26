@@ -52,7 +52,6 @@ generate = [
     "Gdk.PaintableFlags",
     "Gdk.ProximityEvent",
     "Gdk.ScrollDirection",
-    "Gdk.ScrollEvent",
     "Gdk.ScrollRelativeDirection",
     "Gdk.ScrollUnit",
     "Gdk.SeatCapabilities",
@@ -649,6 +648,15 @@ boxed_inline = true
     [[object.function]]
     name = "print"
     ignore = true # This is a C helper
+
+# TODO Revert this commit once the gir files contain
+# https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/9195.
+[[object]]
+name = "Gdk.ScrollEvent"
+status = "generate"
+    [[object.function]]
+    name = "get_relative_direction"
+    ignore = true
 
 [[object]]
 name = "Gdk.Seat"
