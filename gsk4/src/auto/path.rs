@@ -6,7 +6,7 @@ use crate::{ffi, FillRule, PathPoint, Stroke};
 use glib::translate::*;
 
 glib::wrapper! {
-    #[derive(Debug, PartialOrd, Ord, Hash)]
+    #[derive(Debug)]
     pub struct Path(Shared<ffi::GskPath>);
 
     match fn {
