@@ -1245,6 +1245,9 @@ pub use self::enums::PrintStatus;
 pub use self::enums::PropagationLimit;
 pub use self::enums::PropagationPhase;
 pub use self::enums::RecentManagerError;
+#[cfg(feature = "v4_22")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+pub use self::enums::ReducedMotion;
 pub use self::enums::RevealerTransitionType;
 pub use self::enums::ScrollStep;
 pub use self::enums::ScrollType;

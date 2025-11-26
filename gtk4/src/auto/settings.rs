@@ -5,6 +5,9 @@
 #[cfg(feature = "v4_16")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
 use crate::FontRendering;
+#[cfg(feature = "v4_22")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+use crate::ReducedMotion;
 use crate::{ffi, StyleProvider};
 #[cfg(feature = "v4_20")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
@@ -383,19 +386,23 @@ impl Settings {
         ObjectExt::set_property(self, "gtk-interface-contrast", gtk_interface_contrast)
     }
 
-    //#[cfg(feature = "v4_22")]
-    //#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
-    //#[doc(alias = "gtk-interface-reduced-motion")]
-    //pub fn gtk_interface_reduced_motion(&self) -> /*Ignored*/ReducedMotion {
-    //    ObjectExt::property(self, "gtk-interface-reduced-motion")
-    //}
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    #[doc(alias = "gtk-interface-reduced-motion")]
+    pub fn gtk_interface_reduced_motion(&self) -> ReducedMotion {
+        ObjectExt::property(self, "gtk-interface-reduced-motion")
+    }
 
-    //#[cfg(feature = "v4_22")]
-    //#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
-    //#[doc(alias = "gtk-interface-reduced-motion")]
-    //pub fn set_gtk_interface_reduced_motion(&self, gtk_interface_reduced_motion: /*Ignored*/ReducedMotion) {
-    //    ObjectExt::set_property(self,"gtk-interface-reduced-motion", gtk_interface_reduced_motion)
-    //}
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    #[doc(alias = "gtk-interface-reduced-motion")]
+    pub fn set_gtk_interface_reduced_motion(&self, gtk_interface_reduced_motion: ReducedMotion) {
+        ObjectExt::set_property(
+            self,
+            "gtk-interface-reduced-motion",
+            gtk_interface_reduced_motion,
+        )
+    }
 
     #[doc(alias = "gtk-keynav-use-caret")]
     pub fn is_gtk_keynav_use_caret(&self) -> bool {
@@ -2414,11 +2421,15 @@ impl SettingsBuilder {
         }
     }
 
-    //    #[cfg(feature = "v4_22")]
+    #[cfg(feature = "v4_22")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
-    //pub fn gtk_interface_reduced_motion(self, gtk_interface_reduced_motion: /*Ignored*/ReducedMotion) -> Self {
-    //    Self { builder: self.builder.property("gtk-interface-reduced-motion", gtk_interface_reduced_motion), }
-    //}
+    pub fn gtk_interface_reduced_motion(self, gtk_interface_reduced_motion: ReducedMotion) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("gtk-interface-reduced-motion", gtk_interface_reduced_motion),
+        }
+    }
 
     pub fn gtk_keynav_use_caret(self, gtk_keynav_use_caret: bool) -> Self {
         Self {

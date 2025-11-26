@@ -210,6 +210,7 @@ generate = [
     "Gtk.PropertyExpression",
     "Gtk.RecentInfo",
     "Gtk.RecentManagerError",
+    "Gtk.ReducedMotion",
     "Gtk.Revealer",
     "Gtk.RevealerTransitionType",
     "Gtk.Root",
