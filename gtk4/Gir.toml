@@ -2165,6 +2165,11 @@ generate_builder = false
     manual = true
 
 [[object]]
+name = "Gtk.Svg"
+status = "generate"
+generate_builder = false
+
+[[object]]
 name = "Gtk.Switch"
 status = "generate"
     [[object.signal]]
