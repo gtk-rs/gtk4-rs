@@ -42,7 +42,6 @@ jobs:
         0.9=0.9
         0.8=0.8
         0.7=0.7
-      RUSTFLAGS: --cfg docsrs
     steps:
       - uses: actions/checkout@v5
         with:
