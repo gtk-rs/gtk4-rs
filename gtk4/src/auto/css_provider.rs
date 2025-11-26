@@ -3,6 +3,9 @@
 // DO NOT EDIT
 #![allow(deprecated)]
 
+#[cfg(feature = "v4_22")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+use crate::ReducedMotion;
 use crate::{ffi, CssSection, StyleProvider};
 #[cfg(feature = "v4_20")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
@@ -148,19 +151,19 @@ impl CssProvider {
         ObjectExt::set_property(self, "prefers-contrast", prefers_contrast)
     }
 
-    //#[cfg(feature = "v4_22")]
-    //#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
-    //#[doc(alias = "prefers-reduced-motion")]
-    //pub fn prefers_reduced_motion(&self) -> /*Ignored*/ReducedMotion {
-    //    ObjectExt::property(self, "prefers-reduced-motion")
-    //}
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    #[doc(alias = "prefers-reduced-motion")]
+    pub fn prefers_reduced_motion(&self) -> ReducedMotion {
+        ObjectExt::property(self, "prefers-reduced-motion")
+    }
 
-    //#[cfg(feature = "v4_22")]
-    //#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
-    //#[doc(alias = "prefers-reduced-motion")]
-    //pub fn set_prefers_reduced_motion(&self, prefers_reduced_motion: /*Ignored*/ReducedMotion) {
-    //    ObjectExt::set_property(self,"prefers-reduced-motion", prefers_reduced_motion)
-    //}
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    #[doc(alias = "prefers-reduced-motion")]
+    pub fn set_prefers_reduced_motion(&self, prefers_reduced_motion: ReducedMotion) {
+        ObjectExt::set_property(self, "prefers-reduced-motion", prefers_reduced_motion)
+    }
 
     #[doc(alias = "parsing-error")]
     pub fn connect_parsing_error<F: Fn(&Self, &CssSection, &glib::Error) + 'static>(
@@ -328,11 +331,15 @@ impl CssProviderBuilder {
         }
     }
 
-    //    #[cfg(feature = "v4_22")]
+    #[cfg(feature = "v4_22")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
-    //pub fn prefers_reduced_motion(self, prefers_reduced_motion: /*Ignored*/ReducedMotion) -> Self {
-    //    Self { builder: self.builder.property("prefers-reduced-motion", prefers_reduced_motion), }
-    //}
+    pub fn prefers_reduced_motion(self, prefers_reduced_motion: ReducedMotion) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("prefers-reduced-motion", prefers_reduced_motion),
+        }
+    }
 
     // rustdoc-stripper-ignore-next
     /// Build the [`CssProvider`].

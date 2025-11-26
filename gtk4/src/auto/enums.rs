@@ -9390,6 +9390,120 @@ impl From<RecentManagerError> for glib::Value {
     }
 }
 
+#[cfg(feature = "v4_22")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
+#[doc(alias = "GtkReducedMotion")]
+pub enum ReducedMotion {
+    #[doc(alias = "GTK_REDUCED_MOTION_NO_PREFERENCE")]
+    NoPreference,
+    #[doc(alias = "GTK_REDUCED_MOTION_REDUCE")]
+    Reduce,
+    #[doc(hidden)]
+    __Unknown(i32),
+}
+
+#[cfg(feature = "v4_22")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+#[doc(hidden)]
+impl IntoGlib for ReducedMotion {
+    type GlibType = ffi::GtkReducedMotion;
+
+    #[inline]
+    fn into_glib(self) -> ffi::GtkReducedMotion {
+        match self {
+            Self::NoPreference => ffi::GTK_REDUCED_MOTION_NO_PREFERENCE,
+            Self::Reduce => ffi::GTK_REDUCED_MOTION_REDUCE,
+            Self::__Unknown(value) => value,
+        }
+    }
+}
+
+#[cfg(feature = "v4_22")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+#[doc(hidden)]
+impl FromGlib<ffi::GtkReducedMotion> for ReducedMotion {
+    #[inline]
+    unsafe fn from_glib(value: ffi::GtkReducedMotion) -> Self {
+        skip_assert_initialized!();
+
+        match value {
+            ffi::GTK_REDUCED_MOTION_NO_PREFERENCE => Self::NoPreference,
+            ffi::GTK_REDUCED_MOTION_REDUCE => Self::Reduce,
+            value => Self::__Unknown(value),
+        }
+    }
+}
+
+#[cfg(feature = "v4_22")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+impl StaticType for ReducedMotion {
+    #[inline]
+    #[doc(alias = "gtk_reduced_motion_get_type")]
+    fn static_type() -> glib::Type {
+        unsafe { from_glib(ffi::gtk_reduced_motion_get_type()) }
+    }
+}
+
+#[cfg(feature = "v4_22")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+impl glib::HasParamSpec for ReducedMotion {
+    type ParamSpec = glib::ParamSpecEnum;
+    type SetValue = Self;
+    type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
+
+    fn param_spec_builder() -> Self::BuilderFn {
+        Self::ParamSpec::builder_with_default
+    }
+}
+
+#[cfg(feature = "v4_22")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+impl glib::value::ValueType for ReducedMotion {
+    type Type = Self;
+}
+
+#[cfg(feature = "v4_22")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+unsafe impl<'a> glib::value::FromValue<'a> for ReducedMotion {
+    type Checker = glib::value::GenericValueTypeChecker<Self>;
+
+    #[inline]
+    unsafe fn from_value(value: &'a glib::Value) -> Self {
+        skip_assert_initialized!();
+        from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+    }
+}
+
+#[cfg(feature = "v4_22")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+impl ToValue for ReducedMotion {
+    #[inline]
+    fn to_value(&self) -> glib::Value {
+        let mut value = glib::Value::for_value_type::<Self>();
+        unsafe {
+            glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
+        }
+        value
+    }
+
+    #[inline]
+    fn value_type(&self) -> glib::Type {
+        Self::static_type()
+    }
+}
+
+#[cfg(feature = "v4_22")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+impl From<ReducedMotion> for glib::Value {
+    #[inline]
+    fn from(v: ReducedMotion) -> Self {
+        skip_assert_initialized!();
+        ToValue::to_value(&v)
+    }
+}
+
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GtkRevealerTransitionType")]
