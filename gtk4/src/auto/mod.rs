@@ -947,6 +947,13 @@ pub use self::style_context::StyleContext;
 mod style_provider;
 pub use self::style_provider::StyleProvider;
 
+#[cfg(feature = "v4_22")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+mod svg;
+#[cfg(feature = "v4_22")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+pub use self::svg::Svg;
+
 mod switch;
 pub use self::switch::Switch;
 
