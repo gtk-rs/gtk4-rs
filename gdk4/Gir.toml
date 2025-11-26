@@ -646,6 +646,9 @@ boxed_inline = true
     name = "parse"
     # This is a constructor
     manual = true
+    [[object.function]]
+    name = "print"
+    ignore = true # This is a C helper
 
 [[object]]
 name = "Gdk.Seat"

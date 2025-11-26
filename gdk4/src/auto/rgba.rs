@@ -45,16 +45,6 @@ impl RGBA {
         unsafe { from_glib(ffi::gdk_rgba_is_opaque(self.to_glib_none().0)) }
     }
 
-    #[doc(alias = "gdk_rgba_print")]
-    pub fn print(&self, string: &mut glib::String) -> glib::String {
-        unsafe {
-            from_glib_full(ffi::gdk_rgba_print(
-                self.to_glib_none().0,
-                string.to_glib_none_mut().0,
-            ))
-        }
-    }
-
     #[doc(alias = "gdk_rgba_to_string")]
     #[doc(alias = "to_string")]
     pub fn to_str(&self) -> glib::GString {
