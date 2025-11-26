@@ -10,6 +10,9 @@ use crate::{
     ffi, Accessible, AccessibleRole, Align, Application, Buildable, ConstraintTarget,
     LayoutManager, Native, Overflow, Root, ShortcutManager, ShortcutsWindow, Widget, Window,
 };
+#[cfg(feature = "v4_22")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+use glib::object::ObjectType as _;
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},
@@ -495,12 +498,40 @@ pub trait ApplicationWindowExt: IsA<ApplicationWindow> + 'static {
         }
     }
 
-    //#[cfg(feature = "v4_22")]
-    //#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
-    //#[doc(alias = "save-state")]
-    //fn connect_save_state<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId {
-    //    Ignored dict: GLib.VariantDict
-    //}
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    #[doc(alias = "save-state")]
+    fn connect_save_state<F: Fn(&Self, &glib::VariantDict) -> bool + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn save_state_trampoline<
+            P: IsA<ApplicationWindow>,
+            F: Fn(&P, &glib::VariantDict) -> bool + 'static,
+        >(
+            this: *mut ffi::GtkApplicationWindow,
+            dict: *mut glib::ffi::GVariantDict,
+            f: glib::ffi::gpointer,
+        ) -> glib::ffi::gboolean {
+            let f: &F = &*(f as *const F);
+            f(
+                ApplicationWindow::from_glib_borrow(this).unsafe_cast_ref(),
+                &from_glib_borrow(dict),
+            )
+            .into_glib()
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                c"save-state".as_ptr() as *const _,
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
+                    save_state_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
 
     #[doc(alias = "show-menubar")]
     fn connect_show_menubar_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
