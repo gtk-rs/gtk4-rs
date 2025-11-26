@@ -15,7 +15,7 @@ impl ObjectImpl for CustomPaintable {}
 impl PaintableImpl for CustomPaintable {
     fn flags(&self) -> gdk::PaintableFlags {
         // Fixed size
-        gdk::PaintableFlags::SIZE
+        gdk::PaintableFlags::STATIC_SIZE
     }
 
     fn intrinsic_width(&self) -> i32 {
