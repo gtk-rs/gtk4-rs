@@ -165,6 +165,8 @@ status = "generate"
 [[object]]
 name = "Gsk.Path"
 status = "generate"
+    [[object.derive]]
+    name = "Debug"
     [[object.function]]
     name = "to_cairo"
         [[object.function.parameter]]
