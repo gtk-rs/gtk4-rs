@@ -5894,15 +5894,17 @@ extern "C" {
     // GdkScrollEvent
     //=========================================================================
     pub fn gdk_scroll_event_get_type() -> GType;
-    //#[cfg(feature = "v4_20")]
-    //#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
-    //pub fn gdk_scroll_event_get_relative_direction(event: /*Metadata mismatch*/*mut [c:type mismatch GdkEvent != GdkScrollRelativeDirection of ScrollRelativeDirection]) -> GdkScrollRelativeDirection;
     pub fn gdk_scroll_event_get_deltas(
         event: *mut GdkScrollEvent,
         delta_x: *mut c_double,
         delta_y: *mut c_double,
     );
     pub fn gdk_scroll_event_get_direction(event: *mut GdkScrollEvent) -> GdkScrollDirection;
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    pub fn gdk_scroll_event_get_relative_direction(
+        event: *mut GdkScrollEvent,
+    ) -> GdkScrollRelativeDirection;
     #[cfg(feature = "v4_8")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     pub fn gdk_scroll_event_get_unit(event: *mut GdkScrollEvent) -> GdkScrollUnit;

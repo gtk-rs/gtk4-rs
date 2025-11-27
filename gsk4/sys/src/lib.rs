@@ -106,6 +106,20 @@ pub const GSK_PATH_QUAD: GskPathOperation = 3;
 pub const GSK_PATH_CUBIC: GskPathOperation = 4;
 pub const GSK_PATH_CONIC: GskPathOperation = 5;
 
+pub type GskPorterDuff = c_int;
+pub const GSK_PORTER_DUFF_SOURCE: GskPorterDuff = 0;
+pub const GSK_PORTER_DUFF_DEST: GskPorterDuff = 1;
+pub const GSK_PORTER_DUFF_SOURCE_OVER_DEST: GskPorterDuff = 2;
+pub const GSK_PORTER_DUFF_DEST_OVER_SOURCE: GskPorterDuff = 3;
+pub const GSK_PORTER_DUFF_SOURCE_IN_DEST: GskPorterDuff = 4;
+pub const GSK_PORTER_DUFF_DEST_IN_SOURCE: GskPorterDuff = 5;
+pub const GSK_PORTER_DUFF_SOURCE_OUT_DEST: GskPorterDuff = 6;
+pub const GSK_PORTER_DUFF_DEST_OUT_SOURCE: GskPorterDuff = 7;
+pub const GSK_PORTER_DUFF_SOURCE_ATOP_DEST: GskPorterDuff = 8;
+pub const GSK_PORTER_DUFF_DEST_ATOP_SOURCE: GskPorterDuff = 9;
+pub const GSK_PORTER_DUFF_XOR: GskPorterDuff = 10;
+pub const GSK_PORTER_DUFF_CLEAR: GskPorterDuff = 11;
+
 pub type GskRenderNodeType = c_int;
 pub const GSK_NOT_A_RENDER_NODE: GskRenderNodeType = 0;
 pub const GSK_CONTAINER_NODE: GskRenderNodeType = 1;
@@ -151,6 +165,15 @@ pub const GSK_SUBSURFACE_NODE: GskRenderNodeType = 30;
 #[cfg(feature = "v4_20")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
 pub const GSK_COMPONENT_TRANSFER_NODE: GskRenderNodeType = 31;
+#[cfg(feature = "v4_22")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+pub const GSK_COPY_NODE: GskRenderNodeType = 32;
+#[cfg(feature = "v4_22")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+pub const GSK_PASTE_NODE: GskRenderNodeType = 33;
+#[cfg(feature = "v4_22")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+pub const GSK_COMPOSITE_NODE: GskRenderNodeType = 34;
 
 pub type GskScalingFilter = c_int;
 pub const GSK_SCALING_FILTER_LINEAR: GskScalingFilter = 0;
@@ -224,6 +247,25 @@ pub type GskPathIntersectionFunc = Option<
         GskPathIntersection,
         gpointer,
     ) -> gboolean,
+>;
+pub type GskRenderReplayFontFilter = Option<
+    unsafe extern "C" fn(
+        *mut GskRenderReplay,
+        *mut pango::PangoFont,
+        gpointer,
+    ) -> *mut pango::PangoFont,
+>;
+pub type GskRenderReplayNodeFilter = Option<
+    unsafe extern "C" fn(*mut GskRenderReplay, *mut GskRenderNode, gpointer) -> *mut GskRenderNode,
+>;
+pub type GskRenderReplayNodeForeach =
+    Option<unsafe extern "C" fn(*mut GskRenderReplay, *mut GskRenderNode, gpointer) -> gboolean>;
+pub type GskRenderReplayTextureFilter = Option<
+    unsafe extern "C" fn(
+        *mut GskRenderReplay,
+        *mut gdk::GdkTexture,
+        gpointer,
+    ) -> *mut gdk::GdkTexture,
 >;
 
 // Records
@@ -396,6 +438,15 @@ impl ::std::fmt::Debug for GskPathPoint__s1 {
             .finish()
     }
 }
+
+#[repr(C)]
+#[allow(dead_code)]
+pub struct _GskRenderReplay {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+pub type GskRenderReplay = _GskRenderReplay;
 
 #[repr(C)]
 #[allow(dead_code)]
@@ -637,6 +688,20 @@ impl ::std::fmt::Debug for GskComponentTransferNode {
 
 #[repr(C)]
 #[allow(dead_code)]
+pub struct GskCompositeNode {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+impl ::std::fmt::Debug for GskCompositeNode {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GskCompositeNode @ {self:p}"))
+            .finish()
+    }
+}
+
+#[repr(C)]
+#[allow(dead_code)]
 pub struct GskConicGradientNode {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -660,6 +725,19 @@ impl ::std::fmt::Debug for GskContainerNode {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("GskContainerNode @ {self:p}"))
             .finish()
+    }
+}
+
+#[repr(C)]
+#[allow(dead_code)]
+pub struct GskCopyNode {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+impl ::std::fmt::Debug for GskCopyNode {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GskCopyNode @ {self:p}")).finish()
     }
 }
 
@@ -824,6 +902,19 @@ impl ::std::fmt::Debug for GskOutsetShadowNode {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("GskOutsetShadowNode @ {self:p}"))
             .finish()
+    }
+}
+
+#[repr(C)]
+#[allow(dead_code)]
+pub struct GskPasteNode {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+impl ::std::fmt::Debug for GskPasteNode {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GskPasteNode @ {self:p}")).finish()
     }
 }
 
@@ -1104,6 +1195,13 @@ extern "C" {
     #[cfg(feature = "v4_14")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
     pub fn gsk_path_operation_get_type() -> GType;
+
+    //=========================================================================
+    // GskPorterDuff
+    //=========================================================================
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    pub fn gsk_porter_duff_get_type() -> GType;
 
     //=========================================================================
     // GskRenderNodeType
@@ -1570,6 +1668,75 @@ extern "C" {
     );
 
     //=========================================================================
+    // GskRenderReplay
+    //=========================================================================
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    pub fn gsk_render_replay_default(
+        self_: *mut GskRenderReplay,
+        node: *mut GskRenderNode,
+    ) -> *mut GskRenderNode;
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    pub fn gsk_render_replay_filter_font(
+        self_: *mut GskRenderReplay,
+        font: *mut pango::PangoFont,
+    ) -> *mut pango::PangoFont;
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    pub fn gsk_render_replay_filter_node(
+        self_: *mut GskRenderReplay,
+        node: *mut GskRenderNode,
+    ) -> *mut GskRenderNode;
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    pub fn gsk_render_replay_filter_texture(
+        self_: *mut GskRenderReplay,
+        texture: *mut gdk::GdkTexture,
+    ) -> *mut gdk::GdkTexture;
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    pub fn gsk_render_replay_foreach_node(self_: *mut GskRenderReplay, node: *mut GskRenderNode);
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    pub fn gsk_render_replay_free(self_: *mut GskRenderReplay);
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    pub fn gsk_render_replay_set_font_filter(
+        self_: *mut GskRenderReplay,
+        filter: GskRenderReplayFontFilter,
+        user_data: gpointer,
+        user_destroy: glib::GDestroyNotify,
+    );
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    pub fn gsk_render_replay_set_node_filter(
+        self_: *mut GskRenderReplay,
+        filter: GskRenderReplayNodeFilter,
+        user_data: gpointer,
+        user_destroy: glib::GDestroyNotify,
+    );
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    pub fn gsk_render_replay_set_node_foreach(
+        self_: *mut GskRenderReplay,
+        foreach: GskRenderReplayNodeForeach,
+        user_data: gpointer,
+        user_destroy: glib::GDestroyNotify,
+    );
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    pub fn gsk_render_replay_set_texture_filter(
+        self_: *mut GskRenderReplay,
+        filter: GskRenderReplayTextureFilter,
+        user_data: gpointer,
+        user_destroy: glib::GDestroyNotify,
+    );
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    pub fn gsk_render_replay_new() -> *mut GskRenderReplay;
+
+    //=========================================================================
     // GskRoundedRect
     //=========================================================================
     pub fn gsk_rounded_rect_contains_point(
@@ -1967,6 +2134,27 @@ extern "C" {
     ) -> *const GskComponentTransfer;
 
     //=========================================================================
+    // GskCompositeNode
+    //=========================================================================
+    pub fn gsk_composite_node_get_type() -> GType;
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    pub fn gsk_composite_node_new(
+        child: *mut GskRenderNode,
+        mask: *mut GskRenderNode,
+        op: GskPorterDuff,
+    ) -> *mut GskCompositeNode;
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    pub fn gsk_composite_node_get_child(node: *const GskCompositeNode) -> *mut GskRenderNode;
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    pub fn gsk_composite_node_get_mask(node: *const GskCompositeNode) -> *mut GskRenderNode;
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    pub fn gsk_composite_node_get_operator(node: *const GskCompositeNode) -> GskPorterDuff;
+
+    //=========================================================================
     // GskConicGradientNode
     //=========================================================================
     pub fn gsk_conic_gradient_node_get_type() -> GType;
@@ -2003,6 +2191,19 @@ extern "C" {
         idx: c_uint,
     ) -> *mut GskRenderNode;
     pub fn gsk_container_node_get_n_children(node: *const GskContainerNode) -> c_uint;
+
+    //=========================================================================
+    // GskCopyNode
+    //=========================================================================
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    pub fn gsk_copy_node_get_type() -> GType;
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    pub fn gsk_copy_node_new(child: *mut GskRenderNode) -> *mut GskCopyNode;
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    pub fn gsk_copy_node_get_child(node: *const GskCopyNode) -> *mut GskRenderNode;
 
     //=========================================================================
     // GskCrossFadeNode
@@ -2249,6 +2450,22 @@ extern "C" {
         node: *const GskOutsetShadowNode,
     ) -> *const GskRoundedRect;
     pub fn gsk_outset_shadow_node_get_spread(node: *const GskOutsetShadowNode) -> c_float;
+
+    //=========================================================================
+    // GskPasteNode
+    //=========================================================================
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    pub fn gsk_paste_node_get_type() -> GType;
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    pub fn gsk_paste_node_new(
+        bounds: *const graphene::graphene_rect_t,
+        depth: size_t,
+    ) -> *mut GskPasteNode;
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    pub fn gsk_paste_node_get_depth(node: *const GskPasteNode) -> size_t;
 
     //=========================================================================
     // GskRadialGradientNode

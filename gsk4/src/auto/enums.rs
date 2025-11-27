@@ -1314,6 +1314,18 @@ pub enum RenderNodeType {
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
     #[doc(alias = "GSK_COMPONENT_TRANSFER_NODE")]
     ComponentTransferNode,
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    #[doc(alias = "GSK_COPY_NODE")]
+    CopyNode,
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    #[doc(alias = "GSK_PASTE_NODE")]
+    PasteNode,
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    #[doc(alias = "GSK_COMPOSITE_NODE")]
+    CompositeNode,
     #[doc(hidden)]
     __Unknown(i32),
 }
@@ -1362,6 +1374,12 @@ impl IntoGlib for RenderNodeType {
             Self::SubsurfaceNode => ffi::GSK_SUBSURFACE_NODE,
             #[cfg(feature = "v4_20")]
             Self::ComponentTransferNode => ffi::GSK_COMPONENT_TRANSFER_NODE,
+            #[cfg(feature = "v4_22")]
+            Self::CopyNode => ffi::GSK_COPY_NODE,
+            #[cfg(feature = "v4_22")]
+            Self::PasteNode => ffi::GSK_PASTE_NODE,
+            #[cfg(feature = "v4_22")]
+            Self::CompositeNode => ffi::GSK_COMPOSITE_NODE,
             Self::__Unknown(value) => value,
         }
     }
@@ -1411,6 +1429,12 @@ impl FromGlib<ffi::GskRenderNodeType> for RenderNodeType {
             ffi::GSK_SUBSURFACE_NODE => Self::SubsurfaceNode,
             #[cfg(feature = "v4_20")]
             ffi::GSK_COMPONENT_TRANSFER_NODE => Self::ComponentTransferNode,
+            #[cfg(feature = "v4_22")]
+            ffi::GSK_COPY_NODE => Self::CopyNode,
+            #[cfg(feature = "v4_22")]
+            ffi::GSK_PASTE_NODE => Self::PasteNode,
+            #[cfg(feature = "v4_22")]
+            ffi::GSK_COMPOSITE_NODE => Self::CompositeNode,
             value => Self::__Unknown(value),
         }
     }

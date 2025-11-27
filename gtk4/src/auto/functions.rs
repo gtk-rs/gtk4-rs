@@ -13,6 +13,22 @@ use crate::{
 use glib::{prelude::*, translate::*};
 use std::boxed::Box as Box_;
 
+#[cfg(feature = "v4_22")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+#[doc(alias = "gtk_accelerator_get_accessible_label")]
+pub fn accelerator_get_accessible_label(
+    accelerator_key: u32,
+    accelerator_mods: gdk::ModifierType,
+) -> glib::GString {
+    assert_initialized_main_thread!();
+    unsafe {
+        from_glib_full(ffi::gtk_accelerator_get_accessible_label(
+            accelerator_key,
+            accelerator_mods.into_glib(),
+        ))
+    }
+}
+
 #[doc(alias = "gtk_accelerator_get_default_mod_mask")]
 pub fn accelerator_get_default_mod_mask() -> gdk::ModifierType {
     assert_initialized_main_thread!();

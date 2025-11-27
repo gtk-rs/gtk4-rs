@@ -176,6 +176,19 @@ pub trait SnapshotExt: IsA<Snapshot> + 'static {
         }
     }
 
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    #[doc(alias = "gtk_snapshot_append_paste")]
+    fn append_paste(&self, bounds: &graphene::Rect, nth: usize) {
+        unsafe {
+            ffi::gtk_snapshot_append_paste(
+                self.as_ref().to_glib_none().0,
+                bounds.to_glib_none().0,
+                nth,
+            );
+        }
+    }
+
     #[doc(alias = "gtk_snapshot_append_radial_gradient")]
     fn append_radial_gradient(
         &self,
@@ -389,6 +402,22 @@ pub trait SnapshotExt: IsA<Snapshot> + 'static {
                 blue.to_glib_none().0,
                 alpha.to_glib_none().0,
             );
+        }
+    }
+
+    //#[cfg(feature = "v4_22")]
+    //#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    //#[doc(alias = "gtk_snapshot_push_composite")]
+    //fn push_composite(&self, op: /*Ignored*/gsk::PorterDuff) {
+    //    unsafe { TODO: call ffi:gtk_snapshot_push_composite() }
+    //}
+
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    #[doc(alias = "gtk_snapshot_push_copy")]
+    fn push_copy(&self) {
+        unsafe {
+            ffi::gtk_snapshot_push_copy(self.as_ref().to_glib_none().0);
         }
     }
 
