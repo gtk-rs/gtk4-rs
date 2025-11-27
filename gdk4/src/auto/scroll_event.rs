@@ -2,6 +2,9 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+use crate::ScrollRelativeDirection;
 #[cfg(feature = "v4_8")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
 use crate::ScrollUnit;
@@ -44,6 +47,18 @@ impl ScrollEvent {
     #[doc(alias = "get_direction")]
     pub fn direction(&self) -> ScrollDirection {
         unsafe { from_glib(ffi::gdk_scroll_event_get_direction(self.to_glib_none().0)) }
+    }
+
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    #[doc(alias = "gdk_scroll_event_get_relative_direction")]
+    #[doc(alias = "get_relative_direction")]
+    pub fn relative_direction(&self) -> ScrollRelativeDirection {
+        unsafe {
+            from_glib(ffi::gdk_scroll_event_get_relative_direction(
+                self.to_glib_none().0,
+            ))
+        }
     }
 
     #[cfg(feature = "v4_8")]
