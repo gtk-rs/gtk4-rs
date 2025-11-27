@@ -24,7 +24,6 @@ macro_rules! skip_assert_initialized {
 
 #[allow(clippy::derived_hash_with_manual_eq)]
 #[allow(clippy::too_many_arguments)]
-#[allow(clippy::empty_line_after_outer_attr)]
 #[allow(unused_imports)]
 mod auto;
 
