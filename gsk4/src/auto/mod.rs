@@ -40,11 +40,25 @@ mod component_transfer_node;
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
 pub use self::component_transfer_node::ComponentTransferNode;
 
+#[cfg(feature = "v4_22")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+mod composite_node;
+#[cfg(feature = "v4_22")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+pub use self::composite_node::CompositeNode;
+
 mod conic_gradient_node;
 pub use self::conic_gradient_node::ConicGradientNode;
 
 mod container_node;
 pub use self::container_node::ContainerNode;
+
+#[cfg(feature = "v4_22")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+mod copy_node;
+#[cfg(feature = "v4_22")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+pub use self::copy_node::CopyNode;
 
 mod cross_fade_node;
 pub use self::cross_fade_node::CrossFadeNode;
@@ -92,6 +106,13 @@ pub use self::opacity_node::OpacityNode;
 
 mod outset_shadow_node;
 pub use self::outset_shadow_node::OutsetShadowNode;
+
+#[cfg(feature = "v4_22")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+mod paste_node;
+#[cfg(feature = "v4_22")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+pub use self::paste_node::PasteNode;
 
 mod radial_gradient_node;
 pub use self::radial_gradient_node::RadialGradientNode;

@@ -22,6 +22,7 @@ generate = [
     "Gsk.ColorNode",
     "Gsk.ComponentTransfer",
     "Gsk.ConicGradientNode",
+    "Gsk.CopyNode",
     "Gsk.Corner",
     "Gsk.CrossFadeNode",
     "Gsk.DebugNode",
@@ -37,6 +38,7 @@ generate = [
     "Gsk.MaskNode",
     "Gsk.OpacityNode",
     "Gsk.OutsetShadowNode",
+    "Gsk.PasteNode",
     "Gsk.PathDirection",
     "Gsk.PathForeachFlags",
     "Gsk.PathIntersection",
@@ -124,6 +126,12 @@ name = "Gsk.ComponentTransferNode"
 status = "generate"
 # See https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/8880
 version = "4.20"
+
+[[object]]
+status = "generate"
+name = "Gsk.CompositeNode"
+# See https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/9197
+version = "4.22"
 
 [[object]]
 name = "Gsk.ContainerNode"

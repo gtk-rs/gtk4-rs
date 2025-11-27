@@ -45,8 +45,14 @@ mod clip_node;
 mod color_matrix_node;
 mod color_node;
 mod color_stop;
+#[cfg(feature = "v4_22")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+mod composite_node;
 mod conic_gradient_node;
 mod container_node;
+#[cfg(feature = "v4_22")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+mod copy_node;
 mod cross_fade_node;
 mod debug_node;
 #[cfg(feature = "v4_14")]
@@ -65,6 +71,9 @@ mod ngl_renderer;
 mod opacity_node;
 mod outset_shadow_node;
 mod parse_location;
+#[cfg(feature = "v4_22")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+mod paste_node;
 #[cfg(feature = "v4_14")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
 mod path;
