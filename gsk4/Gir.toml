@@ -231,6 +231,10 @@ status = "generate"
         const = true
 
 [[object]]
+name = "Gsk.RenderReplay"
+status = "manual"
+
+[[object]]
 name = "Gsk.RoundedRect"
 status = "manual"
     [[object.function]]
