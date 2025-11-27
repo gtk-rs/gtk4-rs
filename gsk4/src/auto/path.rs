@@ -175,9 +175,9 @@ impl PartialEq for Path {
         self.equal(other)
     }
 }
+
 #[cfg(feature = "v4_22")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
-
 impl Eq for Path {}
 
 impl std::fmt::Display for Path {
