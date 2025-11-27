@@ -42,6 +42,7 @@ generate = [
     "Gsk.PathIntersection",
     "Gsk.PathMeasure",
     "Gsk.PathOperation",
+    "Gsk.PorterDuff",
     "Gsk.RadialGradientNode",
     "Gsk.RenderNodeType",
     "Gsk.RepeatingLinearGradientNode",

@@ -221,6 +221,9 @@ pub use self::enums::PathIntersection;
 #[cfg(feature = "v4_14")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
 pub use self::enums::PathOperation;
+#[cfg(feature = "v4_22")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+pub use self::enums::PorterDuff;
 pub use self::enums::RenderNodeType;
 pub use self::enums::ScalingFilter;
 pub use self::enums::SerializationError;

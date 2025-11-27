@@ -374,6 +374,7 @@ manual = [
     "Gsk.MaskMode",
     "Gsk.MaskNode",
     "Gsk.Path",
+    "Gsk.PorterDuff",
     "Gsk.Renderer",
     "Gsk.RenderNode",
     "Gsk.RoundedRect",
