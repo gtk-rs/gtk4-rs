@@ -22,6 +22,7 @@ int main() {
     printf("%s;%zu;%zu\n", "GskPathIntersection", sizeof(GskPathIntersection), alignof(GskPathIntersection));
     printf("%s;%zu;%zu\n", "GskPathOperation", sizeof(GskPathOperation), alignof(GskPathOperation));
     printf("%s;%zu;%zu\n", "GskPathPoint", sizeof(GskPathPoint), alignof(GskPathPoint));
+    printf("%s;%zu;%zu\n", "GskPorterDuff", sizeof(GskPorterDuff), alignof(GskPorterDuff));
     printf("%s;%zu;%zu\n", "GskRenderNodeType", sizeof(GskRenderNodeType), alignof(GskRenderNodeType));
     printf("%s;%zu;%zu\n", "GskRoundedRect", sizeof(GskRoundedRect), alignof(GskRoundedRect));
     printf("%s;%zu;%zu\n", "GskScalingFilter", sizeof(GskScalingFilter), alignof(GskScalingFilter));

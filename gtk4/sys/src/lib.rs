@@ -1144,6 +1144,8 @@ pub const GTK_DEBUG_CSS: GtkDebugFlags = 1048576;
 #[cfg(feature = "v4_18")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_18")))]
 pub const GTK_DEBUG_BUILDER: GtkDebugFlags = 2097152;
+#[cfg(feature = "v4_22")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
 pub const GTK_DEBUG_SESSION: GtkDebugFlags = 4194304;
 
 pub type GtkDialogFlags = c_uint;
@@ -18407,6 +18409,13 @@ extern "C" {
         spread: c_float,
         blur_radius: c_float,
     );
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    pub fn gtk_snapshot_append_paste(
+        snapshot: *mut GtkSnapshot,
+        bounds: *const graphene::graphene_rect_t,
+        nth: size_t,
+    );
     pub fn gtk_snapshot_append_radial_gradient(
         snapshot: *mut GtkSnapshot,
         bounds: *const graphene::graphene_rect_t,
@@ -18486,6 +18495,12 @@ extern "C" {
         blue: *const gsk::GskComponentTransfer,
         alpha: *const gsk::GskComponentTransfer,
     );
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    pub fn gtk_snapshot_push_composite(snapshot: *mut GtkSnapshot, op: gsk::GskPorterDuff);
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    pub fn gtk_snapshot_push_copy(snapshot: *mut GtkSnapshot);
     pub fn gtk_snapshot_push_cross_fade(snapshot: *mut GtkSnapshot, progress: c_double);
     pub fn gtk_snapshot_push_debug(snapshot: *mut GtkSnapshot, message: *const c_char, ...);
     #[cfg(feature = "v4_14")]
@@ -21767,6 +21782,12 @@ extern "C" {
     //=========================================================================
     // Other functions
     //=========================================================================
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    pub fn gtk_accelerator_get_accessible_label(
+        accelerator_key: c_uint,
+        accelerator_mods: gdk::GdkModifierType,
+    ) -> *mut c_char;
     pub fn gtk_accelerator_get_default_mod_mask() -> gdk::GdkModifierType;
     pub fn gtk_accelerator_get_label(
         accelerator_key: c_uint,
