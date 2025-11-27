@@ -84,6 +84,9 @@ mod path_builder;
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
 mod path_point;
 mod radial_gradient_node;
+#[cfg(feature = "v4_22")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+mod render_replay;
 mod repeat_node;
 mod repeating_linear_gradient_node;
 mod repeating_radial_gradient_node;
@@ -109,5 +112,8 @@ pub use color_stop::ColorStop;
 #[cfg_attr(feature = "v4_4", deprecated = "Since 4.4")]
 pub use ngl_renderer::NglRenderer;
 pub use parse_location::ParseLocation;
+#[cfg(feature = "v4_22")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+pub use render_replay::RenderReplay;
 pub use rounded_rect::RoundedRect;
 pub use shadow::Shadow;
