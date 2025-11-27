@@ -1234,6 +1234,160 @@ impl From<PathOperation> for glib::Value {
     }
 }
 
+#[cfg(feature = "v4_22")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
+#[doc(alias = "GskPorterDuff")]
+pub enum PorterDuff {
+    #[doc(alias = "GSK_PORTER_DUFF_SOURCE")]
+    Source,
+    #[doc(alias = "GSK_PORTER_DUFF_DEST")]
+    Dest,
+    #[doc(alias = "GSK_PORTER_DUFF_SOURCE_OVER_DEST")]
+    SourceOverDest,
+    #[doc(alias = "GSK_PORTER_DUFF_DEST_OVER_SOURCE")]
+    DestOverSource,
+    #[doc(alias = "GSK_PORTER_DUFF_SOURCE_IN_DEST")]
+    SourceInDest,
+    #[doc(alias = "GSK_PORTER_DUFF_DEST_IN_SOURCE")]
+    DestInSource,
+    #[doc(alias = "GSK_PORTER_DUFF_SOURCE_OUT_DEST")]
+    SourceOutDest,
+    #[doc(alias = "GSK_PORTER_DUFF_DEST_OUT_SOURCE")]
+    DestOutSource,
+    #[doc(alias = "GSK_PORTER_DUFF_SOURCE_ATOP_DEST")]
+    SourceAtopDest,
+    #[doc(alias = "GSK_PORTER_DUFF_DEST_ATOP_SOURCE")]
+    DestAtopSource,
+    #[doc(alias = "GSK_PORTER_DUFF_XOR")]
+    Xor,
+    #[doc(alias = "GSK_PORTER_DUFF_CLEAR")]
+    Clear,
+    #[doc(hidden)]
+    __Unknown(i32),
+}
+
+#[cfg(feature = "v4_22")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+#[doc(hidden)]
+impl IntoGlib for PorterDuff {
+    type GlibType = ffi::GskPorterDuff;
+
+    #[inline]
+    fn into_glib(self) -> ffi::GskPorterDuff {
+        match self {
+            Self::Source => ffi::GSK_PORTER_DUFF_SOURCE,
+            Self::Dest => ffi::GSK_PORTER_DUFF_DEST,
+            Self::SourceOverDest => ffi::GSK_PORTER_DUFF_SOURCE_OVER_DEST,
+            Self::DestOverSource => ffi::GSK_PORTER_DUFF_DEST_OVER_SOURCE,
+            Self::SourceInDest => ffi::GSK_PORTER_DUFF_SOURCE_IN_DEST,
+            Self::DestInSource => ffi::GSK_PORTER_DUFF_DEST_IN_SOURCE,
+            Self::SourceOutDest => ffi::GSK_PORTER_DUFF_SOURCE_OUT_DEST,
+            Self::DestOutSource => ffi::GSK_PORTER_DUFF_DEST_OUT_SOURCE,
+            Self::SourceAtopDest => ffi::GSK_PORTER_DUFF_SOURCE_ATOP_DEST,
+            Self::DestAtopSource => ffi::GSK_PORTER_DUFF_DEST_ATOP_SOURCE,
+            Self::Xor => ffi::GSK_PORTER_DUFF_XOR,
+            Self::Clear => ffi::GSK_PORTER_DUFF_CLEAR,
+            Self::__Unknown(value) => value,
+        }
+    }
+}
+
+#[cfg(feature = "v4_22")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+#[doc(hidden)]
+impl FromGlib<ffi::GskPorterDuff> for PorterDuff {
+    #[inline]
+    unsafe fn from_glib(value: ffi::GskPorterDuff) -> Self {
+        skip_assert_initialized!();
+
+        match value {
+            ffi::GSK_PORTER_DUFF_SOURCE => Self::Source,
+            ffi::GSK_PORTER_DUFF_DEST => Self::Dest,
+            ffi::GSK_PORTER_DUFF_SOURCE_OVER_DEST => Self::SourceOverDest,
+            ffi::GSK_PORTER_DUFF_DEST_OVER_SOURCE => Self::DestOverSource,
+            ffi::GSK_PORTER_DUFF_SOURCE_IN_DEST => Self::SourceInDest,
+            ffi::GSK_PORTER_DUFF_DEST_IN_SOURCE => Self::DestInSource,
+            ffi::GSK_PORTER_DUFF_SOURCE_OUT_DEST => Self::SourceOutDest,
+            ffi::GSK_PORTER_DUFF_DEST_OUT_SOURCE => Self::DestOutSource,
+            ffi::GSK_PORTER_DUFF_SOURCE_ATOP_DEST => Self::SourceAtopDest,
+            ffi::GSK_PORTER_DUFF_DEST_ATOP_SOURCE => Self::DestAtopSource,
+            ffi::GSK_PORTER_DUFF_XOR => Self::Xor,
+            ffi::GSK_PORTER_DUFF_CLEAR => Self::Clear,
+            value => Self::__Unknown(value),
+        }
+    }
+}
+
+#[cfg(feature = "v4_22")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+impl StaticType for PorterDuff {
+    #[inline]
+    #[doc(alias = "gsk_porter_duff_get_type")]
+    fn static_type() -> glib::Type {
+        unsafe { from_glib(ffi::gsk_porter_duff_get_type()) }
+    }
+}
+
+#[cfg(feature = "v4_22")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+impl glib::HasParamSpec for PorterDuff {
+    type ParamSpec = glib::ParamSpecEnum;
+    type SetValue = Self;
+    type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
+
+    fn param_spec_builder() -> Self::BuilderFn {
+        Self::ParamSpec::builder_with_default
+    }
+}
+
+#[cfg(feature = "v4_22")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+impl glib::value::ValueType for PorterDuff {
+    type Type = Self;
+}
+
+#[cfg(feature = "v4_22")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+unsafe impl<'a> glib::value::FromValue<'a> for PorterDuff {
+    type Checker = glib::value::GenericValueTypeChecker<Self>;
+
+    #[inline]
+    unsafe fn from_value(value: &'a glib::Value) -> Self {
+        skip_assert_initialized!();
+        from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+    }
+}
+
+#[cfg(feature = "v4_22")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+impl ToValue for PorterDuff {
+    #[inline]
+    fn to_value(&self) -> glib::Value {
+        let mut value = glib::Value::for_value_type::<Self>();
+        unsafe {
+            glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
+        }
+        value
+    }
+
+    #[inline]
+    fn value_type(&self) -> glib::Type {
+        Self::static_type()
+    }
+}
+
+#[cfg(feature = "v4_22")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+impl From<PorterDuff> for glib::Value {
+    #[inline]
+    fn from(v: PorterDuff) -> Self {
+        skip_assert_initialized!();
+        ToValue::to_value(&v)
+    }
+}
+
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GskRenderNodeType")]

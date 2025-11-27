@@ -405,12 +405,14 @@ pub trait SnapshotExt: IsA<Snapshot> + 'static {
         }
     }
 
-    //#[cfg(feature = "v4_22")]
-    //#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
-    //#[doc(alias = "gtk_snapshot_push_composite")]
-    //fn push_composite(&self, op: /*Ignored*/gsk::PorterDuff) {
-    //    unsafe { TODO: call ffi:gtk_snapshot_push_composite() }
-    //}
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    #[doc(alias = "gtk_snapshot_push_composite")]
+    fn push_composite(&self, op: gsk::PorterDuff) {
+        unsafe {
+            ffi::gtk_snapshot_push_composite(self.as_ref().to_glib_none().0, op.into_glib());
+        }
+    }
 
     #[cfg(feature = "v4_22")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
