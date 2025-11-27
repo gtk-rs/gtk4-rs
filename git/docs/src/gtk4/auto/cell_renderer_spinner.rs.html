@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/auto/cell_renderer_spinner.rs`."><title>cell_renderer_spinner.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-ca0dd0c4.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.93.0-nightly (80d8f292d 2025-11-25)" data-channel="nightly" data-search-js="search-680b2199.js" data-stringdex-js="stringdex-a3946164.js" data-settings-js="settings-c38705f0.js" ><script src="../../../static.files/storage-e2aeef58.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-a410ff4d.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-263c88ec.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/auto/cell_renderer_spinner.rs`."><title>cell_renderer_spinner.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-ca0dd0c4.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.93.0-nightly (1be6b13be 2025-11-26)" data-channel="nightly" data-search-js="search-680b2199.js" data-stringdex-js="stringdex-a3946164.js" data-settings-js="settings-c38705f0.js" ><script src="../../../static.files/storage-e2aeef58.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-a410ff4d.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-263c88ec.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
 
@@ -76,7 +76,7 @@
 <a href=#3 id=3 data-nosnippet>3</a>// DO NOT EDIT
 <a href=#4 id=4 data-nosnippet>4</a></span><span class="attr">#![allow(deprecated)]
 <a href=#5 id=5 data-nosnippet>5</a>
-<a href=#6 id=6 data-nosnippet>6</a></span><span class="kw">use crate</span>::{<a href="../../../gtk4_sys/index.html">ffi</a>, <a href="cell_renderer.rs.html#18-183">CellRenderer</a>, <a href="enums.rs.html#3186-3201">CellRendererMode</a>, <a href="enums.rs.html#5978-5990">IconSize</a>};
+<a href=#6 id=6 data-nosnippet>6</a></span><span class="kw">use crate</span>::{<a href="../../../gtk4_sys/index.html">ffi</a>, <a href="cell_renderer.rs.html#18-183">CellRenderer</a>, <a href="enums.rs.html#3194-3209">CellRendererMode</a>, <a href="enums.rs.html#5986-5998">IconSize</a>};
 <a href=#7 id=7 data-nosnippet>7</a><span class="kw">use </span>glib::{
 <a href=#8 id=8 data-nosnippet>8</a>    <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/prelude/index.html">prelude</a>::<span class="kw-2">*</span>,
 <a href=#9 id=9 data-nosnippet>9</a>    signal::{<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/fn.connect_raw.html">connect_raw</a>, <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html">SignalHandlerId</a>},
@@ -254,12 +254,12 @@
 <a href=#181 id=181 data-nosnippet>181</a>    }
 <a href=#182 id=182 data-nosnippet>182</a>
 <a href=#183 id=183 data-nosnippet>183</a>    <span class="doccomment">/// The [`IconSize`][crate::IconSize] value that specifies the size of the rendered spinner.
-<a href=#184 id=184 data-nosnippet>184</a>    </span><span class="kw">pub fn </span>size(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="enums.rs.html#5978-5990">IconSize</a> {
+<a href=#184 id=184 data-nosnippet>184</a>    </span><span class="kw">pub fn </span>size(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="enums.rs.html#5986-5998">IconSize</a> {
 <a href=#185 id=185 data-nosnippet>185</a>        ObjectExt::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.ObjectExt.html#tymethod.property">property</a>(<a class="self" href="#184">self</a>, <span class="string">"size"</span>)
 <a href=#186 id=186 data-nosnippet>186</a>    }
 <a href=#187 id=187 data-nosnippet>187</a>
 <a href=#188 id=188 data-nosnippet>188</a>    <span class="doccomment">/// The [`IconSize`][crate::IconSize] value that specifies the size of the rendered spinner.
-<a href=#189 id=189 data-nosnippet>189</a>    </span><span class="kw">pub fn </span>set_size(<span class="kw-2">&amp;</span><span class="self">self</span>, size: <a href="enums.rs.html#5978-5990">IconSize</a>) {
+<a href=#189 id=189 data-nosnippet>189</a>    </span><span class="kw">pub fn </span>set_size(<span class="kw-2">&amp;</span><span class="self">self</span>, size: <a href="enums.rs.html#5986-5998">IconSize</a>) {
 <a href=#190 id=190 data-nosnippet>190</a>        ObjectExt::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.ObjectExt.html#tymethod.set_property">set_property</a>(<a class="self" href="#189">self</a>, <span class="string">"size"</span>, <a href="#189">size</a>)
 <a href=#191 id=191 data-nosnippet>191</a>    }
 <a href=#192 id=192 data-nosnippet>192</a>
@@ -374,7 +374,7 @@
 <a href=#301 id=301 data-nosnippet>301</a>    }
 <a href=#302 id=302 data-nosnippet>302</a>
 <a href=#303 id=303 data-nosnippet>303</a>    <span class="doccomment">/// The [`IconSize`][crate::IconSize] value that specifies the size of the rendered spinner.
-<a href=#304 id=304 data-nosnippet>304</a>    </span><span class="kw">pub fn </span>size(<span class="self">self</span>, size: <a href="enums.rs.html#5978-5990">IconSize</a>) -&gt; <span class="self">Self </span>{
+<a href=#304 id=304 data-nosnippet>304</a>    </span><span class="kw">pub fn </span>size(<span class="self">self</span>, size: <a href="enums.rs.html#5986-5998">IconSize</a>) -&gt; <span class="self">Self </span>{
 <a href=#305 id=305 data-nosnippet>305</a>        <span class="self">Self </span>{
 <a href=#306 id=306 data-nosnippet>306</a>            builder: <a class="self" href="#304">self</a>.builder.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/struct.ObjectBuilder.html#method.property">property</a>(<span class="string">"size"</span>, <a href="#304">size</a>),
 <a href=#307 id=307 data-nosnippet>307</a>        }
@@ -423,7 +423,7 @@
 <a href=#350 id=350 data-nosnippet>350</a>        }
 <a href=#351 id=351 data-nosnippet>351</a>    }
 <a href=#352 id=352 data-nosnippet>352</a>
-<a href=#353 id=353 data-nosnippet>353</a>    <span class="kw">pub fn </span>mode(<span class="self">self</span>, mode: <a href="enums.rs.html#3186-3201">CellRendererMode</a>) -&gt; <span class="self">Self </span>{
+<a href=#353 id=353 data-nosnippet>353</a>    <span class="kw">pub fn </span>mode(<span class="self">self</span>, mode: <a href="enums.rs.html#3194-3209">CellRendererMode</a>) -&gt; <span class="self">Self </span>{
 <a href=#354 id=354 data-nosnippet>354</a>        <span class="self">Self </span>{
 <a href=#355 id=355 data-nosnippet>355</a>            builder: <a class="self" href="#353">self</a>.builder.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/struct.ObjectBuilder.html#method.property">property</a>(<span class="string">"mode"</span>, <a href="#353">mode</a>),
 <a href=#356 id=356 data-nosnippet>356</a>        }

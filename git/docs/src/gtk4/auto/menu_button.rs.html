@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/auto/menu_button.rs`."><title>menu_button.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-ca0dd0c4.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.93.0-nightly (80d8f292d 2025-11-25)" data-channel="nightly" data-search-js="search-680b2199.js" data-stringdex-js="stringdex-a3946164.js" data-settings-js="settings-c38705f0.js" ><script src="../../../static.files/storage-e2aeef58.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-a410ff4d.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-263c88ec.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/auto/menu_button.rs`."><title>menu_button.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-ca0dd0c4.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.93.0-nightly (1be6b13be 2025-11-26)" data-channel="nightly" data-search-js="search-680b2199.js" data-stringdex-js="stringdex-a3946164.js" data-settings-js="settings-c38705f0.js" ><script src="../../../static.files/storage-e2aeef58.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-a410ff4d.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-263c88ec.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
 
@@ -76,8 +76,8 @@
 <a href=#3 id=3 data-nosnippet>3</a>// DO NOT EDIT
 <a href=#4 id=4 data-nosnippet>4</a>
 <a href=#5 id=5 data-nosnippet>5</a></span><span class="kw">use crate</span>::{
-<a href=#6 id=6 data-nosnippet>6</a>    <a href="../../../gtk4_sys/index.html">ffi</a>, <a href="accessible.rs.html#19-70">Accessible</a>, <a href="enums.rs.html#1021-1321">AccessibleRole</a>, <a href="../enums.rs.html#77-107">Align</a>, <a href="enums.rs.html#2232-2250">ArrowType</a>, <a href="buildable.rs.html#8-31">Buildable</a>, <a href="constraint_target.rs.html#8-23">ConstraintTarget</a>, <a href="layout_manager.rs.html#8-70">LayoutManager</a>,
-<a href=#7 id=7 data-nosnippet>7</a>    <a href="enums.rs.html#8368-8379">Overflow</a>, <a href="popover.rs.html#17-622">Popover</a>, <a href="widget.rs.html#19-864">Widget</a>,
+<a href=#6 id=6 data-nosnippet>6</a>    <a href="../../../gtk4_sys/index.html">ffi</a>, <a href="accessible.rs.html#19-70">Accessible</a>, <a href="enums.rs.html#1029-1329">AccessibleRole</a>, <a href="../enums.rs.html#77-107">Align</a>, <a href="enums.rs.html#2240-2258">ArrowType</a>, <a href="buildable.rs.html#8-31">Buildable</a>, <a href="constraint_target.rs.html#8-23">ConstraintTarget</a>, <a href="layout_manager.rs.html#8-70">LayoutManager</a>,
+<a href=#7 id=7 data-nosnippet>7</a>    <a href="enums.rs.html#8376-8387">Overflow</a>, <a href="popover.rs.html#17-622">Popover</a>, <a href="widget.rs.html#19-864">Widget</a>,
 <a href=#8 id=8 data-nosnippet>8</a>};
 <a href=#9 id=9 data-nosnippet>9</a><span class="attr">#[cfg(feature = <span class="string">"v4_4"</span>)]
 <a href=#10 id=10 data-nosnippet>10</a>#[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_4"</span>)))]
@@ -780,7 +780,7 @@
 <a href=#707 id=707 data-nosnippet>707</a>    /// a [`ArrowType`][crate::ArrowType] value
 <a href=#708 id=708 data-nosnippet>708</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_menu_button_get_direction"</span>)]
 <a href=#709 id=709 data-nosnippet>709</a>    #[doc(alias = <span class="string">"get_direction"</span>)]
-<a href=#710 id=710 data-nosnippet>710</a>    </span><span class="kw">pub fn </span>direction(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="enums.rs.html#2232-2250">ArrowType</a> {
+<a href=#710 id=710 data-nosnippet>710</a>    </span><span class="kw">pub fn </span>direction(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="enums.rs.html#2240-2258">ArrowType</a> {
 <a href=#711 id=711 data-nosnippet>711</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_menu_button_get_direction.html">gtk_menu_button_get_direction</a>(<a class="self" href="#710">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#712 id=712 data-nosnippet>712</a>    }
 <a href=#713 id=713 data-nosnippet>713</a>
@@ -1026,7 +1026,7 @@
 <a href=#953 id=953 data-nosnippet>953</a>    /// a [`ArrowType`][crate::ArrowType]
 <a href=#954 id=954 data-nosnippet>954</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_menu_button_set_direction"</span>)]
 <a href=#955 id=955 data-nosnippet>955</a>    #[doc(alias = <span class="string">"direction"</span>)]
-<a href=#956 id=956 data-nosnippet>956</a>    </span><span class="kw">pub fn </span>set_direction(<span class="kw-2">&amp;</span><span class="self">self</span>, direction: <a href="enums.rs.html#2232-2250">ArrowType</a>) {
+<a href=#956 id=956 data-nosnippet>956</a>    </span><span class="kw">pub fn </span>set_direction(<span class="kw-2">&amp;</span><span class="self">self</span>, direction: <a href="enums.rs.html#2240-2258">ArrowType</a>) {
 <a href=#957 id=957 data-nosnippet>957</a>        <span class="kw">unsafe </span>{
 <a href=#958 id=958 data-nosnippet>958</a>            ffi::<a href="../../../gtk4_sys/fn.gtk_menu_button_set_direction.html">gtk_menu_button_set_direction</a>(<a class="self" href="#956">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>, <a href="#956">direction</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>());
 <a href=#959 id=959 data-nosnippet>959</a>        }
@@ -1538,7 +1538,7 @@
 <a href=#1465 id=1465 data-nosnippet>1465</a>
 <a href=#1466 id=1466 data-nosnippet>1466</a>    <span class="doccomment">/// The [`ArrowType`][crate::ArrowType] representing the direction in which the
 <a href=#1467 id=1467 data-nosnippet>1467</a>    /// menu or popover will be popped out.
-<a href=#1468 id=1468 data-nosnippet>1468</a>    </span><span class="kw">pub fn </span>direction(<span class="self">self</span>, direction: <a href="enums.rs.html#2232-2250">ArrowType</a>) -&gt; <span class="self">Self </span>{
+<a href=#1468 id=1468 data-nosnippet>1468</a>    </span><span class="kw">pub fn </span>direction(<span class="self">self</span>, direction: <a href="enums.rs.html#2240-2258">ArrowType</a>) -&gt; <span class="self">Self </span>{
 <a href=#1469 id=1469 data-nosnippet>1469</a>        <span class="self">Self </span>{
 <a href=#1470 id=1470 data-nosnippet>1470</a>            builder: <a class="self" href="#1468">self</a>.builder.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/struct.ObjectBuilder.html#method.property">property</a>(<span class="string">"direction"</span>, <a href="#1468">direction</a>),
 <a href=#1471 id=1471 data-nosnippet>1471</a>        }
@@ -1797,7 +1797,7 @@
 <a href=#1724 id=1724 data-nosnippet>1724</a>    ///
 <a href=#1725 id=1725 data-nosnippet>1725</a>    /// This property is meant to be set by widget implementations,
 <a href=#1726 id=1726 data-nosnippet>1726</a>    /// typically in their instance init function.
-<a href=#1727 id=1727 data-nosnippet>1727</a>    </span><span class="kw">pub fn </span>overflow(<span class="self">self</span>, overflow: <a href="enums.rs.html#8368-8379">Overflow</a>) -&gt; <span class="self">Self </span>{
+<a href=#1727 id=1727 data-nosnippet>1727</a>    </span><span class="kw">pub fn </span>overflow(<span class="self">self</span>, overflow: <a href="enums.rs.html#8376-8387">Overflow</a>) -&gt; <span class="self">Self </span>{
 <a href=#1728 id=1728 data-nosnippet>1728</a>        <span class="self">Self </span>{
 <a href=#1729 id=1729 data-nosnippet>1729</a>            builder: <a class="self" href="#1727">self</a>.builder.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/struct.ObjectBuilder.html#method.property">property</a>(<span class="string">"overflow"</span>, <a href="#1727">overflow</a>),
 <a href=#1730 id=1730 data-nosnippet>1730</a>        }
@@ -1896,7 +1896,7 @@
 <a href=#1823 id=1823 data-nosnippet>1823</a>    <span class="doccomment">/// The accessible role of the given [`Accessible`][crate::Accessible] implementation.
 <a href=#1824 id=1824 data-nosnippet>1824</a>    ///
 <a href=#1825 id=1825 data-nosnippet>1825</a>    /// The accessible role cannot be changed once set.
-<a href=#1826 id=1826 data-nosnippet>1826</a>    </span><span class="kw">pub fn </span>accessible_role(<span class="self">self</span>, accessible_role: <a href="enums.rs.html#1021-1321">AccessibleRole</a>) -&gt; <span class="self">Self </span>{
+<a href=#1826 id=1826 data-nosnippet>1826</a>    </span><span class="kw">pub fn </span>accessible_role(<span class="self">self</span>, accessible_role: <a href="enums.rs.html#1029-1329">AccessibleRole</a>) -&gt; <span class="self">Self </span>{
 <a href=#1827 id=1827 data-nosnippet>1827</a>        <span class="self">Self </span>{
 <a href=#1828 id=1828 data-nosnippet>1828</a>            builder: <a class="self" href="#1826">self</a>.builder.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/struct.ObjectBuilder.html#method.property">property</a>(<span class="string">"accessible-role"</span>, <a href="#1826">accessible_role</a>),
 <a href=#1829 id=1829 data-nosnippet>1829</a>        }

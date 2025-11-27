@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gdk4/sys/src/lib.rs`."><title>lib.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-ca0dd0c4.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gdk4_sys" data-themes="" data-resource-suffix="" data-rustdoc-version="1.93.0-nightly (80d8f292d 2025-11-25)" data-channel="nightly" data-search-js="search-680b2199.js" data-stringdex-js="stringdex-a3946164.js" data-settings-js="settings-c38705f0.js" ><script src="../../static.files/storage-e2aeef58.js"></script><script defer src="../../static.files/src-script-813739b1.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-a410ff4d.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-263c88ec.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gdk4/sys/src/lib.rs`."><title>lib.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-ca0dd0c4.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gdk4_sys" data-themes="" data-resource-suffix="" data-rustdoc-version="1.93.0-nightly (1be6b13be 2025-11-26)" data-channel="nightly" data-search-js="search-680b2199.js" data-stringdex-js="stringdex-a3946164.js" data-settings-js="settings-c38705f0.js" ><script src="../../static.files/storage-e2aeef58.js"></script><script defer src="../../static.files/src-script-813739b1.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-a410ff4d.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-263c88ec.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
 
@@ -5967,423 +5967,425 @@
 <a href=#5894 id=5894 data-nosnippet>5894</a>    // GdkScrollEvent
 <a href=#5895 id=5895 data-nosnippet>5895</a>    //=========================================================================
 <a href=#5896 id=5896 data-nosnippet>5896</a>    </span><span class="kw">pub fn </span>gdk_scroll_event_get_type() -&gt; GType;
-<a href=#5897 id=5897 data-nosnippet>5897</a>    <span class="comment">//#[cfg(feature = "v4_20")]
-<a href=#5898 id=5898 data-nosnippet>5898</a>    //#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
-<a href=#5899 id=5899 data-nosnippet>5899</a>    //pub fn gdk_scroll_event_get_relative_direction(event: /*Metadata mismatch*/*mut [c:type mismatch GdkEvent != GdkScrollRelativeDirection of ScrollRelativeDirection]) -&gt; GdkScrollRelativeDirection;
-<a href=#5900 id=5900 data-nosnippet>5900</a>    </span><span class="kw">pub fn </span>gdk_scroll_event_get_deltas(
-<a href=#5901 id=5901 data-nosnippet>5901</a>        event: <span class="kw-2">*mut </span><a href="#3957-3960">GdkScrollEvent</a>,
-<a href=#5902 id=5902 data-nosnippet>5902</a>        delta_x: <span class="kw-2">*mut </span><a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_double.html">c_double</a>,
-<a href=#5903 id=5903 data-nosnippet>5903</a>        delta_y: <span class="kw-2">*mut </span><a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_double.html">c_double</a>,
-<a href=#5904 id=5904 data-nosnippet>5904</a>    );
-<a href=#5905 id=5905 data-nosnippet>5905</a>    <span class="kw">pub fn </span>gdk_scroll_event_get_direction(event: <span class="kw-2">*mut </span><a href="#3957-3960">GdkScrollEvent</a>) -&gt; <a href="#348">GdkScrollDirection</a>;
-<a href=#5906 id=5906 data-nosnippet>5906</a>    <span class="attr">#[cfg(feature = <span class="string">"v4_8"</span>)]
-<a href=#5907 id=5907 data-nosnippet>5907</a>    #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_8"</span>)))]
-<a href=#5908 id=5908 data-nosnippet>5908</a>    </span><span class="kw">pub fn </span>gdk_scroll_event_get_unit(event: <span class="kw-2">*mut </span><a href="#3957-3960">GdkScrollEvent</a>) -&gt; <a href="#360">GdkScrollUnit</a>;
-<a href=#5909 id=5909 data-nosnippet>5909</a>    <span class="kw">pub fn </span>gdk_scroll_event_is_stop(event: <span class="kw-2">*mut </span><a href="#3957-3960">GdkScrollEvent</a>) -&gt; gboolean;
-<a href=#5910 id=5910 data-nosnippet>5910</a>
-<a href=#5911 id=5911 data-nosnippet>5911</a>    <span class="comment">//=========================================================================
-<a href=#5912 id=5912 data-nosnippet>5912</a>    // GdkSeat
-<a href=#5913 id=5913 data-nosnippet>5913</a>    //=========================================================================
-<a href=#5914 id=5914 data-nosnippet>5914</a>    </span><span class="kw">pub fn </span>gdk_seat_get_type() -&gt; GType;
-<a href=#5915 id=5915 data-nosnippet>5915</a>    <span class="kw">pub fn </span>gdk_seat_get_capabilities(seat: <span class="kw-2">*mut </span><a href="#3971-3973">GdkSeat</a>) -&gt; <a href="#2933">GdkSeatCapabilities</a>;
-<a href=#5916 id=5916 data-nosnippet>5916</a>    <span class="kw">pub fn </span>gdk_seat_get_devices(
-<a href=#5917 id=5917 data-nosnippet>5917</a>        seat: <span class="kw-2">*mut </span><a href="#3971-3973">GdkSeat</a>,
-<a href=#5918 id=5918 data-nosnippet>5918</a>        capabilities: <a href="#2933">GdkSeatCapabilities</a>,
-<a href=#5919 id=5919 data-nosnippet>5919</a>    ) -&gt; <span class="kw-2">*mut </span>glib::GList;
-<a href=#5920 id=5920 data-nosnippet>5920</a>    <span class="kw">pub fn </span>gdk_seat_get_display(seat: <span class="kw-2">*mut </span><a href="#3971-3973">GdkSeat</a>) -&gt; <span class="kw-2">*mut </span><a href="#3672-3675">GdkDisplay</a>;
-<a href=#5921 id=5921 data-nosnippet>5921</a>    <span class="kw">pub fn </span>gdk_seat_get_keyboard(seat: <span class="kw-2">*mut </span><a href="#3971-3973">GdkSeat</a>) -&gt; <span class="kw-2">*mut </span><a href="#3645-3648">GdkDevice</a>;
-<a href=#5922 id=5922 data-nosnippet>5922</a>    <span class="kw">pub fn </span>gdk_seat_get_pointer(seat: <span class="kw-2">*mut </span><a href="#3971-3973">GdkSeat</a>) -&gt; <span class="kw-2">*mut </span><a href="#3645-3648">GdkDevice</a>;
-<a href=#5923 id=5923 data-nosnippet>5923</a>    <span class="kw">pub fn </span>gdk_seat_get_tools(seat: <span class="kw-2">*mut </span><a href="#3971-3973">GdkSeat</a>) -&gt; <span class="kw-2">*mut </span>glib::GList;
-<a href=#5924 id=5924 data-nosnippet>5924</a>
-<a href=#5925 id=5925 data-nosnippet>5925</a>    <span class="comment">//=========================================================================
-<a href=#5926 id=5926 data-nosnippet>5926</a>    // GdkSnapshot
-<a href=#5927 id=5927 data-nosnippet>5927</a>    //=========================================================================
-<a href=#5928 id=5928 data-nosnippet>5928</a>    </span><span class="kw">pub fn </span>gdk_snapshot_get_type() -&gt; GType;
-<a href=#5929 id=5929 data-nosnippet>5929</a>
-<a href=#5930 id=5930 data-nosnippet>5930</a>    <span class="comment">//=========================================================================
-<a href=#5931 id=5931 data-nosnippet>5931</a>    // GdkSurface
-<a href=#5932 id=5932 data-nosnippet>5932</a>    //=========================================================================
-<a href=#5933 id=5933 data-nosnippet>5933</a>    </span><span class="kw">pub fn </span>gdk_surface_get_type() -&gt; GType;
-<a href=#5934 id=5934 data-nosnippet>5934</a>    <span class="kw">pub fn </span>gdk_surface_new_popup(parent: <span class="kw-2">*mut </span><a href="#3998-4001">GdkSurface</a>, autohide: gboolean) -&gt; <span class="kw-2">*mut </span><a href="#3998-4001">GdkSurface</a>;
-<a href=#5935 id=5935 data-nosnippet>5935</a>    <span class="kw">pub fn </span>gdk_surface_new_toplevel(display: <span class="kw-2">*mut </span><a href="#3672-3675">GdkDisplay</a>) -&gt; <span class="kw-2">*mut </span><a href="#3998-4001">GdkSurface</a>;
-<a href=#5936 id=5936 data-nosnippet>5936</a>    <span class="kw">pub fn </span>gdk_surface_beep(surface: <span class="kw-2">*mut </span><a href="#3998-4001">GdkSurface</a>);
-<a href=#5937 id=5937 data-nosnippet>5937</a>    <span class="kw">pub fn </span>gdk_surface_create_cairo_context(surface: <span class="kw-2">*mut </span><a href="#3998-4001">GdkSurface</a>) -&gt; <span class="kw-2">*mut </span><a href="#3508-3511">GdkCairoContext</a>;
-<a href=#5938 id=5938 data-nosnippet>5938</a>    <span class="kw">pub fn </span>gdk_surface_create_gl_context(
-<a href=#5939 id=5939 data-nosnippet>5939</a>        surface: <span class="kw-2">*mut </span><a href="#3998-4001">GdkSurface</a>,
-<a href=#5940 id=5940 data-nosnippet>5940</a>        error: <span class="kw-2">*mut *mut </span>glib::GError,
-<a href=#5941 id=5941 data-nosnippet>5941</a>    ) -&gt; <span class="kw-2">*mut </span><a href="#3808-3811">GdkGLContext</a>;
-<a href=#5942 id=5942 data-nosnippet>5942</a>    <span class="kw">pub fn </span>gdk_surface_create_similar_surface(
-<a href=#5943 id=5943 data-nosnippet>5943</a>        surface: <span class="kw-2">*mut </span><a href="#3998-4001">GdkSurface</a>,
-<a href=#5944 id=5944 data-nosnippet>5944</a>        content: cairo::cairo_content_t,
-<a href=#5945 id=5945 data-nosnippet>5945</a>        width: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>,
-<a href=#5946 id=5946 data-nosnippet>5946</a>        height: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>,
-<a href=#5947 id=5947 data-nosnippet>5947</a>    ) -&gt; <span class="kw-2">*mut </span>cairo::cairo_surface_t;
-<a href=#5948 id=5948 data-nosnippet>5948</a>    <span class="kw">pub fn </span>gdk_surface_create_vulkan_context(
-<a href=#5949 id=5949 data-nosnippet>5949</a>        surface: <span class="kw-2">*mut </span><a href="#3998-4001">GdkSurface</a>,
-<a href=#5950 id=5950 data-nosnippet>5950</a>        error: <span class="kw-2">*mut *mut </span>glib::GError,
-<a href=#5951 id=5951 data-nosnippet>5951</a>    ) -&gt; <span class="kw-2">*mut </span><a href="#4052-4055">GdkVulkanContext</a>;
-<a href=#5952 id=5952 data-nosnippet>5952</a>    <span class="kw">pub fn </span>gdk_surface_destroy(surface: <span class="kw-2">*mut </span><a href="#3998-4001">GdkSurface</a>);
-<a href=#5953 id=5953 data-nosnippet>5953</a>    <span class="kw">pub fn </span>gdk_surface_get_cursor(surface: <span class="kw-2">*mut </span><a href="#3998-4001">GdkSurface</a>) -&gt; <span class="kw-2">*mut </span><a href="#3605-3608">GdkCursor</a>;
-<a href=#5954 id=5954 data-nosnippet>5954</a>    <span class="kw">pub fn </span>gdk_surface_get_device_cursor(
-<a href=#5955 id=5955 data-nosnippet>5955</a>        surface: <span class="kw-2">*mut </span><a href="#3998-4001">GdkSurface</a>,
-<a href=#5956 id=5956 data-nosnippet>5956</a>        device: <span class="kw-2">*mut </span><a href="#3645-3648">GdkDevice</a>,
-<a href=#5957 id=5957 data-nosnippet>5957</a>    ) -&gt; <span class="kw-2">*mut </span><a href="#3605-3608">GdkCursor</a>;
-<a href=#5958 id=5958 data-nosnippet>5958</a>    <span class="kw">pub fn </span>gdk_surface_get_device_position(
-<a href=#5959 id=5959 data-nosnippet>5959</a>        surface: <span class="kw-2">*mut </span><a href="#3998-4001">GdkSurface</a>,
-<a href=#5960 id=5960 data-nosnippet>5960</a>        device: <span class="kw-2">*mut </span><a href="#3645-3648">GdkDevice</a>,
-<a href=#5961 id=5961 data-nosnippet>5961</a>        x: <span class="kw-2">*mut </span><a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_double.html">c_double</a>,
-<a href=#5962 id=5962 data-nosnippet>5962</a>        y: <span class="kw-2">*mut </span><a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_double.html">c_double</a>,
-<a href=#5963 id=5963 data-nosnippet>5963</a>        mask: <span class="kw-2">*mut </span><a href="#2912">GdkModifierType</a>,
-<a href=#5964 id=5964 data-nosnippet>5964</a>    ) -&gt; gboolean;
-<a href=#5965 id=5965 data-nosnippet>5965</a>    <span class="kw">pub fn </span>gdk_surface_get_display(surface: <span class="kw-2">*mut </span><a href="#3998-4001">GdkSurface</a>) -&gt; <span class="kw-2">*mut </span><a href="#3672-3675">GdkDisplay</a>;
-<a href=#5966 id=5966 data-nosnippet>5966</a>    <span class="kw">pub fn </span>gdk_surface_get_frame_clock(surface: <span class="kw-2">*mut </span><a href="#3998-4001">GdkSurface</a>) -&gt; <span class="kw-2">*mut </span><a href="#3794-3797">GdkFrameClock</a>;
-<a href=#5967 id=5967 data-nosnippet>5967</a>    <span class="kw">pub fn </span>gdk_surface_get_height(surface: <span class="kw-2">*mut </span><a href="#3998-4001">GdkSurface</a>) -&gt; <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>;
-<a href=#5968 id=5968 data-nosnippet>5968</a>    <span class="kw">pub fn </span>gdk_surface_get_mapped(surface: <span class="kw-2">*mut </span><a href="#3998-4001">GdkSurface</a>) -&gt; gboolean;
-<a href=#5969 id=5969 data-nosnippet>5969</a>    <span class="attr">#[cfg(feature = <span class="string">"v4_12"</span>)]
-<a href=#5970 id=5970 data-nosnippet>5970</a>    #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_12"</span>)))]
-<a href=#5971 id=5971 data-nosnippet>5971</a>    </span><span class="kw">pub fn </span>gdk_surface_get_scale(surface: <span class="kw-2">*mut </span><a href="#3998-4001">GdkSurface</a>) -&gt; <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_double.html">c_double</a>;
-<a href=#5972 id=5972 data-nosnippet>5972</a>    <span class="kw">pub fn </span>gdk_surface_get_scale_factor(surface: <span class="kw-2">*mut </span><a href="#3998-4001">GdkSurface</a>) -&gt; <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>;
-<a href=#5973 id=5973 data-nosnippet>5973</a>    <span class="kw">pub fn </span>gdk_surface_get_width(surface: <span class="kw-2">*mut </span><a href="#3998-4001">GdkSurface</a>) -&gt; <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>;
-<a href=#5974 id=5974 data-nosnippet>5974</a>    <span class="kw">pub fn </span>gdk_surface_hide(surface: <span class="kw-2">*mut </span><a href="#3998-4001">GdkSurface</a>);
-<a href=#5975 id=5975 data-nosnippet>5975</a>    <span class="kw">pub fn </span>gdk_surface_is_destroyed(surface: <span class="kw-2">*mut </span><a href="#3998-4001">GdkSurface</a>) -&gt; gboolean;
-<a href=#5976 id=5976 data-nosnippet>5976</a>    <span class="kw">pub fn </span>gdk_surface_queue_render(surface: <span class="kw-2">*mut </span><a href="#3998-4001">GdkSurface</a>);
-<a href=#5977 id=5977 data-nosnippet>5977</a>    <span class="kw">pub fn </span>gdk_surface_request_layout(surface: <span class="kw-2">*mut </span><a href="#3998-4001">GdkSurface</a>);
-<a href=#5978 id=5978 data-nosnippet>5978</a>    <span class="kw">pub fn </span>gdk_surface_set_cursor(surface: <span class="kw-2">*mut </span><a href="#3998-4001">GdkSurface</a>, cursor: <span class="kw-2">*mut </span><a href="#3605-3608">GdkCursor</a>);
-<a href=#5979 id=5979 data-nosnippet>5979</a>    <span class="kw">pub fn </span>gdk_surface_set_device_cursor(
-<a href=#5980 id=5980 data-nosnippet>5980</a>        surface: <span class="kw-2">*mut </span><a href="#3998-4001">GdkSurface</a>,
-<a href=#5981 id=5981 data-nosnippet>5981</a>        device: <span class="kw-2">*mut </span><a href="#3645-3648">GdkDevice</a>,
-<a href=#5982 id=5982 data-nosnippet>5982</a>        cursor: <span class="kw-2">*mut </span><a href="#3605-3608">GdkCursor</a>,
-<a href=#5983 id=5983 data-nosnippet>5983</a>    );
-<a href=#5984 id=5984 data-nosnippet>5984</a>    <span class="kw">pub fn </span>gdk_surface_set_input_region(
-<a href=#5985 id=5985 data-nosnippet>5985</a>        surface: <span class="kw-2">*mut </span><a href="#3998-4001">GdkSurface</a>,
-<a href=#5986 id=5986 data-nosnippet>5986</a>        region: <span class="kw-2">*mut </span>cairo::cairo_region_t,
-<a href=#5987 id=5987 data-nosnippet>5987</a>    );
-<a href=#5988 id=5988 data-nosnippet>5988</a>    <span class="kw">pub fn </span>gdk_surface_set_opaque_region(
-<a href=#5989 id=5989 data-nosnippet>5989</a>        surface: <span class="kw-2">*mut </span><a href="#3998-4001">GdkSurface</a>,
-<a href=#5990 id=5990 data-nosnippet>5990</a>        region: <span class="kw-2">*mut </span>cairo::cairo_region_t,
-<a href=#5991 id=5991 data-nosnippet>5991</a>    );
-<a href=#5992 id=5992 data-nosnippet>5992</a>    <span class="kw">pub fn </span>gdk_surface_translate_coordinates(
-<a href=#5993 id=5993 data-nosnippet>5993</a>        from: <span class="kw-2">*mut </span><a href="#3998-4001">GdkSurface</a>,
-<a href=#5994 id=5994 data-nosnippet>5994</a>        to: <span class="kw-2">*mut </span><a href="#3998-4001">GdkSurface</a>,
-<a href=#5995 id=5995 data-nosnippet>5995</a>        x: <span class="kw-2">*mut </span><a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_double.html">c_double</a>,
-<a href=#5996 id=5996 data-nosnippet>5996</a>        y: <span class="kw-2">*mut </span><a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_double.html">c_double</a>,
-<a href=#5997 id=5997 data-nosnippet>5997</a>    ) -&gt; gboolean;
-<a href=#5998 id=5998 data-nosnippet>5998</a>
-<a href=#5999 id=5999 data-nosnippet>5999</a>    <span class="comment">//=========================================================================
-<a href=#6000 id=6000 data-nosnippet>6000</a>    // GdkTexture
-<a href=#6001 id=6001 data-nosnippet>6001</a>    //=========================================================================
-<a href=#6002 id=6002 data-nosnippet>6002</a>    </span><span class="kw">pub fn </span>gdk_texture_get_type() -&gt; GType;
-<a href=#6003 id=6003 data-nosnippet>6003</a>    <span class="kw">pub fn </span>gdk_texture_new_for_pixbuf(pixbuf: <span class="kw-2">*mut </span>gdk_pixbuf::GdkPixbuf) -&gt; <span class="kw-2">*mut </span><a href="#4011-4014">GdkTexture</a>;
-<a href=#6004 id=6004 data-nosnippet>6004</a>    <span class="attr">#[cfg(feature = <span class="string">"v4_6"</span>)]
-<a href=#6005 id=6005 data-nosnippet>6005</a>    #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_6"</span>)))]
-<a href=#6006 id=6006 data-nosnippet>6006</a>    </span><span class="kw">pub fn </span>gdk_texture_new_from_bytes(
-<a href=#6007 id=6007 data-nosnippet>6007</a>        bytes: <span class="kw-2">*mut </span>glib::GBytes,
-<a href=#6008 id=6008 data-nosnippet>6008</a>        error: <span class="kw-2">*mut *mut </span>glib::GError,
-<a href=#6009 id=6009 data-nosnippet>6009</a>    ) -&gt; <span class="kw-2">*mut </span><a href="#4011-4014">GdkTexture</a>;
-<a href=#6010 id=6010 data-nosnippet>6010</a>    <span class="kw">pub fn </span>gdk_texture_new_from_file(
-<a href=#6011 id=6011 data-nosnippet>6011</a>        file: <span class="kw-2">*mut </span>gio::GFile,
-<a href=#6012 id=6012 data-nosnippet>6012</a>        error: <span class="kw-2">*mut *mut </span>glib::GError,
-<a href=#6013 id=6013 data-nosnippet>6013</a>    ) -&gt; <span class="kw-2">*mut </span><a href="#4011-4014">GdkTexture</a>;
-<a href=#6014 id=6014 data-nosnippet>6014</a>    <span class="attr">#[cfg(feature = <span class="string">"v4_6"</span>)]
-<a href=#6015 id=6015 data-nosnippet>6015</a>    #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_6"</span>)))]
-<a href=#6016 id=6016 data-nosnippet>6016</a>    </span><span class="kw">pub fn </span>gdk_texture_new_from_filename(
-<a href=#6017 id=6017 data-nosnippet>6017</a>        path: <span class="kw-2">*const </span><a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_char.html">c_char</a>,
-<a href=#6018 id=6018 data-nosnippet>6018</a>        error: <span class="kw-2">*mut *mut </span>glib::GError,
-<a href=#6019 id=6019 data-nosnippet>6019</a>    ) -&gt; <span class="kw-2">*mut </span><a href="#4011-4014">GdkTexture</a>;
-<a href=#6020 id=6020 data-nosnippet>6020</a>    <span class="kw">pub fn </span>gdk_texture_new_from_resource(resource_path: <span class="kw-2">*const </span><a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_char.html">c_char</a>) -&gt; <span class="kw-2">*mut </span><a href="#4011-4014">GdkTexture</a>;
-<a href=#6021 id=6021 data-nosnippet>6021</a>    <span class="kw">pub fn </span>gdk_texture_download(texture: <span class="kw-2">*mut </span><a href="#4011-4014">GdkTexture</a>, data: <span class="kw-2">*mut </span><a href="https://doc.rust-lang.org/nightly/std/primitive.u8.html">u8</a>, stride: size_t);
-<a href=#6022 id=6022 data-nosnippet>6022</a>    <span class="attr">#[cfg(feature = <span class="string">"v4_16"</span>)]
-<a href=#6023 id=6023 data-nosnippet>6023</a>    #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_16"</span>)))]
-<a href=#6024 id=6024 data-nosnippet>6024</a>    </span><span class="kw">pub fn </span>gdk_texture_get_color_state(self_: <span class="kw-2">*mut </span><a href="#4011-4014">GdkTexture</a>) -&gt; <span class="kw-2">*mut </span><a href="#3018-3021">GdkColorState</a>;
-<a href=#6025 id=6025 data-nosnippet>6025</a>    <span class="attr">#[cfg(feature = <span class="string">"v4_10"</span>)]
-<a href=#6026 id=6026 data-nosnippet>6026</a>    #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_10"</span>)))]
-<a href=#6027 id=6027 data-nosnippet>6027</a>    </span><span class="kw">pub fn </span>gdk_texture_get_format(self_: <span class="kw-2">*mut </span><a href="#4011-4014">GdkTexture</a>) -&gt; <a href="#162">GdkMemoryFormat</a>;
-<a href=#6028 id=6028 data-nosnippet>6028</a>    <span class="kw">pub fn </span>gdk_texture_get_height(texture: <span class="kw-2">*mut </span><a href="#4011-4014">GdkTexture</a>) -&gt; <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>;
-<a href=#6029 id=6029 data-nosnippet>6029</a>    <span class="kw">pub fn </span>gdk_texture_get_width(texture: <span class="kw-2">*mut </span><a href="#4011-4014">GdkTexture</a>) -&gt; <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>;
-<a href=#6030 id=6030 data-nosnippet>6030</a>    <span class="kw">pub fn </span>gdk_texture_save_to_png(texture: <span class="kw-2">*mut </span><a href="#4011-4014">GdkTexture</a>, filename: <span class="kw-2">*const </span><a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_char.html">c_char</a>) -&gt; gboolean;
-<a href=#6031 id=6031 data-nosnippet>6031</a>    <span class="attr">#[cfg(feature = <span class="string">"v4_6"</span>)]
-<a href=#6032 id=6032 data-nosnippet>6032</a>    #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_6"</span>)))]
-<a href=#6033 id=6033 data-nosnippet>6033</a>    </span><span class="kw">pub fn </span>gdk_texture_save_to_png_bytes(texture: <span class="kw-2">*mut </span><a href="#4011-4014">GdkTexture</a>) -&gt; <span class="kw-2">*mut </span>glib::GBytes;
-<a href=#6034 id=6034 data-nosnippet>6034</a>    <span class="attr">#[cfg(feature = <span class="string">"v4_6"</span>)]
-<a href=#6035 id=6035 data-nosnippet>6035</a>    #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_6"</span>)))]
-<a href=#6036 id=6036 data-nosnippet>6036</a>    </span><span class="kw">pub fn </span>gdk_texture_save_to_tiff(texture: <span class="kw-2">*mut </span><a href="#4011-4014">GdkTexture</a>, filename: <span class="kw-2">*const </span><a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_char.html">c_char</a>) -&gt; gboolean;
-<a href=#6037 id=6037 data-nosnippet>6037</a>    <span class="attr">#[cfg(feature = <span class="string">"v4_6"</span>)]
-<a href=#6038 id=6038 data-nosnippet>6038</a>    #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_6"</span>)))]
-<a href=#6039 id=6039 data-nosnippet>6039</a>    </span><span class="kw">pub fn </span>gdk_texture_save_to_tiff_bytes(texture: <span class="kw-2">*mut </span><a href="#4011-4014">GdkTexture</a>) -&gt; <span class="kw-2">*mut </span>glib::GBytes;
-<a href=#6040 id=6040 data-nosnippet>6040</a>
-<a href=#6041 id=6041 data-nosnippet>6041</a>    <span class="comment">//=========================================================================
-<a href=#6042 id=6042 data-nosnippet>6042</a>    // GdkTouchEvent
-<a href=#6043 id=6043 data-nosnippet>6043</a>    //=========================================================================
-<a href=#6044 id=6044 data-nosnippet>6044</a>    </span><span class="kw">pub fn </span>gdk_touch_event_get_type() -&gt; GType;
-<a href=#6045 id=6045 data-nosnippet>6045</a>    <span class="kw">pub fn </span>gdk_touch_event_get_emulating_pointer(event: <span class="kw-2">*mut </span><a href="#4024-4027">GdkTouchEvent</a>) -&gt; gboolean;
-<a href=#6046 id=6046 data-nosnippet>6046</a>
-<a href=#6047 id=6047 data-nosnippet>6047</a>    <span class="comment">//=========================================================================
-<a href=#6048 id=6048 data-nosnippet>6048</a>    // GdkTouchpadEvent
-<a href=#6049 id=6049 data-nosnippet>6049</a>    //=========================================================================
-<a href=#6050 id=6050 data-nosnippet>6050</a>    </span><span class="kw">pub fn </span>gdk_touchpad_event_get_type() -&gt; GType;
-<a href=#6051 id=6051 data-nosnippet>6051</a>    <span class="kw">pub fn </span>gdk_touchpad_event_get_deltas(
-<a href=#6052 id=6052 data-nosnippet>6052</a>        event: <span class="kw-2">*mut </span><a href="#4038-4041">GdkTouchpadEvent</a>,
-<a href=#6053 id=6053 data-nosnippet>6053</a>        dx: <span class="kw-2">*mut </span><a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_double.html">c_double</a>,
-<a href=#6054 id=6054 data-nosnippet>6054</a>        dy: <span class="kw-2">*mut </span><a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_double.html">c_double</a>,
-<a href=#6055 id=6055 data-nosnippet>6055</a>    );
-<a href=#6056 id=6056 data-nosnippet>6056</a>    <span class="kw">pub fn </span>gdk_touchpad_event_get_gesture_phase(
-<a href=#6057 id=6057 data-nosnippet>6057</a>        event: <span class="kw-2">*mut </span><a href="#4038-4041">GdkTouchpadEvent</a>,
-<a href=#6058 id=6058 data-nosnippet>6058</a>    ) -&gt; <a href="#393">GdkTouchpadGesturePhase</a>;
-<a href=#6059 id=6059 data-nosnippet>6059</a>    <span class="kw">pub fn </span>gdk_touchpad_event_get_n_fingers(event: <span class="kw-2">*mut </span><a href="#4038-4041">GdkTouchpadEvent</a>) -&gt; <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_uint.html">c_uint</a>;
-<a href=#6060 id=6060 data-nosnippet>6060</a>    <span class="kw">pub fn </span>gdk_touchpad_event_get_pinch_angle_delta(event: <span class="kw-2">*mut </span><a href="#4038-4041">GdkTouchpadEvent</a>) -&gt; <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_double.html">c_double</a>;
-<a href=#6061 id=6061 data-nosnippet>6061</a>    <span class="kw">pub fn </span>gdk_touchpad_event_get_pinch_scale(event: <span class="kw-2">*mut </span><a href="#4038-4041">GdkTouchpadEvent</a>) -&gt; <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_double.html">c_double</a>;
-<a href=#6062 id=6062 data-nosnippet>6062</a>
-<a href=#6063 id=6063 data-nosnippet>6063</a>    <span class="comment">//=========================================================================
-<a href=#6064 id=6064 data-nosnippet>6064</a>    // GdkVulkanContext
-<a href=#6065 id=6065 data-nosnippet>6065</a>    //=========================================================================
-<a href=#6066 id=6066 data-nosnippet>6066</a>    </span><span class="kw">pub fn </span>gdk_vulkan_context_get_type() -&gt; GType;
-<a href=#6067 id=6067 data-nosnippet>6067</a>
-<a href=#6068 id=6068 data-nosnippet>6068</a>    <span class="comment">//=========================================================================
-<a href=#6069 id=6069 data-nosnippet>6069</a>    // GdkDevicePad
-<a href=#6070 id=6070 data-nosnippet>6070</a>    //=========================================================================
-<a href=#6071 id=6071 data-nosnippet>6071</a>    </span><span class="kw">pub fn </span>gdk_device_pad_get_type() -&gt; GType;
-<a href=#6072 id=6072 data-nosnippet>6072</a>    <span class="kw">pub fn </span>gdk_device_pad_get_feature_group(
-<a href=#6073 id=6073 data-nosnippet>6073</a>        pad: <span class="kw-2">*mut </span><a href="#4067-4070">GdkDevicePad</a>,
-<a href=#6074 id=6074 data-nosnippet>6074</a>        feature: <a href="#65">GdkDevicePadFeature</a>,
-<a href=#6075 id=6075 data-nosnippet>6075</a>        feature_idx: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>,
-<a href=#6076 id=6076 data-nosnippet>6076</a>    ) -&gt; <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>;
-<a href=#6077 id=6077 data-nosnippet>6077</a>    <span class="kw">pub fn </span>gdk_device_pad_get_group_n_modes(pad: <span class="kw-2">*mut </span><a href="#4067-4070">GdkDevicePad</a>, group_idx: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>) -&gt; <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>;
-<a href=#6078 id=6078 data-nosnippet>6078</a>    <span class="kw">pub fn </span>gdk_device_pad_get_n_features(
-<a href=#6079 id=6079 data-nosnippet>6079</a>        pad: <span class="kw-2">*mut </span><a href="#4067-4070">GdkDevicePad</a>,
-<a href=#6080 id=6080 data-nosnippet>6080</a>        feature: <a href="#65">GdkDevicePadFeature</a>,
-<a href=#6081 id=6081 data-nosnippet>6081</a>    ) -&gt; <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>;
-<a href=#6082 id=6082 data-nosnippet>6082</a>    <span class="kw">pub fn </span>gdk_device_pad_get_n_groups(pad: <span class="kw-2">*mut </span><a href="#4067-4070">GdkDevicePad</a>) -&gt; <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>;
-<a href=#6083 id=6083 data-nosnippet>6083</a>
-<a href=#6084 id=6084 data-nosnippet>6084</a>    <span class="comment">//=========================================================================
-<a href=#6085 id=6085 data-nosnippet>6085</a>    // GdkDragSurface
-<a href=#6086 id=6086 data-nosnippet>6086</a>    //=========================================================================
-<a href=#6087 id=6087 data-nosnippet>6087</a>    </span><span class="kw">pub fn </span>gdk_drag_surface_get_type() -&gt; GType;
-<a href=#6088 id=6088 data-nosnippet>6088</a>    <span class="kw">pub fn </span>gdk_drag_surface_present(
-<a href=#6089 id=6089 data-nosnippet>6089</a>        drag_surface: <span class="kw-2">*mut </span><a href="#4080-4083">GdkDragSurface</a>,
-<a href=#6090 id=6090 data-nosnippet>6090</a>        width: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>,
-<a href=#6091 id=6091 data-nosnippet>6091</a>        height: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>,
-<a href=#6092 id=6092 data-nosnippet>6092</a>    ) -&gt; gboolean;
-<a href=#6093 id=6093 data-nosnippet>6093</a>
-<a href=#6094 id=6094 data-nosnippet>6094</a>    <span class="comment">//=========================================================================
-<a href=#6095 id=6095 data-nosnippet>6095</a>    // GdkPaintable
-<a href=#6096 id=6096 data-nosnippet>6096</a>    //=========================================================================
-<a href=#6097 id=6097 data-nosnippet>6097</a>    </span><span class="kw">pub fn </span>gdk_paintable_get_type() -&gt; GType;
-<a href=#6098 id=6098 data-nosnippet>6098</a>    <span class="kw">pub fn </span>gdk_paintable_new_empty(
-<a href=#6099 id=6099 data-nosnippet>6099</a>        intrinsic_width: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>,
-<a href=#6100 id=6100 data-nosnippet>6100</a>        intrinsic_height: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>,
-<a href=#6101 id=6101 data-nosnippet>6101</a>    ) -&gt; <span class="kw-2">*mut </span><a href="#4093-4096">GdkPaintable</a>;
-<a href=#6102 id=6102 data-nosnippet>6102</a>    <span class="kw">pub fn </span>gdk_paintable_compute_concrete_size(
-<a href=#6103 id=6103 data-nosnippet>6103</a>        paintable: <span class="kw-2">*mut </span><a href="#4093-4096">GdkPaintable</a>,
-<a href=#6104 id=6104 data-nosnippet>6104</a>        specified_width: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_double.html">c_double</a>,
-<a href=#6105 id=6105 data-nosnippet>6105</a>        specified_height: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_double.html">c_double</a>,
-<a href=#6106 id=6106 data-nosnippet>6106</a>        default_width: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_double.html">c_double</a>,
-<a href=#6107 id=6107 data-nosnippet>6107</a>        default_height: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_double.html">c_double</a>,
-<a href=#6108 id=6108 data-nosnippet>6108</a>        concrete_width: <span class="kw-2">*mut </span><a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_double.html">c_double</a>,
-<a href=#6109 id=6109 data-nosnippet>6109</a>        concrete_height: <span class="kw-2">*mut </span><a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_double.html">c_double</a>,
-<a href=#6110 id=6110 data-nosnippet>6110</a>    );
-<a href=#6111 id=6111 data-nosnippet>6111</a>    <span class="kw">pub fn </span>gdk_paintable_get_current_image(paintable: <span class="kw-2">*mut </span><a href="#4093-4096">GdkPaintable</a>) -&gt; <span class="kw-2">*mut </span><a href="#4093-4096">GdkPaintable</a>;
-<a href=#6112 id=6112 data-nosnippet>6112</a>    <span class="kw">pub fn </span>gdk_paintable_get_flags(paintable: <span class="kw-2">*mut </span><a href="#4093-4096">GdkPaintable</a>) -&gt; <a href="#2929">GdkPaintableFlags</a>;
-<a href=#6113 id=6113 data-nosnippet>6113</a>    <span class="kw">pub fn </span>gdk_paintable_get_intrinsic_aspect_ratio(paintable: <span class="kw-2">*mut </span><a href="#4093-4096">GdkPaintable</a>) -&gt; <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_double.html">c_double</a>;
-<a href=#6114 id=6114 data-nosnippet>6114</a>    <span class="kw">pub fn </span>gdk_paintable_get_intrinsic_height(paintable: <span class="kw-2">*mut </span><a href="#4093-4096">GdkPaintable</a>) -&gt; <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>;
-<a href=#6115 id=6115 data-nosnippet>6115</a>    <span class="kw">pub fn </span>gdk_paintable_get_intrinsic_width(paintable: <span class="kw-2">*mut </span><a href="#4093-4096">GdkPaintable</a>) -&gt; <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>;
-<a href=#6116 id=6116 data-nosnippet>6116</a>    <span class="kw">pub fn </span>gdk_paintable_invalidate_contents(paintable: <span class="kw-2">*mut </span><a href="#4093-4096">GdkPaintable</a>);
-<a href=#6117 id=6117 data-nosnippet>6117</a>    <span class="kw">pub fn </span>gdk_paintable_invalidate_size(paintable: <span class="kw-2">*mut </span><a href="#4093-4096">GdkPaintable</a>);
-<a href=#6118 id=6118 data-nosnippet>6118</a>    <span class="kw">pub fn </span>gdk_paintable_snapshot(
-<a href=#6119 id=6119 data-nosnippet>6119</a>        paintable: <span class="kw-2">*mut </span><a href="#4093-4096">GdkPaintable</a>,
-<a href=#6120 id=6120 data-nosnippet>6120</a>        snapshot: <span class="kw-2">*mut </span><a href="#3985-3988">GdkSnapshot</a>,
-<a href=#6121 id=6121 data-nosnippet>6121</a>        width: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_double.html">c_double</a>,
-<a href=#6122 id=6122 data-nosnippet>6122</a>        height: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_double.html">c_double</a>,
-<a href=#6123 id=6123 data-nosnippet>6123</a>    );
-<a href=#6124 id=6124 data-nosnippet>6124</a>
-<a href=#6125 id=6125 data-nosnippet>6125</a>    <span class="comment">//=========================================================================
-<a href=#6126 id=6126 data-nosnippet>6126</a>    // GdkPopup
-<a href=#6127 id=6127 data-nosnippet>6127</a>    //=========================================================================
-<a href=#6128 id=6128 data-nosnippet>6128</a>    </span><span class="kw">pub fn </span>gdk_popup_get_type() -&gt; GType;
-<a href=#6129 id=6129 data-nosnippet>6129</a>    <span class="kw">pub fn </span>gdk_popup_get_autohide(popup: <span class="kw-2">*mut </span><a href="#4106-4109">GdkPopup</a>) -&gt; gboolean;
-<a href=#6130 id=6130 data-nosnippet>6130</a>    <span class="kw">pub fn </span>gdk_popup_get_parent(popup: <span class="kw-2">*mut </span><a href="#4106-4109">GdkPopup</a>) -&gt; <span class="kw-2">*mut </span><a href="#3998-4001">GdkSurface</a>;
-<a href=#6131 id=6131 data-nosnippet>6131</a>    <span class="kw">pub fn </span>gdk_popup_get_position_x(popup: <span class="kw-2">*mut </span><a href="#4106-4109">GdkPopup</a>) -&gt; <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>;
-<a href=#6132 id=6132 data-nosnippet>6132</a>    <span class="kw">pub fn </span>gdk_popup_get_position_y(popup: <span class="kw-2">*mut </span><a href="#4106-4109">GdkPopup</a>) -&gt; <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>;
-<a href=#6133 id=6133 data-nosnippet>6133</a>    <span class="kw">pub fn </span>gdk_popup_get_rect_anchor(popup: <span class="kw-2">*mut </span><a href="#4106-4109">GdkPopup</a>) -&gt; <a href="#136">GdkGravity</a>;
-<a href=#6134 id=6134 data-nosnippet>6134</a>    <span class="kw">pub fn </span>gdk_popup_get_surface_anchor(popup: <span class="kw-2">*mut </span><a href="#4106-4109">GdkPopup</a>) -&gt; <a href="#136">GdkGravity</a>;
-<a href=#6135 id=6135 data-nosnippet>6135</a>    <span class="kw">pub fn </span>gdk_popup_present(
-<a href=#6136 id=6136 data-nosnippet>6136</a>        popup: <span class="kw-2">*mut </span><a href="#4106-4109">GdkPopup</a>,
-<a href=#6137 id=6137 data-nosnippet>6137</a>        width: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>,
-<a href=#6138 id=6138 data-nosnippet>6138</a>        height: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>,
-<a href=#6139 id=6139 data-nosnippet>6139</a>        layout: <span class="kw-2">*mut </span><a href="#3334-3337">GdkPopupLayout</a>,
-<a href=#6140 id=6140 data-nosnippet>6140</a>    ) -&gt; gboolean;
-<a href=#6141 id=6141 data-nosnippet>6141</a>
-<a href=#6142 id=6142 data-nosnippet>6142</a>    <span class="comment">//=========================================================================
-<a href=#6143 id=6143 data-nosnippet>6143</a>    // GdkToplevel
-<a href=#6144 id=6144 data-nosnippet>6144</a>    //=========================================================================
-<a href=#6145 id=6145 data-nosnippet>6145</a>    </span><span class="kw">pub fn </span>gdk_toplevel_get_type() -&gt; GType;
-<a href=#6146 id=6146 data-nosnippet>6146</a>    <span class="kw">pub fn </span>gdk_toplevel_begin_move(
-<a href=#6147 id=6147 data-nosnippet>6147</a>        toplevel: <span class="kw-2">*mut </span><a href="#4119-4122">GdkToplevel</a>,
-<a href=#6148 id=6148 data-nosnippet>6148</a>        device: <span class="kw-2">*mut </span><a href="#3645-3648">GdkDevice</a>,
-<a href=#6149 id=6149 data-nosnippet>6149</a>        button: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>,
-<a href=#6150 id=6150 data-nosnippet>6150</a>        x: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_double.html">c_double</a>,
-<a href=#6151 id=6151 data-nosnippet>6151</a>        y: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_double.html">c_double</a>,
-<a href=#6152 id=6152 data-nosnippet>6152</a>        timestamp: <a href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>,
-<a href=#6153 id=6153 data-nosnippet>6153</a>    );
-<a href=#6154 id=6154 data-nosnippet>6154</a>    <span class="kw">pub fn </span>gdk_toplevel_begin_resize(
-<a href=#6155 id=6155 data-nosnippet>6155</a>        toplevel: <span class="kw-2">*mut </span><a href="#4119-4122">GdkToplevel</a>,
-<a href=#6156 id=6156 data-nosnippet>6156</a>        edge: <a href="#372">GdkSurfaceEdge</a>,
-<a href=#6157 id=6157 data-nosnippet>6157</a>        device: <span class="kw-2">*mut </span><a href="#3645-3648">GdkDevice</a>,
-<a href=#6158 id=6158 data-nosnippet>6158</a>        button: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>,
-<a href=#6159 id=6159 data-nosnippet>6159</a>        x: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_double.html">c_double</a>,
-<a href=#6160 id=6160 data-nosnippet>6160</a>        y: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_double.html">c_double</a>,
-<a href=#6161 id=6161 data-nosnippet>6161</a>        timestamp: <a href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>,
-<a href=#6162 id=6162 data-nosnippet>6162</a>    );
-<a href=#6163 id=6163 data-nosnippet>6163</a>    <span class="kw">pub fn </span>gdk_toplevel_focus(toplevel: <span class="kw-2">*mut </span><a href="#4119-4122">GdkToplevel</a>, timestamp: <a href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>);
-<a href=#6164 id=6164 data-nosnippet>6164</a>    <span class="attr">#[cfg(feature = <span class="string">"v4_20"</span>)]
-<a href=#6165 id=6165 data-nosnippet>6165</a>    #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_20"</span>)))]
-<a href=#6166 id=6166 data-nosnippet>6166</a>    </span><span class="kw">pub fn </span>gdk_toplevel_get_capabilities(toplevel: <span class="kw-2">*mut </span><a href="#4119-4122">GdkToplevel</a>) -&gt; <a href="#2943">GdkToplevelCapabilities</a>;
-<a href=#6167 id=6167 data-nosnippet>6167</a>    <span class="attr">#[cfg(feature = <span class="string">"v4_20"</span>)]
-<a href=#6168 id=6168 data-nosnippet>6168</a>    #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_20"</span>)))]
-<a href=#6169 id=6169 data-nosnippet>6169</a>    </span><span class="kw">pub fn </span>gdk_toplevel_get_gravity(toplevel: <span class="kw-2">*mut </span><a href="#4119-4122">GdkToplevel</a>) -&gt; <a href="#136">GdkGravity</a>;
-<a href=#6170 id=6170 data-nosnippet>6170</a>    <span class="kw">pub fn </span>gdk_toplevel_get_state(toplevel: <span class="kw-2">*mut </span><a href="#4119-4122">GdkToplevel</a>) -&gt; <a href="#2969">GdkToplevelState</a>;
-<a href=#6171 id=6171 data-nosnippet>6171</a>    <span class="kw">pub fn </span>gdk_toplevel_inhibit_system_shortcuts(toplevel: <span class="kw-2">*mut </span><a href="#4119-4122">GdkToplevel</a>, event: <span class="kw-2">*mut </span><a href="#3767-3770">GdkEvent</a>);
-<a href=#6172 id=6172 data-nosnippet>6172</a>    <span class="kw">pub fn </span>gdk_toplevel_lower(toplevel: <span class="kw-2">*mut </span><a href="#4119-4122">GdkToplevel</a>) -&gt; gboolean;
-<a href=#6173 id=6173 data-nosnippet>6173</a>    <span class="kw">pub fn </span>gdk_toplevel_minimize(toplevel: <span class="kw-2">*mut </span><a href="#4119-4122">GdkToplevel</a>) -&gt; gboolean;
-<a href=#6174 id=6174 data-nosnippet>6174</a>    <span class="kw">pub fn </span>gdk_toplevel_present(toplevel: <span class="kw-2">*mut </span><a href="#4119-4122">GdkToplevel</a>, layout: <span class="kw-2">*mut </span><a href="#3456-3459">GdkToplevelLayout</a>);
-<a href=#6175 id=6175 data-nosnippet>6175</a>    <span class="kw">pub fn </span>gdk_toplevel_restore_system_shortcuts(toplevel: <span class="kw-2">*mut </span><a href="#4119-4122">GdkToplevel</a>);
-<a href=#6176 id=6176 data-nosnippet>6176</a>    <span class="kw">pub fn </span>gdk_toplevel_set_decorated(toplevel: <span class="kw-2">*mut </span><a href="#4119-4122">GdkToplevel</a>, decorated: gboolean);
-<a href=#6177 id=6177 data-nosnippet>6177</a>    <span class="kw">pub fn </span>gdk_toplevel_set_deletable(toplevel: <span class="kw-2">*mut </span><a href="#4119-4122">GdkToplevel</a>, deletable: gboolean);
-<a href=#6178 id=6178 data-nosnippet>6178</a>    <span class="attr">#[cfg(feature = <span class="string">"v4_20"</span>)]
-<a href=#6179 id=6179 data-nosnippet>6179</a>    #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_20"</span>)))]
-<a href=#6180 id=6180 data-nosnippet>6180</a>    </span><span class="kw">pub fn </span>gdk_toplevel_set_gravity(toplevel: <span class="kw-2">*mut </span><a href="#4119-4122">GdkToplevel</a>, gravity: <a href="#136">GdkGravity</a>);
-<a href=#6181 id=6181 data-nosnippet>6181</a>    <span class="kw">pub fn </span>gdk_toplevel_set_icon_list(toplevel: <span class="kw-2">*mut </span><a href="#4119-4122">GdkToplevel</a>, surfaces: <span class="kw-2">*mut </span>glib::GList);
-<a href=#6182 id=6182 data-nosnippet>6182</a>    <span class="kw">pub fn </span>gdk_toplevel_set_modal(toplevel: <span class="kw-2">*mut </span><a href="#4119-4122">GdkToplevel</a>, modal: gboolean);
-<a href=#6183 id=6183 data-nosnippet>6183</a>    <span class="kw">pub fn </span>gdk_toplevel_set_startup_id(toplevel: <span class="kw-2">*mut </span><a href="#4119-4122">GdkToplevel</a>, startup_id: <span class="kw-2">*const </span><a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_char.html">c_char</a>);
-<a href=#6184 id=6184 data-nosnippet>6184</a>    <span class="kw">pub fn </span>gdk_toplevel_set_title(toplevel: <span class="kw-2">*mut </span><a href="#4119-4122">GdkToplevel</a>, title: <span class="kw-2">*const </span><a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_char.html">c_char</a>);
-<a href=#6185 id=6185 data-nosnippet>6185</a>    <span class="kw">pub fn </span>gdk_toplevel_set_transient_for(toplevel: <span class="kw-2">*mut </span><a href="#4119-4122">GdkToplevel</a>, parent: <span class="kw-2">*mut </span><a href="#3998-4001">GdkSurface</a>);
-<a href=#6186 id=6186 data-nosnippet>6186</a>    <span class="kw">pub fn </span>gdk_toplevel_show_window_menu(
-<a href=#6187 id=6187 data-nosnippet>6187</a>        toplevel: <span class="kw-2">*mut </span><a href="#4119-4122">GdkToplevel</a>,
-<a href=#6188 id=6188 data-nosnippet>6188</a>        event: <span class="kw-2">*mut </span><a href="#3767-3770">GdkEvent</a>,
-<a href=#6189 id=6189 data-nosnippet>6189</a>    ) -&gt; gboolean;
-<a href=#6190 id=6190 data-nosnippet>6190</a>    <span class="kw">pub fn </span>gdk_toplevel_supports_edge_constraints(toplevel: <span class="kw-2">*mut </span><a href="#4119-4122">GdkToplevel</a>) -&gt; gboolean;
-<a href=#6191 id=6191 data-nosnippet>6191</a>    <span class="attr">#[cfg(feature = <span class="string">"v4_4"</span>)]
-<a href=#6192 id=6192 data-nosnippet>6192</a>    #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_4"</span>)))]
-<a href=#6193 id=6193 data-nosnippet>6193</a>    </span><span class="kw">pub fn </span>gdk_toplevel_titlebar_gesture(
-<a href=#6194 id=6194 data-nosnippet>6194</a>        toplevel: <span class="kw-2">*mut </span><a href="#4119-4122">GdkToplevel</a>,
-<a href=#6195 id=6195 data-nosnippet>6195</a>        gesture: <a href="#388">GdkTitlebarGesture</a>,
-<a href=#6196 id=6196 data-nosnippet>6196</a>    ) -&gt; gboolean;
-<a href=#6197 id=6197 data-nosnippet>6197</a>
-<a href=#6198 id=6198 data-nosnippet>6198</a>    <span class="comment">//=========================================================================
-<a href=#6199 id=6199 data-nosnippet>6199</a>    // Other functions
-<a href=#6200 id=6200 data-nosnippet>6200</a>    //=========================================================================
-<a href=#6201 id=6201 data-nosnippet>6201</a>    </span><span class="kw">pub fn </span>gdk_cairo_draw_from_gl(
-<a href=#6202 id=6202 data-nosnippet>6202</a>        cr: <span class="kw-2">*mut </span>cairo::cairo_t,
-<a href=#6203 id=6203 data-nosnippet>6203</a>        surface: <span class="kw-2">*mut </span><a href="#3998-4001">GdkSurface</a>,
-<a href=#6204 id=6204 data-nosnippet>6204</a>        source: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>,
-<a href=#6205 id=6205 data-nosnippet>6205</a>        source_type: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>,
-<a href=#6206 id=6206 data-nosnippet>6206</a>        buffer_scale: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>,
-<a href=#6207 id=6207 data-nosnippet>6207</a>        x: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>,
-<a href=#6208 id=6208 data-nosnippet>6208</a>        y: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>,
-<a href=#6209 id=6209 data-nosnippet>6209</a>        width: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>,
-<a href=#6210 id=6210 data-nosnippet>6210</a>        height: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>,
-<a href=#6211 id=6211 data-nosnippet>6211</a>    );
-<a href=#6212 id=6212 data-nosnippet>6212</a>    <span class="kw">pub fn </span>gdk_cairo_rectangle(cr: <span class="kw-2">*mut </span>cairo::cairo_t, rectangle: <span class="kw-2">*const </span><a href="#3368-3373">GdkRectangle</a>);
-<a href=#6213 id=6213 data-nosnippet>6213</a>    <span class="kw">pub fn </span>gdk_cairo_region(cr: <span class="kw-2">*mut </span>cairo::cairo_t, region: <span class="kw-2">*const </span>cairo::cairo_region_t);
-<a href=#6214 id=6214 data-nosnippet>6214</a>    <span class="kw">pub fn </span>gdk_cairo_region_create_from_surface(
-<a href=#6215 id=6215 data-nosnippet>6215</a>        surface: <span class="kw-2">*mut </span>cairo::cairo_surface_t,
-<a href=#6216 id=6216 data-nosnippet>6216</a>    ) -&gt; <span class="kw-2">*mut </span>cairo::cairo_region_t;
-<a href=#6217 id=6217 data-nosnippet>6217</a>    <span class="kw">pub fn </span>gdk_cairo_set_source_pixbuf(
-<a href=#6218 id=6218 data-nosnippet>6218</a>        cr: <span class="kw-2">*mut </span>cairo::cairo_t,
-<a href=#6219 id=6219 data-nosnippet>6219</a>        pixbuf: <span class="kw-2">*const </span>gdk_pixbuf::GdkPixbuf,
-<a href=#6220 id=6220 data-nosnippet>6220</a>        pixbuf_x: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_double.html">c_double</a>,
-<a href=#6221 id=6221 data-nosnippet>6221</a>        pixbuf_y: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_double.html">c_double</a>,
-<a href=#6222 id=6222 data-nosnippet>6222</a>    );
-<a href=#6223 id=6223 data-nosnippet>6223</a>    <span class="kw">pub fn </span>gdk_cairo_set_source_rgba(cr: <span class="kw-2">*mut </span>cairo::cairo_t, rgba: <span class="kw-2">*const </span><a href="#3348-3353">GdkRGBA</a>);
-<a href=#6224 id=6224 data-nosnippet>6224</a>    <span class="kw">pub fn </span>gdk_content_deserialize_async(
-<a href=#6225 id=6225 data-nosnippet>6225</a>        stream: <span class="kw-2">*mut </span>gio::GInputStream,
-<a href=#6226 id=6226 data-nosnippet>6226</a>        mime_type: <span class="kw-2">*const </span><a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_char.html">c_char</a>,
-<a href=#6227 id=6227 data-nosnippet>6227</a>        type_: GType,
-<a href=#6228 id=6228 data-nosnippet>6228</a>        io_priority: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>,
-<a href=#6229 id=6229 data-nosnippet>6229</a>        cancellable: <span class="kw-2">*mut </span>gio::GCancellable,
-<a href=#6230 id=6230 data-nosnippet>6230</a>        callback: gio::GAsyncReadyCallback,
-<a href=#6231 id=6231 data-nosnippet>6231</a>        user_data: gpointer,
-<a href=#6232 id=6232 data-nosnippet>6232</a>    );
-<a href=#6233 id=6233 data-nosnippet>6233</a>    <span class="kw">pub fn </span>gdk_content_deserialize_finish(
-<a href=#6234 id=6234 data-nosnippet>6234</a>        result: <span class="kw-2">*mut </span>gio::GAsyncResult,
-<a href=#6235 id=6235 data-nosnippet>6235</a>        value: <span class="kw-2">*mut </span>gobject::GValue,
-<a href=#6236 id=6236 data-nosnippet>6236</a>        error: <span class="kw-2">*mut *mut </span>glib::GError,
-<a href=#6237 id=6237 data-nosnippet>6237</a>    ) -&gt; gboolean;
-<a href=#6238 id=6238 data-nosnippet>6238</a>    <span class="kw">pub fn </span>gdk_content_register_deserializer(
-<a href=#6239 id=6239 data-nosnippet>6239</a>        mime_type: <span class="kw-2">*const </span><a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_char.html">c_char</a>,
-<a href=#6240 id=6240 data-nosnippet>6240</a>        type_: GType,
-<a href=#6241 id=6241 data-nosnippet>6241</a>        deserialize: <a href="#2991">GdkContentDeserializeFunc</a>,
-<a href=#6242 id=6242 data-nosnippet>6242</a>        data: gpointer,
-<a href=#6243 id=6243 data-nosnippet>6243</a>        notify: glib::GDestroyNotify,
-<a href=#6244 id=6244 data-nosnippet>6244</a>    );
-<a href=#6245 id=6245 data-nosnippet>6245</a>    <span class="kw">pub fn </span>gdk_content_register_serializer(
-<a href=#6246 id=6246 data-nosnippet>6246</a>        type_: GType,
-<a href=#6247 id=6247 data-nosnippet>6247</a>        mime_type: <span class="kw-2">*const </span><a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_char.html">c_char</a>,
-<a href=#6248 id=6248 data-nosnippet>6248</a>        serialize: <a href="#2992">GdkContentSerializeFunc</a>,
-<a href=#6249 id=6249 data-nosnippet>6249</a>        data: gpointer,
-<a href=#6250 id=6250 data-nosnippet>6250</a>        notify: glib::GDestroyNotify,
-<a href=#6251 id=6251 data-nosnippet>6251</a>    );
-<a href=#6252 id=6252 data-nosnippet>6252</a>    <span class="kw">pub fn </span>gdk_content_serialize_async(
-<a href=#6253 id=6253 data-nosnippet>6253</a>        stream: <span class="kw-2">*mut </span>gio::GOutputStream,
-<a href=#6254 id=6254 data-nosnippet>6254</a>        mime_type: <span class="kw-2">*const </span><a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_char.html">c_char</a>,
-<a href=#6255 id=6255 data-nosnippet>6255</a>        value: <span class="kw-2">*const </span>gobject::GValue,
-<a href=#6256 id=6256 data-nosnippet>6256</a>        io_priority: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>,
-<a href=#6257 id=6257 data-nosnippet>6257</a>        cancellable: <span class="kw-2">*mut </span>gio::GCancellable,
-<a href=#6258 id=6258 data-nosnippet>6258</a>        callback: gio::GAsyncReadyCallback,
-<a href=#6259 id=6259 data-nosnippet>6259</a>        user_data: gpointer,
-<a href=#6260 id=6260 data-nosnippet>6260</a>    );
-<a href=#6261 id=6261 data-nosnippet>6261</a>    <span class="kw">pub fn </span>gdk_content_serialize_finish(
-<a href=#6262 id=6262 data-nosnippet>6262</a>        result: <span class="kw-2">*mut </span>gio::GAsyncResult,
-<a href=#6263 id=6263 data-nosnippet>6263</a>        error: <span class="kw-2">*mut *mut </span>glib::GError,
-<a href=#6264 id=6264 data-nosnippet>6264</a>    ) -&gt; gboolean;
-<a href=#6265 id=6265 data-nosnippet>6265</a>    <span class="kw">pub fn </span>gdk_events_get_angle(
-<a href=#6266 id=6266 data-nosnippet>6266</a>        event1: <span class="kw-2">*mut </span><a href="#3767-3770">GdkEvent</a>,
-<a href=#6267 id=6267 data-nosnippet>6267</a>        event2: <span class="kw-2">*mut </span><a href="#3767-3770">GdkEvent</a>,
-<a href=#6268 id=6268 data-nosnippet>6268</a>        angle: <span class="kw-2">*mut </span><a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_double.html">c_double</a>,
-<a href=#6269 id=6269 data-nosnippet>6269</a>    ) -&gt; gboolean;
-<a href=#6270 id=6270 data-nosnippet>6270</a>    <span class="kw">pub fn </span>gdk_events_get_center(
-<a href=#6271 id=6271 data-nosnippet>6271</a>        event1: <span class="kw-2">*mut </span><a href="#3767-3770">GdkEvent</a>,
-<a href=#6272 id=6272 data-nosnippet>6272</a>        event2: <span class="kw-2">*mut </span><a href="#3767-3770">GdkEvent</a>,
-<a href=#6273 id=6273 data-nosnippet>6273</a>        x: <span class="kw-2">*mut </span><a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_double.html">c_double</a>,
-<a href=#6274 id=6274 data-nosnippet>6274</a>        y: <span class="kw-2">*mut </span><a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_double.html">c_double</a>,
-<a href=#6275 id=6275 data-nosnippet>6275</a>    ) -&gt; gboolean;
-<a href=#6276 id=6276 data-nosnippet>6276</a>    <span class="kw">pub fn </span>gdk_events_get_distance(
-<a href=#6277 id=6277 data-nosnippet>6277</a>        event1: <span class="kw-2">*mut </span><a href="#3767-3770">GdkEvent</a>,
-<a href=#6278 id=6278 data-nosnippet>6278</a>        event2: <span class="kw-2">*mut </span><a href="#3767-3770">GdkEvent</a>,
-<a href=#6279 id=6279 data-nosnippet>6279</a>        distance: <span class="kw-2">*mut </span><a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_double.html">c_double</a>,
-<a href=#6280 id=6280 data-nosnippet>6280</a>    ) -&gt; gboolean;
-<a href=#6281 id=6281 data-nosnippet>6281</a>    <span class="kw">pub fn </span>gdk_intern_mime_type(string: <span class="kw-2">*const </span><a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_char.html">c_char</a>) -&gt; <span class="kw-2">*const </span><a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_char.html">c_char</a>;
-<a href=#6282 id=6282 data-nosnippet>6282</a>    <span class="kw">pub fn </span>gdk_keyval_convert_case(symbol: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_uint.html">c_uint</a>, lower: <span class="kw-2">*mut </span><a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_uint.html">c_uint</a>, upper: <span class="kw-2">*mut </span><a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_uint.html">c_uint</a>);
-<a href=#6283 id=6283 data-nosnippet>6283</a>    <span class="kw">pub fn </span>gdk_keyval_from_name(keyval_name: <span class="kw-2">*const </span><a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_char.html">c_char</a>) -&gt; <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_uint.html">c_uint</a>;
-<a href=#6284 id=6284 data-nosnippet>6284</a>    <span class="kw">pub fn </span>gdk_keyval_is_lower(keyval: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_uint.html">c_uint</a>) -&gt; gboolean;
-<a href=#6285 id=6285 data-nosnippet>6285</a>    <span class="kw">pub fn </span>gdk_keyval_is_upper(keyval: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_uint.html">c_uint</a>) -&gt; gboolean;
-<a href=#6286 id=6286 data-nosnippet>6286</a>    <span class="kw">pub fn </span>gdk_keyval_name(keyval: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_uint.html">c_uint</a>) -&gt; <span class="kw-2">*const </span><a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_char.html">c_char</a>;
-<a href=#6287 id=6287 data-nosnippet>6287</a>    <span class="kw">pub fn </span>gdk_keyval_to_lower(keyval: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_uint.html">c_uint</a>) -&gt; <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_uint.html">c_uint</a>;
-<a href=#6288 id=6288 data-nosnippet>6288</a>    <span class="kw">pub fn </span>gdk_keyval_to_unicode(keyval: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_uint.html">c_uint</a>) -&gt; <a href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>;
-<a href=#6289 id=6289 data-nosnippet>6289</a>    <span class="kw">pub fn </span>gdk_keyval_to_upper(keyval: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_uint.html">c_uint</a>) -&gt; <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_uint.html">c_uint</a>;
-<a href=#6290 id=6290 data-nosnippet>6290</a>    <span class="kw">pub fn </span>gdk_pango_layout_get_clip_region(
-<a href=#6291 id=6291 data-nosnippet>6291</a>        layout: <span class="kw-2">*mut </span>pango::PangoLayout,
-<a href=#6292 id=6292 data-nosnippet>6292</a>        x_origin: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>,
-<a href=#6293 id=6293 data-nosnippet>6293</a>        y_origin: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>,
-<a href=#6294 id=6294 data-nosnippet>6294</a>        index_ranges: <span class="kw-2">*const </span><a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>,
-<a href=#6295 id=6295 data-nosnippet>6295</a>        n_ranges: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>,
-<a href=#6296 id=6296 data-nosnippet>6296</a>    ) -&gt; <span class="kw-2">*mut </span>cairo::cairo_region_t;
-<a href=#6297 id=6297 data-nosnippet>6297</a>    <span class="kw">pub fn </span>gdk_pango_layout_line_get_clip_region(
-<a href=#6298 id=6298 data-nosnippet>6298</a>        line: <span class="kw-2">*mut </span>pango::PangoLayoutLine,
-<a href=#6299 id=6299 data-nosnippet>6299</a>        x_origin: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>,
-<a href=#6300 id=6300 data-nosnippet>6300</a>        y_origin: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>,
-<a href=#6301 id=6301 data-nosnippet>6301</a>        index_ranges: <span class="kw-2">*const </span><a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>,
-<a href=#6302 id=6302 data-nosnippet>6302</a>        n_ranges: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>,
-<a href=#6303 id=6303 data-nosnippet>6303</a>    ) -&gt; <span class="kw-2">*mut </span>cairo::cairo_region_t;
-<a href=#6304 id=6304 data-nosnippet>6304</a>    <span class="kw">pub fn </span>gdk_pixbuf_get_from_surface(
-<a href=#6305 id=6305 data-nosnippet>6305</a>        surface: <span class="kw-2">*mut </span>cairo::cairo_surface_t,
-<a href=#6306 id=6306 data-nosnippet>6306</a>        src_x: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>,
-<a href=#6307 id=6307 data-nosnippet>6307</a>        src_y: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>,
-<a href=#6308 id=6308 data-nosnippet>6308</a>        width: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>,
-<a href=#6309 id=6309 data-nosnippet>6309</a>        height: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>,
-<a href=#6310 id=6310 data-nosnippet>6310</a>    ) -&gt; <span class="kw-2">*mut </span>gdk_pixbuf::GdkPixbuf;
-<a href=#6311 id=6311 data-nosnippet>6311</a>    <span class="kw">pub fn </span>gdk_pixbuf_get_from_texture(texture: <span class="kw-2">*mut </span><a href="#4011-4014">GdkTexture</a>) -&gt; <span class="kw-2">*mut </span>gdk_pixbuf::GdkPixbuf;
-<a href=#6312 id=6312 data-nosnippet>6312</a>    <span class="kw">pub fn </span>gdk_set_allowed_backends(backends: <span class="kw-2">*const </span><a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_char.html">c_char</a>);
-<a href=#6313 id=6313 data-nosnippet>6313</a>    <span class="kw">pub fn </span>gdk_unicode_to_keyval(wc: <a href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>) -&gt; <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_uint.html">c_uint</a>;
-<a href=#6314 id=6314 data-nosnippet>6314</a>
-<a href=#6315 id=6315 data-nosnippet>6315</a>}
+<a href=#5897 id=5897 data-nosnippet>5897</a>    <span class="kw">pub fn </span>gdk_scroll_event_get_deltas(
+<a href=#5898 id=5898 data-nosnippet>5898</a>        event: <span class="kw-2">*mut </span><a href="#3957-3960">GdkScrollEvent</a>,
+<a href=#5899 id=5899 data-nosnippet>5899</a>        delta_x: <span class="kw-2">*mut </span><a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_double.html">c_double</a>,
+<a href=#5900 id=5900 data-nosnippet>5900</a>        delta_y: <span class="kw-2">*mut </span><a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_double.html">c_double</a>,
+<a href=#5901 id=5901 data-nosnippet>5901</a>    );
+<a href=#5902 id=5902 data-nosnippet>5902</a>    <span class="kw">pub fn </span>gdk_scroll_event_get_direction(event: <span class="kw-2">*mut </span><a href="#3957-3960">GdkScrollEvent</a>) -&gt; <a href="#348">GdkScrollDirection</a>;
+<a href=#5903 id=5903 data-nosnippet>5903</a>    <span class="attr">#[cfg(feature = <span class="string">"v4_20"</span>)]
+<a href=#5904 id=5904 data-nosnippet>5904</a>    #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_20"</span>)))]
+<a href=#5905 id=5905 data-nosnippet>5905</a>    </span><span class="kw">pub fn </span>gdk_scroll_event_get_relative_direction(
+<a href=#5906 id=5906 data-nosnippet>5906</a>        event: <span class="kw-2">*mut </span><a href="#3957-3960">GdkScrollEvent</a>,
+<a href=#5907 id=5907 data-nosnippet>5907</a>    ) -&gt; <a href="#355">GdkScrollRelativeDirection</a>;
+<a href=#5908 id=5908 data-nosnippet>5908</a>    <span class="attr">#[cfg(feature = <span class="string">"v4_8"</span>)]
+<a href=#5909 id=5909 data-nosnippet>5909</a>    #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_8"</span>)))]
+<a href=#5910 id=5910 data-nosnippet>5910</a>    </span><span class="kw">pub fn </span>gdk_scroll_event_get_unit(event: <span class="kw-2">*mut </span><a href="#3957-3960">GdkScrollEvent</a>) -&gt; <a href="#360">GdkScrollUnit</a>;
+<a href=#5911 id=5911 data-nosnippet>5911</a>    <span class="kw">pub fn </span>gdk_scroll_event_is_stop(event: <span class="kw-2">*mut </span><a href="#3957-3960">GdkScrollEvent</a>) -&gt; gboolean;
+<a href=#5912 id=5912 data-nosnippet>5912</a>
+<a href=#5913 id=5913 data-nosnippet>5913</a>    <span class="comment">//=========================================================================
+<a href=#5914 id=5914 data-nosnippet>5914</a>    // GdkSeat
+<a href=#5915 id=5915 data-nosnippet>5915</a>    //=========================================================================
+<a href=#5916 id=5916 data-nosnippet>5916</a>    </span><span class="kw">pub fn </span>gdk_seat_get_type() -&gt; GType;
+<a href=#5917 id=5917 data-nosnippet>5917</a>    <span class="kw">pub fn </span>gdk_seat_get_capabilities(seat: <span class="kw-2">*mut </span><a href="#3971-3973">GdkSeat</a>) -&gt; <a href="#2933">GdkSeatCapabilities</a>;
+<a href=#5918 id=5918 data-nosnippet>5918</a>    <span class="kw">pub fn </span>gdk_seat_get_devices(
+<a href=#5919 id=5919 data-nosnippet>5919</a>        seat: <span class="kw-2">*mut </span><a href="#3971-3973">GdkSeat</a>,
+<a href=#5920 id=5920 data-nosnippet>5920</a>        capabilities: <a href="#2933">GdkSeatCapabilities</a>,
+<a href=#5921 id=5921 data-nosnippet>5921</a>    ) -&gt; <span class="kw-2">*mut </span>glib::GList;
+<a href=#5922 id=5922 data-nosnippet>5922</a>    <span class="kw">pub fn </span>gdk_seat_get_display(seat: <span class="kw-2">*mut </span><a href="#3971-3973">GdkSeat</a>) -&gt; <span class="kw-2">*mut </span><a href="#3672-3675">GdkDisplay</a>;
+<a href=#5923 id=5923 data-nosnippet>5923</a>    <span class="kw">pub fn </span>gdk_seat_get_keyboard(seat: <span class="kw-2">*mut </span><a href="#3971-3973">GdkSeat</a>) -&gt; <span class="kw-2">*mut </span><a href="#3645-3648">GdkDevice</a>;
+<a href=#5924 id=5924 data-nosnippet>5924</a>    <span class="kw">pub fn </span>gdk_seat_get_pointer(seat: <span class="kw-2">*mut </span><a href="#3971-3973">GdkSeat</a>) -&gt; <span class="kw-2">*mut </span><a href="#3645-3648">GdkDevice</a>;
+<a href=#5925 id=5925 data-nosnippet>5925</a>    <span class="kw">pub fn </span>gdk_seat_get_tools(seat: <span class="kw-2">*mut </span><a href="#3971-3973">GdkSeat</a>) -&gt; <span class="kw-2">*mut </span>glib::GList;
+<a href=#5926 id=5926 data-nosnippet>5926</a>
+<a href=#5927 id=5927 data-nosnippet>5927</a>    <span class="comment">//=========================================================================
+<a href=#5928 id=5928 data-nosnippet>5928</a>    // GdkSnapshot
+<a href=#5929 id=5929 data-nosnippet>5929</a>    //=========================================================================
+<a href=#5930 id=5930 data-nosnippet>5930</a>    </span><span class="kw">pub fn </span>gdk_snapshot_get_type() -&gt; GType;
+<a href=#5931 id=5931 data-nosnippet>5931</a>
+<a href=#5932 id=5932 data-nosnippet>5932</a>    <span class="comment">//=========================================================================
+<a href=#5933 id=5933 data-nosnippet>5933</a>    // GdkSurface
+<a href=#5934 id=5934 data-nosnippet>5934</a>    //=========================================================================
+<a href=#5935 id=5935 data-nosnippet>5935</a>    </span><span class="kw">pub fn </span>gdk_surface_get_type() -&gt; GType;
+<a href=#5936 id=5936 data-nosnippet>5936</a>    <span class="kw">pub fn </span>gdk_surface_new_popup(parent: <span class="kw-2">*mut </span><a href="#3998-4001">GdkSurface</a>, autohide: gboolean) -&gt; <span class="kw-2">*mut </span><a href="#3998-4001">GdkSurface</a>;
+<a href=#5937 id=5937 data-nosnippet>5937</a>    <span class="kw">pub fn </span>gdk_surface_new_toplevel(display: <span class="kw-2">*mut </span><a href="#3672-3675">GdkDisplay</a>) -&gt; <span class="kw-2">*mut </span><a href="#3998-4001">GdkSurface</a>;
+<a href=#5938 id=5938 data-nosnippet>5938</a>    <span class="kw">pub fn </span>gdk_surface_beep(surface: <span class="kw-2">*mut </span><a href="#3998-4001">GdkSurface</a>);
+<a href=#5939 id=5939 data-nosnippet>5939</a>    <span class="kw">pub fn </span>gdk_surface_create_cairo_context(surface: <span class="kw-2">*mut </span><a href="#3998-4001">GdkSurface</a>) -&gt; <span class="kw-2">*mut </span><a href="#3508-3511">GdkCairoContext</a>;
+<a href=#5940 id=5940 data-nosnippet>5940</a>    <span class="kw">pub fn </span>gdk_surface_create_gl_context(
+<a href=#5941 id=5941 data-nosnippet>5941</a>        surface: <span class="kw-2">*mut </span><a href="#3998-4001">GdkSurface</a>,
+<a href=#5942 id=5942 data-nosnippet>5942</a>        error: <span class="kw-2">*mut *mut </span>glib::GError,
+<a href=#5943 id=5943 data-nosnippet>5943</a>    ) -&gt; <span class="kw-2">*mut </span><a href="#3808-3811">GdkGLContext</a>;
+<a href=#5944 id=5944 data-nosnippet>5944</a>    <span class="kw">pub fn </span>gdk_surface_create_similar_surface(
+<a href=#5945 id=5945 data-nosnippet>5945</a>        surface: <span class="kw-2">*mut </span><a href="#3998-4001">GdkSurface</a>,
+<a href=#5946 id=5946 data-nosnippet>5946</a>        content: cairo::cairo_content_t,
+<a href=#5947 id=5947 data-nosnippet>5947</a>        width: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>,
+<a href=#5948 id=5948 data-nosnippet>5948</a>        height: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>,
+<a href=#5949 id=5949 data-nosnippet>5949</a>    ) -&gt; <span class="kw-2">*mut </span>cairo::cairo_surface_t;
+<a href=#5950 id=5950 data-nosnippet>5950</a>    <span class="kw">pub fn </span>gdk_surface_create_vulkan_context(
+<a href=#5951 id=5951 data-nosnippet>5951</a>        surface: <span class="kw-2">*mut </span><a href="#3998-4001">GdkSurface</a>,
+<a href=#5952 id=5952 data-nosnippet>5952</a>        error: <span class="kw-2">*mut *mut </span>glib::GError,
+<a href=#5953 id=5953 data-nosnippet>5953</a>    ) -&gt; <span class="kw-2">*mut </span><a href="#4052-4055">GdkVulkanContext</a>;
+<a href=#5954 id=5954 data-nosnippet>5954</a>    <span class="kw">pub fn </span>gdk_surface_destroy(surface: <span class="kw-2">*mut </span><a href="#3998-4001">GdkSurface</a>);
+<a href=#5955 id=5955 data-nosnippet>5955</a>    <span class="kw">pub fn </span>gdk_surface_get_cursor(surface: <span class="kw-2">*mut </span><a href="#3998-4001">GdkSurface</a>) -&gt; <span class="kw-2">*mut </span><a href="#3605-3608">GdkCursor</a>;
+<a href=#5956 id=5956 data-nosnippet>5956</a>    <span class="kw">pub fn </span>gdk_surface_get_device_cursor(
+<a href=#5957 id=5957 data-nosnippet>5957</a>        surface: <span class="kw-2">*mut </span><a href="#3998-4001">GdkSurface</a>,
+<a href=#5958 id=5958 data-nosnippet>5958</a>        device: <span class="kw-2">*mut </span><a href="#3645-3648">GdkDevice</a>,
+<a href=#5959 id=5959 data-nosnippet>5959</a>    ) -&gt; <span class="kw-2">*mut </span><a href="#3605-3608">GdkCursor</a>;
+<a href=#5960 id=5960 data-nosnippet>5960</a>    <span class="kw">pub fn </span>gdk_surface_get_device_position(
+<a href=#5961 id=5961 data-nosnippet>5961</a>        surface: <span class="kw-2">*mut </span><a href="#3998-4001">GdkSurface</a>,
+<a href=#5962 id=5962 data-nosnippet>5962</a>        device: <span class="kw-2">*mut </span><a href="#3645-3648">GdkDevice</a>,
+<a href=#5963 id=5963 data-nosnippet>5963</a>        x: <span class="kw-2">*mut </span><a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_double.html">c_double</a>,
+<a href=#5964 id=5964 data-nosnippet>5964</a>        y: <span class="kw-2">*mut </span><a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_double.html">c_double</a>,
+<a href=#5965 id=5965 data-nosnippet>5965</a>        mask: <span class="kw-2">*mut </span><a href="#2912">GdkModifierType</a>,
+<a href=#5966 id=5966 data-nosnippet>5966</a>    ) -&gt; gboolean;
+<a href=#5967 id=5967 data-nosnippet>5967</a>    <span class="kw">pub fn </span>gdk_surface_get_display(surface: <span class="kw-2">*mut </span><a href="#3998-4001">GdkSurface</a>) -&gt; <span class="kw-2">*mut </span><a href="#3672-3675">GdkDisplay</a>;
+<a href=#5968 id=5968 data-nosnippet>5968</a>    <span class="kw">pub fn </span>gdk_surface_get_frame_clock(surface: <span class="kw-2">*mut </span><a href="#3998-4001">GdkSurface</a>) -&gt; <span class="kw-2">*mut </span><a href="#3794-3797">GdkFrameClock</a>;
+<a href=#5969 id=5969 data-nosnippet>5969</a>    <span class="kw">pub fn </span>gdk_surface_get_height(surface: <span class="kw-2">*mut </span><a href="#3998-4001">GdkSurface</a>) -&gt; <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>;
+<a href=#5970 id=5970 data-nosnippet>5970</a>    <span class="kw">pub fn </span>gdk_surface_get_mapped(surface: <span class="kw-2">*mut </span><a href="#3998-4001">GdkSurface</a>) -&gt; gboolean;
+<a href=#5971 id=5971 data-nosnippet>5971</a>    <span class="attr">#[cfg(feature = <span class="string">"v4_12"</span>)]
+<a href=#5972 id=5972 data-nosnippet>5972</a>    #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_12"</span>)))]
+<a href=#5973 id=5973 data-nosnippet>5973</a>    </span><span class="kw">pub fn </span>gdk_surface_get_scale(surface: <span class="kw-2">*mut </span><a href="#3998-4001">GdkSurface</a>) -&gt; <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_double.html">c_double</a>;
+<a href=#5974 id=5974 data-nosnippet>5974</a>    <span class="kw">pub fn </span>gdk_surface_get_scale_factor(surface: <span class="kw-2">*mut </span><a href="#3998-4001">GdkSurface</a>) -&gt; <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>;
+<a href=#5975 id=5975 data-nosnippet>5975</a>    <span class="kw">pub fn </span>gdk_surface_get_width(surface: <span class="kw-2">*mut </span><a href="#3998-4001">GdkSurface</a>) -&gt; <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>;
+<a href=#5976 id=5976 data-nosnippet>5976</a>    <span class="kw">pub fn </span>gdk_surface_hide(surface: <span class="kw-2">*mut </span><a href="#3998-4001">GdkSurface</a>);
+<a href=#5977 id=5977 data-nosnippet>5977</a>    <span class="kw">pub fn </span>gdk_surface_is_destroyed(surface: <span class="kw-2">*mut </span><a href="#3998-4001">GdkSurface</a>) -&gt; gboolean;
+<a href=#5978 id=5978 data-nosnippet>5978</a>    <span class="kw">pub fn </span>gdk_surface_queue_render(surface: <span class="kw-2">*mut </span><a href="#3998-4001">GdkSurface</a>);
+<a href=#5979 id=5979 data-nosnippet>5979</a>    <span class="kw">pub fn </span>gdk_surface_request_layout(surface: <span class="kw-2">*mut </span><a href="#3998-4001">GdkSurface</a>);
+<a href=#5980 id=5980 data-nosnippet>5980</a>    <span class="kw">pub fn </span>gdk_surface_set_cursor(surface: <span class="kw-2">*mut </span><a href="#3998-4001">GdkSurface</a>, cursor: <span class="kw-2">*mut </span><a href="#3605-3608">GdkCursor</a>);
+<a href=#5981 id=5981 data-nosnippet>5981</a>    <span class="kw">pub fn </span>gdk_surface_set_device_cursor(
+<a href=#5982 id=5982 data-nosnippet>5982</a>        surface: <span class="kw-2">*mut </span><a href="#3998-4001">GdkSurface</a>,
+<a href=#5983 id=5983 data-nosnippet>5983</a>        device: <span class="kw-2">*mut </span><a href="#3645-3648">GdkDevice</a>,
+<a href=#5984 id=5984 data-nosnippet>5984</a>        cursor: <span class="kw-2">*mut </span><a href="#3605-3608">GdkCursor</a>,
+<a href=#5985 id=5985 data-nosnippet>5985</a>    );
+<a href=#5986 id=5986 data-nosnippet>5986</a>    <span class="kw">pub fn </span>gdk_surface_set_input_region(
+<a href=#5987 id=5987 data-nosnippet>5987</a>        surface: <span class="kw-2">*mut </span><a href="#3998-4001">GdkSurface</a>,
+<a href=#5988 id=5988 data-nosnippet>5988</a>        region: <span class="kw-2">*mut </span>cairo::cairo_region_t,
+<a href=#5989 id=5989 data-nosnippet>5989</a>    );
+<a href=#5990 id=5990 data-nosnippet>5990</a>    <span class="kw">pub fn </span>gdk_surface_set_opaque_region(
+<a href=#5991 id=5991 data-nosnippet>5991</a>        surface: <span class="kw-2">*mut </span><a href="#3998-4001">GdkSurface</a>,
+<a href=#5992 id=5992 data-nosnippet>5992</a>        region: <span class="kw-2">*mut </span>cairo::cairo_region_t,
+<a href=#5993 id=5993 data-nosnippet>5993</a>    );
+<a href=#5994 id=5994 data-nosnippet>5994</a>    <span class="kw">pub fn </span>gdk_surface_translate_coordinates(
+<a href=#5995 id=5995 data-nosnippet>5995</a>        from: <span class="kw-2">*mut </span><a href="#3998-4001">GdkSurface</a>,
+<a href=#5996 id=5996 data-nosnippet>5996</a>        to: <span class="kw-2">*mut </span><a href="#3998-4001">GdkSurface</a>,
+<a href=#5997 id=5997 data-nosnippet>5997</a>        x: <span class="kw-2">*mut </span><a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_double.html">c_double</a>,
+<a href=#5998 id=5998 data-nosnippet>5998</a>        y: <span class="kw-2">*mut </span><a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_double.html">c_double</a>,
+<a href=#5999 id=5999 data-nosnippet>5999</a>    ) -&gt; gboolean;
+<a href=#6000 id=6000 data-nosnippet>6000</a>
+<a href=#6001 id=6001 data-nosnippet>6001</a>    <span class="comment">//=========================================================================
+<a href=#6002 id=6002 data-nosnippet>6002</a>    // GdkTexture
+<a href=#6003 id=6003 data-nosnippet>6003</a>    //=========================================================================
+<a href=#6004 id=6004 data-nosnippet>6004</a>    </span><span class="kw">pub fn </span>gdk_texture_get_type() -&gt; GType;
+<a href=#6005 id=6005 data-nosnippet>6005</a>    <span class="kw">pub fn </span>gdk_texture_new_for_pixbuf(pixbuf: <span class="kw-2">*mut </span>gdk_pixbuf::GdkPixbuf) -&gt; <span class="kw-2">*mut </span><a href="#4011-4014">GdkTexture</a>;
+<a href=#6006 id=6006 data-nosnippet>6006</a>    <span class="attr">#[cfg(feature = <span class="string">"v4_6"</span>)]
+<a href=#6007 id=6007 data-nosnippet>6007</a>    #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_6"</span>)))]
+<a href=#6008 id=6008 data-nosnippet>6008</a>    </span><span class="kw">pub fn </span>gdk_texture_new_from_bytes(
+<a href=#6009 id=6009 data-nosnippet>6009</a>        bytes: <span class="kw-2">*mut </span>glib::GBytes,
+<a href=#6010 id=6010 data-nosnippet>6010</a>        error: <span class="kw-2">*mut *mut </span>glib::GError,
+<a href=#6011 id=6011 data-nosnippet>6011</a>    ) -&gt; <span class="kw-2">*mut </span><a href="#4011-4014">GdkTexture</a>;
+<a href=#6012 id=6012 data-nosnippet>6012</a>    <span class="kw">pub fn </span>gdk_texture_new_from_file(
+<a href=#6013 id=6013 data-nosnippet>6013</a>        file: <span class="kw-2">*mut </span>gio::GFile,
+<a href=#6014 id=6014 data-nosnippet>6014</a>        error: <span class="kw-2">*mut *mut </span>glib::GError,
+<a href=#6015 id=6015 data-nosnippet>6015</a>    ) -&gt; <span class="kw-2">*mut </span><a href="#4011-4014">GdkTexture</a>;
+<a href=#6016 id=6016 data-nosnippet>6016</a>    <span class="attr">#[cfg(feature = <span class="string">"v4_6"</span>)]
+<a href=#6017 id=6017 data-nosnippet>6017</a>    #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_6"</span>)))]
+<a href=#6018 id=6018 data-nosnippet>6018</a>    </span><span class="kw">pub fn </span>gdk_texture_new_from_filename(
+<a href=#6019 id=6019 data-nosnippet>6019</a>        path: <span class="kw-2">*const </span><a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_char.html">c_char</a>,
+<a href=#6020 id=6020 data-nosnippet>6020</a>        error: <span class="kw-2">*mut *mut </span>glib::GError,
+<a href=#6021 id=6021 data-nosnippet>6021</a>    ) -&gt; <span class="kw-2">*mut </span><a href="#4011-4014">GdkTexture</a>;
+<a href=#6022 id=6022 data-nosnippet>6022</a>    <span class="kw">pub fn </span>gdk_texture_new_from_resource(resource_path: <span class="kw-2">*const </span><a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_char.html">c_char</a>) -&gt; <span class="kw-2">*mut </span><a href="#4011-4014">GdkTexture</a>;
+<a href=#6023 id=6023 data-nosnippet>6023</a>    <span class="kw">pub fn </span>gdk_texture_download(texture: <span class="kw-2">*mut </span><a href="#4011-4014">GdkTexture</a>, data: <span class="kw-2">*mut </span><a href="https://doc.rust-lang.org/nightly/std/primitive.u8.html">u8</a>, stride: size_t);
+<a href=#6024 id=6024 data-nosnippet>6024</a>    <span class="attr">#[cfg(feature = <span class="string">"v4_16"</span>)]
+<a href=#6025 id=6025 data-nosnippet>6025</a>    #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_16"</span>)))]
+<a href=#6026 id=6026 data-nosnippet>6026</a>    </span><span class="kw">pub fn </span>gdk_texture_get_color_state(self_: <span class="kw-2">*mut </span><a href="#4011-4014">GdkTexture</a>) -&gt; <span class="kw-2">*mut </span><a href="#3018-3021">GdkColorState</a>;
+<a href=#6027 id=6027 data-nosnippet>6027</a>    <span class="attr">#[cfg(feature = <span class="string">"v4_10"</span>)]
+<a href=#6028 id=6028 data-nosnippet>6028</a>    #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_10"</span>)))]
+<a href=#6029 id=6029 data-nosnippet>6029</a>    </span><span class="kw">pub fn </span>gdk_texture_get_format(self_: <span class="kw-2">*mut </span><a href="#4011-4014">GdkTexture</a>) -&gt; <a href="#162">GdkMemoryFormat</a>;
+<a href=#6030 id=6030 data-nosnippet>6030</a>    <span class="kw">pub fn </span>gdk_texture_get_height(texture: <span class="kw-2">*mut </span><a href="#4011-4014">GdkTexture</a>) -&gt; <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>;
+<a href=#6031 id=6031 data-nosnippet>6031</a>    <span class="kw">pub fn </span>gdk_texture_get_width(texture: <span class="kw-2">*mut </span><a href="#4011-4014">GdkTexture</a>) -&gt; <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>;
+<a href=#6032 id=6032 data-nosnippet>6032</a>    <span class="kw">pub fn </span>gdk_texture_save_to_png(texture: <span class="kw-2">*mut </span><a href="#4011-4014">GdkTexture</a>, filename: <span class="kw-2">*const </span><a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_char.html">c_char</a>) -&gt; gboolean;
+<a href=#6033 id=6033 data-nosnippet>6033</a>    <span class="attr">#[cfg(feature = <span class="string">"v4_6"</span>)]
+<a href=#6034 id=6034 data-nosnippet>6034</a>    #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_6"</span>)))]
+<a href=#6035 id=6035 data-nosnippet>6035</a>    </span><span class="kw">pub fn </span>gdk_texture_save_to_png_bytes(texture: <span class="kw-2">*mut </span><a href="#4011-4014">GdkTexture</a>) -&gt; <span class="kw-2">*mut </span>glib::GBytes;
+<a href=#6036 id=6036 data-nosnippet>6036</a>    <span class="attr">#[cfg(feature = <span class="string">"v4_6"</span>)]
+<a href=#6037 id=6037 data-nosnippet>6037</a>    #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_6"</span>)))]
+<a href=#6038 id=6038 data-nosnippet>6038</a>    </span><span class="kw">pub fn </span>gdk_texture_save_to_tiff(texture: <span class="kw-2">*mut </span><a href="#4011-4014">GdkTexture</a>, filename: <span class="kw-2">*const </span><a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_char.html">c_char</a>) -&gt; gboolean;
+<a href=#6039 id=6039 data-nosnippet>6039</a>    <span class="attr">#[cfg(feature = <span class="string">"v4_6"</span>)]
+<a href=#6040 id=6040 data-nosnippet>6040</a>    #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_6"</span>)))]
+<a href=#6041 id=6041 data-nosnippet>6041</a>    </span><span class="kw">pub fn </span>gdk_texture_save_to_tiff_bytes(texture: <span class="kw-2">*mut </span><a href="#4011-4014">GdkTexture</a>) -&gt; <span class="kw-2">*mut </span>glib::GBytes;
+<a href=#6042 id=6042 data-nosnippet>6042</a>
+<a href=#6043 id=6043 data-nosnippet>6043</a>    <span class="comment">//=========================================================================
+<a href=#6044 id=6044 data-nosnippet>6044</a>    // GdkTouchEvent
+<a href=#6045 id=6045 data-nosnippet>6045</a>    //=========================================================================
+<a href=#6046 id=6046 data-nosnippet>6046</a>    </span><span class="kw">pub fn </span>gdk_touch_event_get_type() -&gt; GType;
+<a href=#6047 id=6047 data-nosnippet>6047</a>    <span class="kw">pub fn </span>gdk_touch_event_get_emulating_pointer(event: <span class="kw-2">*mut </span><a href="#4024-4027">GdkTouchEvent</a>) -&gt; gboolean;
+<a href=#6048 id=6048 data-nosnippet>6048</a>
+<a href=#6049 id=6049 data-nosnippet>6049</a>    <span class="comment">//=========================================================================
+<a href=#6050 id=6050 data-nosnippet>6050</a>    // GdkTouchpadEvent
+<a href=#6051 id=6051 data-nosnippet>6051</a>    //=========================================================================
+<a href=#6052 id=6052 data-nosnippet>6052</a>    </span><span class="kw">pub fn </span>gdk_touchpad_event_get_type() -&gt; GType;
+<a href=#6053 id=6053 data-nosnippet>6053</a>    <span class="kw">pub fn </span>gdk_touchpad_event_get_deltas(
+<a href=#6054 id=6054 data-nosnippet>6054</a>        event: <span class="kw-2">*mut </span><a href="#4038-4041">GdkTouchpadEvent</a>,
+<a href=#6055 id=6055 data-nosnippet>6055</a>        dx: <span class="kw-2">*mut </span><a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_double.html">c_double</a>,
+<a href=#6056 id=6056 data-nosnippet>6056</a>        dy: <span class="kw-2">*mut </span><a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_double.html">c_double</a>,
+<a href=#6057 id=6057 data-nosnippet>6057</a>    );
+<a href=#6058 id=6058 data-nosnippet>6058</a>    <span class="kw">pub fn </span>gdk_touchpad_event_get_gesture_phase(
+<a href=#6059 id=6059 data-nosnippet>6059</a>        event: <span class="kw-2">*mut </span><a href="#4038-4041">GdkTouchpadEvent</a>,
+<a href=#6060 id=6060 data-nosnippet>6060</a>    ) -&gt; <a href="#393">GdkTouchpadGesturePhase</a>;
+<a href=#6061 id=6061 data-nosnippet>6061</a>    <span class="kw">pub fn </span>gdk_touchpad_event_get_n_fingers(event: <span class="kw-2">*mut </span><a href="#4038-4041">GdkTouchpadEvent</a>) -&gt; <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_uint.html">c_uint</a>;
+<a href=#6062 id=6062 data-nosnippet>6062</a>    <span class="kw">pub fn </span>gdk_touchpad_event_get_pinch_angle_delta(event: <span class="kw-2">*mut </span><a href="#4038-4041">GdkTouchpadEvent</a>) -&gt; <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_double.html">c_double</a>;
+<a href=#6063 id=6063 data-nosnippet>6063</a>    <span class="kw">pub fn </span>gdk_touchpad_event_get_pinch_scale(event: <span class="kw-2">*mut </span><a href="#4038-4041">GdkTouchpadEvent</a>) -&gt; <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_double.html">c_double</a>;
+<a href=#6064 id=6064 data-nosnippet>6064</a>
+<a href=#6065 id=6065 data-nosnippet>6065</a>    <span class="comment">//=========================================================================
+<a href=#6066 id=6066 data-nosnippet>6066</a>    // GdkVulkanContext
+<a href=#6067 id=6067 data-nosnippet>6067</a>    //=========================================================================
+<a href=#6068 id=6068 data-nosnippet>6068</a>    </span><span class="kw">pub fn </span>gdk_vulkan_context_get_type() -&gt; GType;
+<a href=#6069 id=6069 data-nosnippet>6069</a>
+<a href=#6070 id=6070 data-nosnippet>6070</a>    <span class="comment">//=========================================================================
+<a href=#6071 id=6071 data-nosnippet>6071</a>    // GdkDevicePad
+<a href=#6072 id=6072 data-nosnippet>6072</a>    //=========================================================================
+<a href=#6073 id=6073 data-nosnippet>6073</a>    </span><span class="kw">pub fn </span>gdk_device_pad_get_type() -&gt; GType;
+<a href=#6074 id=6074 data-nosnippet>6074</a>    <span class="kw">pub fn </span>gdk_device_pad_get_feature_group(
+<a href=#6075 id=6075 data-nosnippet>6075</a>        pad: <span class="kw-2">*mut </span><a href="#4067-4070">GdkDevicePad</a>,
+<a href=#6076 id=6076 data-nosnippet>6076</a>        feature: <a href="#65">GdkDevicePadFeature</a>,
+<a href=#6077 id=6077 data-nosnippet>6077</a>        feature_idx: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>,
+<a href=#6078 id=6078 data-nosnippet>6078</a>    ) -&gt; <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>;
+<a href=#6079 id=6079 data-nosnippet>6079</a>    <span class="kw">pub fn </span>gdk_device_pad_get_group_n_modes(pad: <span class="kw-2">*mut </span><a href="#4067-4070">GdkDevicePad</a>, group_idx: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>) -&gt; <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>;
+<a href=#6080 id=6080 data-nosnippet>6080</a>    <span class="kw">pub fn </span>gdk_device_pad_get_n_features(
+<a href=#6081 id=6081 data-nosnippet>6081</a>        pad: <span class="kw-2">*mut </span><a href="#4067-4070">GdkDevicePad</a>,
+<a href=#6082 id=6082 data-nosnippet>6082</a>        feature: <a href="#65">GdkDevicePadFeature</a>,
+<a href=#6083 id=6083 data-nosnippet>6083</a>    ) -&gt; <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>;
+<a href=#6084 id=6084 data-nosnippet>6084</a>    <span class="kw">pub fn </span>gdk_device_pad_get_n_groups(pad: <span class="kw-2">*mut </span><a href="#4067-4070">GdkDevicePad</a>) -&gt; <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>;
+<a href=#6085 id=6085 data-nosnippet>6085</a>
+<a href=#6086 id=6086 data-nosnippet>6086</a>    <span class="comment">//=========================================================================
+<a href=#6087 id=6087 data-nosnippet>6087</a>    // GdkDragSurface
+<a href=#6088 id=6088 data-nosnippet>6088</a>    //=========================================================================
+<a href=#6089 id=6089 data-nosnippet>6089</a>    </span><span class="kw">pub fn </span>gdk_drag_surface_get_type() -&gt; GType;
+<a href=#6090 id=6090 data-nosnippet>6090</a>    <span class="kw">pub fn </span>gdk_drag_surface_present(
+<a href=#6091 id=6091 data-nosnippet>6091</a>        drag_surface: <span class="kw-2">*mut </span><a href="#4080-4083">GdkDragSurface</a>,
+<a href=#6092 id=6092 data-nosnippet>6092</a>        width: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>,
+<a href=#6093 id=6093 data-nosnippet>6093</a>        height: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>,
+<a href=#6094 id=6094 data-nosnippet>6094</a>    ) -&gt; gboolean;
+<a href=#6095 id=6095 data-nosnippet>6095</a>
+<a href=#6096 id=6096 data-nosnippet>6096</a>    <span class="comment">//=========================================================================
+<a href=#6097 id=6097 data-nosnippet>6097</a>    // GdkPaintable
+<a href=#6098 id=6098 data-nosnippet>6098</a>    //=========================================================================
+<a href=#6099 id=6099 data-nosnippet>6099</a>    </span><span class="kw">pub fn </span>gdk_paintable_get_type() -&gt; GType;
+<a href=#6100 id=6100 data-nosnippet>6100</a>    <span class="kw">pub fn </span>gdk_paintable_new_empty(
+<a href=#6101 id=6101 data-nosnippet>6101</a>        intrinsic_width: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>,
+<a href=#6102 id=6102 data-nosnippet>6102</a>        intrinsic_height: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>,
+<a href=#6103 id=6103 data-nosnippet>6103</a>    ) -&gt; <span class="kw-2">*mut </span><a href="#4093-4096">GdkPaintable</a>;
+<a href=#6104 id=6104 data-nosnippet>6104</a>    <span class="kw">pub fn </span>gdk_paintable_compute_concrete_size(
+<a href=#6105 id=6105 data-nosnippet>6105</a>        paintable: <span class="kw-2">*mut </span><a href="#4093-4096">GdkPaintable</a>,
+<a href=#6106 id=6106 data-nosnippet>6106</a>        specified_width: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_double.html">c_double</a>,
+<a href=#6107 id=6107 data-nosnippet>6107</a>        specified_height: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_double.html">c_double</a>,
+<a href=#6108 id=6108 data-nosnippet>6108</a>        default_width: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_double.html">c_double</a>,
+<a href=#6109 id=6109 data-nosnippet>6109</a>        default_height: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_double.html">c_double</a>,
+<a href=#6110 id=6110 data-nosnippet>6110</a>        concrete_width: <span class="kw-2">*mut </span><a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_double.html">c_double</a>,
+<a href=#6111 id=6111 data-nosnippet>6111</a>        concrete_height: <span class="kw-2">*mut </span><a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_double.html">c_double</a>,
+<a href=#6112 id=6112 data-nosnippet>6112</a>    );
+<a href=#6113 id=6113 data-nosnippet>6113</a>    <span class="kw">pub fn </span>gdk_paintable_get_current_image(paintable: <span class="kw-2">*mut </span><a href="#4093-4096">GdkPaintable</a>) -&gt; <span class="kw-2">*mut </span><a href="#4093-4096">GdkPaintable</a>;
+<a href=#6114 id=6114 data-nosnippet>6114</a>    <span class="kw">pub fn </span>gdk_paintable_get_flags(paintable: <span class="kw-2">*mut </span><a href="#4093-4096">GdkPaintable</a>) -&gt; <a href="#2929">GdkPaintableFlags</a>;
+<a href=#6115 id=6115 data-nosnippet>6115</a>    <span class="kw">pub fn </span>gdk_paintable_get_intrinsic_aspect_ratio(paintable: <span class="kw-2">*mut </span><a href="#4093-4096">GdkPaintable</a>) -&gt; <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_double.html">c_double</a>;
+<a href=#6116 id=6116 data-nosnippet>6116</a>    <span class="kw">pub fn </span>gdk_paintable_get_intrinsic_height(paintable: <span class="kw-2">*mut </span><a href="#4093-4096">GdkPaintable</a>) -&gt; <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>;
+<a href=#6117 id=6117 data-nosnippet>6117</a>    <span class="kw">pub fn </span>gdk_paintable_get_intrinsic_width(paintable: <span class="kw-2">*mut </span><a href="#4093-4096">GdkPaintable</a>) -&gt; <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>;
+<a href=#6118 id=6118 data-nosnippet>6118</a>    <span class="kw">pub fn </span>gdk_paintable_invalidate_contents(paintable: <span class="kw-2">*mut </span><a href="#4093-4096">GdkPaintable</a>);
+<a href=#6119 id=6119 data-nosnippet>6119</a>    <span class="kw">pub fn </span>gdk_paintable_invalidate_size(paintable: <span class="kw-2">*mut </span><a href="#4093-4096">GdkPaintable</a>);
+<a href=#6120 id=6120 data-nosnippet>6120</a>    <span class="kw">pub fn </span>gdk_paintable_snapshot(
+<a href=#6121 id=6121 data-nosnippet>6121</a>        paintable: <span class="kw-2">*mut </span><a href="#4093-4096">GdkPaintable</a>,
+<a href=#6122 id=6122 data-nosnippet>6122</a>        snapshot: <span class="kw-2">*mut </span><a href="#3985-3988">GdkSnapshot</a>,
+<a href=#6123 id=6123 data-nosnippet>6123</a>        width: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_double.html">c_double</a>,
+<a href=#6124 id=6124 data-nosnippet>6124</a>        height: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_double.html">c_double</a>,
+<a href=#6125 id=6125 data-nosnippet>6125</a>    );
+<a href=#6126 id=6126 data-nosnippet>6126</a>
+<a href=#6127 id=6127 data-nosnippet>6127</a>    <span class="comment">//=========================================================================
+<a href=#6128 id=6128 data-nosnippet>6128</a>    // GdkPopup
+<a href=#6129 id=6129 data-nosnippet>6129</a>    //=========================================================================
+<a href=#6130 id=6130 data-nosnippet>6130</a>    </span><span class="kw">pub fn </span>gdk_popup_get_type() -&gt; GType;
+<a href=#6131 id=6131 data-nosnippet>6131</a>    <span class="kw">pub fn </span>gdk_popup_get_autohide(popup: <span class="kw-2">*mut </span><a href="#4106-4109">GdkPopup</a>) -&gt; gboolean;
+<a href=#6132 id=6132 data-nosnippet>6132</a>    <span class="kw">pub fn </span>gdk_popup_get_parent(popup: <span class="kw-2">*mut </span><a href="#4106-4109">GdkPopup</a>) -&gt; <span class="kw-2">*mut </span><a href="#3998-4001">GdkSurface</a>;
+<a href=#6133 id=6133 data-nosnippet>6133</a>    <span class="kw">pub fn </span>gdk_popup_get_position_x(popup: <span class="kw-2">*mut </span><a href="#4106-4109">GdkPopup</a>) -&gt; <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>;
+<a href=#6134 id=6134 data-nosnippet>6134</a>    <span class="kw">pub fn </span>gdk_popup_get_position_y(popup: <span class="kw-2">*mut </span><a href="#4106-4109">GdkPopup</a>) -&gt; <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>;
+<a href=#6135 id=6135 data-nosnippet>6135</a>    <span class="kw">pub fn </span>gdk_popup_get_rect_anchor(popup: <span class="kw-2">*mut </span><a href="#4106-4109">GdkPopup</a>) -&gt; <a href="#136">GdkGravity</a>;
+<a href=#6136 id=6136 data-nosnippet>6136</a>    <span class="kw">pub fn </span>gdk_popup_get_surface_anchor(popup: <span class="kw-2">*mut </span><a href="#4106-4109">GdkPopup</a>) -&gt; <a href="#136">GdkGravity</a>;
+<a href=#6137 id=6137 data-nosnippet>6137</a>    <span class="kw">pub fn </span>gdk_popup_present(
+<a href=#6138 id=6138 data-nosnippet>6138</a>        popup: <span class="kw-2">*mut </span><a href="#4106-4109">GdkPopup</a>,
+<a href=#6139 id=6139 data-nosnippet>6139</a>        width: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>,
+<a href=#6140 id=6140 data-nosnippet>6140</a>        height: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>,
+<a href=#6141 id=6141 data-nosnippet>6141</a>        layout: <span class="kw-2">*mut </span><a href="#3334-3337">GdkPopupLayout</a>,
+<a href=#6142 id=6142 data-nosnippet>6142</a>    ) -&gt; gboolean;
+<a href=#6143 id=6143 data-nosnippet>6143</a>
+<a href=#6144 id=6144 data-nosnippet>6144</a>    <span class="comment">//=========================================================================
+<a href=#6145 id=6145 data-nosnippet>6145</a>    // GdkToplevel
+<a href=#6146 id=6146 data-nosnippet>6146</a>    //=========================================================================
+<a href=#6147 id=6147 data-nosnippet>6147</a>    </span><span class="kw">pub fn </span>gdk_toplevel_get_type() -&gt; GType;
+<a href=#6148 id=6148 data-nosnippet>6148</a>    <span class="kw">pub fn </span>gdk_toplevel_begin_move(
+<a href=#6149 id=6149 data-nosnippet>6149</a>        toplevel: <span class="kw-2">*mut </span><a href="#4119-4122">GdkToplevel</a>,
+<a href=#6150 id=6150 data-nosnippet>6150</a>        device: <span class="kw-2">*mut </span><a href="#3645-3648">GdkDevice</a>,
+<a href=#6151 id=6151 data-nosnippet>6151</a>        button: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>,
+<a href=#6152 id=6152 data-nosnippet>6152</a>        x: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_double.html">c_double</a>,
+<a href=#6153 id=6153 data-nosnippet>6153</a>        y: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_double.html">c_double</a>,
+<a href=#6154 id=6154 data-nosnippet>6154</a>        timestamp: <a href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>,
+<a href=#6155 id=6155 data-nosnippet>6155</a>    );
+<a href=#6156 id=6156 data-nosnippet>6156</a>    <span class="kw">pub fn </span>gdk_toplevel_begin_resize(
+<a href=#6157 id=6157 data-nosnippet>6157</a>        toplevel: <span class="kw-2">*mut </span><a href="#4119-4122">GdkToplevel</a>,
+<a href=#6158 id=6158 data-nosnippet>6158</a>        edge: <a href="#372">GdkSurfaceEdge</a>,
+<a href=#6159 id=6159 data-nosnippet>6159</a>        device: <span class="kw-2">*mut </span><a href="#3645-3648">GdkDevice</a>,
+<a href=#6160 id=6160 data-nosnippet>6160</a>        button: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>,
+<a href=#6161 id=6161 data-nosnippet>6161</a>        x: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_double.html">c_double</a>,
+<a href=#6162 id=6162 data-nosnippet>6162</a>        y: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_double.html">c_double</a>,
+<a href=#6163 id=6163 data-nosnippet>6163</a>        timestamp: <a href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>,
+<a href=#6164 id=6164 data-nosnippet>6164</a>    );
+<a href=#6165 id=6165 data-nosnippet>6165</a>    <span class="kw">pub fn </span>gdk_toplevel_focus(toplevel: <span class="kw-2">*mut </span><a href="#4119-4122">GdkToplevel</a>, timestamp: <a href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>);
+<a href=#6166 id=6166 data-nosnippet>6166</a>    <span class="attr">#[cfg(feature = <span class="string">"v4_20"</span>)]
+<a href=#6167 id=6167 data-nosnippet>6167</a>    #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_20"</span>)))]
+<a href=#6168 id=6168 data-nosnippet>6168</a>    </span><span class="kw">pub fn </span>gdk_toplevel_get_capabilities(toplevel: <span class="kw-2">*mut </span><a href="#4119-4122">GdkToplevel</a>) -&gt; <a href="#2943">GdkToplevelCapabilities</a>;
+<a href=#6169 id=6169 data-nosnippet>6169</a>    <span class="attr">#[cfg(feature = <span class="string">"v4_20"</span>)]
+<a href=#6170 id=6170 data-nosnippet>6170</a>    #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_20"</span>)))]
+<a href=#6171 id=6171 data-nosnippet>6171</a>    </span><span class="kw">pub fn </span>gdk_toplevel_get_gravity(toplevel: <span class="kw-2">*mut </span><a href="#4119-4122">GdkToplevel</a>) -&gt; <a href="#136">GdkGravity</a>;
+<a href=#6172 id=6172 data-nosnippet>6172</a>    <span class="kw">pub fn </span>gdk_toplevel_get_state(toplevel: <span class="kw-2">*mut </span><a href="#4119-4122">GdkToplevel</a>) -&gt; <a href="#2969">GdkToplevelState</a>;
+<a href=#6173 id=6173 data-nosnippet>6173</a>    <span class="kw">pub fn </span>gdk_toplevel_inhibit_system_shortcuts(toplevel: <span class="kw-2">*mut </span><a href="#4119-4122">GdkToplevel</a>, event: <span class="kw-2">*mut </span><a href="#3767-3770">GdkEvent</a>);
+<a href=#6174 id=6174 data-nosnippet>6174</a>    <span class="kw">pub fn </span>gdk_toplevel_lower(toplevel: <span class="kw-2">*mut </span><a href="#4119-4122">GdkToplevel</a>) -&gt; gboolean;
+<a href=#6175 id=6175 data-nosnippet>6175</a>    <span class="kw">pub fn </span>gdk_toplevel_minimize(toplevel: <span class="kw-2">*mut </span><a href="#4119-4122">GdkToplevel</a>) -&gt; gboolean;
+<a href=#6176 id=6176 data-nosnippet>6176</a>    <span class="kw">pub fn </span>gdk_toplevel_present(toplevel: <span class="kw-2">*mut </span><a href="#4119-4122">GdkToplevel</a>, layout: <span class="kw-2">*mut </span><a href="#3456-3459">GdkToplevelLayout</a>);
+<a href=#6177 id=6177 data-nosnippet>6177</a>    <span class="kw">pub fn </span>gdk_toplevel_restore_system_shortcuts(toplevel: <span class="kw-2">*mut </span><a href="#4119-4122">GdkToplevel</a>);
+<a href=#6178 id=6178 data-nosnippet>6178</a>    <span class="kw">pub fn </span>gdk_toplevel_set_decorated(toplevel: <span class="kw-2">*mut </span><a href="#4119-4122">GdkToplevel</a>, decorated: gboolean);
+<a href=#6179 id=6179 data-nosnippet>6179</a>    <span class="kw">pub fn </span>gdk_toplevel_set_deletable(toplevel: <span class="kw-2">*mut </span><a href="#4119-4122">GdkToplevel</a>, deletable: gboolean);
+<a href=#6180 id=6180 data-nosnippet>6180</a>    <span class="attr">#[cfg(feature = <span class="string">"v4_20"</span>)]
+<a href=#6181 id=6181 data-nosnippet>6181</a>    #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_20"</span>)))]
+<a href=#6182 id=6182 data-nosnippet>6182</a>    </span><span class="kw">pub fn </span>gdk_toplevel_set_gravity(toplevel: <span class="kw-2">*mut </span><a href="#4119-4122">GdkToplevel</a>, gravity: <a href="#136">GdkGravity</a>);
+<a href=#6183 id=6183 data-nosnippet>6183</a>    <span class="kw">pub fn </span>gdk_toplevel_set_icon_list(toplevel: <span class="kw-2">*mut </span><a href="#4119-4122">GdkToplevel</a>, surfaces: <span class="kw-2">*mut </span>glib::GList);
+<a href=#6184 id=6184 data-nosnippet>6184</a>    <span class="kw">pub fn </span>gdk_toplevel_set_modal(toplevel: <span class="kw-2">*mut </span><a href="#4119-4122">GdkToplevel</a>, modal: gboolean);
+<a href=#6185 id=6185 data-nosnippet>6185</a>    <span class="kw">pub fn </span>gdk_toplevel_set_startup_id(toplevel: <span class="kw-2">*mut </span><a href="#4119-4122">GdkToplevel</a>, startup_id: <span class="kw-2">*const </span><a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_char.html">c_char</a>);
+<a href=#6186 id=6186 data-nosnippet>6186</a>    <span class="kw">pub fn </span>gdk_toplevel_set_title(toplevel: <span class="kw-2">*mut </span><a href="#4119-4122">GdkToplevel</a>, title: <span class="kw-2">*const </span><a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_char.html">c_char</a>);
+<a href=#6187 id=6187 data-nosnippet>6187</a>    <span class="kw">pub fn </span>gdk_toplevel_set_transient_for(toplevel: <span class="kw-2">*mut </span><a href="#4119-4122">GdkToplevel</a>, parent: <span class="kw-2">*mut </span><a href="#3998-4001">GdkSurface</a>);
+<a href=#6188 id=6188 data-nosnippet>6188</a>    <span class="kw">pub fn </span>gdk_toplevel_show_window_menu(
+<a href=#6189 id=6189 data-nosnippet>6189</a>        toplevel: <span class="kw-2">*mut </span><a href="#4119-4122">GdkToplevel</a>,
+<a href=#6190 id=6190 data-nosnippet>6190</a>        event: <span class="kw-2">*mut </span><a href="#3767-3770">GdkEvent</a>,
+<a href=#6191 id=6191 data-nosnippet>6191</a>    ) -&gt; gboolean;
+<a href=#6192 id=6192 data-nosnippet>6192</a>    <span class="kw">pub fn </span>gdk_toplevel_supports_edge_constraints(toplevel: <span class="kw-2">*mut </span><a href="#4119-4122">GdkToplevel</a>) -&gt; gboolean;
+<a href=#6193 id=6193 data-nosnippet>6193</a>    <span class="attr">#[cfg(feature = <span class="string">"v4_4"</span>)]
+<a href=#6194 id=6194 data-nosnippet>6194</a>    #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_4"</span>)))]
+<a href=#6195 id=6195 data-nosnippet>6195</a>    </span><span class="kw">pub fn </span>gdk_toplevel_titlebar_gesture(
+<a href=#6196 id=6196 data-nosnippet>6196</a>        toplevel: <span class="kw-2">*mut </span><a href="#4119-4122">GdkToplevel</a>,
+<a href=#6197 id=6197 data-nosnippet>6197</a>        gesture: <a href="#388">GdkTitlebarGesture</a>,
+<a href=#6198 id=6198 data-nosnippet>6198</a>    ) -&gt; gboolean;
+<a href=#6199 id=6199 data-nosnippet>6199</a>
+<a href=#6200 id=6200 data-nosnippet>6200</a>    <span class="comment">//=========================================================================
+<a href=#6201 id=6201 data-nosnippet>6201</a>    // Other functions
+<a href=#6202 id=6202 data-nosnippet>6202</a>    //=========================================================================
+<a href=#6203 id=6203 data-nosnippet>6203</a>    </span><span class="kw">pub fn </span>gdk_cairo_draw_from_gl(
+<a href=#6204 id=6204 data-nosnippet>6204</a>        cr: <span class="kw-2">*mut </span>cairo::cairo_t,
+<a href=#6205 id=6205 data-nosnippet>6205</a>        surface: <span class="kw-2">*mut </span><a href="#3998-4001">GdkSurface</a>,
+<a href=#6206 id=6206 data-nosnippet>6206</a>        source: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>,
+<a href=#6207 id=6207 data-nosnippet>6207</a>        source_type: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>,
+<a href=#6208 id=6208 data-nosnippet>6208</a>        buffer_scale: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>,
+<a href=#6209 id=6209 data-nosnippet>6209</a>        x: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>,
+<a href=#6210 id=6210 data-nosnippet>6210</a>        y: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>,
+<a href=#6211 id=6211 data-nosnippet>6211</a>        width: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>,
+<a href=#6212 id=6212 data-nosnippet>6212</a>        height: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>,
+<a href=#6213 id=6213 data-nosnippet>6213</a>    );
+<a href=#6214 id=6214 data-nosnippet>6214</a>    <span class="kw">pub fn </span>gdk_cairo_rectangle(cr: <span class="kw-2">*mut </span>cairo::cairo_t, rectangle: <span class="kw-2">*const </span><a href="#3368-3373">GdkRectangle</a>);
+<a href=#6215 id=6215 data-nosnippet>6215</a>    <span class="kw">pub fn </span>gdk_cairo_region(cr: <span class="kw-2">*mut </span>cairo::cairo_t, region: <span class="kw-2">*const </span>cairo::cairo_region_t);
+<a href=#6216 id=6216 data-nosnippet>6216</a>    <span class="kw">pub fn </span>gdk_cairo_region_create_from_surface(
+<a href=#6217 id=6217 data-nosnippet>6217</a>        surface: <span class="kw-2">*mut </span>cairo::cairo_surface_t,
+<a href=#6218 id=6218 data-nosnippet>6218</a>    ) -&gt; <span class="kw-2">*mut </span>cairo::cairo_region_t;
+<a href=#6219 id=6219 data-nosnippet>6219</a>    <span class="kw">pub fn </span>gdk_cairo_set_source_pixbuf(
+<a href=#6220 id=6220 data-nosnippet>6220</a>        cr: <span class="kw-2">*mut </span>cairo::cairo_t,
+<a href=#6221 id=6221 data-nosnippet>6221</a>        pixbuf: <span class="kw-2">*const </span>gdk_pixbuf::GdkPixbuf,
+<a href=#6222 id=6222 data-nosnippet>6222</a>        pixbuf_x: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_double.html">c_double</a>,
+<a href=#6223 id=6223 data-nosnippet>6223</a>        pixbuf_y: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_double.html">c_double</a>,
+<a href=#6224 id=6224 data-nosnippet>6224</a>    );
+<a href=#6225 id=6225 data-nosnippet>6225</a>    <span class="kw">pub fn </span>gdk_cairo_set_source_rgba(cr: <span class="kw-2">*mut </span>cairo::cairo_t, rgba: <span class="kw-2">*const </span><a href="#3348-3353">GdkRGBA</a>);
+<a href=#6226 id=6226 data-nosnippet>6226</a>    <span class="kw">pub fn </span>gdk_content_deserialize_async(
+<a href=#6227 id=6227 data-nosnippet>6227</a>        stream: <span class="kw-2">*mut </span>gio::GInputStream,
+<a href=#6228 id=6228 data-nosnippet>6228</a>        mime_type: <span class="kw-2">*const </span><a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_char.html">c_char</a>,
+<a href=#6229 id=6229 data-nosnippet>6229</a>        type_: GType,
+<a href=#6230 id=6230 data-nosnippet>6230</a>        io_priority: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>,
+<a href=#6231 id=6231 data-nosnippet>6231</a>        cancellable: <span class="kw-2">*mut </span>gio::GCancellable,
+<a href=#6232 id=6232 data-nosnippet>6232</a>        callback: gio::GAsyncReadyCallback,
+<a href=#6233 id=6233 data-nosnippet>6233</a>        user_data: gpointer,
+<a href=#6234 id=6234 data-nosnippet>6234</a>    );
+<a href=#6235 id=6235 data-nosnippet>6235</a>    <span class="kw">pub fn </span>gdk_content_deserialize_finish(
+<a href=#6236 id=6236 data-nosnippet>6236</a>        result: <span class="kw-2">*mut </span>gio::GAsyncResult,
+<a href=#6237 id=6237 data-nosnippet>6237</a>        value: <span class="kw-2">*mut </span>gobject::GValue,
+<a href=#6238 id=6238 data-nosnippet>6238</a>        error: <span class="kw-2">*mut *mut </span>glib::GError,
+<a href=#6239 id=6239 data-nosnippet>6239</a>    ) -&gt; gboolean;
+<a href=#6240 id=6240 data-nosnippet>6240</a>    <span class="kw">pub fn </span>gdk_content_register_deserializer(
+<a href=#6241 id=6241 data-nosnippet>6241</a>        mime_type: <span class="kw-2">*const </span><a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_char.html">c_char</a>,
+<a href=#6242 id=6242 data-nosnippet>6242</a>        type_: GType,
+<a href=#6243 id=6243 data-nosnippet>6243</a>        deserialize: <a href="#2991">GdkContentDeserializeFunc</a>,
+<a href=#6244 id=6244 data-nosnippet>6244</a>        data: gpointer,
+<a href=#6245 id=6245 data-nosnippet>6245</a>        notify: glib::GDestroyNotify,
+<a href=#6246 id=6246 data-nosnippet>6246</a>    );
+<a href=#6247 id=6247 data-nosnippet>6247</a>    <span class="kw">pub fn </span>gdk_content_register_serializer(
+<a href=#6248 id=6248 data-nosnippet>6248</a>        type_: GType,
+<a href=#6249 id=6249 data-nosnippet>6249</a>        mime_type: <span class="kw-2">*const </span><a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_char.html">c_char</a>,
+<a href=#6250 id=6250 data-nosnippet>6250</a>        serialize: <a href="#2992">GdkContentSerializeFunc</a>,
+<a href=#6251 id=6251 data-nosnippet>6251</a>        data: gpointer,
+<a href=#6252 id=6252 data-nosnippet>6252</a>        notify: glib::GDestroyNotify,
+<a href=#6253 id=6253 data-nosnippet>6253</a>    );
+<a href=#6254 id=6254 data-nosnippet>6254</a>    <span class="kw">pub fn </span>gdk_content_serialize_async(
+<a href=#6255 id=6255 data-nosnippet>6255</a>        stream: <span class="kw-2">*mut </span>gio::GOutputStream,
+<a href=#6256 id=6256 data-nosnippet>6256</a>        mime_type: <span class="kw-2">*const </span><a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_char.html">c_char</a>,
+<a href=#6257 id=6257 data-nosnippet>6257</a>        value: <span class="kw-2">*const </span>gobject::GValue,
+<a href=#6258 id=6258 data-nosnippet>6258</a>        io_priority: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>,
+<a href=#6259 id=6259 data-nosnippet>6259</a>        cancellable: <span class="kw-2">*mut </span>gio::GCancellable,
+<a href=#6260 id=6260 data-nosnippet>6260</a>        callback: gio::GAsyncReadyCallback,
+<a href=#6261 id=6261 data-nosnippet>6261</a>        user_data: gpointer,
+<a href=#6262 id=6262 data-nosnippet>6262</a>    );
+<a href=#6263 id=6263 data-nosnippet>6263</a>    <span class="kw">pub fn </span>gdk_content_serialize_finish(
+<a href=#6264 id=6264 data-nosnippet>6264</a>        result: <span class="kw-2">*mut </span>gio::GAsyncResult,
+<a href=#6265 id=6265 data-nosnippet>6265</a>        error: <span class="kw-2">*mut *mut </span>glib::GError,
+<a href=#6266 id=6266 data-nosnippet>6266</a>    ) -&gt; gboolean;
+<a href=#6267 id=6267 data-nosnippet>6267</a>    <span class="kw">pub fn </span>gdk_events_get_angle(
+<a href=#6268 id=6268 data-nosnippet>6268</a>        event1: <span class="kw-2">*mut </span><a href="#3767-3770">GdkEvent</a>,
+<a href=#6269 id=6269 data-nosnippet>6269</a>        event2: <span class="kw-2">*mut </span><a href="#3767-3770">GdkEvent</a>,
+<a href=#6270 id=6270 data-nosnippet>6270</a>        angle: <span class="kw-2">*mut </span><a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_double.html">c_double</a>,
+<a href=#6271 id=6271 data-nosnippet>6271</a>    ) -&gt; gboolean;
+<a href=#6272 id=6272 data-nosnippet>6272</a>    <span class="kw">pub fn </span>gdk_events_get_center(
+<a href=#6273 id=6273 data-nosnippet>6273</a>        event1: <span class="kw-2">*mut </span><a href="#3767-3770">GdkEvent</a>,
+<a href=#6274 id=6274 data-nosnippet>6274</a>        event2: <span class="kw-2">*mut </span><a href="#3767-3770">GdkEvent</a>,
+<a href=#6275 id=6275 data-nosnippet>6275</a>        x: <span class="kw-2">*mut </span><a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_double.html">c_double</a>,
+<a href=#6276 id=6276 data-nosnippet>6276</a>        y: <span class="kw-2">*mut </span><a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_double.html">c_double</a>,
+<a href=#6277 id=6277 data-nosnippet>6277</a>    ) -&gt; gboolean;
+<a href=#6278 id=6278 data-nosnippet>6278</a>    <span class="kw">pub fn </span>gdk_events_get_distance(
+<a href=#6279 id=6279 data-nosnippet>6279</a>        event1: <span class="kw-2">*mut </span><a href="#3767-3770">GdkEvent</a>,
+<a href=#6280 id=6280 data-nosnippet>6280</a>        event2: <span class="kw-2">*mut </span><a href="#3767-3770">GdkEvent</a>,
+<a href=#6281 id=6281 data-nosnippet>6281</a>        distance: <span class="kw-2">*mut </span><a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_double.html">c_double</a>,
+<a href=#6282 id=6282 data-nosnippet>6282</a>    ) -&gt; gboolean;
+<a href=#6283 id=6283 data-nosnippet>6283</a>    <span class="kw">pub fn </span>gdk_intern_mime_type(string: <span class="kw-2">*const </span><a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_char.html">c_char</a>) -&gt; <span class="kw-2">*const </span><a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_char.html">c_char</a>;
+<a href=#6284 id=6284 data-nosnippet>6284</a>    <span class="kw">pub fn </span>gdk_keyval_convert_case(symbol: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_uint.html">c_uint</a>, lower: <span class="kw-2">*mut </span><a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_uint.html">c_uint</a>, upper: <span class="kw-2">*mut </span><a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_uint.html">c_uint</a>);
+<a href=#6285 id=6285 data-nosnippet>6285</a>    <span class="kw">pub fn </span>gdk_keyval_from_name(keyval_name: <span class="kw-2">*const </span><a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_char.html">c_char</a>) -&gt; <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_uint.html">c_uint</a>;
+<a href=#6286 id=6286 data-nosnippet>6286</a>    <span class="kw">pub fn </span>gdk_keyval_is_lower(keyval: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_uint.html">c_uint</a>) -&gt; gboolean;
+<a href=#6287 id=6287 data-nosnippet>6287</a>    <span class="kw">pub fn </span>gdk_keyval_is_upper(keyval: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_uint.html">c_uint</a>) -&gt; gboolean;
+<a href=#6288 id=6288 data-nosnippet>6288</a>    <span class="kw">pub fn </span>gdk_keyval_name(keyval: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_uint.html">c_uint</a>) -&gt; <span class="kw-2">*const </span><a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_char.html">c_char</a>;
+<a href=#6289 id=6289 data-nosnippet>6289</a>    <span class="kw">pub fn </span>gdk_keyval_to_lower(keyval: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_uint.html">c_uint</a>) -&gt; <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_uint.html">c_uint</a>;
+<a href=#6290 id=6290 data-nosnippet>6290</a>    <span class="kw">pub fn </span>gdk_keyval_to_unicode(keyval: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_uint.html">c_uint</a>) -&gt; <a href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>;
+<a href=#6291 id=6291 data-nosnippet>6291</a>    <span class="kw">pub fn </span>gdk_keyval_to_upper(keyval: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_uint.html">c_uint</a>) -&gt; <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_uint.html">c_uint</a>;
+<a href=#6292 id=6292 data-nosnippet>6292</a>    <span class="kw">pub fn </span>gdk_pango_layout_get_clip_region(
+<a href=#6293 id=6293 data-nosnippet>6293</a>        layout: <span class="kw-2">*mut </span>pango::PangoLayout,
+<a href=#6294 id=6294 data-nosnippet>6294</a>        x_origin: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>,
+<a href=#6295 id=6295 data-nosnippet>6295</a>        y_origin: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>,
+<a href=#6296 id=6296 data-nosnippet>6296</a>        index_ranges: <span class="kw-2">*const </span><a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>,
+<a href=#6297 id=6297 data-nosnippet>6297</a>        n_ranges: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>,
+<a href=#6298 id=6298 data-nosnippet>6298</a>    ) -&gt; <span class="kw-2">*mut </span>cairo::cairo_region_t;
+<a href=#6299 id=6299 data-nosnippet>6299</a>    <span class="kw">pub fn </span>gdk_pango_layout_line_get_clip_region(
+<a href=#6300 id=6300 data-nosnippet>6300</a>        line: <span class="kw-2">*mut </span>pango::PangoLayoutLine,
+<a href=#6301 id=6301 data-nosnippet>6301</a>        x_origin: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>,
+<a href=#6302 id=6302 data-nosnippet>6302</a>        y_origin: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>,
+<a href=#6303 id=6303 data-nosnippet>6303</a>        index_ranges: <span class="kw-2">*const </span><a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>,
+<a href=#6304 id=6304 data-nosnippet>6304</a>        n_ranges: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>,
+<a href=#6305 id=6305 data-nosnippet>6305</a>    ) -&gt; <span class="kw-2">*mut </span>cairo::cairo_region_t;
+<a href=#6306 id=6306 data-nosnippet>6306</a>    <span class="kw">pub fn </span>gdk_pixbuf_get_from_surface(
+<a href=#6307 id=6307 data-nosnippet>6307</a>        surface: <span class="kw-2">*mut </span>cairo::cairo_surface_t,
+<a href=#6308 id=6308 data-nosnippet>6308</a>        src_x: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>,
+<a href=#6309 id=6309 data-nosnippet>6309</a>        src_y: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>,
+<a href=#6310 id=6310 data-nosnippet>6310</a>        width: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>,
+<a href=#6311 id=6311 data-nosnippet>6311</a>        height: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>,
+<a href=#6312 id=6312 data-nosnippet>6312</a>    ) -&gt; <span class="kw-2">*mut </span>gdk_pixbuf::GdkPixbuf;
+<a href=#6313 id=6313 data-nosnippet>6313</a>    <span class="kw">pub fn </span>gdk_pixbuf_get_from_texture(texture: <span class="kw-2">*mut </span><a href="#4011-4014">GdkTexture</a>) -&gt; <span class="kw-2">*mut </span>gdk_pixbuf::GdkPixbuf;
+<a href=#6314 id=6314 data-nosnippet>6314</a>    <span class="kw">pub fn </span>gdk_set_allowed_backends(backends: <span class="kw-2">*const </span><a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_char.html">c_char</a>);
+<a href=#6315 id=6315 data-nosnippet>6315</a>    <span class="kw">pub fn </span>gdk_unicode_to_keyval(wc: <a href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>) -&gt; <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_uint.html">c_uint</a>;
+<a href=#6316 id=6316 data-nosnippet>6316</a>
+<a href=#6317 id=6317 data-nosnippet>6317</a>}
 </code></pre></div></section></main></body></html>

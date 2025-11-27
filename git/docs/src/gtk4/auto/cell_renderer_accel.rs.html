@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/auto/cell_renderer_accel.rs`."><title>cell_renderer_accel.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-ca0dd0c4.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.93.0-nightly (80d8f292d 2025-11-25)" data-channel="nightly" data-search-js="search-680b2199.js" data-stringdex-js="stringdex-a3946164.js" data-settings-js="settings-c38705f0.js" ><script src="../../../static.files/storage-e2aeef58.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-a410ff4d.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-263c88ec.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/auto/cell_renderer_accel.rs`."><title>cell_renderer_accel.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-ca0dd0c4.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.93.0-nightly (1be6b13be 2025-11-26)" data-channel="nightly" data-search-js="search-680b2199.js" data-stringdex-js="stringdex-a3946164.js" data-settings-js="settings-c38705f0.js" ><script src="../../../static.files/storage-e2aeef58.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-a410ff4d.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-263c88ec.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
 
@@ -77,7 +77,7 @@
 <a href=#4 id=4 data-nosnippet>4</a></span><span class="attr">#![allow(deprecated)]
 <a href=#5 id=5 data-nosnippet>5</a>
 <a href=#6 id=6 data-nosnippet>6</a></span><span class="kw">use crate</span>::{
-<a href=#7 id=7 data-nosnippet>7</a>    <a href="../../../gtk4_sys/index.html">ffi</a>, <a href="cell_renderer.rs.html#18-183">CellRenderer</a>, <a href="enums.rs.html#3074-3083">CellRendererAccelMode</a>, <a href="enums.rs.html#3186-3201">CellRendererMode</a>, <a href="cell_renderer_text.rs.html#15-385">CellRendererText</a>, <a href="tree_path.rs.html#8-21">TreePath</a>,
+<a href=#7 id=7 data-nosnippet>7</a>    <a href="../../../gtk4_sys/index.html">ffi</a>, <a href="cell_renderer.rs.html#18-183">CellRenderer</a>, <a href="enums.rs.html#3082-3091">CellRendererAccelMode</a>, <a href="enums.rs.html#3194-3209">CellRendererMode</a>, <a href="cell_renderer_text.rs.html#15-385">CellRendererText</a>, <a href="tree_path.rs.html#8-21">TreePath</a>,
 <a href=#8 id=8 data-nosnippet>8</a>};
 <a href=#9 id=9 data-nosnippet>9</a><span class="kw">use </span>glib::{
 <a href=#10 id=10 data-nosnippet>10</a>    <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.ObjectType.html">object::ObjectType</a> <span class="kw">as _</span>,
@@ -544,7 +544,7 @@
 <a href=#471 id=471 data-nosnippet>471</a>    /// accepted by GTK are allowed, and the accelerators are rendered
 <a href=#472 id=472 data-nosnippet>472</a>    /// in the same way as they are in menus.
 <a href=#473 id=473 data-nosnippet>473</a>    </span><span class="attr">#[doc(alias = <span class="string">"accel-mode"</span>)]
-<a href=#474 id=474 data-nosnippet>474</a>    </span><span class="kw">pub fn </span>accel_mode(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="enums.rs.html#3074-3083">CellRendererAccelMode</a> {
+<a href=#474 id=474 data-nosnippet>474</a>    </span><span class="kw">pub fn </span>accel_mode(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="enums.rs.html#3082-3091">CellRendererAccelMode</a> {
 <a href=#475 id=475 data-nosnippet>475</a>        ObjectExt::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.ObjectExt.html#tymethod.property">property</a>(<a class="self" href="#474">self</a>, <span class="string">"accel-mode"</span>)
 <a href=#476 id=476 data-nosnippet>476</a>    }
 <a href=#477 id=477 data-nosnippet>477</a>
@@ -553,7 +553,7 @@
 <a href=#480 id=480 data-nosnippet>480</a>    /// accepted by GTK are allowed, and the accelerators are rendered
 <a href=#481 id=481 data-nosnippet>481</a>    /// in the same way as they are in menus.
 <a href=#482 id=482 data-nosnippet>482</a>    </span><span class="attr">#[doc(alias = <span class="string">"accel-mode"</span>)]
-<a href=#483 id=483 data-nosnippet>483</a>    </span><span class="kw">pub fn </span>set_accel_mode(<span class="kw-2">&amp;</span><span class="self">self</span>, accel_mode: <a href="enums.rs.html#3074-3083">CellRendererAccelMode</a>) {
+<a href=#483 id=483 data-nosnippet>483</a>    </span><span class="kw">pub fn </span>set_accel_mode(<span class="kw-2">&amp;</span><span class="self">self</span>, accel_mode: <a href="enums.rs.html#3082-3091">CellRendererAccelMode</a>) {
 <a href=#484 id=484 data-nosnippet>484</a>        ObjectExt::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.ObjectExt.html#tymethod.set_property">set_property</a>(<a class="self" href="#483">self</a>, <span class="string">"accel-mode"</span>, <a href="#483">accel_mode</a>)
 <a href=#485 id=485 data-nosnippet>485</a>    }
 <a href=#486 id=486 data-nosnippet>486</a>
@@ -785,7 +785,7 @@
 <a href=#712 id=712 data-nosnippet>712</a>    /// they are, consumed modifiers are suppressed, only accelerators
 <a href=#713 id=713 data-nosnippet>713</a>    /// accepted by GTK are allowed, and the accelerators are rendered
 <a href=#714 id=714 data-nosnippet>714</a>    /// in the same way as they are in menus.
-<a href=#715 id=715 data-nosnippet>715</a>    </span><span class="kw">pub fn </span>accel_mode(<span class="self">self</span>, accel_mode: <a href="enums.rs.html#3074-3083">CellRendererAccelMode</a>) -&gt; <span class="self">Self </span>{
+<a href=#715 id=715 data-nosnippet>715</a>    </span><span class="kw">pub fn </span>accel_mode(<span class="self">self</span>, accel_mode: <a href="enums.rs.html#3082-3091">CellRendererAccelMode</a>) -&gt; <span class="self">Self </span>{
 <a href=#716 id=716 data-nosnippet>716</a>        <span class="self">Self </span>{
 <a href=#717 id=717 data-nosnippet>717</a>            builder: <a class="self" href="#715">self</a>.builder.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/struct.ObjectBuilder.html#method.property">property</a>(<span class="string">"accel-mode"</span>, <a href="#715">accel_mode</a>),
 <a href=#718 id=718 data-nosnippet>718</a>        }
@@ -1162,7 +1162,7 @@
 <a href=#1089 id=1089 data-nosnippet>1089</a>        }
 <a href=#1090 id=1090 data-nosnippet>1090</a>    }
 <a href=#1091 id=1091 data-nosnippet>1091</a>
-<a href=#1092 id=1092 data-nosnippet>1092</a>    <span class="kw">pub fn </span>mode(<span class="self">self</span>, mode: <a href="enums.rs.html#3186-3201">CellRendererMode</a>) -&gt; <span class="self">Self </span>{
+<a href=#1092 id=1092 data-nosnippet>1092</a>    <span class="kw">pub fn </span>mode(<span class="self">self</span>, mode: <a href="enums.rs.html#3194-3209">CellRendererMode</a>) -&gt; <span class="self">Self </span>{
 <a href=#1093 id=1093 data-nosnippet>1093</a>        <span class="self">Self </span>{
 <a href=#1094 id=1094 data-nosnippet>1094</a>            builder: <a class="self" href="#1092">self</a>.builder.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/struct.ObjectBuilder.html#method.property">property</a>(<span class="string">"mode"</span>, <a href="#1092">mode</a>),
 <a href=#1095 id=1095 data-nosnippet>1095</a>        }

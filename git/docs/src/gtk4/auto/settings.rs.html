@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/auto/settings.rs`."><title>settings.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-ca0dd0c4.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.93.0-nightly (80d8f292d 2025-11-25)" data-channel="nightly" data-search-js="search-680b2199.js" data-stringdex-js="stringdex-a3946164.js" data-settings-js="settings-c38705f0.js" ><script src="../../../static.files/storage-e2aeef58.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-a410ff4d.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-263c88ec.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/auto/settings.rs`."><title>settings.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-ca0dd0c4.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.93.0-nightly (1be6b13be 2025-11-26)" data-channel="nightly" data-search-js="search-680b2199.js" data-stringdex-js="stringdex-a3946164.js" data-settings-js="settings-c38705f0.js" ><script src="../../../static.files/storage-e2aeef58.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-a410ff4d.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-263c88ec.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
 
@@ -77,14 +77,14 @@
 <a href=#4 id=4 data-nosnippet>4</a>
 <a href=#5 id=5 data-nosnippet>5</a></span><span class="attr">#[cfg(feature = <span class="string">"v4_16"</span>)]
 <a href=#6 id=6 data-nosnippet>6</a>#[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_16"</span>)))]
-<a href=#7 id=7 data-nosnippet>7</a></span><span class="kw">use </span><a href="enums.rs.html#5736-5747"><span class="kw">crate</span>::FontRendering</a>;
+<a href=#7 id=7 data-nosnippet>7</a></span><span class="kw">use </span><a href="enums.rs.html#5744-5755"><span class="kw">crate</span>::FontRendering</a>;
 <a href=#8 id=8 data-nosnippet>8</a><span class="attr">#[cfg(feature = <span class="string">"v4_22"</span>)]
 <a href=#9 id=9 data-nosnippet>9</a>#[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_22"</span>)))]
-<a href=#10 id=10 data-nosnippet>10</a></span><span class="kw">use </span><a href="enums.rs.html#10430-10442"><span class="kw">crate</span>::ReducedMotion</a>;
+<a href=#10 id=10 data-nosnippet>10</a></span><span class="kw">use </span><a href="enums.rs.html#10438-10450"><span class="kw">crate</span>::ReducedMotion</a>;
 <a href=#11 id=11 data-nosnippet>11</a><span class="kw">use crate</span>::{<a href="../../../gtk4_sys/index.html">ffi</a>, <a href="style_provider.rs.html#14-39">StyleProvider</a>};
 <a href=#12 id=12 data-nosnippet>12</a><span class="attr">#[cfg(feature = <span class="string">"v4_20"</span>)]
 <a href=#13 id=13 data-nosnippet>13</a>#[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_20"</span>)))]
-<a href=#14 id=14 data-nosnippet>14</a></span><span class="kw">use crate</span>::{<a href="enums.rs.html#6752-6767">InterfaceColorScheme</a>, <a href="enums.rs.html#6886-6901">InterfaceContrast</a>};
+<a href=#14 id=14 data-nosnippet>14</a></span><span class="kw">use crate</span>::{<a href="enums.rs.html#6760-6775">InterfaceColorScheme</a>, <a href="enums.rs.html#6894-6909">InterfaceContrast</a>};
 <a href=#15 id=15 data-nosnippet>15</a><span class="kw">use </span>glib::{
 <a href=#16 id=16 data-nosnippet>16</a>    <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/prelude/index.html">prelude</a>::<span class="kw-2">*</span>,
 <a href=#17 id=17 data-nosnippet>17</a>    signal::{<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/fn.connect_raw.html">connect_raw</a>, <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html">SignalHandlerId</a>},
@@ -1163,7 +1163,7 @@
 <a href=#1090 id=1090 data-nosnippet>1090</a>    </span><span class="attr">#[cfg(feature = <span class="string">"v4_16"</span>)]
 <a href=#1091 id=1091 data-nosnippet>1091</a>    #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_16"</span>)))]
 <a href=#1092 id=1092 data-nosnippet>1092</a>    #[doc(alias = <span class="string">"gtk-font-rendering"</span>)]
-<a href=#1093 id=1093 data-nosnippet>1093</a>    </span><span class="kw">pub fn </span>gtk_font_rendering(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="enums.rs.html#5736-5747">FontRendering</a> {
+<a href=#1093 id=1093 data-nosnippet>1093</a>    </span><span class="kw">pub fn </span>gtk_font_rendering(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="enums.rs.html#5744-5755">FontRendering</a> {
 <a href=#1094 id=1094 data-nosnippet>1094</a>        ObjectExt::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.ObjectExt.html#tymethod.property">property</a>(<a class="self" href="#1093">self</a>, <span class="string">"gtk-font-rendering"</span>)
 <a href=#1095 id=1095 data-nosnippet>1095</a>    }
 <a href=#1096 id=1096 data-nosnippet>1096</a>
@@ -1180,7 +1180,7 @@
 <a href=#1107 id=1107 data-nosnippet>1107</a>    </span><span class="attr">#[cfg(feature = <span class="string">"v4_16"</span>)]
 <a href=#1108 id=1108 data-nosnippet>1108</a>    #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_16"</span>)))]
 <a href=#1109 id=1109 data-nosnippet>1109</a>    #[doc(alias = <span class="string">"gtk-font-rendering"</span>)]
-<a href=#1110 id=1110 data-nosnippet>1110</a>    </span><span class="kw">pub fn </span>set_gtk_font_rendering(<span class="kw-2">&amp;</span><span class="self">self</span>, gtk_font_rendering: <a href="enums.rs.html#5736-5747">FontRendering</a>) {
+<a href=#1110 id=1110 data-nosnippet>1110</a>    </span><span class="kw">pub fn </span>set_gtk_font_rendering(<span class="kw-2">&amp;</span><span class="self">self</span>, gtk_font_rendering: <a href="enums.rs.html#5744-5755">FontRendering</a>) {
 <a href=#1111 id=1111 data-nosnippet>1111</a>        ObjectExt::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.ObjectExt.html#tymethod.set_property">set_property</a>(<a class="self" href="#1110">self</a>, <span class="string">"gtk-font-rendering"</span>, <a href="#1110">gtk_font_rendering</a>)
 <a href=#1112 id=1112 data-nosnippet>1112</a>    }
 <a href=#1113 id=1113 data-nosnippet>1113</a>
@@ -1271,7 +1271,7 @@
 <a href=#1198 id=1198 data-nosnippet>1198</a>    </span><span class="attr">#[cfg(feature = <span class="string">"v4_20"</span>)]
 <a href=#1199 id=1199 data-nosnippet>1199</a>    #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_20"</span>)))]
 <a href=#1200 id=1200 data-nosnippet>1200</a>    #[doc(alias = <span class="string">"gtk-interface-color-scheme"</span>)]
-<a href=#1201 id=1201 data-nosnippet>1201</a>    </span><span class="kw">pub fn </span>gtk_interface_color_scheme(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="enums.rs.html#6752-6767">InterfaceColorScheme</a> {
+<a href=#1201 id=1201 data-nosnippet>1201</a>    </span><span class="kw">pub fn </span>gtk_interface_color_scheme(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="enums.rs.html#6760-6775">InterfaceColorScheme</a> {
 <a href=#1202 id=1202 data-nosnippet>1202</a>        ObjectExt::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.ObjectExt.html#tymethod.property">property</a>(<a class="self" href="#1201">self</a>, <span class="string">"gtk-interface-color-scheme"</span>)
 <a href=#1203 id=1203 data-nosnippet>1203</a>    }
 <a href=#1204 id=1204 data-nosnippet>1204</a>
@@ -1284,7 +1284,7 @@
 <a href=#1211 id=1211 data-nosnippet>1211</a>    </span><span class="attr">#[cfg(feature = <span class="string">"v4_20"</span>)]
 <a href=#1212 id=1212 data-nosnippet>1212</a>    #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_20"</span>)))]
 <a href=#1213 id=1213 data-nosnippet>1213</a>    #[doc(alias = <span class="string">"gtk-interface-color-scheme"</span>)]
-<a href=#1214 id=1214 data-nosnippet>1214</a>    </span><span class="kw">pub fn </span>set_gtk_interface_color_scheme(<span class="kw-2">&amp;</span><span class="self">self</span>, gtk_interface_color_scheme: <a href="enums.rs.html#6752-6767">InterfaceColorScheme</a>) {
+<a href=#1214 id=1214 data-nosnippet>1214</a>    </span><span class="kw">pub fn </span>set_gtk_interface_color_scheme(<span class="kw-2">&amp;</span><span class="self">self</span>, gtk_interface_color_scheme: <a href="enums.rs.html#6760-6775">InterfaceColorScheme</a>) {
 <a href=#1215 id=1215 data-nosnippet>1215</a>        ObjectExt::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.ObjectExt.html#tymethod.set_property">set_property</a>(
 <a href=#1216 id=1216 data-nosnippet>1216</a>            <a class="self" href="#1214">self</a>,
 <a href=#1217 id=1217 data-nosnippet>1217</a>            <span class="string">"gtk-interface-color-scheme"</span>,
@@ -1301,7 +1301,7 @@
 <a href=#1228 id=1228 data-nosnippet>1228</a>    </span><span class="attr">#[cfg(feature = <span class="string">"v4_20"</span>)]
 <a href=#1229 id=1229 data-nosnippet>1229</a>    #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_20"</span>)))]
 <a href=#1230 id=1230 data-nosnippet>1230</a>    #[doc(alias = <span class="string">"gtk-interface-contrast"</span>)]
-<a href=#1231 id=1231 data-nosnippet>1231</a>    </span><span class="kw">pub fn </span>gtk_interface_contrast(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="enums.rs.html#6886-6901">InterfaceContrast</a> {
+<a href=#1231 id=1231 data-nosnippet>1231</a>    </span><span class="kw">pub fn </span>gtk_interface_contrast(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="enums.rs.html#6894-6909">InterfaceContrast</a> {
 <a href=#1232 id=1232 data-nosnippet>1232</a>        ObjectExt::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.ObjectExt.html#tymethod.property">property</a>(<a class="self" href="#1231">self</a>, <span class="string">"gtk-interface-contrast"</span>)
 <a href=#1233 id=1233 data-nosnippet>1233</a>    }
 <a href=#1234 id=1234 data-nosnippet>1234</a>
@@ -1314,7 +1314,7 @@
 <a href=#1241 id=1241 data-nosnippet>1241</a>    </span><span class="attr">#[cfg(feature = <span class="string">"v4_20"</span>)]
 <a href=#1242 id=1242 data-nosnippet>1242</a>    #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_20"</span>)))]
 <a href=#1243 id=1243 data-nosnippet>1243</a>    #[doc(alias = <span class="string">"gtk-interface-contrast"</span>)]
-<a href=#1244 id=1244 data-nosnippet>1244</a>    </span><span class="kw">pub fn </span>set_gtk_interface_contrast(<span class="kw-2">&amp;</span><span class="self">self</span>, gtk_interface_contrast: <a href="enums.rs.html#6886-6901">InterfaceContrast</a>) {
+<a href=#1244 id=1244 data-nosnippet>1244</a>    </span><span class="kw">pub fn </span>set_gtk_interface_contrast(<span class="kw-2">&amp;</span><span class="self">self</span>, gtk_interface_contrast: <a href="enums.rs.html#6894-6909">InterfaceContrast</a>) {
 <a href=#1245 id=1245 data-nosnippet>1245</a>        ObjectExt::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.ObjectExt.html#tymethod.set_property">set_property</a>(<a class="self" href="#1244">self</a>, <span class="string">"gtk-interface-contrast"</span>, <a href="#1244">gtk_interface_contrast</a>)
 <a href=#1246 id=1246 data-nosnippet>1246</a>    }
 <a href=#1247 id=1247 data-nosnippet>1247</a>
@@ -1327,7 +1327,7 @@
 <a href=#1254 id=1254 data-nosnippet>1254</a>    </span><span class="attr">#[cfg(feature = <span class="string">"v4_22"</span>)]
 <a href=#1255 id=1255 data-nosnippet>1255</a>    #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_22"</span>)))]
 <a href=#1256 id=1256 data-nosnippet>1256</a>    #[doc(alias = <span class="string">"gtk-interface-reduced-motion"</span>)]
-<a href=#1257 id=1257 data-nosnippet>1257</a>    </span><span class="kw">pub fn </span>gtk_interface_reduced_motion(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="enums.rs.html#10430-10442">ReducedMotion</a> {
+<a href=#1257 id=1257 data-nosnippet>1257</a>    </span><span class="kw">pub fn </span>gtk_interface_reduced_motion(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="enums.rs.html#10438-10450">ReducedMotion</a> {
 <a href=#1258 id=1258 data-nosnippet>1258</a>        ObjectExt::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.ObjectExt.html#tymethod.property">property</a>(<a class="self" href="#1257">self</a>, <span class="string">"gtk-interface-reduced-motion"</span>)
 <a href=#1259 id=1259 data-nosnippet>1259</a>    }
 <a href=#1260 id=1260 data-nosnippet>1260</a>
@@ -1340,7 +1340,7 @@
 <a href=#1267 id=1267 data-nosnippet>1267</a>    </span><span class="attr">#[cfg(feature = <span class="string">"v4_22"</span>)]
 <a href=#1268 id=1268 data-nosnippet>1268</a>    #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_22"</span>)))]
 <a href=#1269 id=1269 data-nosnippet>1269</a>    #[doc(alias = <span class="string">"gtk-interface-reduced-motion"</span>)]
-<a href=#1270 id=1270 data-nosnippet>1270</a>    </span><span class="kw">pub fn </span>set_gtk_interface_reduced_motion(<span class="kw-2">&amp;</span><span class="self">self</span>, gtk_interface_reduced_motion: <a href="enums.rs.html#10430-10442">ReducedMotion</a>) {
+<a href=#1270 id=1270 data-nosnippet>1270</a>    </span><span class="kw">pub fn </span>set_gtk_interface_reduced_motion(<span class="kw-2">&amp;</span><span class="self">self</span>, gtk_interface_reduced_motion: <a href="enums.rs.html#10438-10450">ReducedMotion</a>) {
 <a href=#1271 id=1271 data-nosnippet>1271</a>        ObjectExt::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.ObjectExt.html#tymethod.set_property">set_property</a>(
 <a href=#1272 id=1272 data-nosnippet>1272</a>            <a class="self" href="#1270">self</a>,
 <a href=#1273 id=1273 data-nosnippet>1273</a>            <span class="string">"gtk-interface-reduced-motion"</span>,
@@ -3660,7 +3660,7 @@
 <a href=#3587 id=3587 data-nosnippet>3587</a>    /// as screen resolution and scale in deciding how to render fonts.
 <a href=#3588 id=3588 data-nosnippet>3588</a>    </span><span class="attr">#[cfg(feature = <span class="string">"v4_16"</span>)]
 <a href=#3589 id=3589 data-nosnippet>3589</a>    #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_16"</span>)))]
-<a href=#3590 id=3590 data-nosnippet>3590</a>    </span><span class="kw">pub fn </span>gtk_font_rendering(<span class="self">self</span>, gtk_font_rendering: <a href="enums.rs.html#5736-5747">FontRendering</a>) -&gt; <span class="self">Self </span>{
+<a href=#3590 id=3590 data-nosnippet>3590</a>    </span><span class="kw">pub fn </span>gtk_font_rendering(<span class="self">self</span>, gtk_font_rendering: <a href="enums.rs.html#5744-5755">FontRendering</a>) -&gt; <span class="self">Self </span>{
 <a href=#3591 id=3591 data-nosnippet>3591</a>        <span class="self">Self </span>{
 <a href=#3592 id=3592 data-nosnippet>3592</a>            builder: <a class="self" href="#3590">self</a>
 <a href=#3593 id=3593 data-nosnippet>3593</a>                .builder
@@ -3727,7 +3727,7 @@
 <a href=#3654 id=3654 data-nosnippet>3654</a>    #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_20"</span>)))]
 <a href=#3655 id=3655 data-nosnippet>3655</a>    </span><span class="kw">pub fn </span>gtk_interface_color_scheme(
 <a href=#3656 id=3656 data-nosnippet>3656</a>        <span class="self">self</span>,
-<a href=#3657 id=3657 data-nosnippet>3657</a>        gtk_interface_color_scheme: <a href="enums.rs.html#6752-6767">InterfaceColorScheme</a>,
+<a href=#3657 id=3657 data-nosnippet>3657</a>        gtk_interface_color_scheme: <a href="enums.rs.html#6760-6775">InterfaceColorScheme</a>,
 <a href=#3658 id=3658 data-nosnippet>3658</a>    ) -&gt; <span class="self">Self </span>{
 <a href=#3659 id=3659 data-nosnippet>3659</a>        <span class="self">Self </span>{
 <a href=#3660 id=3660 data-nosnippet>3660</a>            builder: <a class="self" href="#3656">self</a>
@@ -3744,7 +3744,7 @@
 <a href=#3671 id=3671 data-nosnippet>3671</a>    /// property.
 <a href=#3672 id=3672 data-nosnippet>3672</a>    </span><span class="attr">#[cfg(feature = <span class="string">"v4_20"</span>)]
 <a href=#3673 id=3673 data-nosnippet>3673</a>    #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_20"</span>)))]
-<a href=#3674 id=3674 data-nosnippet>3674</a>    </span><span class="kw">pub fn </span>gtk_interface_contrast(<span class="self">self</span>, gtk_interface_contrast: <a href="enums.rs.html#6886-6901">InterfaceContrast</a>) -&gt; <span class="self">Self </span>{
+<a href=#3674 id=3674 data-nosnippet>3674</a>    </span><span class="kw">pub fn </span>gtk_interface_contrast(<span class="self">self</span>, gtk_interface_contrast: <a href="enums.rs.html#6894-6909">InterfaceContrast</a>) -&gt; <span class="self">Self </span>{
 <a href=#3675 id=3675 data-nosnippet>3675</a>        <span class="self">Self </span>{
 <a href=#3676 id=3676 data-nosnippet>3676</a>            builder: <a class="self" href="#3674">self</a>
 <a href=#3677 id=3677 data-nosnippet>3677</a>                .builder
@@ -3760,7 +3760,7 @@
 <a href=#3687 id=3687 data-nosnippet>3687</a>    /// property.
 <a href=#3688 id=3688 data-nosnippet>3688</a>    </span><span class="attr">#[cfg(feature = <span class="string">"v4_22"</span>)]
 <a href=#3689 id=3689 data-nosnippet>3689</a>    #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_22"</span>)))]
-<a href=#3690 id=3690 data-nosnippet>3690</a>    </span><span class="kw">pub fn </span>gtk_interface_reduced_motion(<span class="self">self</span>, gtk_interface_reduced_motion: <a href="enums.rs.html#10430-10442">ReducedMotion</a>) -&gt; <span class="self">Self </span>{
+<a href=#3690 id=3690 data-nosnippet>3690</a>    </span><span class="kw">pub fn </span>gtk_interface_reduced_motion(<span class="self">self</span>, gtk_interface_reduced_motion: <a href="enums.rs.html#10438-10450">ReducedMotion</a>) -&gt; <span class="self">Self </span>{
 <a href=#3691 id=3691 data-nosnippet>3691</a>        <span class="self">Self </span>{
 <a href=#3692 id=3692 data-nosnippet>3692</a>            builder: <a class="self" href="#3690">self</a>
 <a href=#3693 id=3693 data-nosnippet>3693</a>                .builder

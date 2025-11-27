@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/auto/entry.rs`."><title>entry.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-ca0dd0c4.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.93.0-nightly (80d8f292d 2025-11-25)" data-channel="nightly" data-search-js="search-680b2199.js" data-stringdex-js="stringdex-a3946164.js" data-settings-js="settings-c38705f0.js" ><script src="../../../static.files/storage-e2aeef58.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-a410ff4d.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-263c88ec.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/auto/entry.rs`."><title>entry.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-ca0dd0c4.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.93.0-nightly (1be6b13be 2025-11-26)" data-channel="nightly" data-search-js="search-680b2199.js" data-stringdex-js="stringdex-a3946164.js" data-settings-js="settings-c38705f0.js" ><script src="../../../static.files/storage-e2aeef58.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-a410ff4d.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-263c88ec.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
 
@@ -77,9 +77,9 @@
 <a href=#4 id=4 data-nosnippet>4</a></span><span class="attr">#![allow(deprecated)]
 <a href=#5 id=5 data-nosnippet>5</a>
 <a href=#6 id=6 data-nosnippet>6</a></span><span class="kw">use crate</span>::{
-<a href=#7 id=7 data-nosnippet>7</a>    <a href="../../../gtk4_sys/index.html">ffi</a>, <a href="accessible.rs.html#19-70">Accessible</a>, <a href="enums.rs.html#1021-1321">AccessibleRole</a>, <a href="../enums.rs.html#77-107">Align</a>, <a href="buildable.rs.html#8-31">Buildable</a>, <a href="cell_editable.rs.html#15-504">CellEditable</a>, <a href="constraint_target.rs.html#8-23">ConstraintTarget</a>, <a href="editable.rs.html#17-688">Editable</a>,
-<a href=#8 id=8 data-nosnippet>8</a>    <a href="entry_buffer.rs.html#13-71">EntryBuffer</a>, <a href="entry_completion.rs.html#15-188">EntryCompletion</a>, <a href="enums.rs.html#4877-4886">EntryIconPosition</a>, <a href="enums.rs.html#6344-6359">ImageType</a>, <a href="flags.rs.html#911-970">InputHints</a>, <a href="enums.rs.html#6471-6507">InputPurpose</a>,
-<a href=#9 id=9 data-nosnippet>9</a>    <a href="layout_manager.rs.html#8-70">LayoutManager</a>, <a href="enums.rs.html#8368-8379">Overflow</a>, <a href="widget.rs.html#19-864">Widget</a>,
+<a href=#7 id=7 data-nosnippet>7</a>    <a href="../../../gtk4_sys/index.html">ffi</a>, <a href="accessible.rs.html#19-70">Accessible</a>, <a href="enums.rs.html#1029-1329">AccessibleRole</a>, <a href="../enums.rs.html#77-107">Align</a>, <a href="buildable.rs.html#8-31">Buildable</a>, <a href="cell_editable.rs.html#15-504">CellEditable</a>, <a href="constraint_target.rs.html#8-23">ConstraintTarget</a>, <a href="editable.rs.html#17-688">Editable</a>,
+<a href=#8 id=8 data-nosnippet>8</a>    <a href="entry_buffer.rs.html#13-71">EntryBuffer</a>, <a href="entry_completion.rs.html#15-188">EntryCompletion</a>, <a href="enums.rs.html#4885-4894">EntryIconPosition</a>, <a href="enums.rs.html#6352-6367">ImageType</a>, <a href="flags.rs.html#914-973">InputHints</a>, <a href="enums.rs.html#6479-6515">InputPurpose</a>,
+<a href=#9 id=9 data-nosnippet>9</a>    <a href="layout_manager.rs.html#8-70">LayoutManager</a>, <a href="enums.rs.html#8376-8387">Overflow</a>, <a href="widget.rs.html#19-864">Widget</a>,
 <a href=#10 id=10 data-nosnippet>10</a>};
 <a href=#11 id=11 data-nosnippet>11</a><span class="kw">use </span>glib::{
 <a href=#12 id=12 data-nosnippet>12</a>    <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.ObjectType.html">object::ObjectType</a> <span class="kw">as _</span>,
@@ -1254,7 +1254,7 @@
 <a href=#1181 id=1181 data-nosnippet>1181</a>    <span class="doccomment">/// Additional hints that allow input methods to fine-tune their behavior.
 <a href=#1182 id=1182 data-nosnippet>1182</a>    ///
 <a href=#1183 id=1183 data-nosnippet>1183</a>    /// Also see [`input-purpose`][struct@crate::Entry#input-purpose]
-<a href=#1184 id=1184 data-nosnippet>1184</a>    </span><span class="kw">pub fn </span>input_hints(<span class="self">self</span>, input_hints: <a href="flags.rs.html#911-970">InputHints</a>) -&gt; <span class="self">Self </span>{
+<a href=#1184 id=1184 data-nosnippet>1184</a>    </span><span class="kw">pub fn </span>input_hints(<span class="self">self</span>, input_hints: <a href="flags.rs.html#914-973">InputHints</a>) -&gt; <span class="self">Self </span>{
 <a href=#1185 id=1185 data-nosnippet>1185</a>        <span class="self">Self </span>{
 <a href=#1186 id=1186 data-nosnippet>1186</a>            builder: <a class="self" href="#1184">self</a>.builder.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/struct.ObjectBuilder.html#method.property">property</a>(<span class="string">"input-hints"</span>, <a href="#1184">input_hints</a>),
 <a href=#1187 id=1187 data-nosnippet>1187</a>        }
@@ -1268,7 +1268,7 @@
 <a href=#1195 id=1195 data-nosnippet>1195</a>    /// Note that setting the purpose to [`InputPurpose::Password`][crate::InputPurpose::Password] or
 <a href=#1196 id=1196 data-nosnippet>1196</a>    /// [`InputPurpose::Pin`][crate::InputPurpose::Pin] is independent from setting
 <a href=#1197 id=1197 data-nosnippet>1197</a>    /// [`visibility`][struct@crate::Entry#visibility].
-<a href=#1198 id=1198 data-nosnippet>1198</a>    </span><span class="kw">pub fn </span>input_purpose(<span class="self">self</span>, input_purpose: <a href="enums.rs.html#6471-6507">InputPurpose</a>) -&gt; <span class="self">Self </span>{
+<a href=#1198 id=1198 data-nosnippet>1198</a>    </span><span class="kw">pub fn </span>input_purpose(<span class="self">self</span>, input_purpose: <a href="enums.rs.html#6479-6515">InputPurpose</a>) -&gt; <span class="self">Self </span>{
 <a href=#1199 id=1199 data-nosnippet>1199</a>        <span class="self">Self </span>{
 <a href=#1200 id=1200 data-nosnippet>1200</a>            builder: <a class="self" href="#1198">self</a>.builder.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/struct.ObjectBuilder.html#method.property">property</a>(<span class="string">"input-purpose"</span>, <a href="#1198">input_purpose</a>),
 <a href=#1201 id=1201 data-nosnippet>1201</a>        }
@@ -1798,7 +1798,7 @@
 <a href=#1725 id=1725 data-nosnippet>1725</a>    ///
 <a href=#1726 id=1726 data-nosnippet>1726</a>    /// This property is meant to be set by widget implementations,
 <a href=#1727 id=1727 data-nosnippet>1727</a>    /// typically in their instance init function.
-<a href=#1728 id=1728 data-nosnippet>1728</a>    </span><span class="kw">pub fn </span>overflow(<span class="self">self</span>, overflow: <a href="enums.rs.html#8368-8379">Overflow</a>) -&gt; <span class="self">Self </span>{
+<a href=#1728 id=1728 data-nosnippet>1728</a>    </span><span class="kw">pub fn </span>overflow(<span class="self">self</span>, overflow: <a href="enums.rs.html#8376-8387">Overflow</a>) -&gt; <span class="self">Self </span>{
 <a href=#1729 id=1729 data-nosnippet>1729</a>        <span class="self">Self </span>{
 <a href=#1730 id=1730 data-nosnippet>1730</a>            builder: <a class="self" href="#1728">self</a>.builder.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/struct.ObjectBuilder.html#method.property">property</a>(<span class="string">"overflow"</span>, <a href="#1728">overflow</a>),
 <a href=#1731 id=1731 data-nosnippet>1731</a>        }
@@ -1897,7 +1897,7 @@
 <a href=#1824 id=1824 data-nosnippet>1824</a>    <span class="doccomment">/// The accessible role of the given [`Accessible`][crate::Accessible] implementation.
 <a href=#1825 id=1825 data-nosnippet>1825</a>    ///
 <a href=#1826 id=1826 data-nosnippet>1826</a>    /// The accessible role cannot be changed once set.
-<a href=#1827 id=1827 data-nosnippet>1827</a>    </span><span class="kw">pub fn </span>accessible_role(<span class="self">self</span>, accessible_role: <a href="enums.rs.html#1021-1321">AccessibleRole</a>) -&gt; <span class="self">Self </span>{
+<a href=#1827 id=1827 data-nosnippet>1827</a>    </span><span class="kw">pub fn </span>accessible_role(<span class="self">self</span>, accessible_role: <a href="enums.rs.html#1029-1329">AccessibleRole</a>) -&gt; <span class="self">Self </span>{
 <a href=#1828 id=1828 data-nosnippet>1828</a>        <span class="self">Self </span>{
 <a href=#1829 id=1829 data-nosnippet>1829</a>            builder: <a class="self" href="#1827">self</a>.builder.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/struct.ObjectBuilder.html#method.property">property</a>(<span class="string">"accessible-role"</span>, <a href="#1827">accessible_role</a>),
 <a href=#1830 id=1830 data-nosnippet>1830</a>        }
@@ -2100,7 +2100,7 @@
 <a href=#2027 id=2027 data-nosnippet>2027</a>    /// [`true`] if the icon is activatable.
 <a href=#2028 id=2028 data-nosnippet>2028</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_entry_get_icon_activatable"</span>)]
 <a href=#2029 id=2029 data-nosnippet>2029</a>    #[doc(alias = <span class="string">"get_icon_activatable"</span>)]
-<a href=#2030 id=2030 data-nosnippet>2030</a>    </span><span class="kw">fn </span>icon_is_activatable(<span class="kw-2">&amp;</span><span class="self">self</span>, icon_pos: <a href="enums.rs.html#4877-4886">EntryIconPosition</a>) -&gt; <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> {
+<a href=#2030 id=2030 data-nosnippet>2030</a>    </span><span class="kw">fn </span>icon_is_activatable(<span class="kw-2">&amp;</span><span class="self">self</span>, icon_pos: <a href="enums.rs.html#4885-4894">EntryIconPosition</a>) -&gt; <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> {
 <a href=#2031 id=2031 data-nosnippet>2031</a>        <span class="kw">unsafe </span>{
 <a href=#2032 id=2032 data-nosnippet>2032</a>            <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_entry_get_icon_activatable.html">gtk_entry_get_icon_activatable</a>(
 <a href=#2033 id=2033 data-nosnippet>2033</a>                <a class="self" href="#2030">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
@@ -2128,7 +2128,7 @@
 <a href=#2055 id=2055 data-nosnippet>2055</a>    /// Return location for the icon’s area
 <a href=#2056 id=2056 data-nosnippet>2056</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_entry_get_icon_area"</span>)]
 <a href=#2057 id=2057 data-nosnippet>2057</a>    #[doc(alias = <span class="string">"get_icon_area"</span>)]
-<a href=#2058 id=2058 data-nosnippet>2058</a>    </span><span class="kw">fn </span>icon_area(<span class="kw-2">&amp;</span><span class="self">self</span>, icon_pos: <a href="enums.rs.html#4877-4886">EntryIconPosition</a>) -&gt; gdk::<a href="../../../gdk4/auto/rectangle/struct.Rectangle.html">Rectangle</a> {
+<a href=#2058 id=2058 data-nosnippet>2058</a>    </span><span class="kw">fn </span>icon_area(<span class="kw-2">&amp;</span><span class="self">self</span>, icon_pos: <a href="enums.rs.html#4885-4894">EntryIconPosition</a>) -&gt; gdk::<a href="../../../gdk4/auto/rectangle/struct.Rectangle.html">Rectangle</a> {
 <a href=#2059 id=2059 data-nosnippet>2059</a>        <span class="kw">unsafe </span>{
 <a href=#2060 id=2060 data-nosnippet>2060</a>            <span class="kw">let </span><span class="kw-2">mut </span>icon_area = gdk::<a href="../../../gdk4/auto/rectangle/struct.Rectangle.html">Rectangle</a>::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.Uninitialized.html#tymethod.uninitialized">uninitialized</a>();
 <a href=#2061 id=2061 data-nosnippet>2061</a>            ffi::<a href="../../../gtk4_sys/fn.gtk_entry_get_icon_area.html">gtk_entry_get_icon_area</a>(
@@ -2172,7 +2172,7 @@
 <a href=#2099 id=2099 data-nosnippet>2099</a>    /// A `GIcon`
 <a href=#2100 id=2100 data-nosnippet>2100</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_entry_get_icon_gicon"</span>)]
 <a href=#2101 id=2101 data-nosnippet>2101</a>    #[doc(alias = <span class="string">"get_icon_gicon"</span>)]
-<a href=#2102 id=2102 data-nosnippet>2102</a>    </span><span class="kw">fn </span>icon_gicon(<span class="kw-2">&amp;</span><span class="self">self</span>, icon_pos: <a href="enums.rs.html#4877-4886">EntryIconPosition</a>) -&gt; <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;gio::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/gio/auto/icon/struct.Icon.html">Icon</a>&gt; {
+<a href=#2102 id=2102 data-nosnippet>2102</a>    </span><span class="kw">fn </span>icon_gicon(<span class="kw-2">&amp;</span><span class="self">self</span>, icon_pos: <a href="enums.rs.html#4885-4894">EntryIconPosition</a>) -&gt; <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;gio::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/gio/auto/icon/struct.Icon.html">Icon</a>&gt; {
 <a href=#2103 id=2103 data-nosnippet>2103</a>        <span class="kw">unsafe </span>{
 <a href=#2104 id=2104 data-nosnippet>2104</a>            <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib_none.html">from_glib_none</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_entry_get_icon_gicon.html">gtk_entry_get_icon_gicon</a>(
 <a href=#2105 id=2105 data-nosnippet>2105</a>                <a class="self" href="#2102">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
@@ -2193,7 +2193,7 @@
 <a href=#2120 id=2120 data-nosnippet>2120</a>    /// An icon name
 <a href=#2121 id=2121 data-nosnippet>2121</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_entry_get_icon_name"</span>)]
 <a href=#2122 id=2122 data-nosnippet>2122</a>    #[doc(alias = <span class="string">"get_icon_name"</span>)]
-<a href=#2123 id=2123 data-nosnippet>2123</a>    </span><span class="kw">fn </span>icon_name(<span class="kw-2">&amp;</span><span class="self">self</span>, icon_pos: <a href="enums.rs.html#4877-4886">EntryIconPosition</a>) -&gt; <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/gstring/struct.GString.html">GString</a>&gt; {
+<a href=#2123 id=2123 data-nosnippet>2123</a>    </span><span class="kw">fn </span>icon_name(<span class="kw-2">&amp;</span><span class="self">self</span>, icon_pos: <a href="enums.rs.html#4885-4894">EntryIconPosition</a>) -&gt; <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/gstring/struct.GString.html">GString</a>&gt; {
 <a href=#2124 id=2124 data-nosnippet>2124</a>        <span class="kw">unsafe </span>{
 <a href=#2125 id=2125 data-nosnippet>2125</a>            <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib_none.html">from_glib_none</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_entry_get_icon_name.html">gtk_entry_get_icon_name</a>(
 <a href=#2126 id=2126 data-nosnippet>2126</a>                <a class="self" href="#2123">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
@@ -2215,7 +2215,7 @@
 <a href=#2142 id=2142 data-nosnippet>2142</a>    ///   a [`gdk::Paintable`][crate::gdk::Paintable].
 <a href=#2143 id=2143 data-nosnippet>2143</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_entry_get_icon_paintable"</span>)]
 <a href=#2144 id=2144 data-nosnippet>2144</a>    #[doc(alias = <span class="string">"get_icon_paintable"</span>)]
-<a href=#2145 id=2145 data-nosnippet>2145</a>    </span><span class="kw">fn </span>icon_paintable(<span class="kw-2">&amp;</span><span class="self">self</span>, icon_pos: <a href="enums.rs.html#4877-4886">EntryIconPosition</a>) -&gt; <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;gdk::<a href="../../../gdk4/auto/paintable/struct.Paintable.html">Paintable</a>&gt; {
+<a href=#2145 id=2145 data-nosnippet>2145</a>    </span><span class="kw">fn </span>icon_paintable(<span class="kw-2">&amp;</span><span class="self">self</span>, icon_pos: <a href="enums.rs.html#4885-4894">EntryIconPosition</a>) -&gt; <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;gdk::<a href="../../../gdk4/auto/paintable/struct.Paintable.html">Paintable</a>&gt; {
 <a href=#2146 id=2146 data-nosnippet>2146</a>        <span class="kw">unsafe </span>{
 <a href=#2147 id=2147 data-nosnippet>2147</a>            <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib_none.html">from_glib_none</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_entry_get_icon_paintable.html">gtk_entry_get_icon_paintable</a>(
 <a href=#2148 id=2148 data-nosnippet>2148</a>                <a class="self" href="#2145">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
@@ -2233,7 +2233,7 @@
 <a href=#2160 id=2160 data-nosnippet>2160</a>    /// [`true`] if the icon is sensitive.
 <a href=#2161 id=2161 data-nosnippet>2161</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_entry_get_icon_sensitive"</span>)]
 <a href=#2162 id=2162 data-nosnippet>2162</a>    #[doc(alias = <span class="string">"get_icon_sensitive"</span>)]
-<a href=#2163 id=2163 data-nosnippet>2163</a>    </span><span class="kw">fn </span>icon_is_sensitive(<span class="kw-2">&amp;</span><span class="self">self</span>, icon_pos: <a href="enums.rs.html#4877-4886">EntryIconPosition</a>) -&gt; <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> {
+<a href=#2163 id=2163 data-nosnippet>2163</a>    </span><span class="kw">fn </span>icon_is_sensitive(<span class="kw-2">&amp;</span><span class="self">self</span>, icon_pos: <a href="enums.rs.html#4885-4894">EntryIconPosition</a>) -&gt; <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> {
 <a href=#2164 id=2164 data-nosnippet>2164</a>        <span class="kw">unsafe </span>{
 <a href=#2165 id=2165 data-nosnippet>2165</a>            <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_entry_get_icon_sensitive.html">gtk_entry_get_icon_sensitive</a>(
 <a href=#2166 id=2166 data-nosnippet>2166</a>                <a class="self" href="#2163">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
@@ -2255,7 +2255,7 @@
 <a href=#2182 id=2182 data-nosnippet>2182</a>    /// image representation being used
 <a href=#2183 id=2183 data-nosnippet>2183</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_entry_get_icon_storage_type"</span>)]
 <a href=#2184 id=2184 data-nosnippet>2184</a>    #[doc(alias = <span class="string">"get_icon_storage_type"</span>)]
-<a href=#2185 id=2185 data-nosnippet>2185</a>    </span><span class="kw">fn </span>icon_storage_type(<span class="kw-2">&amp;</span><span class="self">self</span>, icon_pos: <a href="enums.rs.html#4877-4886">EntryIconPosition</a>) -&gt; <a href="enums.rs.html#6344-6359">ImageType</a> {
+<a href=#2185 id=2185 data-nosnippet>2185</a>    </span><span class="kw">fn </span>icon_storage_type(<span class="kw-2">&amp;</span><span class="self">self</span>, icon_pos: <a href="enums.rs.html#4885-4894">EntryIconPosition</a>) -&gt; <a href="enums.rs.html#6352-6367">ImageType</a> {
 <a href=#2186 id=2186 data-nosnippet>2186</a>        <span class="kw">unsafe </span>{
 <a href=#2187 id=2187 data-nosnippet>2187</a>            <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_entry_get_icon_storage_type.html">gtk_entry_get_icon_storage_type</a>(
 <a href=#2188 id=2188 data-nosnippet>2188</a>                <a class="self" href="#2185">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
@@ -2274,7 +2274,7 @@
 <a href=#2201 id=2201 data-nosnippet>2201</a>    /// the tooltip text
 <a href=#2202 id=2202 data-nosnippet>2202</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_entry_get_icon_tooltip_markup"</span>)]
 <a href=#2203 id=2203 data-nosnippet>2203</a>    #[doc(alias = <span class="string">"get_icon_tooltip_markup"</span>)]
-<a href=#2204 id=2204 data-nosnippet>2204</a>    </span><span class="kw">fn </span>icon_tooltip_markup(<span class="kw-2">&amp;</span><span class="self">self</span>, icon_pos: <a href="enums.rs.html#4877-4886">EntryIconPosition</a>) -&gt; <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/gstring/struct.GString.html">GString</a>&gt; {
+<a href=#2204 id=2204 data-nosnippet>2204</a>    </span><span class="kw">fn </span>icon_tooltip_markup(<span class="kw-2">&amp;</span><span class="self">self</span>, icon_pos: <a href="enums.rs.html#4885-4894">EntryIconPosition</a>) -&gt; <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/gstring/struct.GString.html">GString</a>&gt; {
 <a href=#2205 id=2205 data-nosnippet>2205</a>        <span class="kw">unsafe </span>{
 <a href=#2206 id=2206 data-nosnippet>2206</a>            <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib_full.html">from_glib_full</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_entry_get_icon_tooltip_markup.html">gtk_entry_get_icon_tooltip_markup</a>(
 <a href=#2207 id=2207 data-nosnippet>2207</a>                <a class="self" href="#2204">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
@@ -2293,7 +2293,7 @@
 <a href=#2220 id=2220 data-nosnippet>2220</a>    /// the tooltip text
 <a href=#2221 id=2221 data-nosnippet>2221</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_entry_get_icon_tooltip_text"</span>)]
 <a href=#2222 id=2222 data-nosnippet>2222</a>    #[doc(alias = <span class="string">"get_icon_tooltip_text"</span>)]
-<a href=#2223 id=2223 data-nosnippet>2223</a>    </span><span class="kw">fn </span>icon_tooltip_text(<span class="kw-2">&amp;</span><span class="self">self</span>, icon_pos: <a href="enums.rs.html#4877-4886">EntryIconPosition</a>) -&gt; <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/gstring/struct.GString.html">GString</a>&gt; {
+<a href=#2223 id=2223 data-nosnippet>2223</a>    </span><span class="kw">fn </span>icon_tooltip_text(<span class="kw-2">&amp;</span><span class="self">self</span>, icon_pos: <a href="enums.rs.html#4885-4894">EntryIconPosition</a>) -&gt; <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/gstring/struct.GString.html">GString</a>&gt; {
 <a href=#2224 id=2224 data-nosnippet>2224</a>        <span class="kw">unsafe </span>{
 <a href=#2225 id=2225 data-nosnippet>2225</a>            <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib_full.html">from_glib_full</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_entry_get_icon_tooltip_text.html">gtk_entry_get_icon_tooltip_text</a>(
 <a href=#2226 id=2226 data-nosnippet>2226</a>                <a class="self" href="#2223">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
@@ -2310,7 +2310,7 @@
 <a href=#2237 id=2237 data-nosnippet>2237</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_entry_get_input_hints"</span>)]
 <a href=#2238 id=2238 data-nosnippet>2238</a>    #[doc(alias = <span class="string">"get_input_hints"</span>)]
 <a href=#2239 id=2239 data-nosnippet>2239</a>    #[doc(alias = <span class="string">"input-hints"</span>)]
-<a href=#2240 id=2240 data-nosnippet>2240</a>    </span><span class="kw">fn </span>input_hints(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="flags.rs.html#911-970">InputHints</a> {
+<a href=#2240 id=2240 data-nosnippet>2240</a>    </span><span class="kw">fn </span>input_hints(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="flags.rs.html#914-973">InputHints</a> {
 <a href=#2241 id=2241 data-nosnippet>2241</a>        <span class="kw">unsafe </span>{
 <a href=#2242 id=2242 data-nosnippet>2242</a>            <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_entry_get_input_hints.html">gtk_entry_get_input_hints</a>(
 <a href=#2243 id=2243 data-nosnippet>2243</a>                <a class="self" href="#2240">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
@@ -2326,7 +2326,7 @@
 <a href=#2253 id=2253 data-nosnippet>2253</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_entry_get_input_purpose"</span>)]
 <a href=#2254 id=2254 data-nosnippet>2254</a>    #[doc(alias = <span class="string">"get_input_purpose"</span>)]
 <a href=#2255 id=2255 data-nosnippet>2255</a>    #[doc(alias = <span class="string">"input-purpose"</span>)]
-<a href=#2256 id=2256 data-nosnippet>2256</a>    </span><span class="kw">fn </span>input_purpose(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="enums.rs.html#6471-6507">InputPurpose</a> {
+<a href=#2256 id=2256 data-nosnippet>2256</a>    </span><span class="kw">fn </span>input_purpose(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="enums.rs.html#6479-6515">InputPurpose</a> {
 <a href=#2257 id=2257 data-nosnippet>2257</a>        <span class="kw">unsafe </span>{
 <a href=#2258 id=2258 data-nosnippet>2258</a>            <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_entry_get_input_purpose.html">gtk_entry_get_input_purpose</a>(
 <a href=#2259 id=2259 data-nosnippet>2259</a>                <a class="self" href="#2256">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
@@ -2366,7 +2366,7 @@
 <a href=#2293 id=2293 data-nosnippet>2293</a>    #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_20"</span>)))]
 <a href=#2294 id=2294 data-nosnippet>2294</a>    #[doc(alias = <span class="string">"gtk_entry_get_menu_entry_icon_text"</span>)]
 <a href=#2295 id=2295 data-nosnippet>2295</a>    #[doc(alias = <span class="string">"get_menu_entry_icon_text"</span>)]
-<a href=#2296 id=2296 data-nosnippet>2296</a>    </span><span class="kw">fn </span>menu_entry_icon_text(<span class="kw-2">&amp;</span><span class="self">self</span>, icon_pos: <a href="enums.rs.html#4877-4886">EntryIconPosition</a>) -&gt; <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/gstring/struct.GString.html">GString</a>&gt; {
+<a href=#2296 id=2296 data-nosnippet>2296</a>    </span><span class="kw">fn </span>menu_entry_icon_text(<span class="kw-2">&amp;</span><span class="self">self</span>, icon_pos: <a href="enums.rs.html#4885-4894">EntryIconPosition</a>) -&gt; <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/gstring/struct.GString.html">GString</a>&gt; {
 <a href=#2297 id=2297 data-nosnippet>2297</a>        <span class="kw">unsafe </span>{
 <a href=#2298 id=2298 data-nosnippet>2298</a>            <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib_none.html">from_glib_none</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_entry_get_menu_entry_icon_text.html">gtk_entry_get_menu_entry_icon_text</a>(
 <a href=#2299 id=2299 data-nosnippet>2299</a>                <a class="self" href="#2296">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
@@ -2654,7 +2654,7 @@
 <a href=#2581 id=2581 data-nosnippet>2581</a>    /// ## `activatable`
 <a href=#2582 id=2582 data-nosnippet>2582</a>    /// [`true`] if the icon should be activatable
 <a href=#2583 id=2583 data-nosnippet>2583</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_entry_set_icon_activatable"</span>)]
-<a href=#2584 id=2584 data-nosnippet>2584</a>    </span><span class="kw">fn </span>set_icon_activatable(<span class="kw-2">&amp;</span><span class="self">self</span>, icon_pos: <a href="enums.rs.html#4877-4886">EntryIconPosition</a>, activatable: <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) {
+<a href=#2584 id=2584 data-nosnippet>2584</a>    </span><span class="kw">fn </span>set_icon_activatable(<span class="kw-2">&amp;</span><span class="self">self</span>, icon_pos: <a href="enums.rs.html#4885-4894">EntryIconPosition</a>, activatable: <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) {
 <a href=#2585 id=2585 data-nosnippet>2585</a>        <span class="kw">unsafe </span>{
 <a href=#2586 id=2586 data-nosnippet>2586</a>            ffi::<a href="../../../gtk4_sys/fn.gtk_entry_set_icon_activatable.html">gtk_entry_set_icon_activatable</a>(
 <a href=#2587 id=2587 data-nosnippet>2587</a>                <a class="self" href="#2584">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
@@ -2677,7 +2677,7 @@
 <a href=#2604 id=2604 data-nosnippet>2604</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_entry_set_icon_drag_source"</span>)]
 <a href=#2605 id=2605 data-nosnippet>2605</a>    </span><span class="kw">fn </span>set_icon_drag_source(
 <a href=#2606 id=2606 data-nosnippet>2606</a>        <span class="kw-2">&amp;</span><span class="self">self</span>,
-<a href=#2607 id=2607 data-nosnippet>2607</a>        icon_pos: <a href="enums.rs.html#4877-4886">EntryIconPosition</a>,
+<a href=#2607 id=2607 data-nosnippet>2607</a>        icon_pos: <a href="enums.rs.html#4885-4894">EntryIconPosition</a>,
 <a href=#2608 id=2608 data-nosnippet>2608</a>        provider: <span class="kw-2">&amp;</span><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html">IsA</a>&lt;gdk::<a href="../../../gdk4/auto/content_provider/struct.ContentProvider.html">ContentProvider</a>&gt;,
 <a href=#2609 id=2609 data-nosnippet>2609</a>        actions: gdk::<a href="../../../gdk4/auto/flags/struct.DragAction.html">DragAction</a>,
 <a href=#2610 id=2610 data-nosnippet>2610</a>    ) {
@@ -2704,7 +2704,7 @@
 <a href=#2631 id=2631 data-nosnippet>2631</a>    /// ## `icon`
 <a href=#2632 id=2632 data-nosnippet>2632</a>    /// The icon to set
 <a href=#2633 id=2633 data-nosnippet>2633</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_entry_set_icon_from_gicon"</span>)]
-<a href=#2634 id=2634 data-nosnippet>2634</a>    </span><span class="kw">fn </span>set_icon_from_gicon(<span class="kw-2">&amp;</span><span class="self">self</span>, icon_pos: <a href="enums.rs.html#4877-4886">EntryIconPosition</a>, icon: <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;<span class="kw-2">&amp;</span><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html">IsA</a>&lt;gio::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/gio/auto/icon/struct.Icon.html">Icon</a>&gt;&gt;) {
+<a href=#2634 id=2634 data-nosnippet>2634</a>    </span><span class="kw">fn </span>set_icon_from_gicon(<span class="kw-2">&amp;</span><span class="self">self</span>, icon_pos: <a href="enums.rs.html#4885-4894">EntryIconPosition</a>, icon: <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;<span class="kw-2">&amp;</span><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html">IsA</a>&lt;gio::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/gio/auto/icon/struct.Icon.html">Icon</a>&gt;&gt;) {
 <a href=#2635 id=2635 data-nosnippet>2635</a>        <span class="kw">unsafe </span>{
 <a href=#2636 id=2636 data-nosnippet>2636</a>            ffi::<a href="../../../gtk4_sys/fn.gtk_entry_set_icon_from_gicon.html">gtk_entry_set_icon_from_gicon</a>(
 <a href=#2637 id=2637 data-nosnippet>2637</a>                <a class="self" href="#2634">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
@@ -2727,7 +2727,7 @@
 <a href=#2654 id=2654 data-nosnippet>2654</a>    /// ## `icon_name`
 <a href=#2655 id=2655 data-nosnippet>2655</a>    /// An icon name
 <a href=#2656 id=2656 data-nosnippet>2656</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_entry_set_icon_from_icon_name"</span>)]
-<a href=#2657 id=2657 data-nosnippet>2657</a>    </span><span class="kw">fn </span>set_icon_from_icon_name(<span class="kw-2">&amp;</span><span class="self">self</span>, icon_pos: <a href="enums.rs.html#4877-4886">EntryIconPosition</a>, icon_name: <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;<span class="kw-2">&amp;</span><a href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>&gt;) {
+<a href=#2657 id=2657 data-nosnippet>2657</a>    </span><span class="kw">fn </span>set_icon_from_icon_name(<span class="kw-2">&amp;</span><span class="self">self</span>, icon_pos: <a href="enums.rs.html#4885-4894">EntryIconPosition</a>, icon_name: <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;<span class="kw-2">&amp;</span><a href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>&gt;) {
 <a href=#2658 id=2658 data-nosnippet>2658</a>        <span class="kw">unsafe </span>{
 <a href=#2659 id=2659 data-nosnippet>2659</a>            ffi::<a href="../../../gtk4_sys/fn.gtk_entry_set_icon_from_icon_name.html">gtk_entry_set_icon_from_icon_name</a>(
 <a href=#2660 id=2660 data-nosnippet>2660</a>                <a class="self" href="#2657">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
@@ -2747,7 +2747,7 @@
 <a href=#2674 id=2674 data-nosnippet>2674</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_entry_set_icon_from_paintable"</span>)]
 <a href=#2675 id=2675 data-nosnippet>2675</a>    </span><span class="kw">fn </span>set_icon_from_paintable(
 <a href=#2676 id=2676 data-nosnippet>2676</a>        <span class="kw-2">&amp;</span><span class="self">self</span>,
-<a href=#2677 id=2677 data-nosnippet>2677</a>        icon_pos: <a href="enums.rs.html#4877-4886">EntryIconPosition</a>,
+<a href=#2677 id=2677 data-nosnippet>2677</a>        icon_pos: <a href="enums.rs.html#4885-4894">EntryIconPosition</a>,
 <a href=#2678 id=2678 data-nosnippet>2678</a>        paintable: <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;<span class="kw-2">&amp;</span><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html">IsA</a>&lt;gdk::<a href="../../../gdk4/auto/paintable/struct.Paintable.html">Paintable</a>&gt;&gt;,
 <a href=#2679 id=2679 data-nosnippet>2679</a>    ) {
 <a href=#2680 id=2680 data-nosnippet>2680</a>        <span class="kw">unsafe </span>{
@@ -2766,7 +2766,7 @@
 <a href=#2693 id=2693 data-nosnippet>2693</a>    /// Specifies whether the icon should appear
 <a href=#2694 id=2694 data-nosnippet>2694</a>    ///   sensitive or insensitive
 <a href=#2695 id=2695 data-nosnippet>2695</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_entry_set_icon_sensitive"</span>)]
-<a href=#2696 id=2696 data-nosnippet>2696</a>    </span><span class="kw">fn </span>set_icon_sensitive(<span class="kw-2">&amp;</span><span class="self">self</span>, icon_pos: <a href="enums.rs.html#4877-4886">EntryIconPosition</a>, sensitive: <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) {
+<a href=#2696 id=2696 data-nosnippet>2696</a>    </span><span class="kw">fn </span>set_icon_sensitive(<span class="kw-2">&amp;</span><span class="self">self</span>, icon_pos: <a href="enums.rs.html#4885-4894">EntryIconPosition</a>, sensitive: <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) {
 <a href=#2697 id=2697 data-nosnippet>2697</a>        <span class="kw">unsafe </span>{
 <a href=#2698 id=2698 data-nosnippet>2698</a>            ffi::<a href="../../../gtk4_sys/fn.gtk_entry_set_icon_sensitive.html">gtk_entry_set_icon_sensitive</a>(
 <a href=#2699 id=2699 data-nosnippet>2699</a>                <a class="self" href="#2696">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
@@ -2790,7 +2790,7 @@
 <a href=#2717 id=2717 data-nosnippet>2717</a>    /// ## `tooltip`
 <a href=#2718 id=2718 data-nosnippet>2718</a>    /// the contents of the tooltip for the icon
 <a href=#2719 id=2719 data-nosnippet>2719</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_entry_set_icon_tooltip_markup"</span>)]
-<a href=#2720 id=2720 data-nosnippet>2720</a>    </span><span class="kw">fn </span>set_icon_tooltip_markup(<span class="kw-2">&amp;</span><span class="self">self</span>, icon_pos: <a href="enums.rs.html#4877-4886">EntryIconPosition</a>, tooltip: <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;<span class="kw-2">&amp;</span><a href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>&gt;) {
+<a href=#2720 id=2720 data-nosnippet>2720</a>    </span><span class="kw">fn </span>set_icon_tooltip_markup(<span class="kw-2">&amp;</span><span class="self">self</span>, icon_pos: <a href="enums.rs.html#4885-4894">EntryIconPosition</a>, tooltip: <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;<span class="kw-2">&amp;</span><a href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>&gt;) {
 <a href=#2721 id=2721 data-nosnippet>2721</a>        <span class="kw">unsafe </span>{
 <a href=#2722 id=2722 data-nosnippet>2722</a>            ffi::<a href="../../../gtk4_sys/fn.gtk_entry_set_icon_tooltip_markup.html">gtk_entry_set_icon_tooltip_markup</a>(
 <a href=#2723 id=2723 data-nosnippet>2723</a>                <a class="self" href="#2720">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
@@ -2822,7 +2822,7 @@
 <a href=#2749 id=2749 data-nosnippet>2749</a>    /// ## `tooltip`
 <a href=#2750 id=2750 data-nosnippet>2750</a>    /// the contents of the tooltip for the icon
 <a href=#2751 id=2751 data-nosnippet>2751</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_entry_set_icon_tooltip_text"</span>)]
-<a href=#2752 id=2752 data-nosnippet>2752</a>    </span><span class="kw">fn </span>set_icon_tooltip_text(<span class="kw-2">&amp;</span><span class="self">self</span>, icon_pos: <a href="enums.rs.html#4877-4886">EntryIconPosition</a>, tooltip: <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;<span class="kw-2">&amp;</span><a href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>&gt;) {
+<a href=#2752 id=2752 data-nosnippet>2752</a>    </span><span class="kw">fn </span>set_icon_tooltip_text(<span class="kw-2">&amp;</span><span class="self">self</span>, icon_pos: <a href="enums.rs.html#4885-4894">EntryIconPosition</a>, tooltip: <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;<span class="kw-2">&amp;</span><a href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>&gt;) {
 <a href=#2753 id=2753 data-nosnippet>2753</a>        <span class="kw">unsafe </span>{
 <a href=#2754 id=2754 data-nosnippet>2754</a>            ffi::<a href="../../../gtk4_sys/fn.gtk_entry_set_icon_tooltip_text.html">gtk_entry_set_icon_tooltip_text</a>(
 <a href=#2755 id=2755 data-nosnippet>2755</a>                <a class="self" href="#2752">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
@@ -2838,7 +2838,7 @@
 <a href=#2765 id=2765 data-nosnippet>2765</a>    /// the hints
 <a href=#2766 id=2766 data-nosnippet>2766</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_entry_set_input_hints"</span>)]
 <a href=#2767 id=2767 data-nosnippet>2767</a>    #[doc(alias = <span class="string">"input-hints"</span>)]
-<a href=#2768 id=2768 data-nosnippet>2768</a>    </span><span class="kw">fn </span>set_input_hints(<span class="kw-2">&amp;</span><span class="self">self</span>, hints: <a href="flags.rs.html#911-970">InputHints</a>) {
+<a href=#2768 id=2768 data-nosnippet>2768</a>    </span><span class="kw">fn </span>set_input_hints(<span class="kw-2">&amp;</span><span class="self">self</span>, hints: <a href="flags.rs.html#914-973">InputHints</a>) {
 <a href=#2769 id=2769 data-nosnippet>2769</a>        <span class="kw">unsafe </span>{
 <a href=#2770 id=2770 data-nosnippet>2770</a>            ffi::<a href="../../../gtk4_sys/fn.gtk_entry_set_input_hints.html">gtk_entry_set_input_hints</a>(<a class="self" href="#2768">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>, <a href="#2768">hints</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>());
 <a href=#2771 id=2771 data-nosnippet>2771</a>        }
@@ -2850,7 +2850,7 @@
 <a href=#2777 id=2777 data-nosnippet>2777</a>    /// the purpose
 <a href=#2778 id=2778 data-nosnippet>2778</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_entry_set_input_purpose"</span>)]
 <a href=#2779 id=2779 data-nosnippet>2779</a>    #[doc(alias = <span class="string">"input-purpose"</span>)]
-<a href=#2780 id=2780 data-nosnippet>2780</a>    </span><span class="kw">fn </span>set_input_purpose(<span class="kw-2">&amp;</span><span class="self">self</span>, purpose: <a href="enums.rs.html#6471-6507">InputPurpose</a>) {
+<a href=#2780 id=2780 data-nosnippet>2780</a>    </span><span class="kw">fn </span>set_input_purpose(<span class="kw-2">&amp;</span><span class="self">self</span>, purpose: <a href="enums.rs.html#6479-6515">InputPurpose</a>) {
 <a href=#2781 id=2781 data-nosnippet>2781</a>        <span class="kw">unsafe </span>{
 <a href=#2782 id=2782 data-nosnippet>2782</a>            ffi::<a href="../../../gtk4_sys/fn.gtk_entry_set_input_purpose.html">gtk_entry_set_input_purpose</a>(<a class="self" href="#2780">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>, <a href="#2780">purpose</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>());
 <a href=#2783 id=2783 data-nosnippet>2783</a>        }
@@ -2908,7 +2908,7 @@
 <a href=#2835 id=2835 data-nosnippet>2835</a>    </span><span class="attr">#[cfg(feature = <span class="string">"v4_20"</span>)]
 <a href=#2836 id=2836 data-nosnippet>2836</a>    #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_20"</span>)))]
 <a href=#2837 id=2837 data-nosnippet>2837</a>    #[doc(alias = <span class="string">"gtk_entry_set_menu_entry_icon_text"</span>)]
-<a href=#2838 id=2838 data-nosnippet>2838</a>    </span><span class="kw">fn </span>set_menu_entry_icon_text(<span class="kw-2">&amp;</span><span class="self">self</span>, icon_pos: <a href="enums.rs.html#4877-4886">EntryIconPosition</a>, text: <span class="kw-2">&amp;</span><a href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>) {
+<a href=#2838 id=2838 data-nosnippet>2838</a>    </span><span class="kw">fn </span>set_menu_entry_icon_text(<span class="kw-2">&amp;</span><span class="self">self</span>, icon_pos: <a href="enums.rs.html#4885-4894">EntryIconPosition</a>, text: <span class="kw-2">&amp;</span><a href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>) {
 <a href=#2839 id=2839 data-nosnippet>2839</a>        <span class="kw">unsafe </span>{
 <a href=#2840 id=2840 data-nosnippet>2840</a>            ffi::<a href="../../../gtk4_sys/fn.gtk_entry_set_menu_entry_icon_text.html">gtk_entry_set_menu_entry_icon_text</a>(
 <a href=#2841 id=2841 data-nosnippet>2841</a>                <a class="self" href="#2838">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
@@ -3264,7 +3264,7 @@
 <a href=#3191 id=3191 data-nosnippet>3191</a>
 <a href=#3192 id=3192 data-nosnippet>3192</a>    <span class="doccomment">/// The representation which is used for the primary icon of the entry.
 <a href=#3193 id=3193 data-nosnippet>3193</a>    </span><span class="attr">#[doc(alias = <span class="string">"primary-icon-storage-type"</span>)]
-<a href=#3194 id=3194 data-nosnippet>3194</a>    </span><span class="kw">fn </span>primary_icon_storage_type(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="enums.rs.html#6344-6359">ImageType</a> {
+<a href=#3194 id=3194 data-nosnippet>3194</a>    </span><span class="kw">fn </span>primary_icon_storage_type(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="enums.rs.html#6352-6367">ImageType</a> {
 <a href=#3195 id=3195 data-nosnippet>3195</a>        ObjectExt::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.ObjectExt.html#tymethod.property">property</a>(<a class="self" href="#3194">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>(), <span class="string">"primary-icon-storage-type"</span>)
 <a href=#3196 id=3196 data-nosnippet>3196</a>    }
 <a href=#3197 id=3197 data-nosnippet>3197</a>
@@ -3419,7 +3419,7 @@
 <a href=#3346 id=3346 data-nosnippet>3346</a>
 <a href=#3347 id=3347 data-nosnippet>3347</a>    <span class="doccomment">/// The representation which is used for the secondary icon of the entry.
 <a href=#3348 id=3348 data-nosnippet>3348</a>    </span><span class="attr">#[doc(alias = <span class="string">"secondary-icon-storage-type"</span>)]
-<a href=#3349 id=3349 data-nosnippet>3349</a>    </span><span class="kw">fn </span>secondary_icon_storage_type(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="enums.rs.html#6344-6359">ImageType</a> {
+<a href=#3349 id=3349 data-nosnippet>3349</a>    </span><span class="kw">fn </span>secondary_icon_storage_type(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="enums.rs.html#6352-6367">ImageType</a> {
 <a href=#3350 id=3350 data-nosnippet>3350</a>        ObjectExt::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.ObjectExt.html#tymethod.property">property</a>(<a class="self" href="#3349">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>(), <span class="string">"secondary-icon-storage-type"</span>)
 <a href=#3351 id=3351 data-nosnippet>3351</a>    }
 <a href=#3352 id=3352 data-nosnippet>3352</a>
@@ -3522,13 +3522,13 @@
 <a href=#3449 id=3449 data-nosnippet>3449</a>    /// ## `icon_pos`
 <a href=#3450 id=3450 data-nosnippet>3450</a>    /// The position of the clicked icon
 <a href=#3451 id=3451 data-nosnippet>3451</a>    </span><span class="attr">#[doc(alias = <span class="string">"icon-press"</span>)]
-<a href=#3452 id=3452 data-nosnippet>3452</a>    </span><span class="kw">fn </span>connect_icon_press&lt;F: <a href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html">Fn</a>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <a href="enums.rs.html#4877-4886">EntryIconPosition</a>) + <span class="lifetime">'static</span>&gt;(
+<a href=#3452 id=3452 data-nosnippet>3452</a>    </span><span class="kw">fn </span>connect_icon_press&lt;F: <a href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html">Fn</a>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <a href="enums.rs.html#4885-4894">EntryIconPosition</a>) + <span class="lifetime">'static</span>&gt;(
 <a href=#3453 id=3453 data-nosnippet>3453</a>        <span class="kw-2">&amp;</span><span class="self">self</span>,
 <a href=#3454 id=3454 data-nosnippet>3454</a>        f: F,
 <a href=#3455 id=3455 data-nosnippet>3455</a>    ) -&gt; <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html">SignalHandlerId</a> {
 <a href=#3456 id=3456 data-nosnippet>3456</a>        <span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn </span>icon_press_trampoline&lt;
 <a href=#3457 id=3457 data-nosnippet>3457</a>            P: <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html">IsA</a>&lt;<a href="#19-1039">Entry</a>&gt;,
-<a href=#3458 id=3458 data-nosnippet>3458</a>            F: <a href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html">Fn</a>(<span class="kw-2">&amp;</span>P, <a href="enums.rs.html#4877-4886">EntryIconPosition</a>) + <span class="lifetime">'static</span>,
+<a href=#3458 id=3458 data-nosnippet>3458</a>            F: <a href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html">Fn</a>(<span class="kw-2">&amp;</span>P, <a href="enums.rs.html#4885-4894">EntryIconPosition</a>) + <span class="lifetime">'static</span>,
 <a href=#3459 id=3459 data-nosnippet>3459</a>        &gt;(
 <a href=#3460 id=3460 data-nosnippet>3460</a>            this: <span class="kw-2">*mut </span>ffi::<a href="../../../gtk4_sys/struct.GtkEntry.html">GtkEntry</a>,
 <a href=#3461 id=3461 data-nosnippet>3461</a>            icon_pos: ffi::<a href="../../../gtk4_sys/type.GtkEntryIconPosition.html">GtkEntryIconPosition</a>,
@@ -3558,13 +3558,13 @@
 <a href=#3485 id=3485 data-nosnippet>3485</a>    /// ## `icon_pos`
 <a href=#3486 id=3486 data-nosnippet>3486</a>    /// The position of the clicked icon
 <a href=#3487 id=3487 data-nosnippet>3487</a>    </span><span class="attr">#[doc(alias = <span class="string">"icon-release"</span>)]
-<a href=#3488 id=3488 data-nosnippet>3488</a>    </span><span class="kw">fn </span>connect_icon_release&lt;F: <a href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html">Fn</a>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <a href="enums.rs.html#4877-4886">EntryIconPosition</a>) + <span class="lifetime">'static</span>&gt;(
+<a href=#3488 id=3488 data-nosnippet>3488</a>    </span><span class="kw">fn </span>connect_icon_release&lt;F: <a href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html">Fn</a>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <a href="enums.rs.html#4885-4894">EntryIconPosition</a>) + <span class="lifetime">'static</span>&gt;(
 <a href=#3489 id=3489 data-nosnippet>3489</a>        <span class="kw-2">&amp;</span><span class="self">self</span>,
 <a href=#3490 id=3490 data-nosnippet>3490</a>        f: F,
 <a href=#3491 id=3491 data-nosnippet>3491</a>    ) -&gt; <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html">SignalHandlerId</a> {
 <a href=#3492 id=3492 data-nosnippet>3492</a>        <span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn </span>icon_release_trampoline&lt;
 <a href=#3493 id=3493 data-nosnippet>3493</a>            P: <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html">IsA</a>&lt;<a href="#19-1039">Entry</a>&gt;,
-<a href=#3494 id=3494 data-nosnippet>3494</a>            F: <a href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html">Fn</a>(<span class="kw-2">&amp;</span>P, <a href="enums.rs.html#4877-4886">EntryIconPosition</a>) + <span class="lifetime">'static</span>,
+<a href=#3494 id=3494 data-nosnippet>3494</a>            F: <a href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html">Fn</a>(<span class="kw-2">&amp;</span>P, <a href="enums.rs.html#4885-4894">EntryIconPosition</a>) + <span class="lifetime">'static</span>,
 <a href=#3495 id=3495 data-nosnippet>3495</a>        &gt;(
 <a href=#3496 id=3496 data-nosnippet>3496</a>            this: <span class="kw-2">*mut </span>ffi::<a href="../../../gtk4_sys/struct.GtkEntry.html">GtkEntry</a>,
 <a href=#3497 id=3497 data-nosnippet>3497</a>            icon_pos: ffi::<a href="../../../gtk4_sys/type.GtkEntryIconPosition.html">GtkEntryIconPosition</a>,

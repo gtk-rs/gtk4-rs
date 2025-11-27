@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/auto/print_job.rs`."><title>print_job.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-ca0dd0c4.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.93.0-nightly (80d8f292d 2025-11-25)" data-channel="nightly" data-search-js="search-680b2199.js" data-stringdex-js="stringdex-a3946164.js" data-settings-js="settings-c38705f0.js" ><script src="../../../static.files/storage-e2aeef58.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-a410ff4d.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-263c88ec.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/auto/print_job.rs`."><title>print_job.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-ca0dd0c4.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.93.0-nightly (1be6b13be 2025-11-26)" data-channel="nightly" data-search-js="search-680b2199.js" data-stringdex-js="stringdex-a3946164.js" data-settings-js="settings-c38705f0.js" ><script src="../../../static.files/storage-e2aeef58.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-a410ff4d.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-263c88ec.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
 
@@ -76,7 +76,7 @@
 <a href=#3 id=3 data-nosnippet>3</a>// DO NOT EDIT
 <a href=#4 id=4 data-nosnippet>4</a>
 <a href=#5 id=5 data-nosnippet>5</a></span><span class="kw">use crate</span>::{
-<a href=#6 id=6 data-nosnippet>6</a>    <a href="../../../gtk4_sys/index.html">ffi</a>, <a href="enums.rs.html#8025-8052">NumberUpLayout</a>, <a href="../page_range.rs.html#8-14">PageRange</a>, <a href="enums.rs.html#8788-8800">PageSet</a>, <a href="page_setup.rs.html#8-63">PageSetup</a>, <a href="enums.rs.html#9693-9708">PrintPages</a>, <a href="print_settings.rs.html#11-33">PrintSettings</a>, <a href="enums.rs.html#9912-9948">PrintStatus</a>,
+<a href=#6 id=6 data-nosnippet>6</a>    <a href="../../../gtk4_sys/index.html">ffi</a>, <a href="enums.rs.html#8033-8060">NumberUpLayout</a>, <a href="../page_range.rs.html#8-14">PageRange</a>, <a href="enums.rs.html#8796-8808">PageSet</a>, <a href="page_setup.rs.html#8-63">PageSetup</a>, <a href="enums.rs.html#9701-9716">PrintPages</a>, <a href="print_settings.rs.html#11-33">PrintSettings</a>, <a href="enums.rs.html#9920-9956">PrintStatus</a>,
 <a href=#7 id=7 data-nosnippet>7</a>    <a href="printer.rs.html#14-111">Printer</a>,
 <a href=#8 id=8 data-nosnippet>8</a>};
 <a href=#9 id=9 data-nosnippet>9</a><span class="kw">use </span>glib::{
@@ -215,7 +215,7 @@
 <a href=#142 id=142 data-nosnippet>142</a>    /// the n-up layout
 <a href=#143 id=143 data-nosnippet>143</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_print_job_get_n_up_layout"</span>)]
 <a href=#144 id=144 data-nosnippet>144</a>    #[doc(alias = <span class="string">"get_n_up_layout"</span>)]
-<a href=#145 id=145 data-nosnippet>145</a>    </span><span class="kw">pub fn </span>n_up_layout(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="enums.rs.html#8025-8052">NumberUpLayout</a> {
+<a href=#145 id=145 data-nosnippet>145</a>    </span><span class="kw">pub fn </span>n_up_layout(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="enums.rs.html#8033-8060">NumberUpLayout</a> {
 <a href=#146 id=146 data-nosnippet>146</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_print_job_get_n_up_layout.html">gtk_print_job_get_n_up_layout</a>(<a class="self" href="#145">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#147 id=147 data-nosnippet>147</a>    }
 <a href=#148 id=148 data-nosnippet>148</a>
@@ -256,7 +256,7 @@
 <a href=#183 id=183 data-nosnippet>183</a>    /// the [`PageSet`][crate::PageSet] setting
 <a href=#184 id=184 data-nosnippet>184</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_print_job_get_page_set"</span>)]
 <a href=#185 id=185 data-nosnippet>185</a>    #[doc(alias = <span class="string">"get_page_set"</span>)]
-<a href=#186 id=186 data-nosnippet>186</a>    </span><span class="kw">pub fn </span>page_set(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="enums.rs.html#8788-8800">PageSet</a> {
+<a href=#186 id=186 data-nosnippet>186</a>    </span><span class="kw">pub fn </span>page_set(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="enums.rs.html#8796-8808">PageSet</a> {
 <a href=#187 id=187 data-nosnippet>187</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_print_job_get_page_set.html">gtk_print_job_get_page_set</a>(<a class="self" href="#186">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#188 id=188 data-nosnippet>188</a>    }
 <a href=#189 id=189 data-nosnippet>189</a>
@@ -267,7 +267,7 @@
 <a href=#194 id=194 data-nosnippet>194</a>    /// the [`PrintPages`][crate::PrintPages] setting
 <a href=#195 id=195 data-nosnippet>195</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_print_job_get_pages"</span>)]
 <a href=#196 id=196 data-nosnippet>196</a>    #[doc(alias = <span class="string">"get_pages"</span>)]
-<a href=#197 id=197 data-nosnippet>197</a>    </span><span class="kw">pub fn </span>pages(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="enums.rs.html#9693-9708">PrintPages</a> {
+<a href=#197 id=197 data-nosnippet>197</a>    </span><span class="kw">pub fn </span>pages(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="enums.rs.html#9701-9716">PrintPages</a> {
 <a href=#198 id=198 data-nosnippet>198</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_print_job_get_pages.html">gtk_print_job_get_pages</a>(<a class="self" href="#197">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#199 id=199 data-nosnippet>199</a>    }
 <a href=#200 id=200 data-nosnippet>200</a>
@@ -333,7 +333,7 @@
 <a href=#260 id=260 data-nosnippet>260</a>    /// the status of @self
 <a href=#261 id=261 data-nosnippet>261</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_print_job_get_status"</span>)]
 <a href=#262 id=262 data-nosnippet>262</a>    #[doc(alias = <span class="string">"get_status"</span>)]
-<a href=#263 id=263 data-nosnippet>263</a>    </span><span class="kw">pub fn </span>status(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="enums.rs.html#9912-9948">PrintStatus</a> {
+<a href=#263 id=263 data-nosnippet>263</a>    </span><span class="kw">pub fn </span>status(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="enums.rs.html#9920-9956">PrintStatus</a> {
 <a href=#264 id=264 data-nosnippet>264</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_print_job_get_status.html">gtk_print_job_get_status</a>(<a class="self" href="#263">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#265 id=265 data-nosnippet>265</a>    }
 <a href=#266 id=266 data-nosnippet>266</a>
@@ -410,7 +410,7 @@
 <a href=#337 id=337 data-nosnippet>337</a>    /// ## `layout`
 <a href=#338 id=338 data-nosnippet>338</a>    /// the n-up layout setting
 <a href=#339 id=339 data-nosnippet>339</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_print_job_set_n_up_layout"</span>)]
-<a href=#340 id=340 data-nosnippet>340</a>    </span><span class="kw">pub fn </span>set_n_up_layout(<span class="kw-2">&amp;</span><span class="self">self</span>, layout: <a href="enums.rs.html#8025-8052">NumberUpLayout</a>) {
+<a href=#340 id=340 data-nosnippet>340</a>    </span><span class="kw">pub fn </span>set_n_up_layout(<span class="kw-2">&amp;</span><span class="self">self</span>, layout: <a href="enums.rs.html#8033-8060">NumberUpLayout</a>) {
 <a href=#341 id=341 data-nosnippet>341</a>        <span class="kw">unsafe </span>{
 <a href=#342 id=342 data-nosnippet>342</a>            ffi::<a href="../../../gtk4_sys/fn.gtk_print_job_set_n_up_layout.html">gtk_print_job_set_n_up_layout</a>(<a class="self" href="#340">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>, <a href="#340">layout</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>());
 <a href=#343 id=343 data-nosnippet>343</a>        }
@@ -446,7 +446,7 @@
 <a href=#373 id=373 data-nosnippet>373</a>    /// ## `page_set`
 <a href=#374 id=374 data-nosnippet>374</a>    /// a [`PageSet`][crate::PageSet] setting
 <a href=#375 id=375 data-nosnippet>375</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_print_job_set_page_set"</span>)]
-<a href=#376 id=376 data-nosnippet>376</a>    </span><span class="kw">pub fn </span>set_page_set(<span class="kw-2">&amp;</span><span class="self">self</span>, page_set: <a href="enums.rs.html#8788-8800">PageSet</a>) {
+<a href=#376 id=376 data-nosnippet>376</a>    </span><span class="kw">pub fn </span>set_page_set(<span class="kw-2">&amp;</span><span class="self">self</span>, page_set: <a href="enums.rs.html#8796-8808">PageSet</a>) {
 <a href=#377 id=377 data-nosnippet>377</a>        <span class="kw">unsafe </span>{
 <a href=#378 id=378 data-nosnippet>378</a>            ffi::<a href="../../../gtk4_sys/fn.gtk_print_job_set_page_set.html">gtk_print_job_set_page_set</a>(<a class="self" href="#376">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>, <a href="#376">page_set</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>());
 <a href=#379 id=379 data-nosnippet>379</a>        }
@@ -456,7 +456,7 @@
 <a href=#383 id=383 data-nosnippet>383</a>    /// ## `pages`
 <a href=#384 id=384 data-nosnippet>384</a>    /// the [`PrintPages`][crate::PrintPages] setting
 <a href=#385 id=385 data-nosnippet>385</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_print_job_set_pages"</span>)]
-<a href=#386 id=386 data-nosnippet>386</a>    </span><span class="kw">pub fn </span>set_pages(<span class="kw-2">&amp;</span><span class="self">self</span>, pages: <a href="enums.rs.html#9693-9708">PrintPages</a>) {
+<a href=#386 id=386 data-nosnippet>386</a>    </span><span class="kw">pub fn </span>set_pages(<span class="kw-2">&amp;</span><span class="self">self</span>, pages: <a href="enums.rs.html#9701-9716">PrintPages</a>) {
 <a href=#387 id=387 data-nosnippet>387</a>        <span class="kw">unsafe </span>{
 <a href=#388 id=388 data-nosnippet>388</a>            ffi::<a href="../../../gtk4_sys/fn.gtk_print_job_set_pages.html">gtk_print_job_set_pages</a>(<a class="self" href="#386">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>, <a href="#386">pages</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>());
 <a href=#389 id=389 data-nosnippet>389</a>        }
