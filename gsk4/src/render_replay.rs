@@ -65,47 +65,34 @@ impl RenderReplay {
         }
     }
 
-    #[allow(clippy::type_complexity)]
     #[doc(alias = "gsk_render_replay_set_font_filter")]
-    pub fn set_font_filter(
+    pub fn set_font_filter<P: Fn(&RenderReplay, &pango::Font) -> pango::Font + 'static>(
         &mut self,
-        filter: Option<Box_<dyn Fn(&RenderReplay, &pango::Font) -> pango::Font + 'static>>,
+        filter: P,
     ) {
-        let filter_data: Box_<
-            Option<Box_<dyn Fn(&RenderReplay, &pango::Font) -> pango::Font + 'static>>,
-        > = Box_::new(filter);
-        unsafe extern "C" fn filter_func(
+        let filter_data: Box_<P> = Box_::new(filter);
+        unsafe extern "C" fn filter_func<
+            P: Fn(&RenderReplay, &pango::Font) -> pango::Font + 'static,
+        >(
             replay: *mut ffi::GskRenderReplay,
             font: *mut pango::ffi::PangoFont,
             user_data: glib::ffi::gpointer,
         ) -> *mut pango::ffi::PangoFont {
             let replay = RenderReplay(std::ptr::NonNull::new_unchecked(replay));
             let font = from_glib_borrow(font);
-            let callback = &*(user_data
-                as *mut Option<Box_<dyn Fn(&RenderReplay, &pango::Font) -> pango::Font + 'static>>);
-            if let Some(ref callback) = *callback {
-                callback(&replay, &font)
-            } else {
-                panic!("cannot get closure...")
-            }
-            .into_glib_ptr()
+            let callback = &*(user_data as *mut P);
+            (*callback)(&replay, &font).into_glib_ptr()
         }
-        let filter = if filter_data.is_some() {
-            Some(filter_func as _)
-        } else {
-            None
-        };
-        unsafe extern "C" fn user_destroy_func(data: glib::ffi::gpointer) {
-            let _callback = Box_::from_raw(
-                data as *mut Option<
-                    Box_<dyn Fn(&RenderReplay, &pango::Font) -> pango::Font + 'static>,
-                >,
-            );
+        let filter = Some(filter_func::<P> as _);
+        unsafe extern "C" fn user_destroy_func<
+            P: Fn(&RenderReplay, &pango::Font) -> pango::Font + 'static,
+        >(
+            data: glib::ffi::gpointer,
+        ) {
+            let _callback = Box_::from_raw(data as *mut P);
         }
-        let destroy_call3 = Some(user_destroy_func as _);
-        let super_callback0: Box_<
-            Option<Box_<dyn Fn(&RenderReplay, &pango::Font) -> pango::Font + 'static>>,
-        > = filter_data;
+        let destroy_call3 = Some(user_destroy_func::<P> as _);
+        let super_callback0: Box_<P> = filter_data;
         unsafe {
             ffi::gsk_render_replay_set_font_filter(
                 self.0.as_mut(),
@@ -113,6 +100,19 @@ impl RenderReplay {
                 Box_::into_raw(super_callback0) as *mut _,
                 destroy_call3,
             );
+        }
+    }
+
+    #[doc(alias = "gsk_render_replay_set_font_filter")]
+    #[doc(alias = "set_font_filter")]
+    pub fn unset_font_filter(&mut self) {
+        unsafe {
+            ffi::gsk_render_replay_set_font_filter(
+                self.0.as_mut(),
+                None,
+                std::ptr::null_mut(),
+                None,
+            )
         }
     }
 
@@ -154,6 +154,19 @@ impl RenderReplay {
         }
     }
 
+    #[doc(alias = "gsk_render_replay_set_node_filter")]
+    #[doc(alias = "set_node_filter")]
+    pub fn unset_node_filter(&mut self) {
+        unsafe {
+            ffi::gsk_render_replay_set_node_filter(
+                self.0.as_mut(),
+                None,
+                std::ptr::null_mut(),
+                None,
+            )
+        }
+    }
+
     #[doc(alias = "gsk_render_replay_set_node_foreach")]
     pub fn set_node_foreach<P: Fn(&RenderReplay, &RenderNode) -> glib::ControlFlow + 'static>(
         &mut self,
@@ -192,49 +205,47 @@ impl RenderReplay {
         }
     }
 
-    #[allow(clippy::type_complexity)]
+    #[doc(alias = "gsk_render_replay_set_node_foreach")]
+    #[doc(alias = "set_node_foreach")]
+    pub fn unset_foreach_node(&mut self) {
+        unsafe {
+            ffi::gsk_render_replay_set_node_foreach(
+                self.0.as_mut(),
+                None,
+                std::ptr::null_mut(),
+                None,
+            )
+        }
+    }
+
     #[doc(alias = "gsk_render_replay_set_texture_filter")]
-    pub fn set_texture_filter(
+    pub fn set_texture_filter<P: Fn(&RenderReplay, &gdk::Texture) -> gdk::Texture + 'static>(
         &mut self,
-        filter: Option<Box_<dyn Fn(&RenderReplay, &gdk::Texture) -> gdk::Texture + 'static>>,
+        filter: P,
     ) {
-        let filter_data: Box_<
-            Option<Box_<dyn Fn(&RenderReplay, &gdk::Texture) -> gdk::Texture + 'static>>,
-        > = Box_::new(filter);
-        unsafe extern "C" fn filter_func(
+        let filter_data: Box_<P> = Box_::new(filter);
+        unsafe extern "C" fn filter_func<
+            P: Fn(&RenderReplay, &gdk::Texture) -> gdk::Texture + 'static,
+        >(
             replay: *mut ffi::GskRenderReplay,
             texture: *mut gdk::ffi::GdkTexture,
             user_data: glib::ffi::gpointer,
         ) -> *mut gdk::ffi::GdkTexture {
             let replay = RenderReplay(std::ptr::NonNull::new_unchecked(replay));
             let texture = from_glib_borrow(texture);
-            let callback = &*(user_data
-                as *mut Option<
-                    Box_<dyn Fn(&RenderReplay, &gdk::Texture) -> gdk::Texture + 'static>,
-                >);
-            if let Some(ref callback) = *callback {
-                callback(&replay, &texture)
-            } else {
-                panic!("cannot get closure...")
-            }
-            .into_glib_ptr()
+            let callback = &*(user_data as *mut P);
+            (*callback)(&replay, &texture).into_glib_ptr()
         }
-        let filter = if filter_data.is_some() {
-            Some(filter_func as _)
-        } else {
-            None
-        };
-        unsafe extern "C" fn user_destroy_func(data: glib::ffi::gpointer) {
-            let _callback = Box_::from_raw(
-                data as *mut Option<
-                    Box_<dyn Fn(&RenderReplay, &gdk::Texture) -> gdk::Texture + 'static>,
-                >,
-            );
+        let filter = Some(filter_func::<P> as _);
+        unsafe extern "C" fn user_destroy_func<
+            P: Fn(&RenderReplay, &gdk::Texture) -> gdk::Texture + 'static,
+        >(
+            data: glib::ffi::gpointer,
+        ) {
+            let _callback = Box_::from_raw(data as *mut P);
         }
-        let destroy_call3 = Some(user_destroy_func as _);
-        let super_callback0: Box_<
-            Option<Box_<dyn Fn(&RenderReplay, &gdk::Texture) -> gdk::Texture + 'static>>,
-        > = filter_data;
+        let destroy_call3 = Some(user_destroy_func::<P> as _);
+        let super_callback0: Box_<P> = filter_data;
         unsafe {
             ffi::gsk_render_replay_set_texture_filter(
                 self.0.as_mut(),
@@ -242,6 +253,19 @@ impl RenderReplay {
                 Box_::into_raw(super_callback0) as *mut _,
                 destroy_call3,
             );
+        }
+    }
+
+    #[doc(alias = "gsk_render_replay_set_texture_filter")]
+    #[doc(alias = "set_texture_filter")]
+    pub fn unset_texture_filter(&mut self) {
+        unsafe {
+            ffi::gsk_render_replay_set_texture_filter(
+                self.0.as_mut(),
+                None,
+                std::ptr::null_mut(),
+                None,
+            )
         }
     }
 
