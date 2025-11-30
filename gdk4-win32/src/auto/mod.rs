@@ -20,11 +20,10 @@ pub use self::win32_hcursor::Win32HCursor;
 mod win32_monitor;
 pub use self::win32_monitor::Win32Monitor;
 
-mod win32_screen;
-pub use self::win32_screen::Win32Screen;
-
 mod win32_surface;
 pub use self::win32_surface::Win32Surface;
 
 mod enums;
 pub use self::enums::Win32MessageFilterReturn;
+
+pub(crate) mod functions;

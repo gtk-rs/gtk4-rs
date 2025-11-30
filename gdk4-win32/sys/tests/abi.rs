@@ -200,15 +200,27 @@ fn get_c_output(name: &str) -> Result<String, Box<dyn Error>> {
     Ok(String::from_utf8(out.stdout)?)
 }
 
-const RUST_LAYOUTS: &[(&str, Layout)] = &[(
-    "GdkWin32MessageFilterReturn",
-    Layout {
-        size: size_of::<GdkWin32MessageFilterReturn>(),
-        alignment: align_of::<GdkWin32MessageFilterReturn>(),
-    },
-)];
+const RUST_LAYOUTS: &[(&str, Layout)] = &[
+    (
+        "GdkD3D12Error",
+        Layout {
+            size: size_of::<GdkD3D12Error>(),
+            alignment: align_of::<GdkD3D12Error>(),
+        },
+    ),
+    (
+        "GdkWin32MessageFilterReturn",
+        Layout {
+            size: size_of::<GdkWin32MessageFilterReturn>(),
+            alignment: align_of::<GdkWin32MessageFilterReturn>(),
+        },
+    ),
+];
 
 const RUST_CONSTANTS: &[(&str, &str)] = &[
+    ("(gint) GDK_D3D12_ERROR_CREATION_FAILED", "2"),
+    ("(gint) GDK_D3D12_ERROR_NOT_AVAILABLE", "0"),
+    ("(gint) GDK_D3D12_ERROR_UNSUPPORTED_FORMAT", "1"),
     ("(gint) GDK_WIN32_MESSAGE_FILTER_CONTINUE", "0"),
     ("(gint) GDK_WIN32_MESSAGE_FILTER_REMOVE", "1"),
 ];

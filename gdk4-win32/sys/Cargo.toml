@@ -39,6 +39,9 @@ version = "4.4"
 [package.metadata.system-deps.gtk4_win32.v4_8]
 version = "4.8"
 
+[package.metadata.system-deps.gtk4_win32.v4_20]
+version = "4.20"
+
 [package.metadata.docs.rs]
 rustdoc-args = ["--generate-link-to-definition"]
 all-features = true
@@ -49,6 +52,7 @@ name = "gdk4_win32_sys"
 [features]
 v4_4 = []
 v4_8 = ["v4_4"]
+v4_20 = ["v4_8"]
 
 [dependencies]
 libc = "0.2"
@@ -57,6 +61,9 @@ libc = "0.2"
 workspace = true
 
 [dependencies.glib-sys]
+workspace = true
+
+[dependencies.cairo-sys-rs]
 workspace = true
 
 [build-dependencies]
