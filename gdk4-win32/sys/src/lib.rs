@@ -11,6 +11,7 @@
 )]
 #![cfg_attr(docsrs, feature(doc_cfg))]
 
+use cairo_sys as cairo;
 use gdk4_sys as gdk;
 use glib_sys as glib;
 
@@ -28,6 +29,11 @@ use std::ffi::{
 use glib::{gboolean, gconstpointer, gpointer, GType};
 
 // Enums
+pub type GdkD3D12Error = c_int;
+pub const GDK_D3D12_ERROR_NOT_AVAILABLE: GdkD3D12Error = 0;
+pub const GDK_D3D12_ERROR_UNSUPPORTED_FORMAT: GdkD3D12Error = 1;
+pub const GDK_D3D12_ERROR_CREATION_FAILED: GdkD3D12Error = 2;
+
 pub type GdkWin32MessageFilterReturn = c_int;
 pub const GDK_WIN32_MESSAGE_FILTER_CONTINUE: GdkWin32MessageFilterReturn = 0;
 pub const GDK_WIN32_MESSAGE_FILTER_REMOVE: GdkWin32MessageFilterReturn = 1;
@@ -43,6 +49,24 @@ pub type GdkWin32MessageFilterFunc = Option<
 >;
 
 // Records
+#[repr(C)]
+#[allow(dead_code)]
+pub struct _GdkD3D12TextureBuilderClass {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+pub type GdkD3D12TextureBuilderClass = _GdkD3D12TextureBuilderClass;
+
+#[repr(C)]
+#[allow(dead_code)]
+pub struct _GdkD3D12TextureClass {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+pub type GdkD3D12TextureClass = _GdkD3D12TextureClass;
+
 #[repr(C)]
 #[allow(dead_code)]
 pub struct _GdkWin32DisplayClass {
@@ -99,15 +123,6 @@ pub type GdkWin32MonitorClass = _GdkWin32MonitorClass;
 
 #[repr(C)]
 #[allow(dead_code)]
-pub struct _GdkWin32ScreenClass {
-    _data: [u8; 0],
-    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
-}
-
-pub type GdkWin32ScreenClass = _GdkWin32ScreenClass;
-
-#[repr(C)]
-#[allow(dead_code)]
 pub struct _GdkWin32SurfaceClass {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -116,6 +131,34 @@ pub struct _GdkWin32SurfaceClass {
 pub type GdkWin32SurfaceClass = _GdkWin32SurfaceClass;
 
 // Classes
+#[repr(C)]
+#[allow(dead_code)]
+pub struct GdkD3D12Texture {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+impl ::std::fmt::Debug for GdkD3D12Texture {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GdkD3D12Texture @ {self:p}"))
+            .finish()
+    }
+}
+
+#[repr(C)]
+#[allow(dead_code)]
+pub struct GdkD3D12TextureBuilder {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+impl ::std::fmt::Debug for GdkD3D12TextureBuilder {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GdkD3D12TextureBuilder @ {self:p}"))
+            .finish()
+    }
+}
+
 #[repr(C)]
 #[allow(dead_code)]
 pub struct GdkWin32Display {
@@ -201,20 +244,6 @@ impl ::std::fmt::Debug for GdkWin32Monitor {
 
 #[repr(C)]
 #[allow(dead_code)]
-pub struct GdkWin32Screen {
-    _data: [u8; 0],
-    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
-}
-
-impl ::std::fmt::Debug for GdkWin32Screen {
-    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GdkWin32Screen @ {self:p}"))
-            .finish()
-    }
-}
-
-#[repr(C)]
-#[allow(dead_code)]
 pub struct GdkWin32Surface {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -228,6 +257,99 @@ impl ::std::fmt::Debug for GdkWin32Surface {
 }
 
 extern "C" {
+
+    //=========================================================================
+    // GdkD3D12Texture
+    //=========================================================================
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    pub fn gdk_d3d12_texture_get_type() -> GType;
+
+    //=========================================================================
+    // GdkD3D12TextureBuilder
+    //=========================================================================
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    pub fn gdk_d3d12_texture_builder_get_type() -> GType;
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    pub fn gdk_d3d12_texture_builder_new() -> *mut GdkD3D12TextureBuilder;
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    pub fn gdk_d3d12_texture_builder_build(
+        self_: *mut GdkD3D12TextureBuilder,
+        destroy: glib::GDestroyNotify,
+        data: gpointer,
+        error: *mut *mut glib::GError,
+    ) -> *mut gdk::GdkTexture;
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    pub fn gdk_d3d12_texture_builder_get_color_state(
+        self_: *mut GdkD3D12TextureBuilder,
+    ) -> *mut gdk::GdkColorState;
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    pub fn gdk_d3d12_texture_builder_get_fence(self_: *mut GdkD3D12TextureBuilder) -> gpointer;
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    pub fn gdk_d3d12_texture_builder_get_fence_wait(self_: *mut GdkD3D12TextureBuilder) -> u64;
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    pub fn gdk_d3d12_texture_builder_get_premultiplied(
+        self_: *mut GdkD3D12TextureBuilder,
+    ) -> gboolean;
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    pub fn gdk_d3d12_texture_builder_get_resource(self_: *mut GdkD3D12TextureBuilder) -> gpointer;
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    pub fn gdk_d3d12_texture_builder_get_update_region(
+        self_: *mut GdkD3D12TextureBuilder,
+    ) -> *mut cairo::cairo_region_t;
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    pub fn gdk_d3d12_texture_builder_get_update_texture(
+        self_: *mut GdkD3D12TextureBuilder,
+    ) -> *mut gdk::GdkTexture;
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    pub fn gdk_d3d12_texture_builder_set_color_state(
+        self_: *mut GdkD3D12TextureBuilder,
+        color_state: *mut gdk::GdkColorState,
+    );
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    pub fn gdk_d3d12_texture_builder_set_fence(self_: *mut GdkD3D12TextureBuilder, fence: gpointer);
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    pub fn gdk_d3d12_texture_builder_set_fence_wait(
+        self_: *mut GdkD3D12TextureBuilder,
+        fence_wait: u64,
+    );
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    pub fn gdk_d3d12_texture_builder_set_premultiplied(
+        self_: *mut GdkD3D12TextureBuilder,
+        premultiplied: gboolean,
+    );
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    pub fn gdk_d3d12_texture_builder_set_resource(
+        self_: *mut GdkD3D12TextureBuilder,
+        resource: gpointer,
+    );
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    pub fn gdk_d3d12_texture_builder_set_update_region(
+        self_: *mut GdkD3D12TextureBuilder,
+        region: *mut cairo::cairo_region_t,
+    );
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    pub fn gdk_d3d12_texture_builder_set_update_texture(
+        self_: *mut GdkD3D12TextureBuilder,
+        texture: *mut gdk::GdkTexture,
+    );
 
     //=========================================================================
     // GdkWin32Display
@@ -299,11 +421,6 @@ extern "C" {
     );
 
     //=========================================================================
-    // GdkWin32Screen
-    //=========================================================================
-    pub fn gdk_win32_screen_get_type() -> GType;
-
-    //=========================================================================
     // GdkWin32Surface
     //=========================================================================
     pub fn gdk_win32_surface_get_type() -> GType;
@@ -319,6 +436,9 @@ extern "C" {
     //=========================================================================
     // Other functions
     //=========================================================================
+    #[cfg(feature = "v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+    pub fn gdk_d3d12_error_quark() -> glib::GQuark;
     pub fn gdk_win32_handle_table_lookup(handle: ssize_t) -> gpointer;
 
 }
