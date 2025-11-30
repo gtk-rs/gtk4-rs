@@ -2,6 +2,20 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+mod d3d12_texture;
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+pub use self::d3d12_texture::D3D12Texture;
+
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+mod d3d12_texture_builder;
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+pub use self::d3d12_texture_builder::D3D12TextureBuilder;
+
 mod win32_display;
 pub use self::win32_display::Win32Display;
 
@@ -24,6 +38,7 @@ mod win32_surface;
 pub use self::win32_surface::Win32Surface;
 
 mod enums;
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+pub use self::enums::D3D12Error;
 pub use self::enums::Win32MessageFilterReturn;
-
-pub(crate) mod functions;

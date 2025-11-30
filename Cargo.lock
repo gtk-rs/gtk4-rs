@@ -640,6 +640,7 @@ dependencies = [
 name = "gdk4-win32"
 version = "0.11.0"
 dependencies = [
+ "cairo-rs",
  "gdk4",
  "gdk4-win32-sys",
  "gio",
@@ -654,6 +655,7 @@ dependencies = [
 name = "gdk4-win32-sys"
 version = "0.11.0"
 dependencies = [
+ "cairo-sys-rs",
  "gdk4-sys",
  "glib-sys",
  "libc",

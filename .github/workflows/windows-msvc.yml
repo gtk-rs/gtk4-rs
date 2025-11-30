@@ -95,23 +95,23 @@ jobs:
         uses: actions-rs/cargo@v1
         with:
           command: build
-          args: --features v4_18,xml_validation
+          args: --features v4_20,xml_validation
       - name: Clippy
         uses: actions-rs/cargo@v1
         with:
           command: clippy
-          args: --features v4_18,xml_validation
+          args: --features v4_20,xml_validation
       - name: Tests
         uses: actions-rs/cargo@v1
         with:
           command: test
-          args: --features v4_18,xml_validation
+          args: --features v4_20,xml_validation
 
       - name: Build gdk-win32
         uses: actions-rs/cargo@v1
         with:
           command: build
-          args: --features v4_18,egl,win32 --manifest-path ./gdk4-win32/Cargo.toml
+          args: --features v4_20,egl,win32 --manifest-path ./gdk4-win32/Cargo.toml
       - name: Clippy gdk-win32
         uses: actions-rs/cargo@v1
         with:

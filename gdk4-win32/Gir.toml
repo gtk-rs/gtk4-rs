@@ -12,6 +12,8 @@ deprecate_by_min_version = true
 trust_return_value_nullability = true
 
 generate = [
+    "GdkWin32.D3D12Error",
+    "GdkWin32.D3D12Texture",
     "GdkWin32.Win32DisplayManager",
     "GdkWin32.Win32Drag",
     "GdkWin32.Win32GLContext",
@@ -20,11 +22,19 @@ generate = [
 ]
 
 manual = [
+    "cairo.Region",
+    "Gdk.ColorState",
     "Gdk.Cursor",
     "Gdk.DisplayManager",
     "Gdk.DrawContext",
+    "Gdk.Paintable",
     "Gdk.Rectangle",
+    "Gdk.Texture",
     "GdkPixbuf.Pixbuf",
+    "Gio.Icon",
+    "Gio.LoadableIcon",
+    "GLib.Error",
+    "GLib.Quark",
     "win32.HCURSOR",
     "win32.HICON",
     "win32.HWND",
@@ -83,10 +93,24 @@ final_type = false
 [[object]]
 name = "GdkWin32.*"
 status = "generate"
+    [[object.function]]
+    name = "d3d12_error_quark"
+    ignore = true # Implemented as ErrorDomain
 
 [[object.function]]
 name = "win32_handle_table_lookup"
 ignore = true # to be deprecated upstream, and not clean to bind
+
+[[object]]
+name = "GdkWin32.D3D12TextureBuilder"
+status = "generate"
+concurrency = "send+sync"
+generate_builder = false
+    [[object.function]]
+    name = "set_update_region"
+        [[object.function.parameter]]
+        name = "region"
+        const = true
 
 [[object]]
 name = "GdkWin32.Win32Display"

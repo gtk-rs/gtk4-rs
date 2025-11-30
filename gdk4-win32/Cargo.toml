@@ -20,7 +20,7 @@ version = "4"
 [features]
 v4_4 = ["gdk4-win32-sys/v4_4", "gdk/v4_4"]
 v4_8 = ["v4_4", "gdk4-win32-sys/v4_8", "gdk/v4_8"]
-v4_18 = ["v4_8"]
+v4_20 = ["v4_8", "gdk4-win32-sys/v4_20", "gdk/v4_20"]
 egl = ["khronos-egl"]
 win32 = ["windows"]
 
@@ -30,6 +30,7 @@ gdk.workspace = true
 gio.workspace = true
 glib.workspace = true
 libc.workspace = true
+cairo-rs.workspace = true
 khronos-egl = {version = "6.0", optional = true}
 windows = { version = ">= 0.61, <= 0.62", features = [
     "Win32_Foundation",
