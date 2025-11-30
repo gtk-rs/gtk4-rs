@@ -25,8 +25,6 @@ jobs:
     name: Windows MSVC
     runs-on: windows-latest
     continue-on-error: true
-    env:
-      PKG_CONFIG_PATH: 'C:\gnome\lib\pkgconfig'
 
     steps:
       - uses: actions/checkout@v4
@@ -53,6 +51,12 @@ jobs:
           ls C:\pkg-config-lite-0.28-1\bin
           pkg-config --version
 
+      - name: Clone GLib
+        working-directory: /
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: |
+          git clone https://gitlab.gnome.org/GNOME/glib.git --depth 1
+
       - name: Clone GTK
         working-directory: /
         if: steps.cache.outputs.cache-hit != 'true'
@@ -72,11 +76,28 @@ jobs:
         with:
           architecture: x64
 
+      - name: Set PKG_CONFIG_PATH
+        shell: bash
+        run: |
+          echo "PKG_CONFIG_PATH=C:/gnome/lib/pkgconfig" >> $GITHUB_ENV
+
+      - name: Prepare GLib build
+        working-directory: /glib
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: |
+          meson setup builddir --prefix=C:/gnome -Dtests=false -Dsysprof=disabled
+
+      - name: Build and install GLib
+        working-directory: /glib
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: |
+          meson install -C builddir
+
       - name: Prepare GTK build
         working-directory: /gtk
         if: steps.cache.outputs.cache-hit != 'true'
         run: |
-          meson setup builddir --prefix=C:/gnome -Dbuild-demos=false -Dbuild-tests=false -Dvulkan=disabled -Dmedia-gstreamer=disabled -Dbuild-examples=false -Dglib:tests=false -Dharfbuzz:tests=disabled -Dharfbuzz:docs=disabled -Dgraphene:tests=false -Dgdk-pixbuf:tests=false -Dcairo:tests=disabled -Dglib:sysprof=disabled -Dgdk-pixbuf:documentation=false
+          meson setup builddir --prefix=C:/gnome -Dbuild-demos=false -Dbuild-tests=false -Dvulkan=disabled -Dmedia-gstreamer=disabled -Dbuild-examples=false -Dharfbuzz:tests=disabled -Dharfbuzz:docs=disabled -Dgraphene:tests=false -Dgdk-pixbuf:tests=false -Dcairo:tests=disabled -Dgdk-pixbuf:documentation=false
 
       - name: Build and install GTK
         working-directory: /gtk
