@@ -109,13 +109,12 @@ pub mod prelude {
     pub use super::section_model::{SectionModelImpl, SectionModelImplExt};
     #[cfg(feature = "v4_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     pub use super::symbolic_paintable::{SymbolicPaintableImpl, SymbolicPaintableImplExt};
     pub use super::{
         actionable::{ActionableImpl, ActionableImplExt},
         adjustment::{AdjustmentImpl, AdjustmentImplExt},
         application::{GtkApplicationImpl, GtkApplicationImplExt},
-        application_window::ApplicationWindowImpl,
+        application_window::{ApplicationWindowImpl, ApplicationWindowImplExt},
         box_::BoxImpl,
         buildable::{BuildableImpl, BuildableImplExt},
         builder_scope::{BuilderCScopeImpl, BuilderScopeImpl, BuilderScopeImplExt},
