@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/subclass/mod.rs`."><title>mod.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-ca0dd0c4.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.93.0-nightly (1be6b13be 2025-11-26)" data-channel="nightly" data-search-js="search-680b2199.js" data-stringdex-js="stringdex-a3946164.js" data-settings-js="settings-c38705f0.js" ><script src="../../../static.files/storage-e2aeef58.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-a410ff4d.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-263c88ec.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/subclass/mod.rs`."><title>mod.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-ca0dd0c4.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.93.0-nightly (3ff30e7ea 2025-11-29)" data-channel="nightly" data-search-js="search-b9c1cd9b.js" data-stringdex-js="stringdex-a3946164.js" data-settings-js="settings-c38705f0.js" ><script src="../../../static.files/storage-e2aeef58.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-a410ff4d.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-263c88ec.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
 
@@ -98,8 +98,8 @@
 <a href=#25 id=25 data-nosnippet>25</a></span><span class="kw">pub mod </span><a href="accessible_text.rs.html#4-774">accessible_text</a>;
 <a href=#26 id=26 data-nosnippet>26</a><span class="kw">pub mod </span><a href="actionable.rs.html#4-137">actionable</a>;
 <a href=#27 id=27 data-nosnippet>27</a><span class="kw">pub mod </span><a href="adjustment.rs.html#4-68">adjustment</a>;
-<a href=#28 id=28 data-nosnippet>28</a><span class="kw">pub mod </span><a href="application.rs.html#4-116">application</a>;
-<a href=#29 id=29 data-nosnippet>29</a><span class="kw">pub mod </span><a href="application_window.rs.html#4-15">application_window</a>;
+<a href=#28 id=28 data-nosnippet>28</a><span class="kw">pub mod </span><a href="application.rs.html#4-228">application</a>;
+<a href=#29 id=29 data-nosnippet>29</a><span class="kw">pub mod </span><a href="application_window.rs.html#4-78">application_window</a>;
 <a href=#30 id=30 data-nosnippet>30</a><span class="kw">pub mod </span><a href="box_.rs.html#4-10">box_</a>;
 <a href=#31 id=31 data-nosnippet>31</a><span class="kw">pub mod </span><a href="buildable.rs.html#4-309">buildable</a>;
 <a href=#32 id=32 data-nosnippet>32</a><span class="kw">pub mod </span><a href="builder_scope.rs.html#4-187">builder_scope</a>;
@@ -182,73 +182,72 @@
 <a href=#109 id=109 data-nosnippet>109</a>    </span><span class="kw">pub use </span><span class="kw">super</span>::section_model::{<a href="section_model.rs.html#10-15">SectionModelImpl</a>, <a href="section_model.rs.html#17-42">SectionModelImplExt</a>};
 <a href=#110 id=110 data-nosnippet>110</a>    <span class="attr">#[cfg(feature = <span class="string">"v4_6"</span>)]
 <a href=#111 id=111 data-nosnippet>111</a>    #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_6"</span>)))]
-<a href=#112 id=112 data-nosnippet>112</a>    #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_6"</span>)))]
-<a href=#113 id=113 data-nosnippet>113</a>    </span><span class="kw">pub use </span><span class="kw">super</span>::symbolic_paintable::{<a href="symbolic_paintable.rs.html#10-35">SymbolicPaintableImpl</a>, <a href="symbolic_paintable.rs.html#37-95">SymbolicPaintableImplExt</a>};
-<a href=#114 id=114 data-nosnippet>114</a>    <span class="kw">pub use super</span>::{
-<a href=#115 id=115 data-nosnippet>115</a>        actionable::{<a href="actionable.rs.html#10-17">ActionableImpl</a>, <a href="actionable.rs.html#19-85">ActionableImplExt</a>},
-<a href=#116 id=116 data-nosnippet>116</a>        adjustment::{<a href="adjustment.rs.html#10-18">AdjustmentImpl</a>, <a href="adjustment.rs.html#20-40">AdjustmentImplExt</a>},
-<a href=#117 id=117 data-nosnippet>117</a>        application::{<a href="application.rs.html#10-18">GtkApplicationImpl</a>, <a href="application.rs.html#20-46">GtkApplicationImplExt</a>},
-<a href=#118 id=118 data-nosnippet>118</a>        <a href="application_window.rs.html#8-13">application_window::ApplicationWindowImpl</a>,
-<a href=#119 id=119 data-nosnippet>119</a>        <a href="box_.rs.html#8">box_::BoxImpl</a>,
-<a href=#120 id=120 data-nosnippet>120</a>        buildable::{<a href="buildable.rs.html#12-59">BuildableImpl</a>, <a href="buildable.rs.html#61-185">BuildableImplExt</a>},
-<a href=#121 id=121 data-nosnippet>121</a>        builder_scope::{<a href="builder_scope.rs.html#13">BuilderCScopeImpl</a>, <a href="builder_scope.rs.html#17-35">BuilderScopeImpl</a>, <a href="builder_scope.rs.html#37-115">BuilderScopeImplExt</a>},
-<a href=#122 id=122 data-nosnippet>122</a>        button::{<a href="button.rs.html#10-22">ButtonImpl</a>, <a href="button.rs.html#24-44">ButtonImplExt</a>},
-<a href=#123 id=123 data-nosnippet>123</a>        cell_area::{<a href="cell_area.rs.html#1216-1260">CellAreaClassExt</a>, <a href="cell_area.rs.html#67-508">CellAreaImpl</a>, <a href="cell_area.rs.html#512-846">CellAreaImplExt</a>},
-<a href=#124 id=124 data-nosnippet>124</a>        cell_area_context::{<a href="cell_area_context.rs.html#14-116">CellAreaContextImpl</a>, <a href="cell_area_context.rs.html#120-197">CellAreaContextImplExt</a>},
-<a href=#125 id=125 data-nosnippet>125</a>        cell_editable::{<a href="cell_editable.rs.html#12-24">CellEditableImpl</a>, <a href="cell_editable.rs.html#28-78">CellEditableImplExt</a>},
-<a href=#126 id=126 data-nosnippet>126</a>        cell_layout::{<a href="cell_layout.rs.html#55-96">CellLayoutImpl</a>, <a href="cell_layout.rs.html#100-262">CellLayoutImplExt</a>},
-<a href=#127 id=127 data-nosnippet>127</a>        cell_renderer::{<a href="cell_renderer.rs.html#18-258">CellRendererImpl</a>, <a href="cell_renderer.rs.html#262-511">CellRendererImplExt</a>},
-<a href=#128 id=128 data-nosnippet>128</a>        cell_renderer_text::{<a href="cell_renderer_text.rs.html#12-18">CellRendererTextImpl</a>, <a href="cell_renderer_text.rs.html#22-39">CellRendererTextImplExt</a>},
-<a href=#129 id=129 data-nosnippet>129</a>        check_button::{<a href="check_button.rs.html#10-22">CheckButtonImpl</a>, <a href="check_button.rs.html#24-46">CheckButtonImplExt</a>},
-<a href=#130 id=130 data-nosnippet>130</a>        color_chooser::{<a href="color_chooser.rs.html#13-25">ColorChooserImpl</a>, <a href="color_chooser.rs.html#29-110">ColorChooserImplExt</a>},
-<a href=#131 id=131 data-nosnippet>131</a>        combo_box::{<a href="combo_box.rs.html#12-29">ComboBoxImpl</a>, <a href="combo_box.rs.html#33-67">ComboBoxImplExt</a>},
-<a href=#132 id=132 data-nosnippet>132</a>        dialog::{<a href="dialog.rs.html#10-28">DialogImpl</a>, <a href="dialog.rs.html#30-53">DialogImplExt</a>},
-<a href=#133 id=133 data-nosnippet>133</a>        drawing_area::{<a href="drawing_area.rs.html#10-14">DrawingAreaImpl</a>, <a href="drawing_area.rs.html#16-30">DrawingAreaImplExt</a>},
-<a href=#134 id=134 data-nosnippet>134</a>        editable::{<a href="editable.rs.html#12-51">EditableImpl</a>, <a href="editable.rs.html#53-242">EditableImplExt</a>},
-<a href=#135 id=135 data-nosnippet>135</a>        entry::{<a href="entry.rs.html#10-16">EntryImpl</a>, <a href="entry.rs.html#18-28">EntryImplExt</a>},
-<a href=#136 id=136 data-nosnippet>136</a>        entry_buffer::{<a href="entry_buffer.rs.html#12-80">EntryBufferImpl</a>, <a href="entry_buffer.rs.html#82-170">EntryBufferImplExt</a>},
-<a href=#137 id=137 data-nosnippet>137</a>        filter::{<a href="filter.rs.html#10-38">FilterImpl</a>, <a href="filter.rs.html#40-65">FilterImplExt</a>},
-<a href=#138 id=138 data-nosnippet>138</a>        <a href="fixed.rs.html#8">fixed::FixedImpl</a>,
-<a href=#139 id=139 data-nosnippet>139</a>        flow_box_child::{<a href="flow_box_child.rs.html#10-14">FlowBoxChildImpl</a>, <a href="flow_box_child.rs.html#16-30">FlowBoxChildImplExt</a>},
-<a href=#140 id=140 data-nosnippet>140</a>        font_chooser::{<a href="font_chooser.rs.html#51-79">FontChooserImpl</a>, <a href="font_chooser.rs.html#83-207">FontChooserImplExt</a>},
-<a href=#141 id=141 data-nosnippet>141</a>        frame::{<a href="frame.rs.html#12-16">FrameImpl</a>, <a href="frame.rs.html#20-36">FrameImplExt</a>},
-<a href=#142 id=142 data-nosnippet>142</a>        gl_area::{<a href="gl_area.rs.html#12-27">GLAreaImpl</a>, <a href="gl_area.rs.html#30-69">GLAreaImplExt</a>},
-<a href=#143 id=143 data-nosnippet>143</a>        <a href="grid.rs.html#8">grid::GridImpl</a>,
-<a href=#144 id=144 data-nosnippet>144</a>        im_context::{<a href="im_context.rs.html#12-233">IMContextImpl</a>, <a href="im_context.rs.html#236-505">IMContextImplExt</a>},
-<a href=#145 id=145 data-nosnippet>145</a>        <a href="layout_child.rs.html#8">layout_child::LayoutChildImpl</a>,
-<a href=#146 id=146 data-nosnippet>146</a>        layout_manager::{<a href="layout_manager.rs.html#14-111">LayoutManagerImpl</a>, <a href="layout_manager.rs.html#113-229">LayoutManagerImplExt</a>},
-<a href=#147 id=147 data-nosnippet>147</a>        list_box_row::{<a href="list_box_row.rs.html#10-16">ListBoxRowImpl</a>, <a href="list_box_row.rs.html#18-28">ListBoxRowImplExt</a>},
-<a href=#148 id=148 data-nosnippet>148</a>        media_file::{<a href="media_file.rs.html#11-20">MediaFileImpl</a>, <a href="media_file.rs.html#22-42">MediaFileImplExt</a>},
-<a href=#149 id=149 data-nosnippet>149</a>        media_stream::{<a href="media_stream.rs.html#11-77">MediaStreamImpl</a>, <a href="media_stream.rs.html#79-163">MediaStreamImplExt</a>},
-<a href=#150 id=150 data-nosnippet>150</a>        native_dialog::{<a href="native_dialog.rs.html#12-39">NativeDialogImpl</a>, <a href="native_dialog.rs.html#43-89">NativeDialogImplExt</a>},
-<a href=#151 id=151 data-nosnippet>151</a>        <a href="orientable.rs.html#8">orientable::OrientableImpl</a>,
-<a href=#152 id=152 data-nosnippet>152</a>        popover::{<a href="popover.rs.html#10-20">PopoverImpl</a>, <a href="popover.rs.html#22-42">PopoverImplExt</a>},
-<a href=#153 id=153 data-nosnippet>153</a>        print_operation::{<a href="print_operation.rs.html#13-82">PrintOperationImpl</a>, <a href="print_operation.rs.html#84-284">PrintOperationImplExt</a>},
-<a href=#154 id=154 data-nosnippet>154</a>        <a href="print_operation_preview.rs.html#12-26">print_operation_preview::PrintOperationPreviewImpl</a>,
-<a href=#155 id=155 data-nosnippet>155</a>        range::{<a href="range.rs.html#10-31">RangeImpl</a>, <a href="range.rs.html#33-99">RangeImplExt</a>},
-<a href=#156 id=156 data-nosnippet>156</a>        recent_manager::{<a href="recent_manager.rs.html#10-14">RecentManagerImpl</a>, <a href="recent_manager.rs.html#16-30">RecentManagerImplExt</a>},
-<a href=#157 id=157 data-nosnippet>157</a>        scale::{<a href="scale.rs.html#10-32">ScaleImpl</a>, <a href="scale.rs.html#34-51">ScaleImplExt</a>},
-<a href=#158 id=158 data-nosnippet>158</a>        scale_button::{<a href="scale_button.rs.html#10-16">ScaleButtonImpl</a>, <a href="scale_button.rs.html#18-31">ScaleButtonImplExt</a>},
-<a href=#159 id=159 data-nosnippet>159</a>        scrollable::{<a href="scrollable.rs.html#10-15">ScrollableImpl</a>, <a href="scrollable.rs.html#17-36">ScrollableImplExt</a>},
-<a href=#160 id=160 data-nosnippet>160</a>        selection_model::{<a href="selection_model.rs.html#10-47">SelectionModelImpl</a>, <a href="selection_model.rs.html#49-233">SelectionModelImplExt</a>},
-<a href=#161 id=161 data-nosnippet>161</a>        shortcut_manager::{<a href="shortcut_manager.rs.html#10-18">ShortcutManagerImpl</a>, <a href="shortcut_manager.rs.html#20-60">ShortcutManagerImplExt</a>},
-<a href=#162 id=162 data-nosnippet>162</a>        sorter::{<a href="sorter.rs.html#10-28">SorterImpl</a>, <a href="sorter.rs.html#30-56">SorterImplExt</a>},
-<a href=#163 id=163 data-nosnippet>163</a>        style_context::{<a href="style_context.rs.html#12-16">StyleContextImpl</a>, <a href="style_context.rs.html#20-34">StyleContextImplExt</a>},
-<a href=#164 id=164 data-nosnippet>164</a>        text_buffer::{<a href="text_buffer.rs.html#12-142">TextBufferImpl</a>, <a href="text_buffer.rs.html#144-331">TextBufferImplExt</a>},
-<a href=#165 id=165 data-nosnippet>165</a>        text_view::{<a href="text_view.rs.html#13-92">TextViewImpl</a>, <a href="text_view.rs.html#94-244">TextViewImplExt</a>},
-<a href=#166 id=166 data-nosnippet>166</a>        toggle_button::{<a href="toggle_button.rs.html#10-21">ToggleButtonImpl</a>, <a href="toggle_button.rs.html#23-37">ToggleButtonImplExt</a>},
-<a href=#167 id=167 data-nosnippet>167</a>        tree_drag_dest::{<a href="tree_drag_dest.rs.html#12-15">TreeDragDestImpl</a>, <a href="tree_drag_dest.rs.html#19-61">TreeDragDestImplExt</a>},
-<a href=#168 id=168 data-nosnippet>168</a>        tree_drag_source::{<a href="tree_drag_source.rs.html#12-18">TreeDragSourceImpl</a>, <a href="tree_drag_source.rs.html#22-85">TreeDragSourceImplExt</a>},
-<a href=#169 id=169 data-nosnippet>169</a>        tree_model_filter::{<a href="tree_model_filter.rs.html#12-26">TreeModelFilterImpl</a>, <a href="tree_model_filter.rs.html#30-75">TreeModelFilterImplExt</a>},
-<a href=#170 id=170 data-nosnippet>170</a>        tree_view::{<a href="tree_view.rs.html#15-84">TreeViewImpl</a>, <a href="tree_view.rs.html#88-321">TreeViewImplExt</a>},
-<a href=#171 id=171 data-nosnippet>171</a>        widget::{
-<a href=#172 id=172 data-nosnippet>172</a>            <a href="widget.rs.html#1741-1744">CompositeTemplate</a>, <a href="widget.rs.html#1774-1804">CompositeTemplateCallbacks</a>, <a href="widget.rs.html#1810-1815">CompositeTemplateCallbacksClass</a>,
-<a href=#173 id=173 data-nosnippet>173</a>            <a href="widget.rs.html#1750-1755">CompositeTemplateClass</a>, <a href="widget.rs.html#1869-1873">CompositeTemplateDisposeExt</a>, <a href="widget.rs.html#1850-1852">CompositeTemplateInitializingExt</a>,
-<a href=#174 id=174 data-nosnippet>174</a>            <a href="widget.rs.html#1832-1837">CompositeTemplateInstanceCallbacksClass</a>, <a href="widget.rs.html#1638-1643">TemplateChild</a>, <a href="widget.rs.html#1055-1632">WidgetClassExt</a>, <a href="widget.rs.html#113-404">WidgetImpl</a>,
-<a href=#175 id=175 data-nosnippet>175</a>            <a href="widget.rs.html#406-742">WidgetImplExt</a>,
-<a href=#176 id=176 data-nosnippet>176</a>        },
-<a href=#177 id=177 data-nosnippet>177</a>        window::{<a href="window.rs.html#10-43">WindowImpl</a>, <a href="window.rs.html#45-104">WindowImplExt</a>},
-<a href=#178 id=178 data-nosnippet>178</a>        <a href="window_group.rs.html#8">window_group::WindowGroupImpl</a>,
-<a href=#179 id=179 data-nosnippet>179</a>    };
-<a href=#180 id=180 data-nosnippet>180</a>}
+<a href=#112 id=112 data-nosnippet>112</a>    </span><span class="kw">pub use </span><span class="kw">super</span>::symbolic_paintable::{<a href="symbolic_paintable.rs.html#10-35">SymbolicPaintableImpl</a>, <a href="symbolic_paintable.rs.html#37-95">SymbolicPaintableImplExt</a>};
+<a href=#113 id=113 data-nosnippet>113</a>    <span class="kw">pub use super</span>::{
+<a href=#114 id=114 data-nosnippet>114</a>        actionable::{<a href="actionable.rs.html#10-17">ActionableImpl</a>, <a href="actionable.rs.html#19-85">ActionableImplExt</a>},
+<a href=#115 id=115 data-nosnippet>115</a>        adjustment::{<a href="adjustment.rs.html#10-18">AdjustmentImpl</a>, <a href="adjustment.rs.html#20-40">AdjustmentImplExt</a>},
+<a href=#116 id=116 data-nosnippet>116</a>        application::{<a href="application.rs.html#10-36">GtkApplicationImpl</a>, <a href="application.rs.html#38-115">GtkApplicationImplExt</a>},
+<a href=#117 id=117 data-nosnippet>117</a>        application_window::{<a href="application_window.rs.html#14-31">ApplicationWindowImpl</a>, <a href="application_window.rs.html#33-53">ApplicationWindowImplExt</a>},
+<a href=#118 id=118 data-nosnippet>118</a>        <a href="box_.rs.html#8">box_::BoxImpl</a>,
+<a href=#119 id=119 data-nosnippet>119</a>        buildable::{<a href="buildable.rs.html#12-59">BuildableImpl</a>, <a href="buildable.rs.html#61-185">BuildableImplExt</a>},
+<a href=#120 id=120 data-nosnippet>120</a>        builder_scope::{<a href="builder_scope.rs.html#13">BuilderCScopeImpl</a>, <a href="builder_scope.rs.html#17-35">BuilderScopeImpl</a>, <a href="builder_scope.rs.html#37-115">BuilderScopeImplExt</a>},
+<a href=#121 id=121 data-nosnippet>121</a>        button::{<a href="button.rs.html#10-22">ButtonImpl</a>, <a href="button.rs.html#24-44">ButtonImplExt</a>},
+<a href=#122 id=122 data-nosnippet>122</a>        cell_area::{<a href="cell_area.rs.html#1216-1260">CellAreaClassExt</a>, <a href="cell_area.rs.html#67-508">CellAreaImpl</a>, <a href="cell_area.rs.html#512-846">CellAreaImplExt</a>},
+<a href=#123 id=123 data-nosnippet>123</a>        cell_area_context::{<a href="cell_area_context.rs.html#14-116">CellAreaContextImpl</a>, <a href="cell_area_context.rs.html#120-197">CellAreaContextImplExt</a>},
+<a href=#124 id=124 data-nosnippet>124</a>        cell_editable::{<a href="cell_editable.rs.html#12-24">CellEditableImpl</a>, <a href="cell_editable.rs.html#28-78">CellEditableImplExt</a>},
+<a href=#125 id=125 data-nosnippet>125</a>        cell_layout::{<a href="cell_layout.rs.html#55-96">CellLayoutImpl</a>, <a href="cell_layout.rs.html#100-262">CellLayoutImplExt</a>},
+<a href=#126 id=126 data-nosnippet>126</a>        cell_renderer::{<a href="cell_renderer.rs.html#18-258">CellRendererImpl</a>, <a href="cell_renderer.rs.html#262-511">CellRendererImplExt</a>},
+<a href=#127 id=127 data-nosnippet>127</a>        cell_renderer_text::{<a href="cell_renderer_text.rs.html#12-18">CellRendererTextImpl</a>, <a href="cell_renderer_text.rs.html#22-39">CellRendererTextImplExt</a>},
+<a href=#128 id=128 data-nosnippet>128</a>        check_button::{<a href="check_button.rs.html#10-22">CheckButtonImpl</a>, <a href="check_button.rs.html#24-46">CheckButtonImplExt</a>},
+<a href=#129 id=129 data-nosnippet>129</a>        color_chooser::{<a href="color_chooser.rs.html#13-25">ColorChooserImpl</a>, <a href="color_chooser.rs.html#29-110">ColorChooserImplExt</a>},
+<a href=#130 id=130 data-nosnippet>130</a>        combo_box::{<a href="combo_box.rs.html#12-29">ComboBoxImpl</a>, <a href="combo_box.rs.html#33-67">ComboBoxImplExt</a>},
+<a href=#131 id=131 data-nosnippet>131</a>        dialog::{<a href="dialog.rs.html#10-28">DialogImpl</a>, <a href="dialog.rs.html#30-53">DialogImplExt</a>},
+<a href=#132 id=132 data-nosnippet>132</a>        drawing_area::{<a href="drawing_area.rs.html#10-14">DrawingAreaImpl</a>, <a href="drawing_area.rs.html#16-30">DrawingAreaImplExt</a>},
+<a href=#133 id=133 data-nosnippet>133</a>        editable::{<a href="editable.rs.html#12-51">EditableImpl</a>, <a href="editable.rs.html#53-242">EditableImplExt</a>},
+<a href=#134 id=134 data-nosnippet>134</a>        entry::{<a href="entry.rs.html#10-16">EntryImpl</a>, <a href="entry.rs.html#18-28">EntryImplExt</a>},
+<a href=#135 id=135 data-nosnippet>135</a>        entry_buffer::{<a href="entry_buffer.rs.html#12-80">EntryBufferImpl</a>, <a href="entry_buffer.rs.html#82-170">EntryBufferImplExt</a>},
+<a href=#136 id=136 data-nosnippet>136</a>        filter::{<a href="filter.rs.html#10-38">FilterImpl</a>, <a href="filter.rs.html#40-65">FilterImplExt</a>},
+<a href=#137 id=137 data-nosnippet>137</a>        <a href="fixed.rs.html#8">fixed::FixedImpl</a>,
+<a href=#138 id=138 data-nosnippet>138</a>        flow_box_child::{<a href="flow_box_child.rs.html#10-14">FlowBoxChildImpl</a>, <a href="flow_box_child.rs.html#16-30">FlowBoxChildImplExt</a>},
+<a href=#139 id=139 data-nosnippet>139</a>        font_chooser::{<a href="font_chooser.rs.html#51-79">FontChooserImpl</a>, <a href="font_chooser.rs.html#83-207">FontChooserImplExt</a>},
+<a href=#140 id=140 data-nosnippet>140</a>        frame::{<a href="frame.rs.html#12-16">FrameImpl</a>, <a href="frame.rs.html#20-36">FrameImplExt</a>},
+<a href=#141 id=141 data-nosnippet>141</a>        gl_area::{<a href="gl_area.rs.html#12-27">GLAreaImpl</a>, <a href="gl_area.rs.html#30-69">GLAreaImplExt</a>},
+<a href=#142 id=142 data-nosnippet>142</a>        <a href="grid.rs.html#8">grid::GridImpl</a>,
+<a href=#143 id=143 data-nosnippet>143</a>        im_context::{<a href="im_context.rs.html#12-233">IMContextImpl</a>, <a href="im_context.rs.html#236-505">IMContextImplExt</a>},
+<a href=#144 id=144 data-nosnippet>144</a>        <a href="layout_child.rs.html#8">layout_child::LayoutChildImpl</a>,
+<a href=#145 id=145 data-nosnippet>145</a>        layout_manager::{<a href="layout_manager.rs.html#14-111">LayoutManagerImpl</a>, <a href="layout_manager.rs.html#113-229">LayoutManagerImplExt</a>},
+<a href=#146 id=146 data-nosnippet>146</a>        list_box_row::{<a href="list_box_row.rs.html#10-16">ListBoxRowImpl</a>, <a href="list_box_row.rs.html#18-28">ListBoxRowImplExt</a>},
+<a href=#147 id=147 data-nosnippet>147</a>        media_file::{<a href="media_file.rs.html#11-20">MediaFileImpl</a>, <a href="media_file.rs.html#22-42">MediaFileImplExt</a>},
+<a href=#148 id=148 data-nosnippet>148</a>        media_stream::{<a href="media_stream.rs.html#11-77">MediaStreamImpl</a>, <a href="media_stream.rs.html#79-163">MediaStreamImplExt</a>},
+<a href=#149 id=149 data-nosnippet>149</a>        native_dialog::{<a href="native_dialog.rs.html#12-39">NativeDialogImpl</a>, <a href="native_dialog.rs.html#43-89">NativeDialogImplExt</a>},
+<a href=#150 id=150 data-nosnippet>150</a>        <a href="orientable.rs.html#8">orientable::OrientableImpl</a>,
+<a href=#151 id=151 data-nosnippet>151</a>        popover::{<a href="popover.rs.html#10-20">PopoverImpl</a>, <a href="popover.rs.html#22-42">PopoverImplExt</a>},
+<a href=#152 id=152 data-nosnippet>152</a>        print_operation::{<a href="print_operation.rs.html#13-82">PrintOperationImpl</a>, <a href="print_operation.rs.html#84-284">PrintOperationImplExt</a>},
+<a href=#153 id=153 data-nosnippet>153</a>        <a href="print_operation_preview.rs.html#12-26">print_operation_preview::PrintOperationPreviewImpl</a>,
+<a href=#154 id=154 data-nosnippet>154</a>        range::{<a href="range.rs.html#10-31">RangeImpl</a>, <a href="range.rs.html#33-99">RangeImplExt</a>},
+<a href=#155 id=155 data-nosnippet>155</a>        recent_manager::{<a href="recent_manager.rs.html#10-14">RecentManagerImpl</a>, <a href="recent_manager.rs.html#16-30">RecentManagerImplExt</a>},
+<a href=#156 id=156 data-nosnippet>156</a>        scale::{<a href="scale.rs.html#10-32">ScaleImpl</a>, <a href="scale.rs.html#34-51">ScaleImplExt</a>},
+<a href=#157 id=157 data-nosnippet>157</a>        scale_button::{<a href="scale_button.rs.html#10-16">ScaleButtonImpl</a>, <a href="scale_button.rs.html#18-31">ScaleButtonImplExt</a>},
+<a href=#158 id=158 data-nosnippet>158</a>        scrollable::{<a href="scrollable.rs.html#10-15">ScrollableImpl</a>, <a href="scrollable.rs.html#17-36">ScrollableImplExt</a>},
+<a href=#159 id=159 data-nosnippet>159</a>        selection_model::{<a href="selection_model.rs.html#10-47">SelectionModelImpl</a>, <a href="selection_model.rs.html#49-233">SelectionModelImplExt</a>},
+<a href=#160 id=160 data-nosnippet>160</a>        shortcut_manager::{<a href="shortcut_manager.rs.html#10-18">ShortcutManagerImpl</a>, <a href="shortcut_manager.rs.html#20-60">ShortcutManagerImplExt</a>},
+<a href=#161 id=161 data-nosnippet>161</a>        sorter::{<a href="sorter.rs.html#10-28">SorterImpl</a>, <a href="sorter.rs.html#30-56">SorterImplExt</a>},
+<a href=#162 id=162 data-nosnippet>162</a>        style_context::{<a href="style_context.rs.html#12-16">StyleContextImpl</a>, <a href="style_context.rs.html#20-34">StyleContextImplExt</a>},
+<a href=#163 id=163 data-nosnippet>163</a>        text_buffer::{<a href="text_buffer.rs.html#12-142">TextBufferImpl</a>, <a href="text_buffer.rs.html#144-331">TextBufferImplExt</a>},
+<a href=#164 id=164 data-nosnippet>164</a>        text_view::{<a href="text_view.rs.html#13-92">TextViewImpl</a>, <a href="text_view.rs.html#94-244">TextViewImplExt</a>},
+<a href=#165 id=165 data-nosnippet>165</a>        toggle_button::{<a href="toggle_button.rs.html#10-21">ToggleButtonImpl</a>, <a href="toggle_button.rs.html#23-37">ToggleButtonImplExt</a>},
+<a href=#166 id=166 data-nosnippet>166</a>        tree_drag_dest::{<a href="tree_drag_dest.rs.html#12-15">TreeDragDestImpl</a>, <a href="tree_drag_dest.rs.html#19-61">TreeDragDestImplExt</a>},
+<a href=#167 id=167 data-nosnippet>167</a>        tree_drag_source::{<a href="tree_drag_source.rs.html#12-18">TreeDragSourceImpl</a>, <a href="tree_drag_source.rs.html#22-85">TreeDragSourceImplExt</a>},
+<a href=#168 id=168 data-nosnippet>168</a>        tree_model_filter::{<a href="tree_model_filter.rs.html#12-26">TreeModelFilterImpl</a>, <a href="tree_model_filter.rs.html#30-75">TreeModelFilterImplExt</a>},
+<a href=#169 id=169 data-nosnippet>169</a>        tree_view::{<a href="tree_view.rs.html#15-84">TreeViewImpl</a>, <a href="tree_view.rs.html#88-321">TreeViewImplExt</a>},
+<a href=#170 id=170 data-nosnippet>170</a>        widget::{
+<a href=#171 id=171 data-nosnippet>171</a>            <a href="widget.rs.html#1741-1744">CompositeTemplate</a>, <a href="widget.rs.html#1774-1804">CompositeTemplateCallbacks</a>, <a href="widget.rs.html#1810-1815">CompositeTemplateCallbacksClass</a>,
+<a href=#172 id=172 data-nosnippet>172</a>            <a href="widget.rs.html#1750-1755">CompositeTemplateClass</a>, <a href="widget.rs.html#1869-1873">CompositeTemplateDisposeExt</a>, <a href="widget.rs.html#1850-1852">CompositeTemplateInitializingExt</a>,
+<a href=#173 id=173 data-nosnippet>173</a>            <a href="widget.rs.html#1832-1837">CompositeTemplateInstanceCallbacksClass</a>, <a href="widget.rs.html#1638-1643">TemplateChild</a>, <a href="widget.rs.html#1055-1632">WidgetClassExt</a>, <a href="widget.rs.html#113-404">WidgetImpl</a>,
+<a href=#174 id=174 data-nosnippet>174</a>            <a href="widget.rs.html#406-742">WidgetImplExt</a>,
+<a href=#175 id=175 data-nosnippet>175</a>        },
+<a href=#176 id=176 data-nosnippet>176</a>        window::{<a href="window.rs.html#10-43">WindowImpl</a>, <a href="window.rs.html#45-104">WindowImplExt</a>},
+<a href=#177 id=177 data-nosnippet>177</a>        <a href="window_group.rs.html#8">window_group::WindowGroupImpl</a>,
+<a href=#178 id=178 data-nosnippet>178</a>    };
+<a href=#179 id=179 data-nosnippet>179</a>}
 </code></pre></div></section></main></body></html>
