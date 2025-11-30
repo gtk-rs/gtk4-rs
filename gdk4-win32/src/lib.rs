@@ -18,6 +18,8 @@ pub use windows;
 #[macro_use]
 mod rt;
 
+mod enums;
+
 #[allow(clippy::upper_case_acronyms)]
 #[allow(unused_imports)]
 mod auto;

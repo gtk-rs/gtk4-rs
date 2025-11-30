@@ -5,6 +5,56 @@
 use crate::ffi;
 use glib::translate::*;
 
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
+#[doc(alias = "GdkD3D12Error")]
+pub enum D3D12Error {
+    #[doc(alias = "GDK_D3D12_ERROR_NOT_AVAILABLE")]
+    NotAvailable,
+    #[doc(alias = "GDK_D3D12_ERROR_UNSUPPORTED_FORMAT")]
+    UnsupportedFormat,
+    #[doc(alias = "GDK_D3D12_ERROR_CREATION_FAILED")]
+    CreationFailed,
+    #[doc(hidden)]
+    __Unknown(i32),
+}
+
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+#[doc(hidden)]
+impl IntoGlib for D3D12Error {
+    type GlibType = ffi::GdkD3D12Error;
+
+    #[inline]
+    fn into_glib(self) -> ffi::GdkD3D12Error {
+        match self {
+            Self::NotAvailable => ffi::GDK_D3D12_ERROR_NOT_AVAILABLE,
+            Self::UnsupportedFormat => ffi::GDK_D3D12_ERROR_UNSUPPORTED_FORMAT,
+            Self::CreationFailed => ffi::GDK_D3D12_ERROR_CREATION_FAILED,
+            Self::__Unknown(value) => value,
+        }
+    }
+}
+
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+#[doc(hidden)]
+impl FromGlib<ffi::GdkD3D12Error> for D3D12Error {
+    #[inline]
+    unsafe fn from_glib(value: ffi::GdkD3D12Error) -> Self {
+        skip_assert_initialized!();
+
+        match value {
+            ffi::GDK_D3D12_ERROR_NOT_AVAILABLE => Self::NotAvailable,
+            ffi::GDK_D3D12_ERROR_UNSUPPORTED_FORMAT => Self::UnsupportedFormat,
+            ffi::GDK_D3D12_ERROR_CREATION_FAILED => Self::CreationFailed,
+            value => Self::__Unknown(value),
+        }
+    }
+}
+
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GdkWin32MessageFilterReturn")]
