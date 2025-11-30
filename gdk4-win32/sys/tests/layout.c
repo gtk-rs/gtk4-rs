@@ -7,6 +7,7 @@
 #include <stdio.h>
 
 int main() {
+    printf("%s;%zu;%zu\n", "GdkD3D12Error", sizeof(GdkD3D12Error), alignof(GdkD3D12Error));
     printf("%s;%zu;%zu\n", "GdkWin32MessageFilterReturn", sizeof(GdkWin32MessageFilterReturn), alignof(GdkWin32MessageFilterReturn));
     return 0;
 }
