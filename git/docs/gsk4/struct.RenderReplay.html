@@ -1,0 +1,253 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="A facility to replay a `RenderNode` and its children, potentially modifying them."><title>RenderReplay in gsk4 - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../static.files/rustdoc-ca0dd0c4.css"><meta name="rustdoc-vars" data-root-path="../" data-static-root-path="../static.files/" data-current-crate="gsk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.93.0-nightly (b84478a1c 2025-11-30)" data-channel="nightly" data-search-js="search-9e2438ea.js" data-stringdex-js="stringdex-a3946164.js" data-settings-js="settings-c38705f0.js" ><script src="../static.files/storage-e2aeef58.js"></script><script defer src="sidebar-items.js"></script><script defer src="../static.files/main-a410ff4d.js"></script><noscript><link rel="stylesheet" href="../static.files/noscript-263c88ec.css"></noscript><link rel="alternate icon" type="image/png" href="../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../static.files/favicon-044be391.svg"></head><body class="rustdoc struct"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
+
+    function checkDocsLatestStable() {
+        function popup(msg, url) { return `
+            <style scoped="scoped">
+                .popup {
+                    max-width: 16em;
+                    background-color: #fff;
+                    position: fixed;
+                    z-index: 1;
+                    margin-left: auto;
+                    bottom: 1em;
+                    right: 1em;
+                    border-radius: 5px;
+                    box-shadow: 1px 1px 4px #777;
+                }
+
+                .popup a.version {
+                    color: #e57300;
+                    padding: 0.6em 1em;
+                    display: block;
+                }
+                .popup a.version:hover {
+                    color: #b25900;
+                }
+
+                .popup a.close {
+                    color: white;
+                    background: grey;
+                    border-radius: 99px;
+                    display: inline-block;
+                    width: 19px;
+                    line-height: 19px;
+                    font-weight: bold;
+                    text-align: center;
+                    margin: 0.6em;
+                    float: right;
+                }
+                .popup a.close:hover {
+                    background: black;
+                }
+            </style>
+            <section class="popup" id="gir_docs_popup">
+                <a class="close" href="#" onclick="document.getElementById('gir_docs_popup').remove(); return false">×</a>
+                <a class="version" href="https://gtk-rs.org/gtk4-rs/stable/latest/docs">
+                    ⚠ ${msg}
+                </a>
+            </section>
+        ` };
+
+        if ("main" == "main") {
+            document.body.insertAdjacentHTML(
+                'beforeend',
+                popup("This is the development version. Go to latest stable version.", "stable/latest")
+            );
+        } else {
+            fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
+                .then(response => response.text())
+                .then(latest_branch => {
+                    if (latest_branch.trim() != "main") {
+                        document.body.insertAdjacentHTML(
+                            'beforeend',
+                            popup("This version is outdated. Go to latest version.", "stable/latest")
+                        );
+                    }
+                });
+        }
+    }
+</script>
+
+
+<rustdoc-topbar><h2><a href="#">RenderReplay</a></h2></rustdoc-topbar><nav class="sidebar"><div class="sidebar-crate"><h2><a href="../gsk4/index.html">gsk4</a><span class="version">0.11.0</span></h2></div><div class="sidebar-elems"><section id="rustdoc-toc"><h2 class="location"><a href="#">Render<wbr>Replay</a></h2><h3><a href="#implementations">Methods</a></h3><ul class="block method"><li><a href="#method.default" title="default">default</a></li><li><a href="#method.filter_font" title="filter_font">filter_font</a></li><li><a href="#method.filter_node" title="filter_node">filter_node</a></li><li><a href="#method.filter_texture" title="filter_texture">filter_texture</a></li><li><a href="#method.foreach_node" title="foreach_node">foreach_node</a></li><li><a href="#method.new" title="new">new</a></li><li><a href="#method.set_font_filter" title="set_font_filter">set_font_filter</a></li><li><a href="#method.set_node_filter" title="set_node_filter">set_node_filter</a></li><li><a href="#method.set_node_foreach" title="set_node_foreach">set_node_foreach</a></li><li><a href="#method.set_texture_filter" title="set_texture_filter">set_texture_filter</a></li><li><a href="#method.unset_font_filter" title="unset_font_filter">unset_font_filter</a></li><li><a href="#method.unset_foreach_node" title="unset_foreach_node">unset_foreach_node</a></li><li><a href="#method.unset_node_filter" title="unset_node_filter">unset_node_filter</a></li><li><a href="#method.unset_texture_filter" title="unset_texture_filter">unset_texture_filter</a></li></ul><h3><a href="#trait-implementations">Trait Implementations</a></h3><ul class="block trait-implementation"><li><a href="#impl-Default-for-RenderReplay" title="Default">Default</a></li><li><a href="#impl-Drop-for-RenderReplay" title="Drop">Drop</a></li></ul><h3><a href="#synthetic-implementations">Auto Trait Implementations</a></h3><ul class="block synthetic-implementation"><li><a href="#impl-Send-for-RenderReplay" title="!Send">!Send</a></li><li><a href="#impl-Sync-for-RenderReplay" title="!Sync">!Sync</a></li><li><a href="#impl-Freeze-for-RenderReplay" title="Freeze">Freeze</a></li><li><a href="#impl-RefUnwindSafe-for-RenderReplay" title="RefUnwindSafe">RefUnwindSafe</a></li><li><a href="#impl-Unpin-for-RenderReplay" title="Unpin">Unpin</a></li><li><a href="#impl-UnwindSafe-for-RenderReplay" title="UnwindSafe">UnwindSafe</a></li></ul><h3><a href="#blanket-implementations">Blanket Implementations</a></h3><ul class="block blanket-implementation"><li><a href="#impl-Any-for-T" title="Any">Any</a></li><li><a href="#impl-Borrow%3CT%3E-for-T" title="Borrow&#60;T&#62;">Borrow&#60;T&#62;</a></li><li><a href="#impl-BorrowMut%3CT%3E-for-T" title="BorrowMut&#60;T&#62;">BorrowMut&#60;T&#62;</a></li><li><a href="#impl-From%3CT%3E-for-T" title="From&#60;T&#62;">From&#60;T&#62;</a></li><li><a href="#impl-Into%3CU%3E-for-T" title="Into&#60;U&#62;">Into&#60;U&#62;</a></li><li><a href="#impl-TryFrom%3CU%3E-for-T" title="TryFrom&#60;U&#62;">TryFrom&#60;U&#62;</a></li><li><a href="#impl-TryInto%3CU%3E-for-T" title="TryInto&#60;U&#62;">TryInto&#60;U&#62;</a></li></ul></section><div id="rustdoc-modnav"><h2 class="in-crate"><a href="index.html">In crate gsk4</a></h2></div></div></nav><div class="sidebar-resizer" title="Drag to resize sidebar"></div><main><div class="width-limiter"><section id="main-content" class="content"><div class="main-heading"><div class="rustdoc-breadcrumbs"><a href="index.html">gsk4</a></div><h1>Struct <span class="struct">Render<wbr>Replay</span>&nbsp;<button id="copy-path" title="Copy item path to clipboard">Copy item path</button></h1><rustdoc-toolbar></rustdoc-toolbar><span class="sub-heading"><a class="src" href="../src/gsk4/render_replay.rs.html#84">Source</a> </span></div><pre class="rust item-decl"><code>pub struct RenderReplay(<span class="comment">/* private fields */</span>);</code></pre><span class="item-info"><div class="stab portability">Available on <strong>crate feature <code>v4_22</code></strong> only.</div></span><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>A facility to replay a <a href="struct.RenderNode.html" title="struct gsk4::RenderNode"><code>RenderNode</code></a> and its children, potentially
+modifying them.</p>
+<p>This is a utility tool to walk a rendernode tree. The most powerful way
+is to provide a function via <a href="struct.RenderReplay.html#method.set_node_filter" title="method gsk4::RenderReplay::set_node_filter"><code>set_node_filter()</code></a>
+to filter each individual node and then run
+<a href="struct.RenderReplay.html#method.filter_node" title="method gsk4::RenderReplay::filter_node"><code>filter_node()</code></a> on the nodes you want to filter.</p>
+<p>An easier method exists to just walk the node tree and extract information
+without any modifications. If you want to do that, the functions
+<a href="struct.RenderReplay.html#method.set_node_foreach" title="method gsk4::RenderReplay::set_node_foreach"><code>set_node_foreach()</code></a> exists. You can also call
+<a href="struct.RenderReplay.html#method.foreach_node" title="method gsk4::RenderReplay::foreach_node"><code>foreach_node()</code></a> to run that function. Note that
+the previously mentioned complex functionality will still be invoked if you
+have set up a function for it, but its result will not be returned.</p>
+<p>Here is an example that combines both approaches to print the whole tree:</p>
+<p><strong>⚠️ The following code is in c ⚠️</strong></p>
+<div class="example-wrap"><pre class="language-c"><code>#include &lt;gtk/gtk.h&gt;
+
+static GskRenderNode *
+print_nodes (GskRenderReplay *replay,
+             GskRenderNode   *node,
+             gpointer         user_data)
+{
+  int *depth = user_data;
+  GskRenderNode *result;
+
+  g_print (&quot;%*s%s\n&quot;, 2 * *depth, &quot;&quot;, g_type_name_from_instance ((GTypeInstance *) node));
+
+  *depth += 1;
+  result = gsk_render_replay_default (replay, node);
+  *depth -= 1;
+
+  return result;
+}
+
+int
+main (int argc, char *argv[])
+{
+  GFile *file;
+  GBytes *bytes;
+  GskRenderNode *node;
+  GskRenderReplay *replay;
+  int depth = 0;
+
+  gtk_init ();
+
+  if (argc &lt; 2)
+    {
+      g_print (&quot;usage: %s NODEFILE\n&quot;, argv[0]);
+      return 0;
+    }
+
+  file = g_file_new_for_commandline_arg (argv[1]);
+  bytes = g_file_load_bytes (file, NULL, NULL, NULL);
+  g_object_unref (file);
+  if (bytes == NULL)
+    return 1;
+
+  node = gsk_render_node_deserialize (bytes, NULL, NULL);
+  g_bytes_unref (bytes);
+  if (node == NULL)
+    return 1;
+
+  replay = gsk_render_replay_new ();
+  gsk_render_replay_set_node_filter (replay, print_nodes, &amp;depth, NULL);
+  gsk_render_node_foreach_node (replay, node);
+  gsk_render_node_unref (node);
+
+  return 0;
+}</code></pre></div></div></details><h2 id="implementations" class="section-header">Implementations<a href="#implementations" class="anchor">§</a></h2><div id="implementations-list"><details class="toggle implementors-toggle" open><summary><section id="impl-RenderReplay" class="impl"><a class="src rightside" href="../src/gsk4/render_replay.rs.html#94-454">Source</a><a href="#impl-RenderReplay" class="anchor">§</a><h3 class="code-header">impl <a class="struct" href="struct.RenderReplay.html" title="struct gsk4::RenderReplay">RenderReplay</a></h3></section></summary><div class="impl-items"><details class="toggle method-toggle" open><summary><section id="method.default" class="method"><a class="src rightside" href="../src/gsk4/render_replay.rs.html#114-121">Source</a><h4 class="code-header">pub fn <a href="#method.default" class="fn">default</a>(&amp;self, node: impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html" title="trait core::convert::AsRef">AsRef</a>&lt;<a class="struct" href="struct.RenderNode.html" title="struct gsk4::RenderNode">RenderNode</a>&gt;) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="struct.RenderNode.html" title="struct gsk4::RenderNode">RenderNode</a>&gt;</h4></section></summary><div class="docblock"><p>Replays the node using the default method.</p>
+<p>The default method calls <a href="struct.RenderReplay.html#method.filter_node" title="method gsk4::RenderReplay::filter_node"><code>filter_node()</code></a>
+on all its child nodes and the filter functions for all its
+proeprties. If none of them are changed, it returns the passed
+in node. Otherwise it constructs a new node with the changed
+children and properties.</p>
+<p>It may not be possible to construct a new node when any of the
+callbacks return NULL. In that case, this function will return
+NULL, too.</p>
+<h6 id="node"><a class="doc-anchor" href="#node">§</a><code>node</code></h6>
+<p>the node to replay</p>
+<h5 id="returns"><a class="doc-anchor" href="#returns">§</a>Returns</h5>
+<p>The replayed node</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.filter_font" class="method"><a class="src rightside" href="../src/gsk4/render_replay.rs.html#131-138">Source</a><h4 class="code-header">pub fn <a href="#method.filter_font" class="fn">filter_font</a>(&amp;self, font: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/pango/auto/font/struct.Font.html" title="struct pango::auto::font::Font">Font</a>&gt;) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/pango/auto/font/struct.Font.html" title="struct pango::auto::font::Font">Font</a></h4></section></summary><div class="docblock"><p>Filters a font using the current filter function.</p>
+<h6 id="font"><a class="doc-anchor" href="#font">§</a><code>font</code></h6>
+<p>The font to filter</p>
+<h5 id="returns-1"><a class="doc-anchor" href="#returns-1">§</a>Returns</h5>
+<p>the filtered font</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.filter_node" class="method"><a class="src rightside" href="../src/gsk4/render_replay.rs.html#162-169">Source</a><h4 class="code-header">pub fn <a href="#method.filter_node" class="fn">filter_node</a>(&amp;self, node: impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html" title="trait core::convert::AsRef">AsRef</a>&lt;<a class="struct" href="struct.RenderNode.html" title="struct gsk4::RenderNode">RenderNode</a>&gt;) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="struct.RenderNode.html" title="struct gsk4::RenderNode">RenderNode</a>&gt;</h4></section></summary><div class="docblock"><p>Replays a node using the replay’s filter function.</p>
+<p>After the replay the node may be unchanged, or it may be
+removed, which will result in <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="variant core::option::Option::None"><code>None</code></a> being returned.</p>
+<p>This function calls the registered callback in the following order:</p>
+<ol>
+<li>
+<p>If a foreach function is set, it is called first. If it returns
+false, this function immediately exits and returns the passed
+in node.</p>
+</li>
+<li>
+<p>If a node filter is set, it is called and its result is returned.</p>
+</li>
+<li>
+<p><a href="struct.RenderReplay.html#method.default" title="method gsk4::RenderReplay::default"><code>default()</code></a> is called and its result is
+returned.</p>
+</li>
+</ol>
+<h6 id="node-1"><a class="doc-anchor" href="#node-1">§</a><code>node</code></h6>
+<p>the node to replay</p>
+<h5 id="returns-2"><a class="doc-anchor" href="#returns-2">§</a>Returns</h5>
+<p>The replayed node</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.filter_texture" class="method"><a class="src rightside" href="../src/gsk4/render_replay.rs.html#179-186">Source</a><h4 class="code-header">pub fn <a href="#method.filter_texture" class="fn">filter_texture</a>(&amp;self, texture: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../gdk4/auto/texture/struct.Texture.html" title="struct gdk4::auto::texture::Texture">Texture</a>&gt;) -&gt; <a class="struct" href="../gdk4/auto/texture/struct.Texture.html" title="struct gdk4::auto::texture::Texture">Texture</a></h4></section></summary><div class="docblock"><p>Filters a texture using the current filter function.</p>
+<h6 id="texture"><a class="doc-anchor" href="#texture">§</a><code>texture</code></h6>
+<p>The texture to filter</p>
+<h5 id="returns-3"><a class="doc-anchor" href="#returns-3">§</a>Returns</h5>
+<p>the filtered texture</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.foreach_node" class="method"><a class="src rightside" href="../src/gsk4/render_replay.rs.html#195-199">Source</a><h4 class="code-header">pub fn <a href="#method.foreach_node" class="fn">foreach_node</a>(&amp;self, node: impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html" title="trait core::convert::AsRef">AsRef</a>&lt;<a class="struct" href="struct.RenderNode.html" title="struct gsk4::RenderNode">RenderNode</a>&gt;)</h4></section></summary><div class="docblock"><p>Calls the filter and foreach functions for each node.</p>
+<p>This function calls <a href="struct.RenderReplay.html#method.filter_node" title="method gsk4::RenderReplay::filter_node"><code>filter_node()</code></a> internally,
+but discards the result assuming no changes were made.</p>
+<h6 id="node-2"><a class="doc-anchor" href="#node-2">§</a><code>node</code></h6>
+<p>the node to replay</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_font_filter" class="method"><a class="src rightside" href="../src/gsk4/render_replay.rs.html#209-244">Source</a><h4 class="code-header">pub fn <a href="#method.set_font_filter" class="fn">set_font_filter</a>&lt;P: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;<a class="struct" href="struct.RenderReplay.html" title="struct gsk4::RenderReplay">RenderReplay</a>, &amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/pango/auto/font/struct.Font.html" title="struct pango::auto::font::Font">Font</a>) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/pango/auto/font/struct.Font.html" title="struct pango::auto::font::Font">Font</a> + 'static&gt;(
+    &amp;mut self,
+    filter: P,
+)</h4></section></summary><div class="docblock"><p>Sets a filter function to be called by <a href="struct.RenderReplay.html#method.default" title="method gsk4::RenderReplay::default"><code>default()</code></a>
+for nodes that contain fonts.</p>
+<p>You can call <code>GskRenderReplay::filter_font()</code> to filter
+a font yourself.</p>
+<h6 id="filter"><a class="doc-anchor" href="#filter">§</a><code>filter</code></h6>
+<p>the font filter function</p>
+</div></details><section id="method.unset_font_filter" class="method"><a class="src rightside" href="../src/gsk4/render_replay.rs.html#248-257">Source</a><h4 class="code-header">pub fn <a href="#method.unset_font_filter" class="fn">unset_font_filter</a>(&amp;mut self)</h4></section><details class="toggle method-toggle" open><summary><section id="method.set_node_filter" class="method"><a class="src rightside" href="../src/gsk4/render_replay.rs.html#275-310">Source</a><h4 class="code-header">pub fn <a href="#method.set_node_filter" class="fn">set_node_filter</a>&lt;P: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;<a class="struct" href="struct.RenderReplay.html" title="struct gsk4::RenderReplay">RenderReplay</a>, &amp;<a class="struct" href="struct.RenderNode.html" title="struct gsk4::RenderNode">RenderNode</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="struct.RenderNode.html" title="struct gsk4::RenderNode">RenderNode</a>&gt; + 'static&gt;(
+    &amp;mut self,
+    filter: P,
+)</h4></section></summary><div class="docblock"><p>Sets the function to use as a node filter.</p>
+<p>This is the most complex function to use for replaying nodes.
+It can either:</p>
+<ul>
+<li>
+<p>keep the node and just return it unchanged</p>
+</li>
+<li>
+<p>create a replacement node and return that</p>
+</li>
+<li>
+<p>discard the node by returning <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="variant core::option::Option::None"><code>None</code></a></p>
+</li>
+<li>
+<p>call <a href="struct.RenderReplay.html#method.default" title="method gsk4::RenderReplay::default"><code>default()</code></a> to have the default handler
+run for this node, which calls your function on its children</p>
+</li>
+</ul>
+<h6 id="filter-1"><a class="doc-anchor" href="#filter-1">§</a><code>filter</code></h6>
+<p>The function to call to replay nodes</p>
+</div></details><section id="method.unset_node_filter" class="method"><a class="src rightside" href="../src/gsk4/render_replay.rs.html#314-323">Source</a><h4 class="code-header">pub fn <a href="#method.unset_node_filter" class="fn">unset_node_filter</a>(&amp;mut self)</h4></section><details class="toggle method-toggle" open><summary><section id="method.set_node_foreach" class="method"><a class="src rightside" href="../src/gsk4/render_replay.rs.html#332-367">Source</a><h4 class="code-header">pub fn <a href="#method.set_node_foreach" class="fn">set_node_foreach</a>&lt;P: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;<a class="struct" href="struct.RenderReplay.html" title="struct gsk4::RenderReplay">RenderReplay</a>, &amp;<a class="struct" href="struct.RenderNode.html" title="struct gsk4::RenderNode">RenderNode</a>) -&gt; <a class="enum" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/control_flow/enum.ControlFlow.html" title="enum glib::control_flow::ControlFlow">ControlFlow</a> + 'static&gt;(
+    &amp;mut self,
+    foreach: P,
+)</h4></section></summary><div class="docblock"><p>Sets the function to call for every node.</p>
+<p>This function is called before the node filter, so if it returns
+FALSE, the node filter will never be called.</p>
+<h6 id="foreach"><a class="doc-anchor" href="#foreach">§</a><code>foreach</code></h6>
+<p>the function to call for all nodes</p>
+</div></details><section id="method.unset_foreach_node" class="method"><a class="src rightside" href="../src/gsk4/render_replay.rs.html#371-380">Source</a><h4 class="code-header">pub fn <a href="#method.unset_foreach_node" class="fn">unset_foreach_node</a>(&amp;mut self)</h4></section><details class="toggle method-toggle" open><summary><section id="method.set_texture_filter" class="method"><a class="src rightside" href="../src/gsk4/render_replay.rs.html#390-425">Source</a><h4 class="code-header">pub fn <a href="#method.set_texture_filter" class="fn">set_texture_filter</a>&lt;P: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;<a class="struct" href="struct.RenderReplay.html" title="struct gsk4::RenderReplay">RenderReplay</a>, &amp;<a class="struct" href="../gdk4/auto/texture/struct.Texture.html" title="struct gdk4::auto::texture::Texture">Texture</a>) -&gt; <a class="struct" href="../gdk4/auto/texture/struct.Texture.html" title="struct gdk4::auto::texture::Texture">Texture</a> + 'static&gt;(
+    &amp;mut self,
+    filter: P,
+)</h4></section></summary><div class="docblock"><p>Sets a filter function to be called by <a href="struct.RenderReplay.html#method.default" title="method gsk4::RenderReplay::default"><code>default()</code></a>
+for nodes that contain textures.</p>
+<p>You can call <code>GskRenderReplay::filter_texture()</code> to filter
+a texture yourself.</p>
+<h6 id="filter-2"><a class="doc-anchor" href="#filter-2">§</a><code>filter</code></h6>
+<p>the texture filter function</p>
+</div></details><section id="method.unset_texture_filter" class="method"><a class="src rightside" href="../src/gsk4/render_replay.rs.html#429-438">Source</a><h4 class="code-header">pub fn <a href="#method.unset_texture_filter" class="fn">unset_texture_filter</a>(&amp;mut self)</h4></section><details class="toggle method-toggle" open><summary><section id="method.new" class="method"><a class="src rightside" href="../src/gsk4/render_replay.rs.html#446-453">Source</a><h4 class="code-header">pub fn <a href="#method.new" class="fn">new</a>() -&gt; <a class="struct" href="struct.RenderReplay.html" title="struct gsk4::RenderReplay">RenderReplay</a></h4></section></summary><div class="docblock"><p>Creates a new replay object to replay nodes.</p>
+<h5 id="returns-4"><a class="doc-anchor" href="#returns-4">§</a>Returns</h5>
+<p>A new replay object to replay nodes</p>
+</div></details></div></details></div><h2 id="trait-implementations" class="section-header">Trait Implementations<a href="#trait-implementations" class="anchor">§</a></h2><div id="trait-implementations-list"><details class="toggle implementors-toggle" open><summary><section id="impl-Default-for-RenderReplay" class="impl"><a class="src rightside" href="../src/gsk4/render_replay.rs.html#458-462">Source</a><a href="#impl-Default-for-RenderReplay" class="anchor">§</a><h3 class="code-header">impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/default/trait.Default.html" title="trait core::default::Default">Default</a> for <a class="struct" href="struct.RenderReplay.html" title="struct gsk4::RenderReplay">RenderReplay</a></h3></section></summary><div class="impl-items"><details class="toggle method-toggle" open><summary><section id="method.default-1" class="method trait-impl"><a class="src rightside" href="../src/gsk4/render_replay.rs.html#459-461">Source</a><a href="#method.default-1" class="anchor">§</a><h4 class="code-header">fn <a href="https://doc.rust-lang.org/nightly/core/default/trait.Default.html#tymethod.default" class="fn">default</a>() -&gt; Self</h4></section></summary><div class='docblock'>Returns the “default value” for a type. <a href="https://doc.rust-lang.org/nightly/core/default/trait.Default.html#tymethod.default">Read more</a></div></details></div></details><details class="toggle implementors-toggle" open><summary><section id="impl-Drop-for-RenderReplay" class="impl"><a class="src rightside" href="../src/gsk4/render_replay.rs.html#86-92">Source</a><a href="#impl-Drop-for-RenderReplay" class="anchor">§</a><h3 class="code-header">impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/drop/trait.Drop.html" title="trait core::ops::drop::Drop">Drop</a> for <a class="struct" href="struct.RenderReplay.html" title="struct gsk4::RenderReplay">RenderReplay</a></h3></section></summary><div class="impl-items"><details class="toggle method-toggle" open><summary><section id="method.drop" class="method trait-impl"><a class="src rightside" href="../src/gsk4/render_replay.rs.html#87-91">Source</a><a href="#method.drop" class="anchor">§</a><h4 class="code-header">fn <a href="https://doc.rust-lang.org/nightly/core/ops/drop/trait.Drop.html#tymethod.drop" class="fn">drop</a>(&amp;mut self)</h4></section></summary><div class='docblock'>Executes the destructor for this type. <a href="https://doc.rust-lang.org/nightly/core/ops/drop/trait.Drop.html#tymethod.drop">Read more</a></div></details></div></details></div><h2 id="synthetic-implementations" class="section-header">Auto Trait Implementations<a href="#synthetic-implementations" class="anchor">§</a></h2><div id="synthetic-implementations-list"><section id="impl-Freeze-for-RenderReplay" class="impl"><a href="#impl-Freeze-for-RenderReplay" class="anchor">§</a><h3 class="code-header">impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Freeze.html" title="trait core::marker::Freeze">Freeze</a> for <a class="struct" href="struct.RenderReplay.html" title="struct gsk4::RenderReplay">RenderReplay</a></h3></section><section id="impl-RefUnwindSafe-for-RenderReplay" class="impl"><a href="#impl-RefUnwindSafe-for-RenderReplay" class="anchor">§</a><h3 class="code-header">impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/panic/unwind_safe/trait.RefUnwindSafe.html" title="trait core::panic::unwind_safe::RefUnwindSafe">RefUnwindSafe</a> for <a class="struct" href="struct.RenderReplay.html" title="struct gsk4::RenderReplay">RenderReplay</a></h3></section><section id="impl-Send-for-RenderReplay" class="impl"><a href="#impl-Send-for-RenderReplay" class="anchor">§</a><h3 class="code-header">impl !<a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Send.html" title="trait core::marker::Send">Send</a> for <a class="struct" href="struct.RenderReplay.html" title="struct gsk4::RenderReplay">RenderReplay</a></h3></section><section id="impl-Sync-for-RenderReplay" class="impl"><a href="#impl-Sync-for-RenderReplay" class="anchor">§</a><h3 class="code-header">impl !<a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Sync.html" title="trait core::marker::Sync">Sync</a> for <a class="struct" href="struct.RenderReplay.html" title="struct gsk4::RenderReplay">RenderReplay</a></h3></section><section id="impl-Unpin-for-RenderReplay" class="impl"><a href="#impl-Unpin-for-RenderReplay" class="anchor">§</a><h3 class="code-header">impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Unpin.html" title="trait core::marker::Unpin">Unpin</a> for <a class="struct" href="struct.RenderReplay.html" title="struct gsk4::RenderReplay">RenderReplay</a></h3></section><section id="impl-UnwindSafe-for-RenderReplay" class="impl"><a href="#impl-UnwindSafe-for-RenderReplay" class="anchor">§</a><h3 class="code-header">impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/panic/unwind_safe/trait.UnwindSafe.html" title="trait core::panic::unwind_safe::UnwindSafe">UnwindSafe</a> for <a class="struct" href="struct.RenderReplay.html" title="struct gsk4::RenderReplay">RenderReplay</a></h3></section></div><h2 id="blanket-implementations" class="section-header">Blanket Implementations<a href="#blanket-implementations" class="anchor">§</a></h2><div id="blanket-implementations-list"><details class="toggle implementors-toggle"><summary><section id="impl-Any-for-T" class="impl"><a class="src rightside" href="https://doc.rust-lang.org/nightly/src/core/any.rs.html#138">Source</a><a href="#impl-Any-for-T" class="anchor">§</a><h3 class="code-header">impl&lt;T&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/core/any/trait.Any.html" title="trait core::any::Any">Any</a> for T<div class="where">where
+    T: 'static + ?<a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Sized.html" title="trait core::marker::Sized">Sized</a>,</div></h3></section></summary><div class="impl-items"><details class="toggle method-toggle" open><summary><section id="method.type_id" class="method trait-impl"><a class="src rightside" href="https://doc.rust-lang.org/nightly/src/core/any.rs.html#139">Source</a><a href="#method.type_id" class="anchor">§</a><h4 class="code-header">fn <a href="https://doc.rust-lang.org/nightly/core/any/trait.Any.html#tymethod.type_id" class="fn">type_id</a>(&amp;self) -&gt; <a class="struct" href="https://doc.rust-lang.org/nightly/core/any/struct.TypeId.html" title="struct core::any::TypeId">TypeId</a></h4></section></summary><div class='docblock'>Gets the <code>TypeId</code> of <code>self</code>. <a href="https://doc.rust-lang.org/nightly/core/any/trait.Any.html#tymethod.type_id">Read more</a></div></details></div></details><details class="toggle implementors-toggle"><summary><section id="impl-Borrow%3CT%3E-for-T" class="impl"><a class="src rightside" href="https://doc.rust-lang.org/nightly/src/core/borrow.rs.html#212">Source</a><a href="#impl-Borrow%3CT%3E-for-T" class="anchor">§</a><h3 class="code-header">impl&lt;T&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/core/borrow/trait.Borrow.html" title="trait core::borrow::Borrow">Borrow</a>&lt;T&gt; for T<div class="where">where
+    T: ?<a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Sized.html" title="trait core::marker::Sized">Sized</a>,</div></h3></section></summary><div class="impl-items"><details class="toggle method-toggle" open><summary><section id="method.borrow" class="method trait-impl"><a class="src rightside" href="https://doc.rust-lang.org/nightly/src/core/borrow.rs.html#214">Source</a><a href="#method.borrow" class="anchor">§</a><h4 class="code-header">fn <a href="https://doc.rust-lang.org/nightly/core/borrow/trait.Borrow.html#tymethod.borrow" class="fn">borrow</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;T</a></h4></section></summary><div class='docblock'>Immutably borrows from an owned value. <a href="https://doc.rust-lang.org/nightly/core/borrow/trait.Borrow.html#tymethod.borrow">Read more</a></div></details></div></details><details class="toggle implementors-toggle"><summary><section id="impl-BorrowMut%3CT%3E-for-T" class="impl"><a class="src rightside" href="https://doc.rust-lang.org/nightly/src/core/borrow.rs.html#221">Source</a><a href="#impl-BorrowMut%3CT%3E-for-T" class="anchor">§</a><h3 class="code-header">impl&lt;T&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/core/borrow/trait.BorrowMut.html" title="trait core::borrow::BorrowMut">BorrowMut</a>&lt;T&gt; for T<div class="where">where
+    T: ?<a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Sized.html" title="trait core::marker::Sized">Sized</a>,</div></h3></section></summary><div class="impl-items"><details class="toggle method-toggle" open><summary><section id="method.borrow_mut" class="method trait-impl"><a class="src rightside" href="https://doc.rust-lang.org/nightly/src/core/borrow.rs.html#222">Source</a><a href="#method.borrow_mut" class="anchor">§</a><h4 class="code-header">fn <a href="https://doc.rust-lang.org/nightly/core/borrow/trait.BorrowMut.html#tymethod.borrow_mut" class="fn">borrow_mut</a>(&amp;mut self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;mut T</a></h4></section></summary><div class='docblock'>Mutably borrows from an owned value. <a href="https://doc.rust-lang.org/nightly/core/borrow/trait.BorrowMut.html#tymethod.borrow_mut">Read more</a></div></details></div></details><details class="toggle implementors-toggle"><summary><section id="impl-From%3CT%3E-for-T" class="impl"><a class="src rightside" href="https://doc.rust-lang.org/nightly/src/core/convert/mod.rs.html#785">Source</a><a href="#impl-From%3CT%3E-for-T" class="anchor">§</a><h3 class="code-header">impl&lt;T&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.From.html" title="trait core::convert::From">From</a>&lt;T&gt; for T</h3></section></summary><div class="impl-items"><details class="toggle method-toggle" open><summary><section id="method.from" class="method trait-impl"><a class="src rightside" href="https://doc.rust-lang.org/nightly/src/core/convert/mod.rs.html#788">Source</a><a href="#method.from" class="anchor">§</a><h4 class="code-header">fn <a href="https://doc.rust-lang.org/nightly/core/convert/trait.From.html#tymethod.from" class="fn">from</a>(t: T) -&gt; T</h4></section></summary><div class="docblock"><p>Returns the argument unchanged.</p>
+</div></details></div></details><details class="toggle implementors-toggle"><summary><section id="impl-Into%3CU%3E-for-T" class="impl"><a class="src rightside" href="https://doc.rust-lang.org/nightly/src/core/convert/mod.rs.html#767-769">Source</a><a href="#impl-Into%3CU%3E-for-T" class="anchor">§</a><h3 class="code-header">impl&lt;T, U&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.Into.html" title="trait core::convert::Into">Into</a>&lt;U&gt; for T<div class="where">where
+    U: <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.From.html" title="trait core::convert::From">From</a>&lt;T&gt;,</div></h3></section></summary><div class="impl-items"><details class="toggle method-toggle" open><summary><section id="method.into" class="method trait-impl"><a class="src rightside" href="https://doc.rust-lang.org/nightly/src/core/convert/mod.rs.html#777">Source</a><a href="#method.into" class="anchor">§</a><h4 class="code-header">fn <a href="https://doc.rust-lang.org/nightly/core/convert/trait.Into.html#tymethod.into" class="fn">into</a>(self) -&gt; U</h4></section></summary><div class="docblock"><p>Calls <code>U::from(self)</code>.</p>
+<p>That is, this conversion is whatever the implementation of
+<code><a href="https://doc.rust-lang.org/nightly/core/convert/trait.From.html" title="trait core::convert::From">From</a>&lt;T&gt; for U</code> chooses to do.</p>
+</div></details></div></details><details class="toggle implementors-toggle"><summary><section id="impl-TryFrom%3CU%3E-for-T" class="impl"><a class="src rightside" href="https://doc.rust-lang.org/nightly/src/core/convert/mod.rs.html#827-829">Source</a><a href="#impl-TryFrom%3CU%3E-for-T" class="anchor">§</a><h3 class="code-header">impl&lt;T, U&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.TryFrom.html" title="trait core::convert::TryFrom">TryFrom</a>&lt;U&gt; for T<div class="where">where
+    U: <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.Into.html" title="trait core::convert::Into">Into</a>&lt;T&gt;,</div></h3></section></summary><div class="impl-items"><details class="toggle" open><summary><section id="associatedtype.Error-1" class="associatedtype trait-impl"><a class="src rightside" href="https://doc.rust-lang.org/nightly/src/core/convert/mod.rs.html#831">Source</a><a href="#associatedtype.Error-1" class="anchor">§</a><h4 class="code-header">type <a href="https://doc.rust-lang.org/nightly/core/convert/trait.TryFrom.html#associatedtype.Error" class="associatedtype">Error</a> = <a class="enum" href="https://doc.rust-lang.org/nightly/core/convert/enum.Infallible.html" title="enum core::convert::Infallible">Infallible</a></h4></section></summary><div class='docblock'>The type returned in the event of a conversion error.</div></details><details class="toggle method-toggle" open><summary><section id="method.try_from" class="method trait-impl"><a class="src rightside" href="https://doc.rust-lang.org/nightly/src/core/convert/mod.rs.html#834">Source</a><a href="#method.try_from" class="anchor">§</a><h4 class="code-header">fn <a href="https://doc.rust-lang.org/nightly/core/convert/trait.TryFrom.html#tymethod.try_from" class="fn">try_from</a>(value: U) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;T, &lt;T as <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.TryFrom.html" title="trait core::convert::TryFrom">TryFrom</a>&lt;U&gt;&gt;::<a class="associatedtype" href="https://doc.rust-lang.org/nightly/core/convert/trait.TryFrom.html#associatedtype.Error" title="type core::convert::TryFrom::Error">Error</a>&gt;</h4></section></summary><div class='docblock'>Performs the conversion.</div></details></div></details><details class="toggle implementors-toggle"><summary><section id="impl-TryInto%3CU%3E-for-T" class="impl"><a class="src rightside" href="https://doc.rust-lang.org/nightly/src/core/convert/mod.rs.html#811-813">Source</a><a href="#impl-TryInto%3CU%3E-for-T" class="anchor">§</a><h3 class="code-header">impl&lt;T, U&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.TryInto.html" title="trait core::convert::TryInto">TryInto</a>&lt;U&gt; for T<div class="where">where
+    U: <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.TryFrom.html" title="trait core::convert::TryFrom">TryFrom</a>&lt;T&gt;,</div></h3></section></summary><div class="impl-items"><details class="toggle" open><summary><section id="associatedtype.Error" class="associatedtype trait-impl"><a class="src rightside" href="https://doc.rust-lang.org/nightly/src/core/convert/mod.rs.html#815">Source</a><a href="#associatedtype.Error" class="anchor">§</a><h4 class="code-header">type <a href="https://doc.rust-lang.org/nightly/core/convert/trait.TryInto.html#associatedtype.Error" class="associatedtype">Error</a> = &lt;U as <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.TryFrom.html" title="trait core::convert::TryFrom">TryFrom</a>&lt;T&gt;&gt;::<a class="associatedtype" href="https://doc.rust-lang.org/nightly/core/convert/trait.TryFrom.html#associatedtype.Error" title="type core::convert::TryFrom::Error">Error</a></h4></section></summary><div class='docblock'>The type returned in the event of a conversion error.</div></details><details class="toggle method-toggle" open><summary><section id="method.try_into" class="method trait-impl"><a class="src rightside" href="https://doc.rust-lang.org/nightly/src/core/convert/mod.rs.html#818">Source</a><a href="#method.try_into" class="anchor">§</a><h4 class="code-header">fn <a href="https://doc.rust-lang.org/nightly/core/convert/trait.TryInto.html#tymethod.try_into" class="fn">try_into</a>(self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;U, &lt;U as <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.TryFrom.html" title="trait core::convert::TryFrom">TryFrom</a>&lt;T&gt;&gt;::<a class="associatedtype" href="https://doc.rust-lang.org/nightly/core/convert/trait.TryFrom.html#associatedtype.Error" title="type core::convert::TryFrom::Error">Error</a>&gt;</h4></section></summary><div class='docblock'>Performs the conversion.</div></details></div></details></div></section></div></main></body></html>

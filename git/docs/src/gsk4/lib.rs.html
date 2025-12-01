@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gsk4/src/lib.rs`."><title>lib.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-ca0dd0c4.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gsk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.93.0-nightly (3ff30e7ea 2025-11-29)" data-channel="nightly" data-search-js="search-b9c1cd9b.js" data-stringdex-js="stringdex-a3946164.js" data-settings-js="settings-c38705f0.js" ><script src="../../static.files/storage-e2aeef58.js"></script><script defer src="../../static.files/src-script-813739b1.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-a410ff4d.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-263c88ec.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gsk4/src/lib.rs`."><title>lib.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-ca0dd0c4.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gsk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.93.0-nightly (b84478a1c 2025-11-30)" data-channel="nightly" data-search-js="search-9e2438ea.js" data-stringdex-js="stringdex-a3946164.js" data-settings-js="settings-c38705f0.js" ><script src="../../static.files/storage-e2aeef58.js"></script><script defer src="../../static.files/src-script-813739b1.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-a410ff4d.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-263c88ec.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
 
@@ -157,31 +157,37 @@
 <a href=#84 id=84 data-nosnippet>84</a>#[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_14"</span>)))]
 <a href=#85 id=85 data-nosnippet>85</a></span><span class="kw">mod </span><a href="path_point.rs.html#3-63">path_point</a>;
 <a href=#86 id=86 data-nosnippet>86</a><span class="kw">mod </span><a href="radial_gradient_node.rs.html#3-23">radial_gradient_node</a>;
-<a href=#87 id=87 data-nosnippet>87</a><span class="kw">mod </span><a href="repeat_node.rs.html#3-18">repeat_node</a>;
-<a href=#88 id=88 data-nosnippet>88</a><span class="kw">mod </span><a href="repeating_linear_gradient_node.rs.html#3-15">repeating_linear_gradient_node</a>;
-<a href=#89 id=89 data-nosnippet>89</a><span class="kw">mod </span><a href="repeating_radial_gradient_node.rs.html#3-15">repeating_radial_gradient_node</a>;
-<a href=#90 id=90 data-nosnippet>90</a><span class="kw">mod </span><a href="rounded_clip_node.rs.html#3-18">rounded_clip_node</a>;
-<a href=#91 id=91 data-nosnippet>91</a><span class="kw">mod </span><a href="shadow_node.rs.html#3-32">shadow_node</a>;
-<a href=#92 id=92 data-nosnippet>92</a><span class="attr">#[cfg(feature = <span class="string">"v4_14"</span>)]
-<a href=#93 id=93 data-nosnippet>93</a>#[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_14"</span>)))]
-<a href=#94 id=94 data-nosnippet>94</a></span><span class="kw">mod </span><a href="stroke.rs.html#3-57">stroke</a>;
+<a href=#87 id=87 data-nosnippet>87</a><span class="attr">#[cfg(feature = <span class="string">"v4_22"</span>)]
+<a href=#88 id=88 data-nosnippet>88</a>#[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_22"</span>)))]
+<a href=#89 id=89 data-nosnippet>89</a></span><span class="kw">mod </span><a href="render_replay.rs.html#3-462">render_replay</a>;
+<a href=#90 id=90 data-nosnippet>90</a><span class="kw">mod </span><a href="repeat_node.rs.html#3-18">repeat_node</a>;
+<a href=#91 id=91 data-nosnippet>91</a><span class="kw">mod </span><a href="repeating_linear_gradient_node.rs.html#3-15">repeating_linear_gradient_node</a>;
+<a href=#92 id=92 data-nosnippet>92</a><span class="kw">mod </span><a href="repeating_radial_gradient_node.rs.html#3-15">repeating_radial_gradient_node</a>;
+<a href=#93 id=93 data-nosnippet>93</a><span class="kw">mod </span><a href="rounded_clip_node.rs.html#3-18">rounded_clip_node</a>;
+<a href=#94 id=94 data-nosnippet>94</a><span class="kw">mod </span><a href="shadow_node.rs.html#3-32">shadow_node</a>;
 <a href=#95 id=95 data-nosnippet>95</a><span class="attr">#[cfg(feature = <span class="string">"v4_14"</span>)]
 <a href=#96 id=96 data-nosnippet>96</a>#[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_14"</span>)))]
-<a href=#97 id=97 data-nosnippet>97</a></span><span class="kw">mod </span><a href="stroke_node.rs.html#3-19">stroke_node</a>;
-<a href=#98 id=98 data-nosnippet>98</a><span class="kw">mod </span><a href="text_node.rs.html#3-31">text_node</a>;
-<a href=#99 id=99 data-nosnippet>99</a><span class="kw">mod </span><a href="texture_node.rs.html#3-17">texture_node</a>;
-<a href=#100 id=100 data-nosnippet>100</a><span class="attr">#[cfg(feature = <span class="string">"v4_10"</span>)]
-<a href=#101 id=101 data-nosnippet>101</a>#[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_10"</span>)))]
-<a href=#102 id=102 data-nosnippet>102</a></span><span class="kw">mod </span><a href="texture_scale_node.rs.html#3-18">texture_scale_node</a>;
-<a href=#103 id=103 data-nosnippet>103</a><span class="kw">mod </span><a href="transform.rs.html#3-324">transform</a>;
-<a href=#104 id=104 data-nosnippet>104</a><span class="kw">mod </span><a href="transform_node.rs.html#3-18">transform_node</a>;
-<a href=#105 id=105 data-nosnippet>105</a>
-<a href=#106 id=106 data-nosnippet>106</a><span class="kw">pub use </span><a href="color_stop.rs.html#9-13">color_stop::ColorStop</a>;
-<a href=#107 id=107 data-nosnippet>107</a><span class="attr">#[cfg(feature = <span class="string">"v4_2"</span>)]
-<a href=#108 id=108 data-nosnippet>108</a>#[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_2"</span>)))]
-<a href=#109 id=109 data-nosnippet>109</a>#[cfg_attr(feature = <span class="string">"v4_4"</span>, deprecated = <span class="string">"Since 4.4"</span>)]
-<a href=#110 id=110 data-nosnippet>110</a></span><span class="kw">pub use </span><a href="ngl_renderer.rs.html#9-23">ngl_renderer::NglRenderer</a>;
-<a href=#111 id=111 data-nosnippet>111</a><span class="kw">pub use </span><a href="parse_location.rs.html#5-9">parse_location::ParseLocation</a>;
-<a href=#112 id=112 data-nosnippet>112</a><span class="kw">pub use </span><a href="rounded_rect.rs.html#9-25">rounded_rect::RoundedRect</a>;
-<a href=#113 id=113 data-nosnippet>113</a><span class="kw">pub use </span><a href="shadow.rs.html#9-13">shadow::Shadow</a>;
+<a href=#97 id=97 data-nosnippet>97</a></span><span class="kw">mod </span><a href="stroke.rs.html#3-57">stroke</a>;
+<a href=#98 id=98 data-nosnippet>98</a><span class="attr">#[cfg(feature = <span class="string">"v4_14"</span>)]
+<a href=#99 id=99 data-nosnippet>99</a>#[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_14"</span>)))]
+<a href=#100 id=100 data-nosnippet>100</a></span><span class="kw">mod </span><a href="stroke_node.rs.html#3-19">stroke_node</a>;
+<a href=#101 id=101 data-nosnippet>101</a><span class="kw">mod </span><a href="text_node.rs.html#3-31">text_node</a>;
+<a href=#102 id=102 data-nosnippet>102</a><span class="kw">mod </span><a href="texture_node.rs.html#3-17">texture_node</a>;
+<a href=#103 id=103 data-nosnippet>103</a><span class="attr">#[cfg(feature = <span class="string">"v4_10"</span>)]
+<a href=#104 id=104 data-nosnippet>104</a>#[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_10"</span>)))]
+<a href=#105 id=105 data-nosnippet>105</a></span><span class="kw">mod </span><a href="texture_scale_node.rs.html#3-18">texture_scale_node</a>;
+<a href=#106 id=106 data-nosnippet>106</a><span class="kw">mod </span><a href="transform.rs.html#3-324">transform</a>;
+<a href=#107 id=107 data-nosnippet>107</a><span class="kw">mod </span><a href="transform_node.rs.html#3-18">transform_node</a>;
+<a href=#108 id=108 data-nosnippet>108</a>
+<a href=#109 id=109 data-nosnippet>109</a><span class="kw">pub use </span><a href="color_stop.rs.html#9-13">color_stop::ColorStop</a>;
+<a href=#110 id=110 data-nosnippet>110</a><span class="attr">#[cfg(feature = <span class="string">"v4_2"</span>)]
+<a href=#111 id=111 data-nosnippet>111</a>#[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_2"</span>)))]
+<a href=#112 id=112 data-nosnippet>112</a>#[cfg_attr(feature = <span class="string">"v4_4"</span>, deprecated = <span class="string">"Since 4.4"</span>)]
+<a href=#113 id=113 data-nosnippet>113</a></span><span class="kw">pub use </span><a href="ngl_renderer.rs.html#9-23">ngl_renderer::NglRenderer</a>;
+<a href=#114 id=114 data-nosnippet>114</a><span class="kw">pub use </span><a href="parse_location.rs.html#5-9">parse_location::ParseLocation</a>;
+<a href=#115 id=115 data-nosnippet>115</a><span class="attr">#[cfg(feature = <span class="string">"v4_22"</span>)]
+<a href=#116 id=116 data-nosnippet>116</a>#[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_22"</span>)))]
+<a href=#117 id=117 data-nosnippet>117</a></span><span class="kw">pub use </span><a href="render_replay.rs.html#84">render_replay::RenderReplay</a>;
+<a href=#118 id=118 data-nosnippet>118</a><span class="kw">pub use </span><a href="rounded_rect.rs.html#9-25">rounded_rect::RoundedRect</a>;
+<a href=#119 id=119 data-nosnippet>119</a><span class="kw">pub use </span><a href="shadow.rs.html#9-13">shadow::Shadow</a>;
 </code></pre></div></section></main></body></html>
