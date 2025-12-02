@@ -166,7 +166,7 @@ pub trait ContentProviderImplExt: ContentProviderImpl {
                 source_object_ptr: *mut glib::gobject_ffi::GObject,
                 res: *mut gio::ffi::GAsyncResult,
                 user_data: glib::ffi::gpointer,
-            ) {
+            ) { unsafe {
                 let mut error = std::ptr::null_mut();
                 let cb: Box<(
                     glib::thread_guard::ThreadGuard<R>,
@@ -184,7 +184,7 @@ pub trait ContentProviderImplExt: ContentProviderImpl {
                 };
                 let cb = cb.0.into_inner();
                 cb(result);
-            }
+            }}
 
             let cancellable = cancellable.map(|p| p.as_ref());
             let callback = parent_write_mime_type_async_trampoline::<R>;
@@ -275,52 +275,52 @@ unsafe impl<T: ContentProviderImpl> IsSubclassable<T> for ContentProvider {
 
 unsafe extern "C" fn content_provider_content_changed<T: ContentProviderImpl>(
     ptr: *mut ffi::GdkContentProvider,
-) {
+) { unsafe {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
 
     imp.content_changed()
-}
+}}
 
 unsafe extern "C" fn content_provider_attach_clipboard<T: ContentProviderImpl>(
     ptr: *mut ffi::GdkContentProvider,
     clipboard_ptr: *mut ffi::GdkClipboard,
-) {
+) { unsafe {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
     let clipboard = from_glib_borrow(clipboard_ptr);
 
     imp.attach_clipboard(&clipboard)
-}
+}}
 
 unsafe extern "C" fn content_provider_detach_clipboard<T: ContentProviderImpl>(
     ptr: *mut ffi::GdkContentProvider,
     clipboard_ptr: *mut ffi::GdkClipboard,
-) {
+) { unsafe {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
     let clipboard = from_glib_borrow(clipboard_ptr);
 
     imp.detach_clipboard(&clipboard)
-}
+}}
 
 unsafe extern "C" fn content_provider_formats<T: ContentProviderImpl>(
     ptr: *mut ffi::GdkContentProvider,
-) -> *mut ffi::GdkContentFormats {
+) -> *mut ffi::GdkContentFormats { unsafe {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
 
     imp.formats().into_glib_ptr()
-}
+}}
 
 unsafe extern "C" fn content_provider_storable_formats<T: ContentProviderImpl>(
     ptr: *mut ffi::GdkContentProvider,
-) -> *mut ffi::GdkContentFormats {
+) -> *mut ffi::GdkContentFormats { unsafe {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
 
     imp.storable_formats().into_glib_ptr()
-}
+}}
 
 unsafe extern "C" fn content_provider_write_mime_type_async<T: ContentProviderImpl>(
     ptr: *mut ffi::GdkContentProvider,
@@ -330,7 +330,7 @@ unsafe extern "C" fn content_provider_write_mime_type_async<T: ContentProviderIm
     cancellable_ptr: *mut gio::ffi::GCancellable,
     callback: gio::ffi::GAsyncReadyCallback,
     user_data: glib::ffi::gpointer,
-) {
+) { unsafe {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
     let wrap: ContentProvider = from_glib_none(ptr);
@@ -361,13 +361,13 @@ unsafe extern "C" fn content_provider_write_mime_type_async<T: ContentProviderIm
             .await;
         t.return_result(res.map(|_t| true));
     });
-}
+}}
 
 unsafe extern "C" fn content_provider_write_mime_type_finish(
     _ptr: *mut ffi::GdkContentProvider,
     res_ptr: *mut gio::ffi::GAsyncResult,
     error_ptr: *mut *mut glib::ffi::GError,
-) -> glib::ffi::gboolean {
+) -> glib::ffi::gboolean { unsafe {
     let res: gio::AsyncResult = from_glib_none(res_ptr);
     let t = res.downcast::<gio::LocalTask<bool>>().unwrap();
     let ret = t.propagate();
@@ -383,13 +383,13 @@ unsafe extern "C" fn content_provider_write_mime_type_finish(
             false.into_glib()
         }
     }
-}
+}}
 
 unsafe extern "C" fn content_provider_get_value<T: ContentProviderImpl>(
     ptr: *mut ffi::GdkContentProvider,
     value_ptr: *mut glib::gobject_ffi::GValue,
     error_ptr: *mut *mut glib::ffi::GError,
-) -> glib::ffi::gboolean {
+) -> glib::ffi::gboolean { unsafe {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
     let value: Value = from_glib_none(value_ptr);
@@ -407,4 +407,4 @@ unsafe extern "C" fn content_provider_get_value<T: ContentProviderImpl>(
             false.into_glib()
         }
     }
-}
+}}

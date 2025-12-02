@@ -240,37 +240,37 @@ unsafe impl<T: TextViewImpl> IsSubclassable<T> for TextView {
     }
 }
 
-unsafe extern "C" fn text_view_backspace<T: TextViewImpl>(ptr: *mut ffi::GtkTextView) {
+unsafe extern "C" fn text_view_backspace<T: TextViewImpl>(ptr: *mut ffi::GtkTextView) { unsafe {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
 
     imp.backspace()
-}
+}}
 
-unsafe extern "C" fn text_view_copy_clipboard<T: TextViewImpl>(ptr: *mut ffi::GtkTextView) {
+unsafe extern "C" fn text_view_copy_clipboard<T: TextViewImpl>(ptr: *mut ffi::GtkTextView) { unsafe {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
 
     imp.copy_clipboard()
-}
+}}
 
-unsafe extern "C" fn text_view_cut_clipboard<T: TextViewImpl>(ptr: *mut ffi::GtkTextView) {
+unsafe extern "C" fn text_view_cut_clipboard<T: TextViewImpl>(ptr: *mut ffi::GtkTextView) { unsafe {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
 
     imp.cut_clipboard()
-}
+}}
 
 unsafe extern "C" fn text_view_delete_from_cursor<T: TextViewImpl>(
     ptr: *mut ffi::GtkTextView,
     type_: ffi::GtkDeleteType,
     count: i32,
-) {
+) { unsafe {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
 
     imp.delete_from_cursor(from_glib(type_), count)
-}
+}}
 
 unsafe extern "C" fn text_view_extend_selection<T: TextViewImpl>(
     ptr: *mut ffi::GtkTextView,
@@ -278,7 +278,7 @@ unsafe extern "C" fn text_view_extend_selection<T: TextViewImpl>(
     location: *const ffi::GtkTextIter,
     start: *mut ffi::GtkTextIter,
     end: *mut ffi::GtkTextIter,
-) -> glib::ffi::gboolean {
+) -> glib::ffi::gboolean { unsafe {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
 
@@ -295,66 +295,66 @@ unsafe extern "C" fn text_view_extend_selection<T: TextViewImpl>(
     *end = *end_copy.to_glib_none().0;
 
     result.into_glib()
-}
+}}
 
 unsafe extern "C" fn text_view_insert_at_cursor<T: TextViewImpl>(
     ptr: *mut ffi::GtkTextView,
     text_ptr: *const libc::c_char,
-) {
+) { unsafe {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
     let text: Borrowed<glib::GString> = from_glib_borrow(text_ptr);
 
     imp.insert_at_cursor(text.as_str())
-}
+}}
 
-unsafe extern "C" fn text_view_insert_emoji<T: TextViewImpl>(ptr: *mut ffi::GtkTextView) {
+unsafe extern "C" fn text_view_insert_emoji<T: TextViewImpl>(ptr: *mut ffi::GtkTextView) { unsafe {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
 
     imp.insert_emoji()
-}
+}}
 
 unsafe extern "C" fn text_view_move_cursor<T: TextViewImpl>(
     ptr: *mut ffi::GtkTextView,
     step: ffi::GtkMovementStep,
     count: i32,
     extend_selection: glib::ffi::gboolean,
-) {
+) { unsafe {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
 
     imp.move_cursor(from_glib(step), count, from_glib(extend_selection))
-}
+}}
 
-unsafe extern "C" fn text_view_paste_clipboard<T: TextViewImpl>(ptr: *mut ffi::GtkTextView) {
+unsafe extern "C" fn text_view_paste_clipboard<T: TextViewImpl>(ptr: *mut ffi::GtkTextView) { unsafe {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
 
     imp.paste_clipboard()
-}
+}}
 
-unsafe extern "C" fn text_view_set_anchor<T: TextViewImpl>(ptr: *mut ffi::GtkTextView) {
+unsafe extern "C" fn text_view_set_anchor<T: TextViewImpl>(ptr: *mut ffi::GtkTextView) { unsafe {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
 
     imp.set_anchor()
-}
+}}
 
 unsafe extern "C" fn text_view_snapshot_layer<T: TextViewImpl>(
     ptr: *mut ffi::GtkTextView,
     layer: ffi::GtkTextViewLayer,
     snapshot: *mut ffi::GtkSnapshot,
-) {
+) { unsafe {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
 
     imp.snapshot_layer(from_glib(layer), from_glib_none(snapshot))
-}
+}}
 
-unsafe extern "C" fn text_view_toggle_overwrite<T: TextViewImpl>(ptr: *mut ffi::GtkTextView) {
+unsafe extern "C" fn text_view_toggle_overwrite<T: TextViewImpl>(ptr: *mut ffi::GtkTextView) { unsafe {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
 
     imp.toggle_overwrite()
-}
+}}

@@ -10,7 +10,7 @@ use crate::{ffi, GLContext, GLTexture};
 impl GLTexture {
     #[doc(alias = "gdk_gl_texture_new")]
     #[allow(clippy::missing_safety_doc)]
-    pub unsafe fn new(context: &GLContext, id: u32, width: i32, height: i32) -> Self {
+    pub unsafe fn new(context: &GLContext, id: u32, width: i32, height: i32) -> Self { unsafe {
         from_glib_full(ffi::gdk_gl_texture_new(
             context.to_glib_none().0,
             id,
@@ -19,7 +19,7 @@ impl GLTexture {
             None,
             std::ptr::null_mut(),
         ))
-    }
+    }}
 
     #[doc(alias = "gdk_gl_texture_new")]
     #[allow(clippy::missing_safety_doc)]
@@ -29,11 +29,11 @@ impl GLTexture {
         width: i32,
         height: i32,
         release_func: F,
-    ) -> Self {
-        unsafe extern "C" fn destroy_closure<F: FnOnce() + 'static>(func: glib::ffi::gpointer) {
+    ) -> Self { unsafe {
+        unsafe extern "C" fn destroy_closure<F: FnOnce() + 'static>(func: glib::ffi::gpointer) { unsafe {
             let released_func = Box::<F>::from_raw(func as *mut _);
             released_func();
-        }
+        }}
         let released_func = Box::new(release_func);
         from_glib_full(ffi::gdk_gl_texture_new(
             context.to_glib_none().0,
@@ -43,7 +43,7 @@ impl GLTexture {
             Some(destroy_closure::<F>),
             Box::into_raw(released_func) as glib::ffi::gpointer,
         ))
-    }
+    }}
 
     #[cfg(feature = "v4_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]

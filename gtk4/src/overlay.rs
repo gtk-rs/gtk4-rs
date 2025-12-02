@@ -35,7 +35,7 @@ unsafe extern "C" fn get_child_position_trampoline<
     widget: *mut ffi::GtkWidget,
     allocation: *mut gdk::ffi::GdkRectangle,
     f: glib::ffi::gpointer,
-) -> glib::ffi::gboolean {
+) -> glib::ffi::gboolean { unsafe {
     let f: &F = &*(f as *const F);
     match f(
         Overlay::from_glib_borrow(this).unsafe_cast_ref(),
@@ -48,4 +48,4 @@ unsafe extern "C" fn get_child_position_trampoline<
         None => false,
     }
     .into_glib()
-}
+}}

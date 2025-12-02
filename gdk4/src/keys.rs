@@ -5019,13 +5019,13 @@ unsafe impl<'a> FromValue<'a> for Key {
     type Checker = glib::value::GenericValueTypeChecker<Key>;
 
     #[inline]
-    unsafe fn from_value(value: &'a Value) -> Self {
+    unsafe fn from_value(value: &'a Value) -> Self { unsafe {
         let res: u32 = glib::gobject_ffi::g_value_get_uint(value.to_glib_none().0);
         // As most of gdk_keyval_ apis don't really do any check for the input value
         // (the key number) other than gdk_keyval_from_name, it is safe to not
         // do any checks and assume people will not mis-use it
         Key::from_glib(res)
-    }
+    }}
 }
 
 impl ToValue for Key {

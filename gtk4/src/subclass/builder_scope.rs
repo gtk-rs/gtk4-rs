@@ -132,27 +132,27 @@ unsafe extern "C" fn builder_scope_get_type_from_name<T: BuilderScopeImpl>(
     builder_scope: *mut ffi::GtkBuilderScope,
     builderptr: *mut ffi::GtkBuilder,
     type_nameptr: *const libc::c_char,
-) -> glib::ffi::GType {
+) -> glib::ffi::GType { unsafe {
     let instance = &*(builder_scope as *mut T::Instance);
     let imp = instance.imp();
     let builder: Borrowed<Builder> = from_glib_borrow(builderptr);
     let type_name: Borrowed<GString> = from_glib_borrow(type_nameptr);
 
     imp.type_from_name(&builder, &type_name).into_glib()
-}
+}}
 
 unsafe extern "C" fn builder_scope_get_type_from_function<T: BuilderScopeImpl>(
     builder_scope: *mut ffi::GtkBuilderScope,
     builderptr: *mut ffi::GtkBuilder,
     func_nameptr: *const libc::c_char,
-) -> glib::ffi::GType {
+) -> glib::ffi::GType { unsafe {
     let instance = &*(builder_scope as *mut T::Instance);
     let imp = instance.imp();
     let builder: Borrowed<Builder> = from_glib_borrow(builderptr);
     let func_name: Borrowed<GString> = from_glib_borrow(func_nameptr);
 
     imp.type_from_function(&builder, &func_name).into_glib()
-}
+}}
 
 unsafe extern "C" fn builder_scope_create_closure<T: BuilderScopeImpl>(
     builder_scope: *mut ffi::GtkBuilderScope,
@@ -161,7 +161,7 @@ unsafe extern "C" fn builder_scope_create_closure<T: BuilderScopeImpl>(
     flags: ffi::GtkBuilderClosureFlags,
     objectptr: *mut glib::gobject_ffi::GObject,
     errorptr: *mut *mut glib::ffi::GError,
-) -> *mut glib::gobject_ffi::GClosure {
+) -> *mut glib::gobject_ffi::GClosure { unsafe {
     let instance = &*(builder_scope as *mut T::Instance);
     let imp = instance.imp();
     let builder: Borrowed<Builder> = from_glib_borrow(builderptr);
@@ -184,4 +184,4 @@ unsafe extern "C" fn builder_scope_create_closure<T: BuilderScopeImpl>(
             std::ptr::null_mut()
         }
     }
-}
+}}

@@ -22,7 +22,7 @@ impl EventControllerKey {
             keycode: libc::c_uint,
             state: gdk::ffi::GdkModifierType,
             f: glib::ffi::gpointer,
-        ) -> glib::ffi::gboolean {
+        ) -> glib::ffi::gboolean { unsafe {
             let f: &F = &*(f as *const F);
             f(
                 &from_glib_borrow(this),
@@ -31,7 +31,7 @@ impl EventControllerKey {
                 from_glib(state),
             )
             .into_glib()
-        }
+        }}
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
@@ -59,7 +59,7 @@ impl EventControllerKey {
             keycode: libc::c_uint,
             state: gdk::ffi::GdkModifierType,
             f: glib::ffi::gpointer,
-        ) {
+        ) { unsafe {
             let f: &F = &*(f as *const F);
             f(
                 &from_glib_borrow(this),
@@ -67,7 +67,7 @@ impl EventControllerKey {
                 keycode,
                 from_glib(state),
             )
-        }
+        }}
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(

@@ -21,10 +21,10 @@ impl SignalListItemFactory {
             this: *mut ffi::GtkSignalListItemFactory,
             listitem: *mut ffi::GtkListItem,
             f: glib::ffi::gpointer,
-        ) {
+        ) { unsafe {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this), &from_glib_borrow(listitem))
-        }
+        }}
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
@@ -47,10 +47,10 @@ impl SignalListItemFactory {
             this: *mut ffi::GtkSignalListItemFactory,
             listitem: *mut ffi::GtkListItem,
             f: glib::ffi::gpointer,
-        ) {
+        ) { unsafe {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this), &from_glib_borrow(listitem))
-        }
+        }}
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
@@ -73,10 +73,10 @@ impl SignalListItemFactory {
             this: *mut ffi::GtkSignalListItemFactory,
             listitem: *mut ffi::GtkListItem,
             f: glib::ffi::gpointer,
-        ) {
+        ) { unsafe {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this), &from_glib_borrow(listitem))
-        }
+        }}
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
@@ -99,10 +99,10 @@ impl SignalListItemFactory {
             this: *mut ffi::GtkSignalListItemFactory,
             listitem: *mut ffi::GtkListItem,
             f: glib::ffi::gpointer,
-        ) {
+        ) { unsafe {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this), &from_glib_borrow(listitem))
-        }
+        }}
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(

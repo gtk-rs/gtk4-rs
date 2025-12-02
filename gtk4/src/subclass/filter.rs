@@ -60,19 +60,19 @@ unsafe impl<T: FilterImpl> IsSubclassable<T> for Filter {
 
 unsafe extern "C" fn filter_get_strictness<T: FilterImpl>(
     ptr: *mut ffi::GtkFilter,
-) -> ffi::GtkFilterMatch {
+) -> ffi::GtkFilterMatch { unsafe {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
 
     imp.strictness().into_glib()
-}
+}}
 
 unsafe extern "C" fn filter_match<T: FilterImpl>(
     ptr: *mut ffi::GtkFilter,
     itemptr: *mut glib::gobject_ffi::GObject,
-) -> glib::ffi::gboolean {
+) -> glib::ffi::gboolean { unsafe {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
 
     imp.match_(&from_glib_borrow(itemptr)).into_glib()
-}
+}}

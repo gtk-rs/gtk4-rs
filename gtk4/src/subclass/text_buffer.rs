@@ -278,7 +278,7 @@ unsafe extern "C" fn text_buffer_apply_tag<T: TextBufferImpl>(
     tag_ptr: *mut ffi::GtkTextTag,
     start_ptr: *const ffi::GtkTextIter,
     end_ptr: *const ffi::GtkTextIter,
-) {
+) { unsafe {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
 
@@ -287,29 +287,29 @@ unsafe extern "C" fn text_buffer_apply_tag<T: TextBufferImpl>(
         &from_glib_borrow(start_ptr),
         &from_glib_borrow(end_ptr),
     )
-}
+}}
 
 unsafe extern "C" fn text_buffer_begin_user_action<T: TextBufferImpl>(
     ptr: *mut ffi::GtkTextBuffer,
-) {
+) { unsafe {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
 
     imp.begin_user_action()
-}
+}}
 
-unsafe extern "C" fn text_buffer_changed<T: TextBufferImpl>(ptr: *mut ffi::GtkTextBuffer) {
+unsafe extern "C" fn text_buffer_changed<T: TextBufferImpl>(ptr: *mut ffi::GtkTextBuffer) { unsafe {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
 
     imp.changed()
-}
+}}
 
 unsafe extern "C" fn text_buffer_delete_range<T: TextBufferImpl>(
     ptr: *mut ffi::GtkTextBuffer,
     start_ptr: *mut ffi::GtkTextIter,
     end_ptr: *mut ffi::GtkTextIter,
-) {
+) { unsafe {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
 
@@ -320,20 +320,20 @@ unsafe extern "C" fn text_buffer_delete_range<T: TextBufferImpl>(
 
     *start_ptr = *start_copy.to_glib_none().0;
     *end_ptr = *end_copy.to_glib_none().0;
-}
+}}
 
-unsafe extern "C" fn text_buffer_end_user_action<T: TextBufferImpl>(ptr: *mut ffi::GtkTextBuffer) {
+unsafe extern "C" fn text_buffer_end_user_action<T: TextBufferImpl>(ptr: *mut ffi::GtkTextBuffer) { unsafe {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
 
     imp.end_user_action()
-}
+}}
 
 unsafe extern "C" fn text_buffer_insert_child_anchor<T: TextBufferImpl>(
     ptr: *mut ffi::GtkTextBuffer,
     iter_ptr: *mut ffi::GtkTextIter,
     anchor_ptr: *mut ffi::GtkTextChildAnchor,
-) {
+) { unsafe {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
 
@@ -341,13 +341,13 @@ unsafe extern "C" fn text_buffer_insert_child_anchor<T: TextBufferImpl>(
 
     imp.insert_child_anchor(&mut iter, &from_glib_borrow(anchor_ptr));
     *iter_ptr = *iter.to_glib_none().0;
-}
+}}
 
 unsafe extern "C" fn text_buffer_insert_paintable<T: TextBufferImpl>(
     ptr: *mut ffi::GtkTextBuffer,
     iter_ptr: *mut ffi::GtkTextIter,
     paintable_ptr: *mut gdk::ffi::GdkPaintable,
-) {
+) { unsafe {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
 
@@ -355,14 +355,14 @@ unsafe extern "C" fn text_buffer_insert_paintable<T: TextBufferImpl>(
 
     imp.insert_paintable(&mut iter, &from_glib_borrow(paintable_ptr));
     *iter_ptr = *iter.to_glib_none().0;
-}
+}}
 
 unsafe extern "C" fn text_buffer_insert_text<T: TextBufferImpl>(
     ptr: *mut ffi::GtkTextBuffer,
     iter_ptr: *mut ffi::GtkTextIter,
     text_ptr: *const libc::c_char,
     _length: libc::c_int,
-) {
+) { unsafe {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
     let text: Borrowed<glib::GString> = from_glib_borrow(text_ptr);
@@ -371,59 +371,59 @@ unsafe extern "C" fn text_buffer_insert_text<T: TextBufferImpl>(
 
     imp.insert_text(&mut iter, text.as_str());
     *iter_ptr = *iter.to_glib_none().0;
-}
+}}
 
-unsafe extern "C" fn text_buffer_modified_changed<T: TextBufferImpl>(ptr: *mut ffi::GtkTextBuffer) {
+unsafe extern "C" fn text_buffer_modified_changed<T: TextBufferImpl>(ptr: *mut ffi::GtkTextBuffer) { unsafe {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
 
     imp.modified_changed()
-}
+}}
 
 unsafe extern "C" fn text_buffer_mark_deleted<T: TextBufferImpl>(
     ptr: *mut ffi::GtkTextBuffer,
     mark: *mut ffi::GtkTextMark,
-) {
+) { unsafe {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
 
     imp.mark_deleted(&from_glib_borrow(mark))
-}
+}}
 
 unsafe extern "C" fn text_buffer_mark_set<T: TextBufferImpl>(
     ptr: *mut ffi::GtkTextBuffer,
     iter: *const ffi::GtkTextIter,
     mark: *mut ffi::GtkTextMark,
-) {
+) { unsafe {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
 
     imp.mark_set(&from_glib_borrow(iter), &from_glib_borrow(mark))
-}
+}}
 
 unsafe extern "C" fn text_buffer_paste_done<T: TextBufferImpl>(
     ptr: *mut ffi::GtkTextBuffer,
     clipboard_ptr: *mut gdk::ffi::GdkClipboard,
-) {
+) { unsafe {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
 
     imp.paste_done(&from_glib_borrow(clipboard_ptr))
-}
+}}
 
-unsafe extern "C" fn text_buffer_redo<T: TextBufferImpl>(ptr: *mut ffi::GtkTextBuffer) {
+unsafe extern "C" fn text_buffer_redo<T: TextBufferImpl>(ptr: *mut ffi::GtkTextBuffer) { unsafe {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
 
     imp.redo()
-}
+}}
 
 unsafe extern "C" fn text_buffer_remove_tag<T: TextBufferImpl>(
     ptr: *mut ffi::GtkTextBuffer,
     tag: *mut ffi::GtkTextTag,
     start: *const ffi::GtkTextIter,
     end: *const ffi::GtkTextIter,
-) {
+) { unsafe {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
 
@@ -432,11 +432,11 @@ unsafe extern "C" fn text_buffer_remove_tag<T: TextBufferImpl>(
         &from_glib_borrow(start),
         &from_glib_borrow(end),
     )
-}
+}}
 
-unsafe extern "C" fn text_buffer_undo<T: TextBufferImpl>(ptr: *mut ffi::GtkTextBuffer) {
+unsafe extern "C" fn text_buffer_undo<T: TextBufferImpl>(ptr: *mut ffi::GtkTextBuffer) { unsafe {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
 
     imp.undo()
-}
+}}

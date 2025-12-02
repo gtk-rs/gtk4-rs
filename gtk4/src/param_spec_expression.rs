@@ -88,9 +88,9 @@ impl IntoGlibPtr<*const gobject_ffi::GParamSpec> for ParamSpecExpression {
 #[doc(hidden)]
 impl FromGlibPtrFull<*mut gobject_ffi::GParamSpec> for ParamSpecExpression {
     #[inline]
-    unsafe fn from_glib_full(ptr: *mut gobject_ffi::GParamSpec) -> Self {
+    unsafe fn from_glib_full(ptr: *mut gobject_ffi::GParamSpec) -> Self { unsafe {
         from_glib_full(ptr as *mut ffi::GtkParamSpecExpression)
-    }
+    }}
 }
 
 impl ParamSpecExpression {
@@ -210,11 +210,11 @@ unsafe impl<'a> glib::value::FromValue<'a> for ParamSpecExpression {
     type Checker = glib::value::GenericValueTypeOrNoneChecker<Self>;
 
     #[inline]
-    unsafe fn from_value(value: &'a Value) -> Self {
+    unsafe fn from_value(value: &'a Value) -> Self { unsafe {
         let ptr = gobject_ffi::g_value_dup_param(value.to_glib_none().0);
         debug_assert!(!ptr.is_null());
         from_glib_full(ptr)
-    }
+    }}
 }
 
 #[doc(hidden)]

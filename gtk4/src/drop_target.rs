@@ -61,7 +61,7 @@ impl DropTarget {
             x: libc::c_double,
             y: libc::c_double,
             f: glib::ffi::gpointer,
-        ) -> glib::ffi::gboolean {
+        ) -> glib::ffi::gboolean { unsafe {
             let f: &F = &*(f as *const F);
             f(
                 &from_glib_borrow(this),
@@ -70,7 +70,7 @@ impl DropTarget {
                 y,
             )
             .into_glib()
-        }
+        }}
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
