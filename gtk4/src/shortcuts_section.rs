@@ -23,8 +23,10 @@ impl ShortcutsSection {
                 object: libc::c_int,
                 f: glib::ffi::gpointer,
             ) -> glib::ffi::gboolean {
-                let f: &F = &*(f as *const F);
-                f(&from_glib_borrow(this), object).into_glib()
+                unsafe {
+                    let f: &F = &*(f as *const F);
+                    f(&from_glib_borrow(this), object).into_glib()
+                }
             }
             let f = Box::new(f);
             connect_raw(

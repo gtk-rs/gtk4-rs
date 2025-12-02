@@ -63,10 +63,12 @@ unsafe impl<T: CheckButtonImpl> IsSubclassable<T> for CheckButton {
 }
 
 unsafe extern "C" fn check_button_toggled<T: CheckButtonImpl>(ptr: *mut ffi::GtkCheckButton) {
-    let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.imp();
+    unsafe {
+        let instance = &*(ptr as *mut T::Instance);
+        let imp = instance.imp();
 
-    imp.toggled()
+        imp.toggled()
+    }
 }
 
 #[cfg(feature = "v4_2")]

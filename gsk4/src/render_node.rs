@@ -45,11 +45,13 @@ impl RenderNode {
             error: *const glib::ffi::GError,
             user_data: glib::ffi::gpointer,
         ) {
-            let start = from_glib_borrow(start);
-            let end = from_glib_borrow(end);
-            let error = from_glib_borrow(error);
-            let callback = user_data as *mut P;
-            (*callback)(&start, &end, &error);
+            unsafe {
+                let start = from_glib_borrow(start);
+                let end = from_glib_borrow(end);
+                let error = from_glib_borrow(error);
+                let callback = user_data as *mut P;
+                (*callback)(&start, &end, &error);
+            }
         }
         let error_func = Some(error_func_func::<P> as _);
         let super_callback0: &mut P = &mut error_func_data;
@@ -161,7 +163,7 @@ macro_rules! define_render_node {
         impl glib::translate::FromGlibPtrFull<*mut crate::ffi::GskRenderNode> for $rust_type {
             #[inline]
             unsafe fn from_glib_full(ptr: *mut crate::ffi::GskRenderNode) -> Self {
-                glib::translate::from_glib_full(ptr as *mut $ffi_type)
+                unsafe { glib::translate::from_glib_full(ptr as *mut $ffi_type) }
             }
         }
 

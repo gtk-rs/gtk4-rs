@@ -54,15 +54,19 @@ unsafe impl<T: PopoverImpl> IsSubclassable<T> for Popover {
 }
 
 unsafe extern "C" fn popover_activate_default<T: PopoverImpl>(ptr: *mut ffi::GtkPopover) {
-    let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.imp();
+    unsafe {
+        let instance = &*(ptr as *mut T::Instance);
+        let imp = instance.imp();
 
-    imp.activate_default()
+        imp.activate_default()
+    }
 }
 
 unsafe extern "C" fn popover_closed<T: PopoverImpl>(ptr: *mut ffi::GtkPopover) {
-    let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.imp();
+    unsafe {
+        let instance = &*(ptr as *mut T::Instance);
+        let imp = instance.imp();
 
-    imp.closed()
+        imp.closed()
+    }
 }

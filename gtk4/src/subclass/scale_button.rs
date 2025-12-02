@@ -45,8 +45,10 @@ unsafe extern "C" fn scale_button_value_changed<T: ScaleButtonImpl>(
     ptr: *mut ffi::GtkScaleButton,
     new_value: f64,
 ) {
-    let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.imp();
+    unsafe {
+        let instance = &*(ptr as *mut T::Instance);
+        let imp = instance.imp();
 
-    imp.value_changed(new_value)
+        imp.value_changed(new_value)
+    }
 }

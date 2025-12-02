@@ -92,23 +92,29 @@ unsafe extern "C" fn dialog_response<T: NativeDialogImpl>(
     ptr: *mut ffi::GtkNativeDialog,
     responseptr: i32,
 ) {
-    let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.imp();
-    let res: ResponseType = from_glib(responseptr);
+    unsafe {
+        let instance = &*(ptr as *mut T::Instance);
+        let imp = instance.imp();
+        let res: ResponseType = from_glib(responseptr);
 
-    imp.response(res)
+        imp.response(res)
+    }
 }
 
 unsafe extern "C" fn dialog_show<T: NativeDialogImpl>(ptr: *mut ffi::GtkNativeDialog) {
-    let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.imp();
+    unsafe {
+        let instance = &*(ptr as *mut T::Instance);
+        let imp = instance.imp();
 
-    imp.show()
+        imp.show()
+    }
 }
 
 unsafe extern "C" fn dialog_hide<T: NativeDialogImpl>(ptr: *mut ffi::GtkNativeDialog) {
-    let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.imp();
+    unsafe {
+        let instance = &*(ptr as *mut T::Instance);
+        let imp = instance.imp();
 
-    imp.hide()
+        imp.hide()
+    }
 }

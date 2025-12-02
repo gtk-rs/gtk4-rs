@@ -46,8 +46,10 @@ unsafe impl<T: StyleContextImpl> IsSubclassable<T> for StyleContext {
 }
 
 unsafe extern "C" fn style_context_changed<T: StyleContextImpl>(ptr: *mut ffi::GtkStyleContext) {
-    let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.imp();
+    unsafe {
+        let instance = &*(ptr as *mut T::Instance);
+        let imp = instance.imp();
 
-    imp.changed()
+        imp.changed()
+    }
 }

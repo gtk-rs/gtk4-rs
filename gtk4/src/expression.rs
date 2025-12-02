@@ -179,8 +179,10 @@ unsafe impl<'a> glib::value::FromValue<'a> for Expression {
 
     #[inline]
     unsafe fn from_value(value: &'a glib::Value) -> Self {
-        skip_assert_initialized!();
-        from_glib_full(crate::ffi::gtk_value_dup_expression(value.to_glib_none().0))
+        unsafe {
+            skip_assert_initialized!();
+            from_glib_full(crate::ffi::gtk_value_dup_expression(value.to_glib_none().0))
+        }
     }
 }
 
@@ -360,7 +362,7 @@ macro_rules! define_expression {
         impl FromGlibPtrFull<*mut crate::ffi::GtkExpression> for $rust_type {
             #[inline]
             unsafe fn from_glib_full(ptr: *mut crate::ffi::GtkExpression) -> Self {
-                from_glib_full(ptr as *mut $ffi_type)
+                unsafe { from_glib_full(ptr as *mut $ffi_type) }
             }
         }
 
@@ -375,8 +377,10 @@ macro_rules! define_expression {
 
             #[inline]
             unsafe fn from_value(value: &'a glib::Value) -> Self {
-                skip_assert_initialized!();
-                from_glib_full(crate::ffi::gtk_value_dup_expression(value.to_glib_none().0))
+                unsafe {
+                    skip_assert_initialized!();
+                    from_glib_full(crate::ffi::gtk_value_dup_expression(value.to_glib_none().0))
+                }
             }
         }
 

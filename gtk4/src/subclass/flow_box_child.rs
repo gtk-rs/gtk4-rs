@@ -41,8 +41,10 @@ unsafe impl<T: FlowBoxChildImpl> IsSubclassable<T> for FlowBoxChild {
 }
 
 unsafe extern "C" fn child_activate<T: FlowBoxChildImpl>(ptr: *mut ffi::GtkFlowBoxChild) {
-    let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.imp();
+    unsafe {
+        let instance = &*(ptr as *mut T::Instance);
+        let imp = instance.imp();
 
-    imp.activate()
+        imp.activate()
+    }
 }

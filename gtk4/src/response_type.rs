@@ -123,8 +123,10 @@ unsafe impl FromValue<'_> for ResponseType {
 
     #[inline]
     unsafe fn from_value(value: &glib::Value) -> Self {
-        skip_assert_initialized!();
-        from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+        unsafe {
+            skip_assert_initialized!();
+            from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+        }
     }
 }
 
