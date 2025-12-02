@@ -226,7 +226,7 @@ unsafe impl<T: FontChooserImpl> IsImplementable<T> for FontChooser {
 
 unsafe extern "C" fn font_chooser_get_font_family<T: FontChooserImpl>(
     font_chooser: *mut ffi::GtkFontChooser,
-) -> *mut pango::ffi::PangoFontFamily {
+) -> *mut pango::ffi::PangoFontFamily { unsafe {
     let instance = &*(font_chooser as *mut T::Instance);
     let imp = instance.imp();
 
@@ -248,11 +248,11 @@ unsafe extern "C" fn font_chooser_get_font_family<T: FontChooserImpl>(
     } else {
         std::ptr::null_mut()
     }
-}
+}}
 
 unsafe extern "C" fn font_chooser_get_font_face<T: FontChooserImpl>(
     font_chooser: *mut ffi::GtkFontChooser,
-) -> *mut pango::ffi::PangoFontFace {
+) -> *mut pango::ffi::PangoFontFace { unsafe {
     let instance = &*(font_chooser as *mut T::Instance);
     let imp = instance.imp();
 
@@ -272,54 +272,54 @@ unsafe extern "C" fn font_chooser_get_font_face<T: FontChooserImpl>(
     } else {
         std::ptr::null_mut()
     }
-}
+}}
 
 unsafe extern "C" fn font_chooser_get_font_size<T: FontChooserImpl>(
     font_chooser: *mut ffi::GtkFontChooser,
-) -> i32 {
+) -> i32 { unsafe {
     let instance = &*(font_chooser as *mut T::Instance);
     let imp = instance.imp();
 
     imp.font_size()
-}
+}}
 
 unsafe extern "C" fn font_chooser_font_activated<T: FontChooserImpl>(
     font_chooser: *mut ffi::GtkFontChooser,
     font_nameptr: *const libc::c_char,
-) {
+) { unsafe {
     let instance = &*(font_chooser as *mut T::Instance);
     let imp = instance.imp();
     let font_name: Borrowed<GString> = from_glib_borrow(font_nameptr);
 
     imp.font_activated(&font_name)
-}
+}}
 
 unsafe extern "C" fn font_chooser_set_font_map<T: FontChooserImpl>(
     font_chooser: *mut ffi::GtkFontChooser,
     font_mapptr: *mut pango::ffi::PangoFontMap,
-) {
+) { unsafe {
     let instance = &*(font_chooser as *mut T::Instance);
     let imp = instance.imp();
     let font_map: Borrowed<Option<FontMap>> = from_glib_borrow(font_mapptr);
 
     imp.set_font_map(font_map.as_ref().as_ref())
-}
+}}
 
 unsafe extern "C" fn font_chooser_get_font_map<T: FontChooserImpl>(
     font_chooser: *mut ffi::GtkFontChooser,
-) -> *mut pango::ffi::PangoFontMap {
+) -> *mut pango::ffi::PangoFontMap { unsafe {
     let instance = &*(font_chooser as *mut T::Instance);
     let imp = instance.imp();
 
     imp.font_map().into_glib_ptr()
-}
+}}
 
 unsafe extern "C" fn font_chooser_set_filter_func<T: FontChooserImpl>(
     font_chooser: *mut ffi::GtkFontChooser,
     filter_func: ffi::GtkFontFilterFunc,
     user_data: glib::ffi::gpointer,
     destroy_notify: glib::ffi::GDestroyNotify,
-) {
+) { unsafe {
     let instance = &*(font_chooser as *mut T::Instance);
     let imp = instance.imp();
 
@@ -334,4 +334,4 @@ unsafe extern "C" fn font_chooser_set_filter_func<T: FontChooserImpl>(
     };
 
     imp.set_filter_func(callback);
-}
+}}

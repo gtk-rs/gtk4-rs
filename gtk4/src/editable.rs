@@ -42,7 +42,7 @@ unsafe extern "C" fn insert_text_trampoline<T, F: Fn(&T, &str, &mut i32) + 'stat
     f: &F,
 ) where
     T: IsA<Editable>,
-{
+{ unsafe {
     let buf = if new_text_length == 0 {
         &[]
     } else if new_text_length != -1 {
@@ -56,4 +56,4 @@ unsafe extern "C" fn insert_text_trampoline<T, F: Fn(&T, &str, &mut i32) + 'stat
         string,
         &mut *position,
     );
-}
+}}

@@ -55,19 +55,19 @@ impl Default for CustomSorter {
 
 unsafe extern "C" fn destroy_closure<F: Fn(&glib::Object, &glib::Object) -> Ordering + 'static>(
     ptr: glib::ffi::gpointer,
-) {
+) { unsafe {
     let _ = Box::<F>::from_raw(ptr as *mut _);
-}
+}}
 
 unsafe extern "C" fn trampoline<F: Fn(&glib::Object, &glib::Object) -> Ordering + 'static>(
     a: glib::ffi::gconstpointer,
     b: glib::ffi::gconstpointer,
     f: glib::ffi::gpointer,
-) -> i32 {
+) -> i32 { unsafe {
     let f: &F = &*(f as *const F);
     f(
         &from_glib_borrow(a as *mut glib::gobject_ffi::GObject),
         &from_glib_borrow(b as *mut glib::gobject_ffi::GObject),
     )
     .into_glib()
-}
+}}

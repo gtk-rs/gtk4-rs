@@ -148,7 +148,7 @@ unsafe extern "C" fn entry_buffer_delete_text<T: EntryBufferImpl>(
     ptr: *mut ffi::GtkEntryBuffer,
     position: u32,
     n_chars: u32,
-) -> u32 {
+) -> u32 { unsafe {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
 
@@ -159,13 +159,13 @@ unsafe extern "C" fn entry_buffer_delete_text<T: EntryBufferImpl>(
     };
 
     imp.delete_text(position, n_chars)
-}
+}}
 
 unsafe extern "C" fn entry_buffer_deleted_text<T: EntryBufferImpl>(
     ptr: *mut ffi::GtkEntryBuffer,
     position: u32,
     n_chars: u32,
-) {
+) { unsafe {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
 
@@ -176,12 +176,12 @@ unsafe extern "C" fn entry_buffer_deleted_text<T: EntryBufferImpl>(
     };
 
     imp.deleted_text(position, n_chars)
-}
+}}
 
 unsafe extern "C" fn entry_buffer_get_text<T: EntryBufferImpl>(
     ptr: *mut ffi::GtkEntryBuffer,
     n_bytes: *mut usize,
-) -> *const libc::c_char {
+) -> *const libc::c_char { unsafe {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
 
@@ -203,44 +203,44 @@ unsafe extern "C" fn entry_buffer_get_text<T: EntryBufferImpl>(
         }),
     );
     fullptr
-}
+}}
 
 unsafe extern "C" fn entry_buffer_get_length<T: EntryBufferImpl>(
     ptr: *mut ffi::GtkEntryBuffer,
-) -> u32 {
+) -> u32 { unsafe {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
 
     imp.length()
-}
+}}
 
 unsafe extern "C" fn entry_buffer_insert_text<T: EntryBufferImpl>(
     ptr: *mut ffi::GtkEntryBuffer,
     position: u32,
     charsptr: *const libc::c_char,
     n_chars: u32,
-) -> u32 {
+) -> u32 { unsafe {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
     let text: Borrowed<GString> = from_glib_borrow(charsptr);
 
     let chars = text_n_chars(&text, n_chars);
     imp.insert_text(position, chars)
-}
+}}
 
 unsafe extern "C" fn entry_buffer_inserted_text<T: EntryBufferImpl>(
     ptr: *mut ffi::GtkEntryBuffer,
     position: u32,
     charsptr: *const libc::c_char,
     length: u32,
-) {
+) { unsafe {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
     let text: Borrowed<GString> = from_glib_borrow(charsptr);
 
     let chars = text_n_chars(&text, length);
     imp.inserted_text(position, chars)
-}
+}}
 
 #[doc(alias = "get_text_n_chars")]
 fn text_n_chars(text: &str, n_chars: u32) -> &str {

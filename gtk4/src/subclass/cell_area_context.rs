@@ -130,48 +130,48 @@ unsafe impl<T: CellAreaContextImpl> IsSubclassable<T> for CellAreaContext {
 
 unsafe extern "C" fn cell_area_context_reset<T: CellAreaContextImpl>(
     ptr: *mut ffi::GtkCellAreaContext,
-) {
+) { unsafe {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
 
     imp.reset()
-}
+}}
 
 unsafe extern "C" fn cell_area_context_get_preferred_height_for_width<T: CellAreaContextImpl>(
     ptr: *mut ffi::GtkCellAreaContext,
     width: i32,
     minimum_height: *mut libc::c_int,
     natural_height: *mut libc::c_int,
-) {
+) { unsafe {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
 
     let (min_height, nat_height) = imp.preferred_height_for_width(width);
     *minimum_height = min_height;
     *natural_height = nat_height;
-}
+}}
 
 unsafe extern "C" fn cell_area_context_get_preferred_width_for_height<T: CellAreaContextImpl>(
     ptr: *mut ffi::GtkCellAreaContext,
     height: i32,
     minimum_width: *mut libc::c_int,
     natural_width: *mut libc::c_int,
-) {
+) { unsafe {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
 
     let (min_width, nat_width) = imp.preferred_width_for_height(height);
     *minimum_width = min_width;
     *natural_width = nat_width;
-}
+}}
 
 unsafe extern "C" fn cell_area_context_allocate<T: CellAreaContextImpl>(
     ptr: *mut ffi::GtkCellAreaContext,
     width: i32,
     height: i32,
-) {
+) { unsafe {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
 
     imp.allocate(width, height)
-}
+}}

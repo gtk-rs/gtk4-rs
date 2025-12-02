@@ -142,57 +142,57 @@ unsafe impl<T: PaintableImpl> IsImplementable<T> for Paintable {
 
 unsafe extern "C" fn paintable_get_current_image<T: PaintableImpl>(
     paintable: *mut ffi::GdkPaintable,
-) -> *mut ffi::GdkPaintable {
+) -> *mut ffi::GdkPaintable { unsafe {
     let instance = &*(paintable as *mut T::Instance);
     let imp = instance.imp();
 
     imp.current_image().into_glib_ptr()
-}
+}}
 
 unsafe extern "C" fn paintable_get_flags<T: PaintableImpl>(
     paintable: *mut ffi::GdkPaintable,
-) -> ffi::GdkPaintableFlags {
+) -> ffi::GdkPaintableFlags { unsafe {
     let instance = &*(paintable as *mut T::Instance);
     let imp = instance.imp();
 
     imp.flags().into_glib()
-}
+}}
 
 unsafe extern "C" fn paintable_get_intrinsic_width<T: PaintableImpl>(
     paintable: *mut ffi::GdkPaintable,
-) -> i32 {
+) -> i32 { unsafe {
     let instance = &*(paintable as *mut T::Instance);
     let imp = instance.imp();
 
     imp.intrinsic_width()
-}
+}}
 
 unsafe extern "C" fn paintable_get_intrinsic_height<T: PaintableImpl>(
     paintable: *mut ffi::GdkPaintable,
-) -> i32 {
+) -> i32 { unsafe {
     let instance = &*(paintable as *mut T::Instance);
     let imp = instance.imp();
 
     imp.intrinsic_height()
-}
+}}
 
 unsafe extern "C" fn paintable_get_intrinsic_aspect_ratio<T: PaintableImpl>(
     paintable: *mut ffi::GdkPaintable,
-) -> f64 {
+) -> f64 { unsafe {
     let instance = &*(paintable as *mut T::Instance);
     let imp = instance.imp();
 
     imp.intrinsic_aspect_ratio()
-}
+}}
 
 unsafe extern "C" fn paintable_snapshot<T: PaintableImpl>(
     paintable: *mut ffi::GdkPaintable,
     snapshotptr: *mut ffi::GdkSnapshot,
     width: f64,
     height: f64,
-) {
+) { unsafe {
     let instance = &*(paintable as *mut T::Instance);
     let imp = instance.imp();
 
     imp.snapshot(&Snapshot::from_glib_borrow(snapshotptr), width, height)
-}
+}}

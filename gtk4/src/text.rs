@@ -15,10 +15,10 @@ impl Text {
         unsafe extern "C" fn activate_trampoline<F: Fn(&Text) + 'static>(
             this: *mut ffi::GtkText,
             f: glib::ffi::gpointer,
-        ) {
+        ) { unsafe {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
-        }
+        }}
         unsafe {
             let f: Box<F> = Box::new(f);
             connect_raw(
@@ -36,10 +36,10 @@ impl Text {
         unsafe extern "C" fn backspace_trampoline<F: Fn(&Text) + 'static>(
             this: *mut ffi::GtkText,
             f: glib::ffi::gpointer,
-        ) {
+        ) { unsafe {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
-        }
+        }}
         unsafe {
             let f: Box<F> = Box::new(f);
             connect_raw(
@@ -57,10 +57,10 @@ impl Text {
         unsafe extern "C" fn copy_clipboard_trampoline<F: Fn(&Text) + 'static>(
             this: *mut ffi::GtkText,
             f: glib::ffi::gpointer,
-        ) {
+        ) { unsafe {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
-        }
+        }}
         unsafe {
             let f: Box<F> = Box::new(f);
             connect_raw(
@@ -78,10 +78,10 @@ impl Text {
         unsafe extern "C" fn cut_clipboard_trampoline<F: Fn(&Text) + 'static>(
             this: *mut ffi::GtkText,
             f: glib::ffi::gpointer,
-        ) {
+        ) { unsafe {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
-        }
+        }}
         unsafe {
             let f: Box<F> = Box::new(f);
             connect_raw(
@@ -106,10 +106,10 @@ impl Text {
             type_: ffi::GtkDeleteType,
             count: libc::c_int,
             f: glib::ffi::gpointer,
-        ) {
+        ) { unsafe {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this), from_glib(type_), count)
-        }
+        }}
         unsafe {
             let f: Box<F> = Box::new(f);
             connect_raw(
@@ -128,10 +128,10 @@ impl Text {
             this: *mut ffi::GtkText,
             string: *mut libc::c_char,
             f: glib::ffi::gpointer,
-        ) {
+        ) { unsafe {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this), &GString::from_glib_borrow(string))
-        }
+        }}
         unsafe {
             let f: Box<F> = Box::new(f);
             connect_raw(
@@ -149,10 +149,10 @@ impl Text {
         unsafe extern "C" fn insert_emoji_trampoline<F: Fn(&Text) + 'static>(
             this: *mut ffi::GtkText,
             f: glib::ffi::gpointer,
-        ) {
+        ) { unsafe {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
-        }
+        }}
         unsafe {
             let f: Box<F> = Box::new(f);
             connect_raw(
@@ -178,7 +178,7 @@ impl Text {
             count: libc::c_int,
             extend: glib::ffi::gboolean,
             f: glib::ffi::gpointer,
-        ) {
+        ) { unsafe {
             let f: &F = &*(f as *const F);
             f(
                 &from_glib_borrow(this),
@@ -186,7 +186,7 @@ impl Text {
                 count,
                 from_glib(extend),
             )
-        }
+        }}
         unsafe {
             let f: Box<F> = Box::new(f);
             connect_raw(
@@ -204,10 +204,10 @@ impl Text {
         unsafe extern "C" fn paste_clipboard_trampoline<F: Fn(&Text) + 'static>(
             this: *mut ffi::GtkText,
             f: glib::ffi::gpointer,
-        ) {
+        ) { unsafe {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
-        }
+        }}
         unsafe {
             let f: Box<F> = Box::new(f);
             connect_raw(
@@ -226,10 +226,10 @@ impl Text {
             this: *mut ffi::GtkText,
             widget: *mut ffi::GtkWidget,
             f: glib::ffi::gpointer,
-        ) {
+        ) { unsafe {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this), &from_glib_borrow(widget))
-        }
+        }}
         unsafe {
             let f: Box<F> = Box::new(f);
             connect_raw(
@@ -248,10 +248,10 @@ impl Text {
             this: *mut ffi::GtkText,
             preedit: *mut libc::c_char,
             f: glib::ffi::gpointer,
-        ) {
+        ) { unsafe {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this), &GString::from_glib_borrow(preedit))
-        }
+        }}
         unsafe {
             let f: Box<F> = Box::new(f);
             connect_raw(
@@ -269,10 +269,10 @@ impl Text {
         unsafe extern "C" fn toggle_overwrite_trampoline<F: Fn(&Text) + 'static>(
             this: *mut ffi::GtkText,
             f: glib::ffi::gpointer,
-        ) {
+        ) { unsafe {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
-        }
+        }}
         unsafe {
             let f: Box<F> = Box::new(f);
             connect_raw(

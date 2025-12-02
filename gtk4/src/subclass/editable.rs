@@ -280,43 +280,43 @@ unsafe extern "C" fn editable_insert_text<T: EditableImpl>(
     text: *const c_char,
     length: c_int,
     position: *mut c_int,
-) {
+) { unsafe {
     let instance = &*(editable as *mut T::Instance);
     let imp = instance.imp();
 
     imp.insert_text(&GString::from_glib_borrow(text), length, &mut *position)
-}
+}}
 
 unsafe extern "C" fn editable_delete_text<T: EditableImpl>(
     editable: *mut ffi::GtkEditable,
     start_position: c_int,
     end_position: c_int,
-) {
+) { unsafe {
     let instance = &*(editable as *mut T::Instance);
     let imp = instance.imp();
 
     imp.delete_text(start_position, end_position)
-}
+}}
 
-unsafe extern "C" fn editable_changed<T: EditableImpl>(editable: *mut ffi::GtkEditable) {
+unsafe extern "C" fn editable_changed<T: EditableImpl>(editable: *mut ffi::GtkEditable) { unsafe {
     let instance = &*(editable as *mut T::Instance);
     let imp = instance.imp();
 
     imp.changed()
-}
+}}
 
 unsafe extern "C" fn editable_get_text<T: EditableImpl>(
     editable: *mut ffi::GtkEditable,
-) -> *const c_char {
+) -> *const c_char { unsafe {
     let instance = &*(editable as *mut T::Instance);
     let imp = instance.imp();
 
     imp.text().into_glib_ptr()
-}
+}}
 
 unsafe extern "C" fn editable_get_delegate<T: EditableImpl>(
     editable: *mut ffi::GtkEditable,
-) -> *mut ffi::GtkEditable {
+) -> *mut ffi::GtkEditable { unsafe {
     let instance = &*(editable as *mut T::Instance);
     let imp = instance.imp();
 
@@ -338,36 +338,36 @@ unsafe extern "C" fn editable_get_delegate<T: EditableImpl>(
         }
     };
     delegate.to_glib_none().0
-}
+}}
 
 unsafe extern "C" fn editable_do_insert_text<T: EditableImpl>(
     editable: *mut ffi::GtkEditable,
     text: *const c_char,
     length: i32,
     position: *mut i32,
-) {
+) { unsafe {
     let instance = &*(editable as *mut T::Instance);
     let imp = instance.imp();
 
     imp.do_insert_text(&GString::from_glib_borrow(text), length, &mut *position)
-}
+}}
 
 unsafe extern "C" fn editable_do_delete_text<T: EditableImpl>(
     editable: *mut ffi::GtkEditable,
     start_position: i32,
     end_position: i32,
-) {
+) { unsafe {
     let instance = &*(editable as *mut T::Instance);
     let imp = instance.imp();
 
     imp.do_delete_text(start_position, end_position)
-}
+}}
 
 unsafe extern "C" fn editable_get_selection_bounds<T: EditableImpl>(
     editable: *mut ffi::GtkEditable,
     start_position: *mut i32,
     end_position: *mut i32,
-) -> glib::ffi::gboolean {
+) -> glib::ffi::gboolean { unsafe {
     let instance = &*(editable as *mut T::Instance);
     let imp = instance.imp();
 
@@ -385,15 +385,15 @@ unsafe extern "C" fn editable_get_selection_bounds<T: EditableImpl>(
         *end_position = 0;
         false.into_glib()
     }
-}
+}}
 
 unsafe extern "C" fn editable_set_selection_bounds<T: EditableImpl>(
     editable: *mut ffi::GtkEditable,
     start_position: i32,
     end_position: i32,
-) {
+) { unsafe {
     let instance = &*(editable as *mut T::Instance);
     let imp = instance.imp();
 
     imp.set_selection_bounds(start_position, end_position)
-}
+}}

@@ -77,7 +77,7 @@ pub trait TextBufferExtManual: IsA<TextBuffer> + 'static {
                 f: glib::ffi::gpointer,
             ) where
                 T: IsA<TextBuffer>,
-            {
+            { unsafe {
                 let mut location_copy = from_glib_none(location);
                 let f: &F = &*(f as *const F);
                 let text = if len <= 0 {
@@ -91,7 +91,7 @@ pub trait TextBufferExtManual: IsA<TextBuffer> + 'static {
                     &mut location_copy,
                     str::from_utf8(text).unwrap(),
                 )
-            }
+            }}
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.to_glib_none().0 as *mut _,

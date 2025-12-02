@@ -36,20 +36,20 @@ pub trait DrawingAreaExtManual: IsA<DrawingArea> + 'static {
             width: libc::c_int,
             height: libc::c_int,
             user_data: glib::ffi::gpointer,
-        ) {
+        ) { unsafe {
             let drawing_area = from_glib_borrow(drawing_area);
             let cr = from_glib_borrow(cr);
             let callback: &RefCell<P> = &*(user_data as *mut _);
             (callback.borrow_mut())(&drawing_area, &cr, width, height);
-        }
+        }}
 
         unsafe extern "C" fn destroy_func<
             P: FnMut(&DrawingArea, &cairo::Context, i32, i32) + 'static,
         >(
             data: glib::ffi::gpointer,
-        ) {
+        ) { unsafe {
             let _callback: Box<RefCell<P>> = Box::from_raw(data as *mut _);
-        }
+        }}
 
         let callback: Box<RefCell<P>> = Box::new(RefCell::new(draw_func));
         unsafe {

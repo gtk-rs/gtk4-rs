@@ -609,7 +609,7 @@ unsafe extern "C" fn cell_area_set_cell_property<T: CellAreaImpl>(
     id: u32,
     valueptr: *mut glib::gobject_ffi::GValue,
     pspecptr: *mut glib::gobject_ffi::GParamSpec,
-) {
+) { unsafe {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
     imp.set_cell_property(
@@ -618,7 +618,7 @@ unsafe extern "C" fn cell_area_set_cell_property<T: CellAreaImpl>(
         &*(valueptr as *mut Value),
         &from_glib_borrow(pspecptr),
     );
-}
+}}
 
 unsafe extern "C" fn cell_area_get_cell_property<T: CellAreaImpl>(
     ptr: *mut ffi::GtkCellArea,
@@ -626,7 +626,7 @@ unsafe extern "C" fn cell_area_get_cell_property<T: CellAreaImpl>(
     id: u32,
     valueptr: *mut glib::gobject_ffi::GValue,
     pspecptr: *mut glib::gobject_ffi::GParamSpec,
-) {
+) { unsafe {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
 
@@ -640,18 +640,18 @@ unsafe extern "C" fn cell_area_get_cell_property<T: CellAreaImpl>(
     glib::gobject_ffi::g_value_unset(valueptr);
     let value = mem::ManuallyDrop::new(value);
     std::ptr::write(valueptr, std::ptr::read(value.to_glib_none().0));
-}
+}}
 
 unsafe extern "C" fn cell_area_add<T: CellAreaImpl>(
     ptr: *mut ffi::GtkCellArea,
     rendererptr: *mut ffi::GtkCellRenderer,
-) {
+) { unsafe {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
     let renderer: Borrowed<CellRenderer> = from_glib_borrow(rendererptr);
 
     imp.add(&*renderer)
-}
+}}
 
 unsafe extern "C" fn cell_area_apply_attributes<T: CellAreaImpl>(
     ptr: *mut ffi::GtkCellArea,
@@ -659,7 +659,7 @@ unsafe extern "C" fn cell_area_apply_attributes<T: CellAreaImpl>(
     iterptr: *mut ffi::GtkTreeIter,
     is_expander: glib::ffi::gboolean,
     is_expanded: glib::ffi::gboolean,
-) {
+) { unsafe {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
     let model: Borrowed<TreeModel> = from_glib_borrow(modelptr);
@@ -671,46 +671,46 @@ unsafe extern "C" fn cell_area_apply_attributes<T: CellAreaImpl>(
         from_glib(is_expander),
         from_glib(is_expanded),
     )
-}
+}}
 
 unsafe extern "C" fn cell_area_remove<T: CellAreaImpl>(
     ptr: *mut ffi::GtkCellArea,
     rendererptr: *mut ffi::GtkCellRenderer,
-) {
+) { unsafe {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
     let renderer: Borrowed<CellRenderer> = from_glib_borrow(rendererptr);
 
     imp.remove(&*renderer)
-}
+}}
 
 unsafe extern "C" fn cell_area_is_activatable<T: CellAreaImpl>(
     ptr: *mut ffi::GtkCellArea,
-) -> glib::ffi::gboolean {
+) -> glib::ffi::gboolean { unsafe {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
 
     imp.is_activatable().into_glib()
-}
+}}
 
 unsafe extern "C" fn cell_area_focus<T: CellAreaImpl>(
     ptr: *mut ffi::GtkCellArea,
     directionptr: ffi::GtkDirectionType,
-) -> glib::ffi::gboolean {
+) -> glib::ffi::gboolean { unsafe {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
 
     imp.focus(from_glib(directionptr)).into_glib()
-}
+}}
 
 unsafe extern "C" fn cell_area_get_request_mode<T: CellAreaImpl>(
     ptr: *mut ffi::GtkCellArea,
-) -> ffi::GtkSizeRequestMode {
+) -> ffi::GtkSizeRequestMode { unsafe {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
 
     imp.request_mode().into_glib()
-}
+}}
 
 unsafe extern "C" fn cell_area_get_preferred_height<T: CellAreaImpl>(
     ptr: *mut ffi::GtkCellArea,
@@ -718,7 +718,7 @@ unsafe extern "C" fn cell_area_get_preferred_height<T: CellAreaImpl>(
     wdgtptr: *mut ffi::GtkWidget,
     minptr: *mut libc::c_int,
     natptr: *mut libc::c_int,
-) {
+) { unsafe {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
     let context: Borrowed<CellAreaContext> = from_glib_borrow(contextptr);
@@ -731,7 +731,7 @@ unsafe extern "C" fn cell_area_get_preferred_height<T: CellAreaImpl>(
     if !natptr.is_null() {
         *natptr = nat_size;
     }
-}
+}}
 
 unsafe extern "C" fn cell_area_get_preferred_width<T: CellAreaImpl>(
     ptr: *mut ffi::GtkCellArea,
@@ -739,7 +739,7 @@ unsafe extern "C" fn cell_area_get_preferred_width<T: CellAreaImpl>(
     wdgtptr: *mut ffi::GtkWidget,
     minptr: *mut libc::c_int,
     natptr: *mut libc::c_int,
-) {
+) { unsafe {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
     let context: Borrowed<CellAreaContext> = from_glib_borrow(contextptr);
@@ -752,7 +752,7 @@ unsafe extern "C" fn cell_area_get_preferred_width<T: CellAreaImpl>(
     if !natptr.is_null() {
         *natptr = nat_size;
     }
-}
+}}
 
 unsafe extern "C" fn cell_area_get_preferred_width_for_height<T: CellAreaImpl>(
     ptr: *mut ffi::GtkCellArea,
@@ -761,7 +761,7 @@ unsafe extern "C" fn cell_area_get_preferred_width_for_height<T: CellAreaImpl>(
     height: i32,
     min_width_ptr: *mut libc::c_int,
     nat_width_ptr: *mut libc::c_int,
-) {
+) { unsafe {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
     let context: Borrowed<CellAreaContext> = from_glib_borrow(contextptr);
@@ -774,7 +774,7 @@ unsafe extern "C" fn cell_area_get_preferred_width_for_height<T: CellAreaImpl>(
     if !nat_width_ptr.is_null() {
         *nat_width_ptr = nat_width;
     }
-}
+}}
 
 unsafe extern "C" fn cell_area_get_preferred_height_for_width<T: CellAreaImpl>(
     ptr: *mut ffi::GtkCellArea,
@@ -783,7 +783,7 @@ unsafe extern "C" fn cell_area_get_preferred_height_for_width<T: CellAreaImpl>(
     width: i32,
     min_height_ptr: *mut libc::c_int,
     nat_height_ptr: *mut libc::c_int,
-) {
+) { unsafe {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
     let context: Borrowed<CellAreaContext> = from_glib_borrow(contextptr);
@@ -796,7 +796,7 @@ unsafe extern "C" fn cell_area_get_preferred_height_for_width<T: CellAreaImpl>(
     if !nat_height_ptr.is_null() {
         *nat_height_ptr = nat_height;
     }
-}
+}}
 
 unsafe extern "C" fn cell_area_activate<T: CellAreaImpl>(
     ptr: *mut ffi::GtkCellArea,
@@ -805,7 +805,7 @@ unsafe extern "C" fn cell_area_activate<T: CellAreaImpl>(
     cellptr: *const gdk::ffi::GdkRectangle,
     flags: ffi::GtkCellRendererState,
     edit_only: glib::ffi::gboolean,
-) -> glib::ffi::gboolean {
+) -> glib::ffi::gboolean { unsafe {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
     let context: Borrowed<CellAreaContext> = from_glib_borrow(contextptr);
@@ -819,7 +819,7 @@ unsafe extern "C" fn cell_area_activate<T: CellAreaImpl>(
         from_glib(edit_only),
     )
     .into_glib()
-}
+}}
 
 unsafe extern "C" fn cell_area_snapshot<T: CellAreaImpl>(
     ptr: *mut ffi::GtkCellArea,
@@ -830,7 +830,7 @@ unsafe extern "C" fn cell_area_snapshot<T: CellAreaImpl>(
     cellptr: *const gdk::ffi::GdkRectangle,
     flags: ffi::GtkCellRendererState,
     paint_focus: glib::ffi::gboolean,
-) {
+) { unsafe {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
     let context: Borrowed<CellAreaContext> = from_glib_borrow(contextptr);
@@ -846,27 +846,27 @@ unsafe extern "C" fn cell_area_snapshot<T: CellAreaImpl>(
         from_glib(flags),
         from_glib(paint_focus),
     )
-}
+}}
 
 unsafe extern "C" fn cell_area_create_context<T: CellAreaImpl>(
     ptr: *mut ffi::GtkCellArea,
-) -> *mut ffi::GtkCellAreaContext {
+) -> *mut ffi::GtkCellAreaContext { unsafe {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
 
     imp.create_context().into_glib_ptr()
-}
+}}
 
 unsafe extern "C" fn cell_area_copy_context<T: CellAreaImpl>(
     ptr: *mut ffi::GtkCellArea,
     contextptr: *mut ffi::GtkCellAreaContext,
-) -> *mut ffi::GtkCellAreaContext {
+) -> *mut ffi::GtkCellAreaContext { unsafe {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
     let context: Borrowed<CellAreaContext> = from_glib_borrow(contextptr);
 
     imp.copy_context(&*context).into_glib_ptr()
-}
+}}
 
 unsafe extern "C" fn cell_area_event<T: CellAreaImpl>(
     ptr: *mut ffi::GtkCellArea,
@@ -875,7 +875,7 @@ unsafe extern "C" fn cell_area_event<T: CellAreaImpl>(
     eventptr: *mut gdk::ffi::GdkEvent,
     rectangleptr: *const gdk::ffi::GdkRectangle,
     flags: ffi::GtkCellRendererState,
-) -> glib::ffi::gboolean {
+) -> glib::ffi::gboolean { unsafe {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
     let context: Borrowed<CellAreaContext> = from_glib_borrow(contextptr);
@@ -885,13 +885,13 @@ unsafe extern "C" fn cell_area_event<T: CellAreaImpl>(
 
     imp.event(&*context, &*widget, &event, &rectangle, from_glib(flags))
         .into_glib()
-}
+}}
 
 unsafe extern "C" fn cell_area_foreach<T: CellAreaImpl>(
     ptr: *mut ffi::GtkCellArea,
     callback: ffi::GtkCellCallback,
     user_data: glib::ffi::gpointer,
-) {
+) { unsafe {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
 
@@ -901,7 +901,7 @@ unsafe extern "C" fn cell_area_foreach<T: CellAreaImpl>(
     };
 
     imp.foreach(&callback)
-}
+}}
 
 unsafe extern "C" fn cell_area_foreach_alloc<T: CellAreaImpl>(
     ptr: *mut ffi::GtkCellArea,
@@ -911,7 +911,7 @@ unsafe extern "C" fn cell_area_foreach_alloc<T: CellAreaImpl>(
     rectangleptr: *const gdk::ffi::GdkRectangle,
     callback: ffi::GtkCellAllocCallback,
     user_data: glib::ffi::gpointer,
-) {
+) { unsafe {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
     let context: Borrowed<CellAreaContext> = from_glib_borrow(contextptr);
@@ -925,7 +925,7 @@ unsafe extern "C" fn cell_area_foreach_alloc<T: CellAreaImpl>(
     };
 
     imp.foreach_alloc(&*context, &*widget, &area, &rectangle, &callback)
-}
+}}
 
 #[allow(clippy::missing_safety_doc)]
 pub unsafe trait CellAreaClassExt: ClassStruct {

@@ -21,13 +21,13 @@ pub trait WidgetExtManual: IsA<Widget> + 'static {
             widget: *mut ffi::GtkWidget,
             frame_clock: *mut gdk::ffi::GdkFrameClock,
             user_data: glib::ffi::gpointer,
-        ) -> glib::ffi::gboolean {
+        ) -> glib::ffi::gboolean { unsafe {
             let widget: Borrowed<Widget> = from_glib_borrow(widget);
             let frame_clock = from_glib_borrow(frame_clock);
             let callback: &P = &*(user_data as *mut _);
             let res = (*callback)(widget.unsafe_cast_ref(), &frame_clock);
             res.into_glib()
-        }
+        }}
         let callback = Some(callback_func::<Self, P> as _);
 
         unsafe extern "C" fn notify_func<
@@ -35,9 +35,9 @@ pub trait WidgetExtManual: IsA<Widget> + 'static {
             P: Fn(&O, &gdk::FrameClock) -> ControlFlow + 'static,
         >(
             data: glib::ffi::gpointer,
-        ) {
+        ) { unsafe {
             let _callback: Box<P> = Box::from_raw(data as *mut _);
-        }
+        }}
         let destroy_call = Some(notify_func::<Self, P> as _);
 
         let id = unsafe {

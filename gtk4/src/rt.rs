@@ -90,7 +90,7 @@ pub fn is_initialized_main_thread() -> bool {
 /// 3. You ensure that this thread is the main thread for the process.
 #[allow(unknown_lints)]
 #[allow(clippy::if_then_panic)]
-pub unsafe fn set_initialized() {
+pub unsafe fn set_initialized() { unsafe {
     skip_assert_initialized!();
     if is_initialized_main_thread() {
         return;
@@ -111,7 +111,7 @@ pub unsafe fn set_initialized() {
     }
     INITIALIZED.store(true, Ordering::Release);
     IS_MAIN_THREAD.with(|c| c.set(true));
-}
+}}
 
 /// Tries to initialize GTK.
 ///

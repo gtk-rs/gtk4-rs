@@ -48,7 +48,7 @@ unsafe impl<T: ScrollableImpl> IsImplementable<T> for Scrollable {
 unsafe extern "C" fn scrollable_get_border<T: ScrollableImpl>(
     scrollable: *mut ffi::GtkScrollable,
     borderptr: *mut ffi::GtkBorder,
-) -> glib::ffi::gboolean {
+) -> glib::ffi::gboolean { unsafe {
     let instance = &*(scrollable as *mut T::Instance);
     let imp = instance.imp();
 
@@ -64,4 +64,4 @@ unsafe extern "C" fn scrollable_get_border<T: ScrollableImpl>(
         };
         false.into_glib()
     }
-}
+}}

@@ -43,7 +43,7 @@ pub trait GdkCairoContextExt: sealed::Sealed {
         y: i32,
         width: i32,
         height: i32,
-    ) {
+    ) { unsafe {
         skip_assert_initialized!();
         ffi::gdk_cairo_draw_from_gl(
             self.to_raw(),
@@ -56,7 +56,7 @@ pub trait GdkCairoContextExt: sealed::Sealed {
             width,
             height,
         );
-    }
+    }}
 
     #[doc(alias = "gdk_cairo_set_source_rgba")]
     #[doc(alias = "set_source_rgba")]
