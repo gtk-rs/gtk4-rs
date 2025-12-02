@@ -77,25 +77,29 @@ unsafe extern "C" fn tree_drag_dest_drag_data_received<T: TreeDragDestImpl>(
     tree_drag_dest: *mut ffi::GtkTreeDragDest,
     destptr: *mut ffi::GtkTreePath,
     valueptr: *const glib::gobject_ffi::GValue,
-) -> glib::ffi::gboolean { unsafe {
-    let instance = &*(tree_drag_dest as *mut T::Instance);
-    let imp = instance.imp();
+) -> glib::ffi::gboolean {
+    unsafe {
+        let instance = &*(tree_drag_dest as *mut T::Instance);
+        let imp = instance.imp();
 
-    let dest: Borrowed<TreePath> = from_glib_borrow(destptr);
-    let value: Value = from_glib_none(valueptr);
+        let dest: Borrowed<TreePath> = from_glib_borrow(destptr);
+        let value: Value = from_glib_none(valueptr);
 
-    imp.drag_data_received(&dest, value).into_glib()
-}}
+        imp.drag_data_received(&dest, value).into_glib()
+    }
+}
 
 unsafe extern "C" fn tree_drag_dest_row_drop_possible<T: TreeDragDestImpl>(
     tree_drag_dest: *mut ffi::GtkTreeDragDest,
     destptr: *mut ffi::GtkTreePath,
     valueptr: *const glib::gobject_ffi::GValue,
-) -> glib::ffi::gboolean { unsafe {
-    let instance = &*(tree_drag_dest as *mut T::Instance);
-    let imp = instance.imp();
-    let dest: Borrowed<TreePath> = from_glib_borrow(destptr);
-    let value: Value = from_glib_none(valueptr);
+) -> glib::ffi::gboolean {
+    unsafe {
+        let instance = &*(tree_drag_dest as *mut T::Instance);
+        let imp = instance.imp();
+        let dest: Borrowed<TreePath> = from_glib_borrow(destptr);
+        let value: Value = from_glib_none(valueptr);
 
-    imp.row_drop_possible(&dest, value).into_glib()
-}}
+        imp.row_drop_possible(&dest, value).into_glib()
+    }
+}

@@ -75,19 +75,23 @@ unsafe impl<T: ShortcutManagerImpl> IsImplementable<T> for ShortcutManager {
 unsafe extern "C" fn shortcut_manager_add_controller<T: ShortcutManagerImpl>(
     shortcut_manager: *mut ffi::GtkShortcutManager,
     controller: *mut ffi::GtkShortcutController,
-) { unsafe {
-    let instance = &*(shortcut_manager as *mut T::Instance);
-    let imp = instance.imp();
+) {
+    unsafe {
+        let instance = &*(shortcut_manager as *mut T::Instance);
+        let imp = instance.imp();
 
-    imp.add_controller(&ShortcutController::from_glib_borrow(controller))
-}}
+        imp.add_controller(&ShortcutController::from_glib_borrow(controller))
+    }
+}
 
 unsafe extern "C" fn shortcut_manager_remove_controller<T: ShortcutManagerImpl>(
     shortcut_manager: *mut ffi::GtkShortcutManager,
     controller: *mut ffi::GtkShortcutController,
-) { unsafe {
-    let instance = &*(shortcut_manager as *mut T::Instance);
-    let imp = instance.imp();
+) {
+    unsafe {
+        let instance = &*(shortcut_manager as *mut T::Instance);
+        let imp = instance.imp();
 
-    imp.remove_controller(&ShortcutController::from_glib_borrow(controller))
-}}
+        imp.remove_controller(&ShortcutController::from_glib_borrow(controller))
+    }
+}

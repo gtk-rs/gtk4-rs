@@ -90,28 +90,30 @@ pub fn is_initialized_main_thread() -> bool {
 /// 3. You ensure that this thread is the main thread for the process.
 #[allow(unknown_lints)]
 #[allow(clippy::if_then_panic)]
-pub unsafe fn set_initialized() { unsafe {
-    skip_assert_initialized!();
-    if is_initialized_main_thread() {
-        return;
-    } else if is_initialized() {
-        panic!("Attempted to initialize GTK from two different threads.");
-    } else if !{ from_glib(ffi::gtk_is_initialized()) } {
-        panic!("GTK was not actually initialized");
+pub unsafe fn set_initialized() {
+    unsafe {
+        skip_assert_initialized!();
+        if is_initialized_main_thread() {
+            return;
+        } else if is_initialized() {
+            panic!("Attempted to initialize GTK from two different threads.");
+        } else if !{ from_glib(ffi::gtk_is_initialized()) } {
+            panic!("GTK was not actually initialized");
+        }
+        //  OS X has its own notion of the main thread and init must be called on that
+        // thread.
+        #[cfg(target_os = "macos")]
+        {
+            assert_ne!(
+                pthread_main_np(),
+                0,
+                "Attempted to initialize GTK on OSX from non-main thread"
+            );
+        }
+        INITIALIZED.store(true, Ordering::Release);
+        IS_MAIN_THREAD.with(|c| c.set(true));
     }
-    //  OS X has its own notion of the main thread and init must be called on that
-    // thread.
-    #[cfg(target_os = "macos")]
-    {
-        assert_ne!(
-            pthread_main_np(),
-            0,
-            "Attempted to initialize GTK on OSX from non-main thread"
-        );
-    }
-    INITIALIZED.store(true, Ordering::Release);
-    IS_MAIN_THREAD.with(|c| c.set(true));
-}}
+}
 
 /// Tries to initialize GTK.
 ///

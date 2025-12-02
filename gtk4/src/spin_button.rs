@@ -33,13 +33,15 @@ unsafe extern "C" fn input_trampoline<F: Fn(&SpinButton) -> Option<Result<f64, (
     this: *mut ffi::GtkSpinButton,
     new_value: *mut c_double,
     f: &F,
-) -> c_int { unsafe {
-    match f(SpinButton::from_glib_borrow(this).unsafe_cast_ref()) {
-        Some(Ok(v)) => {
-            *new_value = v;
-            glib::ffi::GTRUE
+) -> c_int {
+    unsafe {
+        match f(SpinButton::from_glib_borrow(this).unsafe_cast_ref()) {
+            Some(Ok(v)) => {
+                *new_value = v;
+                glib::ffi::GTRUE
+            }
+            Some(Err(_)) => ffi::GTK_INPUT_ERROR,
+            None => glib::ffi::GFALSE,
         }
-        Some(Err(_)) => ffi::GTK_INPUT_ERROR,
-        None => glib::ffi::GFALSE,
     }
-}}
+}

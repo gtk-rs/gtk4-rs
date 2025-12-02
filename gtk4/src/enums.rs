@@ -172,10 +172,12 @@ unsafe impl<'a> glib::value::FromValue<'a> for Align {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
     #[inline]
-    unsafe fn from_value(value: &'a glib::Value) -> Self { unsafe {
-        skip_assert_initialized!();
-        from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
-    }}
+    unsafe fn from_value(value: &'a glib::Value) -> Self {
+        unsafe {
+            skip_assert_initialized!();
+            from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+        }
+    }
 }
 
 impl glib::value::ToValue for Align {

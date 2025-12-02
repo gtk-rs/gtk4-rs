@@ -22,10 +22,12 @@ impl ShortcutsSection {
                 this: *mut ffi::GtkShortcutsSection,
                 object: libc::c_int,
                 f: glib::ffi::gpointer,
-            ) -> glib::ffi::gboolean { unsafe {
-                let f: &F = &*(f as *const F);
-                f(&from_glib_borrow(this), object).into_glib()
-            }}
+            ) -> glib::ffi::gboolean {
+                unsafe {
+                    let f: &F = &*(f as *const F);
+                    f(&from_glib_borrow(this), object).into_glib()
+                }
+            }
             let f = Box::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,

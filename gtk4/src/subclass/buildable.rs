@@ -207,103 +207,117 @@ unsafe impl<T: BuildableImpl> IsImplementable<T> for Buildable {
 unsafe extern "C" fn buildable_set_id<T: BuildableImpl>(
     buildable: *mut ffi::GtkBuildable,
     id: *const libc::c_char,
-) { unsafe {
-    let instance = &*(buildable as *mut T::Instance);
-    let imp = instance.imp();
-    let id = from_glib_borrow::<_, GString>(id);
+) {
+    unsafe {
+        let instance = &*(buildable as *mut T::Instance);
+        let imp = instance.imp();
+        let id = from_glib_borrow::<_, GString>(id);
 
-    imp.set_id(&id)
-}}
+        imp.set_id(&id)
+    }
+}
 
 unsafe extern "C" fn buildable_get_id<T: BuildableImpl>(
     buildable: *mut ffi::GtkBuildable,
-) -> *const libc::c_char { unsafe {
-    let instance = &*(buildable as *mut T::Instance);
-    let imp = instance.imp();
+) -> *const libc::c_char {
+    unsafe {
+        let instance = &*(buildable as *mut T::Instance);
+        let imp = instance.imp();
 
-    imp.id().into_glib_ptr()
-}}
+        imp.id().into_glib_ptr()
+    }
+}
 
 unsafe extern "C" fn buildable_add_child<T: BuildableImpl>(
     buildable: *mut ffi::GtkBuildable,
     builderptr: *mut ffi::GtkBuilder,
     objectptr: *mut glib::gobject_ffi::GObject,
     typeptr: *const libc::c_char,
-) { unsafe {
-    let instance = &*(buildable as *mut T::Instance);
-    let imp = instance.imp();
-    let type_ = from_glib_borrow::<_, Option<GString>>(typeptr);
+) {
+    unsafe {
+        let instance = &*(buildable as *mut T::Instance);
+        let imp = instance.imp();
+        let type_ = from_glib_borrow::<_, Option<GString>>(typeptr);
 
-    imp.add_child(
-        &from_glib_borrow(builderptr),
-        &from_glib_borrow(objectptr),
-        type_.as_ref().as_ref().map(|s| s.as_ref()),
-    )
-}}
+        imp.add_child(
+            &from_glib_borrow(builderptr),
+            &from_glib_borrow(objectptr),
+            type_.as_ref().as_ref().map(|s| s.as_ref()),
+        )
+    }
+}
 
 unsafe extern "C" fn buildable_set_buildable_property<T: BuildableImpl>(
     buildable: *mut ffi::GtkBuildable,
     builderptr: *mut ffi::GtkBuilder,
     nameptr: *const libc::c_char,
     valueptr: *const glib::gobject_ffi::GValue,
-) { unsafe {
-    let instance = &*(buildable as *mut T::Instance);
-    let imp = instance.imp();
-    let name = from_glib_borrow::<_, GString>(nameptr);
+) {
+    unsafe {
+        let instance = &*(buildable as *mut T::Instance);
+        let imp = instance.imp();
+        let name = from_glib_borrow::<_, GString>(nameptr);
 
-    imp.set_buildable_property(
-        &from_glib_borrow(builderptr),
-        &name,
-        &from_glib_none(valueptr),
-    )
-}}
+        imp.set_buildable_property(
+            &from_glib_borrow(builderptr),
+            &name,
+            &from_glib_none(valueptr),
+        )
+    }
+}
 
 unsafe extern "C" fn buildable_construct_child<T: BuildableImpl>(
     buildable: *mut ffi::GtkBuildable,
     builderptr: *mut ffi::GtkBuilder,
     nameptr: *const libc::c_char,
-) -> *mut glib::gobject_ffi::GObject { unsafe {
-    let instance = &*(buildable as *mut T::Instance);
-    let imp = instance.imp();
-    let name = from_glib_borrow::<_, GString>(nameptr);
+) -> *mut glib::gobject_ffi::GObject {
+    unsafe {
+        let instance = &*(buildable as *mut T::Instance);
+        let imp = instance.imp();
+        let name = from_glib_borrow::<_, GString>(nameptr);
 
-    imp.construct_child(&from_glib_borrow(builderptr), &name)
-        .into_glib_ptr()
-}}
+        imp.construct_child(&from_glib_borrow(builderptr), &name)
+            .into_glib_ptr()
+    }
+}
 
 unsafe extern "C" fn buildable_parser_finished<T: BuildableImpl>(
     buildable: *mut ffi::GtkBuildable,
     builderptr: *mut ffi::GtkBuilder,
-) { unsafe {
-    let instance = &*(buildable as *mut T::Instance);
-    let imp = instance.imp();
+) {
+    unsafe {
+        let instance = &*(buildable as *mut T::Instance);
+        let imp = instance.imp();
 
-    imp.parser_finished(&from_glib_borrow(builderptr))
-}}
+        imp.parser_finished(&from_glib_borrow(builderptr))
+    }
+}
 
 unsafe extern "C" fn buildable_get_internal_child<T: BuildableImpl>(
     buildable: *mut ffi::GtkBuildable,
     builderptr: *mut ffi::GtkBuilder,
     nameptr: *const libc::c_char,
-) -> *mut glib::gobject_ffi::GObject { unsafe {
-    let instance = &*(buildable as *mut T::Instance);
-    let imp = instance.imp();
-    let name = from_glib_borrow::<_, GString>(nameptr);
+) -> *mut glib::gobject_ffi::GObject {
+    unsafe {
+        let instance = &*(buildable as *mut T::Instance);
+        let imp = instance.imp();
+        let name = from_glib_borrow::<_, GString>(nameptr);
 
-    let ret = imp.internal_child(&from_glib_borrow(builderptr), &name);
+        let ret = imp.internal_child(&from_glib_borrow(builderptr), &name);
 
-    static QUARK: OnceLock<Quark> = OnceLock::new();
-    let quark =
-        *QUARK.get_or_init(|| Quark::from_str("gtk4-rs-subclass-buildable-get-internal-child"));
+        static QUARK: OnceLock<Quark> = OnceLock::new();
+        let quark =
+            *QUARK.get_or_init(|| Quark::from_str("gtk4-rs-subclass-buildable-get-internal-child"));
 
-    // transfer none: ensure the internal child stays alive for as long as the
-    // object building it
-    let ret = ret.into_glib_ptr();
-    imp.obj().set_qdata(
-        quark,
-        PtrHolder(ret, |ptr| {
-            glib::gobject_ffi::g_object_unref(ptr as *mut _);
-        }),
-    );
-    ret
-}}
+        // transfer none: ensure the internal child stays alive for as long as the
+        // object building it
+        let ret = ret.into_glib_ptr();
+        imp.obj().set_qdata(
+            quark,
+            PtrHolder(ret, |ptr| {
+                glib::gobject_ffi::g_object_unref(ptr as *mut _);
+            }),
+        );
+        ret
+    }
+}

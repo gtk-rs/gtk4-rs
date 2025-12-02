@@ -44,9 +44,11 @@ unsafe extern "C" fn drawing_area_resize<T: DrawingAreaImpl>(
     ptr: *mut ffi::GtkDrawingArea,
     width: i32,
     height: i32,
-) { unsafe {
-    let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.imp();
+) {
+    unsafe {
+        let instance = &*(ptr as *mut T::Instance);
+        let imp = instance.imp();
 
-    imp.resize(width, height)
-}}
+        imp.resize(width, height)
+    }
+}

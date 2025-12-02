@@ -49,10 +49,12 @@ unsafe impl<T: FrameImpl> IsSubclassable<T> for Frame {
 unsafe extern "C" fn frame_compute_child_allocation<T: FrameImpl>(
     ptr: *mut ffi::GtkFrame,
     allocationptr: *mut ffi::GtkAllocation,
-) { unsafe {
-    let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.imp();
+) {
+    unsafe {
+        let instance = &*(ptr as *mut T::Instance);
+        let imp = instance.imp();
 
-    let allocation = imp.compute_child_allocation();
-    *allocationptr = *allocation.to_glib_none().0;
-}}
+        let allocation = imp.compute_child_allocation();
+        *allocationptr = *allocation.to_glib_none().0;
+    }
+}

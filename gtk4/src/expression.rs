@@ -178,10 +178,12 @@ unsafe impl<'a> glib::value::FromValue<'a> for Expression {
     type Checker = glib::value::GenericValueTypeOrNoneChecker<Self>;
 
     #[inline]
-    unsafe fn from_value(value: &'a glib::Value) -> Self { unsafe {
-        skip_assert_initialized!();
-        from_glib_full(crate::ffi::gtk_value_dup_expression(value.to_glib_none().0))
-    }}
+    unsafe fn from_value(value: &'a glib::Value) -> Self {
+        unsafe {
+            skip_assert_initialized!();
+            from_glib_full(crate::ffi::gtk_value_dup_expression(value.to_glib_none().0))
+        }
+    }
 }
 
 impl glib::value::ToValue for Expression {
@@ -359,9 +361,9 @@ macro_rules! define_expression {
         #[doc(hidden)]
         impl FromGlibPtrFull<*mut crate::ffi::GtkExpression> for $rust_type {
             #[inline]
-            unsafe fn from_glib_full(ptr: *mut crate::ffi::GtkExpression) -> Self { unsafe {
-                from_glib_full(ptr as *mut $ffi_type)
-            }}
+            unsafe fn from_glib_full(ptr: *mut crate::ffi::GtkExpression) -> Self {
+                unsafe { from_glib_full(ptr as *mut $ffi_type) }
+            }
         }
 
         unsafe impl crate::expression::IsExpression for $rust_type {}
@@ -374,10 +376,12 @@ macro_rules! define_expression {
             type Checker = glib::value::GenericValueTypeOrNoneChecker<Self>;
 
             #[inline]
-            unsafe fn from_value(value: &'a glib::Value) -> Self { unsafe {
-                skip_assert_initialized!();
-                from_glib_full(crate::ffi::gtk_value_dup_expression(value.to_glib_none().0))
-            }}
+            unsafe fn from_value(value: &'a glib::Value) -> Self {
+                unsafe {
+                    skip_assert_initialized!();
+                    from_glib_full(crate::ffi::gtk_value_dup_expression(value.to_glib_none().0))
+                }
+            }
         }
 
         impl glib::value::ToValue for $rust_type {
