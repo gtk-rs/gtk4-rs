@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/auto/color_chooser_widget.rs`."><title>color_chooser_widget.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-e56847b5.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.92.0-nightly (a9d0a6f15 2025-09-16)" data-channel="nightly" data-search-js="search-cb266a1a.js" data-stringdex-js="stringdex-5af928a3.js" data-settings-js="settings-c38705f0.js" ><script src="../../../static.files/storage-e2aeef58.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-6dc2a7f3.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-263c88ec.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/auto/color_chooser_widget.rs`."><title>color_chooser_widget.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-ca0dd0c4.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.93.0-nightly (1d60f9e07 2025-12-01)" data-channel="nightly" data-search-js="search-9e2438ea.js" data-stringdex-js="stringdex-a3946164.js" data-settings-js="settings-c38705f0.js" ><script src="../../../static.files/storage-e2aeef58.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-a410ff4d.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-263c88ec.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
 
@@ -86,7 +86,7 @@
 <a href=#13 id=13 data-nosnippet>13</a>};
 <a href=#14 id=14 data-nosnippet>14</a><span class="kw">use </span><a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">std::boxed::Box</a> <span class="kw">as </span>Box_;
 <a href=#15 id=15 data-nosnippet>15</a>
-<a href=#16 id=16 data-nosnippet>16</a><a class="macro" href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/macro.wrapper.html">glib::wrapper!</a> {
+<a href=#16 id=16 data-nosnippet>16</a><a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/macro.wrapper.html">glib::wrapper!</a> {
 <a href=#17 id=17 data-nosnippet>17</a>    <span class="doccomment">/// Direct use of [`ColorChooserWidget`][crate::ColorChooserWidget] is deprecated.
 <a href=#18 id=18 data-nosnippet>18</a>    /// The [`ColorChooserWidget`][crate::ColorChooserWidget] widget lets the user select a color.
 <a href=#19 id=19 data-nosnippet>19</a>    ///
@@ -458,7 +458,7 @@
 <a href=#385 id=385 data-nosnippet>385</a>    ///
 <a href=#386 id=386 data-nosnippet>386</a>    /// [`WidgetExt`][trait@crate::prelude::WidgetExt], [`trait@glib::ObjectExt`], [`AccessibleExt`][trait@crate::prelude::AccessibleExt], [`BuildableExt`][trait@crate::prelude::BuildableExt], [`ConstraintTargetExt`][trait@crate::prelude::ConstraintTargetExt], [`ColorChooserExt`][trait@crate::prelude::ColorChooserExt], [`WidgetExtManual`][trait@crate::prelude::WidgetExtManual], [`AccessibleExtManual`][trait@crate::prelude::AccessibleExtManual], [`ColorChooserExtManual`][trait@crate::prelude::ColorChooserExtManual]
 <a href=#387 id=387 data-nosnippet>387</a>    </span><span class="attr">#[doc(alias = <span class="string">"GtkColorChooserWidget"</span>)]
-<a href=#388 id=388 data-nosnippet>388</a>    </span><span class="kw">pub struct </span><a href="../../../gtk4/struct.ColorChooserWidget.html">ColorChooserWidget</a>(Object&lt;<a href="../../../gtk4_sys/struct.GtkColorChooserWidget.html">ffi::GtkColorChooserWidget</a>&gt;) @extends <a href="widget.rs.html#19-864">Widget</a>, @implements <a href="accessible.rs.html#19-70">Accessible</a>, <a href="buildable.rs.html#8-31">Buildable</a>, <a href="constraint_target.rs.html#8-23">ConstraintTarget</a>, <a href="color_chooser.rs.html#15-72">ColorChooser</a>;
+<a href=#388 id=388 data-nosnippet>388</a>    </span><span class="kw">pub struct </span><a href="#16-393">ColorChooserWidget</a>(Object&lt;ffi::<a href="../../../gtk4_sys/struct.GtkColorChooserWidget.html">GtkColorChooserWidget</a>&gt;) @extends <a href="widget.rs.html#19-864">Widget</a>, @implements <a href="accessible.rs.html#19-70">Accessible</a>, <a href="buildable.rs.html#8-31">Buildable</a>, <a href="constraint_target.rs.html#8-23">ConstraintTarget</a>, <a href="color_chooser.rs.html#15-72">ColorChooser</a>;
 <a href=#389 id=389 data-nosnippet>389</a>
 <a href=#390 id=390 data-nosnippet>390</a>    <span class="kw">match fn </span>{
 <a href=#391 id=391 data-nosnippet>391</a>        type_ =&gt; || ffi::gtk_color_chooser_widget_get_type(),
@@ -473,8 +473,8 @@
 <a href=#400 id=400 data-nosnippet>400</a>    /// a new [`ColorChooserWidget`][crate::ColorChooserWidget]
 <a href=#401 id=401 data-nosnippet>401</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_color_chooser_widget_new"</span>)]
 <a href=#402 id=402 data-nosnippet>402</a>    </span><span class="kw">pub fn </span>new() -&gt; <a href="#16-393">ColorChooserWidget</a> {
-<a href=#403 id=403 data-nosnippet>403</a>        <a class="macro" href="../rt.rs.html#24-36">assert_initialized_main_thread!</a>();
-<a href=#404 id=404 data-nosnippet>404</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.FromGlibPtrNone.html#tymethod.from_glib_none">Widget::from_glib_none</a>(<a href="../../../gtk4_sys/fn.gtk_color_chooser_widget_new.html">ffi::gtk_color_chooser_widget_new</a>()).<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/object/trait.Cast.html#tymethod.unsafe_cast">unsafe_cast</a>() }
+<a href=#403 id=403 data-nosnippet>403</a>        <a href="../rt.rs.html#24-36">assert_initialized_main_thread!</a>();
+<a href=#404 id=404 data-nosnippet>404</a>        <span class="kw">unsafe </span>{ <a href="widget.rs.html#19-864">Widget</a>::<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.FromGlibPtrNone.html#tymethod.from_glib_none">from_glib_none</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_color_chooser_widget_new.html">gtk_color_chooser_widget_new</a>()).<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/object/trait.Cast.html#method.unsafe_cast">unsafe_cast</a>() }
 <a href=#405 id=405 data-nosnippet>405</a>    }
 <a href=#406 id=406 data-nosnippet>406</a>
 <a href=#407 id=407 data-nosnippet>407</a>    <span class="comment">// rustdoc-stripper-ignore-next
@@ -482,7 +482,7 @@
 <a href=#409 id=409 data-nosnippet>409</a>    ///
 <a href=#410 id=410 data-nosnippet>410</a>    /// This method returns an instance of [`ColorChooserWidgetBuilder`](crate::builders::ColorChooserWidgetBuilder) which can be used to create [`ColorChooserWidget`] objects.
 <a href=#411 id=411 data-nosnippet>411</a>    </span><span class="kw">pub fn </span>builder() -&gt; <a href="#466-468">ColorChooserWidgetBuilder</a> {
-<a href=#412 id=412 data-nosnippet>412</a>        <a href="#471-475">ColorChooserWidgetBuilder::new</a>()
+<a href=#412 id=412 data-nosnippet>412</a>        <a href="#466-468">ColorChooserWidgetBuilder</a>::<a href="#471-475">new</a>()
 <a href=#413 id=413 data-nosnippet>413</a>    }
 <a href=#414 id=414 data-nosnippet>414</a>
 <a href=#415 id=415 data-nosnippet>415</a>    <span class="doccomment">/// [`true`] when the color chooser is showing the single-color editor.
@@ -490,7 +490,7 @@
 <a href=#417 id=417 data-nosnippet>417</a>    /// It can be set to switch the color chooser into single-color editing mode.
 <a href=#418 id=418 data-nosnippet>418</a>    </span><span class="attr">#[doc(alias = <span class="string">"show-editor"</span>)]
 <a href=#419 id=419 data-nosnippet>419</a>    </span><span class="kw">pub fn </span>shows_editor(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> {
-<a href=#420 id=420 data-nosnippet>420</a>        <a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/object/trait.ObjectExt.html#tymethod.property">ObjectExt::property</a>(<a class="self" href="#419">self</a>, <span class="string">"show-editor"</span>)
+<a href=#420 id=420 data-nosnippet>420</a>        ObjectExt::<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/object/trait.ObjectExt.html#tymethod.property">property</a>(<a class="self" href="#419">self</a>, <span class="string">"show-editor"</span>)
 <a href=#421 id=421 data-nosnippet>421</a>    }
 <a href=#422 id=422 data-nosnippet>422</a>
 <a href=#423 id=423 data-nosnippet>423</a>    <span class="doccomment">/// [`true`] when the color chooser is showing the single-color editor.
@@ -498,13 +498,13 @@
 <a href=#425 id=425 data-nosnippet>425</a>    /// It can be set to switch the color chooser into single-color editing mode.
 <a href=#426 id=426 data-nosnippet>426</a>    </span><span class="attr">#[doc(alias = <span class="string">"show-editor"</span>)]
 <a href=#427 id=427 data-nosnippet>427</a>    </span><span class="kw">pub fn </span>set_show_editor(<span class="kw-2">&amp;</span><span class="self">self</span>, show_editor: <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) {
-<a href=#428 id=428 data-nosnippet>428</a>        <a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/object/trait.ObjectExt.html#tymethod.set_property">ObjectExt::set_property</a>(<a class="self" href="#427">self</a>, <span class="string">"show-editor"</span>, <a href="#427">show_editor</a>)
+<a href=#428 id=428 data-nosnippet>428</a>        ObjectExt::<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/object/trait.ObjectExt.html#tymethod.set_property">set_property</a>(<a class="self" href="#427">self</a>, <span class="string">"show-editor"</span>, <a href="#427">show_editor</a>)
 <a href=#429 id=429 data-nosnippet>429</a>    }
 <a href=#430 id=430 data-nosnippet>430</a>
 <a href=#431 id=431 data-nosnippet>431</a>    <span class="attr">#[doc(alias = <span class="string">"show-editor"</span>)]
 <a href=#432 id=432 data-nosnippet>432</a>    </span><span class="kw">pub fn </span>connect_show_editor_notify&lt;F: <a href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html">Fn</a>(<span class="kw-2">&amp;</span><span class="self">Self</span>) + <span class="lifetime">'static</span>&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, f: F) -&gt; <a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/signal/struct.SignalHandlerId.html">SignalHandlerId</a> {
 <a href=#433 id=433 data-nosnippet>433</a>        <span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn </span>notify_show_editor_trampoline&lt;F: <a href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html">Fn</a>(<span class="kw-2">&amp;</span><a href="#16-393">ColorChooserWidget</a>) + <span class="lifetime">'static</span>&gt;(
-<a href=#434 id=434 data-nosnippet>434</a>            this: <span class="kw-2">*mut </span><a href="../../../gtk4_sys/struct.GtkColorChooserWidget.html">ffi::GtkColorChooserWidget</a>,
+<a href=#434 id=434 data-nosnippet>434</a>            this: <span class="kw-2">*mut </span>ffi::<a href="../../../gtk4_sys/struct.GtkColorChooserWidget.html">GtkColorChooserWidget</a>,
 <a href=#435 id=435 data-nosnippet>435</a>            _param_spec: glib::ffi::gpointer,
 <a href=#436 id=436 data-nosnippet>436</a>            f: glib::ffi::gpointer,
 <a href=#437 id=437 data-nosnippet>437</a>        ) {
@@ -512,14 +512,14 @@
 <a href=#439 id=439 data-nosnippet>439</a>            <a href="#438">f</a>(<span class="kw-2">&amp;</span><a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/fn.from_glib_borrow.html">from_glib_borrow</a>(<a href="#434">this</a>))
 <a href=#440 id=440 data-nosnippet>440</a>        }
 <a href=#441 id=441 data-nosnippet>441</a>        <span class="kw">unsafe </span>{
-<a href=#442 id=442 data-nosnippet>442</a>            <span class="kw">let </span>f: <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">Box_</a>&lt;F&gt; = <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html#method.new">Box_::new</a>(<a href="#432">f</a>);
+<a href=#442 id=442 data-nosnippet>442</a>            <span class="kw">let </span>f: <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">Box_</a>&lt;F&gt; = <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">Box_</a>::<a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html#method.new">new</a>(<a href="#432">f</a>);
 <a href=#443 id=443 data-nosnippet>443</a>            <a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/signal/fn.connect_raw.html">connect_raw</a>(
 <a href=#444 id=444 data-nosnippet>444</a>                <a class="self" href="#432">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/object/trait.ObjectType.html#tymethod.as_ptr">as_ptr</a>() <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>,
 <a href=#445 id=445 data-nosnippet>445</a>                <span class="string">c"notify::show-editor"</span>.<a href="https://doc.rust-lang.org/nightly/core/ffi/c_str/struct.CStr.html#method.as_ptr">as_ptr</a>() <span class="kw">as </span><span class="kw-2">*const </span><span class="kw">_</span>,
-<a href=#446 id=446 data-nosnippet>446</a>                <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.Some">Some</a>(<a href="https://doc.rust-lang.org/nightly/core/intrinsics/fn.transmute.html">std::mem::transmute</a>::&lt;<span class="kw-2">*const </span>(), <span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn</span>()&gt;(
+<a href=#446 id=446 data-nosnippet>446</a>                <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.Some">Some</a>(std::mem::<a href="https://doc.rust-lang.org/nightly/core/intrinsics/fn.transmute.html">transmute</a>::&lt;<span class="kw-2">*const </span>(), <span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn</span>()&gt;(
 <a href=#447 id=447 data-nosnippet>447</a>                    <a href="#433-440">notify_show_editor_trampoline</a>::&lt;F&gt; <span class="kw">as </span><span class="kw-2">*const </span>(),
 <a href=#448 id=448 data-nosnippet>448</a>                )),
-<a href=#449 id=449 data-nosnippet>449</a>                <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html#method.into_raw">Box_::into_raw</a>(<a href="#442">f</a>),
+<a href=#449 id=449 data-nosnippet>449</a>                <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">Box_</a>::<a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html#method.into_raw">into_raw</a>(<a href="#442">f</a>),
 <a href=#450 id=450 data-nosnippet>450</a>            )
 <a href=#451 id=451 data-nosnippet>451</a>        }
 <a href=#452 id=452 data-nosnippet>452</a>    }
@@ -527,7 +527,7 @@
 <a href=#454 id=454 data-nosnippet>454</a>
 <a href=#455 id=455 data-nosnippet>455</a><span class="kw">impl </span><a href="https://doc.rust-lang.org/nightly/core/default/trait.Default.html">Default</a> <span class="kw">for </span><a href="#16-393">ColorChooserWidget</a> {
 <a href=#456 id=456 data-nosnippet>456</a>    <span class="kw">fn </span>default() -&gt; <span class="self">Self </span>{
-<a href=#457 id=457 data-nosnippet>457</a>        <a href="#402-405"><span class="self">Self</span>::new</a>()
+<a href=#457 id=457 data-nosnippet>457</a>        <span class="self">Self</span>::<a href="#402-405">new</a>()
 <a href=#458 id=458 data-nosnippet>458</a>    }
 <a href=#459 id=459 data-nosnippet>459</a>}
 <a href=#460 id=460 data-nosnippet>460</a>
@@ -537,13 +537,13 @@
 <a href=#464 id=464 data-nosnippet>464</a>/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 <a href=#465 id=465 data-nosnippet>465</a></span><span class="attr">#[must_use = <span class="string">"The builder must be built to be used"</span>]
 <a href=#466 id=466 data-nosnippet>466</a></span><span class="kw">pub struct </span><a href="../../../gtk4/builders/struct.ColorChooserWidgetBuilder.html">ColorChooserWidgetBuilder</a> {
-<a href=#467 id=467 data-nosnippet>467</a>    builder: <a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/object/struct.ObjectBuilder.html">glib::object::ObjectBuilder</a>&lt;<span class="lifetime">'static</span>, <a href="#16-393">ColorChooserWidget</a>&gt;,
+<a href=#467 id=467 data-nosnippet>467</a>    builder: glib::object::<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/object/struct.ObjectBuilder.html">ObjectBuilder</a>&lt;<span class="lifetime">'static</span>, <a href="#16-393">ColorChooserWidget</a>&gt;,
 <a href=#468 id=468 data-nosnippet>468</a>}
 <a href=#469 id=469 data-nosnippet>469</a>
 <a href=#470 id=470 data-nosnippet>470</a><span class="kw">impl </span><a href="#466-468">ColorChooserWidgetBuilder</a> {
 <a href=#471 id=471 data-nosnippet>471</a>    <span class="kw">fn </span>new() -&gt; <span class="self">Self </span>{
 <a href=#472 id=472 data-nosnippet>472</a>        <span class="self">Self </span>{
-<a href=#473 id=473 data-nosnippet>473</a>            builder: <a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/object/struct.Object.html#method.builder">glib::object::Object::builder</a>(),
+<a href=#473 id=473 data-nosnippet>473</a>            builder: glib::object::<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/object/struct.Object.html">Object</a>::<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/object/struct.Object.html#method.builder">builder</a>(),
 <a href=#474 id=474 data-nosnippet>474</a>        }
 <a href=#475 id=475 data-nosnippet>475</a>    }
 <a href=#476 id=476 data-nosnippet>476</a>
@@ -575,7 +575,7 @@
 <a href=#502 id=502 data-nosnippet>502</a>    }
 <a href=#503 id=503 data-nosnippet>503</a>
 <a href=#504 id=504 data-nosnippet>504</a>    <span class="doccomment">/// A list of css classes applied to this widget.
-<a href=#505 id=505 data-nosnippet>505</a>    </span><span class="kw">pub fn </span>css_classes(<span class="self">self</span>, css_classes: <span class="kw">impl </span><a href="https://doc.rust-lang.org/nightly/core/convert/trait.Into.html">Into</a>&lt;<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/collections/strv/struct.StrV.html">glib::StrV</a>&gt;) -&gt; <span class="self">Self </span>{
+<a href=#505 id=505 data-nosnippet>505</a>    </span><span class="kw">pub fn </span>css_classes(<span class="self">self</span>, css_classes: <span class="kw">impl </span><a href="https://doc.rust-lang.org/nightly/core/convert/trait.Into.html">Into</a>&lt;glib::<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/collections/strv/struct.StrV.html">StrV</a>&gt;) -&gt; <span class="self">Self </span>{
 <a href=#506 id=506 data-nosnippet>506</a>        <span class="self">Self </span>{
 <a href=#507 id=507 data-nosnippet>507</a>            builder: <a class="self" href="#505">self</a>.builder.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/object/struct.ObjectBuilder.html#method.property">property</a>(<span class="string">"css-classes"</span>, <a href="#505">css_classes</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.Into.html#tymethod.into">into</a>()),
 <a href=#508 id=508 data-nosnippet>508</a>        }
@@ -585,14 +585,14 @@
 <a href=#512 id=512 data-nosnippet>512</a>    ///
 <a href=#513 id=513 data-nosnippet>513</a>    /// This property is meant to be set by widget implementations,
 <a href=#514 id=514 data-nosnippet>514</a>    /// typically in their instance init function.
-<a href=#515 id=515 data-nosnippet>515</a>    </span><span class="kw">pub fn </span>css_name(<span class="self">self</span>, css_name: <span class="kw">impl </span><a href="https://doc.rust-lang.org/nightly/core/convert/trait.Into.html">Into</a>&lt;<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/gstring/struct.GString.html">glib::GString</a>&gt;) -&gt; <span class="self">Self </span>{
+<a href=#515 id=515 data-nosnippet>515</a>    </span><span class="kw">pub fn </span>css_name(<span class="self">self</span>, css_name: <span class="kw">impl </span><a href="https://doc.rust-lang.org/nightly/core/convert/trait.Into.html">Into</a>&lt;glib::<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/gstring/struct.GString.html">GString</a>&gt;) -&gt; <span class="self">Self </span>{
 <a href=#516 id=516 data-nosnippet>516</a>        <span class="self">Self </span>{
 <a href=#517 id=517 data-nosnippet>517</a>            builder: <a class="self" href="#515">self</a>.builder.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/object/struct.ObjectBuilder.html#method.property">property</a>(<span class="string">"css-name"</span>, <a href="#515">css_name</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.Into.html#tymethod.into">into</a>()),
 <a href=#518 id=518 data-nosnippet>518</a>        }
 <a href=#519 id=519 data-nosnippet>519</a>    }
 <a href=#520 id=520 data-nosnippet>520</a>
 <a href=#521 id=521 data-nosnippet>521</a>    <span class="doccomment">/// The cursor used by @widget.
-<a href=#522 id=522 data-nosnippet>522</a>    </span><span class="kw">pub fn </span>cursor(<span class="self">self</span>, cursor: <span class="kw-2">&amp;</span><a href="../../../gdk4/auto/cursor/struct.Cursor.html">gdk::Cursor</a>) -&gt; <span class="self">Self </span>{
+<a href=#522 id=522 data-nosnippet>522</a>    </span><span class="kw">pub fn </span>cursor(<span class="self">self</span>, cursor: <span class="kw-2">&amp;</span>gdk::<a href="../../../gdk4/auto/cursor/struct.Cursor.html">Cursor</a>) -&gt; <span class="self">Self </span>{
 <a href=#523 id=523 data-nosnippet>523</a>        <span class="self">Self </span>{
 <a href=#524 id=524 data-nosnippet>524</a>            builder: <a class="self" href="#522">self</a>.builder.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/object/struct.ObjectBuilder.html#method.property">property</a>(<span class="string">"cursor"</span>, <a href="#522">cursor</a>.<a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone">clone</a>()),
 <a href=#525 id=525 data-nosnippet>525</a>        }
@@ -663,9 +663,9 @@
 <a href=#590 id=590 data-nosnippet>590</a>    /// typically in their instance init function.
 <a href=#591 id=591 data-nosnippet>591</a>    </span><span class="kw">pub fn </span>layout_manager(<span class="self">self</span>, layout_manager: <span class="kw-2">&amp;</span><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/object/trait.IsA.html">IsA</a>&lt;<a href="layout_manager.rs.html#8-70">LayoutManager</a>&gt;) -&gt; <span class="self">Self </span>{
 <a href=#592 id=592 data-nosnippet>592</a>        <span class="self">Self </span>{
-<a href=#593 id=593 data-nosnippet>593</a>            builder: <span class="self"><a href="#591">self</a>
-<a href=#594 id=594 data-nosnippet>594</a>                </span>.builder
-<a href=#595 id=595 data-nosnippet>595</a>                .<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/object/struct.ObjectBuilder.html#method.property">property</a>(<span class="string">"layout-manager"</span>, <a href="#591">layout_manager</a>.<a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone">clone</a>().<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/object/trait.Cast.html#tymethod.upcast">upcast</a>()),
+<a href=#593 id=593 data-nosnippet>593</a>            builder: <a class="self" href="#591">self</a>
+<a href=#594 id=594 data-nosnippet>594</a>                .builder
+<a href=#595 id=595 data-nosnippet>595</a>                .<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/object/struct.ObjectBuilder.html#method.property">property</a>(<span class="string">"layout-manager"</span>, <a href="#591">layout_manager</a>.<a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone">clone</a>().<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/object/trait.Cast.html#method.upcast">upcast</a>()),
 <a href=#596 id=596 data-nosnippet>596</a>        }
 <a href=#597 id=597 data-nosnippet>597</a>    }
 <a href=#598 id=598 data-nosnippet>598</a>
@@ -734,7 +734,7 @@
 <a href=#661 id=661 data-nosnippet>661</a>    }
 <a href=#662 id=662 data-nosnippet>662</a>
 <a href=#663 id=663 data-nosnippet>663</a>    <span class="doccomment">/// The name of the widget.
-<a href=#664 id=664 data-nosnippet>664</a>    </span><span class="kw">pub fn </span>name(<span class="self">self</span>, name: <span class="kw">impl </span><a href="https://doc.rust-lang.org/nightly/core/convert/trait.Into.html">Into</a>&lt;<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/gstring/struct.GString.html">glib::GString</a>&gt;) -&gt; <span class="self">Self </span>{
+<a href=#664 id=664 data-nosnippet>664</a>    </span><span class="kw">pub fn </span>name(<span class="self">self</span>, name: <span class="kw">impl </span><a href="https://doc.rust-lang.org/nightly/core/convert/trait.Into.html">Into</a>&lt;glib::<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/gstring/struct.GString.html">GString</a>&gt;) -&gt; <span class="self">Self </span>{
 <a href=#665 id=665 data-nosnippet>665</a>        <span class="self">Self </span>{
 <a href=#666 id=666 data-nosnippet>666</a>            builder: <a class="self" href="#664">self</a>.builder.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/object/struct.ObjectBuilder.html#method.property">property</a>(<span class="string">"name"</span>, <a href="#664">name</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.Into.html#tymethod.into">into</a>()),
 <a href=#667 id=667 data-nosnippet>667</a>        }
@@ -784,10 +784,10 @@
 <a href=#711 id=711 data-nosnippet>711</a>    ///
 <a href=#712 id=712 data-nosnippet>712</a>    /// Note that if both [`tooltip-text`][struct@crate::Widget#tooltip-text] and
 <a href=#713 id=713 data-nosnippet>713</a>    /// [`tooltip-markup`][struct@crate::Widget#tooltip-markup] are set, the last one wins.
-<a href=#714 id=714 data-nosnippet>714</a>    </span><span class="kw">pub fn </span>tooltip_markup(<span class="self">self</span>, tooltip_markup: <span class="kw">impl </span><a href="https://doc.rust-lang.org/nightly/core/convert/trait.Into.html">Into</a>&lt;<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/gstring/struct.GString.html">glib::GString</a>&gt;) -&gt; <span class="self">Self </span>{
+<a href=#714 id=714 data-nosnippet>714</a>    </span><span class="kw">pub fn </span>tooltip_markup(<span class="self">self</span>, tooltip_markup: <span class="kw">impl </span><a href="https://doc.rust-lang.org/nightly/core/convert/trait.Into.html">Into</a>&lt;glib::<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/gstring/struct.GString.html">GString</a>&gt;) -&gt; <span class="self">Self </span>{
 <a href=#715 id=715 data-nosnippet>715</a>        <span class="self">Self </span>{
-<a href=#716 id=716 data-nosnippet>716</a>            builder: <span class="self"><a href="#714">self</a>
-<a href=#717 id=717 data-nosnippet>717</a>                </span>.builder
+<a href=#716 id=716 data-nosnippet>716</a>            builder: <a class="self" href="#714">self</a>
+<a href=#717 id=717 data-nosnippet>717</a>                .builder
 <a href=#718 id=718 data-nosnippet>718</a>                .<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/object/struct.ObjectBuilder.html#method.property">property</a>(<span class="string">"tooltip-markup"</span>, <a href="#714">tooltip_markup</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.Into.html#tymethod.into">into</a>()),
 <a href=#719 id=719 data-nosnippet>719</a>        }
 <a href=#720 id=720 data-nosnippet>720</a>    }
@@ -804,7 +804,7 @@
 <a href=#731 id=731 data-nosnippet>731</a>    ///
 <a href=#732 id=732 data-nosnippet>732</a>    /// Note that if both [`tooltip-text`][struct@crate::Widget#tooltip-text] and
 <a href=#733 id=733 data-nosnippet>733</a>    /// [`tooltip-markup`][struct@crate::Widget#tooltip-markup] are set, the last one wins.
-<a href=#734 id=734 data-nosnippet>734</a>    </span><span class="kw">pub fn </span>tooltip_text(<span class="self">self</span>, tooltip_text: <span class="kw">impl </span><a href="https://doc.rust-lang.org/nightly/core/convert/trait.Into.html">Into</a>&lt;<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/gstring/struct.GString.html">glib::GString</a>&gt;) -&gt; <span class="self">Self </span>{
+<a href=#734 id=734 data-nosnippet>734</a>    </span><span class="kw">pub fn </span>tooltip_text(<span class="self">self</span>, tooltip_text: <span class="kw">impl </span><a href="https://doc.rust-lang.org/nightly/core/convert/trait.Into.html">Into</a>&lt;glib::<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/gstring/struct.GString.html">GString</a>&gt;) -&gt; <span class="self">Self </span>{
 <a href=#735 id=735 data-nosnippet>735</a>        <span class="self">Self </span>{
 <a href=#736 id=736 data-nosnippet>736</a>            builder: <a class="self" href="#734">self</a>.builder.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/object/struct.ObjectBuilder.html#method.property">property</a>(<span class="string">"tooltip-text"</span>, <a href="#734">tooltip_text</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.Into.html#tymethod.into">into</a>()),
 <a href=#737 id=737 data-nosnippet>737</a>        }
@@ -863,7 +863,7 @@
 <a href=#790 id=790 data-nosnippet>790</a>    /// Use [`ColorDialog`][crate::ColorDialog] and [`ColorDialogButton`][crate::ColorDialogButton]
 <a href=#791 id=791 data-nosnippet>791</a>    ///   instead of widgets implementing [`ColorChooser`][crate::ColorChooser]
 <a href=#792 id=792 data-nosnippet>792</a>    </span><span class="attr">#[cfg_attr(feature = <span class="string">"v4_10"</span>, deprecated = <span class="string">"Since 4.10"</span>)]
-<a href=#793 id=793 data-nosnippet>793</a>    </span><span class="kw">pub fn </span>rgba(<span class="self">self</span>, rgba: <span class="kw-2">&amp;</span><a href="../../../gdk4/auto/rgba/struct.RGBA.html">gdk::RGBA</a>) -&gt; <span class="self">Self </span>{
+<a href=#793 id=793 data-nosnippet>793</a>    </span><span class="kw">pub fn </span>rgba(<span class="self">self</span>, rgba: <span class="kw-2">&amp;</span>gdk::<a href="../../../gdk4/auto/rgba/struct.RGBA.html">RGBA</a>) -&gt; <span class="self">Self </span>{
 <a href=#794 id=794 data-nosnippet>794</a>        <span class="self">Self </span>{
 <a href=#795 id=795 data-nosnippet>795</a>            builder: <a class="self" href="#793">self</a>.builder.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/object/struct.ObjectBuilder.html#method.property">property</a>(<span class="string">"rgba"</span>, <a href="#793">rgba</a>),
 <a href=#796 id=796 data-nosnippet>796</a>        }
@@ -890,7 +890,8 @@
 <a href=#817 id=817 data-nosnippet>817</a>    </span><span class="doccomment">/// Build the [`ColorChooserWidget`].
 <a href=#818 id=818 data-nosnippet>818</a>    </span><span class="attr">#[must_use = <span class="string">"Building the object from the builder is usually expensive and is not expected to have side effects"</span>]
 <a href=#819 id=819 data-nosnippet>819</a>    </span><span class="kw">pub fn </span>build(<span class="self">self</span>) -&gt; <a href="#16-393">ColorChooserWidget</a> {
-<a href=#820 id=820 data-nosnippet>820</a>        <a class="macro" href="../rt.rs.html#24-36">assert_initialized_main_thread!</a>();
+<a href=#820 id=820 data-nosnippet>820</a>        <a href="../rt.rs.html#24-36">assert_initialized_main_thread!</a>();
 <a href=#821 id=821 data-nosnippet>821</a>        <a class="self" href="#819">self</a>.builder.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/object/struct.ObjectBuilder.html#method.build">build</a>()
 <a href=#822 id=822 data-nosnippet>822</a>    }
-<a href=#823 id=823 data-nosnippet>823</a>}</code></pre></div></section></main></body></html>
+<a href=#823 id=823 data-nosnippet>823</a>}
+</code></pre></div></section></main></body></html>

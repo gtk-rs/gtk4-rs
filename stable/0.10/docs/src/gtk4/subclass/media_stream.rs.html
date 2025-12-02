@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/subclass/media_stream.rs`."><title>media_stream.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-e56847b5.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.92.0-nightly (a9d0a6f15 2025-09-16)" data-channel="nightly" data-search-js="search-cb266a1a.js" data-stringdex-js="stringdex-5af928a3.js" data-settings-js="settings-c38705f0.js" ><script src="../../../static.files/storage-e2aeef58.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-6dc2a7f3.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-263c88ec.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/subclass/media_stream.rs`."><title>media_stream.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-ca0dd0c4.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.93.0-nightly (1d60f9e07 2025-12-01)" data-channel="nightly" data-search-js="search-9e2438ea.js" data-stringdex-js="stringdex-a3946164.js" data-settings-js="settings-c38705f0.js" ><script src="../../../static.files/storage-e2aeef58.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-a410ff4d.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-263c88ec.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
 
@@ -113,7 +113,7 @@
 <a href=#40 id=40 data-nosnippet>40</a>    /// It is not required to call this function to make a media stream work.
 <a href=#41 id=41 data-nosnippet>41</a>    /// ## `surface`
 <a href=#42 id=42 data-nosnippet>42</a>    /// a [`gdk::Surface`][crate::gdk::Surface]
-<a href=#43 id=43 data-nosnippet>43</a>    </span><span class="kw">fn </span>realize(<span class="kw-2">&amp;</span><span class="self">self</span>, surface: <a href="../../../gdk4/auto/surface/struct.Surface.html">gdk::Surface</a>) {
+<a href=#43 id=43 data-nosnippet>43</a>    </span><span class="kw">fn </span>realize(<span class="kw-2">&amp;</span><span class="self">self</span>, surface: gdk::<a href="../../../gdk4/auto/surface/struct.Surface.html">Surface</a>) {
 <a href=#44 id=44 data-nosnippet>44</a>        <a class="self" href="#43">self</a>.<a href="#107-119">parent_realize</a>(<a href="#43">surface</a>)
 <a href=#45 id=45 data-nosnippet>45</a>    }
 <a href=#46 id=46 data-nosnippet>46</a>
@@ -140,7 +140,7 @@
 <a href=#67 id=67 data-nosnippet>67</a>    /// allocated from @surface.
 <a href=#68 id=68 data-nosnippet>68</a>    /// ## `surface`
 <a href=#69 id=69 data-nosnippet>69</a>    /// the [`gdk::Surface`][crate::gdk::Surface] the stream was realized with
-<a href=#70 id=70 data-nosnippet>70</a>    </span><span class="kw">fn </span>unrealize(<span class="kw-2">&amp;</span><span class="self">self</span>, surface: <a href="../../../gdk4/auto/surface/struct.Surface.html">gdk::Surface</a>) {
+<a href=#70 id=70 data-nosnippet>70</a>    </span><span class="kw">fn </span>unrealize(<span class="kw-2">&amp;</span><span class="self">self</span>, surface: gdk::<a href="../../../gdk4/auto/surface/struct.Surface.html">Surface</a>) {
 <a href=#71 id=71 data-nosnippet>71</a>        <a class="self" href="#70">self</a>.<a href="#135-147">parent_unrealize</a>(<a href="#70">surface</a>)
 <a href=#72 id=72 data-nosnippet>72</a>    }
 <a href=#73 id=73 data-nosnippet>73</a>
@@ -152,24 +152,24 @@
 <a href=#79 id=79 data-nosnippet>79</a><span class="kw">pub trait </span><a href="../../../gtk4/subclass/media_stream/trait.MediaStreamImplExt.html">MediaStreamImplExt</a>: <a href="#11-77">MediaStreamImpl</a> {
 <a href=#80 id=80 data-nosnippet>80</a>    <span class="kw">fn </span>parent_pause(<span class="kw-2">&amp;</span><span class="self">self</span>) {
 <a href=#81 id=81 data-nosnippet>81</a>        <span class="kw">unsafe </span>{
-<a href=#82 id=82 data-nosnippet>82</a>            <span class="kw">let </span>data = <a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/subclass/types/trait.ObjectSubclassType.html#tymethod.type_data"><span class="self">Self</span>::type_data</a>();
-<a href=#83 id=83 data-nosnippet>83</a>            <span class="kw">let </span>parent_class = <a href="#82">data</a>.<a href="https://doc.rust-lang.org/nightly/core/ptr/non_null/struct.NonNull.html#method.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/subclass/types/struct.TypeData.html#method.parent_class">parent_class</a>() <span class="kw">as </span><span class="kw-2">*mut </span><a href="../../../gtk4_sys/struct.GtkMediaStreamClass.html">ffi::GtkMediaStreamClass</a>;
+<a href=#82 id=82 data-nosnippet>82</a>            <span class="kw">let </span>data = <span class="self">Self</span>::<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/subclass/types/trait.ObjectSubclassType.html#tymethod.type_data">type_data</a>();
+<a href=#83 id=83 data-nosnippet>83</a>            <span class="kw">let </span>parent_class = <a href="#82">data</a>.<a href="https://doc.rust-lang.org/nightly/core/ptr/non_null/struct.NonNull.html#method.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/subclass/types/struct.TypeData.html#method.parent_class">parent_class</a>() <span class="kw">as </span><span class="kw-2">*mut </span>ffi::<a href="../../../gtk4_sys/struct.GtkMediaStreamClass.html">GtkMediaStreamClass</a>;
 <a href=#84 id=84 data-nosnippet>84</a>            <span class="kw">let </span>f = (<span class="kw-2">*</span><a href="#83">parent_class</a>)
 <a href=#85 id=85 data-nosnippet>85</a>                .pause
 <a href=#86 id=86 data-nosnippet>86</a>                .<a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#method.expect">expect</a>(<span class="string">"No parent class impl for \"pause\""</span>);
-<a href=#87 id=87 data-nosnippet>87</a>            <a href="#84">f</a>(<a class="self" href="#80">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/subclass/types/trait.ObjectSubclassExt.html#tymethod.obj">obj</a>().<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/object/trait.Cast.html#tymethod.unsafe_cast_ref">unsafe_cast_ref</a>::&lt;<a href="../auto/media_stream.rs.html#14-126">MediaStream</a>&gt;().<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)
+<a href=#87 id=87 data-nosnippet>87</a>            <a href="#84">f</a>(<a class="self" href="#80">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/subclass/types/trait.ObjectSubclassExt.html#tymethod.obj">obj</a>().<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/object/trait.Cast.html#method.unsafe_cast_ref">unsafe_cast_ref</a>::&lt;<a href="../auto/media_stream.rs.html#14-126">MediaStream</a>&gt;().<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)
 <a href=#88 id=88 data-nosnippet>88</a>        }
 <a href=#89 id=89 data-nosnippet>89</a>    }
 <a href=#90 id=90 data-nosnippet>90</a>
 <a href=#91 id=91 data-nosnippet>91</a>    <span class="comment">// Returns true if successfully started playing
 <a href=#92 id=92 data-nosnippet>92</a>    </span><span class="kw">fn </span>parent_play(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> {
 <a href=#93 id=93 data-nosnippet>93</a>        <span class="kw">unsafe </span>{
-<a href=#94 id=94 data-nosnippet>94</a>            <span class="kw">let </span>data = <a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/subclass/types/trait.ObjectSubclassType.html#tymethod.type_data"><span class="self">Self</span>::type_data</a>();
-<a href=#95 id=95 data-nosnippet>95</a>            <span class="kw">let </span>parent_class = <a href="#94">data</a>.<a href="https://doc.rust-lang.org/nightly/core/ptr/non_null/struct.NonNull.html#method.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/subclass/types/struct.TypeData.html#method.parent_class">parent_class</a>() <span class="kw">as </span><span class="kw-2">*mut </span><a href="../../../gtk4_sys/struct.GtkMediaStreamClass.html">ffi::GtkMediaStreamClass</a>;
+<a href=#94 id=94 data-nosnippet>94</a>            <span class="kw">let </span>data = <span class="self">Self</span>::<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/subclass/types/trait.ObjectSubclassType.html#tymethod.type_data">type_data</a>();
+<a href=#95 id=95 data-nosnippet>95</a>            <span class="kw">let </span>parent_class = <a href="#94">data</a>.<a href="https://doc.rust-lang.org/nightly/core/ptr/non_null/struct.NonNull.html#method.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/subclass/types/struct.TypeData.html#method.parent_class">parent_class</a>() <span class="kw">as </span><span class="kw-2">*mut </span>ffi::<a href="../../../gtk4_sys/struct.GtkMediaStreamClass.html">GtkMediaStreamClass</a>;
 <a href=#96 id=96 data-nosnippet>96</a>            <span class="kw">if let </span><a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.Some">Some</a>(f) = (<span class="kw-2">*</span><a href="#95">parent_class</a>).play {
-<a href=#97 id=97 data-nosnippet>97</a>                <span class="kw">return </span><a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/fn.from_glib.html">from_glib</a>(<a href="#96">f</a>(<span class="self"><a href="#92">self</a>
-<a href=#98 id=98 data-nosnippet>98</a>                    </span>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/subclass/types/trait.ObjectSubclassExt.html#tymethod.obj">obj</a>()
-<a href=#99 id=99 data-nosnippet>99</a>                    .<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/object/trait.Cast.html#tymethod.unsafe_cast_ref">unsafe_cast_ref</a>::&lt;<a href="../auto/media_stream.rs.html#14-126">MediaStream</a>&gt;()
+<a href=#97 id=97 data-nosnippet>97</a>                <span class="kw">return </span><a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/fn.from_glib.html">from_glib</a>(<a href="#96">f</a>(<a class="self" href="#92">self</a>
+<a href=#98 id=98 data-nosnippet>98</a>                    .<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/subclass/types/trait.ObjectSubclassExt.html#tymethod.obj">obj</a>()
+<a href=#99 id=99 data-nosnippet>99</a>                    .<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/object/trait.Cast.html#method.unsafe_cast_ref">unsafe_cast_ref</a>::&lt;<a href="../auto/media_stream.rs.html#14-126">MediaStream</a>&gt;()
 <a href=#100 id=100 data-nosnippet>100</a>                    .<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>()
 <a href=#101 id=101 data-nosnippet>101</a>                    .<span class="number">0</span>));
 <a href=#102 id=102 data-nosnippet>102</a>            }
@@ -177,15 +177,15 @@
 <a href=#104 id=104 data-nosnippet>104</a>        </span>}
 <a href=#105 id=105 data-nosnippet>105</a>    }
 <a href=#106 id=106 data-nosnippet>106</a>
-<a href=#107 id=107 data-nosnippet>107</a>    <span class="kw">fn </span>parent_realize(<span class="kw-2">&amp;</span><span class="self">self</span>, surface: <a href="../../../gdk4/auto/surface/struct.Surface.html">gdk::Surface</a>) {
+<a href=#107 id=107 data-nosnippet>107</a>    <span class="kw">fn </span>parent_realize(<span class="kw-2">&amp;</span><span class="self">self</span>, surface: gdk::<a href="../../../gdk4/auto/surface/struct.Surface.html">Surface</a>) {
 <a href=#108 id=108 data-nosnippet>108</a>        <span class="kw">unsafe </span>{
-<a href=#109 id=109 data-nosnippet>109</a>            <span class="kw">let </span>data = <a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/subclass/types/trait.ObjectSubclassType.html#tymethod.type_data"><span class="self">Self</span>::type_data</a>();
-<a href=#110 id=110 data-nosnippet>110</a>            <span class="kw">let </span>parent_class = <a href="#109">data</a>.<a href="https://doc.rust-lang.org/nightly/core/ptr/non_null/struct.NonNull.html#method.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/subclass/types/struct.TypeData.html#method.parent_class">parent_class</a>() <span class="kw">as </span><span class="kw-2">*mut </span><a href="../../../gtk4_sys/struct.GtkMediaStreamClass.html">ffi::GtkMediaStreamClass</a>;
+<a href=#109 id=109 data-nosnippet>109</a>            <span class="kw">let </span>data = <span class="self">Self</span>::<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/subclass/types/trait.ObjectSubclassType.html#tymethod.type_data">type_data</a>();
+<a href=#110 id=110 data-nosnippet>110</a>            <span class="kw">let </span>parent_class = <a href="#109">data</a>.<a href="https://doc.rust-lang.org/nightly/core/ptr/non_null/struct.NonNull.html#method.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/subclass/types/struct.TypeData.html#method.parent_class">parent_class</a>() <span class="kw">as </span><span class="kw-2">*mut </span>ffi::<a href="../../../gtk4_sys/struct.GtkMediaStreamClass.html">GtkMediaStreamClass</a>;
 <a href=#111 id=111 data-nosnippet>111</a>            <span class="kw">let </span>f = (<span class="kw-2">*</span><a href="#110">parent_class</a>)
 <a href=#112 id=112 data-nosnippet>112</a>                .realize
 <a href=#113 id=113 data-nosnippet>113</a>                .<a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#method.expect">expect</a>(<span class="string">"No parent class impl for \"realize\""</span>);
 <a href=#114 id=114 data-nosnippet>114</a>            <a href="#111">f</a>(
-<a href=#115 id=115 data-nosnippet>115</a>                <a class="self" href="#107">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/subclass/types/trait.ObjectSubclassExt.html#tymethod.obj">obj</a>().<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/object/trait.Cast.html#tymethod.unsafe_cast_ref">unsafe_cast_ref</a>::&lt;<a href="../auto/media_stream.rs.html#14-126">MediaStream</a>&gt;().<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
+<a href=#115 id=115 data-nosnippet>115</a>                <a class="self" href="#107">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/subclass/types/trait.ObjectSubclassExt.html#tymethod.obj">obj</a>().<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/object/trait.Cast.html#method.unsafe_cast_ref">unsafe_cast_ref</a>::&lt;<a href="../auto/media_stream.rs.html#14-126">MediaStream</a>&gt;().<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
 <a href=#116 id=116 data-nosnippet>116</a>                <a href="#107">surface</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
 <a href=#117 id=117 data-nosnippet>117</a>            )
 <a href=#118 id=118 data-nosnippet>118</a>        }
@@ -193,27 +193,27 @@
 <a href=#120 id=120 data-nosnippet>120</a>
 <a href=#121 id=121 data-nosnippet>121</a>    <span class="kw">fn </span>parent_seek(<span class="kw-2">&amp;</span><span class="self">self</span>, timestamp: <a href="https://doc.rust-lang.org/nightly/std/primitive.i64.html">i64</a>) {
 <a href=#122 id=122 data-nosnippet>122</a>        <span class="kw">unsafe </span>{
-<a href=#123 id=123 data-nosnippet>123</a>            <span class="kw">let </span>data = <a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/subclass/types/trait.ObjectSubclassType.html#tymethod.type_data"><span class="self">Self</span>::type_data</a>();
-<a href=#124 id=124 data-nosnippet>124</a>            <span class="kw">let </span>parent_class = <a href="#123">data</a>.<a href="https://doc.rust-lang.org/nightly/core/ptr/non_null/struct.NonNull.html#method.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/subclass/types/struct.TypeData.html#method.parent_class">parent_class</a>() <span class="kw">as </span><span class="kw-2">*mut </span><a href="../../../gtk4_sys/struct.GtkMediaStreamClass.html">ffi::GtkMediaStreamClass</a>;
+<a href=#123 id=123 data-nosnippet>123</a>            <span class="kw">let </span>data = <span class="self">Self</span>::<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/subclass/types/trait.ObjectSubclassType.html#tymethod.type_data">type_data</a>();
+<a href=#124 id=124 data-nosnippet>124</a>            <span class="kw">let </span>parent_class = <a href="#123">data</a>.<a href="https://doc.rust-lang.org/nightly/core/ptr/non_null/struct.NonNull.html#method.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/subclass/types/struct.TypeData.html#method.parent_class">parent_class</a>() <span class="kw">as </span><span class="kw-2">*mut </span>ffi::<a href="../../../gtk4_sys/struct.GtkMediaStreamClass.html">GtkMediaStreamClass</a>;
 <a href=#125 id=125 data-nosnippet>125</a>            <span class="kw">let </span>f = (<span class="kw-2">*</span><a href="#124">parent_class</a>)
 <a href=#126 id=126 data-nosnippet>126</a>                .seek
 <a href=#127 id=127 data-nosnippet>127</a>                .<a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#method.expect">expect</a>(<span class="string">"No parent class impl for \"realize\""</span>);
 <a href=#128 id=128 data-nosnippet>128</a>            <a href="#125">f</a>(
-<a href=#129 id=129 data-nosnippet>129</a>                <a class="self" href="#121">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/subclass/types/trait.ObjectSubclassExt.html#tymethod.obj">obj</a>().<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/object/trait.Cast.html#tymethod.unsafe_cast_ref">unsafe_cast_ref</a>::&lt;<a href="../auto/media_stream.rs.html#14-126">MediaStream</a>&gt;().<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
+<a href=#129 id=129 data-nosnippet>129</a>                <a class="self" href="#121">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/subclass/types/trait.ObjectSubclassExt.html#tymethod.obj">obj</a>().<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/object/trait.Cast.html#method.unsafe_cast_ref">unsafe_cast_ref</a>::&lt;<a href="../auto/media_stream.rs.html#14-126">MediaStream</a>&gt;().<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
 <a href=#130 id=130 data-nosnippet>130</a>                <a href="#121">timestamp</a>,
 <a href=#131 id=131 data-nosnippet>131</a>            )
 <a href=#132 id=132 data-nosnippet>132</a>        }
 <a href=#133 id=133 data-nosnippet>133</a>    }
 <a href=#134 id=134 data-nosnippet>134</a>
-<a href=#135 id=135 data-nosnippet>135</a>    <span class="kw">fn </span>parent_unrealize(<span class="kw-2">&amp;</span><span class="self">self</span>, surface: <a href="../../../gdk4/auto/surface/struct.Surface.html">gdk::Surface</a>) {
+<a href=#135 id=135 data-nosnippet>135</a>    <span class="kw">fn </span>parent_unrealize(<span class="kw-2">&amp;</span><span class="self">self</span>, surface: gdk::<a href="../../../gdk4/auto/surface/struct.Surface.html">Surface</a>) {
 <a href=#136 id=136 data-nosnippet>136</a>        <span class="kw">unsafe </span>{
-<a href=#137 id=137 data-nosnippet>137</a>            <span class="kw">let </span>data = <a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/subclass/types/trait.ObjectSubclassType.html#tymethod.type_data"><span class="self">Self</span>::type_data</a>();
-<a href=#138 id=138 data-nosnippet>138</a>            <span class="kw">let </span>parent_class = <a href="#137">data</a>.<a href="https://doc.rust-lang.org/nightly/core/ptr/non_null/struct.NonNull.html#method.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/subclass/types/struct.TypeData.html#method.parent_class">parent_class</a>() <span class="kw">as </span><span class="kw-2">*mut </span><a href="../../../gtk4_sys/struct.GtkMediaStreamClass.html">ffi::GtkMediaStreamClass</a>;
+<a href=#137 id=137 data-nosnippet>137</a>            <span class="kw">let </span>data = <span class="self">Self</span>::<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/subclass/types/trait.ObjectSubclassType.html#tymethod.type_data">type_data</a>();
+<a href=#138 id=138 data-nosnippet>138</a>            <span class="kw">let </span>parent_class = <a href="#137">data</a>.<a href="https://doc.rust-lang.org/nightly/core/ptr/non_null/struct.NonNull.html#method.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/subclass/types/struct.TypeData.html#method.parent_class">parent_class</a>() <span class="kw">as </span><span class="kw-2">*mut </span>ffi::<a href="../../../gtk4_sys/struct.GtkMediaStreamClass.html">GtkMediaStreamClass</a>;
 <a href=#139 id=139 data-nosnippet>139</a>            <span class="kw">let </span>f = (<span class="kw-2">*</span><a href="#138">parent_class</a>)
 <a href=#140 id=140 data-nosnippet>140</a>                .unrealize
 <a href=#141 id=141 data-nosnippet>141</a>                .<a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#method.expect">expect</a>(<span class="string">"No parent class impl for \"unrealize\""</span>);
 <a href=#142 id=142 data-nosnippet>142</a>            <a href="#139">f</a>(
-<a href=#143 id=143 data-nosnippet>143</a>                <a class="self" href="#135">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/subclass/types/trait.ObjectSubclassExt.html#tymethod.obj">obj</a>().<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/object/trait.Cast.html#tymethod.unsafe_cast_ref">unsafe_cast_ref</a>::&lt;<a href="../auto/media_stream.rs.html#14-126">MediaStream</a>&gt;().<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
+<a href=#143 id=143 data-nosnippet>143</a>                <a class="self" href="#135">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/subclass/types/trait.ObjectSubclassExt.html#tymethod.obj">obj</a>().<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/object/trait.Cast.html#method.unsafe_cast_ref">unsafe_cast_ref</a>::&lt;<a href="../auto/media_stream.rs.html#14-126">MediaStream</a>&gt;().<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
 <a href=#144 id=144 data-nosnippet>144</a>                <a href="#135">surface</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
 <a href=#145 id=145 data-nosnippet>145</a>            )
 <a href=#146 id=146 data-nosnippet>146</a>        }
@@ -221,13 +221,13 @@
 <a href=#148 id=148 data-nosnippet>148</a>
 <a href=#149 id=149 data-nosnippet>149</a>    <span class="kw">fn </span>parent_update_audio(<span class="kw-2">&amp;</span><span class="self">self</span>, muted: <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>, volume: <a href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>) {
 <a href=#150 id=150 data-nosnippet>150</a>        <span class="kw">unsafe </span>{
-<a href=#151 id=151 data-nosnippet>151</a>            <span class="kw">let </span>data = <a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/subclass/types/trait.ObjectSubclassType.html#tymethod.type_data"><span class="self">Self</span>::type_data</a>();
-<a href=#152 id=152 data-nosnippet>152</a>            <span class="kw">let </span>parent_class = <a href="#151">data</a>.<a href="https://doc.rust-lang.org/nightly/core/ptr/non_null/struct.NonNull.html#method.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/subclass/types/struct.TypeData.html#method.parent_class">parent_class</a>() <span class="kw">as </span><span class="kw-2">*mut </span><a href="../../../gtk4_sys/struct.GtkMediaStreamClass.html">ffi::GtkMediaStreamClass</a>;
+<a href=#151 id=151 data-nosnippet>151</a>            <span class="kw">let </span>data = <span class="self">Self</span>::<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/subclass/types/trait.ObjectSubclassType.html#tymethod.type_data">type_data</a>();
+<a href=#152 id=152 data-nosnippet>152</a>            <span class="kw">let </span>parent_class = <a href="#151">data</a>.<a href="https://doc.rust-lang.org/nightly/core/ptr/non_null/struct.NonNull.html#method.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/subclass/types/struct.TypeData.html#method.parent_class">parent_class</a>() <span class="kw">as </span><span class="kw-2">*mut </span>ffi::<a href="../../../gtk4_sys/struct.GtkMediaStreamClass.html">GtkMediaStreamClass</a>;
 <a href=#153 id=153 data-nosnippet>153</a>            <span class="kw">let </span>f = (<span class="kw-2">*</span><a href="#152">parent_class</a>)
 <a href=#154 id=154 data-nosnippet>154</a>                .update_audio
 <a href=#155 id=155 data-nosnippet>155</a>                .<a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#method.expect">expect</a>(<span class="string">"No parent class impl for \"update_audio\""</span>);
 <a href=#156 id=156 data-nosnippet>156</a>            <a href="#153">f</a>(
-<a href=#157 id=157 data-nosnippet>157</a>                <a class="self" href="#149">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/subclass/types/trait.ObjectSubclassExt.html#tymethod.obj">obj</a>().<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/object/trait.Cast.html#tymethod.unsafe_cast_ref">unsafe_cast_ref</a>::&lt;<a href="../auto/media_stream.rs.html#14-126">MediaStream</a>&gt;().<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
+<a href=#157 id=157 data-nosnippet>157</a>                <a class="self" href="#149">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/subclass/types/trait.ObjectSubclassExt.html#tymethod.obj">obj</a>().<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/object/trait.Cast.html#method.unsafe_cast_ref">unsafe_cast_ref</a>::&lt;<a href="../auto/media_stream.rs.html#14-126">MediaStream</a>&gt;().<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
 <a href=#158 id=158 data-nosnippet>158</a>                <a href="#149">muted</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>(),
 <a href=#159 id=159 data-nosnippet>159</a>                <a href="#149">volume</a>,
 <a href=#160 id=160 data-nosnippet>160</a>            )
@@ -238,10 +238,10 @@
 <a href=#165 id=165 data-nosnippet>165</a><span class="kw">impl</span>&lt;T: <a href="#11-77">MediaStreamImpl</a>&gt; <a href="#79-163">MediaStreamImplExt</a> <span class="kw">for </span>T {}
 <a href=#166 id=166 data-nosnippet>166</a>
 <a href=#167 id=167 data-nosnippet>167</a><span class="kw">unsafe impl</span>&lt;T: <a href="#11-77">MediaStreamImpl</a>&gt; <a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/subclass/types/trait.IsSubclassable.html">IsSubclassable</a>&lt;T&gt; <span class="kw">for </span><a href="../auto/media_stream.rs.html#14-126">MediaStream</a> {
-<a href=#168 id=168 data-nosnippet>168</a>    <span class="kw">fn </span>class_init(class: <span class="kw-2">&amp;mut </span><a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/object/struct.Class.html">glib::Class</a>&lt;<span class="self">Self</span>&gt;) {
-<a href=#169 id=169 data-nosnippet>169</a>        <span class="self">Self</span>::parent_class_init::&lt;T&gt;(<a href="#168">class</a>);
+<a href=#168 id=168 data-nosnippet>168</a>    <span class="kw">fn </span>class_init(class: <span class="kw-2">&amp;mut </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/object/struct.Class.html">Class</a>&lt;<span class="self">Self</span>&gt;) {
+<a href=#169 id=169 data-nosnippet>169</a>        <span class="self">Self</span>::<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/subclass/types/trait.IsSubclassableExt.html#tymethod.parent_class_init">parent_class_init</a>::&lt;T&gt;(<a href="#168">class</a>);
 <a href=#170 id=170 data-nosnippet>170</a>
-<a href=#171 id=171 data-nosnippet>171</a>        <a class="macro" href="../rt.rs.html#24-36">assert_initialized_main_thread!</a>();
+<a href=#171 id=171 data-nosnippet>171</a>        <a href="../rt.rs.html#24-36">assert_initialized_main_thread!</a>();
 <a href=#172 id=172 data-nosnippet>172</a>
 <a href=#173 id=173 data-nosnippet>173</a>        <span class="kw">let </span>klass = <a href="#168">class</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsMut.html#tymethod.as_mut">as_mut</a>();
 <a href=#174 id=174 data-nosnippet>174</a>        <a href="#173">klass</a>.pause = <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.Some">Some</a>(<a href="#183-188">media_stream_pause</a>::&lt;T&gt;);
@@ -253,7 +253,7 @@
 <a href=#180 id=180 data-nosnippet>180</a>    }
 <a href=#181 id=181 data-nosnippet>181</a>}
 <a href=#182 id=182 data-nosnippet>182</a>
-<a href=#183 id=183 data-nosnippet>183</a><span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn </span>media_stream_pause&lt;T: <a href="#11-77">MediaStreamImpl</a>&gt;(ptr: <span class="kw-2">*mut </span><a href="../../../gtk4_sys/struct.GtkMediaStream.html">ffi::GtkMediaStream</a>) {
+<a href=#183 id=183 data-nosnippet>183</a><span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn </span>media_stream_pause&lt;T: <a href="#11-77">MediaStreamImpl</a>&gt;(ptr: <span class="kw-2">*mut </span>ffi::<a href="../../../gtk4_sys/struct.GtkMediaStream.html">GtkMediaStream</a>) {
 <a href=#184 id=184 data-nosnippet>184</a>    <span class="kw">let </span>instance = <span class="kw-2">&amp;*</span>(<a href="#183">ptr</a> <span class="kw">as </span><span class="kw-2">*mut </span>T::Instance);
 <a href=#185 id=185 data-nosnippet>185</a>    <span class="kw">let </span>imp = <a href="#184">instance</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/subclass/types/trait.InstanceStructExt.html#tymethod.imp">imp</a>();
 <a href=#186 id=186 data-nosnippet>186</a>
@@ -261,7 +261,7 @@
 <a href=#188 id=188 data-nosnippet>188</a>}
 <a href=#189 id=189 data-nosnippet>189</a>
 <a href=#190 id=190 data-nosnippet>190</a><span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn </span>media_stream_play&lt;T: <a href="#11-77">MediaStreamImpl</a>&gt;(
-<a href=#191 id=191 data-nosnippet>191</a>    ptr: <span class="kw-2">*mut </span><a href="../../../gtk4_sys/struct.GtkMediaStream.html">ffi::GtkMediaStream</a>,
+<a href=#191 id=191 data-nosnippet>191</a>    ptr: <span class="kw-2">*mut </span>ffi::<a href="../../../gtk4_sys/struct.GtkMediaStream.html">GtkMediaStream</a>,
 <a href=#192 id=192 data-nosnippet>192</a>) -&gt; glib::ffi::gboolean {
 <a href=#193 id=193 data-nosnippet>193</a>    <span class="kw">let </span>instance = <span class="kw-2">&amp;*</span>(<a href="#191">ptr</a> <span class="kw">as </span><span class="kw-2">*mut </span>T::Instance);
 <a href=#194 id=194 data-nosnippet>194</a>    <span class="kw">let </span>imp = <a href="#193">instance</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/subclass/types/trait.InstanceStructExt.html#tymethod.imp">imp</a>();
@@ -270,8 +270,8 @@
 <a href=#197 id=197 data-nosnippet>197</a>}
 <a href=#198 id=198 data-nosnippet>198</a>
 <a href=#199 id=199 data-nosnippet>199</a><span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn </span>media_stream_realize&lt;T: <a href="#11-77">MediaStreamImpl</a>&gt;(
-<a href=#200 id=200 data-nosnippet>200</a>    ptr: <span class="kw-2">*mut </span><a href="../../../gtk4_sys/struct.GtkMediaStream.html">ffi::GtkMediaStream</a>,
-<a href=#201 id=201 data-nosnippet>201</a>    surface: <span class="kw-2">*mut </span><a href="../../../gdk4_sys/struct.GdkSurface.html">gdk::ffi::GdkSurface</a>,
+<a href=#200 id=200 data-nosnippet>200</a>    ptr: <span class="kw-2">*mut </span>ffi::<a href="../../../gtk4_sys/struct.GtkMediaStream.html">GtkMediaStream</a>,
+<a href=#201 id=201 data-nosnippet>201</a>    surface: <span class="kw-2">*mut </span>gdk::ffi::<a href="../../../gdk4_sys/struct.GdkSurface.html">GdkSurface</a>,
 <a href=#202 id=202 data-nosnippet>202</a>) {
 <a href=#203 id=203 data-nosnippet>203</a>    <span class="kw">let </span>instance = <span class="kw-2">&amp;*</span>(<a href="#200">ptr</a> <span class="kw">as </span><span class="kw-2">*mut </span>T::Instance);
 <a href=#204 id=204 data-nosnippet>204</a>    <span class="kw">let </span>imp = <a href="#203">instance</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/subclass/types/trait.InstanceStructExt.html#tymethod.imp">imp</a>();
@@ -280,7 +280,7 @@
 <a href=#207 id=207 data-nosnippet>207</a>}
 <a href=#208 id=208 data-nosnippet>208</a>
 <a href=#209 id=209 data-nosnippet>209</a><span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn </span>media_stream_seek&lt;T: <a href="#11-77">MediaStreamImpl</a>&gt;(
-<a href=#210 id=210 data-nosnippet>210</a>    ptr: <span class="kw-2">*mut </span><a href="../../../gtk4_sys/struct.GtkMediaStream.html">ffi::GtkMediaStream</a>,
+<a href=#210 id=210 data-nosnippet>210</a>    ptr: <span class="kw-2">*mut </span>ffi::<a href="../../../gtk4_sys/struct.GtkMediaStream.html">GtkMediaStream</a>,
 <a href=#211 id=211 data-nosnippet>211</a>    timestamp: <a href="https://doc.rust-lang.org/nightly/std/primitive.i64.html">i64</a>,
 <a href=#212 id=212 data-nosnippet>212</a>) {
 <a href=#213 id=213 data-nosnippet>213</a>    <span class="kw">let </span>instance = <span class="kw-2">&amp;*</span>(<a href="#210">ptr</a> <span class="kw">as </span><span class="kw-2">*mut </span>T::Instance);
@@ -290,8 +290,8 @@
 <a href=#217 id=217 data-nosnippet>217</a>}
 <a href=#218 id=218 data-nosnippet>218</a>
 <a href=#219 id=219 data-nosnippet>219</a><span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn </span>media_stream_unrealize&lt;T: <a href="#11-77">MediaStreamImpl</a>&gt;(
-<a href=#220 id=220 data-nosnippet>220</a>    ptr: <span class="kw-2">*mut </span><a href="../../../gtk4_sys/struct.GtkMediaStream.html">ffi::GtkMediaStream</a>,
-<a href=#221 id=221 data-nosnippet>221</a>    surface: <span class="kw-2">*mut </span><a href="../../../gdk4_sys/struct.GdkSurface.html">gdk::ffi::GdkSurface</a>,
+<a href=#220 id=220 data-nosnippet>220</a>    ptr: <span class="kw-2">*mut </span>ffi::<a href="../../../gtk4_sys/struct.GtkMediaStream.html">GtkMediaStream</a>,
+<a href=#221 id=221 data-nosnippet>221</a>    surface: <span class="kw-2">*mut </span>gdk::ffi::<a href="../../../gdk4_sys/struct.GdkSurface.html">GdkSurface</a>,
 <a href=#222 id=222 data-nosnippet>222</a>) {
 <a href=#223 id=223 data-nosnippet>223</a>    <span class="kw">let </span>instance = <span class="kw-2">&amp;*</span>(<a href="#220">ptr</a> <span class="kw">as </span><span class="kw-2">*mut </span>T::Instance);
 <a href=#224 id=224 data-nosnippet>224</a>    <span class="kw">let </span>imp = <a href="#223">instance</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/subclass/types/trait.InstanceStructExt.html#tymethod.imp">imp</a>();
@@ -300,7 +300,7 @@
 <a href=#227 id=227 data-nosnippet>227</a>}
 <a href=#228 id=228 data-nosnippet>228</a>
 <a href=#229 id=229 data-nosnippet>229</a><span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn </span>media_stream_update_audio&lt;T: <a href="#11-77">MediaStreamImpl</a>&gt;(
-<a href=#230 id=230 data-nosnippet>230</a>    ptr: <span class="kw-2">*mut </span><a href="../../../gtk4_sys/struct.GtkMediaStream.html">ffi::GtkMediaStream</a>,
+<a href=#230 id=230 data-nosnippet>230</a>    ptr: <span class="kw-2">*mut </span>ffi::<a href="../../../gtk4_sys/struct.GtkMediaStream.html">GtkMediaStream</a>,
 <a href=#231 id=231 data-nosnippet>231</a>    muted: glib::ffi::gboolean,
 <a href=#232 id=232 data-nosnippet>232</a>    volume: <a href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>,
 <a href=#233 id=233 data-nosnippet>233</a>) {
@@ -308,4 +308,5 @@
 <a href=#235 id=235 data-nosnippet>235</a>    <span class="kw">let </span>imp = <a href="#234">instance</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/subclass/types/trait.InstanceStructExt.html#tymethod.imp">imp</a>();
 <a href=#236 id=236 data-nosnippet>236</a>
 <a href=#237 id=237 data-nosnippet>237</a>    <a href="#235">imp</a>.<a href="#74-76">update_audio</a>(<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/fn.from_glib.html">from_glib</a>(<a href="#231">muted</a>), <a href="#232">volume</a>)
-<a href=#238 id=238 data-nosnippet>238</a>}</code></pre></div></section></main></body></html>
+<a href=#238 id=238 data-nosnippet>238</a>}
+</code></pre></div></section></main></body></html>

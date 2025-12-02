@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/auto/constraint_layout.rs`."><title>constraint_layout.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-e56847b5.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.92.0-nightly (a9d0a6f15 2025-09-16)" data-channel="nightly" data-search-js="search-cb266a1a.js" data-stringdex-js="stringdex-5af928a3.js" data-settings-js="settings-c38705f0.js" ><script src="../../../static.files/storage-e2aeef58.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-6dc2a7f3.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-263c88ec.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/auto/constraint_layout.rs`."><title>constraint_layout.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-ca0dd0c4.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.93.0-nightly (1d60f9e07 2025-12-01)" data-channel="nightly" data-search-js="search-9e2438ea.js" data-stringdex-js="stringdex-a3946164.js" data-settings-js="settings-c38705f0.js" ><script src="../../../static.files/storage-e2aeef58.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-a410ff4d.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-263c88ec.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
 
@@ -78,7 +78,7 @@
 <a href=#5 id=5 data-nosnippet>5</a></span><span class="kw">use crate</span>::{<a href="../../../gtk4_sys/index.html">ffi</a>, <a href="buildable.rs.html#8-31">Buildable</a>, <a href="constraint.rs.html#8-98">Constraint</a>, <a href="constraint_guide.rs.html#13-86">ConstraintGuide</a>, <a href="layout_manager.rs.html#8-70">LayoutManager</a>};
 <a href=#6 id=6 data-nosnippet>6</a><span class="kw">use </span>glib::{<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/prelude/index.html">prelude</a>::<span class="kw-2">*</span>, <a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/index.html">translate</a>::<span class="kw-2">*</span>};
 <a href=#7 id=7 data-nosnippet>7</a>
-<a href=#8 id=8 data-nosnippet>8</a><a class="macro" href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/macro.wrapper.html">glib::wrapper!</a> {
+<a href=#8 id=8 data-nosnippet>8</a><a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/macro.wrapper.html">glib::wrapper!</a> {
 <a href=#9 id=9 data-nosnippet>9</a>    <span class="doccomment">/// Uses constraints to describe relations between widgets.
 <a href=#10 id=10 data-nosnippet>10</a>    ///
 <a href=#11 id=11 data-nosnippet>11</a>    /// [`ConstraintLayout`][crate::ConstraintLayout] is a layout manager that uses relations between
@@ -247,7 +247,7 @@
 <a href=#174 id=174 data-nosnippet>174</a>    ///
 <a href=#175 id=175 data-nosnippet>175</a>    /// [`LayoutManagerExt`][trait@crate::prelude::LayoutManagerExt], [`trait@glib::ObjectExt`], [`BuildableExt`][trait@crate::prelude::BuildableExt]
 <a href=#176 id=176 data-nosnippet>176</a>    </span><span class="attr">#[doc(alias = <span class="string">"GtkConstraintLayout"</span>)]
-<a href=#177 id=177 data-nosnippet>177</a>    </span><span class="kw">pub struct </span><a href="../../../gtk4/struct.ConstraintLayout.html">ConstraintLayout</a>(Object&lt;<a href="../../../gtk4_sys/struct.GtkConstraintLayout.html">ffi::GtkConstraintLayout</a>, <a href="../../../gtk4_sys/struct.GtkConstraintLayoutClass.html">ffi::GtkConstraintLayoutClass</a>&gt;) @extends <a href="layout_manager.rs.html#8-70">LayoutManager</a>, @implements <a href="buildable.rs.html#8-31">Buildable</a>;
+<a href=#177 id=177 data-nosnippet>177</a>    </span><span class="kw">pub struct </span><a href="#8-182">ConstraintLayout</a>(Object&lt;ffi::<a href="../../../gtk4_sys/struct.GtkConstraintLayout.html">GtkConstraintLayout</a>, ffi::<a href="../../../gtk4_sys/struct.GtkConstraintLayoutClass.html">GtkConstraintLayoutClass</a>&gt;) @extends <a href="layout_manager.rs.html#8-70">LayoutManager</a>, @implements <a href="buildable.rs.html#8-31">Buildable</a>;
 <a href=#178 id=178 data-nosnippet>178</a>
 <a href=#179 id=179 data-nosnippet>179</a>    <span class="kw">match fn </span>{
 <a href=#180 id=180 data-nosnippet>180</a>        type_ =&gt; || ffi::gtk_constraint_layout_get_type(),
@@ -262,8 +262,8 @@
 <a href=#189 id=189 data-nosnippet>189</a>    /// the newly created [`ConstraintLayout`][crate::ConstraintLayout]
 <a href=#190 id=190 data-nosnippet>190</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_constraint_layout_new"</span>)]
 <a href=#191 id=191 data-nosnippet>191</a>    </span><span class="kw">pub fn </span>new() -&gt; <a href="#8-182">ConstraintLayout</a> {
-<a href=#192 id=192 data-nosnippet>192</a>        <a class="macro" href="../rt.rs.html#24-36">assert_initialized_main_thread!</a>();
-<a href=#193 id=193 data-nosnippet>193</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.FromGlibPtrFull.html#tymethod.from_glib_full">LayoutManager::from_glib_full</a>(<a href="../../../gtk4_sys/fn.gtk_constraint_layout_new.html">ffi::gtk_constraint_layout_new</a>()).<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/object/trait.Cast.html#tymethod.unsafe_cast">unsafe_cast</a>() }
+<a href=#192 id=192 data-nosnippet>192</a>        <a href="../rt.rs.html#24-36">assert_initialized_main_thread!</a>();
+<a href=#193 id=193 data-nosnippet>193</a>        <span class="kw">unsafe </span>{ <a href="layout_manager.rs.html#8-70">LayoutManager</a>::<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.FromGlibPtrFull.html#tymethod.from_glib_full">from_glib_full</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_constraint_layout_new.html">gtk_constraint_layout_new</a>()).<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/object/trait.Cast.html#method.unsafe_cast">unsafe_cast</a>() }
 <a href=#194 id=194 data-nosnippet>194</a>    }
 <a href=#195 id=195 data-nosnippet>195</a>
 <a href=#196 id=196 data-nosnippet>196</a>    <span class="doccomment">/// Adds a constraint to the layout manager.
@@ -284,7 +284,7 @@
 <a href=#211 id=211 data-nosnippet>211</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_constraint_layout_add_constraint"</span>)]
 <a href=#212 id=212 data-nosnippet>212</a>    </span><span class="kw">pub fn </span>add_constraint(<span class="kw-2">&amp;</span><span class="self">self</span>, constraint: <a href="constraint.rs.html#8-98">Constraint</a>) {
 <a href=#213 id=213 data-nosnippet>213</a>        <span class="kw">unsafe </span>{
-<a href=#214 id=214 data-nosnippet>214</a>            <a href="../../../gtk4_sys/fn.gtk_constraint_layout_add_constraint.html">ffi::gtk_constraint_layout_add_constraint</a>(
+<a href=#214 id=214 data-nosnippet>214</a>            ffi::<a href="../../../gtk4_sys/fn.gtk_constraint_layout_add_constraint.html">gtk_constraint_layout_add_constraint</a>(
 <a href=#215 id=215 data-nosnippet>215</a>                <a class="self" href="#212">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
 <a href=#216 id=216 data-nosnippet>216</a>                <a href="#212">constraint</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.IntoGlibPtr.html#tymethod.into_glib_ptr">into_glib_ptr</a>(),
 <a href=#217 id=217 data-nosnippet>217</a>            );
@@ -303,7 +303,7 @@
 <a href=#230 id=230 data-nosnippet>230</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_constraint_layout_add_guide"</span>)]
 <a href=#231 id=231 data-nosnippet>231</a>    </span><span class="kw">pub fn </span>add_guide(<span class="kw-2">&amp;</span><span class="self">self</span>, guide: <a href="constraint_guide.rs.html#13-86">ConstraintGuide</a>) {
 <a href=#232 id=232 data-nosnippet>232</a>        <span class="kw">unsafe </span>{
-<a href=#233 id=233 data-nosnippet>233</a>            <a href="../../../gtk4_sys/fn.gtk_constraint_layout_add_guide.html">ffi::gtk_constraint_layout_add_guide</a>(<a class="self" href="#231">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>, <a href="#231">guide</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.IntoGlibPtr.html#tymethod.into_glib_ptr">into_glib_ptr</a>());
+<a href=#233 id=233 data-nosnippet>233</a>            ffi::<a href="../../../gtk4_sys/fn.gtk_constraint_layout_add_guide.html">gtk_constraint_layout_add_guide</a>(<a class="self" href="#231">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>, <a href="#231">guide</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.IntoGlibPtr.html#tymethod.into_glib_ptr">into_glib_ptr</a>());
 <a href=#234 id=234 data-nosnippet>234</a>        }
 <a href=#235 id=235 data-nosnippet>235</a>    }
 <a href=#236 id=236 data-nosnippet>236</a>
@@ -322,9 +322,9 @@
 <a href=#249 id=249 data-nosnippet>249</a>    /// a
 <a href=#250 id=250 data-nosnippet>250</a>    ///   `GListModel` tracking the layout's constraints
 <a href=#251 id=251 data-nosnippet>251</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_constraint_layout_observe_constraints"</span>)]
-<a href=#252 id=252 data-nosnippet>252</a>    </span><span class="kw">pub fn </span>observe_constraints(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/gio/auto/list_model/struct.ListModel.html">gio::ListModel</a> {
+<a href=#252 id=252 data-nosnippet>252</a>    </span><span class="kw">pub fn </span>observe_constraints(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; gio::<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/gio/auto/list_model/struct.ListModel.html">ListModel</a> {
 <a href=#253 id=253 data-nosnippet>253</a>        <span class="kw">unsafe </span>{
-<a href=#254 id=254 data-nosnippet>254</a>            <a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/fn.from_glib_full.html">from_glib_full</a>(<a href="../../../gtk4_sys/fn.gtk_constraint_layout_observe_constraints.html">ffi::gtk_constraint_layout_observe_constraints</a>(
+<a href=#254 id=254 data-nosnippet>254</a>            <a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/fn.from_glib_full.html">from_glib_full</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_constraint_layout_observe_constraints.html">gtk_constraint_layout_observe_constraints</a>(
 <a href=#255 id=255 data-nosnippet>255</a>                <a class="self" href="#252">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
 <a href=#256 id=256 data-nosnippet>256</a>            ))
 <a href=#257 id=257 data-nosnippet>257</a>        }
@@ -345,9 +345,9 @@
 <a href=#272 id=272 data-nosnippet>272</a>    /// a
 <a href=#273 id=273 data-nosnippet>273</a>    ///   `GListModel` tracking the layout's guides
 <a href=#274 id=274 data-nosnippet>274</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_constraint_layout_observe_guides"</span>)]
-<a href=#275 id=275 data-nosnippet>275</a>    </span><span class="kw">pub fn </span>observe_guides(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/gio/auto/list_model/struct.ListModel.html">gio::ListModel</a> {
+<a href=#275 id=275 data-nosnippet>275</a>    </span><span class="kw">pub fn </span>observe_guides(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; gio::<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/gio/auto/list_model/struct.ListModel.html">ListModel</a> {
 <a href=#276 id=276 data-nosnippet>276</a>        <span class="kw">unsafe </span>{
-<a href=#277 id=277 data-nosnippet>277</a>            <a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/fn.from_glib_full.html">from_glib_full</a>(<a href="../../../gtk4_sys/fn.gtk_constraint_layout_observe_guides.html">ffi::gtk_constraint_layout_observe_guides</a>(
+<a href=#277 id=277 data-nosnippet>277</a>            <a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/fn.from_glib_full.html">from_glib_full</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_constraint_layout_observe_guides.html">gtk_constraint_layout_observe_guides</a>(
 <a href=#278 id=278 data-nosnippet>278</a>                <a class="self" href="#275">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
 <a href=#279 id=279 data-nosnippet>279</a>            ))
 <a href=#280 id=280 data-nosnippet>280</a>        }
@@ -357,7 +357,7 @@
 <a href=#284 id=284 data-nosnippet>284</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_constraint_layout_remove_all_constraints"</span>)]
 <a href=#285 id=285 data-nosnippet>285</a>    </span><span class="kw">pub fn </span>remove_all_constraints(<span class="kw-2">&amp;</span><span class="self">self</span>) {
 <a href=#286 id=286 data-nosnippet>286</a>        <span class="kw">unsafe </span>{
-<a href=#287 id=287 data-nosnippet>287</a>            <a href="../../../gtk4_sys/fn.gtk_constraint_layout_remove_all_constraints.html">ffi::gtk_constraint_layout_remove_all_constraints</a>(<a class="self" href="#285">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>);
+<a href=#287 id=287 data-nosnippet>287</a>            ffi::<a href="../../../gtk4_sys/fn.gtk_constraint_layout_remove_all_constraints.html">gtk_constraint_layout_remove_all_constraints</a>(<a class="self" href="#285">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>);
 <a href=#288 id=288 data-nosnippet>288</a>        }
 <a href=#289 id=289 data-nosnippet>289</a>    }
 <a href=#290 id=290 data-nosnippet>290</a>
@@ -368,7 +368,7 @@
 <a href=#295 id=295 data-nosnippet>295</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_constraint_layout_remove_constraint"</span>)]
 <a href=#296 id=296 data-nosnippet>296</a>    </span><span class="kw">pub fn </span>remove_constraint(<span class="kw-2">&amp;</span><span class="self">self</span>, constraint: <span class="kw-2">&amp;</span><a href="constraint.rs.html#8-98">Constraint</a>) {
 <a href=#297 id=297 data-nosnippet>297</a>        <span class="kw">unsafe </span>{
-<a href=#298 id=298 data-nosnippet>298</a>            <a href="../../../gtk4_sys/fn.gtk_constraint_layout_remove_constraint.html">ffi::gtk_constraint_layout_remove_constraint</a>(
+<a href=#298 id=298 data-nosnippet>298</a>            ffi::<a href="../../../gtk4_sys/fn.gtk_constraint_layout_remove_constraint.html">gtk_constraint_layout_remove_constraint</a>(
 <a href=#299 id=299 data-nosnippet>299</a>                <a class="self" href="#296">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
 <a href=#300 id=300 data-nosnippet>300</a>                <a href="#296">constraint</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
 <a href=#301 id=301 data-nosnippet>301</a>            );
@@ -382,13 +382,14 @@
 <a href=#309 id=309 data-nosnippet>309</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_constraint_layout_remove_guide"</span>)]
 <a href=#310 id=310 data-nosnippet>310</a>    </span><span class="kw">pub fn </span>remove_guide(<span class="kw-2">&amp;</span><span class="self">self</span>, guide: <span class="kw-2">&amp;</span><a href="constraint_guide.rs.html#13-86">ConstraintGuide</a>) {
 <a href=#311 id=311 data-nosnippet>311</a>        <span class="kw">unsafe </span>{
-<a href=#312 id=312 data-nosnippet>312</a>            <a href="../../../gtk4_sys/fn.gtk_constraint_layout_remove_guide.html">ffi::gtk_constraint_layout_remove_guide</a>(<a class="self" href="#310">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>, <a href="#310">guide</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>);
+<a href=#312 id=312 data-nosnippet>312</a>            ffi::<a href="../../../gtk4_sys/fn.gtk_constraint_layout_remove_guide.html">gtk_constraint_layout_remove_guide</a>(<a class="self" href="#310">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>, <a href="#310">guide</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>);
 <a href=#313 id=313 data-nosnippet>313</a>        }
 <a href=#314 id=314 data-nosnippet>314</a>    }
 <a href=#315 id=315 data-nosnippet>315</a>}
 <a href=#316 id=316 data-nosnippet>316</a>
 <a href=#317 id=317 data-nosnippet>317</a><span class="kw">impl </span><a href="https://doc.rust-lang.org/nightly/core/default/trait.Default.html">Default</a> <span class="kw">for </span><a href="#8-182">ConstraintLayout</a> {
 <a href=#318 id=318 data-nosnippet>318</a>    <span class="kw">fn </span>default() -&gt; <span class="self">Self </span>{
-<a href=#319 id=319 data-nosnippet>319</a>        <a href="#191-194"><span class="self">Self</span>::new</a>()
+<a href=#319 id=319 data-nosnippet>319</a>        <span class="self">Self</span>::<a href="#191-194">new</a>()
 <a href=#320 id=320 data-nosnippet>320</a>    }
-<a href=#321 id=321 data-nosnippet>321</a>}</code></pre></div></section></main></body></html>
+<a href=#321 id=321 data-nosnippet>321</a>}
+</code></pre></div></section></main></body></html>

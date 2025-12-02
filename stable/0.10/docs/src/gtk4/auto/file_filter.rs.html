@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/auto/file_filter.rs`."><title>file_filter.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-e56847b5.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.92.0-nightly (a9d0a6f15 2025-09-16)" data-channel="nightly" data-search-js="search-cb266a1a.js" data-stringdex-js="stringdex-5af928a3.js" data-settings-js="settings-c38705f0.js" ><script src="../../../static.files/storage-e2aeef58.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-6dc2a7f3.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-263c88ec.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/auto/file_filter.rs`."><title>file_filter.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-ca0dd0c4.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.93.0-nightly (1d60f9e07 2025-12-01)" data-channel="nightly" data-search-js="search-9e2438ea.js" data-stringdex-js="stringdex-a3946164.js" data-settings-js="settings-c38705f0.js" ><script src="../../../static.files/storage-e2aeef58.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-a410ff4d.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-263c88ec.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
 
@@ -84,7 +84,7 @@
 <a href=#11 id=11 data-nosnippet>11</a>};
 <a href=#12 id=12 data-nosnippet>12</a><span class="kw">use </span><a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">std::boxed::Box</a> <span class="kw">as </span>Box_;
 <a href=#13 id=13 data-nosnippet>13</a>
-<a href=#14 id=14 data-nosnippet>14</a><a class="macro" href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/macro.wrapper.html">glib::wrapper!</a> {
+<a href=#14 id=14 data-nosnippet>14</a><a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/macro.wrapper.html">glib::wrapper!</a> {
 <a href=#15 id=15 data-nosnippet>15</a>    <span class="doccomment">/// Filters files by name or mime type.
 <a href=#16 id=16 data-nosnippet>16</a>    ///
 <a href=#17 id=17 data-nosnippet>17</a>    /// [`FileFilter`][crate::FileFilter] can be used to restrict the files being shown in a
@@ -165,7 +165,7 @@
 <a href=#92 id=92 data-nosnippet>92</a>    ///
 <a href=#93 id=93 data-nosnippet>93</a>    /// [`FilterExt`][trait@crate::prelude::FilterExt], [`trait@glib::ObjectExt`], [`BuildableExt`][trait@crate::prelude::BuildableExt]
 <a href=#94 id=94 data-nosnippet>94</a>    </span><span class="attr">#[doc(alias = <span class="string">"GtkFileFilter"</span>)]
-<a href=#95 id=95 data-nosnippet>95</a>    </span><span class="kw">pub struct </span><a href="../../../gtk4/struct.FileFilter.html">FileFilter</a>(Object&lt;<a href="../../../gtk4_sys/struct.GtkFileFilter.html">ffi::GtkFileFilter</a>&gt;) @extends <a href="filter.rs.html#14-59">Filter</a>, @implements <a href="buildable.rs.html#8-31">Buildable</a>;
+<a href=#95 id=95 data-nosnippet>95</a>    </span><span class="kw">pub struct </span><a href="#14-100">FileFilter</a>(Object&lt;ffi::<a href="../../../gtk4_sys/struct.GtkFileFilter.html">GtkFileFilter</a>&gt;) @extends <a href="filter.rs.html#14-59">Filter</a>, @implements <a href="buildable.rs.html#8-31">Buildable</a>;
 <a href=#96 id=96 data-nosnippet>96</a>
 <a href=#97 id=97 data-nosnippet>97</a>    <span class="kw">match fn </span>{
 <a href=#98 id=98 data-nosnippet>98</a>        type_ =&gt; || ffi::gtk_file_filter_get_type(),
@@ -195,8 +195,8 @@
 <a href=#122 id=122 data-nosnippet>122</a>    /// a new [`FileFilter`][crate::FileFilter]
 <a href=#123 id=123 data-nosnippet>123</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_file_filter_new"</span>)]
 <a href=#124 id=124 data-nosnippet>124</a>    </span><span class="kw">pub fn </span>new() -&gt; <a href="#14-100">FileFilter</a> {
-<a href=#125 id=125 data-nosnippet>125</a>        <a class="macro" href="../rt.rs.html#24-36">assert_initialized_main_thread!</a>();
-<a href=#126 id=126 data-nosnippet>126</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/fn.from_glib_full.html">from_glib_full</a>(<a href="../../../gtk4_sys/fn.gtk_file_filter_new.html">ffi::gtk_file_filter_new</a>()) }
+<a href=#125 id=125 data-nosnippet>125</a>        <a href="../rt.rs.html#24-36">assert_initialized_main_thread!</a>();
+<a href=#126 id=126 data-nosnippet>126</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/fn.from_glib_full.html">from_glib_full</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_file_filter_new.html">gtk_file_filter_new</a>()) }
 <a href=#127 id=127 data-nosnippet>127</a>    }
 <a href=#128 id=128 data-nosnippet>128</a>
 <a href=#129 id=129 data-nosnippet>129</a>    <span class="doccomment">/// Deserialize a file filter from a `GVariant`.
@@ -211,10 +211,10 @@
 <a href=#138 id=138 data-nosnippet>138</a>    /// a new [`FileFilter`][crate::FileFilter] object
 <a href=#139 id=139 data-nosnippet>139</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_file_filter_new_from_gvariant"</span>)]
 <a href=#140 id=140 data-nosnippet>140</a>    #[doc(alias = <span class="string">"new_from_gvariant"</span>)]
-<a href=#141 id=141 data-nosnippet>141</a>    </span><span class="kw">pub fn </span>from_gvariant(variant: <span class="kw-2">&amp;</span><a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/variant/struct.Variant.html">glib::Variant</a>) -&gt; <a href="#14-100">FileFilter</a> {
-<a href=#142 id=142 data-nosnippet>142</a>        <a class="macro" href="../rt.rs.html#24-36">assert_initialized_main_thread!</a>();
+<a href=#141 id=141 data-nosnippet>141</a>    </span><span class="kw">pub fn </span>from_gvariant(variant: <span class="kw-2">&amp;</span>glib::<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/variant/struct.Variant.html">Variant</a>) -&gt; <a href="#14-100">FileFilter</a> {
+<a href=#142 id=142 data-nosnippet>142</a>        <a href="../rt.rs.html#24-36">assert_initialized_main_thread!</a>();
 <a href=#143 id=143 data-nosnippet>143</a>        <span class="kw">unsafe </span>{
-<a href=#144 id=144 data-nosnippet>144</a>            <a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/fn.from_glib_full.html">from_glib_full</a>(<a href="../../../gtk4_sys/fn.gtk_file_filter_new_from_gvariant.html">ffi::gtk_file_filter_new_from_gvariant</a>(
+<a href=#144 id=144 data-nosnippet>144</a>            <a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/fn.from_glib_full.html">from_glib_full</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_file_filter_new_from_gvariant.html">gtk_file_filter_new_from_gvariant</a>(
 <a href=#145 id=145 data-nosnippet>145</a>                <a href="#141">variant</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
 <a href=#146 id=146 data-nosnippet>146</a>            ))
 <a href=#147 id=147 data-nosnippet>147</a>        }
@@ -226,7 +226,7 @@
 <a href=#153 id=153 data-nosnippet>153</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_file_filter_add_mime_type"</span>)]
 <a href=#154 id=154 data-nosnippet>154</a>    </span><span class="kw">pub fn </span>add_mime_type(<span class="kw-2">&amp;</span><span class="self">self</span>, mime_type: <span class="kw-2">&amp;</span><a href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>) {
 <a href=#155 id=155 data-nosnippet>155</a>        <span class="kw">unsafe </span>{
-<a href=#156 id=156 data-nosnippet>156</a>            <a href="../../../gtk4_sys/fn.gtk_file_filter_add_mime_type.html">ffi::gtk_file_filter_add_mime_type</a>(<a class="self" href="#154">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>, <a href="#154">mime_type</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>);
+<a href=#156 id=156 data-nosnippet>156</a>            ffi::<a href="../../../gtk4_sys/fn.gtk_file_filter_add_mime_type.html">gtk_file_filter_add_mime_type</a>(<a class="self" href="#154">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>, <a href="#154">mime_type</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>);
 <a href=#157 id=157 data-nosnippet>157</a>        }
 <a href=#158 id=158 data-nosnippet>158</a>    }
 <a href=#159 id=159 data-nosnippet>159</a>
@@ -240,7 +240,7 @@
 <a href=#167 id=167 data-nosnippet>167</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_file_filter_add_pattern"</span>)]
 <a href=#168 id=168 data-nosnippet>168</a>    </span><span class="kw">pub fn </span>add_pattern(<span class="kw-2">&amp;</span><span class="self">self</span>, pattern: <span class="kw-2">&amp;</span><a href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>) {
 <a href=#169 id=169 data-nosnippet>169</a>        <span class="kw">unsafe </span>{
-<a href=#170 id=170 data-nosnippet>170</a>            <a href="../../../gtk4_sys/fn.gtk_file_filter_add_pattern.html">ffi::gtk_file_filter_add_pattern</a>(<a class="self" href="#168">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>, <a href="#168">pattern</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>);
+<a href=#170 id=170 data-nosnippet>170</a>            ffi::<a href="../../../gtk4_sys/fn.gtk_file_filter_add_pattern.html">gtk_file_filter_add_pattern</a>(<a class="self" href="#168">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>, <a href="#168">pattern</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>);
 <a href=#171 id=171 data-nosnippet>171</a>        }
 <a href=#172 id=172 data-nosnippet>172</a>    }
 <a href=#173 id=173 data-nosnippet>173</a>
@@ -258,7 +258,7 @@
 <a href=#185 id=185 data-nosnippet>185</a>    #[doc(alias = <span class="string">"gtk_file_filter_add_pixbuf_formats"</span>)]
 <a href=#186 id=186 data-nosnippet>186</a>    </span><span class="kw">pub fn </span>add_pixbuf_formats(<span class="kw-2">&amp;</span><span class="self">self</span>) {
 <a href=#187 id=187 data-nosnippet>187</a>        <span class="kw">unsafe </span>{
-<a href=#188 id=188 data-nosnippet>188</a>            <a href="../../../gtk4_sys/fn.gtk_file_filter_add_pixbuf_formats.html">ffi::gtk_file_filter_add_pixbuf_formats</a>(<a class="self" href="#186">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>);
+<a href=#188 id=188 data-nosnippet>188</a>            ffi::<a href="../../../gtk4_sys/fn.gtk_file_filter_add_pixbuf_formats.html">gtk_file_filter_add_pixbuf_formats</a>(<a class="self" href="#186">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>);
 <a href=#189 id=189 data-nosnippet>189</a>        }
 <a href=#190 id=190 data-nosnippet>190</a>    }
 <a href=#191 id=191 data-nosnippet>191</a>
@@ -284,7 +284,7 @@
 <a href=#211 id=211 data-nosnippet>211</a>    #[doc(alias = <span class="string">"gtk_file_filter_add_suffix"</span>)]
 <a href=#212 id=212 data-nosnippet>212</a>    </span><span class="kw">pub fn </span>add_suffix(<span class="kw-2">&amp;</span><span class="self">self</span>, suffix: <span class="kw-2">&amp;</span><a href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>) {
 <a href=#213 id=213 data-nosnippet>213</a>        <span class="kw">unsafe </span>{
-<a href=#214 id=214 data-nosnippet>214</a>            <a href="../../../gtk4_sys/fn.gtk_file_filter_add_suffix.html">ffi::gtk_file_filter_add_suffix</a>(<a class="self" href="#212">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>, <a href="#212">suffix</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>);
+<a href=#214 id=214 data-nosnippet>214</a>            ffi::<a href="../../../gtk4_sys/fn.gtk_file_filter_add_suffix.html">gtk_file_filter_add_suffix</a>(<a class="self" href="#212">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>, <a href="#212">suffix</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>);
 <a href=#215 id=215 data-nosnippet>215</a>        }
 <a href=#216 id=216 data-nosnippet>216</a>    }
 <a href=#217 id=217 data-nosnippet>217</a>
@@ -299,9 +299,9 @@
 <a href=#226 id=226 data-nosnippet>226</a>    /// the attributes
 <a href=#227 id=227 data-nosnippet>227</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_file_filter_get_attributes"</span>)]
 <a href=#228 id=228 data-nosnippet>228</a>    #[doc(alias = <span class="string">"get_attributes"</span>)]
-<a href=#229 id=229 data-nosnippet>229</a>    </span><span class="kw">pub fn </span>attributes(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html">Vec</a>&lt;<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/gstring/struct.GString.html">glib::GString</a>&gt; {
+<a href=#229 id=229 data-nosnippet>229</a>    </span><span class="kw">pub fn </span>attributes(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html">Vec</a>&lt;glib::<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/gstring/struct.GString.html">GString</a>&gt; {
 <a href=#230 id=230 data-nosnippet>230</a>        <span class="kw">unsafe </span>{
-<a href=#231 id=231 data-nosnippet>231</a>            <a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.FromGlibPtrContainer.html#tymethod.from_glib_none">FromGlibPtrContainer::from_glib_none</a>(<a href="../../../gtk4_sys/fn.gtk_file_filter_get_attributes.html">ffi::gtk_file_filter_get_attributes</a>(
+<a href=#231 id=231 data-nosnippet>231</a>            FromGlibPtrContainer::<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.FromGlibPtrContainer.html#tymethod.from_glib_none">from_glib_none</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_file_filter_get_attributes.html">gtk_file_filter_get_attributes</a>(
 <a href=#232 id=232 data-nosnippet>232</a>                <a class="self" href="#229">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
 <a href=#233 id=233 data-nosnippet>233</a>            ))
 <a href=#234 id=234 data-nosnippet>234</a>        }
@@ -316,8 +316,8 @@
 <a href=#243 id=243 data-nosnippet>243</a>    /// the human-readable name of the filter
 <a href=#244 id=244 data-nosnippet>244</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_file_filter_get_name"</span>)]
 <a href=#245 id=245 data-nosnippet>245</a>    #[doc(alias = <span class="string">"get_name"</span>)]
-<a href=#246 id=246 data-nosnippet>246</a>    </span><span class="kw">pub fn </span>name(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/gstring/struct.GString.html">glib::GString</a>&gt; {
-<a href=#247 id=247 data-nosnippet>247</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/fn.from_glib_none.html">from_glib_none</a>(<a href="../../../gtk4_sys/fn.gtk_file_filter_get_name.html">ffi::gtk_file_filter_get_name</a>(<a class="self" href="#246">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
+<a href=#246 id=246 data-nosnippet>246</a>    </span><span class="kw">pub fn </span>name(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;glib::<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/gstring/struct.GString.html">GString</a>&gt; {
+<a href=#247 id=247 data-nosnippet>247</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/fn.from_glib_none.html">from_glib_none</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_file_filter_get_name.html">gtk_file_filter_get_name</a>(<a class="self" href="#246">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#248 id=248 data-nosnippet>248</a>    }
 <a href=#249 id=249 data-nosnippet>249</a>
 <a href=#250 id=250 data-nosnippet>250</a>    <span class="doccomment">/// Sets a human-readable name of the filter.
@@ -330,7 +330,7 @@
 <a href=#257 id=257 data-nosnippet>257</a>    #[doc(alias = <span class="string">"name"</span>)]
 <a href=#258 id=258 data-nosnippet>258</a>    </span><span class="kw">pub fn </span>set_name(<span class="kw-2">&amp;</span><span class="self">self</span>, name: <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;<span class="kw-2">&amp;</span><a href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>&gt;) {
 <a href=#259 id=259 data-nosnippet>259</a>        <span class="kw">unsafe </span>{
-<a href=#260 id=260 data-nosnippet>260</a>            <a href="../../../gtk4_sys/fn.gtk_file_filter_set_name.html">ffi::gtk_file_filter_set_name</a>(<a class="self" href="#258">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>, <a href="#258">name</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>);
+<a href=#260 id=260 data-nosnippet>260</a>            ffi::<a href="../../../gtk4_sys/fn.gtk_file_filter_set_name.html">gtk_file_filter_set_name</a>(<a class="self" href="#258">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>, <a href="#258">name</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>);
 <a href=#261 id=261 data-nosnippet>261</a>        }
 <a href=#262 id=262 data-nosnippet>262</a>    }
 <a href=#263 id=263 data-nosnippet>263</a>
@@ -340,14 +340,14 @@
 <a href=#267 id=267 data-nosnippet>267</a>    ///
 <a href=#268 id=268 data-nosnippet>268</a>    /// a new, floating, `GVariant`
 <a href=#269 id=269 data-nosnippet>269</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_file_filter_to_gvariant"</span>)]
-<a href=#270 id=270 data-nosnippet>270</a>    </span><span class="kw">pub fn </span>to_gvariant(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/variant/struct.Variant.html">glib::Variant</a> {
-<a href=#271 id=271 data-nosnippet>271</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/fn.from_glib_none.html">from_glib_none</a>(<a href="../../../gtk4_sys/fn.gtk_file_filter_to_gvariant.html">ffi::gtk_file_filter_to_gvariant</a>(<a class="self" href="#270">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
+<a href=#270 id=270 data-nosnippet>270</a>    </span><span class="kw">pub fn </span>to_gvariant(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; glib::<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/variant/struct.Variant.html">Variant</a> {
+<a href=#271 id=271 data-nosnippet>271</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/fn.from_glib_none.html">from_glib_none</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_file_filter_to_gvariant.html">gtk_file_filter_to_gvariant</a>(<a class="self" href="#270">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#272 id=272 data-nosnippet>272</a>    }
 <a href=#273 id=273 data-nosnippet>273</a>
 <a href=#274 id=274 data-nosnippet>274</a>    <span class="attr">#[doc(alias = <span class="string">"name"</span>)]
 <a href=#275 id=275 data-nosnippet>275</a>    </span><span class="kw">pub fn </span>connect_name_notify&lt;F: <a href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html">Fn</a>(<span class="kw-2">&amp;</span><span class="self">Self</span>) + <span class="lifetime">'static</span>&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, f: F) -&gt; <a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/signal/struct.SignalHandlerId.html">SignalHandlerId</a> {
 <a href=#276 id=276 data-nosnippet>276</a>        <span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn </span>notify_name_trampoline&lt;F: <a href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html">Fn</a>(<span class="kw-2">&amp;</span><a href="#14-100">FileFilter</a>) + <span class="lifetime">'static</span>&gt;(
-<a href=#277 id=277 data-nosnippet>277</a>            this: <span class="kw-2">*mut </span><a href="../../../gtk4_sys/struct.GtkFileFilter.html">ffi::GtkFileFilter</a>,
+<a href=#277 id=277 data-nosnippet>277</a>            this: <span class="kw-2">*mut </span>ffi::<a href="../../../gtk4_sys/struct.GtkFileFilter.html">GtkFileFilter</a>,
 <a href=#278 id=278 data-nosnippet>278</a>            _param_spec: glib::ffi::gpointer,
 <a href=#279 id=279 data-nosnippet>279</a>            f: glib::ffi::gpointer,
 <a href=#280 id=280 data-nosnippet>280</a>        ) {
@@ -355,14 +355,14 @@
 <a href=#282 id=282 data-nosnippet>282</a>            <a href="#281">f</a>(<span class="kw-2">&amp;</span><a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/fn.from_glib_borrow.html">from_glib_borrow</a>(<a href="#277">this</a>))
 <a href=#283 id=283 data-nosnippet>283</a>        }
 <a href=#284 id=284 data-nosnippet>284</a>        <span class="kw">unsafe </span>{
-<a href=#285 id=285 data-nosnippet>285</a>            <span class="kw">let </span>f: <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">Box_</a>&lt;F&gt; = <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html#method.new">Box_::new</a>(<a href="#275">f</a>);
+<a href=#285 id=285 data-nosnippet>285</a>            <span class="kw">let </span>f: <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">Box_</a>&lt;F&gt; = <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">Box_</a>::<a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html#method.new">new</a>(<a href="#275">f</a>);
 <a href=#286 id=286 data-nosnippet>286</a>            <a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/signal/fn.connect_raw.html">connect_raw</a>(
 <a href=#287 id=287 data-nosnippet>287</a>                <a class="self" href="#275">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/object/trait.ObjectType.html#tymethod.as_ptr">as_ptr</a>() <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>,
 <a href=#288 id=288 data-nosnippet>288</a>                <span class="string">c"notify::name"</span>.<a href="https://doc.rust-lang.org/nightly/core/ffi/c_str/struct.CStr.html#method.as_ptr">as_ptr</a>() <span class="kw">as </span><span class="kw-2">*const </span><span class="kw">_</span>,
-<a href=#289 id=289 data-nosnippet>289</a>                <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.Some">Some</a>(<a href="https://doc.rust-lang.org/nightly/core/intrinsics/fn.transmute.html">std::mem::transmute</a>::&lt;<span class="kw-2">*const </span>(), <span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn</span>()&gt;(
+<a href=#289 id=289 data-nosnippet>289</a>                <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.Some">Some</a>(std::mem::<a href="https://doc.rust-lang.org/nightly/core/intrinsics/fn.transmute.html">transmute</a>::&lt;<span class="kw-2">*const </span>(), <span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn</span>()&gt;(
 <a href=#290 id=290 data-nosnippet>290</a>                    <a href="#276-283">notify_name_trampoline</a>::&lt;F&gt; <span class="kw">as </span><span class="kw-2">*const </span>(),
 <a href=#291 id=291 data-nosnippet>291</a>                )),
-<a href=#292 id=292 data-nosnippet>292</a>                <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html#method.into_raw">Box_::into_raw</a>(<a href="#285">f</a>),
+<a href=#292 id=292 data-nosnippet>292</a>                <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">Box_</a>::<a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html#method.into_raw">into_raw</a>(<a href="#285">f</a>),
 <a href=#293 id=293 data-nosnippet>293</a>            )
 <a href=#294 id=294 data-nosnippet>294</a>        }
 <a href=#295 id=295 data-nosnippet>295</a>    }
@@ -370,6 +370,7 @@
 <a href=#297 id=297 data-nosnippet>297</a>
 <a href=#298 id=298 data-nosnippet>298</a><span class="kw">impl </span><a href="https://doc.rust-lang.org/nightly/core/default/trait.Default.html">Default</a> <span class="kw">for </span><a href="#14-100">FileFilter</a> {
 <a href=#299 id=299 data-nosnippet>299</a>    <span class="kw">fn </span>default() -&gt; <span class="self">Self </span>{
-<a href=#300 id=300 data-nosnippet>300</a>        <a href="#124-127"><span class="self">Self</span>::new</a>()
+<a href=#300 id=300 data-nosnippet>300</a>        <span class="self">Self</span>::<a href="#124-127">new</a>()
 <a href=#301 id=301 data-nosnippet>301</a>    }
-<a href=#302 id=302 data-nosnippet>302</a>}</code></pre></div></section></main></body></html>
+<a href=#302 id=302 data-nosnippet>302</a>}
+</code></pre></div></section></main></body></html>

@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gdk4/src/memory_texture_builder.rs`."><title>memory_texture_builder.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-e56847b5.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gdk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.92.0-nightly (a9d0a6f15 2025-09-16)" data-channel="nightly" data-search-js="search-cb266a1a.js" data-stringdex-js="stringdex-5af928a3.js" data-settings-js="settings-c38705f0.js" ><script src="../../static.files/storage-e2aeef58.js"></script><script defer src="../../static.files/src-script-813739b1.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-6dc2a7f3.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-263c88ec.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gdk4/src/memory_texture_builder.rs`."><title>memory_texture_builder.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-ca0dd0c4.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gdk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.93.0-nightly (1d60f9e07 2025-12-01)" data-channel="nightly" data-search-js="search-9e2438ea.js" data-stringdex-js="stringdex-a3946164.js" data-settings-js="settings-c38705f0.js" ><script src="../../static.files/storage-e2aeef58.js"></script><script defer src="../../static.files/src-script-813739b1.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-a410ff4d.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-263c88ec.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
 
@@ -84,16 +84,16 @@
 <a href=#11 id=11 data-nosnippet>11</a>    /// The bytes the texture shows or [`None`] to unset
 <a href=#12 id=12 data-nosnippet>12</a>    </span><span class="attr">#[doc(alias = <span class="string">"gdk_memory_texture_builder_set_bytes"</span>)]
 <a href=#13 id=13 data-nosnippet>13</a>    #[doc(alias = <span class="string">"bytes"</span>)]
-<a href=#14 id=14 data-nosnippet>14</a>    </span><span class="kw">pub fn </span>set_bytes(<span class="self">self</span>, bytes: <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;<span class="kw-2">&amp;</span><a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/bytes/struct.Bytes.html">glib::Bytes</a>&gt;) -&gt; <span class="self">Self </span>{
+<a href=#14 id=14 data-nosnippet>14</a>    </span><span class="kw">pub fn </span>set_bytes(<span class="self">self</span>, bytes: <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;<span class="kw-2">&amp;</span>glib::<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/bytes/struct.Bytes.html">Bytes</a>&gt;) -&gt; <span class="self">Self </span>{
 <a href=#15 id=15 data-nosnippet>15</a>        <span class="kw">unsafe </span>{
-<a href=#16 id=16 data-nosnippet>16</a>            <a href="../../gdk4_sys/fn.gdk_memory_texture_builder_set_bytes.html">ffi::gdk_memory_texture_builder_set_bytes</a>(
+<a href=#16 id=16 data-nosnippet>16</a>            ffi::<a href="../../gdk4_sys/fn.gdk_memory_texture_builder_set_bytes.html">gdk_memory_texture_builder_set_bytes</a>(
 <a href=#17 id=17 data-nosnippet>17</a>                <a class="self" href="#14">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
 <a href=#18 id=18 data-nosnippet>18</a>                <a href="#14">bytes</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
 <a href=#19 id=19 data-nosnippet>19</a>            );
 <a href=#20 id=20 data-nosnippet>20</a>        }
 <a href=#21 id=21 data-nosnippet>21</a>
-<a href=#22 id=22 data-nosnippet>22</a>        <span class="self"><a href="#14">self</a>
-<a href=#23 id=23 data-nosnippet>23</a>    </span>}
+<a href=#22 id=22 data-nosnippet>22</a>        <a class="self" href="#14">self</a>
+<a href=#23 id=23 data-nosnippet>23</a>    }
 <a href=#24 id=24 data-nosnippet>24</a>
 <a href=#25 id=25 data-nosnippet>25</a>    <span class="doccomment">/// Sets the colorstate describing the data.
 <a href=#26 id=26 data-nosnippet>26</a>    ///
@@ -105,14 +105,14 @@
 <a href=#32 id=32 data-nosnippet>32</a>    #[doc(alias = <span class="string">"color-state"</span>)]
 <a href=#33 id=33 data-nosnippet>33</a>    </span><span class="kw">pub fn </span>set_color_state(<span class="self">self</span>, color_state: <span class="kw-2">&amp;</span><a href="auto/color_state.rs.html#8-26">ColorState</a>) -&gt; <span class="self">Self </span>{
 <a href=#34 id=34 data-nosnippet>34</a>        <span class="kw">unsafe </span>{
-<a href=#35 id=35 data-nosnippet>35</a>            <a href="../../gdk4_sys/fn.gdk_memory_texture_builder_set_color_state.html">ffi::gdk_memory_texture_builder_set_color_state</a>(
+<a href=#35 id=35 data-nosnippet>35</a>            ffi::<a href="../../gdk4_sys/fn.gdk_memory_texture_builder_set_color_state.html">gdk_memory_texture_builder_set_color_state</a>(
 <a href=#36 id=36 data-nosnippet>36</a>                <a class="self" href="#33">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
 <a href=#37 id=37 data-nosnippet>37</a>                <a href="#33">color_state</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
 <a href=#38 id=38 data-nosnippet>38</a>            );
 <a href=#39 id=39 data-nosnippet>39</a>        }
 <a href=#40 id=40 data-nosnippet>40</a>
-<a href=#41 id=41 data-nosnippet>41</a>        <span class="self"><a href="#33">self</a>
-<a href=#42 id=42 data-nosnippet>42</a>    </span>}
+<a href=#41 id=41 data-nosnippet>41</a>        <a class="self" href="#33">self</a>
+<a href=#42 id=42 data-nosnippet>42</a>    }
 <a href=#43 id=43 data-nosnippet>43</a>
 <a href=#44 id=44 data-nosnippet>44</a>    <span class="doccomment">/// Sets the format of the bytes.
 <a href=#45 id=45 data-nosnippet>45</a>    ///
@@ -123,11 +123,11 @@
 <a href=#50 id=50 data-nosnippet>50</a>    #[doc(alias = <span class="string">"format"</span>)]
 <a href=#51 id=51 data-nosnippet>51</a>    </span><span class="kw">pub fn </span>set_format(<span class="self">self</span>, format: <a href="auto/enums.rs.html#1798-2501">MemoryFormat</a>) -&gt; <span class="self">Self </span>{
 <a href=#52 id=52 data-nosnippet>52</a>        <span class="kw">unsafe </span>{
-<a href=#53 id=53 data-nosnippet>53</a>            <a href="../../gdk4_sys/fn.gdk_memory_texture_builder_set_format.html">ffi::gdk_memory_texture_builder_set_format</a>(<a class="self" href="#51">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>, <a href="#51">format</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>());
+<a href=#53 id=53 data-nosnippet>53</a>            ffi::<a href="../../gdk4_sys/fn.gdk_memory_texture_builder_set_format.html">gdk_memory_texture_builder_set_format</a>(<a class="self" href="#51">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>, <a href="#51">format</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>());
 <a href=#54 id=54 data-nosnippet>54</a>        }
 <a href=#55 id=55 data-nosnippet>55</a>
-<a href=#56 id=56 data-nosnippet>56</a>        <span class="self"><a href="#51">self</a>
-<a href=#57 id=57 data-nosnippet>57</a>    </span>}
+<a href=#56 id=56 data-nosnippet>56</a>        <a class="self" href="#51">self</a>
+<a href=#57 id=57 data-nosnippet>57</a>    }
 <a href=#58 id=58 data-nosnippet>58</a>
 <a href=#59 id=59 data-nosnippet>59</a>    <span class="doccomment">/// Sets the height of the texture.
 <a href=#60 id=60 data-nosnippet>60</a>    ///
@@ -139,11 +139,11 @@
 <a href=#66 id=66 data-nosnippet>66</a>    #[doc(alias = <span class="string">"height"</span>)]
 <a href=#67 id=67 data-nosnippet>67</a>    </span><span class="kw">pub fn </span>set_height(<span class="self">self</span>, height: <a href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) -&gt; <span class="self">Self </span>{
 <a href=#68 id=68 data-nosnippet>68</a>        <span class="kw">unsafe </span>{
-<a href=#69 id=69 data-nosnippet>69</a>            <a href="../../gdk4_sys/fn.gdk_memory_texture_builder_set_height.html">ffi::gdk_memory_texture_builder_set_height</a>(<a class="self" href="#67">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>, <a href="#67">height</a>);
+<a href=#69 id=69 data-nosnippet>69</a>            ffi::<a href="../../gdk4_sys/fn.gdk_memory_texture_builder_set_height.html">gdk_memory_texture_builder_set_height</a>(<a class="self" href="#67">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>, <a href="#67">height</a>);
 <a href=#70 id=70 data-nosnippet>70</a>        }
 <a href=#71 id=71 data-nosnippet>71</a>
-<a href=#72 id=72 data-nosnippet>72</a>        <span class="self"><a href="#67">self</a>
-<a href=#73 id=73 data-nosnippet>73</a>    </span>}
+<a href=#72 id=72 data-nosnippet>72</a>        <a class="self" href="#67">self</a>
+<a href=#73 id=73 data-nosnippet>73</a>    }
 <a href=#74 id=74 data-nosnippet>74</a>
 <a href=#75 id=75 data-nosnippet>75</a>    <span class="doccomment">/// Sets the offset of the texture for @plane.
 <a href=#76 id=76 data-nosnippet>76</a>    /// ## `plane`
@@ -155,11 +155,11 @@
 <a href=#82 id=82 data-nosnippet>82</a>    #[doc(alias = <span class="string">"gdk_memory_texture_builder_set_offset"</span>)]
 <a href=#83 id=83 data-nosnippet>83</a>    </span><span class="kw">pub fn </span>set_offset(<span class="self">self</span>, plane: <a href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>, offset: <a href="https://doc.rust-lang.org/nightly/std/primitive.usize.html">usize</a>) -&gt; <span class="self">Self </span>{
 <a href=#84 id=84 data-nosnippet>84</a>        <span class="kw">unsafe </span>{
-<a href=#85 id=85 data-nosnippet>85</a>            <a href="../../gdk4_sys/fn.gdk_memory_texture_builder_set_offset.html">ffi::gdk_memory_texture_builder_set_offset</a>(<a class="self" href="#83">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>, <a href="#83">plane</a>, <a href="#83">offset</a>);
+<a href=#85 id=85 data-nosnippet>85</a>            ffi::<a href="../../gdk4_sys/fn.gdk_memory_texture_builder_set_offset.html">gdk_memory_texture_builder_set_offset</a>(<a class="self" href="#83">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>, <a href="#83">plane</a>, <a href="#83">offset</a>);
 <a href=#86 id=86 data-nosnippet>86</a>        }
 <a href=#87 id=87 data-nosnippet>87</a>
-<a href=#88 id=88 data-nosnippet>88</a>        <span class="self"><a href="#83">self</a>
-<a href=#89 id=89 data-nosnippet>89</a>    </span>}
+<a href=#88 id=88 data-nosnippet>88</a>        <a class="self" href="#83">self</a>
+<a href=#89 id=89 data-nosnippet>89</a>    }
 <a href=#90 id=90 data-nosnippet>90</a>
 <a href=#91 id=91 data-nosnippet>91</a>    <span class="doccomment">/// Sets the rowstride of the bytes used.
 <a href=#92 id=92 data-nosnippet>92</a>    ///
@@ -170,11 +170,11 @@
 <a href=#97 id=97 data-nosnippet>97</a>    #[doc(alias = <span class="string">"stride"</span>)]
 <a href=#98 id=98 data-nosnippet>98</a>    </span><span class="kw">pub fn </span>set_stride(<span class="self">self</span>, stride: <a href="https://doc.rust-lang.org/nightly/std/primitive.usize.html">usize</a>) -&gt; <span class="self">Self </span>{
 <a href=#99 id=99 data-nosnippet>99</a>        <span class="kw">unsafe </span>{
-<a href=#100 id=100 data-nosnippet>100</a>            <a href="../../gdk4_sys/fn.gdk_memory_texture_builder_set_stride.html">ffi::gdk_memory_texture_builder_set_stride</a>(<a class="self" href="#98">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>, <a href="#98">stride</a>);
+<a href=#100 id=100 data-nosnippet>100</a>            ffi::<a href="../../gdk4_sys/fn.gdk_memory_texture_builder_set_stride.html">gdk_memory_texture_builder_set_stride</a>(<a class="self" href="#98">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>, <a href="#98">stride</a>);
 <a href=#101 id=101 data-nosnippet>101</a>        }
 <a href=#102 id=102 data-nosnippet>102</a>
-<a href=#103 id=103 data-nosnippet>103</a>        <span class="self"><a href="#98">self</a>
-<a href=#104 id=104 data-nosnippet>104</a>    </span>}
+<a href=#103 id=103 data-nosnippet>103</a>        <a class="self" href="#98">self</a>
+<a href=#104 id=104 data-nosnippet>104</a>    }
 <a href=#105 id=105 data-nosnippet>105</a>
 <a href=#106 id=106 data-nosnippet>106</a>    <span class="doccomment">/// Sets the stride of the texture for @plane.
 <a href=#107 id=107 data-nosnippet>107</a>    /// ## `plane`
@@ -186,15 +186,15 @@
 <a href=#113 id=113 data-nosnippet>113</a>    #[doc(alias = <span class="string">"gdk_memory_texture_builder_set_stride_for_plane"</span>)]
 <a href=#114 id=114 data-nosnippet>114</a>    </span><span class="kw">pub fn </span>set_stride_for_plane(<span class="self">self</span>, plane: <a href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>, stride: <a href="https://doc.rust-lang.org/nightly/std/primitive.usize.html">usize</a>) -&gt; <span class="self">Self </span>{
 <a href=#115 id=115 data-nosnippet>115</a>        <span class="kw">unsafe </span>{
-<a href=#116 id=116 data-nosnippet>116</a>            <a href="../../gdk4_sys/fn.gdk_memory_texture_builder_set_stride_for_plane.html">ffi::gdk_memory_texture_builder_set_stride_for_plane</a>(
+<a href=#116 id=116 data-nosnippet>116</a>            ffi::<a href="../../gdk4_sys/fn.gdk_memory_texture_builder_set_stride_for_plane.html">gdk_memory_texture_builder_set_stride_for_plane</a>(
 <a href=#117 id=117 data-nosnippet>117</a>                <a class="self" href="#114">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
 <a href=#118 id=118 data-nosnippet>118</a>                <a href="#114">plane</a>,
 <a href=#119 id=119 data-nosnippet>119</a>                <a href="#114">stride</a>,
 <a href=#120 id=120 data-nosnippet>120</a>            );
 <a href=#121 id=121 data-nosnippet>121</a>        }
 <a href=#122 id=122 data-nosnippet>122</a>
-<a href=#123 id=123 data-nosnippet>123</a>        <span class="self"><a href="#114">self</a>
-<a href=#124 id=124 data-nosnippet>124</a>    </span>}
+<a href=#123 id=123 data-nosnippet>123</a>        <a class="self" href="#114">self</a>
+<a href=#124 id=124 data-nosnippet>124</a>    }
 <a href=#125 id=125 data-nosnippet>125</a>
 <a href=#126 id=126 data-nosnippet>126</a>    <span class="doccomment">/// Sets the region to be updated by this texture.
 <a href=#127 id=127 data-nosnippet>127</a>    ///
@@ -211,16 +211,16 @@
 <a href=#138 id=138 data-nosnippet>138</a>    /// the region to update
 <a href=#139 id=139 data-nosnippet>139</a>    </span><span class="attr">#[doc(alias = <span class="string">"gdk_memory_texture_builder_set_update_region"</span>)]
 <a href=#140 id=140 data-nosnippet>140</a>    #[doc(alias = <span class="string">"update-region"</span>)]
-<a href=#141 id=141 data-nosnippet>141</a>    </span><span class="kw">pub fn </span>set_update_region(<span class="self">self</span>, region: <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;<span class="kw-2">&amp;</span><a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/cairo/region/struct.Region.html">cairo::Region</a>&gt;) -&gt; <span class="self">Self </span>{
+<a href=#141 id=141 data-nosnippet>141</a>    </span><span class="kw">pub fn </span>set_update_region(<span class="self">self</span>, region: <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;<span class="kw-2">&amp;</span>cairo::<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/cairo/region/struct.Region.html">Region</a>&gt;) -&gt; <span class="self">Self </span>{
 <a href=#142 id=142 data-nosnippet>142</a>        <span class="kw">unsafe </span>{
-<a href=#143 id=143 data-nosnippet>143</a>            <a href="../../gdk4_sys/fn.gdk_memory_texture_builder_set_update_region.html">ffi::gdk_memory_texture_builder_set_update_region</a>(
+<a href=#143 id=143 data-nosnippet>143</a>            ffi::<a href="../../gdk4_sys/fn.gdk_memory_texture_builder_set_update_region.html">gdk_memory_texture_builder_set_update_region</a>(
 <a href=#144 id=144 data-nosnippet>144</a>                <a class="self" href="#141">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
 <a href=#145 id=145 data-nosnippet>145</a>                <a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/fn.mut_override.html">mut_override</a>(<a href="#141">region</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>),
 <a href=#146 id=146 data-nosnippet>146</a>            );
 <a href=#147 id=147 data-nosnippet>147</a>        }
 <a href=#148 id=148 data-nosnippet>148</a>
-<a href=#149 id=149 data-nosnippet>149</a>        <span class="self"><a href="#141">self</a>
-<a href=#150 id=150 data-nosnippet>150</a>    </span>}
+<a href=#149 id=149 data-nosnippet>149</a>        <a class="self" href="#141">self</a>
+<a href=#150 id=150 data-nosnippet>150</a>    }
 <a href=#151 id=151 data-nosnippet>151</a>
 <a href=#152 id=152 data-nosnippet>152</a>    <span class="doccomment">/// Sets the texture to be updated by this texture.
 <a href=#153 id=153 data-nosnippet>153</a>    ///
@@ -231,14 +231,14 @@
 <a href=#158 id=158 data-nosnippet>158</a>    #[doc(alias = <span class="string">"update-texture"</span>)]
 <a href=#159 id=159 data-nosnippet>159</a>    </span><span class="kw">pub fn </span>set_update_texture(<span class="self">self</span>, texture: <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;<span class="kw-2">&amp;</span><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/object/trait.IsA.html">IsA</a>&lt;<a href="auto/texture.rs.html#15-74">Texture</a>&gt;&gt;) -&gt; <span class="self">Self </span>{
 <a href=#160 id=160 data-nosnippet>160</a>        <span class="kw">unsafe </span>{
-<a href=#161 id=161 data-nosnippet>161</a>            <a href="../../gdk4_sys/fn.gdk_memory_texture_builder_set_update_texture.html">ffi::gdk_memory_texture_builder_set_update_texture</a>(
+<a href=#161 id=161 data-nosnippet>161</a>            ffi::<a href="../../gdk4_sys/fn.gdk_memory_texture_builder_set_update_texture.html">gdk_memory_texture_builder_set_update_texture</a>(
 <a href=#162 id=162 data-nosnippet>162</a>                <a class="self" href="#159">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
 <a href=#163 id=163 data-nosnippet>163</a>                <a href="#159">texture</a>.<a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#method.map">map</a>(|p| <a href="#163">p</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>()).<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
 <a href=#164 id=164 data-nosnippet>164</a>            );
 <a href=#165 id=165 data-nosnippet>165</a>        }
 <a href=#166 id=166 data-nosnippet>166</a>
-<a href=#167 id=167 data-nosnippet>167</a>        <span class="self"><a href="#159">self</a>
-<a href=#168 id=168 data-nosnippet>168</a>    </span>}
+<a href=#167 id=167 data-nosnippet>167</a>        <a class="self" href="#159">self</a>
+<a href=#168 id=168 data-nosnippet>168</a>    }
 <a href=#169 id=169 data-nosnippet>169</a>
 <a href=#170 id=170 data-nosnippet>170</a>    <span class="doccomment">/// Sets the width of the texture.
 <a href=#171 id=171 data-nosnippet>171</a>    ///
@@ -250,9 +250,10 @@
 <a href=#177 id=177 data-nosnippet>177</a>    #[doc(alias = <span class="string">"width"</span>)]
 <a href=#178 id=178 data-nosnippet>178</a>    </span><span class="kw">pub fn </span>set_width(<span class="self">self</span>, width: <a href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) -&gt; <span class="self">Self </span>{
 <a href=#179 id=179 data-nosnippet>179</a>        <span class="kw">unsafe </span>{
-<a href=#180 id=180 data-nosnippet>180</a>            <a href="../../gdk4_sys/fn.gdk_memory_texture_builder_set_width.html">ffi::gdk_memory_texture_builder_set_width</a>(<a class="self" href="#178">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>, <a href="#178">width</a>);
+<a href=#180 id=180 data-nosnippet>180</a>            ffi::<a href="../../gdk4_sys/fn.gdk_memory_texture_builder_set_width.html">gdk_memory_texture_builder_set_width</a>(<a class="self" href="#178">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>, <a href="#178">width</a>);
 <a href=#181 id=181 data-nosnippet>181</a>        }
 <a href=#182 id=182 data-nosnippet>182</a>
-<a href=#183 id=183 data-nosnippet>183</a>        <span class="self"><a href="#178">self</a>
-<a href=#184 id=184 data-nosnippet>184</a>    </span>}
-<a href=#185 id=185 data-nosnippet>185</a>}</code></pre></div></section></main></body></html>
+<a href=#183 id=183 data-nosnippet>183</a>        <a class="self" href="#178">self</a>
+<a href=#184 id=184 data-nosnippet>184</a>    }
+<a href=#185 id=185 data-nosnippet>185</a>}
+</code></pre></div></section></main></body></html>

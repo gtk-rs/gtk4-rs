@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/rt.rs`."><title>rt.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-e56847b5.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.92.0-nightly (a9d0a6f15 2025-09-16)" data-channel="nightly" data-search-js="search-cb266a1a.js" data-stringdex-js="stringdex-5af928a3.js" data-settings-js="settings-c38705f0.js" ><script src="../../static.files/storage-e2aeef58.js"></script><script defer src="../../static.files/src-script-813739b1.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-6dc2a7f3.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-263c88ec.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/rt.rs`."><title>rt.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-ca0dd0c4.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.93.0-nightly (1d60f9e07 2025-12-01)" data-channel="nightly" data-search-js="search-9e2438ea.js" data-stringdex-js="stringdex-a3946164.js" data-settings-js="settings-c38705f0.js" ><script src="../../static.files/storage-e2aeef58.js"></script><script defer src="../../static.files/src-script-813739b1.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-a410ff4d.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-263c88ec.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
 
@@ -86,11 +86,11 @@
 <a href=#13 id=13 data-nosnippet>13</a>    <span class="kw">fn </span>pthread_main_np() -&gt; i32;
 <a href=#14 id=14 data-nosnippet>14</a>}
 <a href=#15 id=15 data-nosnippet>15</a>
-<a href=#16 id=16 data-nosnippet>16</a><a class="macro" href="https://doc.rust-lang.org/nightly/std/macro.thread_local.html">thread_local!</a> {
+<a href=#16 id=16 data-nosnippet>16</a><a href="https://doc.rust-lang.org/nightly/std/macro.thread_local.html">thread_local!</a> {
 <a href=#17 id=17 data-nosnippet>17</a>    <span class="kw">static </span>IS_MAIN_THREAD: Cell&lt;bool&gt; = <span class="kw">const</span>{Cell::new(<span class="bool-val">false</span>)}
 <a href=#18 id=18 data-nosnippet>18</a>}
 <a href=#19 id=19 data-nosnippet>19</a>
-<a href=#20 id=20 data-nosnippet>20</a><span class="kw">static </span>INITIALIZED: <a href="https://doc.rust-lang.org/nightly/core/sync/atomic/struct.AtomicBool.html">AtomicBool</a> = <a href="https://doc.rust-lang.org/nightly/core/sync/atomic/struct.AtomicBool.html#method.new">AtomicBool::new</a>(<span class="bool-val">false</span>);
+<a href=#20 id=20 data-nosnippet>20</a><span class="kw">static </span>INITIALIZED: <a href="https://doc.rust-lang.org/nightly/core/sync/atomic/struct.AtomicBool.html">AtomicBool</a> = <a href="https://doc.rust-lang.org/nightly/core/sync/atomic/struct.AtomicBool.html">AtomicBool</a>::<a href="https://doc.rust-lang.org/nightly/core/sync/atomic/struct.AtomicBool.html#method.new">new</a>(<span class="bool-val">false</span>);
 <a href=#21 id=21 data-nosnippet>21</a>
 <a href=#22 id=22 data-nosnippet>22</a><span class="comment">// rustdoc-stripper-ignore-next
 <a href=#23 id=23 data-nosnippet>23</a></span><span class="doccomment">/// Asserts that this is the main thread and `gtk::init` has been called.
@@ -128,8 +128,8 @@
 <a href=#55 id=55 data-nosnippet>55</a></span><span class="attr">#[inline]
 <a href=#56 id=56 data-nosnippet>56</a></span><span class="kw">pub fn </span><a href="../../gtk4/fn.is_initialized.html">is_initialized</a>() -&gt; <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> {
 <a href=#57 id=57 data-nosnippet>57</a>    <span class="macro">skip_assert_initialized!</span>();
-<a href=#58 id=58 data-nosnippet>58</a>    <span class="kw">if </span><a class="macro" href="https://doc.rust-lang.org/nightly/core/macro.cfg.html">cfg!</a>(not(feature = <span class="string">"unsafe-assume-initialized"</span>)) {
-<a href=#59 id=59 data-nosnippet>59</a>        <a href="#20">INITIALIZED</a>.<a href="https://doc.rust-lang.org/nightly/core/sync/atomic/struct.AtomicBool.html#method.load">load</a>(<a href="https://doc.rust-lang.org/nightly/core/sync/atomic/enum.Ordering.html#variant.Acquire">Ordering::Acquire</a>)
+<a href=#58 id=58 data-nosnippet>58</a>    <span class="kw">if </span><a href="https://doc.rust-lang.org/nightly/core/macro.cfg.html">cfg!</a>(not(feature = <span class="string">"unsafe-assume-initialized"</span>)) {
+<a href=#59 id=59 data-nosnippet>59</a>        <a href="#20">INITIALIZED</a>.<a href="https://doc.rust-lang.org/nightly/core/sync/atomic/struct.AtomicBool.html#method.load">load</a>(Ordering::<a href="https://doc.rust-lang.org/nightly/core/sync/atomic/enum.Ordering.html#variant.Acquire">Acquire</a>)
 <a href=#60 id=60 data-nosnippet>60</a>    } <span class="kw">else </span>{
 <a href=#61 id=61 data-nosnippet>61</a>        <span class="bool-val">true
 <a href=#62 id=62 data-nosnippet>62</a>    </span>}
@@ -139,7 +139,7 @@
 <a href=#66 id=66 data-nosnippet>66</a></span><span class="attr">#[inline]
 <a href=#67 id=67 data-nosnippet>67</a></span><span class="kw">pub fn </span><a href="../../gtk4/fn.is_initialized_main_thread.html">is_initialized_main_thread</a>() -&gt; <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> {
 <a href=#68 id=68 data-nosnippet>68</a>    <span class="macro">skip_assert_initialized!</span>();
-<a href=#69 id=69 data-nosnippet>69</a>    <span class="kw">if </span><a class="macro" href="https://doc.rust-lang.org/nightly/core/macro.cfg.html">cfg!</a>(not(feature = <span class="string">"unsafe-assume-initialized"</span>)) {
+<a href=#69 id=69 data-nosnippet>69</a>    <span class="kw">if </span><a href="https://doc.rust-lang.org/nightly/core/macro.cfg.html">cfg!</a>(not(feature = <span class="string">"unsafe-assume-initialized"</span>)) {
 <a href=#70 id=70 data-nosnippet>70</a>        <a href="#16-18">IS_MAIN_THREAD</a>.<a href="https://doc.rust-lang.org/nightly/std/thread/local/struct.LocalKey.html#method.with">with</a>(|c| <a href="#70">c</a>.<a href="https://doc.rust-lang.org/nightly/core/cell/struct.Cell.html#method.get">get</a>())
 <a href=#71 id=71 data-nosnippet>71</a>    } <span class="kw">else </span>{
 <a href=#72 id=72 data-nosnippet>72</a>        <span class="bool-val">true
@@ -168,9 +168,9 @@
 <a href=#95 id=95 data-nosnippet>95</a>    <span class="kw">if </span><a href="#67-74">is_initialized_main_thread</a>() {
 <a href=#96 id=96 data-nosnippet>96</a>        <span class="kw">return</span>;
 <a href=#97 id=97 data-nosnippet>97</a>    } <span class="kw">else if </span><a href="#56-63">is_initialized</a>() {
-<a href=#98 id=98 data-nosnippet>98</a>        <a class="macro" href="https://doc.rust-lang.org/nightly/std/macro.panic.html">panic!</a>(<span class="string">"Attempted to initialize GTK from two different threads."</span>);
-<a href=#99 id=99 data-nosnippet>99</a>    } <span class="kw">else if </span>!{ <a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/fn.from_glib.html">from_glib</a>(<a href="../../gtk4_sys/fn.gtk_is_initialized.html">ffi::gtk_is_initialized</a>()) } {
-<a href=#100 id=100 data-nosnippet>100</a>        <a class="macro" href="https://doc.rust-lang.org/nightly/std/macro.panic.html">panic!</a>(<span class="string">"GTK was not actually initialized"</span>);
+<a href=#98 id=98 data-nosnippet>98</a>        <a href="https://doc.rust-lang.org/nightly/std/macro.panic.html">panic!</a>(<span class="string">"Attempted to initialize GTK from two different threads."</span>);
+<a href=#99 id=99 data-nosnippet>99</a>    } <span class="kw">else if </span>!{ <a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/fn.from_glib.html">from_glib</a>(ffi::<a href="../../gtk4_sys/fn.gtk_is_initialized.html">gtk_is_initialized</a>()) } {
+<a href=#100 id=100 data-nosnippet>100</a>        <a href="https://doc.rust-lang.org/nightly/std/macro.panic.html">panic!</a>(<span class="string">"GTK was not actually initialized"</span>);
 <a href=#101 id=101 data-nosnippet>101</a>    }
 <a href=#102 id=102 data-nosnippet>102</a>    <span class="comment">//  OS X has its own notion of the main thread and init must be called on that
 <a href=#103 id=103 data-nosnippet>103</a>    // thread.
@@ -182,7 +182,7 @@
 <a href=#109 id=109 data-nosnippet>109</a>            <span class="string">"Attempted to initialize GTK on OSX from non-main thread"
 <a href=#110 id=110 data-nosnippet>110</a>        </span>);
 <a href=#111 id=111 data-nosnippet>111</a>    }
-<a href=#112 id=112 data-nosnippet>112</a>    <a href="#20">INITIALIZED</a>.<a href="https://doc.rust-lang.org/nightly/core/sync/atomic/struct.AtomicBool.html#method.store">store</a>(<span class="bool-val">true</span>, <a href="https://doc.rust-lang.org/nightly/core/sync/atomic/enum.Ordering.html#variant.Release">Ordering::Release</a>);
+<a href=#112 id=112 data-nosnippet>112</a>    <a href="#20">INITIALIZED</a>.<a href="https://doc.rust-lang.org/nightly/core/sync/atomic/struct.AtomicBool.html#method.store">store</a>(<span class="bool-val">true</span>, Ordering::<a href="https://doc.rust-lang.org/nightly/core/sync/atomic/enum.Ordering.html#variant.Release">Release</a>);
 <a href=#113 id=113 data-nosnippet>113</a>    <a href="#16-18">IS_MAIN_THREAD</a>.<a href="https://doc.rust-lang.org/nightly/std/thread/local/struct.LocalKey.html#method.with">with</a>(|c| <a href="#113">c</a>.<a href="https://doc.rust-lang.org/nightly/core/cell/struct.Cell.html#method.set">set</a>(<span class="bool-val">true</span>));
 <a href=#114 id=114 data-nosnippet>114</a>}
 <a href=#115 id=115 data-nosnippet>115</a>
@@ -200,36 +200,36 @@
 <a href=#127 id=127 data-nosnippet>127</a></span><span class="attr">#[doc(alias = <span class="string">"gtk_init"</span>)]
 <a href=#128 id=128 data-nosnippet>128</a>#[allow(unknown_lints)]
 <a href=#129 id=129 data-nosnippet>129</a>#[allow(clippy::if_then_panic)]
-<a href=#130 id=130 data-nosnippet>130</a></span><span class="kw">pub fn </span><a href="../../gtk4/fn.init.html">init</a>() -&gt; <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html">Result</a>&lt;(), <a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/error/struct.BoolError.html">glib::BoolError</a>&gt; {
+<a href=#130 id=130 data-nosnippet>130</a></span><span class="kw">pub fn </span><a href="../../gtk4/fn.init.html">init</a>() -&gt; <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html">Result</a>&lt;(), glib::<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/error/struct.BoolError.html">BoolError</a>&gt; {
 <a href=#131 id=131 data-nosnippet>131</a>    <span class="macro">skip_assert_initialized!</span>();
 <a href=#132 id=132 data-nosnippet>132</a>    <span class="kw">if </span><a href="#67-74">is_initialized_main_thread</a>() {
 <a href=#133 id=133 data-nosnippet>133</a>        <span class="kw">return </span><a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html#variant.Ok">Ok</a>(());
 <a href=#134 id=134 data-nosnippet>134</a>    } <span class="kw">else if </span><a href="#56-63">is_initialized</a>() {
 <a href=#135 id=135 data-nosnippet>135</a>        <span class="attr">#[cfg(not(test))]
-<a href=#136 id=136 data-nosnippet>136</a>        </span><a class="macro" href="https://doc.rust-lang.org/nightly/std/macro.panic.html">panic!</a>(<span class="string">"Attempted to initialize GTK from two different threads."</span>);
+<a href=#136 id=136 data-nosnippet>136</a>        </span><a href="https://doc.rust-lang.org/nightly/std/macro.panic.html">panic!</a>(<span class="string">"Attempted to initialize GTK from two different threads."</span>);
 <a href=#137 id=137 data-nosnippet>137</a>        <span class="attr">#[cfg(test)]
 <a href=#138 id=138 data-nosnippet>138</a>        </span><span class="macro">panic!</span>(<span class="string">"Use #[gtk::test] instead of #[test]"</span>);
 <a href=#139 id=139 data-nosnippet>139</a>    }
 <a href=#140 id=140 data-nosnippet>140</a>
 <a href=#141 id=141 data-nosnippet>141</a>    <span class="kw">unsafe </span>{
-<a href=#142 id=142 data-nosnippet>142</a>        <span class="kw">if </span><a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/fn.from_glib.html">from_glib</a>(<a href="../../gtk4_sys/fn.gtk_init_check.html">ffi::gtk_init_check</a>()) {
+<a href=#142 id=142 data-nosnippet>142</a>        <span class="kw">if </span><a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/fn.from_glib.html">from_glib</a>(ffi::<a href="../../gtk4_sys/fn.gtk_init_check.html">gtk_init_check</a>()) {
 <a href=#143 id=143 data-nosnippet>143</a>            <span class="comment">// See https://github.com/gtk-rs/gtk-rs-core/issues/186 for reasoning behind
 <a href=#144 id=144 data-nosnippet>144</a>            // acquiring and leaking the main context here.
 <a href=#145 id=145 data-nosnippet>145</a>            </span><span class="kw">let </span>result: <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> = <a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::ffi::g_main_context_acquire(
 <a href=#146 id=146 data-nosnippet>146</a>                glib::ffi::g_main_context_default(),
 <a href=#147 id=147 data-nosnippet>147</a>            ));
 <a href=#148 id=148 data-nosnippet>148</a>            <span class="kw">if </span>!<a href="#145">result</a> {
-<a href=#149 id=149 data-nosnippet>149</a>                <span class="kw">return </span><a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html#variant.Err">Err</a>(<a class="macro" href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/macro.bool_error.html">glib::bool_error!</a>(<span class="string">"Failed to acquire default main context"</span>));
+<a href=#149 id=149 data-nosnippet>149</a>                <span class="kw">return </span><a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html#variant.Err">Err</a>(<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/macro.bool_error.html">glib::bool_error!</a>(<span class="string">"Failed to acquire default main context"</span>));
 <a href=#150 id=150 data-nosnippet>150</a>            }
 <a href=#151 id=151 data-nosnippet>151</a>
-<a href=#152 id=152 data-nosnippet>152</a>            <span class="kw">if </span>!<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/fn.from_glib.html">from_glib</a>::&lt;glib::ffi::gboolean, <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>&gt;(<a href="../../gtk4_sys/fn.gtk_is_initialized.html">ffi::gtk_is_initialized</a>()) {
-<a href=#153 id=153 data-nosnippet>153</a>                <span class="kw">return </span><a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html#variant.Err">Err</a>(<a class="macro" href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/macro.bool_error.html">glib::bool_error!</a>(<span class="string">"GTK was not actually initialized"</span>));
+<a href=#152 id=152 data-nosnippet>152</a>            <span class="kw">if </span>!<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/fn.from_glib.html">from_glib</a>::&lt;glib::ffi::gboolean, <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>&gt;(ffi::<a href="../../gtk4_sys/fn.gtk_is_initialized.html">gtk_is_initialized</a>()) {
+<a href=#153 id=153 data-nosnippet>153</a>                <span class="kw">return </span><a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html#variant.Err">Err</a>(<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/macro.bool_error.html">glib::bool_error!</a>(<span class="string">"GTK was not actually initialized"</span>));
 <a href=#154 id=154 data-nosnippet>154</a>            }
 <a href=#155 id=155 data-nosnippet>155</a>
 <a href=#156 id=156 data-nosnippet>156</a>            <a href="#93-114">set_initialized</a>();
 <a href=#157 id=157 data-nosnippet>157</a>            <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html#variant.Ok">Ok</a>(())
 <a href=#158 id=158 data-nosnippet>158</a>        } <span class="kw">else </span>{
-<a href=#159 id=159 data-nosnippet>159</a>            <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html#variant.Err">Err</a>(<a class="macro" href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/macro.bool_error.html">glib::bool_error!</a>(<span class="string">"Failed to initialize GTK"</span>))
+<a href=#159 id=159 data-nosnippet>159</a>            <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html#variant.Err">Err</a>(<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/macro.bool_error.html">glib::bool_error!</a>(<span class="string">"Failed to initialize GTK"</span>))
 <a href=#160 id=160 data-nosnippet>160</a>        }
 <a href=#161 id=161 data-nosnippet>161</a>    }
 <a href=#162 id=162 data-nosnippet>162</a>}
@@ -243,4 +243,5 @@
 <a href=#170 id=170 data-nosnippet>170</a>        <span class="kw">let </span>context = glib::MainContext::ref_thread_default();
 <a href=#171 id=171 data-nosnippet>171</a>        <span class="macro">assert!</span>(context.is_owner());
 <a href=#172 id=172 data-nosnippet>172</a>    }
-<a href=#173 id=173 data-nosnippet>173</a>}</code></pre></div></section></main></body></html>
+<a href=#173 id=173 data-nosnippet>173</a>}
+</code></pre></div></section></main></body></html>

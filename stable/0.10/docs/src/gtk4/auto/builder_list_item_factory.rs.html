@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/auto/builder_list_item_factory.rs`."><title>builder_list_item_factory.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-e56847b5.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.92.0-nightly (a9d0a6f15 2025-09-16)" data-channel="nightly" data-search-js="search-cb266a1a.js" data-stringdex-js="stringdex-5af928a3.js" data-settings-js="settings-c38705f0.js" ><script src="../../../static.files/storage-e2aeef58.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-6dc2a7f3.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-263c88ec.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/auto/builder_list_item_factory.rs`."><title>builder_list_item_factory.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-ca0dd0c4.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.93.0-nightly (1d60f9e07 2025-12-01)" data-channel="nightly" data-search-js="search-9e2438ea.js" data-stringdex-js="stringdex-a3946164.js" data-settings-js="settings-c38705f0.js" ><script src="../../../static.files/storage-e2aeef58.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-a410ff4d.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-263c88ec.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
 
@@ -78,7 +78,7 @@
 <a href=#5 id=5 data-nosnippet>5</a></span><span class="kw">use crate</span>::{<a href="../../../gtk4_sys/index.html">ffi</a>, <a href="builder_scope.rs.html#8-36">BuilderScope</a>, <a href="list_item_factory.rs.html#7-65">ListItemFactory</a>};
 <a href=#6 id=6 data-nosnippet>6</a><span class="kw">use </span>glib::{<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/prelude/index.html">prelude</a>::<span class="kw-2">*</span>, <a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/index.html">translate</a>::<span class="kw-2">*</span>};
 <a href=#7 id=7 data-nosnippet>7</a>
-<a href=#8 id=8 data-nosnippet>8</a><a class="macro" href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/macro.wrapper.html">glib::wrapper!</a> {
+<a href=#8 id=8 data-nosnippet>8</a><a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/macro.wrapper.html">glib::wrapper!</a> {
 <a href=#9 id=9 data-nosnippet>9</a>    <span class="doccomment">/// Creates widgets by instantiating [`Builder`][crate::Builder] UI templates.
 <a href=#10 id=10 data-nosnippet>10</a>    ///
 <a href=#11 id=11 data-nosnippet>11</a>    /// The templates must extend the class that the parent widget expects.
@@ -135,7 +135,7 @@
 <a href=#62 id=62 data-nosnippet>62</a>    ///
 <a href=#63 id=63 data-nosnippet>63</a>    /// [`ListItemFactoryExt`][trait@crate::prelude::ListItemFactoryExt], [`trait@glib::ObjectExt`]
 <a href=#64 id=64 data-nosnippet>64</a>    </span><span class="attr">#[doc(alias = <span class="string">"GtkBuilderListItemFactory"</span>)]
-<a href=#65 id=65 data-nosnippet>65</a>    </span><span class="kw">pub struct </span><a href="../../../gtk4/struct.BuilderListItemFactory.html">BuilderListItemFactory</a>(Object&lt;<a href="../../../gtk4_sys/struct.GtkBuilderListItemFactory.html">ffi::GtkBuilderListItemFactory</a>, <a href="../../../gtk4_sys/type.GtkBuilderListItemFactoryClass.html">ffi::GtkBuilderListItemFactoryClass</a>&gt;) @extends <a href="list_item_factory.rs.html#7-65">ListItemFactory</a>;
+<a href=#65 id=65 data-nosnippet>65</a>    </span><span class="kw">pub struct </span><a href="#8-70">BuilderListItemFactory</a>(Object&lt;ffi::<a href="../../../gtk4_sys/struct.GtkBuilderListItemFactory.html">GtkBuilderListItemFactory</a>, ffi::<a href="../../../gtk4_sys/type.GtkBuilderListItemFactoryClass.html">GtkBuilderListItemFactoryClass</a>&gt;) @extends <a href="list_item_factory.rs.html#7-65">ListItemFactory</a>;
 <a href=#66 id=66 data-nosnippet>66</a>
 <a href=#67 id=67 data-nosnippet>67</a>    <span class="kw">match fn </span>{
 <a href=#68 id=68 data-nosnippet>68</a>        type_ =&gt; || ffi::gtk_builder_list_item_factory_get_type(),
@@ -157,15 +157,15 @@
 <a href=#84 id=84 data-nosnippet>84</a>    #[doc(alias = <span class="string">"new_from_bytes"</span>)]
 <a href=#85 id=85 data-nosnippet>85</a>    </span><span class="kw">pub fn </span>from_bytes(
 <a href=#86 id=86 data-nosnippet>86</a>        scope: <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;<span class="kw-2">&amp;</span><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/object/trait.IsA.html">IsA</a>&lt;<a href="builder_scope.rs.html#8-36">BuilderScope</a>&gt;&gt;,
-<a href=#87 id=87 data-nosnippet>87</a>        bytes: <span class="kw-2">&amp;</span><a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/bytes/struct.Bytes.html">glib::Bytes</a>,
+<a href=#87 id=87 data-nosnippet>87</a>        bytes: <span class="kw-2">&amp;</span>glib::<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/bytes/struct.Bytes.html">Bytes</a>,
 <a href=#88 id=88 data-nosnippet>88</a>    ) -&gt; <a href="#8-70">BuilderListItemFactory</a> {
-<a href=#89 id=89 data-nosnippet>89</a>        <a class="macro" href="../rt.rs.html#24-36">assert_initialized_main_thread!</a>();
+<a href=#89 id=89 data-nosnippet>89</a>        <a href="../rt.rs.html#24-36">assert_initialized_main_thread!</a>();
 <a href=#90 id=90 data-nosnippet>90</a>        <span class="kw">unsafe </span>{
-<a href=#91 id=91 data-nosnippet>91</a>            <a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.FromGlibPtrFull.html#tymethod.from_glib_full">ListItemFactory::from_glib_full</a>(<a href="../../../gtk4_sys/fn.gtk_builder_list_item_factory_new_from_bytes.html">ffi::gtk_builder_list_item_factory_new_from_bytes</a>(
+<a href=#91 id=91 data-nosnippet>91</a>            <a href="list_item_factory.rs.html#7-65">ListItemFactory</a>::<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.FromGlibPtrFull.html#tymethod.from_glib_full">from_glib_full</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_builder_list_item_factory_new_from_bytes.html">gtk_builder_list_item_factory_new_from_bytes</a>(
 <a href=#92 id=92 data-nosnippet>92</a>                <a href="#86">scope</a>.<a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#method.map">map</a>(|p| <a href="#92">p</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>()).<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
 <a href=#93 id=93 data-nosnippet>93</a>                <a href="#87">bytes</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
 <a href=#94 id=94 data-nosnippet>94</a>            ))
-<a href=#95 id=95 data-nosnippet>95</a>            .<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/object/trait.Cast.html#tymethod.unsafe_cast">unsafe_cast</a>()
+<a href=#95 id=95 data-nosnippet>95</a>            .<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/object/trait.Cast.html#method.unsafe_cast">unsafe_cast</a>()
 <a href=#96 id=96 data-nosnippet>96</a>        }
 <a href=#97 id=97 data-nosnippet>97</a>    }
 <a href=#98 id=98 data-nosnippet>98</a>
@@ -185,13 +185,13 @@
 <a href=#112 id=112 data-nosnippet>112</a>        scope: <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;<span class="kw-2">&amp;</span><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/object/trait.IsA.html">IsA</a>&lt;<a href="builder_scope.rs.html#8-36">BuilderScope</a>&gt;&gt;,
 <a href=#113 id=113 data-nosnippet>113</a>        resource_path: <span class="kw-2">&amp;</span><a href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>,
 <a href=#114 id=114 data-nosnippet>114</a>    ) -&gt; <a href="#8-70">BuilderListItemFactory</a> {
-<a href=#115 id=115 data-nosnippet>115</a>        <a class="macro" href="../rt.rs.html#24-36">assert_initialized_main_thread!</a>();
+<a href=#115 id=115 data-nosnippet>115</a>        <a href="../rt.rs.html#24-36">assert_initialized_main_thread!</a>();
 <a href=#116 id=116 data-nosnippet>116</a>        <span class="kw">unsafe </span>{
-<a href=#117 id=117 data-nosnippet>117</a>            <a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.FromGlibPtrFull.html#tymethod.from_glib_full">ListItemFactory::from_glib_full</a>(<a href="../../../gtk4_sys/fn.gtk_builder_list_item_factory_new_from_resource.html">ffi::gtk_builder_list_item_factory_new_from_resource</a>(
+<a href=#117 id=117 data-nosnippet>117</a>            <a href="list_item_factory.rs.html#7-65">ListItemFactory</a>::<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.FromGlibPtrFull.html#tymethod.from_glib_full">from_glib_full</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_builder_list_item_factory_new_from_resource.html">gtk_builder_list_item_factory_new_from_resource</a>(
 <a href=#118 id=118 data-nosnippet>118</a>                <a href="#112">scope</a>.<a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#method.map">map</a>(|p| <a href="#118">p</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>()).<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
 <a href=#119 id=119 data-nosnippet>119</a>                <a href="#113">resource_path</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
 <a href=#120 id=120 data-nosnippet>120</a>            ))
-<a href=#121 id=121 data-nosnippet>121</a>            .<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/object/trait.Cast.html#tymethod.unsafe_cast">unsafe_cast</a>()
+<a href=#121 id=121 data-nosnippet>121</a>            .<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/object/trait.Cast.html#method.unsafe_cast">unsafe_cast</a>()
 <a href=#122 id=122 data-nosnippet>122</a>        }
 <a href=#123 id=123 data-nosnippet>123</a>    }
 <a href=#124 id=124 data-nosnippet>124</a>
@@ -203,9 +203,9 @@
 <a href=#130 id=130 data-nosnippet>130</a>    /// The [`Builder`][crate::Builder] data
 <a href=#131 id=131 data-nosnippet>131</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_builder_list_item_factory_get_bytes"</span>)]
 <a href=#132 id=132 data-nosnippet>132</a>    #[doc(alias = <span class="string">"get_bytes"</span>)]
-<a href=#133 id=133 data-nosnippet>133</a>    </span><span class="kw">pub fn </span>bytes(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/bytes/struct.Bytes.html">glib::Bytes</a> {
+<a href=#133 id=133 data-nosnippet>133</a>    </span><span class="kw">pub fn </span>bytes(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; glib::<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/bytes/struct.Bytes.html">Bytes</a> {
 <a href=#134 id=134 data-nosnippet>134</a>        <span class="kw">unsafe </span>{
-<a href=#135 id=135 data-nosnippet>135</a>            <a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/fn.from_glib_none.html">from_glib_none</a>(<a href="../../../gtk4_sys/fn.gtk_builder_list_item_factory_get_bytes.html">ffi::gtk_builder_list_item_factory_get_bytes</a>(
+<a href=#135 id=135 data-nosnippet>135</a>            <a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/fn.from_glib_none.html">from_glib_none</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_builder_list_item_factory_get_bytes.html">gtk_builder_list_item_factory_get_bytes</a>(
 <a href=#136 id=136 data-nosnippet>136</a>                <a class="self" href="#133">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
 <a href=#137 id=137 data-nosnippet>137</a>            ))
 <a href=#138 id=138 data-nosnippet>138</a>        }
@@ -218,9 +218,9 @@
 <a href=#145 id=145 data-nosnippet>145</a>    /// The path to the resource
 <a href=#146 id=146 data-nosnippet>146</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_builder_list_item_factory_get_resource"</span>)]
 <a href=#147 id=147 data-nosnippet>147</a>    #[doc(alias = <span class="string">"get_resource"</span>)]
-<a href=#148 id=148 data-nosnippet>148</a>    </span><span class="kw">pub fn </span>resource(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/gstring/struct.GString.html">glib::GString</a>&gt; {
+<a href=#148 id=148 data-nosnippet>148</a>    </span><span class="kw">pub fn </span>resource(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;glib::<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/gstring/struct.GString.html">GString</a>&gt; {
 <a href=#149 id=149 data-nosnippet>149</a>        <span class="kw">unsafe </span>{
-<a href=#150 id=150 data-nosnippet>150</a>            <a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/fn.from_glib_none.html">from_glib_none</a>(<a href="../../../gtk4_sys/fn.gtk_builder_list_item_factory_get_resource.html">ffi::gtk_builder_list_item_factory_get_resource</a>(
+<a href=#150 id=150 data-nosnippet>150</a>            <a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/fn.from_glib_none.html">from_glib_none</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_builder_list_item_factory_get_resource.html">gtk_builder_list_item_factory_get_resource</a>(
 <a href=#151 id=151 data-nosnippet>151</a>                <a class="self" href="#148">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
 <a href=#152 id=152 data-nosnippet>152</a>            ))
 <a href=#153 id=153 data-nosnippet>153</a>        }
@@ -235,9 +235,10 @@
 <a href=#162 id=162 data-nosnippet>162</a>    #[doc(alias = <span class="string">"get_scope"</span>)]
 <a href=#163 id=163 data-nosnippet>163</a>    </span><span class="kw">pub fn </span>scope(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;<a href="builder_scope.rs.html#8-36">BuilderScope</a>&gt; {
 <a href=#164 id=164 data-nosnippet>164</a>        <span class="kw">unsafe </span>{
-<a href=#165 id=165 data-nosnippet>165</a>            <a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/fn.from_glib_none.html">from_glib_none</a>(<a href="../../../gtk4_sys/fn.gtk_builder_list_item_factory_get_scope.html">ffi::gtk_builder_list_item_factory_get_scope</a>(
+<a href=#165 id=165 data-nosnippet>165</a>            <a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/fn.from_glib_none.html">from_glib_none</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_builder_list_item_factory_get_scope.html">gtk_builder_list_item_factory_get_scope</a>(
 <a href=#166 id=166 data-nosnippet>166</a>                <a class="self" href="#163">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
 <a href=#167 id=167 data-nosnippet>167</a>            ))
 <a href=#168 id=168 data-nosnippet>168</a>        }
 <a href=#169 id=169 data-nosnippet>169</a>    }
-<a href=#170 id=170 data-nosnippet>170</a>}</code></pre></div></section></main></body></html>
+<a href=#170 id=170 data-nosnippet>170</a>}
+</code></pre></div></section></main></body></html>

@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/auto/accessible.rs`."><title>accessible.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-e56847b5.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.92.0-nightly (a9d0a6f15 2025-09-16)" data-channel="nightly" data-search-js="search-cb266a1a.js" data-stringdex-js="stringdex-5af928a3.js" data-settings-js="settings-c38705f0.js" ><script src="../../../static.files/storage-e2aeef58.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-6dc2a7f3.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-263c88ec.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/auto/accessible.rs`."><title>accessible.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-ca0dd0c4.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.93.0-nightly (1d60f9e07 2025-12-01)" data-channel="nightly" data-search-js="search-9e2438ea.js" data-stringdex-js="stringdex-a3946164.js" data-settings-js="settings-c38705f0.js" ><script src="../../../static.files/storage-e2aeef58.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-a410ff4d.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-263c88ec.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
 
@@ -89,7 +89,7 @@
 <a href=#16 id=16 data-nosnippet>16</a>};
 <a href=#17 id=17 data-nosnippet>17</a><span class="kw">use </span><a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">std::boxed::Box</a> <span class="kw">as </span>Box_;
 <a href=#18 id=18 data-nosnippet>18</a>
-<a href=#19 id=19 data-nosnippet>19</a><a class="macro" href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/macro.wrapper.html">glib::wrapper!</a> {
+<a href=#19 id=19 data-nosnippet>19</a><a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/macro.wrapper.html">glib::wrapper!</a> {
 <a href=#20 id=20 data-nosnippet>20</a>    <span class="doccomment">/// An interface for describing UI elements for Assistive Technologies.
 <a href=#21 id=21 data-nosnippet>21</a>    ///
 <a href=#22 id=22 data-nosnippet>22</a>    /// Every accessible implementation has:
@@ -135,7 +135,7 @@
 <a href=#62 id=62 data-nosnippet>62</a>    ///
 <a href=#63 id=63 data-nosnippet>63</a>    /// [`AccessibleExt`][trait@crate::prelude::AccessibleExt], [`AccessibleExtManual`][trait@crate::prelude::AccessibleExtManual]
 <a href=#64 id=64 data-nosnippet>64</a>    </span><span class="attr">#[doc(alias = <span class="string">"GtkAccessible"</span>)]
-<a href=#65 id=65 data-nosnippet>65</a>    </span><span class="kw">pub struct </span><a href="../../../gtk4/struct.Accessible.html">Accessible</a>(Interface&lt;<a href="../../../gtk4_sys/struct.GtkAccessible.html">ffi::GtkAccessible</a>, <a href="../../../gtk4_sys/struct.GtkAccessibleInterface.html">ffi::GtkAccessibleInterface</a>&gt;);
+<a href=#65 id=65 data-nosnippet>65</a>    </span><span class="kw">pub struct </span><a href="#19-70">Accessible</a>(Interface&lt;ffi::<a href="../../../gtk4_sys/struct.GtkAccessible.html">GtkAccessible</a>, ffi::<a href="../../../gtk4_sys/struct.GtkAccessibleInterface.html">GtkAccessibleInterface</a>&gt;);
 <a href=#66 id=66 data-nosnippet>66</a>
 <a href=#67 id=67 data-nosnippet>67</a>    <span class="kw">match fn </span>{
 <a href=#68 id=68 data-nosnippet>68</a>        type_ =&gt; || ffi::gtk_accessible_get_type(),
@@ -170,7 +170,7 @@
 <a href=#97 id=97 data-nosnippet>97</a>    #[doc(alias = <span class="string">"gtk_accessible_announce"</span>)]
 <a href=#98 id=98 data-nosnippet>98</a>    </span><span class="kw">fn </span>announce(<span class="kw-2">&amp;</span><span class="self">self</span>, message: <span class="kw-2">&amp;</span><a href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>, priority: <a href="enums.rs.html#14-34">AccessibleAnnouncementPriority</a>) {
 <a href=#99 id=99 data-nosnippet>99</a>        <span class="kw">unsafe </span>{
-<a href=#100 id=100 data-nosnippet>100</a>            <a href="../../../gtk4_sys/fn.gtk_accessible_announce.html">ffi::gtk_accessible_announce</a>(
+<a href=#100 id=100 data-nosnippet>100</a>            ffi::<a href="../../../gtk4_sys/fn.gtk_accessible_announce.html">gtk_accessible_announce</a>(
 <a href=#101 id=101 data-nosnippet>101</a>                <a class="self" href="#98">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
 <a href=#102 id=102 data-nosnippet>102</a>                <a href="#98">message</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
 <a href=#103 id=103 data-nosnippet>103</a>                <a href="#98">priority</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>(),
@@ -192,7 +192,7 @@
 <a href=#119 id=119 data-nosnippet>119</a>    #[must_use]
 <a href=#120 id=120 data-nosnippet>120</a>    </span><span class="kw">fn </span>accessible_parent(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;<a href="#19-70">Accessible</a>&gt; {
 <a href=#121 id=121 data-nosnippet>121</a>        <span class="kw">unsafe </span>{
-<a href=#122 id=122 data-nosnippet>122</a>            <a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/fn.from_glib_full.html">from_glib_full</a>(<a href="../../../gtk4_sys/fn.gtk_accessible_get_accessible_parent.html">ffi::gtk_accessible_get_accessible_parent</a>(
+<a href=#122 id=122 data-nosnippet>122</a>            <a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/fn.from_glib_full.html">from_glib_full</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_accessible_get_accessible_parent.html">gtk_accessible_get_accessible_parent</a>(
 <a href=#123 id=123 data-nosnippet>123</a>                <a class="self" href="#120">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
 <a href=#124 id=124 data-nosnippet>124</a>            ))
 <a href=#125 id=125 data-nosnippet>125</a>        }
@@ -208,7 +208,7 @@
 <a href=#135 id=135 data-nosnippet>135</a>    #[doc(alias = <span class="string">"accessible-role"</span>)]
 <a href=#136 id=136 data-nosnippet>136</a>    </span><span class="kw">fn </span>accessible_role(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="enums.rs.html#1021-1321">AccessibleRole</a> {
 <a href=#137 id=137 data-nosnippet>137</a>        <span class="kw">unsafe </span>{
-<a href=#138 id=138 data-nosnippet>138</a>            <a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/fn.from_glib.html">from_glib</a>(<a href="../../../gtk4_sys/fn.gtk_accessible_get_accessible_role.html">ffi::gtk_accessible_get_accessible_role</a>(
+<a href=#138 id=138 data-nosnippet>138</a>            <a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/fn.from_glib.html">from_glib</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_accessible_get_accessible_role.html">gtk_accessible_get_accessible_role</a>(
 <a href=#139 id=139 data-nosnippet>139</a>                <a class="self" href="#136">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
 <a href=#140 id=140 data-nosnippet>140</a>            ))
 <a href=#141 id=141 data-nosnippet>141</a>        }
@@ -225,7 +225,7 @@
 <a href=#152 id=152 data-nosnippet>152</a>    #[doc(alias = <span class="string">"get_at_context"</span>)]
 <a href=#153 id=153 data-nosnippet>153</a>    </span><span class="kw">fn </span>at_context(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="at_context.rs.html#14-64">ATContext</a> {
 <a href=#154 id=154 data-nosnippet>154</a>        <span class="kw">unsafe </span>{
-<a href=#155 id=155 data-nosnippet>155</a>            <a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/fn.from_glib_full.html">from_glib_full</a>(<a href="../../../gtk4_sys/fn.gtk_accessible_get_at_context.html">ffi::gtk_accessible_get_at_context</a>(
+<a href=#155 id=155 data-nosnippet>155</a>            <a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/fn.from_glib_full.html">from_glib_full</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_accessible_get_at_context.html">gtk_accessible_get_at_context</a>(
 <a href=#156 id=156 data-nosnippet>156</a>                <a class="self" href="#153">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
 <a href=#157 id=157 data-nosnippet>157</a>            ))
 <a href=#158 id=158 data-nosnippet>158</a>        }
@@ -258,11 +258,11 @@
 <a href=#185 id=185 data-nosnippet>185</a>    #[doc(alias = <span class="string">"get_bounds"</span>)]
 <a href=#186 id=186 data-nosnippet>186</a>    </span><span class="kw">fn </span>bounds(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;(<a href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)&gt; {
 <a href=#187 id=187 data-nosnippet>187</a>        <span class="kw">unsafe </span>{
-<a href=#188 id=188 data-nosnippet>188</a>            <span class="kw">let </span><span class="kw-2">mut </span>x = <a href="https://doc.rust-lang.org/nightly/core/mem/maybe_uninit/union.MaybeUninit.html#method.uninit">std::mem::MaybeUninit::uninit</a>();
-<a href=#189 id=189 data-nosnippet>189</a>            <span class="kw">let </span><span class="kw-2">mut </span>y = <a href="https://doc.rust-lang.org/nightly/core/mem/maybe_uninit/union.MaybeUninit.html#method.uninit">std::mem::MaybeUninit::uninit</a>();
-<a href=#190 id=190 data-nosnippet>190</a>            <span class="kw">let </span><span class="kw-2">mut </span>width = <a href="https://doc.rust-lang.org/nightly/core/mem/maybe_uninit/union.MaybeUninit.html#method.uninit">std::mem::MaybeUninit::uninit</a>();
-<a href=#191 id=191 data-nosnippet>191</a>            <span class="kw">let </span><span class="kw-2">mut </span>height = <a href="https://doc.rust-lang.org/nightly/core/mem/maybe_uninit/union.MaybeUninit.html#method.uninit">std::mem::MaybeUninit::uninit</a>();
-<a href=#192 id=192 data-nosnippet>192</a>            <span class="kw">let </span>ret = <a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/fn.from_glib.html">from_glib</a>(<a href="../../../gtk4_sys/fn.gtk_accessible_get_bounds.html">ffi::gtk_accessible_get_bounds</a>(
+<a href=#188 id=188 data-nosnippet>188</a>            <span class="kw">let </span><span class="kw-2">mut </span>x = std::mem::<a href="https://doc.rust-lang.org/nightly/core/mem/maybe_uninit/union.MaybeUninit.html">MaybeUninit</a>::<a href="https://doc.rust-lang.org/nightly/core/mem/maybe_uninit/union.MaybeUninit.html#method.uninit">uninit</a>();
+<a href=#189 id=189 data-nosnippet>189</a>            <span class="kw">let </span><span class="kw-2">mut </span>y = std::mem::<a href="https://doc.rust-lang.org/nightly/core/mem/maybe_uninit/union.MaybeUninit.html">MaybeUninit</a>::<a href="https://doc.rust-lang.org/nightly/core/mem/maybe_uninit/union.MaybeUninit.html#method.uninit">uninit</a>();
+<a href=#190 id=190 data-nosnippet>190</a>            <span class="kw">let </span><span class="kw-2">mut </span>width = std::mem::<a href="https://doc.rust-lang.org/nightly/core/mem/maybe_uninit/union.MaybeUninit.html">MaybeUninit</a>::<a href="https://doc.rust-lang.org/nightly/core/mem/maybe_uninit/union.MaybeUninit.html#method.uninit">uninit</a>();
+<a href=#191 id=191 data-nosnippet>191</a>            <span class="kw">let </span><span class="kw-2">mut </span>height = std::mem::<a href="https://doc.rust-lang.org/nightly/core/mem/maybe_uninit/union.MaybeUninit.html">MaybeUninit</a>::<a href="https://doc.rust-lang.org/nightly/core/mem/maybe_uninit/union.MaybeUninit.html#method.uninit">uninit</a>();
+<a href=#192 id=192 data-nosnippet>192</a>            <span class="kw">let </span>ret = <a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/fn.from_glib.html">from_glib</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_accessible_get_bounds.html">gtk_accessible_get_bounds</a>(
 <a href=#193 id=193 data-nosnippet>193</a>                <a class="self" href="#186">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
 <a href=#194 id=194 data-nosnippet>194</a>                <a href="#188">x</a>.<a href="https://doc.rust-lang.org/nightly/core/mem/maybe_uninit/union.MaybeUninit.html#method.as_mut_ptr">as_mut_ptr</a>(),
 <a href=#195 id=195 data-nosnippet>195</a>                <a href="#189">y</a>.<a href="https://doc.rust-lang.org/nightly/core/mem/maybe_uninit/union.MaybeUninit.html#method.as_mut_ptr">as_mut_ptr</a>(),
@@ -277,8 +277,8 @@
 <a href=#204 id=204 data-nosnippet>204</a>                    <a href="#191">height</a>.<a href="https://doc.rust-lang.org/nightly/core/mem/maybe_uninit/union.MaybeUninit.html#method.assume_init">assume_init</a>(),
 <a href=#205 id=205 data-nosnippet>205</a>                ))
 <a href=#206 id=206 data-nosnippet>206</a>            } <span class="kw">else </span>{
-<a href=#207 id=207 data-nosnippet>207</a>                <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None"><a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None">None</a>
-<a href=#208 id=208 data-nosnippet>208</a>            </a>}
+<a href=#207 id=207 data-nosnippet>207</a>                <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None">None</a>
+<a href=#208 id=208 data-nosnippet>208</a>            }
 <a href=#209 id=209 data-nosnippet>209</a>        }
 <a href=#210 id=210 data-nosnippet>210</a>    }
 <a href=#211 id=211 data-nosnippet>211</a>
@@ -294,7 +294,7 @@
 <a href=#221 id=221 data-nosnippet>221</a>    #[must_use]
 <a href=#222 id=222 data-nosnippet>222</a>    </span><span class="kw">fn </span>first_accessible_child(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;<a href="#19-70">Accessible</a>&gt; {
 <a href=#223 id=223 data-nosnippet>223</a>        <span class="kw">unsafe </span>{
-<a href=#224 id=224 data-nosnippet>224</a>            <a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/fn.from_glib_full.html">from_glib_full</a>(<a href="../../../gtk4_sys/fn.gtk_accessible_get_first_accessible_child.html">ffi::gtk_accessible_get_first_accessible_child</a>(
+<a href=#224 id=224 data-nosnippet>224</a>            <a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/fn.from_glib_full.html">from_glib_full</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_accessible_get_first_accessible_child.html">gtk_accessible_get_first_accessible_child</a>(
 <a href=#225 id=225 data-nosnippet>225</a>                <a class="self" href="#222">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
 <a href=#226 id=226 data-nosnippet>226</a>            ))
 <a href=#227 id=227 data-nosnippet>227</a>        }
@@ -312,7 +312,7 @@
 <a href=#239 id=239 data-nosnippet>239</a>    #[must_use]
 <a href=#240 id=240 data-nosnippet>240</a>    </span><span class="kw">fn </span>next_accessible_sibling(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;<a href="#19-70">Accessible</a>&gt; {
 <a href=#241 id=241 data-nosnippet>241</a>        <span class="kw">unsafe </span>{
-<a href=#242 id=242 data-nosnippet>242</a>            <a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/fn.from_glib_full.html">from_glib_full</a>(<a href="../../../gtk4_sys/fn.gtk_accessible_get_next_accessible_sibling.html">ffi::gtk_accessible_get_next_accessible_sibling</a>(
+<a href=#242 id=242 data-nosnippet>242</a>            <a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/fn.from_glib_full.html">from_glib_full</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_accessible_get_next_accessible_sibling.html">gtk_accessible_get_next_accessible_sibling</a>(
 <a href=#243 id=243 data-nosnippet>243</a>                <a class="self" href="#240">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
 <a href=#244 id=244 data-nosnippet>244</a>            ))
 <a href=#245 id=245 data-nosnippet>245</a>        }
@@ -335,7 +335,7 @@
 <a href=#262 id=262 data-nosnippet>262</a>    #[doc(alias = <span class="string">"get_platform_state"</span>)]
 <a href=#263 id=263 data-nosnippet>263</a>    </span><span class="kw">fn </span>platform_state(<span class="kw-2">&amp;</span><span class="self">self</span>, state: <a href="enums.rs.html#377-389">AccessiblePlatformState</a>) -&gt; <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> {
 <a href=#264 id=264 data-nosnippet>264</a>        <span class="kw">unsafe </span>{
-<a href=#265 id=265 data-nosnippet>265</a>            <a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/fn.from_glib.html">from_glib</a>(<a href="../../../gtk4_sys/fn.gtk_accessible_get_platform_state.html">ffi::gtk_accessible_get_platform_state</a>(
+<a href=#265 id=265 data-nosnippet>265</a>            <a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/fn.from_glib.html">from_glib</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_accessible_get_platform_state.html">gtk_accessible_get_platform_state</a>(
 <a href=#266 id=266 data-nosnippet>266</a>                <a class="self" href="#263">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
 <a href=#267 id=267 data-nosnippet>267</a>                <a href="#263">state</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>(),
 <a href=#268 id=268 data-nosnippet>268</a>            ))
@@ -348,7 +348,7 @@
 <a href=#275 id=275 data-nosnippet>275</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_accessible_reset_property"</span>)]
 <a href=#276 id=276 data-nosnippet>276</a>    </span><span class="kw">fn </span>reset_property(<span class="kw-2">&amp;</span><span class="self">self</span>, property: <a href="enums.rs.html#497-593">AccessibleProperty</a>) {
 <a href=#277 id=277 data-nosnippet>277</a>        <span class="kw">unsafe </span>{
-<a href=#278 id=278 data-nosnippet>278</a>            <a href="../../../gtk4_sys/fn.gtk_accessible_reset_property.html">ffi::gtk_accessible_reset_property</a>(
+<a href=#278 id=278 data-nosnippet>278</a>            ffi::<a href="../../../gtk4_sys/fn.gtk_accessible_reset_property.html">gtk_accessible_reset_property</a>(
 <a href=#279 id=279 data-nosnippet>279</a>                <a class="self" href="#276">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
 <a href=#280 id=280 data-nosnippet>280</a>                <a href="#276">property</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>(),
 <a href=#281 id=281 data-nosnippet>281</a>            );
@@ -361,7 +361,7 @@
 <a href=#288 id=288 data-nosnippet>288</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_accessible_reset_relation"</span>)]
 <a href=#289 id=289 data-nosnippet>289</a>    </span><span class="kw">fn </span>reset_relation(<span class="kw-2">&amp;</span><span class="self">self</span>, relation: <a href="enums.rs.html#732-864">AccessibleRelation</a>) {
 <a href=#290 id=290 data-nosnippet>290</a>        <span class="kw">unsafe </span>{
-<a href=#291 id=291 data-nosnippet>291</a>            <a href="../../../gtk4_sys/fn.gtk_accessible_reset_relation.html">ffi::gtk_accessible_reset_relation</a>(
+<a href=#291 id=291 data-nosnippet>291</a>            ffi::<a href="../../../gtk4_sys/fn.gtk_accessible_reset_relation.html">gtk_accessible_reset_relation</a>(
 <a href=#292 id=292 data-nosnippet>292</a>                <a class="self" href="#289">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
 <a href=#293 id=293 data-nosnippet>293</a>                <a href="#289">relation</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>(),
 <a href=#294 id=294 data-nosnippet>294</a>            );
@@ -374,7 +374,7 @@
 <a href=#301 id=301 data-nosnippet>301</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_accessible_reset_state"</span>)]
 <a href=#302 id=302 data-nosnippet>302</a>    </span><span class="kw">fn </span>reset_state(<span class="kw-2">&amp;</span><span class="self">self</span>, state: <a href="enums.rs.html#1700-1746">AccessibleState</a>) {
 <a href=#303 id=303 data-nosnippet>303</a>        <span class="kw">unsafe </span>{
-<a href=#304 id=304 data-nosnippet>304</a>            <a href="../../../gtk4_sys/fn.gtk_accessible_reset_state.html">ffi::gtk_accessible_reset_state</a>(<a class="self" href="#302">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>, <a href="#302">state</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>());
+<a href=#304 id=304 data-nosnippet>304</a>            ffi::<a href="../../../gtk4_sys/fn.gtk_accessible_reset_state.html">gtk_accessible_reset_state</a>(<a class="self" href="#302">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>, <a href="#302">state</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>());
 <a href=#305 id=305 data-nosnippet>305</a>        }
 <a href=#306 id=306 data-nosnippet>306</a>    }
 <a href=#307 id=307 data-nosnippet>307</a>
@@ -400,7 +400,7 @@
 <a href=#327 id=327 data-nosnippet>327</a>        next_sibling: <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;<span class="kw-2">&amp;</span><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/object/trait.IsA.html">IsA</a>&lt;<a href="#19-70">Accessible</a>&gt;&gt;,
 <a href=#328 id=328 data-nosnippet>328</a>    ) {
 <a href=#329 id=329 data-nosnippet>329</a>        <span class="kw">unsafe </span>{
-<a href=#330 id=330 data-nosnippet>330</a>            <a href="../../../gtk4_sys/fn.gtk_accessible_set_accessible_parent.html">ffi::gtk_accessible_set_accessible_parent</a>(
+<a href=#330 id=330 data-nosnippet>330</a>            ffi::<a href="../../../gtk4_sys/fn.gtk_accessible_set_accessible_parent.html">gtk_accessible_set_accessible_parent</a>(
 <a href=#331 id=331 data-nosnippet>331</a>                <a class="self" href="#325">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
 <a href=#332 id=332 data-nosnippet>332</a>                <a href="#326">parent</a>.<a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#method.map">map</a>(|p| <a href="#332">p</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>()).<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
 <a href=#333 id=333 data-nosnippet>333</a>                <a href="#327">next_sibling</a>.<a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#method.map">map</a>(|p| <a href="#333">p</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>()).<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
@@ -419,7 +419,7 @@
 <a href=#346 id=346 data-nosnippet>346</a>    #[doc(alias = <span class="string">"gtk_accessible_update_next_accessible_sibling"</span>)]
 <a href=#347 id=347 data-nosnippet>347</a>    </span><span class="kw">fn </span>update_next_accessible_sibling(<span class="kw-2">&amp;</span><span class="self">self</span>, new_sibling: <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;<span class="kw-2">&amp;</span><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/object/trait.IsA.html">IsA</a>&lt;<a href="#19-70">Accessible</a>&gt;&gt;) {
 <a href=#348 id=348 data-nosnippet>348</a>        <span class="kw">unsafe </span>{
-<a href=#349 id=349 data-nosnippet>349</a>            <a href="../../../gtk4_sys/fn.gtk_accessible_update_next_accessible_sibling.html">ffi::gtk_accessible_update_next_accessible_sibling</a>(
+<a href=#349 id=349 data-nosnippet>349</a>            ffi::<a href="../../../gtk4_sys/fn.gtk_accessible_update_next_accessible_sibling.html">gtk_accessible_update_next_accessible_sibling</a>(
 <a href=#350 id=350 data-nosnippet>350</a>                <a class="self" href="#347">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
 <a href=#351 id=351 data-nosnippet>351</a>                <a href="#347">new_sibling</a>.<a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#method.map">map</a>(|p| <a href="#351">p</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>()).<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
 <a href=#352 id=352 data-nosnippet>352</a>            );
@@ -438,7 +438,7 @@
 <a href=#365 id=365 data-nosnippet>365</a>    #[doc(alias = <span class="string">"gtk_accessible_update_platform_state"</span>)]
 <a href=#366 id=366 data-nosnippet>366</a>    </span><span class="kw">fn </span>update_platform_state(<span class="kw-2">&amp;</span><span class="self">self</span>, state: <a href="enums.rs.html#377-389">AccessiblePlatformState</a>) {
 <a href=#367 id=367 data-nosnippet>367</a>        <span class="kw">unsafe </span>{
-<a href=#368 id=368 data-nosnippet>368</a>            <a href="../../../gtk4_sys/fn.gtk_accessible_update_platform_state.html">ffi::gtk_accessible_update_platform_state</a>(
+<a href=#368 id=368 data-nosnippet>368</a>            ffi::<a href="../../../gtk4_sys/fn.gtk_accessible_update_platform_state.html">gtk_accessible_update_platform_state</a>(
 <a href=#369 id=369 data-nosnippet>369</a>                <a class="self" href="#366">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
 <a href=#370 id=370 data-nosnippet>370</a>                <a href="#366">state</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>(),
 <a href=#371 id=371 data-nosnippet>371</a>            );
@@ -450,7 +450,7 @@
 <a href=#377 id=377 data-nosnippet>377</a>    /// The accessible role cannot be changed once set.
 <a href=#378 id=378 data-nosnippet>378</a>    </span><span class="attr">#[doc(alias = <span class="string">"accessible-role"</span>)]
 <a href=#379 id=379 data-nosnippet>379</a>    </span><span class="kw">fn </span>set_accessible_role(<span class="kw-2">&amp;</span><span class="self">self</span>, accessible_role: <a href="enums.rs.html#1021-1321">AccessibleRole</a>) {
-<a href=#380 id=380 data-nosnippet>380</a>        <a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/object/trait.ObjectExt.html#tymethod.set_property">ObjectExt::set_property</a>(<a class="self" href="#379">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>(), <span class="string">"accessible-role"</span>, <a href="#379">accessible_role</a>)
+<a href=#380 id=380 data-nosnippet>380</a>        ObjectExt::<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/object/trait.ObjectExt.html#tymethod.set_property">set_property</a>(<a class="self" href="#379">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>(), <span class="string">"accessible-role"</span>, <a href="#379">accessible_role</a>)
 <a href=#381 id=381 data-nosnippet>381</a>    }
 <a href=#382 id=382 data-nosnippet>382</a>
 <a href=#383 id=383 data-nosnippet>383</a>    <span class="attr">#[doc(alias = <span class="string">"accessible-role"</span>)]
@@ -459,25 +459,26 @@
 <a href=#386 id=386 data-nosnippet>386</a>            P: <a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/object/trait.IsA.html">IsA</a>&lt;<a href="#19-70">Accessible</a>&gt;,
 <a href=#387 id=387 data-nosnippet>387</a>            F: <a href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html">Fn</a>(<span class="kw-2">&amp;</span>P) + <span class="lifetime">'static</span>,
 <a href=#388 id=388 data-nosnippet>388</a>        &gt;(
-<a href=#389 id=389 data-nosnippet>389</a>            this: <span class="kw-2">*mut </span><a href="../../../gtk4_sys/struct.GtkAccessible.html">ffi::GtkAccessible</a>,
+<a href=#389 id=389 data-nosnippet>389</a>            this: <span class="kw-2">*mut </span>ffi::<a href="../../../gtk4_sys/struct.GtkAccessible.html">GtkAccessible</a>,
 <a href=#390 id=390 data-nosnippet>390</a>            _param_spec: glib::ffi::gpointer,
 <a href=#391 id=391 data-nosnippet>391</a>            f: glib::ffi::gpointer,
 <a href=#392 id=392 data-nosnippet>392</a>        ) {
 <a href=#393 id=393 data-nosnippet>393</a>            <span class="kw">let </span>f: <span class="kw-2">&amp;</span>F = <span class="kw-2">&amp;*</span>(<a href="#391">f</a> <span class="kw">as </span><span class="kw-2">*const </span>F);
-<a href=#394 id=394 data-nosnippet>394</a>            <a href="#393">f</a>(<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.FromGlibPtrBorrow.html#tymethod.from_glib_borrow">Accessible::from_glib_borrow</a>(<a href="#389">this</a>).<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/object/trait.Cast.html#tymethod.unsafe_cast_ref">unsafe_cast_ref</a>())
+<a href=#394 id=394 data-nosnippet>394</a>            <a href="#393">f</a>(<a href="#19-70">Accessible</a>::<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.FromGlibPtrBorrow.html#method.from_glib_borrow">from_glib_borrow</a>(<a href="#389">this</a>).<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/object/trait.Cast.html#method.unsafe_cast_ref">unsafe_cast_ref</a>())
 <a href=#395 id=395 data-nosnippet>395</a>        }
 <a href=#396 id=396 data-nosnippet>396</a>        <span class="kw">unsafe </span>{
-<a href=#397 id=397 data-nosnippet>397</a>            <span class="kw">let </span>f: <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">Box_</a>&lt;F&gt; = <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html#method.new">Box_::new</a>(<a href="#384">f</a>);
+<a href=#397 id=397 data-nosnippet>397</a>            <span class="kw">let </span>f: <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">Box_</a>&lt;F&gt; = <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">Box_</a>::<a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html#method.new">new</a>(<a href="#384">f</a>);
 <a href=#398 id=398 data-nosnippet>398</a>            <a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/signal/fn.connect_raw.html">connect_raw</a>(
 <a href=#399 id=399 data-nosnippet>399</a>                <a class="self" href="#384">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/object/trait.ObjectType.html#tymethod.as_ptr">as_ptr</a>() <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>,
 <a href=#400 id=400 data-nosnippet>400</a>                <span class="string">c"notify::accessible-role"</span>.<a href="https://doc.rust-lang.org/nightly/core/ffi/c_str/struct.CStr.html#method.as_ptr">as_ptr</a>() <span class="kw">as </span><span class="kw-2">*const </span><span class="kw">_</span>,
-<a href=#401 id=401 data-nosnippet>401</a>                <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.Some">Some</a>(<a href="https://doc.rust-lang.org/nightly/core/intrinsics/fn.transmute.html">std::mem::transmute</a>::&lt;<span class="kw-2">*const </span>(), <span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn</span>()&gt;(
+<a href=#401 id=401 data-nosnippet>401</a>                <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.Some">Some</a>(std::mem::<a href="https://doc.rust-lang.org/nightly/core/intrinsics/fn.transmute.html">transmute</a>::&lt;<span class="kw-2">*const </span>(), <span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn</span>()&gt;(
 <a href=#402 id=402 data-nosnippet>402</a>                    <a href="#385-395">notify_accessible_role_trampoline</a>::&lt;<span class="self">Self</span>, F&gt; <span class="kw">as </span><span class="kw-2">*const </span>(),
 <a href=#403 id=403 data-nosnippet>403</a>                )),
-<a href=#404 id=404 data-nosnippet>404</a>                <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html#method.into_raw">Box_::into_raw</a>(<a href="#397">f</a>),
+<a href=#404 id=404 data-nosnippet>404</a>                <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">Box_</a>::<a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html#method.into_raw">into_raw</a>(<a href="#397">f</a>),
 <a href=#405 id=405 data-nosnippet>405</a>            )
 <a href=#406 id=406 data-nosnippet>406</a>        }
 <a href=#407 id=407 data-nosnippet>407</a>    }
 <a href=#408 id=408 data-nosnippet>408</a>}
 <a href=#409 id=409 data-nosnippet>409</a>
-<a href=#410 id=410 data-nosnippet>410</a><span class="kw">impl</span>&lt;O: <a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/object/trait.IsA.html">IsA</a>&lt;<a href="#19-70">Accessible</a>&gt;&gt; <a href="#81-408">AccessibleExt</a> <span class="kw">for </span>O {}</code></pre></div></section></main></body></html>
+<a href=#410 id=410 data-nosnippet>410</a><span class="kw">impl</span>&lt;O: <a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/object/trait.IsA.html">IsA</a>&lt;<a href="#19-70">Accessible</a>&gt;&gt; <a href="#81-408">AccessibleExt</a> <span class="kw">for </span>O {}
+</code></pre></div></section></main></body></html>
