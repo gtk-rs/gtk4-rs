@@ -143,7 +143,7 @@ unsafe extern "C" fn trampoline<T, F: Fn(&T, &TreeIter, &TreeIter) -> Ordering>(
 ) -> i32
 where
     T: IsA<TreeSortable>,
-{
+{ unsafe {
     let f: &F = &*(f as *const F);
     f(
         &TreeModel::from_glib_none(this).unsafe_cast(),
@@ -151,13 +151,13 @@ where
         &from_glib_borrow(iter2),
     )
     .into_glib()
-}
+}}
 
 unsafe extern "C" fn destroy_closure<T, F: Fn(&T, &TreeIter, &TreeIter) -> Ordering>(
     ptr: glib::ffi::gpointer,
-) {
+) { unsafe {
     let _ = Box::<F>::from_raw(ptr as *mut _);
-}
+}}
 
 fn into_raw<F, T>(func: F) -> glib::ffi::gpointer
 where

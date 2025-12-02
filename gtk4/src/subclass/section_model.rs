@@ -58,11 +58,11 @@ unsafe extern "C" fn model_get_section<T: SectionModelImpl>(
     position: u32,
     startptr: *mut libc::c_uint,
     endptr: *mut libc::c_uint,
-) {
+) { unsafe {
     let instance = &*(model as *mut T::Instance);
     let imp = instance.imp();
 
     let (start, end) = imp.section(position);
     *startptr = start;
     *endptr = end;
-}
+}}

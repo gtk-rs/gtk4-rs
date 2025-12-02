@@ -54,7 +54,7 @@ impl FontDialog {
             _source_object: *mut glib::gobject_ffi::GObject,
             res: *mut gio::ffi::GAsyncResult,
             user_data: glib::ffi::gpointer,
-        ) {
+        ) { unsafe {
             let mut error = ptr::null_mut();
             let mut font_desc = ptr::null_mut();
             let mut font_features = ptr::null_mut();
@@ -80,7 +80,7 @@ impl FontDialog {
                 Box_::from_raw(user_data as *mut _);
             let callback: P = callback.into_inner();
             callback(result);
-        }
+        }}
         let callback = choose_font_and_features_trampoline::<P>;
         unsafe {
             ffi::gtk_font_dialog_choose_font_and_features(

@@ -178,12 +178,12 @@ unsafe impl<T: AccessibleImpl> IsImplementable<T> for Accessible {
 unsafe extern "C" fn accessible_get_platform_state<T: AccessibleImpl>(
     accessible: *mut ffi::GtkAccessible,
     state: ffi::GtkAccessiblePlatformState,
-) -> glib::ffi::gboolean {
+) -> glib::ffi::gboolean { unsafe {
     let instance = &*(accessible as *mut T::Instance);
     let imp = instance.imp();
 
     imp.platform_state(from_glib(state)).into_glib()
-}
+}}
 
 unsafe extern "C" fn accessible_get_bounds<T: AccessibleImpl>(
     accessible: *mut ffi::GtkAccessible,
@@ -191,7 +191,7 @@ unsafe extern "C" fn accessible_get_bounds<T: AccessibleImpl>(
     yptr: *mut libc::c_int,
     widthptr: *mut libc::c_int,
     heightptr: *mut libc::c_int,
-) -> glib::ffi::gboolean {
+) -> glib::ffi::gboolean { unsafe {
     let instance = &*(accessible as *mut T::Instance);
     let imp = instance.imp();
 
@@ -205,40 +205,40 @@ unsafe extern "C" fn accessible_get_bounds<T: AccessibleImpl>(
     } else {
         false.into_glib()
     }
-}
+}}
 
 unsafe extern "C" fn accessible_get_at_context<T: AccessibleImpl>(
     accessible: *mut ffi::GtkAccessible,
-) -> *mut ffi::GtkATContext {
+) -> *mut ffi::GtkATContext { unsafe {
     let instance = &*(accessible as *mut T::Instance);
     let imp = instance.imp();
 
     imp.at_context().into_glib_ptr()
-}
+}}
 
 unsafe extern "C" fn accessible_get_accessible_parent<T: AccessibleImpl>(
     accessible: *mut ffi::GtkAccessible,
-) -> *mut ffi::GtkAccessible {
+) -> *mut ffi::GtkAccessible { unsafe {
     let instance = &*(accessible as *mut T::Instance);
     let imp = instance.imp();
 
     imp.accessible_parent().into_glib_ptr()
-}
+}}
 
 unsafe extern "C" fn accessible_get_first_accessible_child<T: AccessibleImpl>(
     accessible: *mut ffi::GtkAccessible,
-) -> *mut ffi::GtkAccessible {
+) -> *mut ffi::GtkAccessible { unsafe {
     let instance = &*(accessible as *mut T::Instance);
     let imp = instance.imp();
 
     imp.first_accessible_child().into_glib_ptr()
-}
+}}
 
 unsafe extern "C" fn accessible_get_next_accessible_sibling<T: AccessibleImpl>(
     accessible: *mut ffi::GtkAccessible,
-) -> *mut ffi::GtkAccessible {
+) -> *mut ffi::GtkAccessible { unsafe {
     let instance = &*(accessible as *mut T::Instance);
     let imp = instance.imp();
 
     imp.next_accessible_sibling().into_glib_ptr()
-}
+}}

@@ -397,55 +397,55 @@ unsafe impl<T: IMContextImpl> IsSubclassable<T> for IMContext {
 unsafe extern "C" fn im_context_commit<T: IMContextImpl>(
     ptr: *mut ffi::GtkIMContext,
     stringptr: *const libc::c_char,
-) {
+) { unsafe {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
     let string: Borrowed<GString> = from_glib_borrow(stringptr);
 
     imp.commit(string.as_str())
-}
+}}
 
 unsafe extern "C" fn im_context_delete_surrounding<T: IMContextImpl>(
     ptr: *mut ffi::GtkIMContext,
     offset: i32,
     n_chars: i32,
-) -> glib::ffi::gboolean {
+) -> glib::ffi::gboolean { unsafe {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
 
     imp.delete_surrounding(offset, n_chars).into_glib()
-}
+}}
 
 unsafe extern "C" fn im_context_filter_keypress<T: IMContextImpl>(
     ptr: *mut ffi::GtkIMContext,
     eventptr: *mut gdk::ffi::GdkEvent,
-) -> glib::ffi::gboolean {
+) -> glib::ffi::gboolean { unsafe {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
     let event: Borrowed<gdk::Event> = from_glib_borrow(eventptr);
     imp.filter_keypress(&event).into_glib()
-}
+}}
 
-unsafe extern "C" fn im_context_focus_in<T: IMContextImpl>(ptr: *mut ffi::GtkIMContext) {
+unsafe extern "C" fn im_context_focus_in<T: IMContextImpl>(ptr: *mut ffi::GtkIMContext) { unsafe {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
 
     imp.focus_in()
-}
+}}
 
-unsafe extern "C" fn im_context_focus_out<T: IMContextImpl>(ptr: *mut ffi::GtkIMContext) {
+unsafe extern "C" fn im_context_focus_out<T: IMContextImpl>(ptr: *mut ffi::GtkIMContext) { unsafe {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
 
     imp.focus_out()
-}
+}}
 
 unsafe extern "C" fn im_context_get_preedit_string<T: IMContextImpl>(
     ptr: *mut ffi::GtkIMContext,
     text_ptr: *mut *mut libc::c_char,
     attrs_ptr: *mut *mut pango::ffi::PangoAttrList,
     cursor_index_ptr: *mut libc::c_int,
-) {
+) { unsafe {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
 
@@ -454,92 +454,92 @@ unsafe extern "C" fn im_context_get_preedit_string<T: IMContextImpl>(
     *text_ptr = text.into_glib_ptr();
     *cursor_index_ptr = cursor_idx;
     *attrs_ptr = attrs.into_glib_ptr();
-}
+}}
 
 unsafe extern "C" fn im_context_get_surrounding<T: IMContextImpl>(
     ptr: *mut ffi::GtkIMContext,
     text_ptr: *mut *mut libc::c_char,
     cursor_index_ptr: *mut libc::c_int,
-) -> glib::ffi::gboolean {
+) -> glib::ffi::gboolean { unsafe {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
 
-    if let Some((text, cursor_idx)) = imp.surrounding() {
+    match imp.surrounding() { Some((text, cursor_idx)) => {
         *text_ptr = text.into_glib_ptr();
         *cursor_index_ptr = cursor_idx;
         true.into_glib()
-    } else {
+    } _ => {
         *text_ptr = std::ptr::null_mut();
         *cursor_index_ptr = 0;
         false.into_glib()
-    }
-}
+    }}
+}}
 
-unsafe extern "C" fn im_context_preedit_changed<T: IMContextImpl>(ptr: *mut ffi::GtkIMContext) {
+unsafe extern "C" fn im_context_preedit_changed<T: IMContextImpl>(ptr: *mut ffi::GtkIMContext) { unsafe {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
 
     imp.preedit_changed()
-}
+}}
 
-unsafe extern "C" fn im_context_preedit_end<T: IMContextImpl>(ptr: *mut ffi::GtkIMContext) {
+unsafe extern "C" fn im_context_preedit_end<T: IMContextImpl>(ptr: *mut ffi::GtkIMContext) { unsafe {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
 
     imp.preedit_end()
-}
+}}
 
-unsafe extern "C" fn im_context_preedit_start<T: IMContextImpl>(ptr: *mut ffi::GtkIMContext) {
+unsafe extern "C" fn im_context_preedit_start<T: IMContextImpl>(ptr: *mut ffi::GtkIMContext) { unsafe {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
 
     imp.preedit_start()
-}
+}}
 
-unsafe extern "C" fn im_context_reset<T: IMContextImpl>(ptr: *mut ffi::GtkIMContext) {
+unsafe extern "C" fn im_context_reset<T: IMContextImpl>(ptr: *mut ffi::GtkIMContext) { unsafe {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
 
     imp.reset()
-}
+}}
 
 unsafe extern "C" fn im_context_retrieve_surrounding<T: IMContextImpl>(
     ptr: *mut ffi::GtkIMContext,
-) -> glib::ffi::gboolean {
+) -> glib::ffi::gboolean { unsafe {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
 
     imp.retrieve_surrounding().into_glib()
-}
+}}
 
 unsafe extern "C" fn im_context_set_client_widget<T: IMContextImpl>(
     ptr: *mut ffi::GtkIMContext,
     widgetptr: *mut ffi::GtkWidget,
-) {
+) { unsafe {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
     let widget: Borrowed<Option<Widget>> = from_glib_borrow(widgetptr);
 
     imp.set_client_widget(widget.as_ref().as_ref());
-}
+}}
 
 unsafe extern "C" fn im_context_set_cursor_location<T: IMContextImpl>(
     ptr: *mut ffi::GtkIMContext,
     areaptr: *mut gdk::ffi::GdkRectangle,
-) {
+) { unsafe {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
     let area = from_glib_borrow(areaptr);
 
     imp.set_cursor_location(&area);
-}
+}}
 
 unsafe extern "C" fn im_context_set_surrounding<T: IMContextImpl>(
     ptr: *mut ffi::GtkIMContext,
     textptr: *const libc::c_char,
     length: i32,
     cursor_index: i32,
-) {
+) { unsafe {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
     let text: Borrowed<GString> = from_glib_borrow(textptr);
@@ -552,31 +552,31 @@ unsafe extern "C" fn im_context_set_surrounding<T: IMContextImpl>(
     };
 
     imp.set_surrounding(text, cursor_index)
-}
+}}
 
 unsafe extern "C" fn im_context_set_use_preedit<T: IMContextImpl>(
     ptr: *mut ffi::GtkIMContext,
     use_preedit: glib::ffi::gboolean,
-) {
+) { unsafe {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
 
     imp.set_use_preedit(from_glib(use_preedit))
-}
+}}
 
 #[cfg(feature = "v4_10")]
-unsafe extern "C" fn im_context_activate_osk<T: IMContextImpl>(ptr: *mut ffi::GtkIMContext) {
+unsafe extern "C" fn im_context_activate_osk<T: IMContextImpl>(ptr: *mut ffi::GtkIMContext) { unsafe {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
 
     imp.activate_osk()
-}
+}}
 
 #[cfg(feature = "v4_14")]
 unsafe extern "C" fn im_context_activate_osk_with_event<T: IMContextImpl>(
     ptr: *mut ffi::GtkIMContext,
     eventptr: *mut gdk::ffi::GdkEvent,
-) -> glib::ffi::gboolean {
+) -> glib::ffi::gboolean { unsafe {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
 
@@ -584,7 +584,7 @@ unsafe extern "C" fn im_context_activate_osk_with_event<T: IMContextImpl>(
 
     imp.activate_osk_with_event(event.as_ref().as_ref())
         .into_glib()
-}
+}}
 
 #[cfg(feature = "v4_22")]
 unsafe extern "C" fn im_context_invalid_composition<T: IMContextImpl>(

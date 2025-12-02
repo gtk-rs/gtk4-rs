@@ -15,9 +15,9 @@ impl X11Screen {
     #[doc(alias = "gdk_x11_screen_get_xscreen")]
     #[doc(alias = "get_xscreen")]
     #[allow(clippy::missing_safety_doc)]
-    pub unsafe fn xscreen(&self) -> *mut xlib::Screen {
+    pub unsafe fn xscreen(&self) -> *mut xlib::Screen { unsafe {
         ffi::gdk_x11_screen_get_xscreen(self.to_glib_none().0) as *mut xlib::Screen
-    }
+    }}
 
     #[doc(alias = "gdk_x11_screen_get_monitor_output")]
     #[doc(alias = "get_monitor_output")]

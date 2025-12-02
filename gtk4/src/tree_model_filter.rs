@@ -45,19 +45,19 @@ pub trait TreeModelFilterExtManual: IsA<TreeModelFilter> + 'static {
                 value: *mut glib::gobject_ffi::GValue,
                 column: i32,
                 user_data: glib::ffi::gpointer,
-            ) {
+            ) { unsafe {
                 let f: &F = &*(user_data as *const F);
                 let ret = f(&from_glib_borrow(model), &from_glib_borrow(iter), column);
                 *value = ret.into_raw();
-            }
+            }}
 
             unsafe extern "C" fn destroy_func<
                 F: Fn(&TreeModel, &TreeIter, i32) -> glib::Value + 'static,
             >(
                 user_data: glib::ffi::gpointer,
-            ) {
+            ) { unsafe {
                 let _callback: Box_<Option<Box_<F>>> = Box_::from_raw(user_data as *mut _);
-            }
+            }}
             let callback_data: Box_<F> = Box_::new(func);
 
             ffi::gtk_tree_model_filter_set_modify_func(

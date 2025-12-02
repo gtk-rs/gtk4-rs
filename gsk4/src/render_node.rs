@@ -44,13 +44,13 @@ impl RenderNode {
             end: *const ffi::GskParseLocation,
             error: *const glib::ffi::GError,
             user_data: glib::ffi::gpointer,
-        ) {
+        ) { unsafe {
             let start = from_glib_borrow(start);
             let end = from_glib_borrow(end);
             let error = from_glib_borrow(error);
             let callback = user_data as *mut P;
             (*callback)(&start, &end, &error);
-        }
+        }}
         let error_func = Some(error_func_func::<P> as _);
         let super_callback0: &mut P = &mut error_func_data;
         unsafe {
@@ -160,9 +160,9 @@ macro_rules! define_render_node {
         #[doc(hidden)]
         impl glib::translate::FromGlibPtrFull<*mut crate::ffi::GskRenderNode> for $rust_type {
             #[inline]
-            unsafe fn from_glib_full(ptr: *mut crate::ffi::GskRenderNode) -> Self {
+            unsafe fn from_glib_full(ptr: *mut crate::ffi::GskRenderNode) -> Self { unsafe {
                 glib::translate::from_glib_full(ptr as *mut $ffi_type)
-            }
+            }}
         }
 
         #[cfg(feature = "v4_6")]
@@ -177,12 +177,12 @@ macro_rules! define_render_node {
             type Checker = glib::value::GenericValueTypeOrNoneChecker<Self>;
 
             #[inline]
-            unsafe fn from_value(value: &'a glib::Value) -> Self {
+            unsafe fn from_value(value: &'a glib::Value) -> Self { unsafe {
                 skip_assert_initialized!();
                 glib::translate::from_glib_full(crate::ffi::gsk_value_dup_render_node(
                     glib::translate::ToGlibPtr::to_glib_none(value).0,
                 ))
-            }
+            }}
         }
 
         #[cfg(feature = "v4_6")]

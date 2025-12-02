@@ -22,12 +22,12 @@ impl Path {
             n_pts: libc::size_t,
             weight: libc::c_float,
             user_data: glib::ffi::gpointer,
-        ) -> glib::ffi::gboolean {
+        ) -> glib::ffi::gboolean { unsafe {
             let op = from_glib(op);
             let pts = from_glib_borrow(pts);
             let callback = user_data as *mut P;
             (*callback)(&op, &pts, n_pts, weight).into_glib()
-        }
+        }}
         let func = Some(func_func::<P> as _);
         let super_callback0: &mut P = &mut func_data;
         unsafe {
@@ -60,7 +60,7 @@ impl Path {
             point2: *const ffi::GskPathPoint,
             kind: ffi::GskPathIntersection,
             user_data: glib::ffi::gpointer,
-        ) -> glib::ffi::gboolean {
+        ) -> glib::ffi::gboolean { unsafe {
             let path1 = from_glib_borrow(path1);
             let point1 = from_glib_borrow(point1);
             let path2 = from_glib_borrow(path2);
@@ -68,7 +68,7 @@ impl Path {
             let kind = from_glib(kind);
             let callback = user_data as *mut P;
             (*callback)(&path1, &point1, &path2, &point2, kind).into_glib()
-        }
+        }}
         let func = Some(func_func::<P> as _);
         let super_callback0: &mut P = &mut func_data;
         unsafe {

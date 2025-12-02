@@ -59,7 +59,7 @@ pub fn content_deserialize_async<R: FnOnce(Result<glib::Value, glib::Error>) + '
         _source_object: *mut glib::gobject_ffi::GObject,
         res: *mut gio::ffi::GAsyncResult,
         user_data: glib::ffi::gpointer,
-    ) {
+    ) { unsafe {
         let mut error = ptr::null_mut();
         let mut value = glib::Value::uninitialized();
         let _ = ffi::gdk_content_deserialize_finish(res, value.to_glib_none_mut().0, &mut error);
@@ -71,7 +71,7 @@ pub fn content_deserialize_async<R: FnOnce(Result<glib::Value, glib::Error>) + '
         let callback: Box<glib::thread_guard::ThreadGuard<R>> = Box::from_raw(user_data as *mut _);
         let callback = callback.into_inner();
         callback(result);
-    }
+    }}
     let callback = content_deserialize_async_trampoline::<R>;
     unsafe {
         ffi::gdk_content_deserialize_async(
@@ -126,7 +126,7 @@ pub fn content_register_deserializer<
         P: Fn(&ContentDeserializer, &mut Option<T>) + 'static,
     >(
         deserializer: *mut ffi::GdkContentDeserializer,
-    ) {
+    ) { unsafe {
         let deserializer: ContentDeserializer = from_glib_full(deserializer);
         let callback: &P =
             &*(ffi::gdk_content_deserializer_get_user_data(deserializer.to_glib_none().0)
@@ -135,9 +135,9 @@ pub fn content_register_deserializer<
         let mut task_data: *mut Option<T> =
             ffi::gdk_content_deserializer_get_task_data(deserializer.to_glib_none().0) as *mut _;
         if task_data.is_null() {
-            unsafe extern "C" fn notify_func<T: 'static>(data: glib::ffi::gpointer) {
+            unsafe extern "C" fn notify_func<T: 'static>(data: glib::ffi::gpointer) { unsafe {
                 let _task_data: Box<Option<T>> = Box::from_raw(data as *mut _);
-            }
+            }}
             task_data = Box::into_raw(Box::new(None));
             ffi::gdk_content_deserializer_set_task_data(
                 deserializer.to_glib_none().0,
@@ -147,16 +147,16 @@ pub fn content_register_deserializer<
         }
 
         (*callback)(&deserializer, &mut *task_data);
-    }
+    }}
     let deserialize = Some(deserialize_func::<T, P> as _);
     unsafe extern "C" fn notify_func<
         T: 'static,
         P: Fn(&ContentDeserializer, &mut Option<T>) + 'static,
     >(
         data: glib::ffi::gpointer,
-    ) {
+    ) { unsafe {
         let _callback: Box<P> = Box::from_raw(data as *mut _);
-    }
+    }}
     let destroy_call4 = Some(notify_func::<T, P> as _);
     let super_callback0: Box<P> = deserialize_data;
     unsafe {
@@ -186,7 +186,7 @@ pub fn content_register_serializer<
         P: Fn(&ContentSerializer, &mut Option<T>) + 'static,
     >(
         serializer: *mut ffi::GdkContentSerializer,
-    ) {
+    ) { unsafe {
         let serializer: ContentSerializer = from_glib_full(serializer);
         let callback: &P =
             &*(ffi::gdk_content_serializer_get_user_data(serializer.to_glib_none().0) as *mut _);
@@ -194,9 +194,9 @@ pub fn content_register_serializer<
         let mut task_data: *mut Option<T> =
             ffi::gdk_content_serializer_get_task_data(serializer.to_glib_none().0) as *mut _;
         if task_data.is_null() {
-            unsafe extern "C" fn notify_func<T: 'static>(data: glib::ffi::gpointer) {
+            unsafe extern "C" fn notify_func<T: 'static>(data: glib::ffi::gpointer) { unsafe {
                 let _task_data: Box<Option<T>> = Box::from_raw(data as *mut _);
-            }
+            }}
             task_data = Box::into_raw(Box::new(None));
             ffi::gdk_content_serializer_set_task_data(
                 serializer.to_glib_none().0,
@@ -206,16 +206,16 @@ pub fn content_register_serializer<
         }
 
         (*callback)(&serializer, &mut *task_data);
-    }
+    }}
     let serialize = Some(serialize_func::<T, P> as _);
     unsafe extern "C" fn notify_func<
         T: 'static,
         P: Fn(&ContentSerializer, &mut Option<T>) + 'static,
     >(
         data: glib::ffi::gpointer,
-    ) {
+    ) { unsafe {
         let _callback: Box<P> = Box::from_raw(data as *mut _);
-    }
+    }}
     let destroy_call4 = Some(notify_func::<T, P> as _);
     let super_callback0: Box<P> = serialize_data;
     unsafe {
@@ -256,7 +256,7 @@ pub fn content_serialize_async<R: FnOnce(Result<(), glib::Error>) + 'static>(
         _source_object: *mut glib::gobject_ffi::GObject,
         res: *mut gio::ffi::GAsyncResult,
         user_data: glib::ffi::gpointer,
-    ) {
+    ) { unsafe {
         let mut error = ptr::null_mut();
         let _ = ffi::gdk_content_serialize_finish(res, &mut error);
         let result = if error.is_null() {
@@ -267,7 +267,7 @@ pub fn content_serialize_async<R: FnOnce(Result<(), glib::Error>) + 'static>(
         let callback: Box<glib::thread_guard::ThreadGuard<R>> = Box::from_raw(user_data as *mut _);
         let callback = callback.into_inner();
         callback(result);
-    }
+    }}
     let callback = content_serialize_async_trampoline::<R>;
     unsafe {
         ffi::gdk_content_serialize_async(

@@ -17,7 +17,7 @@ impl WaylandToplevel {
             toplevel: *mut ffi::GdkWaylandToplevel,
             handle: *const libc::c_char,
             user_data: glib::ffi::gpointer,
-        ) {
+        ) { unsafe {
             let toplevel = from_glib_borrow(toplevel);
             let handle: Borrowed<Option<glib::GString>> = from_glib_borrow(handle);
             let callback = &*(user_data as *mut P);
@@ -26,15 +26,15 @@ impl WaylandToplevel {
             } else {
                 (*callback)(&toplevel, Err(glib::bool_error!("Failed to export a handle. The compositor probably doesn't implement the xdg-foreign protocol")))
             }
-        }
+        }}
         let callback = Some(callback_func::<P> as _);
         unsafe extern "C" fn destroy_func_func<
             P: Fn(&WaylandToplevel, Result<&str, glib::BoolError>) + 'static,
         >(
             data: glib::ffi::gpointer,
-        ) {
+        ) { unsafe {
             let _callback = Box_::from_raw(data as *mut P);
-        }
+        }}
         let destroy_call3 = Some(destroy_func_func::<P> as _);
         let super_callback0: Box_<P> = callback_data;
         unsafe {

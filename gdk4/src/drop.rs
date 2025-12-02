@@ -33,7 +33,7 @@ impl Drop {
             _source_object: *mut glib::gobject_ffi::GObject,
             res: *mut gio::ffi::GAsyncResult,
             user_data: glib::ffi::gpointer,
-        ) {
+        ) { unsafe {
             let mut error = ptr::null_mut();
             let mut out_mime_type = ptr::null();
             let ret = ffi::gdk_drop_read_finish(
@@ -51,7 +51,7 @@ impl Drop {
                 Box::from_raw(user_data as *mut _);
             let callback = callback.into_inner();
             callback(result);
-        }
+        }}
         let callback = read_async_trampoline::<Q>;
         unsafe {
             ffi::gdk_drop_read_async(

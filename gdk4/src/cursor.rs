@@ -28,7 +28,7 @@ impl Cursor {
             hotspot_x: *mut libc::c_int,
             hotspot_y: *mut libc::c_int,
             data: glib::ffi::gpointer,
-        ) -> *mut ffi::GdkTexture {
+        ) -> *mut ffi::GdkTexture { unsafe {
             let cursor = from_glib_borrow(cursor);
             let callback = &*(data as *mut P);
             (*callback)(
@@ -43,15 +43,15 @@ impl Cursor {
             /*Not checked*/
             .to_glib_none()
             .0
-        }
+        }}
         let callback = Some(callback_func::<P> as _);
         unsafe extern "C" fn destroy_func<
             P: Fn(&Cursor, i32, f64, &mut i32, &mut i32, &mut i32, &mut i32) -> Texture + 'static,
         >(
             data: glib::ffi::gpointer,
-        ) {
+        ) { unsafe {
             let _callback = Box_::from_raw(data as *mut P);
-        }
+        }}
         let destroy_call2 = Some(destroy_func::<P> as _);
         let super_callback0: Box_<P> = callback_data;
         unsafe {

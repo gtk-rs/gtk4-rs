@@ -26,13 +26,13 @@ pub trait DragSurfaceExtManual: IsA<DragSurface> {
             this: *mut ffi::GdkDragSurface,
             size: *mut ffi::GdkDragSurfaceSize,
             f: glib::ffi::gpointer,
-        ) {
+        ) { unsafe {
             let f: &F = &*(f as *const F);
             f(
                 &from_glib_borrow(this),
                 &mut *(size as *mut DragSurfaceSize),
             )
-        }
+        }}
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(

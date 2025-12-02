@@ -172,7 +172,7 @@ pub fn show_uri_full<P: FnOnce(Result<(), glib::Error>) + 'static>(
         parent_ptr: *mut glib::gobject_ffi::GObject,
         res: *mut gio::ffi::GAsyncResult,
         user_data: glib::ffi::gpointer,
-    ) {
+    ) { unsafe {
         let mut error = std::ptr::null_mut();
         let _ = ffi::gtk_show_uri_full_finish(parent_ptr as *mut ffi::GtkWindow, res, &mut error);
         let result = if error.is_null() {
@@ -184,7 +184,7 @@ pub fn show_uri_full<P: FnOnce(Result<(), glib::Error>) + 'static>(
             Box_::from_raw(user_data as *mut _);
         let callback = callback.into_inner();
         callback(result);
-    }
+    }}
     let callback = show_uri_full_trampoline::<P>;
     unsafe {
         ffi::gtk_show_uri_full(

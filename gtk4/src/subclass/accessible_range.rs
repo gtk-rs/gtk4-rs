@@ -49,9 +49,9 @@ unsafe impl<T: AccessibleRangeImpl> IsImplementable<T> for AccessibleRange {
 unsafe extern "C" fn accessible_range_set_current_value<T: AccessibleRangeImpl>(
     accessible_range: *mut ffi::GtkAccessibleRange,
     value: f64,
-) -> glib::ffi::gboolean {
+) -> glib::ffi::gboolean { unsafe {
     let instance = &*(accessible_range as *mut T::Instance);
     let imp = instance.imp();
 
     imp.set_current_value(value).into_glib()
-}
+}}

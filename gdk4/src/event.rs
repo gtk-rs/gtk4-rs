@@ -166,9 +166,9 @@ macro_rules! define_event {
         #[doc(hidden)]
         impl glib::translate::FromGlibPtrFull<*mut crate::ffi::GdkEvent> for $rust_type {
             #[inline]
-            unsafe fn from_glib_full(ptr: *mut crate::ffi::GdkEvent) -> Self {
+            unsafe fn from_glib_full(ptr: *mut crate::ffi::GdkEvent) -> Self { unsafe {
                 glib::translate::FromGlibPtrFull::from_glib_full(ptr as *mut $ffi_type)
-            }
+            }}
         }
 
         impl $rust_type {

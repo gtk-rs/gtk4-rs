@@ -147,19 +147,19 @@ unsafe impl<T: PrintOperationPreviewImpl> IsImplementable<T> for PrintOperationP
 unsafe extern "C" fn print_operation_preview_ready<T: PrintOperationPreviewImpl>(
     print_operation_preview: *mut ffi::GtkPrintOperationPreview,
     contextptr: *mut ffi::GtkPrintContext,
-) {
+) { unsafe {
     let instance = &*(print_operation_preview as *mut T::Instance);
     let imp = instance.imp();
     let context: Borrowed<PrintContext> = from_glib_borrow(contextptr);
 
     imp.ready(&context)
-}
+}}
 
 unsafe extern "C" fn print_operation_preview_got_page_size<T: PrintOperationPreviewImpl>(
     print_operation_preview: *mut ffi::GtkPrintOperationPreview,
     contextptr: *mut ffi::GtkPrintContext,
     setupptr: *mut ffi::GtkPageSetup,
-) {
+) { unsafe {
     let instance = &*(print_operation_preview as *mut T::Instance);
     let imp = instance.imp();
 
@@ -167,33 +167,33 @@ unsafe extern "C" fn print_operation_preview_got_page_size<T: PrintOperationPrev
     let setup: Borrowed<PageSetup> = from_glib_borrow(setupptr);
 
     imp.got_page_size(&context, &setup)
-}
+}}
 
 unsafe extern "C" fn print_operation_preview_render_page<T: PrintOperationPreviewImpl>(
     print_operation_preview: *mut ffi::GtkPrintOperationPreview,
     page_nr: i32,
-) {
+) { unsafe {
     let instance = &*(print_operation_preview as *mut T::Instance);
     let imp = instance.imp();
 
     imp.render_page(page_nr)
-}
+}}
 
 unsafe extern "C" fn print_operation_preview_is_selected<T: PrintOperationPreviewImpl>(
     print_operation_preview: *mut ffi::GtkPrintOperationPreview,
     page_nr: i32,
-) -> glib::ffi::gboolean {
+) -> glib::ffi::gboolean { unsafe {
     let instance = &*(print_operation_preview as *mut T::Instance);
     let imp = instance.imp();
 
     imp.is_selected(page_nr).into_glib()
-}
+}}
 
 unsafe extern "C" fn print_operation_preview_end_preview<T: PrintOperationPreviewImpl>(
     print_operation_preview: *mut ffi::GtkPrintOperationPreview,
-) {
+) { unsafe {
     let instance = &*(print_operation_preview as *mut T::Instance);
     let imp = instance.imp();
 
     imp.end_preview()
-}
+}}

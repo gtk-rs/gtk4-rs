@@ -143,12 +143,12 @@ unsafe impl<T: GtkApplicationImpl> IsSubclassable<T> for Application {
                 let app_klass = &mut *(base_klass as *mut gio::ffi::GApplicationClass);
                 OLD_STARTUP = app_klass.startup.map(WrapFn);
 
-                unsafe extern "C" fn replace_startup(app: *mut gio::ffi::GApplication) {
+                unsafe extern "C" fn replace_startup(app: *mut gio::ffi::GApplication) { unsafe {
                     if let Some(WrapFn(old_startup)) = OLD_STARTUP {
                         old_startup(app);
                     }
                     crate::rt::set_initialized();
-                }
+                }}
 
                 app_klass.startup = Some(replace_startup);
 
@@ -174,22 +174,22 @@ unsafe impl<T: GtkApplicationImpl> IsSubclassable<T> for Application {
 unsafe extern "C" fn application_window_added<T: GtkApplicationImpl>(
     ptr: *mut ffi::GtkApplication,
     wptr: *mut ffi::GtkWindow,
-) {
+) { unsafe {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
 
     imp.window_added(&from_glib_borrow(wptr))
-}
+}}
 
 unsafe extern "C" fn application_window_removed<T: GtkApplicationImpl>(
     ptr: *mut ffi::GtkApplication,
     wptr: *mut ffi::GtkWindow,
-) {
+) { unsafe {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
 
     imp.window_removed(&from_glib_borrow(wptr))
-}
+}}
 
 #[cfg(feature = "v4_22")]
 unsafe extern "C" fn application_save_state<T: GtkApplicationImpl>(

@@ -99,39 +99,39 @@ unsafe impl<T: ActionableImpl> IsImplementable<T> for Actionable {
 
 unsafe extern "C" fn actionable_get_action_name<T: ActionableImpl>(
     actionable: *mut ffi::GtkActionable,
-) -> *const libc::c_char {
+) -> *const libc::c_char { unsafe {
     let instance = &*(actionable as *mut T::Instance);
     let imp = instance.imp();
 
     imp.action_name().into_glib_ptr()
-}
+}}
 
 unsafe extern "C" fn actionable_get_action_target_value<T: ActionableImpl>(
     actionable: *mut ffi::GtkActionable,
-) -> *mut glib::ffi::GVariant {
+) -> *mut glib::ffi::GVariant { unsafe {
     let instance = &*(actionable as *mut T::Instance);
     let imp = instance.imp();
 
     imp.action_target_value().into_glib_ptr()
-}
+}}
 
 unsafe extern "C" fn actionable_set_action_name<T: ActionableImpl>(
     actionable: *mut ffi::GtkActionable,
     name: *const libc::c_char,
-) {
+) { unsafe {
     let instance = &*(actionable as *mut T::Instance);
     let imp = instance.imp();
     let name: Borrowed<Option<GString>> = from_glib_borrow(name);
     imp.set_action_name(name.as_ref().as_ref().map(|s| s.as_str()))
-}
+}}
 
 unsafe extern "C" fn actionable_set_action_target_value<T: ActionableImpl>(
     actionable: *mut ffi::GtkActionable,
     value: *mut glib::ffi::GVariant,
-) {
+) { unsafe {
     let instance = &*(actionable as *mut T::Instance);
     let imp = instance.imp();
     let val: Borrowed<Option<Variant>> = from_glib_borrow(value);
 
     imp.set_action_target_value(val.as_ref().as_ref())
-}
+}}

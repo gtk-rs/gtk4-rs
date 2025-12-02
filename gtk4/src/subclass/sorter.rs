@@ -63,19 +63,19 @@ unsafe extern "C" fn sorter_compare<T: SorterImpl>(
     ptr: *mut ffi::GtkSorter,
     item1ptr: *mut glib::gobject_ffi::GObject,
     item2ptr: *mut glib::gobject_ffi::GObject,
-) -> ffi::GtkOrdering {
+) -> ffi::GtkOrdering { unsafe {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
 
     imp.compare(&from_glib_borrow(item1ptr), &from_glib_borrow(item2ptr))
         .into_glib()
-}
+}}
 
 unsafe extern "C" fn sorter_get_order<T: SorterImpl>(
     ptr: *mut ffi::GtkSorter,
-) -> ffi::GtkSorterOrder {
+) -> ffi::GtkSorterOrder { unsafe {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
 
     imp.order().into_glib()
-}
+}}
