@@ -16,13 +16,15 @@ impl GLTextureBuilder {
     #[doc(alias = "gdk_gl_texture_builder_build")]
     #[must_use = "The builder must be built to be used"]
     #[allow(clippy::missing_safety_doc)]
-    pub unsafe fn build(self) -> Texture { unsafe {
-        from_glib_full(ffi::gdk_gl_texture_builder_build(
-            self.to_glib_none().0,
-            None,
-            std::ptr::null_mut(),
-        ))
-    }}
+    pub unsafe fn build(self) -> Texture {
+        unsafe {
+            from_glib_full(ffi::gdk_gl_texture_builder_build(
+                self.to_glib_none().0,
+                None,
+                std::ptr::null_mut(),
+            ))
+        }
+    }
 
     #[doc(alias = "gdk_gl_texture_builder_build")]
     #[must_use = "The builder must be built to be used"]
@@ -30,20 +32,24 @@ impl GLTextureBuilder {
     pub unsafe fn build_with_release_func<F: FnOnce() + Send + 'static>(
         self,
         release_func: F,
-    ) -> Texture { unsafe {
-        unsafe extern "C" fn destroy_closure<F: FnOnce() + Send + 'static>(
-            func: glib::ffi::gpointer,
-        ) { unsafe {
-            let released_func = Box::<F>::from_raw(func as *mut _);
-            released_func();
-        }}
-        let released_func = Box::new(release_func);
-        from_glib_full(ffi::gdk_gl_texture_builder_build(
-            self.to_glib_none().0,
-            Some(destroy_closure::<F>),
-            Box::into_raw(released_func) as glib::ffi::gpointer,
-        ))
-    }}
+    ) -> Texture {
+        unsafe {
+            unsafe extern "C" fn destroy_closure<F: FnOnce() + Send + 'static>(
+                func: glib::ffi::gpointer,
+            ) {
+                unsafe {
+                    let released_func = Box::<F>::from_raw(func as *mut _);
+                    released_func();
+                }
+            }
+            let released_func = Box::new(release_func);
+            from_glib_full(ffi::gdk_gl_texture_builder_build(
+                self.to_glib_none().0,
+                Some(destroy_closure::<F>),
+                Box::into_raw(released_func) as glib::ffi::gpointer,
+            ))
+        }
+    }
 
     #[cfg(feature = "v4_16")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]

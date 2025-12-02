@@ -33,25 +33,27 @@ impl Drop {
             _source_object: *mut glib::gobject_ffi::GObject,
             res: *mut gio::ffi::GAsyncResult,
             user_data: glib::ffi::gpointer,
-        ) { unsafe {
-            let mut error = ptr::null_mut();
-            let mut out_mime_type = ptr::null();
-            let ret = ffi::gdk_drop_read_finish(
-                _source_object as *mut _,
-                res,
-                &mut out_mime_type,
-                &mut error,
-            );
-            let result = if error.is_null() {
-                Ok((from_glib_full(ret), from_glib_none(out_mime_type)))
-            } else {
-                Err(from_glib_full(error))
-            };
-            let callback: Box<glib::thread_guard::ThreadGuard<Q>> =
-                Box::from_raw(user_data as *mut _);
-            let callback = callback.into_inner();
-            callback(result);
-        }}
+        ) {
+            unsafe {
+                let mut error = ptr::null_mut();
+                let mut out_mime_type = ptr::null();
+                let ret = ffi::gdk_drop_read_finish(
+                    _source_object as *mut _,
+                    res,
+                    &mut out_mime_type,
+                    &mut error,
+                );
+                let result = if error.is_null() {
+                    Ok((from_glib_full(ret), from_glib_none(out_mime_type)))
+                } else {
+                    Err(from_glib_full(error))
+                };
+                let callback: Box<glib::thread_guard::ThreadGuard<Q>> =
+                    Box::from_raw(user_data as *mut _);
+                let callback = callback.into_inner();
+                callback(result);
+            }
+        }
         let callback = read_async_trampoline::<Q>;
         unsafe {
             ffi::gdk_drop_read_async(

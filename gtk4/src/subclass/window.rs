@@ -107,43 +107,53 @@ unsafe impl<T: WindowImpl> IsSubclassable<T> for Window {
     }
 }
 
-unsafe extern "C" fn window_activate_focus<T: WindowImpl>(ptr: *mut ffi::GtkWindow) { unsafe {
-    let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.imp();
+unsafe extern "C" fn window_activate_focus<T: WindowImpl>(ptr: *mut ffi::GtkWindow) {
+    unsafe {
+        let instance = &*(ptr as *mut T::Instance);
+        let imp = instance.imp();
 
-    imp.activate_focus()
-}}
+        imp.activate_focus()
+    }
+}
 
-unsafe extern "C" fn window_activate_default<T: WindowImpl>(ptr: *mut ffi::GtkWindow) { unsafe {
-    let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.imp();
+unsafe extern "C" fn window_activate_default<T: WindowImpl>(ptr: *mut ffi::GtkWindow) {
+    unsafe {
+        let instance = &*(ptr as *mut T::Instance);
+        let imp = instance.imp();
 
-    imp.activate_default()
-}}
+        imp.activate_default()
+    }
+}
 
-unsafe extern "C" fn window_keys_changed<T: WindowImpl>(ptr: *mut ffi::GtkWindow) { unsafe {
-    let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.imp();
+unsafe extern "C" fn window_keys_changed<T: WindowImpl>(ptr: *mut ffi::GtkWindow) {
+    unsafe {
+        let instance = &*(ptr as *mut T::Instance);
+        let imp = instance.imp();
 
-    imp.keys_changed()
-}}
+        imp.keys_changed()
+    }
+}
 
 unsafe extern "C" fn window_enable_debugging<T: WindowImpl>(
     ptr: *mut ffi::GtkWindow,
     toggleptr: glib::ffi::gboolean,
-) -> glib::ffi::gboolean { unsafe {
-    let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.imp();
-    let toggle: bool = from_glib(toggleptr);
+) -> glib::ffi::gboolean {
+    unsafe {
+        let instance = &*(ptr as *mut T::Instance);
+        let imp = instance.imp();
+        let toggle: bool = from_glib(toggleptr);
 
-    imp.enable_debugging(toggle).into_glib()
-}}
+        imp.enable_debugging(toggle).into_glib()
+    }
+}
 
 unsafe extern "C" fn window_close_request<T: WindowImpl>(
     ptr: *mut ffi::GtkWindow,
-) -> glib::ffi::gboolean { unsafe {
-    let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.imp();
+) -> glib::ffi::gboolean {
+    unsafe {
+        let instance = &*(ptr as *mut T::Instance);
+        let imp = instance.imp();
 
-    imp.close_request().into_glib()
-}}
+        imp.close_request().into_glib()
+    }
+}

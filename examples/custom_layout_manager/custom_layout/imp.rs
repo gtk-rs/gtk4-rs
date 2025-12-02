@@ -55,11 +55,14 @@ impl LayoutManagerImpl for CustomLayout {
             let (child_min, child_nat, _, _) = child.measure(orientation, -1);
             min_size = min_size.max(child_min);
             nat_size = nat_size.max(child_nat);
-            match child.next_sibling() { Some(next_child) => {
-                child = next_child;
-            } _ => {
-                break;
-            }}
+            match child.next_sibling() {
+                Some(next_child) => {
+                    child = next_child;
+                }
+                _ => {
+                    break;
+                }
+            }
         }
 
         min_size = (TOTAL_COLORS as f64 * (min_size as f64) / PI + min_size as f64) as i32;
@@ -82,11 +85,14 @@ impl LayoutManagerImpl for CustomLayout {
             let (child_req, _) = child.preferred_size();
             child_width = child_width.max(child_req.width());
             child_height = child_height.max(child_req.height());
-            match child.next_sibling() { Some(next_child) => {
-                child = next_child;
-            } _ => {
-                break;
-            }}
+            match child.next_sibling() {
+                Some(next_child) => {
+                    child = next_child;
+                }
+                _ => {
+                    break;
+                }
+            }
         }
 
         let x0 = width as f64 / 2.0;
@@ -118,11 +124,14 @@ impl LayoutManagerImpl for CustomLayout {
                 -1,
             );
             i += 1;
-            match child.next_sibling() { Some(next_child) => {
-                child = next_child;
-            } _ => {
-                break;
-            }}
+            match child.next_sibling() {
+                Some(next_child) => {
+                    child = next_child;
+                }
+                _ => {
+                    break;
+                }
+            }
         }
     }
 }

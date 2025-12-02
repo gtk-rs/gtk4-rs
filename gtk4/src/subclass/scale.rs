@@ -48,11 +48,13 @@ unsafe extern "C" fn scale_get_layout_offsets<T: ScaleImpl>(
     ptr: *mut ffi::GtkScale,
     x_ptr: *mut libc::c_int,
     y_ptr: *mut libc::c_int,
-) { unsafe {
-    let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.imp();
+) {
+    unsafe {
+        let instance = &*(ptr as *mut T::Instance);
+        let imp = instance.imp();
 
-    let (x, y) = imp.layout_offsets();
-    *x_ptr = x;
-    *y_ptr = y;
-}}
+        let (x, y) = imp.layout_offsets();
+        *x_ptr = x;
+        *y_ptr = y;
+    }
+}

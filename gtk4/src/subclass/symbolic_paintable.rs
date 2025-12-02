@@ -117,23 +117,25 @@ unsafe extern "C" fn symbolic_paintable_snapshot_symbolic<T: SymbolicPaintableIm
     height: f64,
     colors: *const gdk::ffi::GdkRGBA,
     n_colors: usize,
-) { unsafe {
-    let instance = &*(paintable as *mut T::Instance);
-    let imp = instance.imp();
+) {
+    unsafe {
+        let instance = &*(paintable as *mut T::Instance);
+        let imp = instance.imp();
 
-    let snapshot: Borrowed<gdk::Snapshot> = from_glib_borrow(snapshotptr);
+        let snapshot: Borrowed<gdk::Snapshot> = from_glib_borrow(snapshotptr);
 
-    imp.snapshot_symbolic(
-        &snapshot,
-        width,
-        height,
-        if n_colors == 0 {
-            &[]
-        } else {
-            std::slice::from_raw_parts(colors as *const gdk::RGBA, n_colors)
-        },
-    )
-}}
+        imp.snapshot_symbolic(
+            &snapshot,
+            width,
+            height,
+            if n_colors == 0 {
+                &[]
+            } else {
+                std::slice::from_raw_parts(colors as *const gdk::RGBA, n_colors)
+            },
+        )
+    }
+}
 
 #[cfg(feature = "v4_22")]
 unsafe extern "C" fn symbolic_paintable_snapshot_with_weight<T: SymbolicPaintableImpl>(
