@@ -50,16 +50,20 @@ unsafe impl<T: ButtonImpl> IsSubclassable<T> for Button {
     }
 }
 
-unsafe extern "C" fn button_activate<T: ButtonImpl>(ptr: *mut ffi::GtkButton) { unsafe {
-    let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.imp();
+unsafe extern "C" fn button_activate<T: ButtonImpl>(ptr: *mut ffi::GtkButton) {
+    unsafe {
+        let instance = &*(ptr as *mut T::Instance);
+        let imp = instance.imp();
 
-    imp.activate()
-}}
+        imp.activate()
+    }
+}
 
-unsafe extern "C" fn button_clicked<T: ButtonImpl>(ptr: *mut ffi::GtkButton) { unsafe {
-    let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.imp();
+unsafe extern "C" fn button_clicked<T: ButtonImpl>(ptr: *mut ffi::GtkButton) {
+    unsafe {
+        let instance = &*(ptr as *mut T::Instance);
+        let imp = instance.imp();
 
-    imp.clicked()
-}}
+        imp.clicked()
+    }
+}

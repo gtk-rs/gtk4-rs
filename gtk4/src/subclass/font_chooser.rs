@@ -226,112 +226,126 @@ unsafe impl<T: FontChooserImpl> IsImplementable<T> for FontChooser {
 
 unsafe extern "C" fn font_chooser_get_font_family<T: FontChooserImpl>(
     font_chooser: *mut ffi::GtkFontChooser,
-) -> *mut pango::ffi::PangoFontFamily { unsafe {
-    let instance = &*(font_chooser as *mut T::Instance);
-    let imp = instance.imp();
+) -> *mut pango::ffi::PangoFontFamily {
+    unsafe {
+        let instance = &*(font_chooser as *mut T::Instance);
+        let imp = instance.imp();
 
-    let ret = imp.font_family();
-    if let Some(font_family) = ret {
-        let font_family = font_family.into_glib_ptr();
+        let ret = imp.font_family();
+        if let Some(font_family) = ret {
+            let font_family = font_family.into_glib_ptr();
 
-        static QUARK: OnceLock<Quark> = OnceLock::new();
-        let quark =
-            *QUARK.get_or_init(|| Quark::from_str("gtk4-rs-subclass-font-chooser-font-family"));
+            static QUARK: OnceLock<Quark> = OnceLock::new();
+            let quark =
+                *QUARK.get_or_init(|| Quark::from_str("gtk4-rs-subclass-font-chooser-font-family"));
 
-        imp.obj().set_qdata(
-            quark,
-            PtrHolder(font_family, |ptr| {
-                glib::gobject_ffi::g_object_unref(ptr as *mut _)
-            }),
-        );
-        font_family
-    } else {
-        std::ptr::null_mut()
+            imp.obj().set_qdata(
+                quark,
+                PtrHolder(font_family, |ptr| {
+                    glib::gobject_ffi::g_object_unref(ptr as *mut _)
+                }),
+            );
+            font_family
+        } else {
+            std::ptr::null_mut()
+        }
     }
-}}
+}
 
 unsafe extern "C" fn font_chooser_get_font_face<T: FontChooserImpl>(
     font_chooser: *mut ffi::GtkFontChooser,
-) -> *mut pango::ffi::PangoFontFace { unsafe {
-    let instance = &*(font_chooser as *mut T::Instance);
-    let imp = instance.imp();
+) -> *mut pango::ffi::PangoFontFace {
+    unsafe {
+        let instance = &*(font_chooser as *mut T::Instance);
+        let imp = instance.imp();
 
-    let ret = imp.font_face();
-    if let Some(font_face) = ret {
-        let font_face = font_face.into_glib_ptr();
-        static QUARK: OnceLock<Quark> = OnceLock::new();
-        let quark =
-            *QUARK.get_or_init(|| Quark::from_str("gtk4-rs-subclass-font-chooser-font-face"));
-        imp.obj().set_qdata(
-            quark,
-            PtrHolder(font_face, |ptr| {
-                glib::gobject_ffi::g_object_unref(ptr as *mut _);
-            }),
-        );
-        font_face
-    } else {
-        std::ptr::null_mut()
+        let ret = imp.font_face();
+        if let Some(font_face) = ret {
+            let font_face = font_face.into_glib_ptr();
+            static QUARK: OnceLock<Quark> = OnceLock::new();
+            let quark =
+                *QUARK.get_or_init(|| Quark::from_str("gtk4-rs-subclass-font-chooser-font-face"));
+            imp.obj().set_qdata(
+                quark,
+                PtrHolder(font_face, |ptr| {
+                    glib::gobject_ffi::g_object_unref(ptr as *mut _);
+                }),
+            );
+            font_face
+        } else {
+            std::ptr::null_mut()
+        }
     }
-}}
+}
 
 unsafe extern "C" fn font_chooser_get_font_size<T: FontChooserImpl>(
     font_chooser: *mut ffi::GtkFontChooser,
-) -> i32 { unsafe {
-    let instance = &*(font_chooser as *mut T::Instance);
-    let imp = instance.imp();
+) -> i32 {
+    unsafe {
+        let instance = &*(font_chooser as *mut T::Instance);
+        let imp = instance.imp();
 
-    imp.font_size()
-}}
+        imp.font_size()
+    }
+}
 
 unsafe extern "C" fn font_chooser_font_activated<T: FontChooserImpl>(
     font_chooser: *mut ffi::GtkFontChooser,
     font_nameptr: *const libc::c_char,
-) { unsafe {
-    let instance = &*(font_chooser as *mut T::Instance);
-    let imp = instance.imp();
-    let font_name: Borrowed<GString> = from_glib_borrow(font_nameptr);
+) {
+    unsafe {
+        let instance = &*(font_chooser as *mut T::Instance);
+        let imp = instance.imp();
+        let font_name: Borrowed<GString> = from_glib_borrow(font_nameptr);
 
-    imp.font_activated(&font_name)
-}}
+        imp.font_activated(&font_name)
+    }
+}
 
 unsafe extern "C" fn font_chooser_set_font_map<T: FontChooserImpl>(
     font_chooser: *mut ffi::GtkFontChooser,
     font_mapptr: *mut pango::ffi::PangoFontMap,
-) { unsafe {
-    let instance = &*(font_chooser as *mut T::Instance);
-    let imp = instance.imp();
-    let font_map: Borrowed<Option<FontMap>> = from_glib_borrow(font_mapptr);
+) {
+    unsafe {
+        let instance = &*(font_chooser as *mut T::Instance);
+        let imp = instance.imp();
+        let font_map: Borrowed<Option<FontMap>> = from_glib_borrow(font_mapptr);
 
-    imp.set_font_map(font_map.as_ref().as_ref())
-}}
+        imp.set_font_map(font_map.as_ref().as_ref())
+    }
+}
 
 unsafe extern "C" fn font_chooser_get_font_map<T: FontChooserImpl>(
     font_chooser: *mut ffi::GtkFontChooser,
-) -> *mut pango::ffi::PangoFontMap { unsafe {
-    let instance = &*(font_chooser as *mut T::Instance);
-    let imp = instance.imp();
+) -> *mut pango::ffi::PangoFontMap {
+    unsafe {
+        let instance = &*(font_chooser as *mut T::Instance);
+        let imp = instance.imp();
 
-    imp.font_map().into_glib_ptr()
-}}
+        imp.font_map().into_glib_ptr()
+    }
+}
 
 unsafe extern "C" fn font_chooser_set_filter_func<T: FontChooserImpl>(
     font_chooser: *mut ffi::GtkFontChooser,
     filter_func: ffi::GtkFontFilterFunc,
     user_data: glib::ffi::gpointer,
     destroy_notify: glib::ffi::GDestroyNotify,
-) { unsafe {
-    let instance = &*(font_chooser as *mut T::Instance);
-    let imp = instance.imp();
+) {
+    unsafe {
+        let instance = &*(font_chooser as *mut T::Instance);
+        let imp = instance.imp();
 
-    let callback = if filter_func.is_some() {
-        None
-    } else {
-        Some(FilterCallback {
-            filter_func,
-            user_data,
-            destroy_notify,
-        })
-    };
+        let callback = if filter_func.is_some() {
+            None
+        } else {
+            Some(FilterCallback {
+                filter_func,
+                user_data,
+                destroy_notify,
+            })
+        };
 
-    imp.set_filter_func(callback);
-}}
+        imp.set_filter_func(callback);
+    }
+}

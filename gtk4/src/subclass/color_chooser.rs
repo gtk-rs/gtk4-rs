@@ -130,45 +130,53 @@ unsafe extern "C" fn color_chooser_add_palette<T: ColorChooserImpl>(
     colors_per_line: i32,
     total: i32,
     colorsptr: *mut gdk::ffi::GdkRGBA,
-) { unsafe {
-    let instance = &*(color_chooser as *mut T::Instance);
-    let imp = instance.imp();
+) {
+    unsafe {
+        let instance = &*(color_chooser as *mut T::Instance);
+        let imp = instance.imp();
 
-    let colors = if total == 0 {
-        &[]
-    } else {
-        std::slice::from_raw_parts(colorsptr as *const RGBA, total as usize)
-    };
-    imp.add_palette(from_glib(orientation), colors_per_line, colors);
-}}
+        let colors = if total == 0 {
+            &[]
+        } else {
+            std::slice::from_raw_parts(colorsptr as *const RGBA, total as usize)
+        };
+        imp.add_palette(from_glib(orientation), colors_per_line, colors);
+    }
+}
 
 unsafe extern "C" fn color_chooser_color_activated<T: ColorChooserImpl>(
     color_chooser: *mut ffi::GtkColorChooser,
     rgba: *const gdk::ffi::GdkRGBA,
-) { unsafe {
-    let instance = &*(color_chooser as *mut T::Instance);
-    let imp = instance.imp();
+) {
+    unsafe {
+        let instance = &*(color_chooser as *mut T::Instance);
+        let imp = instance.imp();
 
-    imp.color_activated(from_glib_none(rgba))
-}}
+        imp.color_activated(from_glib_none(rgba))
+    }
+}
 
 unsafe extern "C" fn color_chooser_get_rgba<T: ColorChooserImpl>(
     color_chooser: *mut ffi::GtkColorChooser,
     rgbaptr: *const gdk::ffi::GdkRGBA,
-) { unsafe {
-    let instance = &*(color_chooser as *mut T::Instance);
-    let imp = instance.imp();
+) {
+    unsafe {
+        let instance = &*(color_chooser as *mut T::Instance);
+        let imp = instance.imp();
 
-    let rgba = imp.rgba();
-    *(rgbaptr as *mut gdk::ffi::GdkRGBA) = *rgba.to_glib_none().0;
-}}
+        let rgba = imp.rgba();
+        *(rgbaptr as *mut gdk::ffi::GdkRGBA) = *rgba.to_glib_none().0;
+    }
+}
 
 unsafe extern "C" fn color_chooser_set_rgba<T: ColorChooserImpl>(
     color_chooser: *mut ffi::GtkColorChooser,
     rgba: *const gdk::ffi::GdkRGBA,
-) { unsafe {
-    let instance = &*(color_chooser as *mut T::Instance);
-    let imp = instance.imp();
+) {
+    unsafe {
+        let instance = &*(color_chooser as *mut T::Instance);
+        let imp = instance.imp();
 
-    imp.set_rgba(from_glib_none(rgba))
-}}
+        imp.set_rgba(from_glib_none(rgba))
+    }
+}

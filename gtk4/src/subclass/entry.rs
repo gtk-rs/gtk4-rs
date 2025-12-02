@@ -36,9 +36,11 @@ unsafe impl<T: EntryImpl> IsSubclassable<T> for Entry {
     }
 }
 
-unsafe extern "C" fn entry_activate<T: EntryImpl>(ptr: *mut ffi::GtkEntry) { unsafe {
-    let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.imp();
+unsafe extern "C" fn entry_activate<T: EntryImpl>(ptr: *mut ffi::GtkEntry) {
+    unsafe {
+        let instance = &*(ptr as *mut T::Instance);
+        let imp = instance.imp();
 
-    imp.activate()
-}}
+        imp.activate()
+    }
+}

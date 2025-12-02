@@ -52,13 +52,16 @@ pub trait TextBufferExtManual: IsA<TextBuffer> + 'static {
         self.as_ref().insert(iter, text);
         let start_iter = self.as_ref().iter_at_offset(start_offset);
         let tag_table = self.as_ref().tag_table();
-        tags_names.iter().for_each(|tag_name| {
-            match tag_table.lookup(tag_name) { Some(tag) => {
-                self.as_ref().apply_tag(&tag, &start_iter, iter);
-            } _ => {
-                glib::g_warning!("TextBuffer", "No tag with name {}!", tag_name);
-            }}
-        });
+        tags_names
+            .iter()
+            .for_each(|tag_name| match tag_table.lookup(tag_name) {
+                Some(tag) => {
+                    self.as_ref().apply_tag(&tag, &start_iter, iter);
+                }
+                _ => {
+                    glib::g_warning!("TextBuffer", "No tag with name {}!", tag_name);
+                }
+            });
     }
 
     fn connect_insert_text<F: Fn(&Self, &mut TextIter, &str) + 'static>(
@@ -77,21 +80,23 @@ pub trait TextBufferExtManual: IsA<TextBuffer> + 'static {
                 f: glib::ffi::gpointer,
             ) where
                 T: IsA<TextBuffer>,
-            { unsafe {
-                let mut location_copy = from_glib_none(location);
-                let f: &F = &*(f as *const F);
-                let text = if len <= 0 {
-                    &[]
-                } else {
-                    slice::from_raw_parts(text as *const u8, len as usize)
-                };
+            {
+                unsafe {
+                    let mut location_copy = from_glib_none(location);
+                    let f: &F = &*(f as *const F);
+                    let text = if len <= 0 {
+                        &[]
+                    } else {
+                        slice::from_raw_parts(text as *const u8, len as usize)
+                    };
 
-                f(
-                    TextBuffer::from_glib_borrow(this).unsafe_cast_ref(),
-                    &mut location_copy,
-                    str::from_utf8(text).unwrap(),
-                )
-            }}
+                    f(
+                        TextBuffer::from_glib_borrow(this).unsafe_cast_ref(),
+                        &mut location_copy,
+                        str::from_utf8(text).unwrap(),
+                    )
+                }
+            }
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.to_glib_none().0 as *mut _,

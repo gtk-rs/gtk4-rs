@@ -49,21 +49,25 @@ impl FlowBox {
             child1: *mut ffi::GtkFlowBoxChild,
             child2: *mut ffi::GtkFlowBoxChild,
             user_data: glib::ffi::gpointer,
-        ) -> libc::c_int { unsafe {
-            let child1 = from_glib_borrow(child1);
-            let child2 = from_glib_borrow(child2);
-            let callback: &P = &*(user_data as *mut _);
-            let res = (*callback)(&child1, &child2);
-            res.into_glib()
-        }}
+        ) -> libc::c_int {
+            unsafe {
+                let child1 = from_glib_borrow(child1);
+                let child2 = from_glib_borrow(child2);
+                let callback: &P = &*(user_data as *mut _);
+                let res = (*callback)(&child1, &child2);
+                res.into_glib()
+            }
+        }
         let sort_func = Some(sort_func_func::<P> as _);
         unsafe extern "C" fn destroy_func<
             P: Fn(&FlowBoxChild, &FlowBoxChild) -> Ordering + 'static,
         >(
             data: glib::ffi::gpointer,
-        ) { unsafe {
-            let _callback: Box_<P> = Box_::from_raw(data as *mut _);
-        }}
+        ) {
+            unsafe {
+                let _callback: Box_<P> = Box_::from_raw(data as *mut _);
+            }
+        }
         let destroy_call3 = Some(destroy_func::<P> as _);
         let super_callback0: Box_<P> = sort_func_data;
         unsafe {

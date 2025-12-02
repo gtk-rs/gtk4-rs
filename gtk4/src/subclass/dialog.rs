@@ -54,17 +54,21 @@ unsafe impl<T: DialogImpl> IsSubclassable<T> for Dialog {
     }
 }
 
-unsafe extern "C" fn dialog_response<T: DialogImpl>(ptr: *mut ffi::GtkDialog, responseptr: i32) { unsafe {
-    let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.imp();
-    let res: ResponseType = from_glib(responseptr);
+unsafe extern "C" fn dialog_response<T: DialogImpl>(ptr: *mut ffi::GtkDialog, responseptr: i32) {
+    unsafe {
+        let instance = &*(ptr as *mut T::Instance);
+        let imp = instance.imp();
+        let res: ResponseType = from_glib(responseptr);
 
-    imp.response(res)
-}}
+        imp.response(res)
+    }
+}
 
-unsafe extern "C" fn dialog_close<T: DialogImpl>(ptr: *mut ffi::GtkDialog) { unsafe {
-    let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.imp();
+unsafe extern "C" fn dialog_close<T: DialogImpl>(ptr: *mut ffi::GtkDialog) {
+    unsafe {
+        let instance = &*(ptr as *mut T::Instance);
+        let imp = instance.imp();
 
-    imp.close()
-}}
+        imp.close()
+    }
+}

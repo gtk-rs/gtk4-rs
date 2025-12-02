@@ -53,12 +53,14 @@ unsafe extern "C" fn cell_renderer_text_edited<T: CellRendererTextImpl>(
     ptr: *mut ffi::GtkCellRendererText,
     path: *const libc::c_char,
     new_text: *const libc::c_char,
-) { unsafe {
-    let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.imp();
+) {
+    unsafe {
+        let instance = &*(ptr as *mut T::Instance);
+        let imp = instance.imp();
 
-    imp.edited(
-        &GString::from_glib_borrow(path),
-        &GString::from_glib_borrow(new_text),
-    )
-}}
+        imp.edited(
+            &GString::from_glib_borrow(path),
+            &GString::from_glib_borrow(new_text),
+        )
+    }
+}

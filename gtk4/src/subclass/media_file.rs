@@ -53,16 +53,20 @@ unsafe impl<T: MediaFileImpl> IsSubclassable<T> for MediaFile {
     }
 }
 
-unsafe extern "C" fn media_file_close<T: MediaFileImpl>(ptr: *mut ffi::GtkMediaFile) { unsafe {
-    let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.imp();
+unsafe extern "C" fn media_file_close<T: MediaFileImpl>(ptr: *mut ffi::GtkMediaFile) {
+    unsafe {
+        let instance = &*(ptr as *mut T::Instance);
+        let imp = instance.imp();
 
-    imp.close()
-}}
+        imp.close()
+    }
+}
 
-unsafe extern "C" fn media_file_open<T: MediaFileImpl>(ptr: *mut ffi::GtkMediaFile) { unsafe {
-    let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.imp();
+unsafe extern "C" fn media_file_open<T: MediaFileImpl>(ptr: *mut ffi::GtkMediaFile) {
+    unsafe {
+        let instance = &*(ptr as *mut T::Instance);
+        let imp = instance.imp();
 
-    imp.open()
-}}
+        imp.open()
+    }
+}
