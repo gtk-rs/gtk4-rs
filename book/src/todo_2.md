@@ -11,7 +11,7 @@ This is how we want this to work in the end:
 <div style="text-align:center">
  <video autoplay muted loop>
   <source src="vid/todo_2_animation.webm" type="video/webm">
-  <p>A video which shows a more featureful To-Do app/p>
+  <p>A video which shows a more featureful To-Do app</p>
  </video>
 </div>
 
