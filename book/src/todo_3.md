@@ -172,12 +172,3 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/b
 {{#rustdoc_include ../listings/todo/6/resources/shortcuts.ui}}
 ```
 
-Notice how we replaced `gtk::ShortcutsWindow` with `adw::ShortcutsDialog` and removed the `modal` property, as dialogs are modal by default.
-The `gtk::ShortcutsSection` no longer needs `section-name` or `max-height` properties.
-Instead of nesting items within a `gtk::ShortcutsGroup`, we can now add `adw::ShortcutsItem` objects directly as children of the `adw::ShortcutsSection`.
-The title that was previously on the group is now on the section itself.
-
-Unlike `gtk::ShortcutsWindow`, which has automatic resource loading when placed at `gtk/help-overlay.ui`, we load `adw::ShortcutsDialog` manually from the resource at `shortcuts-dialog.ui`.
-We then create an `app.shortcuts` action to display the dialog and bind the <kbd>Ctrl</kbd> + <kbd>?</kbd> keyboard shortcut to it.
-The dialog will display keyboard shortcuts automatically by looking them up from the action names.
-
