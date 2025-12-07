@@ -152,3 +152,32 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/b
 This is how the boxed list style looks like in our app.
 
 <div style="text-align:center"><img src="img/todo_6.png" alt="The To-Do app using libadwaita"/></div>
+
+## Shortcuts Dialog
+
+Now that we are using Libadwaita, we should also update our keyboard shortcuts window to use [`adw::ShortcutsDialog`](https://world.pages.gitlab.gnome.org/Rust/libadwaita-rs/stable/latest/docs/libadwaita/struct.ShortcutsDialog.html).
+This widget is the Libadwaita equivalent of [`gtk::ShortcutsWindow`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.ShortcutsWindow.html) and provides better integration with the Adwaita style.
+
+The main differences are:
+
+- [`adw::ShortcutsDialog`](https://world.pages.gitlab.gnome.org/Rust/libadwaita-rs/stable/latest/docs/libadwaita/struct.ShortcutsDialog.html) extends [`adw::Dialog`](https://world.pages.gitlab.gnome.org/Rust/libadwaita-rs/stable/latest/docs/libadwaita/struct.Dialog.html) rather than [`gtk::Window`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.Window.html)
+- It uses [`adw::ShortcutsSection`](https://world.pages.gitlab.gnome.org/Rust/libadwaita-rs/stable/latest/docs/libadwaita/struct.ShortcutsSection.html) and [`adw::ShortcutsItem`](https://world.pages.gitlab.gnome.org/Rust/libadwaita-rs/stable/latest/docs/libadwaita/struct.ShortcutsItem.html) instead of [`gtk::ShortcutsSection`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.ShortcutsSection.html), [`gtk::ShortcutsGroup`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.ShortcutsGroup.html), and [`gtk::ShortcutsShortcut`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.ShortcutsShortcut.html)
+- The structure is simpler, with sections directly containing items
+
+Let us update our `shortcuts.ui` file:
+
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/6/resources/shortcuts.ui">listings/todo/6/resources/shortcuts.ui</a>
+
+```xml
+{{#rustdoc_include ../listings/todo/6/resources/shortcuts.ui}}
+```
+
+Notice how we replaced `gtk::ShortcutsWindow` with `adw::ShortcutsDialog` and removed the `modal` property, as dialogs are modal by default.
+The `gtk::ShortcutsSection` no longer needs `section-name` or `max-height` properties.
+Instead of nesting items within a `gtk::ShortcutsGroup`, we can now add `adw::ShortcutsItem` objects directly as children of the `adw::ShortcutsSection`.
+The title that was previously on the group is now on the section itself.
+
+Unlike `gtk::ShortcutsWindow`, which has automatic resource loading when placed at `gtk/help-overlay.ui`, we load `adw::ShortcutsDialog` manually from the resource at `shortcuts-dialog.ui`.
+We then create an `app.shortcuts` action to display the dialog and bind the <kbd>Ctrl</kbd> + <kbd>?</kbd> keyboard shortcut to it.
+The dialog will display keyboard shortcuts automatically by looking them up from the action names.
+
