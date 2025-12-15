@@ -76,5 +76,5 @@ workspace = true
 system-deps = "7"
 
 [dev-dependencies]
-shell-words = "1.0.0"
+shell-words = "1.1.1"
 tempfile = "3"
