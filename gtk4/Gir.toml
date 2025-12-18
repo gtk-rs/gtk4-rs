@@ -2326,6 +2326,9 @@ manual_traits = ["TreeModelExtManual"]
     name = "filter_new"
     ignore = true # Replaced by TreeModelFilter::new
     [[object.function]]
+    name = "iter_next"
+    ignore = true # Changed & to &mut
+    [[object.function]]
     name = "iter_children"
         [[object.function.parameter]]
         name = "parent"

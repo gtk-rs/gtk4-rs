@@ -217,18 +217,6 @@ pub trait TreeModelExt: IsA<TreeModel> + 'static {
 
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_model_iter_next")]
-    fn iter_next(&self, iter: &TreeIter) -> bool {
-        unsafe {
-            from_glib(ffi::gtk_tree_model_iter_next(
-                self.as_ref().to_glib_none().0,
-                mut_override(iter.to_glib_none().0),
-            ))
-        }
-    }
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
     #[doc(alias = "gtk_tree_model_iter_nth_child")]
     fn iter_nth_child(&self, parent: Option<&TreeIter>, n: i32) -> Option<TreeIter> {
         unsafe {
