@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/accessible.rs`."><title>accessible.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-ca0dd0c4.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.93.0-nightly (b84478a1c 2025-11-30)" data-channel="nightly" data-search-js="search-9e2438ea.js" data-stringdex-js="stringdex-a3946164.js" data-settings-js="settings-c38705f0.js" ><script src="../../static.files/storage-e2aeef58.js"></script><script defer src="../../static.files/src-script-813739b1.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-a410ff4d.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-263c88ec.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/accessible.rs`."><title>accessible.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-80aa586b.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.94.0-nightly (fcf67da03 2025-12-18)" data-channel="nightly" data-search-js="search-9e2438ea.js" data-stringdex-js="stringdex-a3946164.js" data-settings-js="settings-c38705f0.js" ><script src="../../static.files/storage-e2aeef58.js"></script><script defer src="../../static.files/src-script-813739b1.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-3e30299d.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-ffcac47a.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
 
@@ -73,10 +73,10 @@
 
 <nav class="sidebar"><div class="src-sidebar-title"><h2>Files</h2></div></nav><div class="sidebar-resizer" title="Drag to resize sidebar"></div><main><section id="main-content" class="content"><div class="main-heading"><h1><div class="sub-heading">gtk4/</div>accessible.rs</h1><rustdoc-toolbar></rustdoc-toolbar></div><div class="example-wrap digits-3"><pre class="rust"><code><a href=#1 id=1 data-nosnippet>1</a><span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.
 <a href=#2 id=2 data-nosnippet>2</a>
-<a href=#3 id=3 data-nosnippet>3</a></span><span class="kw">use </span>glib::{<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/index.html">translate</a>::<span class="kw-2">*</span>, <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>};
+<a href=#3 id=3 data-nosnippet>3</a></span><span class="kw">use </span>glib::{translate::<span class="kw-2">*</span>, <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>};
 <a href=#4 id=4 data-nosnippet>4</a>
-<a href=#5 id=5 data-nosnippet>5</a><span class="kw">use crate</span>::{
-<a href=#6 id=6 data-nosnippet>6</a>    <a href="../../gtk4_sys/index.html">ffi</a>, <a href="lib.rs.html#140">prelude</a>::<span class="kw-2">*</span>, <a href="auto/accessible.rs.html#19-70">Accessible</a>, <a href="auto/enums.rs.html#143-166">AccessibleAutocomplete</a>, <a href="auto/enums.rs.html#265-280">AccessibleInvalidState</a>,
+<a href=#5 id=5 data-nosnippet>5</a><span class="kw">use </span>crate::{
+<a href=#6 id=6 data-nosnippet>6</a>    <a href="../../gtk4_sys/index.html">ffi</a>, prelude::<span class="kw-2">*</span>, <a href="auto/accessible.rs.html#19-70">Accessible</a>, <a href="auto/enums.rs.html#143-166">AccessibleAutocomplete</a>, <a href="auto/enums.rs.html#265-280">AccessibleInvalidState</a>,
 <a href=#7 id=7 data-nosnippet>7</a>    <a href="auto/enums.rs.html#497-601">AccessibleProperty</a>, <a href="auto/enums.rs.html#740-872">AccessibleRelation</a>, <a href="auto/enums.rs.html#1598-1614">AccessibleSort</a>, <a href="auto/enums.rs.html#1708-1754">AccessibleState</a>, <a href="auto/enums.rs.html#2136-2148">AccessibleTristate</a>,
 <a href=#8 id=8 data-nosnippet>8</a>    <a href="auto/enums.rs.html#8273-8282">Orientation</a>,
 <a href=#9 id=9 data-nosnippet>9</a>};
@@ -224,7 +224,7 @@
 <a href=#151 id=151 data-nosnippet>151</a>
 <a href=#152 id=152 data-nosnippet>152</a><span class="kw">impl </span><a href="#130-150">Property</a>&lt;<span class="lifetime">'_</span>&gt; {
 <a href=#153 id=153 data-nosnippet>153</a>    <span class="kw">fn </span>to_property_value(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; (<a href="auto/enums.rs.html#497-601">AccessibleProperty</a>, <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) {
-<a href=#154 id=154 data-nosnippet>154</a>        <span class="kw">use </span><a href="#130-150">Property</a>::<span class="kw-2">*</span>;
+<a href=#154 id=154 data-nosnippet>154</a>        <span class="kw">use </span>Property::<span class="kw-2">*</span>;
 <a href=#155 id=155 data-nosnippet>155</a>
 <a href=#156 id=156 data-nosnippet>156</a>        <span class="kw">match </span><a class="self" href="#153">self</a> {
 <a href=#157 id=157 data-nosnippet>157</a>            <a href="#131">Autocomplete</a>(v) =&gt; (AccessibleProperty::<a href="auto/enums.rs.html#503">Autocomplete</a>, <a href="#157">v</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>().<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/trait.ToValue.html#tymethod.to_value">to_value</a>()),
@@ -278,7 +278,7 @@
 <a href=#205 id=205 data-nosnippet>205</a>
 <a href=#206 id=206 data-nosnippet>206</a><span class="kw">impl </span><a href="#185-204">Relation</a>&lt;<span class="lifetime">'_</span>&gt; {
 <a href=#207 id=207 data-nosnippet>207</a>    <span class="kw">fn </span>to_relation_value(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; (<a href="auto/enums.rs.html#740-872">AccessibleRelation</a>, <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) {
-<a href=#208 id=208 data-nosnippet>208</a>        <span class="kw">use </span><a href="#185-204">Relation</a>::<span class="kw-2">*</span>;
+<a href=#208 id=208 data-nosnippet>208</a>        <span class="kw">use </span>Relation::<span class="kw-2">*</span>;
 <a href=#209 id=209 data-nosnippet>209</a>
 <a href=#210 id=210 data-nosnippet>210</a>        <span class="kw">fn </span>to_ref_list_value(objects: <span class="kw-2">&amp;</span>[<span class="kw-2">&amp;</span><a href="auto/accessible.rs.html#19-70">Accessible</a>]) -&gt; <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a> {
 <a href=#211 id=211 data-nosnippet>211</a>            <span class="macro">skip_assert_initialized!</span>();
@@ -337,7 +337,7 @@
 <a href=#264 id=264 data-nosnippet>264</a>
 <a href=#265 id=265 data-nosnippet>265</a><span class="kw">impl </span><a href="#254-263">State</a> {
 <a href=#266 id=266 data-nosnippet>266</a>    <span class="kw">fn </span>to_state_value(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; (<a href="auto/enums.rs.html#1708-1754">AccessibleState</a>, <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) {
-<a href=#267 id=267 data-nosnippet>267</a>        <span class="kw">use </span><a href="#254-263">State</a>::<span class="kw-2">*</span>;
+<a href=#267 id=267 data-nosnippet>267</a>        <span class="kw">use </span>State::<span class="kw-2">*</span>;
 <a href=#268 id=268 data-nosnippet>268</a>
 <a href=#269 id=269 data-nosnippet>269</a>        <span class="kw">fn </span>to_optional_bool_value(b: <span class="kw-2">&amp;</span><a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;<a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>&gt;) -&gt; <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a> {
 <a href=#270 id=270 data-nosnippet>270</a>            <span class="macro">skip_assert_initialized!</span>();
@@ -359,8 +359,8 @@
 <a href=#286 id=286 data-nosnippet>286</a>
 <a href=#287 id=287 data-nosnippet>287</a><span class="attr">#[cfg(test)]
 <a href=#288 id=288 data-nosnippet>288</a></span><span class="kw">mod </span>tests {
-<a href=#289 id=289 data-nosnippet>289</a>    <span class="kw">use super</span>::<span class="kw-2">*</span>;
-<a href=#290 id=290 data-nosnippet>290</a>    <span class="kw">use crate</span>::{<span class="self">self </span><span class="kw">as </span>gtk4, Button};
+<a href=#289 id=289 data-nosnippet>289</a>    <span class="kw">use </span>super::<span class="kw-2">*</span>;
+<a href=#290 id=290 data-nosnippet>290</a>    <span class="kw">use </span>crate::{<span class="self">self </span><span class="kw">as </span>gtk4, Button};
 <a href=#291 id=291 data-nosnippet>291</a>
 <a href=#292 id=292 data-nosnippet>292</a>    <span class="attr">#[test]
 <a href=#293 id=293 data-nosnippet>293</a>    </span><span class="kw">fn </span>test_accessible_update_property() {

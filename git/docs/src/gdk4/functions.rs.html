@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gdk4/src/functions.rs`."><title>functions.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-ca0dd0c4.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gdk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.93.0-nightly (b84478a1c 2025-11-30)" data-channel="nightly" data-search-js="search-9e2438ea.js" data-stringdex-js="stringdex-a3946164.js" data-settings-js="settings-c38705f0.js" ><script src="../../static.files/storage-e2aeef58.js"></script><script defer src="../../static.files/src-script-813739b1.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-a410ff4d.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-263c88ec.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gdk4/src/functions.rs`."><title>functions.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-80aa586b.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gdk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.94.0-nightly (fcf67da03 2025-12-18)" data-channel="nightly" data-search-js="search-9e2438ea.js" data-stringdex-js="stringdex-a3946164.js" data-settings-js="settings-c38705f0.js" ><script src="../../static.files/storage-e2aeef58.js"></script><script defer src="../../static.files/src-script-813739b1.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-3e30299d.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-ffcac47a.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
 
@@ -75,10 +75,10 @@
 <a href=#2 id=2 data-nosnippet>2</a>
 <a href=#3 id=3 data-nosnippet>3</a></span><span class="kw">use </span>std::{<a href="https://doc.rust-lang.org/nightly/core/future/index.html">future</a>, <a href="https://doc.rust-lang.org/nightly/core/pin/struct.Pin.html">pin::Pin</a>, <a href="https://doc.rust-lang.org/nightly/core/ptr/index.html">ptr</a>};
 <a href=#4 id=4 data-nosnippet>4</a>
-<a href=#5 id=5 data-nosnippet>5</a><span class="kw">use </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/index.html">glib::translate</a>::<span class="kw-2">*</span>;
+<a href=#5 id=5 data-nosnippet>5</a><span class="kw">use </span>glib::translate::<span class="kw-2">*</span>;
 <a href=#6 id=6 data-nosnippet>6</a>
-<a href=#7 id=7 data-nosnippet>7</a><span class="kw">pub use </span><a href="auto/mod.rs.html#291"><span class="kw">crate</span>::auto::functions</a>::<span class="kw-2">*</span>;
-<a href=#8 id=8 data-nosnippet>8</a><span class="kw">use crate</span>::{<a href="../../gdk4_sys/index.html">ffi</a>, <a href="lib.rs.html#81">prelude</a>::<span class="kw-2">*</span>, <a href="auto/content_deserializer.rs.html#8-25">ContentDeserializer</a>, <a href="auto/content_serializer.rs.html#8-26">ContentSerializer</a>};
+<a href=#7 id=7 data-nosnippet>7</a><span class="kw">pub use </span><span class="kw">crate</span>::auto::functions::<span class="kw-2">*</span>;
+<a href=#8 id=8 data-nosnippet>8</a><span class="kw">use </span>crate::{<a href="../../gdk4_sys/index.html">ffi</a>, prelude::<span class="kw-2">*</span>, <a href="auto/content_deserializer.rs.html#8-25">ContentDeserializer</a>, <a href="auto/content_serializer.rs.html#8-26">ContentSerializer</a>};
 <a href=#9 id=9 data-nosnippet>9</a>
 <a href=#10 id=10 data-nosnippet>10</a><span class="attr">#[repr(C, packed)]
 <a href=#11 id=11 data-nosnippet>11</a></span><span class="kw">pub struct </span><a href="../../gdk4/struct.GRange.html">GRange</a>(<span class="kw">pub </span><a href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <span class="kw">pub </span><a href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>);
@@ -183,7 +183,7 @@
 <a href=#110 id=110 data-nosnippet>110</a>        <span class="kw">let </span>callback = <a href="#109">callback</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/thread_guard/struct.ThreadGuard.html#method.into_inner">into_inner</a>();
 <a href=#111 id=111 data-nosnippet>111</a>        <a href="#110">callback</a>(<a href="#104">result</a>);
 <a href=#112 id=112 data-nosnippet>112</a>    }
-<a href=#113 id=113 data-nosnippet>113</a>    <span class="kw">let </span>callback = <a href="#94-112">content_deserialize_async_trampoline</a>::&lt;R&gt;;
+<a href=#113 id=113 data-nosnippet>113</a>    <span class="kw">let </span>callback = content_deserialize_async_trampoline::&lt;R&gt;;
 <a href=#114 id=114 data-nosnippet>114</a>    <span class="kw">unsafe </span>{
 <a href=#115 id=115 data-nosnippet>115</a>        ffi::<a href="../../gdk4_sys/fn.gdk_content_deserialize_async.html">gdk_content_deserialize_async</a>(
 <a href=#116 id=116 data-nosnippet>116</a>            <a href="#74">stream</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
@@ -266,13 +266,13 @@
 <a href=#193 id=193 data-nosnippet>193</a>            ffi::<a href="../../gdk4_sys/fn.gdk_content_deserializer_set_task_data.html">gdk_content_deserializer_set_task_data</a>(
 <a href=#194 id=194 data-nosnippet>194</a>                <a href="#181">deserializer</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
 <a href=#195 id=195 data-nosnippet>195</a>                <a href="#186">task_data</a> <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>,
-<a href=#196 id=196 data-nosnippet>196</a>                <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.Some">Some</a>(<a href="#189-191">notify_func</a>::&lt;T&gt;),
+<a href=#196 id=196 data-nosnippet>196</a>                <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.Some">Some</a>(notify_func::&lt;T&gt;),
 <a href=#197 id=197 data-nosnippet>197</a>            );
 <a href=#198 id=198 data-nosnippet>198</a>        }
 <a href=#199 id=199 data-nosnippet>199</a>
 <a href=#200 id=200 data-nosnippet>200</a>        (<span class="kw-2">*</span><a href="#182">callback</a>)(<span class="kw-2">&amp;</span><a href="#181">deserializer</a>, <span class="kw-2">&amp;mut *</span><a href="#186">task_data</a>);
 <a href=#201 id=201 data-nosnippet>201</a>    }
-<a href=#202 id=202 data-nosnippet>202</a>    <span class="kw">let </span>deserialize = <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.Some">Some</a>(<a href="#175-201">deserialize_func</a>::&lt;T, P&gt; <span class="kw">as _</span>);
+<a href=#202 id=202 data-nosnippet>202</a>    <span class="kw">let </span>deserialize = <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.Some">Some</a>(deserialize_func::&lt;T, P&gt; <span class="kw">as _</span>);
 <a href=#203 id=203 data-nosnippet>203</a>    <span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn </span>notify_func&lt;
 <a href=#204 id=204 data-nosnippet>204</a>        T: <span class="lifetime">'static</span>,
 <a href=#205 id=205 data-nosnippet>205</a>        P: <a href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html">Fn</a>(<span class="kw-2">&amp;</span><a href="auto/content_deserializer.rs.html#8-25">ContentDeserializer</a>, <span class="kw-2">&amp;mut </span><a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;T&gt;) + <span class="lifetime">'static</span>,
@@ -281,7 +281,7 @@
 <a href=#208 id=208 data-nosnippet>208</a>    ) {
 <a href=#209 id=209 data-nosnippet>209</a>        <span class="kw">let </span>_callback: <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">Box</a>&lt;P&gt; = <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">Box</a>::<a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html#method.from_raw">from_raw</a>(<a href="#207">data</a> <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>);
 <a href=#210 id=210 data-nosnippet>210</a>    }
-<a href=#211 id=211 data-nosnippet>211</a>    <span class="kw">let </span>destroy_call4 = <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.Some">Some</a>(<a href="#203-210">notify_func</a>::&lt;T, P&gt; <span class="kw">as _</span>);
+<a href=#211 id=211 data-nosnippet>211</a>    <span class="kw">let </span>destroy_call4 = <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.Some">Some</a>(notify_func::&lt;T, P&gt; <span class="kw">as _</span>);
 <a href=#212 id=212 data-nosnippet>212</a>    <span class="kw">let </span>super_callback0: <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">Box</a>&lt;P&gt; = <a href="#174">deserialize_data</a>;
 <a href=#213 id=213 data-nosnippet>213</a>    <span class="kw">unsafe </span>{
 <a href=#214 id=214 data-nosnippet>214</a>        ffi::<a href="../../gdk4_sys/fn.gdk_content_register_deserializer.html">gdk_content_register_deserializer</a>(
@@ -338,13 +338,13 @@
 <a href=#265 id=265 data-nosnippet>265</a>            ffi::<a href="../../gdk4_sys/fn.gdk_content_serializer_set_task_data.html">gdk_content_serializer_set_task_data</a>(
 <a href=#266 id=266 data-nosnippet>266</a>                <a href="#254">serializer</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
 <a href=#267 id=267 data-nosnippet>267</a>                <a href="#258">task_data</a> <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>,
-<a href=#268 id=268 data-nosnippet>268</a>                <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.Some">Some</a>(<a href="#261-263">notify_func</a>::&lt;T&gt;),
+<a href=#268 id=268 data-nosnippet>268</a>                <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.Some">Some</a>(notify_func::&lt;T&gt;),
 <a href=#269 id=269 data-nosnippet>269</a>            );
 <a href=#270 id=270 data-nosnippet>270</a>        }
 <a href=#271 id=271 data-nosnippet>271</a>
 <a href=#272 id=272 data-nosnippet>272</a>        (<span class="kw-2">*</span><a href="#255">callback</a>)(<span class="kw-2">&amp;</span><a href="#254">serializer</a>, <span class="kw-2">&amp;mut *</span><a href="#258">task_data</a>);
 <a href=#273 id=273 data-nosnippet>273</a>    }
-<a href=#274 id=274 data-nosnippet>274</a>    <span class="kw">let </span>serialize = <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.Some">Some</a>(<a href="#248-273">serialize_func</a>::&lt;T, P&gt; <span class="kw">as _</span>);
+<a href=#274 id=274 data-nosnippet>274</a>    <span class="kw">let </span>serialize = <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.Some">Some</a>(serialize_func::&lt;T, P&gt; <span class="kw">as _</span>);
 <a href=#275 id=275 data-nosnippet>275</a>    <span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn </span>notify_func&lt;
 <a href=#276 id=276 data-nosnippet>276</a>        T: <span class="lifetime">'static</span>,
 <a href=#277 id=277 data-nosnippet>277</a>        P: <a href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html">Fn</a>(<span class="kw-2">&amp;</span><a href="auto/content_serializer.rs.html#8-26">ContentSerializer</a>, <span class="kw-2">&amp;mut </span><a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;T&gt;) + <span class="lifetime">'static</span>,
@@ -353,7 +353,7 @@
 <a href=#280 id=280 data-nosnippet>280</a>    ) {
 <a href=#281 id=281 data-nosnippet>281</a>        <span class="kw">let </span>_callback: <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">Box</a>&lt;P&gt; = <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">Box</a>::<a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html#method.from_raw">from_raw</a>(<a href="#279">data</a> <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>);
 <a href=#282 id=282 data-nosnippet>282</a>    }
-<a href=#283 id=283 data-nosnippet>283</a>    <span class="kw">let </span>destroy_call4 = <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.Some">Some</a>(<a href="#275-282">notify_func</a>::&lt;T, P&gt; <span class="kw">as _</span>);
+<a href=#283 id=283 data-nosnippet>283</a>    <span class="kw">let </span>destroy_call4 = <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.Some">Some</a>(notify_func::&lt;T, P&gt; <span class="kw">as _</span>);
 <a href=#284 id=284 data-nosnippet>284</a>    <span class="kw">let </span>super_callback0: <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">Box</a>&lt;P&gt; = <a href="#247">serialize_data</a>;
 <a href=#285 id=285 data-nosnippet>285</a>    <span class="kw">unsafe </span>{
 <a href=#286 id=286 data-nosnippet>286</a>        ffi::<a href="../../gdk4_sys/fn.gdk_content_register_serializer.html">gdk_content_register_serializer</a>(
@@ -421,7 +421,7 @@
 <a href=#348 id=348 data-nosnippet>348</a>        <span class="kw">let </span>callback = <a href="#347">callback</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/thread_guard/struct.ThreadGuard.html#method.into_inner">into_inner</a>();
 <a href=#349 id=349 data-nosnippet>349</a>        <a href="#348">callback</a>(<a href="#342">result</a>);
 <a href=#350 id=350 data-nosnippet>350</a>    }
-<a href=#351 id=351 data-nosnippet>351</a>    <span class="kw">let </span>callback = <a href="#333-350">content_serialize_async_trampoline</a>::&lt;R&gt;;
+<a href=#351 id=351 data-nosnippet>351</a>    <span class="kw">let </span>callback = content_serialize_async_trampoline::&lt;R&gt;;
 <a href=#352 id=352 data-nosnippet>352</a>    <span class="kw">unsafe </span>{
 <a href=#353 id=353 data-nosnippet>353</a>        ffi::<a href="../../gdk4_sys/fn.gdk_content_serialize_async.html">gdk_content_serialize_async</a>(
 <a href=#354 id=354 data-nosnippet>354</a>            <a href="#314">stream</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
