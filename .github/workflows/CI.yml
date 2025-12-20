@@ -45,7 +45,7 @@ jobs:
           - stable
           - beta
           - nightly
-          - "1.86"
+          - "1.92"
         conf:
           - {
               name: "gtk4",
