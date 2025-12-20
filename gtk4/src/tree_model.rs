@@ -44,6 +44,7 @@ pub trait TreeModelExtManual: IsA<TreeModel> + 'static {
             .expect("Failed to get TreeModel value")
     }
 
+    // rustdoc-stripper-ignore-next
     /// Manual implementation of iter_next that takes a mutable TreeIter.
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
