@@ -49,6 +49,7 @@ generate = [
     "Gsk.PorterDuff",
     "Gsk.RadialGradientNode",
     "Gsk.RenderNodeType",
+    "Gsk.RenderReplay",
     "Gsk.RenderReplayFontFilter",
     "Gsk.RenderReplayNodeFilter",
     "Gsk.RenderReplayNodeForeach",
@@ -236,10 +237,6 @@ status = "generate"
         [[object.function.parameter]]
         name = "cr"
         const = true
-
-[[object]]
-name = "Gsk.RenderReplay"
-status = "manual"
 
 [[object]]
 name = "Gsk.RoundedRect"

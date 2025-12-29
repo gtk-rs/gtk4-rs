@@ -217,6 +217,13 @@ mod path_point;
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
 pub use self::path_point::PathPoint;
 
+#[cfg(feature = "v4_22")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+mod render_replay;
+#[cfg(feature = "v4_22")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+pub use self::render_replay::RenderReplay;
+
 mod shader_args_builder;
 pub use self::shader_args_builder::ShaderArgsBuilder;
 
