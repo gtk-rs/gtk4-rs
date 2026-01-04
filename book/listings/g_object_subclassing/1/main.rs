@@ -2,7 +2,7 @@ mod custom_button;
 
 use custom_button::CustomButton;
 use gtk::prelude::*;
-use gtk::{glib, Application, ApplicationWindow};
+use gtk::{Application, ApplicationWindow, glib};
 
 const APP_ID: &str = "org.gtk_rs.GObjectSubclassing1";
 

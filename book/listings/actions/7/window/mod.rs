@@ -4,7 +4,7 @@ use gio::{ActionEntry, Settings};
 use glib::Object;
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
-use gtk::{gio, glib, Application, Orientation};
+use gtk::{Application, Orientation, gio, glib};
 
 use crate::APP_ID;
 

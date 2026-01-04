@@ -5,7 +5,7 @@ mod window;
 
 use gdk::Display;
 use gtk::prelude::*;
-use gtk::{gdk, gio, glib, Application, CssProvider};
+use gtk::{Application, CssProvider, gdk, gio, glib};
 use window::Window;
 
 const APP_ID: &str = "org.gtk_rs.Todo3";

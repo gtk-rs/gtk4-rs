@@ -2,7 +2,7 @@ use gio::ActionEntry;
 use glib::clone;
 use gtk::gio::SimpleActionGroup;
 use gtk::prelude::*;
-use gtk::{gio, glib, Application, ApplicationWindow};
+use gtk::{Application, ApplicationWindow, gio, glib};
 
 const APP_ID: &str = "org.gtk_rs.Actions2";
 

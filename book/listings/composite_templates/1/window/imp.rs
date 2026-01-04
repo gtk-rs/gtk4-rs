@@ -1,7 +1,7 @@
 use glib::subclass::InitializingObject;
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
-use gtk::{glib, Button, CompositeTemplate};
+use gtk::{Button, CompositeTemplate, glib};
 
 // ANCHOR: object
 // Object holding the state

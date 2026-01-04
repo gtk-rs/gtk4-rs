@@ -1,26 +1,26 @@
 [package]
 name = "gtk4-rs-book-listings"
-edition = "2021"
+edition = "2024"
 
 [dependencies]
-adw = { version = "0.7", package = "libadwaita", features = ["v1_5"] }
+adw = { version = "0.8", package = "libadwaita", features = ["v1_8"] }
 anyhow = "1.0"
-async-channel = "2.0"
-gtk = { version = "0.9", package = "gtk4", features = ["v4_12"] }
+async-channel = "2.5"
+gtk = { version = "0.10", package = "gtk4", features = ["v4_12"] }
 reqwest = { version = "0.12", default-features = false, features = [
     "rustls-tls",
 ] }
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
-tokio = { version = "1.33.0", features = ["rt-multi-thread"] }
+tokio = { version = "1.48.0", features = ["rt-multi-thread"] }
 walkdir = "2.5"
 xshell = "0.2"
 
 [target.'cfg(target_os = "linux")'.dependencies]
-ashpd = { version = "0.11", default-features = false, features = ["gtk4", "async-std"] }
+ashpd = { version = "0.12", default-features = false, features = ["gtk4", "async-std"] }
 
 [build-dependencies]
-glib-build-tools = "0.20"
+glib-build-tools = "0.21"
 
 # actions
 [[bin]]

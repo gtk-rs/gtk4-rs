@@ -1,5 +1,5 @@
 use gtk::prelude::*;
-use gtk::{glib, Application};
+use gtk::{Application, glib};
 
 const APP_ID: &str = "org.gtk_rs.HelloWorld1";
 

@@ -1,6 +1,6 @@
 use gio::ActionEntry;
 use gtk::prelude::*;
-use gtk::{gio, glib, Application, ApplicationWindow};
+use gtk::{Application, ApplicationWindow, gio, glib};
 
 // ANCHOR: main
 const APP_ID: &str = "org.gtk_rs.Actions1";

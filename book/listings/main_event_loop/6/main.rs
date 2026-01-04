@@ -1,7 +1,7 @@
 use glib::clone;
 use gtk::prelude::*;
-use gtk::{gio, glib};
 use gtk::{Application, ApplicationWindow, Button};
+use gtk::{gio, glib};
 use std::thread;
 use std::time::Duration;
 

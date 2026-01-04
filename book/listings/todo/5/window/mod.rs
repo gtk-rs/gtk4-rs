@@ -3,17 +3,17 @@ mod imp;
 use std::fs::File;
 
 use gio::Settings;
-use glib::{clone, Object};
+use glib::{Object, clone};
 use gtk::subclass::prelude::*;
 use gtk::{
-    gio, glib, CustomFilter, FilterListModel, NoSelection, SignalListItemFactory,
+    CustomFilter, FilterListModel, NoSelection, SignalListItemFactory, gio, glib,
 };
-use gtk::{prelude::*, ListItem};
+use gtk::{ListItem, prelude::*};
 
+use crate::APP_ID;
 use crate::task_object::{TaskData, TaskObject};
 use crate::task_row::TaskRow;
 use crate::utils::data_path;
-use crate::APP_ID;
 
 glib::wrapper! {
     pub struct Window(ObjectSubclass<imp::Window>)

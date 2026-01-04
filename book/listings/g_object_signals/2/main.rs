@@ -3,7 +3,7 @@ mod custom_button;
 use custom_button::CustomButton;
 use glib::closure_local;
 use gtk::prelude::*;
-use gtk::{glib, Application, ApplicationWindow};
+use gtk::{Application, ApplicationWindow, glib};
 
 const APP_ID: &str = "org.gtk_rs.GObjectSignals2";
 

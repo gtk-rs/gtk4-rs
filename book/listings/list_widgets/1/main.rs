@@ -1,6 +1,6 @@
 use gtk::prelude::*;
 use gtk::{
-    glib, Application, ApplicationWindow, Label, ListBox, PolicyType, ScrolledWindow,
+    Application, ApplicationWindow, Label, ListBox, PolicyType, ScrolledWindow, glib,
 };
 
 const APP_ID: &str = "org.gtk_rs.ListWidgets1";

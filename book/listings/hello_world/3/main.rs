@@ -3,7 +3,7 @@
 use gtk::prelude::*;
 // ANCHOR_END: prelude
 // ANCHOR: use
-use gtk::{glib, Application, ApplicationWindow, Button};
+use gtk::{Application, ApplicationWindow, Button, glib};
 // ANCHOR_END: use
 const APP_ID: &str = "org.gtk_rs.HelloWorld3";
 

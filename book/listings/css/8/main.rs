@@ -2,7 +2,7 @@ mod window;
 
 use gdk::Display;
 use gtk::prelude::*;
-use gtk::{gdk, glib, Application, CssProvider};
+use gtk::{Application, CssProvider, gdk, glib};
 
 use crate::window::Window;
 

@@ -4,7 +4,7 @@ use gio::Settings;
 use glib::Object;
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
-use gtk::{gio, glib, Application};
+use gtk::{Application, gio, glib};
 
 use crate::APP_ID;
 

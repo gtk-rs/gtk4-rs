@@ -2,11 +2,11 @@ use std::cell::RefCell;
 use std::fs::File;
 
 use adw::subclass::prelude::*;
-use adw::{prelude::*, NavigationSplitView};
+use adw::{NavigationSplitView, prelude::*};
 use gio::Settings;
 use glib::subclass::InitializingObject;
 use gtk::glib::SignalHandlerId;
-use gtk::{gio, glib, CompositeTemplate, Entry, FilterListModel, ListBox, Stack};
+use gtk::{CompositeTemplate, Entry, FilterListModel, ListBox, Stack, gio, glib};
 use std::cell::OnceCell;
 
 use crate::collection_object::{CollectionData, CollectionObject};

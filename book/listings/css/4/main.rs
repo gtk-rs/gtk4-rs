@@ -1,6 +1,6 @@
 use gdk::Display;
 use gtk::prelude::*;
-use gtk::{gdk, glib, Application, ApplicationWindow, Button, CssProvider};
+use gtk::{Application, ApplicationWindow, Button, CssProvider, gdk, glib};
 
 const APP_ID: &str = "org.gtk_rs.Css4";
 

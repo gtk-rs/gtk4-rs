@@ -1,7 +1,7 @@
 use gio::Settings;
 use glib::subclass::InitializingObject;
 use gtk::subclass::prelude::*;
-use gtk::{gio, glib, Button, CompositeTemplate, Label};
+use gtk::{Button, CompositeTemplate, Label, gio, glib};
 use std::cell::OnceCell;
 
 // ANCHOR: imp_struct

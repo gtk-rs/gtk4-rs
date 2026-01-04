@@ -1,5 +1,5 @@
 use gtk::prelude::*;
-use gtk::{glib, Align, Application, ApplicationWindow, Box, Orientation, Switch};
+use gtk::{Align, Application, ApplicationWindow, Box, Orientation, Switch, glib};
 
 const APP_ID: &str = "org.gtk_rs.GObjectProperties3";
 

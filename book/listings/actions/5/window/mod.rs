@@ -4,7 +4,7 @@ use gio::ActionEntry;
 use glib::Object;
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
-use gtk::{gio, glib, Application};
+use gtk::{Application, gio, glib};
 
 glib::wrapper! {
     pub struct Window(ObjectSubclass<imp::Window>)

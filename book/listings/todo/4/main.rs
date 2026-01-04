@@ -4,7 +4,7 @@ mod utils;
 mod window;
 
 use gtk::prelude::*;
-use gtk::{gio, glib, Application};
+use gtk::{Application, gio, glib};
 use window::Window;
 
 const APP_ID: &str = "org.gtk_rs.Todo4";

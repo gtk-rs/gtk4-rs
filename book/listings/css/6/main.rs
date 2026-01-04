@@ -1,7 +1,7 @@
 mod window;
 
 use gtk::prelude::*;
-use gtk::{glib, Application};
+use gtk::{Application, glib};
 
 use crate::window::Window;
 

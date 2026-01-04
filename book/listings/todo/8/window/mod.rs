@@ -6,16 +6,16 @@ use adw::prelude::*;
 use adw::subclass::prelude::*;
 use adw::{ActionRow, AlertDialog, ResponseAppearance};
 use gio::Settings;
-use glib::{clone, Object};
+use glib::{Object, clone};
 use gtk::{
-    gio, glib, pango, Align, CheckButton, CustomFilter, Entry, FilterListModel, Label,
-    ListBoxRow, NoSelection,
+    Align, CheckButton, CustomFilter, Entry, FilterListModel, Label, ListBoxRow,
+    NoSelection, gio, glib, pango,
 };
 
+use crate::APP_ID;
 use crate::collection_object::{CollectionData, CollectionObject};
 use crate::task_object::TaskObject;
 use crate::utils::data_path;
-use crate::APP_ID;
 
 glib::wrapper! {
     pub struct Window(ObjectSubclass<imp::Window>)
@@ -423,7 +423,7 @@ impl Window {
             }
         ));
 
-        let response = dialog.choose_future(self).await;
+        let response = dialog.choose_future(Some(self)).await;
 
         // Return if the user chose `cancel_response`
         if response == cancel_response {
