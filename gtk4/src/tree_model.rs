@@ -43,6 +43,20 @@ pub trait TreeModelExtManual: IsA<TreeModel> + 'static {
             .get_owned::<V>()
             .expect("Failed to get TreeModel value")
     }
+
+    // rustdoc-stripper-ignore-next
+    /// Manual implementation of iter_next that takes a mutable TreeIter.
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+    #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_model_iter_next")]
+    fn iter_next(&self, iter: &mut TreeIter) -> bool {
+        unsafe {
+            from_glib(ffi::gtk_tree_model_iter_next(
+                self.as_ref().to_glib_none().0,
+                iter.to_glib_none_mut().0,
+            ))
+        }
+    }
 }
 
 impl<O: IsA<TreeModel>> TreeModelExtManual for O {}
