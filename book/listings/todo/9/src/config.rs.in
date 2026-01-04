@@ -1,0 +1,2 @@
+pub const APP_ID: &str = @APP_ID@;
+pub const RESOURCES_FILE: &str = @RESOURCES_FILE@;

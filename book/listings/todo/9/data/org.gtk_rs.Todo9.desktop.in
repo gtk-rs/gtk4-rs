@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=Todo
+Exec=todo
+Icon=@APP_ID@
+Terminal=false
+Type=Application
+Categories=GNOME;GTK;Utility;
