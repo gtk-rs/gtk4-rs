@@ -36,10 +36,10 @@
             const path_to_root = "";
             const default_light_theme = "rust";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-60e0fa99.js";
+            window.path_to_searchindex_js = "searchindex-bac78f95.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-9fb23523.js"></script>
+        <script src="toc-6221b6d3.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -231,10 +231,10 @@ As usual, we have to list all <a href="https://docs.gtk.org/gtk4/class.Applicati
 <p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/1/window/mod.rs">listings/todo/1/window/mod.rs</a></p>
 <pre><code class="language-rust"><span class="boring">mod imp;
 </span><span class="boring">
-</span><span class="boring">use glib::{clone, Object};
+</span><span class="boring">use glib::{Object, clone};
 </span><span class="boring">use gtk::subclass::prelude::*;
-</span><span class="boring">use gtk::{gio, glib, Application, NoSelection, SignalListItemFactory};
-</span><span class="boring">use gtk::{prelude::*, ListItem};
+</span><span class="boring">use gtk::{Application, NoSelection, SignalListItemFactory, gio, glib};
+</span><span class="boring">use gtk::{ListItem, prelude::*};
 </span><span class="boring">
 </span><span class="boring">use crate::task_object::TaskObject;
 </span><span class="boring">use crate::task_row::TaskRow;
@@ -369,7 +369,7 @@ We only have to assure that the <code>class</code> attribute of the template in 
 </span><span class="boring">
 </span><span class="boring">use glib::subclass::InitializingObject;
 </span><span class="boring">use gtk::subclass::prelude::*;
-</span><span class="boring">use gtk::{gio, glib, CompositeTemplate, Entry, ListView};
+</span><span class="boring">use gtk::{CompositeTemplate, Entry, ListView, gio, glib};
 </span><span class="boring">
 </span>// Object holding the state
 #[derive(CompositeTemplate, Default)]
@@ -428,7 +428,7 @@ impl ObjectSubclass for Window {
 </span><span class="boring">mod window;
 </span><span class="boring">
 </span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{gio, glib, Application};
+</span><span class="boring">use gtk::{Application, gio, glib};
 </span><span class="boring">use window::Window;
 </span><span class="boring">
 </span>fn main() -&gt; glib::ExitCode {
@@ -675,7 +675,7 @@ Why we need that will become clear as soon as we get to bind the state of <code>
 </span><span class="boring">
 </span><span class="boring">use glib::Binding;
 </span><span class="boring">use gtk::subclass::prelude::*;
-</span><span class="boring">use gtk::{glib, CheckButton, CompositeTemplate, Label};
+</span><span class="boring">use gtk::{CheckButton, CompositeTemplate, Label, glib};
 </span><span class="boring">
 </span>// Object holding the state
 #[derive(Default, CompositeTemplate)]
@@ -721,7 +721,7 @@ We override the <code>imp::Window::constructed</code> in order to set up window 
 </span><span class="boring">
 </span><span class="boring">use glib::subclass::InitializingObject;
 </span><span class="boring">use gtk::subclass::prelude::*;
-</span><span class="boring">use gtk::{gio, glib, CompositeTemplate, Entry, ListView};
+</span><span class="boring">use gtk::{CompositeTemplate, Entry, ListView, gio, glib};
 </span><span class="boring">
 </span><span class="boring">// Object holding the state
 </span><span class="boring">#[derive(CompositeTemplate, Default)]
@@ -779,10 +779,10 @@ Then we store a reference to the model in <code>imp::Window</code> as well as in
 <p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/1/window/mod.rs">listings/todo/1/window/mod.rs</a></p>
 <pre><code class="language-rust"><span class="boring">mod imp;
 </span><span class="boring">
-</span><span class="boring">use glib::{clone, Object};
+</span><span class="boring">use glib::{Object, clone};
 </span><span class="boring">use gtk::subclass::prelude::*;
-</span><span class="boring">use gtk::{gio, glib, Application, NoSelection, SignalListItemFactory};
-</span><span class="boring">use gtk::{prelude::*, ListItem};
+</span><span class="boring">use gtk::{Application, NoSelection, SignalListItemFactory, gio, glib};
+</span><span class="boring">use gtk::{ListItem, prelude::*};
 </span><span class="boring">
 </span><span class="boring">use crate::task_object::TaskObject;
 </span><span class="boring">use crate::task_row::TaskRow;
@@ -911,10 +911,10 @@ Then we store a reference to the model in <code>imp::Window</code> as well as in
 <p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/1/window/mod.rs">listings/todo/1/window/mod.rs</a></p>
 <pre><code class="language-rust"><span class="boring">mod imp;
 </span><span class="boring">
-</span><span class="boring">use glib::{clone, Object};
+</span><span class="boring">use glib::{Object, clone};
 </span><span class="boring">use gtk::subclass::prelude::*;
-</span><span class="boring">use gtk::{gio, glib, Application, NoSelection, SignalListItemFactory};
-</span><span class="boring">use gtk::{prelude::*, ListItem};
+</span><span class="boring">use gtk::{Application, NoSelection, SignalListItemFactory, gio, glib};
+</span><span class="boring">use gtk::{ListItem, prelude::*};
 </span><span class="boring">
 </span><span class="boring">use crate::task_object::TaskObject;
 </span><span class="boring">use crate::task_row::TaskRow;
@@ -1046,10 +1046,10 @@ Finally, the entry will be cleared.</p>
 <p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/1/window/mod.rs">listings/todo/1/window/mod.rs</a></p>
 <pre><code class="language-rust"><span class="boring">mod imp;
 </span><span class="boring">
-</span><span class="boring">use glib::{clone, Object};
+</span><span class="boring">use glib::{Object, clone};
 </span><span class="boring">use gtk::subclass::prelude::*;
-</span><span class="boring">use gtk::{gio, glib, Application, NoSelection, SignalListItemFactory};
-</span><span class="boring">use gtk::{prelude::*, ListItem};
+</span><span class="boring">use gtk::{Application, NoSelection, SignalListItemFactory, gio, glib};
+</span><span class="boring">use gtk::{ListItem, prelude::*};
 </span><span class="boring">
 </span><span class="boring">use crate::task_object::TaskObject;
 </span><span class="boring">use crate::task_row::TaskRow;
@@ -1187,10 +1187,10 @@ We will need to unbind them manually when they are no longer needed.</p>
 <p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/1/window/mod.rs">listings/todo/1/window/mod.rs</a></p>
 <pre><code class="language-rust"><span class="boring">mod imp;
 </span><span class="boring">
-</span><span class="boring">use glib::{clone, Object};
+</span><span class="boring">use glib::{Object, clone};
 </span><span class="boring">use gtk::subclass::prelude::*;
-</span><span class="boring">use gtk::{gio, glib, Application, NoSelection, SignalListItemFactory};
-</span><span class="boring">use gtk::{prelude::*, ListItem};
+</span><span class="boring">use gtk::{Application, NoSelection, SignalListItemFactory, gio, glib};
+</span><span class="boring">use gtk::{ListItem, prelude::*};
 </span><span class="boring">
 </span><span class="boring">use crate::task_object::TaskObject;
 </span><span class="boring">use crate::task_row::TaskRow;

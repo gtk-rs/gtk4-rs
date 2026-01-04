@@ -36,10 +36,10 @@
             const path_to_root = "";
             const default_light_theme = "rust";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-60e0fa99.js";
+            window.path_to_searchindex_js = "searchindex-bac78f95.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-9fb23523.js"></script>
+        <script src="toc-6221b6d3.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -213,7 +213,7 @@ First, we create one and add convenience methods for accessing settings as well 
 </span><span class="boring">use glib::Object;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::subclass::prelude::*;
-</span><span class="boring">use gtk::{gio, glib, Application};
+</span><span class="boring">use gtk::{Application, gio, glib};
 </span><span class="boring">
 </span><span class="boring">use crate::APP_ID;
 </span><span class="boring">
@@ -285,7 +285,7 @@ This is a nice alternative to <code>RefCell&lt;Option&lt;T&gt;&gt;</code> when y
 <p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/saving_window_state/1/custom_window/imp.rs">listings/saving_window_state/1/custom_window/imp.rs</a></p>
 <pre><code class="language-rust"><span class="boring">use gio::Settings;
 </span><span class="boring">use gtk::subclass::prelude::*;
-</span><span class="boring">use gtk::{gio, glib, ApplicationWindow};
+</span><span class="boring">use gtk::{ApplicationWindow, gio, glib};
 </span><span class="boring">use std::cell::OnceCell;
 </span><span class="boring">
 </span>#[derive(Default)]

@@ -36,10 +36,10 @@
             const path_to_root = "";
             const default_light_theme = "rust";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-60e0fa99.js";
+            window.path_to_searchindex_js = "searchindex-bac78f95.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-9fb23523.js"></script>
+        <script src="toc-6221b6d3.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -186,7 +186,7 @@ The signal then takes care that all the registered callbacks will be executed.</
 In our “Hello World” example we <a href="https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/prelude/trait.ButtonExt.html#tymethod.connect_clicked">connected</a> the “clicked” signal to a closure which sets the label of the button to “Hello World” as soon as it gets called.</p>
 <p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/hello_world/3/main.rs">listings/hello_world/3/main.rs</a></p>
 <pre><code class="language-rust"><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{glib, Application, ApplicationWindow, Button};
+</span><span class="boring">use gtk::{Application, ApplicationWindow, Button, glib};
 </span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.HelloWorld3";
 </span><span class="boring">
 </span><span class="boring">fn main() -&gt; glib::ExitCode {
@@ -230,7 +230,7 @@ In our “Hello World” example we <a href="https://gtk-rs.org/gtk4-rs/stable/l
 <p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/g_object_signals/1/main.rs">listings/g_object_signals/1/main.rs</a></p>
 <pre><code class="language-rust"><span class="boring">use glib::closure_local;
 </span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{glib, Application, ApplicationWindow, Button};
+</span><span class="boring">use gtk::{Application, ApplicationWindow, Button, glib};
 </span><span class="boring">
 </span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.GObjectSignals1";
 </span><span class="boring">
@@ -291,8 +291,8 @@ In order to do that, we need to lazily initialize a static item <code>SIGNALS</c
 <pre><code class="language-rust"><span class="boring">use std::cell::Cell;
 </span><span class="boring">use std::sync::OnceLock;
 </span><span class="boring">
-</span><span class="boring">use glib::subclass::Signal;
 </span><span class="boring">use glib::Properties;
+</span><span class="boring">use glib::subclass::Signal;
 </span><span class="boring">use gtk::glib;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::subclass::prelude::*;
@@ -319,9 +319,11 @@ impl ObjectImpl for CustomButton {
     fn signals() -&gt; &amp;'static [Signal] {
         static SIGNALS: OnceLock&lt;Vec&lt;Signal&gt;&gt; = OnceLock::new();
         SIGNALS.get_or_init(|| {
-            vec![Signal::builder("max-number-reached")
-                .param_types([i32::static_type()])
-                .build()]
+            vec![
+                Signal::builder("max-number-reached")
+                    .param_types([i32::static_type()])
+                    .build(),
+            ]
         })
     }
 <span class="boring">
@@ -368,8 +370,8 @@ After we did that, we set <code>number</code> back to 0.</p>
 <pre><code class="language-rust"><span class="boring">use std::cell::Cell;
 </span><span class="boring">use std::sync::OnceLock;
 </span><span class="boring">
-</span><span class="boring">use glib::subclass::Signal;
 </span><span class="boring">use glib::Properties;
+</span><span class="boring">use glib::subclass::Signal;
 </span><span class="boring">use gtk::glib;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::subclass::prelude::*;
@@ -396,9 +398,11 @@ After we did that, we set <code>number</code> back to 0.</p>
 </span><span class="boring">    fn signals() -&gt; &amp;'static [Signal] {
 </span><span class="boring">        static SIGNALS: OnceLock&lt;Vec&lt;Signal&gt;&gt; = OnceLock::new();
 </span><span class="boring">        SIGNALS.get_or_init(|| {
-</span><span class="boring">            vec![Signal::builder("max-number-reached")
-</span><span class="boring">                .param_types([i32::static_type()])
-</span><span class="boring">                .build()]
+</span><span class="boring">            vec![
+</span><span class="boring">                Signal::builder("max-number-reached")
+</span><span class="boring">                    .param_types([i32::static_type()])
+</span><span class="boring">                    .build(),
+</span><span class="boring">            ]
 </span><span class="boring">        })
 </span><span class="boring">    }
 </span><span class="boring">
@@ -443,7 +447,7 @@ Whenever we now receive the “max-number-reached” signal, the accompanying nu
 </span><span class="boring">use custom_button::CustomButton;
 </span><span class="boring">use glib::closure_local;
 </span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{glib, Application, ApplicationWindow};
+</span><span class="boring">use gtk::{Application, ApplicationWindow, glib};
 </span><span class="boring">
 </span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.GObjectSignals2";
 </span><span class="boring">

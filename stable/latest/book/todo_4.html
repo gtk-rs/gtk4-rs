@@ -36,10 +36,10 @@
             const path_to_root = "";
             const default_light_theme = "rust";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-60e0fa99.js";
+            window.path_to_searchindex_js = "searchindex-bac78f95.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-9fb23523.js"></script>
+        <script src="toc-6221b6d3.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -338,7 +338,7 @@ For example, the parent type of our window is now <code>adw::ApplicationWindow</
 </span><span class="boring">use glib::subclass::InitializingObject;
 </span><span class="boring">
 </span><span class="boring">use adw::prelude::*;
-</span><span class="boring">use gtk::{gio, glib, CompositeTemplate, Entry, ListBox};
+</span><span class="boring">use gtk::{CompositeTemplate, Entry, ListBox, gio, glib};
 </span><span class="boring">use std::cell::OnceCell;
 </span><span class="boring">
 </span><span class="boring">use crate::task_object::{TaskData, TaskObject};
@@ -436,7 +436,7 @@ impl ObjectSubclass for Window {
 </span><span class="boring">use glib::subclass::InitializingObject;
 </span><span class="boring">
 </span><span class="boring">use adw::prelude::*;
-</span><span class="boring">use gtk::{gio, glib, CompositeTemplate, Entry, ListBox};
+</span><span class="boring">use gtk::{CompositeTemplate, Entry, ListBox, gio, glib};
 </span><span class="boring">use std::cell::OnceCell;
 </span><span class="boring">
 </span><span class="boring">use crate::task_object::{TaskData, TaskObject};
@@ -530,14 +530,14 @@ impl AdwApplicationWindowImpl for Window {}</code></pre>
 </span><span class="boring">use std::fs::File;
 </span><span class="boring">
 </span><span class="boring">use adw::subclass::prelude::*;
-</span><span class="boring">use adw::{prelude::*, ActionRow};
+</span><span class="boring">use adw::{ActionRow, prelude::*};
 </span><span class="boring">use gio::Settings;
-</span><span class="boring">use glib::{clone, Object};
-</span><span class="boring">use gtk::{gio, glib, Align, CheckButton, CustomFilter, FilterListModel, NoSelection};
+</span><span class="boring">use glib::{Object, clone};
+</span><span class="boring">use gtk::{Align, CheckButton, CustomFilter, FilterListModel, NoSelection, gio, glib};
 </span><span class="boring">
+</span><span class="boring">use crate::APP_ID;
 </span><span class="boring">use crate::task_object::{TaskData, TaskObject};
 </span><span class="boring">use crate::utils::data_path;
-</span><span class="boring">use crate::APP_ID;
 </span><span class="boring">
 </span>glib::wrapper! {
     pub struct Window(ObjectSubclass&lt;imp::Window&gt;)
@@ -1023,11 +1023,11 @@ Its purpose will become clear in later snippets.</p>
 </span><span class="boring">use std::fs::File;
 </span><span class="boring">
 </span><span class="boring">use adw::subclass::prelude::*;
-</span><span class="boring">use adw::{prelude::*, NavigationSplitView};
+</span><span class="boring">use adw::{NavigationSplitView, prelude::*};
 </span><span class="boring">use gio::Settings;
 </span><span class="boring">use glib::subclass::InitializingObject;
 </span><span class="boring">use gtk::glib::SignalHandlerId;
-</span><span class="boring">use gtk::{gio, glib, CompositeTemplate, Entry, FilterListModel, ListBox, Stack};
+</span><span class="boring">use gtk::{CompositeTemplate, Entry, FilterListModel, ListBox, Stack, gio, glib};
 </span><span class="boring">use std::cell::OnceCell;
 </span><span class="boring">
 </span><span class="boring">use crate::collection_object::{CollectionData, CollectionObject};
@@ -1142,16 +1142,16 @@ pub struct Window {
 </span><span class="boring">use adw::subclass::prelude::*;
 </span><span class="boring">use adw::{ActionRow, AlertDialog, ResponseAppearance};
 </span><span class="boring">use gio::Settings;
-</span><span class="boring">use glib::{clone, Object};
+</span><span class="boring">use glib::{Object, clone};
 </span><span class="boring">use gtk::{
-</span><span class="boring">    gio, glib, pango, Align, CheckButton, CustomFilter, Entry, FilterListModel, Label,
-</span><span class="boring">    ListBoxRow, NoSelection,
+</span><span class="boring">    Align, CheckButton, CustomFilter, Entry, FilterListModel, Label, ListBoxRow,
+</span><span class="boring">    NoSelection, gio, glib, pango,
 </span><span class="boring">};
 </span><span class="boring">
+</span><span class="boring">use crate::APP_ID;
 </span><span class="boring">use crate::collection_object::{CollectionData, CollectionObject};
 </span><span class="boring">use crate::task_object::TaskObject;
 </span><span class="boring">use crate::utils::data_path;
-</span><span class="boring">use crate::APP_ID;
 </span><span class="boring">
 </span><span class="boring">glib::wrapper! {
 </span><span class="boring">    pub struct Window(ObjectSubclass&lt;imp::Window&gt;)
@@ -1540,7 +1540,7 @@ pub struct Window {
 </span><span class="boring">            }
 </span><span class="boring">        ));
 </span><span class="boring">
-</span><span class="boring">        let response = dialog.choose_future(self).await;
+</span><span class="boring">        let response = dialog.choose_future(Some(self)).await;
 </span><span class="boring">
 </span><span class="boring">        // Return if the user chose `cancel_response`
 </span><span class="boring">        if response == cancel_response {
@@ -1569,11 +1569,11 @@ Since most of the implementation is in the method <code>CollectionObject::to_col
 </span><span class="boring">use std::fs::File;
 </span><span class="boring">
 </span><span class="boring">use adw::subclass::prelude::*;
-</span><span class="boring">use adw::{prelude::*, NavigationSplitView};
+</span><span class="boring">use adw::{NavigationSplitView, prelude::*};
 </span><span class="boring">use gio::Settings;
 </span><span class="boring">use glib::subclass::InitializingObject;
 </span><span class="boring">use gtk::glib::SignalHandlerId;
-</span><span class="boring">use gtk::{gio, glib, CompositeTemplate, Entry, FilterListModel, ListBox, Stack};
+</span><span class="boring">use gtk::{CompositeTemplate, Entry, FilterListModel, ListBox, Stack, gio, glib};
 </span><span class="boring">use std::cell::OnceCell;
 </span><span class="boring">
 </span><span class="boring">use crate::collection_object::{CollectionData, CollectionObject};
@@ -1685,11 +1685,11 @@ Instead of <code>setup_tasks</code> we now call <code>setup_collections</code>.<
 </span><span class="boring">use std::fs::File;
 </span><span class="boring">
 </span><span class="boring">use adw::subclass::prelude::*;
-</span><span class="boring">use adw::{prelude::*, NavigationSplitView};
+</span><span class="boring">use adw::{NavigationSplitView, prelude::*};
 </span><span class="boring">use gio::Settings;
 </span><span class="boring">use glib::subclass::InitializingObject;
 </span><span class="boring">use gtk::glib::SignalHandlerId;
-</span><span class="boring">use gtk::{gio, glib, CompositeTemplate, Entry, FilterListModel, ListBox, Stack};
+</span><span class="boring">use gtk::{CompositeTemplate, Entry, FilterListModel, ListBox, Stack, gio, glib};
 </span><span class="boring">use std::cell::OnceCell;
 </span><span class="boring">
 </span><span class="boring">use crate::collection_object::{CollectionData, CollectionObject};
@@ -1805,16 +1805,16 @@ To do that it uses the method <code>create_collection_row</code>.</p>
 </span><span class="boring">use adw::subclass::prelude::*;
 </span><span class="boring">use adw::{ActionRow, AlertDialog, ResponseAppearance};
 </span><span class="boring">use gio::Settings;
-</span><span class="boring">use glib::{clone, Object};
+</span><span class="boring">use glib::{Object, clone};
 </span><span class="boring">use gtk::{
-</span><span class="boring">    gio, glib, pango, Align, CheckButton, CustomFilter, Entry, FilterListModel, Label,
-</span><span class="boring">    ListBoxRow, NoSelection,
+</span><span class="boring">    Align, CheckButton, CustomFilter, Entry, FilterListModel, Label, ListBoxRow,
+</span><span class="boring">    NoSelection, gio, glib, pango,
 </span><span class="boring">};
 </span><span class="boring">
+</span><span class="boring">use crate::APP_ID;
 </span><span class="boring">use crate::collection_object::{CollectionData, CollectionObject};
 </span><span class="boring">use crate::task_object::TaskObject;
 </span><span class="boring">use crate::utils::data_path;
-</span><span class="boring">use crate::APP_ID;
 </span><span class="boring">
 </span><span class="boring">glib::wrapper! {
 </span><span class="boring">    pub struct Window(ObjectSubclass&lt;imp::Window&gt;)
@@ -2203,7 +2203,7 @@ To do that it uses the method <code>create_collection_row</code>.</p>
 </span><span class="boring">            }
 </span><span class="boring">        ));
 </span><span class="boring">
-</span><span class="boring">        let response = dialog.choose_future(self).await;
+</span><span class="boring">        let response = dialog.choose_future(Some(self)).await;
 </span><span class="boring">
 </span><span class="boring">        // Return if the user chose `cancel_response`
 </span><span class="boring">        if response == cancel_response {
@@ -2235,16 +2235,16 @@ To do that it uses the method <code>create_collection_row</code>.</p>
 </span><span class="boring">use adw::subclass::prelude::*;
 </span><span class="boring">use adw::{ActionRow, AlertDialog, ResponseAppearance};
 </span><span class="boring">use gio::Settings;
-</span><span class="boring">use glib::{clone, Object};
+</span><span class="boring">use glib::{Object, clone};
 </span><span class="boring">use gtk::{
-</span><span class="boring">    gio, glib, pango, Align, CheckButton, CustomFilter, Entry, FilterListModel, Label,
-</span><span class="boring">    ListBoxRow, NoSelection,
+</span><span class="boring">    Align, CheckButton, CustomFilter, Entry, FilterListModel, Label, ListBoxRow,
+</span><span class="boring">    NoSelection, gio, glib, pango,
 </span><span class="boring">};
 </span><span class="boring">
+</span><span class="boring">use crate::APP_ID;
 </span><span class="boring">use crate::collection_object::{CollectionData, CollectionObject};
 </span><span class="boring">use crate::task_object::TaskObject;
 </span><span class="boring">use crate::utils::data_path;
-</span><span class="boring">use crate::APP_ID;
 </span><span class="boring">
 </span><span class="boring">glib::wrapper! {
 </span><span class="boring">    pub struct Window(ObjectSubclass&lt;imp::Window&gt;)
@@ -2633,7 +2633,7 @@ To do that it uses the method <code>create_collection_row</code>.</p>
 </span><span class="boring">            }
 </span><span class="boring">        ));
 </span><span class="boring">
-</span><span class="boring">        let response = dialog.choose_future(self).await;
+</span><span class="boring">        let response = dialog.choose_future(Some(self)).await;
 </span><span class="boring">
 </span><span class="boring">        // Return if the user chose `cancel_response`
 </span><span class="boring">        if response == cancel_response {
@@ -2668,16 +2668,16 @@ We choose the first one and let the method <code>set_current_collection</code> d
 </span><span class="boring">use adw::subclass::prelude::*;
 </span><span class="boring">use adw::{ActionRow, AlertDialog, ResponseAppearance};
 </span><span class="boring">use gio::Settings;
-</span><span class="boring">use glib::{clone, Object};
+</span><span class="boring">use glib::{Object, clone};
 </span><span class="boring">use gtk::{
-</span><span class="boring">    gio, glib, pango, Align, CheckButton, CustomFilter, Entry, FilterListModel, Label,
-</span><span class="boring">    ListBoxRow, NoSelection,
+</span><span class="boring">    Align, CheckButton, CustomFilter, Entry, FilterListModel, Label, ListBoxRow,
+</span><span class="boring">    NoSelection, gio, glib, pango,
 </span><span class="boring">};
 </span><span class="boring">
+</span><span class="boring">use crate::APP_ID;
 </span><span class="boring">use crate::collection_object::{CollectionData, CollectionObject};
 </span><span class="boring">use crate::task_object::TaskObject;
 </span><span class="boring">use crate::utils::data_path;
-</span><span class="boring">use crate::APP_ID;
 </span><span class="boring">
 </span><span class="boring">glib::wrapper! {
 </span><span class="boring">    pub struct Window(ObjectSubclass&lt;imp::Window&gt;)
@@ -3066,7 +3066,7 @@ We choose the first one and let the method <code>set_current_collection</code> d
 </span><span class="boring">            }
 </span><span class="boring">        ));
 </span><span class="boring">
-</span><span class="boring">        let response = dialog.choose_future(self).await;
+</span><span class="boring">        let response = dialog.choose_future(Some(self)).await;
 </span><span class="boring">
 </span><span class="boring">        // Return if the user chose `cancel_response`
 </span><span class="boring">        if response == cancel_response {
@@ -3104,16 +3104,16 @@ Finally, we select the collection row.</p>
 </span><span class="boring">use adw::subclass::prelude::*;
 </span><span class="boring">use adw::{ActionRow, AlertDialog, ResponseAppearance};
 </span><span class="boring">use gio::Settings;
-</span><span class="boring">use glib::{clone, Object};
+</span><span class="boring">use glib::{Object, clone};
 </span><span class="boring">use gtk::{
-</span><span class="boring">    gio, glib, pango, Align, CheckButton, CustomFilter, Entry, FilterListModel, Label,
-</span><span class="boring">    ListBoxRow, NoSelection,
+</span><span class="boring">    Align, CheckButton, CustomFilter, Entry, FilterListModel, Label, ListBoxRow,
+</span><span class="boring">    NoSelection, gio, glib, pango,
 </span><span class="boring">};
 </span><span class="boring">
+</span><span class="boring">use crate::APP_ID;
 </span><span class="boring">use crate::collection_object::{CollectionData, CollectionObject};
 </span><span class="boring">use crate::task_object::TaskObject;
 </span><span class="boring">use crate::utils::data_path;
-</span><span class="boring">use crate::APP_ID;
 </span><span class="boring">
 </span><span class="boring">glib::wrapper! {
 </span><span class="boring">    pub struct Window(ObjectSubclass&lt;imp::Window&gt;)
@@ -3502,7 +3502,7 @@ Finally, we select the collection row.</p>
 </span><span class="boring">            }
 </span><span class="boring">        ));
 </span><span class="boring">
-</span><span class="boring">        let response = dialog.choose_future(self).await;
+</span><span class="boring">        let response = dialog.choose_future(Some(self)).await;
 </span><span class="boring">
 </span><span class="boring">        // Return if the user chose `cancel_response`
 </span><span class="boring">        if response == cancel_response {
@@ -3535,16 +3535,16 @@ It assures that <code>tasks_list</code> is only visible if the number of tasks i
 </span><span class="boring">use adw::subclass::prelude::*;
 </span><span class="boring">use adw::{ActionRow, AlertDialog, ResponseAppearance};
 </span><span class="boring">use gio::Settings;
-</span><span class="boring">use glib::{clone, Object};
+</span><span class="boring">use glib::{Object, clone};
 </span><span class="boring">use gtk::{
-</span><span class="boring">    gio, glib, pango, Align, CheckButton, CustomFilter, Entry, FilterListModel, Label,
-</span><span class="boring">    ListBoxRow, NoSelection,
+</span><span class="boring">    Align, CheckButton, CustomFilter, Entry, FilterListModel, Label, ListBoxRow,
+</span><span class="boring">    NoSelection, gio, glib, pango,
 </span><span class="boring">};
 </span><span class="boring">
+</span><span class="boring">use crate::APP_ID;
 </span><span class="boring">use crate::collection_object::{CollectionData, CollectionObject};
 </span><span class="boring">use crate::task_object::TaskObject;
 </span><span class="boring">use crate::utils::data_path;
-</span><span class="boring">use crate::APP_ID;
 </span><span class="boring">
 </span><span class="boring">glib::wrapper! {
 </span><span class="boring">    pub struct Window(ObjectSubclass&lt;imp::Window&gt;)
@@ -3933,7 +3933,7 @@ It assures that <code>tasks_list</code> is only visible if the number of tasks i
 </span><span class="boring">            }
 </span><span class="boring">        ));
 </span><span class="boring">
-</span><span class="boring">        let response = dialog.choose_future(self).await;
+</span><span class="boring">        let response = dialog.choose_future(Some(self)).await;
 </span><span class="boring">
 </span><span class="boring">        // Return if the user chose `cancel_response`
 </span><span class="boring">        if response == cancel_response {
@@ -3965,16 +3965,16 @@ It assures that <code>tasks_list</code> is only visible if the number of tasks i
 </span><span class="boring">use adw::subclass::prelude::*;
 </span><span class="boring">use adw::{ActionRow, AlertDialog, ResponseAppearance};
 </span><span class="boring">use gio::Settings;
-</span><span class="boring">use glib::{clone, Object};
+</span><span class="boring">use glib::{Object, clone};
 </span><span class="boring">use gtk::{
-</span><span class="boring">    gio, glib, pango, Align, CheckButton, CustomFilter, Entry, FilterListModel, Label,
-</span><span class="boring">    ListBoxRow, NoSelection,
+</span><span class="boring">    Align, CheckButton, CustomFilter, Entry, FilterListModel, Label, ListBoxRow,
+</span><span class="boring">    NoSelection, gio, glib, pango,
 </span><span class="boring">};
 </span><span class="boring">
+</span><span class="boring">use crate::APP_ID;
 </span><span class="boring">use crate::collection_object::{CollectionData, CollectionObject};
 </span><span class="boring">use crate::task_object::TaskObject;
 </span><span class="boring">use crate::utils::data_path;
-</span><span class="boring">use crate::APP_ID;
 </span><span class="boring">
 </span><span class="boring">glib::wrapper! {
 </span><span class="boring">    pub struct Window(ObjectSubclass&lt;imp::Window&gt;)
@@ -4363,7 +4363,7 @@ It assures that <code>tasks_list</code> is only visible if the number of tasks i
 </span><span class="boring">            }
 </span><span class="boring">        ));
 </span><span class="boring">
-</span><span class="boring">        let response = dialog.choose_future(self).await;
+</span><span class="boring">        let response = dialog.choose_future(Some(self)).await;
 </span><span class="boring">
 </span><span class="boring">        // Return if the user chose `cancel_response`
 </span><span class="boring">        if response == cancel_response {
@@ -4412,11 +4412,11 @@ It is a convenient way to add asynchronous actions to subclassed widgets.</p>
 </span><span class="boring">use std::fs::File;
 </span><span class="boring">
 </span><span class="boring">use adw::subclass::prelude::*;
-</span><span class="boring">use adw::{prelude::*, NavigationSplitView};
+</span><span class="boring">use adw::{NavigationSplitView, prelude::*};
 </span><span class="boring">use gio::Settings;
 </span><span class="boring">use glib::subclass::InitializingObject;
 </span><span class="boring">use gtk::glib::SignalHandlerId;
-</span><span class="boring">use gtk::{gio, glib, CompositeTemplate, Entry, FilterListModel, ListBox, Stack};
+</span><span class="boring">use gtk::{CompositeTemplate, Entry, FilterListModel, ListBox, Stack, gio, glib};
 </span><span class="boring">use std::cell::OnceCell;
 </span><span class="boring">
 </span><span class="boring">use crate::collection_object::{CollectionData, CollectionObject};
@@ -4537,16 +4537,16 @@ Afterwards we navigate forward on our leaflet, which means we navigate to the ta
 </span><span class="boring">use adw::subclass::prelude::*;
 </span><span class="boring">use adw::{ActionRow, AlertDialog, ResponseAppearance};
 </span><span class="boring">use gio::Settings;
-</span><span class="boring">use glib::{clone, Object};
+</span><span class="boring">use glib::{Object, clone};
 </span><span class="boring">use gtk::{
-</span><span class="boring">    gio, glib, pango, Align, CheckButton, CustomFilter, Entry, FilterListModel, Label,
-</span><span class="boring">    ListBoxRow, NoSelection,
+</span><span class="boring">    Align, CheckButton, CustomFilter, Entry, FilterListModel, Label, ListBoxRow,
+</span><span class="boring">    NoSelection, gio, glib, pango,
 </span><span class="boring">};
 </span><span class="boring">
+</span><span class="boring">use crate::APP_ID;
 </span><span class="boring">use crate::collection_object::{CollectionData, CollectionObject};
 </span><span class="boring">use crate::task_object::TaskObject;
 </span><span class="boring">use crate::utils::data_path;
-</span><span class="boring">use crate::APP_ID;
 </span><span class="boring">
 </span><span class="boring">glib::wrapper! {
 </span><span class="boring">    pub struct Window(ObjectSubclass&lt;imp::Window&gt;)
@@ -4935,7 +4935,7 @@ Afterwards we navigate forward on our leaflet, which means we navigate to the ta
             }
         ));
 
-        let response = dialog.choose_future(self).await;
+        let response = dialog.choose_future(Some(self)).await;
 
         // Return if the user chose `cancel_response`
         if response == cancel_response {
@@ -4971,16 +4971,16 @@ Finally, we assure that when we click on a row of <code>collections_list</code>,
 </span><span class="boring">use adw::subclass::prelude::*;
 </span><span class="boring">use adw::{ActionRow, AlertDialog, ResponseAppearance};
 </span><span class="boring">use gio::Settings;
-</span><span class="boring">use glib::{clone, Object};
+</span><span class="boring">use glib::{Object, clone};
 </span><span class="boring">use gtk::{
-</span><span class="boring">    gio, glib, pango, Align, CheckButton, CustomFilter, Entry, FilterListModel, Label,
-</span><span class="boring">    ListBoxRow, NoSelection,
+</span><span class="boring">    Align, CheckButton, CustomFilter, Entry, FilterListModel, Label, ListBoxRow,
+</span><span class="boring">    NoSelection, gio, glib, pango,
 </span><span class="boring">};
 </span><span class="boring">
+</span><span class="boring">use crate::APP_ID;
 </span><span class="boring">use crate::collection_object::{CollectionData, CollectionObject};
 </span><span class="boring">use crate::task_object::TaskObject;
 </span><span class="boring">use crate::utils::data_path;
-</span><span class="boring">use crate::APP_ID;
 </span><span class="boring">
 </span><span class="boring">glib::wrapper! {
 </span><span class="boring">    pub struct Window(ObjectSubclass&lt;imp::Window&gt;)
@@ -5369,7 +5369,7 @@ Finally, we assure that when we click on a row of <code>collections_list</code>,
 </span><span class="boring">            }
 </span><span class="boring">        ));
 </span><span class="boring">
-</span><span class="boring">        let response = dialog.choose_future(self).await;
+</span><span class="boring">        let response = dialog.choose_future(Some(self)).await;
 </span><span class="boring">
 </span><span class="boring">        // Return if the user chose `cancel_response`
 </span><span class="boring">        if response == cancel_response {
@@ -5402,16 +5402,16 @@ This method ensure when there is at least one collection, the “main” page is
 </span><span class="boring">use adw::subclass::prelude::*;
 </span><span class="boring">use adw::{ActionRow, AlertDialog, ResponseAppearance};
 </span><span class="boring">use gio::Settings;
-</span><span class="boring">use glib::{clone, Object};
+</span><span class="boring">use glib::{Object, clone};
 </span><span class="boring">use gtk::{
-</span><span class="boring">    gio, glib, pango, Align, CheckButton, CustomFilter, Entry, FilterListModel, Label,
-</span><span class="boring">    ListBoxRow, NoSelection,
+</span><span class="boring">    Align, CheckButton, CustomFilter, Entry, FilterListModel, Label, ListBoxRow,
+</span><span class="boring">    NoSelection, gio, glib, pango,
 </span><span class="boring">};
 </span><span class="boring">
+</span><span class="boring">use crate::APP_ID;
 </span><span class="boring">use crate::collection_object::{CollectionData, CollectionObject};
 </span><span class="boring">use crate::task_object::TaskObject;
 </span><span class="boring">use crate::utils::data_path;
-</span><span class="boring">use crate::APP_ID;
 </span><span class="boring">
 </span><span class="boring">glib::wrapper! {
 </span><span class="boring">    pub struct Window(ObjectSubclass&lt;imp::Window&gt;)
@@ -5800,7 +5800,7 @@ This method ensure when there is at least one collection, the “main” page is
 </span><span class="boring">            }
 </span><span class="boring">        ));
 </span><span class="boring">
-</span><span class="boring">        let response = dialog.choose_future(self).await;
+</span><span class="boring">        let response = dialog.choose_future(Some(self)).await;
 </span><span class="boring">
 </span><span class="boring">        // Return if the user chose `cancel_response`
 </span><span class="boring">        if response == cancel_response {

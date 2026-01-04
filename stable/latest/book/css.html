@@ -36,10 +36,10 @@
             const path_to_root = "";
             const default_light_theme = "rust";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-60e0fa99.js";
+            window.path_to_searchindex_js = "searchindex-bac78f95.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-9fb23523.js"></script>
+        <script src="toc-6221b6d3.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -199,7 +199,7 @@ As usual, the widgets are created during the “activate” step.</p>
 <p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/css/1/main.rs">listings/css/1/main.rs</a></p>
 <pre><code class="language-rust"><span class="boring">use gdk::Display;
 </span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{gdk, glib, Application, ApplicationWindow, Button, CssProvider};
+</span><span class="boring">use gtk::{Application, ApplicationWindow, Button, CssProvider, gdk, glib};
 </span><span class="boring">
 </span>const APP_ID: &amp;str = "org.gtk_rs.Css1";
 
@@ -284,7 +284,7 @@ Which is why we add the style class <code>button-1</code> to the first one.</p>
 <p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/css/3/main.rs">listings/css/3/main.rs</a></p>
 <pre><code class="language-rust"><span class="boring">use gdk::Display;
 </span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{gdk, glib, Application, ApplicationWindow, Button, CssProvider};
+</span><span class="boring">use gtk::{Application, ApplicationWindow, Button, CssProvider, gdk, glib};
 </span><span class="boring">
 </span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.Css3";
 </span><span class="boring">
@@ -357,7 +357,7 @@ We set the name of the first one with <a href="https://gtk-rs.org/gtk4-rs/stable
 <p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/css/4/main.rs">listings/css/4/main.rs</a></p>
 <pre><code class="language-rust"><span class="boring">use gdk::Display;
 </span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{gdk, glib, Application, ApplicationWindow, Button, CssProvider};
+</span><span class="boring">use gtk::{Application, ApplicationWindow, Button, CssProvider, gdk, glib};
 </span><span class="boring">
 </span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.Css4";
 </span><span class="boring">
@@ -606,7 +606,7 @@ In our case, the widget <code>TaskRow</code> then corresponds to the node <code>
 </span><span class="boring">
 </span><span class="boring">use glib::Binding;
 </span><span class="boring">use gtk::subclass::prelude::*;
-</span><span class="boring">use gtk::{glib, CheckButton, CompositeTemplate, Label};
+</span><span class="boring">use gtk::{CheckButton, CompositeTemplate, Label, glib};
 </span><span class="boring">
 </span><span class="boring">// Object holding the state
 </span><span class="boring">#[derive(Default, CompositeTemplate)]
@@ -679,7 +679,7 @@ We can then access the pre-defined color by adding an <code>@</code> in front of
 </span><span class="boring">
 </span><span class="boring">use gdk::Display;
 </span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{gdk, gio, glib, Application, CssProvider};
+</span><span class="boring">use gtk::{Application, CssProvider, gdk, gio, glib};
 </span><span class="boring">use window::Window;
 </span><span class="boring">
 </span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.Todo3";
@@ -735,7 +735,7 @@ However, this time we load styles using <code>load_from_resource()</code>.</p>
 </span><span class="boring">
 </span><span class="boring">use gdk::Display;
 </span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{gdk, gio, glib, Application, CssProvider};
+</span><span class="boring">use gtk::{Application, CssProvider, gdk, gio, glib};
 </span><span class="boring">use window::Window;
 </span><span class="boring">
 </span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.Todo3";

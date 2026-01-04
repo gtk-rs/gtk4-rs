@@ -36,10 +36,10 @@
             const path_to_root = "";
             const default_light_theme = "rust";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-60e0fa99.js";
+            window.path_to_searchindex_js = "searchindex-bac78f95.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-9fb23523.js"></script>
+        <script src="toc-6221b6d3.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -187,7 +187,7 @@ Let’s check out the simplest case where we activate an action without a parame
 <p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/actions/1/main.rs">listings/actions/1/main.rs</a></p>
 <pre><code class="language-rust no_run"><span class="boring">use gio::ActionEntry;
 </span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{gio, glib, Application, ApplicationWindow};
+</span><span class="boring">use gtk::{Application, ApplicationWindow, gio, glib};
 </span><span class="boring">
 </span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.Actions1";
 </span><span class="boring">
@@ -230,7 +230,7 @@ Finally, we add the action entry to the window via <a href="https://gtk-rs.org/g
 <p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/actions/1/main.rs">listings/actions/1/main.rs</a></p>
 <pre><code class="language-rust no_run"><span class="boring">use gio::ActionEntry;
 </span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{gio, glib, Application, ApplicationWindow};
+</span><span class="boring">use gtk::{Application, ApplicationWindow, gio, glib};
 </span><span class="boring">
 </span>const APP_ID: &amp;str = "org.gtk_rs.Actions1";
 
@@ -287,7 +287,7 @@ This means we have to clone <code>window</code> into the closure.</p>
 </span><span class="boring">use glib::clone;
 </span><span class="boring">use gtk::gio::SimpleActionGroup;
 </span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{gio, glib, Application, ApplicationWindow};
+</span><span class="boring">use gtk::{Application, ApplicationWindow, gio, glib};
 </span><span class="boring">
 </span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.Actions2";
 </span><span class="boring">
@@ -337,7 +337,7 @@ This means we have to clone <code>window</code> into the closure.</p>
 </span><span class="boring">use glib::clone;
 </span><span class="boring">use gtk::gio::SimpleActionGroup;
 </span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{gio, glib, Application, ApplicationWindow};
+</span><span class="boring">use gtk::{Application, ApplicationWindow, gio, glib};
 </span><span class="boring">
 </span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.Actions2";
 </span><span class="boring">
@@ -397,7 +397,7 @@ Let’s see how this works.</p>
 <pre><code class="language-rust"><span class="boring">use gio::ActionEntry;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::{
-</span><span class="boring">    gio, glib, Align, Application, ApplicationWindow, Button, Label, Orientation,
+</span><span class="boring">    Align, Application, ApplicationWindow, Button, Label, Orientation, gio, glib,
 </span><span class="boring">};
 </span><span class="boring">
 </span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.Actions3";
@@ -505,7 +505,7 @@ With <a href="https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/builders/struct
 <pre><code class="language-rust"><span class="boring">use gio::ActionEntry;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::{
-</span><span class="boring">    gio, glib, Align, Application, ApplicationWindow, Button, Label, Orientation,
+</span><span class="boring">    Align, Application, ApplicationWindow, Button, Label, Orientation, gio, glib,
 </span><span class="boring">};
 </span><span class="boring">
 </span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.Actions4";
@@ -627,7 +627,7 @@ Within the template we can then set the “action-name” and “action-target�
 </span><span class="boring">use glib::Object;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::subclass::prelude::*;
-</span><span class="boring">use gtk::{gio, glib, Application};
+</span><span class="boring">use gtk::{Application, gio, glib};
 </span><span class="boring">
 </span><span class="boring">glib::wrapper! {
 </span><span class="boring">    pub struct Window(ObjectSubclass&lt;imp::Window&gt;)
@@ -677,7 +677,7 @@ Within the template we can then set the “action-name” and “action-target�
 <p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/actions/5/window/imp.rs">listings/actions/5/window/imp.rs</a></p>
 <pre><code class="language-rust"><span class="boring">use glib::subclass::InitializingObject;
 </span><span class="boring">use gtk::subclass::prelude::*;
-</span><span class="boring">use gtk::{glib, CompositeTemplate, Label};
+</span><span class="boring">use gtk::{CompositeTemplate, Label, glib};
 </span><span class="boring">
 </span><span class="boring">// Object holding the state
 </span><span class="boring">#[derive(CompositeTemplate, Default)]
@@ -746,7 +746,7 @@ This means that the caller can expect the boolean state to toggle after activati
 </span><span class="boring">use glib::Object;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::subclass::prelude::*;
-</span><span class="boring">use gtk::{gio, glib, Application, Orientation};
+</span><span class="boring">use gtk::{Application, Orientation, gio, glib};
 </span><span class="boring">
 </span><span class="boring">glib::wrapper! {
 </span><span class="boring">    pub struct Window(ObjectSubclass&lt;imp::Window&gt;)
@@ -838,7 +838,7 @@ We don’t need the action state to implement orientation switching, however it 
 </span><span class="boring">use glib::Object;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::subclass::prelude::*;
-</span><span class="boring">use gtk::{gio, glib, Application, Orientation};
+</span><span class="boring">use gtk::{Application, Orientation, gio, glib};
 </span><span class="boring">
 </span><span class="boring">glib::wrapper! {
 </span><span class="boring">    pub struct Window(ObjectSubclass&lt;imp::Window&gt;)
@@ -1012,7 +1012,7 @@ Since <a href="https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.Sett
 <pre><code class="language-rust"><span class="boring">use gio::Settings;
 </span><span class="boring">use glib::subclass::InitializingObject;
 </span><span class="boring">use gtk::subclass::prelude::*;
-</span><span class="boring">use gtk::{gio, glib, Button, CompositeTemplate, Label};
+</span><span class="boring">use gtk::{Button, CompositeTemplate, Label, gio, glib};
 </span><span class="boring">use std::cell::OnceCell;
 </span><span class="boring">
 </span>// Object holding the state
@@ -1075,7 +1075,7 @@ pub struct Window {
 </span><span class="boring">use glib::Object;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::subclass::prelude::*;
-</span><span class="boring">use gtk::{gio, glib, Application, Orientation};
+</span><span class="boring">use gtk::{Application, Orientation, gio, glib};
 </span><span class="boring">
 </span><span class="boring">use crate::APP_ID;
 </span><span class="boring">
@@ -1182,7 +1182,7 @@ We create actions with the<a href="https://gtk-rs.org/gtk-rs-core/stable/latest/
 </span><span class="boring">use glib::Object;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::subclass::prelude::*;
-</span><span class="boring">use gtk::{gio, glib, Application, Orientation};
+</span><span class="boring">use gtk::{Application, Orientation, gio, glib};
 </span><span class="boring">
 </span><span class="boring">use crate::APP_ID;
 </span><span class="boring">
@@ -1291,7 +1291,7 @@ For the stateful actions, instead of adding callbacks to their “activate” si
 </span><span class="boring">use glib::Object;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::subclass::prelude::*;
-</span><span class="boring">use gtk::{gio, glib, Application, Orientation};
+</span><span class="boring">use gtk::{Application, Orientation, gio, glib};
 </span><span class="boring">
 </span><span class="boring">use crate::APP_ID;
 </span><span class="boring">
@@ -1394,7 +1394,7 @@ For the stateful actions, instead of adding callbacks to their “activate” si
 <pre><code class="language-rust"><span class="boring">use gio::Settings;
 </span><span class="boring">use glib::subclass::InitializingObject;
 </span><span class="boring">use gtk::subclass::prelude::*;
-</span><span class="boring">use gtk::{gio, glib, Button, CompositeTemplate, Label};
+</span><span class="boring">use gtk::{Button, CompositeTemplate, Label, gio, glib};
 </span><span class="boring">use std::cell::OnceCell;
 </span><span class="boring">
 </span><span class="boring">// Object holding the state

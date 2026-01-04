@@ -36,10 +36,10 @@
             const path_to_root = "";
             const default_light_theme = "rust";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-60e0fa99.js";
+            window.path_to_searchindex_js = "searchindex-bac78f95.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-9fb23523.js"></script>
+        <script src="toc-6221b6d3.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -187,7 +187,7 @@ Each label will display an integer starting from 0 and ranging up to 100.</p>
 <p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/list_widgets/1/main.rs">listings/list_widgets/1/main.rs</a></p>
 <pre><code class="language-rust"><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::{
-</span><span class="boring">    glib, Application, ApplicationWindow, Label, ListBox, PolicyType, ScrolledWindow,
+</span><span class="boring">    Application, ApplicationWindow, Label, ListBox, PolicyType, ScrolledWindow, glib,
 </span><span class="boring">};
 </span><span class="boring">
 </span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.ListWidgets1";
@@ -235,7 +235,7 @@ Now we can scroll through our elements.</p>
 <p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/list_widgets/1/main.rs">listings/list_widgets/1/main.rs</a></p>
 <pre><code class="language-rust"><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::{
-</span><span class="boring">    glib, Application, ApplicationWindow, Label, ListBox, PolicyType, ScrolledWindow,
+</span><span class="boring">    Application, ApplicationWindow, Label, ListBox, PolicyType, ScrolledWindow, glib,
 </span><span class="boring">};
 </span><span class="boring">
 </span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.ListWidgets1";
@@ -352,10 +352,10 @@ Neither <code>Label</code> nor any other widget is mentioned here.</p>
 <pre><code class="language-rust"><span class="boring">mod integer_object;
 </span><span class="boring">
 </span><span class="boring">use gtk::{
-</span><span class="boring">    gio, glib, Application, ApplicationWindow, Label, ListView, PolicyType,
-</span><span class="boring">    ScrolledWindow, SignalListItemFactory, SingleSelection,
+</span><span class="boring">    Application, ApplicationWindow, Label, ListView, PolicyType, ScrolledWindow,
+</span><span class="boring">    SignalListItemFactory, SingleSelection, gio, glib,
 </span><span class="boring">};
-</span><span class="boring">use gtk::{prelude::*, ListItem};
+</span><span class="boring">use gtk::{ListItem, prelude::*};
 </span><span class="boring">use integer_object::IntegerObject;
 </span><span class="boring">
 </span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.ListWidgets2";
@@ -440,10 +440,10 @@ We connect to it to create a <code>Label</code> for every requested widget.</p>
 <pre><code class="language-rust"><span class="boring">mod integer_object;
 </span><span class="boring">
 </span><span class="boring">use gtk::{
-</span><span class="boring">    gio, glib, Application, ApplicationWindow, Label, ListView, PolicyType,
-</span><span class="boring">    ScrolledWindow, SignalListItemFactory, SingleSelection,
+</span><span class="boring">    Application, ApplicationWindow, Label, ListView, PolicyType, ScrolledWindow,
+</span><span class="boring">    SignalListItemFactory, SingleSelection, gio, glib,
 </span><span class="boring">};
-</span><span class="boring">use gtk::{prelude::*, ListItem};
+</span><span class="boring">use gtk::{ListItem, prelude::*};
 </span><span class="boring">use integer_object::IntegerObject;
 </span><span class="boring">
 </span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.ListWidgets2";
@@ -525,10 +525,10 @@ We connect to it to create a <code>Label</code> for every requested widget.</p>
 <pre><code class="language-rust"><span class="boring">mod integer_object;
 </span><span class="boring">
 </span><span class="boring">use gtk::{
-</span><span class="boring">    gio, glib, Application, ApplicationWindow, Label, ListView, PolicyType,
-</span><span class="boring">    ScrolledWindow, SignalListItemFactory, SingleSelection,
+</span><span class="boring">    Application, ApplicationWindow, Label, ListView, PolicyType, ScrolledWindow,
+</span><span class="boring">    SignalListItemFactory, SingleSelection, gio, glib,
 </span><span class="boring">};
-</span><span class="boring">use gtk::{prelude::*, ListItem};
+</span><span class="boring">use gtk::{ListItem, prelude::*};
 </span><span class="boring">use integer_object::IntegerObject;
 </span><span class="boring">
 </span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.ListWidgets2";
@@ -612,10 +612,10 @@ Then we pass the model and the factory to the <a href="https://gtk-rs.org/gtk4-r
 <pre><code class="language-rust"><span class="boring">mod integer_object;
 </span><span class="boring">
 </span><span class="boring">use gtk::{
-</span><span class="boring">    gio, glib, Application, ApplicationWindow, Label, ListView, PolicyType,
-</span><span class="boring">    ScrolledWindow, SignalListItemFactory, SingleSelection,
+</span><span class="boring">    Application, ApplicationWindow, Label, ListView, PolicyType, ScrolledWindow,
+</span><span class="boring">    SignalListItemFactory, SingleSelection, gio, glib,
 </span><span class="boring">};
-</span><span class="boring">use gtk::{prelude::*, ListItem};
+</span><span class="boring">use gtk::{ListItem, prelude::*};
 </span><span class="boring">use integer_object::IntegerObject;
 </span><span class="boring">
 </span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.ListWidgets2";
@@ -697,10 +697,10 @@ Then we pass the model and the factory to the <a href="https://gtk-rs.org/gtk4-r
 <pre><code class="language-rust"><span class="boring">mod integer_object;
 </span><span class="boring">
 </span><span class="boring">use gtk::{
-</span><span class="boring">    gio, glib, Application, ApplicationWindow, Label, ListView, PolicyType,
-</span><span class="boring">    ScrolledWindow, SignalListItemFactory, SingleSelection,
+</span><span class="boring">    Application, ApplicationWindow, Label, ListView, PolicyType, ScrolledWindow,
+</span><span class="boring">    SignalListItemFactory, SingleSelection, gio, glib,
 </span><span class="boring">};
-</span><span class="boring">use gtk::{prelude::*, ListItem};
+</span><span class="boring">use gtk::{ListItem, prelude::*};
 </span><span class="boring">use integer_object::IntegerObject;
 </span><span class="boring">
 </span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.ListWidgets2";
@@ -807,10 +807,10 @@ For that we first add the method <code>increase_number</code> to our <code>Integ
 <pre><code class="language-rust"><span class="boring">mod integer_object;
 </span><span class="boring">
 </span><span class="boring">use gtk::{
-</span><span class="boring">    gio, glib, Application, ApplicationWindow, Label, ListView, PolicyType,
-</span><span class="boring">    ScrolledWindow, SignalListItemFactory, SingleSelection,
+</span><span class="boring">    Application, ApplicationWindow, Label, ListView, PolicyType, ScrolledWindow,
+</span><span class="boring">    SignalListItemFactory, SingleSelection, gio, glib,
 </span><span class="boring">};
-</span><span class="boring">use gtk::{prelude::*, ListItem};
+</span><span class="boring">use gtk::{ListItem, prelude::*};
 </span><span class="boring">use integer_object::IntegerObject;
 </span><span class="boring">
 </span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.ListWidgets3";
@@ -910,10 +910,10 @@ One naive approach would be to bind the properties in the “bind” step of the
 <pre><code class="language-rust"><span class="boring">mod integer_object;
 </span><span class="boring">
 </span><span class="boring">use gtk::{
-</span><span class="boring">    gio, glib, Application, ApplicationWindow, Label, ListView, PolicyType,
-</span><span class="boring">    ScrolledWindow, SignalListItemFactory, SingleSelection,
+</span><span class="boring">    Application, ApplicationWindow, Label, ListView, PolicyType, ScrolledWindow,
+</span><span class="boring">    SignalListItemFactory, SingleSelection, gio, glib,
 </span><span class="boring">};
-</span><span class="boring">use gtk::{prelude::*, ListItem};
+</span><span class="boring">use gtk::{ListItem, prelude::*};
 </span><span class="boring">use integer_object::IntegerObject;
 </span><span class="boring">
 </span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.ListWidgets3";
@@ -1019,10 +1019,10 @@ Let’s see how the “setup” step now works.</p>
 <pre><code class="language-rust"><span class="boring">mod integer_object;
 </span><span class="boring">
 </span><span class="boring">use gtk::{
-</span><span class="boring">    gio, glib, Application, ApplicationWindow, Label, ListView, PolicyType,
-</span><span class="boring">    ScrolledWindow, SignalListItemFactory, SingleSelection, Widget,
+</span><span class="boring">    Application, ApplicationWindow, Label, ListView, PolicyType, ScrolledWindow,
+</span><span class="boring">    SignalListItemFactory, SingleSelection, Widget, gio, glib,
 </span><span class="boring">};
-</span><span class="boring">use gtk::{prelude::*, ListItem};
+</span><span class="boring">use gtk::{ListItem, prelude::*};
 </span><span class="boring">use integer_object::IntegerObject;
 </span><span class="boring">
 </span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.ListWidgets4";
@@ -1113,11 +1113,12 @@ We do that by passing it to a <a href="https://gtk-rs.org/gtk4-rs/stable/latest/
 <pre><code class="language-rust"><span class="boring">mod integer_object;
 </span><span class="boring">
 </span><span class="boring">use gtk::{
-</span><span class="boring">    gio, glib, Application, ApplicationWindow, CustomFilter, CustomSorter,
-</span><span class="boring">    FilterChange, FilterListModel, Label, ListView, PolicyType, ScrolledWindow,
-</span><span class="boring">    SignalListItemFactory, SingleSelection, SortListModel, SorterChange, Widget,
+</span><span class="boring">    Application, ApplicationWindow, CustomFilter, CustomSorter, FilterChange,
+</span><span class="boring">    FilterListModel, Label, ListView, PolicyType, ScrolledWindow,
+</span><span class="boring">    SignalListItemFactory, SingleSelection, SortListModel, SorterChange, Widget, gio,
+</span><span class="boring">    glib,
 </span><span class="boring">};
-</span><span class="boring">use gtk::{prelude::*, ListItem};
+</span><span class="boring">use gtk::{ListItem, prelude::*};
 </span><span class="boring">use integer_object::IntegerObject;
 </span><span class="boring">
 </span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.ListWidgets5";
@@ -1231,11 +1232,12 @@ Now we pass the filtered model to <a href="https://gtk-rs.org/gtk4-rs/stable/lat
 <pre><code class="language-rust"><span class="boring">mod integer_object;
 </span><span class="boring">
 </span><span class="boring">use gtk::{
-</span><span class="boring">    gio, glib, Application, ApplicationWindow, CustomFilter, CustomSorter,
-</span><span class="boring">    FilterChange, FilterListModel, Label, ListView, PolicyType, ScrolledWindow,
-</span><span class="boring">    SignalListItemFactory, SingleSelection, SortListModel, SorterChange, Widget,
+</span><span class="boring">    Application, ApplicationWindow, CustomFilter, CustomSorter, FilterChange,
+</span><span class="boring">    FilterListModel, Label, ListView, PolicyType, ScrolledWindow,
+</span><span class="boring">    SignalListItemFactory, SingleSelection, SortListModel, SorterChange, Widget, gio,
+</span><span class="boring">    glib,
 </span><span class="boring">};
-</span><span class="boring">use gtk::{prelude::*, ListItem};
+</span><span class="boring">use gtk::{ListItem, prelude::*};
 </span><span class="boring">use integer_object::IntegerObject;
 </span><span class="boring">
 </span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.ListWidgets5";
@@ -1348,11 +1350,12 @@ Now we pass the filtered model to <a href="https://gtk-rs.org/gtk4-rs/stable/lat
 <pre><code class="language-rust"><span class="boring">mod integer_object;
 </span><span class="boring">
 </span><span class="boring">use gtk::{
-</span><span class="boring">    gio, glib, Application, ApplicationWindow, CustomFilter, CustomSorter,
-</span><span class="boring">    FilterChange, FilterListModel, Label, ListView, PolicyType, ScrolledWindow,
-</span><span class="boring">    SignalListItemFactory, SingleSelection, SortListModel, SorterChange, Widget,
+</span><span class="boring">    Application, ApplicationWindow, CustomFilter, CustomSorter, FilterChange,
+</span><span class="boring">    FilterListModel, Label, ListView, PolicyType, ScrolledWindow,
+</span><span class="boring">    SignalListItemFactory, SingleSelection, SortListModel, SorterChange, Widget, gio,
+</span><span class="boring">    glib,
 </span><span class="boring">};
-</span><span class="boring">use gtk::{prelude::*, ListItem};
+</span><span class="boring">use gtk::{ListItem, prelude::*};
 </span><span class="boring">use integer_object::IntegerObject;
 </span><span class="boring">
 </span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.ListWidgets5";
@@ -1472,11 +1475,11 @@ Filter and sorter is controlled by the factory, so nothing changes here.
 This is why we will skip this topic here.</p>
 <p>First, we add a bunch of strings to our model.</p>
 <p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/list_widgets/6/main.rs">listings/list_widgets/6/main.rs</a></p>
-<pre><code class="language-rust"><span class="boring">use gtk::{glib, prelude::*, ListItem};
-</span><span class="boring">use gtk::{
+<pre><code class="language-rust"><span class="boring">use gtk::{
 </span><span class="boring">    Application, ApplicationWindow, Label, ListView, NoSelection, PolicyType,
 </span><span class="boring">    ScrolledWindow, SignalListItemFactory, StringList, StringObject, Widget,
 </span><span class="boring">};
+</span><span class="boring">use gtk::{ListItem, glib, prelude::*};
 </span><span class="boring">
 </span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.ListWidgets6";
 </span><span class="boring">
@@ -1538,11 +1541,11 @@ This means we don’t have to create a custom GObject for our model anymore.</p>
 <p>As usual, we connect the label to the list item via an expression.
 Here we can use <a href="https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.StringObject.html"><code>StringObject</code></a>, which exposes its content via the <a href="https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.StringObject.html#string">property “string”</a>.</p>
 <p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/list_widgets/6/main.rs">listings/list_widgets/6/main.rs</a></p>
-<pre><code class="language-rust"><span class="boring">use gtk::{glib, prelude::*, ListItem};
-</span><span class="boring">use gtk::{
+<pre><code class="language-rust"><span class="boring">use gtk::{
 </span><span class="boring">    Application, ApplicationWindow, Label, ListView, NoSelection, PolicyType,
 </span><span class="boring">    ScrolledWindow, SignalListItemFactory, StringList, StringObject, Widget,
 </span><span class="boring">};
+</span><span class="boring">use gtk::{ListItem, glib, prelude::*};
 </span><span class="boring">
 </span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.ListWidgets6";
 </span><span class="boring">

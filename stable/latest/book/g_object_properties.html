@@ -36,10 +36,10 @@
             const path_to_root = "";
             const default_light_theme = "rust";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-60e0fa99.js";
+            window.path_to_searchindex_js = "searchindex-bac78f95.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-9fb23523.js"></script>
+        <script src="toc-6221b6d3.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -186,7 +186,7 @@ According to the GTK docs, it can be read and be written to.
 That is why <code>gtk-rs</code> provides corresponding <a href="https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.Switch.html#method.is_active"><code>is_active</code></a> and <a href="https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.Switch.html#method.set_active"><code>set_active</code></a> methods.</p>
 <p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/g_object_properties/1/main.rs">listings/g_object_properties/1/main.rs</a></p>
 <pre><code class="language-rust"><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{glib, Align, Application, ApplicationWindow, Box, Orientation, Switch};
+</span><span class="boring">use gtk::{Align, Application, ApplicationWindow, Box, Orientation, Switch, glib};
 </span><span class="boring">
 </span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.GObjectProperties1";
 </span><span class="boring">
@@ -239,7 +239,7 @@ That is why <code>gtk-rs</code> provides corresponding <a href="https://gtk-rs.o
 Let’s see how that would look like for two <code>Switch</code> instances.</p>
 <p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/g_object_properties/2/main.rs">listings/g_object_properties/2/main.rs</a></p>
 <pre><code class="language-rust"><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{glib, Align, Application, ApplicationWindow, Box, Orientation, Switch};
+</span><span class="boring">use gtk::{Align, Application, ApplicationWindow, Box, Orientation, Switch, glib};
 </span><span class="boring">
 </span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.GObjectProperties3";
 </span><span class="boring">
@@ -292,7 +292,7 @@ Let’s see how that would look like for two <code>Switch</code> instances.</p>
 We also want the binding to be bidirectional, so we specify by calling the <a href="https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/object/struct.BindingBuilder.html#method.bidirectional"><code>bidirectional</code></a> method.</p>
 <p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/g_object_properties/2/main.rs">listings/g_object_properties/2/main.rs</a></p>
 <pre><code class="language-rust"><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{glib, Align, Application, ApplicationWindow, Box, Orientation, Switch};
+</span><span class="boring">use gtk::{Align, Application, ApplicationWindow, Box, Orientation, Switch, glib};
 </span><span class="boring">
 </span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.GObjectProperties3";
 </span><span class="boring">
@@ -517,7 +517,7 @@ impl ButtonImpl for CustomButton {
 </span><span class="boring">
 </span><span class="boring">use custom_button::CustomButton;
 </span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{glib, Align, Application, ApplicationWindow, Box, Orientation};
+</span><span class="boring">use gtk::{Align, Application, ApplicationWindow, Box, Orientation, glib};
 </span><span class="boring">
 </span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.GObjectProperties4";
 </span><span class="boring">
@@ -591,7 +591,7 @@ By leveraging <a href="https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/ob
 </span><span class="boring">
 </span><span class="boring">use custom_button::CustomButton;
 </span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{glib, Align, Application, ApplicationWindow, Box, Orientation};
+</span><span class="boring">use gtk::{Align, Application, ApplicationWindow, Box, Orientation, glib};
 </span><span class="boring">
 </span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.GObjectProperties4";
 </span><span class="boring">
@@ -675,7 +675,7 @@ For example like this:</p>
 </span><span class="boring">
 </span><span class="boring">use custom_button::CustomButton;
 </span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{glib, Align, Application, ApplicationWindow, Box, Orientation};
+</span><span class="boring">use gtk::{Align, Application, ApplicationWindow, Box, Orientation, glib};
 </span><span class="boring">
 </span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.GObjectProperties4";
 </span><span class="boring">

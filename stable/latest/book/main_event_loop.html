@@ -36,10 +36,10 @@
             const path_to_root = "";
             const default_light_theme = "rust";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-60e0fa99.js";
+            window.path_to_searchindex_js = "searchindex-bac78f95.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-9fb23523.js"></script>
+        <script src="toc-6221b6d3.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -196,7 +196,7 @@ The following example uses <a href="https://doc.rust-lang.org/std/thread/fn.slee
 use std::time::Duration;
 
 use gtk::prelude::*;
-use gtk::{self, glib, Application, ApplicationWindow, Button};
+use gtk::{self, Application, ApplicationWindow, Button, glib};
 
 const APP_ID: &amp;str = "org.gtk_rs.MainEventLoop1";
 
@@ -258,7 +258,7 @@ but frequently, we want to run a slightly longer operation in one go.</p>
 </span><span class="boring">use std::time::Duration;
 </span><span class="boring">
 </span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{self, gio, glib, Application, ApplicationWindow, Button};
+</span><span class="boring">use gtk::{self, Application, ApplicationWindow, Button, gio, glib};
 </span><span class="boring">
 </span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.MainEventLoop2";
 </span><span class="boring">
@@ -342,7 +342,7 @@ This <code>async</code> block is spawned on the <code>glib</code> main loop with
 </span><span class="boring">
 </span><span class="boring">use glib::clone;
 </span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{gio, glib, Application, ApplicationWindow, Button};
+</span><span class="boring">use gtk::{Application, ApplicationWindow, Button, gio, glib};
 </span><span class="boring">
 </span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.MainEventLoop3";
 </span><span class="boring">
@@ -427,7 +427,7 @@ The converted code looks and behaves very similar to the multithreaded code.</p>
 <p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/main_event_loop/4/main.rs">listings/main_event_loop/4/main.rs</a></p>
 <pre><code class="language-rust"><span class="boring">use glib::clone;
 </span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{glib, Application, ApplicationWindow, Button};
+</span><span class="boring">use gtk::{Application, ApplicationWindow, Button, glib};
 </span><span class="boring">
 </span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.MainEventLoop4";
 </span><span class="boring">
@@ -500,7 +500,7 @@ The converted code looks and behaves very similar to the multithreaded code.</p>
 <p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/main_event_loop/5/main.rs">listings/main_event_loop/5/main.rs</a></p>
 <pre><code class="language-rust"><span class="boring">use glib::clone;
 </span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{glib, Application, ApplicationWindow, Button};
+</span><span class="boring">use gtk::{Application, ApplicationWindow, Button, glib};
 </span><span class="boring">
 </span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.MainEventLoop5";
 </span><span class="boring">
@@ -625,8 +625,8 @@ We can then get the return value of the function by calling <code>await</code> o
 <p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/main_event_loop/6/main.rs">listings/main_event_loop/6/main.rs</a></p>
 <pre><code class="language-rust"><span class="boring">use glib::clone;
 </span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{gio, glib};
 </span><span class="boring">use gtk::{Application, ApplicationWindow, Button};
+</span><span class="boring">use gtk::{gio, glib};
 </span><span class="boring">use std::thread;
 </span><span class="boring">use std::time::Duration;
 </span><span class="boring">
@@ -702,7 +702,7 @@ We are getting a <a href="https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/str
 <p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/main_event_loop/7/main.rs">listings/main_event_loop/7/main.rs</a></p>
 <pre><code class="language-rust"><span class="boring">use glib::clone;
 </span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{glib, Application, ApplicationWindow, Button};
+</span><span class="boring">use gtk::{Application, ApplicationWindow, Button, glib};
 </span><span class="boring">
 </span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.MainEventLoop7";
 </span><span class="boring">
@@ -750,8 +750,8 @@ We are getting a <a href="https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/str
 </span><span class="boring">
 </span><span class="boring">#[cfg(target_os = "linux")]
 </span><span class="boring">async fn fetch_user_information(button: Button) {
-</span><span class="boring">    use ashpd::desktop::account::UserInformation;
 </span><span class="boring">    use ashpd::WindowIdentifier;
+</span><span class="boring">    use ashpd::desktop::account::UserInformation;
 </span><span class="boring">
 </span><span class="boring">    // Get native of button for window identifier
 </span><span class="boring">    let native = button.native().expect("Need to be able to get native.");

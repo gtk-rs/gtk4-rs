@@ -36,10 +36,10 @@
             const path_to_root = "";
             const default_light_theme = "rust";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-60e0fa99.js";
+            window.path_to_searchindex_js = "searchindex-bac78f95.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-9fb23523.js"></script>
+        <script src="toc-6221b6d3.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -229,17 +229,17 @@ fn build_ui(app: &amp;adw::Application) {
 </span><span class="boring">use std::fs::File;
 </span><span class="boring">
 </span><span class="boring">use gio::Settings;
-</span><span class="boring">use glib::{clone, Object};
+</span><span class="boring">use glib::{Object, clone};
 </span><span class="boring">use gtk::subclass::prelude::*;
 </span><span class="boring">use gtk::{
-</span><span class="boring">    gio, glib, CustomFilter, FilterListModel, NoSelection, SignalListItemFactory,
+</span><span class="boring">    CustomFilter, FilterListModel, NoSelection, SignalListItemFactory, gio, glib,
 </span><span class="boring">};
-</span><span class="boring">use gtk::{prelude::*, ListItem};
+</span><span class="boring">use gtk::{ListItem, prelude::*};
 </span><span class="boring">
+</span><span class="boring">use crate::APP_ID;
 </span><span class="boring">use crate::task_object::{TaskData, TaskObject};
 </span><span class="boring">use crate::task_row::TaskRow;
 </span><span class="boring">use crate::utils::data_path;
-</span><span class="boring">use crate::APP_ID;
 </span><span class="boring">
 </span><span class="boring">glib::wrapper! {
 </span><span class="boring">    pub struct Window(ObjectSubclass&lt;imp::Window&gt;)
@@ -547,7 +547,7 @@ The member variable <code>tasks_list</code> now describes a <code>ListBox</code>
 </span><span class="boring">use glib::subclass::InitializingObject;
 </span><span class="boring">
 </span><span class="boring">use adw::prelude::*;
-</span><span class="boring">use gtk::{gio, glib, CompositeTemplate, Entry, ListBox};
+</span><span class="boring">use gtk::{CompositeTemplate, Entry, ListBox, gio, glib};
 </span><span class="boring">use std::cell::OnceCell;
 </span><span class="boring">
 </span><span class="boring">use crate::task_object::{TaskData, TaskObject};
@@ -641,14 +641,14 @@ There we specify the model, as well as a closure describing how to transform the
 </span><span class="boring">use std::fs::File;
 </span><span class="boring">
 </span><span class="boring">use adw::subclass::prelude::*;
-</span><span class="boring">use adw::{prelude::*, ActionRow};
+</span><span class="boring">use adw::{ActionRow, prelude::*};
 </span><span class="boring">use gio::Settings;
-</span><span class="boring">use glib::{clone, Object};
-</span><span class="boring">use gtk::{gio, glib, Align, CheckButton, CustomFilter, FilterListModel, NoSelection};
+</span><span class="boring">use glib::{Object, clone};
+</span><span class="boring">use gtk::{Align, CheckButton, CustomFilter, FilterListModel, NoSelection, gio, glib};
 </span><span class="boring">
+</span><span class="boring">use crate::APP_ID;
 </span><span class="boring">use crate::task_object::{TaskData, TaskObject};
 </span><span class="boring">use crate::utils::data_path;
-</span><span class="boring">use crate::APP_ID;
 </span><span class="boring">
 </span><span class="boring">glib::wrapper! {
 </span><span class="boring">    pub struct Window(ObjectSubclass&lt;imp::Window&gt;)
@@ -889,14 +889,14 @@ That means we can just bind their properties without having to worry about unbin
 </span><span class="boring">use std::fs::File;
 </span><span class="boring">
 </span><span class="boring">use adw::subclass::prelude::*;
-</span><span class="boring">use adw::{prelude::*, ActionRow};
+</span><span class="boring">use adw::{ActionRow, prelude::*};
 </span><span class="boring">use gio::Settings;
-</span><span class="boring">use glib::{clone, Object};
-</span><span class="boring">use gtk::{gio, glib, Align, CheckButton, CustomFilter, FilterListModel, NoSelection};
+</span><span class="boring">use glib::{Object, clone};
+</span><span class="boring">use gtk::{Align, CheckButton, CustomFilter, FilterListModel, NoSelection, gio, glib};
 </span><span class="boring">
+</span><span class="boring">use crate::APP_ID;
 </span><span class="boring">use crate::task_object::{TaskData, TaskObject};
 </span><span class="boring">use crate::utils::data_path;
-</span><span class="boring">use crate::APP_ID;
 </span><span class="boring">
 </span><span class="boring">glib::wrapper! {
 </span><span class="boring">    pub struct Window(ObjectSubclass&lt;imp::Window&gt;)
@@ -1134,14 +1134,14 @@ That means we can just bind their properties without having to worry about unbin
 </span><span class="boring">use std::fs::File;
 </span><span class="boring">
 </span><span class="boring">use adw::subclass::prelude::*;
-</span><span class="boring">use adw::{prelude::*, ActionRow};
+</span><span class="boring">use adw::{ActionRow, prelude::*};
 </span><span class="boring">use gio::Settings;
-</span><span class="boring">use glib::{clone, Object};
-</span><span class="boring">use gtk::{gio, glib, Align, CheckButton, CustomFilter, FilterListModel, NoSelection};
+</span><span class="boring">use glib::{Object, clone};
+</span><span class="boring">use gtk::{Align, CheckButton, CustomFilter, FilterListModel, NoSelection, gio, glib};
 </span><span class="boring">
+</span><span class="boring">use crate::APP_ID;
 </span><span class="boring">use crate::task_object::{TaskData, TaskObject};
 </span><span class="boring">use crate::utils::data_path;
-</span><span class="boring">use crate::APP_ID;
 </span><span class="boring">
 </span><span class="boring">glib::wrapper! {
 </span><span class="boring">    pub struct Window(ObjectSubclass&lt;imp::Window&gt;)
@@ -1379,14 +1379,14 @@ That means we can just bind their properties without having to worry about unbin
 </span><span class="boring">use std::fs::File;
 </span><span class="boring">
 </span><span class="boring">use adw::subclass::prelude::*;
-</span><span class="boring">use adw::{prelude::*, ActionRow};
+</span><span class="boring">use adw::{ActionRow, prelude::*};
 </span><span class="boring">use gio::Settings;
-</span><span class="boring">use glib::{clone, Object};
-</span><span class="boring">use gtk::{gio, glib, Align, CheckButton, CustomFilter, FilterListModel, NoSelection};
+</span><span class="boring">use glib::{Object, clone};
+</span><span class="boring">use gtk::{Align, CheckButton, CustomFilter, FilterListModel, NoSelection, gio, glib};
 </span><span class="boring">
+</span><span class="boring">use crate::APP_ID;
 </span><span class="boring">use crate::task_object::{TaskData, TaskObject};
 </span><span class="boring">use crate::utils::data_path;
-</span><span class="boring">use crate::APP_ID;
 </span><span class="boring">
 </span><span class="boring">glib::wrapper! {
 </span><span class="boring">    pub struct Window(ObjectSubclass&lt;imp::Window&gt;)
@@ -1619,6 +1619,65 @@ That means we can just bind their properties without having to worry about unbin
 </span><span class="boring">}</span></code></pre>
 <p>This is how the boxed list style looks like in our app.</p>
 <div style="text-align:center"><img src="img/todo_6.png" alt="The To-Do app using libadwaita" /></div>
+
+<h2 id="shortcuts-dialog"><a class="header" href="#shortcuts-dialog">Shortcuts Dialog</a></h2>
+<p>Now that we are using Libadwaita, we should also update our keyboard shortcuts window to use <a href="https://world.pages.gitlab.gnome.org/Rust/libadwaita-rs/stable/latest/docs/libadwaita/struct.ShortcutsDialog.html"><code>adw::ShortcutsDialog</code></a>.
+This widget is the Libadwaita equivalent of the deprecated <a href="https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.ShortcutsWindow.html"><code>gtk::ShortcutsWindow</code></a> and provides better integration with the Adwaita style.</p>
+<p>In <code>shortcuts.ui</code>, we replace <code>GtkShortcutsWindow</code> with <code>AdwShortcutsDialog</code>, <code>GtkShortcutsGroup</code> with <code>AdwShortcutsSection</code>, and <code>GtkShortcutsShortcut</code> with <code>AdwShortcutsItem</code>.
+We can also remove a couple of properties that are not needed anymore.
+The <code>shortcuts.ui</code> file then ends up like this:</p>
+<p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/6/resources/shortcuts.ui">listings/todo/6/resources/shortcuts.ui</a></p>
+<pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;interface&gt;
+  &lt;object class="AdwShortcutsDialog" id="shortcuts_dialog"&gt;
+    &lt;child&gt;
+      &lt;object class="AdwShortcutsSection"&gt;
+        &lt;property name="title" translatable="yes"&gt;General&lt;/property&gt;
+        &lt;child&gt;
+          &lt;object class="AdwShortcutsItem"&gt;
+            &lt;property name="title" translatable="yes"&gt;Show shortcuts&lt;/property&gt;
+            &lt;property name="action-name"&gt;app.shortcuts&lt;/property&gt;
+          &lt;/object&gt;
+        &lt;/child&gt;
+        &lt;child&gt;
+          &lt;object class="AdwShortcutsItem"&gt;
+            &lt;property name="title" translatable="yes"&gt;Filter to show all tasks&lt;/property&gt;
+            &lt;property name="action-name"&gt;win.filter('All')&lt;/property&gt;
+          &lt;/object&gt;
+        &lt;/child&gt;
+        &lt;child&gt;
+          &lt;object class="AdwShortcutsItem"&gt;
+            &lt;property name="title" translatable="yes"&gt;Filter to show only open tasks&lt;/property&gt;
+            &lt;property name="action-name"&gt;win.filter('Open')&lt;/property&gt;
+          &lt;/object&gt;
+        &lt;/child&gt;
+        &lt;child&gt;
+          &lt;object class="AdwShortcutsItem"&gt;
+            &lt;property name="title" translatable="yes"&gt;Filter to show only completed tasks&lt;/property&gt;
+            &lt;property name="action-name"&gt;win.filter('Done')&lt;/property&gt;
+          &lt;/object&gt;
+        &lt;/child&gt;
+      &lt;/object&gt;
+    &lt;/child&gt;
+  &lt;/object&gt;
+&lt;/interface&gt;
+</code></pre>
+<p>We also change the resource alias in <code>resources.gresource.xml</code> as described in <a href="https://world.pages.gitlab.gnome.org/Rust/libadwaita-rs/stable/latest/docs/libadwaita/struct.Application.html#shortcuts-dialog"><code>adw::Application</code></a>.</p>
+<p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/6/resources/resources.gresource.xml">listings/todo/6/resources/resources.gresource.xml</a></p>
+<pre><code class="language-diff">-    &lt;file compressed="true" preprocess="xml-stripblanks" alias="gtk/help-overlay.ui"&gt;shortcuts.ui&lt;/file&gt;
++    &lt;file compressed="true" preprocess="xml-stripblanks" alias="shortcuts-dialog.ui"&gt;shortcuts.ui&lt;/file&gt;
+</code></pre>
+<p>And in <code>window.ui</code>, we update the menu action:</p>
+<p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/6/resources/window.ui">listings/todo/6/resources/window.ui</a></p>
+<pre><code class="language-diff">     &lt;item&gt;
+       &lt;attribute name="label" translatable="yes"&gt;_Keyboard Shortcuts&lt;/attribute&gt;
+-      &lt;attribute name="action"&gt;win.show-help-overlay&lt;/attribute&gt;
++      &lt;attribute name="action"&gt;app.shortcuts&lt;/attribute&gt;
+     &lt;/item&gt;
+</code></pre>
+<p>If we now open the shortcuts dialog it looks like this.
+Apart from the refreshed style, it also features a search bar.</p>
+<div style="text-align:center"><img src="img/todo_6_shortcuts.png" alt="The shortcuts dialog using AdwShortcutsDialog" /></div>
 
 
                     </main>

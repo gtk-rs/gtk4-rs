@@ -36,10 +36,10 @@
             const path_to_root = "";
             const default_light_theme = "rust";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-60e0fa99.js";
+            window.path_to_searchindex_js = "searchindex-bac78f95.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-9fb23523.js"></script>
+        <script src="toc-6221b6d3.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -185,7 +185,7 @@ For that we use the <a href="https://rust-unofficial.github.io/patterns/patterns
 Note that we also import the prelude to bring the necessary traits into scope.</p>
 <p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/hello_world/1/main.rs">listings/hello_world/1/main.rs</a></p>
 <pre><code class="language-rust">use gtk::prelude::*;
-use gtk::{glib, Application};
+use gtk::{Application, glib};
 
 const APP_ID: &amp;str = "org.gtk_rs.HelloWorld1";
 
@@ -204,7 +204,7 @@ and has no handlers connected to the 'activate' signal. It should do one of thes
 So let’s create a <a href="https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.ApplicationWindow.html"><code>gtk::ApplicationWindow</code></a> there.</p>
 <p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/hello_world/2/main.rs">listings/hello_world/2/main.rs</a></p>
 <pre><code class="language-rust">use gtk::prelude::*;
-use gtk::{glib, Application, ApplicationWindow};
+use gtk::{Application, ApplicationWindow, glib};
 
 const APP_ID: &amp;str = "org.gtk_rs.HelloWorld2";
 
@@ -236,7 +236,7 @@ fn build_ui(app: &amp;Application) {
 Also, the name of the chapter suggests that the phrase “Hello World!” will be involved.</p>
 <p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/hello_world/3/main.rs">listings/hello_world/3/main.rs</a></p>
 <pre><code class="language-rust"><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{glib, Application, ApplicationWindow, Button};
+</span><span class="boring">use gtk::{Application, ApplicationWindow, Button, glib};
 </span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.HelloWorld3";
 </span><span class="boring">
 </span><span class="boring">fn main() -&gt; glib::ExitCode {

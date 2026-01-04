@@ -37,10 +37,10 @@
             const path_to_root = "";
             const default_light_theme = "rust";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-60e0fa99.js";
+            window.path_to_searchindex_js = "searchindex-bac78f95.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-9fb23523.js"></script>
+        <script src="toc-6221b6d3.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -420,7 +420,7 @@ For that we use the <a href="https://rust-unofficial.github.io/patterns/patterns
 Note that we also import the prelude to bring the necessary traits into scope.</p>
 <p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/hello_world/1/main.rs">listings/hello_world/1/main.rs</a></p>
 <pre><code class="language-rust">use gtk::prelude::*;
-use gtk::{glib, Application};
+use gtk::{Application, glib};
 
 const APP_ID: &amp;str = "org.gtk_rs.HelloWorld1";
 
@@ -439,7 +439,7 @@ and has no handlers connected to the 'activate' signal. It should do one of thes
 So let’s create a <a href="https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.ApplicationWindow.html"><code>gtk::ApplicationWindow</code></a> there.</p>
 <p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/hello_world/2/main.rs">listings/hello_world/2/main.rs</a></p>
 <pre><code class="language-rust">use gtk::prelude::*;
-use gtk::{glib, Application, ApplicationWindow};
+use gtk::{Application, ApplicationWindow, glib};
 
 const APP_ID: &amp;str = "org.gtk_rs.HelloWorld2";
 
@@ -471,7 +471,7 @@ fn build_ui(app: &amp;Application) {
 Also, the name of the chapter suggests that the phrase “Hello World!” will be involved.</p>
 <p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/hello_world/3/main.rs">listings/hello_world/3/main.rs</a></p>
 <pre><code class="language-rust"><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{glib, Application, ApplicationWindow, Button};
+</span><span class="boring">use gtk::{Application, ApplicationWindow, Button, glib};
 </span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.HelloWorld3";
 </span><span class="boring">
 </span><span class="boring">fn main() -&gt; glib::ExitCode {
@@ -556,7 +556,7 @@ This behavior is specific to a button, so we expect to find a suitable method in
 And indeed, <code>ButtonExt</code> includes the method <a href="https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/prelude/trait.ButtonExt.html#tymethod.connect_clicked"><code>connect_clicked</code></a>.</p>
 <p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/hello_world/3/main.rs">listings/hello_world/3/main.rs</a></p>
 <pre><code class="language-rust"><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{glib, Application, ApplicationWindow, Button};
+</span><span class="boring">use gtk::{Application, ApplicationWindow, Button, glib};
 </span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.HelloWorld3";
 </span><span class="boring">
 </span><span class="boring">fn main() -&gt; glib::ExitCode {
@@ -751,7 +751,7 @@ You can learn more about interior mutability in this <a href="https://marabos.nl
 </blockquote>
 <p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/g_object_memory_management/2/main.rs">listings/g_object_memory_management/1/main.rs</a></p>
 <pre><code class="language-rust"><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{glib, Application, ApplicationWindow, Button};
+</span><span class="boring">use gtk::{Application, ApplicationWindow, Button, glib};
 </span><span class="boring">use std::cell::Cell;
 </span><span class="boring">
 </span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.GObjectMemoryManagement1";
@@ -806,7 +806,7 @@ we can again use the <a href="https://doc.rust-lang.org/std/cell/struct.Cell.htm
 </span><span class="boring">use std::rc::Rc;
 </span><span class="boring">
 </span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{self, glib, Application, ApplicationWindow, Button, Orientation};
+</span><span class="boring">use gtk::{self, Application, ApplicationWindow, Button, Orientation, glib};
 </span><span class="boring">
 </span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.GObjectMemoryManagement2";
 </span><span class="boring">
@@ -870,7 +870,7 @@ We can improve that by using the <a href="https://gtk-rs.org/gtk-rs-core/stable/
 </span><span class="boring">
 </span><span class="boring">use glib::clone;
 </span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{self, glib, Application, ApplicationWindow, Button, Orientation};
+</span><span class="boring">use gtk::{self, Application, ApplicationWindow, Button, Orientation, glib};
 </span><span class="boring">
 </span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.GObjectMemoryManagement3";
 </span><span class="boring">
@@ -941,7 +941,7 @@ Therefore, we can pass the buttons the same way to the closure as we did with <c
 </span><span class="boring">
 </span><span class="boring">use glib::clone;
 </span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{self, glib, Application, ApplicationWindow, Button, Orientation};
+</span><span class="boring">use gtk::{self, Application, ApplicationWindow, Button, Orientation, glib};
 </span><span class="boring">
 </span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.GObjectMemoryManagement4";
 </span><span class="boring">
@@ -1028,7 +1028,7 @@ Since we want our apps to free unneeded memory, we should use weak references fo
 </span><span class="boring">
 </span><span class="boring">use glib::clone;
 </span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{self, glib, Application, ApplicationWindow, Button, Orientation};
+</span><span class="boring">use gtk::{self, Application, ApplicationWindow, Button, Orientation, glib};
 </span><span class="boring">
 </span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.GObjectMemoryManagement5";
 </span><span class="boring">
@@ -1116,7 +1116,7 @@ Who then keeps the buttons alive?</p>
 </span><span class="boring">
 </span><span class="boring">use glib::clone;
 </span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{self, glib, Application, ApplicationWindow, Button, Orientation};
+</span><span class="boring">use gtk::{self, Application, ApplicationWindow, Button, Orientation, glib};
 </span><span class="boring">
 </span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.GObjectMemoryManagement5";
 </span><span class="boring">
@@ -1196,7 +1196,7 @@ Who then keeps the buttons alive?</p>
 </span><span class="boring">
 </span><span class="boring">use glib::clone;
 </span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{self, glib, Application, ApplicationWindow, Button, Orientation};
+</span><span class="boring">use gtk::{self, Application, ApplicationWindow, Button, Orientation, glib};
 </span><span class="boring">
 </span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.GObjectMemoryManagement5";
 </span><span class="boring">
@@ -1352,7 +1352,7 @@ For <code>gtk::Button</code>, we can look up the ancestors and interfaces in the
 
 use custom_button::CustomButton;
 use gtk::prelude::*;
-use gtk::{glib, Application, ApplicationWindow};
+use gtk::{Application, ApplicationWindow, glib};
 
 const APP_ID: &amp;str = "org.gtk_rs.GObjectSubclassing1";
 
@@ -1448,7 +1448,7 @@ We also override <code>clicked</code> in <code>ButtonImpl</code> so that every c
 </span><span class="boring">
 </span><span class="boring">use custom_button::CustomButton;
 </span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{glib, Application, ApplicationWindow};
+</span><span class="boring">use gtk::{Application, ApplicationWindow, glib};
 </span><span class="boring">
 </span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.GObjectSubclassing2";
 </span><span class="boring">
@@ -1716,7 +1716,7 @@ According to the GTK docs, it can be read and be written to.
 That is why <code>gtk-rs</code> provides corresponding <a href="https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.Switch.html#method.is_active"><code>is_active</code></a> and <a href="https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.Switch.html#method.set_active"><code>set_active</code></a> methods.</p>
 <p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/g_object_properties/1/main.rs">listings/g_object_properties/1/main.rs</a></p>
 <pre><code class="language-rust"><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{glib, Align, Application, ApplicationWindow, Box, Orientation, Switch};
+</span><span class="boring">use gtk::{Align, Application, ApplicationWindow, Box, Orientation, Switch, glib};
 </span><span class="boring">
 </span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.GObjectProperties1";
 </span><span class="boring">
@@ -1769,7 +1769,7 @@ That is why <code>gtk-rs</code> provides corresponding <a href="https://gtk-rs.o
 Let’s see how that would look like for two <code>Switch</code> instances.</p>
 <p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/g_object_properties/2/main.rs">listings/g_object_properties/2/main.rs</a></p>
 <pre><code class="language-rust"><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{glib, Align, Application, ApplicationWindow, Box, Orientation, Switch};
+</span><span class="boring">use gtk::{Align, Application, ApplicationWindow, Box, Orientation, Switch, glib};
 </span><span class="boring">
 </span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.GObjectProperties3";
 </span><span class="boring">
@@ -1822,7 +1822,7 @@ Let’s see how that would look like for two <code>Switch</code> instances.</p>
 We also want the binding to be bidirectional, so we specify by calling the <a href="https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/object/struct.BindingBuilder.html#method.bidirectional"><code>bidirectional</code></a> method.</p>
 <p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/g_object_properties/2/main.rs">listings/g_object_properties/2/main.rs</a></p>
 <pre><code class="language-rust"><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{glib, Align, Application, ApplicationWindow, Box, Orientation, Switch};
+</span><span class="boring">use gtk::{Align, Application, ApplicationWindow, Box, Orientation, Switch, glib};
 </span><span class="boring">
 </span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.GObjectProperties3";
 </span><span class="boring">
@@ -2047,7 +2047,7 @@ impl ButtonImpl for CustomButton {
 </span><span class="boring">
 </span><span class="boring">use custom_button::CustomButton;
 </span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{glib, Align, Application, ApplicationWindow, Box, Orientation};
+</span><span class="boring">use gtk::{Align, Application, ApplicationWindow, Box, Orientation, glib};
 </span><span class="boring">
 </span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.GObjectProperties4";
 </span><span class="boring">
@@ -2121,7 +2121,7 @@ By leveraging <a href="https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/ob
 </span><span class="boring">
 </span><span class="boring">use custom_button::CustomButton;
 </span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{glib, Align, Application, ApplicationWindow, Box, Orientation};
+</span><span class="boring">use gtk::{Align, Application, ApplicationWindow, Box, Orientation, glib};
 </span><span class="boring">
 </span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.GObjectProperties4";
 </span><span class="boring">
@@ -2205,7 +2205,7 @@ For example like this:</p>
 </span><span class="boring">
 </span><span class="boring">use custom_button::CustomButton;
 </span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{glib, Align, Application, ApplicationWindow, Box, Orientation};
+</span><span class="boring">use gtk::{Align, Application, ApplicationWindow, Box, Orientation, glib};
 </span><span class="boring">
 </span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.GObjectProperties4";
 </span><span class="boring">
@@ -2289,7 +2289,7 @@ The signal then takes care that all the registered callbacks will be executed.</
 In our “Hello World” example we <a href="https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/prelude/trait.ButtonExt.html#tymethod.connect_clicked">connected</a> the “clicked” signal to a closure which sets the label of the button to “Hello World” as soon as it gets called.</p>
 <p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/hello_world/3/main.rs">listings/hello_world/3/main.rs</a></p>
 <pre><code class="language-rust"><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{glib, Application, ApplicationWindow, Button};
+</span><span class="boring">use gtk::{Application, ApplicationWindow, Button, glib};
 </span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.HelloWorld3";
 </span><span class="boring">
 </span><span class="boring">fn main() -&gt; glib::ExitCode {
@@ -2333,7 +2333,7 @@ In our “Hello World” example we <a href="https://gtk-rs.org/gtk4-rs/stable/l
 <p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/g_object_signals/1/main.rs">listings/g_object_signals/1/main.rs</a></p>
 <pre><code class="language-rust"><span class="boring">use glib::closure_local;
 </span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{glib, Application, ApplicationWindow, Button};
+</span><span class="boring">use gtk::{Application, ApplicationWindow, Button, glib};
 </span><span class="boring">
 </span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.GObjectSignals1";
 </span><span class="boring">
@@ -2394,8 +2394,8 @@ In order to do that, we need to lazily initialize a static item <code>SIGNALS</c
 <pre><code class="language-rust"><span class="boring">use std::cell::Cell;
 </span><span class="boring">use std::sync::OnceLock;
 </span><span class="boring">
-</span><span class="boring">use glib::subclass::Signal;
 </span><span class="boring">use glib::Properties;
+</span><span class="boring">use glib::subclass::Signal;
 </span><span class="boring">use gtk::glib;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::subclass::prelude::*;
@@ -2422,9 +2422,11 @@ impl ObjectImpl for CustomButton {
     fn signals() -&gt; &amp;'static [Signal] {
         static SIGNALS: OnceLock&lt;Vec&lt;Signal&gt;&gt; = OnceLock::new();
         SIGNALS.get_or_init(|| {
-            vec![Signal::builder("max-number-reached")
-                .param_types([i32::static_type()])
-                .build()]
+            vec![
+                Signal::builder("max-number-reached")
+                    .param_types([i32::static_type()])
+                    .build(),
+            ]
         })
     }
 <span class="boring">
@@ -2471,8 +2473,8 @@ After we did that, we set <code>number</code> back to 0.</p>
 <pre><code class="language-rust"><span class="boring">use std::cell::Cell;
 </span><span class="boring">use std::sync::OnceLock;
 </span><span class="boring">
-</span><span class="boring">use glib::subclass::Signal;
 </span><span class="boring">use glib::Properties;
+</span><span class="boring">use glib::subclass::Signal;
 </span><span class="boring">use gtk::glib;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::subclass::prelude::*;
@@ -2499,9 +2501,11 @@ After we did that, we set <code>number</code> back to 0.</p>
 </span><span class="boring">    fn signals() -&gt; &amp;'static [Signal] {
 </span><span class="boring">        static SIGNALS: OnceLock&lt;Vec&lt;Signal&gt;&gt; = OnceLock::new();
 </span><span class="boring">        SIGNALS.get_or_init(|| {
-</span><span class="boring">            vec![Signal::builder("max-number-reached")
-</span><span class="boring">                .param_types([i32::static_type()])
-</span><span class="boring">                .build()]
+</span><span class="boring">            vec![
+</span><span class="boring">                Signal::builder("max-number-reached")
+</span><span class="boring">                    .param_types([i32::static_type()])
+</span><span class="boring">                    .build(),
+</span><span class="boring">            ]
 </span><span class="boring">        })
 </span><span class="boring">    }
 </span><span class="boring">
@@ -2546,7 +2550,7 @@ Whenever we now receive the “max-number-reached” signal, the accompanying nu
 </span><span class="boring">use custom_button::CustomButton;
 </span><span class="boring">use glib::closure_local;
 </span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{glib, Application, ApplicationWindow};
+</span><span class="boring">use gtk::{Application, ApplicationWindow, glib};
 </span><span class="boring">
 </span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.GObjectSignals2";
 </span><span class="boring">
@@ -2607,7 +2611,7 @@ The following example uses <a href="https://doc.rust-lang.org/std/thread/fn.slee
 use std::time::Duration;
 
 use gtk::prelude::*;
-use gtk::{self, glib, Application, ApplicationWindow, Button};
+use gtk::{self, Application, ApplicationWindow, Button, glib};
 
 const APP_ID: &amp;str = "org.gtk_rs.MainEventLoop1";
 
@@ -2669,7 +2673,7 @@ but frequently, we want to run a slightly longer operation in one go.</p>
 </span><span class="boring">use std::time::Duration;
 </span><span class="boring">
 </span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{self, gio, glib, Application, ApplicationWindow, Button};
+</span><span class="boring">use gtk::{self, Application, ApplicationWindow, Button, gio, glib};
 </span><span class="boring">
 </span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.MainEventLoop2";
 </span><span class="boring">
@@ -2753,7 +2757,7 @@ This <code>async</code> block is spawned on the <code>glib</code> main loop with
 </span><span class="boring">
 </span><span class="boring">use glib::clone;
 </span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{gio, glib, Application, ApplicationWindow, Button};
+</span><span class="boring">use gtk::{Application, ApplicationWindow, Button, gio, glib};
 </span><span class="boring">
 </span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.MainEventLoop3";
 </span><span class="boring">
@@ -2838,7 +2842,7 @@ The converted code looks and behaves very similar to the multithreaded code.</p>
 <p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/main_event_loop/4/main.rs">listings/main_event_loop/4/main.rs</a></p>
 <pre><code class="language-rust"><span class="boring">use glib::clone;
 </span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{glib, Application, ApplicationWindow, Button};
+</span><span class="boring">use gtk::{Application, ApplicationWindow, Button, glib};
 </span><span class="boring">
 </span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.MainEventLoop4";
 </span><span class="boring">
@@ -2911,7 +2915,7 @@ The converted code looks and behaves very similar to the multithreaded code.</p>
 <p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/main_event_loop/5/main.rs">listings/main_event_loop/5/main.rs</a></p>
 <pre><code class="language-rust"><span class="boring">use glib::clone;
 </span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{glib, Application, ApplicationWindow, Button};
+</span><span class="boring">use gtk::{Application, ApplicationWindow, Button, glib};
 </span><span class="boring">
 </span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.MainEventLoop5";
 </span><span class="boring">
@@ -3036,8 +3040,8 @@ We can then get the return value of the function by calling <code>await</code> o
 <p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/main_event_loop/6/main.rs">listings/main_event_loop/6/main.rs</a></p>
 <pre><code class="language-rust"><span class="boring">use glib::clone;
 </span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{gio, glib};
 </span><span class="boring">use gtk::{Application, ApplicationWindow, Button};
+</span><span class="boring">use gtk::{gio, glib};
 </span><span class="boring">use std::thread;
 </span><span class="boring">use std::time::Duration;
 </span><span class="boring">
@@ -3113,7 +3117,7 @@ We are getting a <a href="https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/str
 <p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/main_event_loop/7/main.rs">listings/main_event_loop/7/main.rs</a></p>
 <pre><code class="language-rust"><span class="boring">use glib::clone;
 </span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{glib, Application, ApplicationWindow, Button};
+</span><span class="boring">use gtk::{Application, ApplicationWindow, Button, glib};
 </span><span class="boring">
 </span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.MainEventLoop7";
 </span><span class="boring">
@@ -3161,8 +3165,8 @@ We are getting a <a href="https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/str
 </span><span class="boring">
 </span><span class="boring">#[cfg(target_os = "linux")]
 </span><span class="boring">async fn fetch_user_information(button: Button) {
-</span><span class="boring">    use ashpd::desktop::account::UserInformation;
 </span><span class="boring">    use ashpd::WindowIdentifier;
+</span><span class="boring">    use ashpd::desktop::account::UserInformation;
 </span><span class="boring">
 </span><span class="boring">    // Get native of button for window identifier
 </span><span class="boring">    let native = button.native().expect("Need to be able to get native.");
@@ -3556,7 +3560,7 @@ The <code>id</code> is the same application id we used when we created our appli
 <p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/settings/1/main.rs">listings/settings/1/main.rs</a></p>
 <pre><code class="language-rust"><span class="boring">use gio::Settings;
 </span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{gio, glib, Align, Application, ApplicationWindow, Switch};
+</span><span class="boring">use gtk::{Align, Application, ApplicationWindow, Switch, gio, glib};
 </span><span class="boring">
 </span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.Settings1";
 </span><span class="boring">
@@ -3631,7 +3635,7 @@ glib-compile-schemas C:/ProgramData/glib-2.0/schemas/
 <p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/settings/1/main.rs">listings/settings/1/main.rs</a></p>
 <pre><code class="language-rust"><span class="boring">use gio::Settings;
 </span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{gio, glib, Align, Application, ApplicationWindow, Switch};
+</span><span class="boring">use gtk::{Align, Application, ApplicationWindow, Switch, gio, glib};
 </span><span class="boring">
 </span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.Settings1";
 </span><span class="boring">
@@ -3687,7 +3691,7 @@ glib-compile-schemas C:/ProgramData/glib-2.0/schemas/
 <p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/settings/1/main.rs">listings/settings/1/main.rs</a></p>
 <pre><code class="language-rust"><span class="boring">use gio::Settings;
 </span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{gio, glib, Align, Application, ApplicationWindow, Switch};
+</span><span class="boring">use gtk::{Align, Application, ApplicationWindow, Switch, gio, glib};
 </span><span class="boring">
 </span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.Settings1";
 </span><span class="boring">
@@ -3743,7 +3747,7 @@ glib-compile-schemas C:/ProgramData/glib-2.0/schemas/
 <p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/settings/1/main.rs">listings/settings/1/main.rs</a></p>
 <pre><code class="language-rust"><span class="boring">use gio::Settings;
 </span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{gio, glib, Align, Application, ApplicationWindow, Switch};
+</span><span class="boring">use gtk::{Align, Application, ApplicationWindow, Switch, gio, glib};
 </span><span class="boring">
 </span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.Settings1";
 </span><span class="boring">
@@ -3813,7 +3817,7 @@ We then bind the setting to the property by specifying the key, object and name 
 Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/settings/2/main.rs">listings/settings/2/main.rs</a></p>
 <pre><code class="language-rust"><span class="boring">use gio::Settings;
 </span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{gio, glib, Align, Application, ApplicationWindow, Switch};
+</span><span class="boring">use gtk::{Align, Application, ApplicationWindow, Switch, gio, glib};
 </span><span class="boring">
 </span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.Settings2";
 </span><span class="boring">
@@ -3894,7 +3898,7 @@ First, we create one and add convenience methods for accessing settings as well 
 </span><span class="boring">use glib::Object;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::subclass::prelude::*;
-</span><span class="boring">use gtk::{gio, glib, Application};
+</span><span class="boring">use gtk::{Application, gio, glib};
 </span><span class="boring">
 </span><span class="boring">use crate::APP_ID;
 </span><span class="boring">
@@ -3966,7 +3970,7 @@ This is a nice alternative to <code>RefCell&lt;Option&lt;T&gt;&gt;</code> when y
 <p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/saving_window_state/1/custom_window/imp.rs">listings/saving_window_state/1/custom_window/imp.rs</a></p>
 <pre><code class="language-rust"><span class="boring">use gio::Settings;
 </span><span class="boring">use gtk::subclass::prelude::*;
-</span><span class="boring">use gtk::{gio, glib, ApplicationWindow};
+</span><span class="boring">use gtk::{ApplicationWindow, gio, glib};
 </span><span class="boring">use std::cell::OnceCell;
 </span><span class="boring">
 </span>#[derive(Default)]
@@ -4014,7 +4018,7 @@ Each label will display an integer starting from 0 and ranging up to 100.</p>
 <p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/list_widgets/1/main.rs">listings/list_widgets/1/main.rs</a></p>
 <pre><code class="language-rust"><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::{
-</span><span class="boring">    glib, Application, ApplicationWindow, Label, ListBox, PolicyType, ScrolledWindow,
+</span><span class="boring">    Application, ApplicationWindow, Label, ListBox, PolicyType, ScrolledWindow, glib,
 </span><span class="boring">};
 </span><span class="boring">
 </span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.ListWidgets1";
@@ -4062,7 +4066,7 @@ Now we can scroll through our elements.</p>
 <p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/list_widgets/1/main.rs">listings/list_widgets/1/main.rs</a></p>
 <pre><code class="language-rust"><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::{
-</span><span class="boring">    glib, Application, ApplicationWindow, Label, ListBox, PolicyType, ScrolledWindow,
+</span><span class="boring">    Application, ApplicationWindow, Label, ListBox, PolicyType, ScrolledWindow, glib,
 </span><span class="boring">};
 </span><span class="boring">
 </span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.ListWidgets1";
@@ -4179,10 +4183,10 @@ Neither <code>Label</code> nor any other widget is mentioned here.</p>
 <pre><code class="language-rust"><span class="boring">mod integer_object;
 </span><span class="boring">
 </span><span class="boring">use gtk::{
-</span><span class="boring">    gio, glib, Application, ApplicationWindow, Label, ListView, PolicyType,
-</span><span class="boring">    ScrolledWindow, SignalListItemFactory, SingleSelection,
+</span><span class="boring">    Application, ApplicationWindow, Label, ListView, PolicyType, ScrolledWindow,
+</span><span class="boring">    SignalListItemFactory, SingleSelection, gio, glib,
 </span><span class="boring">};
-</span><span class="boring">use gtk::{prelude::*, ListItem};
+</span><span class="boring">use gtk::{ListItem, prelude::*};
 </span><span class="boring">use integer_object::IntegerObject;
 </span><span class="boring">
 </span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.ListWidgets2";
@@ -4267,10 +4271,10 @@ We connect to it to create a <code>Label</code> for every requested widget.</p>
 <pre><code class="language-rust"><span class="boring">mod integer_object;
 </span><span class="boring">
 </span><span class="boring">use gtk::{
-</span><span class="boring">    gio, glib, Application, ApplicationWindow, Label, ListView, PolicyType,
-</span><span class="boring">    ScrolledWindow, SignalListItemFactory, SingleSelection,
+</span><span class="boring">    Application, ApplicationWindow, Label, ListView, PolicyType, ScrolledWindow,
+</span><span class="boring">    SignalListItemFactory, SingleSelection, gio, glib,
 </span><span class="boring">};
-</span><span class="boring">use gtk::{prelude::*, ListItem};
+</span><span class="boring">use gtk::{ListItem, prelude::*};
 </span><span class="boring">use integer_object::IntegerObject;
 </span><span class="boring">
 </span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.ListWidgets2";
@@ -4352,10 +4356,10 @@ We connect to it to create a <code>Label</code> for every requested widget.</p>
 <pre><code class="language-rust"><span class="boring">mod integer_object;
 </span><span class="boring">
 </span><span class="boring">use gtk::{
-</span><span class="boring">    gio, glib, Application, ApplicationWindow, Label, ListView, PolicyType,
-</span><span class="boring">    ScrolledWindow, SignalListItemFactory, SingleSelection,
+</span><span class="boring">    Application, ApplicationWindow, Label, ListView, PolicyType, ScrolledWindow,
+</span><span class="boring">    SignalListItemFactory, SingleSelection, gio, glib,
 </span><span class="boring">};
-</span><span class="boring">use gtk::{prelude::*, ListItem};
+</span><span class="boring">use gtk::{ListItem, prelude::*};
 </span><span class="boring">use integer_object::IntegerObject;
 </span><span class="boring">
 </span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.ListWidgets2";
@@ -4439,10 +4443,10 @@ Then we pass the model and the factory to the <a href="https://gtk-rs.org/gtk4-r
 <pre><code class="language-rust"><span class="boring">mod integer_object;
 </span><span class="boring">
 </span><span class="boring">use gtk::{
-</span><span class="boring">    gio, glib, Application, ApplicationWindow, Label, ListView, PolicyType,
-</span><span class="boring">    ScrolledWindow, SignalListItemFactory, SingleSelection,
+</span><span class="boring">    Application, ApplicationWindow, Label, ListView, PolicyType, ScrolledWindow,
+</span><span class="boring">    SignalListItemFactory, SingleSelection, gio, glib,
 </span><span class="boring">};
-</span><span class="boring">use gtk::{prelude::*, ListItem};
+</span><span class="boring">use gtk::{ListItem, prelude::*};
 </span><span class="boring">use integer_object::IntegerObject;
 </span><span class="boring">
 </span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.ListWidgets2";
@@ -4524,10 +4528,10 @@ Then we pass the model and the factory to the <a href="https://gtk-rs.org/gtk4-r
 <pre><code class="language-rust"><span class="boring">mod integer_object;
 </span><span class="boring">
 </span><span class="boring">use gtk::{
-</span><span class="boring">    gio, glib, Application, ApplicationWindow, Label, ListView, PolicyType,
-</span><span class="boring">    ScrolledWindow, SignalListItemFactory, SingleSelection,
+</span><span class="boring">    Application, ApplicationWindow, Label, ListView, PolicyType, ScrolledWindow,
+</span><span class="boring">    SignalListItemFactory, SingleSelection, gio, glib,
 </span><span class="boring">};
-</span><span class="boring">use gtk::{prelude::*, ListItem};
+</span><span class="boring">use gtk::{ListItem, prelude::*};
 </span><span class="boring">use integer_object::IntegerObject;
 </span><span class="boring">
 </span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.ListWidgets2";
@@ -4634,10 +4638,10 @@ For that we first add the method <code>increase_number</code> to our <code>Integ
 <pre><code class="language-rust"><span class="boring">mod integer_object;
 </span><span class="boring">
 </span><span class="boring">use gtk::{
-</span><span class="boring">    gio, glib, Application, ApplicationWindow, Label, ListView, PolicyType,
-</span><span class="boring">    ScrolledWindow, SignalListItemFactory, SingleSelection,
+</span><span class="boring">    Application, ApplicationWindow, Label, ListView, PolicyType, ScrolledWindow,
+</span><span class="boring">    SignalListItemFactory, SingleSelection, gio, glib,
 </span><span class="boring">};
-</span><span class="boring">use gtk::{prelude::*, ListItem};
+</span><span class="boring">use gtk::{ListItem, prelude::*};
 </span><span class="boring">use integer_object::IntegerObject;
 </span><span class="boring">
 </span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.ListWidgets3";
@@ -4737,10 +4741,10 @@ One naive approach would be to bind the properties in the “bind” step of the
 <pre><code class="language-rust"><span class="boring">mod integer_object;
 </span><span class="boring">
 </span><span class="boring">use gtk::{
-</span><span class="boring">    gio, glib, Application, ApplicationWindow, Label, ListView, PolicyType,
-</span><span class="boring">    ScrolledWindow, SignalListItemFactory, SingleSelection,
+</span><span class="boring">    Application, ApplicationWindow, Label, ListView, PolicyType, ScrolledWindow,
+</span><span class="boring">    SignalListItemFactory, SingleSelection, gio, glib,
 </span><span class="boring">};
-</span><span class="boring">use gtk::{prelude::*, ListItem};
+</span><span class="boring">use gtk::{ListItem, prelude::*};
 </span><span class="boring">use integer_object::IntegerObject;
 </span><span class="boring">
 </span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.ListWidgets3";
@@ -4846,10 +4850,10 @@ Let’s see how the “setup” step now works.</p>
 <pre><code class="language-rust"><span class="boring">mod integer_object;
 </span><span class="boring">
 </span><span class="boring">use gtk::{
-</span><span class="boring">    gio, glib, Application, ApplicationWindow, Label, ListView, PolicyType,
-</span><span class="boring">    ScrolledWindow, SignalListItemFactory, SingleSelection, Widget,
+</span><span class="boring">    Application, ApplicationWindow, Label, ListView, PolicyType, ScrolledWindow,
+</span><span class="boring">    SignalListItemFactory, SingleSelection, Widget, gio, glib,
 </span><span class="boring">};
-</span><span class="boring">use gtk::{prelude::*, ListItem};
+</span><span class="boring">use gtk::{ListItem, prelude::*};
 </span><span class="boring">use integer_object::IntegerObject;
 </span><span class="boring">
 </span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.ListWidgets4";
@@ -4940,11 +4944,12 @@ We do that by passing it to a <a href="https://gtk-rs.org/gtk4-rs/stable/latest/
 <pre><code class="language-rust"><span class="boring">mod integer_object;
 </span><span class="boring">
 </span><span class="boring">use gtk::{
-</span><span class="boring">    gio, glib, Application, ApplicationWindow, CustomFilter, CustomSorter,
-</span><span class="boring">    FilterChange, FilterListModel, Label, ListView, PolicyType, ScrolledWindow,
-</span><span class="boring">    SignalListItemFactory, SingleSelection, SortListModel, SorterChange, Widget,
+</span><span class="boring">    Application, ApplicationWindow, CustomFilter, CustomSorter, FilterChange,
+</span><span class="boring">    FilterListModel, Label, ListView, PolicyType, ScrolledWindow,
+</span><span class="boring">    SignalListItemFactory, SingleSelection, SortListModel, SorterChange, Widget, gio,
+</span><span class="boring">    glib,
 </span><span class="boring">};
-</span><span class="boring">use gtk::{prelude::*, ListItem};
+</span><span class="boring">use gtk::{ListItem, prelude::*};
 </span><span class="boring">use integer_object::IntegerObject;
 </span><span class="boring">
 </span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.ListWidgets5";
@@ -5058,11 +5063,12 @@ Now we pass the filtered model to <a href="https://gtk-rs.org/gtk4-rs/stable/lat
 <pre><code class="language-rust"><span class="boring">mod integer_object;
 </span><span class="boring">
 </span><span class="boring">use gtk::{
-</span><span class="boring">    gio, glib, Application, ApplicationWindow, CustomFilter, CustomSorter,
-</span><span class="boring">    FilterChange, FilterListModel, Label, ListView, PolicyType, ScrolledWindow,
-</span><span class="boring">    SignalListItemFactory, SingleSelection, SortListModel, SorterChange, Widget,
+</span><span class="boring">    Application, ApplicationWindow, CustomFilter, CustomSorter, FilterChange,
+</span><span class="boring">    FilterListModel, Label, ListView, PolicyType, ScrolledWindow,
+</span><span class="boring">    SignalListItemFactory, SingleSelection, SortListModel, SorterChange, Widget, gio,
+</span><span class="boring">    glib,
 </span><span class="boring">};
-</span><span class="boring">use gtk::{prelude::*, ListItem};
+</span><span class="boring">use gtk::{ListItem, prelude::*};
 </span><span class="boring">use integer_object::IntegerObject;
 </span><span class="boring">
 </span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.ListWidgets5";
@@ -5175,11 +5181,12 @@ Now we pass the filtered model to <a href="https://gtk-rs.org/gtk4-rs/stable/lat
 <pre><code class="language-rust"><span class="boring">mod integer_object;
 </span><span class="boring">
 </span><span class="boring">use gtk::{
-</span><span class="boring">    gio, glib, Application, ApplicationWindow, CustomFilter, CustomSorter,
-</span><span class="boring">    FilterChange, FilterListModel, Label, ListView, PolicyType, ScrolledWindow,
-</span><span class="boring">    SignalListItemFactory, SingleSelection, SortListModel, SorterChange, Widget,
+</span><span class="boring">    Application, ApplicationWindow, CustomFilter, CustomSorter, FilterChange,
+</span><span class="boring">    FilterListModel, Label, ListView, PolicyType, ScrolledWindow,
+</span><span class="boring">    SignalListItemFactory, SingleSelection, SortListModel, SorterChange, Widget, gio,
+</span><span class="boring">    glib,
 </span><span class="boring">};
-</span><span class="boring">use gtk::{prelude::*, ListItem};
+</span><span class="boring">use gtk::{ListItem, prelude::*};
 </span><span class="boring">use integer_object::IntegerObject;
 </span><span class="boring">
 </span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.ListWidgets5";
@@ -5299,11 +5306,11 @@ Filter and sorter is controlled by the factory, so nothing changes here.
 This is why we will skip this topic here.</p>
 <p>First, we add a bunch of strings to our model.</p>
 <p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/list_widgets/6/main.rs">listings/list_widgets/6/main.rs</a></p>
-<pre><code class="language-rust"><span class="boring">use gtk::{glib, prelude::*, ListItem};
-</span><span class="boring">use gtk::{
+<pre><code class="language-rust"><span class="boring">use gtk::{
 </span><span class="boring">    Application, ApplicationWindow, Label, ListView, NoSelection, PolicyType,
 </span><span class="boring">    ScrolledWindow, SignalListItemFactory, StringList, StringObject, Widget,
 </span><span class="boring">};
+</span><span class="boring">use gtk::{ListItem, glib, prelude::*};
 </span><span class="boring">
 </span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.ListWidgets6";
 </span><span class="boring">
@@ -5365,11 +5372,11 @@ This means we don’t have to create a custom GObject for our model anymore.</p>
 <p>As usual, we connect the label to the list item via an expression.
 Here we can use <a href="https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.StringObject.html"><code>StringObject</code></a>, which exposes its content via the <a href="https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.StringObject.html#string">property “string”</a>.</p>
 <p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/list_widgets/6/main.rs">listings/list_widgets/6/main.rs</a></p>
-<pre><code class="language-rust"><span class="boring">use gtk::{glib, prelude::*, ListItem};
-</span><span class="boring">use gtk::{
+<pre><code class="language-rust"><span class="boring">use gtk::{
 </span><span class="boring">    Application, ApplicationWindow, Label, ListView, NoSelection, PolicyType,
 </span><span class="boring">    ScrolledWindow, SignalListItemFactory, StringList, StringObject, Widget,
 </span><span class="boring">};
+</span><span class="boring">use gtk::{ListItem, glib, prelude::*};
 </span><span class="boring">
 </span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.ListWidgets6";
 </span><span class="boring">
@@ -5438,7 +5445,7 @@ However, if we need the widgets to be scalable, we still need to use <a href="ht
 As a reminder, that is how we used it to build our trusty “Hello World!” app.</p>
 <p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/hello_world/3/main.rs">listings/hello_world/3/main.rs</a></p>
 <pre><code class="language-rust">use gtk::prelude::*;
-use gtk::{glib, Application, ApplicationWindow, Button};
+use gtk::{Application, ApplicationWindow, Button, glib};
 const APP_ID: &amp;str = "org.gtk_rs.HelloWorld3";
 
 fn main() -&gt; glib::ExitCode {
@@ -5548,7 +5555,7 @@ In your own apps take care to register the resources before creating the <code>g
 <pre><code class="language-rust">mod window;
 
 use gtk::prelude::*;
-use gtk::{gio, glib, Application};
+use gtk::{Application, gio, glib};
 use window::Window;
 
 const APP_ID: &amp;str = "org.gtk_rs.CompositeTemplates1";
@@ -5577,7 +5584,7 @@ Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main
 <pre><code class="language-rust">mod imp;
 
 use glib::Object;
-use gtk::{gio, glib, Application};
+use gtk::{Application, gio, glib};
 
 glib::wrapper! {
     pub struct Window(ObjectSubclass&lt;imp::Window&gt;)
@@ -5602,7 +5609,7 @@ This will be useful later, when we want to add a callback to our button.</p>
 <pre><code class="language-rust"><span class="boring">use glib::subclass::InitializingObject;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::subclass::prelude::*;
-</span><span class="boring">use gtk::{glib, Button, CompositeTemplate};
+</span><span class="boring">use gtk::{Button, CompositeTemplate, glib};
 </span><span class="boring">
 </span>// Object holding the state
 #[derive(CompositeTemplate, Default)]
@@ -5657,7 +5664,7 @@ We also bind and initialize the template in <code>class_init</code> and <code>in
 <pre><code class="language-rust"><span class="boring">use glib::subclass::InitializingObject;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::subclass::prelude::*;
-</span><span class="boring">use gtk::{glib, Button, CompositeTemplate};
+</span><span class="boring">use gtk::{Button, CompositeTemplate, glib};
 </span><span class="boring">
 </span><span class="boring">// Object holding the state
 </span><span class="boring">#[derive(CompositeTemplate, Default)]
@@ -5712,7 +5719,7 @@ The button is easily available thanks to the stored reference in <code>self</cod
 <pre><code class="language-rust"><span class="boring">use glib::subclass::InitializingObject;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::subclass::prelude::*;
-</span><span class="boring">use gtk::{glib, Button, CompositeTemplate};
+</span><span class="boring">use gtk::{Button, CompositeTemplate, glib};
 </span><span class="boring">
 </span><span class="boring">// Object holding the state
 </span><span class="boring">#[derive(CompositeTemplate, Default)]
@@ -5820,7 +5827,7 @@ glib::wrapper! {
 <pre><code class="language-rust"><span class="boring">use glib::subclass::InitializingObject;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::subclass::prelude::*;
-</span><span class="boring">use gtk::{glib, CompositeTemplate};
+</span><span class="boring">use gtk::{CompositeTemplate, glib};
 </span><span class="boring">
 </span><span class="boring">use crate::custom_button::CustomButton;
 </span><span class="boring">
@@ -5921,7 +5928,7 @@ This means that <code>handle_button_clicked</code> has a single parameter of typ
 <pre><code class="language-rust"><span class="boring">use glib::subclass::InitializingObject;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::subclass::prelude::*;
-</span><span class="boring">use gtk::{glib, CompositeTemplate};
+</span><span class="boring">use gtk::{CompositeTemplate, glib};
 </span><span class="boring">
 </span><span class="boring">use crate::custom_button::CustomButton;
 </span><span class="boring">
@@ -5977,7 +5984,7 @@ We also need to remove the <code>button.connect_clicked</code> callback implemen
 <pre><code class="language-rust"><span class="boring">use glib::subclass::InitializingObject;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::subclass::prelude::*;
-</span><span class="boring">use gtk::{glib, CompositeTemplate};
+</span><span class="boring">use gtk::{CompositeTemplate, glib};
 </span><span class="boring">
 </span><span class="boring">use crate::custom_button::CustomButton;
 </span><span class="boring">
@@ -6035,7 +6042,7 @@ Let’s say we want to manipulate a <code>number</code> stored in <code>imp::Win
 </span><span class="boring">use glib::subclass::InitializingObject;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::subclass::prelude::*;
-</span><span class="boring">use gtk::{glib, CompositeTemplate};
+</span><span class="boring">use gtk::{CompositeTemplate, glib};
 </span><span class="boring">
 </span><span class="boring">use crate::custom_button::CustomButton;
 </span><span class="boring">
@@ -6114,7 +6121,7 @@ This lets us access the state of the window and therefore manipulate <code>numbe
 </span><span class="boring">use glib::subclass::InitializingObject;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::subclass::prelude::*;
-</span><span class="boring">use gtk::{glib, CompositeTemplate};
+</span><span class="boring">use gtk::{CompositeTemplate, glib};
 </span><span class="boring">
 </span><span class="boring">use crate::custom_button::CustomButton;
 </span><span class="boring">
@@ -6175,7 +6182,7 @@ Let’s remove it.</p>
 </span><span class="boring">use glib::subclass::InitializingObject;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::subclass::prelude::*;
-</span><span class="boring">use gtk::{glib, CompositeTemplate};
+</span><span class="boring">use gtk::{CompositeTemplate, glib};
 </span><span class="boring">
 </span><span class="boring">use crate::custom_button::CustomButton;
 </span><span class="boring">
@@ -6239,7 +6246,7 @@ Luckily we can also do that by ourselves.</p>
 </span><span class="boring">use glib::subclass::InitializingObject;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::subclass::prelude::*;
-</span><span class="boring">use gtk::{glib, CompositeTemplate};
+</span><span class="boring">use gtk::{CompositeTemplate, glib};
 </span><span class="boring">
 </span><span class="boring">use crate::custom_button::CustomButton;
 </span><span class="boring">
@@ -6364,10 +6371,10 @@ As usual, we have to list all <a href="https://docs.gtk.org/gtk4/class.Applicati
 <p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/1/window/mod.rs">listings/todo/1/window/mod.rs</a></p>
 <pre><code class="language-rust"><span class="boring">mod imp;
 </span><span class="boring">
-</span><span class="boring">use glib::{clone, Object};
+</span><span class="boring">use glib::{Object, clone};
 </span><span class="boring">use gtk::subclass::prelude::*;
-</span><span class="boring">use gtk::{gio, glib, Application, NoSelection, SignalListItemFactory};
-</span><span class="boring">use gtk::{prelude::*, ListItem};
+</span><span class="boring">use gtk::{Application, NoSelection, SignalListItemFactory, gio, glib};
+</span><span class="boring">use gtk::{ListItem, prelude::*};
 </span><span class="boring">
 </span><span class="boring">use crate::task_object::TaskObject;
 </span><span class="boring">use crate::task_row::TaskRow;
@@ -6502,7 +6509,7 @@ We only have to assure that the <code>class</code> attribute of the template in 
 </span><span class="boring">
 </span><span class="boring">use glib::subclass::InitializingObject;
 </span><span class="boring">use gtk::subclass::prelude::*;
-</span><span class="boring">use gtk::{gio, glib, CompositeTemplate, Entry, ListView};
+</span><span class="boring">use gtk::{CompositeTemplate, Entry, ListView, gio, glib};
 </span><span class="boring">
 </span>// Object holding the state
 #[derive(CompositeTemplate, Default)]
@@ -6561,7 +6568,7 @@ impl ObjectSubclass for Window {
 </span><span class="boring">mod window;
 </span><span class="boring">
 </span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{gio, glib, Application};
+</span><span class="boring">use gtk::{Application, gio, glib};
 </span><span class="boring">use window::Window;
 </span><span class="boring">
 </span>fn main() -&gt; glib::ExitCode {
@@ -6808,7 +6815,7 @@ Why we need that will become clear as soon as we get to bind the state of <code>
 </span><span class="boring">
 </span><span class="boring">use glib::Binding;
 </span><span class="boring">use gtk::subclass::prelude::*;
-</span><span class="boring">use gtk::{glib, CheckButton, CompositeTemplate, Label};
+</span><span class="boring">use gtk::{CheckButton, CompositeTemplate, Label, glib};
 </span><span class="boring">
 </span>// Object holding the state
 #[derive(Default, CompositeTemplate)]
@@ -6854,7 +6861,7 @@ We override the <code>imp::Window::constructed</code> in order to set up window 
 </span><span class="boring">
 </span><span class="boring">use glib::subclass::InitializingObject;
 </span><span class="boring">use gtk::subclass::prelude::*;
-</span><span class="boring">use gtk::{gio, glib, CompositeTemplate, Entry, ListView};
+</span><span class="boring">use gtk::{CompositeTemplate, Entry, ListView, gio, glib};
 </span><span class="boring">
 </span><span class="boring">// Object holding the state
 </span><span class="boring">#[derive(CompositeTemplate, Default)]
@@ -6912,10 +6919,10 @@ Then we store a reference to the model in <code>imp::Window</code> as well as in
 <p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/1/window/mod.rs">listings/todo/1/window/mod.rs</a></p>
 <pre><code class="language-rust"><span class="boring">mod imp;
 </span><span class="boring">
-</span><span class="boring">use glib::{clone, Object};
+</span><span class="boring">use glib::{Object, clone};
 </span><span class="boring">use gtk::subclass::prelude::*;
-</span><span class="boring">use gtk::{gio, glib, Application, NoSelection, SignalListItemFactory};
-</span><span class="boring">use gtk::{prelude::*, ListItem};
+</span><span class="boring">use gtk::{Application, NoSelection, SignalListItemFactory, gio, glib};
+</span><span class="boring">use gtk::{ListItem, prelude::*};
 </span><span class="boring">
 </span><span class="boring">use crate::task_object::TaskObject;
 </span><span class="boring">use crate::task_row::TaskRow;
@@ -7044,10 +7051,10 @@ Then we store a reference to the model in <code>imp::Window</code> as well as in
 <p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/1/window/mod.rs">listings/todo/1/window/mod.rs</a></p>
 <pre><code class="language-rust"><span class="boring">mod imp;
 </span><span class="boring">
-</span><span class="boring">use glib::{clone, Object};
+</span><span class="boring">use glib::{Object, clone};
 </span><span class="boring">use gtk::subclass::prelude::*;
-</span><span class="boring">use gtk::{gio, glib, Application, NoSelection, SignalListItemFactory};
-</span><span class="boring">use gtk::{prelude::*, ListItem};
+</span><span class="boring">use gtk::{Application, NoSelection, SignalListItemFactory, gio, glib};
+</span><span class="boring">use gtk::{ListItem, prelude::*};
 </span><span class="boring">
 </span><span class="boring">use crate::task_object::TaskObject;
 </span><span class="boring">use crate::task_row::TaskRow;
@@ -7179,10 +7186,10 @@ Finally, the entry will be cleared.</p>
 <p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/1/window/mod.rs">listings/todo/1/window/mod.rs</a></p>
 <pre><code class="language-rust"><span class="boring">mod imp;
 </span><span class="boring">
-</span><span class="boring">use glib::{clone, Object};
+</span><span class="boring">use glib::{Object, clone};
 </span><span class="boring">use gtk::subclass::prelude::*;
-</span><span class="boring">use gtk::{gio, glib, Application, NoSelection, SignalListItemFactory};
-</span><span class="boring">use gtk::{prelude::*, ListItem};
+</span><span class="boring">use gtk::{Application, NoSelection, SignalListItemFactory, gio, glib};
+</span><span class="boring">use gtk::{ListItem, prelude::*};
 </span><span class="boring">
 </span><span class="boring">use crate::task_object::TaskObject;
 </span><span class="boring">use crate::task_row::TaskRow;
@@ -7320,10 +7327,10 @@ We will need to unbind them manually when they are no longer needed.</p>
 <p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/1/window/mod.rs">listings/todo/1/window/mod.rs</a></p>
 <pre><code class="language-rust"><span class="boring">mod imp;
 </span><span class="boring">
-</span><span class="boring">use glib::{clone, Object};
+</span><span class="boring">use glib::{Object, clone};
 </span><span class="boring">use gtk::subclass::prelude::*;
-</span><span class="boring">use gtk::{gio, glib, Application, NoSelection, SignalListItemFactory};
-</span><span class="boring">use gtk::{prelude::*, ListItem};
+</span><span class="boring">use gtk::{Application, NoSelection, SignalListItemFactory, gio, glib};
+</span><span class="boring">use gtk::{ListItem, prelude::*};
 </span><span class="boring">
 </span><span class="boring">use crate::task_object::TaskObject;
 </span><span class="boring">use crate::task_row::TaskRow;
@@ -7629,7 +7636,7 @@ Let’s check out the simplest case where we activate an action without a parame
 <p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/actions/1/main.rs">listings/actions/1/main.rs</a></p>
 <pre><code class="language-rust no_run"><span class="boring">use gio::ActionEntry;
 </span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{gio, glib, Application, ApplicationWindow};
+</span><span class="boring">use gtk::{Application, ApplicationWindow, gio, glib};
 </span><span class="boring">
 </span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.Actions1";
 </span><span class="boring">
@@ -7672,7 +7679,7 @@ Finally, we add the action entry to the window via <a href="https://gtk-rs.org/g
 <p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/actions/1/main.rs">listings/actions/1/main.rs</a></p>
 <pre><code class="language-rust no_run"><span class="boring">use gio::ActionEntry;
 </span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{gio, glib, Application, ApplicationWindow};
+</span><span class="boring">use gtk::{Application, ApplicationWindow, gio, glib};
 </span><span class="boring">
 </span>const APP_ID: &amp;str = "org.gtk_rs.Actions1";
 
@@ -7729,7 +7736,7 @@ This means we have to clone <code>window</code> into the closure.</p>
 </span><span class="boring">use glib::clone;
 </span><span class="boring">use gtk::gio::SimpleActionGroup;
 </span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{gio, glib, Application, ApplicationWindow};
+</span><span class="boring">use gtk::{Application, ApplicationWindow, gio, glib};
 </span><span class="boring">
 </span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.Actions2";
 </span><span class="boring">
@@ -7779,7 +7786,7 @@ This means we have to clone <code>window</code> into the closure.</p>
 </span><span class="boring">use glib::clone;
 </span><span class="boring">use gtk::gio::SimpleActionGroup;
 </span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{gio, glib, Application, ApplicationWindow};
+</span><span class="boring">use gtk::{Application, ApplicationWindow, gio, glib};
 </span><span class="boring">
 </span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.Actions2";
 </span><span class="boring">
@@ -7839,7 +7846,7 @@ Let’s see how this works.</p>
 <pre><code class="language-rust"><span class="boring">use gio::ActionEntry;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::{
-</span><span class="boring">    gio, glib, Align, Application, ApplicationWindow, Button, Label, Orientation,
+</span><span class="boring">    Align, Application, ApplicationWindow, Button, Label, Orientation, gio, glib,
 </span><span class="boring">};
 </span><span class="boring">
 </span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.Actions3";
@@ -7947,7 +7954,7 @@ With <a href="https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/builders/struct
 <pre><code class="language-rust"><span class="boring">use gio::ActionEntry;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::{
-</span><span class="boring">    gio, glib, Align, Application, ApplicationWindow, Button, Label, Orientation,
+</span><span class="boring">    Align, Application, ApplicationWindow, Button, Label, Orientation, gio, glib,
 </span><span class="boring">};
 </span><span class="boring">
 </span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.Actions4";
@@ -8069,7 +8076,7 @@ Within the template we can then set the “action-name” and “action-target�
 </span><span class="boring">use glib::Object;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::subclass::prelude::*;
-</span><span class="boring">use gtk::{gio, glib, Application};
+</span><span class="boring">use gtk::{Application, gio, glib};
 </span><span class="boring">
 </span><span class="boring">glib::wrapper! {
 </span><span class="boring">    pub struct Window(ObjectSubclass&lt;imp::Window&gt;)
@@ -8119,7 +8126,7 @@ Within the template we can then set the “action-name” and “action-target�
 <p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/actions/5/window/imp.rs">listings/actions/5/window/imp.rs</a></p>
 <pre><code class="language-rust"><span class="boring">use glib::subclass::InitializingObject;
 </span><span class="boring">use gtk::subclass::prelude::*;
-</span><span class="boring">use gtk::{glib, CompositeTemplate, Label};
+</span><span class="boring">use gtk::{CompositeTemplate, Label, glib};
 </span><span class="boring">
 </span><span class="boring">// Object holding the state
 </span><span class="boring">#[derive(CompositeTemplate, Default)]
@@ -8188,7 +8195,7 @@ This means that the caller can expect the boolean state to toggle after activati
 </span><span class="boring">use glib::Object;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::subclass::prelude::*;
-</span><span class="boring">use gtk::{gio, glib, Application, Orientation};
+</span><span class="boring">use gtk::{Application, Orientation, gio, glib};
 </span><span class="boring">
 </span><span class="boring">glib::wrapper! {
 </span><span class="boring">    pub struct Window(ObjectSubclass&lt;imp::Window&gt;)
@@ -8280,7 +8287,7 @@ We don’t need the action state to implement orientation switching, however it 
 </span><span class="boring">use glib::Object;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::subclass::prelude::*;
-</span><span class="boring">use gtk::{gio, glib, Application, Orientation};
+</span><span class="boring">use gtk::{Application, Orientation, gio, glib};
 </span><span class="boring">
 </span><span class="boring">glib::wrapper! {
 </span><span class="boring">    pub struct Window(ObjectSubclass&lt;imp::Window&gt;)
@@ -8454,7 +8461,7 @@ Since <a href="https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.Sett
 <pre><code class="language-rust"><span class="boring">use gio::Settings;
 </span><span class="boring">use glib::subclass::InitializingObject;
 </span><span class="boring">use gtk::subclass::prelude::*;
-</span><span class="boring">use gtk::{gio, glib, Button, CompositeTemplate, Label};
+</span><span class="boring">use gtk::{Button, CompositeTemplate, Label, gio, glib};
 </span><span class="boring">use std::cell::OnceCell;
 </span><span class="boring">
 </span>// Object holding the state
@@ -8517,7 +8524,7 @@ pub struct Window {
 </span><span class="boring">use glib::Object;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::subclass::prelude::*;
-</span><span class="boring">use gtk::{gio, glib, Application, Orientation};
+</span><span class="boring">use gtk::{Application, Orientation, gio, glib};
 </span><span class="boring">
 </span><span class="boring">use crate::APP_ID;
 </span><span class="boring">
@@ -8624,7 +8631,7 @@ We create actions with the<a href="https://gtk-rs.org/gtk-rs-core/stable/latest/
 </span><span class="boring">use glib::Object;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::subclass::prelude::*;
-</span><span class="boring">use gtk::{gio, glib, Application, Orientation};
+</span><span class="boring">use gtk::{Application, Orientation, gio, glib};
 </span><span class="boring">
 </span><span class="boring">use crate::APP_ID;
 </span><span class="boring">
@@ -8733,7 +8740,7 @@ For the stateful actions, instead of adding callbacks to their “activate” si
 </span><span class="boring">use glib::Object;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::subclass::prelude::*;
-</span><span class="boring">use gtk::{gio, glib, Application, Orientation};
+</span><span class="boring">use gtk::{Application, Orientation, gio, glib};
 </span><span class="boring">
 </span><span class="boring">use crate::APP_ID;
 </span><span class="boring">
@@ -8836,7 +8843,7 @@ For the stateful actions, instead of adding callbacks to their “activate” si
 <pre><code class="language-rust"><span class="boring">use gio::Settings;
 </span><span class="boring">use glib::subclass::InitializingObject;
 </span><span class="boring">use gtk::subclass::prelude::*;
-</span><span class="boring">use gtk::{gio, glib, Button, CompositeTemplate, Label};
+</span><span class="boring">use gtk::{Button, CompositeTemplate, Label, gio, glib};
 </span><span class="boring">use std::cell::OnceCell;
 </span><span class="boring">
 </span><span class="boring">// Object holding the state
@@ -8987,7 +8994,7 @@ Then we add a reference to <code>settings</code> to <code>imp::Window</code>.</p
 </span><span class="boring">use glib::subclass::InitializingObject;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::subclass::prelude::*;
-</span><span class="boring">use gtk::{gio, glib, CompositeTemplate, Entry, ListView};
+</span><span class="boring">use gtk::{CompositeTemplate, Entry, ListView, gio, glib};
 </span><span class="boring">use std::cell::OnceCell;
 </span><span class="boring">
 </span><span class="boring">use crate::task_object::{TaskData, TaskObject};
@@ -9078,18 +9085,18 @@ pub struct Window {
 </span><span class="boring">use std::fs::File;
 </span><span class="boring">
 </span><span class="boring">use gio::Settings;
-</span><span class="boring">use glib::{clone, Object};
+</span><span class="boring">use glib::{Object, clone};
 </span><span class="boring">use gtk::subclass::prelude::*;
 </span><span class="boring">use gtk::{
-</span><span class="boring">    gio, glib, Application, CustomFilter, FilterListModel, NoSelection,
-</span><span class="boring">    SignalListItemFactory,
+</span><span class="boring">    Application, CustomFilter, FilterListModel, NoSelection, SignalListItemFactory,
+</span><span class="boring">    gio, glib,
 </span><span class="boring">};
-</span><span class="boring">use gtk::{prelude::*, ListItem};
+</span><span class="boring">use gtk::{ListItem, prelude::*};
 </span><span class="boring">
+</span><span class="boring">use crate::APP_ID;
 </span><span class="boring">use crate::task_object::{TaskData, TaskObject};
 </span><span class="boring">use crate::task_row::TaskRow;
 </span><span class="boring">use crate::utils::data_path;
-</span><span class="boring">use crate::APP_ID;
 </span><span class="boring">
 </span><span class="boring">glib::wrapper! {
 </span><span class="boring">    pub struct Window(ObjectSubclass&lt;imp::Window&gt;)
@@ -9363,18 +9370,18 @@ Then we add the newly created action “filter” to our window.</p>
 </span><span class="boring">use std::fs::File;
 </span><span class="boring">
 </span><span class="boring">use gio::Settings;
-</span><span class="boring">use glib::{clone, Object};
+</span><span class="boring">use glib::{Object, clone};
 </span><span class="boring">use gtk::subclass::prelude::*;
 </span><span class="boring">use gtk::{
-</span><span class="boring">    gio, glib, Application, CustomFilter, FilterListModel, NoSelection,
-</span><span class="boring">    SignalListItemFactory,
+</span><span class="boring">    Application, CustomFilter, FilterListModel, NoSelection, SignalListItemFactory,
+</span><span class="boring">    gio, glib,
 </span><span class="boring">};
-</span><span class="boring">use gtk::{prelude::*, ListItem};
+</span><span class="boring">use gtk::{ListItem, prelude::*};
 </span><span class="boring">
+</span><span class="boring">use crate::APP_ID;
 </span><span class="boring">use crate::task_object::{TaskData, TaskObject};
 </span><span class="boring">use crate::task_row::TaskRow;
 </span><span class="boring">use crate::utils::data_path;
-</span><span class="boring">use crate::APP_ID;
 </span><span class="boring">
 </span><span class="boring">glib::wrapper! {
 </span><span class="boring">    pub struct Window(ObjectSubclass&lt;imp::Window&gt;)
@@ -9613,7 +9620,7 @@ On the flipside, its usage is concise and it has a corresponding sister-method <
 </span><span class="boring">use glib::subclass::InitializingObject;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::subclass::prelude::*;
-</span><span class="boring">use gtk::{gio, glib, CompositeTemplate, Entry, ListView};
+</span><span class="boring">use gtk::{CompositeTemplate, Entry, ListView, gio, glib};
 </span><span class="boring">use std::cell::OnceCell;
 </span><span class="boring">
 </span><span class="boring">use crate::task_object::{TaskData, TaskObject};
@@ -9705,18 +9712,18 @@ We iterate through the <code>gio::ListStore</code> and remove all completed task
 </span><span class="boring">use std::fs::File;
 </span><span class="boring">
 </span><span class="boring">use gio::Settings;
-</span><span class="boring">use glib::{clone, Object};
+</span><span class="boring">use glib::{Object, clone};
 </span><span class="boring">use gtk::subclass::prelude::*;
 </span><span class="boring">use gtk::{
-</span><span class="boring">    gio, glib, Application, CustomFilter, FilterListModel, NoSelection,
-</span><span class="boring">    SignalListItemFactory,
+</span><span class="boring">    Application, CustomFilter, FilterListModel, NoSelection, SignalListItemFactory,
+</span><span class="boring">    gio, glib,
 </span><span class="boring">};
-</span><span class="boring">use gtk::{prelude::*, ListItem};
+</span><span class="boring">use gtk::{ListItem, prelude::*};
 </span><span class="boring">
+</span><span class="boring">use crate::APP_ID;
 </span><span class="boring">use crate::task_object::{TaskData, TaskObject};
 </span><span class="boring">use crate::task_row::TaskRow;
 </span><span class="boring">use crate::utils::data_path;
-</span><span class="boring">use crate::APP_ID;
 </span><span class="boring">
 </span><span class="boring">glib::wrapper! {
 </span><span class="boring">    pub struct Window(ObjectSubclass&lt;imp::Window&gt;)
@@ -9953,18 +9960,18 @@ If the state is “All” nothing has to be filtered out, so we return <code>Non
 </span><span class="boring">use std::fs::File;
 </span><span class="boring">
 </span><span class="boring">use gio::Settings;
-</span><span class="boring">use glib::{clone, Object};
+</span><span class="boring">use glib::{Object, clone};
 </span><span class="boring">use gtk::subclass::prelude::*;
 </span><span class="boring">use gtk::{
-</span><span class="boring">    gio, glib, Application, CustomFilter, FilterListModel, NoSelection,
-</span><span class="boring">    SignalListItemFactory,
+</span><span class="boring">    Application, CustomFilter, FilterListModel, NoSelection, SignalListItemFactory,
+</span><span class="boring">    gio, glib,
 </span><span class="boring">};
-</span><span class="boring">use gtk::{prelude::*, ListItem};
+</span><span class="boring">use gtk::{ListItem, prelude::*};
 </span><span class="boring">
+</span><span class="boring">use crate::APP_ID;
 </span><span class="boring">use crate::task_object::{TaskData, TaskObject};
 </span><span class="boring">use crate::task_row::TaskRow;
 </span><span class="boring">use crate::utils::data_path;
-</span><span class="boring">use crate::APP_ID;
 </span><span class="boring">
 </span><span class="boring">glib::wrapper! {
 </span><span class="boring">    pub struct Window(ObjectSubclass&lt;imp::Window&gt;)
@@ -10199,18 +10206,18 @@ Whenever the state of the key “filter” changes, we call the method <code>fil
 </span><span class="boring">use std::fs::File;
 </span><span class="boring">
 </span><span class="boring">use gio::Settings;
-</span><span class="boring">use glib::{clone, Object};
+</span><span class="boring">use glib::{Object, clone};
 </span><span class="boring">use gtk::subclass::prelude::*;
 </span><span class="boring">use gtk::{
-</span><span class="boring">    gio, glib, Application, CustomFilter, FilterListModel, NoSelection,
-</span><span class="boring">    SignalListItemFactory,
+</span><span class="boring">    Application, CustomFilter, FilterListModel, NoSelection, SignalListItemFactory,
+</span><span class="boring">    gio, glib,
 </span><span class="boring">};
-</span><span class="boring">use gtk::{prelude::*, ListItem};
+</span><span class="boring">use gtk::{ListItem, prelude::*};
 </span><span class="boring">
+</span><span class="boring">use crate::APP_ID;
 </span><span class="boring">use crate::task_object::{TaskData, TaskObject};
 </span><span class="boring">use crate::task_row::TaskRow;
 </span><span class="boring">use crate::utils::data_path;
-</span><span class="boring">use crate::APP_ID;
 </span><span class="boring">
 </span><span class="boring">glib::wrapper! {
 </span><span class="boring">    pub struct Window(ObjectSubclass&lt;imp::Window&gt;)
@@ -10446,7 +10453,7 @@ Since this has to be done at the application level, <code>setup_shortcuts</code>
 </span><span class="boring">mod window;
 </span><span class="boring">
 </span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{gio, glib, Application};
+</span><span class="boring">use gtk::{Application, gio, glib};
 </span><span class="boring">use window::Window;
 </span><span class="boring">
 </span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.Todo2";
@@ -10639,7 +10646,7 @@ Then we serialize the <code>Vec</code> and store the data as a json file.</p>
 </span><span class="boring">use glib::subclass::InitializingObject;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::subclass::prelude::*;
-</span><span class="boring">use gtk::{gio, glib, CompositeTemplate, Entry, ListView};
+</span><span class="boring">use gtk::{CompositeTemplate, Entry, ListView, gio, glib};
 </span><span class="boring">use std::cell::OnceCell;
 </span><span class="boring">
 </span><span class="boring">use crate::task_object::{TaskData, TaskObject};
@@ -10760,18 +10767,18 @@ It might be the first time that we started the app and therefore there is no for
 </span><span class="boring">use std::fs::File;
 </span><span class="boring">
 </span><span class="boring">use gio::Settings;
-</span><span class="boring">use glib::{clone, Object};
+</span><span class="boring">use glib::{Object, clone};
 </span><span class="boring">use gtk::subclass::prelude::*;
 </span><span class="boring">use gtk::{
-</span><span class="boring">    gio, glib, Application, CustomFilter, FilterListModel, NoSelection,
-</span><span class="boring">    SignalListItemFactory,
+</span><span class="boring">    Application, CustomFilter, FilterListModel, NoSelection, SignalListItemFactory,
+</span><span class="boring">    gio, glib,
 </span><span class="boring">};
-</span><span class="boring">use gtk::{prelude::*, ListItem};
+</span><span class="boring">use gtk::{ListItem, prelude::*};
 </span><span class="boring">
+</span><span class="boring">use crate::APP_ID;
 </span><span class="boring">use crate::task_object::{TaskData, TaskObject};
 </span><span class="boring">use crate::task_row::TaskRow;
 </span><span class="boring">use crate::utils::data_path;
-</span><span class="boring">use crate::APP_ID;
 </span><span class="boring">
 </span><span class="boring">glib::wrapper! {
 </span><span class="boring">    pub struct Window(ObjectSubclass&lt;imp::Window&gt;)
@@ -11006,7 +11013,7 @@ It might be the first time that we started the app and therefore there is no for
 </span><span class="boring">use glib::subclass::InitializingObject;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::subclass::prelude::*;
-</span><span class="boring">use gtk::{gio, glib, CompositeTemplate, Entry, ListView};
+</span><span class="boring">use gtk::{CompositeTemplate, Entry, ListView, gio, glib};
 </span><span class="boring">use std::cell::OnceCell;
 </span><span class="boring">
 </span><span class="boring">use crate::task_object::{TaskData, TaskObject};
@@ -11115,7 +11122,7 @@ As usual, the widgets are created during the “activate” step.</p>
 <p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/css/1/main.rs">listings/css/1/main.rs</a></p>
 <pre><code class="language-rust"><span class="boring">use gdk::Display;
 </span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{gdk, glib, Application, ApplicationWindow, Button, CssProvider};
+</span><span class="boring">use gtk::{Application, ApplicationWindow, Button, CssProvider, gdk, glib};
 </span><span class="boring">
 </span>const APP_ID: &amp;str = "org.gtk_rs.Css1";
 
@@ -11200,7 +11207,7 @@ Which is why we add the style class <code>button-1</code> to the first one.</p>
 <p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/css/3/main.rs">listings/css/3/main.rs</a></p>
 <pre><code class="language-rust"><span class="boring">use gdk::Display;
 </span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{gdk, glib, Application, ApplicationWindow, Button, CssProvider};
+</span><span class="boring">use gtk::{Application, ApplicationWindow, Button, CssProvider, gdk, glib};
 </span><span class="boring">
 </span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.Css3";
 </span><span class="boring">
@@ -11273,7 +11280,7 @@ We set the name of the first one with <a href="https://gtk-rs.org/gtk4-rs/stable
 <p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/css/4/main.rs">listings/css/4/main.rs</a></p>
 <pre><code class="language-rust"><span class="boring">use gdk::Display;
 </span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{gdk, glib, Application, ApplicationWindow, Button, CssProvider};
+</span><span class="boring">use gtk::{Application, ApplicationWindow, Button, CssProvider, gdk, glib};
 </span><span class="boring">
 </span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.Css4";
 </span><span class="boring">
@@ -11522,7 +11529,7 @@ In our case, the widget <code>TaskRow</code> then corresponds to the node <code>
 </span><span class="boring">
 </span><span class="boring">use glib::Binding;
 </span><span class="boring">use gtk::subclass::prelude::*;
-</span><span class="boring">use gtk::{glib, CheckButton, CompositeTemplate, Label};
+</span><span class="boring">use gtk::{CheckButton, CompositeTemplate, Label, glib};
 </span><span class="boring">
 </span><span class="boring">// Object holding the state
 </span><span class="boring">#[derive(Default, CompositeTemplate)]
@@ -11595,7 +11602,7 @@ We can then access the pre-defined color by adding an <code>@</code> in front of
 </span><span class="boring">
 </span><span class="boring">use gdk::Display;
 </span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{gdk, gio, glib, Application, CssProvider};
+</span><span class="boring">use gtk::{Application, CssProvider, gdk, gio, glib};
 </span><span class="boring">use window::Window;
 </span><span class="boring">
 </span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.Todo3";
@@ -11651,7 +11658,7 @@ However, this time we load styles using <code>load_from_resource()</code>.</p>
 </span><span class="boring">
 </span><span class="boring">use gdk::Display;
 </span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{gdk, gio, glib, Application, CssProvider};
+</span><span class="boring">use gtk::{Application, CssProvider, gdk, gio, glib};
 </span><span class="boring">use window::Window;
 </span><span class="boring">
 </span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.Todo3";
@@ -11742,7 +11749,7 @@ In this chapter we will discuss how to follow GNOME’s <a href="https://develop
 <li>adds <a href="https://world.pages.gitlab.gnome.org/Rust/libadwaita-rs/stable/latest/docs/libadwaita/struct.StyleManager.html">API</a> to support the cross-desktop dark style preference</li>
 </ul>
 <p>In order to use the Rust bindings, add the <a href="https://crates.io/crates/libadwaita">libadwaita crate</a> as dependency by executing:</p>
-<pre><code>cargo add libadwaita --rename adw --features v1_5
+<pre><code>cargo add libadwaita --rename adw --features v1_8
 </code></pre>
 <p>The versions of the <code>gtk4</code> and <code>libadwaita</code> crates need to be synced.
 Just remember that when you update one of them to the newest version to update the other one as well.</p>
@@ -11840,17 +11847,17 @@ fn build_ui(app: &amp;adw::Application) {
 </span><span class="boring">use std::fs::File;
 </span><span class="boring">
 </span><span class="boring">use gio::Settings;
-</span><span class="boring">use glib::{clone, Object};
+</span><span class="boring">use glib::{Object, clone};
 </span><span class="boring">use gtk::subclass::prelude::*;
 </span><span class="boring">use gtk::{
-</span><span class="boring">    gio, glib, CustomFilter, FilterListModel, NoSelection, SignalListItemFactory,
+</span><span class="boring">    CustomFilter, FilterListModel, NoSelection, SignalListItemFactory, gio, glib,
 </span><span class="boring">};
-</span><span class="boring">use gtk::{prelude::*, ListItem};
+</span><span class="boring">use gtk::{ListItem, prelude::*};
 </span><span class="boring">
+</span><span class="boring">use crate::APP_ID;
 </span><span class="boring">use crate::task_object::{TaskData, TaskObject};
 </span><span class="boring">use crate::task_row::TaskRow;
 </span><span class="boring">use crate::utils::data_path;
-</span><span class="boring">use crate::APP_ID;
 </span><span class="boring">
 </span><span class="boring">glib::wrapper! {
 </span><span class="boring">    pub struct Window(ObjectSubclass&lt;imp::Window&gt;)
@@ -12158,7 +12165,7 @@ The member variable <code>tasks_list</code> now describes a <code>ListBox</code>
 </span><span class="boring">use glib::subclass::InitializingObject;
 </span><span class="boring">
 </span><span class="boring">use adw::prelude::*;
-</span><span class="boring">use gtk::{gio, glib, CompositeTemplate, Entry, ListBox};
+</span><span class="boring">use gtk::{CompositeTemplate, Entry, ListBox, gio, glib};
 </span><span class="boring">use std::cell::OnceCell;
 </span><span class="boring">
 </span><span class="boring">use crate::task_object::{TaskData, TaskObject};
@@ -12252,14 +12259,14 @@ There we specify the model, as well as a closure describing how to transform the
 </span><span class="boring">use std::fs::File;
 </span><span class="boring">
 </span><span class="boring">use adw::subclass::prelude::*;
-</span><span class="boring">use adw::{prelude::*, ActionRow};
+</span><span class="boring">use adw::{ActionRow, prelude::*};
 </span><span class="boring">use gio::Settings;
-</span><span class="boring">use glib::{clone, Object};
-</span><span class="boring">use gtk::{gio, glib, Align, CheckButton, CustomFilter, FilterListModel, NoSelection};
+</span><span class="boring">use glib::{Object, clone};
+</span><span class="boring">use gtk::{Align, CheckButton, CustomFilter, FilterListModel, NoSelection, gio, glib};
 </span><span class="boring">
+</span><span class="boring">use crate::APP_ID;
 </span><span class="boring">use crate::task_object::{TaskData, TaskObject};
 </span><span class="boring">use crate::utils::data_path;
-</span><span class="boring">use crate::APP_ID;
 </span><span class="boring">
 </span><span class="boring">glib::wrapper! {
 </span><span class="boring">    pub struct Window(ObjectSubclass&lt;imp::Window&gt;)
@@ -12500,14 +12507,14 @@ That means we can just bind their properties without having to worry about unbin
 </span><span class="boring">use std::fs::File;
 </span><span class="boring">
 </span><span class="boring">use adw::subclass::prelude::*;
-</span><span class="boring">use adw::{prelude::*, ActionRow};
+</span><span class="boring">use adw::{ActionRow, prelude::*};
 </span><span class="boring">use gio::Settings;
-</span><span class="boring">use glib::{clone, Object};
-</span><span class="boring">use gtk::{gio, glib, Align, CheckButton, CustomFilter, FilterListModel, NoSelection};
+</span><span class="boring">use glib::{Object, clone};
+</span><span class="boring">use gtk::{Align, CheckButton, CustomFilter, FilterListModel, NoSelection, gio, glib};
 </span><span class="boring">
+</span><span class="boring">use crate::APP_ID;
 </span><span class="boring">use crate::task_object::{TaskData, TaskObject};
 </span><span class="boring">use crate::utils::data_path;
-</span><span class="boring">use crate::APP_ID;
 </span><span class="boring">
 </span><span class="boring">glib::wrapper! {
 </span><span class="boring">    pub struct Window(ObjectSubclass&lt;imp::Window&gt;)
@@ -12745,14 +12752,14 @@ That means we can just bind their properties without having to worry about unbin
 </span><span class="boring">use std::fs::File;
 </span><span class="boring">
 </span><span class="boring">use adw::subclass::prelude::*;
-</span><span class="boring">use adw::{prelude::*, ActionRow};
+</span><span class="boring">use adw::{ActionRow, prelude::*};
 </span><span class="boring">use gio::Settings;
-</span><span class="boring">use glib::{clone, Object};
-</span><span class="boring">use gtk::{gio, glib, Align, CheckButton, CustomFilter, FilterListModel, NoSelection};
+</span><span class="boring">use glib::{Object, clone};
+</span><span class="boring">use gtk::{Align, CheckButton, CustomFilter, FilterListModel, NoSelection, gio, glib};
 </span><span class="boring">
+</span><span class="boring">use crate::APP_ID;
 </span><span class="boring">use crate::task_object::{TaskData, TaskObject};
 </span><span class="boring">use crate::utils::data_path;
-</span><span class="boring">use crate::APP_ID;
 </span><span class="boring">
 </span><span class="boring">glib::wrapper! {
 </span><span class="boring">    pub struct Window(ObjectSubclass&lt;imp::Window&gt;)
@@ -12990,14 +12997,14 @@ That means we can just bind their properties without having to worry about unbin
 </span><span class="boring">use std::fs::File;
 </span><span class="boring">
 </span><span class="boring">use adw::subclass::prelude::*;
-</span><span class="boring">use adw::{prelude::*, ActionRow};
+</span><span class="boring">use adw::{ActionRow, prelude::*};
 </span><span class="boring">use gio::Settings;
-</span><span class="boring">use glib::{clone, Object};
-</span><span class="boring">use gtk::{gio, glib, Align, CheckButton, CustomFilter, FilterListModel, NoSelection};
+</span><span class="boring">use glib::{Object, clone};
+</span><span class="boring">use gtk::{Align, CheckButton, CustomFilter, FilterListModel, NoSelection, gio, glib};
 </span><span class="boring">
+</span><span class="boring">use crate::APP_ID;
 </span><span class="boring">use crate::task_object::{TaskData, TaskObject};
 </span><span class="boring">use crate::utils::data_path;
-</span><span class="boring">use crate::APP_ID;
 </span><span class="boring">
 </span><span class="boring">glib::wrapper! {
 </span><span class="boring">    pub struct Window(ObjectSubclass&lt;imp::Window&gt;)
@@ -13231,6 +13238,65 @@ That means we can just bind their properties without having to worry about unbin
 <p>This is how the boxed list style looks like in our app.</p>
 <div style="text-align:center"><img src="img/todo_6.png" alt="The To-Do app using libadwaita" /></div>
 
+<h2 id="shortcuts-dialog"><a class="header" href="#shortcuts-dialog">Shortcuts Dialog</a></h2>
+<p>Now that we are using Libadwaita, we should also update our keyboard shortcuts window to use <a href="https://world.pages.gitlab.gnome.org/Rust/libadwaita-rs/stable/latest/docs/libadwaita/struct.ShortcutsDialog.html"><code>adw::ShortcutsDialog</code></a>.
+This widget is the Libadwaita equivalent of the deprecated <a href="https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.ShortcutsWindow.html"><code>gtk::ShortcutsWindow</code></a> and provides better integration with the Adwaita style.</p>
+<p>In <code>shortcuts.ui</code>, we replace <code>GtkShortcutsWindow</code> with <code>AdwShortcutsDialog</code>, <code>GtkShortcutsGroup</code> with <code>AdwShortcutsSection</code>, and <code>GtkShortcutsShortcut</code> with <code>AdwShortcutsItem</code>.
+We can also remove a couple of properties that are not needed anymore.
+The <code>shortcuts.ui</code> file then ends up like this:</p>
+<p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/6/resources/shortcuts.ui">listings/todo/6/resources/shortcuts.ui</a></p>
+<pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;interface&gt;
+  &lt;object class="AdwShortcutsDialog" id="shortcuts_dialog"&gt;
+    &lt;child&gt;
+      &lt;object class="AdwShortcutsSection"&gt;
+        &lt;property name="title" translatable="yes"&gt;General&lt;/property&gt;
+        &lt;child&gt;
+          &lt;object class="AdwShortcutsItem"&gt;
+            &lt;property name="title" translatable="yes"&gt;Show shortcuts&lt;/property&gt;
+            &lt;property name="action-name"&gt;app.shortcuts&lt;/property&gt;
+          &lt;/object&gt;
+        &lt;/child&gt;
+        &lt;child&gt;
+          &lt;object class="AdwShortcutsItem"&gt;
+            &lt;property name="title" translatable="yes"&gt;Filter to show all tasks&lt;/property&gt;
+            &lt;property name="action-name"&gt;win.filter('All')&lt;/property&gt;
+          &lt;/object&gt;
+        &lt;/child&gt;
+        &lt;child&gt;
+          &lt;object class="AdwShortcutsItem"&gt;
+            &lt;property name="title" translatable="yes"&gt;Filter to show only open tasks&lt;/property&gt;
+            &lt;property name="action-name"&gt;win.filter('Open')&lt;/property&gt;
+          &lt;/object&gt;
+        &lt;/child&gt;
+        &lt;child&gt;
+          &lt;object class="AdwShortcutsItem"&gt;
+            &lt;property name="title" translatable="yes"&gt;Filter to show only completed tasks&lt;/property&gt;
+            &lt;property name="action-name"&gt;win.filter('Done')&lt;/property&gt;
+          &lt;/object&gt;
+        &lt;/child&gt;
+      &lt;/object&gt;
+    &lt;/child&gt;
+  &lt;/object&gt;
+&lt;/interface&gt;
+</code></pre>
+<p>We also change the resource alias in <code>resources.gresource.xml</code> as described in <a href="https://world.pages.gitlab.gnome.org/Rust/libadwaita-rs/stable/latest/docs/libadwaita/struct.Application.html#shortcuts-dialog"><code>adw::Application</code></a>.</p>
+<p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/6/resources/resources.gresource.xml">listings/todo/6/resources/resources.gresource.xml</a></p>
+<pre><code class="language-diff">-    &lt;file compressed="true" preprocess="xml-stripblanks" alias="gtk/help-overlay.ui"&gt;shortcuts.ui&lt;/file&gt;
++    &lt;file compressed="true" preprocess="xml-stripblanks" alias="shortcuts-dialog.ui"&gt;shortcuts.ui&lt;/file&gt;
+</code></pre>
+<p>And in <code>window.ui</code>, we update the menu action:</p>
+<p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/6/resources/window.ui">listings/todo/6/resources/window.ui</a></p>
+<pre><code class="language-diff">     &lt;item&gt;
+       &lt;attribute name="label" translatable="yes"&gt;_Keyboard Shortcuts&lt;/attribute&gt;
+-      &lt;attribute name="action"&gt;win.show-help-overlay&lt;/attribute&gt;
++      &lt;attribute name="action"&gt;app.shortcuts&lt;/attribute&gt;
+     &lt;/item&gt;
+</code></pre>
+<p>If we now open the shortcuts dialog it looks like this.
+Apart from the refreshed style, it also features a search bar.</p>
+<div style="text-align:center"><img src="img/todo_6_shortcuts.png" alt="The shortcuts dialog using AdwShortcutsDialog" /></div>
+
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="adding-collections"><a class="header" href="#adding-collections">Adding Collections</a></h1>
 <h2 id="sidebar"><a class="header" href="#sidebar">Sidebar</a></h2>
@@ -13392,7 +13458,7 @@ For example, the parent type of our window is now <code>adw::ApplicationWindow</
 </span><span class="boring">use glib::subclass::InitializingObject;
 </span><span class="boring">
 </span><span class="boring">use adw::prelude::*;
-</span><span class="boring">use gtk::{gio, glib, CompositeTemplate, Entry, ListBox};
+</span><span class="boring">use gtk::{CompositeTemplate, Entry, ListBox, gio, glib};
 </span><span class="boring">use std::cell::OnceCell;
 </span><span class="boring">
 </span><span class="boring">use crate::task_object::{TaskData, TaskObject};
@@ -13490,7 +13556,7 @@ impl ObjectSubclass for Window {
 </span><span class="boring">use glib::subclass::InitializingObject;
 </span><span class="boring">
 </span><span class="boring">use adw::prelude::*;
-</span><span class="boring">use gtk::{gio, glib, CompositeTemplate, Entry, ListBox};
+</span><span class="boring">use gtk::{CompositeTemplate, Entry, ListBox, gio, glib};
 </span><span class="boring">use std::cell::OnceCell;
 </span><span class="boring">
 </span><span class="boring">use crate::task_object::{TaskData, TaskObject};
@@ -13584,14 +13650,14 @@ impl AdwApplicationWindowImpl for Window {}</code></pre>
 </span><span class="boring">use std::fs::File;
 </span><span class="boring">
 </span><span class="boring">use adw::subclass::prelude::*;
-</span><span class="boring">use adw::{prelude::*, ActionRow};
+</span><span class="boring">use adw::{ActionRow, prelude::*};
 </span><span class="boring">use gio::Settings;
-</span><span class="boring">use glib::{clone, Object};
-</span><span class="boring">use gtk::{gio, glib, Align, CheckButton, CustomFilter, FilterListModel, NoSelection};
+</span><span class="boring">use glib::{Object, clone};
+</span><span class="boring">use gtk::{Align, CheckButton, CustomFilter, FilterListModel, NoSelection, gio, glib};
 </span><span class="boring">
+</span><span class="boring">use crate::APP_ID;
 </span><span class="boring">use crate::task_object::{TaskData, TaskObject};
 </span><span class="boring">use crate::utils::data_path;
-</span><span class="boring">use crate::APP_ID;
 </span><span class="boring">
 </span>glib::wrapper! {
     pub struct Window(ObjectSubclass&lt;imp::Window&gt;)
@@ -14077,11 +14143,11 @@ Its purpose will become clear in later snippets.</p>
 </span><span class="boring">use std::fs::File;
 </span><span class="boring">
 </span><span class="boring">use adw::subclass::prelude::*;
-</span><span class="boring">use adw::{prelude::*, NavigationSplitView};
+</span><span class="boring">use adw::{NavigationSplitView, prelude::*};
 </span><span class="boring">use gio::Settings;
 </span><span class="boring">use glib::subclass::InitializingObject;
 </span><span class="boring">use gtk::glib::SignalHandlerId;
-</span><span class="boring">use gtk::{gio, glib, CompositeTemplate, Entry, FilterListModel, ListBox, Stack};
+</span><span class="boring">use gtk::{CompositeTemplate, Entry, FilterListModel, ListBox, Stack, gio, glib};
 </span><span class="boring">use std::cell::OnceCell;
 </span><span class="boring">
 </span><span class="boring">use crate::collection_object::{CollectionData, CollectionObject};
@@ -14196,16 +14262,16 @@ pub struct Window {
 </span><span class="boring">use adw::subclass::prelude::*;
 </span><span class="boring">use adw::{ActionRow, AlertDialog, ResponseAppearance};
 </span><span class="boring">use gio::Settings;
-</span><span class="boring">use glib::{clone, Object};
+</span><span class="boring">use glib::{Object, clone};
 </span><span class="boring">use gtk::{
-</span><span class="boring">    gio, glib, pango, Align, CheckButton, CustomFilter, Entry, FilterListModel, Label,
-</span><span class="boring">    ListBoxRow, NoSelection,
+</span><span class="boring">    Align, CheckButton, CustomFilter, Entry, FilterListModel, Label, ListBoxRow,
+</span><span class="boring">    NoSelection, gio, glib, pango,
 </span><span class="boring">};
 </span><span class="boring">
+</span><span class="boring">use crate::APP_ID;
 </span><span class="boring">use crate::collection_object::{CollectionData, CollectionObject};
 </span><span class="boring">use crate::task_object::TaskObject;
 </span><span class="boring">use crate::utils::data_path;
-</span><span class="boring">use crate::APP_ID;
 </span><span class="boring">
 </span><span class="boring">glib::wrapper! {
 </span><span class="boring">    pub struct Window(ObjectSubclass&lt;imp::Window&gt;)
@@ -14594,7 +14660,7 @@ pub struct Window {
 </span><span class="boring">            }
 </span><span class="boring">        ));
 </span><span class="boring">
-</span><span class="boring">        let response = dialog.choose_future(self).await;
+</span><span class="boring">        let response = dialog.choose_future(Some(self)).await;
 </span><span class="boring">
 </span><span class="boring">        // Return if the user chose `cancel_response`
 </span><span class="boring">        if response == cancel_response {
@@ -14623,11 +14689,11 @@ Since most of the implementation is in the method <code>CollectionObject::to_col
 </span><span class="boring">use std::fs::File;
 </span><span class="boring">
 </span><span class="boring">use adw::subclass::prelude::*;
-</span><span class="boring">use adw::{prelude::*, NavigationSplitView};
+</span><span class="boring">use adw::{NavigationSplitView, prelude::*};
 </span><span class="boring">use gio::Settings;
 </span><span class="boring">use glib::subclass::InitializingObject;
 </span><span class="boring">use gtk::glib::SignalHandlerId;
-</span><span class="boring">use gtk::{gio, glib, CompositeTemplate, Entry, FilterListModel, ListBox, Stack};
+</span><span class="boring">use gtk::{CompositeTemplate, Entry, FilterListModel, ListBox, Stack, gio, glib};
 </span><span class="boring">use std::cell::OnceCell;
 </span><span class="boring">
 </span><span class="boring">use crate::collection_object::{CollectionData, CollectionObject};
@@ -14739,11 +14805,11 @@ Instead of <code>setup_tasks</code> we now call <code>setup_collections</code>.<
 </span><span class="boring">use std::fs::File;
 </span><span class="boring">
 </span><span class="boring">use adw::subclass::prelude::*;
-</span><span class="boring">use adw::{prelude::*, NavigationSplitView};
+</span><span class="boring">use adw::{NavigationSplitView, prelude::*};
 </span><span class="boring">use gio::Settings;
 </span><span class="boring">use glib::subclass::InitializingObject;
 </span><span class="boring">use gtk::glib::SignalHandlerId;
-</span><span class="boring">use gtk::{gio, glib, CompositeTemplate, Entry, FilterListModel, ListBox, Stack};
+</span><span class="boring">use gtk::{CompositeTemplate, Entry, FilterListModel, ListBox, Stack, gio, glib};
 </span><span class="boring">use std::cell::OnceCell;
 </span><span class="boring">
 </span><span class="boring">use crate::collection_object::{CollectionData, CollectionObject};
@@ -14859,16 +14925,16 @@ To do that it uses the method <code>create_collection_row</code>.</p>
 </span><span class="boring">use adw::subclass::prelude::*;
 </span><span class="boring">use adw::{ActionRow, AlertDialog, ResponseAppearance};
 </span><span class="boring">use gio::Settings;
-</span><span class="boring">use glib::{clone, Object};
+</span><span class="boring">use glib::{Object, clone};
 </span><span class="boring">use gtk::{
-</span><span class="boring">    gio, glib, pango, Align, CheckButton, CustomFilter, Entry, FilterListModel, Label,
-</span><span class="boring">    ListBoxRow, NoSelection,
+</span><span class="boring">    Align, CheckButton, CustomFilter, Entry, FilterListModel, Label, ListBoxRow,
+</span><span class="boring">    NoSelection, gio, glib, pango,
 </span><span class="boring">};
 </span><span class="boring">
+</span><span class="boring">use crate::APP_ID;
 </span><span class="boring">use crate::collection_object::{CollectionData, CollectionObject};
 </span><span class="boring">use crate::task_object::TaskObject;
 </span><span class="boring">use crate::utils::data_path;
-</span><span class="boring">use crate::APP_ID;
 </span><span class="boring">
 </span><span class="boring">glib::wrapper! {
 </span><span class="boring">    pub struct Window(ObjectSubclass&lt;imp::Window&gt;)
@@ -15257,7 +15323,7 @@ To do that it uses the method <code>create_collection_row</code>.</p>
 </span><span class="boring">            }
 </span><span class="boring">        ));
 </span><span class="boring">
-</span><span class="boring">        let response = dialog.choose_future(self).await;
+</span><span class="boring">        let response = dialog.choose_future(Some(self)).await;
 </span><span class="boring">
 </span><span class="boring">        // Return if the user chose `cancel_response`
 </span><span class="boring">        if response == cancel_response {
@@ -15289,16 +15355,16 @@ To do that it uses the method <code>create_collection_row</code>.</p>
 </span><span class="boring">use adw::subclass::prelude::*;
 </span><span class="boring">use adw::{ActionRow, AlertDialog, ResponseAppearance};
 </span><span class="boring">use gio::Settings;
-</span><span class="boring">use glib::{clone, Object};
+</span><span class="boring">use glib::{Object, clone};
 </span><span class="boring">use gtk::{
-</span><span class="boring">    gio, glib, pango, Align, CheckButton, CustomFilter, Entry, FilterListModel, Label,
-</span><span class="boring">    ListBoxRow, NoSelection,
+</span><span class="boring">    Align, CheckButton, CustomFilter, Entry, FilterListModel, Label, ListBoxRow,
+</span><span class="boring">    NoSelection, gio, glib, pango,
 </span><span class="boring">};
 </span><span class="boring">
+</span><span class="boring">use crate::APP_ID;
 </span><span class="boring">use crate::collection_object::{CollectionData, CollectionObject};
 </span><span class="boring">use crate::task_object::TaskObject;
 </span><span class="boring">use crate::utils::data_path;
-</span><span class="boring">use crate::APP_ID;
 </span><span class="boring">
 </span><span class="boring">glib::wrapper! {
 </span><span class="boring">    pub struct Window(ObjectSubclass&lt;imp::Window&gt;)
@@ -15687,7 +15753,7 @@ To do that it uses the method <code>create_collection_row</code>.</p>
 </span><span class="boring">            }
 </span><span class="boring">        ));
 </span><span class="boring">
-</span><span class="boring">        let response = dialog.choose_future(self).await;
+</span><span class="boring">        let response = dialog.choose_future(Some(self)).await;
 </span><span class="boring">
 </span><span class="boring">        // Return if the user chose `cancel_response`
 </span><span class="boring">        if response == cancel_response {
@@ -15722,16 +15788,16 @@ We choose the first one and let the method <code>set_current_collection</code> d
 </span><span class="boring">use adw::subclass::prelude::*;
 </span><span class="boring">use adw::{ActionRow, AlertDialog, ResponseAppearance};
 </span><span class="boring">use gio::Settings;
-</span><span class="boring">use glib::{clone, Object};
+</span><span class="boring">use glib::{Object, clone};
 </span><span class="boring">use gtk::{
-</span><span class="boring">    gio, glib, pango, Align, CheckButton, CustomFilter, Entry, FilterListModel, Label,
-</span><span class="boring">    ListBoxRow, NoSelection,
+</span><span class="boring">    Align, CheckButton, CustomFilter, Entry, FilterListModel, Label, ListBoxRow,
+</span><span class="boring">    NoSelection, gio, glib, pango,
 </span><span class="boring">};
 </span><span class="boring">
+</span><span class="boring">use crate::APP_ID;
 </span><span class="boring">use crate::collection_object::{CollectionData, CollectionObject};
 </span><span class="boring">use crate::task_object::TaskObject;
 </span><span class="boring">use crate::utils::data_path;
-</span><span class="boring">use crate::APP_ID;
 </span><span class="boring">
 </span><span class="boring">glib::wrapper! {
 </span><span class="boring">    pub struct Window(ObjectSubclass&lt;imp::Window&gt;)
@@ -16120,7 +16186,7 @@ We choose the first one and let the method <code>set_current_collection</code> d
 </span><span class="boring">            }
 </span><span class="boring">        ));
 </span><span class="boring">
-</span><span class="boring">        let response = dialog.choose_future(self).await;
+</span><span class="boring">        let response = dialog.choose_future(Some(self)).await;
 </span><span class="boring">
 </span><span class="boring">        // Return if the user chose `cancel_response`
 </span><span class="boring">        if response == cancel_response {
@@ -16158,16 +16224,16 @@ Finally, we select the collection row.</p>
 </span><span class="boring">use adw::subclass::prelude::*;
 </span><span class="boring">use adw::{ActionRow, AlertDialog, ResponseAppearance};
 </span><span class="boring">use gio::Settings;
-</span><span class="boring">use glib::{clone, Object};
+</span><span class="boring">use glib::{Object, clone};
 </span><span class="boring">use gtk::{
-</span><span class="boring">    gio, glib, pango, Align, CheckButton, CustomFilter, Entry, FilterListModel, Label,
-</span><span class="boring">    ListBoxRow, NoSelection,
+</span><span class="boring">    Align, CheckButton, CustomFilter, Entry, FilterListModel, Label, ListBoxRow,
+</span><span class="boring">    NoSelection, gio, glib, pango,
 </span><span class="boring">};
 </span><span class="boring">
+</span><span class="boring">use crate::APP_ID;
 </span><span class="boring">use crate::collection_object::{CollectionData, CollectionObject};
 </span><span class="boring">use crate::task_object::TaskObject;
 </span><span class="boring">use crate::utils::data_path;
-</span><span class="boring">use crate::APP_ID;
 </span><span class="boring">
 </span><span class="boring">glib::wrapper! {
 </span><span class="boring">    pub struct Window(ObjectSubclass&lt;imp::Window&gt;)
@@ -16556,7 +16622,7 @@ Finally, we select the collection row.</p>
 </span><span class="boring">            }
 </span><span class="boring">        ));
 </span><span class="boring">
-</span><span class="boring">        let response = dialog.choose_future(self).await;
+</span><span class="boring">        let response = dialog.choose_future(Some(self)).await;
 </span><span class="boring">
 </span><span class="boring">        // Return if the user chose `cancel_response`
 </span><span class="boring">        if response == cancel_response {
@@ -16589,16 +16655,16 @@ It assures that <code>tasks_list</code> is only visible if the number of tasks i
 </span><span class="boring">use adw::subclass::prelude::*;
 </span><span class="boring">use adw::{ActionRow, AlertDialog, ResponseAppearance};
 </span><span class="boring">use gio::Settings;
-</span><span class="boring">use glib::{clone, Object};
+</span><span class="boring">use glib::{Object, clone};
 </span><span class="boring">use gtk::{
-</span><span class="boring">    gio, glib, pango, Align, CheckButton, CustomFilter, Entry, FilterListModel, Label,
-</span><span class="boring">    ListBoxRow, NoSelection,
+</span><span class="boring">    Align, CheckButton, CustomFilter, Entry, FilterListModel, Label, ListBoxRow,
+</span><span class="boring">    NoSelection, gio, glib, pango,
 </span><span class="boring">};
 </span><span class="boring">
+</span><span class="boring">use crate::APP_ID;
 </span><span class="boring">use crate::collection_object::{CollectionData, CollectionObject};
 </span><span class="boring">use crate::task_object::TaskObject;
 </span><span class="boring">use crate::utils::data_path;
-</span><span class="boring">use crate::APP_ID;
 </span><span class="boring">
 </span><span class="boring">glib::wrapper! {
 </span><span class="boring">    pub struct Window(ObjectSubclass&lt;imp::Window&gt;)
@@ -16987,7 +17053,7 @@ It assures that <code>tasks_list</code> is only visible if the number of tasks i
 </span><span class="boring">            }
 </span><span class="boring">        ));
 </span><span class="boring">
-</span><span class="boring">        let response = dialog.choose_future(self).await;
+</span><span class="boring">        let response = dialog.choose_future(Some(self)).await;
 </span><span class="boring">
 </span><span class="boring">        // Return if the user chose `cancel_response`
 </span><span class="boring">        if response == cancel_response {
@@ -17019,16 +17085,16 @@ It assures that <code>tasks_list</code> is only visible if the number of tasks i
 </span><span class="boring">use adw::subclass::prelude::*;
 </span><span class="boring">use adw::{ActionRow, AlertDialog, ResponseAppearance};
 </span><span class="boring">use gio::Settings;
-</span><span class="boring">use glib::{clone, Object};
+</span><span class="boring">use glib::{Object, clone};
 </span><span class="boring">use gtk::{
-</span><span class="boring">    gio, glib, pango, Align, CheckButton, CustomFilter, Entry, FilterListModel, Label,
-</span><span class="boring">    ListBoxRow, NoSelection,
+</span><span class="boring">    Align, CheckButton, CustomFilter, Entry, FilterListModel, Label, ListBoxRow,
+</span><span class="boring">    NoSelection, gio, glib, pango,
 </span><span class="boring">};
 </span><span class="boring">
+</span><span class="boring">use crate::APP_ID;
 </span><span class="boring">use crate::collection_object::{CollectionData, CollectionObject};
 </span><span class="boring">use crate::task_object::TaskObject;
 </span><span class="boring">use crate::utils::data_path;
-</span><span class="boring">use crate::APP_ID;
 </span><span class="boring">
 </span><span class="boring">glib::wrapper! {
 </span><span class="boring">    pub struct Window(ObjectSubclass&lt;imp::Window&gt;)
@@ -17417,7 +17483,7 @@ It assures that <code>tasks_list</code> is only visible if the number of tasks i
 </span><span class="boring">            }
 </span><span class="boring">        ));
 </span><span class="boring">
-</span><span class="boring">        let response = dialog.choose_future(self).await;
+</span><span class="boring">        let response = dialog.choose_future(Some(self)).await;
 </span><span class="boring">
 </span><span class="boring">        // Return if the user chose `cancel_response`
 </span><span class="boring">        if response == cancel_response {
@@ -17466,11 +17532,11 @@ It is a convenient way to add asynchronous actions to subclassed widgets.</p>
 </span><span class="boring">use std::fs::File;
 </span><span class="boring">
 </span><span class="boring">use adw::subclass::prelude::*;
-</span><span class="boring">use adw::{prelude::*, NavigationSplitView};
+</span><span class="boring">use adw::{NavigationSplitView, prelude::*};
 </span><span class="boring">use gio::Settings;
 </span><span class="boring">use glib::subclass::InitializingObject;
 </span><span class="boring">use gtk::glib::SignalHandlerId;
-</span><span class="boring">use gtk::{gio, glib, CompositeTemplate, Entry, FilterListModel, ListBox, Stack};
+</span><span class="boring">use gtk::{CompositeTemplate, Entry, FilterListModel, ListBox, Stack, gio, glib};
 </span><span class="boring">use std::cell::OnceCell;
 </span><span class="boring">
 </span><span class="boring">use crate::collection_object::{CollectionData, CollectionObject};
@@ -17591,16 +17657,16 @@ Afterwards we navigate forward on our leaflet, which means we navigate to the ta
 </span><span class="boring">use adw::subclass::prelude::*;
 </span><span class="boring">use adw::{ActionRow, AlertDialog, ResponseAppearance};
 </span><span class="boring">use gio::Settings;
-</span><span class="boring">use glib::{clone, Object};
+</span><span class="boring">use glib::{Object, clone};
 </span><span class="boring">use gtk::{
-</span><span class="boring">    gio, glib, pango, Align, CheckButton, CustomFilter, Entry, FilterListModel, Label,
-</span><span class="boring">    ListBoxRow, NoSelection,
+</span><span class="boring">    Align, CheckButton, CustomFilter, Entry, FilterListModel, Label, ListBoxRow,
+</span><span class="boring">    NoSelection, gio, glib, pango,
 </span><span class="boring">};
 </span><span class="boring">
+</span><span class="boring">use crate::APP_ID;
 </span><span class="boring">use crate::collection_object::{CollectionData, CollectionObject};
 </span><span class="boring">use crate::task_object::TaskObject;
 </span><span class="boring">use crate::utils::data_path;
-</span><span class="boring">use crate::APP_ID;
 </span><span class="boring">
 </span><span class="boring">glib::wrapper! {
 </span><span class="boring">    pub struct Window(ObjectSubclass&lt;imp::Window&gt;)
@@ -17989,7 +18055,7 @@ Afterwards we navigate forward on our leaflet, which means we navigate to the ta
             }
         ));
 
-        let response = dialog.choose_future(self).await;
+        let response = dialog.choose_future(Some(self)).await;
 
         // Return if the user chose `cancel_response`
         if response == cancel_response {
@@ -18025,16 +18091,16 @@ Finally, we assure that when we click on a row of <code>collections_list</code>,
 </span><span class="boring">use adw::subclass::prelude::*;
 </span><span class="boring">use adw::{ActionRow, AlertDialog, ResponseAppearance};
 </span><span class="boring">use gio::Settings;
-</span><span class="boring">use glib::{clone, Object};
+</span><span class="boring">use glib::{Object, clone};
 </span><span class="boring">use gtk::{
-</span><span class="boring">    gio, glib, pango, Align, CheckButton, CustomFilter, Entry, FilterListModel, Label,
-</span><span class="boring">    ListBoxRow, NoSelection,
+</span><span class="boring">    Align, CheckButton, CustomFilter, Entry, FilterListModel, Label, ListBoxRow,
+</span><span class="boring">    NoSelection, gio, glib, pango,
 </span><span class="boring">};
 </span><span class="boring">
+</span><span class="boring">use crate::APP_ID;
 </span><span class="boring">use crate::collection_object::{CollectionData, CollectionObject};
 </span><span class="boring">use crate::task_object::TaskObject;
 </span><span class="boring">use crate::utils::data_path;
-</span><span class="boring">use crate::APP_ID;
 </span><span class="boring">
 </span><span class="boring">glib::wrapper! {
 </span><span class="boring">    pub struct Window(ObjectSubclass&lt;imp::Window&gt;)
@@ -18423,7 +18489,7 @@ Finally, we assure that when we click on a row of <code>collections_list</code>,
 </span><span class="boring">            }
 </span><span class="boring">        ));
 </span><span class="boring">
-</span><span class="boring">        let response = dialog.choose_future(self).await;
+</span><span class="boring">        let response = dialog.choose_future(Some(self)).await;
 </span><span class="boring">
 </span><span class="boring">        // Return if the user chose `cancel_response`
 </span><span class="boring">        if response == cancel_response {
@@ -18456,16 +18522,16 @@ This method ensure when there is at least one collection, the “main” page is
 </span><span class="boring">use adw::subclass::prelude::*;
 </span><span class="boring">use adw::{ActionRow, AlertDialog, ResponseAppearance};
 </span><span class="boring">use gio::Settings;
-</span><span class="boring">use glib::{clone, Object};
+</span><span class="boring">use glib::{Object, clone};
 </span><span class="boring">use gtk::{
-</span><span class="boring">    gio, glib, pango, Align, CheckButton, CustomFilter, Entry, FilterListModel, Label,
-</span><span class="boring">    ListBoxRow, NoSelection,
+</span><span class="boring">    Align, CheckButton, CustomFilter, Entry, FilterListModel, Label, ListBoxRow,
+</span><span class="boring">    NoSelection, gio, glib, pango,
 </span><span class="boring">};
 </span><span class="boring">
+</span><span class="boring">use crate::APP_ID;
 </span><span class="boring">use crate::collection_object::{CollectionData, CollectionObject};
 </span><span class="boring">use crate::task_object::TaskObject;
 </span><span class="boring">use crate::utils::data_path;
-</span><span class="boring">use crate::APP_ID;
 </span><span class="boring">
 </span><span class="boring">glib::wrapper! {
 </span><span class="boring">    pub struct Window(ObjectSubclass&lt;imp::Window&gt;)
@@ -18854,7 +18920,7 @@ This method ensure when there is at least one collection, the “main” page is
 </span><span class="boring">            }
 </span><span class="boring">        ));
 </span><span class="boring">
-</span><span class="boring">        let response = dialog.choose_future(self).await;
+</span><span class="boring">        let response = dialog.choose_future(Some(self)).await;
 </span><span class="boring">
 </span><span class="boring">        // Return if the user chose `cancel_response`
 </span><span class="boring">        if response == cancel_response {

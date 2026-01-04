@@ -36,10 +36,10 @@
             const path_to_root = "";
             const default_light_theme = "rust";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-60e0fa99.js";
+            window.path_to_searchindex_js = "searchindex-bac78f95.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-9fb23523.js"></script>
+        <script src="toc-6221b6d3.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -318,7 +318,7 @@ You can learn more about interior mutability in this <a href="https://marabos.nl
 </blockquote>
 <p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/g_object_memory_management/2/main.rs">listings/g_object_memory_management/1/main.rs</a></p>
 <pre><code class="language-rust"><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{glib, Application, ApplicationWindow, Button};
+</span><span class="boring">use gtk::{Application, ApplicationWindow, Button, glib};
 </span><span class="boring">use std::cell::Cell;
 </span><span class="boring">
 </span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.GObjectMemoryManagement1";
@@ -373,7 +373,7 @@ we can again use the <a href="https://doc.rust-lang.org/std/cell/struct.Cell.htm
 </span><span class="boring">use std::rc::Rc;
 </span><span class="boring">
 </span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{self, glib, Application, ApplicationWindow, Button, Orientation};
+</span><span class="boring">use gtk::{self, Application, ApplicationWindow, Button, Orientation, glib};
 </span><span class="boring">
 </span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.GObjectMemoryManagement2";
 </span><span class="boring">
@@ -437,7 +437,7 @@ We can improve that by using the <a href="https://gtk-rs.org/gtk-rs-core/stable/
 </span><span class="boring">
 </span><span class="boring">use glib::clone;
 </span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{self, glib, Application, ApplicationWindow, Button, Orientation};
+</span><span class="boring">use gtk::{self, Application, ApplicationWindow, Button, Orientation, glib};
 </span><span class="boring">
 </span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.GObjectMemoryManagement3";
 </span><span class="boring">
@@ -508,7 +508,7 @@ Therefore, we can pass the buttons the same way to the closure as we did with <c
 </span><span class="boring">
 </span><span class="boring">use glib::clone;
 </span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{self, glib, Application, ApplicationWindow, Button, Orientation};
+</span><span class="boring">use gtk::{self, Application, ApplicationWindow, Button, Orientation, glib};
 </span><span class="boring">
 </span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.GObjectMemoryManagement4";
 </span><span class="boring">
@@ -595,7 +595,7 @@ Since we want our apps to free unneeded memory, we should use weak references fo
 </span><span class="boring">
 </span><span class="boring">use glib::clone;
 </span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{self, glib, Application, ApplicationWindow, Button, Orientation};
+</span><span class="boring">use gtk::{self, Application, ApplicationWindow, Button, Orientation, glib};
 </span><span class="boring">
 </span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.GObjectMemoryManagement5";
 </span><span class="boring">
@@ -683,7 +683,7 @@ Who then keeps the buttons alive?</p>
 </span><span class="boring">
 </span><span class="boring">use glib::clone;
 </span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{self, glib, Application, ApplicationWindow, Button, Orientation};
+</span><span class="boring">use gtk::{self, Application, ApplicationWindow, Button, Orientation, glib};
 </span><span class="boring">
 </span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.GObjectMemoryManagement5";
 </span><span class="boring">
@@ -763,7 +763,7 @@ Who then keeps the buttons alive?</p>
 </span><span class="boring">
 </span><span class="boring">use glib::clone;
 </span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{self, glib, Application, ApplicationWindow, Button, Orientation};
+</span><span class="boring">use gtk::{self, Application, ApplicationWindow, Button, Orientation, glib};
 </span><span class="boring">
 </span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.GObjectMemoryManagement5";
 </span><span class="boring">

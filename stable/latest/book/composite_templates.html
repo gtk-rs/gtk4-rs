@@ -36,10 +36,10 @@
             const path_to_root = "";
             const default_light_theme = "rust";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-60e0fa99.js";
+            window.path_to_searchindex_js = "searchindex-bac78f95.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-9fb23523.js"></script>
+        <script src="toc-6221b6d3.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -183,7 +183,7 @@
 As a reminder, that is how we used it to build our trusty “Hello World!” app.</p>
 <p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/hello_world/3/main.rs">listings/hello_world/3/main.rs</a></p>
 <pre><code class="language-rust">use gtk::prelude::*;
-use gtk::{glib, Application, ApplicationWindow, Button};
+use gtk::{Application, ApplicationWindow, Button, glib};
 const APP_ID: &amp;str = "org.gtk_rs.HelloWorld3";
 
 fn main() -&gt; glib::ExitCode {
@@ -293,7 +293,7 @@ In your own apps take care to register the resources before creating the <code>g
 <pre><code class="language-rust">mod window;
 
 use gtk::prelude::*;
-use gtk::{gio, glib, Application};
+use gtk::{Application, gio, glib};
 use window::Window;
 
 const APP_ID: &amp;str = "org.gtk_rs.CompositeTemplates1";
@@ -322,7 +322,7 @@ Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main
 <pre><code class="language-rust">mod imp;
 
 use glib::Object;
-use gtk::{gio, glib, Application};
+use gtk::{Application, gio, glib};
 
 glib::wrapper! {
     pub struct Window(ObjectSubclass&lt;imp::Window&gt;)
@@ -347,7 +347,7 @@ This will be useful later, when we want to add a callback to our button.</p>
 <pre><code class="language-rust"><span class="boring">use glib::subclass::InitializingObject;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::subclass::prelude::*;
-</span><span class="boring">use gtk::{glib, Button, CompositeTemplate};
+</span><span class="boring">use gtk::{Button, CompositeTemplate, glib};
 </span><span class="boring">
 </span>// Object holding the state
 #[derive(CompositeTemplate, Default)]
@@ -402,7 +402,7 @@ We also bind and initialize the template in <code>class_init</code> and <code>in
 <pre><code class="language-rust"><span class="boring">use glib::subclass::InitializingObject;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::subclass::prelude::*;
-</span><span class="boring">use gtk::{glib, Button, CompositeTemplate};
+</span><span class="boring">use gtk::{Button, CompositeTemplate, glib};
 </span><span class="boring">
 </span><span class="boring">// Object holding the state
 </span><span class="boring">#[derive(CompositeTemplate, Default)]
@@ -457,7 +457,7 @@ The button is easily available thanks to the stored reference in <code>self</cod
 <pre><code class="language-rust"><span class="boring">use glib::subclass::InitializingObject;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::subclass::prelude::*;
-</span><span class="boring">use gtk::{glib, Button, CompositeTemplate};
+</span><span class="boring">use gtk::{Button, CompositeTemplate, glib};
 </span><span class="boring">
 </span><span class="boring">// Object holding the state
 </span><span class="boring">#[derive(CompositeTemplate, Default)]
@@ -565,7 +565,7 @@ glib::wrapper! {
 <pre><code class="language-rust"><span class="boring">use glib::subclass::InitializingObject;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::subclass::prelude::*;
-</span><span class="boring">use gtk::{glib, CompositeTemplate};
+</span><span class="boring">use gtk::{CompositeTemplate, glib};
 </span><span class="boring">
 </span><span class="boring">use crate::custom_button::CustomButton;
 </span><span class="boring">
@@ -666,7 +666,7 @@ This means that <code>handle_button_clicked</code> has a single parameter of typ
 <pre><code class="language-rust"><span class="boring">use glib::subclass::InitializingObject;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::subclass::prelude::*;
-</span><span class="boring">use gtk::{glib, CompositeTemplate};
+</span><span class="boring">use gtk::{CompositeTemplate, glib};
 </span><span class="boring">
 </span><span class="boring">use crate::custom_button::CustomButton;
 </span><span class="boring">
@@ -722,7 +722,7 @@ We also need to remove the <code>button.connect_clicked</code> callback implemen
 <pre><code class="language-rust"><span class="boring">use glib::subclass::InitializingObject;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::subclass::prelude::*;
-</span><span class="boring">use gtk::{glib, CompositeTemplate};
+</span><span class="boring">use gtk::{CompositeTemplate, glib};
 </span><span class="boring">
 </span><span class="boring">use crate::custom_button::CustomButton;
 </span><span class="boring">
@@ -780,7 +780,7 @@ Let’s say we want to manipulate a <code>number</code> stored in <code>imp::Win
 </span><span class="boring">use glib::subclass::InitializingObject;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::subclass::prelude::*;
-</span><span class="boring">use gtk::{glib, CompositeTemplate};
+</span><span class="boring">use gtk::{CompositeTemplate, glib};
 </span><span class="boring">
 </span><span class="boring">use crate::custom_button::CustomButton;
 </span><span class="boring">
@@ -859,7 +859,7 @@ This lets us access the state of the window and therefore manipulate <code>numbe
 </span><span class="boring">use glib::subclass::InitializingObject;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::subclass::prelude::*;
-</span><span class="boring">use gtk::{glib, CompositeTemplate};
+</span><span class="boring">use gtk::{CompositeTemplate, glib};
 </span><span class="boring">
 </span><span class="boring">use crate::custom_button::CustomButton;
 </span><span class="boring">
@@ -920,7 +920,7 @@ Let’s remove it.</p>
 </span><span class="boring">use glib::subclass::InitializingObject;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::subclass::prelude::*;
-</span><span class="boring">use gtk::{glib, CompositeTemplate};
+</span><span class="boring">use gtk::{CompositeTemplate, glib};
 </span><span class="boring">
 </span><span class="boring">use crate::custom_button::CustomButton;
 </span><span class="boring">
@@ -984,7 +984,7 @@ Luckily we can also do that by ourselves.</p>
 </span><span class="boring">use glib::subclass::InitializingObject;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::subclass::prelude::*;
-</span><span class="boring">use gtk::{glib, CompositeTemplate};
+</span><span class="boring">use gtk::{CompositeTemplate, glib};
 </span><span class="boring">
 </span><span class="boring">use crate::custom_button::CustomButton;
 </span><span class="boring">
