@@ -156,15 +156,11 @@ This is how the boxed list style looks like in our app.
 ## Shortcuts Dialog
 
 Now that we are using Libadwaita, we should also update our keyboard shortcuts window to use [`adw::ShortcutsDialog`](https://world.pages.gitlab.gnome.org/Rust/libadwaita-rs/stable/latest/docs/libadwaita/struct.ShortcutsDialog.html).
-This widget is the Libadwaita equivalent of [`gtk::ShortcutsWindow`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.ShortcutsWindow.html) and provides better integration with the Adwaita style.
+This widget is the Libadwaita equivalent of the deprecated [`gtk::ShortcutsWindow`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.ShortcutsWindow.html) and provides better integration with the Adwaita style.
 
-The main differences are:
-
-- [`adw::ShortcutsDialog`](https://world.pages.gitlab.gnome.org/Rust/libadwaita-rs/stable/latest/docs/libadwaita/struct.ShortcutsDialog.html) extends [`adw::Dialog`](https://world.pages.gitlab.gnome.org/Rust/libadwaita-rs/stable/latest/docs/libadwaita/struct.Dialog.html) rather than [`gtk::Window`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.Window.html)
-- It uses [`adw::ShortcutsSection`](https://world.pages.gitlab.gnome.org/Rust/libadwaita-rs/stable/latest/docs/libadwaita/struct.ShortcutsSection.html) and [`adw::ShortcutsItem`](https://world.pages.gitlab.gnome.org/Rust/libadwaita-rs/stable/latest/docs/libadwaita/struct.ShortcutsItem.html) instead of [`gtk::ShortcutsSection`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.ShortcutsSection.html), [`gtk::ShortcutsGroup`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.ShortcutsGroup.html), and [`gtk::ShortcutsShortcut`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.ShortcutsShortcut.html)
-- The structure is simpler, with sections directly containing items
-
-Let us update our `shortcuts.ui` file:
+In `shortcuts.ui`, we replace `GtkShortcutsWindow` with `AdwShortcutsDialog`, `GtkShortcutsGroup` with `AdwShortcutsSection`, and `GtkShortcutsShortcut` with `AdwShortcutsItem`.
+We can also remove a couple of properties that are not needed anymore.
+The `shortcuts.ui` file then ends up like this:
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/6/resources/shortcuts.ui">listings/todo/6/resources/shortcuts.ui</a>
 
@@ -172,3 +168,28 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/b
 {{#rustdoc_include ../listings/todo/6/resources/shortcuts.ui}}
 ```
 
+We also change the resource alias in `resources.gresource.xml` as described in [`adw::Application`](https://world.pages.gitlab.gnome.org/Rust/libadwaita-rs/stable/latest/docs/libadwaita/struct.Application.html#shortcuts-dialog).
+
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/6/resources/resources.gresource.xml">listings/todo/6/resources/resources.gresource.xml</a>
+
+```diff
+-    <file compressed="true" preprocess="xml-stripblanks" alias="gtk/help-overlay.ui">shortcuts.ui</file>
++    <file compressed="true" preprocess="xml-stripblanks" alias="shortcuts-dialog.ui">shortcuts.ui</file>
+```
+
+And in `window.ui`, we update the menu action:
+
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/6/resources/window.ui">listings/todo/6/resources/window.ui</a>
+
+```diff
+     <item>
+       <attribute name="label" translatable="yes">_Keyboard Shortcuts</attribute>
+-      <attribute name="action">win.show-help-overlay</attribute>
++      <attribute name="action">app.shortcuts</attribute>
+     </item>
+```
+
+If we now open the shortcuts dialog it looks like this.
+Apart from the refreshed style, it also features a search bar.
+
+<div style="text-align:center"><img src="img/todo_6_shortcuts.png" alt="The shortcuts dialog using AdwShortcutsDialog"/></div>
