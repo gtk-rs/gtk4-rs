@@ -31,11 +31,7 @@ jobs:
         name: "Format"
         working-directory: book/listings
 
-      - run: cargo build
-        name: "Build"
-        working-directory: book/listings
-
-      - run: cargo clippy
+      - run: cargo clippy --all-targets --workspace -- -D warnings
         name: "Clippy"
         working-directory: book/listings
 
