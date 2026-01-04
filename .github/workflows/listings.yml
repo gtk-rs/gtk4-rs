@@ -27,6 +27,10 @@ jobs:
           override: true
           components: rustfmt, clippy
 
+      - run: cargo fmt --check
+        name: "Format"
+        working-directory: book/listings
+
       - run: cargo build
         name: "Build"
         working-directory: book/listings
@@ -35,6 +39,3 @@ jobs:
         name: "Clippy"
         working-directory: book/listings
 
-      - run: cargo fmt --check
-        name: "Format"
-        working-directory: book/listings

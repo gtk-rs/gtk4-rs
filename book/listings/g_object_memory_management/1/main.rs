@@ -1,5 +1,5 @@
 use gtk::prelude::*;
-use gtk::{glib, Application, ApplicationWindow, Button};
+use gtk::{Application, ApplicationWindow, Button, glib};
 use std::cell::Cell;
 
 const APP_ID: &str = "org.gtk_rs.GObjectMemoryManagement1";

@@ -2,7 +2,7 @@ use std::thread;
 use std::time::Duration;
 
 use gtk::prelude::*;
-use gtk::{self, gio, glib, Application, ApplicationWindow, Button};
+use gtk::{self, Application, ApplicationWindow, Button, gio, glib};
 
 const APP_ID: &str = "org.gtk_rs.MainEventLoop2";
 

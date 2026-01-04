@@ -3,7 +3,7 @@ use std::rc::Rc;
 
 use glib::clone;
 use gtk::prelude::*;
-use gtk::{self, glib, Application, ApplicationWindow, Button, Orientation};
+use gtk::{self, Application, ApplicationWindow, Button, Orientation, glib};
 
 const APP_ID: &str = "org.gtk_rs.GObjectMemoryManagement5";
 

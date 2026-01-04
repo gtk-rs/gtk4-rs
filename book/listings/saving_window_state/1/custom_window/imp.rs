@@ -1,6 +1,6 @@
 use gio::Settings;
 use gtk::subclass::prelude::*;
-use gtk::{gio, glib, ApplicationWindow};
+use gtk::{ApplicationWindow, gio, glib};
 use std::cell::OnceCell;
 
 // ANCHOR: imp

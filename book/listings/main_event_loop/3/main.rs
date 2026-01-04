@@ -3,7 +3,7 @@ use std::time::Duration;
 
 use glib::clone;
 use gtk::prelude::*;
-use gtk::{gio, glib, Application, ApplicationWindow, Button};
+use gtk::{Application, ApplicationWindow, Button, gio, glib};
 
 const APP_ID: &str = "org.gtk_rs.MainEventLoop3";
 

@@ -1,6 +1,6 @@
 use glib::closure_local;
 use gtk::prelude::*;
-use gtk::{glib, Application, ApplicationWindow, Button};
+use gtk::{Application, ApplicationWindow, Button, glib};
 
 const APP_ID: &str = "org.gtk_rs.GObjectSignals1";
 

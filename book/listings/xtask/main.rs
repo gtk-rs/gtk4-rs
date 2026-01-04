@@ -2,7 +2,7 @@ use std::env;
 use std::path::PathBuf;
 
 use walkdir::WalkDir;
-use xshell::{cmd, Shell};
+use xshell::{Shell, cmd};
 
 fn main() {
     if let Err(e) = try_main() {

@@ -3,14 +3,14 @@ mod imp;
 use std::fs::File;
 
 use adw::subclass::prelude::*;
-use adw::{prelude::*, ActionRow};
+use adw::{ActionRow, prelude::*};
 use gio::Settings;
-use glib::{clone, Object};
-use gtk::{gio, glib, Align, CheckButton, CustomFilter, FilterListModel, NoSelection};
+use glib::{Object, clone};
+use gtk::{Align, CheckButton, CustomFilter, FilterListModel, NoSelection, gio, glib};
 
+use crate::APP_ID;
 use crate::task_object::{TaskData, TaskObject};
 use crate::utils::data_path;
-use crate::APP_ID;
 
 // ANCHOR: glib_wrapper
 glib::wrapper! {

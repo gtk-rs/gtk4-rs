@@ -2,7 +2,7 @@ mod custom_button;
 
 use custom_button::CustomButton;
 use gtk::prelude::*;
-use gtk::{glib, Align, Application, ApplicationWindow, Box, Orientation};
+use gtk::{Align, Application, ApplicationWindow, Box, Orientation, glib};
 
 const APP_ID: &str = "org.gtk_rs.GObjectProperties4";
 

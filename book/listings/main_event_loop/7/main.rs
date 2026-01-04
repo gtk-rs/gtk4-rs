@@ -1,6 +1,6 @@
 use glib::clone;
 use gtk::prelude::*;
-use gtk::{glib, Application, ApplicationWindow, Button};
+use gtk::{Application, ApplicationWindow, Button, glib};
 
 const APP_ID: &str = "org.gtk_rs.MainEventLoop7";
 
@@ -50,8 +50,8 @@ fn build_ui(app: &Application) {
 
 #[cfg(target_os = "linux")]
 async fn fetch_user_information(button: Button) {
-    use ashpd::desktop::account::UserInformation;
     use ashpd::WindowIdentifier;
+    use ashpd::desktop::account::UserInformation;
 
     // Get native of button for window identifier
     let native = button.native().expect("Need to be able to get native.");

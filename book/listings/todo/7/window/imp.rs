@@ -7,7 +7,7 @@ use gio::Settings;
 use glib::subclass::InitializingObject;
 
 use adw::prelude::*;
-use gtk::{gio, glib, CompositeTemplate, Entry, ListBox};
+use gtk::{CompositeTemplate, Entry, ListBox, gio, glib};
 use std::cell::OnceCell;
 
 use crate::task_object::{TaskData, TaskObject};

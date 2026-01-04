@@ -1,6 +1,6 @@
 use gio::Settings;
 use gtk::prelude::*;
-use gtk::{gio, glib, Align, Application, ApplicationWindow, Switch};
+use gtk::{Align, Application, ApplicationWindow, Switch, gio, glib};
 
 const APP_ID: &str = "org.gtk_rs.Settings1";
 

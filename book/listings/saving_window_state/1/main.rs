@@ -2,7 +2,7 @@ mod custom_window;
 
 use custom_window::Window;
 use gtk::prelude::*;
-use gtk::{glib, Application, Button};
+use gtk::{Application, Button, glib};
 
 // ANCHOR: main
 const APP_ID: &str = "org.gtk_rs.SavingWindowState1";

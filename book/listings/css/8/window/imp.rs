@@ -1,6 +1,6 @@
 use glib::subclass::InitializingObject;
 use gtk::subclass::prelude::*;
-use gtk::{glib, CompositeTemplate};
+use gtk::{CompositeTemplate, glib};
 
 // Object holding the state
 #[derive(CompositeTemplate, Default)]

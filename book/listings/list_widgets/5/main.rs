@@ -1,11 +1,12 @@
 mod integer_object;
 
 use gtk::{
-    gio, glib, Application, ApplicationWindow, CustomFilter, CustomSorter,
-    FilterChange, FilterListModel, Label, ListView, PolicyType, ScrolledWindow,
-    SignalListItemFactory, SingleSelection, SortListModel, SorterChange, Widget,
+    Application, ApplicationWindow, CustomFilter, CustomSorter, FilterChange,
+    FilterListModel, Label, ListView, PolicyType, ScrolledWindow,
+    SignalListItemFactory, SingleSelection, SortListModel, SorterChange, Widget, gio,
+    glib,
 };
-use gtk::{prelude::*, ListItem};
+use gtk::{ListItem, prelude::*};
 use integer_object::IntegerObject;
 
 const APP_ID: &str = "org.gtk_rs.ListWidgets5";

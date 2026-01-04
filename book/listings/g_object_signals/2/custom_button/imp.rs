@@ -1,8 +1,8 @@
 use std::cell::Cell;
 use std::sync::OnceLock;
 
-use glib::subclass::Signal;
 use glib::Properties;
+use glib::subclass::Signal;
 use gtk::glib;
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
@@ -30,9 +30,11 @@ impl ObjectImpl for CustomButton {
     fn signals() -> &'static [Signal] {
         static SIGNALS: OnceLock<Vec<Signal>> = OnceLock::new();
         SIGNALS.get_or_init(|| {
-            vec![Signal::builder("max-number-reached")
-                .param_types([i32::static_type()])
-                .build()]
+            vec![
+                Signal::builder("max-number-reached")
+                    .param_types([i32::static_type()])
+                    .build(),
+            ]
         })
     }
     // ANCHOR_END: object_impl

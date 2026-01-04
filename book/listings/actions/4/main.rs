@@ -1,7 +1,7 @@
 use gio::ActionEntry;
 use gtk::prelude::*;
 use gtk::{
-    gio, glib, Align, Application, ApplicationWindow, Button, Label, Orientation,
+    Align, Application, ApplicationWindow, Button, Label, Orientation, gio, glib,
 };
 
 const APP_ID: &str = "org.gtk_rs.Actions4";

@@ -1,8 +1,8 @@
-use gtk::{glib, prelude::*, ListItem};
 use gtk::{
     Application, ApplicationWindow, Label, ListView, NoSelection, PolicyType,
     ScrolledWindow, SignalListItemFactory, StringList, StringObject, Widget,
 };
+use gtk::{ListItem, glib, prelude::*};
 
 const APP_ID: &str = "org.gtk_rs.ListWidgets6";
 
