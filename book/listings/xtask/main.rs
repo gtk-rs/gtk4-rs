@@ -62,12 +62,11 @@ fn schema() -> Vec<PathBuf> {
         .into_iter()
         .filter_map(|entry| entry.ok())
         .filter_map(|entry| {
-            if let Some(file_name) = entry.path().file_name() {
-                if let Some(file_name) = file_name.to_str() {
-                    if file_name.ends_with("gschema.xml") {
-                        return Some(entry.into_path());
-                    }
-                }
+            if let Some(file_name) = entry.path().file_name()
+                && let Some(file_name) = file_name.to_str()
+                && file_name.ends_with("gschema.xml")
+            {
+                return Some(entry.into_path());
             }
             None
         })
