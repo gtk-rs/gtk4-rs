@@ -29,7 +29,7 @@ gdk.workspace=  true
 gio.workspace = true
 glib.workspace = true
 libc.workspace = true
-wayland-client = {version = "0.31.10", optional = true}
+wayland-client = {version = "0.31.12", optional = true}
 wayland-backend = {version = "0.3.0", optional = true, features = ["client_system"]}
 wayland-protocols = {version = "0.32", optional = true, features = ["client"]}
 khronos-egl = {version = "6.0", optional = true}
