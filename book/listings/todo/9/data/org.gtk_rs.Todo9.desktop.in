@@ -1,5 +1,5 @@
 [Desktop Entry]
-Name=Todo
+Name=Todo 9
 Exec=todo
 Icon=@APP_ID@
 Terminal=false

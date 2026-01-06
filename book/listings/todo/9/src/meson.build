@@ -3,16 +3,17 @@ conf.set_quoted('APP_ID', application_id)
 conf.set_quoted('RESOURCES_FILE', pkgdatadir / 'resources.gresource')
 
 config = configure_file(
-  input: 'config.rs.in',
-  output: 'config.rs',
-  configuration: conf,
+    input: 'config.rs.in',
+    output: 'config.rs',
+    configuration: conf,
 )
 
+config_src = meson.project_build_root() / 'src' / 'config.rs'
+config_dst = meson.project_source_root() / 'src' / 'config.rs'
 run_command(
-  'cp',
-  meson.project_build_root() / 'src' / 'config.rs',
-  meson.project_source_root() / 'src' / 'config.rs',
-  check: true
+    'sh', '-c', 'cmp -s "$1" "$2" || cp "$1" "$2"',
+    '_', config_src, config_dst,
+    check: true,
 )
 
 cargo = find_program('cargo')
@@ -20,24 +21,29 @@ cargo_options = ['--manifest-path', meson.project_source_root() / 'Cargo.toml']
 cargo_options += ['--target-dir', meson.project_build_root() / 'target']
 
 if not is_devel
-  cargo_options += ['--release']
-  rust_target = 'release'
+    cargo_options += ['--release']
+    rust_target = 'release'
 else
-  rust_target = 'debug'
+    rust_target = 'debug'
 endif
 
 custom_target(
-  'cargo-build',
-  build_by_default: true,
-  build_always_stale: true,
-  output: meson.project_name(),
-  console: true,
-  install: true,
-  install_dir: bindir,
-  depends: resources,
-  env: {'CARGO_HOME': meson.project_build_root() / 'cargo-home'},
-  command: [
-    cargo, 'build', cargo_options,
-    '&&', 'cp', meson.project_build_root() / 'target' / rust_target / meson.project_name(), '@OUTPUT@',
-  ]
+    'cargo-build',
+    build_by_default: true,
+    build_always_stale: true,
+    output: meson.project_name(),
+    console: true,
+    install: true,
+    install_dir: bindir,
+    depends: resources,
+    env: {'CARGO_HOME': meson.project_build_root() / 'cargo-home'},
+    command: [
+        cargo,
+        'build',
+        cargo_options,
+        '&&',
+        'cp',
+        meson.project_build_root() / 'target' / rust_target / meson.project_name(),
+        '@OUTPUT@',
+    ],
 )
