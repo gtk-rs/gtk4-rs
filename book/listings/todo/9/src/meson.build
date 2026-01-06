@@ -1,21 +1,3 @@
-conf = configuration_data()
-conf.set_quoted('APP_ID', application_id)
-conf.set_quoted('RESOURCES_FILE', pkgdatadir / 'resources.gresource')
-
-config = configure_file(
-    input: 'config.rs.in',
-    output: 'config.rs',
-    configuration: conf,
-)
-
-config_src = meson.project_build_root() / 'src' / 'config.rs'
-config_dst = meson.project_source_root() / 'src' / 'config.rs'
-run_command(
-    'sh', '-c', 'cmp -s "$1" "$2" || cp "$1" "$2"',
-    '_', config_src, config_dst,
-    check: true,
-)
-
 cargo = find_program('cargo')
 cargo_options = ['--manifest-path', meson.project_source_root() / 'Cargo.toml']
 cargo_options += ['--target-dir', meson.project_build_root() / 'target']
@@ -36,7 +18,11 @@ custom_target(
     install: true,
     install_dir: bindir,
     depends: resources,
-    env: {'CARGO_HOME': meson.project_build_root() / 'cargo-home'},
+    env: {
+        'CARGO_HOME': meson.project_build_root() / 'cargo-home',
+        'APP_ID': application_id,
+        'RESOURCES_FILE': pkgdatadir / 'resources.gresource',
+    },
     command: [
         cargo,
         'build',

@@ -2,4 +2,3 @@ target/
 
 # Meson
 builddir/
-**/src/config.rs

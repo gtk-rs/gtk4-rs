@@ -11,13 +11,13 @@ use window::Window;
 fn main() -> glib::ExitCode {
     // ANCHOR: resource_loading
     // Load resources from installed location
-    let res = gio::Resource::load(config::RESOURCES_FILE)
+    let res = gio::Resource::load(config::resources_file())
         .expect("Could not load gresource file");
     gio::resources_register(&res);
 
     // Create a new application
     let app = adw::Application::builder()
-        .application_id(config::APP_ID)
+        .application_id(config::app_id())
         .build();
     // ANCHOR_END: resource_loading
 

@@ -28,7 +28,7 @@ todo/
 ├── Cargo.toml               # Rust dependencies (no build.rs)
 ├── src/
 │   ├── meson.build          # Cargo integration
-│   ├── config.rs.in         # Template for app metadata
+│   ├── config.rs            # App metadata via env vars
 │   ├── main.rs
 │   └── ...
 └── data/
@@ -78,21 +78,22 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/b
 
 The `gresource_bundle: true` option creates a standalone `.gresource` file that gets installed to `pkgdatadir` (e.g., `/usr/share/todo/resources.gresource`).
 
-## The config.rs.in Template
+## The config Module
 
-Meson generates `config.rs` from a template, substituting build-time values:
+The `config.rs` module provides app metadata using compile-time environment variables:
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/9/src/config.rs.in">listings/todo/9/src/config.rs.in</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/9/src/config.rs">listings/todo/9/src/config.rs</a>
 
 ```rust
-{{#rustdoc_include ../listings/todo/9/src/config.rs.in}}
+{{#rustdoc_include ../listings/todo/9/src/config.rs}}
 ```
 
-The `@APP_ID@` and `@PKGDATADIR@` placeholders are replaced during configuration.
+Using `option_env!()` reads environment variables at compile time.
+Meson passes these values when invoking Cargo (see next section).
 
 ## Cargo Integration
 
-The `src/meson.build` generates `config.rs` and invokes Cargo:
+The `src/meson.build` invokes Cargo with the appropriate environment variables:
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/9/src/meson.build">listings/todo/9/src/meson.build</a>
 
@@ -100,6 +101,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/b
 {{#include ../listings/todo/9/src/meson.build}}
 ```
 
+The `env:` parameter passes `APP_ID` and `RESOURCES_FILE` to Cargo, which `option_env!()` captures at compile time.
 The `depends: resources` ensures GResources are compiled before the Rust code.
 
 ## Loading Resources Dynamically
@@ -114,7 +116,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/b
 
 Instead of `gio::resources_register_include!()` which embeds resources at compile time, we use `gio::Resource::load()` to load them from the installed path at runtime.
 
-We also use `config::APP_ID` instead of a hardcoded constant.
+We also use `config::app_id()` instead of a hardcoded constant.
 
 ## System Integration Files
 
@@ -134,10 +136,10 @@ The `@APP_ID@` placeholder is substituted during the build.
 
 The schema defines application settings:
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/9/data/org.gtk_rs.Todo9.gschema.xml">listings/todo/9/data/org.gtk_rs.Todo9.gschema.xml</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/9/data/org.gtk_rs.Todo9.gschema.xml.in">listings/todo/9/data/org.gtk_rs.Todo9.gschema.xml.in</a>
 
 ```xml
-{{#include ../listings/todo/9/data/org.gtk_rs.Todo9.gschema.xml}}
+{{#include ../listings/todo/9/data/org.gtk_rs.Todo9.gschema.xml.in}}
 ```
 
 ### Application Icon

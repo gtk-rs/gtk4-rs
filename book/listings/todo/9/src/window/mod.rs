@@ -31,7 +31,7 @@ impl Window {
     }
 
     fn setup_settings(&self) {
-        let settings = Settings::new(config::APP_ID);
+        let settings = Settings::new(config::app_id());
         self.imp()
             .settings
             .set(settings)
