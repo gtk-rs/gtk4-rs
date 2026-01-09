@@ -553,8 +553,10 @@ pub trait DialogExt: IsA<Dialog> + 'static {
             this: *mut ffi::GtkDialog,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(Dialog::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(Dialog::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -584,11 +586,13 @@ pub trait DialogExt: IsA<Dialog> + 'static {
             response_id: ffi::GtkResponseType,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(
-                Dialog::from_glib_borrow(this).unsafe_cast_ref(),
-                from_glib(response_id),
-            )
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(
+                    Dialog::from_glib_borrow(this).unsafe_cast_ref(),
+                    from_glib(response_id),
+                )
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);

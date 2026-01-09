@@ -1265,8 +1265,10 @@ pub trait TextViewExt: IsA<TextView> + 'static {
             this: *mut ffi::GtkTextView,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(TextView::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(TextView::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1291,8 +1293,10 @@ pub trait TextViewExt: IsA<TextView> + 'static {
             this: *mut ffi::GtkTextView,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(TextView::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(TextView::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1317,8 +1321,10 @@ pub trait TextViewExt: IsA<TextView> + 'static {
             this: *mut ffi::GtkTextView,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(TextView::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(TextView::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1351,12 +1357,14 @@ pub trait TextViewExt: IsA<TextView> + 'static {
             count: std::ffi::c_int,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(
-                TextView::from_glib_borrow(this).unsafe_cast_ref(),
-                from_glib(type_),
-                count,
-            )
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(
+                    TextView::from_glib_borrow(this).unsafe_cast_ref(),
+                    from_glib(type_),
+                    count,
+                )
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1395,15 +1403,17 @@ pub trait TextViewExt: IsA<TextView> + 'static {
             end: *mut ffi::GtkTextIter,
             f: glib::ffi::gpointer,
         ) -> glib::ffi::gboolean {
-            let f: &F = &*(f as *const F);
-            f(
-                TextView::from_glib_borrow(this).unsafe_cast_ref(),
-                from_glib(granularity),
-                &from_glib_borrow(location),
-                &from_glib_borrow(start),
-                &from_glib_borrow(end),
-            )
-            .into_glib()
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(
+                    TextView::from_glib_borrow(this).unsafe_cast_ref(),
+                    from_glib(granularity),
+                    &from_glib_borrow(location),
+                    &from_glib_borrow(start),
+                    &from_glib_borrow(end),
+                )
+                .into_glib()
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1428,11 +1438,13 @@ pub trait TextViewExt: IsA<TextView> + 'static {
             string: *mut std::ffi::c_char,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(
-                TextView::from_glib_borrow(this).unsafe_cast_ref(),
-                &glib::GString::from_glib_borrow(string),
-            )
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(
+                    TextView::from_glib_borrow(this).unsafe_cast_ref(),
+                    &glib::GString::from_glib_borrow(string),
+                )
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1457,8 +1469,10 @@ pub trait TextViewExt: IsA<TextView> + 'static {
             this: *mut ffi::GtkTextView,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(TextView::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(TextView::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1492,13 +1506,15 @@ pub trait TextViewExt: IsA<TextView> + 'static {
             extend_selection: glib::ffi::gboolean,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(
-                TextView::from_glib_borrow(this).unsafe_cast_ref(),
-                from_glib(step),
-                count,
-                from_glib(extend_selection),
-            )
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(
+                    TextView::from_glib_borrow(this).unsafe_cast_ref(),
+                    from_glib(step),
+                    count,
+                    from_glib(extend_selection),
+                )
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1531,12 +1547,14 @@ pub trait TextViewExt: IsA<TextView> + 'static {
             count: std::ffi::c_int,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(
-                TextView::from_glib_borrow(this).unsafe_cast_ref(),
-                from_glib(step),
-                count,
-            )
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(
+                    TextView::from_glib_borrow(this).unsafe_cast_ref(),
+                    from_glib(step),
+                    count,
+                )
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1561,8 +1579,10 @@ pub trait TextViewExt: IsA<TextView> + 'static {
             this: *mut ffi::GtkTextView,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(TextView::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(TextView::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1591,11 +1611,13 @@ pub trait TextViewExt: IsA<TextView> + 'static {
             preedit: *mut std::ffi::c_char,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(
-                TextView::from_glib_borrow(this).unsafe_cast_ref(),
-                &glib::GString::from_glib_borrow(preedit),
-            )
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(
+                    TextView::from_glib_borrow(this).unsafe_cast_ref(),
+                    &glib::GString::from_glib_borrow(preedit),
+                )
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1621,11 +1643,13 @@ pub trait TextViewExt: IsA<TextView> + 'static {
             select: glib::ffi::gboolean,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(
-                TextView::from_glib_borrow(this).unsafe_cast_ref(),
-                from_glib(select),
-            )
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(
+                    TextView::from_glib_borrow(this).unsafe_cast_ref(),
+                    from_glib(select),
+                )
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1650,8 +1674,10 @@ pub trait TextViewExt: IsA<TextView> + 'static {
             this: *mut ffi::GtkTextView,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(TextView::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(TextView::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1679,8 +1705,10 @@ pub trait TextViewExt: IsA<TextView> + 'static {
             this: *mut ffi::GtkTextView,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(TextView::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(TextView::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1705,8 +1733,10 @@ pub trait TextViewExt: IsA<TextView> + 'static {
             this: *mut ffi::GtkTextView,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(TextView::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(TextView::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1735,8 +1765,10 @@ pub trait TextViewExt: IsA<TextView> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(TextView::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(TextView::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1761,8 +1793,10 @@ pub trait TextViewExt: IsA<TextView> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(TextView::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(TextView::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1784,8 +1818,10 @@ pub trait TextViewExt: IsA<TextView> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(TextView::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(TextView::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1810,8 +1846,10 @@ pub trait TextViewExt: IsA<TextView> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(TextView::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(TextView::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1833,8 +1871,10 @@ pub trait TextViewExt: IsA<TextView> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(TextView::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(TextView::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1856,8 +1896,10 @@ pub trait TextViewExt: IsA<TextView> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(TextView::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(TextView::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1879,8 +1921,10 @@ pub trait TextViewExt: IsA<TextView> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(TextView::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(TextView::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1902,8 +1946,10 @@ pub trait TextViewExt: IsA<TextView> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(TextView::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(TextView::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1928,8 +1974,10 @@ pub trait TextViewExt: IsA<TextView> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(TextView::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(TextView::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1954,8 +2002,10 @@ pub trait TextViewExt: IsA<TextView> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(TextView::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(TextView::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1980,8 +2030,10 @@ pub trait TextViewExt: IsA<TextView> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(TextView::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(TextView::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -2006,8 +2058,10 @@ pub trait TextViewExt: IsA<TextView> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(TextView::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(TextView::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -2029,8 +2083,10 @@ pub trait TextViewExt: IsA<TextView> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(TextView::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(TextView::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -2052,8 +2108,10 @@ pub trait TextViewExt: IsA<TextView> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(TextView::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(TextView::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -2078,8 +2136,10 @@ pub trait TextViewExt: IsA<TextView> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(TextView::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(TextView::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -2104,8 +2164,10 @@ pub trait TextViewExt: IsA<TextView> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(TextView::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(TextView::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -2130,8 +2192,10 @@ pub trait TextViewExt: IsA<TextView> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(TextView::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(TextView::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -2156,8 +2220,10 @@ pub trait TextViewExt: IsA<TextView> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(TextView::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(TextView::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -2179,8 +2245,10 @@ pub trait TextViewExt: IsA<TextView> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(TextView::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(TextView::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -2202,8 +2270,10 @@ pub trait TextViewExt: IsA<TextView> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(TextView::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(TextView::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -2225,8 +2295,10 @@ pub trait TextViewExt: IsA<TextView> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(TextView::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(TextView::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);

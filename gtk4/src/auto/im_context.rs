@@ -262,11 +262,13 @@ pub trait IMContextExt: IsA<IMContext> + 'static {
             str: *mut std::ffi::c_char,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(
-                IMContext::from_glib_borrow(this).unsafe_cast_ref(),
-                &glib::GString::from_glib_borrow(str),
-            )
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(
+                    IMContext::from_glib_borrow(this).unsafe_cast_ref(),
+                    &glib::GString::from_glib_borrow(str),
+                )
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -295,13 +297,15 @@ pub trait IMContextExt: IsA<IMContext> + 'static {
             n_chars: std::ffi::c_int,
             f: glib::ffi::gpointer,
         ) -> glib::ffi::gboolean {
-            let f: &F = &*(f as *const F);
-            f(
-                IMContext::from_glib_borrow(this).unsafe_cast_ref(),
-                offset,
-                n_chars,
-            )
-            .into_glib()
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(
+                    IMContext::from_glib_borrow(this).unsafe_cast_ref(),
+                    offset,
+                    n_chars,
+                )
+                .into_glib()
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -331,12 +335,14 @@ pub trait IMContextExt: IsA<IMContext> + 'static {
             str: *mut std::ffi::c_char,
             f: glib::ffi::gpointer,
         ) -> glib::ffi::gboolean {
-            let f: &F = &*(f as *const F);
-            f(
-                IMContext::from_glib_borrow(this).unsafe_cast_ref(),
-                &glib::GString::from_glib_borrow(str),
-            )
-            .into_glib()
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(
+                    IMContext::from_glib_borrow(this).unsafe_cast_ref(),
+                    &glib::GString::from_glib_borrow(str),
+                )
+                .into_glib()
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -357,8 +363,10 @@ pub trait IMContextExt: IsA<IMContext> + 'static {
             this: *mut ffi::GtkIMContext,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(IMContext::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(IMContext::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -379,8 +387,10 @@ pub trait IMContextExt: IsA<IMContext> + 'static {
             this: *mut ffi::GtkIMContext,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(IMContext::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(IMContext::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -401,8 +411,10 @@ pub trait IMContextExt: IsA<IMContext> + 'static {
             this: *mut ffi::GtkIMContext,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(IMContext::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(IMContext::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -429,8 +441,10 @@ pub trait IMContextExt: IsA<IMContext> + 'static {
             this: *mut ffi::GtkIMContext,
             f: glib::ffi::gpointer,
         ) -> glib::ffi::gboolean {
-            let f: &F = &*(f as *const F);
-            f(IMContext::from_glib_borrow(this).unsafe_cast_ref()).into_glib()
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(IMContext::from_glib_borrow(this).unsafe_cast_ref()).into_glib()
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -455,8 +469,10 @@ pub trait IMContextExt: IsA<IMContext> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(IMContext::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(IMContext::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -481,8 +497,10 @@ pub trait IMContextExt: IsA<IMContext> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(IMContext::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(IMContext::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);

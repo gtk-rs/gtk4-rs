@@ -4127,7 +4127,7 @@ impl ::std::fmt::Debug for GdkToplevel {
     }
 }
 
-extern "C" {
+unsafe extern "C" {
 
     //=========================================================================
     // GdkAxisUse

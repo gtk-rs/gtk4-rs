@@ -128,16 +128,20 @@ pub trait TreeModelFilterExt: IsA<TreeModelFilter> + 'static {
             iter: *mut ffi::GtkTreeIter,
             data: glib::ffi::gpointer,
         ) -> glib::ffi::gboolean {
-            let model = from_glib_borrow(model);
-            let iter = from_glib_borrow(iter);
-            let callback = &*(data as *mut P);
-            (*callback)(&model, &iter).into_glib()
+            unsafe {
+                let model = from_glib_borrow(model);
+                let iter = from_glib_borrow(iter);
+                let callback = &*(data as *mut P);
+                (*callback)(&model, &iter).into_glib()
+            }
         }
         let func = Some(func_func::<P> as _);
         unsafe extern "C" fn destroy_func<P: Fn(&TreeModel, &TreeIter) -> bool + 'static>(
             data: glib::ffi::gpointer,
         ) {
-            let _callback = Box_::from_raw(data as *mut P);
+            unsafe {
+                let _callback = Box_::from_raw(data as *mut P);
+            }
         }
         let destroy_call3 = Some(destroy_func::<P> as _);
         let super_callback0: Box_<P> = func_data;

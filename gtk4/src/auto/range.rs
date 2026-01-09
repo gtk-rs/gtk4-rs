@@ -247,8 +247,10 @@ pub trait RangeExt: IsA<Range> + 'static {
             value: std::ffi::c_double,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(Range::from_glib_borrow(this).unsafe_cast_ref(), value)
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(Range::from_glib_borrow(this).unsafe_cast_ref(), value)
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -277,13 +279,15 @@ pub trait RangeExt: IsA<Range> + 'static {
             value: std::ffi::c_double,
             f: glib::ffi::gpointer,
         ) -> glib::ffi::gboolean {
-            let f: &F = &*(f as *const F);
-            f(
-                Range::from_glib_borrow(this).unsafe_cast_ref(),
-                from_glib(scroll),
-                value,
-            )
-            .into_glib()
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(
+                    Range::from_glib_borrow(this).unsafe_cast_ref(),
+                    from_glib(scroll),
+                    value,
+                )
+                .into_glib()
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -308,11 +312,13 @@ pub trait RangeExt: IsA<Range> + 'static {
             step: ffi::GtkScrollType,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(
-                Range::from_glib_borrow(this).unsafe_cast_ref(),
-                from_glib(step),
-            )
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(
+                    Range::from_glib_borrow(this).unsafe_cast_ref(),
+                    from_glib(step),
+                )
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -337,8 +343,10 @@ pub trait RangeExt: IsA<Range> + 'static {
             this: *mut ffi::GtkRange,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(Range::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(Range::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -360,8 +368,10 @@ pub trait RangeExt: IsA<Range> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(Range::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(Range::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -383,8 +393,10 @@ pub trait RangeExt: IsA<Range> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(Range::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(Range::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -406,8 +418,10 @@ pub trait RangeExt: IsA<Range> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(Range::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(Range::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -435,8 +449,10 @@ pub trait RangeExt: IsA<Range> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(Range::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(Range::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -458,8 +474,10 @@ pub trait RangeExt: IsA<Range> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(Range::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(Range::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -484,8 +502,10 @@ pub trait RangeExt: IsA<Range> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(Range::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(Range::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
