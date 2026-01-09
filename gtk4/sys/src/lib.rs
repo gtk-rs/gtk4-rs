@@ -1088,6 +1088,7 @@ pub const GTK_STYLE_PROVIDER_PRIORITY_FALLBACK: c_int = 1;
 pub const GTK_STYLE_PROVIDER_PRIORITY_SETTINGS: c_int = 400;
 pub const GTK_STYLE_PROVIDER_PRIORITY_THEME: c_int = 200;
 pub const GTK_STYLE_PROVIDER_PRIORITY_USER: c_int = 800;
+pub const GTK_SVG_ALL_FEATURES: c_int = 15;
 pub const GTK_TEXT_VIEW_PRIORITY_VALIDATE: c_int = 125;
 pub const GTK_TREE_SORTABLE_DEFAULT_SORT_COLUMN_ID: c_int = -1;
 pub const GTK_TREE_SORTABLE_UNSORTED_SORT_COLUMN_ID: c_int = -2;
@@ -1248,6 +1249,12 @@ pub const GTK_STYLE_CONTEXT_PRINT_NONE: GtkStyleContextPrintFlags = 0;
 pub const GTK_STYLE_CONTEXT_PRINT_RECURSE: GtkStyleContextPrintFlags = 1;
 pub const GTK_STYLE_CONTEXT_PRINT_SHOW_STYLE: GtkStyleContextPrintFlags = 2;
 pub const GTK_STYLE_CONTEXT_PRINT_SHOW_CHANGE: GtkStyleContextPrintFlags = 4;
+
+pub type GtkSvgFeatures = c_uint;
+pub const GTK_SVG_ANIMATIONS: GtkSvgFeatures = 1;
+pub const GTK_SVG_SYSTEM_RESOURCES: GtkSvgFeatures = 2;
+pub const GTK_SVG_EXTERNAL_RESOURCES: GtkSvgFeatures = 4;
+pub const GTK_SVG_EXTENSIONS: GtkSvgFeatures = 8;
 
 pub type GtkTextBufferNotifyFlags = c_uint;
 pub const GTK_TEXT_BUFFER_NOTIFY_BEFORE_INSERT: GtkTextBufferNotifyFlags = 1;
@@ -10813,6 +10820,13 @@ unsafe extern "C" {
     pub fn gtk_style_context_print_flags_get_type() -> GType;
 
     //=========================================================================
+    // GtkSvgFeatures
+    //=========================================================================
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    pub fn gtk_svg_features_get_type() -> GType;
+
+    //=========================================================================
     // GtkTextBufferNotifyFlags
     //=========================================================================
     #[cfg(feature = "v4_16")]
@@ -17033,6 +17047,9 @@ unsafe extern "C" {
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     pub fn gtk_picture_get_content_fit(self_: *mut GtkPicture) -> GtkContentFit;
     pub fn gtk_picture_get_file(self_: *mut GtkPicture) -> *mut gio::GFile;
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    pub fn gtk_picture_get_isolate_contents(self_: *mut GtkPicture) -> gboolean;
     pub fn gtk_picture_get_keep_aspect_ratio(self_: *mut GtkPicture) -> gboolean;
     pub fn gtk_picture_get_paintable(self_: *mut GtkPicture) -> *mut gdk::GdkPaintable;
     pub fn gtk_picture_set_alternative_text(
@@ -17045,6 +17062,9 @@ unsafe extern "C" {
     pub fn gtk_picture_set_content_fit(self_: *mut GtkPicture, content_fit: GtkContentFit);
     pub fn gtk_picture_set_file(self_: *mut GtkPicture, file: *mut gio::GFile);
     pub fn gtk_picture_set_filename(self_: *mut GtkPicture, filename: *const c_char);
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    pub fn gtk_picture_set_isolate_contents(self_: *mut GtkPicture, isolate_contents: gboolean);
     pub fn gtk_picture_set_keep_aspect_ratio(self_: *mut GtkPicture, keep_aspect_ratio: gboolean);
     pub fn gtk_picture_set_paintable(self_: *mut GtkPicture, paintable: *mut gdk::GdkPaintable);
     pub fn gtk_picture_set_pixbuf(self_: *mut GtkPicture, pixbuf: *mut gdk_pixbuf::GdkPixbuf);
@@ -18516,6 +18536,9 @@ unsafe extern "C" {
         bounds: *const graphene::graphene_rect_t,
         take_args: *mut glib::GBytes,
     );
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    pub fn gtk_snapshot_push_isolation(snapshot: *mut GtkSnapshot, features: gsk::GskIsolation);
     #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_snapshot_push_mask(snapshot: *mut GtkSnapshot, mask_mode: gsk::GskMaskMode);
@@ -18979,6 +19002,9 @@ unsafe extern "C" {
     pub fn gtk_svg_new_from_resource(path: *const c_char) -> *mut GtkSvg;
     #[cfg(feature = "v4_22")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    pub fn gtk_svg_get_features(self_: *mut GtkSvg) -> GtkSvgFeatures;
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
     pub fn gtk_svg_get_n_states(self_: *mut GtkSvg) -> c_uint;
     #[cfg(feature = "v4_22")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
@@ -18991,6 +19017,9 @@ unsafe extern "C" {
     pub fn gtk_svg_load_from_bytes(self_: *mut GtkSvg, bytes: *mut glib::GBytes);
     #[cfg(feature = "v4_22")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    pub fn gtk_svg_load_from_resource(self_: *mut GtkSvg, path: *const c_char);
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
     pub fn gtk_svg_pause(self_: *mut GtkSvg);
     #[cfg(feature = "v4_22")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
@@ -18998,6 +19027,9 @@ unsafe extern "C" {
     #[cfg(feature = "v4_22")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
     pub fn gtk_svg_serialize(self_: *mut GtkSvg) -> *mut glib::GBytes;
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    pub fn gtk_svg_set_features(self_: *mut GtkSvg, features: GtkSvgFeatures);
     #[cfg(feature = "v4_22")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
     pub fn gtk_svg_set_frame_clock(self_: *mut GtkSvg, clock: *mut gdk::GdkFrameClock);
@@ -21829,6 +21861,9 @@ unsafe extern "C" {
     ) -> *const c_char;
     pub fn gtk_css_parser_error_quark() -> glib::GQuark;
     pub fn gtk_css_parser_warning_quark() -> glib::GQuark;
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    pub fn gtk_disable_portal_interfaces(portal_interfaces: *mut *const c_char);
     #[cfg(feature = "v4_18")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_18")))]
     pub fn gtk_disable_portals();

@@ -2218,6 +2218,13 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
+        "GtkSvgFeatures",
+        Layout {
+            size: size_of::<GtkSvgFeatures>(),
+            alignment: align_of::<GtkSvgFeatures>(),
+        },
+    ),
+    (
         "GtkSvgLocation",
         Layout {
             size: size_of::<GtkSvgLocation>(),
@@ -3524,12 +3531,17 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("GTK_STYLE_PROVIDER_PRIORITY_SETTINGS", "400"),
     ("GTK_STYLE_PROVIDER_PRIORITY_THEME", "200"),
     ("GTK_STYLE_PROVIDER_PRIORITY_USER", "800"),
+    ("GTK_SVG_ALL_FEATURES", "15"),
+    ("(guint) GTK_SVG_ANIMATIONS", "1"),
     ("(gint) GTK_SVG_ERROR_FAILED_RENDERING", "5"),
     ("(gint) GTK_SVG_ERROR_FAILED_UPDATE", "4"),
     ("(gint) GTK_SVG_ERROR_INVALID_ATTRIBUTE", "1"),
     ("(gint) GTK_SVG_ERROR_INVALID_ELEMENT", "0"),
     ("(gint) GTK_SVG_ERROR_INVALID_REFERENCE", "3"),
     ("(gint) GTK_SVG_ERROR_MISSING_ATTRIBUTE", "2"),
+    ("(guint) GTK_SVG_EXTENSIONS", "8"),
+    ("(guint) GTK_SVG_EXTERNAL_RESOURCES", "4"),
+    ("(guint) GTK_SVG_SYSTEM_RESOURCES", "2"),
     ("(gint) GTK_SYMBOLIC_COLOR_ACCENT", "4"),
     ("(gint) GTK_SYMBOLIC_COLOR_ERROR", "1"),
     ("(gint) GTK_SYMBOLIC_COLOR_FOREGROUND", "0"),

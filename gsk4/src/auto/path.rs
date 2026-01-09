@@ -88,6 +88,22 @@ impl Path {
         }
     }
 
+    //#[cfg(feature = "v4_22")]
+    //#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    //#[doc(alias = "gsk_path_get_next")]
+    //#[doc(alias = "get_next")]
+    //pub fn next(&self, point: /*Unimplemented*/PathPoint) -> bool {
+    //    unsafe { TODO: call ffi:gsk_path_get_next() }
+    //}
+
+    //#[cfg(feature = "v4_22")]
+    //#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    //#[doc(alias = "gsk_path_get_previous")]
+    //#[doc(alias = "get_previous")]
+    //pub fn previous(&self, point: /*Unimplemented*/PathPoint) -> bool {
+    //    unsafe { TODO: call ffi:gsk_path_get_previous() }
+    //}
+
     #[doc(alias = "gsk_path_get_start_point")]
     #[doc(alias = "get_start_point")]
     pub fn start_point(&self) -> Option<PathPoint> {
@@ -113,6 +129,25 @@ impl Path {
             let ret = from_glib(ffi::gsk_path_get_stroke_bounds(
                 self.to_glib_none().0,
                 stroke.to_glib_none().0,
+                bounds.to_glib_none_mut().0,
+            ));
+            if ret {
+                Some(bounds)
+            } else {
+                None
+            }
+        }
+    }
+
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    #[doc(alias = "gsk_path_get_tight_bounds")]
+    #[doc(alias = "get_tight_bounds")]
+    pub fn tight_bounds(&self) -> Option<graphene::Rect> {
+        unsafe {
+            let mut bounds = graphene::Rect::uninitialized();
+            let ret = from_glib(ffi::gsk_path_get_tight_bounds(
+                self.to_glib_none().0,
                 bounds.to_glib_none_mut().0,
             ));
             if ret {

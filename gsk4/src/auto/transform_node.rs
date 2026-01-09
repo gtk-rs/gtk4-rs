@@ -23,7 +23,7 @@ impl StaticType for TransformNode {
 
 impl TransformNode {
     #[doc(alias = "gsk_transform_node_new")]
-    pub fn new(child: impl AsRef<RenderNode>, transform: &Transform) -> TransformNode {
+    pub fn new(child: impl AsRef<RenderNode>, transform: Option<&Transform>) -> TransformNode {
         skip_assert_initialized!();
         unsafe {
             from_glib_full(ffi::gsk_transform_node_new(

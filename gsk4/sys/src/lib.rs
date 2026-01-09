@@ -174,6 +174,15 @@ pub const GSK_PASTE_NODE: GskRenderNodeType = 33;
 #[cfg(feature = "v4_22")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
 pub const GSK_COMPOSITE_NODE: GskRenderNodeType = 34;
+#[cfg(feature = "v4_22")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+pub const GSK_ISOLATION_NODE: GskRenderNodeType = 35;
+#[cfg(feature = "v4_22")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+pub const GSK_DISPLACEMENT_NODE: GskRenderNodeType = 36;
+#[cfg(feature = "v4_22")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+pub const GSK_ARITHMETIC_NODE: GskRenderNodeType = 37;
 
 pub type GskScalingFilter = c_int;
 pub const GSK_SCALING_FILTER_LINEAR: GskScalingFilter = 0;
@@ -195,6 +204,12 @@ pub const GSK_TRANSFORM_CATEGORY_2D_TRANSLATE: GskTransformCategory = 5;
 pub const GSK_TRANSFORM_CATEGORY_IDENTITY: GskTransformCategory = 6;
 
 // Flags
+pub type GskIsolation = c_uint;
+pub const GSK_ISOLATION_NONE: GskIsolation = 0;
+pub const GSK_ISOLATION_BACKGROUND: GskIsolation = 1;
+pub const GSK_ISOLATION_COPY_PASTE: GskIsolation = 2;
+pub const GSK_ISOLATION_ALL: GskIsolation = 4294967295;
+
 pub type GskPathForeachFlags = c_uint;
 pub const GSK_PATH_FOREACH_ALLOW_ONLY_LINES: GskPathForeachFlags = 0;
 pub const GSK_PATH_FOREACH_ALLOW_QUAD: GskPathForeachFlags = 1;
@@ -838,6 +853,20 @@ impl ::std::fmt::Debug for GskInsetShadowNode {
 
 #[repr(C)]
 #[allow(dead_code)]
+pub struct GskIsolationNode {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+impl ::std::fmt::Debug for GskIsolationNode {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GskIsolationNode @ {self:p}"))
+            .finish()
+    }
+}
+
+#[repr(C)]
+#[allow(dead_code)]
 pub struct GskLinearGradientNode {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -1225,6 +1254,13 @@ unsafe extern "C" {
     pub fn gsk_transform_category_get_type() -> GType;
 
     //=========================================================================
+    // GskIsolation
+    //=========================================================================
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    pub fn gsk_isolation_get_type() -> GType;
+
+    //=========================================================================
     // GskPathForeachFlags
     //=========================================================================
     #[cfg(feature = "v4_14")]
@@ -1320,6 +1356,12 @@ unsafe extern "C" {
     #[cfg(feature = "v4_14")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
     pub fn gsk_path_get_end_point(self_: *mut GskPath, result: *mut GskPathPoint) -> gboolean;
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    pub fn gsk_path_get_next(self_: *mut GskPath, point: *mut GskPathPoint) -> gboolean;
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    pub fn gsk_path_get_previous(self_: *mut GskPath, point: *mut GskPathPoint) -> gboolean;
     #[cfg(feature = "v4_14")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
     pub fn gsk_path_get_start_point(self_: *mut GskPath, result: *mut GskPathPoint) -> gboolean;
@@ -1328,6 +1370,12 @@ unsafe extern "C" {
     pub fn gsk_path_get_stroke_bounds(
         self_: *mut GskPath,
         stroke: *const GskStroke,
+        bounds: *mut graphene::graphene_rect_t,
+    ) -> gboolean;
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    pub fn gsk_path_get_tight_bounds(
+        self_: *mut GskPath,
         bounds: *mut graphene::graphene_rect_t,
     ) -> gboolean;
     #[cfg(feature = "v4_14")]
@@ -1672,6 +1720,12 @@ unsafe extern "C" {
     //=========================================================================
     #[cfg(feature = "v4_22")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    pub fn gsk_render_replay_get_type() -> GType;
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    pub fn gsk_render_replay_new() -> *mut GskRenderReplay;
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
     pub fn gsk_render_replay_default(
         self_: *mut GskRenderReplay,
         node: *mut GskRenderNode,
@@ -1732,9 +1786,6 @@ unsafe extern "C" {
         user_data: gpointer,
         user_destroy: glib::GDestroyNotify,
     );
-    #[cfg(feature = "v4_22")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
-    pub fn gsk_render_replay_new() -> *mut GskRenderReplay;
 
     //=========================================================================
     // GskRoundedRect
@@ -2136,6 +2187,8 @@ unsafe extern "C" {
     //=========================================================================
     // GskCompositeNode
     //=========================================================================
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
     pub fn gsk_composite_node_get_type() -> GType;
     #[cfg(feature = "v4_22")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
@@ -2365,6 +2418,25 @@ unsafe extern "C" {
         node: *const GskInsetShadowNode,
     ) -> *const GskRoundedRect;
     pub fn gsk_inset_shadow_node_get_spread(node: *const GskInsetShadowNode) -> c_float;
+
+    //=========================================================================
+    // GskIsolationNode
+    //=========================================================================
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    pub fn gsk_isolation_node_get_type() -> GType;
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    pub fn gsk_isolation_node_new(
+        child: *mut GskRenderNode,
+        isolations: GskIsolation,
+    ) -> *mut GskIsolationNode;
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    pub fn gsk_isolation_node_get_child(node: *const GskIsolationNode) -> *mut GskRenderNode;
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    pub fn gsk_isolation_node_get_isolations(node: *const GskIsolationNode) -> GskIsolation;
 
     //=========================================================================
     // GskLinearGradientNode

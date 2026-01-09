@@ -462,6 +462,13 @@ pub trait SnapshotExt: IsA<Snapshot> + 'static {
         }
     }
 
+    //#[cfg(feature = "v4_22")]
+    //#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    //#[doc(alias = "gtk_snapshot_push_isolation")]
+    //fn push_isolation(&self, features: /*Ignored*/gsk::Isolation) {
+    //    unsafe { TODO: call ffi:gtk_snapshot_push_isolation() }
+    //}
+
     #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "gtk_snapshot_push_mask")]

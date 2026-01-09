@@ -244,6 +244,13 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
+        "GskIsolation",
+        Layout {
+            size: size_of::<GskIsolation>(),
+            alignment: align_of::<GskIsolation>(),
+        },
+    ),
+    (
         "GskLineCap",
         Layout {
             size: size_of::<GskLineCap>(),
@@ -358,6 +365,7 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
 ];
 
 const RUST_CONSTANTS: &[(&str, &str)] = &[
+    ("(gint) GSK_ARITHMETIC_NODE", "37"),
     ("(gint) GSK_BLEND_MODE_COLOR", "12"),
     ("(gint) GSK_BLEND_MODE_COLOR_BURN", "7"),
     ("(gint) GSK_BLEND_MODE_COLOR_DODGE", "6"),
@@ -392,6 +400,7 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(gint) GSK_CORNER_TOP_RIGHT", "1"),
     ("(gint) GSK_CROSS_FADE_NODE", "21"),
     ("(gint) GSK_DEBUG_NODE", "24"),
+    ("(gint) GSK_DISPLACEMENT_NODE", "36"),
     ("(gint) GSK_FILL_NODE", "28"),
     ("(gint) GSK_FILL_RULE_EVEN_ODD", "1"),
     ("(gint) GSK_FILL_RULE_WINDING", "0"),
@@ -405,6 +414,11 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(gint) GSK_GL_UNIFORM_TYPE_VEC3", "6"),
     ("(gint) GSK_GL_UNIFORM_TYPE_VEC4", "7"),
     ("(gint) GSK_INSET_SHADOW_NODE", "11"),
+    ("(guint) GSK_ISOLATION_ALL", "4294967295"),
+    ("(guint) GSK_ISOLATION_BACKGROUND", "1"),
+    ("(guint) GSK_ISOLATION_COPY_PASTE", "2"),
+    ("(gint) GSK_ISOLATION_NODE", "35"),
+    ("(guint) GSK_ISOLATION_NONE", "0"),
     ("(gint) GSK_LINEAR_GRADIENT_NODE", "4"),
     ("(gint) GSK_LINE_CAP_BUTT", "0"),
     ("(gint) GSK_LINE_CAP_ROUND", "1"),
