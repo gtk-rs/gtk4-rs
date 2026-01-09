@@ -89,10 +89,12 @@ impl PrintSettings {
             value: *const std::ffi::c_char,
             user_data: glib::ffi::gpointer,
         ) {
-            let key: Borrowed<glib::GString> = from_glib_borrow(key);
-            let value: Borrowed<glib::GString> = from_glib_borrow(value);
-            let callback = user_data as *mut P;
-            (*callback)(key.as_str(), value.as_str())
+            unsafe {
+                let key: Borrowed<glib::GString> = from_glib_borrow(key);
+                let value: Borrowed<glib::GString> = from_glib_borrow(value);
+                let callback = user_data as *mut P;
+                (*callback)(key.as_str(), value.as_str())
+            }
         }
         let func = Some(func_func::<P> as _);
         let super_callback0: &mut P = &mut func_data;

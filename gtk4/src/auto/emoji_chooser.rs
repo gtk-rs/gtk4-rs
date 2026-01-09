@@ -45,11 +45,13 @@ impl EmojiChooser {
             text: *mut std::ffi::c_char,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(
-                &from_glib_borrow(this),
-                &glib::GString::from_glib_borrow(text),
-            )
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(
+                    &from_glib_borrow(this),
+                    &glib::GString::from_glib_borrow(text),
+                )
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);

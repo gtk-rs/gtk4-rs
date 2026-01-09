@@ -1130,7 +1130,7 @@ impl ::std::fmt::Debug for GskVulkanRenderer {
     }
 }
 
-extern "C" {
+unsafe extern "C" {
 
     //=========================================================================
     // GskBlendMode

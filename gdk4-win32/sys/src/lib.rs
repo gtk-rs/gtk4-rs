@@ -256,7 +256,7 @@ impl ::std::fmt::Debug for GdkWin32Surface {
     }
 }
 
-extern "C" {
+unsafe extern "C" {
 
     //=========================================================================
     // GdkD3D12Texture

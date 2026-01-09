@@ -10097,7 +10097,7 @@ impl ::std::fmt::Debug for GtkTreeSortable {
     }
 }
 
-extern "C" {
+unsafe extern "C" {
 
     //=========================================================================
     // GtkAccessibleAnnouncementPriority
