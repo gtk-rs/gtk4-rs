@@ -59,11 +59,13 @@ pub trait SorterExt: IsA<Sorter> + 'static {
             change: ffi::GtkSorterChange,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(
-                Sorter::from_glib_borrow(this).unsafe_cast_ref(),
-                from_glib(change),
-            )
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(
+                    Sorter::from_glib_borrow(this).unsafe_cast_ref(),
+                    from_glib(change),
+                )
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);

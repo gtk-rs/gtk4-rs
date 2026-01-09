@@ -189,7 +189,7 @@ impl ::std::fmt::Debug for GdkWaylandToplevel {
     }
 }
 
-extern "C" {
+unsafe extern "C" {
 
     //=========================================================================
     // GdkWaylandDevice

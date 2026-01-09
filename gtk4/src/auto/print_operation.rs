@@ -525,11 +525,13 @@ pub trait PrintOperationExt: IsA<PrintOperation> + 'static {
             context: *mut ffi::GtkPrintContext,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(
-                PrintOperation::from_glib_borrow(this).unsafe_cast_ref(),
-                &from_glib_borrow(context),
-            )
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(
+                    PrintOperation::from_glib_borrow(this).unsafe_cast_ref(),
+                    &from_glib_borrow(context),
+                )
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -556,10 +558,12 @@ pub trait PrintOperationExt: IsA<PrintOperation> + 'static {
             this: *mut ffi::GtkPrintOperation,
             f: glib::ffi::gpointer,
         ) -> *mut glib::gobject_ffi::GObject {
-            let f: &F = &*(f as *const F);
-            f(PrintOperation::from_glib_borrow(this).unsafe_cast_ref()) /*Not checked*/
-                .to_glib_none()
-                .0
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(PrintOperation::from_glib_borrow(this).unsafe_cast_ref()) /*Not checked*/
+                    .to_glib_none()
+                    .0
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -587,11 +591,13 @@ pub trait PrintOperationExt: IsA<PrintOperation> + 'static {
             widget: *mut ffi::GtkWidget,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(
-                PrintOperation::from_glib_borrow(this).unsafe_cast_ref(),
-                &from_glib_borrow(widget),
-            )
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(
+                    PrintOperation::from_glib_borrow(this).unsafe_cast_ref(),
+                    &from_glib_borrow(widget),
+                )
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -616,11 +622,13 @@ pub trait PrintOperationExt: IsA<PrintOperation> + 'static {
             result: ffi::GtkPrintOperationResult,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(
-                PrintOperation::from_glib_borrow(this).unsafe_cast_ref(),
-                from_glib(result),
-            )
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(
+                    PrintOperation::from_glib_borrow(this).unsafe_cast_ref(),
+                    from_glib(result),
+                )
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -649,12 +657,14 @@ pub trait PrintOperationExt: IsA<PrintOperation> + 'static {
             page_nr: std::ffi::c_int,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(
-                PrintOperation::from_glib_borrow(this).unsafe_cast_ref(),
-                &from_glib_borrow(context),
-                page_nr,
-            )
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(
+                    PrintOperation::from_glib_borrow(this).unsafe_cast_ref(),
+                    &from_glib_borrow(context),
+                    page_nr,
+                )
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -679,11 +689,13 @@ pub trait PrintOperationExt: IsA<PrintOperation> + 'static {
             context: *mut ffi::GtkPrintContext,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(
-                PrintOperation::from_glib_borrow(this).unsafe_cast_ref(),
-                &from_glib_borrow(context),
-            )
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(
+                    PrintOperation::from_glib_borrow(this).unsafe_cast_ref(),
+                    &from_glib_borrow(context),
+                )
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -711,12 +723,14 @@ pub trait PrintOperationExt: IsA<PrintOperation> + 'static {
             context: *mut ffi::GtkPrintContext,
             f: glib::ffi::gpointer,
         ) -> glib::ffi::gboolean {
-            let f: &F = &*(f as *const F);
-            f(
-                PrintOperation::from_glib_borrow(this).unsafe_cast_ref(),
-                &from_glib_borrow(context),
-            )
-            .into_glib()
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(
+                    PrintOperation::from_glib_borrow(this).unsafe_cast_ref(),
+                    &from_glib_borrow(context),
+                )
+                .into_glib()
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -748,14 +762,16 @@ pub trait PrintOperationExt: IsA<PrintOperation> + 'static {
             parent: *mut ffi::GtkWindow,
             f: glib::ffi::gpointer,
         ) -> glib::ffi::gboolean {
-            let f: &F = &*(f as *const F);
-            f(
-                PrintOperation::from_glib_borrow(this).unsafe_cast_ref(),
-                &from_glib_borrow(preview),
-                &from_glib_borrow(context),
-                Option::<Window>::from_glib_borrow(parent).as_ref().as_ref(),
-            )
-            .into_glib()
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(
+                    PrintOperation::from_glib_borrow(this).unsafe_cast_ref(),
+                    &from_glib_borrow(preview),
+                    &from_glib_borrow(context),
+                    Option::<Window>::from_glib_borrow(parent).as_ref().as_ref(),
+                )
+                .into_glib()
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -785,13 +801,15 @@ pub trait PrintOperationExt: IsA<PrintOperation> + 'static {
             setup: *mut ffi::GtkPageSetup,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(
-                PrintOperation::from_glib_borrow(this).unsafe_cast_ref(),
-                &from_glib_borrow(context),
-                page_nr,
-                &from_glib_borrow(setup),
-            )
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(
+                    PrintOperation::from_glib_borrow(this).unsafe_cast_ref(),
+                    &from_glib_borrow(context),
+                    page_nr,
+                    &from_glib_borrow(setup),
+                )
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -815,8 +833,10 @@ pub trait PrintOperationExt: IsA<PrintOperation> + 'static {
             this: *mut ffi::GtkPrintOperation,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(PrintOperation::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(PrintOperation::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -846,13 +866,15 @@ pub trait PrintOperationExt: IsA<PrintOperation> + 'static {
             settings: *mut ffi::GtkPrintSettings,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(
-                PrintOperation::from_glib_borrow(this).unsafe_cast_ref(),
-                &from_glib_borrow(widget),
-                &from_glib_borrow(setup),
-                &from_glib_borrow(settings),
-            )
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(
+                    PrintOperation::from_glib_borrow(this).unsafe_cast_ref(),
+                    &from_glib_borrow(widget),
+                    &from_glib_borrow(setup),
+                    &from_glib_borrow(settings),
+                )
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -877,8 +899,10 @@ pub trait PrintOperationExt: IsA<PrintOperation> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(PrintOperation::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(PrintOperation::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -903,8 +927,10 @@ pub trait PrintOperationExt: IsA<PrintOperation> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(PrintOperation::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(PrintOperation::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -929,8 +955,10 @@ pub trait PrintOperationExt: IsA<PrintOperation> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(PrintOperation::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(PrintOperation::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -955,8 +983,10 @@ pub trait PrintOperationExt: IsA<PrintOperation> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(PrintOperation::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(PrintOperation::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -981,8 +1011,10 @@ pub trait PrintOperationExt: IsA<PrintOperation> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(PrintOperation::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(PrintOperation::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1007,8 +1039,10 @@ pub trait PrintOperationExt: IsA<PrintOperation> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(PrintOperation::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(PrintOperation::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1033,8 +1067,10 @@ pub trait PrintOperationExt: IsA<PrintOperation> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(PrintOperation::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(PrintOperation::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1059,8 +1095,10 @@ pub trait PrintOperationExt: IsA<PrintOperation> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(PrintOperation::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(PrintOperation::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1085,8 +1123,10 @@ pub trait PrintOperationExt: IsA<PrintOperation> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(PrintOperation::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(PrintOperation::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1111,8 +1151,10 @@ pub trait PrintOperationExt: IsA<PrintOperation> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(PrintOperation::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(PrintOperation::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1137,8 +1179,10 @@ pub trait PrintOperationExt: IsA<PrintOperation> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(PrintOperation::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(PrintOperation::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1163,8 +1207,10 @@ pub trait PrintOperationExt: IsA<PrintOperation> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(PrintOperation::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(PrintOperation::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1189,8 +1235,10 @@ pub trait PrintOperationExt: IsA<PrintOperation> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(PrintOperation::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(PrintOperation::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1215,8 +1263,10 @@ pub trait PrintOperationExt: IsA<PrintOperation> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(PrintOperation::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(PrintOperation::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1241,8 +1291,10 @@ pub trait PrintOperationExt: IsA<PrintOperation> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(PrintOperation::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(PrintOperation::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1267,8 +1319,10 @@ pub trait PrintOperationExt: IsA<PrintOperation> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(PrintOperation::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(PrintOperation::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1290,8 +1344,10 @@ pub trait PrintOperationExt: IsA<PrintOperation> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(PrintOperation::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(PrintOperation::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1316,8 +1372,10 @@ pub trait PrintOperationExt: IsA<PrintOperation> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(PrintOperation::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(PrintOperation::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);

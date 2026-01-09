@@ -81,11 +81,13 @@ pub trait SeatExt: IsA<Seat> + 'static {
             device: *mut ffi::GdkDevice,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(
-                Seat::from_glib_borrow(this).unsafe_cast_ref(),
-                &from_glib_borrow(device),
-            )
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(
+                    Seat::from_glib_borrow(this).unsafe_cast_ref(),
+                    &from_glib_borrow(device),
+                )
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -110,11 +112,13 @@ pub trait SeatExt: IsA<Seat> + 'static {
             device: *mut ffi::GdkDevice,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(
-                Seat::from_glib_borrow(this).unsafe_cast_ref(),
-                &from_glib_borrow(device),
-            )
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(
+                    Seat::from_glib_borrow(this).unsafe_cast_ref(),
+                    &from_glib_borrow(device),
+                )
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -139,11 +143,13 @@ pub trait SeatExt: IsA<Seat> + 'static {
             tool: *mut ffi::GdkDeviceTool,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(
-                Seat::from_glib_borrow(this).unsafe_cast_ref(),
-                &from_glib_borrow(tool),
-            )
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(
+                    Seat::from_glib_borrow(this).unsafe_cast_ref(),
+                    &from_glib_borrow(tool),
+                )
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -168,11 +174,13 @@ pub trait SeatExt: IsA<Seat> + 'static {
             tool: *mut ffi::GdkDeviceTool,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(
-                Seat::from_glib_borrow(this).unsafe_cast_ref(),
-                &from_glib_borrow(tool),
-            )
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(
+                    Seat::from_glib_borrow(this).unsafe_cast_ref(),
+                    &from_glib_borrow(tool),
+                )
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);

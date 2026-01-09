@@ -897,13 +897,15 @@ pub trait TextBufferExt: IsA<TextBuffer> + 'static {
             end: *mut ffi::GtkTextIter,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(
-                TextBuffer::from_glib_borrow(this).unsafe_cast_ref(),
-                &from_glib_borrow(tag),
-                &from_glib_borrow(start),
-                &from_glib_borrow(end),
-            )
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(
+                    TextBuffer::from_glib_borrow(this).unsafe_cast_ref(),
+                    &from_glib_borrow(tag),
+                    &from_glib_borrow(start),
+                    &from_glib_borrow(end),
+                )
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -927,8 +929,10 @@ pub trait TextBufferExt: IsA<TextBuffer> + 'static {
             this: *mut ffi::GtkTextBuffer,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(TextBuffer::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(TextBuffer::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -949,8 +953,10 @@ pub trait TextBufferExt: IsA<TextBuffer> + 'static {
             this: *mut ffi::GtkTextBuffer,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(TextBuffer::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(TextBuffer::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -979,12 +985,14 @@ pub trait TextBufferExt: IsA<TextBuffer> + 'static {
             end: *mut ffi::GtkTextIter,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(
-                TextBuffer::from_glib_borrow(this).unsafe_cast_ref(),
-                &from_glib_borrow(start),
-                &from_glib_borrow(end),
-            )
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(
+                    TextBuffer::from_glib_borrow(this).unsafe_cast_ref(),
+                    &from_glib_borrow(start),
+                    &from_glib_borrow(end),
+                )
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1005,8 +1013,10 @@ pub trait TextBufferExt: IsA<TextBuffer> + 'static {
             this: *mut ffi::GtkTextBuffer,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(TextBuffer::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(TextBuffer::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1035,12 +1045,14 @@ pub trait TextBufferExt: IsA<TextBuffer> + 'static {
             anchor: *mut ffi::GtkTextChildAnchor,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(
-                TextBuffer::from_glib_borrow(this).unsafe_cast_ref(),
-                &from_glib_borrow(location),
-                &from_glib_borrow(anchor),
-            )
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(
+                    TextBuffer::from_glib_borrow(this).unsafe_cast_ref(),
+                    &from_glib_borrow(location),
+                    &from_glib_borrow(anchor),
+                )
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1069,12 +1081,14 @@ pub trait TextBufferExt: IsA<TextBuffer> + 'static {
             paintable: *mut gdk::ffi::GdkPaintable,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(
-                TextBuffer::from_glib_borrow(this).unsafe_cast_ref(),
-                &from_glib_borrow(location),
-                &from_glib_borrow(paintable),
-            )
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(
+                    TextBuffer::from_glib_borrow(this).unsafe_cast_ref(),
+                    &from_glib_borrow(location),
+                    &from_glib_borrow(paintable),
+                )
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1099,11 +1113,13 @@ pub trait TextBufferExt: IsA<TextBuffer> + 'static {
             mark: *mut ffi::GtkTextMark,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(
-                TextBuffer::from_glib_borrow(this).unsafe_cast_ref(),
-                &from_glib_borrow(mark),
-            )
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(
+                    TextBuffer::from_glib_borrow(this).unsafe_cast_ref(),
+                    &from_glib_borrow(mark),
+                )
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1132,12 +1148,14 @@ pub trait TextBufferExt: IsA<TextBuffer> + 'static {
             mark: *mut ffi::GtkTextMark,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(
-                TextBuffer::from_glib_borrow(this).unsafe_cast_ref(),
-                &from_glib_borrow(location),
-                &from_glib_borrow(mark),
-            )
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(
+                    TextBuffer::from_glib_borrow(this).unsafe_cast_ref(),
+                    &from_glib_borrow(location),
+                    &from_glib_borrow(mark),
+                )
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1161,8 +1179,10 @@ pub trait TextBufferExt: IsA<TextBuffer> + 'static {
             this: *mut ffi::GtkTextBuffer,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(TextBuffer::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(TextBuffer::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1187,11 +1207,13 @@ pub trait TextBufferExt: IsA<TextBuffer> + 'static {
             clipboard: *mut gdk::ffi::GdkClipboard,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(
-                TextBuffer::from_glib_borrow(this).unsafe_cast_ref(),
-                &from_glib_borrow(clipboard),
-            )
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(
+                    TextBuffer::from_glib_borrow(this).unsafe_cast_ref(),
+                    &from_glib_borrow(clipboard),
+                )
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1212,8 +1234,10 @@ pub trait TextBufferExt: IsA<TextBuffer> + 'static {
             this: *mut ffi::GtkTextBuffer,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(TextBuffer::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(TextBuffer::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1243,13 +1267,15 @@ pub trait TextBufferExt: IsA<TextBuffer> + 'static {
             end: *mut ffi::GtkTextIter,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(
-                TextBuffer::from_glib_borrow(this).unsafe_cast_ref(),
-                &from_glib_borrow(tag),
-                &from_glib_borrow(start),
-                &from_glib_borrow(end),
-            )
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(
+                    TextBuffer::from_glib_borrow(this).unsafe_cast_ref(),
+                    &from_glib_borrow(tag),
+                    &from_glib_borrow(start),
+                    &from_glib_borrow(end),
+                )
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1270,8 +1296,10 @@ pub trait TextBufferExt: IsA<TextBuffer> + 'static {
             this: *mut ffi::GtkTextBuffer,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(TextBuffer::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(TextBuffer::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1293,8 +1321,10 @@ pub trait TextBufferExt: IsA<TextBuffer> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(TextBuffer::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(TextBuffer::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1316,8 +1346,10 @@ pub trait TextBufferExt: IsA<TextBuffer> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(TextBuffer::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(TextBuffer::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1342,8 +1374,10 @@ pub trait TextBufferExt: IsA<TextBuffer> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(TextBuffer::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(TextBuffer::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1368,8 +1402,10 @@ pub trait TextBufferExt: IsA<TextBuffer> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(TextBuffer::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(TextBuffer::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1394,8 +1430,10 @@ pub trait TextBufferExt: IsA<TextBuffer> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(TextBuffer::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(TextBuffer::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1417,8 +1455,10 @@ pub trait TextBufferExt: IsA<TextBuffer> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(TextBuffer::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(TextBuffer::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);

@@ -280,11 +280,13 @@ pub trait SurfaceExt: IsA<Surface> + 'static {
             monitor: *mut ffi::GdkMonitor,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(
-                Surface::from_glib_borrow(this).unsafe_cast_ref(),
-                &from_glib_borrow(monitor),
-            )
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(
+                    Surface::from_glib_borrow(this).unsafe_cast_ref(),
+                    &from_glib_borrow(monitor),
+                )
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -309,12 +311,14 @@ pub trait SurfaceExt: IsA<Surface> + 'static {
             event: *mut ffi::GdkEvent,
             f: glib::ffi::gpointer,
         ) -> glib::ffi::gboolean {
-            let f: &F = &*(f as *const F);
-            f(
-                Surface::from_glib_borrow(this).unsafe_cast_ref(),
-                &from_glib_borrow(event),
-            )
-            .into_glib()
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(
+                    Surface::from_glib_borrow(this).unsafe_cast_ref(),
+                    &from_glib_borrow(event),
+                )
+                .into_glib()
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -337,12 +341,14 @@ pub trait SurfaceExt: IsA<Surface> + 'static {
             height: std::ffi::c_int,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(
-                Surface::from_glib_borrow(this).unsafe_cast_ref(),
-                width,
-                height,
-            )
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(
+                    Surface::from_glib_borrow(this).unsafe_cast_ref(),
+                    width,
+                    height,
+                )
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -367,11 +373,13 @@ pub trait SurfaceExt: IsA<Surface> + 'static {
             monitor: *mut ffi::GdkMonitor,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(
-                Surface::from_glib_borrow(this).unsafe_cast_ref(),
-                &from_glib_borrow(monitor),
-            )
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(
+                    Surface::from_glib_borrow(this).unsafe_cast_ref(),
+                    &from_glib_borrow(monitor),
+                )
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -399,12 +407,14 @@ pub trait SurfaceExt: IsA<Surface> + 'static {
             region: *mut cairo::ffi::cairo_region_t,
             f: glib::ffi::gpointer,
         ) -> glib::ffi::gboolean {
-            let f: &F = &*(f as *const F);
-            f(
-                Surface::from_glib_borrow(this).unsafe_cast_ref(),
-                &from_glib_borrow(region),
-            )
-            .into_glib()
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(
+                    Surface::from_glib_borrow(this).unsafe_cast_ref(),
+                    &from_glib_borrow(region),
+                )
+                .into_glib()
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -426,8 +436,10 @@ pub trait SurfaceExt: IsA<Surface> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(Surface::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(Surface::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -449,8 +461,10 @@ pub trait SurfaceExt: IsA<Surface> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(Surface::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(Surface::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -472,8 +486,10 @@ pub trait SurfaceExt: IsA<Surface> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(Surface::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(Surface::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -497,8 +513,10 @@ pub trait SurfaceExt: IsA<Surface> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(Surface::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(Surface::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -523,8 +541,10 @@ pub trait SurfaceExt: IsA<Surface> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(Surface::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(Surface::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -546,8 +566,10 @@ pub trait SurfaceExt: IsA<Surface> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(Surface::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(Surface::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
