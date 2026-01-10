@@ -2,7 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::{ffi, SymbolicPaintable};
+use crate::{ffi, SvgFeatures, SymbolicPaintable};
 use glib::{
     object::ObjectType as _,
     prelude::*,
@@ -41,6 +41,12 @@ impl Svg {
         unsafe { from_glib_full(ffi::gtk_svg_new_from_resource(path.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_svg_get_features")]
+    #[doc(alias = "get_features")]
+    pub fn features(&self) -> SvgFeatures {
+        unsafe { from_glib(ffi::gtk_svg_get_features(self.to_glib_none().0)) }
+    }
+
     #[doc(alias = "gtk_svg_get_n_states")]
     #[doc(alias = "get_n_states")]
     pub fn n_states(&self) -> u32 {
@@ -66,6 +72,13 @@ impl Svg {
         }
     }
 
+    #[doc(alias = "gtk_svg_load_from_resource")]
+    pub fn load_from_resource(&self, path: &str) {
+        unsafe {
+            ffi::gtk_svg_load_from_resource(self.to_glib_none().0, path.to_glib_none().0);
+        }
+    }
+
     #[doc(alias = "gtk_svg_pause")]
     pub fn pause(&self) {
         unsafe {
@@ -83,6 +96,14 @@ impl Svg {
     #[doc(alias = "gtk_svg_serialize")]
     pub fn serialize(&self) -> glib::Bytes {
         unsafe { from_glib_full(ffi::gtk_svg_serialize(self.to_glib_none().0)) }
+    }
+
+    #[doc(alias = "gtk_svg_set_features")]
+    #[doc(alias = "features")]
+    pub fn set_features(&self, features: SvgFeatures) {
+        unsafe {
+            ffi::gtk_svg_set_features(self.to_glib_none().0, features.into_glib());
+        }
     }
 
     #[doc(alias = "gtk_svg_set_frame_clock")]
@@ -140,6 +161,18 @@ impl Svg {
 
     #[cfg(feature = "v4_22")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    pub fn resource(&self) -> Option<glib::GString> {
+        ObjectExt::property(self, "resource")
+    }
+
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    pub fn set_resource(&self, resource: Option<&str>) {
+        ObjectExt::set_property(self, "resource", resource)
+    }
+
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
     #[doc(alias = "error")]
     pub fn connect_error<F: Fn(&Self, &glib::Error) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn error_trampoline<F: Fn(&Svg, &glib::Error) + 'static>(
@@ -165,6 +198,31 @@ impl Svg {
 
     #[cfg(feature = "v4_22")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    #[doc(alias = "features")]
+    pub fn connect_features_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_features_trampoline<F: Fn(&Svg) + 'static>(
+            this: *mut ffi::GtkSvg,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                c"notify::features".as_ptr() as *const _,
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
+                    notify_features_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
     #[doc(alias = "playing")]
     pub fn connect_playing_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_playing_trampoline<F: Fn(&Svg) + 'static>(
@@ -182,6 +240,31 @@ impl Svg {
                 c"notify::playing".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_playing_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    #[doc(alias = "resource")]
+    pub fn connect_resource_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_resource_trampoline<F: Fn(&Svg) + 'static>(
+            this: *mut ffi::GtkSvg,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                c"notify::resource".as_ptr() as *const _,
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
+                    notify_resource_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )

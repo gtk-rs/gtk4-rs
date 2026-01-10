@@ -295,6 +295,7 @@ int main() {
     printf("%s;%zu;%zu\n", "GtkStyleContextPrintFlags", sizeof(GtkStyleContextPrintFlags), alignof(GtkStyleContextPrintFlags));
     printf("%s;%zu;%zu\n", "GtkSvgClass", sizeof(GtkSvgClass), alignof(GtkSvgClass));
     printf("%s;%zu;%zu\n", "GtkSvgError", sizeof(GtkSvgError), alignof(GtkSvgError));
+    printf("%s;%zu;%zu\n", "GtkSvgFeatures", sizeof(GtkSvgFeatures), alignof(GtkSvgFeatures));
     printf("%s;%zu;%zu\n", "GtkSvgLocation", sizeof(GtkSvgLocation), alignof(GtkSvgLocation));
     printf("%s;%zu;%zu\n", "GtkSymbolicColor", sizeof(GtkSymbolicColor), alignof(GtkSymbolicColor));
     printf("%s;%zu;%zu\n", "GtkSymbolicPaintableInterface", sizeof(GtkSymbolicPaintableInterface), alignof(GtkSymbolicPaintableInterface));

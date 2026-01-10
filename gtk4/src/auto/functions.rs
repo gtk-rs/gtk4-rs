@@ -51,6 +51,16 @@ pub fn check_version(
     }
 }
 
+#[cfg(feature = "v4_22")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+#[doc(alias = "gtk_disable_portal_interfaces")]
+pub fn disable_portal_interfaces(portal_interfaces: &[&str]) {
+    assert_initialized_main_thread!();
+    unsafe {
+        ffi::gtk_disable_portal_interfaces(portal_interfaces.to_glib_none().0);
+    }
+}
+
 #[cfg(feature = "v4_18")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_18")))]
 #[doc(alias = "gtk_disable_portals")]

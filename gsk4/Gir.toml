@@ -31,6 +31,8 @@ generate = [
     "Gsk.GLRenderer",
     "Gsk.GLUniformType",
     "Gsk.InsetShadowNode",
+    "Gsk.Isolation",
+    "Gsk.IsolationNode",
     "Gsk.LinearGradientNode",
     "Gsk.LineCap",
     "Gsk.LineJoin",
@@ -47,6 +49,11 @@ generate = [
     "Gsk.PorterDuff",
     "Gsk.RadialGradientNode",
     "Gsk.RenderNodeType",
+    "Gsk.RenderReplay",
+    "Gsk.RenderReplayFontFilter",
+    "Gsk.RenderReplayNodeFilter",
+    "Gsk.RenderReplayNodeForeach",
+    "Gsk.RenderReplayTextureFilter",
     "Gsk.RepeatingLinearGradientNode",
     "Gsk.RepeatingRadialGradientNode",
     "Gsk.RepeatNode",
@@ -54,6 +61,7 @@ generate = [
     "Gsk.ScalingFilter",
     "Gsk.SerializationError",
     "Gsk.StrokeNode",
+    "Gsk.SubsurfaceNode",
     "Gsk.TextureNode",
     "Gsk.TextureScaleNode",
     "Gsk.TransformCategory",
@@ -229,10 +237,6 @@ status = "generate"
         [[object.function.parameter]]
         name = "cr"
         const = true
-
-[[object]]
-name = "Gsk.RenderReplay"
-status = "manual"
 
 [[object]]
 name = "Gsk.RoundedRect"

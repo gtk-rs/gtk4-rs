@@ -1480,6 +1480,18 @@ pub enum RenderNodeType {
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
     #[doc(alias = "GSK_COMPOSITE_NODE")]
     CompositeNode,
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    #[doc(alias = "GSK_ISOLATION_NODE")]
+    IsolationNode,
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    #[doc(alias = "GSK_DISPLACEMENT_NODE")]
+    DisplacementNode,
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    #[doc(alias = "GSK_ARITHMETIC_NODE")]
+    ArithmeticNode,
     #[doc(hidden)]
     __Unknown(i32),
 }
@@ -1534,6 +1546,12 @@ impl IntoGlib for RenderNodeType {
             Self::PasteNode => ffi::GSK_PASTE_NODE,
             #[cfg(feature = "v4_22")]
             Self::CompositeNode => ffi::GSK_COMPOSITE_NODE,
+            #[cfg(feature = "v4_22")]
+            Self::IsolationNode => ffi::GSK_ISOLATION_NODE,
+            #[cfg(feature = "v4_22")]
+            Self::DisplacementNode => ffi::GSK_DISPLACEMENT_NODE,
+            #[cfg(feature = "v4_22")]
+            Self::ArithmeticNode => ffi::GSK_ARITHMETIC_NODE,
             Self::__Unknown(value) => value,
         }
     }
@@ -1589,6 +1607,12 @@ impl FromGlib<ffi::GskRenderNodeType> for RenderNodeType {
             ffi::GSK_PASTE_NODE => Self::PasteNode,
             #[cfg(feature = "v4_22")]
             ffi::GSK_COMPOSITE_NODE => Self::CompositeNode,
+            #[cfg(feature = "v4_22")]
+            ffi::GSK_ISOLATION_NODE => Self::IsolationNode,
+            #[cfg(feature = "v4_22")]
+            ffi::GSK_DISPLACEMENT_NODE => Self::DisplacementNode,
+            #[cfg(feature = "v4_22")]
+            ffi::GSK_ARITHMETIC_NODE => Self::ArithmeticNode,
             value => Self::__Unknown(value),
         }
     }

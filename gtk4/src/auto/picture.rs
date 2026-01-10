@@ -130,6 +130,15 @@ impl Picture {
         unsafe { from_glib_none(ffi::gtk_picture_get_file(self.to_glib_none().0)) }
     }
 
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    #[doc(alias = "gtk_picture_get_isolate_contents")]
+    #[doc(alias = "get_isolate_contents")]
+    #[doc(alias = "isolate-contents")]
+    pub fn is_isolate_contents(&self) -> bool {
+        unsafe { from_glib(ffi::gtk_picture_get_isolate_contents(self.to_glib_none().0)) }
+    }
+
     #[cfg_attr(feature = "v4_8", deprecated = "Since 4.8")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_picture_get_keep_aspect_ratio")]
@@ -195,6 +204,19 @@ impl Picture {
             ffi::gtk_picture_set_filename(
                 self.to_glib_none().0,
                 filename.as_ref().map(|p| p.as_ref()).to_glib_none().0,
+            );
+        }
+    }
+
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    #[doc(alias = "gtk_picture_set_isolate_contents")]
+    #[doc(alias = "isolate-contents")]
+    pub fn set_isolate_contents(&self, isolate_contents: bool) {
+        unsafe {
+            ffi::gtk_picture_set_isolate_contents(
+                self.to_glib_none().0,
+                isolate_contents.into_glib(),
             );
         }
     }
@@ -333,6 +355,31 @@ impl Picture {
         }
     }
 
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    #[doc(alias = "isolate-contents")]
+    pub fn connect_isolate_contents_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_isolate_contents_trampoline<F: Fn(&Picture) + 'static>(
+            this: *mut ffi::GtkPicture,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                c"notify::isolate-contents".as_ptr() as *const _,
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
+                    notify_isolate_contents_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
     #[cfg_attr(feature = "v4_8", deprecated = "Since 4.8")]
     #[doc(alias = "keep-aspect-ratio")]
     pub fn connect_keep_aspect_ratio_notify<F: Fn(&Self) + 'static>(
@@ -431,6 +478,14 @@ impl PictureBuilder {
     pub fn file(self, file: &impl IsA<gio::File>) -> Self {
         Self {
             builder: self.builder.property("file", file.clone().upcast()),
+        }
+    }
+
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    pub fn isolate_contents(self, isolate_contents: bool) -> Self {
+        Self {
+            builder: self.builder.property("isolate-contents", isolate_contents),
         }
     }
 

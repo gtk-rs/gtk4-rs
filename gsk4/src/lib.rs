@@ -24,6 +24,7 @@ macro_rules! skip_assert_initialized {
 
 #[allow(clippy::derived_hash_with_manual_eq)]
 #[allow(clippy::too_many_arguments)]
+#[allow(clippy::type_complexity)]
 #[allow(unused_imports)]
 mod auto;
 
@@ -61,6 +62,9 @@ mod fill_node;
 mod gl_shader;
 mod gl_shader_node;
 mod inset_shadow_node;
+#[cfg(feature = "v4_22")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+mod isolation_node;
 mod linear_gradient_node;
 #[cfg(feature = "v4_10")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
@@ -84,9 +88,6 @@ mod path_builder;
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
 mod path_point;
 mod radial_gradient_node;
-#[cfg(feature = "v4_22")]
-#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
-mod render_replay;
 mod repeat_node;
 mod repeating_linear_gradient_node;
 mod repeating_radial_gradient_node;
@@ -98,6 +99,9 @@ mod stroke;
 #[cfg(feature = "v4_14")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
 mod stroke_node;
+#[cfg(feature = "v4_22")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+mod subsurface_node;
 mod text_node;
 mod texture_node;
 #[cfg(feature = "v4_10")]
@@ -112,8 +116,5 @@ pub use color_stop::ColorStop;
 #[cfg_attr(feature = "v4_4", deprecated = "Since 4.4")]
 pub use ngl_renderer::NglRenderer;
 pub use parse_location::ParseLocation;
-#[cfg(feature = "v4_22")]
-#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
-pub use render_replay::RenderReplay;
 pub use rounded_rect::RoundedRect;
 pub use shadow::Shadow;
