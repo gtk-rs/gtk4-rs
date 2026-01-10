@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <object class="AdwShortcutsDialog" id="shortcuts_dialog">
+    <child>
+      <object class="AdwShortcutsSection">
+        <property name="title" translatable="yes">General</property>
+        <child>
+          <object class="AdwShortcutsItem">
+            <property name="title" translatable="yes">Show shortcuts</property>
+            <property name="action-name">app.shortcuts</property>
+          </object>
+        </child>
+        <child>
+          <object class="AdwShortcutsItem">
+            <property name="title" translatable="yes">Filter to show all tasks</property>
+            <property name="action-name">win.filter('All')</property>
+          </object>
+        </child>
+        <child>
+          <object class="AdwShortcutsItem">
+            <property name="title" translatable="yes">Filter to show only open tasks</property>
+            <property name="action-name">win.filter('Open')</property>
+          </object>
+        </child>
+        <child>
+          <object class="AdwShortcutsItem">
+            <property name="title" translatable="yes">Filter to show only completed tasks</property>
+            <property name="action-name">win.filter('Done')</property>
+          </object>
+        </child>
+      </object>
+    </child>
+  </object>
+</interface>

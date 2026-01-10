@@ -21,33 +21,8 @@ The versions of the `gtk4` and `libadwaita` crates need to be synced.
 Just remember that when you update one of them to the newest version to update the other one as well. 
 
 Installation of the library itself works similar to GTK.
-Just follow the installation instruction that is suitable for your distribution.
-
-## Linux
-
-Fedora and derivatives:
-
-```
-sudo dnf install libadwaita-devel
-```
-
-Debian and derivatives:
-
-```
-sudo apt install libadwaita-1-dev
-```
-
-Arch and derivatives:
-
-```
-sudo pacman -S libadwaita
-```
-
-## macOS
-
-```
-brew install libadwaita
-```
+Just follow the [installation instructions](installation.md) for your platform.
+For Windows, use the instructions below.
 
 ## Windows
 
