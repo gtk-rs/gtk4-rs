@@ -240,7 +240,7 @@ impl ::std::fmt::Debug for GdkX11Surface {
     }
 }
 
-unsafe extern "C" {
+extern "C" {
 
     //=========================================================================
     // GdkX11AppLaunchContext

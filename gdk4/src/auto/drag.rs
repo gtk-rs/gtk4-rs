@@ -139,13 +139,11 @@ pub trait DragExt: IsA<Drag> + 'static {
             reason: ffi::GdkDragCancelReason,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(
-                    Drag::from_glib_borrow(this).unsafe_cast_ref(),
-                    from_glib(reason),
-                )
-            }
+            let f: &F = &*(f as *const F);
+            f(
+                Drag::from_glib_borrow(this).unsafe_cast_ref(),
+                from_glib(reason),
+            )
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -166,10 +164,8 @@ pub trait DragExt: IsA<Drag> + 'static {
             this: *mut ffi::GdkDrag,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(Drag::from_glib_borrow(this).unsafe_cast_ref())
-            }
+            let f: &F = &*(f as *const F);
+            f(Drag::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -190,10 +186,8 @@ pub trait DragExt: IsA<Drag> + 'static {
             this: *mut ffi::GdkDrag,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(Drag::from_glib_borrow(this).unsafe_cast_ref())
-            }
+            let f: &F = &*(f as *const F);
+            f(Drag::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -215,10 +209,8 @@ pub trait DragExt: IsA<Drag> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(Drag::from_glib_borrow(this).unsafe_cast_ref())
-            }
+            let f: &F = &*(f as *const F);
+            f(Drag::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -240,10 +232,8 @@ pub trait DragExt: IsA<Drag> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(Drag::from_glib_borrow(this).unsafe_cast_ref())
-            }
+            let f: &F = &*(f as *const F);
+            f(Drag::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -268,10 +258,8 @@ pub trait DragExt: IsA<Drag> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(Drag::from_glib_borrow(this).unsafe_cast_ref())
-            }
+            let f: &F = &*(f as *const F);
+            f(Drag::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);

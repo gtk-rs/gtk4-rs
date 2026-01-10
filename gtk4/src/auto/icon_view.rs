@@ -550,12 +550,10 @@ impl IconView {
             path: *mut ffi::GtkTreePath,
             data: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let icon_view = from_glib_borrow(icon_view);
-                let path = from_glib_borrow(path);
-                let callback = data as *mut P;
-                (*callback)(&icon_view, &path)
-            }
+            let icon_view = from_glib_borrow(icon_view);
+            let path = from_glib_borrow(path);
+            let callback = data as *mut P;
+            (*callback)(&icon_view, &path)
         }
         let func = Some(func_func::<P> as _);
         let super_callback0: &mut P = &mut func_data;
@@ -851,10 +849,8 @@ impl IconView {
             this: *mut ffi::GtkIconView,
             f: glib::ffi::gpointer,
         ) -> glib::ffi::gboolean {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(&from_glib_borrow(this)).into_glib()
-            }
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this)).into_glib()
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -883,10 +879,8 @@ impl IconView {
             path: *mut ffi::GtkTreePath,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(&from_glib_borrow(this), &from_glib_borrow(path))
-            }
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this), &from_glib_borrow(path))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -916,17 +910,15 @@ impl IconView {
             modify: glib::ffi::gboolean,
             f: glib::ffi::gpointer,
         ) -> glib::ffi::gboolean {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(
-                    &from_glib_borrow(this),
-                    from_glib(step),
-                    count,
-                    from_glib(extend),
-                    from_glib(modify),
-                )
-                .into_glib()
-            }
+            let f: &F = &*(f as *const F);
+            f(
+                &from_glib_borrow(this),
+                from_glib(step),
+                count,
+                from_glib(extend),
+                from_glib(modify),
+            )
+            .into_glib()
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -957,10 +949,8 @@ impl IconView {
             this: *mut ffi::GtkIconView,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(&from_glib_borrow(this))
-            }
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -985,10 +975,8 @@ impl IconView {
             this: *mut ffi::GtkIconView,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(&from_glib_borrow(this))
-            }
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1013,10 +1001,8 @@ impl IconView {
             this: *mut ffi::GtkIconView,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(&from_glib_borrow(this))
-            }
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1037,10 +1023,8 @@ impl IconView {
             this: *mut ffi::GtkIconView,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(&from_glib_borrow(this))
-            }
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1065,10 +1049,8 @@ impl IconView {
             this: *mut ffi::GtkIconView,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(&from_glib_borrow(this))
-            }
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1099,10 +1081,8 @@ impl IconView {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(&from_glib_borrow(this))
-            }
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1124,10 +1104,8 @@ impl IconView {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(&from_glib_borrow(this))
-            }
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1149,10 +1127,8 @@ impl IconView {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(&from_glib_borrow(this))
-            }
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1174,10 +1150,8 @@ impl IconView {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(&from_glib_borrow(this))
-            }
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1199,10 +1173,8 @@ impl IconView {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(&from_glib_borrow(this))
-            }
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1224,10 +1196,8 @@ impl IconView {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(&from_glib_borrow(this))
-            }
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1249,10 +1219,8 @@ impl IconView {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(&from_glib_borrow(this))
-            }
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1274,10 +1242,8 @@ impl IconView {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(&from_glib_borrow(this))
-            }
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1299,10 +1265,8 @@ impl IconView {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(&from_glib_borrow(this))
-            }
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1324,10 +1288,8 @@ impl IconView {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(&from_glib_borrow(this))
-            }
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1349,10 +1311,8 @@ impl IconView {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(&from_glib_borrow(this))
-            }
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1374,10 +1334,8 @@ impl IconView {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(&from_glib_borrow(this))
-            }
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1399,10 +1357,8 @@ impl IconView {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(&from_glib_borrow(this))
-            }
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1424,10 +1380,8 @@ impl IconView {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(&from_glib_borrow(this))
-            }
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1449,10 +1403,8 @@ impl IconView {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(&from_glib_borrow(this))
-            }
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1474,10 +1426,8 @@ impl IconView {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(&from_glib_borrow(this))
-            }
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);

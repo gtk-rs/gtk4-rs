@@ -83,7 +83,7 @@ unsafe impl<'a> glib::value::FromValue<'a> for PathForeachFlags {
     #[inline]
     unsafe fn from_value(value: &'a glib::Value) -> Self {
         skip_assert_initialized!();
-        unsafe { from_glib(glib::gobject_ffi::g_value_get_flags(value.to_glib_none().0)) }
+        from_glib(glib::gobject_ffi::g_value_get_flags(value.to_glib_none().0))
     }
 }
 

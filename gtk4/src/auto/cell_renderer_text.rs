@@ -800,15 +800,13 @@ pub trait CellRendererTextExt: IsA<CellRendererText> + 'static {
             new_text: *mut std::ffi::c_char,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                let path = from_glib_full(crate::ffi::gtk_tree_path_new_from_string(path));
-                f(
-                    CellRendererText::from_glib_borrow(this).unsafe_cast_ref(),
-                    path,
-                    &glib::GString::from_glib_borrow(new_text),
-                )
-            }
+            let f: &F = &*(f as *const F);
+            let path = from_glib_full(crate::ffi::gtk_tree_path_new_from_string(path));
+            f(
+                CellRendererText::from_glib_borrow(this).unsafe_cast_ref(),
+                path,
+                &glib::GString::from_glib_borrow(new_text),
+            )
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -833,10 +831,8 @@ pub trait CellRendererTextExt: IsA<CellRendererText> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
-            }
+            let f: &F = &*(f as *const F);
+            f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -861,10 +857,8 @@ pub trait CellRendererTextExt: IsA<CellRendererText> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
-            }
+            let f: &F = &*(f as *const F);
+            f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -889,10 +883,8 @@ pub trait CellRendererTextExt: IsA<CellRendererText> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
-            }
+            let f: &F = &*(f as *const F);
+            f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -917,10 +909,8 @@ pub trait CellRendererTextExt: IsA<CellRendererText> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
-            }
+            let f: &F = &*(f as *const F);
+            f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -945,10 +935,8 @@ pub trait CellRendererTextExt: IsA<CellRendererText> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
-            }
+            let f: &F = &*(f as *const F);
+            f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -973,10 +961,8 @@ pub trait CellRendererTextExt: IsA<CellRendererText> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
-            }
+            let f: &F = &*(f as *const F);
+            f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1001,10 +987,8 @@ pub trait CellRendererTextExt: IsA<CellRendererText> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
-            }
+            let f: &F = &*(f as *const F);
+            f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1029,10 +1013,8 @@ pub trait CellRendererTextExt: IsA<CellRendererText> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
-            }
+            let f: &F = &*(f as *const F);
+            f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1057,10 +1039,8 @@ pub trait CellRendererTextExt: IsA<CellRendererText> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
-            }
+            let f: &F = &*(f as *const F);
+            f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1085,10 +1065,8 @@ pub trait CellRendererTextExt: IsA<CellRendererText> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
-            }
+            let f: &F = &*(f as *const F);
+            f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1113,10 +1091,8 @@ pub trait CellRendererTextExt: IsA<CellRendererText> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
-            }
+            let f: &F = &*(f as *const F);
+            f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1141,10 +1117,8 @@ pub trait CellRendererTextExt: IsA<CellRendererText> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
-            }
+            let f: &F = &*(f as *const F);
+            f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1169,10 +1143,8 @@ pub trait CellRendererTextExt: IsA<CellRendererText> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
-            }
+            let f: &F = &*(f as *const F);
+            f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1197,10 +1169,8 @@ pub trait CellRendererTextExt: IsA<CellRendererText> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
-            }
+            let f: &F = &*(f as *const F);
+            f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1225,10 +1195,8 @@ pub trait CellRendererTextExt: IsA<CellRendererText> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
-            }
+            let f: &F = &*(f as *const F);
+            f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1253,10 +1221,8 @@ pub trait CellRendererTextExt: IsA<CellRendererText> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
-            }
+            let f: &F = &*(f as *const F);
+            f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1281,10 +1247,8 @@ pub trait CellRendererTextExt: IsA<CellRendererText> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
-            }
+            let f: &F = &*(f as *const F);
+            f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1309,10 +1273,8 @@ pub trait CellRendererTextExt: IsA<CellRendererText> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
-            }
+            let f: &F = &*(f as *const F);
+            f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1337,10 +1299,8 @@ pub trait CellRendererTextExt: IsA<CellRendererText> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
-            }
+            let f: &F = &*(f as *const F);
+            f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1365,10 +1325,8 @@ pub trait CellRendererTextExt: IsA<CellRendererText> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
-            }
+            let f: &F = &*(f as *const F);
+            f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1393,10 +1351,8 @@ pub trait CellRendererTextExt: IsA<CellRendererText> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
-            }
+            let f: &F = &*(f as *const F);
+            f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1421,10 +1377,8 @@ pub trait CellRendererTextExt: IsA<CellRendererText> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
-            }
+            let f: &F = &*(f as *const F);
+            f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1449,10 +1403,8 @@ pub trait CellRendererTextExt: IsA<CellRendererText> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
-            }
+            let f: &F = &*(f as *const F);
+            f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1477,10 +1429,8 @@ pub trait CellRendererTextExt: IsA<CellRendererText> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
-            }
+            let f: &F = &*(f as *const F);
+            f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1505,10 +1455,8 @@ pub trait CellRendererTextExt: IsA<CellRendererText> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
-            }
+            let f: &F = &*(f as *const F);
+            f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1533,10 +1481,8 @@ pub trait CellRendererTextExt: IsA<CellRendererText> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
-            }
+            let f: &F = &*(f as *const F);
+            f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1564,10 +1510,8 @@ pub trait CellRendererTextExt: IsA<CellRendererText> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
-            }
+            let f: &F = &*(f as *const F);
+            f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1592,10 +1536,8 @@ pub trait CellRendererTextExt: IsA<CellRendererText> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
-            }
+            let f: &F = &*(f as *const F);
+            f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1620,10 +1562,8 @@ pub trait CellRendererTextExt: IsA<CellRendererText> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
-            }
+            let f: &F = &*(f as *const F);
+            f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1648,10 +1588,8 @@ pub trait CellRendererTextExt: IsA<CellRendererText> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
-            }
+            let f: &F = &*(f as *const F);
+            f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1676,10 +1614,8 @@ pub trait CellRendererTextExt: IsA<CellRendererText> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
-            }
+            let f: &F = &*(f as *const F);
+            f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1704,10 +1640,8 @@ pub trait CellRendererTextExt: IsA<CellRendererText> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
-            }
+            let f: &F = &*(f as *const F);
+            f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1732,10 +1666,8 @@ pub trait CellRendererTextExt: IsA<CellRendererText> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
-            }
+            let f: &F = &*(f as *const F);
+            f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1760,10 +1692,8 @@ pub trait CellRendererTextExt: IsA<CellRendererText> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
-            }
+            let f: &F = &*(f as *const F);
+            f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1788,10 +1718,8 @@ pub trait CellRendererTextExt: IsA<CellRendererText> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
-            }
+            let f: &F = &*(f as *const F);
+            f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1816,10 +1744,8 @@ pub trait CellRendererTextExt: IsA<CellRendererText> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
-            }
+            let f: &F = &*(f as *const F);
+            f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1844,10 +1770,8 @@ pub trait CellRendererTextExt: IsA<CellRendererText> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
-            }
+            let f: &F = &*(f as *const F);
+            f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1872,10 +1796,8 @@ pub trait CellRendererTextExt: IsA<CellRendererText> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
-            }
+            let f: &F = &*(f as *const F);
+            f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1900,10 +1822,8 @@ pub trait CellRendererTextExt: IsA<CellRendererText> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
-            }
+            let f: &F = &*(f as *const F);
+            f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1928,10 +1848,8 @@ pub trait CellRendererTextExt: IsA<CellRendererText> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
-            }
+            let f: &F = &*(f as *const F);
+            f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1956,10 +1874,8 @@ pub trait CellRendererTextExt: IsA<CellRendererText> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
-            }
+            let f: &F = &*(f as *const F);
+            f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1984,10 +1900,8 @@ pub trait CellRendererTextExt: IsA<CellRendererText> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
-            }
+            let f: &F = &*(f as *const F);
+            f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -2012,10 +1926,8 @@ pub trait CellRendererTextExt: IsA<CellRendererText> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
-            }
+            let f: &F = &*(f as *const F);
+            f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -2040,10 +1952,8 @@ pub trait CellRendererTextExt: IsA<CellRendererText> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
-            }
+            let f: &F = &*(f as *const F);
+            f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -2068,10 +1978,8 @@ pub trait CellRendererTextExt: IsA<CellRendererText> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
-            }
+            let f: &F = &*(f as *const F);
+            f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -2096,10 +2004,8 @@ pub trait CellRendererTextExt: IsA<CellRendererText> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
-            }
+            let f: &F = &*(f as *const F);
+            f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);

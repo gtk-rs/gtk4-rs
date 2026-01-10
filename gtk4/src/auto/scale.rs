@@ -469,19 +469,15 @@ pub trait ScaleExt: IsA<Scale> + 'static {
             value: std::ffi::c_double,
             user_data: glib::ffi::gpointer,
         ) -> *mut std::ffi::c_char {
-            unsafe {
-                let scale = from_glib_borrow(scale);
-                let callback = &*(user_data as *mut P);
-                (*callback)(&scale, value).to_glib_full()
-            }
+            let scale = from_glib_borrow(scale);
+            let callback = &*(user_data as *mut P);
+            (*callback)(&scale, value).to_glib_full()
         }
         let func = Some(func_func::<P> as _);
         unsafe extern "C" fn destroy_notify_func<P: Fn(&Scale, f64) -> String + 'static>(
             data: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let _callback = Box_::from_raw(data as *mut P);
-            }
+            let _callback = Box_::from_raw(data as *mut P);
         }
         let destroy_call3 = Some(destroy_notify_func::<P> as _);
         let super_callback0: Box_<P> = func_data;
@@ -518,10 +514,8 @@ pub trait ScaleExt: IsA<Scale> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(Scale::from_glib_borrow(this).unsafe_cast_ref())
-            }
+            let f: &F = &*(f as *const F);
+            f(Scale::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -543,10 +537,8 @@ pub trait ScaleExt: IsA<Scale> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(Scale::from_glib_borrow(this).unsafe_cast_ref())
-            }
+            let f: &F = &*(f as *const F);
+            f(Scale::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -568,10 +560,8 @@ pub trait ScaleExt: IsA<Scale> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(Scale::from_glib_borrow(this).unsafe_cast_ref())
-            }
+            let f: &F = &*(f as *const F);
+            f(Scale::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -593,10 +583,8 @@ pub trait ScaleExt: IsA<Scale> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(Scale::from_glib_borrow(this).unsafe_cast_ref())
-            }
+            let f: &F = &*(f as *const F);
+            f(Scale::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);

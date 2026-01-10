@@ -165,14 +165,12 @@ pub trait GestureDragExt: IsA<GestureDrag> + 'static {
             start_y: std::ffi::c_double,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(
-                    GestureDrag::from_glib_borrow(this).unsafe_cast_ref(),
-                    start_x,
-                    start_y,
-                )
-            }
+            let f: &F = &*(f as *const F);
+            f(
+                GestureDrag::from_glib_borrow(this).unsafe_cast_ref(),
+                start_x,
+                start_y,
+            )
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -198,14 +196,12 @@ pub trait GestureDragExt: IsA<GestureDrag> + 'static {
             offset_y: std::ffi::c_double,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(
-                    GestureDrag::from_glib_borrow(this).unsafe_cast_ref(),
-                    offset_x,
-                    offset_y,
-                )
-            }
+            let f: &F = &*(f as *const F);
+            f(
+                GestureDrag::from_glib_borrow(this).unsafe_cast_ref(),
+                offset_x,
+                offset_y,
+            )
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -231,14 +227,12 @@ pub trait GestureDragExt: IsA<GestureDrag> + 'static {
             offset_y: std::ffi::c_double,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(
-                    GestureDrag::from_glib_borrow(this).unsafe_cast_ref(),
-                    offset_x,
-                    offset_y,
-                )
-            }
+            let f: &F = &*(f as *const F);
+            f(
+                GestureDrag::from_glib_borrow(this).unsafe_cast_ref(),
+                offset_x,
+                offset_y,
+            )
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);

@@ -152,14 +152,12 @@ pub trait SelectionModelExt: IsA<SelectionModel> + 'static {
             n_items: std::ffi::c_uint,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(
-                    SelectionModel::from_glib_borrow(this).unsafe_cast_ref(),
-                    position,
-                    n_items,
-                )
-            }
+            let f: &F = &*(f as *const F);
+            f(
+                SelectionModel::from_glib_borrow(this).unsafe_cast_ref(),
+                position,
+                n_items,
+            )
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);

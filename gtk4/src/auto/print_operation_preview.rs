@@ -63,14 +63,12 @@ pub trait PrintOperationPreviewExt: IsA<PrintOperationPreview> + 'static {
             page_setup: *mut ffi::GtkPageSetup,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(
-                    PrintOperationPreview::from_glib_borrow(this).unsafe_cast_ref(),
-                    &from_glib_borrow(context),
-                    &from_glib_borrow(page_setup),
-                )
-            }
+            let f: &F = &*(f as *const F);
+            f(
+                PrintOperationPreview::from_glib_borrow(this).unsafe_cast_ref(),
+                &from_glib_borrow(context),
+                &from_glib_borrow(page_setup),
+            )
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -95,13 +93,11 @@ pub trait PrintOperationPreviewExt: IsA<PrintOperationPreview> + 'static {
             context: *mut ffi::GtkPrintContext,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(
-                    PrintOperationPreview::from_glib_borrow(this).unsafe_cast_ref(),
-                    &from_glib_borrow(context),
-                )
-            }
+            let f: &F = &*(f as *const F);
+            f(
+                PrintOperationPreview::from_glib_borrow(this).unsafe_cast_ref(),
+                &from_glib_borrow(context),
+            )
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);

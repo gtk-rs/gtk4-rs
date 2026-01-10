@@ -48,10 +48,8 @@ impl GestureZoom {
             scale: std::ffi::c_double,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(&from_glib_borrow(this), scale)
-            }
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this), scale)
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);

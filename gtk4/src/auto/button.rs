@@ -472,10 +472,8 @@ pub trait ButtonExt: IsA<Button> + 'static {
             this: *mut ffi::GtkButton,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(Button::from_glib_borrow(this).unsafe_cast_ref())
-            }
+            let f: &F = &*(f as *const F);
+            f(Button::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -500,10 +498,8 @@ pub trait ButtonExt: IsA<Button> + 'static {
             this: *mut ffi::GtkButton,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(Button::from_glib_borrow(this).unsafe_cast_ref())
-            }
+            let f: &F = &*(f as *const F);
+            f(Button::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -531,10 +527,8 @@ pub trait ButtonExt: IsA<Button> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(Button::from_glib_borrow(this).unsafe_cast_ref())
-            }
+            let f: &F = &*(f as *const F);
+            f(Button::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -556,10 +550,8 @@ pub trait ButtonExt: IsA<Button> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(Button::from_glib_borrow(this).unsafe_cast_ref())
-            }
+            let f: &F = &*(f as *const F);
+            f(Button::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -581,10 +573,8 @@ pub trait ButtonExt: IsA<Button> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(Button::from_glib_borrow(this).unsafe_cast_ref())
-            }
+            let f: &F = &*(f as *const F);
+            f(Button::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -606,10 +596,8 @@ pub trait ButtonExt: IsA<Button> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(Button::from_glib_borrow(this).unsafe_cast_ref())
-            }
+            let f: &F = &*(f as *const F);
+            f(Button::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -631,10 +619,8 @@ pub trait ButtonExt: IsA<Button> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(Button::from_glib_borrow(this).unsafe_cast_ref())
-            }
+            let f: &F = &*(f as *const F);
+            f(Button::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -659,10 +645,8 @@ pub trait ButtonExt: IsA<Button> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(Button::from_glib_borrow(this).unsafe_cast_ref())
-            }
+            let f: &F = &*(f as *const F);
+            f(Button::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);

@@ -243,16 +243,12 @@ impl Assistant {
             current_page: std::ffi::c_int,
             data: glib::ffi::gpointer,
         ) -> std::ffi::c_int {
-            unsafe {
-                let callback = &*(data as *mut P);
-                (*callback)(current_page)
-            }
+            let callback = &*(data as *mut P);
+            (*callback)(current_page)
         }
         let page_func = Some(page_func_func::<P> as _);
         unsafe extern "C" fn destroy_func<P: Fn(i32) -> i32 + 'static>(data: glib::ffi::gpointer) {
-            unsafe {
-                let _callback = Box_::from_raw(data as *mut P);
-            }
+            let _callback = Box_::from_raw(data as *mut P);
         }
         let destroy_call3 = Some(destroy_func::<P> as _);
         let super_callback0: Box_<P> = page_func_data;
@@ -327,10 +323,8 @@ impl Assistant {
             this: *mut ffi::GtkAssistant,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(&from_glib_borrow(this))
-            }
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -352,10 +346,8 @@ impl Assistant {
             this: *mut ffi::GtkAssistant,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(&from_glib_borrow(this))
-            }
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -377,10 +369,8 @@ impl Assistant {
             this: *mut ffi::GtkAssistant,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(&from_glib_borrow(this))
-            }
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -402,10 +392,8 @@ impl Assistant {
             this: *mut ffi::GtkAssistant,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(&from_glib_borrow(this))
-            }
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -433,10 +421,8 @@ impl Assistant {
             page: *mut ffi::GtkWidget,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(&from_glib_borrow(this), &from_glib_borrow(page))
-            }
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this), &from_glib_borrow(page))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -458,10 +444,8 @@ impl Assistant {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(&from_glib_borrow(this))
-            }
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);

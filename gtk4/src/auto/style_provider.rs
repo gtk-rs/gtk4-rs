@@ -34,10 +34,8 @@ pub trait StyleProviderExt: IsA<StyleProvider> + 'static {
             this: *mut ffi::GtkStyleProvider,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(StyleProvider::from_glib_borrow(this).unsafe_cast_ref())
-            }
+            let f: &F = &*(f as *const F);
+            f(StyleProvider::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);

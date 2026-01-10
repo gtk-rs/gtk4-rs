@@ -196,10 +196,8 @@ impl Video {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(&from_glib_borrow(this))
-            }
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -221,10 +219,8 @@ impl Video {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(&from_glib_borrow(this))
-            }
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -248,10 +244,8 @@ impl Video {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(&from_glib_borrow(this))
-            }
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -273,10 +267,8 @@ impl Video {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(&from_glib_borrow(this))
-            }
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -298,10 +290,8 @@ impl Video {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(&from_glib_borrow(this))
-            }
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);

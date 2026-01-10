@@ -185,10 +185,8 @@ impl AppChooserButton {
             this: *mut ffi::GtkAppChooserButton,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(&from_glib_borrow(this))
-            }
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -215,10 +213,8 @@ impl AppChooserButton {
             this: *mut ffi::GtkAppChooserButton,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(&from_glib_borrow(this))
-            }
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -246,13 +242,11 @@ impl AppChooserButton {
             item_name: *mut std::ffi::c_char,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(
-                    &from_glib_borrow(this),
-                    &glib::GString::from_glib_borrow(item_name),
-                )
-            }
+            let f: &F = &*(f as *const F);
+            f(
+                &from_glib_borrow(this),
+                &glib::GString::from_glib_borrow(item_name),
+            )
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -279,10 +273,8 @@ impl AppChooserButton {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(&from_glib_borrow(this))
-            }
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -304,10 +296,8 @@ impl AppChooserButton {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(&from_glib_borrow(this))
-            }
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -334,10 +324,8 @@ impl AppChooserButton {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(&from_glib_borrow(this))
-            }
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -361,10 +349,8 @@ impl AppChooserButton {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(&from_glib_borrow(this))
-            }
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);

@@ -352,10 +352,8 @@ pub trait GtkApplicationExt: IsA<Application> + 'static {
             this: *mut ffi::GtkApplication,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(Application::from_glib_borrow(this).unsafe_cast_ref())
-            }
+            let f: &F = &*(f as *const F);
+            f(Application::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -386,15 +384,13 @@ pub trait GtkApplicationExt: IsA<Application> + 'static {
             state: *mut glib::ffi::GVariant,
             f: glib::ffi::gpointer,
         ) -> glib::ffi::gboolean {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(
-                    Application::from_glib_borrow(this).unsafe_cast_ref(),
-                    from_glib(reason),
-                    &from_glib_borrow(state),
-                )
-                .into_glib()
-            }
+            let f: &F = &*(f as *const F);
+            f(
+                Application::from_glib_borrow(this).unsafe_cast_ref(),
+                from_glib(reason),
+                &from_glib_borrow(state),
+            )
+            .into_glib()
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -425,14 +421,12 @@ pub trait GtkApplicationExt: IsA<Application> + 'static {
             state: *mut glib::ffi::GVariant,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(
-                    Application::from_glib_borrow(this).unsafe_cast_ref(),
-                    from_glib(reason),
-                    &from_glib_borrow(state),
-                )
-            }
+            let f: &F = &*(f as *const F);
+            f(
+                Application::from_glib_borrow(this).unsafe_cast_ref(),
+                from_glib(reason),
+                &from_glib_borrow(state),
+            )
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -462,14 +456,12 @@ pub trait GtkApplicationExt: IsA<Application> + 'static {
             dict: *mut glib::ffi::GVariantDict,
             f: glib::ffi::gpointer,
         ) -> glib::ffi::gboolean {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(
-                    Application::from_glib_borrow(this).unsafe_cast_ref(),
-                    &from_glib_borrow(dict),
-                )
-                .into_glib()
-            }
+            let f: &F = &*(f as *const F);
+            f(
+                Application::from_glib_borrow(this).unsafe_cast_ref(),
+                &from_glib_borrow(dict),
+            )
+            .into_glib()
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -494,13 +486,11 @@ pub trait GtkApplicationExt: IsA<Application> + 'static {
             window: *mut ffi::GtkWindow,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(
-                    Application::from_glib_borrow(this).unsafe_cast_ref(),
-                    &from_glib_borrow(window),
-                )
-            }
+            let f: &F = &*(f as *const F);
+            f(
+                Application::from_glib_borrow(this).unsafe_cast_ref(),
+                &from_glib_borrow(window),
+            )
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -525,13 +515,11 @@ pub trait GtkApplicationExt: IsA<Application> + 'static {
             window: *mut ffi::GtkWindow,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(
-                    Application::from_glib_borrow(this).unsafe_cast_ref(),
-                    &from_glib_borrow(window),
-                )
-            }
+            let f: &F = &*(f as *const F);
+            f(
+                Application::from_glib_borrow(this).unsafe_cast_ref(),
+                &from_glib_borrow(window),
+            )
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -556,10 +544,8 @@ pub trait GtkApplicationExt: IsA<Application> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(Application::from_glib_borrow(this).unsafe_cast_ref())
-            }
+            let f: &F = &*(f as *const F);
+            f(Application::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -586,10 +572,8 @@ pub trait GtkApplicationExt: IsA<Application> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(Application::from_glib_borrow(this).unsafe_cast_ref())
-            }
+            let f: &F = &*(f as *const F);
+            f(Application::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -611,10 +595,8 @@ pub trait GtkApplicationExt: IsA<Application> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(Application::from_glib_borrow(this).unsafe_cast_ref())
-            }
+            let f: &F = &*(f as *const F);
+            f(Application::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -640,10 +622,8 @@ pub trait GtkApplicationExt: IsA<Application> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(Application::from_glib_borrow(this).unsafe_cast_ref())
-            }
+            let f: &F = &*(f as *const F);
+            f(Application::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -668,10 +648,8 @@ pub trait GtkApplicationExt: IsA<Application> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(Application::from_glib_borrow(this).unsafe_cast_ref())
-            }
+            let f: &F = &*(f as *const F);
+            f(Application::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -698,10 +676,8 @@ pub trait GtkApplicationExt: IsA<Application> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(Application::from_glib_borrow(this).unsafe_cast_ref())
-            }
+            let f: &F = &*(f as *const F);
+            f(Application::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);

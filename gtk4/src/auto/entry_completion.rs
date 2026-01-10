@@ -226,13 +226,11 @@ impl EntryCompletion {
             iter: *mut ffi::GtkTreeIter,
             user_data: glib::ffi::gpointer,
         ) -> glib::ffi::gboolean {
-            unsafe {
-                let completion = from_glib_borrow(completion);
-                let key: Borrowed<glib::GString> = from_glib_borrow(key);
-                let iter = from_glib_borrow(iter);
-                let callback = &*(user_data as *mut P);
-                (*callback)(&completion, key.as_str(), &iter).into_glib()
-            }
+            let completion = from_glib_borrow(completion);
+            let key: Borrowed<glib::GString> = from_glib_borrow(key);
+            let iter = from_glib_borrow(iter);
+            let callback = &*(user_data as *mut P);
+            (*callback)(&completion, key.as_str(), &iter).into_glib()
         }
         let func = Some(func_func::<P> as _);
         unsafe extern "C" fn func_notify_func<
@@ -240,9 +238,7 @@ impl EntryCompletion {
         >(
             data: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let _callback = Box_::from_raw(data as *mut P);
-            }
+            let _callback = Box_::from_raw(data as *mut P);
         }
         let destroy_call3 = Some(func_notify_func::<P> as _);
         let super_callback0: Box_<P> = func_data;
@@ -348,15 +344,13 @@ impl EntryCompletion {
             iter: *mut ffi::GtkTreeIter,
             f: glib::ffi::gpointer,
         ) -> glib::ffi::gboolean {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(
-                    &from_glib_borrow(this),
-                    &from_glib_borrow(model),
-                    &from_glib_borrow(iter),
-                )
-                .into_glib()
-            }
+            let f: &F = &*(f as *const F);
+            f(
+                &from_glib_borrow(this),
+                &from_glib_borrow(model),
+                &from_glib_borrow(iter),
+            )
+            .into_glib()
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -383,14 +377,12 @@ impl EntryCompletion {
             prefix: *mut std::ffi::c_char,
             f: glib::ffi::gpointer,
         ) -> glib::ffi::gboolean {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(
-                    &from_glib_borrow(this),
-                    &glib::GString::from_glib_borrow(prefix),
-                )
-                .into_glib()
-            }
+            let f: &F = &*(f as *const F);
+            f(
+                &from_glib_borrow(this),
+                &glib::GString::from_glib_borrow(prefix),
+            )
+            .into_glib()
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -420,15 +412,13 @@ impl EntryCompletion {
             iter: *mut ffi::GtkTreeIter,
             f: glib::ffi::gpointer,
         ) -> glib::ffi::gboolean {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(
-                    &from_glib_borrow(this),
-                    &from_glib_borrow(model),
-                    &from_glib_borrow(iter),
-                )
-                .into_glib()
-            }
+            let f: &F = &*(f as *const F);
+            f(
+                &from_glib_borrow(this),
+                &from_glib_borrow(model),
+                &from_glib_borrow(iter),
+            )
+            .into_glib()
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -449,10 +439,8 @@ impl EntryCompletion {
             this: *mut ffi::GtkEntryCompletion,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(&from_glib_borrow(this))
-            }
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -479,10 +467,8 @@ impl EntryCompletion {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(&from_glib_borrow(this))
-            }
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -506,10 +492,8 @@ impl EntryCompletion {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(&from_glib_borrow(this))
-            }
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -536,10 +520,8 @@ impl EntryCompletion {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(&from_glib_borrow(this))
-            }
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -561,10 +543,8 @@ impl EntryCompletion {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(&from_glib_borrow(this))
-            }
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -588,10 +568,8 @@ impl EntryCompletion {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(&from_glib_borrow(this))
-            }
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -615,10 +593,8 @@ impl EntryCompletion {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(&from_glib_borrow(this))
-            }
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -645,10 +621,8 @@ impl EntryCompletion {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(&from_glib_borrow(this))
-            }
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -670,10 +644,8 @@ impl EntryCompletion {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(&from_glib_borrow(this))
-            }
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);

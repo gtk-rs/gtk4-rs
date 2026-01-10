@@ -44,11 +44,9 @@ impl TextTagTable {
             tag: *mut ffi::GtkTextTag,
             data: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let tag = from_glib_borrow(tag);
-                let callback = data as *mut P;
-                (*callback)(&tag)
-            }
+            let tag = from_glib_borrow(tag);
+            let callback = data as *mut P;
+            (*callback)(&tag)
         }
         let func = Some(func_func::<P> as _);
         let super_callback0: &mut P = &mut func_data;
@@ -91,10 +89,8 @@ impl TextTagTable {
             tag: *mut ffi::GtkTextTag,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(&from_glib_borrow(this), &from_glib_borrow(tag))
-            }
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this), &from_glib_borrow(tag))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -122,14 +118,12 @@ impl TextTagTable {
             size_changed: glib::ffi::gboolean,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(
-                    &from_glib_borrow(this),
-                    &from_glib_borrow(tag),
-                    from_glib(size_changed),
-                )
-            }
+            let f: &F = &*(f as *const F);
+            f(
+                &from_glib_borrow(this),
+                &from_glib_borrow(tag),
+                from_glib(size_changed),
+            )
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -151,10 +145,8 @@ impl TextTagTable {
             tag: *mut ffi::GtkTextTag,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(&from_glib_borrow(this), &from_glib_borrow(tag))
-            }
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this), &from_glib_borrow(tag))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);

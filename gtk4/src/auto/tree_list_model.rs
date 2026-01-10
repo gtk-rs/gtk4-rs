@@ -35,11 +35,9 @@ impl TreeListModel {
             item: *mut glib::gobject_ffi::GObject,
             user_data: glib::ffi::gpointer,
         ) -> *mut gio::ffi::GListModel {
-            unsafe {
-                let item = from_glib_borrow(item);
-                let callback = &*(user_data as *mut P);
-                (*callback)(&item).to_glib_full()
-            }
+            let item = from_glib_borrow(item);
+            let callback = &*(user_data as *mut P);
+            (*callback)(&item).to_glib_full()
         }
         let create_func = Some(create_func_func::<P> as _);
         unsafe extern "C" fn user_destroy_func<
@@ -47,9 +45,7 @@ impl TreeListModel {
         >(
             data: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let _callback = Box_::from_raw(data as *mut P);
-            }
+            let _callback = Box_::from_raw(data as *mut P);
         }
         let destroy_call5 = Some(user_destroy_func::<P> as _);
         let super_callback0: Box_<P> = create_func_data;
@@ -130,10 +126,8 @@ impl TreeListModel {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(&from_glib_borrow(this))
-            }
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -155,10 +149,8 @@ impl TreeListModel {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(&from_glib_borrow(this))
-            }
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);

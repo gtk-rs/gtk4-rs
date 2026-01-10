@@ -619,20 +619,16 @@ pub trait ComboBoxExt: IsA<ComboBox> + 'static {
             iter: *mut ffi::GtkTreeIter,
             data: glib::ffi::gpointer,
         ) -> glib::ffi::gboolean {
-            unsafe {
-                let model = from_glib_borrow(model);
-                let iter = from_glib_borrow(iter);
-                let callback = &*(data as *mut P);
-                (*callback)(&model, &iter).into_glib()
-            }
+            let model = from_glib_borrow(model);
+            let iter = from_glib_borrow(iter);
+            let callback = &*(data as *mut P);
+            (*callback)(&model, &iter).into_glib()
         }
         let func = Some(func_func::<P> as _);
         unsafe extern "C" fn destroy_func<P: Fn(&TreeModel, &TreeIter) -> bool + 'static>(
             data: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let _callback = Box_::from_raw(data as *mut P);
-            }
+            let _callback = Box_::from_raw(data as *mut P);
         }
         let destroy_call3 = Some(destroy_func::<P> as _);
         let super_callback0: Box_<P> = func_data;
@@ -669,10 +665,8 @@ pub trait ComboBoxExt: IsA<ComboBox> + 'static {
             this: *mut ffi::GtkComboBox,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(ComboBox::from_glib_borrow(this).unsafe_cast_ref())
-            }
+            let f: &F = &*(f as *const F);
+            f(ComboBox::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -699,10 +693,8 @@ pub trait ComboBoxExt: IsA<ComboBox> + 'static {
             this: *mut ffi::GtkComboBox,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(ComboBox::from_glib_borrow(this).unsafe_cast_ref())
-            }
+            let f: &F = &*(f as *const F);
+            f(ComboBox::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -730,14 +722,12 @@ pub trait ComboBoxExt: IsA<ComboBox> + 'static {
             path: *mut std::ffi::c_char,
             f: glib::ffi::gpointer,
         ) -> *mut std::ffi::c_char {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(
-                    ComboBox::from_glib_borrow(this).unsafe_cast_ref(),
-                    &glib::GString::from_glib_borrow(path),
-                )
-                .to_glib_full()
-            }
+            let f: &F = &*(f as *const F);
+            f(
+                ComboBox::from_glib_borrow(this).unsafe_cast_ref(),
+                &glib::GString::from_glib_borrow(path),
+            )
+            .to_glib_full()
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -762,13 +752,11 @@ pub trait ComboBoxExt: IsA<ComboBox> + 'static {
             scroll_type: ffi::GtkScrollType,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(
-                    ComboBox::from_glib_borrow(this).unsafe_cast_ref(),
-                    from_glib(scroll_type),
-                )
-            }
+            let f: &F = &*(f as *const F);
+            f(
+                ComboBox::from_glib_borrow(this).unsafe_cast_ref(),
+                from_glib(scroll_type),
+            )
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -793,10 +781,8 @@ pub trait ComboBoxExt: IsA<ComboBox> + 'static {
             this: *mut ffi::GtkComboBox,
             f: glib::ffi::gpointer,
         ) -> glib::ffi::gboolean {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(ComboBox::from_glib_borrow(this).unsafe_cast_ref()).into_glib()
-            }
+            let f: &F = &*(f as *const F);
+            f(ComboBox::from_glib_borrow(this).unsafe_cast_ref()).into_glib()
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -821,10 +807,8 @@ pub trait ComboBoxExt: IsA<ComboBox> + 'static {
             this: *mut ffi::GtkComboBox,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(ComboBox::from_glib_borrow(this).unsafe_cast_ref())
-            }
+            let f: &F = &*(f as *const F);
+            f(ComboBox::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -850,10 +834,8 @@ pub trait ComboBoxExt: IsA<ComboBox> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(ComboBox::from_glib_borrow(this).unsafe_cast_ref())
-            }
+            let f: &F = &*(f as *const F);
+            f(ComboBox::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -875,10 +857,8 @@ pub trait ComboBoxExt: IsA<ComboBox> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(ComboBox::from_glib_borrow(this).unsafe_cast_ref())
-            }
+            let f: &F = &*(f as *const F);
+            f(ComboBox::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -903,10 +883,8 @@ pub trait ComboBoxExt: IsA<ComboBox> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(ComboBox::from_glib_borrow(this).unsafe_cast_ref())
-            }
+            let f: &F = &*(f as *const F);
+            f(ComboBox::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -928,10 +906,8 @@ pub trait ComboBoxExt: IsA<ComboBox> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(ComboBox::from_glib_borrow(this).unsafe_cast_ref())
-            }
+            let f: &F = &*(f as *const F);
+            f(ComboBox::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -956,10 +932,8 @@ pub trait ComboBoxExt: IsA<ComboBox> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(ComboBox::from_glib_borrow(this).unsafe_cast_ref())
-            }
+            let f: &F = &*(f as *const F);
+            f(ComboBox::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -981,10 +955,8 @@ pub trait ComboBoxExt: IsA<ComboBox> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(ComboBox::from_glib_borrow(this).unsafe_cast_ref())
-            }
+            let f: &F = &*(f as *const F);
+            f(ComboBox::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1006,10 +978,8 @@ pub trait ComboBoxExt: IsA<ComboBox> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(ComboBox::from_glib_borrow(this).unsafe_cast_ref())
-            }
+            let f: &F = &*(f as *const F);
+            f(ComboBox::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1031,10 +1001,8 @@ pub trait ComboBoxExt: IsA<ComboBox> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(ComboBox::from_glib_borrow(this).unsafe_cast_ref())
-            }
+            let f: &F = &*(f as *const F);
+            f(ComboBox::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1059,10 +1027,8 @@ pub trait ComboBoxExt: IsA<ComboBox> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(ComboBox::from_glib_borrow(this).unsafe_cast_ref())
-            }
+            let f: &F = &*(f as *const F);
+            f(ComboBox::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1087,10 +1053,8 @@ pub trait ComboBoxExt: IsA<ComboBox> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(ComboBox::from_glib_borrow(this).unsafe_cast_ref())
-            }
+            let f: &F = &*(f as *const F);
+            f(ComboBox::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);

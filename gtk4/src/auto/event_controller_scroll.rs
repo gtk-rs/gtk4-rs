@@ -78,10 +78,8 @@ impl EventControllerScroll {
             vel_y: std::ffi::c_double,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(&from_glib_borrow(this), vel_x, vel_y)
-            }
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this), vel_x, vel_y)
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -109,10 +107,8 @@ impl EventControllerScroll {
             dy: std::ffi::c_double,
             f: glib::ffi::gpointer,
         ) -> glib::ffi::gboolean {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(&from_glib_borrow(this), dx, dy).into_glib()
-            }
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this), dx, dy).into_glib()
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -133,10 +129,8 @@ impl EventControllerScroll {
             this: *mut ffi::GtkEventControllerScroll,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(&from_glib_borrow(this))
-            }
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -157,10 +151,8 @@ impl EventControllerScroll {
             this: *mut ffi::GtkEventControllerScroll,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(&from_glib_borrow(this))
-            }
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -182,10 +174,8 @@ impl EventControllerScroll {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(&from_glib_borrow(this))
-            }
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);

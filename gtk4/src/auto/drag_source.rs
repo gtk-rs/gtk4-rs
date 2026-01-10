@@ -98,10 +98,8 @@ impl DragSource {
             drag: *mut gdk::ffi::GdkDrag,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(&from_glib_borrow(this), &from_glib_borrow(drag))
-            }
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this), &from_glib_borrow(drag))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -131,15 +129,13 @@ impl DragSource {
             reason: gdk::ffi::GdkDragCancelReason,
             f: glib::ffi::gpointer,
         ) -> glib::ffi::gboolean {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(
-                    &from_glib_borrow(this),
-                    &from_glib_borrow(drag),
-                    from_glib(reason),
-                )
-                .into_glib()
-            }
+            let f: &F = &*(f as *const F);
+            f(
+                &from_glib_borrow(this),
+                &from_glib_borrow(drag),
+                from_glib(reason),
+            )
+            .into_glib()
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -165,14 +161,12 @@ impl DragSource {
             delete_data: glib::ffi::gboolean,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(
-                    &from_glib_borrow(this),
-                    &from_glib_borrow(drag),
-                    from_glib(delete_data),
-                )
-            }
+            let f: &F = &*(f as *const F);
+            f(
+                &from_glib_borrow(this),
+                &from_glib_borrow(drag),
+                from_glib(delete_data),
+            )
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -200,10 +194,8 @@ impl DragSource {
             y: std::ffi::c_double,
             f: glib::ffi::gpointer,
         ) -> *mut gdk::ffi::GdkContentProvider {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(&from_glib_borrow(this), x, y).to_glib_full()
-            }
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this), x, y).to_glib_full()
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -225,10 +217,8 @@ impl DragSource {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(&from_glib_borrow(this))
-            }
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -250,10 +240,8 @@ impl DragSource {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(&from_glib_borrow(this))
-            }
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);

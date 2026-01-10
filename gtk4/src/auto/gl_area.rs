@@ -491,10 +491,8 @@ pub trait GLAreaExt: IsA<GLArea> + 'static {
             this: *mut ffi::GtkGLArea,
             f: glib::ffi::gpointer,
         ) -> *mut gdk::ffi::GdkGLContext {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(GLArea::from_glib_borrow(this).unsafe_cast_ref()).to_glib_full()
-            }
+            let f: &F = &*(f as *const F);
+            f(GLArea::from_glib_borrow(this).unsafe_cast_ref()).to_glib_full()
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -522,14 +520,12 @@ pub trait GLAreaExt: IsA<GLArea> + 'static {
             context: *mut gdk::ffi::GdkGLContext,
             f: glib::ffi::gpointer,
         ) -> glib::ffi::gboolean {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(
-                    GLArea::from_glib_borrow(this).unsafe_cast_ref(),
-                    &from_glib_borrow(context),
-                )
-                .into_glib()
-            }
+            let f: &F = &*(f as *const F);
+            f(
+                GLArea::from_glib_borrow(this).unsafe_cast_ref(),
+                &from_glib_borrow(context),
+            )
+            .into_glib()
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -552,14 +548,12 @@ pub trait GLAreaExt: IsA<GLArea> + 'static {
             height: std::ffi::c_int,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(
-                    GLArea::from_glib_borrow(this).unsafe_cast_ref(),
-                    width,
-                    height,
-                )
-            }
+            let f: &F = &*(f as *const F);
+            f(
+                GLArea::from_glib_borrow(this).unsafe_cast_ref(),
+                width,
+                height,
+            )
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -583,10 +577,8 @@ pub trait GLAreaExt: IsA<GLArea> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(GLArea::from_glib_borrow(this).unsafe_cast_ref())
-            }
+            let f: &F = &*(f as *const F);
+            f(GLArea::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -610,10 +602,8 @@ pub trait GLAreaExt: IsA<GLArea> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(GLArea::from_glib_borrow(this).unsafe_cast_ref())
-            }
+            let f: &F = &*(f as *const F);
+            f(GLArea::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -635,10 +625,8 @@ pub trait GLAreaExt: IsA<GLArea> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(GLArea::from_glib_borrow(this).unsafe_cast_ref())
-            }
+            let f: &F = &*(f as *const F);
+            f(GLArea::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -660,10 +648,8 @@ pub trait GLAreaExt: IsA<GLArea> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(GLArea::from_glib_borrow(this).unsafe_cast_ref())
-            }
+            let f: &F = &*(f as *const F);
+            f(GLArea::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -688,10 +674,8 @@ pub trait GLAreaExt: IsA<GLArea> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(GLArea::from_glib_borrow(this).unsafe_cast_ref())
-            }
+            let f: &F = &*(f as *const F);
+            f(GLArea::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -716,10 +700,8 @@ pub trait GLAreaExt: IsA<GLArea> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(GLArea::from_glib_borrow(this).unsafe_cast_ref())
-            }
+            let f: &F = &*(f as *const F);
+            f(GLArea::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -742,10 +724,8 @@ pub trait GLAreaExt: IsA<GLArea> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(GLArea::from_glib_borrow(this).unsafe_cast_ref())
-            }
+            let f: &F = &*(f as *const F);
+            f(GLArea::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);

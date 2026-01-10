@@ -63,13 +63,11 @@ pub trait FilterExt: IsA<Filter> + 'static {
             change: ffi::GtkFilterChange,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(
-                    Filter::from_glib_borrow(this).unsafe_cast_ref(),
-                    from_glib(change),
-                )
-            }
+            let f: &F = &*(f as *const F);
+            f(
+                Filter::from_glib_borrow(this).unsafe_cast_ref(),
+                from_glib(change),
+            )
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);

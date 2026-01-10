@@ -137,14 +137,12 @@ pub trait CellLayoutExt: IsA<CellLayout> + 'static {
             iter: *mut ffi::GtkTreeIter,
             data: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let cell_layout = from_glib_borrow(cell_layout);
-                let cell = from_glib_borrow(cell);
-                let tree_model = from_glib_borrow(tree_model);
-                let iter = from_glib_borrow(iter);
-                let callback = &*(data as *mut P);
-                (*callback)(&cell_layout, &cell, &tree_model, &iter)
-            }
+            let cell_layout = from_glib_borrow(cell_layout);
+            let cell = from_glib_borrow(cell);
+            let tree_model = from_glib_borrow(tree_model);
+            let iter = from_glib_borrow(iter);
+            let callback = &*(data as *mut P);
+            (*callback)(&cell_layout, &cell, &tree_model, &iter)
         }
         let func = Some(func_func::<P> as _);
         unsafe extern "C" fn destroy_func<
@@ -152,9 +150,7 @@ pub trait CellLayoutExt: IsA<CellLayout> + 'static {
         >(
             data: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let _callback = Box_::from_raw(data as *mut P);
-            }
+            let _callback = Box_::from_raw(data as *mut P);
         }
         let destroy_call4 = Some(destroy_func::<P> as _);
         let super_callback0: Box_<P> = func_data;

@@ -69,12 +69,10 @@ impl TextIter {
             ch: u32,
             user_data: glib::ffi::gpointer,
         ) -> glib::ffi::gboolean {
-            unsafe {
-                let ch = std::convert::TryFrom::try_from(ch)
-                    .expect("conversion from an invalid Unicode value attempted");
-                let callback = user_data as *mut P;
-                (*callback)(ch).into_glib()
-            }
+            let ch = std::convert::TryFrom::try_from(ch)
+                .expect("conversion from an invalid Unicode value attempted");
+            let callback = user_data as *mut P;
+            (*callback)(ch).into_glib()
         }
         let pred = Some(pred_func::<P> as _);
         let super_callback0: &mut P = &mut pred_data;
@@ -339,12 +337,10 @@ impl TextIter {
             ch: u32,
             user_data: glib::ffi::gpointer,
         ) -> glib::ffi::gboolean {
-            unsafe {
-                let ch = std::convert::TryFrom::try_from(ch)
-                    .expect("conversion from an invalid Unicode value attempted");
-                let callback = user_data as *mut P;
-                (*callback)(ch).into_glib()
-            }
+            let ch = std::convert::TryFrom::try_from(ch)
+                .expect("conversion from an invalid Unicode value attempted");
+            let callback = user_data as *mut P;
+            (*callback)(ch).into_glib()
         }
         let pred = Some(pred_func::<P> as _);
         let super_callback0: &mut P = &mut pred_data;

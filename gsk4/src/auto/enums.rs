@@ -127,7 +127,7 @@ unsafe impl<'a> glib::value::FromValue<'a> for BlendMode {
     #[inline]
     unsafe fn from_value(value: &'a glib::Value) -> Self {
         skip_assert_initialized!();
-        unsafe { from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0)) }
+        from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
@@ -231,7 +231,7 @@ unsafe impl<'a> glib::value::FromValue<'a> for Corner {
     #[inline]
     unsafe fn from_value(value: &'a glib::Value) -> Self {
         skip_assert_initialized!();
-        unsafe { from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0)) }
+        from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
@@ -341,7 +341,7 @@ unsafe impl<'a> glib::value::FromValue<'a> for FillRule {
     #[inline]
     unsafe fn from_value(value: &'a glib::Value) -> Self {
         skip_assert_initialized!();
-        unsafe { from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0)) }
+        from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
@@ -472,7 +472,7 @@ unsafe impl<'a> glib::value::FromValue<'a> for GLUniformType {
     #[inline]
     unsafe fn from_value(value: &'a glib::Value) -> Self {
         skip_assert_initialized!();
-        unsafe { from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0)) }
+        from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
@@ -588,7 +588,7 @@ unsafe impl<'a> glib::value::FromValue<'a> for LineCap {
     #[inline]
     unsafe fn from_value(value: &'a glib::Value) -> Self {
         skip_assert_initialized!();
-        unsafe { from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0)) }
+        from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
@@ -706,7 +706,7 @@ unsafe impl<'a> glib::value::FromValue<'a> for LineJoin {
     #[inline]
     unsafe fn from_value(value: &'a glib::Value) -> Self {
         skip_assert_initialized!();
-        unsafe { from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0)) }
+        from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
@@ -828,7 +828,7 @@ unsafe impl<'a> glib::value::FromValue<'a> for MaskMode {
     #[inline]
     unsafe fn from_value(value: &'a glib::Value) -> Self {
         skip_assert_initialized!();
-        unsafe { from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0)) }
+        from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
@@ -950,7 +950,7 @@ unsafe impl<'a> glib::value::FromValue<'a> for PathDirection {
     #[inline]
     unsafe fn from_value(value: &'a glib::Value) -> Self {
         skip_assert_initialized!();
-        unsafe { from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0)) }
+        from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
@@ -1072,7 +1072,7 @@ unsafe impl<'a> glib::value::FromValue<'a> for PathIntersection {
     #[inline]
     unsafe fn from_value(value: &'a glib::Value) -> Self {
         skip_assert_initialized!();
-        unsafe { from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0)) }
+        from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
@@ -1202,7 +1202,7 @@ unsafe impl<'a> glib::value::FromValue<'a> for PathOperation {
     #[inline]
     unsafe fn from_value(value: &'a glib::Value) -> Self {
         skip_assert_initialized!();
-        unsafe { from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0)) }
+        from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
@@ -1356,7 +1356,7 @@ unsafe impl<'a> glib::value::FromValue<'a> for PorterDuff {
     #[inline]
     unsafe fn from_value(value: &'a glib::Value) -> Self {
         skip_assert_initialized!();
-        unsafe { from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0)) }
+        from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
@@ -1646,7 +1646,7 @@ unsafe impl<'a> glib::value::FromValue<'a> for RenderNodeType {
     #[inline]
     unsafe fn from_value(value: &'a glib::Value) -> Self {
         skip_assert_initialized!();
-        unsafe { from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0)) }
+        from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
@@ -1746,7 +1746,7 @@ unsafe impl<'a> glib::value::FromValue<'a> for ScalingFilter {
     #[inline]
     unsafe fn from_value(value: &'a glib::Value) -> Self {
         skip_assert_initialized!();
-        unsafe { from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0)) }
+        from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
@@ -1869,7 +1869,7 @@ unsafe impl<'a> glib::value::FromValue<'a> for SerializationError {
     #[inline]
     unsafe fn from_value(value: &'a glib::Value) -> Self {
         skip_assert_initialized!();
-        unsafe { from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0)) }
+        from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
@@ -1985,7 +1985,7 @@ unsafe impl<'a> glib::value::FromValue<'a> for TransformCategory {
     #[inline]
     unsafe fn from_value(value: &'a glib::Value) -> Self {
         skip_assert_initialized!();
-        unsafe { from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0)) }
+        from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
     }
 }
 

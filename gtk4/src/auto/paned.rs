@@ -199,10 +199,8 @@ impl Paned {
             this: *mut ffi::GtkPaned,
             f: glib::ffi::gpointer,
         ) -> glib::ffi::gboolean {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(&from_glib_borrow(this)).into_glib()
-            }
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this)).into_glib()
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -227,10 +225,8 @@ impl Paned {
             this: *mut ffi::GtkPaned,
             f: glib::ffi::gpointer,
         ) -> glib::ffi::gboolean {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(&from_glib_borrow(this)).into_glib()
-            }
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this)).into_glib()
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -259,10 +255,8 @@ impl Paned {
             reversed: glib::ffi::gboolean,
             f: glib::ffi::gpointer,
         ) -> glib::ffi::gboolean {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(&from_glib_borrow(this), from_glib(reversed)).into_glib()
-            }
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this), from_glib(reversed)).into_glib()
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -293,10 +287,8 @@ impl Paned {
             reversed: glib::ffi::gboolean,
             f: glib::ffi::gpointer,
         ) -> glib::ffi::gboolean {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(&from_glib_borrow(this), from_glib(reversed)).into_glib()
-            }
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this), from_glib(reversed)).into_glib()
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -325,10 +317,8 @@ impl Paned {
             scroll_type: ffi::GtkScrollType,
             f: glib::ffi::gpointer,
         ) -> glib::ffi::gboolean {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(&from_glib_borrow(this), from_glib(scroll_type)).into_glib()
-            }
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this), from_glib(scroll_type)).into_glib()
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -356,10 +346,8 @@ impl Paned {
             this: *mut ffi::GtkPaned,
             f: glib::ffi::gpointer,
         ) -> glib::ffi::gboolean {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(&from_glib_borrow(this)).into_glib()
-            }
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this)).into_glib()
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -385,10 +373,8 @@ impl Paned {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(&from_glib_borrow(this))
-            }
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -410,10 +396,8 @@ impl Paned {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(&from_glib_borrow(this))
-            }
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -435,10 +419,8 @@ impl Paned {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(&from_glib_borrow(this))
-            }
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -460,10 +442,8 @@ impl Paned {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(&from_glib_borrow(this))
-            }
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -485,10 +465,8 @@ impl Paned {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(&from_glib_borrow(this))
-            }
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -510,10 +488,8 @@ impl Paned {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(&from_glib_borrow(this))
-            }
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -538,10 +514,8 @@ impl Paned {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(&from_glib_borrow(this))
-            }
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -563,10 +537,8 @@ impl Paned {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(&from_glib_borrow(this))
-            }
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -591,10 +563,8 @@ impl Paned {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(&from_glib_borrow(this))
-            }
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -616,10 +586,8 @@ impl Paned {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(&from_glib_borrow(this))
-            }
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -641,10 +609,8 @@ impl Paned {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(&from_glib_borrow(this))
-            }
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);

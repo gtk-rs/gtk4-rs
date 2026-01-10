@@ -59,19 +59,15 @@ impl ListBox {
             item: *mut glib::gobject_ffi::GObject,
             user_data: glib::ffi::gpointer,
         ) -> *mut ffi::GtkWidget {
-            unsafe {
-                let item = from_glib_borrow(item);
-                let callback = &*(user_data as *mut P);
-                (*callback)(&item).to_glib_full()
-            }
+            let item = from_glib_borrow(item);
+            let callback = &*(user_data as *mut P);
+            (*callback)(&item).to_glib_full()
         }
         let create_widget_func = Some(create_widget_func_func::<P> as _);
         unsafe extern "C" fn user_data_free_func_func<P: Fn(&glib::Object) -> Widget + 'static>(
             data: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let _callback = Box_::from_raw(data as *mut P);
-            }
+            let _callback = Box_::from_raw(data as *mut P);
         }
         let destroy_call4 = Some(user_data_free_func_func::<P> as _);
         let super_callback0: Box_<P> = create_widget_func_data;
@@ -256,12 +252,10 @@ impl ListBox {
             row: *mut ffi::GtkListBoxRow,
             user_data: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let box_ = from_glib_borrow(box_);
-                let row = from_glib_borrow(row);
-                let callback = user_data as *mut P;
-                (*callback)(&box_, &row)
-            }
+            let box_ = from_glib_borrow(box_);
+            let row = from_glib_borrow(row);
+            let callback = user_data as *mut P;
+            (*callback)(&box_, &row)
         }
         let func = Some(func_func::<P> as _);
         let super_callback0: &mut P = &mut func_data;
@@ -302,19 +296,15 @@ impl ListBox {
             row: *mut ffi::GtkListBoxRow,
             user_data: glib::ffi::gpointer,
         ) -> glib::ffi::gboolean {
-            unsafe {
-                let row = from_glib_borrow(row);
-                let callback = &*(user_data as *mut P);
-                (*callback)(&row).into_glib()
-            }
+            let row = from_glib_borrow(row);
+            let callback = &*(user_data as *mut P);
+            (*callback)(&row).into_glib()
         }
         let filter_func = Some(filter_func_func::<P> as _);
         unsafe extern "C" fn destroy_func<P: Fn(&ListBoxRow) -> bool + 'static>(
             data: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let _callback = Box_::from_raw(data as *mut P);
-            }
+            let _callback = Box_::from_raw(data as *mut P);
         }
         let destroy_call3 = Some(destroy_func::<P> as _);
         let super_callback0: Box_<P> = filter_func_data;
@@ -341,20 +331,16 @@ impl ListBox {
             before: *mut ffi::GtkListBoxRow,
             user_data: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let row = from_glib_borrow(row);
-                let before: Borrowed<Option<ListBoxRow>> = from_glib_borrow(before);
-                let callback = &*(user_data as *mut P);
-                (*callback)(&row, before.as_ref().as_ref())
-            }
+            let row = from_glib_borrow(row);
+            let before: Borrowed<Option<ListBoxRow>> = from_glib_borrow(before);
+            let callback = &*(user_data as *mut P);
+            (*callback)(&row, before.as_ref().as_ref())
         }
         let update_header = Some(update_header_func::<P> as _);
         unsafe extern "C" fn destroy_func<P: Fn(&ListBoxRow, Option<&ListBoxRow>) + 'static>(
             data: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let _callback = Box_::from_raw(data as *mut P);
-            }
+            let _callback = Box_::from_raw(data as *mut P);
         }
         let destroy_call3 = Some(destroy_func::<P> as _);
         let super_callback0: Box_<P> = update_header_data;
@@ -437,10 +423,8 @@ impl ListBox {
             this: *mut ffi::GtkListBox,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(&from_glib_borrow(this))
-            }
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -474,16 +458,14 @@ impl ListBox {
             modify: glib::ffi::gboolean,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(
-                    &from_glib_borrow(this),
-                    from_glib(step),
-                    count,
-                    from_glib(extend),
-                    from_glib(modify),
-                )
-            }
+            let f: &F = &*(f as *const F);
+            f(
+                &from_glib_borrow(this),
+                from_glib(step),
+                count,
+                from_glib(extend),
+                from_glib(modify),
+            )
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -512,10 +494,8 @@ impl ListBox {
             row: *mut ffi::GtkListBoxRow,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(&from_glib_borrow(this), &from_glib_borrow(row))
-            }
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this), &from_glib_borrow(row))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -542,15 +522,13 @@ impl ListBox {
             row: *mut ffi::GtkListBoxRow,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(
-                    &from_glib_borrow(this),
-                    Option::<ListBoxRow>::from_glib_borrow(row)
-                        .as_ref()
-                        .as_ref(),
-                )
-            }
+            let f: &F = &*(f as *const F);
+            f(
+                &from_glib_borrow(this),
+                Option::<ListBoxRow>::from_glib_borrow(row)
+                    .as_ref()
+                    .as_ref(),
+            )
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -571,10 +549,8 @@ impl ListBox {
             this: *mut ffi::GtkListBox,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(&from_glib_borrow(this))
-            }
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -599,10 +575,8 @@ impl ListBox {
             this: *mut ffi::GtkListBox,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(&from_glib_borrow(this))
-            }
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -623,10 +597,8 @@ impl ListBox {
             this: *mut ffi::GtkListBox,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(&from_glib_borrow(this))
-            }
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -651,10 +623,8 @@ impl ListBox {
             this: *mut ffi::GtkListBox,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(&from_glib_borrow(this))
-            }
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -685,10 +655,8 @@ impl ListBox {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(&from_glib_borrow(this))
-            }
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -715,10 +683,8 @@ impl ListBox {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(&from_glib_borrow(this))
-            }
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -740,10 +706,8 @@ impl ListBox {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(&from_glib_borrow(this))
-            }
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -765,10 +729,8 @@ impl ListBox {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(&from_glib_borrow(this))
-            }
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -792,10 +754,8 @@ impl ListBox {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(&from_glib_borrow(this))
-            }
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);

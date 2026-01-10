@@ -77,7 +77,7 @@ unsafe impl<'a> glib::value::FromValue<'a> for AnchorHints {
     #[inline]
     unsafe fn from_value(value: &'a glib::Value) -> Self {
         skip_assert_initialized!();
-        unsafe { from_glib(glib::gobject_ffi::g_value_get_flags(value.to_glib_none().0)) }
+        from_glib(glib::gobject_ffi::g_value_get_flags(value.to_glib_none().0))
     }
 }
 
@@ -181,7 +181,7 @@ unsafe impl<'a> glib::value::FromValue<'a> for AxisFlags {
     #[inline]
     unsafe fn from_value(value: &'a glib::Value) -> Self {
         skip_assert_initialized!();
-        unsafe { from_glib(glib::gobject_ffi::g_value_get_flags(value.to_glib_none().0)) }
+        from_glib(glib::gobject_ffi::g_value_get_flags(value.to_glib_none().0))
     }
 }
 
@@ -283,7 +283,7 @@ unsafe impl<'a> glib::value::FromValue<'a> for DragAction {
     #[inline]
     unsafe fn from_value(value: &'a glib::Value) -> Self {
         skip_assert_initialized!();
-        unsafe { from_glib(glib::gobject_ffi::g_value_get_flags(value.to_glib_none().0)) }
+        from_glib(glib::gobject_ffi::g_value_get_flags(value.to_glib_none().0))
     }
 }
 
@@ -381,7 +381,7 @@ unsafe impl<'a> glib::value::FromValue<'a> for FrameClockPhase {
     #[inline]
     unsafe fn from_value(value: &'a glib::Value) -> Self {
         skip_assert_initialized!();
-        unsafe { from_glib(glib::gobject_ffi::g_value_get_flags(value.to_glib_none().0)) }
+        from_glib(glib::gobject_ffi::g_value_get_flags(value.to_glib_none().0))
     }
 }
 
@@ -481,7 +481,7 @@ unsafe impl<'a> glib::value::FromValue<'a> for GLAPI {
     #[inline]
     unsafe fn from_value(value: &'a glib::Value) -> Self {
         skip_assert_initialized!();
-        unsafe { from_glib(glib::gobject_ffi::g_value_get_flags(value.to_glib_none().0)) }
+        from_glib(glib::gobject_ffi::g_value_get_flags(value.to_glib_none().0))
     }
 }
 
@@ -595,7 +595,7 @@ unsafe impl<'a> glib::value::FromValue<'a> for ModifierType {
     #[inline]
     unsafe fn from_value(value: &'a glib::Value) -> Self {
         skip_assert_initialized!();
-        unsafe { from_glib(glib::gobject_ffi::g_value_get_flags(value.to_glib_none().0)) }
+        from_glib(glib::gobject_ffi::g_value_get_flags(value.to_glib_none().0))
     }
 }
 
@@ -681,7 +681,7 @@ unsafe impl<'a> glib::value::FromValue<'a> for PaintableFlags {
     #[inline]
     unsafe fn from_value(value: &'a glib::Value) -> Self {
         skip_assert_initialized!();
-        unsafe { from_glib(glib::gobject_ffi::g_value_get_flags(value.to_glib_none().0)) }
+        from_glib(glib::gobject_ffi::g_value_get_flags(value.to_glib_none().0))
     }
 }
 
@@ -779,7 +779,7 @@ unsafe impl<'a> glib::value::FromValue<'a> for SeatCapabilities {
     #[inline]
     unsafe fn from_value(value: &'a glib::Value) -> Self {
         skip_assert_initialized!();
-        unsafe { from_glib(glib::gobject_ffi::g_value_get_flags(value.to_glib_none().0)) }
+        from_glib(glib::gobject_ffi::g_value_get_flags(value.to_glib_none().0))
     }
 }
 
@@ -907,7 +907,7 @@ unsafe impl<'a> glib::value::FromValue<'a> for ToplevelCapabilities {
     #[inline]
     unsafe fn from_value(value: &'a glib::Value) -> Self {
         skip_assert_initialized!();
-        unsafe { from_glib(glib::gobject_ffi::g_value_get_flags(value.to_glib_none().0)) }
+        from_glib(glib::gobject_ffi::g_value_get_flags(value.to_glib_none().0))
     }
 }
 
@@ -1029,7 +1029,7 @@ unsafe impl<'a> glib::value::FromValue<'a> for ToplevelState {
     #[inline]
     unsafe fn from_value(value: &'a glib::Value) -> Self {
         skip_assert_initialized!();
-        unsafe { from_glib(glib::gobject_ffi::g_value_get_flags(value.to_glib_none().0)) }
+        from_glib(glib::gobject_ffi::g_value_get_flags(value.to_glib_none().0))
     }
 }
 

@@ -87,11 +87,9 @@ impl CellRendererAccel {
             path_string: *mut std::ffi::c_char,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                let path = from_glib_full(crate::ffi::gtk_tree_path_new_from_string(path_string));
-                f(&from_glib_borrow(this), path)
-            }
+            let f: &F = &*(f as *const F);
+            let path = from_glib_full(crate::ffi::gtk_tree_path_new_from_string(path_string));
+            f(&from_glib_borrow(this), path)
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -121,17 +119,15 @@ impl CellRendererAccel {
             hardware_keycode: std::ffi::c_uint,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                let path = from_glib_full(crate::ffi::gtk_tree_path_new_from_string(path_string));
-                f(
-                    &from_glib_borrow(this),
-                    path,
-                    accel_key,
-                    from_glib(accel_mods),
-                    hardware_keycode,
-                )
-            }
+            let f: &F = &*(f as *const F);
+            let path = from_glib_full(crate::ffi::gtk_tree_path_new_from_string(path_string));
+            f(
+                &from_glib_borrow(this),
+                path,
+                accel_key,
+                from_glib(accel_mods),
+                hardware_keycode,
+            )
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -153,10 +149,8 @@ impl CellRendererAccel {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(&from_glib_borrow(this))
-            }
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -178,10 +172,8 @@ impl CellRendererAccel {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(&from_glib_borrow(this))
-            }
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -203,10 +195,8 @@ impl CellRendererAccel {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(&from_glib_borrow(this))
-            }
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -228,10 +218,8 @@ impl CellRendererAccel {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(&from_glib_borrow(this))
-            }
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);

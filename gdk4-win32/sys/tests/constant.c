@@ -21,8 +21,8 @@
                     unsigned long: "%lu", \
                     long long: "%lld", \
                     unsigned long long: "%llu", \
-                    float: "%.6f", \
-                    double: "%.6f", \
+                    float: "%f", \
+                    double: "%f", \
                     long double: "%ld"), \
            CONSTANT_NAME); \
     printf("\n");

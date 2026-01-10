@@ -161,13 +161,11 @@ impl TreeSelection {
             iter: *mut ffi::GtkTreeIter,
             data: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let model = from_glib_borrow(model);
-                let path = from_glib_borrow(path);
-                let iter = from_glib_borrow(iter);
-                let callback = data as *mut P;
-                (*callback)(&model, &path, &iter)
-            }
+            let model = from_glib_borrow(model);
+            let path = from_glib_borrow(path);
+            let iter = from_glib_borrow(iter);
+            let callback = data as *mut P;
+            (*callback)(&model, &path, &iter)
         }
         let func = Some(func_func::<P> as _);
         let super_callback0: &mut P = &mut func_data;
@@ -209,14 +207,12 @@ impl TreeSelection {
             path_currently_selected: glib::ffi::gboolean,
             data: glib::ffi::gpointer,
         ) -> glib::ffi::gboolean {
-            unsafe {
-                let selection = from_glib_borrow(selection);
-                let model = from_glib_borrow(model);
-                let path = from_glib_borrow(path);
-                let path_currently_selected = from_glib(path_currently_selected);
-                let callback = &*(data as *mut P);
-                (*callback)(&selection, &model, &path, path_currently_selected).into_glib()
-            }
+            let selection = from_glib_borrow(selection);
+            let model = from_glib_borrow(model);
+            let path = from_glib_borrow(path);
+            let path_currently_selected = from_glib(path_currently_selected);
+            let callback = &*(data as *mut P);
+            (*callback)(&selection, &model, &path, path_currently_selected).into_glib()
         }
         let func = Some(func_func::<P> as _);
         unsafe extern "C" fn destroy_func<
@@ -224,9 +220,7 @@ impl TreeSelection {
         >(
             data: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let _callback = Box_::from_raw(data as *mut P);
-            }
+            let _callback = Box_::from_raw(data as *mut P);
         }
         let destroy_call3 = Some(destroy_func::<P> as _);
         let super_callback0: Box_<P> = func_data;
@@ -292,10 +286,8 @@ impl TreeSelection {
             this: *mut ffi::GtkTreeSelection,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(&from_glib_borrow(this))
-            }
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -317,10 +309,8 @@ impl TreeSelection {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(&from_glib_borrow(this))
-            }
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);

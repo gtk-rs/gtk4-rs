@@ -103,20 +103,17 @@ impl PrintDialog {
             res: *mut gio::ffi::GAsyncResult,
             user_data: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let mut error = std::ptr::null_mut();
-                let ret =
-                    ffi::gtk_print_dialog_print_finish(_source_object as *mut _, res, &mut error);
-                let result = if error.is_null() {
-                    Ok(from_glib_full(ret))
-                } else {
-                    Err(from_glib_full(error))
-                };
-                let callback: Box_<glib::thread_guard::ThreadGuard<P>> =
-                    Box_::from_raw(user_data as *mut _);
-                let callback: P = callback.into_inner();
-                callback(result);
-            }
+            let mut error = std::ptr::null_mut();
+            let ret = ffi::gtk_print_dialog_print_finish(_source_object as *mut _, res, &mut error);
+            let result = if error.is_null() {
+                Ok(from_glib_full(ret))
+            } else {
+                Err(from_glib_full(error))
+            };
+            let callback: Box_<glib::thread_guard::ThreadGuard<P>> =
+                Box_::from_raw(user_data as *mut _);
+            let callback: P = callback.into_inner();
+            callback(result);
         }
         let callback = print_trampoline::<P>;
         unsafe {
@@ -177,19 +174,17 @@ impl PrintDialog {
             res: *mut gio::ffi::GAsyncResult,
             user_data: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let mut error = std::ptr::null_mut();
-                ffi::gtk_print_dialog_print_file_finish(_source_object as *mut _, res, &mut error);
-                let result = if error.is_null() {
-                    Ok(())
-                } else {
-                    Err(from_glib_full(error))
-                };
-                let callback: Box_<glib::thread_guard::ThreadGuard<P>> =
-                    Box_::from_raw(user_data as *mut _);
-                let callback: P = callback.into_inner();
-                callback(result);
-            }
+            let mut error = std::ptr::null_mut();
+            ffi::gtk_print_dialog_print_file_finish(_source_object as *mut _, res, &mut error);
+            let result = if error.is_null() {
+                Ok(())
+            } else {
+                Err(from_glib_full(error))
+            };
+            let callback: Box_<glib::thread_guard::ThreadGuard<P>> =
+                Box_::from_raw(user_data as *mut _);
+            let callback: P = callback.into_inner();
+            callback(result);
         }
         let callback = print_file_trampoline::<P>;
         unsafe {
@@ -302,20 +297,17 @@ impl PrintDialog {
             res: *mut gio::ffi::GAsyncResult,
             user_data: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let mut error = std::ptr::null_mut();
-                let ret =
-                    ffi::gtk_print_dialog_setup_finish(_source_object as *mut _, res, &mut error);
-                let result = if error.is_null() {
-                    Ok(from_glib_full(ret))
-                } else {
-                    Err(from_glib_full(error))
-                };
-                let callback: Box_<glib::thread_guard::ThreadGuard<P>> =
-                    Box_::from_raw(user_data as *mut _);
-                let callback: P = callback.into_inner();
-                callback(result);
-            }
+            let mut error = std::ptr::null_mut();
+            let ret = ffi::gtk_print_dialog_setup_finish(_source_object as *mut _, res, &mut error);
+            let result = if error.is_null() {
+                Ok(from_glib_full(ret))
+            } else {
+                Err(from_glib_full(error))
+            };
+            let callback: Box_<glib::thread_guard::ThreadGuard<P>> =
+                Box_::from_raw(user_data as *mut _);
+            let callback: P = callback.into_inner();
+            callback(result);
         }
         let callback = setup_trampoline::<P>;
         unsafe {
@@ -355,10 +347,8 @@ impl PrintDialog {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(&from_glib_borrow(this))
-            }
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -382,10 +372,8 @@ impl PrintDialog {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(&from_glib_borrow(this))
-            }
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -409,10 +397,8 @@ impl PrintDialog {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(&from_glib_borrow(this))
-            }
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -436,10 +422,8 @@ impl PrintDialog {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(&from_glib_borrow(this))
-            }
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -463,10 +447,8 @@ impl PrintDialog {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(&from_glib_borrow(this))
-            }
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);

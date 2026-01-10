@@ -62,10 +62,8 @@ impl GestureSwipe {
             velocity_y: std::ffi::c_double,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(&from_glib_borrow(this), velocity_x, velocity_y)
-            }
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this), velocity_x, velocity_y)
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);

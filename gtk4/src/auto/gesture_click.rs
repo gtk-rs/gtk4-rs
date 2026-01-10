@@ -44,10 +44,8 @@ impl GestureClick {
             y: std::ffi::c_double,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(&from_glib_borrow(this), n_press, x, y)
-            }
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this), n_press, x, y)
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -71,10 +69,8 @@ impl GestureClick {
             y: std::ffi::c_double,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(&from_glib_borrow(this), n_press, x, y)
-            }
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this), n_press, x, y)
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -95,10 +91,8 @@ impl GestureClick {
             this: *mut ffi::GtkGestureClick,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(&from_glib_borrow(this))
-            }
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -130,18 +124,16 @@ impl GestureClick {
             sequence: *mut gdk::ffi::GdkEventSequence,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(
-                    &from_glib_borrow(this),
-                    x,
-                    y,
-                    button,
-                    Option::<gdk::EventSequence>::from_glib_borrow(sequence)
-                        .as_ref()
-                        .as_ref(),
-                )
-            }
+            let f: &F = &*(f as *const F);
+            f(
+                &from_glib_borrow(this),
+                x,
+                y,
+                button,
+                Option::<gdk::EventSequence>::from_glib_borrow(sequence)
+                    .as_ref()
+                    .as_ref(),
+            )
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);

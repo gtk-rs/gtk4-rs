@@ -233,15 +233,13 @@ pub trait GestureExt: IsA<Gesture> + 'static {
             sequence: *mut gdk::ffi::GdkEventSequence,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(
-                    Gesture::from_glib_borrow(this).unsafe_cast_ref(),
-                    Option::<gdk::EventSequence>::from_glib_borrow(sequence)
-                        .as_ref()
-                        .as_ref(),
-                )
-            }
+            let f: &F = &*(f as *const F);
+            f(
+                Gesture::from_glib_borrow(this).unsafe_cast_ref(),
+                Option::<gdk::EventSequence>::from_glib_borrow(sequence)
+                    .as_ref()
+                    .as_ref(),
+            )
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -269,15 +267,13 @@ pub trait GestureExt: IsA<Gesture> + 'static {
             sequence: *mut gdk::ffi::GdkEventSequence,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(
-                    Gesture::from_glib_borrow(this).unsafe_cast_ref(),
-                    Option::<gdk::EventSequence>::from_glib_borrow(sequence)
-                        .as_ref()
-                        .as_ref(),
-                )
-            }
+            let f: &F = &*(f as *const F);
+            f(
+                Gesture::from_glib_borrow(this).unsafe_cast_ref(),
+                Option::<gdk::EventSequence>::from_glib_borrow(sequence)
+                    .as_ref()
+                    .as_ref(),
+            )
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -305,15 +301,13 @@ pub trait GestureExt: IsA<Gesture> + 'static {
             sequence: *mut gdk::ffi::GdkEventSequence,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(
-                    Gesture::from_glib_borrow(this).unsafe_cast_ref(),
-                    Option::<gdk::EventSequence>::from_glib_borrow(sequence)
-                        .as_ref()
-                        .as_ref(),
-                )
-            }
+            let f: &F = &*(f as *const F);
+            f(
+                Gesture::from_glib_borrow(this).unsafe_cast_ref(),
+                Option::<gdk::EventSequence>::from_glib_borrow(sequence)
+                    .as_ref()
+                    .as_ref(),
+            )
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -344,16 +338,14 @@ pub trait GestureExt: IsA<Gesture> + 'static {
             state: ffi::GtkEventSequenceState,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(
-                    Gesture::from_glib_borrow(this).unsafe_cast_ref(),
-                    Option::<gdk::EventSequence>::from_glib_borrow(sequence)
-                        .as_ref()
-                        .as_ref(),
-                    from_glib(state),
-                )
-            }
+            let f: &F = &*(f as *const F);
+            f(
+                Gesture::from_glib_borrow(this).unsafe_cast_ref(),
+                Option::<gdk::EventSequence>::from_glib_borrow(sequence)
+                    .as_ref()
+                    .as_ref(),
+                from_glib(state),
+            )
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -381,15 +373,13 @@ pub trait GestureExt: IsA<Gesture> + 'static {
             sequence: *mut gdk::ffi::GdkEventSequence,
             f: glib::ffi::gpointer,
         ) {
-            unsafe {
-                let f: &F = &*(f as *const F);
-                f(
-                    Gesture::from_glib_borrow(this).unsafe_cast_ref(),
-                    Option::<gdk::EventSequence>::from_glib_borrow(sequence)
-                        .as_ref()
-                        .as_ref(),
-                )
-            }
+            let f: &F = &*(f as *const F);
+            f(
+                Gesture::from_glib_borrow(this).unsafe_cast_ref(),
+                Option::<gdk::EventSequence>::from_glib_borrow(sequence)
+                    .as_ref()
+                    .as_ref(),
+            )
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);

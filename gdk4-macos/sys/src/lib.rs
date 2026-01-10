@@ -189,7 +189,7 @@ impl ::std::fmt::Debug for GdkMacosSurface {
     }
 }
 
-unsafe extern "C" {
+extern "C" {
 
     //=========================================================================
     // GdkMacosDevice
