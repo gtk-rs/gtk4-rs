@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4-macros/src/attribute_parser.rs`."><title>attribute_parser.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-77263533.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gtk4_macros" data-themes="" data-resource-suffix="" data-rustdoc-version="1.94.0-nightly (a3f2d5abe 2026-01-09)" data-channel="nightly" data-search-js="search-9e2438ea.js" data-stringdex-js="stringdex-b897f86f.js" data-settings-js="settings-c38705f0.js" ><script src="../../static.files/storage-e2aeef58.js"></script><script defer src="../../static.files/src-script-813739b1.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-7bab91a1.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-ffcac47a.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4-macros/src/attribute_parser.rs`."><title>attribute_parser.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-77263533.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gtk4_macros" data-themes="" data-resource-suffix="" data-rustdoc-version="1.94.0-nightly (f57eac1bf 2026-01-10)" data-channel="nightly" data-search-js="search-9e2438ea.js" data-stringdex-js="stringdex-b897f86f.js" data-settings-js="settings-c38705f0.js" ><script src="../../static.files/storage-e2aeef58.js"></script><script defer src="../../static.files/src-script-813739b1.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-7bab91a1.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-ffcac47a.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
 
@@ -76,10 +76,10 @@
 <a href=#3 id=3 data-nosnippet>3</a></span><span class="kw">use </span><a href="https://docs.rs/proc-macro2/1.0.105/proc_macro2/struct.Span.html">proc_macro2::Span</a>;
 <a href=#4 id=4 data-nosnippet>4</a><span class="kw">use </span><a href="https://docs.rs/quote/1.0.43/quote/to_tokens/trait.ToTokens.html">quote::ToTokens</a>;
 <a href=#5 id=5 data-nosnippet>5</a><span class="kw">use </span>syn::{
-<a href=#6 id=6 data-nosnippet>6</a>    parse::{<a href="https://docs.rs/syn/2.0.114/syn/parse/trait.Parse.html">Parse</a>, <a href="https://docs.rs/syn/2.0.114/syn/parse/type.ParseStream.html">ParseStream</a>},
-<a href=#7 id=7 data-nosnippet>7</a>    <a href="https://docs.rs/syn/2.0.114/syn/punctuated/struct.Punctuated.html">punctuated::Punctuated</a>,
-<a href=#8 id=8 data-nosnippet>8</a>    <a href="https://docs.rs/syn/2.0.114/syn/attr/struct.Attribute.html">Attribute</a>, <a href="https://docs.rs/syn/2.0.114/syn/derive/struct.DeriveInput.html">DeriveInput</a>, <a href="https://docs.rs/syn/2.0.114/syn/error/struct.Error.html">Error</a>, <a href="https://docs.rs/syn/2.0.114/syn/data/struct.Field.html">Field</a>, <a href="https://docs.rs/syn/2.0.114/syn/data/enum.Fields.html">Fields</a>, Ident, LitBool, LitStr, <a href="https://docs.rs/syn/2.0.114/syn/attr/enum.Meta.html">Meta</a>, <a class="prelude-ty" href="https://docs.rs/syn/2.0.114/syn/error/type.Result.html">Result</a>, <a href="https://docs.rs/syn/2.0.114/syn/macro.Token.html">Token</a>,
-<a href=#9 id=9 data-nosnippet>9</a>    <a href="https://docs.rs/syn/2.0.114/syn/ty/enum.Type.html">Type</a>,
+<a href=#6 id=6 data-nosnippet>6</a>    <a href="https://docs.rs/syn/2.0.114/syn/attr/struct.Attribute.html">Attribute</a>, <a href="https://docs.rs/syn/2.0.114/syn/derive/struct.DeriveInput.html">DeriveInput</a>, <a href="https://docs.rs/syn/2.0.114/syn/error/struct.Error.html">Error</a>, <a href="https://docs.rs/syn/2.0.114/syn/data/struct.Field.html">Field</a>, <a href="https://docs.rs/syn/2.0.114/syn/data/enum.Fields.html">Fields</a>, Ident, LitBool, LitStr, <a href="https://docs.rs/syn/2.0.114/syn/attr/enum.Meta.html">Meta</a>, <a class="prelude-ty" href="https://docs.rs/syn/2.0.114/syn/error/type.Result.html">Result</a>, <a href="https://docs.rs/syn/2.0.114/syn/macro.Token.html">Token</a>,
+<a href=#7 id=7 data-nosnippet>7</a>    <a href="https://docs.rs/syn/2.0.114/syn/ty/enum.Type.html">Type</a>,
+<a href=#8 id=8 data-nosnippet>8</a>    parse::{<a href="https://docs.rs/syn/2.0.114/syn/parse/trait.Parse.html">Parse</a>, <a href="https://docs.rs/syn/2.0.114/syn/parse/type.ParseStream.html">ParseStream</a>},
+<a href=#9 id=9 data-nosnippet>9</a>    <a href="https://docs.rs/syn/2.0.114/syn/punctuated/struct.Punctuated.html">punctuated::Punctuated</a>,
 <a href=#10 id=10 data-nosnippet>10</a>};
 <a href=#11 id=11 data-nosnippet>11</a>
 <a href=#12 id=12 data-nosnippet>12</a><span class="doccomment">/// Custom meta keywords.
@@ -422,25 +422,27 @@
 <a href=#349 id=349 data-nosnippet>349</a>
 <a href=#350 id=350 data-nosnippet>350</a>    <span class="kw">for </span>field <span class="kw">in </span>fields {
 <a href=#351 id=351 data-nosnippet>351</a>        <span class="kw">let </span><span class="kw-2">mut </span>has_attr = <span class="bool-val">false</span>;
-<a href=#352 id=352 data-nosnippet>352</a>        <span class="kw">if </span>!field.attrs.is_empty() {
-<a href=#353 id=353 data-nosnippet>353</a>            <span class="kw">if let </span><span class="prelude-val">Some</span>(attributed_field) = parse_field(field)<span class="question-mark">? </span>{
-<a href=#354 id=354 data-nosnippet>354</a>                attributed_fields.push(attributed_field);
-<a href=#355 id=355 data-nosnippet>355</a>                has_attr = <span class="bool-val">true</span>;
-<a href=#356 id=356 data-nosnippet>356</a>            }
+<a href=#352 id=352 data-nosnippet>352</a>        <span class="kw">if </span>!field.attrs.is_empty()
+<a href=#353 id=353 data-nosnippet>353</a>            &amp;&amp; <span class="kw">let </span><span class="prelude-val">Some</span>(attributed_field) = parse_field(field)<span class="question-mark">?
+<a href=#354 id=354 data-nosnippet>354</a>        </span>{
+<a href=#355 id=355 data-nosnippet>355</a>            attributed_fields.push(attributed_field);
+<a href=#356 id=356 data-nosnippet>356</a>            has_attr = <span class="bool-val">true</span>;
 <a href=#357 id=357 data-nosnippet>357</a>        }
-<a href=#358 id=358 data-nosnippet>358</a>        <span class="kw">if </span>!has_attr &amp;&amp; !allow_missing_attribute {
-<a href=#359 id=359 data-nosnippet>359</a>            <span class="kw">if let </span>syn::Type::Path(syn::TypePath { path, .. }) = <span class="kw-2">&amp;</span>field.ty {
-<a href=#360 id=360 data-nosnippet>360</a>                <span class="kw">if </span>path_is_template_child(path) {
-<a href=#361 id=361 data-nosnippet>361</a>                    <span class="kw">return </span><span class="prelude-val">Err</span>(Error::new_spanned(
-<a href=#362 id=362 data-nosnippet>362</a>                        field,
-<a href=#363 id=363 data-nosnippet>363</a>                        <span class="macro">format!</span>(<span class="string">"field `{}` with type `TemplateChild` possibly missing #[template_child] attribute. Use a meta attribute on the struct to suppress this error: '#[template(string|file|resource = \"...\", allow_template_child_without_attribute)]'"</span>,
-<a href=#364 id=364 data-nosnippet>364</a>                        field.ident.as_ref().unwrap())
-<a href=#365 id=365 data-nosnippet>365</a>                    ));
-<a href=#366 id=366 data-nosnippet>366</a>                }
-<a href=#367 id=367 data-nosnippet>367</a>            }
-<a href=#368 id=368 data-nosnippet>368</a>        }
-<a href=#369 id=369 data-nosnippet>369</a>    }
-<a href=#370 id=370 data-nosnippet>370</a>
-<a href=#371 id=371 data-nosnippet>371</a>    <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html#variant.Ok">Ok</a>(<a href="#348">attributed_fields</a>)
-<a href=#372 id=372 data-nosnippet>372</a>}
+<a href=#358 id=358 data-nosnippet>358</a>        <span class="kw">if </span>!has_attr
+<a href=#359 id=359 data-nosnippet>359</a>            &amp;&amp; !allow_missing_attribute
+<a href=#360 id=360 data-nosnippet>360</a>            &amp;&amp; <span class="kw">let </span>syn::Type::Path(syn::TypePath { path, .. }) = <span class="kw-2">&amp;</span>field.ty
+<a href=#361 id=361 data-nosnippet>361</a>            &amp;&amp; path_is_template_child(path)
+<a href=#362 id=362 data-nosnippet>362</a>        {
+<a href=#363 id=363 data-nosnippet>363</a>            <span class="kw">return </span><span class="prelude-val">Err</span>(Error::new_spanned(
+<a href=#364 id=364 data-nosnippet>364</a>                field,
+<a href=#365 id=365 data-nosnippet>365</a>                <span class="macro">format!</span>(
+<a href=#366 id=366 data-nosnippet>366</a>                    <span class="string">"field `{}` with type `TemplateChild` possibly missing #[template_child] attribute. Use a meta attribute on the struct to suppress this error: '#[template(string|file|resource = \"...\", allow_template_child_without_attribute)]'"</span>,
+<a href=#367 id=367 data-nosnippet>367</a>                    field.ident.as_ref().unwrap()
+<a href=#368 id=368 data-nosnippet>368</a>                ),
+<a href=#369 id=369 data-nosnippet>369</a>            ));
+<a href=#370 id=370 data-nosnippet>370</a>        }
+<a href=#371 id=371 data-nosnippet>371</a>    }
+<a href=#372 id=372 data-nosnippet>372</a>
+<a href=#373 id=373 data-nosnippet>373</a>    <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html#variant.Ok">Ok</a>(<a href="#348">attributed_fields</a>)
+<a href=#374 id=374 data-nosnippet>374</a>}
 </code></pre></div></section></main></body></html>

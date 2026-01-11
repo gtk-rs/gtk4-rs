@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/subclass/gl_area.rs`."><title>gl_area.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-77263533.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.94.0-nightly (a3f2d5abe 2026-01-09)" data-channel="nightly" data-search-js="search-9e2438ea.js" data-stringdex-js="stringdex-b897f86f.js" data-settings-js="settings-c38705f0.js" ><script src="../../../static.files/storage-e2aeef58.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-7bab91a1.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-ffcac47a.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/subclass/gl_area.rs`."><title>gl_area.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-77263533.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.94.0-nightly (f57eac1bf 2026-01-10)" data-channel="nightly" data-search-js="search-9e2438ea.js" data-stringdex-js="stringdex-b897f86f.js" data-settings-js="settings-c38705f0.js" ><script src="../../../static.files/storage-e2aeef58.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-7bab91a1.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-ffcac47a.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
 
@@ -79,7 +79,7 @@
 <a href=#6 id=6 data-nosnippet>6</a></span><span class="kw">use </span><a href="../../../gdk4/auto/gl_context/struct.GLContext.html">gdk::GLContext</a>;
 <a href=#7 id=7 data-nosnippet>7</a><span class="kw">use </span>glib::translate::<span class="kw-2">*</span>;
 <a href=#8 id=8 data-nosnippet>8</a>
-<a href=#9 id=9 data-nosnippet>9</a><span class="kw">use </span>crate::{<a href="../../../gtk4_sys/index.html">ffi</a>, prelude::<span class="kw-2">*</span>, subclass::prelude::<span class="kw-2">*</span>, <a href="../auto/gl_area.rs.html#18-682">GLArea</a>};
+<a href=#9 id=9 data-nosnippet>9</a><span class="kw">use </span>crate::{<a href="../auto/gl_area.rs.html#18-682">GLArea</a>, <a href="../../../gtk4_sys/index.html">ffi</a>, prelude::<span class="kw-2">*</span>, subclass::prelude::<span class="kw-2">*</span>};
 <a href=#10 id=10 data-nosnippet>10</a>
 <a href=#11 id=11 data-nosnippet>11</a><span class="attr">#[allow(clippy::upper_case_acronyms)]
 <a href=#12 id=12 data-nosnippet>12</a></span><span class="kw">pub trait </span><a href="../../../gtk4/subclass/gl_area/trait.GLAreaImpl.html">GLAreaImpl</a>: <a href="widget.rs.html#113-404">WidgetImpl</a> + <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/subclass/types/trait.ObjectSubclass.html">ObjectSubclass</a>&lt;Type: <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html">IsA</a>&lt;<a href="../auto/gl_area.rs.html#18-682">GLArea</a>&gt;&gt; {
@@ -157,30 +157,36 @@
 <a href=#84 id=84 data-nosnippet>84</a><span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn </span>gl_area_create_context&lt;T: <a href="#12-27">GLAreaImpl</a>&gt;(
 <a href=#85 id=85 data-nosnippet>85</a>    ptr: <span class="kw-2">*mut </span>ffi::<a href="../../../gtk4_sys/struct.GtkGLArea.html">GtkGLArea</a>,
 <a href=#86 id=86 data-nosnippet>86</a>) -&gt; <span class="kw-2">*mut </span>gdk::ffi::<a href="../../../gdk4_sys/struct.GdkGLContext.html">GdkGLContext</a> {
-<a href=#87 id=87 data-nosnippet>87</a>    <span class="kw">let </span>instance = <span class="kw-2">&amp;*</span>(<a href="#85">ptr</a> <span class="kw">as </span><span class="kw-2">*mut </span>T::Instance);
-<a href=#88 id=88 data-nosnippet>88</a>    <span class="kw">let </span>imp = <a href="#87">instance</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/subclass/types/trait.InstanceStructExt.html#tymethod.imp">imp</a>();
-<a href=#89 id=89 data-nosnippet>89</a>
-<a href=#90 id=90 data-nosnippet>90</a>    <a href="#88">imp</a>.<a href="#14-16">create_context</a>().<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.IntoGlibPtr.html#tymethod.into_glib_ptr">into_glib_ptr</a>()
-<a href=#91 id=91 data-nosnippet>91</a>}
-<a href=#92 id=92 data-nosnippet>92</a>
-<a href=#93 id=93 data-nosnippet>93</a><span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn </span>gl_area_render&lt;T: <a href="#12-27">GLAreaImpl</a>&gt;(
-<a href=#94 id=94 data-nosnippet>94</a>    ptr: <span class="kw-2">*mut </span>ffi::<a href="../../../gtk4_sys/struct.GtkGLArea.html">GtkGLArea</a>,
-<a href=#95 id=95 data-nosnippet>95</a>    context: <span class="kw-2">*mut </span>gdk::ffi::<a href="../../../gdk4_sys/struct.GdkGLContext.html">GdkGLContext</a>,
-<a href=#96 id=96 data-nosnippet>96</a>) -&gt; glib::ffi::gboolean {
-<a href=#97 id=97 data-nosnippet>97</a>    <span class="kw">let </span>instance = <span class="kw-2">&amp;*</span>(<a href="#94">ptr</a> <span class="kw">as </span><span class="kw-2">*mut </span>T::Instance);
-<a href=#98 id=98 data-nosnippet>98</a>    <span class="kw">let </span>imp = <a href="#97">instance</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/subclass/types/trait.InstanceStructExt.html#tymethod.imp">imp</a>();
-<a href=#99 id=99 data-nosnippet>99</a>
-<a href=#100 id=100 data-nosnippet>100</a>    <a href="#98">imp</a>.<a href="#19-21">render</a>(<span class="kw-2">&amp;</span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib_borrow.html">from_glib_borrow</a>(<a href="#95">context</a>)).<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>()
-<a href=#101 id=101 data-nosnippet>101</a>}
+<a href=#87 id=87 data-nosnippet>87</a>    <span class="kw">unsafe </span>{
+<a href=#88 id=88 data-nosnippet>88</a>        <span class="kw">let </span>instance = <span class="kw-2">&amp;*</span>(<a href="#85">ptr</a> <span class="kw">as </span><span class="kw-2">*mut </span>T::Instance);
+<a href=#89 id=89 data-nosnippet>89</a>        <span class="kw">let </span>imp = <a href="#88">instance</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/subclass/types/trait.InstanceStructExt.html#tymethod.imp">imp</a>();
+<a href=#90 id=90 data-nosnippet>90</a>
+<a href=#91 id=91 data-nosnippet>91</a>        <a href="#89">imp</a>.<a href="#14-16">create_context</a>().<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.IntoGlibPtr.html#tymethod.into_glib_ptr">into_glib_ptr</a>()
+<a href=#92 id=92 data-nosnippet>92</a>    }
+<a href=#93 id=93 data-nosnippet>93</a>}
+<a href=#94 id=94 data-nosnippet>94</a>
+<a href=#95 id=95 data-nosnippet>95</a><span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn </span>gl_area_render&lt;T: <a href="#12-27">GLAreaImpl</a>&gt;(
+<a href=#96 id=96 data-nosnippet>96</a>    ptr: <span class="kw-2">*mut </span>ffi::<a href="../../../gtk4_sys/struct.GtkGLArea.html">GtkGLArea</a>,
+<a href=#97 id=97 data-nosnippet>97</a>    context: <span class="kw-2">*mut </span>gdk::ffi::<a href="../../../gdk4_sys/struct.GdkGLContext.html">GdkGLContext</a>,
+<a href=#98 id=98 data-nosnippet>98</a>) -&gt; glib::ffi::gboolean {
+<a href=#99 id=99 data-nosnippet>99</a>    <span class="kw">unsafe </span>{
+<a href=#100 id=100 data-nosnippet>100</a>        <span class="kw">let </span>instance = <span class="kw-2">&amp;*</span>(<a href="#96">ptr</a> <span class="kw">as </span><span class="kw-2">*mut </span>T::Instance);
+<a href=#101 id=101 data-nosnippet>101</a>        <span class="kw">let </span>imp = <a href="#100">instance</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/subclass/types/trait.InstanceStructExt.html#tymethod.imp">imp</a>();
 <a href=#102 id=102 data-nosnippet>102</a>
-<a href=#103 id=103 data-nosnippet>103</a><span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn </span>gl_area_resize&lt;T: <a href="#12-27">GLAreaImpl</a>&gt;(
-<a href=#104 id=104 data-nosnippet>104</a>    ptr: <span class="kw-2">*mut </span>ffi::<a href="../../../gtk4_sys/struct.GtkGLArea.html">GtkGLArea</a>,
-<a href=#105 id=105 data-nosnippet>105</a>    width: <a href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>,
-<a href=#106 id=106 data-nosnippet>106</a>    height: <a href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>,
-<a href=#107 id=107 data-nosnippet>107</a>) {
-<a href=#108 id=108 data-nosnippet>108</a>    <span class="kw">let </span>instance = <span class="kw-2">&amp;*</span>(<a href="#104">ptr</a> <span class="kw">as </span><span class="kw-2">*mut </span>T::Instance);
-<a href=#109 id=109 data-nosnippet>109</a>    <span class="kw">let </span>imp = <a href="#108">instance</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/subclass/types/trait.InstanceStructExt.html#tymethod.imp">imp</a>();
-<a href=#110 id=110 data-nosnippet>110</a>
-<a href=#111 id=111 data-nosnippet>111</a>    <a href="#109">imp</a>.<a href="#24-26">resize</a>(<a href="#105">width</a>, <a href="#106">height</a>)
-<a href=#112 id=112 data-nosnippet>112</a>}
+<a href=#103 id=103 data-nosnippet>103</a>        <a href="#101">imp</a>.<a href="#19-21">render</a>(<span class="kw-2">&amp;</span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib_borrow.html">from_glib_borrow</a>(<a href="#97">context</a>)).<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>()
+<a href=#104 id=104 data-nosnippet>104</a>    }
+<a href=#105 id=105 data-nosnippet>105</a>}
+<a href=#106 id=106 data-nosnippet>106</a>
+<a href=#107 id=107 data-nosnippet>107</a><span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn </span>gl_area_resize&lt;T: <a href="#12-27">GLAreaImpl</a>&gt;(
+<a href=#108 id=108 data-nosnippet>108</a>    ptr: <span class="kw-2">*mut </span>ffi::<a href="../../../gtk4_sys/struct.GtkGLArea.html">GtkGLArea</a>,
+<a href=#109 id=109 data-nosnippet>109</a>    width: <a href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>,
+<a href=#110 id=110 data-nosnippet>110</a>    height: <a href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>,
+<a href=#111 id=111 data-nosnippet>111</a>) {
+<a href=#112 id=112 data-nosnippet>112</a>    <span class="kw">unsafe </span>{
+<a href=#113 id=113 data-nosnippet>113</a>        <span class="kw">let </span>instance = <span class="kw-2">&amp;*</span>(<a href="#108">ptr</a> <span class="kw">as </span><span class="kw-2">*mut </span>T::Instance);
+<a href=#114 id=114 data-nosnippet>114</a>        <span class="kw">let </span>imp = <a href="#113">instance</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/subclass/types/trait.InstanceStructExt.html#tymethod.imp">imp</a>();
+<a href=#115 id=115 data-nosnippet>115</a>
+<a href=#116 id=116 data-nosnippet>116</a>        <a href="#114">imp</a>.<a href="#24-26">resize</a>(<a href="#109">width</a>, <a href="#110">height</a>)
+<a href=#117 id=117 data-nosnippet>117</a>    }
+<a href=#118 id=118 data-nosnippet>118</a>}
 </code></pre></div></section></main></body></html>

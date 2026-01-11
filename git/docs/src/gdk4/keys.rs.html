@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gdk4/src/keys.rs`."><title>keys.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-77263533.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gdk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.94.0-nightly (a3f2d5abe 2026-01-09)" data-channel="nightly" data-search-js="search-9e2438ea.js" data-stringdex-js="stringdex-b897f86f.js" data-settings-js="settings-c38705f0.js" ><script src="../../static.files/storage-e2aeef58.js"></script><script defer src="../../static.files/src-script-813739b1.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-7bab91a1.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-ffcac47a.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gdk4/src/keys.rs`."><title>keys.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-77263533.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gdk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.94.0-nightly (f57eac1bf 2026-01-10)" data-channel="nightly" data-search-js="search-9e2438ea.js" data-stringdex-js="stringdex-b897f86f.js" data-settings-js="settings-c38705f0.js" ><script src="../../static.files/storage-e2aeef58.js"></script><script defer src="../../static.files/src-script-813739b1.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-7bab91a1.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-ffcac47a.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
 
@@ -74,7 +74,7 @@
 <nav class="sidebar"><div class="src-sidebar-title"><h2>Files</h2></div></nav><div class="sidebar-resizer" title="Drag to resize sidebar"></div><main><section id="main-content" class="content"><div class="main-heading"><h1><div class="sub-heading">gdk4/</div>keys.rs</h1><rustdoc-toolbar></rustdoc-toolbar></div><div class="example-wrap digits-4"><pre class="rust"><code><a href=#1 id=1 data-nosnippet>1</a><span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.
 <a href=#2 id=2 data-nosnippet>2</a>
 <a href=#3 id=3 data-nosnippet>3</a></span><span class="kw">use </span>crate::{<a href="../../gdk4_sys/index.html">ffi</a>, prelude::<span class="kw-2">*</span>};
-<a href=#4 id=4 data-nosnippet>4</a><span class="kw">use </span>glib::{translate::<span class="kw-2">*</span>, <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/trait.FromValue.html">value::FromValue</a>, <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/gstring/struct.GString.html">GString</a>, <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/types/struct.Type.html">Type</a>, <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>};
+<a href=#4 id=4 data-nosnippet>4</a><span class="kw">use </span>glib::{<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/gstring/struct.GString.html">GString</a>, <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/types/struct.Type.html">Type</a>, <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>, translate::<span class="kw-2">*</span>, <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/trait.FromValue.html">value::FromValue</a>};
 <a href=#5 id=5 data-nosnippet>5</a>
 <a href=#6 id=6 data-nosnippet>6</a><span class="attr">#[derive(<a href="https://doc.rust-lang.org/nightly/core/clone/derive.Clone.html">Clone</a>, <a href="https://doc.rust-lang.org/nightly/core/marker/derive.Copy.html">Copy</a>, <a href="https://doc.rust-lang.org/nightly/core/fmt/macros/derive.Debug.html">Debug</a>, <a href="https://doc.rust-lang.org/nightly/core/cmp/derive.PartialEq.html">PartialEq</a>, <a href="https://doc.rust-lang.org/nightly/core/cmp/derive.Eq.html">Eq</a>, <a href="https://doc.rust-lang.org/nightly/core/cmp/derive.PartialOrd.html">PartialOrd</a>, <a href="https://doc.rust-lang.org/nightly/core/cmp/derive.Ord.html">Ord</a>, <a href="https://doc.rust-lang.org/nightly/core/hash/macros/derive.Hash.html">Hash</a>)]
 <a href=#7 id=7 data-nosnippet>7</a></span><span class="comment">// rustdoc-stripper-ignore-next
@@ -5176,58 +5176,60 @@
 <a href=#5103 id=5103 data-nosnippet>5103</a>
 <a href=#5104 id=5104 data-nosnippet>5104</a>    <span class="attr">#[inline]
 <a href=#5105 id=5105 data-nosnippet>5105</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
-<a href=#5106 id=5106 data-nosnippet>5106</a>        <span class="kw">let </span>res: <a href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a> = glib::gobject_ffi::g_value_get_uint(<a href="#5105">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>);
-<a href=#5107 id=5107 data-nosnippet>5107</a>        <span class="comment">// As most of gdk_keyval_ apis don't really do any check for the input value
-<a href=#5108 id=5108 data-nosnippet>5108</a>        // (the key number) other than gdk_keyval_from_name, it is safe to not
-<a href=#5109 id=5109 data-nosnippet>5109</a>        // do any checks and assume people will not mis-use it
-<a href=#5110 id=5110 data-nosnippet>5110</a>        </span><a href="#9">Key</a>::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.FromGlib.html#tymethod.from_glib">from_glib</a>(<a href="#5106">res</a>)
-<a href=#5111 id=5111 data-nosnippet>5111</a>    }
-<a href=#5112 id=5112 data-nosnippet>5112</a>}
-<a href=#5113 id=5113 data-nosnippet>5113</a>
-<a href=#5114 id=5114 data-nosnippet>5114</a><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/trait.ToValue.html">ToValue</a> <span class="kw">for </span><a href="#9">Key</a> {
-<a href=#5115 id=5115 data-nosnippet>5115</a>    <span class="attr">#[inline]
-<a href=#5116 id=5116 data-nosnippet>5116</a>    </span><span class="kw">fn </span>to_value(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a> {
-<a href=#5117 id=5117 data-nosnippet>5117</a>        <span class="kw">let </span>value = <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>::for_value_type::&lt;<span class="self">Self</span>&gt;();
-<a href=#5118 id=5118 data-nosnippet>5118</a>        <span class="kw">unsafe </span>{
-<a href=#5119 id=5119 data-nosnippet>5119</a>            glib::gobject_ffi::g_value_set_uint(<a href="#5117">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0 </span><span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>, <a class="self" href="#5116">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>());
-<a href=#5120 id=5120 data-nosnippet>5120</a>        }
-<a href=#5121 id=5121 data-nosnippet>5121</a>        <a href="#5117">value</a>
-<a href=#5122 id=5122 data-nosnippet>5122</a>    }
-<a href=#5123 id=5123 data-nosnippet>5123</a>
-<a href=#5124 id=5124 data-nosnippet>5124</a>    <span class="attr">#[inline]
-<a href=#5125 id=5125 data-nosnippet>5125</a>    </span><span class="kw">fn </span>value_type(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/types/struct.Type.html">Type</a> {
-<a href=#5126 id=5126 data-nosnippet>5126</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/types/struct.Type.html">Type</a>::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/types/struct.Type.html#associatedconstant.U32">U32</a>
-<a href=#5127 id=5127 data-nosnippet>5127</a>    }
-<a href=#5128 id=5128 data-nosnippet>5128</a>}
-<a href=#5129 id=5129 data-nosnippet>5129</a>
-<a href=#5130 id=5130 data-nosnippet>5130</a><span class="kw">impl </span><a href="https://doc.rust-lang.org/nightly/core/convert/trait.From.html">From</a>&lt;<a href="#9">Key</a>&gt; <span class="kw">for </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a> {
-<a href=#5131 id=5131 data-nosnippet>5131</a>    <span class="attr">#[inline]
-<a href=#5132 id=5132 data-nosnippet>5132</a>    </span><span class="kw">fn </span>from(k: <a href="#9">Key</a>) -&gt; <span class="self">Self </span>{
-<a href=#5133 id=5133 data-nosnippet>5133</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#5134 id=5134 data-nosnippet>5134</a>        <a href="#5132">k</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/trait.ToValue.html#tymethod.to_value">to_value</a>()
-<a href=#5135 id=5135 data-nosnippet>5135</a>    }
-<a href=#5136 id=5136 data-nosnippet>5136</a>}
-<a href=#5137 id=5137 data-nosnippet>5137</a>
-<a href=#5138 id=5138 data-nosnippet>5138</a><span class="comment">// TODO: Drop once https://github.com/gtk-rs/gtk-rs-core/issues/612
-<a href=#5139 id=5139 data-nosnippet>5139</a></span><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/types/trait.StaticType.html">StaticType</a> <span class="kw">for </span><a href="#9">Key</a> {
-<a href=#5140 id=5140 data-nosnippet>5140</a>    <span class="attr">#[inline]
-<a href=#5141 id=5141 data-nosnippet>5141</a>    </span><span class="kw">fn </span>static_type() -&gt; <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/types/struct.Type.html">Type</a> {
-<a href=#5142 id=5142 data-nosnippet>5142</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/types/struct.Type.html">Type</a>::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/types/struct.Type.html#associatedconstant.U32">U32</a>
-<a href=#5143 id=5143 data-nosnippet>5143</a>    }
-<a href=#5144 id=5144 data-nosnippet>5144</a>}
-<a href=#5145 id=5145 data-nosnippet>5145</a>
-<a href=#5146 id=5146 data-nosnippet>5146</a><span class="attr">#[cfg(test)]
-<a href=#5147 id=5147 data-nosnippet>5147</a></span><span class="kw">mod </span>test {
-<a href=#5148 id=5148 data-nosnippet>5148</a>    <span class="kw">use </span>super::<span class="kw-2">*</span>;
-<a href=#5149 id=5149 data-nosnippet>5149</a>
-<a href=#5150 id=5150 data-nosnippet>5150</a>    <span class="attr">#[std::prelude::v1::test]
-<a href=#5151 id=5151 data-nosnippet>5151</a>    </span><span class="kw">fn </span>test_key_value() {
-<a href=#5152 id=5152 data-nosnippet>5152</a>        <span class="kw">let </span>key = Key::KP_Enter;
-<a href=#5153 id=5153 data-nosnippet>5153</a>        <span class="kw">let </span>value = key.to_value();
-<a href=#5154 id=5154 data-nosnippet>5154</a>
-<a href=#5155 id=5155 data-nosnippet>5155</a>        <span class="macro">assert_eq!</span>(value.get::&lt;u32&gt;(), <span class="prelude-val">Ok</span>(Key::KP_Enter.into_glib()));
-<a href=#5156 id=5156 data-nosnippet>5156</a>        <span class="macro">assert_eq!</span>(<span class="kw">unsafe </span>{ Key::from_value(<span class="kw-2">&amp;</span>value) }, key);
-<a href=#5157 id=5157 data-nosnippet>5157</a>        <span class="macro">assert_eq!</span>(<span class="kw">unsafe </span>{ Key::from_glib(value.get::&lt;u32&gt;().unwrap()) }, key);
-<a href=#5158 id=5158 data-nosnippet>5158</a>    }
-<a href=#5159 id=5159 data-nosnippet>5159</a>}
+<a href=#5106 id=5106 data-nosnippet>5106</a>        <span class="kw">unsafe </span>{
+<a href=#5107 id=5107 data-nosnippet>5107</a>            <span class="kw">let </span>res: <a href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a> = glib::gobject_ffi::g_value_get_uint(<a href="#5105">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>);
+<a href=#5108 id=5108 data-nosnippet>5108</a>            <span class="comment">// As most of gdk_keyval_ apis don't really do any check for the input value
+<a href=#5109 id=5109 data-nosnippet>5109</a>            // (the key number) other than gdk_keyval_from_name, it is safe to not
+<a href=#5110 id=5110 data-nosnippet>5110</a>            // do any checks and assume people will not mis-use it
+<a href=#5111 id=5111 data-nosnippet>5111</a>            </span><a href="#9">Key</a>::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.FromGlib.html#tymethod.from_glib">from_glib</a>(<a href="#5107">res</a>)
+<a href=#5112 id=5112 data-nosnippet>5112</a>        }
+<a href=#5113 id=5113 data-nosnippet>5113</a>    }
+<a href=#5114 id=5114 data-nosnippet>5114</a>}
+<a href=#5115 id=5115 data-nosnippet>5115</a>
+<a href=#5116 id=5116 data-nosnippet>5116</a><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/trait.ToValue.html">ToValue</a> <span class="kw">for </span><a href="#9">Key</a> {
+<a href=#5117 id=5117 data-nosnippet>5117</a>    <span class="attr">#[inline]
+<a href=#5118 id=5118 data-nosnippet>5118</a>    </span><span class="kw">fn </span>to_value(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a> {
+<a href=#5119 id=5119 data-nosnippet>5119</a>        <span class="kw">let </span>value = <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>::for_value_type::&lt;<span class="self">Self</span>&gt;();
+<a href=#5120 id=5120 data-nosnippet>5120</a>        <span class="kw">unsafe </span>{
+<a href=#5121 id=5121 data-nosnippet>5121</a>            glib::gobject_ffi::g_value_set_uint(<a href="#5119">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0 </span><span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>, <a class="self" href="#5118">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>());
+<a href=#5122 id=5122 data-nosnippet>5122</a>        }
+<a href=#5123 id=5123 data-nosnippet>5123</a>        <a href="#5119">value</a>
+<a href=#5124 id=5124 data-nosnippet>5124</a>    }
+<a href=#5125 id=5125 data-nosnippet>5125</a>
+<a href=#5126 id=5126 data-nosnippet>5126</a>    <span class="attr">#[inline]
+<a href=#5127 id=5127 data-nosnippet>5127</a>    </span><span class="kw">fn </span>value_type(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/types/struct.Type.html">Type</a> {
+<a href=#5128 id=5128 data-nosnippet>5128</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/types/struct.Type.html">Type</a>::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/types/struct.Type.html#associatedconstant.U32">U32</a>
+<a href=#5129 id=5129 data-nosnippet>5129</a>    }
+<a href=#5130 id=5130 data-nosnippet>5130</a>}
+<a href=#5131 id=5131 data-nosnippet>5131</a>
+<a href=#5132 id=5132 data-nosnippet>5132</a><span class="kw">impl </span><a href="https://doc.rust-lang.org/nightly/core/convert/trait.From.html">From</a>&lt;<a href="#9">Key</a>&gt; <span class="kw">for </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a> {
+<a href=#5133 id=5133 data-nosnippet>5133</a>    <span class="attr">#[inline]
+<a href=#5134 id=5134 data-nosnippet>5134</a>    </span><span class="kw">fn </span>from(k: <a href="#9">Key</a>) -&gt; <span class="self">Self </span>{
+<a href=#5135 id=5135 data-nosnippet>5135</a>        <span class="macro">skip_assert_initialized!</span>();
+<a href=#5136 id=5136 data-nosnippet>5136</a>        <a href="#5134">k</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/trait.ToValue.html#tymethod.to_value">to_value</a>()
+<a href=#5137 id=5137 data-nosnippet>5137</a>    }
+<a href=#5138 id=5138 data-nosnippet>5138</a>}
+<a href=#5139 id=5139 data-nosnippet>5139</a>
+<a href=#5140 id=5140 data-nosnippet>5140</a><span class="comment">// TODO: Drop once https://github.com/gtk-rs/gtk-rs-core/issues/612
+<a href=#5141 id=5141 data-nosnippet>5141</a></span><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/types/trait.StaticType.html">StaticType</a> <span class="kw">for </span><a href="#9">Key</a> {
+<a href=#5142 id=5142 data-nosnippet>5142</a>    <span class="attr">#[inline]
+<a href=#5143 id=5143 data-nosnippet>5143</a>    </span><span class="kw">fn </span>static_type() -&gt; <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/types/struct.Type.html">Type</a> {
+<a href=#5144 id=5144 data-nosnippet>5144</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/types/struct.Type.html">Type</a>::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/types/struct.Type.html#associatedconstant.U32">U32</a>
+<a href=#5145 id=5145 data-nosnippet>5145</a>    }
+<a href=#5146 id=5146 data-nosnippet>5146</a>}
+<a href=#5147 id=5147 data-nosnippet>5147</a>
+<a href=#5148 id=5148 data-nosnippet>5148</a><span class="attr">#[cfg(test)]
+<a href=#5149 id=5149 data-nosnippet>5149</a></span><span class="kw">mod </span>test {
+<a href=#5150 id=5150 data-nosnippet>5150</a>    <span class="kw">use </span>super::<span class="kw-2">*</span>;
+<a href=#5151 id=5151 data-nosnippet>5151</a>
+<a href=#5152 id=5152 data-nosnippet>5152</a>    <span class="attr">#[std::prelude::v1::test]
+<a href=#5153 id=5153 data-nosnippet>5153</a>    </span><span class="kw">fn </span>test_key_value() {
+<a href=#5154 id=5154 data-nosnippet>5154</a>        <span class="kw">let </span>key = Key::KP_Enter;
+<a href=#5155 id=5155 data-nosnippet>5155</a>        <span class="kw">let </span>value = key.to_value();
+<a href=#5156 id=5156 data-nosnippet>5156</a>
+<a href=#5157 id=5157 data-nosnippet>5157</a>        <span class="macro">assert_eq!</span>(value.get::&lt;u32&gt;(), <span class="prelude-val">Ok</span>(Key::KP_Enter.into_glib()));
+<a href=#5158 id=5158 data-nosnippet>5158</a>        <span class="macro">assert_eq!</span>(<span class="kw">unsafe </span>{ Key::from_value(<span class="kw-2">&amp;</span>value) }, key);
+<a href=#5159 id=5159 data-nosnippet>5159</a>        <span class="macro">assert_eq!</span>(<span class="kw">unsafe </span>{ Key::from_glib(value.get::&lt;u32&gt;().unwrap()) }, key);
+<a href=#5160 id=5160 data-nosnippet>5160</a>    }
+<a href=#5161 id=5161 data-nosnippet>5161</a>}
 </code></pre></div></section></main></body></html>

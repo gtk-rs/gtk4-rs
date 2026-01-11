@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/auto/enums.rs`."><title>enums.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-77263533.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.94.0-nightly (a3f2d5abe 2026-01-09)" data-channel="nightly" data-search-js="search-9e2438ea.js" data-stringdex-js="stringdex-b897f86f.js" data-settings-js="settings-c38705f0.js" ><script src="../../../static.files/storage-e2aeef58.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-7bab91a1.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-ffcac47a.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/auto/enums.rs`."><title>enums.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-77263533.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.94.0-nightly (f57eac1bf 2026-01-10)" data-channel="nightly" data-search-js="search-9e2438ea.js" data-stringdex-js="stringdex-b897f86f.js" data-settings-js="settings-c38705f0.js" ><script src="../../../static.files/storage-e2aeef58.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-7bab91a1.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-ffcac47a.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
 
@@ -176,7 +176,7 @@
 <a href=#103 id=103 data-nosnippet>103</a>    <span class="attr">#[inline]
 <a href=#104 id=104 data-nosnippet>104</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
 <a href=#105 id=105 data-nosnippet>105</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#106 id=106 data-nosnippet>106</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#104">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#106 id=106 data-nosnippet>106</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#104">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#107 id=107 data-nosnippet>107</a>    }
 <a href=#108 id=108 data-nosnippet>108</a>}
 <a href=#109 id=109 data-nosnippet>109</a>
@@ -298,7 +298,7 @@
 <a href=#225 id=225 data-nosnippet>225</a>    <span class="attr">#[inline]
 <a href=#226 id=226 data-nosnippet>226</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
 <a href=#227 id=227 data-nosnippet>227</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#228 id=228 data-nosnippet>228</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#226">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#228 id=228 data-nosnippet>228</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#226">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#229 id=229 data-nosnippet>229</a>    }
 <a href=#230 id=230 data-nosnippet>230</a>}
 <a href=#231 id=231 data-nosnippet>231</a>
@@ -412,7 +412,7 @@
 <a href=#339 id=339 data-nosnippet>339</a>    <span class="attr">#[inline]
 <a href=#340 id=340 data-nosnippet>340</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
 <a href=#341 id=341 data-nosnippet>341</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#342 id=342 data-nosnippet>342</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#340">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#342 id=342 data-nosnippet>342</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#340">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#343 id=343 data-nosnippet>343</a>    }
 <a href=#344 id=344 data-nosnippet>344</a>}
 <a href=#345 id=345 data-nosnippet>345</a>
@@ -531,7 +531,7 @@
 <a href=#458 id=458 data-nosnippet>458</a>    <span class="attr">#[inline]
 <a href=#459 id=459 data-nosnippet>459</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
 <a href=#460 id=460 data-nosnippet>460</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#461 id=461 data-nosnippet>461</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#459">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#461 id=461 data-nosnippet>461</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#459">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#462 id=462 data-nosnippet>462</a>    }
 <a href=#463 id=463 data-nosnippet>463</a>}
 <a href=#464 id=464 data-nosnippet>464</a>
@@ -775,7 +775,7 @@
 <a href=#702 id=702 data-nosnippet>702</a>    <span class="attr">#[inline]
 <a href=#703 id=703 data-nosnippet>703</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
 <a href=#704 id=704 data-nosnippet>704</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#705 id=705 data-nosnippet>705</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#703">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#705 id=705 data-nosnippet>705</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#703">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#706 id=706 data-nosnippet>706</a>    }
 <a href=#707 id=707 data-nosnippet>707</a>}
 <a href=#708 id=708 data-nosnippet>708</a>
@@ -1064,7 +1064,7 @@
 <a href=#991 id=991 data-nosnippet>991</a>    <span class="attr">#[inline]
 <a href=#992 id=992 data-nosnippet>992</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
 <a href=#993 id=993 data-nosnippet>993</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#994 id=994 data-nosnippet>994</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#992">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#994 id=994 data-nosnippet>994</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#992">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#995 id=995 data-nosnippet>995</a>    }
 <a href=#996 id=996 data-nosnippet>996</a>}
 <a href=#997 id=997 data-nosnippet>997</a>
@@ -1635,7 +1635,7 @@
 <a href=#1562 id=1562 data-nosnippet>1562</a>    <span class="attr">#[inline]
 <a href=#1563 id=1563 data-nosnippet>1563</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
 <a href=#1564 id=1564 data-nosnippet>1564</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#1565 id=1565 data-nosnippet>1565</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#1563">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#1565 id=1565 data-nosnippet>1565</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#1563">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#1566 id=1566 data-nosnippet>1566</a>    }
 <a href=#1567 id=1567 data-nosnippet>1567</a>}
 <a href=#1568 id=1568 data-nosnippet>1568</a>
@@ -1746,7 +1746,7 @@
 <a href=#1673 id=1673 data-nosnippet>1673</a>    <span class="attr">#[inline]
 <a href=#1674 id=1674 data-nosnippet>1674</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
 <a href=#1675 id=1675 data-nosnippet>1675</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#1676 id=1676 data-nosnippet>1676</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#1674">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#1676 id=1676 data-nosnippet>1676</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#1674">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#1677 id=1677 data-nosnippet>1677</a>    }
 <a href=#1678 id=1678 data-nosnippet>1678</a>}
 <a href=#1679 id=1679 data-nosnippet>1679</a>
@@ -1908,7 +1908,7 @@
 <a href=#1835 id=1835 data-nosnippet>1835</a>    <span class="attr">#[inline]
 <a href=#1836 id=1836 data-nosnippet>1836</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
 <a href=#1837 id=1837 data-nosnippet>1837</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#1838 id=1838 data-nosnippet>1838</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#1836">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#1838 id=1838 data-nosnippet>1838</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#1836">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#1839 id=1839 data-nosnippet>1839</a>    }
 <a href=#1840 id=1840 data-nosnippet>1840</a>}
 <a href=#1841 id=1841 data-nosnippet>1841</a>
@@ -2023,7 +2023,7 @@
 <a href=#1950 id=1950 data-nosnippet>1950</a>    <span class="attr">#[inline]
 <a href=#1951 id=1951 data-nosnippet>1951</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
 <a href=#1952 id=1952 data-nosnippet>1952</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#1953 id=1953 data-nosnippet>1953</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#1951">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#1953 id=1953 data-nosnippet>1953</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#1951">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#1954 id=1954 data-nosnippet>1954</a>    }
 <a href=#1955 id=1955 data-nosnippet>1955</a>}
 <a href=#1956 id=1956 data-nosnippet>1956</a>
@@ -2165,7 +2165,7 @@
 <a href=#2092 id=2092 data-nosnippet>2092</a>    <span class="attr">#[inline]
 <a href=#2093 id=2093 data-nosnippet>2093</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
 <a href=#2094 id=2094 data-nosnippet>2094</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#2095 id=2095 data-nosnippet>2095</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#2093">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#2095 id=2095 data-nosnippet>2095</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#2093">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#2096 id=2096 data-nosnippet>2096</a>    }
 <a href=#2097 id=2097 data-nosnippet>2097</a>}
 <a href=#2098 id=2098 data-nosnippet>2098</a>
@@ -2278,7 +2278,7 @@
 <a href=#2205 id=2205 data-nosnippet>2205</a>    <span class="attr">#[inline]
 <a href=#2206 id=2206 data-nosnippet>2206</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
 <a href=#2207 id=2207 data-nosnippet>2207</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#2208 id=2208 data-nosnippet>2208</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#2206">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#2208 id=2208 data-nosnippet>2208</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#2206">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#2209 id=2209 data-nosnippet>2209</a>    }
 <a href=#2210 id=2210 data-nosnippet>2210</a>}
 <a href=#2211 id=2211 data-nosnippet>2211</a>
@@ -2392,7 +2392,7 @@
 <a href=#2319 id=2319 data-nosnippet>2319</a>    <span class="attr">#[inline]
 <a href=#2320 id=2320 data-nosnippet>2320</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
 <a href=#2321 id=2321 data-nosnippet>2321</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#2322 id=2322 data-nosnippet>2322</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#2320">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#2322 id=2322 data-nosnippet>2322</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#2320">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#2323 id=2323 data-nosnippet>2323</a>    }
 <a href=#2324 id=2324 data-nosnippet>2324</a>}
 <a href=#2325 id=2325 data-nosnippet>2325</a>
@@ -2540,7 +2540,7 @@
 <a href=#2467 id=2467 data-nosnippet>2467</a>    <span class="attr">#[inline]
 <a href=#2468 id=2468 data-nosnippet>2468</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
 <a href=#2469 id=2469 data-nosnippet>2469</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#2470 id=2470 data-nosnippet>2470</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#2468">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#2470 id=2470 data-nosnippet>2470</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#2468">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#2471 id=2471 data-nosnippet>2471</a>    }
 <a href=#2472 id=2472 data-nosnippet>2472</a>}
 <a href=#2473 id=2473 data-nosnippet>2473</a>
@@ -2653,7 +2653,7 @@
 <a href=#2580 id=2580 data-nosnippet>2580</a>    <span class="attr">#[inline]
 <a href=#2581 id=2581 data-nosnippet>2581</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
 <a href=#2582 id=2582 data-nosnippet>2582</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#2583 id=2583 data-nosnippet>2583</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#2581">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#2583 id=2583 data-nosnippet>2583</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#2581">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#2584 id=2584 data-nosnippet>2584</a>    }
 <a href=#2585 id=2585 data-nosnippet>2585</a>}
 <a href=#2586 id=2586 data-nosnippet>2586</a>
@@ -2792,7 +2792,7 @@
 <a href=#2719 id=2719 data-nosnippet>2719</a>    <span class="attr">#[inline]
 <a href=#2720 id=2720 data-nosnippet>2720</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
 <a href=#2721 id=2721 data-nosnippet>2721</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#2722 id=2722 data-nosnippet>2722</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#2720">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#2722 id=2722 data-nosnippet>2722</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#2720">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#2723 id=2723 data-nosnippet>2723</a>    }
 <a href=#2724 id=2724 data-nosnippet>2724</a>}
 <a href=#2725 id=2725 data-nosnippet>2725</a>
@@ -2989,7 +2989,7 @@
 <a href=#2916 id=2916 data-nosnippet>2916</a>    <span class="attr">#[inline]
 <a href=#2917 id=2917 data-nosnippet>2917</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
 <a href=#2918 id=2918 data-nosnippet>2918</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#2919 id=2919 data-nosnippet>2919</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#2917">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#2919 id=2919 data-nosnippet>2919</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#2917">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#2920 id=2920 data-nosnippet>2920</a>    }
 <a href=#2921 id=2921 data-nosnippet>2921</a>}
 <a href=#2922 id=2922 data-nosnippet>2922</a>
@@ -3115,7 +3115,7 @@
 <a href=#3042 id=3042 data-nosnippet>3042</a>    <span class="attr">#[inline]
 <a href=#3043 id=3043 data-nosnippet>3043</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
 <a href=#3044 id=3044 data-nosnippet>3044</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#3045 id=3045 data-nosnippet>3045</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#3043">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#3045 id=3045 data-nosnippet>3045</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#3043">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#3046 id=3046 data-nosnippet>3046</a>    }
 <a href=#3047 id=3047 data-nosnippet>3047</a>}
 <a href=#3048 id=3048 data-nosnippet>3048</a>
@@ -3225,7 +3225,7 @@
 <a href=#3152 id=3152 data-nosnippet>3152</a>    <span class="attr">#[inline]
 <a href=#3153 id=3153 data-nosnippet>3153</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
 <a href=#3154 id=3154 data-nosnippet>3154</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#3155 id=3155 data-nosnippet>3155</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#3153">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#3155 id=3155 data-nosnippet>3155</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#3153">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#3156 id=3156 data-nosnippet>3156</a>    }
 <a href=#3157 id=3157 data-nosnippet>3157</a>}
 <a href=#3158 id=3158 data-nosnippet>3158</a>
@@ -3345,7 +3345,7 @@
 <a href=#3272 id=3272 data-nosnippet>3272</a>    <span class="attr">#[inline]
 <a href=#3273 id=3273 data-nosnippet>3273</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
 <a href=#3274 id=3274 data-nosnippet>3274</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#3275 id=3275 data-nosnippet>3275</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#3273">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#3275 id=3275 data-nosnippet>3275</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#3273">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#3276 id=3276 data-nosnippet>3276</a>    }
 <a href=#3277 id=3277 data-nosnippet>3277</a>}
 <a href=#3278 id=3278 data-nosnippet>3278</a>
@@ -3469,7 +3469,7 @@
 <a href=#3396 id=3396 data-nosnippet>3396</a>    <span class="attr">#[inline]
 <a href=#3397 id=3397 data-nosnippet>3397</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
 <a href=#3398 id=3398 data-nosnippet>3398</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#3399 id=3399 data-nosnippet>3399</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#3397">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#3399 id=3399 data-nosnippet>3399</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#3397">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#3400 id=3400 data-nosnippet>3400</a>    }
 <a href=#3401 id=3401 data-nosnippet>3401</a>}
 <a href=#3402 id=3402 data-nosnippet>3402</a>
@@ -3631,7 +3631,7 @@
 <a href=#3558 id=3558 data-nosnippet>3558</a>    <span class="attr">#[inline]
 <a href=#3559 id=3559 data-nosnippet>3559</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
 <a href=#3560 id=3560 data-nosnippet>3560</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#3561 id=3561 data-nosnippet>3561</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#3559">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#3561 id=3561 data-nosnippet>3561</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#3559">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#3562 id=3562 data-nosnippet>3562</a>    }
 <a href=#3563 id=3563 data-nosnippet>3563</a>}
 <a href=#3564 id=3564 data-nosnippet>3564</a>
@@ -3735,7 +3735,7 @@
 <a href=#3662 id=3662 data-nosnippet>3662</a>    <span class="attr">#[inline]
 <a href=#3663 id=3663 data-nosnippet>3663</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
 <a href=#3664 id=3664 data-nosnippet>3664</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#3665 id=3665 data-nosnippet>3665</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#3663">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#3665 id=3665 data-nosnippet>3665</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#3663">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#3666 id=3666 data-nosnippet>3666</a>    }
 <a href=#3667 id=3667 data-nosnippet>3667</a>}
 <a href=#3668 id=3668 data-nosnippet>3668</a>
@@ -3847,7 +3847,7 @@
 <a href=#3774 id=3774 data-nosnippet>3774</a>    <span class="attr">#[inline]
 <a href=#3775 id=3775 data-nosnippet>3775</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
 <a href=#3776 id=3776 data-nosnippet>3776</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#3777 id=3777 data-nosnippet>3777</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#3775">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#3777 id=3777 data-nosnippet>3777</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#3775">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#3778 id=3778 data-nosnippet>3778</a>    }
 <a href=#3779 id=3779 data-nosnippet>3779</a>}
 <a href=#3780 id=3780 data-nosnippet>3780</a>
@@ -3989,7 +3989,7 @@
 <a href=#3916 id=3916 data-nosnippet>3916</a>    <span class="attr">#[inline]
 <a href=#3917 id=3917 data-nosnippet>3917</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
 <a href=#3918 id=3918 data-nosnippet>3918</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#3919 id=3919 data-nosnippet>3919</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#3917">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#3919 id=3919 data-nosnippet>3919</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#3917">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#3920 id=3920 data-nosnippet>3920</a>    }
 <a href=#3921 id=3921 data-nosnippet>3921</a>}
 <a href=#3922 id=3922 data-nosnippet>3922</a>
@@ -4122,7 +4122,7 @@
 <a href=#4049 id=4049 data-nosnippet>4049</a>    <span class="attr">#[inline]
 <a href=#4050 id=4050 data-nosnippet>4050</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
 <a href=#4051 id=4051 data-nosnippet>4051</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#4052 id=4052 data-nosnippet>4052</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#4050">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#4052 id=4052 data-nosnippet>4052</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#4050">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#4053 id=4053 data-nosnippet>4053</a>    }
 <a href=#4054 id=4054 data-nosnippet>4054</a>}
 <a href=#4055 id=4055 data-nosnippet>4055</a>
@@ -4242,7 +4242,7 @@
 <a href=#4169 id=4169 data-nosnippet>4169</a>    <span class="attr">#[inline]
 <a href=#4170 id=4170 data-nosnippet>4170</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
 <a href=#4171 id=4171 data-nosnippet>4171</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#4172 id=4172 data-nosnippet>4172</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#4170">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#4172 id=4172 data-nosnippet>4172</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#4170">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#4173 id=4173 data-nosnippet>4173</a>    }
 <a href=#4174 id=4174 data-nosnippet>4174</a>}
 <a href=#4175 id=4175 data-nosnippet>4175</a>
@@ -4515,7 +4515,7 @@
 <a href=#4442 id=4442 data-nosnippet>4442</a>    <span class="attr">#[inline]
 <a href=#4443 id=4443 data-nosnippet>4443</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
 <a href=#4444 id=4444 data-nosnippet>4444</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#4445 id=4445 data-nosnippet>4445</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#4443">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#4445 id=4445 data-nosnippet>4445</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#4443">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#4446 id=4446 data-nosnippet>4446</a>    }
 <a href=#4447 id=4447 data-nosnippet>4447</a>}
 <a href=#4448 id=4448 data-nosnippet>4448</a>
@@ -4663,7 +4663,7 @@
 <a href=#4590 id=4590 data-nosnippet>4590</a>    <span class="attr">#[inline]
 <a href=#4591 id=4591 data-nosnippet>4591</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
 <a href=#4592 id=4592 data-nosnippet>4592</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#4593 id=4593 data-nosnippet>4593</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#4591">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#4593 id=4593 data-nosnippet>4593</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#4591">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#4594 id=4594 data-nosnippet>4594</a>    }
 <a href=#4595 id=4595 data-nosnippet>4595</a>}
 <a href=#4596 id=4596 data-nosnippet>4596</a>
@@ -4786,7 +4786,7 @@
 <a href=#4713 id=4713 data-nosnippet>4713</a>    <span class="attr">#[inline]
 <a href=#4714 id=4714 data-nosnippet>4714</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
 <a href=#4715 id=4715 data-nosnippet>4715</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#4716 id=4716 data-nosnippet>4716</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#4714">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#4716 id=4716 data-nosnippet>4716</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#4714">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#4717 id=4717 data-nosnippet>4717</a>    }
 <a href=#4718 id=4718 data-nosnippet>4718</a>}
 <a href=#4719 id=4719 data-nosnippet>4719</a>
@@ -4923,7 +4923,7 @@
 <a href=#4850 id=4850 data-nosnippet>4850</a>    <span class="attr">#[inline]
 <a href=#4851 id=4851 data-nosnippet>4851</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
 <a href=#4852 id=4852 data-nosnippet>4852</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#4853 id=4853 data-nosnippet>4853</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#4851">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#4853 id=4853 data-nosnippet>4853</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#4851">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#4854 id=4854 data-nosnippet>4854</a>    }
 <a href=#4855 id=4855 data-nosnippet>4855</a>}
 <a href=#4856 id=4856 data-nosnippet>4856</a>
@@ -5022,7 +5022,7 @@
 <a href=#4949 id=4949 data-nosnippet>4949</a>    <span class="attr">#[inline]
 <a href=#4950 id=4950 data-nosnippet>4950</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
 <a href=#4951 id=4951 data-nosnippet>4951</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#4952 id=4952 data-nosnippet>4952</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#4950">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#4952 id=4952 data-nosnippet>4952</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#4950">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#4953 id=4953 data-nosnippet>4953</a>    }
 <a href=#4954 id=4954 data-nosnippet>4954</a>}
 <a href=#4955 id=4955 data-nosnippet>4955</a>
@@ -5126,7 +5126,7 @@
 <a href=#5053 id=5053 data-nosnippet>5053</a>    <span class="attr">#[inline]
 <a href=#5054 id=5054 data-nosnippet>5054</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
 <a href=#5055 id=5055 data-nosnippet>5055</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#5056 id=5056 data-nosnippet>5056</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#5054">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#5056 id=5056 data-nosnippet>5056</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#5054">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#5057 id=5057 data-nosnippet>5057</a>    }
 <a href=#5058 id=5058 data-nosnippet>5058</a>}
 <a href=#5059 id=5059 data-nosnippet>5059</a>
@@ -5236,7 +5236,7 @@
 <a href=#5163 id=5163 data-nosnippet>5163</a>    <span class="attr">#[inline]
 <a href=#5164 id=5164 data-nosnippet>5164</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
 <a href=#5165 id=5165 data-nosnippet>5165</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#5166 id=5166 data-nosnippet>5166</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#5164">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#5166 id=5166 data-nosnippet>5166</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#5164">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#5167 id=5167 data-nosnippet>5167</a>    }
 <a href=#5168 id=5168 data-nosnippet>5168</a>}
 <a href=#5169 id=5169 data-nosnippet>5169</a>
@@ -5383,7 +5383,7 @@
 <a href=#5310 id=5310 data-nosnippet>5310</a>    <span class="attr">#[inline]
 <a href=#5311 id=5311 data-nosnippet>5311</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
 <a href=#5312 id=5312 data-nosnippet>5312</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#5313 id=5313 data-nosnippet>5313</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#5311">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#5313 id=5313 data-nosnippet>5313</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#5311">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#5314 id=5314 data-nosnippet>5314</a>    }
 <a href=#5315 id=5315 data-nosnippet>5315</a>}
 <a href=#5316 id=5316 data-nosnippet>5316</a>
@@ -5537,7 +5537,7 @@
 <a href=#5464 id=5464 data-nosnippet>5464</a>    <span class="attr">#[inline]
 <a href=#5465 id=5465 data-nosnippet>5465</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
 <a href=#5466 id=5466 data-nosnippet>5466</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#5467 id=5467 data-nosnippet>5467</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#5465">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#5467 id=5467 data-nosnippet>5467</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#5465">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#5468 id=5468 data-nosnippet>5468</a>    }
 <a href=#5469 id=5469 data-nosnippet>5469</a>}
 <a href=#5470 id=5470 data-nosnippet>5470</a>
@@ -5648,7 +5648,7 @@
 <a href=#5575 id=5575 data-nosnippet>5575</a>    <span class="attr">#[inline]
 <a href=#5576 id=5576 data-nosnippet>5576</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
 <a href=#5577 id=5577 data-nosnippet>5577</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#5578 id=5578 data-nosnippet>5578</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#5576">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#5578 id=5578 data-nosnippet>5578</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#5576">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#5579 id=5579 data-nosnippet>5579</a>    }
 <a href=#5580 id=5580 data-nosnippet>5580</a>}
 <a href=#5581 id=5581 data-nosnippet>5581</a>
@@ -5775,7 +5775,7 @@
 <a href=#5702 id=5702 data-nosnippet>5702</a>    <span class="attr">#[inline]
 <a href=#5703 id=5703 data-nosnippet>5703</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
 <a href=#5704 id=5704 data-nosnippet>5704</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#5705 id=5705 data-nosnippet>5705</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#5703">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#5705 id=5705 data-nosnippet>5705</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#5703">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#5706 id=5706 data-nosnippet>5706</a>    }
 <a href=#5707 id=5707 data-nosnippet>5707</a>}
 <a href=#5708 id=5708 data-nosnippet>5708</a>
@@ -5895,7 +5895,7 @@
 <a href=#5822 id=5822 data-nosnippet>5822</a>    <span class="attr">#[inline]
 <a href=#5823 id=5823 data-nosnippet>5823</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
 <a href=#5824 id=5824 data-nosnippet>5824</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#5825 id=5825 data-nosnippet>5825</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#5823">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#5825 id=5825 data-nosnippet>5825</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#5823">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#5826 id=5826 data-nosnippet>5826</a>    }
 <a href=#5827 id=5827 data-nosnippet>5827</a>}
 <a href=#5828 id=5828 data-nosnippet>5828</a>
@@ -6012,7 +6012,7 @@
 <a href=#5939 id=5939 data-nosnippet>5939</a>    <span class="attr">#[inline]
 <a href=#5940 id=5940 data-nosnippet>5940</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
 <a href=#5941 id=5941 data-nosnippet>5941</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#5942 id=5942 data-nosnippet>5942</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#5940">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#5942 id=5942 data-nosnippet>5942</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#5940">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#5943 id=5943 data-nosnippet>5943</a>    }
 <a href=#5944 id=5944 data-nosnippet>5944</a>}
 <a href=#5945 id=5945 data-nosnippet>5945</a>
@@ -6128,7 +6128,7 @@
 <a href=#6055 id=6055 data-nosnippet>6055</a>    <span class="attr">#[inline]
 <a href=#6056 id=6056 data-nosnippet>6056</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
 <a href=#6057 id=6057 data-nosnippet>6057</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#6058 id=6058 data-nosnippet>6058</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#6056">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#6058 id=6058 data-nosnippet>6058</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#6056">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#6059 id=6059 data-nosnippet>6059</a>    }
 <a href=#6060 id=6060 data-nosnippet>6060</a>}
 <a href=#6061 id=6061 data-nosnippet>6061</a>
@@ -6251,7 +6251,7 @@
 <a href=#6178 id=6178 data-nosnippet>6178</a>    <span class="attr">#[inline]
 <a href=#6179 id=6179 data-nosnippet>6179</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
 <a href=#6180 id=6180 data-nosnippet>6180</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#6181 id=6181 data-nosnippet>6181</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#6179">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#6181 id=6181 data-nosnippet>6181</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#6179">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#6182 id=6182 data-nosnippet>6182</a>    }
 <a href=#6183 id=6183 data-nosnippet>6183</a>}
 <a href=#6184 id=6184 data-nosnippet>6184</a>
@@ -6381,7 +6381,7 @@
 <a href=#6308 id=6308 data-nosnippet>6308</a>    <span class="attr">#[inline]
 <a href=#6309 id=6309 data-nosnippet>6309</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
 <a href=#6310 id=6310 data-nosnippet>6310</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#6311 id=6311 data-nosnippet>6311</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#6309">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#6311 id=6311 data-nosnippet>6311</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#6309">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#6312 id=6312 data-nosnippet>6312</a>    }
 <a href=#6313 id=6313 data-nosnippet>6313</a>}
 <a href=#6314 id=6314 data-nosnippet>6314</a>
@@ -6499,7 +6499,7 @@
 <a href=#6426 id=6426 data-nosnippet>6426</a>    <span class="attr">#[inline]
 <a href=#6427 id=6427 data-nosnippet>6427</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
 <a href=#6428 id=6428 data-nosnippet>6428</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#6429 id=6429 data-nosnippet>6429</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#6427">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#6429 id=6429 data-nosnippet>6429</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#6427">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#6430 id=6430 data-nosnippet>6430</a>    }
 <a href=#6431 id=6431 data-nosnippet>6431</a>}
 <a href=#6432 id=6432 data-nosnippet>6432</a>
@@ -6661,7 +6661,7 @@
 <a href=#6588 id=6588 data-nosnippet>6588</a>    <span class="attr">#[inline]
 <a href=#6589 id=6589 data-nosnippet>6589</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
 <a href=#6590 id=6590 data-nosnippet>6590</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#6591 id=6591 data-nosnippet>6591</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#6589">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#6591 id=6591 data-nosnippet>6591</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#6589">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#6592 id=6592 data-nosnippet>6592</a>    }
 <a href=#6593 id=6593 data-nosnippet>6593</a>}
 <a href=#6594 id=6594 data-nosnippet>6594</a>
@@ -6785,7 +6785,7 @@
 <a href=#6712 id=6712 data-nosnippet>6712</a>    <span class="attr">#[inline]
 <a href=#6713 id=6713 data-nosnippet>6713</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
 <a href=#6714 id=6714 data-nosnippet>6714</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#6715 id=6715 data-nosnippet>6715</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#6713">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#6715 id=6715 data-nosnippet>6715</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#6713">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#6716 id=6716 data-nosnippet>6716</a>    }
 <a href=#6717 id=6717 data-nosnippet>6717</a>}
 <a href=#6718 id=6718 data-nosnippet>6718</a>
@@ -6919,7 +6919,7 @@
 <a href=#6846 id=6846 data-nosnippet>6846</a>    <span class="attr">#[inline]
 <a href=#6847 id=6847 data-nosnippet>6847</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
 <a href=#6848 id=6848 data-nosnippet>6848</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#6849 id=6849 data-nosnippet>6849</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#6847">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#6849 id=6849 data-nosnippet>6849</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#6847">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#6850 id=6850 data-nosnippet>6850</a>    }
 <a href=#6851 id=6851 data-nosnippet>6851</a>}
 <a href=#6852 id=6852 data-nosnippet>6852</a>
@@ -7053,7 +7053,7 @@
 <a href=#6980 id=6980 data-nosnippet>6980</a>    <span class="attr">#[inline]
 <a href=#6981 id=6981 data-nosnippet>6981</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
 <a href=#6982 id=6982 data-nosnippet>6982</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#6983 id=6983 data-nosnippet>6983</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#6981">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#6983 id=6983 data-nosnippet>6983</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#6981">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#6984 id=6984 data-nosnippet>6984</a>    }
 <a href=#6985 id=6985 data-nosnippet>6985</a>}
 <a href=#6986 id=6986 data-nosnippet>6986</a>
@@ -7166,7 +7166,7 @@
 <a href=#7093 id=7093 data-nosnippet>7093</a>    <span class="attr">#[inline]
 <a href=#7094 id=7094 data-nosnippet>7094</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
 <a href=#7095 id=7095 data-nosnippet>7095</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#7096 id=7096 data-nosnippet>7096</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#7094">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#7096 id=7096 data-nosnippet>7096</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#7094">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#7097 id=7097 data-nosnippet>7097</a>    }
 <a href=#7098 id=7098 data-nosnippet>7098</a>}
 <a href=#7099 id=7099 data-nosnippet>7099</a>
@@ -7268,7 +7268,7 @@
 <a href=#7195 id=7195 data-nosnippet>7195</a>    <span class="attr">#[inline]
 <a href=#7196 id=7196 data-nosnippet>7196</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
 <a href=#7197 id=7197 data-nosnippet>7197</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#7198 id=7198 data-nosnippet>7198</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#7196">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#7198 id=7198 data-nosnippet>7198</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#7196">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#7199 id=7199 data-nosnippet>7199</a>    }
 <a href=#7200 id=7200 data-nosnippet>7200</a>}
 <a href=#7201 id=7201 data-nosnippet>7201</a>
@@ -7457,7 +7457,7 @@
 <a href=#7384 id=7384 data-nosnippet>7384</a>    <span class="attr">#[inline]
 <a href=#7385 id=7385 data-nosnippet>7385</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
 <a href=#7386 id=7386 data-nosnippet>7386</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#7387 id=7387 data-nosnippet>7387</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#7385">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#7387 id=7387 data-nosnippet>7387</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#7385">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#7388 id=7388 data-nosnippet>7388</a>    }
 <a href=#7389 id=7389 data-nosnippet>7389</a>}
 <a href=#7390 id=7390 data-nosnippet>7390</a>
@@ -7583,7 +7583,7 @@
 <a href=#7510 id=7510 data-nosnippet>7510</a>    <span class="attr">#[inline]
 <a href=#7511 id=7511 data-nosnippet>7511</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
 <a href=#7512 id=7512 data-nosnippet>7512</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#7513 id=7513 data-nosnippet>7513</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#7511">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#7513 id=7513 data-nosnippet>7513</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#7511">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#7514 id=7514 data-nosnippet>7514</a>    }
 <a href=#7515 id=7515 data-nosnippet>7515</a>}
 <a href=#7516 id=7516 data-nosnippet>7516</a>
@@ -7701,7 +7701,7 @@
 <a href=#7628 id=7628 data-nosnippet>7628</a>    <span class="attr">#[inline]
 <a href=#7629 id=7629 data-nosnippet>7629</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
 <a href=#7630 id=7630 data-nosnippet>7630</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#7631 id=7631 data-nosnippet>7631</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#7629">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#7631 id=7631 data-nosnippet>7631</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#7629">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#7632 id=7632 data-nosnippet>7632</a>    }
 <a href=#7633 id=7633 data-nosnippet>7633</a>}
 <a href=#7634 id=7634 data-nosnippet>7634</a>
@@ -7841,7 +7841,7 @@
 <a href=#7768 id=7768 data-nosnippet>7768</a>    <span class="attr">#[inline]
 <a href=#7769 id=7769 data-nosnippet>7769</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
 <a href=#7770 id=7770 data-nosnippet>7770</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#7771 id=7771 data-nosnippet>7771</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#7769">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#7771 id=7771 data-nosnippet>7771</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#7769">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#7772 id=7772 data-nosnippet>7772</a>    }
 <a href=#7773 id=7773 data-nosnippet>7773</a>}
 <a href=#7774 id=7774 data-nosnippet>7774</a>
@@ -7967,7 +7967,7 @@
 <a href=#7894 id=7894 data-nosnippet>7894</a>    <span class="attr">#[inline]
 <a href=#7895 id=7895 data-nosnippet>7895</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
 <a href=#7896 id=7896 data-nosnippet>7896</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#7897 id=7897 data-nosnippet>7897</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#7895">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#7897 id=7897 data-nosnippet>7897</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#7895">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#7898 id=7898 data-nosnippet>7898</a>    }
 <a href=#7899 id=7899 data-nosnippet>7899</a>}
 <a href=#7900 id=7900 data-nosnippet>7900</a>
@@ -8070,7 +8070,7 @@
 <a href=#7997 id=7997 data-nosnippet>7997</a>    <span class="attr">#[inline]
 <a href=#7998 id=7998 data-nosnippet>7998</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
 <a href=#7999 id=7999 data-nosnippet>7999</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#8000 id=8000 data-nosnippet>8000</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#7998">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#8000 id=8000 data-nosnippet>8000</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#7998">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#8001 id=8001 data-nosnippet>8001</a>    }
 <a href=#8002 id=8002 data-nosnippet>8002</a>}
 <a href=#8003 id=8003 data-nosnippet>8003</a>
@@ -8200,7 +8200,7 @@
 <a href=#8127 id=8127 data-nosnippet>8127</a>    <span class="attr">#[inline]
 <a href=#8128 id=8128 data-nosnippet>8128</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
 <a href=#8129 id=8129 data-nosnippet>8129</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#8130 id=8130 data-nosnippet>8130</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#8128">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#8130 id=8130 data-nosnippet>8130</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#8128">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#8131 id=8131 data-nosnippet>8131</a>    }
 <a href=#8132 id=8132 data-nosnippet>8132</a>}
 <a href=#8133 id=8133 data-nosnippet>8133</a>
@@ -8309,7 +8309,7 @@
 <a href=#8236 id=8236 data-nosnippet>8236</a>    <span class="attr">#[inline]
 <a href=#8237 id=8237 data-nosnippet>8237</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
 <a href=#8238 id=8238 data-nosnippet>8238</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#8239 id=8239 data-nosnippet>8239</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#8237">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#8239 id=8239 data-nosnippet>8239</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#8237">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#8240 id=8240 data-nosnippet>8240</a>    }
 <a href=#8241 id=8241 data-nosnippet>8241</a>}
 <a href=#8242 id=8242 data-nosnippet>8242</a>
@@ -8410,7 +8410,7 @@
 <a href=#8337 id=8337 data-nosnippet>8337</a>    <span class="attr">#[inline]
 <a href=#8338 id=8338 data-nosnippet>8338</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
 <a href=#8339 id=8339 data-nosnippet>8339</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#8340 id=8340 data-nosnippet>8340</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#8338">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#8340 id=8340 data-nosnippet>8340</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#8338">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#8341 id=8341 data-nosnippet>8341</a>    }
 <a href=#8342 id=8342 data-nosnippet>8342</a>}
 <a href=#8343 id=8343 data-nosnippet>8343</a>
@@ -8515,7 +8515,7 @@
 <a href=#8442 id=8442 data-nosnippet>8442</a>    <span class="attr">#[inline]
 <a href=#8443 id=8443 data-nosnippet>8443</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
 <a href=#8444 id=8444 data-nosnippet>8444</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#8445 id=8445 data-nosnippet>8445</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#8443">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#8445 id=8445 data-nosnippet>8445</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#8443">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#8446 id=8446 data-nosnippet>8446</a>    }
 <a href=#8447 id=8447 data-nosnippet>8447</a>}
 <a href=#8448 id=8448 data-nosnippet>8448</a>
@@ -8616,7 +8616,7 @@
 <a href=#8543 id=8543 data-nosnippet>8543</a>    <span class="attr">#[inline]
 <a href=#8544 id=8544 data-nosnippet>8544</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
 <a href=#8545 id=8545 data-nosnippet>8545</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#8546 id=8546 data-nosnippet>8546</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#8544">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#8546 id=8546 data-nosnippet>8546</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#8544">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#8547 id=8547 data-nosnippet>8547</a>    }
 <a href=#8548 id=8548 data-nosnippet>8548</a>}
 <a href=#8549 id=8549 data-nosnippet>8549</a>
@@ -8725,7 +8725,7 @@
 <a href=#8652 id=8652 data-nosnippet>8652</a>    <span class="attr">#[inline]
 <a href=#8653 id=8653 data-nosnippet>8653</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
 <a href=#8654 id=8654 data-nosnippet>8654</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#8655 id=8655 data-nosnippet>8655</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#8653">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#8655 id=8655 data-nosnippet>8655</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#8653">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#8656 id=8656 data-nosnippet>8656</a>    }
 <a href=#8657 id=8657 data-nosnippet>8657</a>}
 <a href=#8658 id=8658 data-nosnippet>8658</a>
@@ -8834,7 +8834,7 @@
 <a href=#8761 id=8761 data-nosnippet>8761</a>    <span class="attr">#[inline]
 <a href=#8762 id=8762 data-nosnippet>8762</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
 <a href=#8763 id=8763 data-nosnippet>8763</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#8764 id=8764 data-nosnippet>8764</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#8762">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#8764 id=8764 data-nosnippet>8764</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#8762">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#8765 id=8765 data-nosnippet>8765</a>    }
 <a href=#8766 id=8766 data-nosnippet>8766</a>}
 <a href=#8767 id=8767 data-nosnippet>8767</a>
@@ -8938,7 +8938,7 @@
 <a href=#8865 id=8865 data-nosnippet>8865</a>    <span class="attr">#[inline]
 <a href=#8866 id=8866 data-nosnippet>8866</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
 <a href=#8867 id=8867 data-nosnippet>8867</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#8868 id=8868 data-nosnippet>8868</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#8866">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#8868 id=8868 data-nosnippet>8868</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#8866">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#8869 id=8869 data-nosnippet>8869</a>    }
 <a href=#8870 id=8870 data-nosnippet>8870</a>}
 <a href=#8871 id=8871 data-nosnippet>8871</a>
@@ -9047,7 +9047,7 @@
 <a href=#8974 id=8974 data-nosnippet>8974</a>    <span class="attr">#[inline]
 <a href=#8975 id=8975 data-nosnippet>8975</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
 <a href=#8976 id=8976 data-nosnippet>8976</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#8977 id=8977 data-nosnippet>8977</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#8975">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#8977 id=8977 data-nosnippet>8977</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#8975">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#8978 id=8978 data-nosnippet>8978</a>    }
 <a href=#8979 id=8979 data-nosnippet>8979</a>}
 <a href=#8980 id=8980 data-nosnippet>8980</a>
@@ -9162,7 +9162,7 @@
 <a href=#9089 id=9089 data-nosnippet>9089</a>    <span class="attr">#[inline]
 <a href=#9090 id=9090 data-nosnippet>9090</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
 <a href=#9091 id=9091 data-nosnippet>9091</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#9092 id=9092 data-nosnippet>9092</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#9090">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#9092 id=9092 data-nosnippet>9092</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#9090">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#9093 id=9093 data-nosnippet>9093</a>    }
 <a href=#9094 id=9094 data-nosnippet>9094</a>}
 <a href=#9095 id=9095 data-nosnippet>9095</a>
@@ -9274,7 +9274,7 @@
 <a href=#9201 id=9201 data-nosnippet>9201</a>    <span class="attr">#[inline]
 <a href=#9202 id=9202 data-nosnippet>9202</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
 <a href=#9203 id=9203 data-nosnippet>9203</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#9204 id=9204 data-nosnippet>9204</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#9202">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#9204 id=9204 data-nosnippet>9204</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#9202">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#9205 id=9205 data-nosnippet>9205</a>    }
 <a href=#9206 id=9206 data-nosnippet>9206</a>}
 <a href=#9207 id=9207 data-nosnippet>9207</a>
@@ -9378,7 +9378,7 @@
 <a href=#9305 id=9305 data-nosnippet>9305</a>    <span class="attr">#[inline]
 <a href=#9306 id=9306 data-nosnippet>9306</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
 <a href=#9307 id=9307 data-nosnippet>9307</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#9308 id=9308 data-nosnippet>9308</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#9306">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#9308 id=9308 data-nosnippet>9308</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#9306">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#9309 id=9309 data-nosnippet>9309</a>    }
 <a href=#9310 id=9310 data-nosnippet>9310</a>}
 <a href=#9311 id=9311 data-nosnippet>9311</a>
@@ -9512,7 +9512,7 @@
 <a href=#9439 id=9439 data-nosnippet>9439</a>    <span class="attr">#[inline]
 <a href=#9440 id=9440 data-nosnippet>9440</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
 <a href=#9441 id=9441 data-nosnippet>9441</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#9442 id=9442 data-nosnippet>9442</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#9440">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#9442 id=9442 data-nosnippet>9442</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#9440">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#9443 id=9443 data-nosnippet>9443</a>    }
 <a href=#9444 id=9444 data-nosnippet>9444</a>}
 <a href=#9445 id=9445 data-nosnippet>9445</a>
@@ -9626,7 +9626,7 @@
 <a href=#9553 id=9553 data-nosnippet>9553</a>    <span class="attr">#[inline]
 <a href=#9554 id=9554 data-nosnippet>9554</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
 <a href=#9555 id=9555 data-nosnippet>9555</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#9556 id=9556 data-nosnippet>9556</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#9554">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#9556 id=9556 data-nosnippet>9556</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#9554">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#9557 id=9557 data-nosnippet>9557</a>    }
 <a href=#9558 id=9558 data-nosnippet>9558</a>}
 <a href=#9559 id=9559 data-nosnippet>9559</a>
@@ -9739,7 +9739,7 @@
 <a href=#9666 id=9666 data-nosnippet>9666</a>    <span class="attr">#[inline]
 <a href=#9667 id=9667 data-nosnippet>9667</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
 <a href=#9668 id=9668 data-nosnippet>9668</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#9669 id=9669 data-nosnippet>9669</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#9667">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#9669 id=9669 data-nosnippet>9669</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#9667">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#9670 id=9670 data-nosnippet>9670</a>    }
 <a href=#9671 id=9671 data-nosnippet>9671</a>}
 <a href=#9672 id=9672 data-nosnippet>9672</a>
@@ -9848,7 +9848,7 @@
 <a href=#9775 id=9775 data-nosnippet>9775</a>    <span class="attr">#[inline]
 <a href=#9776 id=9776 data-nosnippet>9776</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
 <a href=#9777 id=9777 data-nosnippet>9777</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#9778 id=9778 data-nosnippet>9778</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#9776">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#9778 id=9778 data-nosnippet>9778</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#9776">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#9779 id=9779 data-nosnippet>9779</a>    }
 <a href=#9780 id=9780 data-nosnippet>9780</a>}
 <a href=#9781 id=9781 data-nosnippet>9781</a>
@@ -9957,7 +9957,7 @@
 <a href=#9884 id=9884 data-nosnippet>9884</a>    <span class="attr">#[inline]
 <a href=#9885 id=9885 data-nosnippet>9885</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
 <a href=#9886 id=9886 data-nosnippet>9886</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#9887 id=9887 data-nosnippet>9887</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#9885">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#9887 id=9887 data-nosnippet>9887</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#9885">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#9888 id=9888 data-nosnippet>9888</a>    }
 <a href=#9889 id=9889 data-nosnippet>9889</a>}
 <a href=#9890 id=9890 data-nosnippet>9890</a>
@@ -10098,7 +10098,7 @@
 <a href=#10025 id=10025 data-nosnippet>10025</a>    <span class="attr">#[inline]
 <a href=#10026 id=10026 data-nosnippet>10026</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
 <a href=#10027 id=10027 data-nosnippet>10027</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#10028 id=10028 data-nosnippet>10028</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#10026">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#10028 id=10028 data-nosnippet>10028</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#10026">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#10029 id=10029 data-nosnippet>10029</a>    }
 <a href=#10030 id=10030 data-nosnippet>10030</a>}
 <a href=#10031 id=10031 data-nosnippet>10031</a>
@@ -10202,7 +10202,7 @@
 <a href=#10129 id=10129 data-nosnippet>10129</a>    <span class="attr">#[inline]
 <a href=#10130 id=10130 data-nosnippet>10130</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
 <a href=#10131 id=10131 data-nosnippet>10131</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#10132 id=10132 data-nosnippet>10132</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#10130">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#10132 id=10132 data-nosnippet>10132</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#10130">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#10133 id=10133 data-nosnippet>10133</a>    }
 <a href=#10134 id=10134 data-nosnippet>10134</a>}
 <a href=#10135 id=10135 data-nosnippet>10135</a>
@@ -10318,7 +10318,7 @@
 <a href=#10245 id=10245 data-nosnippet>10245</a>    <span class="attr">#[inline]
 <a href=#10246 id=10246 data-nosnippet>10246</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
 <a href=#10247 id=10247 data-nosnippet>10247</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#10248 id=10248 data-nosnippet>10248</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#10246">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#10248 id=10248 data-nosnippet>10248</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#10246">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#10249 id=10249 data-nosnippet>10249</a>    }
 <a href=#10250 id=10250 data-nosnippet>10250</a>}
 <a href=#10251 id=10251 data-nosnippet>10251</a>
@@ -10470,7 +10470,7 @@
 <a href=#10397 id=10397 data-nosnippet>10397</a>    <span class="attr">#[inline]
 <a href=#10398 id=10398 data-nosnippet>10398</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
 <a href=#10399 id=10399 data-nosnippet>10399</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#10400 id=10400 data-nosnippet>10400</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#10398">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#10400 id=10400 data-nosnippet>10400</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#10398">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#10401 id=10401 data-nosnippet>10401</a>    }
 <a href=#10402 id=10402 data-nosnippet>10402</a>}
 <a href=#10403 id=10403 data-nosnippet>10403</a>
@@ -10590,7 +10590,7 @@
 <a href=#10517 id=10517 data-nosnippet>10517</a>    <span class="attr">#[inline]
 <a href=#10518 id=10518 data-nosnippet>10518</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
 <a href=#10519 id=10519 data-nosnippet>10519</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#10520 id=10520 data-nosnippet>10520</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#10518">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#10520 id=10520 data-nosnippet>10520</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#10518">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#10521 id=10521 data-nosnippet>10521</a>    }
 <a href=#10522 id=10522 data-nosnippet>10522</a>}
 <a href=#10523 id=10523 data-nosnippet>10523</a>
@@ -10719,7 +10719,7 @@
 <a href=#10646 id=10646 data-nosnippet>10646</a>    <span class="attr">#[inline]
 <a href=#10647 id=10647 data-nosnippet>10647</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
 <a href=#10648 id=10648 data-nosnippet>10648</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#10649 id=10649 data-nosnippet>10649</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#10647">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#10649 id=10649 data-nosnippet>10649</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#10647">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#10650 id=10650 data-nosnippet>10650</a>    }
 <a href=#10651 id=10651 data-nosnippet>10651</a>}
 <a href=#10652 id=10652 data-nosnippet>10652</a>
@@ -10901,7 +10901,7 @@
 <a href=#10828 id=10828 data-nosnippet>10828</a>    <span class="attr">#[inline]
 <a href=#10829 id=10829 data-nosnippet>10829</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
 <a href=#10830 id=10830 data-nosnippet>10830</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#10831 id=10831 data-nosnippet>10831</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#10829">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#10831 id=10831 data-nosnippet>10831</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#10829">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#10832 id=10832 data-nosnippet>10832</a>    }
 <a href=#10833 id=10833 data-nosnippet>10833</a>}
 <a href=#10834 id=10834 data-nosnippet>10834</a>
@@ -11020,7 +11020,7 @@
 <a href=#10947 id=10947 data-nosnippet>10947</a>    <span class="attr">#[inline]
 <a href=#10948 id=10948 data-nosnippet>10948</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
 <a href=#10949 id=10949 data-nosnippet>10949</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#10950 id=10950 data-nosnippet>10950</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#10948">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#10950 id=10950 data-nosnippet>10950</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#10948">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#10951 id=10951 data-nosnippet>10951</a>    }
 <a href=#10952 id=10952 data-nosnippet>10952</a>}
 <a href=#10953 id=10953 data-nosnippet>10953</a>
@@ -11187,7 +11187,7 @@
 <a href=#11114 id=11114 data-nosnippet>11114</a>    <span class="attr">#[inline]
 <a href=#11115 id=11115 data-nosnippet>11115</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
 <a href=#11116 id=11116 data-nosnippet>11116</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#11117 id=11117 data-nosnippet>11117</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#11115">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#11117 id=11117 data-nosnippet>11117</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#11115">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#11118 id=11118 data-nosnippet>11118</a>    }
 <a href=#11119 id=11119 data-nosnippet>11119</a>}
 <a href=#11120 id=11120 data-nosnippet>11120</a>
@@ -11287,7 +11287,7 @@
 <a href=#11214 id=11214 data-nosnippet>11214</a>    <span class="attr">#[inline]
 <a href=#11215 id=11215 data-nosnippet>11215</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
 <a href=#11216 id=11216 data-nosnippet>11216</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#11217 id=11217 data-nosnippet>11217</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#11215">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#11217 id=11217 data-nosnippet>11217</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#11215">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#11218 id=11218 data-nosnippet>11218</a>    }
 <a href=#11219 id=11219 data-nosnippet>11219</a>}
 <a href=#11220 id=11220 data-nosnippet>11220</a>
@@ -11404,7 +11404,7 @@
 <a href=#11331 id=11331 data-nosnippet>11331</a>    <span class="attr">#[inline]
 <a href=#11332 id=11332 data-nosnippet>11332</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
 <a href=#11333 id=11333 data-nosnippet>11333</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#11334 id=11334 data-nosnippet>11334</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#11332">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#11334 id=11334 data-nosnippet>11334</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#11332">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#11335 id=11335 data-nosnippet>11335</a>    }
 <a href=#11336 id=11336 data-nosnippet>11336</a>}
 <a href=#11337 id=11337 data-nosnippet>11337</a>
@@ -11510,7 +11510,7 @@
 <a href=#11437 id=11437 data-nosnippet>11437</a>    <span class="attr">#[inline]
 <a href=#11438 id=11438 data-nosnippet>11438</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
 <a href=#11439 id=11439 data-nosnippet>11439</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#11440 id=11440 data-nosnippet>11440</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#11438">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#11440 id=11440 data-nosnippet>11440</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#11438">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#11441 id=11441 data-nosnippet>11441</a>    }
 <a href=#11442 id=11442 data-nosnippet>11442</a>}
 <a href=#11443 id=11443 data-nosnippet>11443</a>
@@ -11618,7 +11618,7 @@
 <a href=#11545 id=11545 data-nosnippet>11545</a>    <span class="attr">#[inline]
 <a href=#11546 id=11546 data-nosnippet>11546</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
 <a href=#11547 id=11547 data-nosnippet>11547</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#11548 id=11548 data-nosnippet>11548</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#11546">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#11548 id=11548 data-nosnippet>11548</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#11546">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#11549 id=11549 data-nosnippet>11549</a>    }
 <a href=#11550 id=11550 data-nosnippet>11550</a>}
 <a href=#11551 id=11551 data-nosnippet>11551</a>
@@ -11765,7 +11765,7 @@
 <a href=#11692 id=11692 data-nosnippet>11692</a>    <span class="attr">#[inline]
 <a href=#11693 id=11693 data-nosnippet>11693</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
 <a href=#11694 id=11694 data-nosnippet>11694</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#11695 id=11695 data-nosnippet>11695</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#11693">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#11695 id=11695 data-nosnippet>11695</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#11693">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#11696 id=11696 data-nosnippet>11696</a>    }
 <a href=#11697 id=11697 data-nosnippet>11697</a>}
 <a href=#11698 id=11698 data-nosnippet>11698</a>
@@ -11875,7 +11875,7 @@
 <a href=#11802 id=11802 data-nosnippet>11802</a>    <span class="attr">#[inline]
 <a href=#11803 id=11803 data-nosnippet>11803</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
 <a href=#11804 id=11804 data-nosnippet>11804</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#11805 id=11805 data-nosnippet>11805</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#11803">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#11805 id=11805 data-nosnippet>11805</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#11803">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#11806 id=11806 data-nosnippet>11806</a>    }
 <a href=#11807 id=11807 data-nosnippet>11807</a>}
 <a href=#11808 id=11808 data-nosnippet>11808</a>
@@ -11980,7 +11980,7 @@
 <a href=#11907 id=11907 data-nosnippet>11907</a>    <span class="attr">#[inline]
 <a href=#11908 id=11908 data-nosnippet>11908</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
 <a href=#11909 id=11909 data-nosnippet>11909</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#11910 id=11910 data-nosnippet>11910</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#11908">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#11910 id=11910 data-nosnippet>11910</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#11908">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#11911 id=11911 data-nosnippet>11911</a>    }
 <a href=#11912 id=11912 data-nosnippet>11912</a>}
 <a href=#11913 id=11913 data-nosnippet>11913</a>
@@ -12079,7 +12079,7 @@
 <a href=#12006 id=12006 data-nosnippet>12006</a>    <span class="attr">#[inline]
 <a href=#12007 id=12007 data-nosnippet>12007</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
 <a href=#12008 id=12008 data-nosnippet>12008</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#12009 id=12009 data-nosnippet>12009</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#12007">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#12009 id=12009 data-nosnippet>12009</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#12007">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#12010 id=12010 data-nosnippet>12010</a>    }
 <a href=#12011 id=12011 data-nosnippet>12011</a>}
 <a href=#12012 id=12012 data-nosnippet>12012</a>
@@ -12194,7 +12194,7 @@
 <a href=#12121 id=12121 data-nosnippet>12121</a>    <span class="attr">#[inline]
 <a href=#12122 id=12122 data-nosnippet>12122</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
 <a href=#12123 id=12123 data-nosnippet>12123</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#12124 id=12124 data-nosnippet>12124</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#12122">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#12124 id=12124 data-nosnippet>12124</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#12122">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#12125 id=12125 data-nosnippet>12125</a>    }
 <a href=#12126 id=12126 data-nosnippet>12126</a>}
 <a href=#12127 id=12127 data-nosnippet>12127</a>
@@ -12301,7 +12301,7 @@
 <a href=#12228 id=12228 data-nosnippet>12228</a>    <span class="attr">#[inline]
 <a href=#12229 id=12229 data-nosnippet>12229</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
 <a href=#12230 id=12230 data-nosnippet>12230</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#12231 id=12231 data-nosnippet>12231</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#12229">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#12231 id=12231 data-nosnippet>12231</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#12229">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#12232 id=12232 data-nosnippet>12232</a>    }
 <a href=#12233 id=12233 data-nosnippet>12233</a>}
 <a href=#12234 id=12234 data-nosnippet>12234</a>
@@ -12406,7 +12406,7 @@
 <a href=#12333 id=12333 data-nosnippet>12333</a>    <span class="attr">#[inline]
 <a href=#12334 id=12334 data-nosnippet>12334</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
 <a href=#12335 id=12335 data-nosnippet>12335</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#12336 id=12336 data-nosnippet>12336</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#12334">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#12336 id=12336 data-nosnippet>12336</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#12334">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#12337 id=12337 data-nosnippet>12337</a>    }
 <a href=#12338 id=12338 data-nosnippet>12338</a>}
 <a href=#12339 id=12339 data-nosnippet>12339</a>
@@ -12531,7 +12531,7 @@
 <a href=#12458 id=12458 data-nosnippet>12458</a>    <span class="attr">#[inline]
 <a href=#12459 id=12459 data-nosnippet>12459</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
 <a href=#12460 id=12460 data-nosnippet>12460</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#12461 id=12461 data-nosnippet>12461</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#12459">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#12461 id=12461 data-nosnippet>12461</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#12459">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#12462 id=12462 data-nosnippet>12462</a>    }
 <a href=#12463 id=12463 data-nosnippet>12463</a>}
 <a href=#12464 id=12464 data-nosnippet>12464</a>
@@ -12735,7 +12735,7 @@
 <a href=#12662 id=12662 data-nosnippet>12662</a>    <span class="attr">#[inline]
 <a href=#12663 id=12663 data-nosnippet>12663</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
 <a href=#12664 id=12664 data-nosnippet>12664</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#12665 id=12665 data-nosnippet>12665</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#12663">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#12665 id=12665 data-nosnippet>12665</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#12663">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#12666 id=12666 data-nosnippet>12666</a>    }
 <a href=#12667 id=12667 data-nosnippet>12667</a>}
 <a href=#12668 id=12668 data-nosnippet>12668</a>
@@ -12842,7 +12842,7 @@
 <a href=#12769 id=12769 data-nosnippet>12769</a>    <span class="attr">#[inline]
 <a href=#12770 id=12770 data-nosnippet>12770</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
 <a href=#12771 id=12771 data-nosnippet>12771</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#12772 id=12772 data-nosnippet>12772</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#12770">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#12772 id=12772 data-nosnippet>12772</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#12770">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#12773 id=12773 data-nosnippet>12773</a>    }
 <a href=#12774 id=12774 data-nosnippet>12774</a>}
 <a href=#12775 id=12775 data-nosnippet>12775</a>
@@ -13047,7 +13047,7 @@
 <a href=#12974 id=12974 data-nosnippet>12974</a>    <span class="attr">#[inline]
 <a href=#12975 id=12975 data-nosnippet>12975</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
 <a href=#12976 id=12976 data-nosnippet>12976</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#12977 id=12977 data-nosnippet>12977</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#12975">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#12977 id=12977 data-nosnippet>12977</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#12975">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#12978 id=12978 data-nosnippet>12978</a>    }
 <a href=#12979 id=12979 data-nosnippet>12979</a>}
 <a href=#12980 id=12980 data-nosnippet>12980</a>
@@ -13186,7 +13186,7 @@
 <a href=#13113 id=13113 data-nosnippet>13113</a>    <span class="attr">#[inline]
 <a href=#13114 id=13114 data-nosnippet>13114</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
 <a href=#13115 id=13115 data-nosnippet>13115</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#13116 id=13116 data-nosnippet>13116</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#13114">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#13116 id=13116 data-nosnippet>13116</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#13114">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#13117 id=13117 data-nosnippet>13117</a>    }
 <a href=#13118 id=13118 data-nosnippet>13118</a>}
 <a href=#13119 id=13119 data-nosnippet>13119</a>
@@ -13319,7 +13319,7 @@
 <a href=#13246 id=13246 data-nosnippet>13246</a>    <span class="attr">#[inline]
 <a href=#13247 id=13247 data-nosnippet>13247</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
 <a href=#13248 id=13248 data-nosnippet>13248</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#13249 id=13249 data-nosnippet>13249</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#13247">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#13249 id=13249 data-nosnippet>13249</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#13247">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#13250 id=13250 data-nosnippet>13250</a>    }
 <a href=#13251 id=13251 data-nosnippet>13251</a>}
 <a href=#13252 id=13252 data-nosnippet>13252</a>
@@ -13423,7 +13423,7 @@
 <a href=#13350 id=13350 data-nosnippet>13350</a>    <span class="attr">#[inline]
 <a href=#13351 id=13351 data-nosnippet>13351</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
 <a href=#13352 id=13352 data-nosnippet>13352</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#13353 id=13353 data-nosnippet>13353</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#13351">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#13353 id=13353 data-nosnippet>13353</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#13351">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#13354 id=13354 data-nosnippet>13354</a>    }
 <a href=#13355 id=13355 data-nosnippet>13355</a>}
 <a href=#13356 id=13356 data-nosnippet>13356</a>
@@ -13525,7 +13525,7 @@
 <a href=#13452 id=13452 data-nosnippet>13452</a>    <span class="attr">#[inline]
 <a href=#13453 id=13453 data-nosnippet>13453</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
 <a href=#13454 id=13454 data-nosnippet>13454</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#13455 id=13455 data-nosnippet>13455</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#13453">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#13455 id=13455 data-nosnippet>13455</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#13453">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#13456 id=13456 data-nosnippet>13456</a>    }
 <a href=#13457 id=13457 data-nosnippet>13457</a>}
 <a href=#13458 id=13458 data-nosnippet>13458</a>
@@ -13625,7 +13625,7 @@
 <a href=#13552 id=13552 data-nosnippet>13552</a>    <span class="attr">#[inline]
 <a href=#13553 id=13553 data-nosnippet>13553</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
 <a href=#13554 id=13554 data-nosnippet>13554</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#13555 id=13555 data-nosnippet>13555</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#13553">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#13555 id=13555 data-nosnippet>13555</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#13553">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#13556 id=13556 data-nosnippet>13556</a>    }
 <a href=#13557 id=13557 data-nosnippet>13557</a>}
 <a href=#13558 id=13558 data-nosnippet>13558</a>
@@ -13744,7 +13744,7 @@
 <a href=#13671 id=13671 data-nosnippet>13671</a>    <span class="attr">#[inline]
 <a href=#13672 id=13672 data-nosnippet>13672</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
 <a href=#13673 id=13673 data-nosnippet>13673</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#13674 id=13674 data-nosnippet>13674</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#13672">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#13674 id=13674 data-nosnippet>13674</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#13672">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#13675 id=13675 data-nosnippet>13675</a>    }
 <a href=#13676 id=13676 data-nosnippet>13676</a>}
 <a href=#13677 id=13677 data-nosnippet>13677</a>
@@ -13861,7 +13861,7 @@
 <a href=#13788 id=13788 data-nosnippet>13788</a>    <span class="attr">#[inline]
 <a href=#13789 id=13789 data-nosnippet>13789</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
 <a href=#13790 id=13790 data-nosnippet>13790</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#13791 id=13791 data-nosnippet>13791</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#13789">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#13791 id=13791 data-nosnippet>13791</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#13789">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#13792 id=13792 data-nosnippet>13792</a>    }
 <a href=#13793 id=13793 data-nosnippet>13793</a>}
 <a href=#13794 id=13794 data-nosnippet>13794</a>
@@ -13983,7 +13983,7 @@
 <a href=#13910 id=13910 data-nosnippet>13910</a>    <span class="attr">#[inline]
 <a href=#13911 id=13911 data-nosnippet>13911</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
 <a href=#13912 id=13912 data-nosnippet>13912</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#13913 id=13913 data-nosnippet>13913</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#13911">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#13913 id=13913 data-nosnippet>13913</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#13911">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#13914 id=13914 data-nosnippet>13914</a>    }
 <a href=#13915 id=13915 data-nosnippet>13915</a>}
 <a href=#13916 id=13916 data-nosnippet>13916</a>
@@ -14105,7 +14105,7 @@
 <a href=#14032 id=14032 data-nosnippet>14032</a>    <span class="attr">#[inline]
 <a href=#14033 id=14033 data-nosnippet>14033</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
 <a href=#14034 id=14034 data-nosnippet>14034</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#14035 id=14035 data-nosnippet>14035</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#14033">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#14035 id=14035 data-nosnippet>14035</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#14033">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#14036 id=14036 data-nosnippet>14036</a>    }
 <a href=#14037 id=14037 data-nosnippet>14037</a>}
 <a href=#14038 id=14038 data-nosnippet>14038</a>
@@ -14216,7 +14216,7 @@
 <a href=#14143 id=14143 data-nosnippet>14143</a>    <span class="attr">#[inline]
 <a href=#14144 id=14144 data-nosnippet>14144</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
 <a href=#14145 id=14145 data-nosnippet>14145</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#14146 id=14146 data-nosnippet>14146</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#14144">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#14146 id=14146 data-nosnippet>14146</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#14144">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#14147 id=14147 data-nosnippet>14147</a>    }
 <a href=#14148 id=14148 data-nosnippet>14148</a>}
 <a href=#14149 id=14149 data-nosnippet>14149</a>
@@ -14399,7 +14399,7 @@
 <a href=#14326 id=14326 data-nosnippet>14326</a>    <span class="attr">#[inline]
 <a href=#14327 id=14327 data-nosnippet>14327</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
 <a href=#14328 id=14328 data-nosnippet>14328</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#14329 id=14329 data-nosnippet>14329</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#14327">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#14329 id=14329 data-nosnippet>14329</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#14327">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#14330 id=14330 data-nosnippet>14330</a>    }
 <a href=#14331 id=14331 data-nosnippet>14331</a>}
 <a href=#14332 id=14332 data-nosnippet>14332</a>
@@ -14515,7 +14515,7 @@
 <a href=#14442 id=14442 data-nosnippet>14442</a>    <span class="attr">#[inline]
 <a href=#14443 id=14443 data-nosnippet>14443</a>    </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
 <a href=#14444 id=14444 data-nosnippet>14444</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#14445 id=14445 data-nosnippet>14445</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#14443">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#14445 id=14445 data-nosnippet>14445</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(glib::gobject_ffi::g_value_get_enum(<a href="#14443">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#14446 id=14446 data-nosnippet>14446</a>    }
 <a href=#14447 id=14447 data-nosnippet>14447</a>}
 <a href=#14448 id=14448 data-nosnippet>14448</a>

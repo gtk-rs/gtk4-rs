@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/subclass/builder_scope.rs`."><title>builder_scope.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-77263533.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.94.0-nightly (a3f2d5abe 2026-01-09)" data-channel="nightly" data-search-js="search-9e2438ea.js" data-stringdex-js="stringdex-b897f86f.js" data-settings-js="settings-c38705f0.js" ><script src="../../../static.files/storage-e2aeef58.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-7bab91a1.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-ffcac47a.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/subclass/builder_scope.rs`."><title>builder_scope.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-77263533.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.94.0-nightly (f57eac1bf 2026-01-10)" data-channel="nightly" data-search-js="search-9e2438ea.js" data-stringdex-js="stringdex-b897f86f.js" data-settings-js="settings-c38705f0.js" ><script src="../../../static.files/storage-e2aeef58.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-7bab91a1.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-ffcac47a.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
 
@@ -76,11 +76,11 @@
 <a href=#3 id=3 data-nosnippet>3</a>// rustdoc-stripper-ignore-next
 <a href=#4 id=4 data-nosnippet>4</a></span><span class="doccomment">//! Traits intended for implementing the [`BuilderScope`] interface.
 <a href=#5 id=5 data-nosnippet>5</a>
-<a href=#6 id=6 data-nosnippet>6</a></span><span class="kw">use </span>glib::{translate::<span class="kw-2">*</span>, <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/gstring/struct.GString.html">GString</a>};
+<a href=#6 id=6 data-nosnippet>6</a></span><span class="kw">use </span>glib::{<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/gstring/struct.GString.html">GString</a>, translate::<span class="kw-2">*</span>};
 <a href=#7 id=7 data-nosnippet>7</a>
 <a href=#8 id=8 data-nosnippet>8</a><span class="kw">use </span>crate::{
-<a href=#9 id=9 data-nosnippet>9</a>    <a href="../../../gtk4_sys/index.html">ffi</a>, prelude::<span class="kw-2">*</span>, subclass::prelude::<span class="kw-2">*</span>, <a href="../auto/builder.rs.html#13-407">Builder</a>, <a href="../builder_cscope.rs.html#5-12">BuilderCScope</a>, <a href="../auto/flags.rs.html#108-123">BuilderClosureFlags</a>,
-<a href=#10 id=10 data-nosnippet>10</a>    <a href="../auto/builder_scope.rs.html#8-36">BuilderScope</a>,
+<a href=#9 id=9 data-nosnippet>9</a>    <a href="../auto/builder.rs.html#13-407">Builder</a>, <a href="../builder_cscope.rs.html#5-12">BuilderCScope</a>, <a href="../auto/flags.rs.html#108-123">BuilderClosureFlags</a>, <a href="../auto/builder_scope.rs.html#8-36">BuilderScope</a>, <a href="../../../gtk4_sys/index.html">ffi</a>, prelude::<span class="kw-2">*</span>,
+<a href=#10 id=10 data-nosnippet>10</a>    subclass::prelude::<span class="kw-2">*</span>,
 <a href=#11 id=11 data-nosnippet>11</a>};
 <a href=#12 id=12 data-nosnippet>12</a>
 <a href=#13 id=13 data-nosnippet>13</a><span class="kw">pub trait </span><a href="../../../gtk4/subclass/builder_scope/trait.BuilderCScopeImpl.html">BuilderCScopeImpl</a>: <a href="#17-35">BuilderScopeImpl</a> + <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/subclass/types/trait.ObjectSubclass.html">ObjectSubclass</a>&lt;Type: <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html">IsA</a>&lt;<a href="../builder_cscope.rs.html#5-12">BuilderCScope</a>&gt;&gt; {}
@@ -206,56 +206,62 @@
 <a href=#133 id=133 data-nosnippet>133</a>    builderptr: <span class="kw-2">*mut </span>ffi::<a href="../../../gtk4_sys/struct.GtkBuilder.html">GtkBuilder</a>,
 <a href=#134 id=134 data-nosnippet>134</a>    type_nameptr: <span class="kw-2">*const </span>libc::c_char,
 <a href=#135 id=135 data-nosnippet>135</a>) -&gt; glib::ffi::GType {
-<a href=#136 id=136 data-nosnippet>136</a>    <span class="kw">let </span>instance = <span class="kw-2">&amp;*</span>(<a href="#132">builder_scope</a> <span class="kw">as </span><span class="kw-2">*mut </span>T::Instance);
-<a href=#137 id=137 data-nosnippet>137</a>    <span class="kw">let </span>imp = <a href="#136">instance</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/subclass/types/trait.InstanceStructExt.html#tymethod.imp">imp</a>();
-<a href=#138 id=138 data-nosnippet>138</a>    <span class="kw">let </span>builder: <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/struct.Borrowed.html">Borrowed</a>&lt;<a href="../auto/builder.rs.html#13-407">Builder</a>&gt; = <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib_borrow.html">from_glib_borrow</a>(<a href="#133">builderptr</a>);
-<a href=#139 id=139 data-nosnippet>139</a>    <span class="kw">let </span>type_name: <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/struct.Borrowed.html">Borrowed</a>&lt;<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/gstring/struct.GString.html">GString</a>&gt; = <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib_borrow.html">from_glib_borrow</a>(<a href="#134">type_nameptr</a>);
-<a href=#140 id=140 data-nosnippet>140</a>
-<a href=#141 id=141 data-nosnippet>141</a>    <a href="#137">imp</a>.<a href="#19-21">type_from_name</a>(<span class="kw-2">&amp;</span><a href="#138">builder</a>, <span class="kw-2">&amp;</span><a href="#139">type_name</a>).<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>()
-<a href=#142 id=142 data-nosnippet>142</a>}
-<a href=#143 id=143 data-nosnippet>143</a>
-<a href=#144 id=144 data-nosnippet>144</a><span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn </span>builder_scope_get_type_from_function&lt;T: <a href="#17-35">BuilderScopeImpl</a>&gt;(
-<a href=#145 id=145 data-nosnippet>145</a>    builder_scope: <span class="kw-2">*mut </span>ffi::<a href="../../../gtk4_sys/struct.GtkBuilderScope.html">GtkBuilderScope</a>,
-<a href=#146 id=146 data-nosnippet>146</a>    builderptr: <span class="kw-2">*mut </span>ffi::<a href="../../../gtk4_sys/struct.GtkBuilder.html">GtkBuilder</a>,
-<a href=#147 id=147 data-nosnippet>147</a>    func_nameptr: <span class="kw-2">*const </span>libc::c_char,
-<a href=#148 id=148 data-nosnippet>148</a>) -&gt; glib::ffi::GType {
-<a href=#149 id=149 data-nosnippet>149</a>    <span class="kw">let </span>instance = <span class="kw-2">&amp;*</span>(<a href="#145">builder_scope</a> <span class="kw">as </span><span class="kw-2">*mut </span>T::Instance);
-<a href=#150 id=150 data-nosnippet>150</a>    <span class="kw">let </span>imp = <a href="#149">instance</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/subclass/types/trait.InstanceStructExt.html#tymethod.imp">imp</a>();
-<a href=#151 id=151 data-nosnippet>151</a>    <span class="kw">let </span>builder: <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/struct.Borrowed.html">Borrowed</a>&lt;<a href="../auto/builder.rs.html#13-407">Builder</a>&gt; = <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib_borrow.html">from_glib_borrow</a>(<a href="#146">builderptr</a>);
-<a href=#152 id=152 data-nosnippet>152</a>    <span class="kw">let </span>func_name: <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/struct.Borrowed.html">Borrowed</a>&lt;<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/gstring/struct.GString.html">GString</a>&gt; = <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib_borrow.html">from_glib_borrow</a>(<a href="#147">func_nameptr</a>);
-<a href=#153 id=153 data-nosnippet>153</a>
-<a href=#154 id=154 data-nosnippet>154</a>    <a href="#150">imp</a>.<a href="#24-26">type_from_function</a>(<span class="kw-2">&amp;</span><a href="#151">builder</a>, <span class="kw-2">&amp;</span><a href="#152">func_name</a>).<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>()
-<a href=#155 id=155 data-nosnippet>155</a>}
+<a href=#136 id=136 data-nosnippet>136</a>    <span class="kw">unsafe </span>{
+<a href=#137 id=137 data-nosnippet>137</a>        <span class="kw">let </span>instance = <span class="kw-2">&amp;*</span>(<a href="#132">builder_scope</a> <span class="kw">as </span><span class="kw-2">*mut </span>T::Instance);
+<a href=#138 id=138 data-nosnippet>138</a>        <span class="kw">let </span>imp = <a href="#137">instance</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/subclass/types/trait.InstanceStructExt.html#tymethod.imp">imp</a>();
+<a href=#139 id=139 data-nosnippet>139</a>        <span class="kw">let </span>builder: <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/struct.Borrowed.html">Borrowed</a>&lt;<a href="../auto/builder.rs.html#13-407">Builder</a>&gt; = <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib_borrow.html">from_glib_borrow</a>(<a href="#133">builderptr</a>);
+<a href=#140 id=140 data-nosnippet>140</a>        <span class="kw">let </span>type_name: <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/struct.Borrowed.html">Borrowed</a>&lt;<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/gstring/struct.GString.html">GString</a>&gt; = <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib_borrow.html">from_glib_borrow</a>(<a href="#134">type_nameptr</a>);
+<a href=#141 id=141 data-nosnippet>141</a>
+<a href=#142 id=142 data-nosnippet>142</a>        <a href="#138">imp</a>.<a href="#19-21">type_from_name</a>(<span class="kw-2">&amp;</span><a href="#139">builder</a>, <span class="kw-2">&amp;</span><a href="#140">type_name</a>).<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>()
+<a href=#143 id=143 data-nosnippet>143</a>    }
+<a href=#144 id=144 data-nosnippet>144</a>}
+<a href=#145 id=145 data-nosnippet>145</a>
+<a href=#146 id=146 data-nosnippet>146</a><span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn </span>builder_scope_get_type_from_function&lt;T: <a href="#17-35">BuilderScopeImpl</a>&gt;(
+<a href=#147 id=147 data-nosnippet>147</a>    builder_scope: <span class="kw-2">*mut </span>ffi::<a href="../../../gtk4_sys/struct.GtkBuilderScope.html">GtkBuilderScope</a>,
+<a href=#148 id=148 data-nosnippet>148</a>    builderptr: <span class="kw-2">*mut </span>ffi::<a href="../../../gtk4_sys/struct.GtkBuilder.html">GtkBuilder</a>,
+<a href=#149 id=149 data-nosnippet>149</a>    func_nameptr: <span class="kw-2">*const </span>libc::c_char,
+<a href=#150 id=150 data-nosnippet>150</a>) -&gt; glib::ffi::GType {
+<a href=#151 id=151 data-nosnippet>151</a>    <span class="kw">unsafe </span>{
+<a href=#152 id=152 data-nosnippet>152</a>        <span class="kw">let </span>instance = <span class="kw-2">&amp;*</span>(<a href="#147">builder_scope</a> <span class="kw">as </span><span class="kw-2">*mut </span>T::Instance);
+<a href=#153 id=153 data-nosnippet>153</a>        <span class="kw">let </span>imp = <a href="#152">instance</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/subclass/types/trait.InstanceStructExt.html#tymethod.imp">imp</a>();
+<a href=#154 id=154 data-nosnippet>154</a>        <span class="kw">let </span>builder: <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/struct.Borrowed.html">Borrowed</a>&lt;<a href="../auto/builder.rs.html#13-407">Builder</a>&gt; = <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib_borrow.html">from_glib_borrow</a>(<a href="#148">builderptr</a>);
+<a href=#155 id=155 data-nosnippet>155</a>        <span class="kw">let </span>func_name: <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/struct.Borrowed.html">Borrowed</a>&lt;<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/gstring/struct.GString.html">GString</a>&gt; = <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib_borrow.html">from_glib_borrow</a>(<a href="#149">func_nameptr</a>);
 <a href=#156 id=156 data-nosnippet>156</a>
-<a href=#157 id=157 data-nosnippet>157</a><span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn </span>builder_scope_create_closure&lt;T: <a href="#17-35">BuilderScopeImpl</a>&gt;(
-<a href=#158 id=158 data-nosnippet>158</a>    builder_scope: <span class="kw-2">*mut </span>ffi::<a href="../../../gtk4_sys/struct.GtkBuilderScope.html">GtkBuilderScope</a>,
-<a href=#159 id=159 data-nosnippet>159</a>    builderptr: <span class="kw-2">*mut </span>ffi::<a href="../../../gtk4_sys/struct.GtkBuilder.html">GtkBuilder</a>,
-<a href=#160 id=160 data-nosnippet>160</a>    func_nameptr: <span class="kw-2">*const </span>libc::c_char,
-<a href=#161 id=161 data-nosnippet>161</a>    flags: ffi::<a href="../../../gtk4_sys/type.GtkBuilderClosureFlags.html">GtkBuilderClosureFlags</a>,
-<a href=#162 id=162 data-nosnippet>162</a>    objectptr: <span class="kw-2">*mut </span>glib::gobject_ffi::GObject,
-<a href=#163 id=163 data-nosnippet>163</a>    errorptr: <span class="kw-2">*mut *mut </span>glib::ffi::GError,
-<a href=#164 id=164 data-nosnippet>164</a>) -&gt; <span class="kw-2">*mut </span>glib::gobject_ffi::GClosure {
-<a href=#165 id=165 data-nosnippet>165</a>    <span class="kw">let </span>instance = <span class="kw-2">&amp;*</span>(<a href="#158">builder_scope</a> <span class="kw">as </span><span class="kw-2">*mut </span>T::Instance);
-<a href=#166 id=166 data-nosnippet>166</a>    <span class="kw">let </span>imp = <a href="#165">instance</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/subclass/types/trait.InstanceStructExt.html#tymethod.imp">imp</a>();
-<a href=#167 id=167 data-nosnippet>167</a>    <span class="kw">let </span>builder: <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/struct.Borrowed.html">Borrowed</a>&lt;<a href="../auto/builder.rs.html#13-407">Builder</a>&gt; = <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib_borrow.html">from_glib_borrow</a>(<a href="#159">builderptr</a>);
-<a href=#168 id=168 data-nosnippet>168</a>    <span class="kw">let </span>func_name: <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/struct.Borrowed.html">Borrowed</a>&lt;<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/gstring/struct.GString.html">GString</a>&gt; = <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib_borrow.html">from_glib_borrow</a>(<a href="#160">func_nameptr</a>);
-<a href=#169 id=169 data-nosnippet>169</a>    <span class="kw">let </span>object: <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/struct.Borrowed.html">Borrowed</a>&lt;<a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/struct.Object.html">Object</a>&gt;&gt; = <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib_borrow.html">from_glib_borrow</a>(<a href="#162">objectptr</a>);
-<a href=#170 id=170 data-nosnippet>170</a>
-<a href=#171 id=171 data-nosnippet>171</a>    <span class="kw">let </span>ret = <a href="#166">imp</a>.<a href="#28-34">create_closure</a>(
-<a href=#172 id=172 data-nosnippet>172</a>        <span class="kw-2">&amp;</span><a href="#167">builder</a>,
-<a href=#173 id=173 data-nosnippet>173</a>        <span class="kw-2">&amp;</span><a href="#168">func_name</a>,
-<a href=#174 id=174 data-nosnippet>174</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(<a href="#161">flags</a>),
-<a href=#175 id=175 data-nosnippet>175</a>        <a href="#169">object</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#method.as_ref">as_ref</a>(),
-<a href=#176 id=176 data-nosnippet>176</a>    );
-<a href=#177 id=177 data-nosnippet>177</a>
-<a href=#178 id=178 data-nosnippet>178</a>    <span class="kw">match </span><a href="#171">ret</a> {
-<a href=#179 id=179 data-nosnippet>179</a>        <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html#variant.Ok">Ok</a>(closure) =&gt; <a href="#179">closure</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.IntoGlibPtr.html#tymethod.into_glib_ptr">into_glib_ptr</a>(),
-<a href=#180 id=180 data-nosnippet>180</a>        <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html#variant.Err">Err</a>(e) =&gt; {
-<a href=#181 id=181 data-nosnippet>181</a>            <span class="kw">if </span>!<a href="#163">errorptr</a>.<a href="https://doc.rust-lang.org/nightly/core/ptr/foreigntype.mut_ptr.html#method.is_null">is_null</a>() {
-<a href=#182 id=182 data-nosnippet>182</a>                <span class="kw-2">*</span><a href="#163">errorptr</a> = <a href="#180">e</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.IntoGlibPtr.html#tymethod.into_glib_ptr">into_glib_ptr</a>();
-<a href=#183 id=183 data-nosnippet>183</a>            }
-<a href=#184 id=184 data-nosnippet>184</a>            std::ptr::<a href="https://doc.rust-lang.org/nightly/core/ptr/fn.null_mut.html">null_mut</a>()
-<a href=#185 id=185 data-nosnippet>185</a>        }
-<a href=#186 id=186 data-nosnippet>186</a>    }
-<a href=#187 id=187 data-nosnippet>187</a>}
+<a href=#157 id=157 data-nosnippet>157</a>        <a href="#153">imp</a>.<a href="#24-26">type_from_function</a>(<span class="kw-2">&amp;</span><a href="#154">builder</a>, <span class="kw-2">&amp;</span><a href="#155">func_name</a>).<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>()
+<a href=#158 id=158 data-nosnippet>158</a>    }
+<a href=#159 id=159 data-nosnippet>159</a>}
+<a href=#160 id=160 data-nosnippet>160</a>
+<a href=#161 id=161 data-nosnippet>161</a><span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn </span>builder_scope_create_closure&lt;T: <a href="#17-35">BuilderScopeImpl</a>&gt;(
+<a href=#162 id=162 data-nosnippet>162</a>    builder_scope: <span class="kw-2">*mut </span>ffi::<a href="../../../gtk4_sys/struct.GtkBuilderScope.html">GtkBuilderScope</a>,
+<a href=#163 id=163 data-nosnippet>163</a>    builderptr: <span class="kw-2">*mut </span>ffi::<a href="../../../gtk4_sys/struct.GtkBuilder.html">GtkBuilder</a>,
+<a href=#164 id=164 data-nosnippet>164</a>    func_nameptr: <span class="kw-2">*const </span>libc::c_char,
+<a href=#165 id=165 data-nosnippet>165</a>    flags: ffi::<a href="../../../gtk4_sys/type.GtkBuilderClosureFlags.html">GtkBuilderClosureFlags</a>,
+<a href=#166 id=166 data-nosnippet>166</a>    objectptr: <span class="kw-2">*mut </span>glib::gobject_ffi::GObject,
+<a href=#167 id=167 data-nosnippet>167</a>    errorptr: <span class="kw-2">*mut *mut </span>glib::ffi::GError,
+<a href=#168 id=168 data-nosnippet>168</a>) -&gt; <span class="kw-2">*mut </span>glib::gobject_ffi::GClosure {
+<a href=#169 id=169 data-nosnippet>169</a>    <span class="kw">unsafe </span>{
+<a href=#170 id=170 data-nosnippet>170</a>        <span class="kw">let </span>instance = <span class="kw-2">&amp;*</span>(<a href="#162">builder_scope</a> <span class="kw">as </span><span class="kw-2">*mut </span>T::Instance);
+<a href=#171 id=171 data-nosnippet>171</a>        <span class="kw">let </span>imp = <a href="#170">instance</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/subclass/types/trait.InstanceStructExt.html#tymethod.imp">imp</a>();
+<a href=#172 id=172 data-nosnippet>172</a>        <span class="kw">let </span>builder: <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/struct.Borrowed.html">Borrowed</a>&lt;<a href="../auto/builder.rs.html#13-407">Builder</a>&gt; = <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib_borrow.html">from_glib_borrow</a>(<a href="#163">builderptr</a>);
+<a href=#173 id=173 data-nosnippet>173</a>        <span class="kw">let </span>func_name: <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/struct.Borrowed.html">Borrowed</a>&lt;<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/gstring/struct.GString.html">GString</a>&gt; = <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib_borrow.html">from_glib_borrow</a>(<a href="#164">func_nameptr</a>);
+<a href=#174 id=174 data-nosnippet>174</a>        <span class="kw">let </span>object: <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/struct.Borrowed.html">Borrowed</a>&lt;<a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/struct.Object.html">Object</a>&gt;&gt; = <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib_borrow.html">from_glib_borrow</a>(<a href="#166">objectptr</a>);
+<a href=#175 id=175 data-nosnippet>175</a>
+<a href=#176 id=176 data-nosnippet>176</a>        <span class="kw">let </span>ret = <a href="#171">imp</a>.<a href="#28-34">create_closure</a>(
+<a href=#177 id=177 data-nosnippet>177</a>            <span class="kw-2">&amp;</span><a href="#172">builder</a>,
+<a href=#178 id=178 data-nosnippet>178</a>            <span class="kw-2">&amp;</span><a href="#173">func_name</a>,
+<a href=#179 id=179 data-nosnippet>179</a>            <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(<a href="#165">flags</a>),
+<a href=#180 id=180 data-nosnippet>180</a>            <a href="#174">object</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#method.as_ref">as_ref</a>(),
+<a href=#181 id=181 data-nosnippet>181</a>        );
+<a href=#182 id=182 data-nosnippet>182</a>
+<a href=#183 id=183 data-nosnippet>183</a>        <span class="kw">match </span><a href="#176">ret</a> {
+<a href=#184 id=184 data-nosnippet>184</a>            <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html#variant.Ok">Ok</a>(closure) =&gt; <a href="#184">closure</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.IntoGlibPtr.html#tymethod.into_glib_ptr">into_glib_ptr</a>(),
+<a href=#185 id=185 data-nosnippet>185</a>            <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html#variant.Err">Err</a>(e) =&gt; {
+<a href=#186 id=186 data-nosnippet>186</a>                <span class="kw">if </span>!<a href="#167">errorptr</a>.<a href="https://doc.rust-lang.org/nightly/core/ptr/foreigntype.mut_ptr.html#method.is_null">is_null</a>() {
+<a href=#187 id=187 data-nosnippet>187</a>                    <span class="kw-2">*</span><a href="#167">errorptr</a> = <a href="#185">e</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.IntoGlibPtr.html#tymethod.into_glib_ptr">into_glib_ptr</a>();
+<a href=#188 id=188 data-nosnippet>188</a>                }
+<a href=#189 id=189 data-nosnippet>189</a>                std::ptr::<a href="https://doc.rust-lang.org/nightly/core/ptr/fn.null_mut.html">null_mut</a>()
+<a href=#190 id=190 data-nosnippet>190</a>            }
+<a href=#191 id=191 data-nosnippet>191</a>        }
+<a href=#192 id=192 data-nosnippet>192</a>    }
+<a href=#193 id=193 data-nosnippet>193</a>}
 </code></pre></div></section></main></body></html>

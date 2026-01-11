@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/sys/src/lib.rs`."><title>lib.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-77263533.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gtk4_sys" data-themes="" data-resource-suffix="" data-rustdoc-version="1.94.0-nightly (a3f2d5abe 2026-01-09)" data-channel="nightly" data-search-js="search-9e2438ea.js" data-stringdex-js="stringdex-b897f86f.js" data-settings-js="settings-c38705f0.js" ><script src="../../static.files/storage-e2aeef58.js"></script><script defer src="../../static.files/src-script-813739b1.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-7bab91a1.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-ffcac47a.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/sys/src/lib.rs`."><title>lib.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-77263533.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gtk4_sys" data-themes="" data-resource-suffix="" data-rustdoc-version="1.94.0-nightly (f57eac1bf 2026-01-10)" data-channel="nightly" data-search-js="search-9e2438ea.js" data-stringdex-js="stringdex-b897f86f.js" data-settings-js="settings-c38705f0.js" ><script src="../../static.files/storage-e2aeef58.js"></script><script defer src="../../static.files/src-script-813739b1.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-7bab91a1.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-ffcac47a.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
 
@@ -85,8 +85,8 @@
 <a href=#12 id=12 data-nosnippet>12</a>#![cfg_attr(docsrs, feature(doc_cfg))]
 <a href=#13 id=13 data-nosnippet>13</a>
 <a href=#14 id=14 data-nosnippet>14</a></span><span class="kw">use </span>cairo_sys <span class="kw">as </span>cairo;
-<a href=#15 id=15 data-nosnippet>15</a><span class="kw">use </span><a href="../../gdk4_sys/index.html">gdk4_sys</a> <span class="kw">as </span>gdk;
-<a href=#16 id=16 data-nosnippet>16</a><span class="kw">use </span>gdk_pixbuf_sys <span class="kw">as </span>gdk_pixbuf;
+<a href=#15 id=15 data-nosnippet>15</a><span class="kw">use </span>gdk_pixbuf_sys <span class="kw">as </span>gdk_pixbuf;
+<a href=#16 id=16 data-nosnippet>16</a><span class="kw">use </span><a href="../../gdk4_sys/index.html">gdk4_sys</a> <span class="kw">as </span>gdk;
 <a href=#17 id=17 data-nosnippet>17</a><span class="kw">use </span>gio_sys <span class="kw">as </span>gio;
 <a href=#18 id=18 data-nosnippet>18</a><span class="kw">use </span>glib_sys <span class="kw">as </span>glib;
 <a href=#19 id=19 data-nosnippet>19</a><span class="kw">use </span>gobject_sys <span class="kw">as </span>gobject;
@@ -94,18 +94,18 @@
 <a href=#21 id=21 data-nosnippet>21</a><span class="kw">use </span><a href="../../gsk4_sys/index.html">gsk4_sys</a> <span class="kw">as </span>gsk;
 <a href=#22 id=22 data-nosnippet>22</a><span class="kw">use </span>pango_sys <span class="kw">as </span>pango;
 <a href=#23 id=23 data-nosnippet>23</a>
-<a href=#24 id=24 data-nosnippet>24</a><span class="attr">#[cfg(unix)]
-<a href=#25 id=25 data-nosnippet>25</a>#[allow(unused_imports)]
-<a href=#26 id=26 data-nosnippet>26</a></span><span class="kw">use </span>libc::{dev_t, gid_t, pid_t, socklen_t, uid_t};
-<a href=#27 id=27 data-nosnippet>27</a><span class="attr">#[allow(unused_imports)]
-<a href=#28 id=28 data-nosnippet>28</a></span><span class="kw">use </span>libc::{intptr_t, off_t, size_t, ssize_t, time_t, uintptr_t, FILE};
+<a href=#24 id=24 data-nosnippet>24</a><span class="attr">#[allow(unused_imports)]
+<a href=#25 id=25 data-nosnippet>25</a></span><span class="kw">use </span>libc::{FILE, intptr_t, off_t, size_t, ssize_t, time_t, uintptr_t};
+<a href=#26 id=26 data-nosnippet>26</a><span class="attr">#[cfg(unix)]
+<a href=#27 id=27 data-nosnippet>27</a>#[allow(unused_imports)]
+<a href=#28 id=28 data-nosnippet>28</a></span><span class="kw">use </span>libc::{dev_t, gid_t, pid_t, socklen_t, uid_t};
 <a href=#29 id=29 data-nosnippet>29</a><span class="attr">#[allow(unused_imports)]
 <a href=#30 id=30 data-nosnippet>30</a></span><span class="kw">use </span>std::ffi::{
 <a href=#31 id=31 data-nosnippet>31</a>    <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_char.html">c_char</a>, <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_double.html">c_double</a>, <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_float.html">c_float</a>, <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>, <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_long.html">c_long</a>, <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_short.html">c_short</a>, <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_uchar.html">c_uchar</a>, <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_uint.html">c_uint</a>, <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_ulong.html">c_ulong</a>, <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_ushort.html">c_ushort</a>, <a href="https://doc.rust-lang.org/nightly/core/ffi/enum.c_void.html">c_void</a>,
 <a href=#32 id=32 data-nosnippet>32</a>};
 <a href=#33 id=33 data-nosnippet>33</a>
 <a href=#34 id=34 data-nosnippet>34</a><span class="attr">#[allow(unused_imports)]
-<a href=#35 id=35 data-nosnippet>35</a></span><span class="kw">use </span>glib::{gboolean, gconstpointer, gpointer, GType};
+<a href=#35 id=35 data-nosnippet>35</a></span><span class="kw">use </span>glib::{GType, gboolean, gconstpointer, gpointer};
 <a href=#36 id=36 data-nosnippet>36</a>
 <a href=#37 id=37 data-nosnippet>37</a><span class="kw">pub const </span><a href="../../gtk4_sys/constant.GTK_ENTRY_BUFFER_MAX_SIZE.html">GTK_ENTRY_BUFFER_MAX_SIZE</a>: <a href="https://doc.rust-lang.org/nightly/std/primitive.u16.html">u16</a> = <a href="https://doc.rust-lang.org/nightly/std/primitive.u16.html">u16</a>::<a href="https://doc.rust-lang.org/nightly/core/foreigntype.num.html#associatedconstant.MAX">MAX</a>;
 <a href=#38 id=38 data-nosnippet>38</a>
@@ -10177,7 +10177,7 @@
 <a href=#10104 id=10104 data-nosnippet>10104</a>    }
 <a href=#10105 id=10105 data-nosnippet>10105</a>}
 <a href=#10106 id=10106 data-nosnippet>10106</a>
-<a href=#10107 id=10107 data-nosnippet>10107</a><span class="kw">extern </span><span class="string">"C" </span>{
+<a href=#10107 id=10107 data-nosnippet>10107</a><span class="kw">unsafe extern </span><span class="string">"C" </span>{
 <a href=#10108 id=10108 data-nosnippet>10108</a>
 <a href=#10109 id=10109 data-nosnippet>10109</a>    <span class="comment">//=========================================================================
 <a href=#10110 id=10110 data-nosnippet>10110</a>    // GtkAccessibleAnnouncementPriority
@@ -11084,7 +11084,7 @@
 <a href=#11011 id=11011 data-nosnippet>11011</a>    #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_16"</span>)))]
 <a href=#11012 id=11012 data-nosnippet>11012</a>    </span><span class="kw">pub fn </span>gtk_css_section_get_bytes(section: <span class="kw-2">*const </span><a href="#2803-2806">GtkCssSection</a>) -&gt; <span class="kw-2">*mut </span>glib::GBytes;
 <a href=#11013 id=11013 data-nosnippet>11013</a>    <span class="kw">pub fn </span>gtk_css_section_get_end_location(section: <span class="kw-2">*const </span><a href="#2803-2806">GtkCssSection</a>)
-<a href=#11014 id=11014 data-nosnippet>11014</a>        -&gt; <span class="kw-2">*const </span><a href="#2763-2769">GtkCssLocation</a>;
+<a href=#11014 id=11014 data-nosnippet>11014</a>    -&gt; <span class="kw-2">*const </span><a href="#2763-2769">GtkCssLocation</a>;
 <a href=#11015 id=11015 data-nosnippet>11015</a>    <span class="kw">pub fn </span>gtk_css_section_get_file(section: <span class="kw-2">*const </span><a href="#2803-2806">GtkCssSection</a>) -&gt; <span class="kw-2">*mut </span>gio::GFile;
 <a href=#11016 id=11016 data-nosnippet>11016</a>    <span class="kw">pub fn </span>gtk_css_section_get_parent(section: <span class="kw-2">*const </span><a href="#2803-2806">GtkCssSection</a>) -&gt; <span class="kw-2">*mut </span><a href="#2803-2806">GtkCssSection</a>;
 <a href=#11017 id=11017 data-nosnippet>11017</a>    <span class="kw">pub fn </span>gtk_css_section_get_start_location(
@@ -11318,7 +11318,7 @@
 <a href=#11245 id=11245 data-nosnippet>11245</a>    ) -&gt; gboolean;
 <a href=#11246 id=11246 data-nosnippet>11246</a>    <span class="kw">pub fn </span>gtk_text_iter_backward_sentence_start(iter: <span class="kw-2">*mut </span><a href="#5244-5259">GtkTextIter</a>) -&gt; gboolean;
 <a href=#11247 id=11247 data-nosnippet>11247</a>    <span class="kw">pub fn </span>gtk_text_iter_backward_sentence_starts(iter: <span class="kw-2">*mut </span><a href="#5244-5259">GtkTextIter</a>, count: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>)
-<a href=#11248 id=11248 data-nosnippet>11248</a>        -&gt; gboolean;
+<a href=#11248 id=11248 data-nosnippet>11248</a>    -&gt; gboolean;
 <a href=#11249 id=11249 data-nosnippet>11249</a>    <span class="kw">pub fn </span>gtk_text_iter_backward_to_tag_toggle(
 <a href=#11250 id=11250 data-nosnippet>11250</a>        iter: <span class="kw-2">*mut </span><a href="#5244-5259">GtkTextIter</a>,
 <a href=#11251 id=11251 data-nosnippet>11251</a>        tag: <span class="kw-2">*mut </span><a href="#9375-9378">GtkTextTag</a>,
@@ -11353,7 +11353,7 @@
 <a href=#11280 id=11280 data-nosnippet>11280</a>    <span class="kw">pub fn </span>gtk_text_iter_forward_chars(iter: <span class="kw-2">*mut </span><a href="#5244-5259">GtkTextIter</a>, count: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>) -&gt; gboolean;
 <a href=#11281 id=11281 data-nosnippet>11281</a>    <span class="kw">pub fn </span>gtk_text_iter_forward_cursor_position(iter: <span class="kw-2">*mut </span><a href="#5244-5259">GtkTextIter</a>) -&gt; gboolean;
 <a href=#11282 id=11282 data-nosnippet>11282</a>    <span class="kw">pub fn </span>gtk_text_iter_forward_cursor_positions(iter: <span class="kw-2">*mut </span><a href="#5244-5259">GtkTextIter</a>, count: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>)
-<a href=#11283 id=11283 data-nosnippet>11283</a>        -&gt; gboolean;
+<a href=#11283 id=11283 data-nosnippet>11283</a>    -&gt; gboolean;
 <a href=#11284 id=11284 data-nosnippet>11284</a>    <span class="kw">pub fn </span>gtk_text_iter_forward_find_char(
 <a href=#11285 id=11285 data-nosnippet>11285</a>        iter: <span class="kw-2">*mut </span><a href="#5244-5259">GtkTextIter</a>,
 <a href=#11286 id=11286 data-nosnippet>11286</a>        pred: <a href="#1364">GtkTextCharPredicate</a>,
@@ -11467,7 +11467,7 @@
 <a href=#11394 id=11394 data-nosnippet>11394</a>    <span class="kw">pub fn </span>gtk_tree_path_new_first() -&gt; <span class="kw-2">*mut </span><a href="#5658-5661">GtkTreePath</a>;
 <a href=#11395 id=11395 data-nosnippet>11395</a>    <span class="kw">pub fn </span>gtk_tree_path_new_from_indices(first_index: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>, ...) -&gt; <span class="kw-2">*mut </span><a href="#5658-5661">GtkTreePath</a>;
 <a href=#11396 id=11396 data-nosnippet>11396</a>    <span class="kw">pub fn </span>gtk_tree_path_new_from_indicesv(indices: <span class="kw-2">*mut </span><a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>, length: size_t)
-<a href=#11397 id=11397 data-nosnippet>11397</a>        -&gt; <span class="kw-2">*mut </span><a href="#5658-5661">GtkTreePath</a>;
+<a href=#11397 id=11397 data-nosnippet>11397</a>    -&gt; <span class="kw-2">*mut </span><a href="#5658-5661">GtkTreePath</a>;
 <a href=#11398 id=11398 data-nosnippet>11398</a>    <span class="kw">pub fn </span>gtk_tree_path_new_from_string(path: <span class="kw-2">*const </span><a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_char.html">c_char</a>) -&gt; <span class="kw-2">*mut </span><a href="#5658-5661">GtkTreePath</a>;
 <a href=#11399 id=11399 data-nosnippet>11399</a>    <span class="kw">pub fn </span>gtk_tree_path_append_index(path: <span class="kw-2">*mut </span><a href="#5658-5661">GtkTreePath</a>, index_: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>);
 <a href=#11400 id=11400 data-nosnippet>11400</a>    <span class="kw">pub fn </span>gtk_tree_path_compare(a: <span class="kw-2">*const </span><a href="#5658-5661">GtkTreePath</a>, b: <span class="kw-2">*const </span><a href="#5658-5661">GtkTreePath</a>) -&gt; <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>;
@@ -11515,7 +11515,7 @@
 <a href=#11442 id=11442 data-nosnippet>11442</a>        reference: <span class="kw-2">*mut </span><a href="#5671-5674">GtkTreeRowReference</a>,
 <a href=#11443 id=11443 data-nosnippet>11443</a>    ) -&gt; <span class="kw-2">*mut </span><a href="#10083-10086">GtkTreeModel</a>;
 <a href=#11444 id=11444 data-nosnippet>11444</a>    <span class="kw">pub fn </span>gtk_tree_row_reference_get_path(reference: <span class="kw-2">*mut </span><a href="#5671-5674">GtkTreeRowReference</a>)
-<a href=#11445 id=11445 data-nosnippet>11445</a>        -&gt; <span class="kw-2">*mut </span><a href="#5658-5661">GtkTreePath</a>;
+<a href=#11445 id=11445 data-nosnippet>11445</a>    -&gt; <span class="kw-2">*mut </span><a href="#5658-5661">GtkTreePath</a>;
 <a href=#11446 id=11446 data-nosnippet>11446</a>    <span class="kw">pub fn </span>gtk_tree_row_reference_valid(reference: <span class="kw-2">*mut </span><a href="#5671-5674">GtkTreeRowReference</a>) -&gt; gboolean;
 <a href=#11447 id=11447 data-nosnippet>11447</a>    <span class="kw">pub fn </span>gtk_tree_row_reference_deleted(proxy: <span class="kw-2">*mut </span>gobject::GObject, path: <span class="kw-2">*mut </span><a href="#5658-5661">GtkTreePath</a>);
 <a href=#11448 id=11448 data-nosnippet>11448</a>    <span class="kw">pub fn </span>gtk_tree_row_reference_inserted(proxy: <span class="kw-2">*mut </span>gobject::GObject, path: <span class="kw-2">*mut </span><a href="#5658-5661">GtkTreePath</a>);
@@ -11887,7 +11887,7 @@
 <a href=#11814 id=11814 data-nosnippet>11814</a>        self_: <span class="kw-2">*mut </span><a href="#6161-6164">GtkAppChooserButton</a>,
 <a href=#11815 id=11815 data-nosnippet>11815</a>    ) -&gt; gboolean;
 <a href=#11816 id=11816 data-nosnippet>11816</a>    <span class="kw">pub fn </span>gtk_app_chooser_button_get_show_dialog_item(self_: <span class="kw-2">*mut </span><a href="#6161-6164">GtkAppChooserButton</a>)
-<a href=#11817 id=11817 data-nosnippet>11817</a>        -&gt; gboolean;
+<a href=#11817 id=11817 data-nosnippet>11817</a>    -&gt; gboolean;
 <a href=#11818 id=11818 data-nosnippet>11818</a>    <span class="kw">pub fn </span>gtk_app_chooser_button_set_active_custom_item(
 <a href=#11819 id=11819 data-nosnippet>11819</a>        self_: <span class="kw-2">*mut </span><a href="#6161-6164">GtkAppChooserButton</a>,
 <a href=#11820 id=11820 data-nosnippet>11820</a>        name: <span class="kw-2">*const </span><a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_char.html">c_char</a>,
@@ -11940,7 +11940,7 @@
 <a href=#11867 id=11867 data-nosnippet>11867</a>    <span class="kw">pub fn </span>gtk_app_chooser_widget_get_show_fallback(self_: <span class="kw-2">*mut </span><a href="#6189-6192">GtkAppChooserWidget</a>) -&gt; gboolean;
 <a href=#11868 id=11868 data-nosnippet>11868</a>    <span class="kw">pub fn </span>gtk_app_chooser_widget_get_show_other(self_: <span class="kw-2">*mut </span><a href="#6189-6192">GtkAppChooserWidget</a>) -&gt; gboolean;
 <a href=#11869 id=11869 data-nosnippet>11869</a>    <span class="kw">pub fn </span>gtk_app_chooser_widget_get_show_recommended(self_: <span class="kw-2">*mut </span><a href="#6189-6192">GtkAppChooserWidget</a>)
-<a href=#11870 id=11870 data-nosnippet>11870</a>        -&gt; gboolean;
+<a href=#11870 id=11870 data-nosnippet>11870</a>    -&gt; gboolean;
 <a href=#11871 id=11871 data-nosnippet>11871</a>    <span class="kw">pub fn </span>gtk_app_chooser_widget_set_default_text(
 <a href=#11872 id=11872 data-nosnippet>11872</a>        self_: <span class="kw-2">*mut </span><a href="#6189-6192">GtkAppChooserWidget</a>,
 <a href=#11873 id=11873 data-nosnippet>11873</a>        text: <span class="kw-2">*const </span><a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_char.html">c_char</a>,
@@ -12892,7 +12892,7 @@
 <a href=#12819 id=12819 data-nosnippet>12819</a>    </span><span class="kw">pub fn </span>gtk_cell_renderer_toggle_get_type() -&gt; GType;
 <a href=#12820 id=12820 data-nosnippet>12820</a>    <span class="kw">pub fn </span>gtk_cell_renderer_toggle_new() -&gt; <span class="kw-2">*mut </span><a href="#6473-6476">GtkCellRenderer</a>;
 <a href=#12821 id=12821 data-nosnippet>12821</a>    <span class="kw">pub fn </span>gtk_cell_renderer_toggle_get_activatable(toggle: <span class="kw-2">*mut </span><a href="#6586-6589">GtkCellRendererToggle</a>)
-<a href=#12822 id=12822 data-nosnippet>12822</a>        -&gt; gboolean;
+<a href=#12822 id=12822 data-nosnippet>12822</a>    -&gt; gboolean;
 <a href=#12823 id=12823 data-nosnippet>12823</a>    <span class="kw">pub fn </span>gtk_cell_renderer_toggle_get_active(toggle: <span class="kw-2">*mut </span><a href="#6586-6589">GtkCellRendererToggle</a>) -&gt; gboolean;
 <a href=#12824 id=12824 data-nosnippet>12824</a>    <span class="kw">pub fn </span>gtk_cell_renderer_toggle_get_radio(toggle: <span class="kw-2">*mut </span><a href="#6586-6589">GtkCellRendererToggle</a>) -&gt; gboolean;
 <a href=#12825 id=12825 data-nosnippet>12825</a>    <span class="kw">pub fn </span>gtk_cell_renderer_toggle_set_activatable(
@@ -13139,7 +13139,7 @@
 <a href=#13066 id=13066 data-nosnippet>13066</a>    <span class="attr">#[cfg(feature = <span class="string">"v4_12"</span>)]
 <a href=#13067 id=13067 data-nosnippet>13067</a>    #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_12"</span>)))]
 <a href=#13068 id=13068 data-nosnippet>13068</a>    </span><span class="kw">pub fn </span>gtk_column_view_get_header_factory(self_: <span class="kw-2">*mut </span><a href="#6738-6741">GtkColumnView</a>)
-<a href=#13069 id=13069 data-nosnippet>13069</a>        -&gt; <span class="kw-2">*mut </span><a href="#8061-8064">GtkListItemFactory</a>;
+<a href=#13069 id=13069 data-nosnippet>13069</a>    -&gt; <span class="kw-2">*mut </span><a href="#8061-8064">GtkListItemFactory</a>;
 <a href=#13070 id=13070 data-nosnippet>13070</a>    <span class="kw">pub fn </span>gtk_column_view_get_model(self_: <span class="kw-2">*mut </span><a href="#6738-6741">GtkColumnView</a>) -&gt; <span class="kw-2">*mut </span><a href="#10005-10008">GtkSelectionModel</a>;
 <a href=#13071 id=13071 data-nosnippet>13071</a>    <span class="kw">pub fn </span>gtk_column_view_get_reorderable(self_: <span class="kw-2">*mut </span><a href="#6738-6741">GtkColumnView</a>) -&gt; gboolean;
 <a href=#13072 id=13072 data-nosnippet>13072</a>    <span class="attr">#[cfg(feature = <span class="string">"v4_12"</span>)]
@@ -13831,7 +13831,7 @@
 <a href=#13758 id=13758 data-nosnippet>13758</a>    <span class="attr">#[cfg(feature = <span class="string">"v4_12"</span>)]
 <a href=#13759 id=13759 data-nosnippet>13759</a>    #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_12"</span>)))]
 <a href=#13760 id=13760 data-nosnippet>13760</a>    </span><span class="kw">pub fn </span>gtk_drop_down_get_search_match_mode(self_: <span class="kw-2">*mut </span><a href="#7045-7048">GtkDropDown</a>)
-<a href=#13761 id=13761 data-nosnippet>13761</a>        -&gt; <a href="#905">GtkStringFilterMatchMode</a>;
+<a href=#13761 id=13761 data-nosnippet>13761</a>    -&gt; <a href="#905">GtkStringFilterMatchMode</a>;
 <a href=#13762 id=13762 data-nosnippet>13762</a>    <span class="kw">pub fn </span>gtk_drop_down_get_selected(self_: <span class="kw-2">*mut </span><a href="#7045-7048">GtkDropDown</a>) -&gt; <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_uint.html">c_uint</a>;
 <a href=#13763 id=13763 data-nosnippet>13763</a>    <span class="kw">pub fn </span>gtk_drop_down_get_selected_item(self_: <span class="kw-2">*mut </span><a href="#7045-7048">GtkDropDown</a>) -&gt; <span class="kw-2">*mut </span>gobject::GObject;
 <a href=#13764 id=13764 data-nosnippet>13764</a>    <span class="attr">#[cfg(feature = <span class="string">"v4_6"</span>)]
@@ -14133,7 +14133,7 @@
 <a href=#14060 id=14060 data-nosnippet>14060</a>        completion: <span class="kw-2">*mut </span><a href="#7140-7143">GtkEntryCompletion</a>,
 <a href=#14061 id=14061 data-nosnippet>14061</a>    ) -&gt; <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>;
 <a href=#14062 id=14062 data-nosnippet>14062</a>    <span class="kw">pub fn </span>gtk_entry_completion_get_model(completion: <span class="kw-2">*mut </span><a href="#7140-7143">GtkEntryCompletion</a>)
-<a href=#14063 id=14063 data-nosnippet>14063</a>        -&gt; <span class="kw-2">*mut </span><a href="#10083-10086">GtkTreeModel</a>;
+<a href=#14063 id=14063 data-nosnippet>14063</a>    -&gt; <span class="kw-2">*mut </span><a href="#10083-10086">GtkTreeModel</a>;
 <a href=#14064 id=14064 data-nosnippet>14064</a>    <span class="kw">pub fn </span>gtk_entry_completion_get_popup_completion(
 <a href=#14065 id=14065 data-nosnippet>14065</a>        completion: <span class="kw-2">*mut </span><a href="#7140-7143">GtkEntryCompletion</a>,
 <a href=#14066 id=14066 data-nosnippet>14066</a>    ) -&gt; gboolean;
@@ -14263,7 +14263,7 @@
 <a href=#14190 id=14190 data-nosnippet>14190</a>        self_: <span class="kw-2">*mut </span><a href="#7210-7213">GtkEventControllerMotion</a>,
 <a href=#14191 id=14191 data-nosnippet>14191</a>    ) -&gt; gboolean;
 <a href=#14192 id=14192 data-nosnippet>14192</a>    <span class="kw">pub fn </span>gtk_event_controller_motion_is_pointer(self_: <span class="kw-2">*mut </span><a href="#7210-7213">GtkEventControllerMotion</a>)
-<a href=#14193 id=14193 data-nosnippet>14193</a>        -&gt; gboolean;
+<a href=#14193 id=14193 data-nosnippet>14193</a>    -&gt; gboolean;
 <a href=#14194 id=14194 data-nosnippet>14194</a>
 <a href=#14195 id=14195 data-nosnippet>14195</a>    <span class="comment">//=========================================================================
 <a href=#14196 id=14196 data-nosnippet>14196</a>    // GtkEventControllerScroll
@@ -14994,7 +14994,7 @@
 <a href=#14921 id=14921 data-nosnippet>14921</a>    <span class="attr">#[cfg(feature = <span class="string">"v4_10"</span>)]
 <a href=#14922 id=14922 data-nosnippet>14922</a>    #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_10"</span>)))]
 <a href=#14923 id=14923 data-nosnippet>14923</a>    </span><span class="kw">pub fn </span>gtk_font_dialog_button_get_dialog(self_: <span class="kw-2">*mut </span><a href="#7529-7532">GtkFontDialogButton</a>)
-<a href=#14924 id=14924 data-nosnippet>14924</a>        -&gt; <span class="kw-2">*mut </span><a href="#7515-7518">GtkFontDialog</a>;
+<a href=#14924 id=14924 data-nosnippet>14924</a>    -&gt; <span class="kw-2">*mut </span><a href="#7515-7518">GtkFontDialog</a>;
 <a href=#14925 id=14925 data-nosnippet>14925</a>    <span class="attr">#[cfg(feature = <span class="string">"v4_10"</span>)]
 <a href=#14926 id=14926 data-nosnippet>14926</a>    #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_10"</span>)))]
 <a href=#14927 id=14927 data-nosnippet>14927</a>    </span><span class="kw">pub fn </span>gtk_font_dialog_button_get_font_desc(
@@ -15690,7 +15690,7 @@
 <a href=#15617 id=15617 data-nosnippet>15617</a>    <span class="kw">pub fn </span>gtk_icon_view_get_item_orientation(icon_view: <span class="kw-2">*mut </span><a href="#7859-7862">GtkIconView</a>) -&gt; <a href="#624">GtkOrientation</a>;
 <a href=#15618 id=15618 data-nosnippet>15618</a>    <span class="kw">pub fn </span>gtk_icon_view_get_item_padding(icon_view: <span class="kw-2">*mut </span><a href="#7859-7862">GtkIconView</a>) -&gt; <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>;
 <a href=#15619 id=15619 data-nosnippet>15619</a>    <span class="kw">pub fn </span>gtk_icon_view_get_item_row(icon_view: <span class="kw-2">*mut </span><a href="#7859-7862">GtkIconView</a>, path: <span class="kw-2">*mut </span><a href="#5658-5661">GtkTreePath</a>)
-<a href=#15620 id=15620 data-nosnippet>15620</a>        -&gt; <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>;
+<a href=#15620 id=15620 data-nosnippet>15620</a>    -&gt; <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>;
 <a href=#15621 id=15621 data-nosnippet>15621</a>    <span class="kw">pub fn </span>gtk_icon_view_get_item_width(icon_view: <span class="kw-2">*mut </span><a href="#7859-7862">GtkIconView</a>) -&gt; <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>;
 <a href=#15622 id=15622 data-nosnippet>15622</a>    <span class="kw">pub fn </span>gtk_icon_view_get_margin(icon_view: <span class="kw-2">*mut </span><a href="#7859-7862">GtkIconView</a>) -&gt; <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>;
 <a href=#15623 id=15623 data-nosnippet>15623</a>    <span class="kw">pub fn </span>gtk_icon_view_get_markup_column(icon_view: <span class="kw-2">*mut </span><a href="#7859-7862">GtkIconView</a>) -&gt; <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>;
@@ -16318,7 +16318,7 @@
 <a href=#16245 id=16245 data-nosnippet>16245</a>    );
 <a href=#16246 id=16246 data-nosnippet>16246</a>    <span class="kw">pub fn </span>gtk_list_store_prepend(list_store: <span class="kw-2">*mut </span><a href="#8075-8078">GtkListStore</a>, iter: <span class="kw-2">*mut </span><a href="#5454-5459">GtkTreeIter</a>);
 <a href=#16247 id=16247 data-nosnippet>16247</a>    <span class="kw">pub fn </span>gtk_list_store_remove(list_store: <span class="kw-2">*mut </span><a href="#8075-8078">GtkListStore</a>, iter: <span class="kw-2">*mut </span><a href="#5454-5459">GtkTreeIter</a>)
-<a href=#16248 id=16248 data-nosnippet>16248</a>        -&gt; gboolean;
+<a href=#16248 id=16248 data-nosnippet>16248</a>    -&gt; gboolean;
 <a href=#16249 id=16249 data-nosnippet>16249</a>    <span class="kw">pub fn </span>gtk_list_store_reorder(store: <span class="kw-2">*mut </span><a href="#8075-8078">GtkListStore</a>, new_order: <span class="kw-2">*mut </span><a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>);
 <a href=#16250 id=16250 data-nosnippet>16250</a>    <span class="kw">pub fn </span>gtk_list_store_set(list_store: <span class="kw-2">*mut </span><a href="#8075-8078">GtkListStore</a>, iter: <span class="kw-2">*mut </span><a href="#5454-5459">GtkTreeIter</a>, ...);
 <a href=#16251 id=16251 data-nosnippet>16251</a>    <span class="kw">pub fn </span>gtk_list_store_set_column_types(
@@ -16445,7 +16445,7 @@
 <a href=#16372 id=16372 data-nosnippet>16372</a>    <span class="kw">pub fn </span>gtk_media_file_new_for_file(file: <span class="kw-2">*mut </span>gio::GFile) -&gt; <span class="kw-2">*mut </span><a href="#8145-8147">GtkMediaFile</a>;
 <a href=#16373 id=16373 data-nosnippet>16373</a>    <span class="kw">pub fn </span>gtk_media_file_new_for_filename(filename: <span class="kw-2">*const </span><a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_char.html">c_char</a>) -&gt; <span class="kw-2">*mut </span><a href="#8145-8147">GtkMediaFile</a>;
 <a href=#16374 id=16374 data-nosnippet>16374</a>    <span class="kw">pub fn </span>gtk_media_file_new_for_input_stream(stream: <span class="kw-2">*mut </span>gio::GInputStream)
-<a href=#16375 id=16375 data-nosnippet>16375</a>        -&gt; <span class="kw-2">*mut </span><a href="#8145-8147">GtkMediaFile</a>;
+<a href=#16375 id=16375 data-nosnippet>16375</a>    -&gt; <span class="kw-2">*mut </span><a href="#8145-8147">GtkMediaFile</a>;
 <a href=#16376 id=16376 data-nosnippet>16376</a>    <span class="kw">pub fn </span>gtk_media_file_new_for_resource(resource_path: <span class="kw-2">*const </span><a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_char.html">c_char</a>) -&gt; <span class="kw-2">*mut </span><a href="#8145-8147">GtkMediaFile</a>;
 <a href=#16377 id=16377 data-nosnippet>16377</a>    <span class="kw">pub fn </span>gtk_media_file_clear(self_: <span class="kw-2">*mut </span><a href="#8145-8147">GtkMediaFile</a>);
 <a href=#16378 id=16378 data-nosnippet>16378</a>    <span class="kw">pub fn </span>gtk_media_file_get_file(self_: <span class="kw-2">*mut </span><a href="#8145-8147">GtkMediaFile</a>) -&gt; <span class="kw-2">*mut </span>gio::GFile;
@@ -16745,7 +16745,7 @@
 <a href=#16672 id=16672 data-nosnippet>16672</a>    ) -&gt; <span class="kw-2">*const </span><a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_char.html">c_char</a>;
 <a href=#16673 id=16673 data-nosnippet>16673</a>    <span class="kw">pub fn </span>gtk_notebook_get_n_pages(notebook: <span class="kw-2">*mut </span><a href="#8343-8346">GtkNotebook</a>) -&gt; <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>;
 <a href=#16674 id=16674 data-nosnippet>16674</a>    <span class="kw">pub fn </span>gtk_notebook_get_nth_page(notebook: <span class="kw-2">*mut </span><a href="#8343-8346">GtkNotebook</a>, page_num: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>)
-<a href=#16675 id=16675 data-nosnippet>16675</a>        -&gt; <span class="kw-2">*mut </span><a href="#9644-9647">GtkWidget</a>;
+<a href=#16675 id=16675 data-nosnippet>16675</a>    -&gt; <span class="kw-2">*mut </span><a href="#9644-9647">GtkWidget</a>;
 <a href=#16676 id=16676 data-nosnippet>16676</a>    <span class="kw">pub fn </span>gtk_notebook_get_page(
 <a href=#16677 id=16677 data-nosnippet>16677</a>        notebook: <span class="kw-2">*mut </span><a href="#8343-8346">GtkNotebook</a>,
 <a href=#16678 id=16678 data-nosnippet>16678</a>        child: <span class="kw-2">*mut </span><a href="#9644-9647">GtkWidget</a>,
@@ -16921,7 +16921,7 @@
 <a href=#16848 id=16848 data-nosnippet>16848</a>    //=========================================================================
 <a href=#16849 id=16849 data-nosnippet>16849</a>    </span><span class="kw">pub fn </span>gtk_overlay_layout_child_get_type() -&gt; GType;
 <a href=#16850 id=16850 data-nosnippet>16850</a>    <span class="kw">pub fn </span>gtk_overlay_layout_child_get_clip_overlay(child: <span class="kw-2">*mut </span><a href="#8439-8442">GtkOverlayLayoutChild</a>)
-<a href=#16851 id=16851 data-nosnippet>16851</a>        -&gt; gboolean;
+<a href=#16851 id=16851 data-nosnippet>16851</a>    -&gt; gboolean;
 <a href=#16852 id=16852 data-nosnippet>16852</a>    <span class="kw">pub fn </span>gtk_overlay_layout_child_get_measure(child: <span class="kw-2">*mut </span><a href="#8439-8442">GtkOverlayLayoutChild</a>) -&gt; gboolean;
 <a href=#16853 id=16853 data-nosnippet>16853</a>    <span class="kw">pub fn </span>gtk_overlay_layout_child_set_clip_overlay(
 <a href=#16854 id=16854 data-nosnippet>16854</a>        child: <span class="kw-2">*mut </span><a href="#8439-8442">GtkOverlayLayoutChild</a>,
@@ -17217,7 +17217,7 @@
 <a href=#17144 id=17144 data-nosnippet>17144</a>        id: <span class="kw-2">*const </span><a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_char.html">c_char</a>,
 <a href=#17145 id=17145 data-nosnippet>17145</a>    ) -&gt; gboolean;
 <a href=#17146 id=17146 data-nosnippet>17146</a>    <span class="kw">pub fn </span>gtk_popover_menu_bar_get_menu_model(bar: <span class="kw-2">*mut </span><a href="#8589-8592">GtkPopoverMenuBar</a>)
-<a href=#17147 id=17147 data-nosnippet>17147</a>        -&gt; <span class="kw-2">*mut </span>gio::GMenuModel;
+<a href=#17147 id=17147 data-nosnippet>17147</a>    -&gt; <span class="kw-2">*mut </span>gio::GMenuModel;
 <a href=#17148 id=17148 data-nosnippet>17148</a>    <span class="kw">pub fn </span>gtk_popover_menu_bar_remove_child(
 <a href=#17149 id=17149 data-nosnippet>17149</a>        bar: <span class="kw-2">*mut </span><a href="#8589-8592">GtkPopoverMenuBar</a>,
 <a href=#17150 id=17150 data-nosnippet>17150</a>        child: <span class="kw-2">*mut </span><a href="#9644-9647">GtkWidget</a>,
@@ -17283,7 +17283,7 @@
 <a href=#17210 id=17210 data-nosnippet>17210</a>    <span class="attr">#[cfg(feature = <span class="string">"v4_14"</span>)]
 <a href=#17211 id=17211 data-nosnippet>17211</a>    #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_14"</span>)))]
 <a href=#17212 id=17212 data-nosnippet>17212</a>    </span><span class="kw">pub fn </span>gtk_print_dialog_get_print_settings(self_: <span class="kw-2">*mut </span><a href="#8617-8620">GtkPrintDialog</a>)
-<a href=#17213 id=17213 data-nosnippet>17213</a>        -&gt; <span class="kw-2">*mut </span><a href="#8659-8662">GtkPrintSettings</a>;
+<a href=#17213 id=17213 data-nosnippet>17213</a>    -&gt; <span class="kw-2">*mut </span><a href="#8659-8662">GtkPrintSettings</a>;
 <a href=#17214 id=17214 data-nosnippet>17214</a>    <span class="attr">#[cfg(feature = <span class="string">"v4_14"</span>)]
 <a href=#17215 id=17215 data-nosnippet>17215</a>    #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_14"</span>)))]
 <a href=#17216 id=17216 data-nosnippet>17216</a>    </span><span class="kw">pub fn </span>gtk_print_dialog_get_title(self_: <span class="kw-2">*mut </span><a href="#8617-8620">GtkPrintDialog</a>) -&gt; <span class="kw-2">*const </span><a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_char.html">c_char</a>;
@@ -17541,7 +17541,7 @@
 <a href=#17468 id=17468 data-nosnippet>17468</a>    <span class="kw">pub fn </span>gtk_print_settings_get_duplex(settings: <span class="kw-2">*mut </span><a href="#8659-8662">GtkPrintSettings</a>) -&gt; <a href="#671">GtkPrintDuplex</a>;
 <a href=#17469 id=17469 data-nosnippet>17469</a>    <span class="kw">pub fn </span>gtk_print_settings_get_finishings(settings: <span class="kw-2">*mut </span><a href="#8659-8662">GtkPrintSettings</a>) -&gt; <span class="kw-2">*const </span><a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_char.html">c_char</a>;
 <a href=#17470 id=17470 data-nosnippet>17470</a>    <span class="kw">pub fn </span>gtk_print_settings_get_int(settings: <span class="kw-2">*mut </span><a href="#8659-8662">GtkPrintSettings</a>, key: <span class="kw-2">*const </span><a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_char.html">c_char</a>)
-<a href=#17471 id=17471 data-nosnippet>17471</a>        -&gt; <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>;
+<a href=#17471 id=17471 data-nosnippet>17471</a>    -&gt; <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>;
 <a href=#17472 id=17472 data-nosnippet>17472</a>    <span class="kw">pub fn </span>gtk_print_settings_get_int_with_default(
 <a href=#17473 id=17473 data-nosnippet>17473</a>        settings: <span class="kw-2">*mut </span><a href="#8659-8662">GtkPrintSettings</a>,
 <a href=#17474 id=17474 data-nosnippet>17474</a>        key: <span class="kw-2">*const </span><a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_char.html">c_char</a>,
@@ -17738,7 +17738,7 @@
 <a href=#17665 id=17665 data-nosnippet>17665</a>        dialog: <span class="kw-2">*mut </span><a href="#8673-8676">GtkPrintUnixDialog</a>,
 <a href=#17666 id=17666 data-nosnippet>17666</a>    ) -&gt; <span class="kw-2">*mut </span><a href="#8659-8662">GtkPrintSettings</a>;
 <a href=#17667 id=17667 data-nosnippet>17667</a>    <span class="kw">pub fn </span>gtk_print_unix_dialog_get_support_selection(dialog: <span class="kw-2">*mut </span><a href="#8673-8676">GtkPrintUnixDialog</a>)
-<a href=#17668 id=17668 data-nosnippet>17668</a>        -&gt; gboolean;
+<a href=#17668 id=17668 data-nosnippet>17668</a>    -&gt; gboolean;
 <a href=#17669 id=17669 data-nosnippet>17669</a>    <span class="kw">pub fn </span>gtk_print_unix_dialog_set_current_page(
 <a href=#17670 id=17670 data-nosnippet>17670</a>        dialog: <span class="kw-2">*mut </span><a href="#8673-8676">GtkPrintUnixDialog</a>,
 <a href=#17671 id=17671 data-nosnippet>17671</a>        current_page: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>,
@@ -18036,7 +18036,7 @@
 <a href=#17963 id=17963 data-nosnippet>17963</a>    </span><span class="kw">pub fn </span>gtk_scrolled_window_get_type() -&gt; GType;
 <a href=#17964 id=17964 data-nosnippet>17964</a>    <span class="kw">pub fn </span>gtk_scrolled_window_new() -&gt; <span class="kw-2">*mut </span><a href="#9644-9647">GtkWidget</a>;
 <a href=#17965 id=17965 data-nosnippet>17965</a>    <span class="kw">pub fn </span>gtk_scrolled_window_get_child(scrolled_window: <span class="kw-2">*mut </span><a href="#8810-8813">GtkScrolledWindow</a>)
-<a href=#17966 id=17966 data-nosnippet>17966</a>        -&gt; <span class="kw-2">*mut </span><a href="#9644-9647">GtkWidget</a>;
+<a href=#17966 id=17966 data-nosnippet>17966</a>    -&gt; <span class="kw-2">*mut </span><a href="#9644-9647">GtkWidget</a>;
 <a href=#17967 id=17967 data-nosnippet>17967</a>    <span class="kw">pub fn </span>gtk_scrolled_window_get_hadjustment(
 <a href=#17968 id=17968 data-nosnippet>17968</a>        scrolled_window: <span class="kw-2">*mut </span><a href="#8810-8813">GtkScrolledWindow</a>,
 <a href=#17969 id=17969 data-nosnippet>17969</a>    ) -&gt; <span class="kw-2">*mut </span><a href="#6106-6108">GtkAdjustment</a>;
@@ -18271,7 +18271,7 @@
 <a href=#18198 id=18198 data-nosnippet>18198</a>        self_: <span class="kw-2">*mut </span><a href="#8918-8921">GtkShortcutController</a>,
 <a href=#18199 id=18199 data-nosnippet>18199</a>    ) -&gt; gdk::<a href="../../gdk4_sys/type.GdkModifierType.html">GdkModifierType</a>;
 <a href=#18200 id=18200 data-nosnippet>18200</a>    <span class="kw">pub fn </span>gtk_shortcut_controller_get_scope(self_: <span class="kw-2">*mut </span><a href="#8918-8921">GtkShortcutController</a>)
-<a href=#18201 id=18201 data-nosnippet>18201</a>        -&gt; <a href="#824">GtkShortcutScope</a>;
+<a href=#18201 id=18201 data-nosnippet>18201</a>    -&gt; <a href="#824">GtkShortcutScope</a>;
 <a href=#18202 id=18202 data-nosnippet>18202</a>    <span class="kw">pub fn </span>gtk_shortcut_controller_remove_shortcut(
 <a href=#18203 id=18203 data-nosnippet>18203</a>        self_: <span class="kw-2">*mut </span><a href="#8918-8921">GtkShortcutController</a>,
 <a href=#18204 id=18204 data-nosnippet>18204</a>        shortcut: <span class="kw-2">*mut </span><a href="#8891-8894">GtkShortcut</a>,
@@ -18308,7 +18308,7 @@
 <a href=#18235 id=18235 data-nosnippet>18235</a>    <span class="kw">pub fn </span>gtk_shortcut_trigger_parse_string(string: <span class="kw-2">*const </span><a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_char.html">c_char</a>) -&gt; <span class="kw-2">*mut </span><a href="#8946-8949">GtkShortcutTrigger</a>;
 <a href=#18236 id=18236 data-nosnippet>18236</a>    <span class="kw">pub fn </span>gtk_shortcut_trigger_compare(trigger1: gconstpointer, trigger2: gconstpointer) -&gt; <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>;
 <a href=#18237 id=18237 data-nosnippet>18237</a>    <span class="kw">pub fn </span>gtk_shortcut_trigger_equal(trigger1: gconstpointer, trigger2: gconstpointer)
-<a href=#18238 id=18238 data-nosnippet>18238</a>        -&gt; gboolean;
+<a href=#18238 id=18238 data-nosnippet>18238</a>    -&gt; gboolean;
 <a href=#18239 id=18239 data-nosnippet>18239</a>    <span class="kw">pub fn </span>gtk_shortcut_trigger_hash(trigger: gconstpointer) -&gt; <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_uint.html">c_uint</a>;
 <a href=#18240 id=18240 data-nosnippet>18240</a>    <span class="kw">pub fn </span>gtk_shortcut_trigger_print(self_: <span class="kw-2">*mut </span><a href="#8946-8949">GtkShortcutTrigger</a>, string: <span class="kw-2">*mut </span>glib::GString);
 <a href=#18241 id=18241 data-nosnippet>18241</a>    <span class="kw">pub fn </span>gtk_shortcut_trigger_print_label(
@@ -18856,7 +18856,7 @@
 <a href=#18783 id=18783 data-nosnippet>18783</a>        title: <span class="kw-2">*const </span><a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_char.html">c_char</a>,
 <a href=#18784 id=18784 data-nosnippet>18784</a>    ) -&gt; <span class="kw-2">*mut </span><a href="#9167-9170">GtkStackPage</a>;
 <a href=#18785 id=18785 data-nosnippet>18785</a>    <span class="kw">pub fn </span>gtk_stack_get_child_by_name(stack: <span class="kw-2">*mut </span><a href="#9154-9157">GtkStack</a>, name: <span class="kw-2">*const </span><a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_char.html">c_char</a>)
-<a href=#18786 id=18786 data-nosnippet>18786</a>        -&gt; <span class="kw-2">*mut </span><a href="#9644-9647">GtkWidget</a>;
+<a href=#18786 id=18786 data-nosnippet>18786</a>    -&gt; <span class="kw-2">*mut </span><a href="#9644-9647">GtkWidget</a>;
 <a href=#18787 id=18787 data-nosnippet>18787</a>    <span class="kw">pub fn </span>gtk_stack_get_hhomogeneous(stack: <span class="kw-2">*mut </span><a href="#9154-9157">GtkStack</a>) -&gt; gboolean;
 <a href=#18788 id=18788 data-nosnippet>18788</a>    <span class="kw">pub fn </span>gtk_stack_get_interpolate_size(stack: <span class="kw-2">*mut </span><a href="#9154-9157">GtkStack</a>) -&gt; gboolean;
 <a href=#18789 id=18789 data-nosnippet>18789</a>    <span class="kw">pub fn </span>gtk_stack_get_page(stack: <span class="kw-2">*mut </span><a href="#9154-9157">GtkStack</a>, child: <span class="kw-2">*mut </span><a href="#9644-9647">GtkWidget</a>) -&gt; <span class="kw-2">*mut </span><a href="#9167-9170">GtkStackPage</a>;
@@ -18969,7 +18969,7 @@
 <a href=#18896 id=18896 data-nosnippet>18896</a>    #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_18"</span>)))]
 <a href=#18897 id=18897 data-nosnippet>18897</a>    </span><span class="kw">pub fn </span>gtk_string_list_find(self_: <span class="kw-2">*mut </span><a href="#9235-9238">GtkStringList</a>, string: <span class="kw-2">*const </span><a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_char.html">c_char</a>) -&gt; <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_uint.html">c_uint</a>;
 <a href=#18898 id=18898 data-nosnippet>18898</a>    <span class="kw">pub fn </span>gtk_string_list_get_string(self_: <span class="kw-2">*mut </span><a href="#9235-9238">GtkStringList</a>, position: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_uint.html">c_uint</a>)
-<a href=#18899 id=18899 data-nosnippet>18899</a>        -&gt; <span class="kw-2">*const </span><a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_char.html">c_char</a>;
+<a href=#18899 id=18899 data-nosnippet>18899</a>    -&gt; <span class="kw-2">*const </span><a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_char.html">c_char</a>;
 <a href=#18900 id=18900 data-nosnippet>18900</a>    <span class="kw">pub fn </span>gtk_string_list_remove(self_: <span class="kw-2">*mut </span><a href="#9235-9238">GtkStringList</a>, position: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_uint.html">c_uint</a>);
 <a href=#18901 id=18901 data-nosnippet>18901</a>    <span class="kw">pub fn </span>gtk_string_list_splice(
 <a href=#18902 id=18902 data-nosnippet>18902</a>        self_: <span class="kw-2">*mut </span><a href="#9235-9238">GtkStringList</a>,
@@ -20064,7 +20064,7 @@
 <a href=#19991 id=19991 data-nosnippet>19991</a>        parent: <span class="kw-2">*mut </span><a href="#5454-5459">GtkTreeIter</a>,
 <a href=#19992 id=19992 data-nosnippet>19992</a>    );
 <a href=#19993 id=19993 data-nosnippet>19993</a>    <span class="kw">pub fn </span>gtk_tree_store_remove(tree_store: <span class="kw-2">*mut </span><a href="#9546-9549">GtkTreeStore</a>, iter: <span class="kw-2">*mut </span><a href="#5454-5459">GtkTreeIter</a>)
-<a href=#19994 id=19994 data-nosnippet>19994</a>        -&gt; gboolean;
+<a href=#19994 id=19994 data-nosnippet>19994</a>    -&gt; gboolean;
 <a href=#19995 id=19995 data-nosnippet>19995</a>    <span class="kw">pub fn </span>gtk_tree_store_reorder(
 <a href=#19996 id=19996 data-nosnippet>19996</a>        tree_store: <span class="kw-2">*mut </span><a href="#9546-9549">GtkTreeStore</a>,
 <a href=#19997 id=19997 data-nosnippet>19997</a>        parent: <span class="kw-2">*mut </span><a href="#5454-5459">GtkTreeIter</a>,
@@ -20214,7 +20214,7 @@
 <a href=#20141 id=20141 data-nosnippet>20141</a>    <span class="kw">pub fn </span>gtk_tree_view_get_enable_search(tree_view: <span class="kw-2">*mut </span><a href="#9562-9564">GtkTreeView</a>) -&gt; gboolean;
 <a href=#20142 id=20142 data-nosnippet>20142</a>    <span class="kw">pub fn </span>gtk_tree_view_get_enable_tree_lines(tree_view: <span class="kw-2">*mut </span><a href="#9562-9564">GtkTreeView</a>) -&gt; gboolean;
 <a href=#20143 id=20143 data-nosnippet>20143</a>    <span class="kw">pub fn </span>gtk_tree_view_get_expander_column(tree_view: <span class="kw-2">*mut </span><a href="#9562-9564">GtkTreeView</a>)
-<a href=#20144 id=20144 data-nosnippet>20144</a>        -&gt; <span class="kw-2">*mut </span><a href="#9576-9579">GtkTreeViewColumn</a>;
+<a href=#20144 id=20144 data-nosnippet>20144</a>    -&gt; <span class="kw-2">*mut </span><a href="#9576-9579">GtkTreeViewColumn</a>;
 <a href=#20145 id=20145 data-nosnippet>20145</a>    <span class="kw">pub fn </span>gtk_tree_view_get_fixed_height_mode(tree_view: <span class="kw-2">*mut </span><a href="#9562-9564">GtkTreeView</a>) -&gt; gboolean;
 <a href=#20146 id=20146 data-nosnippet>20146</a>    <span class="kw">pub fn </span>gtk_tree_view_get_grid_lines(tree_view: <span class="kw-2">*mut </span><a href="#9562-9564">GtkTreeView</a>) -&gt; <a href="#966">GtkTreeViewGridLines</a>;
 <a href=#20147 id=20147 data-nosnippet>20147</a>    <span class="kw">pub fn </span>gtk_tree_view_get_headers_clickable(tree_view: <span class="kw-2">*mut </span><a href="#9562-9564">GtkTreeView</a>) -&gt; gboolean;
@@ -20470,7 +20470,7 @@
 <a href=#20397 id=20397 data-nosnippet>20397</a>    ) -&gt; <a href="#955">GtkTreeViewColumnSizing</a>;
 <a href=#20398 id=20398 data-nosnippet>20398</a>    <span class="kw">pub fn </span>gtk_tree_view_column_get_sort_column_id(tree_column: <span class="kw-2">*mut </span><a href="#9576-9579">GtkTreeViewColumn</a>) -&gt; <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>;
 <a href=#20399 id=20399 data-nosnippet>20399</a>    <span class="kw">pub fn </span>gtk_tree_view_column_get_sort_indicator(tree_column: <span class="kw-2">*mut </span><a href="#9576-9579">GtkTreeViewColumn</a>)
-<a href=#20400 id=20400 data-nosnippet>20400</a>        -&gt; gboolean;
+<a href=#20400 id=20400 data-nosnippet>20400</a>    -&gt; gboolean;
 <a href=#20401 id=20401 data-nosnippet>20401</a>    <span class="kw">pub fn </span>gtk_tree_view_column_get_sort_order(tree_column: <span class="kw-2">*mut </span><a href="#9576-9579">GtkTreeViewColumn</a>) -&gt; <a href="#852">GtkSortType</a>;
 <a href=#20402 id=20402 data-nosnippet>20402</a>    <span class="kw">pub fn </span>gtk_tree_view_column_get_spacing(tree_column: <span class="kw-2">*mut </span><a href="#9576-9579">GtkTreeViewColumn</a>) -&gt; <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>;
 <a href=#20403 id=20403 data-nosnippet>20403</a>    <span class="kw">pub fn </span>gtk_tree_view_column_get_title(tree_column: <span class="kw-2">*mut </span><a href="#9576-9579">GtkTreeViewColumn</a>) -&gt; <span class="kw-2">*const </span><a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_char.html">c_char</a>;
@@ -21584,10 +21584,10 @@
 <a href=#21511 id=21511 data-nosnippet>21511</a>    ) -&gt; gboolean;
 <a href=#21512 id=21512 data-nosnippet>21512</a>    <span class="kw">pub fn </span>gtk_scrollable_get_hadjustment(scrollable: <span class="kw-2">*mut </span><a href="#9979-9982">GtkScrollable</a>) -&gt; <span class="kw-2">*mut </span><a href="#6106-6108">GtkAdjustment</a>;
 <a href=#21513 id=21513 data-nosnippet>21513</a>    <span class="kw">pub fn </span>gtk_scrollable_get_hscroll_policy(scrollable: <span class="kw-2">*mut </span><a href="#9979-9982">GtkScrollable</a>)
-<a href=#21514 id=21514 data-nosnippet>21514</a>        -&gt; <a href="#809">GtkScrollablePolicy</a>;
+<a href=#21514 id=21514 data-nosnippet>21514</a>    -&gt; <a href="#809">GtkScrollablePolicy</a>;
 <a href=#21515 id=21515 data-nosnippet>21515</a>    <span class="kw">pub fn </span>gtk_scrollable_get_vadjustment(scrollable: <span class="kw-2">*mut </span><a href="#9979-9982">GtkScrollable</a>) -&gt; <span class="kw-2">*mut </span><a href="#6106-6108">GtkAdjustment</a>;
 <a href=#21516 id=21516 data-nosnippet>21516</a>    <span class="kw">pub fn </span>gtk_scrollable_get_vscroll_policy(scrollable: <span class="kw-2">*mut </span><a href="#9979-9982">GtkScrollable</a>)
-<a href=#21517 id=21517 data-nosnippet>21517</a>        -&gt; <a href="#809">GtkScrollablePolicy</a>;
+<a href=#21517 id=21517 data-nosnippet>21517</a>    -&gt; <a href="#809">GtkScrollablePolicy</a>;
 <a href=#21518 id=21518 data-nosnippet>21518</a>    <span class="kw">pub fn </span>gtk_scrollable_set_hadjustment(
 <a href=#21519 id=21519 data-nosnippet>21519</a>        scrollable: <span class="kw-2">*mut </span><a href="#9979-9982">GtkScrollable</a>,
 <a href=#21520 id=21520 data-nosnippet>21520</a>        hadjustment: <span class="kw-2">*mut </span><a href="#6106-6108">GtkAdjustment</a>,

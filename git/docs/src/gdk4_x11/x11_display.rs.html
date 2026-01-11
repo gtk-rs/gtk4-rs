@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gdk4-x11/src/x11_display.rs`."><title>x11_display.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-77263533.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gdk4_x11" data-themes="" data-resource-suffix="" data-rustdoc-version="1.94.0-nightly (a3f2d5abe 2026-01-09)" data-channel="nightly" data-search-js="search-9e2438ea.js" data-stringdex-js="stringdex-b897f86f.js" data-settings-js="settings-c38705f0.js" ><script src="../../static.files/storage-e2aeef58.js"></script><script defer src="../../static.files/src-script-813739b1.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-7bab91a1.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-ffcac47a.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gdk4-x11/src/x11_display.rs`."><title>x11_display.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-77263533.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gdk4_x11" data-themes="" data-resource-suffix="" data-rustdoc-version="1.94.0-nightly (f57eac1bf 2026-01-10)" data-channel="nightly" data-search-js="search-9e2438ea.js" data-stringdex-js="stringdex-b897f86f.js" data-settings-js="settings-c38705f0.js" ><script src="../../static.files/storage-e2aeef58.js"></script><script defer src="../../static.files/src-script-813739b1.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-7bab91a1.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-ffcac47a.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
 
@@ -79,7 +79,7 @@
 <a href=#6 id=6 data-nosnippet>6</a>
 <a href=#7 id=7 data-nosnippet>7</a><span class="attr">#[cfg(feature = <span class="string">"xlib"</span>)]
 <a href=#8 id=8 data-nosnippet>8</a>#[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"xlib"</span>)))]
-<a href=#9 id=9 data-nosnippet>9</a></span><span class="kw">use </span>glib::signal::{<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/fn.connect_raw.html">connect_raw</a>, <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html">SignalHandlerId</a>};
+<a href=#9 id=9 data-nosnippet>9</a></span><span class="kw">use </span>glib::signal::{<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html">SignalHandlerId</a>, <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/fn.connect_raw.html">connect_raw</a>};
 <a href=#10 id=10 data-nosnippet>10</a><span class="kw">use </span>glib::translate::<span class="kw-2">*</span>;
 <a href=#11 id=11 data-nosnippet>11</a><span class="attr">#[cfg(all(feature = <span class="string">"v4_4"</span>, feature = <span class="string">"egl"</span>))]
 <a href=#12 id=12 data-nosnippet>12</a>#[cfg_attr(docsrs, doc(cfg(all(feature = <span class="string">"v4_4"</span>, feature = <span class="string">"egl"</span>))))]
@@ -91,7 +91,7 @@
 <a href=#18 id=18 data-nosnippet>18</a>#[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"xlib"</span>)))]
 <a href=#19 id=19 data-nosnippet>19</a></span><span class="kw">use </span>x11::xlib::{<a href="https://docs.rs/x11/latest/x11/xlib/type.Cursor.html">Cursor</a> <span class="kw">as </span>XCursor, <a href="https://docs.rs/x11/latest/x11/xlib/type.Window.html">Window</a> <span class="kw">as </span>XWindow};
 <a href=#20 id=20 data-nosnippet>20</a>
-<a href=#21 id=21 data-nosnippet>21</a><span class="kw">use </span>crate::{<a href="../../gdk4_x11_sys/index.html">ffi</a>, prelude::<span class="kw-2">*</span>, <a href="auto/x11_display.rs.html#9-75">X11Display</a>};
+<a href=#21 id=21 data-nosnippet>21</a><span class="kw">use </span>crate::{<a href="auto/x11_display.rs.html#9-75">X11Display</a>, <a href="../../gdk4_x11_sys/index.html">ffi</a>, prelude::<span class="kw-2">*</span>};
 <a href=#22 id=22 data-nosnippet>22</a><span class="attr">#[cfg(not(feature = <span class="string">"xlib"</span>))]
 <a href=#23 id=23 data-nosnippet>23</a></span><span class="kw">use </span>crate::{XCursor, XWindow};
 <a href=#24 id=24 data-nosnippet>24</a>
@@ -165,7 +165,7 @@
 <a href=#92 id=92 data-nosnippet>92</a>    #[doc(alias = <span class="string">"get_xdisplay"</span>)]
 <a href=#93 id=93 data-nosnippet>93</a>    #[allow(clippy::missing_safety_doc)]
 <a href=#94 id=94 data-nosnippet>94</a>    </span><span class="kw">pub unsafe fn </span>xdisplay(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">*mut </span>xlib::<a href="https://docs.rs/x11/latest/x11/xlib/type.Display.html">Display</a> {
-<a href=#95 id=95 data-nosnippet>95</a>        ffi::<a href="../../gdk4_x11_sys/fn.gdk_x11_display_get_xdisplay.html">gdk_x11_display_get_xdisplay</a>(<a class="self" href="#94">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>) <span class="kw">as </span><span class="kw-2">*mut </span>xlib::<a href="https://docs.rs/x11/latest/x11/xlib/type.Display.html">Display</a>
+<a href=#95 id=95 data-nosnippet>95</a>        <span class="kw">unsafe </span>{ ffi::<a href="../../gdk4_x11_sys/fn.gdk_x11_display_get_xdisplay.html">gdk_x11_display_get_xdisplay</a>(<a class="self" href="#94">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>) <span class="kw">as </span><span class="kw-2">*mut </span>xlib::<a href="https://docs.rs/x11/latest/x11/xlib/type.Display.html">Display</a> }
 <a href=#96 id=96 data-nosnippet>96</a>    }
 <a href=#97 id=97 data-nosnippet>97</a>
 <a href=#98 id=98 data-nosnippet>98</a>    <span class="doccomment">/// Returns the X Screen used by [`gdk::Display`][crate::gdk::Display].
@@ -179,7 +179,7 @@
 <a href=#106 id=106 data-nosnippet>106</a>    #[doc(alias = <span class="string">"get_xscreen"</span>)]
 <a href=#107 id=107 data-nosnippet>107</a>    #[allow(clippy::missing_safety_doc)]
 <a href=#108 id=108 data-nosnippet>108</a>    </span><span class="kw">pub unsafe fn </span>xscreen(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">*mut </span>xlib::<a href="https://docs.rs/x11/latest/x11/xlib/struct.Screen.html">Screen</a> {
-<a href=#109 id=109 data-nosnippet>109</a>        ffi::<a href="../../gdk4_x11_sys/fn.gdk_x11_display_get_xscreen.html">gdk_x11_display_get_xscreen</a>(<a class="self" href="#108">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>) <span class="kw">as </span><span class="kw-2">*mut </span>xlib::<a href="https://docs.rs/x11/latest/x11/xlib/struct.Screen.html">Screen</a>
+<a href=#109 id=109 data-nosnippet>109</a>        <span class="kw">unsafe </span>{ ffi::<a href="../../gdk4_x11_sys/fn.gdk_x11_display_get_xscreen.html">gdk_x11_display_get_xscreen</a>(<a class="self" href="#108">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>) <span class="kw">as </span><span class="kw-2">*mut </span>xlib::<a href="https://docs.rs/x11/latest/x11/xlib/struct.Screen.html">Screen</a> }
 <a href=#110 id=110 data-nosnippet>110</a>    }
 <a href=#111 id=111 data-nosnippet>111</a>
 <a href=#112 id=112 data-nosnippet>112</a>    <span class="doccomment">/// The ::xevent signal is a low level signal that is emitted
@@ -212,46 +212,50 @@
 <a href=#139 id=139 data-nosnippet>139</a>        <span class="kw-2">&amp;</span><span class="self">self</span>,
 <a href=#140 id=140 data-nosnippet>140</a>        f: F,
 <a href=#141 id=141 data-nosnippet>141</a>    ) -&gt; <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html">SignalHandlerId</a> {
-<a href=#142 id=142 data-nosnippet>142</a>        <span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn </span>xevent_trampoline&lt;
-<a href=#143 id=143 data-nosnippet>143</a>            F: <a href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html">Fn</a>(<span class="kw-2">&amp;</span><a href="auto/x11_display.rs.html#9-75">X11Display</a>, <span class="kw-2">*mut </span>xlib::<a href="https://docs.rs/x11/latest/x11/xlib/union.XEvent.html">XEvent</a>) -&gt; glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/enum.Propagation.html">Propagation</a> + <span class="lifetime">'static</span>,
-<a href=#144 id=144 data-nosnippet>144</a>        &gt;(
-<a href=#145 id=145 data-nosnippet>145</a>            this: <span class="kw-2">*mut </span>ffi::<a href="../../gdk4_x11_sys/struct.GdkX11Display.html">GdkX11Display</a>,
-<a href=#146 id=146 data-nosnippet>146</a>            xevent: glib::ffi::gpointer,
-<a href=#147 id=147 data-nosnippet>147</a>            f: glib::ffi::gpointer,
-<a href=#148 id=148 data-nosnippet>148</a>        ) -&gt; glib::ffi::gboolean {
-<a href=#149 id=149 data-nosnippet>149</a>            <span class="kw">let </span>f: <span class="kw-2">&amp;</span>F = <span class="kw-2">&amp;*</span>(<a href="#147">f</a> <span class="kw">as </span><span class="kw-2">*const </span>F);
-<a href=#150 id=150 data-nosnippet>150</a>            <a href="#149">f</a>(<span class="kw-2">&amp;</span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib_borrow.html">from_glib_borrow</a>(<a href="#145">this</a>), <a href="#146">xevent</a> <span class="kw">as </span><span class="kw-2">*mut </span>xlib::<a href="https://docs.rs/x11/latest/x11/xlib/union.XEvent.html">XEvent</a>).<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>()
-<a href=#151 id=151 data-nosnippet>151</a>        }
-<a href=#152 id=152 data-nosnippet>152</a>        <span class="kw">let </span>f: <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">Box_</a>&lt;F&gt; = <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">Box_</a>::<a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html#method.new">new</a>(<a href="#140">f</a>);
-<a href=#153 id=153 data-nosnippet>153</a>        <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/fn.connect_raw.html">connect_raw</a>(
-<a href=#154 id=154 data-nosnippet>154</a>            <a class="self" href="#139">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.ObjectType.html#tymethod.as_ptr">as_ptr</a>() <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>,
-<a href=#155 id=155 data-nosnippet>155</a>            <span class="string">c"xevent"</span>.<a href="https://doc.rust-lang.org/nightly/core/ffi/c_str/struct.CStr.html#method.as_ptr">as_ptr</a>() <span class="kw">as </span><span class="kw-2">*const </span><span class="kw">_</span>,
-<a href=#156 id=156 data-nosnippet>156</a>            <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.Some">Some</a>(transmute::&lt;<span class="kw-2">*const </span>(), <span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn</span>()&gt;(
-<a href=#157 id=157 data-nosnippet>157</a>                xevent_trampoline::&lt;F&gt; <span class="kw">as </span><span class="kw-2">*const </span>(),
-<a href=#158 id=158 data-nosnippet>158</a>            )),
-<a href=#159 id=159 data-nosnippet>159</a>            <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">Box_</a>::<a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html#method.into_raw">into_raw</a>(<a href="#152">f</a>),
-<a href=#160 id=160 data-nosnippet>160</a>        )
-<a href=#161 id=161 data-nosnippet>161</a>    }
-<a href=#162 id=162 data-nosnippet>162</a>
-<a href=#163 id=163 data-nosnippet>163</a>    <span class="doccomment">/// Sets the program class.
-<a href=#164 id=164 data-nosnippet>164</a>    ///
-<a href=#165 id=165 data-nosnippet>165</a>    /// The X11 backend uses the program class to set the class name part
-<a href=#166 id=166 data-nosnippet>166</a>    /// of the `WM_CLASS` property on toplevel windows; see the ICCCM.
-<a href=#167 id=167 data-nosnippet>167</a>    /// ## `display`
-<a href=#168 id=168 data-nosnippet>168</a>    /// a [`gdk::Display`][crate::gdk::Display]
-<a href=#169 id=169 data-nosnippet>169</a>    /// ## `program_class`
-<a href=#170 id=170 data-nosnippet>170</a>    /// a string
-<a href=#171 id=171 data-nosnippet>171</a>    </span><span class="attr">#[doc(alias = <span class="string">"gdk_x11_display_set_program_class"</span>)]
-<a href=#172 id=172 data-nosnippet>172</a>    </span><span class="kw">pub fn </span>set_program_class(<span class="kw-2">&amp;</span><span class="self">self</span>, program_class: <span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/gstring/trait.IntoGStr.html">IntoGStr</a>) {
-<a href=#173 id=173 data-nosnippet>173</a>        <span class="macro">assert_initialized_main_thread!</span>();
-<a href=#174 id=174 data-nosnippet>174</a>        <span class="kw">unsafe </span>{
-<a href=#175 id=175 data-nosnippet>175</a>            <a href="#172">program_class</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/gstring/trait.IntoGStr.html#tymethod.run_with_gstr">run_with_gstr</a>(|program_class| {
-<a href=#176 id=176 data-nosnippet>176</a>                ffi::<a href="../../gdk4_x11_sys/fn.gdk_x11_display_set_program_class.html">gdk_x11_display_set_program_class</a>(
-<a href=#177 id=177 data-nosnippet>177</a>                    <a class="self" href="#172">self</a>.upcast_ref::&lt;gdk::<a href="../../gdk4/auto/display/struct.Display.html">Display</a>&gt;().<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
-<a href=#178 id=178 data-nosnippet>178</a>                    <a href="#175">program_class</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/gstring/struct.GStr.html#method.as_ptr">as_ptr</a>(),
-<a href=#179 id=179 data-nosnippet>179</a>                );
-<a href=#180 id=180 data-nosnippet>180</a>            });
-<a href=#181 id=181 data-nosnippet>181</a>        }
-<a href=#182 id=182 data-nosnippet>182</a>    }
-<a href=#183 id=183 data-nosnippet>183</a>}
+<a href=#142 id=142 data-nosnippet>142</a>        <span class="kw">unsafe </span>{
+<a href=#143 id=143 data-nosnippet>143</a>            <span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn </span>xevent_trampoline&lt;
+<a href=#144 id=144 data-nosnippet>144</a>                F: <a href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html">Fn</a>(<span class="kw-2">&amp;</span><a href="auto/x11_display.rs.html#9-75">X11Display</a>, <span class="kw-2">*mut </span>xlib::<a href="https://docs.rs/x11/latest/x11/xlib/union.XEvent.html">XEvent</a>) -&gt; glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/enum.Propagation.html">Propagation</a> + <span class="lifetime">'static</span>,
+<a href=#145 id=145 data-nosnippet>145</a>            &gt;(
+<a href=#146 id=146 data-nosnippet>146</a>                this: <span class="kw-2">*mut </span>ffi::<a href="../../gdk4_x11_sys/struct.GdkX11Display.html">GdkX11Display</a>,
+<a href=#147 id=147 data-nosnippet>147</a>                xevent: glib::ffi::gpointer,
+<a href=#148 id=148 data-nosnippet>148</a>                f: glib::ffi::gpointer,
+<a href=#149 id=149 data-nosnippet>149</a>            ) -&gt; glib::ffi::gboolean {
+<a href=#150 id=150 data-nosnippet>150</a>                <span class="kw">unsafe </span>{
+<a href=#151 id=151 data-nosnippet>151</a>                    <span class="kw">let </span>f: <span class="kw-2">&amp;</span>F = <span class="kw-2">&amp;*</span>(<a href="#148">f</a> <span class="kw">as </span><span class="kw-2">*const </span>F);
+<a href=#152 id=152 data-nosnippet>152</a>                    <a href="#151">f</a>(<span class="kw-2">&amp;</span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib_borrow.html">from_glib_borrow</a>(<a href="#146">this</a>), <a href="#147">xevent</a> <span class="kw">as </span><span class="kw-2">*mut </span>xlib::<a href="https://docs.rs/x11/latest/x11/xlib/union.XEvent.html">XEvent</a>).<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>()
+<a href=#153 id=153 data-nosnippet>153</a>                }
+<a href=#154 id=154 data-nosnippet>154</a>            }
+<a href=#155 id=155 data-nosnippet>155</a>            <span class="kw">let </span>f: <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">Box_</a>&lt;F&gt; = <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">Box_</a>::<a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html#method.new">new</a>(<a href="#140">f</a>);
+<a href=#156 id=156 data-nosnippet>156</a>            <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/fn.connect_raw.html">connect_raw</a>(
+<a href=#157 id=157 data-nosnippet>157</a>                <a class="self" href="#139">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.ObjectType.html#tymethod.as_ptr">as_ptr</a>() <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>,
+<a href=#158 id=158 data-nosnippet>158</a>                <span class="string">c"xevent"</span>.<a href="https://doc.rust-lang.org/nightly/core/ffi/c_str/struct.CStr.html#method.as_ptr">as_ptr</a>() <span class="kw">as </span><span class="kw-2">*const </span><span class="kw">_</span>,
+<a href=#159 id=159 data-nosnippet>159</a>                <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.Some">Some</a>(transmute::&lt;<span class="kw-2">*const </span>(), <span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn</span>()&gt;(
+<a href=#160 id=160 data-nosnippet>160</a>                    xevent_trampoline::&lt;F&gt; <span class="kw">as </span><span class="kw-2">*const </span>(),
+<a href=#161 id=161 data-nosnippet>161</a>                )),
+<a href=#162 id=162 data-nosnippet>162</a>                <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">Box_</a>::<a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html#method.into_raw">into_raw</a>(<a href="#155">f</a>),
+<a href=#163 id=163 data-nosnippet>163</a>            )
+<a href=#164 id=164 data-nosnippet>164</a>        }
+<a href=#165 id=165 data-nosnippet>165</a>    }
+<a href=#166 id=166 data-nosnippet>166</a>
+<a href=#167 id=167 data-nosnippet>167</a>    <span class="doccomment">/// Sets the program class.
+<a href=#168 id=168 data-nosnippet>168</a>    ///
+<a href=#169 id=169 data-nosnippet>169</a>    /// The X11 backend uses the program class to set the class name part
+<a href=#170 id=170 data-nosnippet>170</a>    /// of the `WM_CLASS` property on toplevel windows; see the ICCCM.
+<a href=#171 id=171 data-nosnippet>171</a>    /// ## `display`
+<a href=#172 id=172 data-nosnippet>172</a>    /// a [`gdk::Display`][crate::gdk::Display]
+<a href=#173 id=173 data-nosnippet>173</a>    /// ## `program_class`
+<a href=#174 id=174 data-nosnippet>174</a>    /// a string
+<a href=#175 id=175 data-nosnippet>175</a>    </span><span class="attr">#[doc(alias = <span class="string">"gdk_x11_display_set_program_class"</span>)]
+<a href=#176 id=176 data-nosnippet>176</a>    </span><span class="kw">pub fn </span>set_program_class(<span class="kw-2">&amp;</span><span class="self">self</span>, program_class: <span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/gstring/trait.IntoGStr.html">IntoGStr</a>) {
+<a href=#177 id=177 data-nosnippet>177</a>        <span class="macro">assert_initialized_main_thread!</span>();
+<a href=#178 id=178 data-nosnippet>178</a>        <span class="kw">unsafe </span>{
+<a href=#179 id=179 data-nosnippet>179</a>            <a href="#176">program_class</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/gstring/trait.IntoGStr.html#tymethod.run_with_gstr">run_with_gstr</a>(|program_class| {
+<a href=#180 id=180 data-nosnippet>180</a>                ffi::<a href="../../gdk4_x11_sys/fn.gdk_x11_display_set_program_class.html">gdk_x11_display_set_program_class</a>(
+<a href=#181 id=181 data-nosnippet>181</a>                    <a class="self" href="#176">self</a>.upcast_ref::&lt;gdk::<a href="../../gdk4/auto/display/struct.Display.html">Display</a>&gt;().<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
+<a href=#182 id=182 data-nosnippet>182</a>                    <a href="#179">program_class</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/gstring/struct.GStr.html#method.as_ptr">as_ptr</a>(),
+<a href=#183 id=183 data-nosnippet>183</a>                );
+<a href=#184 id=184 data-nosnippet>184</a>            });
+<a href=#185 id=185 data-nosnippet>185</a>        }
+<a href=#186 id=186 data-nosnippet>186</a>    }
+<a href=#187 id=187 data-nosnippet>187</a>}
 </code></pre></div></section></main></body></html>

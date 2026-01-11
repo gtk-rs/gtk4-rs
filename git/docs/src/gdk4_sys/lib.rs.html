@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gdk4/sys/src/lib.rs`."><title>lib.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-77263533.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gdk4_sys" data-themes="" data-resource-suffix="" data-rustdoc-version="1.94.0-nightly (a3f2d5abe 2026-01-09)" data-channel="nightly" data-search-js="search-9e2438ea.js" data-stringdex-js="stringdex-b897f86f.js" data-settings-js="settings-c38705f0.js" ><script src="../../static.files/storage-e2aeef58.js"></script><script defer src="../../static.files/src-script-813739b1.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-7bab91a1.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-ffcac47a.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gdk4/sys/src/lib.rs`."><title>lib.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-77263533.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gdk4_sys" data-themes="" data-resource-suffix="" data-rustdoc-version="1.94.0-nightly (f57eac1bf 2026-01-10)" data-channel="nightly" data-search-js="search-9e2438ea.js" data-stringdex-js="stringdex-b897f86f.js" data-settings-js="settings-c38705f0.js" ><script src="../../static.files/storage-e2aeef58.js"></script><script defer src="../../static.files/src-script-813739b1.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-7bab91a1.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-ffcac47a.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
 
@@ -91,18 +91,18 @@
 <a href=#18 id=18 data-nosnippet>18</a><span class="kw">use </span>gobject_sys <span class="kw">as </span>gobject;
 <a href=#19 id=19 data-nosnippet>19</a><span class="kw">use </span>pango_sys <span class="kw">as </span>pango;
 <a href=#20 id=20 data-nosnippet>20</a>
-<a href=#21 id=21 data-nosnippet>21</a><span class="attr">#[cfg(unix)]
-<a href=#22 id=22 data-nosnippet>22</a>#[allow(unused_imports)]
-<a href=#23 id=23 data-nosnippet>23</a></span><span class="kw">use </span>libc::{dev_t, gid_t, pid_t, socklen_t, uid_t};
-<a href=#24 id=24 data-nosnippet>24</a><span class="attr">#[allow(unused_imports)]
-<a href=#25 id=25 data-nosnippet>25</a></span><span class="kw">use </span>libc::{intptr_t, off_t, size_t, ssize_t, time_t, uintptr_t, FILE};
+<a href=#21 id=21 data-nosnippet>21</a><span class="attr">#[allow(unused_imports)]
+<a href=#22 id=22 data-nosnippet>22</a></span><span class="kw">use </span>libc::{FILE, intptr_t, off_t, size_t, ssize_t, time_t, uintptr_t};
+<a href=#23 id=23 data-nosnippet>23</a><span class="attr">#[cfg(unix)]
+<a href=#24 id=24 data-nosnippet>24</a>#[allow(unused_imports)]
+<a href=#25 id=25 data-nosnippet>25</a></span><span class="kw">use </span>libc::{dev_t, gid_t, pid_t, socklen_t, uid_t};
 <a href=#26 id=26 data-nosnippet>26</a><span class="attr">#[allow(unused_imports)]
 <a href=#27 id=27 data-nosnippet>27</a></span><span class="kw">use </span>std::ffi::{
 <a href=#28 id=28 data-nosnippet>28</a>    <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_char.html">c_char</a>, <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_double.html">c_double</a>, <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_float.html">c_float</a>, <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>, <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_long.html">c_long</a>, <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_short.html">c_short</a>, <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_uchar.html">c_uchar</a>, <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_uint.html">c_uint</a>, <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_ulong.html">c_ulong</a>, <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_ushort.html">c_ushort</a>, <a href="https://doc.rust-lang.org/nightly/core/ffi/enum.c_void.html">c_void</a>,
 <a href=#29 id=29 data-nosnippet>29</a>};
 <a href=#30 id=30 data-nosnippet>30</a>
 <a href=#31 id=31 data-nosnippet>31</a><span class="attr">#[allow(unused_imports)]
-<a href=#32 id=32 data-nosnippet>32</a></span><span class="kw">use </span>glib::{gboolean, gconstpointer, gpointer, GType};
+<a href=#32 id=32 data-nosnippet>32</a></span><span class="kw">use </span>glib::{GType, gboolean, gconstpointer, gpointer};
 <a href=#33 id=33 data-nosnippet>33</a>
 <a href=#34 id=34 data-nosnippet>34</a><span class="comment">// Enums
 <a href=#35 id=35 data-nosnippet>35</a></span><span class="kw">pub type </span><a href="../../gdk4_sys/type.GdkAxisUse.html">GdkAxisUse</a> = <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>;
@@ -4200,7 +4200,7 @@
 <a href=#4127 id=4127 data-nosnippet>4127</a>    }
 <a href=#4128 id=4128 data-nosnippet>4128</a>}
 <a href=#4129 id=4129 data-nosnippet>4129</a>
-<a href=#4130 id=4130 data-nosnippet>4130</a><span class="kw">extern </span><span class="string">"C" </span>{
+<a href=#4130 id=4130 data-nosnippet>4130</a><span class="kw">unsafe extern </span><span class="string">"C" </span>{
 <a href=#4131 id=4131 data-nosnippet>4131</a>
 <a href=#4132 id=4132 data-nosnippet>4132</a>    <span class="comment">//=========================================================================
 <a href=#4133 id=4133 data-nosnippet>4133</a>    // GdkAxisUse
@@ -4747,7 +4747,7 @@
 <a href=#4674 id=4674 data-nosnippet>4674</a>    <span class="attr">#[cfg(feature = <span class="string">"v4_10"</span>)]
 <a href=#4675 id=4675 data-nosnippet>4675</a>    #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_10"</span>)))]
 <a href=#4676 id=4676 data-nosnippet>4676</a>    </span><span class="kw">pub fn </span>gdk_texture_downloader_get_format(self_: <span class="kw-2">*const </span><a href="#3415-3418">GdkTextureDownloader</a>)
-<a href=#4677 id=4677 data-nosnippet>4677</a>        -&gt; <a href="#162">GdkMemoryFormat</a>;
+<a href=#4677 id=4677 data-nosnippet>4677</a>    -&gt; <a href="#162">GdkMemoryFormat</a>;
 <a href=#4678 id=4678 data-nosnippet>4678</a>    <span class="attr">#[cfg(feature = <span class="string">"v4_10"</span>)]
 <a href=#4679 id=4679 data-nosnippet>4679</a>    #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_10"</span>)))]
 <a href=#4680 id=4680 data-nosnippet>4680</a>    </span><span class="kw">pub fn </span>gdk_texture_downloader_get_texture(
@@ -4832,7 +4832,7 @@
 <a href=#4759 id=4759 data-nosnippet>4759</a>    //=========================================================================
 <a href=#4760 id=4760 data-nosnippet>4760</a>    </span><span class="kw">pub fn </span>gdk_app_launch_context_get_type() -&gt; GType;
 <a href=#4761 id=4761 data-nosnippet>4761</a>    <span class="kw">pub fn </span>gdk_app_launch_context_get_display(context: <span class="kw-2">*mut </span><a href="#3480-3483">GdkAppLaunchContext</a>)
-<a href=#4762 id=4762 data-nosnippet>4762</a>        -&gt; <span class="kw-2">*mut </span><a href="#3672-3675">GdkDisplay</a>;
+<a href=#4762 id=4762 data-nosnippet>4762</a>    -&gt; <span class="kw-2">*mut </span><a href="#3672-3675">GdkDisplay</a>;
 <a href=#4763 id=4763 data-nosnippet>4763</a>    <span class="kw">pub fn </span>gdk_app_launch_context_set_desktop(context: <span class="kw-2">*mut </span><a href="#3480-3483">GdkAppLaunchContext</a>, desktop: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>);
 <a href=#4764 id=4764 data-nosnippet>4764</a>    <span class="kw">pub fn </span>gdk_app_launch_context_set_icon(
 <a href=#4765 id=4765 data-nosnippet>4765</a>        context: <span class="kw-2">*mut </span><a href="#3480-3483">GdkAppLaunchContext</a>,
@@ -5202,7 +5202,7 @@
 <a href=#5129 id=5129 data-nosnippet>5129</a>    ) -&gt; gboolean;
 <a href=#5130 id=5130 data-nosnippet>5130</a>    <span class="kw">pub fn </span>gdk_display_flush(display: <span class="kw-2">*mut </span><a href="#3672-3675">GdkDisplay</a>);
 <a href=#5131 id=5131 data-nosnippet>5131</a>    <span class="kw">pub fn </span>gdk_display_get_app_launch_context(display: <span class="kw-2">*mut </span><a href="#3672-3675">GdkDisplay</a>)
-<a href=#5132 id=5132 data-nosnippet>5132</a>        -&gt; <span class="kw-2">*mut </span><a href="#3480-3483">GdkAppLaunchContext</a>;
+<a href=#5132 id=5132 data-nosnippet>5132</a>    -&gt; <span class="kw-2">*mut </span><a href="#3480-3483">GdkAppLaunchContext</a>;
 <a href=#5133 id=5133 data-nosnippet>5133</a>    <span class="kw">pub fn </span>gdk_display_get_clipboard(display: <span class="kw-2">*mut </span><a href="#3672-3675">GdkDisplay</a>) -&gt; <span class="kw-2">*mut </span><a href="#3536-3539">GdkClipboard</a>;
 <a href=#5134 id=5134 data-nosnippet>5134</a>    <span class="kw">pub fn </span>gdk_display_get_default_seat(display: <span class="kw-2">*mut </span><a href="#3672-3675">GdkDisplay</a>) -&gt; <span class="kw-2">*mut </span><a href="#3971-3973">GdkSeat</a>;
 <a href=#5135 id=5135 data-nosnippet>5135</a>    <span class="attr">#[cfg(feature = <span class="string">"v4_14"</span>)]
@@ -5620,7 +5620,7 @@
 <a href=#5547 id=5547 data-nosnippet>5547</a>    <span class="attr">#[cfg(feature = <span class="string">"v4_4"</span>)]
 <a href=#5548 id=5548 data-nosnippet>5548</a>    #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_4"</span>)))]
 <a href=#5549 id=5549 data-nosnippet>5549</a>    </span><span class="kw">pub fn </span>gdk_gl_context_is_shared(self_: <span class="kw-2">*mut </span><a href="#3808-3811">GdkGLContext</a>, other: <span class="kw-2">*mut </span><a href="#3808-3811">GdkGLContext</a>)
-<a href=#5550 id=5550 data-nosnippet>5550</a>        -&gt; gboolean;
+<a href=#5550 id=5550 data-nosnippet>5550</a>    -&gt; gboolean;
 <a href=#5551 id=5551 data-nosnippet>5551</a>    <span class="kw">pub fn </span>gdk_gl_context_make_current(context: <span class="kw-2">*mut </span><a href="#3808-3811">GdkGLContext</a>);
 <a href=#5552 id=5552 data-nosnippet>5552</a>    <span class="kw">pub fn </span>gdk_gl_context_realize(
 <a href=#5553 id=5553 data-nosnippet>5553</a>        context: <span class="kw-2">*mut </span><a href="#3808-3811">GdkGLContext</a>,
@@ -5676,7 +5676,7 @@
 <a href=#5603 id=5603 data-nosnippet>5603</a>    <span class="attr">#[cfg(feature = <span class="string">"v4_12"</span>)]
 <a href=#5604 id=5604 data-nosnippet>5604</a>    #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_12"</span>)))]
 <a href=#5605 id=5605 data-nosnippet>5605</a>    </span><span class="kw">pub fn </span>gdk_gl_texture_builder_get_context(self_: <span class="kw-2">*mut </span><a href="#3834-3837">GdkGLTextureBuilder</a>)
-<a href=#5606 id=5606 data-nosnippet>5606</a>        -&gt; <span class="kw-2">*mut </span><a href="#3808-3811">GdkGLContext</a>;
+<a href=#5606 id=5606 data-nosnippet>5606</a>    -&gt; <span class="kw-2">*mut </span><a href="#3808-3811">GdkGLContext</a>;
 <a href=#5607 id=5607 data-nosnippet>5607</a>    <span class="attr">#[cfg(feature = <span class="string">"v4_12"</span>)]
 <a href=#5608 id=5608 data-nosnippet>5608</a>    #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_12"</span>)))]
 <a href=#5609 id=5609 data-nosnippet>5609</a>    </span><span class="kw">pub fn </span>gdk_gl_texture_builder_get_format(self_: <span class="kw-2">*mut </span><a href="#3834-3837">GdkGLTextureBuilder</a>) -&gt; <a href="#162">GdkMemoryFormat</a>;
@@ -5808,7 +5808,7 @@
 <a href=#5735 id=5735 data-nosnippet>5735</a>    <span class="attr">#[cfg(feature = <span class="string">"v4_16"</span>)]
 <a href=#5736 id=5736 data-nosnippet>5736</a>    #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_16"</span>)))]
 <a href=#5737 id=5737 data-nosnippet>5737</a>    </span><span class="kw">pub fn </span>gdk_memory_texture_builder_build(self_: <span class="kw-2">*mut </span><a href="#3889-3892">GdkMemoryTextureBuilder</a>)
-<a href=#5738 id=5738 data-nosnippet>5738</a>        -&gt; <span class="kw-2">*mut </span><a href="#4011-4014">GdkTexture</a>;
+<a href=#5738 id=5738 data-nosnippet>5738</a>    -&gt; <span class="kw-2">*mut </span><a href="#4011-4014">GdkTexture</a>;
 <a href=#5739 id=5739 data-nosnippet>5739</a>    <span class="attr">#[cfg(feature = <span class="string">"v4_16"</span>)]
 <a href=#5740 id=5740 data-nosnippet>5740</a>    #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_16"</span>)))]
 <a href=#5741 id=5741 data-nosnippet>5741</a>    </span><span class="kw">pub fn </span>gdk_memory_texture_builder_get_bytes(
