@@ -3,9 +3,9 @@
 // rustdoc-stripper-ignore-next
 //! Traits intended for implementing the [`TreeDragDest`] interface.
 
-use glib::{translate::*, Value};
+use glib::{Value, translate::*};
 
-use crate::{ffi, prelude::*, subclass::prelude::*, TreeDragDest, TreePath};
+use crate::{TreeDragDest, TreePath, ffi, prelude::*, subclass::prelude::*};
 
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 #[allow(deprecated)]
@@ -78,13 +78,15 @@ unsafe extern "C" fn tree_drag_dest_drag_data_received<T: TreeDragDestImpl>(
     destptr: *mut ffi::GtkTreePath,
     valueptr: *const glib::gobject_ffi::GValue,
 ) -> glib::ffi::gboolean {
-    let instance = &*(tree_drag_dest as *mut T::Instance);
-    let imp = instance.imp();
+    unsafe {
+        let instance = &*(tree_drag_dest as *mut T::Instance);
+        let imp = instance.imp();
 
-    let dest: Borrowed<TreePath> = from_glib_borrow(destptr);
-    let value: Value = from_glib_none(valueptr);
+        let dest: Borrowed<TreePath> = from_glib_borrow(destptr);
+        let value: Value = from_glib_none(valueptr);
 
-    imp.drag_data_received(&dest, value).into_glib()
+        imp.drag_data_received(&dest, value).into_glib()
+    }
 }
 
 unsafe extern "C" fn tree_drag_dest_row_drop_possible<T: TreeDragDestImpl>(
@@ -92,10 +94,12 @@ unsafe extern "C" fn tree_drag_dest_row_drop_possible<T: TreeDragDestImpl>(
     destptr: *mut ffi::GtkTreePath,
     valueptr: *const glib::gobject_ffi::GValue,
 ) -> glib::ffi::gboolean {
-    let instance = &*(tree_drag_dest as *mut T::Instance);
-    let imp = instance.imp();
-    let dest: Borrowed<TreePath> = from_glib_borrow(destptr);
-    let value: Value = from_glib_none(valueptr);
+    unsafe {
+        let instance = &*(tree_drag_dest as *mut T::Instance);
+        let imp = instance.imp();
+        let dest: Borrowed<TreePath> = from_glib_borrow(destptr);
+        let value: Value = from_glib_none(valueptr);
 
-    imp.row_drop_possible(&dest, value).into_glib()
+        imp.row_drop_possible(&dest, value).into_glib()
+    }
 }

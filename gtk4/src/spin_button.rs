@@ -3,12 +3,12 @@
 use std::{boxed::Box as Box_, mem::transmute};
 
 use glib::{
-    signal::{connect_raw, SignalHandlerId},
+    signal::{SignalHandlerId, connect_raw},
     translate::*,
 };
 use libc::{c_double, c_int};
 
-use crate::{ffi, prelude::*, SpinButton};
+use crate::{SpinButton, ffi, prelude::*};
 
 impl SpinButton {
     pub fn connect_input<F>(&self, f: F) -> SignalHandlerId
@@ -34,12 +34,14 @@ unsafe extern "C" fn input_trampoline<F: Fn(&SpinButton) -> Option<Result<f64, (
     new_value: *mut c_double,
     f: &F,
 ) -> c_int {
-    match f(SpinButton::from_glib_borrow(this).unsafe_cast_ref()) {
-        Some(Ok(v)) => {
-            *new_value = v;
-            glib::ffi::GTRUE
+    unsafe {
+        match f(SpinButton::from_glib_borrow(this).unsafe_cast_ref()) {
+            Some(Ok(v)) => {
+                *new_value = v;
+                glib::ffi::GTRUE
+            }
+            Some(Err(_)) => ffi::GTK_INPUT_ERROR,
+            None => glib::ffi::GFALSE,
         }
-        Some(Err(_)) => ffi::GTK_INPUT_ERROR,
-        None => glib::ffi::GFALSE,
     }
 }

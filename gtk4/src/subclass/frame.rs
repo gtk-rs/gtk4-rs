@@ -5,7 +5,7 @@
 
 use glib::translate::*;
 
-use crate::{ffi, prelude::*, subclass::prelude::*, Allocation, Frame};
+use crate::{Allocation, Frame, ffi, prelude::*, subclass::prelude::*};
 
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 #[allow(deprecated)]
@@ -50,9 +50,11 @@ unsafe extern "C" fn frame_compute_child_allocation<T: FrameImpl>(
     ptr: *mut ffi::GtkFrame,
     allocationptr: *mut ffi::GtkAllocation,
 ) {
-    let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.imp();
+    unsafe {
+        let instance = &*(ptr as *mut T::Instance);
+        let imp = instance.imp();
 
-    let allocation = imp.compute_child_allocation();
-    *allocationptr = *allocation.to_glib_none().0;
+        let allocation = imp.compute_child_allocation();
+        *allocationptr = *allocation.to_glib_none().0;
+    }
 }

@@ -4,7 +4,7 @@ use std::{boxed::Box as Box_, ptr};
 
 use glib::translate::*;
 
-use crate::{ffi, ListBox, ListBoxRow, Ordering};
+use crate::{ListBox, ListBoxRow, Ordering, ffi};
 
 impl ListBox {
     #[doc(alias = "gtk_list_box_bind_model")]
@@ -50,17 +50,21 @@ impl ListBox {
             row2: *mut ffi::GtkListBoxRow,
             user_data: glib::ffi::gpointer,
         ) -> libc::c_int {
-            let row1 = from_glib_borrow(row1);
-            let row2 = from_glib_borrow(row2);
-            let callback: &P = &*(user_data as *mut _);
-            let res = (*callback)(&row1, &row2);
-            res.into_glib()
+            unsafe {
+                let row1 = from_glib_borrow(row1);
+                let row2 = from_glib_borrow(row2);
+                let callback: &P = &*(user_data as *mut _);
+                let res = (*callback)(&row1, &row2);
+                res.into_glib()
+            }
         }
         let sort_func = Some(sort_func_func::<P> as _);
         unsafe extern "C" fn destroy_func<P: Fn(&ListBoxRow, &ListBoxRow) -> Ordering + 'static>(
             data: glib::ffi::gpointer,
         ) {
-            let _callback: Box_<P> = Box_::from_raw(data as *mut _);
+            unsafe {
+                let _callback: Box_<P> = Box_::from_raw(data as *mut _);
+            }
         }
         let destroy_call3 = Some(destroy_func::<P> as _);
         let super_callback0: Box_<P> = sort_func_data;

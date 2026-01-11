@@ -4,7 +4,7 @@ use std::{boxed::Box as Box_, ptr};
 
 use glib::translate::*;
 
-use crate::{ffi, FlowBox, FlowBoxChild, Ordering};
+use crate::{FlowBox, FlowBoxChild, Ordering, ffi};
 
 impl FlowBox {
     #[doc(alias = "gtk_flow_box_bind_model")]
@@ -50,11 +50,13 @@ impl FlowBox {
             child2: *mut ffi::GtkFlowBoxChild,
             user_data: glib::ffi::gpointer,
         ) -> libc::c_int {
-            let child1 = from_glib_borrow(child1);
-            let child2 = from_glib_borrow(child2);
-            let callback: &P = &*(user_data as *mut _);
-            let res = (*callback)(&child1, &child2);
-            res.into_glib()
+            unsafe {
+                let child1 = from_glib_borrow(child1);
+                let child2 = from_glib_borrow(child2);
+                let callback: &P = &*(user_data as *mut _);
+                let res = (*callback)(&child1, &child2);
+                res.into_glib()
+            }
         }
         let sort_func = Some(sort_func_func::<P> as _);
         unsafe extern "C" fn destroy_func<
@@ -62,7 +64,9 @@ impl FlowBox {
         >(
             data: glib::ffi::gpointer,
         ) {
-            let _callback: Box_<P> = Box_::from_raw(data as *mut _);
+            unsafe {
+                let _callback: Box_<P> = Box_::from_raw(data as *mut _);
+            }
         }
         let destroy_call3 = Some(destroy_func::<P> as _);
         let super_callback0: Box_<P> = sort_func_data;

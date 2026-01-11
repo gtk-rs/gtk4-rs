@@ -5,7 +5,7 @@
 
 use glib::translate::*;
 
-use crate::{ffi, prelude::*, subclass::prelude::*, Actionable, Button};
+use crate::{Actionable, Button, ffi, prelude::*, subclass::prelude::*};
 
 pub trait ButtonImpl: WidgetImpl + ObjectSubclass<Type: IsA<Button> + IsA<Actionable>> {
     fn activate(&self) {
@@ -51,15 +51,19 @@ unsafe impl<T: ButtonImpl> IsSubclassable<T> for Button {
 }
 
 unsafe extern "C" fn button_activate<T: ButtonImpl>(ptr: *mut ffi::GtkButton) {
-    let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.imp();
+    unsafe {
+        let instance = &*(ptr as *mut T::Instance);
+        let imp = instance.imp();
 
-    imp.activate()
+        imp.activate()
+    }
 }
 
 unsafe extern "C" fn button_clicked<T: ButtonImpl>(ptr: *mut ffi::GtkButton) {
-    let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.imp();
+    unsafe {
+        let instance = &*(ptr as *mut T::Instance);
+        let imp = instance.imp();
 
-    imp.clicked()
+        imp.clicked()
+    }
 }

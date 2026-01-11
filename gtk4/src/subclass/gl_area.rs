@@ -6,7 +6,7 @@
 use gdk::GLContext;
 use glib::translate::*;
 
-use crate::{ffi, prelude::*, subclass::prelude::*, GLArea};
+use crate::{GLArea, ffi, prelude::*, subclass::prelude::*};
 
 #[allow(clippy::upper_case_acronyms)]
 pub trait GLAreaImpl: WidgetImpl + ObjectSubclass<Type: IsA<GLArea>> {
@@ -81,20 +81,24 @@ unsafe impl<T: GLAreaImpl> IsSubclassable<T> for GLArea {
 unsafe extern "C" fn gl_area_create_context<T: GLAreaImpl>(
     ptr: *mut ffi::GtkGLArea,
 ) -> *mut gdk::ffi::GdkGLContext {
-    let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.imp();
+    unsafe {
+        let instance = &*(ptr as *mut T::Instance);
+        let imp = instance.imp();
 
-    imp.create_context().into_glib_ptr()
+        imp.create_context().into_glib_ptr()
+    }
 }
 
 unsafe extern "C" fn gl_area_render<T: GLAreaImpl>(
     ptr: *mut ffi::GtkGLArea,
     context: *mut gdk::ffi::GdkGLContext,
 ) -> glib::ffi::gboolean {
-    let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.imp();
+    unsafe {
+        let instance = &*(ptr as *mut T::Instance);
+        let imp = instance.imp();
 
-    imp.render(&from_glib_borrow(context)).into_glib()
+        imp.render(&from_glib_borrow(context)).into_glib()
+    }
 }
 
 unsafe extern "C" fn gl_area_resize<T: GLAreaImpl>(
@@ -102,8 +106,10 @@ unsafe extern "C" fn gl_area_resize<T: GLAreaImpl>(
     width: i32,
     height: i32,
 ) {
-    let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.imp();
+    unsafe {
+        let instance = &*(ptr as *mut T::Instance);
+        let imp = instance.imp();
 
-    imp.resize(width, height)
+        imp.resize(width, height)
+    }
 }

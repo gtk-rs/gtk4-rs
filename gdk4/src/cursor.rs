@@ -1,6 +1,6 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{ffi, Cursor, Texture};
+use crate::{Cursor, Texture, ffi};
 use glib::translate::*;
 use std::boxed::Box as Box_;
 
@@ -29,20 +29,22 @@ impl Cursor {
             hotspot_y: *mut libc::c_int,
             data: glib::ffi::gpointer,
         ) -> *mut ffi::GdkTexture {
-            let cursor = from_glib_borrow(cursor);
-            let callback = &*(data as *mut P);
-            (*callback)(
-                &cursor,
-                cursor_size,
-                scale,
-                &mut *width,
-                &mut *height,
-                &mut *hotspot_x,
-                &mut *hotspot_y,
-            )
-            /*Not checked*/
-            .to_glib_none()
-            .0
+            unsafe {
+                let cursor = from_glib_borrow(cursor);
+                let callback = &*(data as *mut P);
+                (*callback)(
+                    &cursor,
+                    cursor_size,
+                    scale,
+                    &mut *width,
+                    &mut *height,
+                    &mut *hotspot_x,
+                    &mut *hotspot_y,
+                )
+                /*Not checked*/
+                .to_glib_none()
+                .0
+            }
         }
         let callback = Some(callback_func::<P> as _);
         unsafe extern "C" fn destroy_func<
@@ -50,7 +52,9 @@ impl Cursor {
         >(
             data: glib::ffi::gpointer,
         ) {
-            let _callback = Box_::from_raw(data as *mut P);
+            unsafe {
+                let _callback = Box_::from_raw(data as *mut P);
+            }
         }
         let destroy_call2 = Some(destroy_func::<P> as _);
         let super_callback0: Box_<P> = callback_data;

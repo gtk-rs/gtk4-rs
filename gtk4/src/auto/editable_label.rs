@@ -3,8 +3,8 @@
 // DO NOT EDIT
 
 use crate::{
-    ffi, Accessible, AccessibleRole, Align, Buildable, ConstraintTarget, Editable, LayoutManager,
-    Overflow, Widget,
+    Accessible, AccessibleRole, Align, Buildable, ConstraintTarget, Editable, LayoutManager,
+    Overflow, Widget, ffi,
 };
 use glib::{prelude::*, translate::*};
 

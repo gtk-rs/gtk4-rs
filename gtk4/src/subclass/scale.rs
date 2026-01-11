@@ -5,7 +5,7 @@
 
 use glib::translate::*;
 
-use crate::{ffi, prelude::*, subclass::prelude::*, Orientable, Scale};
+use crate::{Orientable, Scale, ffi, prelude::*, subclass::prelude::*};
 
 pub trait ScaleImpl: RangeImpl + ObjectSubclass<Type: IsA<Scale> + IsA<Orientable>> {
     #[doc(alias = "get_layout_offsets")]
@@ -49,10 +49,12 @@ unsafe extern "C" fn scale_get_layout_offsets<T: ScaleImpl>(
     x_ptr: *mut libc::c_int,
     y_ptr: *mut libc::c_int,
 ) {
-    let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.imp();
+    unsafe {
+        let instance = &*(ptr as *mut T::Instance);
+        let imp = instance.imp();
 
-    let (x, y) = imp.layout_offsets();
-    *x_ptr = x;
-    *y_ptr = y;
+        let (x, y) = imp.layout_offsets();
+        *x_ptr = x;
+        *y_ptr = y;
+    }
 }

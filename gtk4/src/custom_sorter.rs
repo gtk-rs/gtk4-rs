@@ -4,7 +4,7 @@ use std::ptr;
 
 use glib::translate::*;
 
-use crate::{ffi, CustomSorter, Ordering};
+use crate::{CustomSorter, Ordering, ffi};
 
 impl CustomSorter {
     #[doc(alias = "gtk_custom_sorter_new")]
@@ -56,7 +56,9 @@ impl Default for CustomSorter {
 unsafe extern "C" fn destroy_closure<F: Fn(&glib::Object, &glib::Object) -> Ordering + 'static>(
     ptr: glib::ffi::gpointer,
 ) {
-    let _ = Box::<F>::from_raw(ptr as *mut _);
+    unsafe {
+        let _ = Box::<F>::from_raw(ptr as *mut _);
+    }
 }
 
 unsafe extern "C" fn trampoline<F: Fn(&glib::Object, &glib::Object) -> Ordering + 'static>(
@@ -64,10 +66,12 @@ unsafe extern "C" fn trampoline<F: Fn(&glib::Object, &glib::Object) -> Ordering 
     b: glib::ffi::gconstpointer,
     f: glib::ffi::gpointer,
 ) -> i32 {
-    let f: &F = &*(f as *const F);
-    f(
-        &from_glib_borrow(a as *mut glib::gobject_ffi::GObject),
-        &from_glib_borrow(b as *mut glib::gobject_ffi::GObject),
-    )
-    .into_glib()
+    unsafe {
+        let f: &F = &*(f as *const F);
+        f(
+            &from_glib_borrow(a as *mut glib::gobject_ffi::GObject),
+            &from_glib_borrow(b as *mut glib::gobject_ffi::GObject),
+        )
+        .into_glib()
+    }
 }

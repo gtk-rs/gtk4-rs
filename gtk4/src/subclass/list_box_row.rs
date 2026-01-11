@@ -5,7 +5,7 @@
 
 use glib::translate::*;
 
-use crate::{ffi, prelude::*, subclass::prelude::*, Actionable, ListBoxRow};
+use crate::{Actionable, ListBoxRow, ffi, prelude::*, subclass::prelude::*};
 
 pub trait ListBoxRowImpl:
     WidgetImpl + ObjectSubclass<Type: IsA<ListBoxRow> + IsA<Actionable>>
@@ -39,8 +39,10 @@ unsafe impl<T: ListBoxRowImpl> IsSubclassable<T> for ListBoxRow {
 }
 
 unsafe extern "C" fn row_activate<T: ListBoxRowImpl>(ptr: *mut ffi::GtkListBoxRow) {
-    let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.imp();
+    unsafe {
+        let instance = &*(ptr as *mut T::Instance);
+        let imp = instance.imp();
 
-    imp.activate()
+        imp.activate()
+    }
 }

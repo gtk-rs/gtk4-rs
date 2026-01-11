@@ -277,6 +277,9 @@ pub use self::flags::AnchorHints;
 pub use self::flags::AxisFlags;
 pub use self::flags::DragAction;
 pub use self::flags::FrameClockPhase;
+#[cfg(feature = "v4_6")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
+pub use self::flags::GLAPI;
 pub use self::flags::ModifierType;
 pub use self::flags::PaintableFlags;
 pub use self::flags::SeatCapabilities;
@@ -284,9 +287,6 @@ pub use self::flags::SeatCapabilities;
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
 pub use self::flags::ToplevelCapabilities;
 pub use self::flags::ToplevelState;
-#[cfg(feature = "v4_6")]
-#[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
-pub use self::flags::GLAPI;
 
 pub(crate) mod functions;
 

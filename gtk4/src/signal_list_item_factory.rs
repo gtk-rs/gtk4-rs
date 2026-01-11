@@ -5,13 +5,13 @@ use std::{boxed::Box as Box_, mem::transmute};
 
 #[cfg(not(feature = "v4_8"))]
 use glib::{
-    signal::{connect_raw, SignalHandlerId},
+    signal::{SignalHandlerId, connect_raw},
     translate::*,
 };
 
 use crate::SignalListItemFactory;
 #[cfg(not(feature = "v4_8"))]
-use crate::{ffi, prelude::*, ListItem};
+use crate::{ListItem, ffi, prelude::*};
 
 impl SignalListItemFactory {
     #[doc(alias = "bind")]
@@ -22,8 +22,10 @@ impl SignalListItemFactory {
             listitem: *mut ffi::GtkListItem,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this), &from_glib_borrow(listitem))
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(&from_glib_borrow(this), &from_glib_borrow(listitem))
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -48,8 +50,10 @@ impl SignalListItemFactory {
             listitem: *mut ffi::GtkListItem,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this), &from_glib_borrow(listitem))
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(&from_glib_borrow(this), &from_glib_borrow(listitem))
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -74,8 +78,10 @@ impl SignalListItemFactory {
             listitem: *mut ffi::GtkListItem,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this), &from_glib_borrow(listitem))
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(&from_glib_borrow(this), &from_glib_borrow(listitem))
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -100,8 +106,10 @@ impl SignalListItemFactory {
             listitem: *mut ffi::GtkListItem,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this), &from_glib_borrow(listitem))
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(&from_glib_borrow(this), &from_glib_borrow(listitem))
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);

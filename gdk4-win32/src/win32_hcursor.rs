@@ -4,7 +4,7 @@ use std::{ffi::c_void, ptr::NonNull};
 
 use glib::{translate::*, types::Pointee};
 
-use crate::{ffi, prelude::*, Win32HCursor, HCURSOR};
+use crate::{HCURSOR, Win32HCursor, ffi, prelude::*};
 
 impl Win32HCursor {
     #[doc(alias = "gdk_win32_hcursor_new")]

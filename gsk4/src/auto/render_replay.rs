@@ -2,7 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::{ffi, RenderNode};
+use crate::{RenderNode, ffi};
 use glib::{prelude::*, translate::*};
 use std::boxed::Box as Box_;
 
@@ -88,16 +88,20 @@ impl RenderReplay {
             font: *mut pango::ffi::PangoFont,
             user_data: glib::ffi::gpointer,
         ) -> *mut pango::ffi::PangoFont {
-            let replay = from_glib_borrow(replay);
-            let font = from_glib_borrow(font);
-            let callback = &*(user_data
-                as *mut Option<Box_<dyn Fn(&RenderReplay, &pango::Font) -> pango::Font + 'static>>);
-            if let Some(ref callback) = *callback {
-                callback(&replay, &font)
-            } else {
-                panic!("cannot get closure...")
+            unsafe {
+                let replay = from_glib_borrow(replay);
+                let font = from_glib_borrow(font);
+                let callback = &*(user_data
+                    as *mut Option<
+                        Box_<dyn Fn(&RenderReplay, &pango::Font) -> pango::Font + 'static>,
+                    >);
+                if let Some(ref callback) = *callback {
+                    callback(&replay, &font)
+                } else {
+                    panic!("cannot get closure...")
+                }
+                .to_glib_full()
             }
-            .to_glib_full()
         }
         let filter = if filter_data.is_some() {
             Some(filter_func as _)
@@ -105,11 +109,13 @@ impl RenderReplay {
             None
         };
         unsafe extern "C" fn user_destroy_func(data: glib::ffi::gpointer) {
-            let _callback = Box_::from_raw(
-                data as *mut Option<
-                    Box_<dyn Fn(&RenderReplay, &pango::Font) -> pango::Font + 'static>,
-                >,
-            );
+            unsafe {
+                let _callback = Box_::from_raw(
+                    data as *mut Option<
+                        Box_<dyn Fn(&RenderReplay, &pango::Font) -> pango::Font + 'static>,
+                    >,
+                );
+            }
         }
         let destroy_call3 = Some(user_destroy_func as _);
         let super_callback0: Box_<
@@ -138,18 +144,20 @@ impl RenderReplay {
             node: *mut ffi::GskRenderNode,
             user_data: glib::ffi::gpointer,
         ) -> *mut ffi::GskRenderNode {
-            let replay = from_glib_borrow(replay);
-            let node = from_glib_borrow(node);
-            let callback = &*(user_data
-                as *mut Option<
-                    Box_<dyn Fn(&RenderReplay, &RenderNode) -> Option<RenderNode> + 'static>,
-                >);
-            if let Some(ref callback) = *callback {
-                callback(&replay, &node)
-            } else {
-                panic!("cannot get closure...")
+            unsafe {
+                let replay = from_glib_borrow(replay);
+                let node = from_glib_borrow(node);
+                let callback = &*(user_data
+                    as *mut Option<
+                        Box_<dyn Fn(&RenderReplay, &RenderNode) -> Option<RenderNode> + 'static>,
+                    >);
+                if let Some(ref callback) = *callback {
+                    callback(&replay, &node)
+                } else {
+                    panic!("cannot get closure...")
+                }
+                .to_glib_full()
             }
-            .to_glib_full()
         }
         let filter = if filter_data.is_some() {
             Some(filter_func as _)
@@ -157,11 +165,13 @@ impl RenderReplay {
             None
         };
         unsafe extern "C" fn user_destroy_func(data: glib::ffi::gpointer) {
-            let _callback = Box_::from_raw(
-                data as *mut Option<
-                    Box_<dyn Fn(&RenderReplay, &RenderNode) -> Option<RenderNode> + 'static>,
-                >,
-            );
+            unsafe {
+                let _callback = Box_::from_raw(
+                    data as *mut Option<
+                        Box_<dyn Fn(&RenderReplay, &RenderNode) -> Option<RenderNode> + 'static>,
+                    >,
+                );
+            }
         }
         let destroy_call3 = Some(user_destroy_func as _);
         let super_callback0: Box_<
@@ -189,16 +199,18 @@ impl RenderReplay {
             node: *mut ffi::GskRenderNode,
             user_data: glib::ffi::gpointer,
         ) -> glib::ffi::gboolean {
-            let replay = from_glib_borrow(replay);
-            let node = from_glib_borrow(node);
-            let callback = &*(user_data
-                as *mut Option<Box_<dyn Fn(&RenderReplay, &RenderNode) -> bool + 'static>>);
-            if let Some(ref callback) = *callback {
-                callback(&replay, &node)
-            } else {
-                panic!("cannot get closure...")
+            unsafe {
+                let replay = from_glib_borrow(replay);
+                let node = from_glib_borrow(node);
+                let callback = &*(user_data
+                    as *mut Option<Box_<dyn Fn(&RenderReplay, &RenderNode) -> bool + 'static>>);
+                if let Some(ref callback) = *callback {
+                    callback(&replay, &node)
+                } else {
+                    panic!("cannot get closure...")
+                }
+                .into_glib()
             }
-            .into_glib()
         }
         let foreach = if foreach_data.is_some() {
             Some(foreach_func as _)
@@ -206,9 +218,11 @@ impl RenderReplay {
             None
         };
         unsafe extern "C" fn user_destroy_func(data: glib::ffi::gpointer) {
-            let _callback = Box_::from_raw(
-                data as *mut Option<Box_<dyn Fn(&RenderReplay, &RenderNode) -> bool + 'static>>,
-            );
+            unsafe {
+                let _callback = Box_::from_raw(
+                    data as *mut Option<Box_<dyn Fn(&RenderReplay, &RenderNode) -> bool + 'static>>,
+                );
+            }
         }
         let destroy_call3 = Some(user_destroy_func as _);
         let super_callback0: Box_<
@@ -237,18 +251,20 @@ impl RenderReplay {
             texture: *mut gdk::ffi::GdkTexture,
             user_data: glib::ffi::gpointer,
         ) -> *mut gdk::ffi::GdkTexture {
-            let replay = from_glib_borrow(replay);
-            let texture = from_glib_borrow(texture);
-            let callback = &*(user_data
-                as *mut Option<
-                    Box_<dyn Fn(&RenderReplay, &gdk::Texture) -> gdk::Texture + 'static>,
-                >);
-            if let Some(ref callback) = *callback {
-                callback(&replay, &texture)
-            } else {
-                panic!("cannot get closure...")
+            unsafe {
+                let replay = from_glib_borrow(replay);
+                let texture = from_glib_borrow(texture);
+                let callback = &*(user_data
+                    as *mut Option<
+                        Box_<dyn Fn(&RenderReplay, &gdk::Texture) -> gdk::Texture + 'static>,
+                    >);
+                if let Some(ref callback) = *callback {
+                    callback(&replay, &texture)
+                } else {
+                    panic!("cannot get closure...")
+                }
+                .to_glib_full()
             }
-            .to_glib_full()
         }
         let filter = if filter_data.is_some() {
             Some(filter_func as _)
@@ -256,11 +272,13 @@ impl RenderReplay {
             None
         };
         unsafe extern "C" fn user_destroy_func(data: glib::ffi::gpointer) {
-            let _callback = Box_::from_raw(
-                data as *mut Option<
-                    Box_<dyn Fn(&RenderReplay, &gdk::Texture) -> gdk::Texture + 'static>,
-                >,
-            );
+            unsafe {
+                let _callback = Box_::from_raw(
+                    data as *mut Option<
+                        Box_<dyn Fn(&RenderReplay, &gdk::Texture) -> gdk::Texture + 'static>,
+                    >,
+                );
+            }
         }
         let destroy_call3 = Some(user_destroy_func as _);
         let super_callback0: Box_<

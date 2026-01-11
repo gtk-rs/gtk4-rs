@@ -5,7 +5,7 @@
 
 use glib::translate::*;
 
-use crate::{ffi, prelude::*, subclass::prelude::*, Actionable, ToggleButton};
+use crate::{Actionable, ToggleButton, ffi, prelude::*, subclass::prelude::*};
 
 pub trait ToggleButtonImpl:
     ButtonImpl + ObjectSubclass<Type: IsA<ToggleButton> + IsA<Actionable>>
@@ -43,8 +43,10 @@ unsafe impl<T: ToggleButtonImpl> IsSubclassable<T> for ToggleButton {
 }
 
 unsafe extern "C" fn toggle_button_toggled<T: ToggleButtonImpl>(ptr: *mut ffi::GtkToggleButton) {
-    let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.imp();
+    unsafe {
+        let instance = &*(ptr as *mut T::Instance);
+        let imp = instance.imp();
 
-    imp.toggled()
+        imp.toggled()
+    }
 }

@@ -6,7 +6,7 @@ use std::{boxed::Box as Box_, mem::transmute};
 
 #[cfg(feature = "xlib")]
 #[cfg_attr(docsrs, doc(cfg(feature = "xlib")))]
-use glib::signal::{connect_raw, SignalHandlerId};
+use glib::signal::{SignalHandlerId, connect_raw};
 use glib::translate::*;
 #[cfg(all(feature = "v4_4", feature = "egl"))]
 #[cfg_attr(docsrs, doc(cfg(all(feature = "v4_4", feature = "egl"))))]
@@ -18,7 +18,7 @@ use x11::xlib;
 #[cfg_attr(docsrs, doc(cfg(feature = "xlib")))]
 use x11::xlib::{Cursor as XCursor, Window as XWindow};
 
-use crate::{ffi, prelude::*, X11Display};
+use crate::{X11Display, ffi, prelude::*};
 #[cfg(not(feature = "xlib"))]
 use crate::{XCursor, XWindow};
 
@@ -56,7 +56,7 @@ impl X11Display {
     #[doc(alias = "get_xdisplay")]
     #[allow(clippy::missing_safety_doc)]
     pub unsafe fn xdisplay(&self) -> *mut xlib::Display {
-        ffi::gdk_x11_display_get_xdisplay(self.to_glib_none().0) as *mut xlib::Display
+        unsafe { ffi::gdk_x11_display_get_xdisplay(self.to_glib_none().0) as *mut xlib::Display }
     }
 
     #[cfg(feature = "xlib")]
@@ -65,7 +65,7 @@ impl X11Display {
     #[doc(alias = "get_xscreen")]
     #[allow(clippy::missing_safety_doc)]
     pub unsafe fn xscreen(&self) -> *mut xlib::Screen {
-        ffi::gdk_x11_display_get_xscreen(self.to_glib_none().0) as *mut xlib::Screen
+        unsafe { ffi::gdk_x11_display_get_xscreen(self.to_glib_none().0) as *mut xlib::Screen }
     }
 
     #[cfg(feature = "xlib")]
@@ -76,25 +76,29 @@ impl X11Display {
         &self,
         f: F,
     ) -> SignalHandlerId {
-        unsafe extern "C" fn xevent_trampoline<
-            F: Fn(&X11Display, *mut xlib::XEvent) -> glib::Propagation + 'static,
-        >(
-            this: *mut ffi::GdkX11Display,
-            xevent: glib::ffi::gpointer,
-            f: glib::ffi::gpointer,
-        ) -> glib::ffi::gboolean {
-            let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this), xevent as *mut xlib::XEvent).into_glib()
+        unsafe {
+            unsafe extern "C" fn xevent_trampoline<
+                F: Fn(&X11Display, *mut xlib::XEvent) -> glib::Propagation + 'static,
+            >(
+                this: *mut ffi::GdkX11Display,
+                xevent: glib::ffi::gpointer,
+                f: glib::ffi::gpointer,
+            ) -> glib::ffi::gboolean {
+                unsafe {
+                    let f: &F = &*(f as *const F);
+                    f(&from_glib_borrow(this), xevent as *mut xlib::XEvent).into_glib()
+                }
+            }
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                c"xevent".as_ptr() as *const _,
+                Some(transmute::<*const (), unsafe extern "C" fn()>(
+                    xevent_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
         }
-        let f: Box_<F> = Box_::new(f);
-        connect_raw(
-            self.as_ptr() as *mut _,
-            c"xevent".as_ptr() as *const _,
-            Some(transmute::<*const (), unsafe extern "C" fn()>(
-                xevent_trampoline::<F> as *const (),
-            )),
-            Box_::into_raw(f),
-        )
     }
 
     #[doc(alias = "gdk_x11_display_set_program_class")]

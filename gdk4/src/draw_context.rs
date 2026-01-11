@@ -2,7 +2,7 @@
 
 use glib::translate::*;
 
-use crate::{prelude::*, DrawContext};
+use crate::{DrawContext, prelude::*};
 
 // rustdoc-stripper-ignore-next
 /// Trait containing manually implemented methods of

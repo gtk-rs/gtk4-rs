@@ -3,11 +3,11 @@
 // DO NOT EDIT
 #![allow(deprecated)]
 
-use crate::{ffi, TreeIter, TreeModelFlags, TreePath};
+use crate::{TreeIter, TreeModelFlags, TreePath, ffi};
 use glib::{
     object::ObjectType as _,
     prelude::*,
-    signal::{connect_raw, SignalHandlerId},
+    signal::{SignalHandlerId, connect_raw},
     translate::*,
 };
 use std::boxed::Box as Box_;
@@ -37,11 +37,13 @@ pub trait TreeModelExt: IsA<TreeModel> + 'static {
             iter: *mut ffi::GtkTreeIter,
             data: glib::ffi::gpointer,
         ) -> glib::ffi::gboolean {
-            let model = from_glib_borrow(model);
-            let path = from_glib_borrow(path);
-            let iter = from_glib_borrow(iter);
-            let callback = data as *mut P;
-            (*callback)(&model, &path, &iter).into_glib()
+            unsafe {
+                let model = from_glib_borrow(model);
+                let path = from_glib_borrow(path);
+                let iter = from_glib_borrow(iter);
+                let callback = data as *mut P;
+                (*callback)(&model, &path, &iter).into_glib()
+            }
         }
         let func = Some(func_func::<P> as _);
         let super_callback0: &mut P = &mut func_data;
@@ -91,11 +93,7 @@ pub trait TreeModelExt: IsA<TreeModel> + 'static {
                 iter.to_glib_none_mut().0,
                 mut_override(path.to_glib_none().0),
             ));
-            if ret {
-                Some(iter)
-            } else {
-                None
-            }
+            if ret { Some(iter) } else { None }
         }
     }
 
@@ -110,11 +108,7 @@ pub trait TreeModelExt: IsA<TreeModel> + 'static {
                 self.as_ref().to_glib_none().0,
                 iter.to_glib_none_mut().0,
             ));
-            if ret {
-                Some(iter)
-            } else {
-                None
-            }
+            if ret { Some(iter) } else { None }
         }
     }
 
@@ -130,11 +124,7 @@ pub trait TreeModelExt: IsA<TreeModel> + 'static {
                 iter.to_glib_none_mut().0,
                 path_string.to_glib_none().0,
             ));
-            if ret {
-                Some(iter)
-            } else {
-                None
-            }
+            if ret { Some(iter) } else { None }
         }
     }
 
@@ -183,11 +173,7 @@ pub trait TreeModelExt: IsA<TreeModel> + 'static {
                 iter.to_glib_none_mut().0,
                 mut_override(parent.to_glib_none().0),
             ));
-            if ret {
-                Some(iter)
-            } else {
-                None
-            }
+            if ret { Some(iter) } else { None }
         }
     }
 
@@ -227,11 +213,7 @@ pub trait TreeModelExt: IsA<TreeModel> + 'static {
                 mut_override(parent.to_glib_none().0),
                 n,
             ));
-            if ret {
-                Some(iter)
-            } else {
-                None
-            }
+            if ret { Some(iter) } else { None }
         }
     }
 
@@ -246,11 +228,7 @@ pub trait TreeModelExt: IsA<TreeModel> + 'static {
                 iter.to_glib_none_mut().0,
                 mut_override(child.to_glib_none().0),
             ));
-            if ret {
-                Some(iter)
-            } else {
-                None
-            }
+            if ret { Some(iter) } else { None }
         }
     }
 
@@ -331,12 +309,14 @@ pub trait TreeModelExt: IsA<TreeModel> + 'static {
             iter: *mut ffi::GtkTreeIter,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(
-                TreeModel::from_glib_borrow(this).unsafe_cast_ref(),
-                &from_glib_borrow(path),
-                &from_glib_borrow(iter),
-            )
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(
+                    TreeModel::from_glib_borrow(this).unsafe_cast_ref(),
+                    &from_glib_borrow(path),
+                    &from_glib_borrow(iter),
+                )
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -361,11 +341,13 @@ pub trait TreeModelExt: IsA<TreeModel> + 'static {
             path: *mut ffi::GtkTreePath,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(
-                TreeModel::from_glib_borrow(this).unsafe_cast_ref(),
-                &from_glib_borrow(path),
-            )
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(
+                    TreeModel::from_glib_borrow(this).unsafe_cast_ref(),
+                    &from_glib_borrow(path),
+                )
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -394,12 +376,14 @@ pub trait TreeModelExt: IsA<TreeModel> + 'static {
             iter: *mut ffi::GtkTreeIter,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(
-                TreeModel::from_glib_borrow(this).unsafe_cast_ref(),
-                &from_glib_borrow(path),
-                &from_glib_borrow(iter),
-            )
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(
+                    TreeModel::from_glib_borrow(this).unsafe_cast_ref(),
+                    &from_glib_borrow(path),
+                    &from_glib_borrow(iter),
+                )
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -428,12 +412,14 @@ pub trait TreeModelExt: IsA<TreeModel> + 'static {
             iter: *mut ffi::GtkTreeIter,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(
-                TreeModel::from_glib_borrow(this).unsafe_cast_ref(),
-                &from_glib_borrow(path),
-                &from_glib_borrow(iter),
-            )
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(
+                    TreeModel::from_glib_borrow(this).unsafe_cast_ref(),
+                    &from_glib_borrow(path),
+                    &from_glib_borrow(iter),
+                )
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);

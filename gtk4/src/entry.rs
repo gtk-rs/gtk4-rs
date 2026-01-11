@@ -2,7 +2,7 @@
 
 use glib::translate::*;
 
-use crate::{prelude::*, Entry};
+use crate::{Entry, prelude::*};
 
 // rustdoc-stripper-ignore-next
 /// Trait containing manually implemented methods of [`Entry`](crate::Entry).

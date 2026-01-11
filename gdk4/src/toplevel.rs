@@ -3,11 +3,11 @@
 use std::{boxed::Box as Box_, mem::transmute};
 
 use glib::{
-    signal::{connect_raw, SignalHandlerId},
+    signal::{SignalHandlerId, connect_raw},
     translate::*,
 };
 
-use crate::{ffi, prelude::*, Toplevel, ToplevelSize};
+use crate::{Toplevel, ToplevelSize, ffi, prelude::*};
 
 // rustdoc-stripper-ignore-next
 /// Trait containing manually implemented methods of
@@ -24,8 +24,10 @@ pub trait ToplevelExtManual: IsA<Toplevel> {
             size: *mut ffi::GdkToplevelSize,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this), &mut *(size as *mut ToplevelSize))
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(&from_glib_borrow(this), &mut *(size as *mut ToplevelSize))
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);

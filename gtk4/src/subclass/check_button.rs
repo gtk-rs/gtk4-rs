@@ -5,7 +5,7 @@
 
 use glib::translate::*;
 
-use crate::{ffi, prelude::*, subclass::prelude::*, Actionable, CheckButton};
+use crate::{Actionable, CheckButton, ffi, prelude::*, subclass::prelude::*};
 
 pub trait CheckButtonImpl:
     WidgetImpl + ObjectSubclass<Type: IsA<CheckButton> + IsA<Actionable>>
@@ -63,17 +63,21 @@ unsafe impl<T: CheckButtonImpl> IsSubclassable<T> for CheckButton {
 }
 
 unsafe extern "C" fn check_button_toggled<T: CheckButtonImpl>(ptr: *mut ffi::GtkCheckButton) {
-    let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.imp();
+    unsafe {
+        let instance = &*(ptr as *mut T::Instance);
+        let imp = instance.imp();
 
-    imp.toggled()
+        imp.toggled()
+    }
 }
 
 #[cfg(feature = "v4_2")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_2")))]
 unsafe extern "C" fn check_button_activate<T: CheckButtonImpl>(ptr: *mut ffi::GtkCheckButton) {
-    let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.imp();
+    unsafe {
+        let instance = &*(ptr as *mut T::Instance);
+        let imp = instance.imp();
 
-    imp.activate()
+        imp.activate()
+    }
 }

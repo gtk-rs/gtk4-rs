@@ -3,11 +3,11 @@
 use std::{mem::transmute, ptr};
 
 use glib::{
-    signal::{connect_raw, SignalHandlerId},
+    signal::{SignalHandlerId, connect_raw},
     translate::*,
 };
 
-use crate::{ffi, prelude::*, Overlay, Widget};
+use crate::{Overlay, Widget, ffi, prelude::*};
 
 impl Overlay {
     pub fn connect_get_child_position<F>(&self, f: F) -> SignalHandlerId
@@ -36,16 +36,18 @@ unsafe extern "C" fn get_child_position_trampoline<
     allocation: *mut gdk::ffi::GdkRectangle,
     f: glib::ffi::gpointer,
 ) -> glib::ffi::gboolean {
-    let f: &F = &*(f as *const F);
-    match f(
-        Overlay::from_glib_borrow(this).unsafe_cast_ref(),
-        &from_glib_borrow(widget),
-    ) {
-        Some(rect) => {
-            ptr::write(allocation, ptr::read(rect.to_glib_none().0));
-            true
+    unsafe {
+        let f: &F = &*(f as *const F);
+        match f(
+            Overlay::from_glib_borrow(this).unsafe_cast_ref(),
+            &from_glib_borrow(widget),
+        ) {
+            Some(rect) => {
+                ptr::write(allocation, ptr::read(rect.to_glib_none().0));
+                true
+            }
+            None => false,
         }
-        None => false,
+        .into_glib()
     }
-    .into_glib()
 }

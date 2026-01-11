@@ -5,7 +5,7 @@
 
 use glib::translate::*;
 
-use crate::{ffi, prelude::*, subclass::prelude::*, FlowBoxChild};
+use crate::{FlowBoxChild, ffi, prelude::*, subclass::prelude::*};
 
 pub trait FlowBoxChildImpl: WidgetImpl + ObjectSubclass<Type: IsA<FlowBoxChild>> {
     fn activate(&self) {
@@ -41,8 +41,10 @@ unsafe impl<T: FlowBoxChildImpl> IsSubclassable<T> for FlowBoxChild {
 }
 
 unsafe extern "C" fn child_activate<T: FlowBoxChildImpl>(ptr: *mut ffi::GtkFlowBoxChild) {
-    let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.imp();
+    unsafe {
+        let instance = &*(ptr as *mut T::Instance);
+        let imp = instance.imp();
 
-    imp.activate()
+        imp.activate()
+    }
 }

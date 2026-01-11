@@ -3,12 +3,12 @@
 use std::{ffi::CStr, mem::transmute, slice, str};
 
 use glib::{
-    signal::{connect_raw, SignalHandlerId},
+    signal::{SignalHandlerId, connect_raw},
     translate::*,
 };
 use libc::{c_char, c_int, c_uchar};
 
-use crate::{prelude::*, Editable};
+use crate::{Editable, prelude::*};
 
 // rustdoc-stripper-ignore-next
 /// Trait containing manually implemented methods of
@@ -43,17 +43,19 @@ unsafe extern "C" fn insert_text_trampoline<T, F: Fn(&T, &str, &mut i32) + 'stat
 ) where
     T: IsA<Editable>,
 {
-    let buf = if new_text_length == 0 {
-        &[]
-    } else if new_text_length != -1 {
-        slice::from_raw_parts(new_text as *mut c_uchar, new_text_length as usize)
-    } else {
-        CStr::from_ptr(new_text).to_bytes()
-    };
-    let string = str::from_utf8(buf).unwrap();
-    f(
-        Editable::from_glib_borrow(this).unsafe_cast_ref(),
-        string,
-        &mut *position,
-    );
+    unsafe {
+        let buf = if new_text_length == 0 {
+            &[]
+        } else if new_text_length != -1 {
+            slice::from_raw_parts(new_text as *mut c_uchar, new_text_length as usize)
+        } else {
+            CStr::from_ptr(new_text).to_bytes()
+        };
+        let string = str::from_utf8(buf).unwrap();
+        f(
+            Editable::from_glib_borrow(this).unsafe_cast_ref(),
+            string,
+            &mut *position,
+        );
+    }
 }

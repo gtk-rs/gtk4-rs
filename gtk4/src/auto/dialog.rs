@@ -7,14 +7,13 @@
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
 use crate::WindowGravity;
 use crate::{
-    ffi, Accessible, AccessibleRole, Align, Application, Box, Buildable, ConstraintTarget,
-    HeaderBar, LayoutManager, Native, Overflow, ResponseType, Root, ShortcutManager, Widget,
-    Window,
+    Accessible, AccessibleRole, Align, Application, Box, Buildable, ConstraintTarget, HeaderBar,
+    LayoutManager, Native, Overflow, ResponseType, Root, ShortcutManager, Widget, Window, ffi,
 };
 use glib::{
     object::ObjectType as _,
     prelude::*,
-    signal::{connect_raw, SignalHandlerId},
+    signal::{SignalHandlerId, connect_raw},
     translate::*,
 };
 use std::boxed::Box as Box_;
@@ -553,8 +552,10 @@ pub trait DialogExt: IsA<Dialog> + 'static {
             this: *mut ffi::GtkDialog,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(Dialog::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(Dialog::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -584,11 +585,13 @@ pub trait DialogExt: IsA<Dialog> + 'static {
             response_id: ffi::GtkResponseType,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(
-                Dialog::from_glib_borrow(this).unsafe_cast_ref(),
-                from_glib(response_id),
-            )
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(
+                    Dialog::from_glib_borrow(this).unsafe_cast_ref(),
+                    from_glib(response_id),
+                )
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);

@@ -3,11 +3,11 @@
 // DO NOT EDIT
 #![allow(deprecated)]
 
-use crate::{ffi, FontChooserLevel};
+use crate::{FontChooserLevel, ffi};
 use glib::{
     object::ObjectType as _,
     prelude::*,
-    signal::{connect_raw, SignalHandlerId},
+    signal::{SignalHandlerId, connect_raw},
     translate::*,
 };
 use std::boxed::Box as Box_;
@@ -173,10 +173,12 @@ pub trait FontChooserExt: IsA<FontChooser> + 'static {
             face: *const pango::ffi::PangoFontFace,
             data: glib::ffi::gpointer,
         ) -> glib::ffi::gboolean {
-            let family = from_glib_borrow(family);
-            let face = from_glib_borrow(face);
-            let callback = &*(data as *mut P);
-            (*callback)(&family, &face).into_glib()
+            unsafe {
+                let family = from_glib_borrow(family);
+                let face = from_glib_borrow(face);
+                let callback = &*(data as *mut P);
+                (*callback)(&family, &face).into_glib()
+            }
         }
         let filter = Some(filter_func::<P> as _);
         unsafe extern "C" fn destroy_func<
@@ -184,7 +186,9 @@ pub trait FontChooserExt: IsA<FontChooser> + 'static {
         >(
             data: glib::ffi::gpointer,
         ) {
-            let _callback = Box_::from_raw(data as *mut P);
+            unsafe {
+                let _callback = Box_::from_raw(data as *mut P);
+            }
         }
         let destroy_call3 = Some(destroy_func::<P> as _);
         let super_callback0: Box_<P> = filter_data;
@@ -296,11 +300,13 @@ pub trait FontChooserExt: IsA<FontChooser> + 'static {
             fontname: *mut std::ffi::c_char,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(
-                FontChooser::from_glib_borrow(this).unsafe_cast_ref(),
-                &glib::GString::from_glib_borrow(fontname),
-            )
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(
+                    FontChooser::from_glib_borrow(this).unsafe_cast_ref(),
+                    &glib::GString::from_glib_borrow(fontname),
+                )
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -323,8 +329,10 @@ pub trait FontChooserExt: IsA<FontChooser> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(FontChooser::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(FontChooser::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -350,8 +358,10 @@ pub trait FontChooserExt: IsA<FontChooser> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(FontChooser::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(FontChooser::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -377,8 +387,10 @@ pub trait FontChooserExt: IsA<FontChooser> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(FontChooser::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(FontChooser::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -404,8 +416,10 @@ pub trait FontChooserExt: IsA<FontChooser> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(FontChooser::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(FontChooser::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -428,8 +442,10 @@ pub trait FontChooserExt: IsA<FontChooser> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(FontChooser::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(FontChooser::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -455,8 +471,10 @@ pub trait FontChooserExt: IsA<FontChooser> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(FontChooser::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(FontChooser::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -482,8 +500,10 @@ pub trait FontChooserExt: IsA<FontChooser> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(FontChooser::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(FontChooser::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);

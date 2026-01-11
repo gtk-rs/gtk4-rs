@@ -6,4 +6,4 @@
 #[cfg(feature = "v4_14")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
 pub use crate::stroke::StrokeBuilder;
-pub use crate::{auto::builders::*, color_stop::ColorStopBuilder, ShaderArgsBuilder};
+pub use crate::{ShaderArgsBuilder, auto::builders::*, color_stop::ColorStopBuilder};

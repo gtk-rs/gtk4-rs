@@ -2,7 +2,7 @@
 
 use glib::translate::*;
 
-use crate::{ffi, Path, PathDirection, PathPoint};
+use crate::{Path, PathDirection, PathPoint, ffi};
 
 impl PathPoint {
     #[doc(alias = "gsk_path_point_get_curvature")]

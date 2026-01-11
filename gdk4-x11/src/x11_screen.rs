@@ -7,7 +7,7 @@ use x11::xlib::{self, XID};
 
 #[cfg(not(feature = "xlib"))]
 use crate::XID;
-use crate::{ffi, X11Screen};
+use crate::{X11Screen, ffi};
 
 impl X11Screen {
     #[cfg(feature = "xlib")]
@@ -16,7 +16,7 @@ impl X11Screen {
     #[doc(alias = "get_xscreen")]
     #[allow(clippy::missing_safety_doc)]
     pub unsafe fn xscreen(&self) -> *mut xlib::Screen {
-        ffi::gdk_x11_screen_get_xscreen(self.to_glib_none().0) as *mut xlib::Screen
+        unsafe { ffi::gdk_x11_screen_get_xscreen(self.to_glib_none().0) as *mut xlib::Screen }
     }
 
     #[doc(alias = "gdk_x11_screen_get_monitor_output")]

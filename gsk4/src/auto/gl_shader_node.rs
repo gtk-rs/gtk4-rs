@@ -3,7 +3,7 @@
 // DO NOT EDIT
 #![allow(deprecated)]
 
-use crate::{ffi, GLShader, RenderNode};
+use crate::{GLShader, RenderNode, ffi};
 use glib::{prelude::*, translate::*};
 
 glib::wrapper! {

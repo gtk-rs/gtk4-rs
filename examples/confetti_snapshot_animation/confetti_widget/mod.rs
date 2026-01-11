@@ -1,7 +1,7 @@
 mod imp;
 
 use gtk::{
-    glib::{self, clone, ControlFlow},
+    glib::{self, ControlFlow, clone},
     prelude::*,
     subclass::prelude::*,
 };

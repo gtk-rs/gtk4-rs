@@ -1,9 +1,9 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use glib::{translate::*, GString};
+use glib::{GString, translate::*};
 use libc::{c_int, c_uint};
 
-use crate::{ffi, prelude::*, EntryBuffer};
+use crate::{EntryBuffer, ffi, prelude::*};
 
 impl EntryBuffer {
     #[doc(alias = "gtk_entry_buffer_new")]

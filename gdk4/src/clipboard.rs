@@ -2,9 +2,9 @@
 
 use std::{future, pin::Pin, ptr};
 
-use glib::{translate::*, GString};
+use glib::{GString, translate::*};
 
-use crate::{ffi, prelude::*, Clipboard};
+use crate::{Clipboard, ffi, prelude::*};
 
 impl Clipboard {
     #[doc(alias = "gdk_clipboard_read_async")]
@@ -34,23 +34,25 @@ impl Clipboard {
             res: *mut gio::ffi::GAsyncResult,
             user_data: glib::ffi::gpointer,
         ) {
-            let mut error = ptr::null_mut();
-            let mut out_mime_type = ptr::null();
-            let ret = ffi::gdk_clipboard_read_finish(
-                _source_object as *mut _,
-                res,
-                &mut out_mime_type,
-                &mut error,
-            );
-            let result = if error.is_null() {
-                Ok((from_glib_full(ret), from_glib_none(out_mime_type)))
-            } else {
-                Err(from_glib_full(error))
-            };
-            let callback: Box<glib::thread_guard::ThreadGuard<Q>> =
-                Box::from_raw(user_data as *mut _);
-            let callback = callback.into_inner();
-            callback(result);
+            unsafe {
+                let mut error = ptr::null_mut();
+                let mut out_mime_type = ptr::null();
+                let ret = ffi::gdk_clipboard_read_finish(
+                    _source_object as *mut _,
+                    res,
+                    &mut out_mime_type,
+                    &mut error,
+                );
+                let result = if error.is_null() {
+                    Ok((from_glib_full(ret), from_glib_none(out_mime_type)))
+                } else {
+                    Err(from_glib_full(error))
+                };
+                let callback: Box<glib::thread_guard::ThreadGuard<Q>> =
+                    Box::from_raw(user_data as *mut _);
+                let callback = callback.into_inner();
+                callback(result);
+            }
         }
         let callback = read_async_trampoline::<Q>;
         unsafe {

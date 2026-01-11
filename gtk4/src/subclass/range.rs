@@ -5,7 +5,7 @@
 
 use glib::translate::*;
 
-use crate::{ffi, prelude::*, subclass::prelude::*, Border, Orientable, Range, ScrollType};
+use crate::{Border, Orientable, Range, ScrollType, ffi, prelude::*, subclass::prelude::*};
 
 pub trait RangeImpl: WidgetImpl + ObjectSubclass<Type: IsA<Range> + IsA<Orientable>> {
     fn adjust_bounds(&self, new_value: f64) {
@@ -114,10 +114,12 @@ unsafe impl<T: RangeImpl> IsSubclassable<T> for Range {
 }
 
 unsafe extern "C" fn range_adjust_bounds<T: RangeImpl>(ptr: *mut ffi::GtkRange, new_value: f64) {
-    let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.imp();
+    unsafe {
+        let instance = &*(ptr as *mut T::Instance);
+        let imp = instance.imp();
 
-    imp.adjust_bounds(new_value)
+        imp.adjust_bounds(new_value)
+    }
 }
 
 unsafe extern "C" fn range_change_value<T: RangeImpl>(
@@ -125,37 +127,45 @@ unsafe extern "C" fn range_change_value<T: RangeImpl>(
     scroll_type: ffi::GtkScrollType,
     new_value: f64,
 ) -> glib::ffi::gboolean {
-    let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.imp();
+    unsafe {
+        let instance = &*(ptr as *mut T::Instance);
+        let imp = instance.imp();
 
-    imp.change_value(from_glib(scroll_type), new_value)
-        .into_glib()
+        imp.change_value(from_glib(scroll_type), new_value)
+            .into_glib()
+    }
 }
 
 unsafe extern "C" fn range_get_range_border<T: RangeImpl>(
     ptr: *mut ffi::GtkRange,
     borderptr: *mut ffi::GtkBorder,
 ) {
-    let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.imp();
+    unsafe {
+        let instance = &*(ptr as *mut T::Instance);
+        let imp = instance.imp();
 
-    let border = imp.range_border();
-    *borderptr = *border.to_glib_none().0;
+        let border = imp.range_border();
+        *borderptr = *border.to_glib_none().0;
+    }
 }
 
 unsafe extern "C" fn range_move_slider<T: RangeImpl>(
     ptr: *mut ffi::GtkRange,
     scroll_type: ffi::GtkScrollType,
 ) {
-    let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.imp();
+    unsafe {
+        let instance = &*(ptr as *mut T::Instance);
+        let imp = instance.imp();
 
-    imp.move_slider(from_glib(scroll_type))
+        imp.move_slider(from_glib(scroll_type))
+    }
 }
 
 unsafe extern "C" fn range_value_changed<T: RangeImpl>(ptr: *mut ffi::GtkRange) {
-    let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.imp();
+    unsafe {
+        let instance = &*(ptr as *mut T::Instance);
+        let imp = instance.imp();
 
-    imp.value_changed()
+        imp.value_changed()
+    }
 }

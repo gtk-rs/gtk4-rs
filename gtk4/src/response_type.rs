@@ -3,7 +3,7 @@
 use std::fmt;
 
 use crate::{ffi, prelude::*};
-use glib::{translate::*, value::FromValue, Type, Value};
+use glib::{Type, Value, translate::*, value::FromValue};
 
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
 #[doc(alias = "GtkResponseType")]
@@ -123,8 +123,10 @@ unsafe impl FromValue<'_> for ResponseType {
 
     #[inline]
     unsafe fn from_value(value: &glib::Value) -> Self {
-        skip_assert_initialized!();
-        from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+        unsafe {
+            skip_assert_initialized!();
+            from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+        }
     }
 }
 

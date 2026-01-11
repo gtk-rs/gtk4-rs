@@ -5,7 +5,7 @@
 
 use glib::translate::*;
 
-use crate::{ffi, prelude::*, subclass::prelude::*, Application, Window};
+use crate::{Application, Window, ffi, prelude::*, subclass::prelude::*};
 
 pub trait GtkApplicationImpl: ApplicationImpl + ObjectSubclass<Type: IsA<Application>> {
     fn window_added(&self, window: &Window) {
@@ -144,10 +144,12 @@ unsafe impl<T: GtkApplicationImpl> IsSubclassable<T> for Application {
                 OLD_STARTUP = app_klass.startup.map(WrapFn);
 
                 unsafe extern "C" fn replace_startup(app: *mut gio::ffi::GApplication) {
-                    if let Some(WrapFn(old_startup)) = OLD_STARTUP {
-                        old_startup(app);
+                    unsafe {
+                        if let Some(WrapFn(old_startup)) = OLD_STARTUP {
+                            old_startup(app);
+                        }
+                        crate::rt::set_initialized();
                     }
-                    crate::rt::set_initialized();
                 }
 
                 app_klass.startup = Some(replace_startup);
@@ -175,20 +177,24 @@ unsafe extern "C" fn application_window_added<T: GtkApplicationImpl>(
     ptr: *mut ffi::GtkApplication,
     wptr: *mut ffi::GtkWindow,
 ) {
-    let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.imp();
+    unsafe {
+        let instance = &*(ptr as *mut T::Instance);
+        let imp = instance.imp();
 
-    imp.window_added(&from_glib_borrow(wptr))
+        imp.window_added(&from_glib_borrow(wptr))
+    }
 }
 
 unsafe extern "C" fn application_window_removed<T: GtkApplicationImpl>(
     ptr: *mut ffi::GtkApplication,
     wptr: *mut ffi::GtkWindow,
 ) {
-    let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.imp();
+    unsafe {
+        let instance = &*(ptr as *mut T::Instance);
+        let imp = instance.imp();
 
-    imp.window_removed(&from_glib_borrow(wptr))
+        imp.window_removed(&from_glib_borrow(wptr))
+    }
 }
 
 #[cfg(feature = "v4_22")]
@@ -196,10 +202,12 @@ unsafe extern "C" fn application_save_state<T: GtkApplicationImpl>(
     ptr: *mut ffi::GtkApplication,
     state: *mut glib::ffi::GVariantDict,
 ) -> glib::ffi::gboolean {
-    let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.imp();
+    unsafe {
+        let instance = &*(ptr as *mut T::Instance);
+        let imp = instance.imp();
 
-    imp.save_state(&from_glib_borrow(state)).into_glib()
+        imp.save_state(&from_glib_borrow(state)).into_glib()
+    }
 }
 
 #[cfg(feature = "v4_22")]
@@ -208,11 +216,13 @@ unsafe extern "C" fn application_restore_state<T: GtkApplicationImpl>(
     reason: ffi::GtkRestoreReason,
     state: *mut glib::ffi::GVariant,
 ) -> glib::ffi::gboolean {
-    let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.imp();
+    unsafe {
+        let instance = &*(ptr as *mut T::Instance);
+        let imp = instance.imp();
 
-    imp.restore_state(from_glib(reason), &from_glib_borrow(state))
-        .into_glib()
+        imp.restore_state(from_glib(reason), &from_glib_borrow(state))
+            .into_glib()
+    }
 }
 
 #[cfg(feature = "v4_22")]
@@ -221,8 +231,10 @@ unsafe extern "C" fn application_restore_window<T: GtkApplicationImpl>(
     reason: ffi::GtkRestoreReason,
     state: *mut glib::ffi::GVariant,
 ) {
-    let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.imp();
+    unsafe {
+        let instance = &*(ptr as *mut T::Instance);
+        let imp = instance.imp();
 
-    imp.restore_window(from_glib(reason), &from_glib_borrow(state))
+        imp.restore_window(from_glib(reason), &from_glib_borrow(state))
+    }
 }

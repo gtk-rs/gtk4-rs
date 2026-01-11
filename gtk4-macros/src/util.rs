@@ -1,7 +1,7 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use proc_macro2::{Ident, Span};
 use proc_macro_crate::crate_name;
+use proc_macro2::{Ident, Span};
 
 pub fn crate_ident_new() -> Ident {
     use proc_macro_crate::FoundCrate;

@@ -2,7 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::{ffi, ExpressionWatch};
+use crate::{ExpressionWatch, ffi};
 use glib::{prelude::*, translate::*};
 use std::boxed::Box as Box_;
 
@@ -69,12 +69,16 @@ impl Expression {
     ) -> ExpressionWatch {
         let notify_data: Box_<P> = Box_::new(notify);
         unsafe extern "C" fn notify_func<P: Fn() + 'static>(user_data: glib::ffi::gpointer) {
-            let callback = &*(user_data as *mut P);
-            (*callback)()
+            unsafe {
+                let callback = &*(user_data as *mut P);
+                (*callback)()
+            }
         }
         let notify = Some(notify_func::<P> as _);
         unsafe extern "C" fn user_destroy_func<P: Fn() + 'static>(data: glib::ffi::gpointer) {
-            let _callback = Box_::from_raw(data as *mut P);
+            unsafe {
+                let _callback = Box_::from_raw(data as *mut P);
+            }
         }
         let destroy_call4 = Some(user_destroy_func::<P> as _);
         let super_callback0: Box_<P> = notify_data;

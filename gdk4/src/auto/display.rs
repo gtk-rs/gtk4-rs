@@ -11,11 +11,11 @@ use crate::DmabufFormats;
 #[cfg(feature = "v4_6")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
 use crate::GLContext;
-use crate::{ffi, AppLaunchContext, Clipboard, Device, Event, Monitor, Seat, Surface};
+use crate::{AppLaunchContext, Clipboard, Device, Event, Monitor, Seat, Surface, ffi};
 use glib::{
     object::ObjectType as _,
     prelude::*,
-    signal::{connect_raw, SignalHandlerId},
+    signal::{SignalHandlerId, connect_raw},
     translate::*,
 };
 use std::boxed::Box as Box_;
@@ -302,11 +302,13 @@ pub trait DisplayExt: IsA<Display> + 'static {
             is_error: glib::ffi::gboolean,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(
-                Display::from_glib_borrow(this).unsafe_cast_ref(),
-                from_glib(is_error),
-            )
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(
+                    Display::from_glib_borrow(this).unsafe_cast_ref(),
+                    from_glib(is_error),
+                )
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -327,8 +329,10 @@ pub trait DisplayExt: IsA<Display> + 'static {
             this: *mut ffi::GdkDisplay,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(Display::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(Display::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -350,11 +354,13 @@ pub trait DisplayExt: IsA<Display> + 'static {
             seat: *mut ffi::GdkSeat,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(
-                Display::from_glib_borrow(this).unsafe_cast_ref(),
-                &from_glib_borrow(seat),
-            )
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(
+                    Display::from_glib_borrow(this).unsafe_cast_ref(),
+                    &from_glib_borrow(seat),
+                )
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -379,11 +385,13 @@ pub trait DisplayExt: IsA<Display> + 'static {
             seat: *mut ffi::GdkSeat,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(
-                Display::from_glib_borrow(this).unsafe_cast_ref(),
-                &from_glib_borrow(seat),
-            )
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(
+                    Display::from_glib_borrow(this).unsafe_cast_ref(),
+                    &from_glib_borrow(seat),
+                )
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -408,11 +416,13 @@ pub trait DisplayExt: IsA<Display> + 'static {
             setting: *mut std::ffi::c_char,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(
-                Display::from_glib_borrow(this).unsafe_cast_ref(),
-                &glib::GString::from_glib_borrow(setting),
-            )
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(
+                    Display::from_glib_borrow(this).unsafe_cast_ref(),
+                    &glib::GString::from_glib_borrow(setting),
+                )
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -434,8 +444,10 @@ pub trait DisplayExt: IsA<Display> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(Display::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(Display::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -462,8 +474,10 @@ pub trait DisplayExt: IsA<Display> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(Display::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(Display::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -488,8 +502,10 @@ pub trait DisplayExt: IsA<Display> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(Display::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(Display::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -511,8 +527,10 @@ pub trait DisplayExt: IsA<Display> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(Display::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(Display::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -539,8 +557,10 @@ pub trait DisplayExt: IsA<Display> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(Display::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(Display::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);

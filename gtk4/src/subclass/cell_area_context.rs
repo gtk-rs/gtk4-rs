@@ -7,7 +7,7 @@ use std::mem::MaybeUninit;
 
 use glib::translate::*;
 
-use crate::{ffi, prelude::*, subclass::prelude::*, CellAreaContext};
+use crate::{CellAreaContext, ffi, prelude::*, subclass::prelude::*};
 
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 #[allow(deprecated)]
@@ -131,10 +131,12 @@ unsafe impl<T: CellAreaContextImpl> IsSubclassable<T> for CellAreaContext {
 unsafe extern "C" fn cell_area_context_reset<T: CellAreaContextImpl>(
     ptr: *mut ffi::GtkCellAreaContext,
 ) {
-    let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.imp();
+    unsafe {
+        let instance = &*(ptr as *mut T::Instance);
+        let imp = instance.imp();
 
-    imp.reset()
+        imp.reset()
+    }
 }
 
 unsafe extern "C" fn cell_area_context_get_preferred_height_for_width<T: CellAreaContextImpl>(
@@ -143,12 +145,14 @@ unsafe extern "C" fn cell_area_context_get_preferred_height_for_width<T: CellAre
     minimum_height: *mut libc::c_int,
     natural_height: *mut libc::c_int,
 ) {
-    let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.imp();
+    unsafe {
+        let instance = &*(ptr as *mut T::Instance);
+        let imp = instance.imp();
 
-    let (min_height, nat_height) = imp.preferred_height_for_width(width);
-    *minimum_height = min_height;
-    *natural_height = nat_height;
+        let (min_height, nat_height) = imp.preferred_height_for_width(width);
+        *minimum_height = min_height;
+        *natural_height = nat_height;
+    }
 }
 
 unsafe extern "C" fn cell_area_context_get_preferred_width_for_height<T: CellAreaContextImpl>(
@@ -157,12 +161,14 @@ unsafe extern "C" fn cell_area_context_get_preferred_width_for_height<T: CellAre
     minimum_width: *mut libc::c_int,
     natural_width: *mut libc::c_int,
 ) {
-    let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.imp();
+    unsafe {
+        let instance = &*(ptr as *mut T::Instance);
+        let imp = instance.imp();
 
-    let (min_width, nat_width) = imp.preferred_width_for_height(height);
-    *minimum_width = min_width;
-    *natural_width = nat_width;
+        let (min_width, nat_width) = imp.preferred_width_for_height(height);
+        *minimum_width = min_width;
+        *natural_width = nat_width;
+    }
 }
 
 unsafe extern "C" fn cell_area_context_allocate<T: CellAreaContextImpl>(
@@ -170,8 +176,10 @@ unsafe extern "C" fn cell_area_context_allocate<T: CellAreaContextImpl>(
     width: i32,
     height: i32,
 ) {
-    let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.imp();
+    unsafe {
+        let instance = &*(ptr as *mut T::Instance);
+        let imp = instance.imp();
 
-    imp.allocate(width, height)
+        imp.allocate(width, height)
+    }
 }

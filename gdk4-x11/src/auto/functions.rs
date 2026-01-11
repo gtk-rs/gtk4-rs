@@ -2,7 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::{ffi, X11DeviceManagerXI2, X11DeviceXI2, X11Surface};
+use crate::{X11DeviceManagerXI2, X11DeviceXI2, X11Surface, ffi};
 use glib::translate::*;
 
 #[cfg_attr(feature = "v4_18", deprecated = "Since 4.18")]

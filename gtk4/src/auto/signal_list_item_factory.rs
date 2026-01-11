@@ -2,12 +2,12 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::{ffi, ListItemFactory};
+use crate::{ListItemFactory, ffi};
 #[cfg(feature = "v4_8")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
 use glib::{
     object::ObjectType as _,
-    signal::{connect_raw, SignalHandlerId},
+    signal::{SignalHandlerId, connect_raw},
 };
 use glib::{prelude::*, translate::*};
 #[cfg(feature = "v4_8")]
@@ -43,8 +43,10 @@ impl SignalListItemFactory {
             object: *mut glib::gobject_ffi::GObject,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this), &from_glib_borrow(object))
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(&from_glib_borrow(this), &from_glib_borrow(object))
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -70,8 +72,10 @@ impl SignalListItemFactory {
             object: *mut glib::gobject_ffi::GObject,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this), &from_glib_borrow(object))
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(&from_glib_borrow(this), &from_glib_borrow(object))
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -97,8 +101,10 @@ impl SignalListItemFactory {
             object: *mut glib::gobject_ffi::GObject,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this), &from_glib_borrow(object))
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(&from_glib_borrow(this), &from_glib_borrow(object))
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -124,8 +130,10 @@ impl SignalListItemFactory {
             object: *mut glib::gobject_ffi::GObject,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this), &from_glib_borrow(object))
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(&from_glib_borrow(this), &from_glib_borrow(object))
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);

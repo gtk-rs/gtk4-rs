@@ -9,7 +9,7 @@ use crate::ColorState;
 #[cfg(feature = "v4_10")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 use crate::MemoryFormat;
-use crate::{ffi, Paintable};
+use crate::{Paintable, ffi};
 use glib::{prelude::*, translate::*};
 
 glib::wrapper! {

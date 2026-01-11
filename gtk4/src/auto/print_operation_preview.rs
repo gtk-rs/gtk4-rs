@@ -2,11 +2,11 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::{ffi, PageSetup, PrintContext};
+use crate::{PageSetup, PrintContext, ffi};
 use glib::{
     object::ObjectType as _,
     prelude::*,
-    signal::{connect_raw, SignalHandlerId},
+    signal::{SignalHandlerId, connect_raw},
     translate::*,
 };
 use std::boxed::Box as Box_;
@@ -63,12 +63,14 @@ pub trait PrintOperationPreviewExt: IsA<PrintOperationPreview> + 'static {
             page_setup: *mut ffi::GtkPageSetup,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(
-                PrintOperationPreview::from_glib_borrow(this).unsafe_cast_ref(),
-                &from_glib_borrow(context),
-                &from_glib_borrow(page_setup),
-            )
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(
+                    PrintOperationPreview::from_glib_borrow(this).unsafe_cast_ref(),
+                    &from_glib_borrow(context),
+                    &from_glib_borrow(page_setup),
+                )
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -93,11 +95,13 @@ pub trait PrintOperationPreviewExt: IsA<PrintOperationPreview> + 'static {
             context: *mut ffi::GtkPrintContext,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(
-                PrintOperationPreview::from_glib_borrow(this).unsafe_cast_ref(),
-                &from_glib_borrow(context),
-            )
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(
+                    PrintOperationPreview::from_glib_borrow(this).unsafe_cast_ref(),
+                    &from_glib_borrow(context),
+                )
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);

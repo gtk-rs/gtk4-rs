@@ -2,7 +2,7 @@
 
 use glib::translate::*;
 
-use crate::{ffi, prelude::*, StyleContext, StyleProvider};
+use crate::{StyleContext, StyleProvider, ffi, prelude::*};
 
 impl StyleContext {
     #[deprecated(note = "Use gtk::style_context_add_provider_for_display instead.")]

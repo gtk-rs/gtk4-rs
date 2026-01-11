@@ -2,7 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::{ffi, ShortcutTrigger};
+use crate::{ShortcutTrigger, ffi};
 use glib::translate::*;
 
 glib::wrapper! {

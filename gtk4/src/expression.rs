@@ -1,8 +1,8 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use glib::{translate::*, value::FromValue, Object, Type, Value};
+use glib::{Object, Type, Value, translate::*, value::FromValue};
 
-use crate::{ffi, prelude::*, Expression};
+use crate::{Expression, ffi, prelude::*};
 
 #[doc(hidden)]
 impl AsRef<Expression> for Expression {
@@ -80,11 +80,7 @@ impl Expression {
                 this.map(|t| t.as_ref()).to_glib_none().0,
                 value.to_glib_none_mut().0,
             );
-            if from_glib(ret) {
-                Some(value)
-            } else {
-                None
-            }
+            if from_glib(ret) { Some(value) } else { None }
         }
     }
 
@@ -179,8 +175,10 @@ unsafe impl<'a> glib::value::FromValue<'a> for Expression {
 
     #[inline]
     unsafe fn from_value(value: &'a glib::Value) -> Self {
-        skip_assert_initialized!();
-        from_glib_full(crate::ffi::gtk_value_dup_expression(value.to_glib_none().0))
+        unsafe {
+            skip_assert_initialized!();
+            from_glib_full(crate::ffi::gtk_value_dup_expression(value.to_glib_none().0))
+        }
     }
 }
 
@@ -360,7 +358,7 @@ macro_rules! define_expression {
         impl FromGlibPtrFull<*mut crate::ffi::GtkExpression> for $rust_type {
             #[inline]
             unsafe fn from_glib_full(ptr: *mut crate::ffi::GtkExpression) -> Self {
-                from_glib_full(ptr as *mut $ffi_type)
+                unsafe { from_glib_full(ptr as *mut $ffi_type) }
             }
         }
 
@@ -375,8 +373,10 @@ macro_rules! define_expression {
 
             #[inline]
             unsafe fn from_value(value: &'a glib::Value) -> Self {
-                skip_assert_initialized!();
-                from_glib_full(crate::ffi::gtk_value_dup_expression(value.to_glib_none().0))
+                unsafe {
+                    skip_assert_initialized!();
+                    from_glib_full(crate::ffi::gtk_value_dup_expression(value.to_glib_none().0))
+                }
             }
         }
 

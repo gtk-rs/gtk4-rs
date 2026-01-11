@@ -1,6 +1,6 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{prelude::*, Shortcut, ShortcutAction, ShortcutTrigger};
+use crate::{Shortcut, ShortcutAction, ShortcutTrigger, prelude::*};
 
 impl Shortcut {
     #[doc(alias = "gtk_shortcut_new_with_arguments")]

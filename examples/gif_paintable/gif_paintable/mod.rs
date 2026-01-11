@@ -5,7 +5,7 @@ use std::io::Cursor;
 
 use frame::Frame;
 use gtk::{gdk, glib, prelude::*, subclass::prelude::*};
-use image::{codecs::gif::GifDecoder, AnimationDecoder};
+use image::{AnimationDecoder, codecs::gif::GifDecoder};
 
 glib::wrapper! {
     pub struct GifPaintable(ObjectSubclass<imp::GifPaintable>) @implements gdk::Paintable;

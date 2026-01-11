@@ -4,7 +4,7 @@ use cairo::{Context, Region};
 use gdk_pixbuf::Pixbuf;
 use glib::translate::*;
 
-use crate::{ffi, Rectangle, Surface, RGBA};
+use crate::{RGBA, Rectangle, Surface, ffi};
 
 // rustdoc-stripper-ignore-next
 /// Trait containing integration methods with [`cairo::Surface`].
@@ -44,18 +44,20 @@ pub trait GdkCairoContextExt: sealed::Sealed {
         width: i32,
         height: i32,
     ) {
-        skip_assert_initialized!();
-        ffi::gdk_cairo_draw_from_gl(
-            self.to_raw(),
-            surface.to_glib_none().0,
-            source,
-            source_type,
-            buffer_scale,
-            x,
-            y,
-            width,
-            height,
-        );
+        unsafe {
+            skip_assert_initialized!();
+            ffi::gdk_cairo_draw_from_gl(
+                self.to_raw(),
+                surface.to_glib_none().0,
+                source,
+                source_type,
+                buffer_scale,
+                x,
+                y,
+                width,
+                height,
+            );
+        }
     }
 
     #[doc(alias = "gdk_cairo_set_source_rgba")]
@@ -91,7 +93,7 @@ pub trait GdkCairoContextExt: sealed::Sealed {
 impl GdkCairoContextExt for Context {}
 
 mod sealed {
-    use cairo::{ffi::cairo_t, Context};
+    use cairo::{Context, ffi::cairo_t};
 
     pub trait Sealed {
         fn to_raw(&self) -> *mut cairo_t;

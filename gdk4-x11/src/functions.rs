@@ -5,10 +5,10 @@ use glib::translate::*;
 #[cfg_attr(docsrs, doc(cfg(feature = "xlib")))]
 use x11::xlib::Atom as XAtom;
 
-pub use crate::auto::functions::*;
 #[cfg(not(feature = "xlib"))]
 use crate::XAtom;
-use crate::{ffi, X11Display};
+pub use crate::auto::functions::*;
+use crate::{X11Display, ffi};
 
 #[doc(alias = "gdk_x11_get_xatom_by_name_for_display")]
 pub fn x11_get_xatom_by_name_for_display(display: &X11Display, atom_name: impl IntoGStr) -> XAtom {

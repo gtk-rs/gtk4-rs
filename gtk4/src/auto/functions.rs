@@ -6,9 +6,9 @@
 #[cfg_attr(docsrs, doc(cfg(target_os = "linux")))]
 use crate::Printer;
 use crate::{
-    ffi, Accessible, AccessibleProperty, AccessibleRelation, AccessibleRole, AccessibleState,
+    Accessible, AccessibleProperty, AccessibleRelation, AccessibleRole, AccessibleState,
     DebugFlags, PageSetup, PrintSettings, StyleContext, TextDirection, TreeModel, TreePath, Widget,
-    Window,
+    Window, ffi,
 };
 use glib::{prelude::*, translate::*};
 use std::boxed::Box as Box_;
@@ -94,15 +94,19 @@ pub fn enumerate_printers<P: Fn(&Printer) -> bool + Send + Sync + 'static>(func:
         printer: *mut ffi::GtkPrinter,
         data: glib::ffi::gpointer,
     ) -> glib::ffi::gboolean {
-        let printer = from_glib_borrow(printer);
-        let callback = &*(data as *mut P);
-        (*callback)(&printer).into_glib()
+        unsafe {
+            let printer = from_glib_borrow(printer);
+            let callback = &*(data as *mut P);
+            (*callback)(&printer).into_glib()
+        }
     }
     let func = Some(func_func::<P> as _);
     unsafe extern "C" fn destroy_func<P: Fn(&Printer) -> bool + Send + Sync + 'static>(
         data: glib::ffi::gpointer,
     ) {
-        let _callback = Box_::from_raw(data as *mut P);
+        unsafe {
+            let _callback = Box_::from_raw(data as *mut P);
+        }
     }
     let destroy_call2 = Some(destroy_func::<P> as _);
     let super_callback0: Box_<P> = func_data;
@@ -213,9 +217,11 @@ pub fn print_run_page_setup_dialog_async<P: FnOnce(&PageSetup) + Send + Sync + '
         page_setup: *mut ffi::GtkPageSetup,
         data: glib::ffi::gpointer,
     ) {
-        let page_setup = from_glib_borrow(page_setup);
-        let callback = Box_::from_raw(data as *mut P);
-        (*callback)(&page_setup)
+        unsafe {
+            let page_setup = from_glib_borrow(page_setup);
+            let callback = Box_::from_raw(data as *mut P);
+            (*callback)(&page_setup)
+        }
     }
     let done_cb = Some(done_cb_func::<P> as _);
     let super_callback0: Box_<P> = done_cb_data;

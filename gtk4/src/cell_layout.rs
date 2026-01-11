@@ -2,7 +2,7 @@
 
 use glib::translate::*;
 
-use crate::{prelude::*, CellLayout, CellRenderer};
+use crate::{CellLayout, CellRenderer, prelude::*};
 
 // rustdoc-stripper-ignore-next
 /// Trait containing manually implemented methods of

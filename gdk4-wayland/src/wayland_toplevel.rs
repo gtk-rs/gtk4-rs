@@ -1,6 +1,6 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{ffi, WaylandToplevel};
+use crate::{WaylandToplevel, ffi};
 use glib::translate::*;
 use std::boxed::Box as Box_;
 
@@ -18,13 +18,20 @@ impl WaylandToplevel {
             handle: *const libc::c_char,
             user_data: glib::ffi::gpointer,
         ) {
-            let toplevel = from_glib_borrow(toplevel);
-            let handle: Borrowed<Option<glib::GString>> = from_glib_borrow(handle);
-            let callback = &*(user_data as *mut P);
-            if let Some(handle) = handle.as_ref() {
-                (*callback)(&toplevel, Ok(handle.as_str()))
-            } else {
-                (*callback)(&toplevel, Err(glib::bool_error!("Failed to export a handle. The compositor probably doesn't implement the xdg-foreign protocol")))
+            unsafe {
+                let toplevel = from_glib_borrow(toplevel);
+                let handle: Borrowed<Option<glib::GString>> = from_glib_borrow(handle);
+                let callback = &*(user_data as *mut P);
+                if let Some(handle) = handle.as_ref() {
+                    (*callback)(&toplevel, Ok(handle.as_str()))
+                } else {
+                    (*callback)(
+                        &toplevel,
+                        Err(glib::bool_error!(
+                            "Failed to export a handle. The compositor probably doesn't implement the xdg-foreign protocol"
+                        )),
+                    )
+                }
             }
         }
         let callback = Some(callback_func::<P> as _);
@@ -33,7 +40,9 @@ impl WaylandToplevel {
         >(
             data: glib::ffi::gpointer,
         ) {
-            let _callback = Box_::from_raw(data as *mut P);
+            unsafe {
+                let _callback = Box_::from_raw(data as *mut P);
+            }
         }
         let destroy_call3 = Some(destroy_func_func::<P> as _);
         let super_callback0: Box_<P> = callback_data;

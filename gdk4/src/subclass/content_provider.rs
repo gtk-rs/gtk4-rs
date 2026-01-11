@@ -5,9 +5,9 @@
 
 use std::{future::Future, pin::Pin};
 
-use glib::{translate::*, Value};
+use glib::{Value, translate::*};
 
-use crate::{ffi, prelude::*, subclass::prelude::*, Clipboard, ContentFormats, ContentProvider};
+use crate::{Clipboard, ContentFormats, ContentProvider, ffi, prelude::*, subclass::prelude::*};
 
 pub trait ContentProviderImpl: ObjectImpl + ObjectSubclass<Type: IsA<ContentProvider>> {
     fn content_changed(&self) {
@@ -167,23 +167,25 @@ pub trait ContentProviderImplExt: ContentProviderImpl {
                 res: *mut gio::ffi::GAsyncResult,
                 user_data: glib::ffi::gpointer,
             ) {
-                let mut error = std::ptr::null_mut();
-                let cb: Box<(
-                    glib::thread_guard::ThreadGuard<R>,
-                    fn(
-                        *mut ffi::GdkContentProvider,
-                        *mut gio::ffi::GAsyncResult,
-                        *mut *mut glib::ffi::GError,
-                    ) -> glib::ffi::gboolean,
-                )> = Box::from_raw(user_data as *mut _);
-                cb.1(source_object_ptr as _, res, &mut error);
-                let result = if error.is_null() {
-                    Ok(())
-                } else {
-                    Err(from_glib_full(error))
-                };
-                let cb = cb.0.into_inner();
-                cb(result);
+                unsafe {
+                    let mut error = std::ptr::null_mut();
+                    let cb: Box<(
+                        glib::thread_guard::ThreadGuard<R>,
+                        fn(
+                            *mut ffi::GdkContentProvider,
+                            *mut gio::ffi::GAsyncResult,
+                            *mut *mut glib::ffi::GError,
+                        ) -> glib::ffi::gboolean,
+                    )> = Box::from_raw(user_data as *mut _);
+                    cb.1(source_object_ptr as _, res, &mut error);
+                    let result = if error.is_null() {
+                        Ok(())
+                    } else {
+                        Err(from_glib_full(error))
+                    };
+                    let cb = cb.0.into_inner();
+                    cb(result);
+                }
             }
 
             let cancellable = cancellable.map(|p| p.as_ref());
@@ -276,50 +278,60 @@ unsafe impl<T: ContentProviderImpl> IsSubclassable<T> for ContentProvider {
 unsafe extern "C" fn content_provider_content_changed<T: ContentProviderImpl>(
     ptr: *mut ffi::GdkContentProvider,
 ) {
-    let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.imp();
+    unsafe {
+        let instance = &*(ptr as *mut T::Instance);
+        let imp = instance.imp();
 
-    imp.content_changed()
+        imp.content_changed()
+    }
 }
 
 unsafe extern "C" fn content_provider_attach_clipboard<T: ContentProviderImpl>(
     ptr: *mut ffi::GdkContentProvider,
     clipboard_ptr: *mut ffi::GdkClipboard,
 ) {
-    let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.imp();
-    let clipboard = from_glib_borrow(clipboard_ptr);
+    unsafe {
+        let instance = &*(ptr as *mut T::Instance);
+        let imp = instance.imp();
+        let clipboard = from_glib_borrow(clipboard_ptr);
 
-    imp.attach_clipboard(&clipboard)
+        imp.attach_clipboard(&clipboard)
+    }
 }
 
 unsafe extern "C" fn content_provider_detach_clipboard<T: ContentProviderImpl>(
     ptr: *mut ffi::GdkContentProvider,
     clipboard_ptr: *mut ffi::GdkClipboard,
 ) {
-    let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.imp();
-    let clipboard = from_glib_borrow(clipboard_ptr);
+    unsafe {
+        let instance = &*(ptr as *mut T::Instance);
+        let imp = instance.imp();
+        let clipboard = from_glib_borrow(clipboard_ptr);
 
-    imp.detach_clipboard(&clipboard)
+        imp.detach_clipboard(&clipboard)
+    }
 }
 
 unsafe extern "C" fn content_provider_formats<T: ContentProviderImpl>(
     ptr: *mut ffi::GdkContentProvider,
 ) -> *mut ffi::GdkContentFormats {
-    let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.imp();
+    unsafe {
+        let instance = &*(ptr as *mut T::Instance);
+        let imp = instance.imp();
 
-    imp.formats().into_glib_ptr()
+        imp.formats().into_glib_ptr()
+    }
 }
 
 unsafe extern "C" fn content_provider_storable_formats<T: ContentProviderImpl>(
     ptr: *mut ffi::GdkContentProvider,
 ) -> *mut ffi::GdkContentFormats {
-    let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.imp();
+    unsafe {
+        let instance = &*(ptr as *mut T::Instance);
+        let imp = instance.imp();
 
-    imp.storable_formats().into_glib_ptr()
+        imp.storable_formats().into_glib_ptr()
+    }
 }
 
 unsafe extern "C" fn content_provider_write_mime_type_async<T: ContentProviderImpl>(
@@ -331,36 +343,38 @@ unsafe extern "C" fn content_provider_write_mime_type_async<T: ContentProviderIm
     callback: gio::ffi::GAsyncReadyCallback,
     user_data: glib::ffi::gpointer,
 ) {
-    let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.imp();
-    let wrap: ContentProvider = from_glib_none(ptr);
-    let cancellable: Option<gio::Cancellable> = from_glib_none(cancellable_ptr);
-    let mime_type: glib::GString = from_glib_none(mime_type_ptr);
-    let stream: gio::OutputStream = from_glib_none(stream_ptr);
+    unsafe {
+        let instance = &*(ptr as *mut T::Instance);
+        let imp = instance.imp();
+        let wrap: ContentProvider = from_glib_none(ptr);
+        let cancellable: Option<gio::Cancellable> = from_glib_none(cancellable_ptr);
+        let mime_type: glib::GString = from_glib_none(mime_type_ptr);
+        let stream: gio::OutputStream = from_glib_none(stream_ptr);
 
-    let closure = move |task: gio::LocalTask<bool>, source_object: Option<&glib::Object>| {
-        let result: *mut gio::ffi::GAsyncResult =
-            task.upcast_ref::<gio::AsyncResult>().to_glib_none().0;
-        let source_object: *mut glib::gobject_ffi::GObject = source_object.to_glib_none().0;
-        callback.unwrap()(source_object, result, user_data)
-    };
+        let closure = move |task: gio::LocalTask<bool>, source_object: Option<&glib::Object>| {
+            let result: *mut gio::ffi::GAsyncResult =
+                task.upcast_ref::<gio::AsyncResult>().to_glib_none().0;
+            let source_object: *mut glib::gobject_ffi::GObject = source_object.to_glib_none().0;
+            callback.unwrap()(source_object, result, user_data)
+        };
 
-    let t = gio::LocalTask::new(
-        Some(wrap.upcast_ref::<glib::Object>()),
-        cancellable.as_ref(),
-        closure,
-    );
+        let t = gio::LocalTask::new(
+            Some(wrap.upcast_ref::<glib::Object>()),
+            cancellable.as_ref(),
+            closure,
+        );
 
-    glib::MainContext::default().spawn_local(async move {
-        let res = imp
-            .write_mime_type_future(
-                mime_type.as_str(),
-                stream.unsafe_cast_ref::<gio::OutputStream>(),
-                from_glib(priority),
-            )
-            .await;
-        t.return_result(res.map(|_t| true));
-    });
+        glib::MainContext::default().spawn_local(async move {
+            let res = imp
+                .write_mime_type_future(
+                    mime_type.as_str(),
+                    stream.unsafe_cast_ref::<gio::OutputStream>(),
+                    from_glib(priority),
+                )
+                .await;
+            t.return_result(res.map(|_t| true));
+        });
+    }
 }
 
 unsafe extern "C" fn content_provider_write_mime_type_finish(
@@ -368,19 +382,21 @@ unsafe extern "C" fn content_provider_write_mime_type_finish(
     res_ptr: *mut gio::ffi::GAsyncResult,
     error_ptr: *mut *mut glib::ffi::GError,
 ) -> glib::ffi::gboolean {
-    let res: gio::AsyncResult = from_glib_none(res_ptr);
-    let t = res.downcast::<gio::LocalTask<bool>>().unwrap();
-    let ret = t.propagate();
-    match ret {
-        Ok(v) => {
-            debug_assert!(v);
-            true.into_glib()
-        }
-        Err(e) => {
-            if !error_ptr.is_null() {
-                *error_ptr = e.into_glib_ptr();
+    unsafe {
+        let res: gio::AsyncResult = from_glib_none(res_ptr);
+        let t = res.downcast::<gio::LocalTask<bool>>().unwrap();
+        let ret = t.propagate();
+        match ret {
+            Ok(v) => {
+                debug_assert!(v);
+                true.into_glib()
             }
-            false.into_glib()
+            Err(e) => {
+                if !error_ptr.is_null() {
+                    *error_ptr = e.into_glib_ptr();
+                }
+                false.into_glib()
+            }
         }
     }
 }
@@ -390,21 +406,23 @@ unsafe extern "C" fn content_provider_get_value<T: ContentProviderImpl>(
     value_ptr: *mut glib::gobject_ffi::GValue,
     error_ptr: *mut *mut glib::ffi::GError,
 ) -> glib::ffi::gboolean {
-    let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.imp();
-    let value: Value = from_glib_none(value_ptr);
+    unsafe {
+        let instance = &*(ptr as *mut T::Instance);
+        let imp = instance.imp();
+        let value: Value = from_glib_none(value_ptr);
 
-    let ret = imp.value(value.type_());
-    match ret {
-        Ok(v) => {
-            glib::gobject_ffi::g_value_copy(v.to_glib_none().0, value_ptr);
-            true.into_glib()
-        }
-        Err(e) => {
-            if !error_ptr.is_null() {
-                *error_ptr = e.into_glib_ptr();
+        let ret = imp.value(value.type_());
+        match ret {
+            Ok(v) => {
+                glib::gobject_ffi::g_value_copy(v.to_glib_none().0, value_ptr);
+                true.into_glib()
             }
-            false.into_glib()
+            Err(e) => {
+                if !error_ptr.is_null() {
+                    *error_ptr = e.into_glib_ptr();
+                }
+                false.into_glib()
+            }
         }
     }
 }

@@ -5,7 +5,7 @@ use glib::translate::*;
 #[cfg_attr(docsrs, doc(cfg(all(feature = "v4_4", feature = "egl"))))]
 use khronos_egl as egl;
 
-use crate::{ffi, Win32Display, Win32MessageFilterReturn, MSG};
+use crate::{MSG, Win32Display, Win32MessageFilterReturn, ffi};
 
 impl Win32Display {
     #[cfg(all(feature = "v4_4", feature = "egl"))]

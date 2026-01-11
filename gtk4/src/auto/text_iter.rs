@@ -2,7 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::{ffi, TextBuffer, TextChildAnchor, TextMark, TextSearchFlags, TextTag};
+use crate::{TextBuffer, TextChildAnchor, TextMark, TextSearchFlags, TextTag, ffi};
 use glib::{prelude::*, translate::*};
 
 glib::wrapper! {
@@ -69,10 +69,12 @@ impl TextIter {
             ch: u32,
             user_data: glib::ffi::gpointer,
         ) -> glib::ffi::gboolean {
-            let ch = std::convert::TryFrom::try_from(ch)
-                .expect("conversion from an invalid Unicode value attempted");
-            let callback = user_data as *mut P;
-            (*callback)(ch).into_glib()
+            unsafe {
+                let ch = std::convert::TryFrom::try_from(ch)
+                    .expect("conversion from an invalid Unicode value attempted");
+                let callback = user_data as *mut P;
+                (*callback)(ch).into_glib()
+            }
         }
         let pred = Some(pred_func::<P> as _);
         let super_callback0: &mut P = &mut pred_data;
@@ -337,10 +339,12 @@ impl TextIter {
             ch: u32,
             user_data: glib::ffi::gpointer,
         ) -> glib::ffi::gboolean {
-            let ch = std::convert::TryFrom::try_from(ch)
-                .expect("conversion from an invalid Unicode value attempted");
-            let callback = user_data as *mut P;
-            (*callback)(ch).into_glib()
+            unsafe {
+                let ch = std::convert::TryFrom::try_from(ch)
+                    .expect("conversion from an invalid Unicode value attempted");
+                let callback = user_data as *mut P;
+                (*callback)(ch).into_glib()
+            }
         }
         let pred = Some(pred_func::<P> as _);
         let super_callback0: &mut P = &mut pred_data;

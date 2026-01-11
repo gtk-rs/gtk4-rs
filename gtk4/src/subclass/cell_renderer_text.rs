@@ -3,9 +3,9 @@
 // rustdoc-stripper-ignore-next
 //! Traits intended for subclassing [`CellRendererText`].
 
-use glib::{translate::*, GString};
+use glib::{GString, translate::*};
 
-use crate::{ffi, prelude::*, subclass::prelude::*, CellRendererText};
+use crate::{CellRendererText, ffi, prelude::*, subclass::prelude::*};
 
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 #[allow(deprecated)]
@@ -54,11 +54,13 @@ unsafe extern "C" fn cell_renderer_text_edited<T: CellRendererTextImpl>(
     path: *const libc::c_char,
     new_text: *const libc::c_char,
 ) {
-    let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.imp();
+    unsafe {
+        let instance = &*(ptr as *mut T::Instance);
+        let imp = instance.imp();
 
-    imp.edited(
-        &GString::from_glib_borrow(path),
-        &GString::from_glib_borrow(new_text),
-    )
+        imp.edited(
+            &GString::from_glib_borrow(path),
+            &GString::from_glib_borrow(new_text),
+        )
+    }
 }

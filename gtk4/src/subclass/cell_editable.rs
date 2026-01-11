@@ -5,7 +5,7 @@
 
 use glib::translate::*;
 
-use crate::{ffi, prelude::*, subclass::prelude::*, CellEditable};
+use crate::{CellEditable, ffi, prelude::*, subclass::prelude::*};
 
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 #[allow(deprecated)]
@@ -94,27 +94,33 @@ unsafe impl<T: CellEditableImpl> IsImplementable<T> for CellEditable {
 unsafe extern "C" fn cell_editable_editing_done<T: CellEditableImpl>(
     cell_editable: *mut ffi::GtkCellEditable,
 ) {
-    let instance = &*(cell_editable as *mut T::Instance);
-    let imp = instance.imp();
+    unsafe {
+        let instance = &*(cell_editable as *mut T::Instance);
+        let imp = instance.imp();
 
-    imp.editing_done()
+        imp.editing_done()
+    }
 }
 
 unsafe extern "C" fn cell_editable_remove_widget<T: CellEditableImpl>(
     cell_editable: *mut ffi::GtkCellEditable,
 ) {
-    let instance = &*(cell_editable as *mut T::Instance);
-    let imp = instance.imp();
+    unsafe {
+        let instance = &*(cell_editable as *mut T::Instance);
+        let imp = instance.imp();
 
-    imp.remove_widget()
+        imp.remove_widget()
+    }
 }
 
 unsafe extern "C" fn cell_editable_start_editing<T: CellEditableImpl>(
     cell_editable: *mut ffi::GtkCellEditable,
     eventptr: *mut gdk::ffi::GdkEvent,
 ) {
-    let instance = &*(cell_editable as *mut T::Instance);
-    let imp = instance.imp();
-    let event: Borrowed<Option<gdk::Event>> = from_glib_borrow(eventptr);
-    imp.start_editing(event.as_ref().as_ref())
+    unsafe {
+        let instance = &*(cell_editable as *mut T::Instance);
+        let imp = instance.imp();
+        let event: Borrowed<Option<gdk::Event>> = from_glib_borrow(eventptr);
+        imp.start_editing(event.as_ref().as_ref())
+    }
 }

@@ -6,7 +6,7 @@
 use gdk::Paintable;
 use glib::translate::*;
 
-use crate::{ffi, prelude::*, subclass::prelude::*, MediaFile};
+use crate::{MediaFile, ffi, prelude::*, subclass::prelude::*};
 
 pub trait MediaFileImpl:
     MediaStreamImpl + ObjectSubclass<Type: IsA<MediaFile> + IsA<Paintable>>
@@ -54,15 +54,19 @@ unsafe impl<T: MediaFileImpl> IsSubclassable<T> for MediaFile {
 }
 
 unsafe extern "C" fn media_file_close<T: MediaFileImpl>(ptr: *mut ffi::GtkMediaFile) {
-    let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.imp();
+    unsafe {
+        let instance = &*(ptr as *mut T::Instance);
+        let imp = instance.imp();
 
-    imp.close()
+        imp.close()
+    }
 }
 
 unsafe extern "C" fn media_file_open<T: MediaFileImpl>(ptr: *mut ffi::GtkMediaFile) {
-    let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.imp();
+    unsafe {
+        let instance = &*(ptr as *mut T::Instance);
+        let imp = instance.imp();
 
-    imp.open()
+        imp.open()
+    }
 }

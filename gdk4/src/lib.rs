@@ -6,8 +6,8 @@
 #![doc = include_str!("../README.md")]
 
 pub use cairo;
-pub use gdk4_sys as ffi;
 pub use gdk_pixbuf;
+pub use gdk4_sys as ffi;
 pub use gio;
 #[cfg(feature = "gl")]
 #[cfg_attr(docsrs, doc(cfg(feature = "gl")))]
@@ -54,6 +54,7 @@ macro_rules! skip_assert_initialized {
 
 #[allow(clippy::derived_hash_with_manual_eq)]
 #[allow(clippy::type_complexity)]
+#[allow(clippy::let_and_return)]
 #[allow(unused_imports)]
 mod auto;
 

@@ -3,12 +3,12 @@
 use std::mem::transmute;
 
 use glib::{
-    signal::{connect_raw, SignalHandlerId},
-    translate::*,
     GString,
+    signal::{SignalHandlerId, connect_raw},
+    translate::*,
 };
 
-use crate::{ffi, prelude::*, DeleteType, MovementStep, Text, Widget};
+use crate::{DeleteType, MovementStep, Text, Widget, ffi, prelude::*};
 
 impl Text {
     pub fn connect_activate<F: Fn(&Text) + 'static>(&self, f: F) -> SignalHandlerId {
@@ -16,8 +16,10 @@ impl Text {
             this: *mut ffi::GtkText,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this))
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(&from_glib_borrow(this))
+            }
         }
         unsafe {
             let f: Box<F> = Box::new(f);
@@ -37,8 +39,10 @@ impl Text {
             this: *mut ffi::GtkText,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this))
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(&from_glib_borrow(this))
+            }
         }
         unsafe {
             let f: Box<F> = Box::new(f);
@@ -58,8 +62,10 @@ impl Text {
             this: *mut ffi::GtkText,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this))
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(&from_glib_borrow(this))
+            }
         }
         unsafe {
             let f: Box<F> = Box::new(f);
@@ -79,8 +85,10 @@ impl Text {
             this: *mut ffi::GtkText,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this))
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(&from_glib_borrow(this))
+            }
         }
         unsafe {
             let f: Box<F> = Box::new(f);
@@ -107,8 +115,10 @@ impl Text {
             count: libc::c_int,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this), from_glib(type_), count)
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(&from_glib_borrow(this), from_glib(type_), count)
+            }
         }
         unsafe {
             let f: Box<F> = Box::new(f);
@@ -129,8 +139,10 @@ impl Text {
             string: *mut libc::c_char,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this), &GString::from_glib_borrow(string))
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(&from_glib_borrow(this), &GString::from_glib_borrow(string))
+            }
         }
         unsafe {
             let f: Box<F> = Box::new(f);
@@ -150,8 +162,10 @@ impl Text {
             this: *mut ffi::GtkText,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this))
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(&from_glib_borrow(this))
+            }
         }
         unsafe {
             let f: Box<F> = Box::new(f);
@@ -179,13 +193,15 @@ impl Text {
             extend: glib::ffi::gboolean,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(
-                &from_glib_borrow(this),
-                from_glib(step),
-                count,
-                from_glib(extend),
-            )
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(
+                    &from_glib_borrow(this),
+                    from_glib(step),
+                    count,
+                    from_glib(extend),
+                )
+            }
         }
         unsafe {
             let f: Box<F> = Box::new(f);
@@ -205,8 +221,10 @@ impl Text {
             this: *mut ffi::GtkText,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this))
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(&from_glib_borrow(this))
+            }
         }
         unsafe {
             let f: Box<F> = Box::new(f);
@@ -227,8 +245,10 @@ impl Text {
             widget: *mut ffi::GtkWidget,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this), &from_glib_borrow(widget))
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(&from_glib_borrow(this), &from_glib_borrow(widget))
+            }
         }
         unsafe {
             let f: Box<F> = Box::new(f);
@@ -249,8 +269,10 @@ impl Text {
             preedit: *mut libc::c_char,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this), &GString::from_glib_borrow(preedit))
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(&from_glib_borrow(this), &GString::from_glib_borrow(preedit))
+            }
         }
         unsafe {
             let f: Box<F> = Box::new(f);
@@ -270,8 +292,10 @@ impl Text {
             this: *mut ffi::GtkText,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this))
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(&from_glib_borrow(this))
+            }
         }
         unsafe {
             let f: Box<F> = Box::new(f);

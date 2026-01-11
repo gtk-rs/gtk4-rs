@@ -4,7 +4,7 @@ use std::{boxed::Box as Box_, pin::Pin, ptr};
 
 use glib::translate::*;
 
-use crate::{ffi, prelude::*, FontDialog, Window};
+use crate::{FontDialog, Window, ffi, prelude::*};
 
 impl FontDialog {
     #[doc(alias = "gtk_font_dialog_choose_font_and_features")]
@@ -55,31 +55,33 @@ impl FontDialog {
             res: *mut gio::ffi::GAsyncResult,
             user_data: glib::ffi::gpointer,
         ) {
-            let mut error = ptr::null_mut();
-            let mut font_desc = ptr::null_mut();
-            let mut font_features = ptr::null_mut();
-            let mut language = ptr::null_mut();
-            let _ = ffi::gtk_font_dialog_choose_font_and_features_finish(
-                _source_object as *mut _,
-                res,
-                &mut font_desc,
-                &mut font_features,
-                &mut language,
-                &mut error,
-            );
-            let result = if error.is_null() {
-                Ok((
-                    from_glib_full(font_desc),
-                    from_glib_full(font_features),
-                    from_glib_full(language),
-                ))
-            } else {
-                Err(from_glib_full(error))
-            };
-            let callback: Box_<glib::thread_guard::ThreadGuard<P>> =
-                Box_::from_raw(user_data as *mut _);
-            let callback: P = callback.into_inner();
-            callback(result);
+            unsafe {
+                let mut error = ptr::null_mut();
+                let mut font_desc = ptr::null_mut();
+                let mut font_features = ptr::null_mut();
+                let mut language = ptr::null_mut();
+                let _ = ffi::gtk_font_dialog_choose_font_and_features_finish(
+                    _source_object as *mut _,
+                    res,
+                    &mut font_desc,
+                    &mut font_features,
+                    &mut language,
+                    &mut error,
+                );
+                let result = if error.is_null() {
+                    Ok((
+                        from_glib_full(font_desc),
+                        from_glib_full(font_features),
+                        from_glib_full(language),
+                    ))
+                } else {
+                    Err(from_glib_full(error))
+                };
+                let callback: Box_<glib::thread_guard::ThreadGuard<P>> =
+                    Box_::from_raw(user_data as *mut _);
+                let callback: P = callback.into_inner();
+                callback(result);
+            }
         }
         let callback = choose_font_and_features_trampoline::<P>;
         unsafe {

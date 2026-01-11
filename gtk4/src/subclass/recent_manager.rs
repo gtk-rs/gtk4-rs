@@ -5,7 +5,7 @@
 
 use glib::translate::*;
 
-use crate::{ffi, prelude::*, subclass::prelude::*, RecentManager};
+use crate::{RecentManager, ffi, prelude::*, subclass::prelude::*};
 
 pub trait RecentManagerImpl: ObjectImpl + ObjectSubclass<Type: IsA<RecentManager>> {
     fn changed(&self) {
@@ -43,8 +43,10 @@ unsafe impl<T: RecentManagerImpl> IsSubclassable<T> for RecentManager {
 }
 
 unsafe extern "C" fn recent_manager_changed<T: RecentManagerImpl>(ptr: *mut ffi::GtkRecentManager) {
-    let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.imp();
+    unsafe {
+        let instance = &*(ptr as *mut T::Instance);
+        let imp = instance.imp();
 
-    imp.changed()
+        imp.changed()
+    }
 }

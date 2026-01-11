@@ -4,7 +4,7 @@
 use crate::ffi;
 #[cfg(not(feature = "v4_8"))]
 use crate::prelude::*;
-use crate::{id, MacosSurface};
+use crate::{MacosSurface, id};
 #[cfg(feature = "v4_8")]
 use glib::translate::*;
 #[cfg(not(feature = "v4_8"))]

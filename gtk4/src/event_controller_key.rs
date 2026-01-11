@@ -3,9 +3,9 @@
 use std::{boxed::Box as Box_, mem::transmute};
 
 use gdk::Key;
-use glib::{signal::connect_raw, translate::*, SignalHandlerId};
+use glib::{SignalHandlerId, signal::connect_raw, translate::*};
 
-use crate::{ffi, prelude::*, EventControllerKey};
+use crate::{EventControllerKey, ffi, prelude::*};
 
 impl EventControllerKey {
     pub fn connect_key_pressed<
@@ -23,14 +23,16 @@ impl EventControllerKey {
             state: gdk::ffi::GdkModifierType,
             f: glib::ffi::gpointer,
         ) -> glib::ffi::gboolean {
-            let f: &F = &*(f as *const F);
-            f(
-                &from_glib_borrow(this),
-                from_glib(keyval),
-                keycode,
-                from_glib(state),
-            )
-            .into_glib()
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(
+                    &from_glib_borrow(this),
+                    from_glib(keyval),
+                    keycode,
+                    from_glib(state),
+                )
+                .into_glib()
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -60,13 +62,15 @@ impl EventControllerKey {
             state: gdk::ffi::GdkModifierType,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(
-                &from_glib_borrow(this),
-                from_glib(keyval),
-                keycode,
-                from_glib(state),
-            )
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(
+                    &from_glib_borrow(this),
+                    from_glib(keyval),
+                    keycode,
+                    from_glib(state),
+                )
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);

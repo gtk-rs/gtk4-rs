@@ -5,7 +5,7 @@
 
 use glib::translate::*;
 
-use crate::{ffi, prelude::*, subclass::prelude::*, TreeDragSource, TreePath};
+use crate::{TreeDragSource, TreePath, ffi, prelude::*, subclass::prelude::*};
 
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 #[allow(deprecated)]
@@ -102,31 +102,37 @@ unsafe extern "C" fn tree_drag_source_row_draggable<T: TreeDragSourceImpl>(
     tree_drag_source: *mut ffi::GtkTreeDragSource,
     pathptr: *mut ffi::GtkTreePath,
 ) -> glib::ffi::gboolean {
-    let instance = &*(tree_drag_source as *mut T::Instance);
-    let imp = instance.imp();
+    unsafe {
+        let instance = &*(tree_drag_source as *mut T::Instance);
+        let imp = instance.imp();
 
-    let path: Borrowed<TreePath> = from_glib_borrow(pathptr);
+        let path: Borrowed<TreePath> = from_glib_borrow(pathptr);
 
-    imp.row_draggable(&path).into_glib()
+        imp.row_draggable(&path).into_glib()
+    }
 }
 
 unsafe extern "C" fn tree_drag_source_drag_data_get<T: TreeDragSourceImpl>(
     tree_drag_source: *mut ffi::GtkTreeDragSource,
     pathptr: *mut ffi::GtkTreePath,
 ) -> *mut gdk::ffi::GdkContentProvider {
-    let instance = &*(tree_drag_source as *mut T::Instance);
-    let imp = instance.imp();
-    let path: Borrowed<TreePath> = from_glib_borrow(pathptr);
+    unsafe {
+        let instance = &*(tree_drag_source as *mut T::Instance);
+        let imp = instance.imp();
+        let path: Borrowed<TreePath> = from_glib_borrow(pathptr);
 
-    imp.drag_data_get(&path).into_glib_ptr()
+        imp.drag_data_get(&path).into_glib_ptr()
+    }
 }
 
 unsafe extern "C" fn tree_drag_source_drag_data_delete<T: TreeDragSourceImpl>(
     tree_drag_source: *mut ffi::GtkTreeDragSource,
     pathptr: *mut ffi::GtkTreePath,
 ) -> glib::ffi::gboolean {
-    let instance = &*(tree_drag_source as *mut T::Instance);
-    let imp = instance.imp();
-    let path: Borrowed<TreePath> = from_glib_borrow(pathptr);
-    imp.drag_data_delete(&path).into_glib()
+    unsafe {
+        let instance = &*(tree_drag_source as *mut T::Instance);
+        let imp = instance.imp();
+        let path: Borrowed<TreePath> = from_glib_borrow(pathptr);
+        imp.drag_data_delete(&path).into_glib()
+    }
 }

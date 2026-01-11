@@ -3,7 +3,7 @@
 use std::ffi::CStr;
 
 use crate::ffi;
-use glib::{collections::StrV, translate::*, GStringPtr};
+use glib::{GStringPtr, collections::StrV, translate::*};
 
 glib::wrapper! {
     #[doc(alias = "GtkRecentData")]
@@ -90,25 +90,31 @@ impl RecentData {
 }
 
 unsafe fn init_recent_data(recent_data: *mut ffi::GtkRecentData) {
-    std::ptr::write(recent_data, std::mem::zeroed());
+    unsafe {
+        std::ptr::write(recent_data, std::mem::zeroed());
+    }
 }
 
 unsafe fn copy_into_recent_data(dest: *mut ffi::GtkRecentData, src: *const ffi::GtkRecentData) {
-    init_recent_data(dest);
-    (*dest).display_name = glib::ffi::g_strdup((*src).display_name);
-    (*dest).description = glib::ffi::g_strdup((*src).description);
-    (*dest).mime_type = glib::ffi::g_strdup((*src).mime_type);
-    (*dest).app_name = glib::ffi::g_strdup((*src).app_name);
-    (*dest).app_exec = glib::ffi::g_strdup((*src).app_exec);
-    (*dest).groups = glib::ffi::g_strdupv((*src).groups);
-    (*dest).is_private = (*src).is_private;
+    unsafe {
+        init_recent_data(dest);
+        (*dest).display_name = glib::ffi::g_strdup((*src).display_name);
+        (*dest).description = glib::ffi::g_strdup((*src).description);
+        (*dest).mime_type = glib::ffi::g_strdup((*src).mime_type);
+        (*dest).app_name = glib::ffi::g_strdup((*src).app_name);
+        (*dest).app_exec = glib::ffi::g_strdup((*src).app_exec);
+        (*dest).groups = glib::ffi::g_strdupv((*src).groups);
+        (*dest).is_private = (*src).is_private;
+    }
 }
 
 unsafe fn clear_recent_data(recent_data: *mut ffi::GtkRecentData) {
-    glib::ffi::g_free((*recent_data).display_name as *mut _);
-    glib::ffi::g_free((*recent_data).description as *mut _);
-    glib::ffi::g_free((*recent_data).mime_type as *mut _);
-    glib::ffi::g_free((*recent_data).app_name as *mut _);
-    glib::ffi::g_free((*recent_data).app_exec as *mut _);
-    glib::ffi::g_strfreev((*recent_data).groups as *mut _);
+    unsafe {
+        glib::ffi::g_free((*recent_data).display_name as *mut _);
+        glib::ffi::g_free((*recent_data).description as *mut _);
+        glib::ffi::g_free((*recent_data).mime_type as *mut _);
+        glib::ffi::g_free((*recent_data).app_name as *mut _);
+        glib::ffi::g_free((*recent_data).app_exec as *mut _);
+        glib::ffi::g_strfreev((*recent_data).groups as *mut _);
+    }
 }

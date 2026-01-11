@@ -6,7 +6,7 @@ use crate::ffi;
 use glib::{
     object::ObjectType as _,
     prelude::*,
-    signal::{connect_raw, SignalHandlerId},
+    signal::{SignalHandlerId, connect_raw},
     translate::*,
 };
 use std::boxed::Box as Box_;
@@ -65,12 +65,14 @@ pub trait SectionModelExt: IsA<SectionModel> + 'static {
             n_items: std::ffi::c_uint,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(
-                SectionModel::from_glib_borrow(this).unsafe_cast_ref(),
-                position,
-                n_items,
-            )
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(
+                    SectionModel::from_glib_borrow(this).unsafe_cast_ref(),
+                    position,
+                    n_items,
+                )
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);

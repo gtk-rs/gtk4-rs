@@ -2,11 +2,11 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::{ffi, EventController, Gesture, GestureSingle, PropagationLimit, PropagationPhase};
+use crate::{EventController, Gesture, GestureSingle, PropagationLimit, PropagationPhase, ffi};
 use glib::{
     object::ObjectType as _,
     prelude::*,
-    signal::{connect_raw, SignalHandlerId},
+    signal::{SignalHandlerId, connect_raw},
     translate::*,
 };
 use std::boxed::Box as Box_;
@@ -62,8 +62,10 @@ impl GestureSwipe {
             velocity_y: std::ffi::c_double,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this), velocity_x, velocity_y)
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(&from_glib_borrow(this), velocity_x, velocity_y)
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);

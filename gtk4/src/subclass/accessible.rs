@@ -8,7 +8,7 @@ use std::mem::MaybeUninit;
 use glib::translate::*;
 
 use crate::{
-    ffi, prelude::*, subclass::prelude::*, ATContext, Accessible, AccessiblePlatformState,
+    ATContext, Accessible, AccessiblePlatformState, ffi, prelude::*, subclass::prelude::*,
 };
 
 pub trait AccessibleImpl: ObjectImpl + ObjectSubclass<Type: IsA<Accessible>> {
@@ -179,10 +179,12 @@ unsafe extern "C" fn accessible_get_platform_state<T: AccessibleImpl>(
     accessible: *mut ffi::GtkAccessible,
     state: ffi::GtkAccessiblePlatformState,
 ) -> glib::ffi::gboolean {
-    let instance = &*(accessible as *mut T::Instance);
-    let imp = instance.imp();
+    unsafe {
+        let instance = &*(accessible as *mut T::Instance);
+        let imp = instance.imp();
 
-    imp.platform_state(from_glib(state)).into_glib()
+        imp.platform_state(from_glib(state)).into_glib()
+    }
 }
 
 unsafe extern "C" fn accessible_get_bounds<T: AccessibleImpl>(
@@ -192,53 +194,63 @@ unsafe extern "C" fn accessible_get_bounds<T: AccessibleImpl>(
     widthptr: *mut libc::c_int,
     heightptr: *mut libc::c_int,
 ) -> glib::ffi::gboolean {
-    let instance = &*(accessible as *mut T::Instance);
-    let imp = instance.imp();
+    unsafe {
+        let instance = &*(accessible as *mut T::Instance);
+        let imp = instance.imp();
 
-    if let Some((x, y, width, height)) = imp.bounds() {
-        *xptr = x;
-        *yptr = y;
-        *widthptr = width;
-        *heightptr = height;
+        if let Some((x, y, width, height)) = imp.bounds() {
+            *xptr = x;
+            *yptr = y;
+            *widthptr = width;
+            *heightptr = height;
 
-        true.into_glib()
-    } else {
-        false.into_glib()
+            true.into_glib()
+        } else {
+            false.into_glib()
+        }
     }
 }
 
 unsafe extern "C" fn accessible_get_at_context<T: AccessibleImpl>(
     accessible: *mut ffi::GtkAccessible,
 ) -> *mut ffi::GtkATContext {
-    let instance = &*(accessible as *mut T::Instance);
-    let imp = instance.imp();
+    unsafe {
+        let instance = &*(accessible as *mut T::Instance);
+        let imp = instance.imp();
 
-    imp.at_context().into_glib_ptr()
+        imp.at_context().into_glib_ptr()
+    }
 }
 
 unsafe extern "C" fn accessible_get_accessible_parent<T: AccessibleImpl>(
     accessible: *mut ffi::GtkAccessible,
 ) -> *mut ffi::GtkAccessible {
-    let instance = &*(accessible as *mut T::Instance);
-    let imp = instance.imp();
+    unsafe {
+        let instance = &*(accessible as *mut T::Instance);
+        let imp = instance.imp();
 
-    imp.accessible_parent().into_glib_ptr()
+        imp.accessible_parent().into_glib_ptr()
+    }
 }
 
 unsafe extern "C" fn accessible_get_first_accessible_child<T: AccessibleImpl>(
     accessible: *mut ffi::GtkAccessible,
 ) -> *mut ffi::GtkAccessible {
-    let instance = &*(accessible as *mut T::Instance);
-    let imp = instance.imp();
+    unsafe {
+        let instance = &*(accessible as *mut T::Instance);
+        let imp = instance.imp();
 
-    imp.first_accessible_child().into_glib_ptr()
+        imp.first_accessible_child().into_glib_ptr()
+    }
 }
 
 unsafe extern "C" fn accessible_get_next_accessible_sibling<T: AccessibleImpl>(
     accessible: *mut ffi::GtkAccessible,
 ) -> *mut ffi::GtkAccessible {
-    let instance = &*(accessible as *mut T::Instance);
-    let imp = instance.imp();
+    unsafe {
+        let instance = &*(accessible as *mut T::Instance);
+        let imp = instance.imp();
 
-    imp.next_accessible_sibling().into_glib_ptr()
+        imp.next_accessible_sibling().into_glib_ptr()
+    }
 }

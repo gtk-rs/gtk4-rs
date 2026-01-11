@@ -1,5 +1,5 @@
 [workspace]
-resolver = "2"
+resolver = "3"
 
 default-members = [
   "examples",
@@ -37,7 +37,7 @@ exclude = ["checker", "gir", "book/listings"]
 [workspace.package]
 authors = ["The gtk-rs Project Developers"]
 categories = ["api-bindings", "gui"]
-edition = "2021"
+edition = "2024"
 homepage = "https://gtk-rs.org/gtk4-rs"
 license = "MIT"
 repository = "https://github.com/gtk-rs/gtk4-rs"

@@ -5,7 +5,7 @@
 
 use glib::translate::*;
 
-use crate::{ffi, prelude::*, subclass::prelude::*, SectionModel};
+use crate::{SectionModel, ffi, prelude::*, subclass::prelude::*};
 
 pub trait SectionModelImpl: ListModelImpl + ObjectSubclass<Type: IsA<SectionModel>> {
     #[doc(alias = "get_section")]
@@ -59,10 +59,12 @@ unsafe extern "C" fn model_get_section<T: SectionModelImpl>(
     startptr: *mut libc::c_uint,
     endptr: *mut libc::c_uint,
 ) {
-    let instance = &*(model as *mut T::Instance);
-    let imp = instance.imp();
+    unsafe {
+        let instance = &*(model as *mut T::Instance);
+        let imp = instance.imp();
 
-    let (start, end) = imp.section(position);
-    *startptr = start;
-    *endptr = end;
+        let (start, end) = imp.section(position);
+        *startptr = start;
+        *endptr = end;
+    }
 }

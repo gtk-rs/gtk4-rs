@@ -3,7 +3,7 @@
 // DO NOT EDIT
 #![allow(deprecated)]
 
-use crate::{ffi, Buildable, TreeDragDest, TreeDragSource, TreeIter, TreeModel, TreeSortable};
+use crate::{Buildable, TreeDragDest, TreeDragSource, TreeIter, TreeModel, TreeSortable, ffi};
 use glib::translate::*;
 
 glib::wrapper! {

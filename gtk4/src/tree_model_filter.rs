@@ -4,7 +4,7 @@ use std::boxed::Box as Box_;
 
 use glib::translate::*;
 
-use crate::{ffi, prelude::*, TreeIter, TreeModel, TreeModelFilter, TreePath};
+use crate::{TreeIter, TreeModel, TreeModelFilter, TreePath, ffi, prelude::*};
 
 impl TreeModelFilter {
     #[doc(alias = "gtk_tree_model_filter_new")]
@@ -46,9 +46,11 @@ pub trait TreeModelFilterExtManual: IsA<TreeModelFilter> + 'static {
                 column: i32,
                 user_data: glib::ffi::gpointer,
             ) {
-                let f: &F = &*(user_data as *const F);
-                let ret = f(&from_glib_borrow(model), &from_glib_borrow(iter), column);
-                *value = ret.into_raw();
+                unsafe {
+                    let f: &F = &*(user_data as *const F);
+                    let ret = f(&from_glib_borrow(model), &from_glib_borrow(iter), column);
+                    *value = ret.into_raw();
+                }
             }
 
             unsafe extern "C" fn destroy_func<
@@ -56,7 +58,9 @@ pub trait TreeModelFilterExtManual: IsA<TreeModelFilter> + 'static {
             >(
                 user_data: glib::ffi::gpointer,
             ) {
-                let _callback: Box_<Option<Box_<F>>> = Box_::from_raw(user_data as *mut _);
+                unsafe {
+                    let _callback: Box_<Option<Box_<F>>> = Box_::from_raw(user_data as *mut _);
+                }
             }
             let callback_data: Box_<F> = Box_::new(func);
 

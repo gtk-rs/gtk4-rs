@@ -7,7 +7,7 @@ use std::{
     rc::Rc,
 };
 
-use crate::{prelude::*, NativeDialog, ResponseType};
+use crate::{NativeDialog, ResponseType, prelude::*};
 
 // rustdoc-stripper-ignore-next
 /// Trait containing manually implemented methods of

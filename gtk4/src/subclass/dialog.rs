@@ -5,7 +5,7 @@
 
 use glib::translate::*;
 
-use crate::{ffi, prelude::*, subclass::prelude::*, Dialog, ResponseType};
+use crate::{Dialog, ResponseType, ffi, prelude::*, subclass::prelude::*};
 
 pub trait DialogImpl: WindowImpl + ObjectSubclass<Type: IsA<Dialog>> {
     fn response(&self, response: ResponseType) {
@@ -55,16 +55,20 @@ unsafe impl<T: DialogImpl> IsSubclassable<T> for Dialog {
 }
 
 unsafe extern "C" fn dialog_response<T: DialogImpl>(ptr: *mut ffi::GtkDialog, responseptr: i32) {
-    let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.imp();
-    let res: ResponseType = from_glib(responseptr);
+    unsafe {
+        let instance = &*(ptr as *mut T::Instance);
+        let imp = instance.imp();
+        let res: ResponseType = from_glib(responseptr);
 
-    imp.response(res)
+        imp.response(res)
+    }
 }
 
 unsafe extern "C" fn dialog_close<T: DialogImpl>(ptr: *mut ffi::GtkDialog) {
-    let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.imp();
+    unsafe {
+        let instance = &*(ptr as *mut T::Instance);
+        let imp = instance.imp();
 
-    imp.close()
+        imp.close()
+    }
 }

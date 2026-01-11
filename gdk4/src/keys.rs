@@ -1,7 +1,7 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
 use crate::{ffi, prelude::*};
-use glib::{translate::*, value::FromValue, GString, Type, Value};
+use glib::{GString, Type, Value, translate::*, value::FromValue};
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
 // rustdoc-stripper-ignore-next
@@ -5020,11 +5020,13 @@ unsafe impl<'a> FromValue<'a> for Key {
 
     #[inline]
     unsafe fn from_value(value: &'a Value) -> Self {
-        let res: u32 = glib::gobject_ffi::g_value_get_uint(value.to_glib_none().0);
-        // As most of gdk_keyval_ apis don't really do any check for the input value
-        // (the key number) other than gdk_keyval_from_name, it is safe to not
-        // do any checks and assume people will not mis-use it
-        Key::from_glib(res)
+        unsafe {
+            let res: u32 = glib::gobject_ffi::g_value_get_uint(value.to_glib_none().0);
+            // As most of gdk_keyval_ apis don't really do any check for the input value
+            // (the key number) other than gdk_keyval_from_name, it is safe to not
+            // do any checks and assume people will not mis-use it
+            Key::from_glib(res)
+        }
     }
 }
 

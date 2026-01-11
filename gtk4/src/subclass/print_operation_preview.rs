@@ -6,7 +6,7 @@
 use glib::translate::*;
 
 use crate::{
-    ffi, prelude::*, subclass::prelude::*, PageSetup, PrintContext, PrintOperationPreview,
+    PageSetup, PrintContext, PrintOperationPreview, ffi, prelude::*, subclass::prelude::*,
 };
 
 pub trait PrintOperationPreviewImpl:
@@ -148,11 +148,13 @@ unsafe extern "C" fn print_operation_preview_ready<T: PrintOperationPreviewImpl>
     print_operation_preview: *mut ffi::GtkPrintOperationPreview,
     contextptr: *mut ffi::GtkPrintContext,
 ) {
-    let instance = &*(print_operation_preview as *mut T::Instance);
-    let imp = instance.imp();
-    let context: Borrowed<PrintContext> = from_glib_borrow(contextptr);
+    unsafe {
+        let instance = &*(print_operation_preview as *mut T::Instance);
+        let imp = instance.imp();
+        let context: Borrowed<PrintContext> = from_glib_borrow(contextptr);
 
-    imp.ready(&context)
+        imp.ready(&context)
+    }
 }
 
 unsafe extern "C" fn print_operation_preview_got_page_size<T: PrintOperationPreviewImpl>(
@@ -160,40 +162,48 @@ unsafe extern "C" fn print_operation_preview_got_page_size<T: PrintOperationPrev
     contextptr: *mut ffi::GtkPrintContext,
     setupptr: *mut ffi::GtkPageSetup,
 ) {
-    let instance = &*(print_operation_preview as *mut T::Instance);
-    let imp = instance.imp();
+    unsafe {
+        let instance = &*(print_operation_preview as *mut T::Instance);
+        let imp = instance.imp();
 
-    let context: Borrowed<PrintContext> = from_glib_borrow(contextptr);
-    let setup: Borrowed<PageSetup> = from_glib_borrow(setupptr);
+        let context: Borrowed<PrintContext> = from_glib_borrow(contextptr);
+        let setup: Borrowed<PageSetup> = from_glib_borrow(setupptr);
 
-    imp.got_page_size(&context, &setup)
+        imp.got_page_size(&context, &setup)
+    }
 }
 
 unsafe extern "C" fn print_operation_preview_render_page<T: PrintOperationPreviewImpl>(
     print_operation_preview: *mut ffi::GtkPrintOperationPreview,
     page_nr: i32,
 ) {
-    let instance = &*(print_operation_preview as *mut T::Instance);
-    let imp = instance.imp();
+    unsafe {
+        let instance = &*(print_operation_preview as *mut T::Instance);
+        let imp = instance.imp();
 
-    imp.render_page(page_nr)
+        imp.render_page(page_nr)
+    }
 }
 
 unsafe extern "C" fn print_operation_preview_is_selected<T: PrintOperationPreviewImpl>(
     print_operation_preview: *mut ffi::GtkPrintOperationPreview,
     page_nr: i32,
 ) -> glib::ffi::gboolean {
-    let instance = &*(print_operation_preview as *mut T::Instance);
-    let imp = instance.imp();
+    unsafe {
+        let instance = &*(print_operation_preview as *mut T::Instance);
+        let imp = instance.imp();
 
-    imp.is_selected(page_nr).into_glib()
+        imp.is_selected(page_nr).into_glib()
+    }
 }
 
 unsafe extern "C" fn print_operation_preview_end_preview<T: PrintOperationPreviewImpl>(
     print_operation_preview: *mut ffi::GtkPrintOperationPreview,
 ) {
-    let instance = &*(print_operation_preview as *mut T::Instance);
-    let imp = instance.imp();
+    unsafe {
+        let instance = &*(print_operation_preview as *mut T::Instance);
+        let imp = instance.imp();
 
-    imp.end_preview()
+        imp.end_preview()
+    }
 }

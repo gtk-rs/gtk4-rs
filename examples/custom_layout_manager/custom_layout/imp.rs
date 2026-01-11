@@ -55,10 +55,13 @@ impl LayoutManagerImpl for CustomLayout {
             let (child_min, child_nat, _, _) = child.measure(orientation, -1);
             min_size = min_size.max(child_min);
             nat_size = nat_size.max(child_nat);
-            if let Some(next_child) = child.next_sibling() {
-                child = next_child;
-            } else {
-                break;
+            match child.next_sibling() {
+                Some(next_child) => {
+                    child = next_child;
+                }
+                _ => {
+                    break;
+                }
             }
         }
 
@@ -82,10 +85,13 @@ impl LayoutManagerImpl for CustomLayout {
             let (child_req, _) = child.preferred_size();
             child_width = child_width.max(child_req.width());
             child_height = child_height.max(child_req.height());
-            if let Some(next_child) = child.next_sibling() {
-                child = next_child;
-            } else {
-                break;
+            match child.next_sibling() {
+                Some(next_child) => {
+                    child = next_child;
+                }
+                _ => {
+                    break;
+                }
             }
         }
 
@@ -118,10 +124,13 @@ impl LayoutManagerImpl for CustomLayout {
                 -1,
             );
             i += 1;
-            if let Some(next_child) = child.next_sibling() {
-                child = next_child;
-            } else {
-                break;
+            match child.next_sibling() {
+                Some(next_child) => {
+                    child = next_child;
+                }
+                _ => {
+                    break;
+                }
             }
         }
     }

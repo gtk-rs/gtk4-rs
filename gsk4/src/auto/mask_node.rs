@@ -2,7 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::{ffi, MaskMode, RenderNode};
+use crate::{MaskMode, RenderNode, ffi};
 use glib::{prelude::*, translate::*};
 
 glib::wrapper! {

@@ -18,6 +18,7 @@ pub use x11;
 mod rt;
 
 #[allow(clippy::upper_case_acronyms)]
+#[allow(clippy::let_and_return)]
 #[allow(unused_imports)]
 mod auto;
 

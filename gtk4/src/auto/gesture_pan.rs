@@ -3,13 +3,13 @@
 // DO NOT EDIT
 
 use crate::{
-    ffi, EventController, Gesture, GestureDrag, GestureSingle, Orientation, PanDirection,
-    PropagationLimit, PropagationPhase,
+    EventController, Gesture, GestureDrag, GestureSingle, Orientation, PanDirection,
+    PropagationLimit, PropagationPhase, ffi,
 };
 use glib::{
     object::ObjectType as _,
     prelude::*,
-    signal::{connect_raw, SignalHandlerId},
+    signal::{SignalHandlerId, connect_raw},
     translate::*,
 };
 use std::boxed::Box as Box_;
@@ -62,8 +62,10 @@ impl GesturePan {
             offset: std::ffi::c_double,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this), from_glib(direction), offset)
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(&from_glib_borrow(this), from_glib(direction), offset)
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -85,8 +87,10 @@ impl GesturePan {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this))
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(&from_glib_borrow(this))
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);

@@ -5,7 +5,7 @@
 
 use glib::translate::*;
 
-use crate::{ffi, prelude::*, subclass::prelude::*, AccessibleRange};
+use crate::{AccessibleRange, ffi, prelude::*, subclass::prelude::*};
 
 pub trait AccessibleRangeImpl: AccessibleImpl + ObjectSubclass<Type: IsA<AccessibleRange>> {
     fn set_current_value(&self, value: f64) -> bool {
@@ -50,8 +50,10 @@ unsafe extern "C" fn accessible_range_set_current_value<T: AccessibleRangeImpl>(
     accessible_range: *mut ffi::GtkAccessibleRange,
     value: f64,
 ) -> glib::ffi::gboolean {
-    let instance = &*(accessible_range as *mut T::Instance);
-    let imp = instance.imp();
+    unsafe {
+        let instance = &*(accessible_range as *mut T::Instance);
+        let imp = instance.imp();
 
-    imp.set_current_value(value).into_glib()
+        imp.set_current_value(value).into_glib()
+    }
 }
