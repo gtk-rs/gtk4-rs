@@ -42,7 +42,7 @@ homepage = "https://gtk-rs.org/gtk4-rs"
 license = "MIT"
 repository = "https://github.com/gtk-rs/gtk4-rs"
 rust-version = "1.92"
-version = "0.11.0-alpha.1"
+version = "0.11.0-alpha.2"
 
 [workspace.dependencies]
 cairo-sys-rs = {git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.22.0-alpha", branch = "main"}
@@ -53,7 +53,7 @@ gio-sys = {git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.22.0-alph
 gio = {git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.22.0-alpha", branch = "main", features = ["v2_66"]}
 gobject-sys = {git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.22.0-alpha", branch = "main", features = ["v2_66"]}
 glib-sys = {git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.22.0-alpha", branch = "main", features = ["v2_66"]}
-glib = {git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.22.0-alpha", branch = "main", features = ["v2_66"]}
+glib = {git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.22.0-alpha.2", branch = "main", features = ["v2_66"]}
 graphene-sys = {git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.22.0-alpha", branch = "main"}
 graphene = {package = "graphene-rs", git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.22.0-alpha", branch = "main"}
 libc = "0.2"
