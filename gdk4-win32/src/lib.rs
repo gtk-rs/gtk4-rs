@@ -20,6 +20,7 @@ mod rt;
 
 mod enums;
 
+#[allow(clippy::let_and_return)]
 #[allow(clippy::upper_case_acronyms)]
 #[allow(unused_imports)]
 mod auto;

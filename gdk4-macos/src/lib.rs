@@ -14,6 +14,7 @@ pub use glib;
 #[macro_use]
 mod rt;
 
+#[allow(clippy::let_and_return)]
 mod auto;
 
 pub mod prelude;

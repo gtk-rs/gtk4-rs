@@ -15,6 +15,7 @@ pub use khronos_egl;
 #[cfg_attr(docsrs, doc(cfg(feature = "wayland_crate")))]
 pub use wayland_client;
 
+#[allow(clippy::let_and_return)]
 mod auto;
 
 pub mod prelude;
