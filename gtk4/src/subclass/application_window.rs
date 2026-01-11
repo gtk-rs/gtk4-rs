@@ -64,8 +64,10 @@ unsafe extern "C" fn application_window_save_state<T: ApplicationWindowImpl>(
     ptr: *mut ffi::GtkApplicationWindow,
     state: *mut glib::ffi::GVariantDict,
 ) -> glib::ffi::gboolean {
-    let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.imp();
+    unsafe {
+        let instance = &*(ptr as *mut T::Instance);
+        let imp = instance.imp();
 
-    imp.save_state(&from_glib_borrow(state)).into_glib()
+        imp.save_state(&from_glib_borrow(state)).into_glib()
+    }
 }

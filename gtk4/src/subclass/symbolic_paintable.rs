@@ -147,20 +147,22 @@ unsafe extern "C" fn symbolic_paintable_snapshot_with_weight<T: SymbolicPaintabl
     n_colors: usize,
     weight: f64,
 ) {
-    let instance = &*(paintable as *mut T::Instance);
-    let imp = instance.imp();
+    unsafe {
+        let instance = &*(paintable as *mut T::Instance);
+        let imp = instance.imp();
 
-    let snapshot: Borrowed<gdk::Snapshot> = from_glib_borrow(snapshotptr);
+        let snapshot: Borrowed<gdk::Snapshot> = from_glib_borrow(snapshotptr);
 
-    imp.snapshot_with_weight(
-        &snapshot,
-        width,
-        height,
-        if n_colors == 0 {
-            &[]
-        } else {
-            std::slice::from_raw_parts(colors as *const gdk::RGBA, n_colors)
-        },
-        weight,
-    )
+        imp.snapshot_with_weight(
+            &snapshot,
+            width,
+            height,
+            if n_colors == 0 {
+                &[]
+            } else {
+                std::slice::from_raw_parts(colors as *const gdk::RGBA, n_colors)
+            },
+            weight,
+        )
+    }
 }

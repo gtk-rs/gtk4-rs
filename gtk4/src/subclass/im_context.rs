@@ -630,9 +630,11 @@ unsafe extern "C" fn im_context_invalid_composition<T: IMContextImpl>(
     ptr: *mut ffi::GtkIMContext,
     stringptr: *const libc::c_char,
 ) -> glib::ffi::gboolean {
-    let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.imp();
-    let text: Borrowed<GString> = from_glib_borrow(stringptr);
+    unsafe {
+        let instance = &*(ptr as *mut T::Instance);
+        let imp = instance.imp();
+        let text: Borrowed<GString> = from_glib_borrow(stringptr);
 
-    imp.invalid_composition(&text).into_glib()
+        imp.invalid_composition(&text).into_glib()
+    }
 }

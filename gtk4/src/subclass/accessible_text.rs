@@ -598,10 +598,12 @@ unsafe extern "C" fn accessible_text_set_caret_position<T: AccessibleTextImpl>(
     accessible_text: *mut ffi::GtkAccessibleText,
     position: u32,
 ) -> glib::ffi::gboolean {
-    let instance = &*(accessible_text as *mut T::Instance);
-    let imp = instance.imp();
+    unsafe {
+        let instance = &*(accessible_text as *mut T::Instance);
+        let imp = instance.imp();
 
-    imp.set_caret_position(position).into_glib()
+        imp.set_caret_position(position).into_glib()
+    }
 }
 
 #[cfg(feature = "v4_22")]
@@ -610,11 +612,13 @@ unsafe extern "C" fn accessible_text_set_selection<T: AccessibleTextImpl>(
     selection: usize,
     range: *mut ffi::GtkAccessibleTextRange,
 ) -> glib::ffi::gboolean {
-    let instance = &*(accessible_text as *mut T::Instance);
-    let imp = instance.imp();
+    unsafe {
+        let instance = &*(accessible_text as *mut T::Instance);
+        let imp = instance.imp();
 
-    imp.set_selection(selection, from_glib_none(range))
-        .into_glib()
+        imp.set_selection(selection, from_glib_none(range))
+            .into_glib()
+    }
 }
 
 #[cfg(test)]
