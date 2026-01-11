@@ -4,7 +4,7 @@ use std::{cell::RefCell, ptr};
 
 use glib::translate::*;
 
-use crate::{ffi, prelude::*, DrawingArea};
+use crate::{DrawingArea, ffi, prelude::*};
 
 // rustdoc-stripper-ignore-next
 /// Trait containing manually implemented methods of

@@ -7,7 +7,7 @@ use x11::xlib::Window as XWindow;
 
 #[cfg(not(feature = "xlib"))]
 use crate::XWindow;
-use crate::{ffi, X11Surface};
+use crate::{X11Surface, ffi};
 
 impl X11Surface {
     #[doc(alias = "gdk_x11_surface_get_xid")]

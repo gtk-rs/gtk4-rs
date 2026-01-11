@@ -5,12 +5,12 @@
 
 use std::mem;
 
-use glib::{translate::*, ParamSpec, Value};
+use glib::{ParamSpec, Value, translate::*};
 
 use crate::{
-    ffi, prelude::*, subclass::prelude::*, Buildable, CellArea, CellAreaContext, CellLayout,
-    CellRenderer, CellRendererState, DirectionType, SizeRequestMode, Snapshot, TreeIter, TreeModel,
-    Widget,
+    Buildable, CellArea, CellAreaContext, CellLayout, CellRenderer, CellRendererState,
+    DirectionType, SizeRequestMode, Snapshot, TreeIter, TreeModel, Widget, ffi, prelude::*,
+    subclass::prelude::*,
 };
 
 #[derive(Debug)]

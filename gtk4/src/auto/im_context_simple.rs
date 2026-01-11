@@ -2,7 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::{ffi, IMContext, InputHints, InputPurpose};
+use crate::{IMContext, InputHints, InputPurpose, ffi};
 use glib::{prelude::*, translate::*};
 
 glib::wrapper! {

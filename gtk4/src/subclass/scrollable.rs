@@ -5,7 +5,7 @@
 
 use glib::translate::*;
 
-use crate::{ffi, prelude::*, subclass::prelude::*, Border, Scrollable};
+use crate::{Border, Scrollable, ffi, prelude::*, subclass::prelude::*};
 
 pub trait ScrollableImpl: WidgetImpl + ObjectSubclass<Type: IsA<Scrollable>> {
     #[doc(alias = "get_border")]

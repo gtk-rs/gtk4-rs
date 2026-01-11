@@ -1,8 +1,8 @@
 use std::{cell::RefCell, rc::Rc};
 
 use glium::{
-    implement_vertex, index::PrimitiveType, program, uniform, Frame, IndexBuffer, Surface,
-    VertexBuffer,
+    Frame, IndexBuffer, Surface, VertexBuffer, implement_vertex, index::PrimitiveType, program,
+    uniform,
 };
 use gtk::{glib, prelude::*, subclass::prelude::*};
 

@@ -3,10 +3,10 @@
 use proc_macro2::Span;
 use quote::ToTokens;
 use syn::{
-    parse::{Parse, ParseStream},
-    punctuated::Punctuated,
     Attribute, DeriveInput, Error, Field, Fields, Ident, LitBool, LitStr, Meta, Result, Token,
     Type,
+    parse::{Parse, ParseStream},
+    punctuated::Punctuated,
 };
 
 /// Custom meta keywords.
@@ -350,19 +350,24 @@ pub fn parse_fields(
     for field in fields {
         let mut has_attr = false;
         if !field.attrs.is_empty()
-            && let Some(attributed_field) = parse_field(field)? {
-                attributed_fields.push(attributed_field);
-                has_attr = true;
-            }
-        if !has_attr && !allow_missing_attribute
+            && let Some(attributed_field) = parse_field(field)?
+        {
+            attributed_fields.push(attributed_field);
+            has_attr = true;
+        }
+        if !has_attr
+            && !allow_missing_attribute
             && let syn::Type::Path(syn::TypePath { path, .. }) = &field.ty
-                && path_is_template_child(path) {
-                    return Err(Error::new_spanned(
-                        field,
-                        format!("field `{}` with type `TemplateChild` possibly missing #[template_child] attribute. Use a meta attribute on the struct to suppress this error: '#[template(string|file|resource = \"...\", allow_template_child_without_attribute)]'",
-                        field.ident.as_ref().unwrap())
-                    ));
-                }
+            && path_is_template_child(path)
+        {
+            return Err(Error::new_spanned(
+                field,
+                format!(
+                    "field `{}` with type `TemplateChild` possibly missing #[template_child] attribute. Use a meta attribute on the struct to suppress this error: '#[template(string|file|resource = \"...\", allow_template_child_without_attribute)]'",
+                    field.ident.as_ref().unwrap()
+                ),
+            ));
+        }
     }
 
     Ok(attributed_fields)

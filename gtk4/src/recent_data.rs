@@ -3,7 +3,7 @@
 use std::ffi::CStr;
 
 use crate::ffi;
-use glib::{collections::StrV, translate::*, GStringPtr};
+use glib::{GStringPtr, collections::StrV, translate::*};
 
 glib::wrapper! {
     #[doc(alias = "GtkRecentData")]

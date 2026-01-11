@@ -13,7 +13,7 @@ mod util;
 
 use proc_macro::TokenStream;
 use proc_macro2::Span;
-use syn::{parse_macro_input, DeriveInput, Error};
+use syn::{DeriveInput, Error, parse_macro_input};
 
 /// That macro includes and compiles blueprint file by path relative to project
 /// rood
@@ -57,7 +57,7 @@ pub fn include_blueprint(input: TokenStream) -> TokenStream {
         Err(err) => {
             return Error::new(Span::call_site(), err)
                 .into_compile_error()
-                .into()
+                .into();
         }
     };
 

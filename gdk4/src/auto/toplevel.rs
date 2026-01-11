@@ -6,15 +6,15 @@
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
 use crate::TitlebarGesture;
 use crate::{
-    ffi, Device, Event, FullscreenMode, Surface, SurfaceEdge, Texture, ToplevelLayout,
-    ToplevelState,
+    Device, Event, FullscreenMode, Surface, SurfaceEdge, Texture, ToplevelLayout, ToplevelState,
+    ffi,
 };
 #[cfg(feature = "v4_20")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
 use crate::{Gravity, ToplevelCapabilities};
 use glib::{
     prelude::*,
-    signal::{connect_raw, SignalHandlerId},
+    signal::{SignalHandlerId, connect_raw},
     translate::*,
 };
 use std::boxed::Box as Box_;

@@ -18,18 +18,18 @@ use glib_sys as glib;
 use gobject_sys as gobject;
 use pango_sys as pango;
 
+#[allow(unused_imports)]
+use libc::{FILE, intptr_t, off_t, size_t, ssize_t, time_t, uintptr_t};
 #[cfg(unix)]
 #[allow(unused_imports)]
 use libc::{dev_t, gid_t, pid_t, socklen_t, uid_t};
-#[allow(unused_imports)]
-use libc::{intptr_t, off_t, size_t, ssize_t, time_t, uintptr_t, FILE};
 #[allow(unused_imports)]
 use std::ffi::{
     c_char, c_double, c_float, c_int, c_long, c_short, c_uchar, c_uint, c_ulong, c_ushort, c_void,
 };
 
 #[allow(unused_imports)]
-use glib::{gboolean, gconstpointer, gpointer, GType};
+use glib::{GType, gboolean, gconstpointer, gpointer};
 
 // Enums
 pub type GdkAxisUse = c_int;
@@ -4674,7 +4674,7 @@ unsafe extern "C" {
     #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gdk_texture_downloader_get_format(self_: *const GdkTextureDownloader)
-        -> GdkMemoryFormat;
+    -> GdkMemoryFormat;
     #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gdk_texture_downloader_get_texture(
@@ -4759,7 +4759,7 @@ unsafe extern "C" {
     //=========================================================================
     pub fn gdk_app_launch_context_get_type() -> GType;
     pub fn gdk_app_launch_context_get_display(context: *mut GdkAppLaunchContext)
-        -> *mut GdkDisplay;
+    -> *mut GdkDisplay;
     pub fn gdk_app_launch_context_set_desktop(context: *mut GdkAppLaunchContext, desktop: c_int);
     pub fn gdk_app_launch_context_set_icon(
         context: *mut GdkAppLaunchContext,
@@ -5129,7 +5129,7 @@ unsafe extern "C" {
     ) -> gboolean;
     pub fn gdk_display_flush(display: *mut GdkDisplay);
     pub fn gdk_display_get_app_launch_context(display: *mut GdkDisplay)
-        -> *mut GdkAppLaunchContext;
+    -> *mut GdkAppLaunchContext;
     pub fn gdk_display_get_clipboard(display: *mut GdkDisplay) -> *mut GdkClipboard;
     pub fn gdk_display_get_default_seat(display: *mut GdkDisplay) -> *mut GdkSeat;
     #[cfg(feature = "v4_14")]
@@ -5547,7 +5547,7 @@ unsafe extern "C" {
     #[cfg(feature = "v4_4")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
     pub fn gdk_gl_context_is_shared(self_: *mut GdkGLContext, other: *mut GdkGLContext)
-        -> gboolean;
+    -> gboolean;
     pub fn gdk_gl_context_make_current(context: *mut GdkGLContext);
     pub fn gdk_gl_context_realize(
         context: *mut GdkGLContext,
@@ -5603,7 +5603,7 @@ unsafe extern "C" {
     #[cfg(feature = "v4_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     pub fn gdk_gl_texture_builder_get_context(self_: *mut GdkGLTextureBuilder)
-        -> *mut GdkGLContext;
+    -> *mut GdkGLContext;
     #[cfg(feature = "v4_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     pub fn gdk_gl_texture_builder_get_format(self_: *mut GdkGLTextureBuilder) -> GdkMemoryFormat;
@@ -5735,7 +5735,7 @@ unsafe extern "C" {
     #[cfg(feature = "v4_16")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
     pub fn gdk_memory_texture_builder_build(self_: *mut GdkMemoryTextureBuilder)
-        -> *mut GdkTexture;
+    -> *mut GdkTexture;
     #[cfg(feature = "v4_16")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
     pub fn gdk_memory_texture_builder_get_bytes(

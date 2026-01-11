@@ -2,7 +2,7 @@
 
 use glib::translate::*;
 
-use crate::{prelude::*, MediaStream};
+use crate::{MediaStream, prelude::*};
 
 pub trait MediaStreamExtManual: IsA<MediaStream> + 'static {
     #[doc(alias = "gtk_media_stream_gerror")]

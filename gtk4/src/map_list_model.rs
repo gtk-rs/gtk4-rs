@@ -2,7 +2,7 @@
 
 use glib::translate::*;
 
-use crate::{ffi, prelude::*, MapListModel};
+use crate::{MapListModel, ffi, prelude::*};
 
 impl MapListModel {
     #[doc(alias = "gtk_map_list_model_new")]

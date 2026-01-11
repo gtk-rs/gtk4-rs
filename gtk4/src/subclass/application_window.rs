@@ -3,7 +3,7 @@
 // rustdoc-stripper-ignore-next
 //! Traits intended for subclassing [`ApplicationWindow`].
 
-use crate::{prelude::*, subclass::prelude::*, ApplicationWindow};
+use crate::{ApplicationWindow, prelude::*, subclass::prelude::*};
 
 #[cfg(feature = "v4_22")]
 use crate::ffi;

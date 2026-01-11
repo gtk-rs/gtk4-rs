@@ -4,8 +4,8 @@
 #![allow(deprecated)]
 
 use crate::{
-    ffi, Accessible, AccessibleRole, Align, Buildable, CellEditable, CellLayout, ComboBox,
-    ConstraintTarget, LayoutManager, Overflow, SensitivityType, TreeModel, Widget,
+    Accessible, AccessibleRole, Align, Buildable, CellEditable, CellLayout, ComboBox,
+    ConstraintTarget, LayoutManager, Overflow, SensitivityType, TreeModel, Widget, ffi,
 };
 use glib::{prelude::*, translate::*};
 

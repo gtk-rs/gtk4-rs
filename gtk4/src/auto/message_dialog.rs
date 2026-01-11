@@ -7,12 +7,13 @@
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
 use crate::WindowGravity;
 use crate::{
-    ffi, Accessible, AccessibleRole, Align, Application, Buildable, ButtonsType, ConstraintTarget,
+    Accessible, AccessibleRole, Align, Application, Buildable, ButtonsType, ConstraintTarget,
     Dialog, LayoutManager, MessageType, Native, Overflow, Root, ShortcutManager, Widget, Window,
+    ffi,
 };
 use glib::{
     prelude::*,
-    signal::{connect_raw, SignalHandlerId},
+    signal::{SignalHandlerId, connect_raw},
     translate::*,
 };
 use std::boxed::Box as Box_;

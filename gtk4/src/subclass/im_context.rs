@@ -3,10 +3,10 @@
 // rustdoc-stripper-ignore-next
 //! Traits intended for subclassing [`IMContext`].
 
-use glib::{translate::*, GString};
+use glib::{GString, translate::*};
 use pango::AttrList;
 
-use crate::{ffi, prelude::*, subclass::prelude::*, IMContext, Widget};
+use crate::{IMContext, Widget, ffi, prelude::*, subclass::prelude::*};
 
 #[allow(clippy::upper_case_acronyms)]
 pub trait IMContextImpl: ObjectImpl + ObjectSubclass<Type: IsA<IMContext>> {

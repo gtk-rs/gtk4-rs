@@ -1,8 +1,8 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use glib::{translate::*, value::FromValue, Value};
+use glib::{Value, translate::*, value::FromValue};
 
-use crate::{ffi, prelude::*, CellArea, CellRenderer};
+use crate::{CellArea, CellRenderer, ffi, prelude::*};
 
 // rustdoc-stripper-ignore-next
 /// Trait containing manually implemented methods of

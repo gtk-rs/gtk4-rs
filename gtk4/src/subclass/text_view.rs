@@ -6,8 +6,8 @@
 use glib::translate::*;
 
 use crate::{
-    ffi, prelude::*, subclass::prelude::*, DeleteType, MovementStep, Scrollable, Snapshot,
-    TextExtendSelection, TextIter, TextView, TextViewLayer,
+    DeleteType, MovementStep, Scrollable, Snapshot, TextExtendSelection, TextIter, TextView,
+    TextViewLayer, ffi, prelude::*, subclass::prelude::*,
 };
 
 pub trait TextViewImpl: WidgetImpl + ObjectSubclass<Type: IsA<TextView> + IsA<Scrollable>> {

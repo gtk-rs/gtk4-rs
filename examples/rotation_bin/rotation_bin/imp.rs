@@ -1,7 +1,7 @@
 use std::cell::{Cell, RefCell};
 
 use graphene::Point;
-use gtk::{glib, graphene, gsk, prelude::*, subclass::prelude::*, SizeRequestMode};
+use gtk::{SizeRequestMode, glib, graphene, gsk, prelude::*, subclass::prelude::*};
 
 use super::Rotation;
 

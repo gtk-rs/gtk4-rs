@@ -2,7 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::{ffi, TextBuffer, TextChildAnchor, TextMark, TextSearchFlags, TextTag};
+use crate::{TextBuffer, TextChildAnchor, TextMark, TextSearchFlags, TextTag, ffi};
 use glib::{prelude::*, translate::*};
 
 glib::wrapper! {

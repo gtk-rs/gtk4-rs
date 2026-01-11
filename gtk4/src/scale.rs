@@ -2,7 +2,7 @@
 
 use glib::translate::*;
 
-use crate::{prelude::*, Scale};
+use crate::{Scale, prelude::*};
 
 // rustdoc-stripper-ignore-next
 /// Trait containing manually implemented methods of [`Scale`](crate::Scale).

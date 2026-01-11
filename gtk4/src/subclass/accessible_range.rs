@@ -5,7 +5,7 @@
 
 use glib::translate::*;
 
-use crate::{ffi, prelude::*, subclass::prelude::*, AccessibleRange};
+use crate::{AccessibleRange, ffi, prelude::*, subclass::prelude::*};
 
 pub trait AccessibleRangeImpl: AccessibleImpl + ObjectSubclass<Type: IsA<AccessibleRange>> {
     fn set_current_value(&self, value: f64) -> bool {

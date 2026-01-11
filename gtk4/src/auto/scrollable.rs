@@ -2,10 +2,10 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::{ffi, Adjustment, Border, ScrollablePolicy};
+use crate::{Adjustment, Border, ScrollablePolicy, ffi};
 use glib::{
     prelude::*,
-    signal::{connect_raw, SignalHandlerId},
+    signal::{SignalHandlerId, connect_raw},
     translate::*,
 };
 use std::boxed::Box as Box_;
@@ -33,11 +33,7 @@ pub trait ScrollableExt: IsA<Scrollable> + 'static {
                 self.as_ref().to_glib_none().0,
                 border.to_glib_none_mut().0,
             ));
-            if ret {
-                Some(border)
-            } else {
-                None
-            }
+            if ret { Some(border) } else { None }
         }
     }
 

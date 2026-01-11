@@ -3,9 +3,9 @@
 // rustdoc-stripper-ignore-next
 //! Traits intended for subclassing [`CellRendererText`].
 
-use glib::{translate::*, GString};
+use glib::{GString, translate::*};
 
-use crate::{ffi, prelude::*, subclass::prelude::*, CellRendererText};
+use crate::{CellRendererText, ffi, prelude::*, subclass::prelude::*};
 
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 #[allow(deprecated)]

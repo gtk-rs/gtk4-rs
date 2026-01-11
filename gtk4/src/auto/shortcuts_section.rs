@@ -7,12 +7,12 @@
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
 use crate::ShortcutsGroup;
 use crate::{
-    ffi, Accessible, AccessibleRole, Align, BaselinePosition, Box, Buildable, ConstraintTarget,
-    LayoutManager, Orientable, Orientation, Overflow, Widget,
+    Accessible, AccessibleRole, Align, BaselinePosition, Box, Buildable, ConstraintTarget,
+    LayoutManager, Orientable, Orientation, Overflow, Widget, ffi,
 };
 use glib::{
     prelude::*,
-    signal::{connect_raw, SignalHandlerId},
+    signal::{SignalHandlerId, connect_raw},
     translate::*,
 };
 use std::boxed::Box as Box_;

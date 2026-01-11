@@ -4,7 +4,7 @@ use glib::{prelude::*, translate::*};
 
 #[cfg(feature = "v4_16")]
 use crate::ColorState;
-use crate::{ffi, GLContext, GLTextureBuilder, MemoryFormat, Texture};
+use crate::{GLContext, GLTextureBuilder, MemoryFormat, Texture, ffi};
 
 #[cfg(not(feature = "gl"))]
 pub type GLsync = *const libc::c_void;
@@ -148,11 +148,7 @@ impl GLTextureBuilder {
     #[doc(alias = "get_sync")]
     pub fn sync(&self) -> Option<GLsync> {
         let ptr = unsafe { ffi::gdk_gl_texture_builder_get_sync(self.to_glib_none().0) };
-        if ptr.is_null() {
-            None
-        } else {
-            Some(ptr as _)
-        }
+        if ptr.is_null() { None } else { Some(ptr as _) }
     }
 
     #[doc(alias = "gdk_gl_texture_builder_set_sync")]

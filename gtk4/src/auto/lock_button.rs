@@ -4,12 +4,12 @@
 #![allow(deprecated)]
 
 use crate::{
-    ffi, Accessible, AccessibleRole, Actionable, Align, Buildable, Button, ConstraintTarget,
-    LayoutManager, Overflow, Widget,
+    Accessible, AccessibleRole, Actionable, Align, Buildable, Button, ConstraintTarget,
+    LayoutManager, Overflow, Widget, ffi,
 };
 use glib::{
     prelude::*,
-    signal::{connect_raw, SignalHandlerId},
+    signal::{SignalHandlerId, connect_raw},
     translate::*,
 };
 use std::boxed::Box as Box_;

@@ -6,7 +6,7 @@
 use gdk::Paintable;
 use glib::translate::*;
 
-use crate::{ffi, prelude::*, subclass::prelude::*, MediaStream};
+use crate::{MediaStream, ffi, prelude::*, subclass::prelude::*};
 
 pub trait MediaStreamImpl:
     ObjectImpl + ObjectSubclass<Type: IsA<MediaStream> + IsA<Paintable>>

@@ -7,7 +7,7 @@ use x11::xlib::XID;
 
 #[cfg(not(feature = "xlib"))]
 use crate::XID;
-use crate::{ffi, X11Monitor};
+use crate::{X11Monitor, ffi};
 
 impl X11Monitor {
     #[doc(alias = "gdk_x11_monitor_get_output")]

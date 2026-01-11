@@ -6,17 +6,17 @@
 use std::{boxed::Box as Box_, collections::HashMap, fmt, future::Future};
 
 use glib::{
+    GString, Variant,
     clone::Downgrade,
     property::{Property, PropertyGet},
     subclass::SignalId,
     translate::*,
-    GString, Variant,
 };
 
 use crate::{
-    ffi, prelude::*, subclass::prelude::*, Accessible, AccessibleRole, Buildable, BuilderRustScope,
-    BuilderScope, ConstraintTarget, DirectionType, LayoutManager, Orientation, Shortcut,
-    SizeRequestMode, Snapshot, StateFlags, SystemSetting, TextDirection, Tooltip, Widget,
+    Accessible, AccessibleRole, Buildable, BuilderRustScope, BuilderScope, ConstraintTarget,
+    DirectionType, LayoutManager, Orientation, Shortcut, SizeRequestMode, Snapshot, StateFlags,
+    SystemSetting, TextDirection, Tooltip, Widget, ffi, prelude::*, subclass::prelude::*,
 };
 
 #[derive(Debug, Default)]
@@ -1322,7 +1322,9 @@ where
         unsafe {
             if !self.is_bound() {
                 let name = Self::name();
-                panic!("Failed to retrieve template child. Please check that all fields of type `{name}` have been bound and have a #[template_child] attribute.");
+                panic!(
+                    "Failed to retrieve template child. Please check that all fields of type `{name}` have been bound and have a #[template_child] attribute."
+                );
             }
             &*(&self.ptr as *const _ as *const T)
         }

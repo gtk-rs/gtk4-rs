@@ -4,14 +4,14 @@
 #![allow(deprecated)]
 
 use crate::{
-    ffi, Accessible, Align, Allocation, Buildable, ConstraintTarget, DirectionType,
-    EventController, LayoutManager, Native, Orientation, Overflow, PickFlags, Requisition, Root,
-    Settings, SizeRequestMode, Snapshot, StateFlags, StyleContext, TextDirection, Tooltip,
+    Accessible, Align, Allocation, Buildable, ConstraintTarget, DirectionType, EventController,
+    LayoutManager, Native, Orientation, Overflow, PickFlags, Requisition, Root, Settings,
+    SizeRequestMode, Snapshot, StateFlags, StyleContext, TextDirection, Tooltip, ffi,
 };
 use glib::{
     object::ObjectType as _,
     prelude::*,
-    signal::{connect_raw, SignalHandlerId},
+    signal::{SignalHandlerId, connect_raw},
     translate::*,
 };
 use std::boxed::Box as Box_;
@@ -156,11 +156,7 @@ pub trait WidgetExt: IsA<Widget> + 'static {
                 target.as_ref().to_glib_none().0,
                 out_bounds.to_glib_none_mut().0,
             ));
-            if ret {
-                Some(out_bounds)
-            } else {
-                None
-            }
+            if ret { Some(out_bounds) } else { None }
         }
     }
 
@@ -188,11 +184,7 @@ pub trait WidgetExt: IsA<Widget> + 'static {
                 point.to_glib_none().0,
                 out_point.to_glib_none_mut().0,
             ));
-            if ret {
-                Some(out_point)
-            } else {
-                None
-            }
+            if ret { Some(out_point) } else { None }
         }
     }
 
@@ -205,11 +197,7 @@ pub trait WidgetExt: IsA<Widget> + 'static {
                 target.as_ref().to_glib_none().0,
                 out_transform.to_glib_none_mut().0,
             ));
-            if ret {
-                Some(out_transform)
-            } else {
-                None
-            }
+            if ret { Some(out_transform) } else { None }
         }
     }
 

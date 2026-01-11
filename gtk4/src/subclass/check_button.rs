@@ -5,7 +5,7 @@
 
 use glib::translate::*;
 
-use crate::{ffi, prelude::*, subclass::prelude::*, Actionable, CheckButton};
+use crate::{Actionable, CheckButton, ffi, prelude::*, subclass::prelude::*};
 
 pub trait CheckButtonImpl:
     WidgetImpl + ObjectSubclass<Type: IsA<CheckButton> + IsA<Actionable>>

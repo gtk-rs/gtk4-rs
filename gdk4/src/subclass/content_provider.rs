@@ -5,9 +5,9 @@
 
 use std::{future::Future, pin::Pin};
 
-use glib::{translate::*, Value};
+use glib::{Value, translate::*};
 
-use crate::{ffi, prelude::*, subclass::prelude::*, Clipboard, ContentFormats, ContentProvider};
+use crate::{Clipboard, ContentFormats, ContentProvider, ffi, prelude::*, subclass::prelude::*};
 
 pub trait ContentProviderImpl: ObjectImpl + ObjectSubclass<Type: IsA<ContentProvider>> {
     fn content_changed(&self) {

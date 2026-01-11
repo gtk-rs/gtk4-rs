@@ -5,7 +5,7 @@
 
 use glib::translate::*;
 
-use crate::{ffi, prelude::*, subclass::prelude::*, Orientable, Scale};
+use crate::{Orientable, Scale, ffi, prelude::*, subclass::prelude::*};
 
 pub trait ScaleImpl: RangeImpl + ObjectSubclass<Type: IsA<Scale> + IsA<Orientable>> {
     #[doc(alias = "get_layout_offsets")]

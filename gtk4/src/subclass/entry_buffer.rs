@@ -4,10 +4,10 @@
 //! Traits intended for subclassing [`EntryBuffer`].
 use std::sync::OnceLock;
 
-use glib::{translate::*, GString};
+use glib::{GString, translate::*};
 
 use super::PtrHolder;
-use crate::{ffi, prelude::*, subclass::prelude::*, EntryBuffer};
+use crate::{EntryBuffer, ffi, prelude::*, subclass::prelude::*};
 
 pub trait EntryBufferImpl: ObjectImpl + ObjectSubclass<Type: IsA<EntryBuffer>> {
     fn delete_text(&self, position: u32, n_chars: Option<u32>) -> u32 {

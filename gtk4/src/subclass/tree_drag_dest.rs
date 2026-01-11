@@ -3,9 +3,9 @@
 // rustdoc-stripper-ignore-next
 //! Traits intended for implementing the [`TreeDragDest`] interface.
 
-use glib::{translate::*, Value};
+use glib::{Value, translate::*};
 
-use crate::{ffi, prelude::*, subclass::prelude::*, TreeDragDest, TreePath};
+use crate::{TreeDragDest, TreePath, ffi, prelude::*, subclass::prelude::*};
 
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 #[allow(deprecated)]

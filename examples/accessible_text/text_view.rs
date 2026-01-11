@@ -2,7 +2,7 @@ use gtk::glib;
 use gtk::subclass::prelude::*;
 
 mod imp {
-    use gtk::{graphene, ACCESSIBLE_ATTRIBUTE_OVERLINE, ACCESSIBLE_ATTRIBUTE_OVERLINE_SINGLE};
+    use gtk::{ACCESSIBLE_ATTRIBUTE_OVERLINE, ACCESSIBLE_ATTRIBUTE_OVERLINE_SINGLE, graphene};
 
     use super::*;
 

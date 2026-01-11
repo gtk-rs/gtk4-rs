@@ -4,7 +4,7 @@ use std::boxed::Box as Box_;
 
 use glib::translate::*;
 
-use crate::{ffi, PrintJob};
+use crate::{PrintJob, ffi};
 
 impl PrintJob {
     #[doc(alias = "gtk_print_job_send")]

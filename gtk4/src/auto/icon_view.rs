@@ -4,15 +4,15 @@
 #![allow(deprecated)]
 
 use crate::{
-    ffi, Accessible, AccessibleRole, Adjustment, Align, Buildable, CellArea, CellLayout,
-    CellRenderer, ConstraintTarget, IconViewDropPosition, LayoutManager, MovementStep, Orientation,
-    Overflow, Scrollable, ScrollablePolicy, SelectionMode, Tooltip, TreeIter, TreeModel, TreePath,
-    Widget,
+    Accessible, AccessibleRole, Adjustment, Align, Buildable, CellArea, CellLayout, CellRenderer,
+    ConstraintTarget, IconViewDropPosition, LayoutManager, MovementStep, Orientation, Overflow,
+    Scrollable, ScrollablePolicy, SelectionMode, Tooltip, TreeIter, TreeModel, TreePath, Widget,
+    ffi,
 };
 use glib::{
     object::ObjectType as _,
     prelude::*,
-    signal::{connect_raw, SignalHandlerId},
+    signal::{SignalHandlerId, connect_raw},
     translate::*,
 };
 use std::boxed::Box as Box_;
@@ -145,11 +145,7 @@ impl IconView {
                 cell.map(|p| p.as_ref()).to_glib_none().0,
                 rect.to_glib_none_mut().0,
             ));
-            if ret {
-                Some(rect)
-            } else {
-                None
-            }
+            if ret { Some(rect) } else { None }
         }
     }
 

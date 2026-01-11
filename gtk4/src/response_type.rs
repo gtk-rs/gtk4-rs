@@ -3,7 +3,7 @@
 use std::fmt;
 
 use crate::{ffi, prelude::*};
-use glib::{translate::*, value::FromValue, Type, Value};
+use glib::{Type, Value, translate::*, value::FromValue};
 
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
 #[doc(alias = "GtkResponseType")]

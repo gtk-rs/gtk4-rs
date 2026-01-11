@@ -2,7 +2,7 @@
 
 use glib::translate::*;
 
-use crate::{ffi, prelude::*, Display, Key, KeymapKey, ModifierType};
+use crate::{Display, Key, KeymapKey, ModifierType, ffi, prelude::*};
 
 #[derive(Debug, PartialEq, Eq, Ord, PartialOrd)]
 pub enum Backend {
@@ -103,11 +103,7 @@ pub trait DisplayExtManual: IsA<Display> + 'static {
                     name.as_ptr(),
                     value.to_glib_none_mut().0,
                 );
-                if from_glib(ret) {
-                    Some(value)
-                } else {
-                    None
-                }
+                if from_glib(ret) { Some(value) } else { None }
             })
         }
     }

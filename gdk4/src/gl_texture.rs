@@ -5,7 +5,7 @@ use glib::translate::*;
 #[cfg(feature = "v4_12")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
 use crate::builders::GLTextureBuilder;
-use crate::{ffi, GLContext, GLTexture};
+use crate::{GLContext, GLTexture, ffi};
 
 impl GLTexture {
     #[doc(alias = "gdk_gl_texture_new")]

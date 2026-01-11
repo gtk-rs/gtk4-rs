@@ -133,7 +133,7 @@ impl GLAreaImpl for FemtoVGArea {
 }
 impl FemtoVGArea {
     fn ensure_canvas(&self) {
-        use femtovg::{renderer, Canvas};
+        use femtovg::{Canvas, renderer};
         use glow::HasContext;
 
         if self.canvas.borrow().is_some() {

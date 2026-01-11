@@ -4,11 +4,11 @@
 //! Traits intended for implementing the [`FontChooser`] interface.
 use std::sync::OnceLock;
 
-use glib::{translate::*, GString, Quark};
+use glib::{GString, Quark, translate::*};
 use pango::{FontFace, FontFamily, FontMap};
 
 use super::PtrHolder;
-use crate::{ffi, prelude::*, subclass::prelude::*, FontChooser};
+use crate::{FontChooser, ffi, prelude::*, subclass::prelude::*};
 
 #[derive(Debug)]
 pub struct FilterCallback {

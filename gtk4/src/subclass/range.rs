@@ -5,7 +5,7 @@
 
 use glib::translate::*;
 
-use crate::{ffi, prelude::*, subclass::prelude::*, Border, Orientable, Range, ScrollType};
+use crate::{Border, Orientable, Range, ScrollType, ffi, prelude::*, subclass::prelude::*};
 
 pub trait RangeImpl: WidgetImpl + ObjectSubclass<Type: IsA<Range> + IsA<Orientable>> {
     fn adjust_bounds(&self, new_value: f64) {

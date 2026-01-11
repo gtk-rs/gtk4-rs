@@ -3,7 +3,7 @@
 // DO NOT EDIT
 #![allow(deprecated)]
 
-use crate::{ffi, WaylandSurface};
+use crate::{WaylandSurface, ffi};
 use glib::translate::*;
 
 glib::wrapper! {

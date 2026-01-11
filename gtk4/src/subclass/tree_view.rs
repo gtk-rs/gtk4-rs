@@ -6,8 +6,8 @@
 use glib::translate::*;
 
 use crate::{
-    ffi, prelude::*, subclass::prelude::*, MovementStep, Scrollable, TreeIter, TreePath, TreeView,
-    TreeViewColumn,
+    MovementStep, Scrollable, TreeIter, TreePath, TreeView, TreeViewColumn, ffi, prelude::*,
+    subclass::prelude::*,
 };
 
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]

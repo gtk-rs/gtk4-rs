@@ -6,8 +6,8 @@
 #![doc = include_str!("../README.md")]
 
 pub use cairo;
-pub use gdk4_sys as ffi;
 pub use gdk_pixbuf;
+pub use gdk4_sys as ffi;
 pub use gio;
 #[cfg(feature = "gl")]
 #[cfg_attr(docsrs, doc(cfg(feature = "gl")))]

@@ -4,7 +4,7 @@ use std::ptr;
 
 use glib::translate::*;
 
-use crate::{ffi, CustomSorter, Ordering};
+use crate::{CustomSorter, Ordering, ffi};
 
 impl CustomSorter {
     #[doc(alias = "gtk_custom_sorter_new")]

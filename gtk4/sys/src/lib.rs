@@ -12,8 +12,8 @@
 #![cfg_attr(docsrs, feature(doc_cfg))]
 
 use cairo_sys as cairo;
-use gdk4_sys as gdk;
 use gdk_pixbuf_sys as gdk_pixbuf;
+use gdk4_sys as gdk;
 use gio_sys as gio;
 use glib_sys as glib;
 use gobject_sys as gobject;
@@ -21,18 +21,18 @@ use graphene_sys as graphene;
 use gsk4_sys as gsk;
 use pango_sys as pango;
 
+#[allow(unused_imports)]
+use libc::{FILE, intptr_t, off_t, size_t, ssize_t, time_t, uintptr_t};
 #[cfg(unix)]
 #[allow(unused_imports)]
 use libc::{dev_t, gid_t, pid_t, socklen_t, uid_t};
-#[allow(unused_imports)]
-use libc::{intptr_t, off_t, size_t, ssize_t, time_t, uintptr_t, FILE};
 #[allow(unused_imports)]
 use std::ffi::{
     c_char, c_double, c_float, c_int, c_long, c_short, c_uchar, c_uint, c_ulong, c_ushort, c_void,
 };
 
 #[allow(unused_imports)]
-use glib::{gboolean, gconstpointer, gpointer, GType};
+use glib::{GType, gboolean, gconstpointer, gpointer};
 
 pub const GTK_ENTRY_BUFFER_MAX_SIZE: u16 = u16::MAX;
 
@@ -11011,7 +11011,7 @@ unsafe extern "C" {
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
     pub fn gtk_css_section_get_bytes(section: *const GtkCssSection) -> *mut glib::GBytes;
     pub fn gtk_css_section_get_end_location(section: *const GtkCssSection)
-        -> *const GtkCssLocation;
+    -> *const GtkCssLocation;
     pub fn gtk_css_section_get_file(section: *const GtkCssSection) -> *mut gio::GFile;
     pub fn gtk_css_section_get_parent(section: *const GtkCssSection) -> *mut GtkCssSection;
     pub fn gtk_css_section_get_start_location(
@@ -11245,7 +11245,7 @@ unsafe extern "C" {
     ) -> gboolean;
     pub fn gtk_text_iter_backward_sentence_start(iter: *mut GtkTextIter) -> gboolean;
     pub fn gtk_text_iter_backward_sentence_starts(iter: *mut GtkTextIter, count: c_int)
-        -> gboolean;
+    -> gboolean;
     pub fn gtk_text_iter_backward_to_tag_toggle(
         iter: *mut GtkTextIter,
         tag: *mut GtkTextTag,
@@ -11280,7 +11280,7 @@ unsafe extern "C" {
     pub fn gtk_text_iter_forward_chars(iter: *mut GtkTextIter, count: c_int) -> gboolean;
     pub fn gtk_text_iter_forward_cursor_position(iter: *mut GtkTextIter) -> gboolean;
     pub fn gtk_text_iter_forward_cursor_positions(iter: *mut GtkTextIter, count: c_int)
-        -> gboolean;
+    -> gboolean;
     pub fn gtk_text_iter_forward_find_char(
         iter: *mut GtkTextIter,
         pred: GtkTextCharPredicate,
@@ -11394,7 +11394,7 @@ unsafe extern "C" {
     pub fn gtk_tree_path_new_first() -> *mut GtkTreePath;
     pub fn gtk_tree_path_new_from_indices(first_index: c_int, ...) -> *mut GtkTreePath;
     pub fn gtk_tree_path_new_from_indicesv(indices: *mut c_int, length: size_t)
-        -> *mut GtkTreePath;
+    -> *mut GtkTreePath;
     pub fn gtk_tree_path_new_from_string(path: *const c_char) -> *mut GtkTreePath;
     pub fn gtk_tree_path_append_index(path: *mut GtkTreePath, index_: c_int);
     pub fn gtk_tree_path_compare(a: *const GtkTreePath, b: *const GtkTreePath) -> c_int;
@@ -11442,7 +11442,7 @@ unsafe extern "C" {
         reference: *mut GtkTreeRowReference,
     ) -> *mut GtkTreeModel;
     pub fn gtk_tree_row_reference_get_path(reference: *mut GtkTreeRowReference)
-        -> *mut GtkTreePath;
+    -> *mut GtkTreePath;
     pub fn gtk_tree_row_reference_valid(reference: *mut GtkTreeRowReference) -> gboolean;
     pub fn gtk_tree_row_reference_deleted(proxy: *mut gobject::GObject, path: *mut GtkTreePath);
     pub fn gtk_tree_row_reference_inserted(proxy: *mut gobject::GObject, path: *mut GtkTreePath);
@@ -11814,7 +11814,7 @@ unsafe extern "C" {
         self_: *mut GtkAppChooserButton,
     ) -> gboolean;
     pub fn gtk_app_chooser_button_get_show_dialog_item(self_: *mut GtkAppChooserButton)
-        -> gboolean;
+    -> gboolean;
     pub fn gtk_app_chooser_button_set_active_custom_item(
         self_: *mut GtkAppChooserButton,
         name: *const c_char,
@@ -11867,7 +11867,7 @@ unsafe extern "C" {
     pub fn gtk_app_chooser_widget_get_show_fallback(self_: *mut GtkAppChooserWidget) -> gboolean;
     pub fn gtk_app_chooser_widget_get_show_other(self_: *mut GtkAppChooserWidget) -> gboolean;
     pub fn gtk_app_chooser_widget_get_show_recommended(self_: *mut GtkAppChooserWidget)
-        -> gboolean;
+    -> gboolean;
     pub fn gtk_app_chooser_widget_set_default_text(
         self_: *mut GtkAppChooserWidget,
         text: *const c_char,
@@ -12819,7 +12819,7 @@ unsafe extern "C" {
     pub fn gtk_cell_renderer_toggle_get_type() -> GType;
     pub fn gtk_cell_renderer_toggle_new() -> *mut GtkCellRenderer;
     pub fn gtk_cell_renderer_toggle_get_activatable(toggle: *mut GtkCellRendererToggle)
-        -> gboolean;
+    -> gboolean;
     pub fn gtk_cell_renderer_toggle_get_active(toggle: *mut GtkCellRendererToggle) -> gboolean;
     pub fn gtk_cell_renderer_toggle_get_radio(toggle: *mut GtkCellRendererToggle) -> gboolean;
     pub fn gtk_cell_renderer_toggle_set_activatable(
@@ -13066,7 +13066,7 @@ unsafe extern "C" {
     #[cfg(feature = "v4_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     pub fn gtk_column_view_get_header_factory(self_: *mut GtkColumnView)
-        -> *mut GtkListItemFactory;
+    -> *mut GtkListItemFactory;
     pub fn gtk_column_view_get_model(self_: *mut GtkColumnView) -> *mut GtkSelectionModel;
     pub fn gtk_column_view_get_reorderable(self_: *mut GtkColumnView) -> gboolean;
     #[cfg(feature = "v4_12")]
@@ -13758,7 +13758,7 @@ unsafe extern "C" {
     #[cfg(feature = "v4_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     pub fn gtk_drop_down_get_search_match_mode(self_: *mut GtkDropDown)
-        -> GtkStringFilterMatchMode;
+    -> GtkStringFilterMatchMode;
     pub fn gtk_drop_down_get_selected(self_: *mut GtkDropDown) -> c_uint;
     pub fn gtk_drop_down_get_selected_item(self_: *mut GtkDropDown) -> *mut gobject::GObject;
     #[cfg(feature = "v4_6")]
@@ -14060,7 +14060,7 @@ unsafe extern "C" {
         completion: *mut GtkEntryCompletion,
     ) -> c_int;
     pub fn gtk_entry_completion_get_model(completion: *mut GtkEntryCompletion)
-        -> *mut GtkTreeModel;
+    -> *mut GtkTreeModel;
     pub fn gtk_entry_completion_get_popup_completion(
         completion: *mut GtkEntryCompletion,
     ) -> gboolean;
@@ -14190,7 +14190,7 @@ unsafe extern "C" {
         self_: *mut GtkEventControllerMotion,
     ) -> gboolean;
     pub fn gtk_event_controller_motion_is_pointer(self_: *mut GtkEventControllerMotion)
-        -> gboolean;
+    -> gboolean;
 
     //=========================================================================
     // GtkEventControllerScroll
@@ -14921,7 +14921,7 @@ unsafe extern "C" {
     #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_font_dialog_button_get_dialog(self_: *mut GtkFontDialogButton)
-        -> *mut GtkFontDialog;
+    -> *mut GtkFontDialog;
     #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_font_dialog_button_get_font_desc(
@@ -15617,7 +15617,7 @@ unsafe extern "C" {
     pub fn gtk_icon_view_get_item_orientation(icon_view: *mut GtkIconView) -> GtkOrientation;
     pub fn gtk_icon_view_get_item_padding(icon_view: *mut GtkIconView) -> c_int;
     pub fn gtk_icon_view_get_item_row(icon_view: *mut GtkIconView, path: *mut GtkTreePath)
-        -> c_int;
+    -> c_int;
     pub fn gtk_icon_view_get_item_width(icon_view: *mut GtkIconView) -> c_int;
     pub fn gtk_icon_view_get_margin(icon_view: *mut GtkIconView) -> c_int;
     pub fn gtk_icon_view_get_markup_column(icon_view: *mut GtkIconView) -> c_int;
@@ -16245,7 +16245,7 @@ unsafe extern "C" {
     );
     pub fn gtk_list_store_prepend(list_store: *mut GtkListStore, iter: *mut GtkTreeIter);
     pub fn gtk_list_store_remove(list_store: *mut GtkListStore, iter: *mut GtkTreeIter)
-        -> gboolean;
+    -> gboolean;
     pub fn gtk_list_store_reorder(store: *mut GtkListStore, new_order: *mut c_int);
     pub fn gtk_list_store_set(list_store: *mut GtkListStore, iter: *mut GtkTreeIter, ...);
     pub fn gtk_list_store_set_column_types(
@@ -16372,7 +16372,7 @@ unsafe extern "C" {
     pub fn gtk_media_file_new_for_file(file: *mut gio::GFile) -> *mut GtkMediaFile;
     pub fn gtk_media_file_new_for_filename(filename: *const c_char) -> *mut GtkMediaFile;
     pub fn gtk_media_file_new_for_input_stream(stream: *mut gio::GInputStream)
-        -> *mut GtkMediaFile;
+    -> *mut GtkMediaFile;
     pub fn gtk_media_file_new_for_resource(resource_path: *const c_char) -> *mut GtkMediaFile;
     pub fn gtk_media_file_clear(self_: *mut GtkMediaFile);
     pub fn gtk_media_file_get_file(self_: *mut GtkMediaFile) -> *mut gio::GFile;
@@ -16672,7 +16672,7 @@ unsafe extern "C" {
     ) -> *const c_char;
     pub fn gtk_notebook_get_n_pages(notebook: *mut GtkNotebook) -> c_int;
     pub fn gtk_notebook_get_nth_page(notebook: *mut GtkNotebook, page_num: c_int)
-        -> *mut GtkWidget;
+    -> *mut GtkWidget;
     pub fn gtk_notebook_get_page(
         notebook: *mut GtkNotebook,
         child: *mut GtkWidget,
@@ -16848,7 +16848,7 @@ unsafe extern "C" {
     //=========================================================================
     pub fn gtk_overlay_layout_child_get_type() -> GType;
     pub fn gtk_overlay_layout_child_get_clip_overlay(child: *mut GtkOverlayLayoutChild)
-        -> gboolean;
+    -> gboolean;
     pub fn gtk_overlay_layout_child_get_measure(child: *mut GtkOverlayLayoutChild) -> gboolean;
     pub fn gtk_overlay_layout_child_set_clip_overlay(
         child: *mut GtkOverlayLayoutChild,
@@ -17144,7 +17144,7 @@ unsafe extern "C" {
         id: *const c_char,
     ) -> gboolean;
     pub fn gtk_popover_menu_bar_get_menu_model(bar: *mut GtkPopoverMenuBar)
-        -> *mut gio::GMenuModel;
+    -> *mut gio::GMenuModel;
     pub fn gtk_popover_menu_bar_remove_child(
         bar: *mut GtkPopoverMenuBar,
         child: *mut GtkWidget,
@@ -17210,7 +17210,7 @@ unsafe extern "C" {
     #[cfg(feature = "v4_14")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
     pub fn gtk_print_dialog_get_print_settings(self_: *mut GtkPrintDialog)
-        -> *mut GtkPrintSettings;
+    -> *mut GtkPrintSettings;
     #[cfg(feature = "v4_14")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
     pub fn gtk_print_dialog_get_title(self_: *mut GtkPrintDialog) -> *const c_char;
@@ -17468,7 +17468,7 @@ unsafe extern "C" {
     pub fn gtk_print_settings_get_duplex(settings: *mut GtkPrintSettings) -> GtkPrintDuplex;
     pub fn gtk_print_settings_get_finishings(settings: *mut GtkPrintSettings) -> *const c_char;
     pub fn gtk_print_settings_get_int(settings: *mut GtkPrintSettings, key: *const c_char)
-        -> c_int;
+    -> c_int;
     pub fn gtk_print_settings_get_int_with_default(
         settings: *mut GtkPrintSettings,
         key: *const c_char,
@@ -17665,7 +17665,7 @@ unsafe extern "C" {
         dialog: *mut GtkPrintUnixDialog,
     ) -> *mut GtkPrintSettings;
     pub fn gtk_print_unix_dialog_get_support_selection(dialog: *mut GtkPrintUnixDialog)
-        -> gboolean;
+    -> gboolean;
     pub fn gtk_print_unix_dialog_set_current_page(
         dialog: *mut GtkPrintUnixDialog,
         current_page: c_int,
@@ -17963,7 +17963,7 @@ unsafe extern "C" {
     pub fn gtk_scrolled_window_get_type() -> GType;
     pub fn gtk_scrolled_window_new() -> *mut GtkWidget;
     pub fn gtk_scrolled_window_get_child(scrolled_window: *mut GtkScrolledWindow)
-        -> *mut GtkWidget;
+    -> *mut GtkWidget;
     pub fn gtk_scrolled_window_get_hadjustment(
         scrolled_window: *mut GtkScrolledWindow,
     ) -> *mut GtkAdjustment;
@@ -18198,7 +18198,7 @@ unsafe extern "C" {
         self_: *mut GtkShortcutController,
     ) -> gdk::GdkModifierType;
     pub fn gtk_shortcut_controller_get_scope(self_: *mut GtkShortcutController)
-        -> GtkShortcutScope;
+    -> GtkShortcutScope;
     pub fn gtk_shortcut_controller_remove_shortcut(
         self_: *mut GtkShortcutController,
         shortcut: *mut GtkShortcut,
@@ -18235,7 +18235,7 @@ unsafe extern "C" {
     pub fn gtk_shortcut_trigger_parse_string(string: *const c_char) -> *mut GtkShortcutTrigger;
     pub fn gtk_shortcut_trigger_compare(trigger1: gconstpointer, trigger2: gconstpointer) -> c_int;
     pub fn gtk_shortcut_trigger_equal(trigger1: gconstpointer, trigger2: gconstpointer)
-        -> gboolean;
+    -> gboolean;
     pub fn gtk_shortcut_trigger_hash(trigger: gconstpointer) -> c_uint;
     pub fn gtk_shortcut_trigger_print(self_: *mut GtkShortcutTrigger, string: *mut glib::GString);
     pub fn gtk_shortcut_trigger_print_label(
@@ -18783,7 +18783,7 @@ unsafe extern "C" {
         title: *const c_char,
     ) -> *mut GtkStackPage;
     pub fn gtk_stack_get_child_by_name(stack: *mut GtkStack, name: *const c_char)
-        -> *mut GtkWidget;
+    -> *mut GtkWidget;
     pub fn gtk_stack_get_hhomogeneous(stack: *mut GtkStack) -> gboolean;
     pub fn gtk_stack_get_interpolate_size(stack: *mut GtkStack) -> gboolean;
     pub fn gtk_stack_get_page(stack: *mut GtkStack, child: *mut GtkWidget) -> *mut GtkStackPage;
@@ -18896,7 +18896,7 @@ unsafe extern "C" {
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_18")))]
     pub fn gtk_string_list_find(self_: *mut GtkStringList, string: *const c_char) -> c_uint;
     pub fn gtk_string_list_get_string(self_: *mut GtkStringList, position: c_uint)
-        -> *const c_char;
+    -> *const c_char;
     pub fn gtk_string_list_remove(self_: *mut GtkStringList, position: c_uint);
     pub fn gtk_string_list_splice(
         self_: *mut GtkStringList,
@@ -19991,7 +19991,7 @@ unsafe extern "C" {
         parent: *mut GtkTreeIter,
     );
     pub fn gtk_tree_store_remove(tree_store: *mut GtkTreeStore, iter: *mut GtkTreeIter)
-        -> gboolean;
+    -> gboolean;
     pub fn gtk_tree_store_reorder(
         tree_store: *mut GtkTreeStore,
         parent: *mut GtkTreeIter,
@@ -20141,7 +20141,7 @@ unsafe extern "C" {
     pub fn gtk_tree_view_get_enable_search(tree_view: *mut GtkTreeView) -> gboolean;
     pub fn gtk_tree_view_get_enable_tree_lines(tree_view: *mut GtkTreeView) -> gboolean;
     pub fn gtk_tree_view_get_expander_column(tree_view: *mut GtkTreeView)
-        -> *mut GtkTreeViewColumn;
+    -> *mut GtkTreeViewColumn;
     pub fn gtk_tree_view_get_fixed_height_mode(tree_view: *mut GtkTreeView) -> gboolean;
     pub fn gtk_tree_view_get_grid_lines(tree_view: *mut GtkTreeView) -> GtkTreeViewGridLines;
     pub fn gtk_tree_view_get_headers_clickable(tree_view: *mut GtkTreeView) -> gboolean;
@@ -20397,7 +20397,7 @@ unsafe extern "C" {
     ) -> GtkTreeViewColumnSizing;
     pub fn gtk_tree_view_column_get_sort_column_id(tree_column: *mut GtkTreeViewColumn) -> c_int;
     pub fn gtk_tree_view_column_get_sort_indicator(tree_column: *mut GtkTreeViewColumn)
-        -> gboolean;
+    -> gboolean;
     pub fn gtk_tree_view_column_get_sort_order(tree_column: *mut GtkTreeViewColumn) -> GtkSortType;
     pub fn gtk_tree_view_column_get_spacing(tree_column: *mut GtkTreeViewColumn) -> c_int;
     pub fn gtk_tree_view_column_get_title(tree_column: *mut GtkTreeViewColumn) -> *const c_char;
@@ -21511,10 +21511,10 @@ unsafe extern "C" {
     ) -> gboolean;
     pub fn gtk_scrollable_get_hadjustment(scrollable: *mut GtkScrollable) -> *mut GtkAdjustment;
     pub fn gtk_scrollable_get_hscroll_policy(scrollable: *mut GtkScrollable)
-        -> GtkScrollablePolicy;
+    -> GtkScrollablePolicy;
     pub fn gtk_scrollable_get_vadjustment(scrollable: *mut GtkScrollable) -> *mut GtkAdjustment;
     pub fn gtk_scrollable_get_vscroll_policy(scrollable: *mut GtkScrollable)
-        -> GtkScrollablePolicy;
+    -> GtkScrollablePolicy;
     pub fn gtk_scrollable_set_hadjustment(
         scrollable: *mut GtkScrollable,
         hadjustment: *mut GtkAdjustment,

@@ -3,11 +3,11 @@
 // DO NOT EDIT
 #![allow(deprecated)]
 
-use crate::{ffi, EventController, EventSequenceState};
+use crate::{EventController, EventSequenceState, ffi};
 use glib::{
     object::ObjectType as _,
     prelude::*,
-    signal::{connect_raw, SignalHandlerId},
+    signal::{SignalHandlerId, connect_raw},
     translate::*,
 };
 use std::boxed::Box as Box_;
@@ -35,11 +35,7 @@ pub trait GestureExt: IsA<Gesture> + 'static {
                 self.as_ref().to_glib_none().0,
                 rect.to_glib_none_mut().0,
             ));
-            if ret {
-                Some(rect)
-            } else {
-                None
-            }
+            if ret { Some(rect) } else { None }
         }
     }
 

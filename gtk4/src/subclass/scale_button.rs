@@ -5,7 +5,7 @@
 
 use glib::translate::*;
 
-use crate::{ffi, prelude::*, subclass::prelude::*, Orientable, ScaleButton};
+use crate::{Orientable, ScaleButton, ffi, prelude::*, subclass::prelude::*};
 
 pub trait ScaleButtonImpl:
     WidgetImpl + ObjectSubclass<Type: IsA<ScaleButton> + IsA<Orientable>>

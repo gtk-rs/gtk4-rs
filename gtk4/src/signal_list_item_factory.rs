@@ -5,13 +5,13 @@ use std::{boxed::Box as Box_, mem::transmute};
 
 #[cfg(not(feature = "v4_8"))]
 use glib::{
-    signal::{connect_raw, SignalHandlerId},
+    signal::{SignalHandlerId, connect_raw},
     translate::*,
 };
 
 use crate::SignalListItemFactory;
 #[cfg(not(feature = "v4_8"))]
-use crate::{ffi, prelude::*, ListItem};
+use crate::{ListItem, ffi, prelude::*};
 
 impl SignalListItemFactory {
     #[doc(alias = "bind")]

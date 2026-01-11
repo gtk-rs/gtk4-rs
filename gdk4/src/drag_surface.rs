@@ -3,11 +3,11 @@
 use std::{boxed::Box as Box_, mem::transmute};
 
 use glib::{
-    signal::{connect_raw, SignalHandlerId},
+    signal::{SignalHandlerId, connect_raw},
     translate::*,
 };
 
-use crate::{ffi, prelude::*, DragSurface, DragSurfaceSize};
+use crate::{DragSurface, DragSurfaceSize, ffi, prelude::*};
 
 // rustdoc-stripper-ignore-next
 /// Trait containing manually implemented methods of

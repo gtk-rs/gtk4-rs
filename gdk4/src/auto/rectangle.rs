@@ -46,11 +46,7 @@ impl Rectangle {
                 src2.to_glib_none().0,
                 dest.to_glib_none_mut().0,
             ));
-            if ret {
-                Some(dest)
-            } else {
-                None
-            }
+            if ret { Some(dest) } else { None }
         }
     }
 

@@ -5,12 +5,12 @@
 
 use std::mem;
 
-use glib::{translate::*, GString};
+use glib::{GString, translate::*};
 use libc::{c_char, c_int};
 
 use crate::{
-    ffi, prelude::*, subclass::prelude::*, CellEditable, CellRenderer, CellRendererState,
-    SizeRequestMode, Snapshot, Widget,
+    CellEditable, CellRenderer, CellRendererState, SizeRequestMode, Snapshot, Widget, ffi,
+    prelude::*, subclass::prelude::*,
 };
 
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]

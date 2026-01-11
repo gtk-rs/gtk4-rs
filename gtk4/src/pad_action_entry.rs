@@ -4,7 +4,7 @@ use std::ffi::CStr;
 
 use glib::translate::*;
 
-use crate::{ffi, PadActionType};
+use crate::{PadActionType, ffi};
 
 glib::wrapper! {
     #[doc(alias = "GtkPadActionEntry")]

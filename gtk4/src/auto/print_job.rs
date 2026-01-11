@@ -3,13 +3,13 @@
 // DO NOT EDIT
 
 use crate::{
-    ffi, NumberUpLayout, PageRange, PageSet, PageSetup, PrintPages, PrintSettings, PrintStatus,
-    Printer,
+    NumberUpLayout, PageRange, PageSet, PageSetup, PrintPages, PrintSettings, PrintStatus, Printer,
+    ffi,
 };
 use glib::{
     object::ObjectType as _,
     prelude::*,
-    signal::{connect_raw, SignalHandlerId},
+    signal::{SignalHandlerId, connect_raw},
     translate::*,
 };
 use std::boxed::Box as Box_;

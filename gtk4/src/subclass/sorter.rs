@@ -3,9 +3,9 @@
 // rustdoc-stripper-ignore-next
 //! Traits intended for subclassing [`Sorter`].
 
-use glib::{translate::*, Object};
+use glib::{Object, translate::*};
 
-use crate::{ffi, prelude::*, subclass::prelude::*, Ordering, Sorter, SorterOrder};
+use crate::{Ordering, Sorter, SorterOrder, ffi, prelude::*, subclass::prelude::*};
 
 pub trait SorterImpl: ObjectImpl + ObjectSubclass<Type: IsA<Sorter>> {
     fn compare(&self, item1: &Object, item2: &Object) -> Ordering {

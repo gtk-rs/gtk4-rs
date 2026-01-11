@@ -2,12 +2,12 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::{ffi, ListItemFactory};
+use crate::{ListItemFactory, ffi};
 #[cfg(feature = "v4_8")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
 use glib::{
     object::ObjectType as _,
-    signal::{connect_raw, SignalHandlerId},
+    signal::{SignalHandlerId, connect_raw},
 };
 use glib::{prelude::*, translate::*};
 #[cfg(feature = "v4_8")]

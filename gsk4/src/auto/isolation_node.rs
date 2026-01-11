@@ -2,7 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::{ffi, Isolation, RenderNode};
+use crate::{Isolation, RenderNode, ffi};
 use glib::{prelude::*, translate::*};
 
 glib::wrapper! {

@@ -3,12 +3,12 @@
 use std::{boxed::Box as Box_, mem::transmute};
 
 use glib::{
-    signal::{connect_raw, SignalHandlerId},
+    signal::{SignalHandlerId, connect_raw},
     translate::*,
 };
 use libc::{c_double, c_int};
 
-use crate::{ffi, prelude::*, SpinButton};
+use crate::{SpinButton, ffi, prelude::*};
 
 impl SpinButton {
     pub fn connect_input<F>(&self, f: F) -> SignalHandlerId

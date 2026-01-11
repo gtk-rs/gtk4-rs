@@ -2,11 +2,11 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::{ffi, TextChildAnchor, TextIter, TextMark, TextTag, TextTagTable};
+use crate::{TextChildAnchor, TextIter, TextMark, TextTag, TextTagTable, ffi};
 use glib::{
     object::ObjectType as _,
     prelude::*,
-    signal::{connect_raw, SignalHandlerId},
+    signal::{SignalHandlerId, connect_raw},
     translate::*,
 };
 use std::boxed::Box as Box_;
@@ -391,11 +391,7 @@ pub trait TextBufferExt: IsA<TextBuffer> + 'static {
                 iter.to_glib_none_mut().0,
                 line_number,
             ));
-            if ret {
-                Some(iter)
-            } else {
-                None
-            }
+            if ret { Some(iter) } else { None }
         }
     }
 
@@ -410,11 +406,7 @@ pub trait TextBufferExt: IsA<TextBuffer> + 'static {
                 line_number,
                 byte_index,
             ));
-            if ret {
-                Some(iter)
-            } else {
-                None
-            }
+            if ret { Some(iter) } else { None }
         }
     }
 
@@ -429,11 +421,7 @@ pub trait TextBufferExt: IsA<TextBuffer> + 'static {
                 line_number,
                 char_offset,
             ));
-            if ret {
-                Some(iter)
-            } else {
-                None
-            }
+            if ret { Some(iter) } else { None }
         }
     }
 
@@ -519,11 +507,7 @@ pub trait TextBufferExt: IsA<TextBuffer> + 'static {
                 start.to_glib_none_mut().0,
                 end.to_glib_none_mut().0,
             ));
-            if ret {
-                Some((start, end))
-            } else {
-                None
-            }
+            if ret { Some((start, end)) } else { None }
         }
     }
 

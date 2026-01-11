@@ -5,7 +5,7 @@
 
 use glib::translate::*;
 
-use crate::{ffi, prelude::*, subclass::prelude::*, Actionable, ListBoxRow};
+use crate::{Actionable, ListBoxRow, ffi, prelude::*, subclass::prelude::*};
 
 pub trait ListBoxRowImpl:
     WidgetImpl + ObjectSubclass<Type: IsA<ListBoxRow> + IsA<Actionable>>
