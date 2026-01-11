@@ -2,7 +2,7 @@
 
 use glib::translate::*;
 
-use crate::{ffi, prelude::*, ComboBox};
+use crate::{ComboBox, ffi, prelude::*};
 
 // rustdoc-stripper-ignore-next
 /// Trait containing manually implemented methods of

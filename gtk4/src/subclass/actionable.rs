@@ -3,9 +3,9 @@
 // rustdoc-stripper-ignore-next
 //! Traits intended for implementing the [`Actionable`] interface.
 
-use glib::{translate::*, GString, Variant};
+use glib::{GString, Variant, translate::*};
 
-use crate::{ffi, prelude::*, subclass::prelude::*, Actionable};
+use crate::{Actionable, ffi, prelude::*, subclass::prelude::*};
 
 pub trait ActionableImpl: WidgetImpl + ObjectSubclass<Type: IsA<Actionable>> {
     #[doc(alias = "get_action_name")]

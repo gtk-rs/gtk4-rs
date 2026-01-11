@@ -2,9 +2,9 @@
 
 use std::{future, pin::Pin, ptr};
 
-use glib::{translate::*, GString};
+use glib::{GString, translate::*};
 
-use crate::{ffi, prelude::*, Clipboard};
+use crate::{Clipboard, ffi, prelude::*};
 
 impl Clipboard {
     #[doc(alias = "gdk_clipboard_read_async")]

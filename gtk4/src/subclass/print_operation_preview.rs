@@ -6,7 +6,7 @@
 use glib::translate::*;
 
 use crate::{
-    ffi, prelude::*, subclass::prelude::*, PageSetup, PrintContext, PrintOperationPreview,
+    PageSetup, PrintContext, PrintOperationPreview, ffi, prelude::*, subclass::prelude::*,
 };
 
 pub trait PrintOperationPreviewImpl:

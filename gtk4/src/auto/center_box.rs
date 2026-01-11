@@ -3,12 +3,12 @@
 // DO NOT EDIT
 
 use crate::{
-    ffi, Accessible, AccessibleRole, Align, BaselinePosition, Buildable, ConstraintTarget,
-    LayoutManager, Orientable, Orientation, Overflow, Widget,
+    Accessible, AccessibleRole, Align, BaselinePosition, Buildable, ConstraintTarget,
+    LayoutManager, Orientable, Orientation, Overflow, Widget, ffi,
 };
 use glib::{
     prelude::*,
-    signal::{connect_raw, SignalHandlerId},
+    signal::{SignalHandlerId, connect_raw},
     translate::*,
 };
 use std::boxed::Box as Box_;

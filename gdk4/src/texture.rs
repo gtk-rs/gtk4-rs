@@ -2,7 +2,7 @@
 
 use glib::translate::*;
 
-use crate::{ffi, prelude::*, Texture};
+use crate::{Texture, ffi, prelude::*};
 
 // rustdoc-stripper-ignore-next
 /// Trait containing manually implemented methods of

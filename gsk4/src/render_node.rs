@@ -2,7 +2,7 @@
 
 use glib::translate::*;
 
-use crate::{ffi, prelude::*, ParseLocation, RenderNode, RenderNodeType};
+use crate::{ParseLocation, RenderNode, RenderNodeType, ffi, prelude::*};
 
 impl RenderNode {
     #[inline]

@@ -6,15 +6,15 @@
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
 use crate::AccessibleText;
 use crate::{
-    ffi, Accessible, AccessibleRole, Adjustment, Align, Buildable, ConstraintTarget, DeleteType,
+    Accessible, AccessibleRole, Adjustment, Align, Buildable, ConstraintTarget, DeleteType,
     InputHints, InputPurpose, Justification, LayoutManager, MovementStep, Overflow, ScrollStep,
     Scrollable, ScrollablePolicy, TextBuffer, TextChildAnchor, TextExtendSelection, TextIter,
-    TextMark, TextWindowType, Widget, WrapMode,
+    TextMark, TextWindowType, Widget, WrapMode, ffi,
 };
 use glib::{
     object::ObjectType as _,
     prelude::*,
-    signal::{connect_raw, SignalHandlerId},
+    signal::{SignalHandlerId, connect_raw},
     translate::*,
 };
 use std::boxed::Box as Box_;
@@ -668,11 +668,7 @@ pub trait TextViewExt: IsA<TextView> + 'static {
                 x,
                 y,
             ));
-            if ret {
-                Some(iter)
-            } else {
-                None
-            }
+            if ret { Some(iter) } else { None }
         }
     }
 

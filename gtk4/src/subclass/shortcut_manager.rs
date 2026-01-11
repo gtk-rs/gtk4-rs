@@ -5,7 +5,7 @@
 
 use glib::translate::*;
 
-use crate::{ffi, prelude::*, subclass::prelude::*, ShortcutController, ShortcutManager};
+use crate::{ShortcutController, ShortcutManager, ffi, prelude::*, subclass::prelude::*};
 
 pub trait ShortcutManagerImpl: ObjectImpl + ObjectSubclass<Type: IsA<ShortcutManager>> {
     fn add_controller(&self, controller: &ShortcutController) {

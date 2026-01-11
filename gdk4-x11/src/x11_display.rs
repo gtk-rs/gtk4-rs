@@ -6,7 +6,7 @@ use std::{boxed::Box as Box_, mem::transmute};
 
 #[cfg(feature = "xlib")]
 #[cfg_attr(docsrs, doc(cfg(feature = "xlib")))]
-use glib::signal::{connect_raw, SignalHandlerId};
+use glib::signal::{SignalHandlerId, connect_raw};
 use glib::translate::*;
 #[cfg(all(feature = "v4_4", feature = "egl"))]
 #[cfg_attr(docsrs, doc(cfg(all(feature = "v4_4", feature = "egl"))))]
@@ -18,7 +18,7 @@ use x11::xlib;
 #[cfg_attr(docsrs, doc(cfg(feature = "xlib")))]
 use x11::xlib::{Cursor as XCursor, Window as XWindow};
 
-use crate::{ffi, prelude::*, X11Display};
+use crate::{X11Display, ffi, prelude::*};
 #[cfg(not(feature = "xlib"))]
 use crate::{XCursor, XWindow};
 

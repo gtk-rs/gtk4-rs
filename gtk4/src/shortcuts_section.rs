@@ -3,11 +3,11 @@
 use std::mem::transmute;
 
 use glib::{
-    signal::{connect_raw, SignalHandlerId},
+    signal::{SignalHandlerId, connect_raw},
     translate::*,
 };
 
-use crate::{ffi, prelude::*, ShortcutsSection};
+use crate::{ShortcutsSection, ffi, prelude::*};
 
 impl ShortcutsSection {
     // todo: figure out what the bool return value here corresponds to

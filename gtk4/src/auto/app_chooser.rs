@@ -3,7 +3,7 @@
 // DO NOT EDIT
 #![allow(deprecated)]
 
-use crate::{ffi, Accessible, Buildable, ConstraintTarget, Widget};
+use crate::{Accessible, Buildable, ConstraintTarget, Widget, ffi};
 use glib::{prelude::*, translate::*};
 
 glib::wrapper! {

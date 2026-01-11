@@ -5,7 +5,7 @@
 
 use glib::translate::*;
 
-use crate::{ffi, prelude::*, subclass::prelude::*, Native, Root, ShortcutManager, Window};
+use crate::{Native, Root, ShortcutManager, Window, ffi, prelude::*, subclass::prelude::*};
 
 pub trait WindowImpl:
     WidgetImpl + ObjectSubclass<Type: IsA<Window> + IsA<Native> + IsA<Root> + IsA<ShortcutManager>>

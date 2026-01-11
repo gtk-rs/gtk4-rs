@@ -4,7 +4,7 @@ use std::ffi::c_void;
 
 use glib::translate::*;
 
-use crate::{ffi, prelude::*, Win32Surface, HWND};
+use crate::{HWND, Win32Surface, ffi, prelude::*};
 
 impl Win32Surface {
     #[doc(alias = "gdk_win32_surface_lookup_for_display")]

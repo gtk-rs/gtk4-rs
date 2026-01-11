@@ -3,7 +3,7 @@
 use glib::translate::*;
 use std::boxed::Box as Box_;
 
-use crate::{ffi, CallbackAction, Widget};
+use crate::{CallbackAction, Widget, ffi};
 
 impl CallbackAction {
     #[doc(alias = "gtk_callback_action_new")]

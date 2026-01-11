@@ -3,12 +3,12 @@
 use std::mem::transmute;
 
 use glib::{
-    signal::{connect_raw, SignalHandlerId},
-    translate::*,
     GString,
+    signal::{SignalHandlerId, connect_raw},
+    translate::*,
 };
 
-use crate::{ffi, prelude::*, DeleteType, MovementStep, Text, Widget};
+use crate::{DeleteType, MovementStep, Text, Widget, ffi, prelude::*};
 
 impl Text {
     pub fn connect_activate<F: Fn(&Text) + 'static>(&self, f: F) -> SignalHandlerId {

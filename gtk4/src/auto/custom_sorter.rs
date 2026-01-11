@@ -2,7 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::{ffi, Sorter};
+use crate::{Sorter, ffi};
 
 glib::wrapper! {
     #[doc(alias = "GtkCustomSorter")]

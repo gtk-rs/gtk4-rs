@@ -1,8 +1,8 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
 use proc_macro2::{Span, TokenStream};
-use quote::{quote, ToTokens, TokenStreamExt};
-use syn::{parse::Parse, Error, Meta, Result, Token};
+use quote::{ToTokens, TokenStreamExt, quote};
+use syn::{Error, Meta, Result, Token, parse::Parse};
 
 use crate::util::*;
 

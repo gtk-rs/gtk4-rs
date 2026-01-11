@@ -2,7 +2,7 @@
 
 use glib::translate::*;
 
-use crate::{prelude::*, Entry, EntryCompletion, Widget};
+use crate::{Entry, EntryCompletion, Widget, prelude::*};
 
 impl EntryCompletion {
     #[doc(alias = "gtk_entry_completion_get_entry")]

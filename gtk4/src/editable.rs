@@ -3,12 +3,12 @@
 use std::{ffi::CStr, mem::transmute, slice, str};
 
 use glib::{
-    signal::{connect_raw, SignalHandlerId},
+    signal::{SignalHandlerId, connect_raw},
     translate::*,
 };
 use libc::{c_char, c_int, c_uchar};
 
-use crate::{prelude::*, Editable};
+use crate::{Editable, prelude::*};
 
 // rustdoc-stripper-ignore-next
 /// Trait containing manually implemented methods of

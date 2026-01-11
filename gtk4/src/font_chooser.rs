@@ -2,7 +2,7 @@
 
 use glib::translate::*;
 
-use crate::{prelude::*, FontChooser};
+use crate::{FontChooser, prelude::*};
 
 // rustdoc-stripper-ignore-next
 /// Trait containing manually implemented methods of

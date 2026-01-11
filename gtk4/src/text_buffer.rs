@@ -3,12 +3,12 @@
 use std::{boxed::Box as Box_, mem::transmute, slice, str};
 
 use glib::{
-    signal::{connect_raw, SignalHandlerId},
+    signal::{SignalHandlerId, connect_raw},
     translate::*,
 };
 use libc::{c_char, c_int};
 
-use crate::{ffi, prelude::*, TextBuffer, TextIter, TextTag};
+use crate::{TextBuffer, TextIter, TextTag, ffi, prelude::*};
 
 #[cfg(feature = "v4_16")]
 use crate::TextBufferNotifyFlags;

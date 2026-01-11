@@ -2,7 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::{ffi, Accessible, Buildable, ConstraintTarget, Orientable, Scrollable, Widget};
+use crate::{Accessible, Buildable, ConstraintTarget, Orientable, Scrollable, Widget, ffi};
 
 glib::wrapper! {
     #[doc(alias = "GtkListBase")]

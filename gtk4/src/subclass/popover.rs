@@ -5,7 +5,7 @@
 
 use glib::translate::*;
 
-use crate::{ffi, prelude::*, subclass::prelude::*, Native, Popover, ShortcutManager};
+use crate::{Native, Popover, ShortcutManager, ffi, prelude::*, subclass::prelude::*};
 
 pub trait PopoverImpl:
     WidgetImpl + ObjectSubclass<Type: IsA<Popover> + IsA<Native> + IsA<ShortcutManager>>

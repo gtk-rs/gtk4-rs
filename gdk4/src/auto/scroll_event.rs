@@ -8,7 +8,7 @@ use crate::ScrollRelativeDirection;
 #[cfg(feature = "v4_8")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
 use crate::ScrollUnit;
-use crate::{ffi, ScrollDirection};
+use crate::{ScrollDirection, ffi};
 use glib::{prelude::*, translate::*};
 
 glib::wrapper! {

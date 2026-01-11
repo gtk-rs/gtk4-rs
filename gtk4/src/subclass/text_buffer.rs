@@ -6,7 +6,7 @@
 use glib::translate::*;
 
 use crate::{
-    ffi, prelude::*, subclass::prelude::*, TextBuffer, TextChildAnchor, TextIter, TextMark, TextTag,
+    TextBuffer, TextChildAnchor, TextIter, TextMark, TextTag, ffi, prelude::*, subclass::prelude::*,
 };
 
 pub trait TextBufferImpl: ObjectImpl + ObjectSubclass<Type: IsA<TextBuffer>> {

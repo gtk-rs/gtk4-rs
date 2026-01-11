@@ -3,8 +3,8 @@
 // DO NOT EDIT
 
 use crate::{
-    ffi, AxisUse, Device, DeviceTool, Display, EventSequence, EventType, ModifierType, Seat,
-    Surface, TimeCoord,
+    AxisUse, Device, DeviceTool, Display, EventSequence, EventType, ModifierType, Seat, Surface,
+    TimeCoord, ffi,
 };
 use glib::{prelude::*, translate::*};
 
@@ -59,11 +59,7 @@ impl Event {
                 axis_use.into_glib(),
                 value.as_mut_ptr(),
             ));
-            if ret {
-                Some(value.assume_init())
-            } else {
-                None
-            }
+            if ret { Some(value.assume_init()) } else { None }
         }
     }
 

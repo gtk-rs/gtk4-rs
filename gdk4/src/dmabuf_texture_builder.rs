@@ -4,7 +4,7 @@ use glib::{prelude::*, translate::*};
 
 #[cfg(feature = "v4_16")]
 use crate::ColorState;
-use crate::{ffi, Display, DmabufTextureBuilder, Texture};
+use crate::{Display, DmabufTextureBuilder, Texture, ffi};
 
 impl DmabufTextureBuilder {
     #[cfg(feature = "v4_16")]

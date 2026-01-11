@@ -3,7 +3,7 @@
 // rustdoc-stripper-ignore-next
 //! Traits intended for subclassing [`LayoutChild`].
 
-use crate::{prelude::*, subclass::prelude::*, LayoutChild};
+use crate::{LayoutChild, prelude::*, subclass::prelude::*};
 
 pub trait LayoutChildImpl: ObjectImpl + ObjectSubclass<Type: IsA<LayoutChild>> {}
 

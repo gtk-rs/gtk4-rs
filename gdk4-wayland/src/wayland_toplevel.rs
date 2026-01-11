@@ -1,6 +1,6 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{ffi, WaylandToplevel};
+use crate::{WaylandToplevel, ffi};
 use glib::translate::*;
 use std::boxed::Box as Box_;
 
@@ -25,7 +25,12 @@ impl WaylandToplevel {
                 if let Some(handle) = handle.as_ref() {
                     (*callback)(&toplevel, Ok(handle.as_str()))
                 } else {
-                    (*callback)(&toplevel, Err(glib::bool_error!("Failed to export a handle. The compositor probably doesn't implement the xdg-foreign protocol")))
+                    (*callback)(
+                        &toplevel,
+                        Err(glib::bool_error!(
+                            "Failed to export a handle. The compositor probably doesn't implement the xdg-foreign protocol"
+                        )),
+                    )
                 }
             }
         }

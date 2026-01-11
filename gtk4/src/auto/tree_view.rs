@@ -4,15 +4,15 @@
 #![allow(deprecated)]
 
 use crate::{
-    ffi, Accessible, AccessibleRole, Adjustment, Align, Buildable, CellRenderer, ConstraintTarget,
+    Accessible, AccessibleRole, Adjustment, Align, Buildable, CellRenderer, ConstraintTarget,
     Editable, LayoutManager, MovementStep, Overflow, Scrollable, ScrollablePolicy, Tooltip,
     TreeIter, TreeModel, TreePath, TreeSelection, TreeViewColumn, TreeViewDropPosition,
-    TreeViewGridLines, Widget,
+    TreeViewGridLines, Widget, ffi,
 };
 use glib::{
     object::ObjectType as _,
     prelude::*,
-    signal::{connect_raw, SignalHandlerId},
+    signal::{SignalHandlerId, connect_raw},
     translate::*,
 };
 use std::boxed::Box as Box_;

@@ -8,13 +8,13 @@ use crate::FontRendering;
 #[cfg(feature = "v4_22")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
 use crate::ReducedMotion;
-use crate::{ffi, StyleProvider};
 #[cfg(feature = "v4_20")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
 use crate::{InterfaceColorScheme, InterfaceContrast};
+use crate::{StyleProvider, ffi};
 use glib::{
     prelude::*,
-    signal::{connect_raw, SignalHandlerId},
+    signal::{SignalHandlerId, connect_raw},
     translate::*,
 };
 use std::boxed::Box as Box_;

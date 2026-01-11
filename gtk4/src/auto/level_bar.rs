@@ -6,13 +6,13 @@
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 use crate::AccessibleRange;
 use crate::{
-    ffi, Accessible, AccessibleRole, Align, Buildable, ConstraintTarget, LayoutManager,
-    LevelBarMode, Orientable, Orientation, Overflow, Widget,
+    Accessible, AccessibleRole, Align, Buildable, ConstraintTarget, LayoutManager, LevelBarMode,
+    Orientable, Orientation, Overflow, Widget, ffi,
 };
 use glib::{
     object::ObjectType as _,
     prelude::*,
-    signal::{connect_raw, SignalHandlerId},
+    signal::{SignalHandlerId, connect_raw},
     translate::*,
 };
 use std::boxed::Box as Box_;
@@ -111,11 +111,7 @@ impl LevelBar {
                 name.to_glib_none().0,
                 value.as_mut_ptr(),
             ));
-            if ret {
-                Some(value.assume_init())
-            } else {
-                None
-            }
+            if ret { Some(value.assume_init()) } else { None }
         }
     }
 

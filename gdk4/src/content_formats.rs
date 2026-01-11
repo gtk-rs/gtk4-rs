@@ -1,8 +1,8 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use glib::{translate::*, Slice};
+use glib::{Slice, translate::*};
 
-use crate::{ffi, ContentFormats, ContentFormatsBuilder};
+use crate::{ContentFormats, ContentFormatsBuilder, ffi};
 
 impl ContentFormats {
     #[doc(alias = "gdk_content_formats_get_gtypes")]

@@ -188,7 +188,9 @@ pub fn impl_composite_template(input: &syn::DeriveInput) -> Result<TokenStream> 
         Err(e) => {
             return Err(Error::new(
                 Span::call_site(),
-                format!("{e}: derive(CompositeTemplate) requires #[template(...)] to specify 'file', 'resource', or 'string'")
+                format!(
+                    "{e}: derive(CompositeTemplate) requires #[template(...)] to specify 'file', 'resource', or 'string'"
+                ),
             ));
         }
     };

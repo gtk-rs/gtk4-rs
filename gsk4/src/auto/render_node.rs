@@ -2,7 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::{ffi, RenderNodeType};
+use crate::{RenderNodeType, ffi};
 use glib::{prelude::*, translate::*};
 
 glib::wrapper! {
@@ -68,11 +68,7 @@ impl RenderNode {
                 self.as_ref().to_glib_none().0,
                 out_opaque.to_glib_none_mut().0,
             ));
-            if ret {
-                Some(out_opaque)
-            } else {
-                None
-            }
+            if ret { Some(out_opaque) } else { None }
         }
     }
 

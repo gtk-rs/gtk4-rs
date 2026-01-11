@@ -6,13 +6,13 @@
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 use crate::AccessibleRange;
 use crate::{
-    ffi, Accessible, AccessibleRole, Adjustment, Align, Buildable, Button, ConstraintTarget,
-    LayoutManager, Orientable, Orientation, Overflow, Widget,
+    Accessible, AccessibleRole, Adjustment, Align, Buildable, Button, ConstraintTarget,
+    LayoutManager, Orientable, Orientation, Overflow, Widget, ffi,
 };
 use glib::{
     object::ObjectType as _,
     prelude::*,
-    signal::{connect_raw, SignalHandlerId},
+    signal::{SignalHandlerId, connect_raw},
     translate::*,
 };
 use std::boxed::Box as Box_;

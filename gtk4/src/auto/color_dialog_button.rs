@@ -3,15 +3,15 @@
 // DO NOT EDIT
 
 use crate::{
-    ffi, Accessible, AccessibleRole, Align, Buildable, ColorDialog, ConstraintTarget,
-    LayoutManager, Overflow, Widget,
+    Accessible, AccessibleRole, Align, Buildable, ColorDialog, ConstraintTarget, LayoutManager,
+    Overflow, Widget, ffi,
 };
 #[cfg(feature = "v4_14")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
 use glib::object::ObjectType as _;
 use glib::{
     prelude::*,
-    signal::{connect_raw, SignalHandlerId},
+    signal::{SignalHandlerId, connect_raw},
     translate::*,
 };
 use std::boxed::Box as Box_;

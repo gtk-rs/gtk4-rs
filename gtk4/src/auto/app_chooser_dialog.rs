@@ -4,12 +4,12 @@
 #![allow(deprecated)]
 
 use crate::{
-    ffi, Accessible, AppChooser, Buildable, ConstraintTarget, Dialog, DialogFlags, Native, Root,
-    ShortcutManager, Widget, Window,
+    Accessible, AppChooser, Buildable, ConstraintTarget, Dialog, DialogFlags, Native, Root,
+    ShortcutManager, Widget, Window, ffi,
 };
 use glib::{
     prelude::*,
-    signal::{connect_raw, SignalHandlerId},
+    signal::{SignalHandlerId, connect_raw},
     translate::*,
 };
 use std::boxed::Box as Box_;

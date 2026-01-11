@@ -5,7 +5,7 @@
 
 use glib::translate::*;
 
-use crate::{ffi, prelude::*, subclass::prelude::*, Bitset, SelectionModel};
+use crate::{Bitset, SelectionModel, ffi, prelude::*, subclass::prelude::*};
 
 pub trait SelectionModelImpl: ListModelImpl + ObjectSubclass<Type: IsA<SelectionModel>> {
     #[doc(alias = "get_selection_in_range")]

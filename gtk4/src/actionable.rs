@@ -1,8 +1,8 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use glib::{translate::*, Variant};
+use glib::{Variant, translate::*};
 
-use crate::{prelude::*, Actionable};
+use crate::{Actionable, prelude::*};
 
 // rustdoc-stripper-ignore-next
 /// Trait containing manually implemented methods of

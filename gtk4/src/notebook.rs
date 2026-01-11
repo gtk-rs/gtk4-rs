@@ -3,7 +3,7 @@
 use glib::translate::*;
 use libc::c_int;
 
-use crate::{ffi, prelude::*, Notebook, Widget};
+use crate::{Notebook, Widget, ffi, prelude::*};
 
 impl Notebook {
     #[doc(alias = "gtk_notebook_append_page")]
@@ -47,11 +47,7 @@ impl Notebook {
     pub fn current_page(&self) -> Option<u32> {
         unsafe {
             let ret = ffi::gtk_notebook_get_current_page(self.to_glib_none().0);
-            if ret >= 0 {
-                Some(ret as u32)
-            } else {
-                None
-            }
+            if ret >= 0 { Some(ret as u32) } else { None }
         }
     }
 
@@ -120,11 +116,7 @@ impl Notebook {
         unsafe {
             let ret =
                 ffi::gtk_notebook_page_num(self.to_glib_none().0, child.as_ref().to_glib_none().0);
-            if ret >= 0 {
-                Some(ret as u32)
-            } else {
-                None
-            }
+            if ret >= 0 { Some(ret as u32) } else { None }
         }
     }
     #[doc(alias = "gtk_notebook_prepend_page")]

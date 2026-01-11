@@ -2,9 +2,9 @@
 
 use std::cmp;
 
-use glib::{translate::*, Quark};
+use glib::{Quark, translate::*};
 
-use crate::{ffi, prelude::*, CssParserWarning, Ordering};
+use crate::{CssParserWarning, Ordering, ffi, prelude::*};
 
 impl From<cmp::Ordering> for Ordering {
     #[inline]

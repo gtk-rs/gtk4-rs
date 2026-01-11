@@ -2,9 +2,9 @@
 
 use std::marker::PhantomData;
 
-use glib::{gobject_ffi, shared::Shared, translate::*, ParamSpec, Value};
+use glib::{ParamSpec, Value, gobject_ffi, shared::Shared, translate::*};
 
-use crate::{ffi, prelude::*, Expression, ParamSpecExpression};
+use crate::{Expression, ParamSpecExpression, ffi, prelude::*};
 
 impl HasParamSpec for Expression {
     type ParamSpec = ParamSpecExpression;

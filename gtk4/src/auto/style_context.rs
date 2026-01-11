@@ -3,10 +3,10 @@
 // DO NOT EDIT
 #![allow(deprecated)]
 
-use crate::{ffi, Border, StateFlags, StyleContextPrintFlags, StyleProvider};
+use crate::{Border, StateFlags, StyleContextPrintFlags, StyleProvider, ffi};
 use glib::{
     prelude::*,
-    signal::{connect_raw, SignalHandlerId},
+    signal::{SignalHandlerId, connect_raw},
     translate::*,
 };
 use std::boxed::Box as Box_;
@@ -165,11 +165,7 @@ pub trait StyleContextExt: IsA<StyleContext> + 'static {
                 color_name.to_glib_none().0,
                 color.to_glib_none_mut().0,
             ));
-            if ret {
-                Some(color)
-            } else {
-                None
-            }
+            if ret { Some(color) } else { None }
         }
     }
 

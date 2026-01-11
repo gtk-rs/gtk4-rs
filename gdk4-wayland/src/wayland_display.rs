@@ -11,7 +11,7 @@ use crate::ffi;
 use glib::translate::*;
 #[cfg(feature = "wayland_crate")]
 #[cfg_attr(docsrs, doc(cfg(feature = "wayland_crate")))]
-use glib::{prelude::*, Quark};
+use glib::{Quark, prelude::*};
 
 #[cfg(all(feature = "v4_4", feature = "egl"))]
 #[cfg_attr(docsrs, doc(cfg(all(feature = "v4_4", feature = "egl"))))]
@@ -19,9 +19,9 @@ use khronos_egl as egl;
 #[cfg(feature = "wayland_crate")]
 #[cfg_attr(docsrs, doc(cfg(feature = "wayland_crate")))]
 use wayland_client::{
+    Proxy,
     backend::ObjectId,
     protocol::{wl_compositor::WlCompositor, wl_display::WlDisplay},
-    Proxy,
 };
 
 use crate::WaylandDisplay;

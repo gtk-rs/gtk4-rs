@@ -3,11 +3,11 @@
 use std::{mem::transmute, ptr};
 
 use glib::{
-    signal::{connect_raw, SignalHandlerId},
+    signal::{SignalHandlerId, connect_raw},
     translate::*,
 };
 
-use crate::{ffi, prelude::*, Overlay, Widget};
+use crate::{Overlay, Widget, ffi, prelude::*};
 
 impl Overlay {
     pub fn connect_get_child_position<F>(&self, f: F) -> SignalHandlerId

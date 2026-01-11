@@ -18,18 +18,18 @@ use gobject_sys as gobject;
 use graphene_sys as graphene;
 use pango_sys as pango;
 
+#[allow(unused_imports)]
+use libc::{FILE, intptr_t, off_t, size_t, ssize_t, time_t, uintptr_t};
 #[cfg(unix)]
 #[allow(unused_imports)]
 use libc::{dev_t, gid_t, pid_t, socklen_t, uid_t};
-#[allow(unused_imports)]
-use libc::{intptr_t, off_t, size_t, ssize_t, time_t, uintptr_t, FILE};
 #[allow(unused_imports)]
 use std::ffi::{
     c_char, c_double, c_float, c_int, c_long, c_short, c_uchar, c_uint, c_ulong, c_ushort, c_void,
 };
 
 #[allow(unused_imports)]
-use glib::{gboolean, gconstpointer, gpointer, GType};
+use glib::{GType, gboolean, gconstpointer, gpointer};
 
 // Enums
 pub type GskBlendMode = c_int;
@@ -1884,7 +1884,7 @@ unsafe extern "C" {
         value: *const graphene::graphene_vec4_t,
     );
     pub fn gsk_shader_args_builder_to_args(builder: *mut GskShaderArgsBuilder)
-        -> *mut glib::GBytes;
+    -> *mut glib::GBytes;
     pub fn gsk_shader_args_builder_unref(builder: *mut GskShaderArgsBuilder);
 
     //=========================================================================
@@ -2270,14 +2270,14 @@ unsafe extern "C" {
     pub fn gsk_cross_fade_node_get_end_child(node: *const GskCrossFadeNode) -> *mut GskRenderNode;
     pub fn gsk_cross_fade_node_get_progress(node: *const GskCrossFadeNode) -> c_float;
     pub fn gsk_cross_fade_node_get_start_child(node: *const GskCrossFadeNode)
-        -> *mut GskRenderNode;
+    -> *mut GskRenderNode;
 
     //=========================================================================
     // GskDebugNode
     //=========================================================================
     pub fn gsk_debug_node_get_type() -> GType;
     pub fn gsk_debug_node_new(child: *mut GskRenderNode, message: *mut c_char)
-        -> *mut GskDebugNode;
+    -> *mut GskDebugNode;
     pub fn gsk_debug_node_get_child(node: *const GskDebugNode) -> *mut GskRenderNode;
     pub fn gsk_debug_node_get_message(node: *const GskDebugNode) -> *const c_char;
 
@@ -2377,7 +2377,7 @@ unsafe extern "C" {
     pub fn gsk_gl_shader_get_uniform_name(shader: *mut GskGLShader, idx: c_int) -> *const c_char;
     pub fn gsk_gl_shader_get_uniform_offset(shader: *mut GskGLShader, idx: c_int) -> c_int;
     pub fn gsk_gl_shader_get_uniform_type(shader: *mut GskGLShader, idx: c_int)
-        -> GskGLUniformType;
+    -> GskGLUniformType;
 
     //=========================================================================
     // GskGLShaderNode
@@ -2457,7 +2457,7 @@ unsafe extern "C" {
         node: *const GskLinearGradientNode,
     ) -> *const graphene::graphene_point_t;
     pub fn gsk_linear_gradient_node_get_n_color_stops(node: *const GskLinearGradientNode)
-        -> size_t;
+    -> size_t;
     pub fn gsk_linear_gradient_node_get_start(
         node: *const GskLinearGradientNode,
     ) -> *const graphene::graphene_point_t;
@@ -2496,7 +2496,7 @@ unsafe extern "C" {
     //=========================================================================
     pub fn gsk_opacity_node_get_type() -> GType;
     pub fn gsk_opacity_node_new(child: *mut GskRenderNode, opacity: c_float)
-        -> *mut GskOpacityNode;
+    -> *mut GskOpacityNode;
     pub fn gsk_opacity_node_get_child(node: *const GskOpacityNode) -> *mut GskRenderNode;
     pub fn gsk_opacity_node_get_opacity(node: *const GskOpacityNode) -> c_float;
 
@@ -2563,7 +2563,7 @@ unsafe extern "C" {
     pub fn gsk_radial_gradient_node_get_end(node: *const GskRadialGradientNode) -> c_float;
     pub fn gsk_radial_gradient_node_get_hradius(node: *const GskRadialGradientNode) -> c_float;
     pub fn gsk_radial_gradient_node_get_n_color_stops(node: *const GskRadialGradientNode)
-        -> size_t;
+    -> size_t;
     pub fn gsk_radial_gradient_node_get_start(node: *const GskRadialGradientNode) -> c_float;
     pub fn gsk_radial_gradient_node_get_vradius(node: *const GskRadialGradientNode) -> c_float;
 
@@ -2679,7 +2679,7 @@ unsafe extern "C" {
     ) -> *mut GskRoundedClipNode;
     pub fn gsk_rounded_clip_node_get_child(node: *const GskRoundedClipNode) -> *mut GskRenderNode;
     pub fn gsk_rounded_clip_node_get_clip(node: *const GskRoundedClipNode)
-        -> *const GskRoundedRect;
+    -> *const GskRoundedRect;
 
     //=========================================================================
     // GskShadowNode

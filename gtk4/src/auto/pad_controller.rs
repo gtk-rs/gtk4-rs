@@ -3,7 +3,7 @@
 // DO NOT EDIT
 
 use crate::{
-    ffi, EventController, PadActionEntry, PadActionType, PropagationLimit, PropagationPhase,
+    EventController, PadActionEntry, PadActionType, PropagationLimit, PropagationPhase, ffi,
 };
 use glib::{prelude::*, translate::*};
 

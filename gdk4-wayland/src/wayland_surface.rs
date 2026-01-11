@@ -5,11 +5,11 @@
 use glib::translate::*;
 #[cfg(feature = "wayland_crate")]
 #[cfg_attr(docsrs, doc(cfg(feature = "wayland_crate")))]
-use wayland_client::{backend::ObjectId, protocol::wl_surface::WlSurface, Proxy};
+use wayland_client::{Proxy, backend::ObjectId, protocol::wl_surface::WlSurface};
 
 #[cfg(feature = "wayland_crate")]
 use crate::ffi;
-use crate::{prelude::*, WaylandSurface};
+use crate::{WaylandSurface, prelude::*};
 
 // rustdoc-stripper-ignore-next
 /// Trait containing manually implemented methods of

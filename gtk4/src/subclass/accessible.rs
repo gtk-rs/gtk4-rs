@@ -8,7 +8,7 @@ use std::mem::MaybeUninit;
 use glib::translate::*;
 
 use crate::{
-    ffi, prelude::*, subclass::prelude::*, ATContext, Accessible, AccessiblePlatformState,
+    ATContext, Accessible, AccessiblePlatformState, ffi, prelude::*, subclass::prelude::*,
 };
 
 pub trait AccessibleImpl: ObjectImpl + ObjectSubclass<Type: IsA<Accessible>> {

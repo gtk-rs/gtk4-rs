@@ -4,10 +4,10 @@
 //! Traits intended for implementing the [`AccessibleText`] interface.
 
 use crate::{
-    ffi, subclass::prelude::*, AccessibleText, AccessibleTextGranularity, AccessibleTextRange,
+    AccessibleText, AccessibleTextGranularity, AccessibleTextRange, ffi, subclass::prelude::*,
 };
 use glib::object::Cast;
-use glib::{translate::*, GString};
+use glib::{GString, translate::*};
 
 pub trait AccessibleTextImpl: WidgetImpl {
     #[doc(alias = "get_attributes")]
@@ -764,11 +764,12 @@ mod test {
             std::str::from_utf8(&text.imp().contents(0, 11).unwrap()).unwrap()
         );
 
-        assert!(text
-            .imp()
-            .default_attributes()
-            .iter()
-            .any(|(name, value)| name == "editable" && value == "true"));
+        assert!(
+            text.imp()
+                .default_attributes()
+                .iter()
+                .any(|(name, value)| name == "editable" && value == "true")
+        );
         text.buffer().select_range(
             &text.buffer().iter_at_offset(0),
             &text.buffer().iter_at_offset(10),

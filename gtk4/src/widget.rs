@@ -1,8 +1,8 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use glib::{translate::*, ControlFlow, WeakRef};
+use glib::{ControlFlow, WeakRef, translate::*};
 
-use crate::{ffi, prelude::*, Widget};
+use crate::{Widget, ffi, prelude::*};
 
 // rustdoc-stripper-ignore-next
 /// Trait containing manually implemented methods of [`Widget`](crate::Widget).

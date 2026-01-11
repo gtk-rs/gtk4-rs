@@ -2,7 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::{ffi, LineCap, LineJoin};
+use crate::{LineCap, LineJoin, ffi};
 use glib::translate::*;
 
 glib::wrapper! {

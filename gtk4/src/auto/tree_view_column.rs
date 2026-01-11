@@ -4,13 +4,13 @@
 #![allow(deprecated)]
 
 use crate::{
-    ffi, Buildable, CellArea, CellLayout, CellRenderer, SortType, TreeIter, TreeModel,
-    TreeViewColumnSizing, Widget,
+    Buildable, CellArea, CellLayout, CellRenderer, SortType, TreeIter, TreeModel,
+    TreeViewColumnSizing, Widget, ffi,
 };
 use glib::{
     object::ObjectType as _,
     prelude::*,
-    signal::{connect_raw, SignalHandlerId},
+    signal::{SignalHandlerId, connect_raw},
     translate::*,
 };
 use std::boxed::Box as Box_;

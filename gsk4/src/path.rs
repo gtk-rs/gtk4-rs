@@ -2,7 +2,7 @@
 
 use glib::translate::*;
 
-use crate::{ffi, Path, PathForeachFlags, PathOperation};
+use crate::{Path, PathForeachFlags, PathOperation, ffi};
 #[cfg(feature = "v4_20")]
 use crate::{PathIntersection, PathPoint};
 

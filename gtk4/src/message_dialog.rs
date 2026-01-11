@@ -5,7 +5,7 @@ use std::ptr;
 use glib::translate::*;
 
 use crate::{
-    ffi, prelude::*, ButtonsType, DialogFlags, MessageDialog, MessageType, Widget, Window,
+    ButtonsType, DialogFlags, MessageDialog, MessageType, Widget, Window, ffi, prelude::*,
 };
 
 impl MessageDialog {

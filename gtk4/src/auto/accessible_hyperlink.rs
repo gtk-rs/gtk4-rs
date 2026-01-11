@@ -3,8 +3,8 @@
 // DO NOT EDIT
 
 use crate::{
-    ffi, Accessible, AccessibleHypertext, AccessiblePlatformState, AccessibleRole,
-    AccessibleTextRange,
+    Accessible, AccessibleHypertext, AccessiblePlatformState, AccessibleRole, AccessibleTextRange,
+    ffi,
 };
 use glib::{prelude::*, translate::*};
 

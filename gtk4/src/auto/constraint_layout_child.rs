@@ -2,7 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::{ffi, LayoutChild};
+use crate::{LayoutChild, ffi};
 
 glib::wrapper! {
     #[doc(alias = "GtkConstraintLayoutChild")]

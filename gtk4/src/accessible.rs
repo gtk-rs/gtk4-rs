@@ -1,11 +1,11 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use glib::{translate::*, Value};
+use glib::{Value, translate::*};
 
 use crate::{
-    ffi, prelude::*, Accessible, AccessibleAutocomplete, AccessibleInvalidState,
-    AccessibleProperty, AccessibleRelation, AccessibleSort, AccessibleState, AccessibleTristate,
-    Orientation,
+    Accessible, AccessibleAutocomplete, AccessibleInvalidState, AccessibleProperty,
+    AccessibleRelation, AccessibleSort, AccessibleState, AccessibleTristate, Orientation, ffi,
+    prelude::*,
 };
 // rustdoc-stripper-ignore-next
 /// Trait containing manually implemented methods of

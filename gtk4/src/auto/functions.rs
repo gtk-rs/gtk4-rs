@@ -6,9 +6,9 @@
 #[cfg_attr(docsrs, doc(cfg(target_os = "linux")))]
 use crate::Printer;
 use crate::{
-    ffi, Accessible, AccessibleProperty, AccessibleRelation, AccessibleRole, AccessibleState,
+    Accessible, AccessibleProperty, AccessibleRelation, AccessibleRole, AccessibleState,
     DebugFlags, PageSetup, PrintSettings, StyleContext, TextDirection, TreeModel, TreePath, Widget,
-    Window,
+    Window, ffi,
 };
 use glib::{prelude::*, translate::*};
 use std::boxed::Box as Box_;

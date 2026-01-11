@@ -5,7 +5,7 @@
 
 use glib::translate::*;
 
-use crate::{ffi, prelude::*, subclass::prelude::*, SymbolicPaintable};
+use crate::{SymbolicPaintable, ffi, prelude::*, subclass::prelude::*};
 
 pub trait SymbolicPaintableImpl:
     PaintableImpl + ObjectSubclass<Type: IsA<SymbolicPaintable>>

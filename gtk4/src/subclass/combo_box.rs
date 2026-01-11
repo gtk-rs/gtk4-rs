@@ -3,9 +3,9 @@
 // rustdoc-stripper-ignore-next
 //! Traits intended for subclassing [`ComboBox`].
 
-use glib::{translate::*, GString};
+use glib::{GString, translate::*};
 
-use crate::{ffi, prelude::*, subclass::prelude::*, CellEditable, CellLayout, ComboBox};
+use crate::{CellEditable, CellLayout, ComboBox, ffi, prelude::*, subclass::prelude::*};
 
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 #[allow(deprecated)]

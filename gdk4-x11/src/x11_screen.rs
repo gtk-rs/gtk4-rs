@@ -7,7 +7,7 @@ use x11::xlib::{self, XID};
 
 #[cfg(not(feature = "xlib"))]
 use crate::XID;
-use crate::{ffi, X11Screen};
+use crate::{X11Screen, ffi};
 
 impl X11Screen {
     #[cfg(feature = "xlib")]

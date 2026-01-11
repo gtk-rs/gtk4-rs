@@ -5,7 +5,7 @@
 
 use glib::translate::*;
 
-use crate::{ffi, prelude::*, subclass::prelude::*, NativeDialog, ResponseType};
+use crate::{NativeDialog, ResponseType, ffi, prelude::*, subclass::prelude::*};
 
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 #[allow(deprecated)]

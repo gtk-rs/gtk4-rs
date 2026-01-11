@@ -5,7 +5,7 @@ use glib::translate::*;
 
 #[cfg(feature = "v4_8")]
 use crate::ffi;
-use crate::{prelude::*, EventController};
+use crate::{EventController, prelude::*};
 
 pub trait EventControllerExtManual: IsA<EventController> + 'static {
     #[cfg(feature = "v4_8")]

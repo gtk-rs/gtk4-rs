@@ -2,10 +2,10 @@
 
 use std::{boxed::Box as Box_, pin::Pin, sync::OnceLock};
 
-use glib::{translate::*, Quark, Slice};
+use glib::{Quark, Slice, translate::*};
 
 pub use crate::auto::functions::*;
-use crate::{ffi, prelude::*, AboutDialog, StyleProvider, Window};
+use crate::{AboutDialog, StyleProvider, Window, ffi, prelude::*};
 
 #[doc(alias = "gtk_accelerator_valid")]
 pub fn accelerator_valid(keyval: gdk::Key, modifiers: gdk::ModifierType) -> bool {

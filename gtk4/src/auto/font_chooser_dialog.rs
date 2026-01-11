@@ -7,9 +7,9 @@
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
 use crate::WindowGravity;
 use crate::{
-    ffi, Accessible, AccessibleRole, Align, Application, Buildable, ConstraintTarget, Dialog,
+    Accessible, AccessibleRole, Align, Application, Buildable, ConstraintTarget, Dialog,
     FontChooser, FontChooserLevel, LayoutManager, Native, Overflow, Root, ShortcutManager, Widget,
-    Window,
+    Window, ffi,
 };
 use glib::{prelude::*, translate::*};
 

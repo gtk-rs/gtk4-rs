@@ -5,7 +5,7 @@
 
 use glib::translate::*;
 
-use crate::{ffi, prelude::*, subclass::prelude::*, Actionable, Button};
+use crate::{Actionable, Button, ffi, prelude::*, subclass::prelude::*};
 
 pub trait ButtonImpl: WidgetImpl + ObjectSubclass<Type: IsA<Button> + IsA<Actionable>> {
     fn activate(&self) {

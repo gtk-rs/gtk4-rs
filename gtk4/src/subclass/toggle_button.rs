@@ -5,7 +5,7 @@
 
 use glib::translate::*;
 
-use crate::{ffi, prelude::*, subclass::prelude::*, Actionable, ToggleButton};
+use crate::{Actionable, ToggleButton, ffi, prelude::*, subclass::prelude::*};
 
 pub trait ToggleButtonImpl:
     ButtonImpl + ObjectSubclass<Type: IsA<ToggleButton> + IsA<Actionable>>

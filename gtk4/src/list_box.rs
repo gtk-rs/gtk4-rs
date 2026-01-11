@@ -4,7 +4,7 @@ use std::{boxed::Box as Box_, ptr};
 
 use glib::translate::*;
 
-use crate::{ffi, ListBox, ListBoxRow, Ordering};
+use crate::{ListBox, ListBoxRow, Ordering, ffi};
 
 impl ListBox {
     #[doc(alias = "gtk_list_box_bind_model")]

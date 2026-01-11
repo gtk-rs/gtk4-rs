@@ -1,8 +1,8 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use glib::{translate::*, value::FromValue, Object, Type, Value};
+use glib::{Object, Type, Value, translate::*, value::FromValue};
 
-use crate::{ffi, prelude::*, Expression};
+use crate::{Expression, ffi, prelude::*};
 
 #[doc(hidden)]
 impl AsRef<Expression> for Expression {
@@ -80,11 +80,7 @@ impl Expression {
                 this.map(|t| t.as_ref()).to_glib_none().0,
                 value.to_glib_none_mut().0,
             );
-            if from_glib(ret) {
-                Some(value)
-            } else {
-                None
-            }
+            if from_glib(ret) { Some(value) } else { None }
         }
     }
 

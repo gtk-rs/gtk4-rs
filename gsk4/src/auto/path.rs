@@ -2,7 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::{ffi, FillRule, PathPoint, Stroke};
+use crate::{FillRule, PathPoint, Stroke, ffi};
 use glib::translate::*;
 
 glib::wrapper! {
@@ -38,11 +38,7 @@ impl Path {
                 self.to_glib_none().0,
                 bounds.to_glib_none_mut().0,
             ));
-            if ret {
-                Some(bounds)
-            } else {
-                None
-            }
+            if ret { Some(bounds) } else { None }
         }
     }
 
@@ -80,11 +76,7 @@ impl Path {
                 self.to_glib_none().0,
                 result.to_glib_none_mut().0,
             ));
-            if ret {
-                Some(result)
-            } else {
-                None
-            }
+            if ret { Some(result) } else { None }
         }
     }
 
@@ -113,11 +105,7 @@ impl Path {
                 self.to_glib_none().0,
                 result.to_glib_none_mut().0,
             ));
-            if ret {
-                Some(result)
-            } else {
-                None
-            }
+            if ret { Some(result) } else { None }
         }
     }
 
@@ -131,11 +119,7 @@ impl Path {
                 stroke.to_glib_none().0,
                 bounds.to_glib_none_mut().0,
             ));
-            if ret {
-                Some(bounds)
-            } else {
-                None
-            }
+            if ret { Some(bounds) } else { None }
         }
     }
 
@@ -150,11 +134,7 @@ impl Path {
                 self.to_glib_none().0,
                 bounds.to_glib_none_mut().0,
             ));
-            if ret {
-                Some(bounds)
-            } else {
-                None
-            }
+            if ret { Some(bounds) } else { None }
         }
     }
 

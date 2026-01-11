@@ -2,7 +2,7 @@
 
 use glib::translate::*;
 
-use crate::{ffi, GLShaderNode, RenderNode, RenderNodeType};
+use crate::{GLShaderNode, RenderNode, RenderNodeType, ffi};
 
 define_render_node!(
     GLShaderNode,

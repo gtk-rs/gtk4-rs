@@ -1,6 +1,6 @@
 use glib::clone;
 use gtk::prelude::*;
-use gtk::{glib, Application, ApplicationWindow};
+use gtk::{Application, ApplicationWindow, glib};
 use serde::Deserialize;
 use std::sync::OnceLock;
 use tokio::runtime::Runtime;

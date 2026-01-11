@@ -4,7 +4,7 @@ use gdk::RGBA;
 use glib::translate::*;
 use libc::c_int;
 
-use crate::{ffi, prelude::*, ColorChooser, Orientation};
+use crate::{ColorChooser, Orientation, ffi, prelude::*};
 
 // rustdoc-stripper-ignore-next
 /// Trait containing manually implemented methods of

@@ -4,10 +4,10 @@
 //! Traits intended for implementing the [`CellLayout`] interface.
 use std::sync::OnceLock;
 
-use glib::{translate::*, Quark};
+use glib::{Quark, translate::*};
 
 use crate::{
-    ffi, prelude::*, subclass::prelude::*, CellArea, CellLayout, CellRenderer, TreeIter, TreeModel,
+    CellArea, CellLayout, CellRenderer, TreeIter, TreeModel, ffi, prelude::*, subclass::prelude::*,
 };
 
 #[derive(Debug)]

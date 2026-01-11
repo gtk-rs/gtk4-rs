@@ -3,13 +3,13 @@
 use std::{boxed::Box as Box_, mem::transmute};
 
 use glib::{
-    signal::{connect_raw, SignalHandlerId},
+    Slice, Type,
+    signal::{SignalHandlerId, connect_raw},
     translate::*,
     value::FromValue,
-    Slice, Type,
 };
 
-use crate::{ffi, prelude::*, DropTarget};
+use crate::{DropTarget, ffi, prelude::*};
 
 impl DropTarget {
     #[doc(alias = "gtk_drop_target_set_gtypes")]

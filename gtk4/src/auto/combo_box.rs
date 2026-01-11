@@ -4,13 +4,13 @@
 #![allow(deprecated)]
 
 use crate::{
-    ffi, Accessible, AccessibleRole, Align, Buildable, CellEditable, CellLayout, ConstraintTarget,
-    LayoutManager, Overflow, ScrollType, SensitivityType, TreeIter, TreeModel, Widget,
+    Accessible, AccessibleRole, Align, Buildable, CellEditable, CellLayout, ConstraintTarget,
+    LayoutManager, Overflow, ScrollType, SensitivityType, TreeIter, TreeModel, Widget, ffi,
 };
 use glib::{
     object::ObjectType as _,
     prelude::*,
-    signal::{connect_raw, SignalHandlerId},
+    signal::{SignalHandlerId, connect_raw},
     translate::*,
 };
 use std::boxed::Box as Box_;
@@ -401,11 +401,7 @@ pub trait ComboBoxExt: IsA<ComboBox> + 'static {
                 self.as_ref().to_glib_none().0,
                 iter.to_glib_none_mut().0,
             ));
-            if ret {
-                Some(iter)
-            } else {
-                None
-            }
+            if ret { Some(iter) } else { None }
         }
     }
 

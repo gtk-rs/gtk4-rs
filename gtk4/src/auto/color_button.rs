@@ -4,13 +4,13 @@
 #![allow(deprecated)]
 
 use crate::{
-    ffi, Accessible, AccessibleRole, Align, Buildable, ColorChooser, ConstraintTarget,
-    LayoutManager, Overflow, Widget,
+    Accessible, AccessibleRole, Align, Buildable, ColorChooser, ConstraintTarget, LayoutManager,
+    Overflow, Widget, ffi,
 };
 use glib::{
     object::ObjectType as _,
     prelude::*,
-    signal::{connect_raw, SignalHandlerId},
+    signal::{SignalHandlerId, connect_raw},
     translate::*,
 };
 use std::boxed::Box as Box_;

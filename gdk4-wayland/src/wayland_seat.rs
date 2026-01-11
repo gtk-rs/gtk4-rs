@@ -2,7 +2,7 @@
 
 #[cfg(feature = "wayland_crate")]
 #[cfg_attr(docsrs, doc(cfg(feature = "wayland_crate")))]
-use wayland_client::{backend::ObjectId, protocol::wl_seat::WlSeat, Proxy};
+use wayland_client::{Proxy, backend::ObjectId, protocol::wl_seat::WlSeat};
 #[cfg(feature = "wayland_crate")]
 #[cfg_attr(docsrs, doc(cfg(feature = "wayland_crate")))]
 use {

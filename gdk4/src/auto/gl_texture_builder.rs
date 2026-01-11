@@ -5,7 +5,7 @@
 #[cfg(feature = "v4_16")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
 use crate::ColorState;
-use crate::{ffi, GLContext, MemoryFormat, Texture};
+use crate::{GLContext, MemoryFormat, Texture, ffi};
 use glib::translate::*;
 
 glib::wrapper! {

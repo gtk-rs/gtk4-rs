@@ -4,7 +4,7 @@ use std::borrow::Borrow;
 
 use glib::translate::*;
 
-use crate::{ffi, prelude::*, Snapshot};
+use crate::{Snapshot, ffi, prelude::*};
 
 pub trait SnapshotExtManual: IsA<Snapshot> + 'static {
     #[doc(alias = "gtk_snapshot_append_border")]

@@ -4,10 +4,10 @@
 //! Traits intended for implementing the [`Buildable`] interface.
 use std::sync::OnceLock;
 
-use glib::{translate::*, GString, Object, Quark, Value};
+use glib::{GString, Object, Quark, Value, translate::*};
 
 use super::PtrHolder;
-use crate::{ffi, prelude::*, subclass::prelude::*, Buildable, Builder};
+use crate::{Buildable, Builder, ffi, prelude::*, subclass::prelude::*};
 
 pub trait BuildableImpl: ObjectImpl + ObjectSubclass<Type: IsA<Buildable>> {
     fn set_id(&self, id: &str) {

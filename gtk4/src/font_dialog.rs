@@ -4,7 +4,7 @@ use std::{boxed::Box as Box_, pin::Pin, ptr};
 
 use glib::translate::*;
 
-use crate::{ffi, prelude::*, FontDialog, Window};
+use crate::{FontDialog, Window, ffi, prelude::*};
 
 impl FontDialog {
     #[doc(alias = "gtk_font_dialog_choose_font_and_features")]

@@ -2,7 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::{ffi, PageOrientation, PaperSize, Unit};
+use crate::{PageOrientation, PaperSize, Unit, ffi};
 use glib::translate::*;
 
 glib::wrapper! {

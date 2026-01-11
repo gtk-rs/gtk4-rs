@@ -5,11 +5,11 @@
 #[cfg(feature = "v4_22")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
 use crate::RestoreReason;
-use crate::{ffi, ApplicationInhibitFlags, Window};
+use crate::{ApplicationInhibitFlags, Window, ffi};
 use glib::{
     object::ObjectType as _,
     prelude::*,
-    signal::{connect_raw, SignalHandlerId},
+    signal::{SignalHandlerId, connect_raw},
     translate::*,
 };
 use std::boxed::Box as Box_;

@@ -2,7 +2,7 @@
 
 use glib::translate::*;
 
-use crate::{ffi, prelude::*, Event, EventType};
+use crate::{Event, EventType, ffi, prelude::*};
 
 impl Event {
     #[inline]

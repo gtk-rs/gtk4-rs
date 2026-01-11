@@ -7,8 +7,8 @@ use glib::translate::*;
 use libc::c_int;
 
 use crate::{
-    ffi, prelude::*, subclass::prelude::*, LayoutChild, LayoutManager, Orientation,
-    SizeRequestMode, Widget,
+    LayoutChild, LayoutManager, Orientation, SizeRequestMode, Widget, ffi, prelude::*,
+    subclass::prelude::*,
 };
 
 pub trait LayoutManagerImpl: ObjectImpl + ObjectSubclass<Type: IsA<LayoutManager>> {

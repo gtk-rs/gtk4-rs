@@ -2,7 +2,7 @@
 
 use glib::translate::*;
 
-use crate::{ffi, prelude::*, CellRenderer, TreeView, TreeViewColumn, TreeViewColumnSizing};
+use crate::{CellRenderer, TreeView, TreeViewColumn, TreeViewColumnSizing, ffi, prelude::*};
 
 // rustdoc-stripper-ignore-next
 /// Trait containing manually implemented methods of

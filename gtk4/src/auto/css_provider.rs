@@ -6,14 +6,14 @@
 #[cfg(feature = "v4_22")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
 use crate::ReducedMotion;
-use crate::{ffi, CssSection, StyleProvider};
+use crate::{CssSection, StyleProvider, ffi};
 #[cfg(feature = "v4_20")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
 use crate::{InterfaceColorScheme, InterfaceContrast};
 use glib::{
     object::ObjectType as _,
     prelude::*,
-    signal::{connect_raw, SignalHandlerId},
+    signal::{SignalHandlerId, connect_raw},
     translate::*,
 };
 use std::boxed::Box as Box_;

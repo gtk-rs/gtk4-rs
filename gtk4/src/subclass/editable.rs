@@ -4,10 +4,10 @@
 //! Traits intended for implementing the [`Editable`] interface.
 use std::sync::OnceLock;
 
-use glib::{translate::*, GString, Quark};
+use glib::{GString, Quark, translate::*};
 use libc::{c_char, c_int};
 
-use crate::{ffi, prelude::*, subclass::prelude::*, Editable};
+use crate::{Editable, ffi, prelude::*, subclass::prelude::*};
 
 pub trait EditableImpl: WidgetImpl + ObjectSubclass<Type: IsA<Editable>> {
     fn insert_text(&self, text: &str, length: i32, position: &mut i32) {

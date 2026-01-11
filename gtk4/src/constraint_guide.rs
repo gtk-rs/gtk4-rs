@@ -4,7 +4,7 @@ use std::mem::MaybeUninit;
 
 use glib::translate::*;
 
-use crate::{ffi, ConstraintGuide};
+use crate::{ConstraintGuide, ffi};
 
 impl ConstraintGuide {
     #[doc(alias = "gtk_constraint_guide_get_max_size")]
