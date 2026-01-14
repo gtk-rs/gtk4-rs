@@ -57,6 +57,20 @@ pub trait TreeModelExtManual: IsA<TreeModel> + 'static {
             ))
         }
     }
+
+    // rustdoc-stripper-ignore-next
+    /// Manual implementation of iter_previous that takes a mutable TreeIter.
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+    #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_model_iter_previous")]
+    fn iter_previous(&self, iter: &mut TreeIter) -> bool {
+        unsafe {
+            from_glib(ffi::gtk_tree_model_iter_previous(
+                self.as_ref().to_glib_none().0,
+                mut_override(iter.to_glib_none().0),
+            ))
+        }
+    }
 }
 
 impl<O: IsA<TreeModel>> TreeModelExtManual for O {}

@@ -2336,6 +2336,9 @@ manual_traits = ["TreeModelExtManual"]
     name = "iter_next"
     ignore = true # Changed & to &mut
     [[object.function]]
+    name = "iter_previous"
+    ignore = true # Changed & to &mut
+    [[object.function]]
     name = "iter_children"
         [[object.function.parameter]]
         name = "parent"
