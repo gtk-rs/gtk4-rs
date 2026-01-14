@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/auto/tree_model.rs`."><title>tree_model.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-77263533.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.94.0-nightly (f57eac1bf 2026-01-10)" data-channel="nightly" data-search-js="search-9e2438ea.js" data-stringdex-js="stringdex-b897f86f.js" data-settings-js="settings-c38705f0.js" ><script src="../../../static.files/storage-e2aeef58.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-7bab91a1.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-ffcac47a.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/auto/tree_model.rs`."><title>tree_model.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-77263533.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.94.0-nightly (2850ca829 2026-01-13)" data-channel="nightly" data-search-js="search-9e2438ea.js" data-stringdex-js="stringdex-b897f86f.js" data-settings-js="settings-c38705f0.js" ><script src="../../../static.files/storage-e2aeef58.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-7bab91a1.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-ffcac47a.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
 
@@ -761,306 +761,281 @@
 <a href=#688 id=688 data-nosnippet>688</a>        }
 <a href=#689 id=689 data-nosnippet>689</a>    }
 <a href=#690 id=690 data-nosnippet>690</a>
-<a href=#691 id=691 data-nosnippet>691</a>    <span class="doccomment">/// Sets @iter to point to the previous node at the current level.
+<a href=#691 id=691 data-nosnippet>691</a>    <span class="doccomment">/// Emits the ::row-changed signal on @self.
 <a href=#692 id=692 data-nosnippet>692</a>    ///
-<a href=#693 id=693 data-nosnippet>693</a>    /// If there is no previous @iter, [`false`] is returned and @iter is
-<a href=#694 id=694 data-nosnippet>694</a>    /// set to be invalid.
-<a href=#695 id=695 data-nosnippet>695</a>    ///
-<a href=#696 id=696 data-nosnippet>696</a>    /// # Deprecated since 4.10
-<a href=#697 id=697 data-nosnippet>697</a>    ///
-<a href=#698 id=698 data-nosnippet>698</a>    /// ## `iter`
-<a href=#699 id=699 data-nosnippet>699</a>    /// the [`TreeIter`][crate::TreeIter]
-<a href=#700 id=700 data-nosnippet>700</a>    ///
-<a href=#701 id=701 data-nosnippet>701</a>    /// # Returns
-<a href=#702 id=702 data-nosnippet>702</a>    ///
-<a href=#703 id=703 data-nosnippet>703</a>    /// [`true`] if @iter has been changed to the previous node
-<a href=#704 id=704 data-nosnippet>704</a>    </span><span class="attr">#[cfg_attr(feature = <span class="string">"v4_10"</span>, deprecated = <span class="string">"Since 4.10"</span>)]
-<a href=#705 id=705 data-nosnippet>705</a>    #[allow(deprecated)]
-<a href=#706 id=706 data-nosnippet>706</a>    #[doc(alias = <span class="string">"gtk_tree_model_iter_previous"</span>)]
-<a href=#707 id=707 data-nosnippet>707</a>    </span><span class="kw">fn </span>iter_previous(<span class="kw-2">&amp;</span><span class="self">self</span>, iter: <span class="kw-2">&amp;</span><a href="tree_iter.rs.html#8-25">TreeIter</a>) -&gt; <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> {
-<a href=#708 id=708 data-nosnippet>708</a>        <span class="kw">unsafe </span>{
-<a href=#709 id=709 data-nosnippet>709</a>            <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_tree_model_iter_previous.html">gtk_tree_model_iter_previous</a>(
-<a href=#710 id=710 data-nosnippet>710</a>                <a class="self" href="#707">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
-<a href=#711 id=711 data-nosnippet>711</a>                <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.mut_override.html">mut_override</a>(<a href="#707">iter</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>),
-<a href=#712 id=712 data-nosnippet>712</a>            ))
-<a href=#713 id=713 data-nosnippet>713</a>        }
-<a href=#714 id=714 data-nosnippet>714</a>    }
-<a href=#715 id=715 data-nosnippet>715</a>
-<a href=#716 id=716 data-nosnippet>716</a>    <span class="doccomment">/// Emits the ::row-changed signal on @self.
+<a href=#693 id=693 data-nosnippet>693</a>    /// See [`row-changed`][struct@crate::TreeModel#row-changed].
+<a href=#694 id=694 data-nosnippet>694</a>    ///
+<a href=#695 id=695 data-nosnippet>695</a>    /// # Deprecated since 4.10
+<a href=#696 id=696 data-nosnippet>696</a>    ///
+<a href=#697 id=697 data-nosnippet>697</a>    /// ## `path`
+<a href=#698 id=698 data-nosnippet>698</a>    /// a [`TreePath`][crate::TreePath] pointing to the changed row
+<a href=#699 id=699 data-nosnippet>699</a>    /// ## `iter`
+<a href=#700 id=700 data-nosnippet>700</a>    /// a valid [`TreeIter`][crate::TreeIter] pointing to the changed row
+<a href=#701 id=701 data-nosnippet>701</a>    </span><span class="attr">#[cfg_attr(feature = <span class="string">"v4_10"</span>, deprecated = <span class="string">"Since 4.10"</span>)]
+<a href=#702 id=702 data-nosnippet>702</a>    #[allow(deprecated)]
+<a href=#703 id=703 data-nosnippet>703</a>    #[doc(alias = <span class="string">"gtk_tree_model_row_changed"</span>)]
+<a href=#704 id=704 data-nosnippet>704</a>    </span><span class="kw">fn </span>row_changed(<span class="kw-2">&amp;</span><span class="self">self</span>, path: <span class="kw-2">&amp;</span><a href="tree_path.rs.html#8-21">TreePath</a>, iter: <span class="kw-2">&amp;</span><a href="tree_iter.rs.html#8-25">TreeIter</a>) {
+<a href=#705 id=705 data-nosnippet>705</a>        <span class="kw">unsafe </span>{
+<a href=#706 id=706 data-nosnippet>706</a>            ffi::<a href="../../../gtk4_sys/fn.gtk_tree_model_row_changed.html">gtk_tree_model_row_changed</a>(
+<a href=#707 id=707 data-nosnippet>707</a>                <a class="self" href="#704">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
+<a href=#708 id=708 data-nosnippet>708</a>                <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.mut_override.html">mut_override</a>(<a href="#704">path</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>),
+<a href=#709 id=709 data-nosnippet>709</a>                <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.mut_override.html">mut_override</a>(<a href="#704">iter</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>),
+<a href=#710 id=710 data-nosnippet>710</a>            );
+<a href=#711 id=711 data-nosnippet>711</a>        }
+<a href=#712 id=712 data-nosnippet>712</a>    }
+<a href=#713 id=713 data-nosnippet>713</a>
+<a href=#714 id=714 data-nosnippet>714</a>    <span class="doccomment">/// Emits the ::row-deleted signal on @self.
+<a href=#715 id=715 data-nosnippet>715</a>    ///
+<a href=#716 id=716 data-nosnippet>716</a>    /// See [`row-deleted`][struct@crate::TreeModel#row-deleted].
 <a href=#717 id=717 data-nosnippet>717</a>    ///
-<a href=#718 id=718 data-nosnippet>718</a>    /// See [`row-changed`][struct@crate::TreeModel#row-changed].
-<a href=#719 id=719 data-nosnippet>719</a>    ///
-<a href=#720 id=720 data-nosnippet>720</a>    /// # Deprecated since 4.10
+<a href=#718 id=718 data-nosnippet>718</a>    /// This should be called by models after a row has been removed.
+<a href=#719 id=719 data-nosnippet>719</a>    /// The location pointed to by @path should be the location that
+<a href=#720 id=720 data-nosnippet>720</a>    /// the row previously was at. It may not be a valid location anymore.
 <a href=#721 id=721 data-nosnippet>721</a>    ///
-<a href=#722 id=722 data-nosnippet>722</a>    /// ## `path`
-<a href=#723 id=723 data-nosnippet>723</a>    /// a [`TreePath`][crate::TreePath] pointing to the changed row
-<a href=#724 id=724 data-nosnippet>724</a>    /// ## `iter`
-<a href=#725 id=725 data-nosnippet>725</a>    /// a valid [`TreeIter`][crate::TreeIter] pointing to the changed row
-<a href=#726 id=726 data-nosnippet>726</a>    </span><span class="attr">#[cfg_attr(feature = <span class="string">"v4_10"</span>, deprecated = <span class="string">"Since 4.10"</span>)]
-<a href=#727 id=727 data-nosnippet>727</a>    #[allow(deprecated)]
-<a href=#728 id=728 data-nosnippet>728</a>    #[doc(alias = <span class="string">"gtk_tree_model_row_changed"</span>)]
-<a href=#729 id=729 data-nosnippet>729</a>    </span><span class="kw">fn </span>row_changed(<span class="kw-2">&amp;</span><span class="self">self</span>, path: <span class="kw-2">&amp;</span><a href="tree_path.rs.html#8-21">TreePath</a>, iter: <span class="kw-2">&amp;</span><a href="tree_iter.rs.html#8-25">TreeIter</a>) {
-<a href=#730 id=730 data-nosnippet>730</a>        <span class="kw">unsafe </span>{
-<a href=#731 id=731 data-nosnippet>731</a>            ffi::<a href="../../../gtk4_sys/fn.gtk_tree_model_row_changed.html">gtk_tree_model_row_changed</a>(
-<a href=#732 id=732 data-nosnippet>732</a>                <a class="self" href="#729">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
-<a href=#733 id=733 data-nosnippet>733</a>                <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.mut_override.html">mut_override</a>(<a href="#729">path</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>),
-<a href=#734 id=734 data-nosnippet>734</a>                <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.mut_override.html">mut_override</a>(<a href="#729">iter</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>),
-<a href=#735 id=735 data-nosnippet>735</a>            );
-<a href=#736 id=736 data-nosnippet>736</a>        }
-<a href=#737 id=737 data-nosnippet>737</a>    }
-<a href=#738 id=738 data-nosnippet>738</a>
-<a href=#739 id=739 data-nosnippet>739</a>    <span class="doccomment">/// Emits the ::row-deleted signal on @self.
-<a href=#740 id=740 data-nosnippet>740</a>    ///
-<a href=#741 id=741 data-nosnippet>741</a>    /// See [`row-deleted`][struct@crate::TreeModel#row-deleted].
-<a href=#742 id=742 data-nosnippet>742</a>    ///
-<a href=#743 id=743 data-nosnippet>743</a>    /// This should be called by models after a row has been removed.
-<a href=#744 id=744 data-nosnippet>744</a>    /// The location pointed to by @path should be the location that
-<a href=#745 id=745 data-nosnippet>745</a>    /// the row previously was at. It may not be a valid location anymore.
-<a href=#746 id=746 data-nosnippet>746</a>    ///
-<a href=#747 id=747 data-nosnippet>747</a>    /// Nodes that are deleted are not unreffed, this means that any
-<a href=#748 id=748 data-nosnippet>748</a>    /// outstanding references on the deleted node should not be released.
-<a href=#749 id=749 data-nosnippet>749</a>    ///
-<a href=#750 id=750 data-nosnippet>750</a>    /// # Deprecated since 4.10
-<a href=#751 id=751 data-nosnippet>751</a>    ///
-<a href=#752 id=752 data-nosnippet>752</a>    /// ## `path`
-<a href=#753 id=753 data-nosnippet>753</a>    /// a [`TreePath`][crate::TreePath] pointing to the previous location of
-<a href=#754 id=754 data-nosnippet>754</a>    ///   the deleted row
+<a href=#722 id=722 data-nosnippet>722</a>    /// Nodes that are deleted are not unreffed, this means that any
+<a href=#723 id=723 data-nosnippet>723</a>    /// outstanding references on the deleted node should not be released.
+<a href=#724 id=724 data-nosnippet>724</a>    ///
+<a href=#725 id=725 data-nosnippet>725</a>    /// # Deprecated since 4.10
+<a href=#726 id=726 data-nosnippet>726</a>    ///
+<a href=#727 id=727 data-nosnippet>727</a>    /// ## `path`
+<a href=#728 id=728 data-nosnippet>728</a>    /// a [`TreePath`][crate::TreePath] pointing to the previous location of
+<a href=#729 id=729 data-nosnippet>729</a>    ///   the deleted row
+<a href=#730 id=730 data-nosnippet>730</a>    </span><span class="attr">#[cfg_attr(feature = <span class="string">"v4_10"</span>, deprecated = <span class="string">"Since 4.10"</span>)]
+<a href=#731 id=731 data-nosnippet>731</a>    #[allow(deprecated)]
+<a href=#732 id=732 data-nosnippet>732</a>    #[doc(alias = <span class="string">"gtk_tree_model_row_deleted"</span>)]
+<a href=#733 id=733 data-nosnippet>733</a>    </span><span class="kw">fn </span>row_deleted(<span class="kw-2">&amp;</span><span class="self">self</span>, path: <span class="kw-2">&amp;</span><a href="tree_path.rs.html#8-21">TreePath</a>) {
+<a href=#734 id=734 data-nosnippet>734</a>        <span class="kw">unsafe </span>{
+<a href=#735 id=735 data-nosnippet>735</a>            ffi::<a href="../../../gtk4_sys/fn.gtk_tree_model_row_deleted.html">gtk_tree_model_row_deleted</a>(
+<a href=#736 id=736 data-nosnippet>736</a>                <a class="self" href="#733">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
+<a href=#737 id=737 data-nosnippet>737</a>                <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.mut_override.html">mut_override</a>(<a href="#733">path</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>),
+<a href=#738 id=738 data-nosnippet>738</a>            );
+<a href=#739 id=739 data-nosnippet>739</a>        }
+<a href=#740 id=740 data-nosnippet>740</a>    }
+<a href=#741 id=741 data-nosnippet>741</a>
+<a href=#742 id=742 data-nosnippet>742</a>    <span class="doccomment">/// Emits the ::row-has-child-toggled signal on @self.
+<a href=#743 id=743 data-nosnippet>743</a>    ///
+<a href=#744 id=744 data-nosnippet>744</a>    /// See [`row-has-child-toggled`][struct@crate::TreeModel#row-has-child-toggled].
+<a href=#745 id=745 data-nosnippet>745</a>    ///
+<a href=#746 id=746 data-nosnippet>746</a>    /// This should be called by models after the child
+<a href=#747 id=747 data-nosnippet>747</a>    /// state of a node changes.
+<a href=#748 id=748 data-nosnippet>748</a>    ///
+<a href=#749 id=749 data-nosnippet>749</a>    /// # Deprecated since 4.10
+<a href=#750 id=750 data-nosnippet>750</a>    ///
+<a href=#751 id=751 data-nosnippet>751</a>    /// ## `path`
+<a href=#752 id=752 data-nosnippet>752</a>    /// a [`TreePath`][crate::TreePath] pointing to the changed row
+<a href=#753 id=753 data-nosnippet>753</a>    /// ## `iter`
+<a href=#754 id=754 data-nosnippet>754</a>    /// a valid [`TreeIter`][crate::TreeIter] pointing to the changed row
 <a href=#755 id=755 data-nosnippet>755</a>    </span><span class="attr">#[cfg_attr(feature = <span class="string">"v4_10"</span>, deprecated = <span class="string">"Since 4.10"</span>)]
 <a href=#756 id=756 data-nosnippet>756</a>    #[allow(deprecated)]
-<a href=#757 id=757 data-nosnippet>757</a>    #[doc(alias = <span class="string">"gtk_tree_model_row_deleted"</span>)]
-<a href=#758 id=758 data-nosnippet>758</a>    </span><span class="kw">fn </span>row_deleted(<span class="kw-2">&amp;</span><span class="self">self</span>, path: <span class="kw-2">&amp;</span><a href="tree_path.rs.html#8-21">TreePath</a>) {
+<a href=#757 id=757 data-nosnippet>757</a>    #[doc(alias = <span class="string">"gtk_tree_model_row_has_child_toggled"</span>)]
+<a href=#758 id=758 data-nosnippet>758</a>    </span><span class="kw">fn </span>row_has_child_toggled(<span class="kw-2">&amp;</span><span class="self">self</span>, path: <span class="kw-2">&amp;</span><a href="tree_path.rs.html#8-21">TreePath</a>, iter: <span class="kw-2">&amp;</span><a href="tree_iter.rs.html#8-25">TreeIter</a>) {
 <a href=#759 id=759 data-nosnippet>759</a>        <span class="kw">unsafe </span>{
-<a href=#760 id=760 data-nosnippet>760</a>            ffi::<a href="../../../gtk4_sys/fn.gtk_tree_model_row_deleted.html">gtk_tree_model_row_deleted</a>(
+<a href=#760 id=760 data-nosnippet>760</a>            ffi::<a href="../../../gtk4_sys/fn.gtk_tree_model_row_has_child_toggled.html">gtk_tree_model_row_has_child_toggled</a>(
 <a href=#761 id=761 data-nosnippet>761</a>                <a class="self" href="#758">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
 <a href=#762 id=762 data-nosnippet>762</a>                <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.mut_override.html">mut_override</a>(<a href="#758">path</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>),
-<a href=#763 id=763 data-nosnippet>763</a>            );
-<a href=#764 id=764 data-nosnippet>764</a>        }
-<a href=#765 id=765 data-nosnippet>765</a>    }
-<a href=#766 id=766 data-nosnippet>766</a>
-<a href=#767 id=767 data-nosnippet>767</a>    <span class="doccomment">/// Emits the ::row-has-child-toggled signal on @self.
-<a href=#768 id=768 data-nosnippet>768</a>    ///
-<a href=#769 id=769 data-nosnippet>769</a>    /// See [`row-has-child-toggled`][struct@crate::TreeModel#row-has-child-toggled].
-<a href=#770 id=770 data-nosnippet>770</a>    ///
-<a href=#771 id=771 data-nosnippet>771</a>    /// This should be called by models after the child
-<a href=#772 id=772 data-nosnippet>772</a>    /// state of a node changes.
+<a href=#763 id=763 data-nosnippet>763</a>                <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.mut_override.html">mut_override</a>(<a href="#758">iter</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>),
+<a href=#764 id=764 data-nosnippet>764</a>            );
+<a href=#765 id=765 data-nosnippet>765</a>        }
+<a href=#766 id=766 data-nosnippet>766</a>    }
+<a href=#767 id=767 data-nosnippet>767</a>
+<a href=#768 id=768 data-nosnippet>768</a>    <span class="doccomment">/// Emits the ::row-inserted signal on @self.
+<a href=#769 id=769 data-nosnippet>769</a>    ///
+<a href=#770 id=770 data-nosnippet>770</a>    /// See [`row-inserted`][struct@crate::TreeModel#row-inserted].
+<a href=#771 id=771 data-nosnippet>771</a>    ///
+<a href=#772 id=772 data-nosnippet>772</a>    /// # Deprecated since 4.10
 <a href=#773 id=773 data-nosnippet>773</a>    ///
-<a href=#774 id=774 data-nosnippet>774</a>    /// # Deprecated since 4.10
-<a href=#775 id=775 data-nosnippet>775</a>    ///
-<a href=#776 id=776 data-nosnippet>776</a>    /// ## `path`
-<a href=#777 id=777 data-nosnippet>777</a>    /// a [`TreePath`][crate::TreePath] pointing to the changed row
-<a href=#778 id=778 data-nosnippet>778</a>    /// ## `iter`
-<a href=#779 id=779 data-nosnippet>779</a>    /// a valid [`TreeIter`][crate::TreeIter] pointing to the changed row
-<a href=#780 id=780 data-nosnippet>780</a>    </span><span class="attr">#[cfg_attr(feature = <span class="string">"v4_10"</span>, deprecated = <span class="string">"Since 4.10"</span>)]
-<a href=#781 id=781 data-nosnippet>781</a>    #[allow(deprecated)]
-<a href=#782 id=782 data-nosnippet>782</a>    #[doc(alias = <span class="string">"gtk_tree_model_row_has_child_toggled"</span>)]
-<a href=#783 id=783 data-nosnippet>783</a>    </span><span class="kw">fn </span>row_has_child_toggled(<span class="kw-2">&amp;</span><span class="self">self</span>, path: <span class="kw-2">&amp;</span><a href="tree_path.rs.html#8-21">TreePath</a>, iter: <span class="kw-2">&amp;</span><a href="tree_iter.rs.html#8-25">TreeIter</a>) {
-<a href=#784 id=784 data-nosnippet>784</a>        <span class="kw">unsafe </span>{
-<a href=#785 id=785 data-nosnippet>785</a>            ffi::<a href="../../../gtk4_sys/fn.gtk_tree_model_row_has_child_toggled.html">gtk_tree_model_row_has_child_toggled</a>(
-<a href=#786 id=786 data-nosnippet>786</a>                <a class="self" href="#783">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
-<a href=#787 id=787 data-nosnippet>787</a>                <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.mut_override.html">mut_override</a>(<a href="#783">path</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>),
-<a href=#788 id=788 data-nosnippet>788</a>                <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.mut_override.html">mut_override</a>(<a href="#783">iter</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>),
-<a href=#789 id=789 data-nosnippet>789</a>            );
-<a href=#790 id=790 data-nosnippet>790</a>        }
-<a href=#791 id=791 data-nosnippet>791</a>    }
-<a href=#792 id=792 data-nosnippet>792</a>
-<a href=#793 id=793 data-nosnippet>793</a>    <span class="doccomment">/// Emits the ::row-inserted signal on @self.
-<a href=#794 id=794 data-nosnippet>794</a>    ///
-<a href=#795 id=795 data-nosnippet>795</a>    /// See [`row-inserted`][struct@crate::TreeModel#row-inserted].
-<a href=#796 id=796 data-nosnippet>796</a>    ///
-<a href=#797 id=797 data-nosnippet>797</a>    /// # Deprecated since 4.10
-<a href=#798 id=798 data-nosnippet>798</a>    ///
-<a href=#799 id=799 data-nosnippet>799</a>    /// ## `path`
-<a href=#800 id=800 data-nosnippet>800</a>    /// a [`TreePath`][crate::TreePath] pointing to the inserted row
-<a href=#801 id=801 data-nosnippet>801</a>    /// ## `iter`
-<a href=#802 id=802 data-nosnippet>802</a>    /// a valid [`TreeIter`][crate::TreeIter] pointing to the inserted row
-<a href=#803 id=803 data-nosnippet>803</a>    </span><span class="attr">#[cfg_attr(feature = <span class="string">"v4_10"</span>, deprecated = <span class="string">"Since 4.10"</span>)]
-<a href=#804 id=804 data-nosnippet>804</a>    #[allow(deprecated)]
-<a href=#805 id=805 data-nosnippet>805</a>    #[doc(alias = <span class="string">"gtk_tree_model_row_inserted"</span>)]
-<a href=#806 id=806 data-nosnippet>806</a>    </span><span class="kw">fn </span>row_inserted(<span class="kw-2">&amp;</span><span class="self">self</span>, path: <span class="kw-2">&amp;</span><a href="tree_path.rs.html#8-21">TreePath</a>, iter: <span class="kw-2">&amp;</span><a href="tree_iter.rs.html#8-25">TreeIter</a>) {
-<a href=#807 id=807 data-nosnippet>807</a>        <span class="kw">unsafe </span>{
-<a href=#808 id=808 data-nosnippet>808</a>            ffi::<a href="../../../gtk4_sys/fn.gtk_tree_model_row_inserted.html">gtk_tree_model_row_inserted</a>(
-<a href=#809 id=809 data-nosnippet>809</a>                <a class="self" href="#806">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
-<a href=#810 id=810 data-nosnippet>810</a>                <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.mut_override.html">mut_override</a>(<a href="#806">path</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>),
-<a href=#811 id=811 data-nosnippet>811</a>                <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.mut_override.html">mut_override</a>(<a href="#806">iter</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>),
-<a href=#812 id=812 data-nosnippet>812</a>            );
-<a href=#813 id=813 data-nosnippet>813</a>        }
-<a href=#814 id=814 data-nosnippet>814</a>    }
-<a href=#815 id=815 data-nosnippet>815</a>
-<a href=#816 id=816 data-nosnippet>816</a>    <span class="doccomment">/// This signal is emitted when a row in the model has changed.
-<a href=#817 id=817 data-nosnippet>817</a>    /// ## `path`
-<a href=#818 id=818 data-nosnippet>818</a>    /// a [`TreePath`][crate::TreePath] identifying the changed row
-<a href=#819 id=819 data-nosnippet>819</a>    /// ## `iter`
-<a href=#820 id=820 data-nosnippet>820</a>    /// a valid [`TreeIter`][crate::TreeIter] pointing to the changed row
-<a href=#821 id=821 data-nosnippet>821</a>    </span><span class="attr">#[doc(alias = <span class="string">"row-changed"</span>)]
-<a href=#822 id=822 data-nosnippet>822</a>    </span><span class="kw">fn </span>connect_row_changed&lt;F: <a href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html">Fn</a>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="kw-2">&amp;</span><a href="tree_path.rs.html#8-21">TreePath</a>, <span class="kw-2">&amp;</span><a href="tree_iter.rs.html#8-25">TreeIter</a>) + <span class="lifetime">'static</span>&gt;(
-<a href=#823 id=823 data-nosnippet>823</a>        <span class="kw-2">&amp;</span><span class="self">self</span>,
-<a href=#824 id=824 data-nosnippet>824</a>        f: F,
-<a href=#825 id=825 data-nosnippet>825</a>    ) -&gt; <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html">SignalHandlerId</a> {
-<a href=#826 id=826 data-nosnippet>826</a>        <span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn </span>row_changed_trampoline&lt;
-<a href=#827 id=827 data-nosnippet>827</a>            P: <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html">IsA</a>&lt;<a href="#15-277">TreeModel</a>&gt;,
-<a href=#828 id=828 data-nosnippet>828</a>            F: <a href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html">Fn</a>(<span class="kw-2">&amp;</span>P, <span class="kw-2">&amp;</span><a href="tree_path.rs.html#8-21">TreePath</a>, <span class="kw-2">&amp;</span><a href="tree_iter.rs.html#8-25">TreeIter</a>) + <span class="lifetime">'static</span>,
-<a href=#829 id=829 data-nosnippet>829</a>        &gt;(
-<a href=#830 id=830 data-nosnippet>830</a>            this: <span class="kw-2">*mut </span>ffi::<a href="../../../gtk4_sys/struct.GtkTreeModel.html">GtkTreeModel</a>,
-<a href=#831 id=831 data-nosnippet>831</a>            path: <span class="kw-2">*mut </span>ffi::<a href="../../../gtk4_sys/struct.GtkTreePath.html">GtkTreePath</a>,
-<a href=#832 id=832 data-nosnippet>832</a>            iter: <span class="kw-2">*mut </span>ffi::<a href="../../../gtk4_sys/struct.GtkTreeIter.html">GtkTreeIter</a>,
-<a href=#833 id=833 data-nosnippet>833</a>            f: glib::ffi::gpointer,
-<a href=#834 id=834 data-nosnippet>834</a>        ) {
-<a href=#835 id=835 data-nosnippet>835</a>            <span class="kw">unsafe </span>{
-<a href=#836 id=836 data-nosnippet>836</a>                <span class="kw">let </span>f: <span class="kw-2">&amp;</span>F = <span class="kw-2">&amp;*</span>(<a href="#833">f</a> <span class="kw">as </span><span class="kw-2">*const </span>F);
-<a href=#837 id=837 data-nosnippet>837</a>                <a href="#836">f</a>(
-<a href=#838 id=838 data-nosnippet>838</a>                    <a href="#15-277">TreeModel</a>::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.FromGlibPtrBorrow.html#method.from_glib_borrow">from_glib_borrow</a>(<a href="#830">this</a>).<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.Cast.html#method.unsafe_cast_ref">unsafe_cast_ref</a>(),
-<a href=#839 id=839 data-nosnippet>839</a>                    <span class="kw-2">&amp;</span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib_borrow.html">from_glib_borrow</a>(<a href="#831">path</a>),
-<a href=#840 id=840 data-nosnippet>840</a>                    <span class="kw-2">&amp;</span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib_borrow.html">from_glib_borrow</a>(<a href="#832">iter</a>),
-<a href=#841 id=841 data-nosnippet>841</a>                )
-<a href=#842 id=842 data-nosnippet>842</a>            }
-<a href=#843 id=843 data-nosnippet>843</a>        }
-<a href=#844 id=844 data-nosnippet>844</a>        <span class="kw">unsafe </span>{
-<a href=#845 id=845 data-nosnippet>845</a>            <span class="kw">let </span>f: <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">Box_</a>&lt;F&gt; = <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">Box_</a>::<a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html#method.new">new</a>(<a href="#824">f</a>);
-<a href=#846 id=846 data-nosnippet>846</a>            <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/fn.connect_raw.html">connect_raw</a>(
-<a href=#847 id=847 data-nosnippet>847</a>                <a class="self" href="#823">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.ObjectType.html#tymethod.as_ptr">as_ptr</a>() <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>,
-<a href=#848 id=848 data-nosnippet>848</a>                <span class="string">c"row-changed"</span>.<a href="https://doc.rust-lang.org/nightly/core/ffi/c_str/struct.CStr.html#method.as_ptr">as_ptr</a>() <span class="kw">as </span><span class="kw-2">*const </span><span class="kw">_</span>,
-<a href=#849 id=849 data-nosnippet>849</a>                <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.Some">Some</a>(std::mem::transmute::&lt;<span class="kw-2">*const </span>(), <span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn</span>()&gt;(
-<a href=#850 id=850 data-nosnippet>850</a>                    row_changed_trampoline::&lt;<span class="self">Self</span>, F&gt; <span class="kw">as </span><span class="kw-2">*const </span>(),
-<a href=#851 id=851 data-nosnippet>851</a>                )),
-<a href=#852 id=852 data-nosnippet>852</a>                <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">Box_</a>::<a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html#method.into_raw">into_raw</a>(<a href="#845">f</a>),
-<a href=#853 id=853 data-nosnippet>853</a>            )
-<a href=#854 id=854 data-nosnippet>854</a>        }
-<a href=#855 id=855 data-nosnippet>855</a>    }
-<a href=#856 id=856 data-nosnippet>856</a>
-<a href=#857 id=857 data-nosnippet>857</a>    <span class="doccomment">/// This signal is emitted when a row has been deleted.
-<a href=#858 id=858 data-nosnippet>858</a>    ///
-<a href=#859 id=859 data-nosnippet>859</a>    /// Note that no iterator is passed to the signal handler,
-<a href=#860 id=860 data-nosnippet>860</a>    /// since the row is already deleted.
-<a href=#861 id=861 data-nosnippet>861</a>    ///
-<a href=#862 id=862 data-nosnippet>862</a>    /// This should be called by models after a row has been removed.
-<a href=#863 id=863 data-nosnippet>863</a>    /// The location pointed to by @path should be the location that
-<a href=#864 id=864 data-nosnippet>864</a>    /// the row previously was at. It may not be a valid location anymore.
-<a href=#865 id=865 data-nosnippet>865</a>    /// ## `path`
-<a href=#866 id=866 data-nosnippet>866</a>    /// a [`TreePath`][crate::TreePath] identifying the row
-<a href=#867 id=867 data-nosnippet>867</a>    </span><span class="attr">#[doc(alias = <span class="string">"row-deleted"</span>)]
-<a href=#868 id=868 data-nosnippet>868</a>    </span><span class="kw">fn </span>connect_row_deleted&lt;F: <a href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html">Fn</a>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="kw-2">&amp;</span><a href="tree_path.rs.html#8-21">TreePath</a>) + <span class="lifetime">'static</span>&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, f: F) -&gt; <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html">SignalHandlerId</a> {
-<a href=#869 id=869 data-nosnippet>869</a>        <span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn </span>row_deleted_trampoline&lt;
-<a href=#870 id=870 data-nosnippet>870</a>            P: <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html">IsA</a>&lt;<a href="#15-277">TreeModel</a>&gt;,
-<a href=#871 id=871 data-nosnippet>871</a>            F: <a href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html">Fn</a>(<span class="kw-2">&amp;</span>P, <span class="kw-2">&amp;</span><a href="tree_path.rs.html#8-21">TreePath</a>) + <span class="lifetime">'static</span>,
-<a href=#872 id=872 data-nosnippet>872</a>        &gt;(
-<a href=#873 id=873 data-nosnippet>873</a>            this: <span class="kw-2">*mut </span>ffi::<a href="../../../gtk4_sys/struct.GtkTreeModel.html">GtkTreeModel</a>,
-<a href=#874 id=874 data-nosnippet>874</a>            path: <span class="kw-2">*mut </span>ffi::<a href="../../../gtk4_sys/struct.GtkTreePath.html">GtkTreePath</a>,
-<a href=#875 id=875 data-nosnippet>875</a>            f: glib::ffi::gpointer,
-<a href=#876 id=876 data-nosnippet>876</a>        ) {
-<a href=#877 id=877 data-nosnippet>877</a>            <span class="kw">unsafe </span>{
-<a href=#878 id=878 data-nosnippet>878</a>                <span class="kw">let </span>f: <span class="kw-2">&amp;</span>F = <span class="kw-2">&amp;*</span>(<a href="#875">f</a> <span class="kw">as </span><span class="kw-2">*const </span>F);
-<a href=#879 id=879 data-nosnippet>879</a>                <a href="#878">f</a>(
-<a href=#880 id=880 data-nosnippet>880</a>                    <a href="#15-277">TreeModel</a>::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.FromGlibPtrBorrow.html#method.from_glib_borrow">from_glib_borrow</a>(<a href="#873">this</a>).<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.Cast.html#method.unsafe_cast_ref">unsafe_cast_ref</a>(),
-<a href=#881 id=881 data-nosnippet>881</a>                    <span class="kw-2">&amp;</span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib_borrow.html">from_glib_borrow</a>(<a href="#874">path</a>),
-<a href=#882 id=882 data-nosnippet>882</a>                )
-<a href=#883 id=883 data-nosnippet>883</a>            }
-<a href=#884 id=884 data-nosnippet>884</a>        }
-<a href=#885 id=885 data-nosnippet>885</a>        <span class="kw">unsafe </span>{
-<a href=#886 id=886 data-nosnippet>886</a>            <span class="kw">let </span>f: <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">Box_</a>&lt;F&gt; = <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">Box_</a>::<a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html#method.new">new</a>(<a href="#868">f</a>);
-<a href=#887 id=887 data-nosnippet>887</a>            <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/fn.connect_raw.html">connect_raw</a>(
-<a href=#888 id=888 data-nosnippet>888</a>                <a class="self" href="#868">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.ObjectType.html#tymethod.as_ptr">as_ptr</a>() <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>,
-<a href=#889 id=889 data-nosnippet>889</a>                <span class="string">c"row-deleted"</span>.<a href="https://doc.rust-lang.org/nightly/core/ffi/c_str/struct.CStr.html#method.as_ptr">as_ptr</a>() <span class="kw">as </span><span class="kw-2">*const </span><span class="kw">_</span>,
-<a href=#890 id=890 data-nosnippet>890</a>                <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.Some">Some</a>(std::mem::transmute::&lt;<span class="kw-2">*const </span>(), <span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn</span>()&gt;(
-<a href=#891 id=891 data-nosnippet>891</a>                    row_deleted_trampoline::&lt;<span class="self">Self</span>, F&gt; <span class="kw">as </span><span class="kw-2">*const </span>(),
-<a href=#892 id=892 data-nosnippet>892</a>                )),
-<a href=#893 id=893 data-nosnippet>893</a>                <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">Box_</a>::<a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html#method.into_raw">into_raw</a>(<a href="#886">f</a>),
-<a href=#894 id=894 data-nosnippet>894</a>            )
-<a href=#895 id=895 data-nosnippet>895</a>        }
-<a href=#896 id=896 data-nosnippet>896</a>    }
-<a href=#897 id=897 data-nosnippet>897</a>
-<a href=#898 id=898 data-nosnippet>898</a>    <span class="doccomment">/// This signal is emitted when a row has gotten the first child
-<a href=#899 id=899 data-nosnippet>899</a>    /// row or lost its last child row.
-<a href=#900 id=900 data-nosnippet>900</a>    /// ## `path`
-<a href=#901 id=901 data-nosnippet>901</a>    /// a [`TreePath`][crate::TreePath] identifying the row
-<a href=#902 id=902 data-nosnippet>902</a>    /// ## `iter`
-<a href=#903 id=903 data-nosnippet>903</a>    /// a valid [`TreeIter`][crate::TreeIter] pointing to the row
-<a href=#904 id=904 data-nosnippet>904</a>    </span><span class="attr">#[doc(alias = <span class="string">"row-has-child-toggled"</span>)]
-<a href=#905 id=905 data-nosnippet>905</a>    </span><span class="kw">fn </span>connect_row_has_child_toggled&lt;F: <a href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html">Fn</a>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="kw-2">&amp;</span><a href="tree_path.rs.html#8-21">TreePath</a>, <span class="kw-2">&amp;</span><a href="tree_iter.rs.html#8-25">TreeIter</a>) + <span class="lifetime">'static</span>&gt;(
-<a href=#906 id=906 data-nosnippet>906</a>        <span class="kw-2">&amp;</span><span class="self">self</span>,
-<a href=#907 id=907 data-nosnippet>907</a>        f: F,
-<a href=#908 id=908 data-nosnippet>908</a>    ) -&gt; <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html">SignalHandlerId</a> {
-<a href=#909 id=909 data-nosnippet>909</a>        <span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn </span>row_has_child_toggled_trampoline&lt;
-<a href=#910 id=910 data-nosnippet>910</a>            P: <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html">IsA</a>&lt;<a href="#15-277">TreeModel</a>&gt;,
-<a href=#911 id=911 data-nosnippet>911</a>            F: <a href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html">Fn</a>(<span class="kw-2">&amp;</span>P, <span class="kw-2">&amp;</span><a href="tree_path.rs.html#8-21">TreePath</a>, <span class="kw-2">&amp;</span><a href="tree_iter.rs.html#8-25">TreeIter</a>) + <span class="lifetime">'static</span>,
-<a href=#912 id=912 data-nosnippet>912</a>        &gt;(
-<a href=#913 id=913 data-nosnippet>913</a>            this: <span class="kw-2">*mut </span>ffi::<a href="../../../gtk4_sys/struct.GtkTreeModel.html">GtkTreeModel</a>,
-<a href=#914 id=914 data-nosnippet>914</a>            path: <span class="kw-2">*mut </span>ffi::<a href="../../../gtk4_sys/struct.GtkTreePath.html">GtkTreePath</a>,
-<a href=#915 id=915 data-nosnippet>915</a>            iter: <span class="kw-2">*mut </span>ffi::<a href="../../../gtk4_sys/struct.GtkTreeIter.html">GtkTreeIter</a>,
-<a href=#916 id=916 data-nosnippet>916</a>            f: glib::ffi::gpointer,
-<a href=#917 id=917 data-nosnippet>917</a>        ) {
-<a href=#918 id=918 data-nosnippet>918</a>            <span class="kw">unsafe </span>{
-<a href=#919 id=919 data-nosnippet>919</a>                <span class="kw">let </span>f: <span class="kw-2">&amp;</span>F = <span class="kw-2">&amp;*</span>(<a href="#916">f</a> <span class="kw">as </span><span class="kw-2">*const </span>F);
-<a href=#920 id=920 data-nosnippet>920</a>                <a href="#919">f</a>(
-<a href=#921 id=921 data-nosnippet>921</a>                    <a href="#15-277">TreeModel</a>::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.FromGlibPtrBorrow.html#method.from_glib_borrow">from_glib_borrow</a>(<a href="#913">this</a>).<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.Cast.html#method.unsafe_cast_ref">unsafe_cast_ref</a>(),
-<a href=#922 id=922 data-nosnippet>922</a>                    <span class="kw-2">&amp;</span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib_borrow.html">from_glib_borrow</a>(<a href="#914">path</a>),
-<a href=#923 id=923 data-nosnippet>923</a>                    <span class="kw-2">&amp;</span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib_borrow.html">from_glib_borrow</a>(<a href="#915">iter</a>),
-<a href=#924 id=924 data-nosnippet>924</a>                )
-<a href=#925 id=925 data-nosnippet>925</a>            }
-<a href=#926 id=926 data-nosnippet>926</a>        }
-<a href=#927 id=927 data-nosnippet>927</a>        <span class="kw">unsafe </span>{
-<a href=#928 id=928 data-nosnippet>928</a>            <span class="kw">let </span>f: <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">Box_</a>&lt;F&gt; = <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">Box_</a>::<a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html#method.new">new</a>(<a href="#907">f</a>);
-<a href=#929 id=929 data-nosnippet>929</a>            <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/fn.connect_raw.html">connect_raw</a>(
-<a href=#930 id=930 data-nosnippet>930</a>                <a class="self" href="#906">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.ObjectType.html#tymethod.as_ptr">as_ptr</a>() <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>,
-<a href=#931 id=931 data-nosnippet>931</a>                <span class="string">c"row-has-child-toggled"</span>.<a href="https://doc.rust-lang.org/nightly/core/ffi/c_str/struct.CStr.html#method.as_ptr">as_ptr</a>() <span class="kw">as </span><span class="kw-2">*const </span><span class="kw">_</span>,
-<a href=#932 id=932 data-nosnippet>932</a>                <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.Some">Some</a>(std::mem::transmute::&lt;<span class="kw-2">*const </span>(), <span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn</span>()&gt;(
-<a href=#933 id=933 data-nosnippet>933</a>                    row_has_child_toggled_trampoline::&lt;<span class="self">Self</span>, F&gt; <span class="kw">as </span><span class="kw-2">*const </span>(),
-<a href=#934 id=934 data-nosnippet>934</a>                )),
-<a href=#935 id=935 data-nosnippet>935</a>                <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">Box_</a>::<a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html#method.into_raw">into_raw</a>(<a href="#928">f</a>),
-<a href=#936 id=936 data-nosnippet>936</a>            )
-<a href=#937 id=937 data-nosnippet>937</a>        }
-<a href=#938 id=938 data-nosnippet>938</a>    }
-<a href=#939 id=939 data-nosnippet>939</a>
-<a href=#940 id=940 data-nosnippet>940</a>    <span class="doccomment">/// This signal is emitted when a new row has been inserted in
-<a href=#941 id=941 data-nosnippet>941</a>    /// the model.
-<a href=#942 id=942 data-nosnippet>942</a>    ///
-<a href=#943 id=943 data-nosnippet>943</a>    /// Note that the row may still be empty at this point, since
-<a href=#944 id=944 data-nosnippet>944</a>    /// it is a common pattern to first insert an empty row, and
-<a href=#945 id=945 data-nosnippet>945</a>    /// then fill it with the desired values.
-<a href=#946 id=946 data-nosnippet>946</a>    /// ## `path`
-<a href=#947 id=947 data-nosnippet>947</a>    /// a [`TreePath`][crate::TreePath] identifying the new row
-<a href=#948 id=948 data-nosnippet>948</a>    /// ## `iter`
-<a href=#949 id=949 data-nosnippet>949</a>    /// a valid [`TreeIter`][crate::TreeIter] pointing to the new row
-<a href=#950 id=950 data-nosnippet>950</a>    </span><span class="attr">#[doc(alias = <span class="string">"row-inserted"</span>)]
-<a href=#951 id=951 data-nosnippet>951</a>    </span><span class="kw">fn </span>connect_row_inserted&lt;F: <a href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html">Fn</a>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="kw-2">&amp;</span><a href="tree_path.rs.html#8-21">TreePath</a>, <span class="kw-2">&amp;</span><a href="tree_iter.rs.html#8-25">TreeIter</a>) + <span class="lifetime">'static</span>&gt;(
-<a href=#952 id=952 data-nosnippet>952</a>        <span class="kw-2">&amp;</span><span class="self">self</span>,
-<a href=#953 id=953 data-nosnippet>953</a>        f: F,
-<a href=#954 id=954 data-nosnippet>954</a>    ) -&gt; <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html">SignalHandlerId</a> {
-<a href=#955 id=955 data-nosnippet>955</a>        <span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn </span>row_inserted_trampoline&lt;
-<a href=#956 id=956 data-nosnippet>956</a>            P: <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html">IsA</a>&lt;<a href="#15-277">TreeModel</a>&gt;,
-<a href=#957 id=957 data-nosnippet>957</a>            F: <a href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html">Fn</a>(<span class="kw-2">&amp;</span>P, <span class="kw-2">&amp;</span><a href="tree_path.rs.html#8-21">TreePath</a>, <span class="kw-2">&amp;</span><a href="tree_iter.rs.html#8-25">TreeIter</a>) + <span class="lifetime">'static</span>,
-<a href=#958 id=958 data-nosnippet>958</a>        &gt;(
-<a href=#959 id=959 data-nosnippet>959</a>            this: <span class="kw-2">*mut </span>ffi::<a href="../../../gtk4_sys/struct.GtkTreeModel.html">GtkTreeModel</a>,
-<a href=#960 id=960 data-nosnippet>960</a>            path: <span class="kw-2">*mut </span>ffi::<a href="../../../gtk4_sys/struct.GtkTreePath.html">GtkTreePath</a>,
-<a href=#961 id=961 data-nosnippet>961</a>            iter: <span class="kw-2">*mut </span>ffi::<a href="../../../gtk4_sys/struct.GtkTreeIter.html">GtkTreeIter</a>,
-<a href=#962 id=962 data-nosnippet>962</a>            f: glib::ffi::gpointer,
-<a href=#963 id=963 data-nosnippet>963</a>        ) {
-<a href=#964 id=964 data-nosnippet>964</a>            <span class="kw">unsafe </span>{
-<a href=#965 id=965 data-nosnippet>965</a>                <span class="kw">let </span>f: <span class="kw-2">&amp;</span>F = <span class="kw-2">&amp;*</span>(<a href="#962">f</a> <span class="kw">as </span><span class="kw-2">*const </span>F);
-<a href=#966 id=966 data-nosnippet>966</a>                <a href="#965">f</a>(
-<a href=#967 id=967 data-nosnippet>967</a>                    <a href="#15-277">TreeModel</a>::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.FromGlibPtrBorrow.html#method.from_glib_borrow">from_glib_borrow</a>(<a href="#959">this</a>).<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.Cast.html#method.unsafe_cast_ref">unsafe_cast_ref</a>(),
-<a href=#968 id=968 data-nosnippet>968</a>                    <span class="kw-2">&amp;</span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib_borrow.html">from_glib_borrow</a>(<a href="#960">path</a>),
-<a href=#969 id=969 data-nosnippet>969</a>                    <span class="kw-2">&amp;</span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib_borrow.html">from_glib_borrow</a>(<a href="#961">iter</a>),
-<a href=#970 id=970 data-nosnippet>970</a>                )
-<a href=#971 id=971 data-nosnippet>971</a>            }
-<a href=#972 id=972 data-nosnippet>972</a>        }
-<a href=#973 id=973 data-nosnippet>973</a>        <span class="kw">unsafe </span>{
-<a href=#974 id=974 data-nosnippet>974</a>            <span class="kw">let </span>f: <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">Box_</a>&lt;F&gt; = <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">Box_</a>::<a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html#method.new">new</a>(<a href="#953">f</a>);
-<a href=#975 id=975 data-nosnippet>975</a>            <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/fn.connect_raw.html">connect_raw</a>(
-<a href=#976 id=976 data-nosnippet>976</a>                <a class="self" href="#952">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.ObjectType.html#tymethod.as_ptr">as_ptr</a>() <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>,
-<a href=#977 id=977 data-nosnippet>977</a>                <span class="string">c"row-inserted"</span>.<a href="https://doc.rust-lang.org/nightly/core/ffi/c_str/struct.CStr.html#method.as_ptr">as_ptr</a>() <span class="kw">as </span><span class="kw-2">*const </span><span class="kw">_</span>,
-<a href=#978 id=978 data-nosnippet>978</a>                <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.Some">Some</a>(std::mem::transmute::&lt;<span class="kw-2">*const </span>(), <span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn</span>()&gt;(
-<a href=#979 id=979 data-nosnippet>979</a>                    row_inserted_trampoline::&lt;<span class="self">Self</span>, F&gt; <span class="kw">as </span><span class="kw-2">*const </span>(),
-<a href=#980 id=980 data-nosnippet>980</a>                )),
-<a href=#981 id=981 data-nosnippet>981</a>                <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">Box_</a>::<a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html#method.into_raw">into_raw</a>(<a href="#974">f</a>),
-<a href=#982 id=982 data-nosnippet>982</a>            )
-<a href=#983 id=983 data-nosnippet>983</a>        }
-<a href=#984 id=984 data-nosnippet>984</a>    }
-<a href=#985 id=985 data-nosnippet>985</a>
-<a href=#986 id=986 data-nosnippet>986</a>    <span class="comment">//#[doc(alias = "rows-reordered")]
-<a href=#987 id=987 data-nosnippet>987</a>    //fn connect_rows_reordered&lt;Unsupported or ignored types&gt;(&amp;self, f: F) -&gt; SignalHandlerId {
-<a href=#988 id=988 data-nosnippet>988</a>    //    Unimplemented new_order: *.Pointer
-<a href=#989 id=989 data-nosnippet>989</a>    //}
-<a href=#990 id=990 data-nosnippet>990</a></span>}
-<a href=#991 id=991 data-nosnippet>991</a>
-<a href=#992 id=992 data-nosnippet>992</a><span class="kw">impl</span>&lt;O: <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html">IsA</a>&lt;<a href="#15-277">TreeModel</a>&gt;&gt; <a href="#288-990">TreeModelExt</a> <span class="kw">for </span>O {}
+<a href=#774 id=774 data-nosnippet>774</a>    /// ## `path`
+<a href=#775 id=775 data-nosnippet>775</a>    /// a [`TreePath`][crate::TreePath] pointing to the inserted row
+<a href=#776 id=776 data-nosnippet>776</a>    /// ## `iter`
+<a href=#777 id=777 data-nosnippet>777</a>    /// a valid [`TreeIter`][crate::TreeIter] pointing to the inserted row
+<a href=#778 id=778 data-nosnippet>778</a>    </span><span class="attr">#[cfg_attr(feature = <span class="string">"v4_10"</span>, deprecated = <span class="string">"Since 4.10"</span>)]
+<a href=#779 id=779 data-nosnippet>779</a>    #[allow(deprecated)]
+<a href=#780 id=780 data-nosnippet>780</a>    #[doc(alias = <span class="string">"gtk_tree_model_row_inserted"</span>)]
+<a href=#781 id=781 data-nosnippet>781</a>    </span><span class="kw">fn </span>row_inserted(<span class="kw-2">&amp;</span><span class="self">self</span>, path: <span class="kw-2">&amp;</span><a href="tree_path.rs.html#8-21">TreePath</a>, iter: <span class="kw-2">&amp;</span><a href="tree_iter.rs.html#8-25">TreeIter</a>) {
+<a href=#782 id=782 data-nosnippet>782</a>        <span class="kw">unsafe </span>{
+<a href=#783 id=783 data-nosnippet>783</a>            ffi::<a href="../../../gtk4_sys/fn.gtk_tree_model_row_inserted.html">gtk_tree_model_row_inserted</a>(
+<a href=#784 id=784 data-nosnippet>784</a>                <a class="self" href="#781">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
+<a href=#785 id=785 data-nosnippet>785</a>                <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.mut_override.html">mut_override</a>(<a href="#781">path</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>),
+<a href=#786 id=786 data-nosnippet>786</a>                <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.mut_override.html">mut_override</a>(<a href="#781">iter</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>),
+<a href=#787 id=787 data-nosnippet>787</a>            );
+<a href=#788 id=788 data-nosnippet>788</a>        }
+<a href=#789 id=789 data-nosnippet>789</a>    }
+<a href=#790 id=790 data-nosnippet>790</a>
+<a href=#791 id=791 data-nosnippet>791</a>    <span class="doccomment">/// This signal is emitted when a row in the model has changed.
+<a href=#792 id=792 data-nosnippet>792</a>    /// ## `path`
+<a href=#793 id=793 data-nosnippet>793</a>    /// a [`TreePath`][crate::TreePath] identifying the changed row
+<a href=#794 id=794 data-nosnippet>794</a>    /// ## `iter`
+<a href=#795 id=795 data-nosnippet>795</a>    /// a valid [`TreeIter`][crate::TreeIter] pointing to the changed row
+<a href=#796 id=796 data-nosnippet>796</a>    </span><span class="attr">#[doc(alias = <span class="string">"row-changed"</span>)]
+<a href=#797 id=797 data-nosnippet>797</a>    </span><span class="kw">fn </span>connect_row_changed&lt;F: <a href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html">Fn</a>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="kw-2">&amp;</span><a href="tree_path.rs.html#8-21">TreePath</a>, <span class="kw-2">&amp;</span><a href="tree_iter.rs.html#8-25">TreeIter</a>) + <span class="lifetime">'static</span>&gt;(
+<a href=#798 id=798 data-nosnippet>798</a>        <span class="kw-2">&amp;</span><span class="self">self</span>,
+<a href=#799 id=799 data-nosnippet>799</a>        f: F,
+<a href=#800 id=800 data-nosnippet>800</a>    ) -&gt; <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html">SignalHandlerId</a> {
+<a href=#801 id=801 data-nosnippet>801</a>        <span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn </span>row_changed_trampoline&lt;
+<a href=#802 id=802 data-nosnippet>802</a>            P: <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html">IsA</a>&lt;<a href="#15-277">TreeModel</a>&gt;,
+<a href=#803 id=803 data-nosnippet>803</a>            F: <a href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html">Fn</a>(<span class="kw-2">&amp;</span>P, <span class="kw-2">&amp;</span><a href="tree_path.rs.html#8-21">TreePath</a>, <span class="kw-2">&amp;</span><a href="tree_iter.rs.html#8-25">TreeIter</a>) + <span class="lifetime">'static</span>,
+<a href=#804 id=804 data-nosnippet>804</a>        &gt;(
+<a href=#805 id=805 data-nosnippet>805</a>            this: <span class="kw-2">*mut </span>ffi::<a href="../../../gtk4_sys/struct.GtkTreeModel.html">GtkTreeModel</a>,
+<a href=#806 id=806 data-nosnippet>806</a>            path: <span class="kw-2">*mut </span>ffi::<a href="../../../gtk4_sys/struct.GtkTreePath.html">GtkTreePath</a>,
+<a href=#807 id=807 data-nosnippet>807</a>            iter: <span class="kw-2">*mut </span>ffi::<a href="../../../gtk4_sys/struct.GtkTreeIter.html">GtkTreeIter</a>,
+<a href=#808 id=808 data-nosnippet>808</a>            f: glib::ffi::gpointer,
+<a href=#809 id=809 data-nosnippet>809</a>        ) {
+<a href=#810 id=810 data-nosnippet>810</a>            <span class="kw">unsafe </span>{
+<a href=#811 id=811 data-nosnippet>811</a>                <span class="kw">let </span>f: <span class="kw-2">&amp;</span>F = <span class="kw-2">&amp;*</span>(<a href="#808">f</a> <span class="kw">as </span><span class="kw-2">*const </span>F);
+<a href=#812 id=812 data-nosnippet>812</a>                <a href="#811">f</a>(
+<a href=#813 id=813 data-nosnippet>813</a>                    <a href="#15-277">TreeModel</a>::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.FromGlibPtrBorrow.html#method.from_glib_borrow">from_glib_borrow</a>(<a href="#805">this</a>).<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.Cast.html#method.unsafe_cast_ref">unsafe_cast_ref</a>(),
+<a href=#814 id=814 data-nosnippet>814</a>                    <span class="kw-2">&amp;</span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib_borrow.html">from_glib_borrow</a>(<a href="#806">path</a>),
+<a href=#815 id=815 data-nosnippet>815</a>                    <span class="kw-2">&amp;</span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib_borrow.html">from_glib_borrow</a>(<a href="#807">iter</a>),
+<a href=#816 id=816 data-nosnippet>816</a>                )
+<a href=#817 id=817 data-nosnippet>817</a>            }
+<a href=#818 id=818 data-nosnippet>818</a>        }
+<a href=#819 id=819 data-nosnippet>819</a>        <span class="kw">unsafe </span>{
+<a href=#820 id=820 data-nosnippet>820</a>            <span class="kw">let </span>f: <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">Box_</a>&lt;F&gt; = <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">Box_</a>::<a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html#method.new">new</a>(<a href="#799">f</a>);
+<a href=#821 id=821 data-nosnippet>821</a>            <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/fn.connect_raw.html">connect_raw</a>(
+<a href=#822 id=822 data-nosnippet>822</a>                <a class="self" href="#798">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.ObjectType.html#tymethod.as_ptr">as_ptr</a>() <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>,
+<a href=#823 id=823 data-nosnippet>823</a>                <span class="string">c"row-changed"</span>.<a href="https://doc.rust-lang.org/nightly/core/ffi/c_str/struct.CStr.html#method.as_ptr">as_ptr</a>() <span class="kw">as </span><span class="kw-2">*const </span><span class="kw">_</span>,
+<a href=#824 id=824 data-nosnippet>824</a>                <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.Some">Some</a>(std::mem::transmute::&lt;<span class="kw-2">*const </span>(), <span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn</span>()&gt;(
+<a href=#825 id=825 data-nosnippet>825</a>                    row_changed_trampoline::&lt;<span class="self">Self</span>, F&gt; <span class="kw">as </span><span class="kw-2">*const </span>(),
+<a href=#826 id=826 data-nosnippet>826</a>                )),
+<a href=#827 id=827 data-nosnippet>827</a>                <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">Box_</a>::<a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html#method.into_raw">into_raw</a>(<a href="#820">f</a>),
+<a href=#828 id=828 data-nosnippet>828</a>            )
+<a href=#829 id=829 data-nosnippet>829</a>        }
+<a href=#830 id=830 data-nosnippet>830</a>    }
+<a href=#831 id=831 data-nosnippet>831</a>
+<a href=#832 id=832 data-nosnippet>832</a>    <span class="doccomment">/// This signal is emitted when a row has been deleted.
+<a href=#833 id=833 data-nosnippet>833</a>    ///
+<a href=#834 id=834 data-nosnippet>834</a>    /// Note that no iterator is passed to the signal handler,
+<a href=#835 id=835 data-nosnippet>835</a>    /// since the row is already deleted.
+<a href=#836 id=836 data-nosnippet>836</a>    ///
+<a href=#837 id=837 data-nosnippet>837</a>    /// This should be called by models after a row has been removed.
+<a href=#838 id=838 data-nosnippet>838</a>    /// The location pointed to by @path should be the location that
+<a href=#839 id=839 data-nosnippet>839</a>    /// the row previously was at. It may not be a valid location anymore.
+<a href=#840 id=840 data-nosnippet>840</a>    /// ## `path`
+<a href=#841 id=841 data-nosnippet>841</a>    /// a [`TreePath`][crate::TreePath] identifying the row
+<a href=#842 id=842 data-nosnippet>842</a>    </span><span class="attr">#[doc(alias = <span class="string">"row-deleted"</span>)]
+<a href=#843 id=843 data-nosnippet>843</a>    </span><span class="kw">fn </span>connect_row_deleted&lt;F: <a href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html">Fn</a>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="kw-2">&amp;</span><a href="tree_path.rs.html#8-21">TreePath</a>) + <span class="lifetime">'static</span>&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, f: F) -&gt; <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html">SignalHandlerId</a> {
+<a href=#844 id=844 data-nosnippet>844</a>        <span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn </span>row_deleted_trampoline&lt;
+<a href=#845 id=845 data-nosnippet>845</a>            P: <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html">IsA</a>&lt;<a href="#15-277">TreeModel</a>&gt;,
+<a href=#846 id=846 data-nosnippet>846</a>            F: <a href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html">Fn</a>(<span class="kw-2">&amp;</span>P, <span class="kw-2">&amp;</span><a href="tree_path.rs.html#8-21">TreePath</a>) + <span class="lifetime">'static</span>,
+<a href=#847 id=847 data-nosnippet>847</a>        &gt;(
+<a href=#848 id=848 data-nosnippet>848</a>            this: <span class="kw-2">*mut </span>ffi::<a href="../../../gtk4_sys/struct.GtkTreeModel.html">GtkTreeModel</a>,
+<a href=#849 id=849 data-nosnippet>849</a>            path: <span class="kw-2">*mut </span>ffi::<a href="../../../gtk4_sys/struct.GtkTreePath.html">GtkTreePath</a>,
+<a href=#850 id=850 data-nosnippet>850</a>            f: glib::ffi::gpointer,
+<a href=#851 id=851 data-nosnippet>851</a>        ) {
+<a href=#852 id=852 data-nosnippet>852</a>            <span class="kw">unsafe </span>{
+<a href=#853 id=853 data-nosnippet>853</a>                <span class="kw">let </span>f: <span class="kw-2">&amp;</span>F = <span class="kw-2">&amp;*</span>(<a href="#850">f</a> <span class="kw">as </span><span class="kw-2">*const </span>F);
+<a href=#854 id=854 data-nosnippet>854</a>                <a href="#853">f</a>(
+<a href=#855 id=855 data-nosnippet>855</a>                    <a href="#15-277">TreeModel</a>::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.FromGlibPtrBorrow.html#method.from_glib_borrow">from_glib_borrow</a>(<a href="#848">this</a>).<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.Cast.html#method.unsafe_cast_ref">unsafe_cast_ref</a>(),
+<a href=#856 id=856 data-nosnippet>856</a>                    <span class="kw-2">&amp;</span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib_borrow.html">from_glib_borrow</a>(<a href="#849">path</a>),
+<a href=#857 id=857 data-nosnippet>857</a>                )
+<a href=#858 id=858 data-nosnippet>858</a>            }
+<a href=#859 id=859 data-nosnippet>859</a>        }
+<a href=#860 id=860 data-nosnippet>860</a>        <span class="kw">unsafe </span>{
+<a href=#861 id=861 data-nosnippet>861</a>            <span class="kw">let </span>f: <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">Box_</a>&lt;F&gt; = <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">Box_</a>::<a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html#method.new">new</a>(<a href="#843">f</a>);
+<a href=#862 id=862 data-nosnippet>862</a>            <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/fn.connect_raw.html">connect_raw</a>(
+<a href=#863 id=863 data-nosnippet>863</a>                <a class="self" href="#843">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.ObjectType.html#tymethod.as_ptr">as_ptr</a>() <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>,
+<a href=#864 id=864 data-nosnippet>864</a>                <span class="string">c"row-deleted"</span>.<a href="https://doc.rust-lang.org/nightly/core/ffi/c_str/struct.CStr.html#method.as_ptr">as_ptr</a>() <span class="kw">as </span><span class="kw-2">*const </span><span class="kw">_</span>,
+<a href=#865 id=865 data-nosnippet>865</a>                <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.Some">Some</a>(std::mem::transmute::&lt;<span class="kw-2">*const </span>(), <span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn</span>()&gt;(
+<a href=#866 id=866 data-nosnippet>866</a>                    row_deleted_trampoline::&lt;<span class="self">Self</span>, F&gt; <span class="kw">as </span><span class="kw-2">*const </span>(),
+<a href=#867 id=867 data-nosnippet>867</a>                )),
+<a href=#868 id=868 data-nosnippet>868</a>                <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">Box_</a>::<a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html#method.into_raw">into_raw</a>(<a href="#861">f</a>),
+<a href=#869 id=869 data-nosnippet>869</a>            )
+<a href=#870 id=870 data-nosnippet>870</a>        }
+<a href=#871 id=871 data-nosnippet>871</a>    }
+<a href=#872 id=872 data-nosnippet>872</a>
+<a href=#873 id=873 data-nosnippet>873</a>    <span class="doccomment">/// This signal is emitted when a row has gotten the first child
+<a href=#874 id=874 data-nosnippet>874</a>    /// row or lost its last child row.
+<a href=#875 id=875 data-nosnippet>875</a>    /// ## `path`
+<a href=#876 id=876 data-nosnippet>876</a>    /// a [`TreePath`][crate::TreePath] identifying the row
+<a href=#877 id=877 data-nosnippet>877</a>    /// ## `iter`
+<a href=#878 id=878 data-nosnippet>878</a>    /// a valid [`TreeIter`][crate::TreeIter] pointing to the row
+<a href=#879 id=879 data-nosnippet>879</a>    </span><span class="attr">#[doc(alias = <span class="string">"row-has-child-toggled"</span>)]
+<a href=#880 id=880 data-nosnippet>880</a>    </span><span class="kw">fn </span>connect_row_has_child_toggled&lt;F: <a href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html">Fn</a>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="kw-2">&amp;</span><a href="tree_path.rs.html#8-21">TreePath</a>, <span class="kw-2">&amp;</span><a href="tree_iter.rs.html#8-25">TreeIter</a>) + <span class="lifetime">'static</span>&gt;(
+<a href=#881 id=881 data-nosnippet>881</a>        <span class="kw-2">&amp;</span><span class="self">self</span>,
+<a href=#882 id=882 data-nosnippet>882</a>        f: F,
+<a href=#883 id=883 data-nosnippet>883</a>    ) -&gt; <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html">SignalHandlerId</a> {
+<a href=#884 id=884 data-nosnippet>884</a>        <span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn </span>row_has_child_toggled_trampoline&lt;
+<a href=#885 id=885 data-nosnippet>885</a>            P: <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html">IsA</a>&lt;<a href="#15-277">TreeModel</a>&gt;,
+<a href=#886 id=886 data-nosnippet>886</a>            F: <a href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html">Fn</a>(<span class="kw-2">&amp;</span>P, <span class="kw-2">&amp;</span><a href="tree_path.rs.html#8-21">TreePath</a>, <span class="kw-2">&amp;</span><a href="tree_iter.rs.html#8-25">TreeIter</a>) + <span class="lifetime">'static</span>,
+<a href=#887 id=887 data-nosnippet>887</a>        &gt;(
+<a href=#888 id=888 data-nosnippet>888</a>            this: <span class="kw-2">*mut </span>ffi::<a href="../../../gtk4_sys/struct.GtkTreeModel.html">GtkTreeModel</a>,
+<a href=#889 id=889 data-nosnippet>889</a>            path: <span class="kw-2">*mut </span>ffi::<a href="../../../gtk4_sys/struct.GtkTreePath.html">GtkTreePath</a>,
+<a href=#890 id=890 data-nosnippet>890</a>            iter: <span class="kw-2">*mut </span>ffi::<a href="../../../gtk4_sys/struct.GtkTreeIter.html">GtkTreeIter</a>,
+<a href=#891 id=891 data-nosnippet>891</a>            f: glib::ffi::gpointer,
+<a href=#892 id=892 data-nosnippet>892</a>        ) {
+<a href=#893 id=893 data-nosnippet>893</a>            <span class="kw">unsafe </span>{
+<a href=#894 id=894 data-nosnippet>894</a>                <span class="kw">let </span>f: <span class="kw-2">&amp;</span>F = <span class="kw-2">&amp;*</span>(<a href="#891">f</a> <span class="kw">as </span><span class="kw-2">*const </span>F);
+<a href=#895 id=895 data-nosnippet>895</a>                <a href="#894">f</a>(
+<a href=#896 id=896 data-nosnippet>896</a>                    <a href="#15-277">TreeModel</a>::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.FromGlibPtrBorrow.html#method.from_glib_borrow">from_glib_borrow</a>(<a href="#888">this</a>).<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.Cast.html#method.unsafe_cast_ref">unsafe_cast_ref</a>(),
+<a href=#897 id=897 data-nosnippet>897</a>                    <span class="kw-2">&amp;</span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib_borrow.html">from_glib_borrow</a>(<a href="#889">path</a>),
+<a href=#898 id=898 data-nosnippet>898</a>                    <span class="kw-2">&amp;</span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib_borrow.html">from_glib_borrow</a>(<a href="#890">iter</a>),
+<a href=#899 id=899 data-nosnippet>899</a>                )
+<a href=#900 id=900 data-nosnippet>900</a>            }
+<a href=#901 id=901 data-nosnippet>901</a>        }
+<a href=#902 id=902 data-nosnippet>902</a>        <span class="kw">unsafe </span>{
+<a href=#903 id=903 data-nosnippet>903</a>            <span class="kw">let </span>f: <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">Box_</a>&lt;F&gt; = <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">Box_</a>::<a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html#method.new">new</a>(<a href="#882">f</a>);
+<a href=#904 id=904 data-nosnippet>904</a>            <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/fn.connect_raw.html">connect_raw</a>(
+<a href=#905 id=905 data-nosnippet>905</a>                <a class="self" href="#881">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.ObjectType.html#tymethod.as_ptr">as_ptr</a>() <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>,
+<a href=#906 id=906 data-nosnippet>906</a>                <span class="string">c"row-has-child-toggled"</span>.<a href="https://doc.rust-lang.org/nightly/core/ffi/c_str/struct.CStr.html#method.as_ptr">as_ptr</a>() <span class="kw">as </span><span class="kw-2">*const </span><span class="kw">_</span>,
+<a href=#907 id=907 data-nosnippet>907</a>                <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.Some">Some</a>(std::mem::transmute::&lt;<span class="kw-2">*const </span>(), <span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn</span>()&gt;(
+<a href=#908 id=908 data-nosnippet>908</a>                    row_has_child_toggled_trampoline::&lt;<span class="self">Self</span>, F&gt; <span class="kw">as </span><span class="kw-2">*const </span>(),
+<a href=#909 id=909 data-nosnippet>909</a>                )),
+<a href=#910 id=910 data-nosnippet>910</a>                <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">Box_</a>::<a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html#method.into_raw">into_raw</a>(<a href="#903">f</a>),
+<a href=#911 id=911 data-nosnippet>911</a>            )
+<a href=#912 id=912 data-nosnippet>912</a>        }
+<a href=#913 id=913 data-nosnippet>913</a>    }
+<a href=#914 id=914 data-nosnippet>914</a>
+<a href=#915 id=915 data-nosnippet>915</a>    <span class="doccomment">/// This signal is emitted when a new row has been inserted in
+<a href=#916 id=916 data-nosnippet>916</a>    /// the model.
+<a href=#917 id=917 data-nosnippet>917</a>    ///
+<a href=#918 id=918 data-nosnippet>918</a>    /// Note that the row may still be empty at this point, since
+<a href=#919 id=919 data-nosnippet>919</a>    /// it is a common pattern to first insert an empty row, and
+<a href=#920 id=920 data-nosnippet>920</a>    /// then fill it with the desired values.
+<a href=#921 id=921 data-nosnippet>921</a>    /// ## `path`
+<a href=#922 id=922 data-nosnippet>922</a>    /// a [`TreePath`][crate::TreePath] identifying the new row
+<a href=#923 id=923 data-nosnippet>923</a>    /// ## `iter`
+<a href=#924 id=924 data-nosnippet>924</a>    /// a valid [`TreeIter`][crate::TreeIter] pointing to the new row
+<a href=#925 id=925 data-nosnippet>925</a>    </span><span class="attr">#[doc(alias = <span class="string">"row-inserted"</span>)]
+<a href=#926 id=926 data-nosnippet>926</a>    </span><span class="kw">fn </span>connect_row_inserted&lt;F: <a href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html">Fn</a>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="kw-2">&amp;</span><a href="tree_path.rs.html#8-21">TreePath</a>, <span class="kw-2">&amp;</span><a href="tree_iter.rs.html#8-25">TreeIter</a>) + <span class="lifetime">'static</span>&gt;(
+<a href=#927 id=927 data-nosnippet>927</a>        <span class="kw-2">&amp;</span><span class="self">self</span>,
+<a href=#928 id=928 data-nosnippet>928</a>        f: F,
+<a href=#929 id=929 data-nosnippet>929</a>    ) -&gt; <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html">SignalHandlerId</a> {
+<a href=#930 id=930 data-nosnippet>930</a>        <span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn </span>row_inserted_trampoline&lt;
+<a href=#931 id=931 data-nosnippet>931</a>            P: <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html">IsA</a>&lt;<a href="#15-277">TreeModel</a>&gt;,
+<a href=#932 id=932 data-nosnippet>932</a>            F: <a href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html">Fn</a>(<span class="kw-2">&amp;</span>P, <span class="kw-2">&amp;</span><a href="tree_path.rs.html#8-21">TreePath</a>, <span class="kw-2">&amp;</span><a href="tree_iter.rs.html#8-25">TreeIter</a>) + <span class="lifetime">'static</span>,
+<a href=#933 id=933 data-nosnippet>933</a>        &gt;(
+<a href=#934 id=934 data-nosnippet>934</a>            this: <span class="kw-2">*mut </span>ffi::<a href="../../../gtk4_sys/struct.GtkTreeModel.html">GtkTreeModel</a>,
+<a href=#935 id=935 data-nosnippet>935</a>            path: <span class="kw-2">*mut </span>ffi::<a href="../../../gtk4_sys/struct.GtkTreePath.html">GtkTreePath</a>,
+<a href=#936 id=936 data-nosnippet>936</a>            iter: <span class="kw-2">*mut </span>ffi::<a href="../../../gtk4_sys/struct.GtkTreeIter.html">GtkTreeIter</a>,
+<a href=#937 id=937 data-nosnippet>937</a>            f: glib::ffi::gpointer,
+<a href=#938 id=938 data-nosnippet>938</a>        ) {
+<a href=#939 id=939 data-nosnippet>939</a>            <span class="kw">unsafe </span>{
+<a href=#940 id=940 data-nosnippet>940</a>                <span class="kw">let </span>f: <span class="kw-2">&amp;</span>F = <span class="kw-2">&amp;*</span>(<a href="#937">f</a> <span class="kw">as </span><span class="kw-2">*const </span>F);
+<a href=#941 id=941 data-nosnippet>941</a>                <a href="#940">f</a>(
+<a href=#942 id=942 data-nosnippet>942</a>                    <a href="#15-277">TreeModel</a>::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.FromGlibPtrBorrow.html#method.from_glib_borrow">from_glib_borrow</a>(<a href="#934">this</a>).<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.Cast.html#method.unsafe_cast_ref">unsafe_cast_ref</a>(),
+<a href=#943 id=943 data-nosnippet>943</a>                    <span class="kw-2">&amp;</span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib_borrow.html">from_glib_borrow</a>(<a href="#935">path</a>),
+<a href=#944 id=944 data-nosnippet>944</a>                    <span class="kw-2">&amp;</span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib_borrow.html">from_glib_borrow</a>(<a href="#936">iter</a>),
+<a href=#945 id=945 data-nosnippet>945</a>                )
+<a href=#946 id=946 data-nosnippet>946</a>            }
+<a href=#947 id=947 data-nosnippet>947</a>        }
+<a href=#948 id=948 data-nosnippet>948</a>        <span class="kw">unsafe </span>{
+<a href=#949 id=949 data-nosnippet>949</a>            <span class="kw">let </span>f: <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">Box_</a>&lt;F&gt; = <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">Box_</a>::<a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html#method.new">new</a>(<a href="#928">f</a>);
+<a href=#950 id=950 data-nosnippet>950</a>            <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/fn.connect_raw.html">connect_raw</a>(
+<a href=#951 id=951 data-nosnippet>951</a>                <a class="self" href="#927">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.ObjectType.html#tymethod.as_ptr">as_ptr</a>() <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>,
+<a href=#952 id=952 data-nosnippet>952</a>                <span class="string">c"row-inserted"</span>.<a href="https://doc.rust-lang.org/nightly/core/ffi/c_str/struct.CStr.html#method.as_ptr">as_ptr</a>() <span class="kw">as </span><span class="kw-2">*const </span><span class="kw">_</span>,
+<a href=#953 id=953 data-nosnippet>953</a>                <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.Some">Some</a>(std::mem::transmute::&lt;<span class="kw-2">*const </span>(), <span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn</span>()&gt;(
+<a href=#954 id=954 data-nosnippet>954</a>                    row_inserted_trampoline::&lt;<span class="self">Self</span>, F&gt; <span class="kw">as </span><span class="kw-2">*const </span>(),
+<a href=#955 id=955 data-nosnippet>955</a>                )),
+<a href=#956 id=956 data-nosnippet>956</a>                <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">Box_</a>::<a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html#method.into_raw">into_raw</a>(<a href="#949">f</a>),
+<a href=#957 id=957 data-nosnippet>957</a>            )
+<a href=#958 id=958 data-nosnippet>958</a>        }
+<a href=#959 id=959 data-nosnippet>959</a>    }
+<a href=#960 id=960 data-nosnippet>960</a>
+<a href=#961 id=961 data-nosnippet>961</a>    <span class="comment">//#[doc(alias = "rows-reordered")]
+<a href=#962 id=962 data-nosnippet>962</a>    //fn connect_rows_reordered&lt;Unsupported or ignored types&gt;(&amp;self, f: F) -&gt; SignalHandlerId {
+<a href=#963 id=963 data-nosnippet>963</a>    //    Unimplemented new_order: *.Pointer
+<a href=#964 id=964 data-nosnippet>964</a>    //}
+<a href=#965 id=965 data-nosnippet>965</a></span>}
+<a href=#966 id=966 data-nosnippet>966</a>
+<a href=#967 id=967 data-nosnippet>967</a><span class="kw">impl</span>&lt;O: <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html">IsA</a>&lt;<a href="#15-277">TreeModel</a>&gt;&gt; <a href="#288-965">TreeModelExt</a> <span class="kw">for </span>O {}
 </code></pre></div></section></main></body></html>
