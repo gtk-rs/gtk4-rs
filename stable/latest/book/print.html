@@ -37,7 +37,7 @@
             const path_to_root = "";
             const default_light_theme = "rust";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-bac78f95.js";
+            window.path_to_searchindex_js = "searchindex-d9a4df74.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-6221b6d3.js"></script>
@@ -2747,7 +2747,7 @@ Every time we get a message, we want to set the sensitivity of the button accord
 However, we don’t want to block the main loop while waiting for a message to receive.
 That is the whole point of the exercise after all!</p>
 <p>We solve that problem by waiting for messages in an <a href="https://rust-lang.github.io/async-book/"><code>async</code></a> block.
-This <code>async</code> block is spawned on the <code>glib</code> main loop with <a href="https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/fn.spawn_future_local.html"><code>spawn_future_local</code></a></p>
+This <code>async</code> block is spawned on the <code>glib</code> main loop with <a href="https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/fn.spawn_future_local.html"><code>spawn_future_local</code></a>.</p>
 <blockquote>
 <p>See also <a href="https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/fn.spawn_future.html"><code>spawn_future</code></a> for spawning async blocks on the main loop from outside the main thread.</p>
 </blockquote>
