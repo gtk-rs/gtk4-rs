@@ -4342,6 +4342,20 @@ impl ::std::fmt::Debug for GtkPictureClass {
 
 #[derive(Copy, Clone)]
 #[repr(C)]
+pub struct GtkPopoverBinClass {
+    pub parent_class: GtkWidgetClass,
+}
+
+impl ::std::fmt::Debug for GtkPopoverBinClass {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GtkPopoverBinClass @ {self:p}"))
+            .field("parent_class", &self.parent_class)
+            .finish()
+    }
+}
+
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkPopoverClass {
     pub parent_class: GtkWidgetClass,
     pub closed: Option<unsafe extern "C" fn(*mut GtkPopover)>,
@@ -8566,6 +8580,20 @@ impl ::std::fmt::Debug for GtkPopover {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("GtkPopover @ {self:p}"))
             .field("parent", &self.parent)
+            .finish()
+    }
+}
+
+#[repr(C)]
+#[allow(dead_code)]
+pub struct GtkPopoverBin {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+impl ::std::fmt::Debug for GtkPopoverBin {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GtkPopoverBin @ {self:p}"))
             .finish()
     }
 }
@@ -17102,6 +17130,46 @@ unsafe extern "C" {
     pub fn gtk_popover_set_offset(popover: *mut GtkPopover, x_offset: c_int, y_offset: c_int);
     pub fn gtk_popover_set_pointing_to(popover: *mut GtkPopover, rect: *const gdk::GdkRectangle);
     pub fn gtk_popover_set_position(popover: *mut GtkPopover, position: GtkPositionType);
+
+    //=========================================================================
+    // GtkPopoverBin
+    //=========================================================================
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    pub fn gtk_popover_bin_get_type() -> GType;
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    pub fn gtk_popover_bin_new() -> *mut GtkWidget;
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    pub fn gtk_popover_bin_get_child(self_: *mut GtkPopoverBin) -> *mut GtkWidget;
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    pub fn gtk_popover_bin_get_handle_input(self_: *mut GtkPopoverBin) -> gboolean;
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    pub fn gtk_popover_bin_get_menu_model(self_: *mut GtkPopoverBin) -> *mut gio::GMenuModel;
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    pub fn gtk_popover_bin_get_popover(self_: *mut GtkPopoverBin) -> *mut GtkPopover;
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    pub fn gtk_popover_bin_popdown(self_: *mut GtkPopoverBin);
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    pub fn gtk_popover_bin_popup(self_: *mut GtkPopoverBin);
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    pub fn gtk_popover_bin_set_child(self_: *mut GtkPopoverBin, child: *mut GtkWidget);
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    pub fn gtk_popover_bin_set_handle_input(self_: *mut GtkPopoverBin, handle_input: gboolean);
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    pub fn gtk_popover_bin_set_menu_model(self_: *mut GtkPopoverBin, model: *mut gio::GMenuModel);
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    pub fn gtk_popover_bin_set_popover(self_: *mut GtkPopoverBin, popover: *mut GtkPopover);
 
     //=========================================================================
     // GtkPopoverMenu

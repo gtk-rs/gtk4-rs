@@ -51,6 +51,12 @@ pub type GdkCicpRange = c_int;
 pub const GDK_CICP_RANGE_NARROW: GdkCicpRange = 0;
 pub const GDK_CICP_RANGE_FULL: GdkCicpRange = 1;
 
+pub type GdkColorChannel = c_int;
+pub const GDK_COLOR_CHANNEL_RED: GdkColorChannel = 0;
+pub const GDK_COLOR_CHANNEL_GREEN: GdkColorChannel = 1;
+pub const GDK_COLOR_CHANNEL_BLUE: GdkColorChannel = 2;
+pub const GDK_COLOR_CHANNEL_ALPHA: GdkColorChannel = 3;
+
 pub type GdkCrossingMode = c_int;
 pub const GDK_CROSSING_NORMAL: GdkCrossingMode = 0;
 pub const GDK_CROSSING_GRAB: GdkCrossingMode = 1;
@@ -4140,6 +4146,13 @@ unsafe extern "C" {
     #[cfg(feature = "v4_16")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
     pub fn gdk_cicp_range_get_type() -> GType;
+
+    //=========================================================================
+    // GdkColorChannel
+    //=========================================================================
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    pub fn gdk_color_channel_get_type() -> GType;
 
     //=========================================================================
     // GdkCrossingMode
