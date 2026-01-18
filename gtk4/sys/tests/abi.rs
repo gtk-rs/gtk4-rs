@@ -1714,6 +1714,13 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
+        "GtkPopoverBinClass",
+        Layout {
+            size: size_of::<GtkPopoverBinClass>(),
+            alignment: align_of::<GtkPopoverBinClass>(),
+        },
+    ),
+    (
         "GtkPopoverClass",
         Layout {
             size: size_of::<GtkPopoverClass>(),

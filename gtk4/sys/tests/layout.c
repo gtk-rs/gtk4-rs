@@ -223,6 +223,7 @@ int main() {
     printf("%s;%zu;%zu\n", "GtkPictureClass", sizeof(GtkPictureClass), alignof(GtkPictureClass));
     printf("%s;%zu;%zu\n", "GtkPolicyType", sizeof(GtkPolicyType), alignof(GtkPolicyType));
     printf("%s;%zu;%zu\n", "GtkPopover", sizeof(GtkPopover), alignof(GtkPopover));
+    printf("%s;%zu;%zu\n", "GtkPopoverBinClass", sizeof(GtkPopoverBinClass), alignof(GtkPopoverBinClass));
     printf("%s;%zu;%zu\n", "GtkPopoverClass", sizeof(GtkPopoverClass), alignof(GtkPopoverClass));
     printf("%s;%zu;%zu\n", "GtkPopoverMenuFlags", sizeof(GtkPopoverMenuFlags), alignof(GtkPopoverMenuFlags));
     printf("%s;%zu;%zu\n", "GtkPositionType", sizeof(GtkPositionType), alignof(GtkPositionType));
