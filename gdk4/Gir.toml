@@ -21,6 +21,7 @@ generate = [
     "Gdk.CairoContext",
     "Gdk.CicpParams",
     "Gdk.CicpRange",
+    "Gdk.ColorChannel",
     "Gdk.ColorState",
     "Gdk.CrossingEvent",
     "Gdk.CrossingMode",
