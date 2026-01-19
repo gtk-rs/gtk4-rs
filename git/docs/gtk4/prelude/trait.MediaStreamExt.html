@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Trait containing all `struct@MediaStream` methods."><title>MediaStreamExt in gtk4::prelude - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-77263533.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.94.0-nightly (2850ca829 2026-01-13)" data-channel="nightly" data-search-js="search-9e2438ea.js" data-stringdex-js="stringdex-b897f86f.js" data-settings-js="settings-c38705f0.js" ><script src="../../static.files/storage-e2aeef58.js"></script><script defer src="sidebar-items.js"></script><script defer src="../../static.files/main-7bab91a1.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-ffcac47a.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-044be391.svg"></head><body class="rustdoc trait"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Trait containing all `struct@MediaStream` methods."><title>MediaStreamExt in gtk4::prelude - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-77263533.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.95.0-nightly (0a3cd3b6b 2026-01-18)" data-channel="nightly" data-search-js="search-9e2438ea.js" data-stringdex-js="stringdex-b897f86f.js" data-settings-js="settings-c38705f0.js" ><script src="../../static.files/storage-e2aeef58.js"></script><script defer src="sidebar-items.js"></script><script defer src="../../static.files/main-7bab91a1.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-ffcac47a.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-044be391.svg"></head><body class="rustdoc trait"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
 
@@ -172,11 +172,11 @@
 <h2 id="implementors-1"><a class="doc-anchor" href="#implementors-1">§</a>Implementors</h2>
 <p><a href="../struct.MediaFile.html" title="struct gtk4::MediaFile"><code>MediaFile</code></a>, <a href="../struct.MediaStream.html" title="struct gtk4::MediaStream"><code>MediaStream</code></a></p>
 </div></details><h2 id="provided-methods" class="section-header">Provided Methods<a href="#provided-methods" class="anchor">§</a></h2><div class="methods"><details class="toggle method-toggle" open><summary><section id="method.ended" class="method"><a class="src rightside" href="../../src/gtk4/auto/media_stream.rs.html#151-155">Source</a><h4 class="code-header">fn <a href="#method.ended" class="fn">ended</a>(&amp;self)</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.4</span></div></span></summary><div class="docblock"><p>Pauses the media stream and marks it as ended.</p>
-<p>This is a hint only, calls to <a href="trait.MediaStreamExt.html#method.play"><code>play()</code></a>
+<p>This is a hint only, calls to <a href="trait.MediaStreamExt.html#method.play" title="method gtk4::prelude::MediaStreamExt::play"><code>play()</code></a>
 may still happen.</p>
 <p>The media stream must be prepared when this function is called.</p>
 <h5 id="deprecated-since-44"><a class="doc-anchor" href="#deprecated-since-44">§</a>Deprecated since 4.4</h5>
-<p>Use <a href="trait.MediaStreamExt.html#method.stream_ended"><code>stream_ended()</code></a> instead</p>
+<p>Use <a href="trait.MediaStreamExt.html#method.stream_ended" title="method gtk4::prelude::MediaStreamExt::stream_ended"><code>stream_ended()</code></a> instead</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.duration" class="method"><a class="src rightside" href="../../src/gtk4/auto/media_stream.rs.html#166-168">Source</a><h4 class="code-header">fn <a href="#method.duration" class="fn">duration</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i64.html">i64</a></h4></section></summary><div class="docblock"><p>Gets the duration of the stream.</p>
 <p>If the duration is not known, 0 will be returned.</p>
 <h5 id="returns"><a class="doc-anchor" href="#returns">§</a>Returns</h5>
@@ -189,8 +189,8 @@ explaining that state.</p>
 <p>Any type of error can be reported here depending on the
 implementation of the media stream.</p>
 <p>A media stream in an error cannot be operated on, calls
-like <a href="trait.MediaStreamExt.html#method.play"><code>play()</code></a> or
-<a href="trait.MediaStreamExt.html#method.seek"><code>seek()</code></a> will not have any effect.</p>
+like <a href="trait.MediaStreamExt.html#method.play" title="method gtk4::prelude::MediaStreamExt::play"><code>play()</code></a> or
+<a href="trait.MediaStreamExt.html#method.seek" title="method gtk4::prelude::MediaStreamExt::seek"><code>seek()</code></a> will not have any effect.</p>
 <p><a href="../struct.MediaStream.html" title="struct gtk4::MediaStream"><code>MediaStream</code></a> itself does not provide a way to unset
 an error, but implementations may provide options. For example,
 a <a href="../struct.MediaFile.html" title="struct gtk4::MediaFile"><code>MediaFile</code></a> will unset errors when a new source is
@@ -199,11 +199,11 @@ set, e.g. with <a href="trait.MediaFileExt.html#method.set_file" title="method g
 <p><a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="variant core::option::Option::None"><code>None</code></a> if not in an
 error state or the <code>GError</code> of the stream</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.is_loop" class="method"><a class="src rightside" href="../../src/gtk4/auto/media_stream.rs.html#225-231">Source</a><h4 class="code-header">fn <a href="#method.is_loop" class="fn">is_loop</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>Returns whether the stream is set to loop.</p>
-<p>See <a href="trait.MediaStreamExt.html#method.set_loop"><code>set_loop()</code></a> for details.</p>
+<p>See <a href="trait.MediaStreamExt.html#method.set_loop" title="method gtk4::prelude::MediaStreamExt::set_loop"><code>set_loop()</code></a> for details.</p>
 <h5 id="returns-3"><a class="doc-anchor" href="#returns-3">§</a>Returns</h5>
 <p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> if the stream should loop</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.is_muted" class="method"><a class="src rightside" href="../../src/gtk4/auto/media_stream.rs.html#243-249">Source</a><h4 class="code-header">fn <a href="#method.is_muted" class="fn">is_muted</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>Returns whether the audio for the stream is muted.</p>
-<p>See <a href="trait.MediaStreamExt.html#method.set_muted"><code>set_muted()</code></a> for details.</p>
+<p>See <a href="trait.MediaStreamExt.html#method.set_muted" title="method gtk4::prelude::MediaStreamExt::set_muted"><code>set_muted()</code></a> for details.</p>
 <h5 id="returns-4"><a class="doc-anchor" href="#returns-4">§</a>Returns</h5>
 <p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> if the stream is muted</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.is_playing" class="method"><a class="src rightside" href="../../src/gtk4/auto/media_stream.rs.html#259-265">Source</a><h4 class="code-header">fn <a href="#method.is_playing" class="fn">is_playing</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>Return whether the stream is currently playing.</p>
@@ -213,7 +213,7 @@ error state or the <code>GError</code> of the stream</p>
 <h5 id="returns-6"><a class="doc-anchor" href="#returns-6">§</a>Returns</h5>
 <p>the timestamp in microseconds</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.volume" class="method"><a class="src rightside" href="../../src/gtk4/auto/media_stream.rs.html#287-289">Source</a><h4 class="code-header">fn <a href="#method.volume" class="fn">volume</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a></h4></section></summary><div class="docblock"><p>Returns the volume of the audio for the stream.</p>
-<p>See <a href="trait.MediaStreamExt.html#method.set_volume"><code>set_volume()</code></a> for details.</p>
+<p>See <a href="trait.MediaStreamExt.html#method.set_volume" title="method gtk4::prelude::MediaStreamExt::set_volume"><code>set_volume()</code></a> for details.</p>
 <h5 id="returns-7"><a class="doc-anchor" href="#returns-7">§</a>Returns</h5>
 <p>volume of the stream from 0.0 to 1.0</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.has_audio" class="method"><a class="src rightside" href="../../src/gtk4/auto/media_stream.rs.html#298-304">Source</a><h4 class="code-header">fn <a href="#method.has_audio" class="fn">has_audio</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>Returns whether the stream has audio.</p>
@@ -231,7 +231,7 @@ error state or the <code>GError</code> of the stream</p>
 this function returns <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a>. However, if this function returns
 <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>false</code></a>, streams are guaranteed to not be seekable and user interfaces
 may hide controls that allow seeking.</p>
-<p>It is allowed to call <a href="trait.MediaStreamExt.html#method.seek"><code>seek()</code></a> on a non-seekable
+<p>It is allowed to call <a href="trait.MediaStreamExt.html#method.seek" title="method gtk4::prelude::MediaStreamExt::seek"><code>seek()</code></a> on a non-seekable
 stream, though it will not do anything.</p>
 <h5 id="returns-11"><a class="doc-anchor" href="#returns-11">§</a>Returns</h5>
 <p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> if the stream may support seeking</p>
@@ -250,7 +250,7 @@ stream, though it will not do anything.</p>
     duration: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i64.html">i64</a>,
 )</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.4</span></div></span></summary><div class="docblock"><p>Same as gtk_media_stream_stream_prepared().</p>
 <h5 id="deprecated-since-44-1"><a class="doc-anchor" href="#deprecated-since-44-1">§</a>Deprecated since 4.4</h5>
-<p>Use <a href="trait.MediaStreamExt.html#method.stream_prepared"><code>stream_prepared()</code></a> instead.</p>
+<p>Use <a href="trait.MediaStreamExt.html#method.stream_prepared" title="method gtk4::prelude::MediaStreamExt::stream_prepared"><code>stream_prepared()</code></a> instead.</p>
 <h6 id="has_audio"><a class="doc-anchor" href="#has_audio">§</a><code>has_audio</code></h6>
 <p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> if the stream should advertise audio support</p>
 <h6 id="has_video"><a class="doc-anchor" href="#has_video">§</a><code>has_video</code></h6>
@@ -264,12 +264,12 @@ stream, though it will not do anything.</p>
 rendering purposes. In particular, media streams might want to
 create a <a href="../../gdk4/auto/gl_context/struct.GLContext.html" title="struct gdk4::auto::gl_context::GLContext"><code>gdk::GLContext</code></a> or sync to the <a href="../../gdk4/auto/frame_clock/struct.FrameClock.html" title="struct gdk4::auto::frame_clock::FrameClock"><code>gdk::FrameClock</code></a>.</p>
 <p>Whoever calls this function is responsible for calling
-<a href="trait.MediaStreamExt.html#method.unrealize"><code>unrealize()</code></a> before either the stream
+<a href="trait.MediaStreamExt.html#method.unrealize" title="method gtk4::prelude::MediaStreamExt::unrealize"><code>unrealize()</code></a> before either the stream
 or @surface get destroyed.</p>
 <p>Multiple calls to this function may happen from different
 users of the video, even with the same @surface. Each of these
 calls must be followed by its own call to
-<a href="trait.MediaStreamExt.html#method.unrealize"><code>unrealize()</code></a>.</p>
+<a href="trait.MediaStreamExt.html#method.unrealize" title="method gtk4::prelude::MediaStreamExt::unrealize"><code>unrealize()</code></a>.</p>
 <p>It is not required to call this function to make a media stream work.</p>
 <h6 id="surface"><a class="doc-anchor" href="#surface">§</a><code>surface</code></h6>
 <p>a <a href="../../gdk4/auto/surface/struct.Surface.html" title="struct gdk4::auto::surface::Surface"><code>gdk::Surface</code></a></p>
@@ -286,12 +286,12 @@ any pending seek.</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.seek_failed" class="method"><a class="src rightside" href="../../src/gtk4/auto/media_stream.rs.html#480-484">Source</a><h4 class="code-header">fn <a href="#method.seek_failed" class="fn">seek_failed</a>(&amp;self)</h4></section></summary><div class="docblock"><p>Ends a seek operation started via GtkMediaStream.seek() as a failure.</p>
 <p>This will not cause an error on the stream and will assume that
 playback continues as if no seek had happened.</p>
-<p>See <a href="trait.MediaStreamExt.html#method.seek_success"><code>seek_success()</code></a> for the other way of
+<p>See <a href="trait.MediaStreamExt.html#method.seek_success" title="method gtk4::prelude::MediaStreamExt::seek_success"><code>seek_success()</code></a> for the other way of
 ending a seek.</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.seek_success" class="method"><a class="src rightside" href="../../src/gtk4/auto/media_stream.rs.html#494-498">Source</a><h4 class="code-header">fn <a href="#method.seek_success" class="fn">seek_success</a>(&amp;self)</h4></section></summary><div class="docblock"><p>Ends a seek operation started via GtkMediaStream.seek() successfully.</p>
 <p>This function will unset the GtkMediaStream:ended property
 if it was set.</p>
-<p>See <a href="trait.MediaStreamExt.html#method.seek_failed"><code>seek_failed()</code></a> for the other way of
+<p>See <a href="trait.MediaStreamExt.html#method.seek_failed" title="method gtk4::prelude::MediaStreamExt::seek_failed"><code>seek_failed()</code></a> for the other way of
 ending a seek.</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.set_loop" class="method"><a class="src rightside" href="../../src/gtk4/auto/media_stream.rs.html#512-516">Source</a><h4 class="code-header">fn <a href="#method.set_loop" class="fn">set_loop</a>(&amp;self, loop_: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>)</h4></section></summary><div class="docblock"><p>Sets whether the stream should loop.</p>
 <p>In this case, it will attempt to restart playback
@@ -323,7 +323,7 @@ When the stream is unmuted, the new volume setting will take effect.</p>
 <h6 id="volume"><a class="doc-anchor" href="#volume">§</a><code>volume</code></h6>
 <p>New volume of the stream from 0.0 to 1.0</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.stream_ended" class="method"><a class="src rightside" href="../../src/gtk4/auto/media_stream.rs.html#577-581">Source</a><h4 class="code-header">fn <a href="#method.stream_ended" class="fn">stream_ended</a>(&amp;self)</h4></section><span class="item-info"><div class="stab portability">Available on <strong>crate feature <code>v4_4</code></strong> only.</div></span></summary><div class="docblock"><p>Pauses the media stream and marks it as ended.</p>
-<p>This is a hint only, calls to <a href="trait.MediaStreamExt.html#method.play"><code>play()</code></a>
+<p>This is a hint only, calls to <a href="trait.MediaStreamExt.html#method.play" title="method gtk4::prelude::MediaStreamExt::play"><code>play()</code></a>
 may still happen.</p>
 <p>The media stream must be prepared when this function is called.</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.stream_prepared" class="method"><a class="src rightside" href="../../src/gtk4/auto/media_stream.rs.html#604-614">Source</a><h4 class="code-header">fn <a href="#method.stream_prepared" class="fn">stream_prepared</a>(
@@ -339,7 +339,7 @@ cannot determine the correct values, it is better to err on the
 side of caution and return <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a>. User interfaces will use those
 values to determine what controls to show.</p>
 <p>This function may not be called again until the stream has been
-reset via <a href="trait.MediaStreamExt.html#method.stream_unprepared"><code>stream_unprepared()</code></a>.</p>
+reset via <a href="trait.MediaStreamExt.html#method.stream_unprepared" title="method gtk4::prelude::MediaStreamExt::stream_unprepared"><code>stream_unprepared()</code></a>.</p>
 <h6 id="has_audio-1"><a class="doc-anchor" href="#has_audio-1">§</a><code>has_audio</code></h6>
 <p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> if the stream should advertise audio support</p>
 <h6 id="has_video-1"><a class="doc-anchor" href="#has_video-1">§</a><code>has_video</code></h6>
@@ -349,11 +349,11 @@ reset via <a href="trait.MediaStreamExt.html#method.stream_unprepared"><code>str
 <h6 id="duration-1"><a class="doc-anchor" href="#duration-1">§</a><code>duration</code></h6>
 <p>The duration of the stream or 0 if unknown</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.stream_unprepared" class="method"><a class="src rightside" href="../../src/gtk4/auto/media_stream.rs.html#624-628">Source</a><h4 class="code-header">fn <a href="#method.stream_unprepared" class="fn">stream_unprepared</a>(&amp;self)</h4></section><span class="item-info"><div class="stab portability">Available on <strong>crate feature <code>v4_4</code></strong> only.</div></span></summary><div class="docblock"><p>Resets a given media stream implementation.</p>
-<p><a href="trait.MediaStreamExt.html#method.stream_prepared"><code>stream_prepared()</code></a> can then be called again.</p>
+<p><a href="trait.MediaStreamExt.html#method.stream_prepared" title="method gtk4::prelude::MediaStreamExt::stream_prepared"><code>stream_prepared()</code></a> can then be called again.</p>
 <p>This function will also reset any error state the stream was in.</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.unprepared" class="method"><a class="src rightside" href="../../src/gtk4/auto/media_stream.rs.html#638-642">Source</a><h4 class="code-header">fn <a href="#method.unprepared" class="fn">unprepared</a>(&amp;self)</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.4</span></div></span></summary><div class="docblock"><p>Same as gtk_media_stream_stream_unprepared().</p>
 <h5 id="deprecated-since-44-2"><a class="doc-anchor" href="#deprecated-since-44-2">§</a>Deprecated since 4.4</h5>
-<p>Use <a href="trait.MediaStreamExt.html#method.stream_unprepared"><code>stream_unprepared()</code></a> instead.</p>
+<p>Use <a href="trait.MediaStreamExt.html#method.stream_unprepared" title="method gtk4::prelude::MediaStreamExt::stream_unprepared"><code>stream_unprepared()</code></a> instead.</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.unrealize" class="method"><a class="src rightside" href="../../src/gtk4/auto/media_stream.rs.html#651-658">Source</a><h4 class="code-header">fn <a href="#method.unrealize" class="fn">unrealize</a>(&amp;self, surface: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../../gdk4/auto/surface/struct.Surface.html" title="struct gdk4::auto::surface::Surface">Surface</a>&gt;)</h4></section></summary><div class="docblock"><p>Undoes a previous call to gtk_media_stream_realize().</p>
 <p>This causes the stream to release all resources it had
 allocated from @surface.</p>

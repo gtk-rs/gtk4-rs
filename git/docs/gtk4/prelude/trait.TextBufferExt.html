@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Trait containing all `struct@TextBuffer` methods."><title>TextBufferExt in gtk4::prelude - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-77263533.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.94.0-nightly (2850ca829 2026-01-13)" data-channel="nightly" data-search-js="search-9e2438ea.js" data-stringdex-js="stringdex-b897f86f.js" data-settings-js="settings-c38705f0.js" ><script src="../../static.files/storage-e2aeef58.js"></script><script defer src="sidebar-items.js"></script><script defer src="../../static.files/main-7bab91a1.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-ffcac47a.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-044be391.svg"></head><body class="rustdoc trait"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Trait containing all `struct@TextBuffer` methods."><title>TextBufferExt in gtk4::prelude - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-77263533.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.95.0-nightly (0a3cd3b6b 2026-01-18)" data-channel="nightly" data-search-js="search-9e2438ea.js" data-stringdex-js="stringdex-b897f86f.js" data-settings-js="settings-c38705f0.js" ><script src="../../static.files/storage-e2aeef58.js"></script><script defer src="sidebar-items.js"></script><script defer src="../../static.files/main-7bab91a1.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-ffcac47a.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-044be391.svg"></head><body class="rustdoc trait"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
 
@@ -328,7 +328,7 @@ not have to be in order.</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.apply_tag_by_name" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_buffer.rs.html#431-440">Source</a><h4 class="code-header">fn <a href="#method.apply_tag_by_name" class="fn">apply_tag_by_name</a>(&amp;self, name: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>, start: &amp;<a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>, end: &amp;<a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>)</h4></section></summary><div class="docblock"><p>Emits the “apply-tag” signal on @self.</p>
 <p>Calls <a href="../struct.TextTagTable.html#method.lookup" title="method gtk4::TextTagTable::lookup"><code>TextTagTable::lookup()</code></a> on the buffer’s
 tag table to get a <a href="../struct.TextTag.html" title="struct gtk4::TextTag"><code>TextTag</code></a>, then calls
-<a href="trait.TextBufferExt.html#method.apply_tag"><code>apply_tag()</code></a>.</p>
+<a href="trait.TextBufferExt.html#method.apply_tag" title="method gtk4::prelude::TextBufferExt::apply_tag"><code>apply_tag()</code></a>.</p>
 <h6 id="name"><a class="doc-anchor" href="#name">§</a><code>name</code></h6>
 <p>name of a named <a href="../struct.TextTag.html" title="struct gtk4::TextTag"><code>TextTag</code></a></p>
 <h6 id="start-1"><a class="doc-anchor" href="#start-1">§</a><code>start</code></h6>
@@ -361,7 +361,7 @@ re-initialized to point to the location where text was deleted.</p>
 <p>This will cause any previous operations in the undo/redo queue
 to be cleared.</p>
 <p>This should be paired with a call to
-<a href="trait.TextBufferExt.html#method.end_irreversible_action"><code>end_irreversible_action()</code></a> after the irreversible
+<a href="trait.TextBufferExt.html#method.end_irreversible_action" title="method gtk4::prelude::TextBufferExt::end_irreversible_action"><code>end_irreversible_action()</code></a> after the irreversible
 action has completed.</p>
 <p>You may nest calls to gtk_text_buffer_begin_irreversible_action()
 and gtk_text_buffer_end_irreversible_action() pairs.</p>
@@ -377,7 +377,7 @@ a call to gtk_text_buffer_end_user_action(), and emits the
 outermost pair of calls. This allows you to build user actions
 from other user actions.</p>
 <p>The “interactive” buffer mutation functions, such as
-<a href="trait.TextBufferExt.html#method.insert_interactive"><code>insert_interactive()</code></a>, automatically call
+<a href="trait.TextBufferExt.html#method.insert_interactive" title="method gtk4::prelude::TextBufferExt::insert_interactive"><code>insert_interactive()</code></a>, automatically call
 begin/end user action around the buffer operations they perform,
 so there’s no need to add extra calls if you user action consists
 solely of a single call to one of those functions.</p>
@@ -387,7 +387,7 @@ solely of a single call to one of those functions.</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.create_child_anchor" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_buffer.rs.html#546-553">Source</a><h4 class="code-header">fn <a href="#method.create_child_anchor" class="fn">create_child_anchor</a>(&amp;self, iter: &amp;mut <a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>) -&gt; <a class="struct" href="../struct.TextChildAnchor.html" title="struct gtk4::TextChildAnchor">TextChildAnchor</a></h4></section></summary><div class="docblock"><p>Creates and inserts a child anchor.</p>
 <p>This is a convenience function which simply creates a child anchor
 with <a href="../struct.TextChildAnchor.html#method.new" title="associated function gtk4::TextChildAnchor::new"><code>TextChildAnchor::new()</code></a> and inserts it into the buffer
-with <a href="trait.TextBufferExt.html#method.insert_child_anchor"><code>insert_child_anchor()</code></a>.</p>
+with <a href="trait.TextBufferExt.html#method.insert_child_anchor" title="method gtk4::prelude::TextBufferExt::insert_child_anchor"><code>insert_child_anchor()</code></a>.</p>
 <p>The new anchor is owned by the buffer; no reference count is
 returned to the caller of this function.</p>
 <h6 id="iter-1"><a class="doc-anchor" href="#iter-1">§</a><code>iter</code></h6>
@@ -401,7 +401,7 @@ returned to the caller of this function.</p>
     left_gravity: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>,
 ) -&gt; <a class="struct" href="../struct.TextMark.html" title="struct gtk4::TextMark">TextMark</a></h4></section></summary><div class="docblock"><p>Creates a mark at position @where_.</p>
 <p>If @mark_name is <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="variant core::option::Option::None"><code>None</code></a>, the mark is anonymous; otherwise, the mark
-can be retrieved by name using <a href="trait.TextBufferExt.html#method.mark"><code>mark()</code></a>.
+can be retrieved by name using <a href="trait.TextBufferExt.html#method.mark" title="method gtk4::prelude::TextBufferExt::mark"><code>mark()</code></a>.
 If a mark has left gravity, and text is inserted at the mark’s
 current location, the mark will be moved to the left of the
 newly-inserted text. If the mark has right gravity
@@ -447,7 +447,7 @@ re-initialized to point to the location where text was deleted.</p>
     end_iter: &amp;mut <a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>,
     default_editable: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>,
 ) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>Deletes all editable text in the given range.</p>
-<p>Calls <a href="trait.TextBufferExt.html#method.delete"><code>delete()</code></a> for each editable
+<p>Calls <a href="trait.TextBufferExt.html#method.delete" title="method gtk4::prelude::TextBufferExt::delete"><code>delete()</code></a> for each editable
 sub-range of [@start,@end). @start and @end are revalidated
 to point to the location of the last deleted range, or left
 untouched if no text was deleted.</p>
@@ -465,14 +465,14 @@ buffer.</p>
 you haven’t called g_object_ref() on the mark, it will be freed.
 Even if the mark isn’t freed, most operations on @mark become
 invalid, until it gets added to a buffer again with
-<a href="trait.TextBufferExt.html#method.add_mark"><code>add_mark()</code></a>. Use <a href="trait.TextMarkExt.html#method.is_deleted" title="method gtk4::prelude::TextMarkExt::is_deleted"><code>TextMarkExt::is_deleted()</code></a>
+<a href="trait.TextBufferExt.html#method.add_mark" title="method gtk4::prelude::TextBufferExt::add_mark"><code>add_mark()</code></a>. Use <a href="trait.TextMarkExt.html#method.is_deleted" title="method gtk4::prelude::TextMarkExt::is_deleted"><code>TextMarkExt::is_deleted()</code></a>
 to find out if a mark has been removed from its buffer.</p>
 <p>The <a href="../struct.TextBuffer.html#mark-deleted" title="struct gtk4::TextBuffer"><code>mark-deleted</code></a> signal will be emitted as
 notification after the mark is deleted.</p>
 <h6 id="mark-1"><a class="doc-anchor" href="#mark-1">§</a><code>mark</code></h6>
 <p>a <a href="../struct.TextMark.html" title="struct gtk4::TextMark"><code>TextMark</code></a> in @self</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.delete_mark_by_name" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_buffer.rs.html#706-713">Source</a><h4 class="code-header">fn <a href="#method.delete_mark_by_name" class="fn">delete_mark_by_name</a>(&amp;self, name: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>)</h4></section></summary><div class="docblock"><p>Deletes the mark named @name; the mark must exist.</p>
-<p>See <a href="trait.TextBufferExt.html#method.delete_mark"><code>delete_mark()</code></a> for details.</p>
+<p>See <a href="trait.TextBufferExt.html#method.delete_mark" title="method gtk4::prelude::TextBufferExt::delete_mark"><code>delete_mark()</code></a> for details.</p>
 <h6 id="name-1"><a class="doc-anchor" href="#name-1">§</a><code>name</code></h6>
 <p>name of a mark in @self</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.delete_selection" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_buffer.rs.html#729-737">Source</a><h4 class="code-header">fn <a href="#method.delete_selection" class="fn">delete_selection</a>(&amp;self, interactive: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>, default_editable: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>Deletes the range between the “insert” and “selection_bound” marks,
@@ -489,13 +489,13 @@ considered (users can’t delete uneditable text).</p>
 <p>This will cause any previous operations in the undo/redo
 queue to be cleared.</p>
 <p>This should be called after completing modifications to the
-text buffer after <a href="trait.TextBufferExt.html#method.begin_irreversible_action"><code>begin_irreversible_action()</code></a>
+text buffer after <a href="trait.TextBufferExt.html#method.begin_irreversible_action" title="method gtk4::prelude::TextBufferExt::begin_irreversible_action"><code>begin_irreversible_action()</code></a>
 was called.</p>
 <p>You may nest calls to gtk_text_buffer_begin_irreversible_action()
 and gtk_text_buffer_end_irreversible_action() pairs.</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.end_user_action" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_buffer.rs.html#763-767">Source</a><h4 class="code-header">fn <a href="#method.end_user_action" class="fn">end_user_action</a>(&amp;self)</h4></section></summary><div class="docblock"><p>Ends a user-visible operation.</p>
 <p>Should be paired with a call to
-<a href="trait.TextBufferExt.html#method.begin_user_action"><code>begin_user_action()</code></a>.
+<a href="trait.TextBufferExt.html#method.begin_user_action" title="method gtk4::prelude::TextBufferExt::begin_user_action"><code>begin_user_action()</code></a>.
 See that function for a full explanation.</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.bounds" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_buffer.rs.html#782-793">Source</a><h4 class="code-header">fn <a href="#method.bounds" class="fn">bounds</a>(&amp;self) -&gt; (<a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>, <a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>)</h4></section></summary><div class="docblock"><p>Retrieves the first and last iterators in the buffer, i.e. the
 entire buffer lies within the range [@start,@end).</p>
@@ -518,8 +518,8 @@ many bytes long.</p>
 <p>number of characters in the buffer</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.enables_undo" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_buffer.rs.html#857-863">Source</a><h4 class="code-header">fn <a href="#method.enables_undo" class="fn">enables_undo</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>Gets whether the buffer is saving modifications to the buffer
 to allow for undo and redo actions.</p>
-<p>See <a href="trait.TextBufferExt.html#method.begin_irreversible_action"><code>begin_irreversible_action()</code></a> and
-<a href="trait.TextBufferExt.html#method.end_irreversible_action"><code>end_irreversible_action()</code></a> to create
+<p>See <a href="trait.TextBufferExt.html#method.begin_irreversible_action" title="method gtk4::prelude::TextBufferExt::begin_irreversible_action"><code>begin_irreversible_action()</code></a> and
+<a href="trait.TextBufferExt.html#method.end_irreversible_action" title="method gtk4::prelude::TextBufferExt::end_irreversible_action"><code>end_irreversible_action()</code></a> to create
 changes to the buffer that cannot be undone.</p>
 <h5 id="returns-9"><a class="doc-anchor" href="#returns-9">§</a>Returns</h5>
 <p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> if undoing and redoing changes to the buffer is allowed.</p>
@@ -528,7 +528,7 @@ character in the text buffer.</p>
 <p>If dereferenced with <a href="../struct.TextIter.html#method.char" title="method gtk4::TextIter::char"><code>TextIter::char()</code></a>, the end
 iterator has a character value of 0.
 The entire buffer lies in the range from the first position in
-the buffer (call <a href="trait.TextBufferExt.html#method.start_iter"><code>start_iter()</code></a> to get
+the buffer (call <a href="trait.TextBufferExt.html#method.start_iter" title="method gtk4::prelude::TextBufferExt::start_iter"><code>start_iter()</code></a> to get
 character position 0) to the end iterator.</p>
 <h5 id="returns-10"><a class="doc-anchor" href="#returns-10">§</a>Returns</h5><h6 id="iter-2"><a class="doc-anchor" href="#iter-2">§</a><code>iter</code></h6>
 <p>iterator to initialize</p>
@@ -536,7 +536,7 @@ character position 0) to the end iterator.</p>
 <h5 id="returns-11"><a class="doc-anchor" href="#returns-11">§</a>Returns</h5>
 <p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> if the there is text selected</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.get_insert" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_buffer.rs.html#918-924">Source</a><h4 class="code-header">fn <a href="#method.get_insert" class="fn">get_insert</a>(&amp;self) -&gt; <a class="struct" href="../struct.TextMark.html" title="struct gtk4::TextMark">TextMark</a></h4></section></summary><div class="docblock"><p>Returns the mark that represents the cursor (insertion point).</p>
-<p>Equivalent to calling <a href="trait.TextBufferExt.html#method.mark"><code>mark()</code></a>
+<p>Equivalent to calling <a href="trait.TextBufferExt.html#method.mark" title="method gtk4::prelude::TextBufferExt::mark"><code>mark()</code></a>
 to get the mark named “insert”, but very slightly more
 efficient, and involves less typing.</p>
 <h5 id="returns-12"><a class="doc-anchor" href="#returns-12">§</a>Returns</h5>
@@ -622,19 +622,19 @@ copy of the inserted or removed text within the text buffer.</p>
 <h5 id="returns-21"><a class="doc-anchor" href="#returns-21">§</a>Returns</h5>
 <p>The max number of undo levels allowed (0 indicates unlimited).</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.is_modified" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_buffer.rs.html#1153-1159">Source</a><h4 class="code-header">fn <a href="#method.is_modified" class="fn">is_modified</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>Indicates whether the buffer has been modified since the last call
-to <a href="trait.TextBufferExt.html#method.set_modified"><code>set_modified()</code></a> set the modification flag to
+to <a href="trait.TextBufferExt.html#method.set_modified" title="method gtk4::prelude::TextBufferExt::set_modified"><code>set_modified()</code></a> set the modification flag to
 <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>false</code></a>.</p>
 <p>Used for example to enable a “save” function in a text editor.</p>
 <h5 id="returns-22"><a class="doc-anchor" href="#returns-22">§</a>Returns</h5>
 <p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> if the buffer has been modified</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.selection_bound" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_buffer.rs.html#1179-1185">Source</a><h4 class="code-header">fn <a href="#method.selection_bound" class="fn">selection_bound</a>(&amp;self) -&gt; <a class="struct" href="../struct.TextMark.html" title="struct gtk4::TextMark">TextMark</a></h4></section></summary><div class="docblock"><p>Returns the mark that represents the selection bound.</p>
-<p>Equivalent to calling <a href="trait.TextBufferExt.html#method.mark"><code>mark()</code></a>
+<p>Equivalent to calling <a href="trait.TextBufferExt.html#method.mark" title="method gtk4::prelude::TextBufferExt::mark"><code>mark()</code></a>
 to get the mark named “selection_bound”, but very slightly
 more efficient, and involves less typing.</p>
 <p>The currently-selected text in @self is the region between the
 “selection_bound” and “insert” marks. If “selection_bound” and
 “insert” are in the same place, then there is no current selection.
-<a href="trait.TextBufferExt.html#method.selection_bounds"><code>selection_bounds()</code></a> is another convenient
+<a href="trait.TextBufferExt.html#method.selection_bounds" title="method gtk4::prelude::TextBufferExt::selection_bounds"><code>selection_bounds()</code></a> is another convenient
 function for handling the selection, if you just want to know whether
 there’s a selection and what its bounds are.</p>
 <h5 id="returns-23"><a class="doc-anchor" href="#returns-23">§</a>Returns</h5>
@@ -667,7 +667,7 @@ invisibility attribute) if @include_hidden_chars is <a href="https://doc.rust-la
 The returned string includes a 0xFFFC character whenever the
 buffer contains embedded images, so byte and character indexes
 into the returned string do correspond to byte and character
-indexes into the buffer. Contrast with <a href="trait.TextBufferExt.html#method.text"><code>text()</code></a>.
+indexes into the buffer. Contrast with <a href="trait.TextBufferExt.html#method.text" title="method gtk4::prelude::TextBufferExt::text"><code>text()</code></a>.
 Note that 0xFFFC can occur in normal text as well, so it is not a
 reliable indicator that a paintable or widget is in the buffer.</p>
 <h6 id="start-5"><a class="doc-anchor" href="#start-5">§</a><code>start</code></h6>
@@ -679,7 +679,7 @@ reliable indicator that a paintable or widget is in the buffer.</p>
 <h5 id="returns-26"><a class="doc-anchor" href="#returns-26">§</a>Returns</h5>
 <p>an allocated UTF-8 string</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.start_iter" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_buffer.rs.html#1282-1291">Source</a><h4 class="code-header">fn <a href="#method.start_iter" class="fn">start_iter</a>(&amp;self) -&gt; <a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a></h4></section></summary><div class="docblock"><p>Initialized @iter with the first position in the text buffer.</p>
-<p>This is the same as using <a href="trait.TextBufferExt.html#method.iter_at_offset"><code>iter_at_offset()</code></a>
+<p>This is the same as using <a href="trait.TextBufferExt.html#method.iter_at_offset" title="method gtk4::prelude::TextBufferExt::iter_at_offset"><code>iter_at_offset()</code></a>
 to get the iter at character offset 0.</p>
 <h5 id="returns-27"><a class="doc-anchor" href="#returns-27">§</a>Returns</h5><h6 id="iter-9"><a class="doc-anchor" href="#iter-9">§</a><code>iter</code></h6>
 <p>iterator to initialize</p>
@@ -697,7 +697,7 @@ invisibility attribute) if @include_hidden_chars is <a href="https://doc.rust-la
 Does not include characters representing embedded images, so
 byte and character indexes into the returned string do not
 correspond to byte and character indexes into the buffer.
-Contrast with <a href="trait.TextBufferExt.html#method.slice"><code>slice()</code></a>.</p>
+Contrast with <a href="trait.TextBufferExt.html#method.slice" title="method gtk4::prelude::TextBufferExt::slice"><code>slice()</code></a>.</p>
 <h6 id="start-6"><a class="doc-anchor" href="#start-6">§</a><code>start</code></h6>
 <p>start of a range</p>
 <h6 id="end-6"><a class="doc-anchor" href="#end-6">§</a><code>end</code></h6>
@@ -720,7 +720,7 @@ inserted text.</p>
 <h6 id="len"><a class="doc-anchor" href="#len">§</a><code>len</code></h6>
 <p>length of text in bytes, or -1</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.insert_at_cursor" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_buffer.rs.html#1376-1385">Source</a><h4 class="code-header">fn <a href="#method.insert_at_cursor" class="fn">insert_at_cursor</a>(&amp;self, text: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>)</h4></section></summary><div class="docblock"><p>Inserts @text in @self.</p>
-<p>Simply calls <a href="trait.TextBufferExt.html#method.insert"><code>insert()</code></a>,
+<p>Simply calls <a href="trait.TextBufferExt.html#method.insert" title="method gtk4::prelude::TextBufferExt::insert"><code>insert()</code></a>,
 using the current cursor position as the insertion point.</p>
 <h6 id="text-1"><a class="doc-anchor" href="#text-1">§</a><code>text</code></h6>
 <p>text in UTF-8 format</p>
@@ -736,9 +736,9 @@ when obtaining the buffer contents as a string, will be represented
 by the Unicode “object replacement character” 0xFFFC. Note that the
 “slice” variants for obtaining portions of the buffer as a string
 include this character for child anchors, but the “text” variants do
-not. E.g. see <a href="trait.TextBufferExt.html#method.slice"><code>slice()</code></a> and
-<a href="trait.TextBufferExt.html#method.text"><code>text()</code></a>.</p>
-<p>Consider <a href="trait.TextBufferExt.html#method.create_child_anchor"><code>create_child_anchor()</code></a> as a more
+not. E.g. see <a href="trait.TextBufferExt.html#method.slice" title="method gtk4::prelude::TextBufferExt::slice"><code>slice()</code></a> and
+<a href="trait.TextBufferExt.html#method.text" title="method gtk4::prelude::TextBufferExt::text"><code>text()</code></a>.</p>
+<p>Consider <a href="trait.TextBufferExt.html#method.create_child_anchor" title="method gtk4::prelude::TextBufferExt::create_child_anchor"><code>create_child_anchor()</code></a> as a more
 convenient alternative to this function. The buffer will add a
 reference to the anchor, so you can unref it after insertion.</p>
 <h6 id="iter-11"><a class="doc-anchor" href="#iter-11">§</a><code>iter</code></h6>
@@ -751,7 +751,7 @@ reference to the anchor, so you can unref it after insertion.</p>
     text: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>,
     default_editable: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>,
 ) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>Inserts @text in @self.</p>
-<p>Like <a href="trait.TextBufferExt.html#method.insert"><code>insert()</code></a>, but the insertion will not occur
+<p>Like <a href="trait.TextBufferExt.html#method.insert" title="method gtk4::prelude::TextBufferExt::insert"><code>insert()</code></a>, but the insertion will not occur
 if @iter is at a non-editable location in the buffer. Usually you
 want to prevent insertions at ineditable locations if the insertion
 results from a user action (is interactive).</p>
@@ -773,7 +773,7 @@ result of <a href="trait.TextViewExt.html#method.is_editable" title="method gtk4
     text: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>,
     default_editable: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>,
 ) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>Inserts @text in @self.</p>
-<p>Calls <a href="trait.TextBufferExt.html#method.insert_interactive"><code>insert_interactive()</code></a>
+<p>Calls <a href="trait.TextBufferExt.html#method.insert_interactive" title="method gtk4::prelude::TextBufferExt::insert_interactive"><code>insert_interactive()</code></a>
 at the cursor position.</p>
 <p>@default_editable indicates the editability of text that doesn’t
 have a tag affecting editability applied to it. Typically the
@@ -803,8 +803,8 @@ and when obtaining the buffer contents as a string, will be
 represented by the Unicode “object replacement character” 0xFFFC.
 Note that the “slice” variants for obtaining portions of the buffer
 as a string include this character for paintable, but the “text”
-variants do not. e.g. see <a href="trait.TextBufferExt.html#method.slice"><code>slice()</code></a> and
-<a href="trait.TextBufferExt.html#method.text"><code>text()</code></a>.</p>
+variants do not. e.g. see <a href="trait.TextBufferExt.html#method.slice" title="method gtk4::prelude::TextBufferExt::slice"><code>slice()</code></a> and
+<a href="trait.TextBufferExt.html#method.text" title="method gtk4::prelude::TextBufferExt::text"><code>text()</code></a>.</p>
 <h6 id="iter-14"><a class="doc-anchor" href="#iter-14">§</a><code>iter</code></h6>
 <p>location to insert the paintable</p>
 <h6 id="paintable"><a class="doc-anchor" href="#paintable">§</a><code>paintable</code></h6>
@@ -831,7 +831,7 @@ so expect those.</p>
     default_editable: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>,
 ) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>Copies text, tags, and paintables between @start and @end
 and inserts the copy at @iter.</p>
-<p>Same as <a href="trait.TextBufferExt.html#method.insert_range"><code>insert_range()</code></a>, but does nothing
+<p>Same as <a href="trait.TextBufferExt.html#method.insert_range" title="method gtk4::prelude::TextBufferExt::insert_range"><code>insert_range()</code></a>, but does nothing
 if the insertion point isn’t editable. The @default_editable
 parameter indicates whether the text is editable at @iter if
 no tags enclosing @iter affect editability. Typically the result
@@ -854,7 +854,7 @@ as notification of the move.</p>
 <h6 id="where_-2"><a class="doc-anchor" href="#where_-2">§</a><code>where_</code></h6>
 <p>new location for @mark in @self</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.move_mark_by_name" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_buffer.rs.html#1626-1634">Source</a><h4 class="code-header">fn <a href="#method.move_mark_by_name" class="fn">move_mark_by_name</a>(&amp;self, name: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>, where_: &amp;<a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>)</h4></section></summary><div class="docblock"><p>Moves the mark named @name (which must exist) to location @where_.</p>
-<p>See <a href="trait.TextBufferExt.html#method.move_mark"><code>move_mark()</code></a> for details.</p>
+<p>See <a href="trait.TextBufferExt.html#method.move_mark" title="method gtk4::prelude::TextBufferExt::move_mark"><code>move_mark()</code></a> for details.</p>
 <h6 id="name-3"><a class="doc-anchor" href="#name-3">§</a><code>name</code></h6>
 <p>name of a mark</p>
 <h6 id="where_-3"><a class="doc-anchor" href="#where_-3">§</a><code>where_</code></h6>
@@ -880,7 +880,7 @@ data will be inserted.</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.place_cursor" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_buffer.rs.html#1680-1687">Source</a><h4 class="code-header">fn <a href="#method.place_cursor" class="fn">place_cursor</a>(&amp;self, where_: &amp;<a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>)</h4></section></summary><div class="docblock"><p>This function moves the “insert” and “selection_bound” marks
 simultaneously.</p>
 <p>If you move them to the same place in two steps with
-<a href="trait.TextBufferExt.html#method.move_mark"><code>move_mark()</code></a>, you will temporarily select a
+<a href="trait.TextBufferExt.html#method.move_mark" title="method gtk4::prelude::TextBufferExt::move_mark"><code>move_mark()</code></a>, you will temporarily select a
 region in between their old and new locations, which can be pretty
 inefficient since the temporarily-selected region will force stuff
 to be recalculated. This function moves them as a unit, which can
@@ -905,10 +905,10 @@ the commit notify functions.</p>
 <p>the notify handler identifier returned from
 <a href="trait.TextBufferExtManual.html#method.add_commit_notify" title="method gtk4::prelude::TextBufferExtManual::add_commit_notify"><code>TextBufferExtManual::add_commit_notify()</code></a>.</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.remove_selection_clipboard" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_buffer.rs.html#1744-1751">Source</a><h4 class="code-header">fn <a href="#method.remove_selection_clipboard" class="fn">remove_selection_clipboard</a>(&amp;self, clipboard: &amp;<a class="struct" href="../../gdk4/auto/clipboard/struct.Clipboard.html" title="struct gdk4::auto::clipboard::Clipboard">Clipboard</a>)</h4></section></summary><div class="docblock"><p>Removes a <a href="../../gdk4/auto/clipboard/struct.Clipboard.html" title="struct gdk4::auto::clipboard::Clipboard"><code>gdk::Clipboard</code></a> added with
-<a href="trait.TextBufferExt.html#method.add_selection_clipboard"><code>add_selection_clipboard()</code></a></p>
+<a href="trait.TextBufferExt.html#method.add_selection_clipboard" title="method gtk4::prelude::TextBufferExt::add_selection_clipboard"><code>add_selection_clipboard()</code></a></p>
 <h6 id="clipboard-4"><a class="doc-anchor" href="#clipboard-4">§</a><code>clipboard</code></h6>
 <p>a <a href="../../gdk4/auto/clipboard/struct.Clipboard.html" title="struct gdk4::auto::clipboard::Clipboard"><code>gdk::Clipboard</code></a> added to @self by
-<a href="trait.TextBufferExt.html#method.add_selection_clipboard"><code>add_selection_clipboard()</code></a></p>
+<a href="trait.TextBufferExt.html#method.add_selection_clipboard" title="method gtk4::prelude::TextBufferExt::add_selection_clipboard"><code>add_selection_clipboard()</code></a></p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.remove_tag" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_buffer.rs.html#1765-1774">Source</a><h4 class="code-header">fn <a href="#method.remove_tag" class="fn">remove_tag</a>(&amp;self, tag: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.TextTag.html" title="struct gtk4::TextTag">TextTag</a>&gt;, start: &amp;<a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>, end: &amp;<a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>)</h4></section></summary><div class="docblock"><p>Emits the “remove-tag” signal.</p>
 <p>The default handler for the signal removes all occurrences
 of @tag from the given range. @start and @end don’t have
@@ -922,7 +922,7 @@ to be in order.</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.remove_tag_by_name" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_buffer.rs.html#1788-1797">Source</a><h4 class="code-header">fn <a href="#method.remove_tag_by_name" class="fn">remove_tag_by_name</a>(&amp;self, name: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>, start: &amp;<a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>, end: &amp;<a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>)</h4></section></summary><div class="docblock"><p>Emits the “remove-tag” signal.</p>
 <p>Calls <a href="../struct.TextTagTable.html#method.lookup" title="method gtk4::TextTagTable::lookup"><code>TextTagTable::lookup()</code></a> on the buffer’s
 tag table to get a <a href="../struct.TextTag.html" title="struct gtk4::TextTag"><code>TextTag</code></a>, then calls
-<a href="trait.TextBufferExt.html#method.remove_tag"><code>remove_tag()</code></a>.</p>
+<a href="trait.TextBufferExt.html#method.remove_tag" title="method gtk4::prelude::TextBufferExt::remove_tag"><code>remove_tag()</code></a>.</p>
 <h6 id="name-4"><a class="doc-anchor" href="#name-4">§</a><code>name</code></h6>
 <p>name of a <a href="../struct.TextTag.html" title="struct gtk4::TextTag"><code>TextTag</code></a></p>
 <h6 id="start-11"><a class="doc-anchor" href="#start-11">§</a><code>start</code></h6>
@@ -932,7 +932,7 @@ tag table to get a <a href="../struct.TextTag.html" title="struct gtk4::TextTag"
 </div></details><details class="toggle method-toggle" open><summary><section id="method.select_range" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_buffer.rs.html#1813-1821">Source</a><h4 class="code-header">fn <a href="#method.select_range" class="fn">select_range</a>(&amp;self, ins: &amp;<a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>, bound: &amp;<a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>)</h4></section></summary><div class="docblock"><p>This function moves the “insert” and “selection_bound” marks
 simultaneously.</p>
 <p>If you move them in two steps with
-<a href="trait.TextBufferExt.html#method.move_mark"><code>move_mark()</code></a>, you will temporarily select a
+<a href="trait.TextBufferExt.html#method.move_mark" title="method gtk4::prelude::TextBufferExt::move_mark"><code>move_mark()</code></a>, you will temporarily select a
 region in between their old and new locations, which can be pretty
 inefficient since the temporarily-selected region will force stuff
 to be recalculated. This function moves them as a unit, which can
@@ -945,9 +945,9 @@ be optimized.</p>
 <p>Undoable actions in this context are changes to the text content of
 the buffer. Changes to tags and marks are not tracked.</p>
 <p>If enabled, the user will be able to undo the last number of actions
-up to <a href="trait.TextBufferExt.html#method.max_undo_levels"><code>max_undo_levels()</code></a>.</p>
-<p>See <a href="trait.TextBufferExt.html#method.begin_irreversible_action"><code>begin_irreversible_action()</code></a> and
-<a href="trait.TextBufferExt.html#method.end_irreversible_action"><code>end_irreversible_action()</code></a> to create
+up to <a href="trait.TextBufferExt.html#method.max_undo_levels" title="method gtk4::prelude::TextBufferExt::max_undo_levels"><code>max_undo_levels()</code></a>.</p>
+<p>See <a href="trait.TextBufferExt.html#method.begin_irreversible_action" title="method gtk4::prelude::TextBufferExt::begin_irreversible_action"><code>begin_irreversible_action()</code></a> and
+<a href="trait.TextBufferExt.html#method.end_irreversible_action" title="method gtk4::prelude::TextBufferExt::end_irreversible_action"><code>end_irreversible_action()</code></a> to create
 changes to the buffer that cannot be undone.</p>
 <h6 id="enable_undo"><a class="doc-anchor" href="#enable_undo">§</a><code>enable_undo</code></h6>
 <p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> to enable undo</p>
@@ -970,7 +970,7 @@ bit flips, the buffer emits the
 </div></details><details class="toggle method-toggle" open><summary><section id="method.set_text" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_buffer.rs.html#1895-1904">Source</a><h4 class="code-header">fn <a href="#method.set_text" class="fn">set_text</a>(&amp;self, text: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>)</h4></section></summary><div class="docblock"><p>Deletes current contents of @self, and inserts @text instead. This is
 automatically marked as an irreversible action in the undo stack. If you
 wish to mark this action as part of a larger undo operation, call
-<a href="trait.TextBufferExt.html#method.delete"><code>delete()</code></a> and <a href="trait.TextBufferExt.html#method.insert"><code>insert()</code></a> directly instead.</p>
+<a href="trait.TextBufferExt.html#method.delete" title="method gtk4::prelude::TextBufferExt::delete"><code>delete()</code></a> and <a href="trait.TextBufferExt.html#method.insert" title="method gtk4::prelude::TextBufferExt::insert"><code>insert()</code></a> directly instead.</p>
 <p>If @len is -1, @text must be nul-terminated.
 @text must be valid UTF-8.</p>
 <h6 id="text-4"><a class="doc-anchor" href="#text-4">§</a><code>text</code></h6>
@@ -990,9 +990,9 @@ It is useful for getting notified when the cursor moves.</p>
 it must not invalidate the @start and @end iters (or has to
 revalidate them).</p>
 <p>See also:
-<a href="trait.TextBufferExt.html#method.apply_tag"><code>apply_tag()</code></a>,
+<a href="trait.TextBufferExt.html#method.apply_tag" title="method gtk4::prelude::TextBufferExt::apply_tag"><code>apply_tag()</code></a>,
 <a href="trait.TextBufferExtManual.html#method.insert_with_tags" title="method gtk4::prelude::TextBufferExtManual::insert_with_tags"><code>TextBufferExtManual::insert_with_tags()</code></a>,
-<a href="trait.TextBufferExt.html#method.insert_range"><code>insert_range()</code></a>.</p>
+<a href="trait.TextBufferExt.html#method.insert_range" title="method gtk4::prelude::TextBufferExt::insert_range"><code>insert_range()</code></a>.</p>
 <h6 id="tag-2"><a class="doc-anchor" href="#tag-2">§</a><code>tag</code></h6>
 <p>the applied tag</p>
 <h6 id="start-12"><a class="doc-anchor" href="#start-12">§</a><code>start</code></h6>
@@ -1005,12 +1005,12 @@ revalidate them).</p>
 ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section></summary><div class="docblock"><p>Emitted at the beginning of a single user-visible
 operation on a <a href="../struct.TextBuffer.html" title="struct gtk4::TextBuffer"><code>TextBuffer</code></a>.</p>
 <p>See also:
-<a href="trait.TextBufferExt.html#method.begin_user_action"><code>begin_user_action()</code></a>,
-<a href="trait.TextBufferExt.html#method.insert_interactive"><code>insert_interactive()</code></a>,
-<a href="trait.TextBufferExt.html#method.insert_range_interactive"><code>insert_range_interactive()</code></a>,
-<a href="trait.TextBufferExt.html#method.delete_interactive"><code>delete_interactive()</code></a>,
-<a href="trait.TextBufferExt.html#method.backspace"><code>backspace()</code></a>,
-<a href="trait.TextBufferExt.html#method.delete_selection"><code>delete_selection()</code></a>.</p>
+<a href="trait.TextBufferExt.html#method.begin_user_action" title="method gtk4::prelude::TextBufferExt::begin_user_action"><code>begin_user_action()</code></a>,
+<a href="trait.TextBufferExt.html#method.insert_interactive" title="method gtk4::prelude::TextBufferExt::insert_interactive"><code>insert_interactive()</code></a>,
+<a href="trait.TextBufferExt.html#method.insert_range_interactive" title="method gtk4::prelude::TextBufferExt::insert_range_interactive"><code>insert_range_interactive()</code></a>,
+<a href="trait.TextBufferExt.html#method.delete_interactive" title="method gtk4::prelude::TextBufferExt::delete_interactive"><code>delete_interactive()</code></a>,
+<a href="trait.TextBufferExt.html#method.backspace" title="method gtk4::prelude::TextBufferExt::backspace"><code>backspace()</code></a>,
+<a href="trait.TextBufferExt.html#method.delete_selection" title="method gtk4::prelude::TextBufferExt::delete_selection"><code>delete_selection()</code></a>.</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.connect_changed" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_buffer.rs.html#2018-2039">Source</a><h4 class="code-header">fn <a href="#method.connect_changed" class="fn">connect_changed</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section></summary><div class="docblock"><p>Emitted when the content of a <a href="../struct.TextBuffer.html" title="struct gtk4::TextBuffer"><code>TextBuffer</code></a> has changed.</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.connect_delete_range" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_buffer.rs.html#2057-2090">Source</a><h4 class="code-header">fn <a href="#method.connect_delete_range" class="fn">connect_delete_range</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self, &amp;<a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>, &amp;<a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>) + 'static&gt;(
     &amp;self,
@@ -1023,7 +1023,7 @@ the @start and @end iters to both point to the location
 where text was deleted. Handlers which run after the default
 handler (see g_signal_connect_after()) do not have access to
 the deleted text.</p>
-<p>See also: <a href="trait.TextBufferExt.html#method.delete"><code>delete()</code></a>.</p>
+<p>See also: <a href="trait.TextBufferExt.html#method.delete" title="method gtk4::prelude::TextBufferExt::delete"><code>delete()</code></a>.</p>
 <h6 id="start-13"><a class="doc-anchor" href="#start-13">§</a><code>start</code></h6>
 <p>the start of the range to be deleted</p>
 <h6 id="end-13"><a class="doc-anchor" href="#end-13">§</a><code>end</code></h6>
@@ -1034,13 +1034,13 @@ the deleted text.</p>
 ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section></summary><div class="docblock"><p>Emitted at the end of a single user-visible
 operation on the <a href="../struct.TextBuffer.html" title="struct gtk4::TextBuffer"><code>TextBuffer</code></a>.</p>
 <p>See also:
-<a href="trait.TextBufferExt.html#method.end_user_action"><code>end_user_action()</code></a>,
-<a href="trait.TextBufferExt.html#method.insert_interactive"><code>insert_interactive()</code></a>,
-<a href="trait.TextBufferExt.html#method.insert_range_interactive"><code>insert_range_interactive()</code></a>,
-<a href="trait.TextBufferExt.html#method.delete_interactive"><code>delete_interactive()</code></a>,
-<a href="trait.TextBufferExt.html#method.backspace"><code>backspace()</code></a>,
-<a href="trait.TextBufferExt.html#method.delete_selection"><code>delete_selection()</code></a>,
-<a href="trait.TextBufferExt.html#method.backspace"><code>backspace()</code></a>.</p>
+<a href="trait.TextBufferExt.html#method.end_user_action" title="method gtk4::prelude::TextBufferExt::end_user_action"><code>end_user_action()</code></a>,
+<a href="trait.TextBufferExt.html#method.insert_interactive" title="method gtk4::prelude::TextBufferExt::insert_interactive"><code>insert_interactive()</code></a>,
+<a href="trait.TextBufferExt.html#method.insert_range_interactive" title="method gtk4::prelude::TextBufferExt::insert_range_interactive"><code>insert_range_interactive()</code></a>,
+<a href="trait.TextBufferExt.html#method.delete_interactive" title="method gtk4::prelude::TextBufferExt::delete_interactive"><code>delete_interactive()</code></a>,
+<a href="trait.TextBufferExt.html#method.backspace" title="method gtk4::prelude::TextBufferExt::backspace"><code>backspace()</code></a>,
+<a href="trait.TextBufferExt.html#method.delete_selection" title="method gtk4::prelude::TextBufferExt::delete_selection"><code>delete_selection()</code></a>,
+<a href="trait.TextBufferExt.html#method.backspace" title="method gtk4::prelude::TextBufferExt::backspace"><code>backspace()</code></a>.</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.connect_insert_child_anchor" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_buffer.rs.html#2142-2175">Source</a><h4 class="code-header">fn <a href="#method.connect_insert_child_anchor" class="fn">connect_insert_child_anchor</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self, &amp;<a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>, &amp;<a class="struct" href="../struct.TextChildAnchor.html" title="struct gtk4::TextChildAnchor">TextChildAnchor</a>) + 'static&gt;(
     &amp;self,
     f: F,
@@ -1050,7 +1050,7 @@ operation on the <a href="../struct.TextBuffer.html" title="struct gtk4::TextBuf
 it must not invalidate the @location iter (or has to
 revalidate it). The default signal handler revalidates
 it to be placed after the inserted @anchor.</p>
-<p>See also: <a href="trait.TextBufferExt.html#method.insert_child_anchor"><code>insert_child_anchor()</code></a>.</p>
+<p>See also: <a href="trait.TextBufferExt.html#method.insert_child_anchor" title="method gtk4::prelude::TextBufferExt::insert_child_anchor"><code>insert_child_anchor()</code></a>.</p>
 <h6 id="location"><a class="doc-anchor" href="#location">§</a><code>location</code></h6>
 <p>position to insert @anchor in @textbuffer</p>
 <h6 id="anchor-2"><a class="doc-anchor" href="#anchor-2">§</a><code>anchor</code></h6>
@@ -1064,7 +1064,7 @@ it to be placed after the inserted @anchor.</p>
 it must not invalidate the @location iter (or has to
 revalidate it). The default signal handler revalidates
 it to be placed after the inserted @paintable.</p>
-<p>See also: <a href="trait.TextBufferExt.html#method.insert_paintable"><code>insert_paintable()</code></a>.</p>
+<p>See also: <a href="trait.TextBufferExt.html#method.insert_paintable" title="method gtk4::prelude::TextBufferExt::insert_paintable"><code>insert_paintable()</code></a>.</p>
 <h6 id="location-1"><a class="doc-anchor" href="#location-1">§</a><code>location</code></h6>
 <p>position to insert @paintable in @textbuffer</p>
 <h6 id="paintable-1"><a class="doc-anchor" href="#paintable-1">§</a><code>paintable</code></h6>
@@ -1073,7 +1073,7 @@ it to be placed after the inserted @paintable.</p>
     &amp;self,
     f: F,
 ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section></summary><div class="docblock"><p>Emitted as notification after a <a href="../struct.TextMark.html" title="struct gtk4::TextMark"><code>TextMark</code></a> is deleted.</p>
-<p>See also: <a href="trait.TextBufferExt.html#method.delete_mark"><code>delete_mark()</code></a>.</p>
+<p>See also: <a href="trait.TextBufferExt.html#method.delete_mark" title="method gtk4::prelude::TextBufferExt::delete_mark"><code>delete_mark()</code></a>.</p>
 <h6 id="mark-4"><a class="doc-anchor" href="#mark-4">§</a><code>mark</code></h6>
 <p>The mark that was deleted</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.connect_mark_set" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_buffer.rs.html#2273-2306">Source</a><h4 class="code-header">fn <a href="#method.connect_mark_set" class="fn">connect_mark_set</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self, &amp;<a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>, &amp;<a class="struct" href="../struct.TextMark.html" title="struct gtk4::TextMark">TextMark</a>) + 'static&gt;(
@@ -1081,8 +1081,8 @@ it to be placed after the inserted @paintable.</p>
     f: F,
 ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section></summary><div class="docblock"><p>Emitted as notification after a <a href="../struct.TextMark.html" title="struct gtk4::TextMark"><code>TextMark</code></a> is set.</p>
 <p>See also:
-<a href="trait.TextBufferExt.html#method.create_mark"><code>create_mark()</code></a>,
-<a href="trait.TextBufferExt.html#method.move_mark"><code>move_mark()</code></a>.</p>
+<a href="trait.TextBufferExt.html#method.create_mark" title="method gtk4::prelude::TextBufferExt::create_mark"><code>create_mark()</code></a>,
+<a href="trait.TextBufferExt.html#method.move_mark" title="method gtk4::prelude::TextBufferExt::move_mark"><code>move_mark()</code></a>.</p>
 <h6 id="location-2"><a class="doc-anchor" href="#location-2">§</a><code>location</code></h6>
 <p>The location of @mark in @textbuffer</p>
 <h6 id="mark-5"><a class="doc-anchor" href="#mark-5">§</a><code>mark</code></h6>
@@ -1091,13 +1091,13 @@ it to be placed after the inserted @paintable.</p>
     &amp;self,
     f: F,
 ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section></summary><div class="docblock"><p>Emitted when the modified bit of a <a href="../struct.TextBuffer.html" title="struct gtk4::TextBuffer"><code>TextBuffer</code></a> flips.</p>
-<p>See also: <a href="trait.TextBufferExt.html#method.set_modified"><code>set_modified()</code></a>.</p>
+<p>See also: <a href="trait.TextBufferExt.html#method.set_modified" title="method gtk4::prelude::TextBufferExt::set_modified"><code>set_modified()</code></a>.</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.connect_paste_done" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_buffer.rs.html#2346-2374">Source</a><h4 class="code-header">fn <a href="#method.connect_paste_done" class="fn">connect_paste_done</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self, &amp;<a class="struct" href="../../gdk4/auto/clipboard/struct.Clipboard.html" title="struct gdk4::auto::clipboard::Clipboard">Clipboard</a>) + 'static&gt;(
     &amp;self,
     f: F,
 ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section></summary><div class="docblock"><p>Emitted after paste operation has been completed.</p>
 <p>This is useful to properly scroll the view to the end
-of the pasted text. See <a href="trait.TextBufferExt.html#method.paste_clipboard"><code>paste_clipboard()</code></a>
+of the pasted text. See <a href="trait.TextBufferExt.html#method.paste_clipboard" title="method gtk4::prelude::TextBufferExt::paste_clipboard"><code>paste_clipboard()</code></a>
 for more details.</p>
 <h6 id="clipboard-5"><a class="doc-anchor" href="#clipboard-5">§</a><code>clipboard</code></h6>
 <p>the <a href="../../gdk4/auto/clipboard/struct.Clipboard.html" title="struct gdk4::auto::clipboard::Clipboard"><code>gdk::Clipboard</code></a> pasted from</p>
@@ -1112,7 +1112,7 @@ of text in a <a href="../struct.TextBuffer.html" title="struct gtk4::TextBuffer"
 <p>Note that if your handler runs before the default handler
 it must not invalidate the @start and @end iters (or has
 to revalidate them).</p>
-<p>See also: <a href="trait.TextBufferExt.html#method.remove_tag"><code>remove_tag()</code></a>.</p>
+<p>See also: <a href="trait.TextBufferExt.html#method.remove_tag" title="method gtk4::prelude::TextBufferExt::remove_tag"><code>remove_tag()</code></a>.</p>
 <h6 id="tag-3"><a class="doc-anchor" href="#tag-3">§</a><code>tag</code></h6>
 <p>the tag to be removed</p>
 <h6 id="start-14"><a class="doc-anchor" href="#start-14">§</a><code>start</code></h6>

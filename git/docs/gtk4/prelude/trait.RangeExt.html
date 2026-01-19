@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Trait containing all `struct@Range` methods."><title>RangeExt in gtk4::prelude - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-77263533.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.94.0-nightly (2850ca829 2026-01-13)" data-channel="nightly" data-search-js="search-9e2438ea.js" data-stringdex-js="stringdex-b897f86f.js" data-settings-js="settings-c38705f0.js" ><script src="../../static.files/storage-e2aeef58.js"></script><script defer src="sidebar-items.js"></script><script defer src="../../static.files/main-7bab91a1.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-ffcac47a.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-044be391.svg"></head><body class="rustdoc trait"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Trait containing all `struct@Range` methods."><title>RangeExt in gtk4::prelude - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-77263533.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.95.0-nightly (0a3cd3b6b 2026-01-18)" data-channel="nightly" data-search-js="search-9e2438ea.js" data-stringdex-js="stringdex-b897f86f.js" data-settings-js="settings-c38705f0.js" ><script src="../../static.files/storage-e2aeef58.js"></script><script defer src="sidebar-items.js"></script><script defer src="../../static.files/main-7bab91a1.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-ffcac47a.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-044be391.svg"></head><body class="rustdoc trait"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
 
@@ -146,11 +146,11 @@
 <h5 id="returns-1"><a class="doc-anchor" href="#returns-1">§</a>Returns</h5>
 <p>The current fill level</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.is_flippable" class="method"><a class="src rightside" href="../../src/gtk4/auto/range.rs.html#623-625">Source</a><h4 class="code-header">fn <a href="#method.is_flippable" class="fn">is_flippable</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>Gets whether the <a href="../struct.Range.html" title="struct gtk4::Range"><code>Range</code></a> respects text direction.</p>
-<p>See <a href="trait.RangeExt.html#method.set_flippable"><code>set_flippable()</code></a>.</p>
+<p>See <a href="trait.RangeExt.html#method.set_flippable" title="method gtk4::prelude::RangeExt::set_flippable"><code>set_flippable()</code></a>.</p>
 <h5 id="returns-2"><a class="doc-anchor" href="#returns-2">§</a>Returns</h5>
 <p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> if the range is flippable</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.is_inverted" class="method"><a class="src rightside" href="../../src/gtk4/auto/range.rs.html#637-639">Source</a><h4 class="code-header">fn <a href="#method.is_inverted" class="fn">is_inverted</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>Gets whether the range is inverted.</p>
-<p>See <a href="trait.RangeExt.html#method.set_inverted"><code>set_inverted()</code></a>.</p>
+<p>See <a href="trait.RangeExt.html#method.set_inverted" title="method gtk4::prelude::RangeExt::set_inverted"><code>set_inverted()</code></a>.</p>
 <h5 id="returns-3"><a class="doc-anchor" href="#returns-3">§</a>Returns</h5>
 <p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> if the range is inverted</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.range_rect" class="method"><a class="src rightside" href="../../src/gtk4/auto/range.rs.html#653-662">Source</a><h4 class="code-header">fn <a href="#method.range_rect" class="fn">range_rect</a>(&amp;self) -&gt; <a class="struct" href="../../gdk4/auto/rectangle/struct.Rectangle.html" title="struct gdk4::auto::rectangle::Rectangle">Rectangle</a></h4></section></summary><div class="docblock"><p>This function returns the area that contains the range’s trough,
@@ -177,7 +177,7 @@ in widget-&gt;window coordinates.</p>
 <h6 id="slider_end"><a class="doc-anchor" href="#slider_end">§</a><code>slider_end</code></h6>
 <p>return location for the slider’s end</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.is_slider_size_fixed" class="method"><a class="src rightside" href="../../src/gtk4/auto/range.rs.html#748-754">Source</a><h4 class="code-header">fn <a href="#method.is_slider_size_fixed" class="fn">is_slider_size_fixed</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>This function is useful mainly for <a href="../struct.Range.html" title="struct gtk4::Range"><code>Range</code></a> subclasses.</p>
-<p>See <a href="trait.RangeExt.html#method.set_slider_size_fixed"><code>set_slider_size_fixed()</code></a>.</p>
+<p>See <a href="trait.RangeExt.html#method.set_slider_size_fixed" title="method gtk4::prelude::RangeExt::set_slider_size_fixed"><code>set_slider_size_fixed()</code></a>.</p>
 <h5 id="returns-9"><a class="doc-anchor" href="#returns-9">§</a>Returns</h5>
 <p>whether the range’s slider has a fixed size.</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.value" class="method"><a class="src rightside" href="../../src/gtk4/auto/range.rs.html#763-765">Source</a><h4 class="code-header">fn <a href="#method.value" class="fn">value</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a></h4></section></summary><div class="docblock"><p>Gets the current value of the range.</p>
@@ -200,11 +200,11 @@ would indicate the current play position, and the fill level would
 be the position up to which the file/stream has been downloaded.</p>
 <p>This amount of prebuffering can be displayed on the range’s trough
 and is themeable separately from the trough. To enable fill level
-display, use <a href="trait.RangeExt.html#method.set_show_fill_level"><code>set_show_fill_level()</code></a>. The range defaults
+display, use <a href="trait.RangeExt.html#method.set_show_fill_level" title="method gtk4::prelude::RangeExt::set_show_fill_level"><code>set_show_fill_level()</code></a>. The range defaults
 to not showing the fill level.</p>
 <p>Additionally, it’s possible to restrict the range’s slider position
 to values which are smaller than the fill level. This is controlled
-by <a href="trait.RangeExt.html#method.set_restrict_to_fill_level"><code>set_restrict_to_fill_level()</code></a> and is by default
+by <a href="trait.RangeExt.html#method.set_restrict_to_fill_level" title="method gtk4::prelude::RangeExt::set_restrict_to_fill_level"><code>set_restrict_to_fill_level()</code></a> and is by default
 enabled.</p>
 <h6 id="fill_level"><a class="doc-anchor" href="#fill_level">§</a><code>fill_level</code></h6>
 <p>the new position of the fill level indicator</p>
@@ -238,7 +238,7 @@ between @min and @max - page-size.)</p>
 <h6 id="max"><a class="doc-anchor" href="#max">§</a><code>max</code></h6>
 <p>maximum range value</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.set_restrict_to_fill_level" class="method"><a class="src rightside" href="../../src/gtk4/auto/range.rs.html#887-894">Source</a><h4 class="code-header">fn <a href="#method.set_restrict_to_fill_level" class="fn">set_restrict_to_fill_level</a>(&amp;self, restrict_to_fill_level: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>)</h4></section></summary><div class="docblock"><p>Sets whether the slider is restricted to the fill level.</p>
-<p>See <a href="trait.RangeExt.html#method.set_fill_level"><code>set_fill_level()</code></a> for a general description
+<p>See <a href="trait.RangeExt.html#method.set_fill_level" title="method gtk4::prelude::RangeExt::set_fill_level"><code>set_fill_level()</code></a> for a general description
 of the fill level concept.</p>
 <h6 id="restrict_to_fill_level"><a class="doc-anchor" href="#restrict_to_fill_level">§</a><code>restrict_to_fill_level</code></h6>
 <p>Whether the fill level restricts slider movement.</p>
@@ -248,7 +248,7 @@ it changes.</p>
 <h6 id="round_digits"><a class="doc-anchor" href="#round_digits">§</a><code>round_digits</code></h6>
 <p>the precision in digits, or -1</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.set_show_fill_level" class="method"><a class="src rightside" href="../../src/gtk4/auto/range.rs.html#918-925">Source</a><h4 class="code-header">fn <a href="#method.set_show_fill_level" class="fn">set_show_fill_level</a>(&amp;self, show_fill_level: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>)</h4></section></summary><div class="docblock"><p>Sets whether a graphical fill level is show on the trough.</p>
-<p>See <a href="trait.RangeExt.html#method.set_fill_level"><code>set_fill_level()</code></a> for a general description
+<p>See <a href="trait.RangeExt.html#method.set_fill_level" title="method gtk4::prelude::RangeExt::set_fill_level"><code>set_fill_level()</code></a> for a general description
 of the fill level concept.</p>
 <h6 id="show_fill_level"><a class="doc-anchor" href="#show_fill_level">§</a><code>show_fill_level</code></h6>
 <p>Whether a fill level indicator graphics is shown.</p>

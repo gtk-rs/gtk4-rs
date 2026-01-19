@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Trait containing all `struct@Gesture` methods."><title>GestureExt in gtk4::prelude - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-77263533.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.94.0-nightly (2850ca829 2026-01-13)" data-channel="nightly" data-search-js="search-9e2438ea.js" data-stringdex-js="stringdex-b897f86f.js" data-settings-js="settings-c38705f0.js" ><script src="../../static.files/storage-e2aeef58.js"></script><script defer src="sidebar-items.js"></script><script defer src="../../static.files/main-7bab91a1.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-ffcac47a.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-044be391.svg"></head><body class="rustdoc trait"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Trait containing all `struct@Gesture` methods."><title>GestureExt in gtk4::prelude - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-77263533.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.95.0-nightly (0a3cd3b6b 2026-01-18)" data-channel="nightly" data-search-js="search-9e2438ea.js" data-stringdex-js="stringdex-b897f86f.js" data-settings-js="settings-c38705f0.js" ><script src="../../static.files/storage-e2aeef58.js"></script><script defer src="sidebar-items.js"></script><script defer src="../../static.files/main-7bab91a1.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-ffcac47a.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-044be391.svg"></head><body class="rustdoc trait"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
 
@@ -191,7 +191,7 @@ through g_list_free()</p>
 they can be grouped.</p>
 <p>When gestures are grouped, the state of <code>GdkEventSequences</code>
 is kept in sync for all of those, so calling
-<a href="trait.GestureExt.html#method.set_sequence_state"><code>set_sequence_state()</code></a>, on one will transfer
+<a href="trait.GestureExt.html#method.set_sequence_state" title="method gtk4::prelude::GestureExt::set_sequence_state"><code>set_sequence_state()</code></a>, on one will transfer
 the same value to the others.</p>
 <p>Groups also perform an “implicit grabbing” of sequences, if a
 <a href="../../gdk4/auto/event_sequence/struct.EventSequence.html" title="struct gdk4::auto::event_sequence::EventSequence"><code>gdk::EventSequence</code></a> state is set to <a href="../enum.EventSequenceState.html#variant.Claimed" title="variant gtk4::EventSequenceState::Claimed"><code>EventSequenceState::Claimed</code></a>
@@ -264,7 +264,7 @@ the gesture emitting the event, the sequence will be already
 be initialized to the group’s global state when the second
 gesture processes the event.</p>
 <h5 id="deprecated-since-410"><a class="doc-anchor" href="#deprecated-since-410">§</a>Deprecated since 4.10</h5>
-<p>Use <a href="trait.GestureExt.html#method.set_state"><code>set_state()</code></a></p>
+<p>Use <a href="trait.GestureExt.html#method.set_state" title="method gtk4::prelude::GestureExt::set_state"><code>set_state()</code></a></p>
 <h6 id="sequence-4"><a class="doc-anchor" href="#sequence-4">§</a><code>sequence</code></h6>
 <p>a <a href="../../gdk4/auto/event_sequence/struct.EventSequence.html" title="struct gdk4::auto::event_sequence::EventSequence"><code>gdk::EventSequence</code></a></p>
 <h6 id="state"><a class="doc-anchor" href="#state">§</a><code>state</code></h6>
@@ -340,7 +340,7 @@ to be recognized</p>
 <a href="trait.EventControllerExt.html#method.reset" title="method gtk4::prelude::EventControllerExt::reset"><code>EventControllerExt::reset()</code></a> is called on @gesture
 (manually, due to grabs…), or the individual @sequence
 was claimed by parent widgets’ controllers (see
-<a href="trait.GestureExt.html#method.set_sequence_state"><code>set_sequence_state()</code></a>).</p>
+<a href="trait.GestureExt.html#method.set_sequence_state" title="method gtk4::prelude::GestureExt::set_sequence_state"><code>set_sequence_state()</code></a>).</p>
 <p>@gesture must forget everything about @sequence as in
 response to this signal.</p>
 <h6 id="sequence-6"><a class="doc-anchor" href="#sequence-6">§</a><code>sequence</code></h6>
@@ -355,7 +355,7 @@ sequences became higher or lower than <a href="../struct.Gesture.html#n-points" 
 were previously triggering recognition on @gesture (ie. a just
 pressed touch sequence that exceeds <a href="../struct.Gesture.html#n-points" title="struct gtk4::Gesture"><code>n-points</code></a>).
 This situation may be detected by checking through
-<a href="trait.GestureExt.html#method.handles_sequence"><code>handles_sequence()</code></a>.</p>
+<a href="trait.GestureExt.html#method.handles_sequence" title="method gtk4::prelude::GestureExt::handles_sequence"><code>handles_sequence()</code></a>.</p>
 <h6 id="sequence-7"><a class="doc-anchor" href="#sequence-7">§</a><code>sequence</code></h6>
 <p>the <a href="../../gdk4/auto/event_sequence/struct.EventSequence.html" title="struct gdk4::auto::event_sequence::EventSequence"><code>gdk::EventSequence</code></a> that made gesture
 recognition to finish</p>
@@ -363,7 +363,7 @@ recognition to finish</p>
     &amp;self,
     f: F,
 ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section></summary><div class="docblock"><p>Emitted whenever a sequence state changes.</p>
-<p>See <a href="trait.GestureExt.html#method.set_sequence_state"><code>set_sequence_state()</code></a> to know
+<p>See <a href="trait.GestureExt.html#method.set_sequence_state" title="method gtk4::prelude::GestureExt::set_sequence_state"><code>set_sequence_state()</code></a> to know
 more about the expectable sequence lifetimes.</p>
 <h6 id="sequence-8"><a class="doc-anchor" href="#sequence-8">§</a><code>sequence</code></h6>
 <p>the <a href="../../gdk4/auto/event_sequence/struct.EventSequence.html" title="struct gdk4::auto::event_sequence::EventSequence"><code>gdk::EventSequence</code></a> that was cancelled</p>

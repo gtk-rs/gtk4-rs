@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Trait containing all `struct@PrintOperation` methods."><title>PrintOperationExt in gtk4::prelude - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-77263533.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.94.0-nightly (2850ca829 2026-01-13)" data-channel="nightly" data-search-js="search-9e2438ea.js" data-stringdex-js="stringdex-b897f86f.js" data-settings-js="settings-c38705f0.js" ><script src="../../static.files/storage-e2aeef58.js"></script><script defer src="sidebar-items.js"></script><script defer src="../../static.files/main-7bab91a1.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-ffcac47a.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-044be391.svg"></head><body class="rustdoc trait"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Trait containing all `struct@PrintOperation` methods."><title>PrintOperationExt in gtk4::prelude - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-77263533.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.95.0-nightly (0a3cd3b6b 2026-01-18)" data-channel="nightly" data-search-js="search-9e2438ea.js" data-stringdex-js="stringdex-b897f86f.js" data-settings-js="settings-c38705f0.js" ><script src="../../static.files/storage-e2aeef58.js"></script><script defer src="sidebar-items.js"></script><script defer src="../../static.files/main-7bab91a1.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-ffcac47a.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-044be391.svg"></head><body class="rustdoc trait"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
 
@@ -240,7 +240,7 @@
 signal handler to stop the currently running print operation.</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.draw_page_finish" class="method"><a class="src rightside" href="../../src/gtk4/auto/print_operation.rs.html#771-775">Source</a><h4 class="code-header">fn <a href="#method.draw_page_finish" class="fn">draw_page_finish</a>(&amp;self)</h4></section></summary><div class="docblock"><p>Signal that drawing of particular page is complete.</p>
 <p>It is called after completion of page drawing (e.g. drawing
-in another thread). If <a href="trait.PrintOperationExt.html#method.set_defer_drawing"><code>set_defer_drawing()</code></a>
+in another thread). If <a href="trait.PrintOperationExt.html#method.set_defer_drawing" title="method gtk4::prelude::PrintOperationExt::set_defer_drawing"><code>set_defer_drawing()</code></a>
 was called before, then this function has to be called by application.
 Otherwise it is called by GTK itself.</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.default_page_setup" class="method"><a class="src rightside" href="../../src/gtk4/auto/print_operation.rs.html#785-791">Source</a><h4 class="code-header">fn <a href="#method.default_page_setup" class="fn">default_page_setup</a>(&amp;self) -&gt; <a class="struct" href="../struct.PageSetup.html" title="struct gtk4::PageSetup">PageSetup</a></h4></section></summary><div class="docblock"><p>Returns the default page setup.</p>
@@ -264,19 +264,19 @@ print status is <a href="../enum.PrintStatus.html#variant.GeneratingData" title=
 <p>the number of pages that will be printed</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.print_settings" class="method"><a class="src rightside" href="../../src/gtk4/auto/print_operation.rs.html#858-864">Source</a><h4 class="code-header">fn <a href="#method.print_settings" class="fn">print_settings</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.PrintSettings.html" title="struct gtk4::PrintSettings">PrintSettings</a>&gt;</h4></section></summary><div class="docblock"><p>Returns the current print settings.</p>
 <p>Note that the return value is <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="variant core::option::Option::None"><code>None</code></a> until either
-<a href="trait.PrintOperationExt.html#method.set_print_settings"><code>set_print_settings()</code></a> or
-<a href="trait.PrintOperationExt.html#method.run"><code>run()</code></a> have been called.</p>
+<a href="trait.PrintOperationExt.html#method.set_print_settings" title="method gtk4::prelude::PrintOperationExt::set_print_settings"><code>set_print_settings()</code></a> or
+<a href="trait.PrintOperationExt.html#method.run" title="method gtk4::prelude::PrintOperationExt::run"><code>run()</code></a> have been called.</p>
 <h5 id="returns-4"><a class="doc-anchor" href="#returns-4">§</a>Returns</h5>
 <p>the current print settings of @self.</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.status" class="method"><a class="src rightside" href="../../src/gtk4/auto/print_operation.rs.html#875-881">Source</a><h4 class="code-header">fn <a href="#method.status" class="fn">status</a>(&amp;self) -&gt; <a class="enum" href="../enum.PrintStatus.html" title="enum gtk4::PrintStatus">PrintStatus</a></h4></section></summary><div class="docblock"><p>Returns the status of the print operation.</p>
-<p>Also see <a href="trait.PrintOperationExt.html#method.status_string"><code>status_string()</code></a>.</p>
+<p>Also see <a href="trait.PrintOperationExt.html#method.status_string" title="method gtk4::prelude::PrintOperationExt::status_string"><code>status_string()</code></a>.</p>
 <h5 id="returns-5"><a class="doc-anchor" href="#returns-5">§</a>Returns</h5>
 <p>the status of the print operation</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.status_string" class="method"><a class="src rightside" href="../../src/gtk4/auto/print_operation.rs.html#899-905">Source</a><h4 class="code-header">fn <a href="#method.status_string" class="fn">status_string</a>(&amp;self) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/gstring/struct.GString.html" title="struct glib::gstring::GString">GString</a></h4></section></summary><div class="docblock"><p>Returns a string representation of the status of the
 print operation.</p>
 <p>The string is translated and suitable for displaying
 the print status e.g. in a <a href="../struct.Statusbar.html" title="struct gtk4::Statusbar"><code>Statusbar</code></a>.</p>
-<p>Use <a href="trait.PrintOperationExt.html#method.status"><code>status()</code></a> to obtain
+<p>Use <a href="trait.PrintOperationExt.html#method.status" title="method gtk4::prelude::PrintOperationExt::status"><code>status()</code></a> to obtain
 a status value that is suitable for programmatic use.</p>
 <h5 id="returns-6"><a class="doc-anchor" href="#returns-6">§</a>Returns</h5>
 <p>a string representation of the status
@@ -355,7 +355,7 @@ given <a href="../struct.PrintOperation.html" title="struct gtk4::PrintOperation
 <a href="../enum.PrintOperationResult.html#variant.Apply" title="variant gtk4::PrintOperationResult::Apply"><code>PrintOperationResult::Apply</code></a> indicates that the printing was
 completed successfully. In this case, it is a good idea to obtain
 the used print settings with
-<a href="trait.PrintOperationExt.html#method.print_settings"><code>print_settings()</code></a>
+<a href="trait.PrintOperationExt.html#method.print_settings" title="method gtk4::prelude::PrintOperationExt::print_settings"><code>print_settings()</code></a>
 and store them for reuse with the next print operation. A value of
 <a href="../enum.PrintOperationResult.html#variant.InProgress" title="variant gtk4::PrintOperationResult::InProgress"><code>PrintOperationResult::InProgress</code></a> means the operation is running
 asynchronously, and will emit the <a href="../struct.PrintOperation.html#done" title="struct gtk4::PrintOperation"><code>done</code></a>
@@ -367,7 +367,7 @@ operation.</p>
 <h6 id="allow_async"><a class="doc-anchor" href="#allow_async">§</a><code>allow_async</code></h6>
 <p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> to allow asynchronous operation</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.set_current_page" class="method"><a class="src rightside" href="../../src/gtk4/auto/print_operation.rs.html#1068-1072">Source</a><h4 class="code-header">fn <a href="#method.set_current_page" class="fn">set_current_page</a>(&amp;self, current_page: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</h4></section></summary><div class="docblock"><p>Sets the current page.</p>
-<p>If this is called before <a href="trait.PrintOperationExt.html#method.run"><code>run()</code></a>,
+<p>If this is called before <a href="trait.PrintOperationExt.html#method.run" title="method gtk4::prelude::PrintOperationExt::run"><code>run()</code></a>,
 the user will be able to select to print only the current page.</p>
 <p>Note that this only makes sense for pre-paginated documents.</p>
 <h6 id="current_page"><a class="doc-anchor" href="#current_page">§</a><code>current_page</code></h6>
@@ -376,13 +376,13 @@ the user will be able to select to print only the current page.</p>
 <h6 id="label"><a class="doc-anchor" href="#label">§</a><code>label</code></h6>
 <p>the label to use, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="variant core::option::Option::None"><code>None</code></a> to use the default label</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.set_default_page_setup" class="method"><a class="src rightside" href="../../src/gtk4/auto/print_operation.rs.html#1097-1104">Source</a><h4 class="code-header">fn <a href="#method.set_default_page_setup" class="fn">set_default_page_setup</a>(&amp;self, default_page_setup: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="struct" href="../struct.PageSetup.html" title="struct gtk4::PageSetup">PageSetup</a>&gt;)</h4></section></summary><div class="docblock"><p>Makes @default_page_setup the default page setup for @self.</p>
-<p>This page setup will be used by <a href="trait.PrintOperationExt.html#method.run"><code>run()</code></a>,
+<p>This page setup will be used by <a href="trait.PrintOperationExt.html#method.run" title="method gtk4::prelude::PrintOperationExt::run"><code>run()</code></a>,
 but it can be overridden on a per-page basis by connecting
 to the <a href="../struct.PrintOperation.html#request-page-setup" title="struct gtk4::PrintOperation"><code>request-page-setup</code></a> signal.</p>
 <h6 id="default_page_setup"><a class="doc-anchor" href="#default_page_setup">§</a><code>default_page_setup</code></h6>
 <p>a <a href="../struct.PageSetup.html" title="struct gtk4::PageSetup"><code>PageSetup</code></a></p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.set_defer_drawing" class="method"><a class="src rightside" href="../../src/gtk4/auto/print_operation.rs.html#1114-1118">Source</a><h4 class="code-header">fn <a href="#method.set_defer_drawing" class="fn">set_defer_drawing</a>(&amp;self)</h4></section></summary><div class="docblock"><p>Sets up the <a href="../struct.PrintOperation.html" title="struct gtk4::PrintOperation"><code>PrintOperation</code></a> to wait for calling of
-<a href="trait.PrintOperationExt.html#method.draw_page_finish"><code>draw_page_finish()</code></a> from application.</p>
+<a href="trait.PrintOperationExt.html#method.draw_page_finish" title="method gtk4::prelude::PrintOperationExt::draw_page_finish"><code>draw_page_finish()</code></a> from application.</p>
 <p>This can be used for drawing page in another thread.</p>
 <p>This function must be called in the callback of the
 <a href="../struct.PrintOperation.html#draw-page" title="struct gtk4::PrintOperation"><code>draw-page</code></a> signal.</p>
@@ -402,7 +402,7 @@ of printers in the print dialog.</p>
 <p>the filename for the exported file</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.set_has_selection" class="method"><a class="src rightside" href="../../src/gtk4/auto/print_operation.rs.html#1168-1175">Source</a><h4 class="code-header">fn <a href="#method.set_has_selection" class="fn">set_has_selection</a>(&amp;self, has_selection: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>)</h4></section></summary><div class="docblock"><p>Sets whether there is a selection to print.</p>
 <p>Application has to set number of pages to which the selection
-will draw by <a href="trait.PrintOperationExt.html#method.set_n_pages"><code>set_n_pages()</code></a> in a handler
+will draw by <a href="trait.PrintOperationExt.html#method.set_n_pages" title="method gtk4::prelude::PrintOperationExt::set_n_pages"><code>set_n_pages()</code></a> in a handler
 for the <a href="../struct.PrintOperation.html#begin-print" title="struct gtk4::PrintOperation"><code>begin-print</code></a> signal.</p>
 <h6 id="has_selection"><a class="doc-anchor" href="#has_selection">§</a><code>has_selection</code></h6>
 <p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> indicates that a selection exists</p>
@@ -426,7 +426,7 @@ will be for page @n_pages - 1.</p>
 <p>the number of pages</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.set_print_settings" class="method"><a class="src rightside" href="../../src/gtk4/auto/print_operation.rs.html#1226-1233">Source</a><h4 class="code-header">fn <a href="#method.set_print_settings" class="fn">set_print_settings</a>(&amp;self, print_settings: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="struct" href="../struct.PrintSettings.html" title="struct gtk4::PrintSettings">PrintSettings</a>&gt;)</h4></section></summary><div class="docblock"><p>Sets the print settings for @self.</p>
 <p>This is typically used to re-establish print settings
-from a previous print operation, see <a href="trait.PrintOperationExt.html#method.run"><code>run()</code></a>.</p>
+from a previous print operation, see <a href="trait.PrintOperationExt.html#method.run" title="method gtk4::prelude::PrintOperationExt::run"><code>run()</code></a>.</p>
 <h6 id="print_settings"><a class="doc-anchor" href="#print_settings">§</a><code>print_settings</code></h6>
 <p><a href="../struct.PrintSettings.html" title="struct gtk4::PrintSettings"><code>PrintSettings</code></a></p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.set_show_progress" class="method"><a class="src rightside" href="../../src/gtk4/auto/print_operation.rs.html#1241-1248">Source</a><h4 class="code-header">fn <a href="#method.set_show_progress" class="fn">set_show_progress</a>(&amp;self, show_progress: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>)</h4></section></summary><div class="docblock"><p>If @show_progress is <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a>, the print operation will show
@@ -466,7 +466,7 @@ is actually done.</p>
 is unlikely to change). On other platforms, all actions except for
 <a href="../enum.PrintOperationAction.html#variant.Export" title="variant gtk4::PrintOperationAction::Export"><code>PrintOperationAction::Export</code></a> support asynchronous operation.</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.current_page" class="method"><a class="src rightside" href="../../src/gtk4/auto/print_operation.rs.html#1340-1342">Source</a><h4 class="code-header">fn <a href="#method.current_page" class="fn">current_page</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></h4></section></summary><div class="docblock"><p>The current page in the document.</p>
-<p>If this is set before <a href="trait.PrintOperationExt.html#method.run"><code>run()</code></a>,
+<p>If this is set before <a href="trait.PrintOperationExt.html#method.run" title="method gtk4::prelude::PrintOperationExt::run"><code>run()</code></a>,
 the user will be able to select to print only the current page.</p>
 <p>Note that this only makes sense for pre-paginated documents.</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.custom_tab_label" class="method"><a class="src rightside" href="../../src/gtk4/auto/print_operation.rs.html#1350-1352">Source</a><h4 class="code-header">fn <a href="#method.custom_tab_label" class="fn">custom_tab_label</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/gstring/struct.GString.html" title="struct glib::gstring::GString">GString</a>&gt;</h4></section></summary><div class="docblock"><p>Used as the label of the tab containing custom widgets.</p>
@@ -518,7 +518,7 @@ in the dialog, before the actual rendering starts.</p>
 <p>A typical use for ::begin-print is to use the parameters from the
 <a href="../struct.PrintContext.html" title="struct gtk4::PrintContext"><code>PrintContext</code></a> and paginate the document accordingly,
 and then set the number of pages with
-<a href="trait.PrintOperationExt.html#method.set_n_pages"><code>set_n_pages()</code></a>.</p>
+<a href="trait.PrintOperationExt.html#method.set_n_pages" title="method gtk4::prelude::PrintOperationExt::set_n_pages"><code>set_n_pages()</code></a>.</p>
 <h6 id="context"><a class="doc-anchor" href="#context">§</a><code>context</code></h6>
 <p>the <a href="../struct.PrintContext.html" title="struct gtk4::PrintContext"><code>PrintContext</code></a> for the current operation</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.connect_create_custom_widget" class="method"><a class="src rightside" href="../../src/gtk4/auto/print_operation.rs.html#1491-1520">Source</a><h4 class="code-header">fn <a href="#method.connect_create_custom_widget" class="fn">connect_create_custom_widget</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/struct.Object.html" title="struct glib::object::Object">Object</a>&gt; + 'static&gt;(
@@ -555,7 +555,7 @@ everything required for printing.</p>
 If @result is <a href="../enum.PrintOperationResult.html#variant.Error" title="variant gtk4::PrintOperationResult::Error"><code>PrintOperationResult::Error</code></a> then you can call
 <code>Gtk::PrintOperation::get_error()</code> for more information.</p>
 <p>If you enabled print status tracking then
-<a href="trait.PrintOperationExt.html#method.is_finished"><code>is_finished()</code></a> may still return <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>false</code></a>
+<a href="trait.PrintOperationExt.html#method.is_finished" title="method gtk4::prelude::PrintOperationExt::is_finished"><code>is_finished()</code></a> may still return <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>false</code></a>
 after the ::done signal was emitted.</p>
 <h6 id="result"><a class="doc-anchor" href="#result">§</a><code>result</code></h6>
 <p>the result of the print operation</p>
@@ -605,8 +605,8 @@ draw_page (GtkPrintOperation *operation,
 
   g_object_unref (layout);
 }</code></pre></div>
-<p>Use <a href="trait.PrintOperationExt.html#method.set_use_full_page"><code>set_use_full_page()</code></a> and
-<a href="trait.PrintOperationExt.html#method.set_unit"><code>set_unit()</code></a> before starting the print
+<p>Use <a href="trait.PrintOperationExt.html#method.set_use_full_page" title="method gtk4::prelude::PrintOperationExt::set_use_full_page"><code>set_use_full_page()</code></a> and
+<a href="trait.PrintOperationExt.html#method.set_unit" title="method gtk4::prelude::PrintOperationExt::set_unit"><code>set_unit()</code></a> before starting the print
 operation to set up the transformation of the cairo context
 according to your needs.</p>
 <h6 id="context-1"><a class="doc-anchor" href="#context-1">§</a><code>context</code></h6>
@@ -630,7 +630,7 @@ starts.</p>
 <p>The ::paginate signal is intended to be used for paginating a document
 in small chunks, to avoid blocking the user interface for a long
 time. The signal handler should update the number of pages using
-<a href="trait.PrintOperationExt.html#method.set_n_pages"><code>set_n_pages()</code></a>, and return <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> if the document
+<a href="trait.PrintOperationExt.html#method.set_n_pages" title="method gtk4::prelude::PrintOperationExt::set_n_pages"><code>set_n_pages()</code></a>, and return <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> if the document
 has been completely paginated.</p>
 <p>If you don’t need to do pagination in chunks, you can simply do
 it all in the ::begin-print handler, and set the number of pages
@@ -682,7 +682,7 @@ this page.</p>
     f: F,
 ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section></summary><div class="docblock"><p>Emitted at between the various phases of the print operation.</p>
 <p>See <a href="../enum.PrintStatus.html" title="enum gtk4::PrintStatus"><code>PrintStatus</code></a> for the phases that are being discriminated.
-Use <a href="trait.PrintOperationExt.html#method.status"><code>status()</code></a> to find out the current
+Use <a href="trait.PrintOperationExt.html#method.status" title="method gtk4::prelude::PrintOperationExt::status"><code>status()</code></a> to find out the current
 status.</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.connect_update_custom_widget" class="method"><a class="src rightside" href="../../src/gtk4/auto/print_operation.rs.html#1952-1987">Source</a><h4 class="code-header">fn <a href="#method.connect_update_custom_widget" class="fn">connect_update_custom_widget</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self, &amp;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>, &amp;<a class="struct" href="../struct.PageSetup.html" title="struct gtk4::PageSetup">PageSetup</a>, &amp;<a class="struct" href="../struct.PrintSettings.html" title="struct gtk4::PrintSettings">PrintSettings</a>) + 'static&gt;(
     &amp;self,

@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Trait containing all `struct@Snapshot` methods."><title>SnapshotExt in gtk4::prelude - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-77263533.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.94.0-nightly (2850ca829 2026-01-13)" data-channel="nightly" data-search-js="search-9e2438ea.js" data-stringdex-js="stringdex-b897f86f.js" data-settings-js="settings-c38705f0.js" ><script src="../../static.files/storage-e2aeef58.js"></script><script defer src="sidebar-items.js"></script><script defer src="../../static.files/main-7bab91a1.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-ffcac47a.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-044be391.svg"></head><body class="rustdoc trait"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Trait containing all `struct@Snapshot` methods."><title>SnapshotExt in gtk4::prelude - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-77263533.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.95.0-nightly (0a3cd3b6b 2026-01-18)" data-channel="nightly" data-search-js="search-9e2438ea.js" data-stringdex-js="stringdex-b897f86f.js" data-settings-js="settings-c38705f0.js" ><script src="../../static.files/storage-e2aeef58.js"></script><script defer src="sidebar-items.js"></script><script defer src="../../static.files/main-7bab91a1.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-ffcac47a.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-044be391.svg"></head><body class="rustdoc trait"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
 
@@ -259,7 +259,7 @@ of @self.</p>
 <h6 id="stops"><a class="doc-anchor" href="#stops">§</a><code>stops</code></h6>
 <p>the color stops defining the gradient</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.append_fill" class="method"><a class="src rightside" href="../../src/gtk4/auto/snapshot.rs.html#146-155">Source</a><h4 class="code-header">fn <a href="#method.append_fill" class="fn">append_fill</a>(&amp;self, path: &amp;<a class="struct" href="../../gsk4/auto/path/struct.Path.html" title="struct gsk4::auto::path::Path">Path</a>, fill_rule: <a class="enum" href="../../gsk4/auto/enums/enum.FillRule.html" title="enum gsk4::auto::enums::FillRule">FillRule</a>, color: &amp;<a class="struct" href="../../gdk4/auto/rgba/struct.RGBA.html" title="struct gdk4::auto::rgba::RGBA">RGBA</a>)</h4></section><span class="item-info"><div class="stab portability">Available on <strong>crate feature <code>v4_14</code></strong> only.</div></span></summary><div class="docblock"><p>A convenience method to fill a path with a color.</p>
-<p>See <a href="trait.SnapshotExt.html#method.push_fill"><code>push_fill()</code></a> if you need
+<p>See <a href="trait.SnapshotExt.html#method.push_fill" title="method gtk4::prelude::SnapshotExt::push_fill"><code>push_fill()</code></a> if you need
 to fill a path with more complex content than
 a color.</p>
 <h6 id="path"><a class="doc-anchor" href="#path">§</a><code>path</code></h6>
@@ -419,7 +419,7 @@ copy, 1 being the copy before that, and so on.</p>
 )</h4></section><span class="item-info"><div class="stab portability">Available on <strong>crate feature <code>v4_10</code></strong> only.</div></span></summary><div class="docblock"><p>Creates a new render node drawing the @texture
 into the given @bounds and appends it to the
 current render node of @self.</p>
-<p>In contrast to <a href="trait.SnapshotExt.html#method.append_texture"><code>append_texture()</code></a>,
+<p>In contrast to <a href="trait.SnapshotExt.html#method.append_texture" title="method gtk4::prelude::SnapshotExt::append_texture"><code>append_texture()</code></a>,
 this function provides control about how the filter
 that is used when scaling.</p>
 <h6 id="texture"><a class="doc-anchor" href="#texture">§</a><code>texture</code></h6>
@@ -429,7 +429,7 @@ that is used when scaling.</p>
 <h6 id="bounds-8"><a class="doc-anchor" href="#bounds-8">§</a><code>bounds</code></h6>
 <p>the bounds for the new node</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.append_stroke" class="method"><a class="src rightside" href="../../src/gtk4/auto/snapshot.rs.html#478-487">Source</a><h4 class="code-header">fn <a href="#method.append_stroke" class="fn">append_stroke</a>(&amp;self, path: &amp;<a class="struct" href="../../gsk4/auto/path/struct.Path.html" title="struct gsk4::auto::path::Path">Path</a>, stroke: &amp;<a class="struct" href="../../gsk4/auto/stroke/struct.Stroke.html" title="struct gsk4::auto::stroke::Stroke">Stroke</a>, color: &amp;<a class="struct" href="../../gdk4/auto/rgba/struct.RGBA.html" title="struct gdk4::auto::rgba::RGBA">RGBA</a>)</h4></section><span class="item-info"><div class="stab portability">Available on <strong>crate feature <code>v4_14</code></strong> only.</div></span></summary><div class="docblock"><p>A convenience method to stroke a path with a color.</p>
-<p>See <a href="trait.SnapshotExt.html#method.push_stroke"><code>push_stroke()</code></a> if you need
+<p>See <a href="trait.SnapshotExt.html#method.push_stroke" title="method gtk4::prelude::SnapshotExt::push_stroke"><code>push_stroke()</code></a> if you need
 to stroke a path with more complex content than
 a color.</p>
 <h6 id="path-1"><a class="doc-anchor" href="#path-1">§</a><code>path</code></h6>
@@ -442,7 +442,7 @@ a color.</p>
 into the given @bounds and appends it to the
 current render node of @self.</p>
 <p>If the texture needs to be scaled to fill @bounds,
-linear filtering is used. See <a href="trait.SnapshotExt.html#method.append_scaled_texture"><code>append_scaled_texture()</code></a>
+linear filtering is used. See <a href="trait.SnapshotExt.html#method.append_scaled_texture" title="method gtk4::prelude::SnapshotExt::append_scaled_texture"><code>append_scaled_texture()</code></a>
 if you need other filtering, such as nearest-neighbour.</p>
 <h6 id="texture-1"><a class="doc-anchor" href="#texture-1">§</a><code>texture</code></h6>
 <p>the texture to render</p>
@@ -464,7 +464,7 @@ or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#varia
 adds it to the nearest <a href="../../gsk4/auto/gl_shader_node/struct.GLShaderNode.html" title="struct gsk4::auto::gl_shader_node::GLShaderNode"><code>gsk::GLShaderNode</code></a> below it.</p>
 <p>This must be called the same number of times as the number
 of textures is needed for the shader in
-<a href="trait.SnapshotExt.html#method.push_gl_shader"><code>push_gl_shader()</code></a>.</p>
+<a href="trait.SnapshotExt.html#method.push_gl_shader" title="method gtk4::prelude::SnapshotExt::push_gl_shader"><code>push_gl_shader()</code></a>.</p>
 <h5 id="deprecated-since-416"><a class="doc-anchor" href="#deprecated-since-416">§</a>Deprecated since 4.16</h5>
 <p>GTK’s new Vulkan-focused rendering
 does not support this feature. Use <a href="../struct.GLArea.html" title="struct gtk4::GLArea"><code>GLArea</code></a> for
@@ -476,20 +476,20 @@ OpenGL rendering.</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.pop" class="method"><a class="src rightside" href="../../src/gtk4/auto/snapshot.rs.html#585-589">Source</a><h4 class="code-header">fn <a href="#method.pop" class="fn">pop</a>(&amp;self)</h4></section></summary><div class="docblock"><p>Removes the top element from the stack of render nodes,
 and appends it to the node underneath it.</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.push_blend" class="method"><a class="src rightside" href="../../src/gtk4/auto/snapshot.rs.html#603-607">Source</a><h4 class="code-header">fn <a href="#method.push_blend" class="fn">push_blend</a>(&amp;self, blend_mode: <a class="enum" href="../../gsk4/auto/enums/enum.BlendMode.html" title="enum gsk4::auto::enums::BlendMode">BlendMode</a>)</h4></section></summary><div class="docblock"><p>Blends together two images with the given blend mode.</p>
-<p>Until the first call to <a href="trait.SnapshotExt.html#method.pop"><code>pop()</code></a>, the
+<p>Until the first call to <a href="trait.SnapshotExt.html#method.pop" title="method gtk4::prelude::SnapshotExt::pop"><code>pop()</code></a>, the
 bottom image for the blend operation will be recorded.
 After that call, the top image to be blended will be
-recorded until the second call to <a href="trait.SnapshotExt.html#method.pop"><code>pop()</code></a>.</p>
+recorded until the second call to <a href="trait.SnapshotExt.html#method.pop" title="method gtk4::prelude::SnapshotExt::pop"><code>pop()</code></a>.</p>
 <p>Calling this function requires two subsequent calls
-to <a href="trait.SnapshotExt.html#method.pop"><code>pop()</code></a>.</p>
+to <a href="trait.SnapshotExt.html#method.pop" title="method gtk4::prelude::SnapshotExt::pop"><code>pop()</code></a>.</p>
 <h6 id="blend_mode"><a class="doc-anchor" href="#blend_mode">§</a><code>blend_mode</code></h6>
 <p>blend mode to use</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.push_blur" class="method"><a class="src rightside" href="../../src/gtk4/auto/snapshot.rs.html#615-619">Source</a><h4 class="code-header">fn <a href="#method.push_blur" class="fn">push_blur</a>(&amp;self, radius: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>)</h4></section></summary><div class="docblock"><p>Blurs an image.</p>
-<p>The image is recorded until the next call to <a href="trait.SnapshotExt.html#method.pop"><code>pop()</code></a>.</p>
+<p>The image is recorded until the next call to <a href="trait.SnapshotExt.html#method.pop" title="method gtk4::prelude::SnapshotExt::pop"><code>pop()</code></a>.</p>
 <h6 id="radius"><a class="doc-anchor" href="#radius">§</a><code>radius</code></h6>
 <p>the blur radius to use. Must be positive</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.push_clip" class="method"><a class="src rightside" href="../../src/gtk4/auto/snapshot.rs.html#627-631">Source</a><h4 class="code-header">fn <a href="#method.push_clip" class="fn">push_clip</a>(&amp;self, bounds: &amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/graphene/auto/rect/struct.Rect.html" title="struct graphene::auto::rect::Rect">Rect</a>)</h4></section></summary><div class="docblock"><p>Clips an image to a rectangle.</p>
-<p>The image is recorded until the next call to <a href="trait.SnapshotExt.html#method.pop"><code>pop()</code></a>.</p>
+<p>The image is recorded until the next call to <a href="trait.SnapshotExt.html#method.pop" title="method gtk4::prelude::SnapshotExt::pop"><code>pop()</code></a>.</p>
 <h6 id="bounds-10"><a class="doc-anchor" href="#bounds-10">§</a><code>bounds</code></h6>
 <p>the rectangle to clip to</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.push_color_matrix" class="method"><a class="src rightside" href="../../src/gtk4/auto/snapshot.rs.html#649-657">Source</a><h4 class="code-header">fn <a href="#method.push_color_matrix" class="fn">push_color_matrix</a>(&amp;self, color_matrix: &amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/graphene/auto/matrix/struct.Matrix.html" title="struct graphene::auto::matrix::Matrix">Matrix</a>, color_offset: &amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/graphene/auto/vec4/struct.Vec4.html" title="struct graphene::auto::vec4::Vec4">Vec4</a>)</h4></section></summary><div class="docblock"><p>Modifies the colors of an image by applying an affine transformation
@@ -499,7 +499,7 @@ in RGB space.</p>
 <div class="example-wrap"><pre class="rust rust-example-rendered"><code>pixel = transpose(color_matrix) * pixel + color_offset</code></pre></div>
 <p>for every pixel. The transformation operates on unpremultiplied
 colors, with color components ordered R, G, B, A.</p>
-<p>The image is recorded until the next call to <a href="trait.SnapshotExt.html#method.pop"><code>pop()</code></a>.</p>
+<p>The image is recorded until the next call to <a href="trait.SnapshotExt.html#method.pop" title="method gtk4::prelude::SnapshotExt::pop"><code>pop()</code></a>.</p>
 <h6 id="color_matrix"><a class="doc-anchor" href="#color_matrix">§</a><code>color_matrix</code></h6>
 <p>the color matrix to use</p>
 <h6 id="color_offset"><a class="doc-anchor" href="#color_offset">§</a><code>color_offset</code></h6>
@@ -513,7 +513,7 @@ colors, with color components ordered R, G, B, A.</p>
 )</h4></section><span class="item-info"><div class="stab portability">Available on <strong>crate feature <code>v4_20</code></strong> only.</div></span></summary><div class="docblock"><p>Modifies the colors of an image by applying a transfer
 function for each component.</p>
 <p>The transfer functions operate on unpremultiplied colors.</p>
-<p>The image is recorded until the next call to <a href="trait.SnapshotExt.html#method.pop"><code>pop()</code></a>.</p>
+<p>The image is recorded until the next call to <a href="trait.SnapshotExt.html#method.pop" title="method gtk4::prelude::SnapshotExt::pop"><code>pop()</code></a>.</p>
 <h6 id="red"><a class="doc-anchor" href="#red">§</a><code>red</code></h6>
 <p>the transfer for the red component</p>
 <h6 id="green"><a class="doc-anchor" href="#green">§</a><code>green</code></h6>
@@ -522,27 +522,27 @@ function for each component.</p>
 <p>the transfer for the blue component</p>
 <h6 id="alpha"><a class="doc-anchor" href="#alpha">§</a><code>alpha</code></h6>
 <p>the transfer for the alpha component</p>
-</div></details><details class="toggle method-toggle" open><summary><section id="method.push_composite" class="method"><a class="src rightside" href="../../src/gtk4/auto/snapshot.rs.html#706-710">Source</a><h4 class="code-header">fn <a href="#method.push_composite" class="fn">push_composite</a>(&amp;self, op: <a class="enum" href="../../gsk4/auto/enums/enum.PorterDuff.html" title="enum gsk4::auto::enums::PorterDuff">PorterDuff</a>)</h4></section><span class="item-info"><div class="stab portability">Available on <strong>crate feature <code>v4_22</code></strong> only.</div></span></summary><div class="docblock"><p>Until the first call to <a href="trait.SnapshotExt.html#method.pop"><code>pop()</code></a>, the
+</div></details><details class="toggle method-toggle" open><summary><section id="method.push_composite" class="method"><a class="src rightside" href="../../src/gtk4/auto/snapshot.rs.html#706-710">Source</a><h4 class="code-header">fn <a href="#method.push_composite" class="fn">push_composite</a>(&amp;self, op: <a class="enum" href="../../gsk4/auto/enums/enum.PorterDuff.html" title="enum gsk4::auto::enums::PorterDuff">PorterDuff</a>)</h4></section><span class="item-info"><div class="stab portability">Available on <strong>crate feature <code>v4_22</code></strong> only.</div></span></summary><div class="docblock"><p>Until the first call to <a href="trait.SnapshotExt.html#method.pop" title="method gtk4::prelude::SnapshotExt::pop"><code>pop()</code></a>, the
 mask image for the mask operation will be recorded.</p>
 <p>After that call, the child image will be recorded until
-the second call to <a href="trait.SnapshotExt.html#method.pop"><code>pop()</code></a>.</p>
+the second call to <a href="trait.SnapshotExt.html#method.pop" title="method gtk4::prelude::SnapshotExt::pop"><code>pop()</code></a>.</p>
 <p>Calling this function requires 2 subsequent calls to gtk_snapshot_pop().</p>
 <h6 id="op"><a class="doc-anchor" href="#op">§</a><code>op</code></h6>
 <p>The Porter/Duff compositing operator to use</p>
 </div></details><section id="method.push_copy" class="method"><a class="src rightside" href="../../src/gtk4/auto/snapshot.rs.html#715-719">Source</a><h4 class="code-header">fn <a href="#method.push_copy" class="fn">push_copy</a>(&amp;self)</h4></section><span class="item-info"><div class="stab portability">Available on <strong>crate feature <code>v4_22</code></strong> only.</div></span><details class="toggle method-toggle" open><summary><section id="method.push_cross_fade" class="method"><a class="src rightside" href="../../src/gtk4/auto/snapshot.rs.html#733-737">Source</a><h4 class="code-header">fn <a href="#method.push_cross_fade" class="fn">push_cross_fade</a>(&amp;self, progress: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>)</h4></section></summary><div class="docblock"><p>Snapshots a cross-fade operation between two images with the
 given @progress.</p>
-<p>Until the first call to <a href="trait.SnapshotExt.html#method.pop"><code>pop()</code></a>, the start image
+<p>Until the first call to <a href="trait.SnapshotExt.html#method.pop" title="method gtk4::prelude::SnapshotExt::pop"><code>pop()</code></a>, the start image
 will be snapshot. After that call, the end image will be recorded
-until the second call to <a href="trait.SnapshotExt.html#method.pop"><code>pop()</code></a>.</p>
+until the second call to <a href="trait.SnapshotExt.html#method.pop" title="method gtk4::prelude::SnapshotExt::pop"><code>pop()</code></a>.</p>
 <p>Calling this function requires two subsequent calls
-to <a href="trait.SnapshotExt.html#method.pop"><code>pop()</code></a>.</p>
+to <a href="trait.SnapshotExt.html#method.pop" title="method gtk4::prelude::SnapshotExt::pop"><code>pop()</code></a>.</p>
 <h6 id="progress"><a class="doc-anchor" href="#progress">§</a><code>progress</code></h6>
 <p>progress between 0.0 and 1.0</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.push_fill" class="method"><a class="src rightside" href="../../src/gtk4/auto/snapshot.rs.html#754-762">Source</a><h4 class="code-header">fn <a href="#method.push_fill" class="fn">push_fill</a>(&amp;self, path: &amp;<a class="struct" href="../../gsk4/auto/path/struct.Path.html" title="struct gsk4::auto::path::Path">Path</a>, fill_rule: <a class="enum" href="../../gsk4/auto/enums/enum.FillRule.html" title="enum gsk4::auto::enums::FillRule">FillRule</a>)</h4></section><span class="item-info"><div class="stab portability">Available on <strong>crate feature <code>v4_14</code></strong> only.</div></span></summary><div class="docblock"><p>Fills the area given by @path and @fill_rule with an image and discards everything
 outside of it.</p>
-<p>The image is recorded until the next call to <a href="trait.SnapshotExt.html#method.pop"><code>pop()</code></a>.</p>
-<p>If you want to fill the path with a color, <a href="trait.SnapshotExt.html#method.append_fill"><code>append_fill()</code></a>
-than rendering new ones, use <a href="trait.SnapshotExt.html#method.append_fill"><code>append_fill()</code></a>
+<p>The image is recorded until the next call to <a href="trait.SnapshotExt.html#method.pop" title="method gtk4::prelude::SnapshotExt::pop"><code>pop()</code></a>.</p>
+<p>If you want to fill the path with a color, <a href="trait.SnapshotExt.html#method.append_fill" title="method gtk4::prelude::SnapshotExt::append_fill"><code>append_fill()</code></a>
+than rendering new ones, use <a href="trait.SnapshotExt.html#method.append_fill" title="method gtk4::prelude::SnapshotExt::append_fill"><code>append_fill()</code></a>
 may be more convenient.</p>
 <h6 id="path-2"><a class="doc-anchor" href="#path-2">§</a><code>path</code></h6>
 <p>The path describing the area to fill</p>
@@ -563,14 +563,14 @@ problem when compiling the shader, then the node will draw pink.
 You should use <a href="../../gsk4/auto/gl_shader/struct.GLShader.html#method.compile" title="method gsk4::auto::gl_shader::GLShader::compile"><code>GLShader::compile()</code></a> to ensure the @shader
 will work for the renderer before using it.</p>
 <p>If the shader requires textures (see <a href="../../gsk4/auto/gl_shader/struct.GLShader.html#method.n_textures" title="method gsk4::auto::gl_shader::GLShader::n_textures"><code>GLShader::n_textures()</code></a>),
-then it is expected that you call <a href="trait.SnapshotExt.html#method.gl_shader_pop_texture"><code>gl_shader_pop_texture()</code></a>
+then it is expected that you call <a href="trait.SnapshotExt.html#method.gl_shader_pop_texture" title="method gtk4::prelude::SnapshotExt::gl_shader_pop_texture"><code>gl_shader_pop_texture()</code></a>
 the number of times that are required. Each of these calls will generate
 a node that is added as a child to the <a href="../../gsk4/auto/gl_shader_node/struct.GLShaderNode.html" title="struct gsk4::auto::gl_shader_node::GLShaderNode"><code>gsk::GLShaderNode</code></a>, which in turn
 will render these offscreen and pass as a texture to the shader.</p>
 <p>Once all textures (if any) are pop:ed, you must call the regular
-<a href="trait.SnapshotExt.html#method.pop"><code>pop()</code></a>.</p>
+<a href="trait.SnapshotExt.html#method.pop" title="method gtk4::prelude::SnapshotExt::pop"><code>pop()</code></a>.</p>
 <p>If you want to use pre-existing textures as input to the shader rather
-than rendering new ones, use <a href="trait.SnapshotExt.html#method.append_texture"><code>append_texture()</code></a> to
+than rendering new ones, use <a href="trait.SnapshotExt.html#method.append_texture" title="method gtk4::prelude::SnapshotExt::append_texture"><code>append_texture()</code></a> to
 push a texture node. These will be used directly rather than being
 re-rendered.</p>
 <p>For details on how to write shaders, see <a href="../../gsk4/auto/gl_shader/struct.GLShader.html" title="struct gsk4::auto::gl_shader::GLShader"><code>gsk::GLShader</code></a>.</p>
@@ -584,39 +584,39 @@ OpenGL rendering.</p>
 <p>the rectangle to render into</p>
 <h6 id="take_args"><a class="doc-anchor" href="#take_args">§</a><code>take_args</code></h6>
 <p>Data block with arguments for the shader.</p>
-</div></details><details class="toggle method-toggle" open><summary><section id="method.push_mask" class="method"><a class="src rightside" href="../../src/gtk4/auto/snapshot.rs.html#848-852">Source</a><h4 class="code-header">fn <a href="#method.push_mask" class="fn">push_mask</a>(&amp;self, mask_mode: <a class="enum" href="../../gsk4/auto/enums/enum.MaskMode.html" title="enum gsk4::auto::enums::MaskMode">MaskMode</a>)</h4></section><span class="item-info"><div class="stab portability">Available on <strong>crate feature <code>v4_10</code></strong> only.</div></span></summary><div class="docblock"><p>Until the first call to <a href="trait.SnapshotExt.html#method.pop"><code>pop()</code></a>, the
+</div></details><details class="toggle method-toggle" open><summary><section id="method.push_mask" class="method"><a class="src rightside" href="../../src/gtk4/auto/snapshot.rs.html#848-852">Source</a><h4 class="code-header">fn <a href="#method.push_mask" class="fn">push_mask</a>(&amp;self, mask_mode: <a class="enum" href="../../gsk4/auto/enums/enum.MaskMode.html" title="enum gsk4::auto::enums::MaskMode">MaskMode</a>)</h4></section><span class="item-info"><div class="stab portability">Available on <strong>crate feature <code>v4_10</code></strong> only.</div></span></summary><div class="docblock"><p>Until the first call to <a href="trait.SnapshotExt.html#method.pop" title="method gtk4::prelude::SnapshotExt::pop"><code>pop()</code></a>, the
 mask image for the mask operation will be recorded.</p>
 <p>After that call, the source image will be recorded until
-the second call to <a href="trait.SnapshotExt.html#method.pop"><code>pop()</code></a>.</p>
+the second call to <a href="trait.SnapshotExt.html#method.pop" title="method gtk4::prelude::SnapshotExt::pop"><code>pop()</code></a>.</p>
 <p>Calling this function requires 2 subsequent calls to gtk_snapshot_pop().</p>
 <h6 id="mask_mode"><a class="doc-anchor" href="#mask_mode">§</a><code>mask_mode</code></h6>
 <p>mask mode to use</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.push_opacity" class="method"><a class="src rightside" href="../../src/gtk4/auto/snapshot.rs.html#860-864">Source</a><h4 class="code-header">fn <a href="#method.push_opacity" class="fn">push_opacity</a>(&amp;self, opacity: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>)</h4></section></summary><div class="docblock"><p>Modifies the opacity of an image.</p>
-<p>The image is recorded until the next call to <a href="trait.SnapshotExt.html#method.pop"><code>pop()</code></a>.</p>
+<p>The image is recorded until the next call to <a href="trait.SnapshotExt.html#method.pop" title="method gtk4::prelude::SnapshotExt::pop"><code>pop()</code></a>.</p>
 <h6 id="opacity"><a class="doc-anchor" href="#opacity">§</a><code>opacity</code></h6>
 <p>the opacity to use</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.push_repeat" class="method"><a class="src rightside" href="../../src/gtk4/auto/snapshot.rs.html#875-883">Source</a><h4 class="code-header">fn <a href="#method.push_repeat" class="fn">push_repeat</a>(&amp;self, bounds: &amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/graphene/auto/rect/struct.Rect.html" title="struct graphene::auto::rect::Rect">Rect</a>, child_bounds: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/graphene/auto/rect/struct.Rect.html" title="struct graphene::auto::rect::Rect">Rect</a>&gt;)</h4></section></summary><div class="docblock"><p>Creates a node that repeats the child node.</p>
-<p>The child is recorded until the next call to <a href="trait.SnapshotExt.html#method.pop"><code>pop()</code></a>.</p>
+<p>The child is recorded until the next call to <a href="trait.SnapshotExt.html#method.pop" title="method gtk4::prelude::SnapshotExt::pop"><code>pop()</code></a>.</p>
 <h6 id="bounds-12"><a class="doc-anchor" href="#bounds-12">§</a><code>bounds</code></h6>
 <p>the bounds within which to repeat</p>
 <h6 id="child_bounds"><a class="doc-anchor" href="#child_bounds">§</a><code>child_bounds</code></h6>
 <p>the bounds of the child or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="variant core::option::Option::None"><code>None</code></a>
 to use the full size of the collected child node</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.push_rounded_clip" class="method"><a class="src rightside" href="../../src/gtk4/auto/snapshot.rs.html#891-898">Source</a><h4 class="code-header">fn <a href="#method.push_rounded_clip" class="fn">push_rounded_clip</a>(&amp;self, bounds: &amp;<a class="struct" href="../../gsk4/rounded_rect/struct.RoundedRect.html" title="struct gsk4::rounded_rect::RoundedRect">RoundedRect</a>)</h4></section></summary><div class="docblock"><p>Clips an image to a rounded rectangle.</p>
-<p>The image is recorded until the next call to <a href="trait.SnapshotExt.html#method.pop"><code>pop()</code></a>.</p>
+<p>The image is recorded until the next call to <a href="trait.SnapshotExt.html#method.pop" title="method gtk4::prelude::SnapshotExt::pop"><code>pop()</code></a>.</p>
 <h6 id="bounds-13"><a class="doc-anchor" href="#bounds-13">§</a><code>bounds</code></h6>
 <p>the rounded rectangle to clip to</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.push_shadow" class="method"><a class="src rightside" href="../../src/gtk4/auto/snapshot.rs.html#906-915">Source</a><h4 class="code-header">fn <a href="#method.push_shadow" class="fn">push_shadow</a>(&amp;self, shadow: &amp;[<a class="struct" href="../../gsk4/shadow/struct.Shadow.html" title="struct gsk4::shadow::Shadow">Shadow</a>])</h4></section></summary><div class="docblock"><p>Applies a shadow to an image.</p>
-<p>The image is recorded until the next call to <a href="trait.SnapshotExt.html#method.pop"><code>pop()</code></a>.</p>
+<p>The image is recorded until the next call to <a href="trait.SnapshotExt.html#method.pop" title="method gtk4::prelude::SnapshotExt::pop"><code>pop()</code></a>.</p>
 <h6 id="shadow"><a class="doc-anchor" href="#shadow">§</a><code>shadow</code></h6>
 <p>the first shadow specification</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.push_stroke" class="method"><a class="src rightside" href="../../src/gtk4/auto/snapshot.rs.html#935-943">Source</a><h4 class="code-header">fn <a href="#method.push_stroke" class="fn">push_stroke</a>(&amp;self, path: &amp;<a class="struct" href="../../gsk4/auto/path/struct.Path.html" title="struct gsk4::auto::path::Path">Path</a>, stroke: &amp;<a class="struct" href="../../gsk4/auto/stroke/struct.Stroke.html" title="struct gsk4::auto::stroke::Stroke">Stroke</a>)</h4></section><span class="item-info"><div class="stab portability">Available on <strong>crate feature <code>v4_14</code></strong> only.</div></span></summary><div class="docblock"><p>Strokes the given @path with the attributes given by @stroke and
 an image.</p>
-<p>The image is recorded until the next call to <a href="trait.SnapshotExt.html#method.pop"><code>pop()</code></a>.</p>
+<p>The image is recorded until the next call to <a href="trait.SnapshotExt.html#method.pop" title="method gtk4::prelude::SnapshotExt::pop"><code>pop()</code></a>.</p>
 <p>Note that the strokes are subject to the same transformation as
 everything else, so uneven scaling will cause horizontal and vertical
 strokes to have different widths.</p>
-<p>If you want to stroke the path with a color, <a href="trait.SnapshotExt.html#method.append_stroke"><code>append_stroke()</code></a>
+<p>If you want to stroke the path with a color, <a href="trait.SnapshotExt.html#method.append_stroke" title="method gtk4::prelude::SnapshotExt::append_stroke"><code>append_stroke()</code></a>
 may be more convenient.</p>
 <h6 id="path-3"><a class="doc-anchor" href="#path-3">§</a><code>path</code></h6>
 <p>The path to stroke</p>
@@ -721,7 +721,7 @@ without changing the current node.</p>
 <h6 id="layout-3"><a class="doc-anchor" href="#layout-3">§</a><code>layout</code></h6>
 <p>the <a href="https://gtk-rs.org/gtk-rs-core/git/docs/pango/auto/layout/struct.Layout.html" title="struct pango::auto::layout::Layout"><code>pango::Layout</code></a> to render</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.restore" class="method"><a class="src rightside" href="../../src/gtk4/auto/snapshot.rs.html#1142-1146">Source</a><h4 class="code-header">fn <a href="#method.restore" class="fn">restore</a>(&amp;self)</h4></section></summary><div class="docblock"><p>Restores @self to the state saved by a preceding call to
-<a href="trait.SnapshotExt.html#method.save"><code>save()</code></a> and removes that state from the stack of
+<a href="trait.SnapshotExt.html#method.save" title="method gtk4::prelude::SnapshotExt::save"><code>save()</code></a> and removes that state from the stack of
 saved states.</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.rotate" class="method"><a class="src rightside" href="../../src/gtk4/auto/snapshot.rs.html#1156-1160">Source</a><h4 class="code-header">fn <a href="#method.rotate" class="fn">rotate</a>(&amp;self, angle: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>)</h4></section></summary><div class="docblock"><p>Rotates @@self’s coordinate system by @angle degrees in 2D space -
 or in 3D speak, rotates around the Z axis. The rotation happens around
@@ -737,16 +737,16 @@ the origin point of (0, 0) in the @self’s current coordinate system.</p>
 <p>The rotation axis</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.save" class="method"><a class="src rightside" href="../../src/gtk4/auto/snapshot.rs.html#1193-1197">Source</a><h4 class="code-header">fn <a href="#method.save" class="fn">save</a>(&amp;self)</h4></section></summary><div class="docblock"><p>Makes a copy of the current state of @self and saves it
 on an internal stack.</p>
-<p>When <a href="trait.SnapshotExt.html#method.restore"><code>restore()</code></a> is called, @self will
+<p>When <a href="trait.SnapshotExt.html#method.restore" title="method gtk4::prelude::SnapshotExt::restore"><code>restore()</code></a> is called, @self will
 be restored to the saved state.</p>
-<p>Multiple calls to <a href="trait.SnapshotExt.html#method.save"><code>save()</code></a> and <a href="trait.SnapshotExt.html#method.restore"><code>restore()</code></a>
+<p>Multiple calls to <a href="trait.SnapshotExt.html#method.save" title="method gtk4::prelude::SnapshotExt::save"><code>save()</code></a> and <a href="trait.SnapshotExt.html#method.restore" title="method gtk4::prelude::SnapshotExt::restore"><code>restore()</code></a>
 can be nested; each call to <code>gtk_snapshot_restore()</code> restores the state from
 the matching paired <code>gtk_snapshot_save()</code>.</p>
 <p>It is necessary to clear all saved states with corresponding
 calls to <code>gtk_snapshot_restore()</code>.</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.scale" class="method"><a class="src rightside" href="../../src/gtk4/auto/snapshot.rs.html#1208-1212">Source</a><h4 class="code-header">fn <a href="#method.scale" class="fn">scale</a>(&amp;self, factor_x: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>, factor_y: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>)</h4></section></summary><div class="docblock"><p>Scales @self’s coordinate system in 2-dimensional space by
 the given factors.</p>
-<p>Use <a href="trait.SnapshotExt.html#method.scale_3d"><code>scale_3d()</code></a> to scale in all 3 dimensions.</p>
+<p>Use <a href="trait.SnapshotExt.html#method.scale_3d" title="method gtk4::prelude::SnapshotExt::scale_3d"><code>scale_3d()</code></a> to scale in all 3 dimensions.</p>
 <h6 id="factor_x"><a class="doc-anchor" href="#factor_x">§</a><code>factor_x</code></h6>
 <p>scaling factor on the X axis</p>
 <h6 id="factor_y"><a class="doc-anchor" href="#factor_y">§</a><code>factor_y</code></h6>

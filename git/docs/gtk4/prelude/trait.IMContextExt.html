@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Trait containing all `struct@IMContext` methods."><title>IMContextExt in gtk4::prelude - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-77263533.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.94.0-nightly (2850ca829 2026-01-13)" data-channel="nightly" data-search-js="search-9e2438ea.js" data-stringdex-js="stringdex-b897f86f.js" data-settings-js="settings-c38705f0.js" ><script src="../../static.files/storage-e2aeef58.js"></script><script defer src="sidebar-items.js"></script><script defer src="../../static.files/main-7bab91a1.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-ffcac47a.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-044be391.svg"></head><body class="rustdoc trait"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Trait containing all `struct@IMContext` methods."><title>IMContextExt in gtk4::prelude - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-77263533.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.95.0-nightly (0a3cd3b6b 2026-01-18)" data-channel="nightly" data-search-js="search-9e2438ea.js" data-stringdex-js="stringdex-b897f86f.js" data-settings-js="settings-c38705f0.js" ><script src="../../static.files/storage-e2aeef58.js"></script><script defer src="sidebar-items.js"></script><script defer src="../../static.files/main-7bab91a1.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-ffcac47a.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-044be391.svg"></head><body class="rustdoc trait"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
 
@@ -159,7 +159,7 @@ characters around the cursor position by emitting the
 <p>Note that @offset and @n_chars are in characters not in bytes
 which differs from the usage other places in <a href="../struct.IMContext.html" title="struct gtk4::IMContext"><code>IMContext</code></a>.</p>
 <p>In order to use this function, you should first call
-<a href="trait.IMContextExt.html#method.surrounding"><code>surrounding()</code></a> to get the current context,
+<a href="trait.IMContextExt.html#method.surrounding" title="method gtk4::prelude::IMContextExt::surrounding"><code>surrounding()</code></a> to get the current context,
 and call this function immediately afterwards to make sure that you
 know what you are deleting. You should also account for the fact
 that even if the signal was handled, the input context might not
@@ -239,12 +239,12 @@ where only some sequences of characters are allowed.</p>
 <a href="../struct.IMContext.html#retrieve-surrounding" title="struct gtk4::IMContext"><code>retrieve-surrounding</code></a> signal on the input method;
 in response to this signal, a widget should provide as much context as
 is available, up to an entire paragraph, by calling
-<a href="trait.IMContextExt.html#method.set_surrounding"><code>set_surrounding()</code></a>.</p>
+<a href="trait.IMContextExt.html#method.set_surrounding" title="method gtk4::prelude::IMContextExt::set_surrounding"><code>set_surrounding()</code></a>.</p>
 <p>Note that there is no obligation for a widget to respond to the
 <code>::retrieve-surrounding</code> signal, so input methods must be prepared to
 function without context.</p>
 <h5 id="deprecated-since-42"><a class="doc-anchor" href="#deprecated-since-42">§</a>Deprecated since 4.2</h5>
-<p>Use <a href="trait.IMContextExt.html#method.surrounding_with_selection"><code>surrounding_with_selection()</code></a> instead.</p>
+<p>Use <a href="trait.IMContextExt.html#method.surrounding_with_selection" title="method gtk4::prelude::IMContextExt::surrounding_with_selection"><code>surrounding_with_selection()</code></a> instead.</p>
 <h5 id="returns-5"><a class="doc-anchor" href="#returns-5">§</a>Returns</h5>
 <p><code>TRUE</code> if surrounding text was provided; in this case
 you must free the result stored in <code>text</code>.</p>
@@ -264,7 +264,7 @@ as Thai where only some sequences of characters are allowed.</p>
 <a href="../struct.IMContext.html#retrieve-surrounding" title="struct gtk4::IMContext"><code>retrieve-surrounding</code></a> signal on the input method;
 in response to this signal, a widget should provide as much context as
 is available, up to an entire paragraph, by calling
-<a href="trait.IMContextExt.html#method.set_surrounding_with_selection"><code>set_surrounding_with_selection()</code></a>.</p>
+<a href="trait.IMContextExt.html#method.set_surrounding_with_selection" title="method gtk4::prelude::IMContextExt::set_surrounding_with_selection"><code>set_surrounding_with_selection()</code></a>.</p>
 <p>Note that there is no obligation for a widget to respond to the
 <code>::retrieve-surrounding</code> signal, so input methods must be prepared to
 function without context.</p>
@@ -303,7 +303,7 @@ string.</p>
 <a href="../struct.IMContext.html#retrieve-surrounding" title="struct gtk4::IMContext"><code>retrieve-surrounding</code></a> signal, and will
 likely have no effect if called at other times.</p>
 <h5 id="deprecated-since-42-1"><a class="doc-anchor" href="#deprecated-since-42-1">§</a>Deprecated since 4.2</h5>
-<p>Use <a href="trait.IMContextExt.html#method.set_surrounding_with_selection"><code>set_surrounding_with_selection()</code></a> instead</p>
+<p>Use <a href="trait.IMContextExt.html#method.set_surrounding_with_selection" title="method gtk4::prelude::IMContextExt::set_surrounding_with_selection"><code>set_surrounding_with_selection()</code></a> instead</p>
 <h6 id="text-2"><a class="doc-anchor" href="#text-2">§</a><code>text</code></h6>
 <p>text surrounding the insertion point, as UTF-8.
 the preedit string should not be included within @text</p>
@@ -381,7 +381,7 @@ the cursor.</p>
 ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section></summary><div class="docblock"><p>The ::preedit-changed signal is emitted whenever the preedit sequence
 currently being entered has changed.</p>
 <p>It is also emitted at the end of a preedit sequence, in which case
-<a href="trait.IMContextExt.html#method.preedit_string"><code>preedit_string()</code></a> returns the empty string.</p>
+<a href="trait.IMContextExt.html#method.preedit_string" title="method gtk4::prelude::IMContextExt::preedit_string"><code>preedit_string()</code></a> returns the empty string.</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.connect_preedit_end" class="method"><a class="src rightside" href="../../src/gtk4/auto/im_context.rs.html#776-797">Source</a><h4 class="code-header">fn <a href="#method.connect_preedit_end" class="fn">connect_preedit_end</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section></summary><div class="docblock"><p>The ::preedit-end signal is emitted when a preediting sequence
 has been completed or canceled.</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.connect_preedit_start" class="method"><a class="src rightside" href="../../src/gtk4/auto/im_context.rs.html#802-823">Source</a><h4 class="code-header">fn <a href="#method.connect_preedit_start" class="fn">connect_preedit_start</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section></summary><div class="docblock"><p>The ::preedit-start signal is emitted when a new preediting sequence
@@ -392,7 +392,7 @@ starts.</p>
 ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section></summary><div class="docblock"><p>The ::retrieve-surrounding signal is emitted when the input method
 requires the context surrounding the cursor.</p>
 <p>The callback should set the input method surrounding context by
-calling the <a href="trait.IMContextExt.html#method.set_surrounding"><code>set_surrounding()</code></a> method.</p>
+calling the <a href="trait.IMContextExt.html#method.set_surrounding" title="method gtk4::prelude::IMContextExt::set_surrounding"><code>set_surrounding()</code></a> method.</p>
 <h5 id="returns-9"><a class="doc-anchor" href="#returns-9">§</a>Returns</h5>
 <p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> if the signal was handled.</p>
 </div></details><section id="method.connect_input_hints_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/im_context.rs.html#865-890">Source</a><h4 class="code-header">fn <a href="#method.connect_input_hints_notify" class="fn">connect_input_hints_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(

@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Trait containing all `struct@Application` methods."><title>GtkApplicationExt in gtk4::prelude - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-77263533.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.94.0-nightly (2850ca829 2026-01-13)" data-channel="nightly" data-search-js="search-9e2438ea.js" data-stringdex-js="stringdex-b897f86f.js" data-settings-js="settings-c38705f0.js" ><script src="../../static.files/storage-e2aeef58.js"></script><script defer src="sidebar-items.js"></script><script defer src="../../static.files/main-7bab91a1.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-ffcac47a.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-044be391.svg"></head><body class="rustdoc trait"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Trait containing all `struct@Application` methods."><title>GtkApplicationExt in gtk4::prelude - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-77263533.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.95.0-nightly (0a3cd3b6b 2026-01-18)" data-channel="nightly" data-search-js="search-9e2438ea.js" data-stringdex-js="stringdex-b897f86f.js" data-settings-js="settings-c38705f0.js" ><script src="../../static.files/storage-e2aeef58.js"></script><script defer src="sidebar-items.js"></script><script defer src="../../static.files/main-7bab91a1.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-ffcac47a.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-044be391.svg"></head><body class="rustdoc trait"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
 
@@ -157,14 +157,14 @@ to the emission of the [<code>activate</code>][struct@crate::GIO::Application#ac
 property of the window to @self.</p>
 <p>Normally, the connection between the application and the window
 will remain until the window is destroyed, but you can explicitly
-remove it with <a href="trait.GtkApplicationExt.html#method.remove_window"><code>remove_window()</code></a>.</p>
+remove it with <a href="trait.GtkApplicationExt.html#method.remove_window" title="method gtk4::prelude::GtkApplicationExt::remove_window"><code>remove_window()</code></a>.</p>
 <p>GTK will keep the application running as long as it has any windows.</p>
 <h6 id="window"><a class="doc-anchor" href="#window">§</a><code>window</code></h6>
 <p>a window</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.forget" class="method"><a class="src rightside" href="../../src/gtk4/auto/application.rs.html#617-621">Source</a><h4 class="code-header">fn <a href="#method.forget" class="fn">forget</a>(&amp;self)</h4></section><span class="item-info"><div class="stab portability">Available on <strong>crate feature <code>v4_22</code></strong> only.</div></span></summary><div class="docblock"><p>Forget state that has been previously saved and prevent
 further automatic state saving.</p>
 <p>In order to reenable state saving, call
-<a href="trait.GtkApplicationExt.html#method.save"><code>save()</code></a>.</p>
+<a href="trait.GtkApplicationExt.html#method.save" title="method gtk4::prelude::GtkApplicationExt::save"><code>save()</code></a>.</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.accels_for_action" class="method"><a class="src rightside" href="../../src/gtk4/auto/application.rs.html#635-642">Source</a><h4 class="code-header">fn <a href="#method.accels_for_action" class="fn">accels_for_action</a>(&amp;self, detailed_action_name: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>) -&gt; <a class="struct" href="https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html" title="struct alloc::vec::Vec">Vec</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/gstring/struct.GString.html" title="struct glib::gstring::GString">GString</a>&gt;</h4></section></summary><div class="docblock"><p>Gets the accelerators that are currently associated with
 the given action.</p>
 <h6 id="detailed_action_name"><a class="doc-anchor" href="#detailed_action_name">§</a><code>detailed_action_name</code></h6>
@@ -235,7 +235,7 @@ actions.</p>
 that should not be interrupted, such as creating a CD or DVD. The
 types of actions that may be blocked are specified by the @flags
 parameter. When the application completes the operation it should
-call <a href="trait.GtkApplicationExt.html#method.uninhibit"><code>uninhibit()</code></a> to remove the inhibitor. Note
+call <a href="trait.GtkApplicationExt.html#method.uninhibit" title="method gtk4::prelude::GtkApplicationExt::uninhibit"><code>uninhibit()</code></a> to remove the inhibitor. Note
 that an application can have multiple inhibitors, and all of them must
 be individually removed. Inhibitors are also cleared when the
 application exits.</p>
@@ -246,7 +246,7 @@ the action to take place.</p>
 <p>If a window is given, the session manager may point the user to
 this window to find out more about why the action is inhibited.</p>
 <p>The cookie that is returned by this function  should be used as an
-argument to <a href="trait.GtkApplicationExt.html#method.uninhibit"><code>uninhibit()</code></a> in order to remove
+argument to <a href="trait.GtkApplicationExt.html#method.uninhibit" title="method gtk4::prelude::GtkApplicationExt::uninhibit"><code>uninhibit()</code></a> in order to remove
 the request.</p>
 <h6 id="window-1"><a class="doc-anchor" href="#window-1">§</a><code>window</code></h6>
 <p>a window</p>
@@ -260,7 +260,7 @@ why these operations are inhibited</p>
 0 if the platform does not support inhibiting or the request failed
 for some reason</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.list_action_descriptions" class="method"><a class="src rightside" href="../../src/gtk4/auto/application.rs.html#845-851">Source</a><h4 class="code-header">fn <a href="#method.list_action_descriptions" class="fn">list_action_descriptions</a>(&amp;self) -&gt; <a class="struct" href="https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html" title="struct alloc::vec::Vec">Vec</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/gstring/struct.GString.html" title="struct glib::gstring::GString">GString</a>&gt;</h4></section></summary><div class="docblock"><p>Lists the detailed action names which have associated accelerators.</p>
-<p>See <a href="trait.GtkApplicationExt.html#method.set_accels_for_action"><code>set_accels_for_action()</code></a>.</p>
+<p>See <a href="trait.GtkApplicationExt.html#method.set_accels_for_action" title="method gtk4::prelude::GtkApplicationExt::set_accels_for_action"><code>set_accels_for_action()</code></a>.</p>
 <h5 id="returns-8"><a class="doc-anchor" href="#returns-8">§</a>Returns</h5>
 <p>the detailed action names</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.remove_window" class="method"><a class="src rightside" href="../../src/gtk4/auto/application.rs.html#864-871">Source</a><h4 class="code-header">fn <a href="#method.remove_window" class="fn">remove_window</a>(&amp;self, window: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Window.html" title="struct gtk4::Window">Window</a>&gt;)</h4></section></summary><div class="docblock"><p>Remove a window from the application.</p>
@@ -272,7 +272,7 @@ function, if the window was the last window of the application.</p>
 <h6 id="window-2"><a class="doc-anchor" href="#window-2">§</a><code>window</code></h6>
 <p>a window</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.save" class="method"><a class="src rightside" href="../../src/gtk4/auto/application.rs.html#883-887">Source</a><h4 class="code-header">fn <a href="#method.save" class="fn">save</a>(&amp;self)</h4></section><span class="item-info"><div class="stab portability">Available on <strong>crate feature <code>v4_22</code></strong> only.</div></span></summary><div class="docblock"><p>Saves the state of application.</p>
-<p>See <a href="trait.GtkApplicationExt.html#method.forget"><code>forget()</code></a> for a way to forget the state.</p>
+<p>See <a href="trait.GtkApplicationExt.html#method.forget" title="method gtk4::prelude::GtkApplicationExt::forget"><code>forget()</code></a> for a way to forget the state.</p>
 <p>If <a href="../struct.Application.html#register-session" title="struct gtk4::Application"><code>register-session</code></a> is set, <a href="../struct.Application.html" title="struct gtk4::Application"><code>Application</code></a>
 calls this function automatically when the application is closed or
 the session ends.</p>
@@ -307,10 +307,10 @@ user selecting these menu items.</p>
 <h6 id="menubar"><a class="doc-anchor" href="#menubar">§</a><code>menubar</code></h6>
 <p>a menu model</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.uninhibit" class="method"><a class="src rightside" href="../../src/gtk4/auto/application.rs.html#956-960">Source</a><h4 class="code-header">fn <a href="#method.uninhibit" class="fn">uninhibit</a>(&amp;self, cookie: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>)</h4></section></summary><div class="docblock"><p>Removes an inhibitor that has been previously established.</p>
-<p>See <a href="trait.GtkApplicationExt.html#method.inhibit"><code>inhibit()</code></a>.</p>
+<p>See <a href="trait.GtkApplicationExt.html#method.inhibit" title="method gtk4::prelude::GtkApplicationExt::inhibit"><code>inhibit()</code></a>.</p>
 <p>Inhibitors are also cleared when the application exits.</p>
 <h6 id="cookie"><a class="doc-anchor" href="#cookie">§</a><code>cookie</code></h6>
-<p>a cookie that was returned by <a href="trait.GtkApplicationExt.html#method.inhibit"><code>inhibit()</code></a></p>
+<p>a cookie that was returned by <a href="trait.GtkApplicationExt.html#method.inhibit" title="method gtk4::prelude::GtkApplicationExt::inhibit"><code>inhibit()</code></a></p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.autosave_interval" class="method"><a class="src rightside" href="../../src/gtk4/auto/application.rs.html#967-969">Source</a><h4 class="code-header">fn <a href="#method.autosave_interval" class="fn">autosave_interval</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a></h4></section><span class="item-info"><div class="stab portability">Available on <strong>crate feature <code>v4_22</code></strong> only.</div></span></summary><div class="docblock"><p>The number of seconds between automatic state saves. Defaults to 15.
 A value of 0 will opt out of automatic state saving.</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.set_autosave_interval" class="method"><a class="src rightside" href="../../src/gtk4/auto/application.rs.html#976-978">Source</a><h4 class="code-header">fn <a href="#method.set_autosave_interval" class="fn">set_autosave_interval</a>(&amp;self, autosave_interval: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>)</h4></section><span class="item-info"><div class="stab portability">Available on <strong>crate feature <code>v4_22</code></strong> only.</div></span></summary><div class="docblock"><p>The number of seconds between automatic state saves. Defaults to 15.
@@ -337,7 +337,7 @@ state saving and restoring.</p>
 state saving and restoring.</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.connect_query_end" class="method"><a class="src rightside" href="../../src/gtk4/auto/application.rs.html#1044-1065">Source</a><h4 class="code-header">fn <a href="#method.connect_query_end" class="fn">connect_query_end</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section></summary><div class="docblock"><p>Emitted when the session manager is about to end the session.</p>
 <p>Applications can connect to this signal and call
-<a href="trait.GtkApplicationExt.html#method.inhibit"><code>inhibit()</code></a> with [flags@Gtk.ApplicationInhibitFlags.logout]
+<a href="trait.GtkApplicationExt.html#method.inhibit" title="method gtk4::prelude::GtkApplicationExt::inhibit"><code>inhibit()</code></a> with [flags@Gtk.ApplicationInhibitFlags.logout]
 to delay the end of the session until state has been saved.</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.connect_restore_state" class="method"><a class="src rightside" href="../../src/gtk4/auto/application.rs.html#1083-1117">Source</a><h4 class="code-header">fn <a href="#method.connect_restore_state" class="fn">connect_restore_state</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self, <a class="enum" href="../enum.RestoreReason.html" title="enum gtk4::RestoreReason">RestoreReason</a>, &amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/variant/struct.Variant.html" title="struct glib::variant::Variant">Variant</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> + 'static&gt;(
     &amp;self,
@@ -394,7 +394,7 @@ per-window state.</p>
     &amp;self,
     f: F,
 ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section></summary><div class="docblock"><p>Emitted when a window is added to an application.</p>
-<p>See <a href="trait.GtkApplicationExt.html#method.add_window"><code>add_window()</code></a>.</p>
+<p>See <a href="trait.GtkApplicationExt.html#method.add_window" title="method gtk4::prelude::GtkApplicationExt::add_window"><code>add_window()</code></a>.</p>
 <h6 id="window-3"><a class="doc-anchor" href="#window-3">§</a><code>window</code></h6>
 <p>the newly-added window</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.connect_window_removed" class="method"><a class="src rightside" href="../../src/gtk4/auto/application.rs.html#1277-1305">Source</a><h4 class="code-header">fn <a href="#method.connect_window_removed" class="fn">connect_window_removed</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self, &amp;<a class="struct" href="../struct.Window.html" title="struct gtk4::Window">Window</a>) + 'static&gt;(
@@ -402,7 +402,7 @@ per-window state.</p>
     f: F,
 ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section></summary><div class="docblock"><p>Emitted when a window is removed from an application.</p>
 <p>This can happen as a side-effect of the window being destroyed
-or explicitly through <a href="trait.GtkApplicationExt.html#method.remove_window"><code>remove_window()</code></a>.</p>
+or explicitly through <a href="trait.GtkApplicationExt.html#method.remove_window" title="method gtk4::prelude::GtkApplicationExt::remove_window"><code>remove_window()</code></a>.</p>
 <h6 id="window-4"><a class="doc-anchor" href="#window-4">§</a><code>window</code></h6>
 <p>the window that is being removed</p>
 </div></details><section id="method.connect_active_window_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/application.rs.html#1308-1333">Source</a><h4 class="code-header">fn <a href="#method.connect_active_window_notify" class="fn">connect_active_window_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(

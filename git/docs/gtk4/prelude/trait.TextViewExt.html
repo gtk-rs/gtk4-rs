@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Trait containing all `struct@TextView` methods."><title>TextViewExt in gtk4::prelude - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-77263533.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.94.0-nightly (2850ca829 2026-01-13)" data-channel="nightly" data-search-js="search-9e2438ea.js" data-stringdex-js="stringdex-b897f86f.js" data-settings-js="settings-c38705f0.js" ><script src="../../static.files/storage-e2aeef58.js"></script><script defer src="sidebar-items.js"></script><script defer src="../../static.files/main-7bab91a1.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-ffcac47a.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-044be391.svg"></head><body class="rustdoc trait"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Trait containing all `struct@TextView` methods."><title>TextViewExt in gtk4::prelude - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-77263533.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.95.0-nightly (0a3cd3b6b 2026-01-18)" data-channel="nightly" data-search-js="search-9e2438ea.js" data-stringdex-js="stringdex-b897f86f.js" data-settings-js="settings-c38705f0.js" ><script src="../../static.files/storage-e2aeef58.js"></script><script defer src="sidebar-items.js"></script><script defer src="../../static.files/main-7bab91a1.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-ffcac47a.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-044be391.svg"></head><body class="rustdoc trait"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
 
@@ -352,7 +352,7 @@
 <p>a <a href="../struct.TextChildAnchor.html" title="struct gtk4::TextChildAnchor"><code>TextChildAnchor</code></a> in the <a href="../struct.TextBuffer.html" title="struct gtk4::TextBuffer"><code>TextBuffer</code></a> for @self</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.add_overlay" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#1600-1609">Source</a><h4 class="code-header">fn <a href="#method.add_overlay" class="fn">add_overlay</a>(&amp;self, child: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;, xpos: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, ypos: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</h4></section></summary><div class="docblock"><p>Adds @child at a fixed coordinate in the <a href="../struct.TextView.html" title="struct gtk4::TextView"><code>TextView</code></a>’s text window.</p>
 <p>The @xpos and @ypos must be in buffer coordinates (see
-<a href="trait.TextViewExt.html#method.iter_location"><code>iter_location()</code></a> to convert to
+<a href="trait.TextViewExt.html#method.iter_location" title="method gtk4::prelude::TextViewExt::iter_location"><code>iter_location()</code></a> to convert to
 buffer coordinates).</p>
 <p>@child will scroll with the text view.</p>
 <p>If instead you want a widget that will not move with the
@@ -428,7 +428,7 @@ views, since they depend on the contents of the <a href="../struct.TextBuffer.ht
 <h5 id="returns-4"><a class="doc-anchor" href="#returns-4">§</a>Returns</h5>
 <p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> if @iter was moved and is not on the end iterator</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.accepts_tab" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#1760-1766">Source</a><h4 class="code-header">fn <a href="#method.accepts_tab" class="fn">accepts_tab</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>Returns whether pressing the <kbd>Tab</kbd> key inserts a tab characters.</p>
-<p>See <a href="trait.TextViewExt.html#method.set_accepts_tab"><code>set_accepts_tab()</code></a>.</p>
+<p>See <a href="trait.TextViewExt.html#method.set_accepts_tab" title="method gtk4::prelude::TextViewExt::set_accepts_tab"><code>set_accepts_tab()</code></a>.</p>
 <h5 id="returns-5"><a class="doc-anchor" href="#returns-5">§</a>Returns</h5>
 <p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> if pressing the Tab key inserts a tab character,
 <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>false</code></a> if pressing the Tab key moves the keyboard focus.</p>
@@ -454,7 +454,7 @@ there is currently an IM preedit sequence being entered, the
 returned locations will be adjusted to account for the preedit
 cursor’s offset within the preedit sequence.</p>
 <p>The rectangle position is in buffer coordinates; use
-<a href="trait.TextViewExt.html#method.buffer_to_window_coords"><code>buffer_to_window_coords()</code></a> to convert these
+<a href="trait.TextViewExt.html#method.buffer_to_window_coords" title="method gtk4::prelude::TextViewExt::buffer_to_window_coords"><code>buffer_to_window_coords()</code></a> to convert these
 coordinates to coordinates for one of the windows in the text view.</p>
 <h6 id="iter-4"><a class="doc-anchor" href="#iter-4">§</a><code>iter</code></h6>
 <p>a <a href="../struct.TextIter.html" title="struct gtk4::TextIter"><code>TextIter</code></a></p>
@@ -474,7 +474,7 @@ or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#varia
 <h5 id="returns-11"><a class="doc-anchor" href="#returns-11">§</a>Returns</h5>
 <p>the menu model</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.gutter" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#1910-1917">Source</a><h4 class="code-header">fn <a href="#method.gutter" class="fn">gutter</a>(&amp;self, win: <a class="enum" href="../enum.TextWindowType.html" title="enum gtk4::TextWindowType">TextWindowType</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;</h4></section></summary><div class="docblock"><p>Gets a <a href="../struct.Widget.html" title="struct gtk4::Widget"><code>Widget</code></a> that has previously been set as gutter.</p>
-<p>See <a href="trait.TextViewExt.html#method.set_gutter"><code>set_gutter()</code></a>.</p>
+<p>See <a href="trait.TextViewExt.html#method.set_gutter" title="method gtk4::prelude::TextViewExt::set_gutter"><code>set_gutter()</code></a>.</p>
 <p>@win must be one of <a href="../enum.TextWindowType.html#variant.Left" title="variant gtk4::TextWindowType::Left"><code>TextWindowType::Left</code></a>, <a href="../enum.TextWindowType.html#variant.Right" title="variant gtk4::TextWindowType::Right"><code>TextWindowType::Right</code></a>,
 <a href="../enum.TextWindowType.html#variant.Top" title="variant gtk4::TextWindowType::Top"><code>TextWindowType::Top</code></a>, or <a href="../enum.TextWindowType.html#variant.Bottom" title="variant gtk4::TextWindowType::Bottom"><code>TextWindowType::Bottom</code></a>.</p>
 <h6 id="win-1"><a class="doc-anchor" href="#win-1">§</a><code>win</code></h6>
@@ -496,7 +496,7 @@ The indentation may be negative.</p>
 <p>Buffer coordinates are coordinates for the entire buffer, not just
 the currently-displayed portion. If you have coordinates from an
 event, you have to convert those to buffer coordinates with
-<a href="trait.TextViewExt.html#method.window_to_buffer_coords"><code>window_to_buffer_coords()</code></a>.</p>
+<a href="trait.TextViewExt.html#method.window_to_buffer_coords" title="method gtk4::prelude::TextViewExt::window_to_buffer_coords"><code>window_to_buffer_coords()</code></a>.</p>
 <h6 id="x"><a class="doc-anchor" href="#x">§</a><code>x</code></h6>
 <p>x position, in buffer coordinates</p>
 <h6 id="y"><a class="doc-anchor" href="#y">§</a><code>y</code></h6>
@@ -510,8 +510,8 @@ coordinates @x and @y.</p>
 <p>Buffer coordinates are coordinates for the entire buffer, not just
 the currently-displayed portion. If you have coordinates from an event,
 you have to convert those to buffer coordinates with
-<a href="trait.TextViewExt.html#method.window_to_buffer_coords"><code>window_to_buffer_coords()</code></a>.</p>
-<p>Note that this is different from <a href="trait.TextViewExt.html#method.iter_at_location"><code>iter_at_location()</code></a>,
+<a href="trait.TextViewExt.html#method.window_to_buffer_coords" title="method gtk4::prelude::TextViewExt::window_to_buffer_coords"><code>window_to_buffer_coords()</code></a>.</p>
+<p>Note that this is different from <a href="trait.TextViewExt.html#method.iter_at_location" title="method gtk4::prelude::TextViewExt::iter_at_location"><code>iter_at_location()</code></a>,
 which returns cursor locations, i.e. positions between characters.</p>
 <h6 id="x-1"><a class="doc-anchor" href="#x-1">§</a><code>x</code></h6>
 <p>x position, in buffer coordinates</p>
@@ -528,7 +528,7 @@ It will either be zero, or the number of characters in the grapheme.
 0 represents the trailing edge of the grapheme.</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.iter_location" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#2060-2070">Source</a><h4 class="code-header">fn <a href="#method.iter_location" class="fn">iter_location</a>(&amp;self, iter: &amp;<a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>) -&gt; <a class="struct" href="../../gdk4/auto/rectangle/struct.Rectangle.html" title="struct gdk4::auto::rectangle::Rectangle">Rectangle</a></h4></section></summary><div class="docblock"><p>Gets a rectangle which roughly contains the character at @iter.</p>
 <p>The rectangle position is in buffer coordinates; use
-<a href="trait.TextViewExt.html#method.buffer_to_window_coords"><code>buffer_to_window_coords()</code></a> to convert these
+<a href="trait.TextViewExt.html#method.buffer_to_window_coords" title="method gtk4::prelude::TextViewExt::buffer_to_window_coords"><code>buffer_to_window_coords()</code></a> to convert these
 coordinates to coordinates for one of the windows in the text view.</p>
 <h6 id="iter-7"><a class="doc-anchor" href="#iter-7">§</a><code>iter</code></h6>
 <p>a <a href="../struct.TextIter.html" title="struct gtk4::TextIter"><code>TextIter</code></a></p>
@@ -545,7 +545,7 @@ coordinates to coordinates for one of the windows in the text view.</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.line_at_y" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#2123-2135">Source</a><h4 class="code-header">fn <a href="#method.line_at_y" class="fn">line_at_y</a>(&amp;self, y: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) -&gt; (<a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</h4></section></summary><div class="docblock"><p>Gets the <a href="../struct.TextIter.html" title="struct gtk4::TextIter"><code>TextIter</code></a> at the start of the line containing
 the coordinate @y.</p>
 <p>@y is in buffer coordinates, convert from window coordinates with
-<a href="trait.TextViewExt.html#method.window_to_buffer_coords"><code>window_to_buffer_coords()</code></a>. If non-<a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="variant core::option::Option::None"><code>None</code></a>,
+<a href="trait.TextViewExt.html#method.window_to_buffer_coords" title="method gtk4::prelude::TextViewExt::window_to_buffer_coords"><code>window_to_buffer_coords()</code></a>. If non-<a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="variant core::option::Option::None"><code>None</code></a>,
 @line_top will be filled with the coordinate of the top edge
 of the line.</p>
 <h6 id="y-2"><a class="doc-anchor" href="#y-2">§</a><code>y</code></h6>
@@ -557,7 +557,7 @@ of the line.</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.line_yrange" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#2155-2167">Source</a><h4 class="code-header">fn <a href="#method.line_yrange" class="fn">line_yrange</a>(&amp;self, iter: &amp;<a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>) -&gt; (<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</h4></section></summary><div class="docblock"><p>Gets the y coordinate of the top of the line containing @iter,
 and the height of the line.</p>
 <p>The coordinate is a buffer coordinate; convert to window
-coordinates with <a href="trait.TextViewExt.html#method.buffer_to_window_coords"><code>buffer_to_window_coords()</code></a>.</p>
+coordinates with <a href="trait.TextViewExt.html#method.buffer_to_window_coords" title="method gtk4::prelude::TextViewExt::buffer_to_window_coords"><code>buffer_to_window_coords()</code></a>.</p>
 <h6 id="iter-8"><a class="doc-anchor" href="#iter-8">§</a><code>iter</code></h6>
 <p>a <a href="../struct.TextIter.html" title="struct gtk4::TextIter"><code>TextIter</code></a></p>
 <h5 id="returns-22"><a class="doc-anchor" href="#returns-22">§</a>Returns</h5><h6 id="y-3"><a class="doc-anchor" href="#y-3">§</a><code>y</code></h6>
@@ -576,13 +576,13 @@ text layouts.</p>
 <h5 id="returns-25"><a class="doc-anchor" href="#returns-25">§</a>Returns</h5>
 <p>whether @self is in overwrite mode or not.</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.pixels_above_lines" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#2232-2234">Source</a><h4 class="code-header">fn <a href="#method.pixels_above_lines" class="fn">pixels_above_lines</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></h4></section></summary><div class="docblock"><p>Gets the default number of pixels to put above paragraphs.</p>
-<p>Adding this function with <a href="trait.TextViewExt.html#method.pixels_below_lines"><code>pixels_below_lines()</code></a>
+<p>Adding this function with <a href="trait.TextViewExt.html#method.pixels_below_lines" title="method gtk4::prelude::TextViewExt::pixels_below_lines"><code>pixels_below_lines()</code></a>
 is equal to the line space between each paragraph.</p>
 <h5 id="returns-26"><a class="doc-anchor" href="#returns-26">§</a>Returns</h5>
 <p>default number of pixels above paragraphs</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.pixels_below_lines" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#2247-2249">Source</a><h4 class="code-header">fn <a href="#method.pixels_below_lines" class="fn">pixels_below_lines</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></h4></section></summary><div class="docblock"><p>Gets the default number of pixels to put below paragraphs.</p>
 <p>The line space is the sum of the value returned by this function and
-the value returned by <a href="trait.TextViewExt.html#method.pixels_above_lines"><code>pixels_above_lines()</code></a>.</p>
+the value returned by <a href="trait.TextViewExt.html#method.pixels_above_lines" title="method gtk4::prelude::TextViewExt::pixels_above_lines"><code>pixels_above_lines()</code></a>.</p>
 <h5 id="returns-27"><a class="doc-anchor" href="#returns-27">§</a>Returns</h5>
 <p>default number of blank pixels below paragraphs</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.pixels_inside_wrap" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#2260-2262">Source</a><h4 class="code-header">fn <a href="#method.pixels_inside_wrap" class="fn">pixels_inside_wrap</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></h4></section></summary><div class="docblock"><p>Gets the default number of pixels to put between wrapped lines
@@ -612,7 +612,7 @@ or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#varia
 </div></details><details class="toggle method-toggle" open><summary><section id="method.visible_offset" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#2349-2360">Source</a><h4 class="code-header">fn <a href="#method.visible_offset" class="fn">visible_offset</a>(&amp;self) -&gt; (<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>)</h4></section><span class="item-info"><div class="stab portability">Available on <strong>crate feature <code>v4_18</code></strong> only.</div></span></summary><div class="docblock"><p>Gets the X,Y offset in buffer coordinates of the top-left corner of
 the textview’s text contents.</p>
 <p>This allows for more-precise positioning than what is provided by
-<a href="trait.TextViewExt.html#method.visible_rect"><code>visible_rect()</code></a> as you can discover what
+<a href="trait.TextViewExt.html#method.visible_rect" title="method gtk4::prelude::TextViewExt::visible_rect"><code>visible_rect()</code></a> as you can discover what
 device pixel is being quantized for text positioning.</p>
 <p>You might want this when making ulterior widgets align with quantized
 device pixels of the textview contents such as line numbers.</p>
@@ -623,7 +623,7 @@ device pixels of the textview contents such as line numbers.</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.visible_rect" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#2375-2384">Source</a><h4 class="code-header">fn <a href="#method.visible_rect" class="fn">visible_rect</a>(&amp;self) -&gt; <a class="struct" href="../../gdk4/auto/rectangle/struct.Rectangle.html" title="struct gdk4::auto::rectangle::Rectangle">Rectangle</a></h4></section></summary><div class="docblock"><p>Fills @visible_rect with the currently-visible
 region of the buffer, in buffer coordinates.</p>
 <p>Convert to window coordinates with
-<a href="trait.TextViewExt.html#method.buffer_to_window_coords"><code>buffer_to_window_coords()</code></a>.</p>
+<a href="trait.TextViewExt.html#method.buffer_to_window_coords" title="method gtk4::prelude::TextViewExt::buffer_to_window_coords"><code>buffer_to_window_coords()</code></a>.</p>
 <h5 id="returns-34"><a class="doc-anchor" href="#returns-34">§</a>Returns</h5><h6 id="visible_rect"><a class="doc-anchor" href="#visible_rect">§</a><code>visible_rect</code></h6>
 <p>rectangle to fill</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.wrap_mode" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#2394-2400">Source</a><h4 class="code-header">fn <a href="#method.wrap_mode" class="fn">wrap_mode</a>(&amp;self) -&gt; <a class="enum" href="../enum.WrapMode.html" title="enum gtk4::WrapMode">WrapMode</a></h4></section></summary><div class="docblock"><p>Gets the line wrapping for the view.</p>
@@ -666,9 +666,9 @@ located within the currently-visible text area.</p>
 <h5 id="returns-37"><a class="doc-anchor" href="#returns-37">§</a>Returns</h5>
 <p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> if the mark moved (wasn’t already onscreen)</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.move_overlay" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#2479-2488">Source</a><h4 class="code-header">fn <a href="#method.move_overlay" class="fn">move_overlay</a>(&amp;self, child: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;, xpos: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, ypos: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</h4></section></summary><div class="docblock"><p>Updates the position of a child.</p>
-<p>See <a href="trait.TextViewExt.html#method.add_overlay"><code>add_overlay()</code></a>.</p>
+<p>See <a href="trait.TextViewExt.html#method.add_overlay" title="method gtk4::prelude::TextViewExt::add_overlay"><code>add_overlay()</code></a>.</p>
 <h6 id="child-2"><a class="doc-anchor" href="#child-2">§</a><code>child</code></h6>
-<p>a widget already added with <a href="trait.TextViewExt.html#method.add_overlay"><code>add_overlay()</code></a></p>
+<p>a widget already added with <a href="trait.TextViewExt.html#method.add_overlay" title="method gtk4::prelude::TextViewExt::add_overlay"><code>add_overlay()</code></a></p>
 <h6 id="xpos-1"><a class="doc-anchor" href="#xpos-1">§</a><code>xpos</code></h6>
 <p>new X position in buffer coordinates</p>
 <h6 id="ypos-1"><a class="doc-anchor" href="#ypos-1">§</a><code>ypos</code></h6>
@@ -728,7 +728,7 @@ by a margin of size @within_margin.</p>
 lines in the text buffer. Line heights are computed in an idle
 handler; so this function may not have the desired effect if it’s
 called before the height computations. To avoid oddness, consider
-using <a href="trait.TextViewExt.html#method.scroll_to_mark"><code>scroll_to_mark()</code></a> which saves a point to be
+using <a href="trait.TextViewExt.html#method.scroll_to_mark" title="method gtk4::prelude::TextViewExt::scroll_to_mark"><code>scroll_to_mark()</code></a> which saves a point to be
 scrolled to after line validation.</p>
 <h6 id="iter-10"><a class="doc-anchor" href="#iter-10">§</a><code>iter</code></h6>
 <p>a <a href="../struct.TextIter.html" title="struct gtk4::TextIter"><code>TextIter</code></a></p>
@@ -877,7 +877,7 @@ In CSS terms, the value set here is padding.</p>
 <h6 id="wrap_mode"><a class="doc-anchor" href="#wrap_mode">§</a><code>wrap_mode</code></h6>
 <p>a <a href="../enum.WrapMode.html" title="enum gtk4::WrapMode"><code>WrapMode</code></a></p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.starts_display_line" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#3023-3030">Source</a><h4 class="code-header">fn <a href="#method.starts_display_line" class="fn">starts_display_line</a>(&amp;self, iter: &amp;<a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>Determines whether @iter is at the start of a display line.</p>
-<p>See <a href="trait.TextViewExt.html#method.forward_display_line"><code>forward_display_line()</code></a> for an
+<p>See <a href="trait.TextViewExt.html#method.forward_display_line" title="method gtk4::prelude::TextViewExt::forward_display_line"><code>forward_display_line()</code></a> for an
 explanation of display lines vs. paragraphs.</p>
 <h6 id="iter-11"><a class="doc-anchor" href="#iter-11">§</a><code>iter</code></h6>
 <p>a <a href="../struct.TextIter.html" title="struct gtk4::TextIter"><code>TextIter</code></a></p>
