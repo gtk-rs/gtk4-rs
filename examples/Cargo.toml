@@ -7,7 +7,7 @@ authors.workspace = true
 [dependencies]
 chrono = "0.4"
 
-femtovg = { version = "0.19", optional = true, default-features = false }
+femtovg = { version = "0.20", optional = true, default-features = false }
 glium = { version = "0.36", optional = true, default-features = false }
 glow = { version = "0.16.0", optional = true }
 epoxy = { version = "0.1.0", optional = true }
