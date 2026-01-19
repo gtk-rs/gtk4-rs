@@ -230,6 +230,13 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
+        "GdkColorChannel",
+        Layout {
+            size: size_of::<GdkColorChannel>(),
+            alignment: align_of::<GdkColorChannel>(),
+        },
+    ),
+    (
         "GdkContentProvider",
         Layout {
             size: size_of::<GdkContentProvider>(),
@@ -550,6 +557,10 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("GDK_BUTTON_SECONDARY", "3"),
     ("(gint) GDK_CICP_RANGE_FULL", "1"),
     ("(gint) GDK_CICP_RANGE_NARROW", "0"),
+    ("(gint) GDK_COLOR_CHANNEL_ALPHA", "3"),
+    ("(gint) GDK_COLOR_CHANNEL_BLUE", "2"),
+    ("(gint) GDK_COLOR_CHANNEL_GREEN", "1"),
+    ("(gint) GDK_COLOR_CHANNEL_RED", "0"),
     ("(guint) GDK_CONTROL_MASK", "4"),
     ("(gint) GDK_CROSSING_DEVICE_SWITCH", "8"),
     ("(gint) GDK_CROSSING_GRAB", "1"),

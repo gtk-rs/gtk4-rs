@@ -750,6 +750,13 @@ pub use self::picture::Picture;
 mod popover;
 pub use self::popover::Popover;
 
+#[cfg(feature = "v4_22")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+mod popover_bin;
+#[cfg(feature = "v4_22")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+pub use self::popover_bin::PopoverBin;
+
 mod popover_menu;
 pub use self::popover_menu::PopoverMenu;
 
@@ -1796,6 +1803,9 @@ pub(crate) mod builders {
     pub use super::password_entry_buffer::PasswordEntryBufferBuilder;
     pub use super::picture::PictureBuilder;
     pub use super::popover::PopoverBuilder;
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    pub use super::popover_bin::PopoverBinBuilder;
     pub use super::popover_menu::PopoverMenuBuilder;
     pub use super::popover_menu_bar::PopoverMenuBarBuilder;
     #[cfg(feature = "v4_14")]

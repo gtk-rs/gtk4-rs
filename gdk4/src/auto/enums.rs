@@ -255,6 +255,128 @@ impl From<CicpRange> for glib::Value {
     }
 }
 
+#[cfg(feature = "v4_22")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
+#[doc(alias = "GdkColorChannel")]
+pub enum ColorChannel {
+    #[doc(alias = "GDK_COLOR_CHANNEL_RED")]
+    Red,
+    #[doc(alias = "GDK_COLOR_CHANNEL_GREEN")]
+    Green,
+    #[doc(alias = "GDK_COLOR_CHANNEL_BLUE")]
+    Blue,
+    #[doc(alias = "GDK_COLOR_CHANNEL_ALPHA")]
+    Alpha,
+    #[doc(hidden)]
+    __Unknown(i32),
+}
+
+#[cfg(feature = "v4_22")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+#[doc(hidden)]
+impl IntoGlib for ColorChannel {
+    type GlibType = ffi::GdkColorChannel;
+
+    #[inline]
+    fn into_glib(self) -> ffi::GdkColorChannel {
+        match self {
+            Self::Red => ffi::GDK_COLOR_CHANNEL_RED,
+            Self::Green => ffi::GDK_COLOR_CHANNEL_GREEN,
+            Self::Blue => ffi::GDK_COLOR_CHANNEL_BLUE,
+            Self::Alpha => ffi::GDK_COLOR_CHANNEL_ALPHA,
+            Self::__Unknown(value) => value,
+        }
+    }
+}
+
+#[cfg(feature = "v4_22")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+#[doc(hidden)]
+impl FromGlib<ffi::GdkColorChannel> for ColorChannel {
+    #[inline]
+    unsafe fn from_glib(value: ffi::GdkColorChannel) -> Self {
+        skip_assert_initialized!();
+
+        match value {
+            ffi::GDK_COLOR_CHANNEL_RED => Self::Red,
+            ffi::GDK_COLOR_CHANNEL_GREEN => Self::Green,
+            ffi::GDK_COLOR_CHANNEL_BLUE => Self::Blue,
+            ffi::GDK_COLOR_CHANNEL_ALPHA => Self::Alpha,
+            value => Self::__Unknown(value),
+        }
+    }
+}
+
+#[cfg(feature = "v4_22")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+impl StaticType for ColorChannel {
+    #[inline]
+    #[doc(alias = "gdk_color_channel_get_type")]
+    fn static_type() -> glib::Type {
+        unsafe { from_glib(ffi::gdk_color_channel_get_type()) }
+    }
+}
+
+#[cfg(feature = "v4_22")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+impl glib::HasParamSpec for ColorChannel {
+    type ParamSpec = glib::ParamSpecEnum;
+    type SetValue = Self;
+    type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
+
+    fn param_spec_builder() -> Self::BuilderFn {
+        Self::ParamSpec::builder_with_default
+    }
+}
+
+#[cfg(feature = "v4_22")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+impl glib::value::ValueType for ColorChannel {
+    type Type = Self;
+}
+
+#[cfg(feature = "v4_22")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+unsafe impl<'a> glib::value::FromValue<'a> for ColorChannel {
+    type Checker = glib::value::GenericValueTypeChecker<Self>;
+
+    #[inline]
+    unsafe fn from_value(value: &'a glib::Value) -> Self {
+        skip_assert_initialized!();
+        unsafe { from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0)) }
+    }
+}
+
+#[cfg(feature = "v4_22")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+impl ToValue for ColorChannel {
+    #[inline]
+    fn to_value(&self) -> glib::Value {
+        let mut value = glib::Value::for_value_type::<Self>();
+        unsafe {
+            glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
+        }
+        value
+    }
+
+    #[inline]
+    fn value_type(&self) -> glib::Type {
+        Self::static_type()
+    }
+}
+
+#[cfg(feature = "v4_22")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+impl From<ColorChannel> for glib::Value {
+    #[inline]
+    fn from(v: ColorChannel) -> Self {
+        skip_assert_initialized!();
+        ToValue::to_value(&v)
+    }
+}
+
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GdkCrossingMode")]

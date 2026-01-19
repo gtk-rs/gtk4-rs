@@ -192,6 +192,7 @@ generate = [
     "Gtk.PathPaintable",
     "Gtk.PickFlags",
     "Gtk.PolicyType",
+    "Gtk.PopoverBin",
     "Gtk.PopoverMenu",
     "Gtk.PopoverMenuBar",
     "Gtk.PopoverMenuFlags",

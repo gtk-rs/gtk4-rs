@@ -27,6 +27,7 @@ v4_14 = ["gdk4-sys/v4_14", "v4_12"]
 v4_16 = ["gdk4-sys/v4_16", "v4_14"]
 v4_18 = ["gdk4-sys/v4_18", "v4_16"]
 v4_20 = ["gdk4-sys/v4_20", "v4_18"]
+v4_22 = ["gdk4-sys/v4_22", "v4_20"]
 gl = ["dep:gl"]
 
 [dependencies]
