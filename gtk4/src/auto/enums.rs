@@ -11578,6 +11578,8 @@ impl From<StringFilterMatchMode> for glib::Value {
 #[non_exhaustive]
 #[doc(alias = "GtkSvgError")]
 pub enum SvgError {
+    #[doc(alias = "GTK_SVG_ERROR_INVALID_SYNTAX")]
+    InvalidSyntax,
     #[doc(alias = "GTK_SVG_ERROR_INVALID_ELEMENT")]
     InvalidElement,
     #[doc(alias = "GTK_SVG_ERROR_INVALID_ATTRIBUTE")]
@@ -11639,6 +11641,7 @@ impl IntoGlib for SvgError {
     #[inline]
     fn into_glib(self) -> ffi::GtkSvgError {
         match self {
+            Self::InvalidSyntax => ffi::GTK_SVG_ERROR_INVALID_SYNTAX,
             Self::InvalidElement => ffi::GTK_SVG_ERROR_INVALID_ELEMENT,
             Self::InvalidAttribute => ffi::GTK_SVG_ERROR_INVALID_ATTRIBUTE,
             Self::MissingAttribute => ffi::GTK_SVG_ERROR_MISSING_ATTRIBUTE,
@@ -11659,6 +11662,7 @@ impl FromGlib<ffi::GtkSvgError> for SvgError {
         skip_assert_initialized!();
 
         match value {
+            ffi::GTK_SVG_ERROR_INVALID_SYNTAX => Self::InvalidSyntax,
             ffi::GTK_SVG_ERROR_INVALID_ELEMENT => Self::InvalidElement,
             ffi::GTK_SVG_ERROR_INVALID_ATTRIBUTE => Self::InvalidAttribute,
             ffi::GTK_SVG_ERROR_MISSING_ATTRIBUTE => Self::MissingAttribute,

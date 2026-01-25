@@ -908,12 +908,13 @@ pub const GTK_STRING_FILTER_MATCH_MODE_SUBSTRING: GtkStringFilterMatchMode = 1;
 pub const GTK_STRING_FILTER_MATCH_MODE_PREFIX: GtkStringFilterMatchMode = 2;
 
 pub type GtkSvgError = c_int;
-pub const GTK_SVG_ERROR_INVALID_ELEMENT: GtkSvgError = 0;
-pub const GTK_SVG_ERROR_INVALID_ATTRIBUTE: GtkSvgError = 1;
-pub const GTK_SVG_ERROR_MISSING_ATTRIBUTE: GtkSvgError = 2;
-pub const GTK_SVG_ERROR_INVALID_REFERENCE: GtkSvgError = 3;
-pub const GTK_SVG_ERROR_FAILED_UPDATE: GtkSvgError = 4;
-pub const GTK_SVG_ERROR_FAILED_RENDERING: GtkSvgError = 5;
+pub const GTK_SVG_ERROR_INVALID_SYNTAX: GtkSvgError = 0;
+pub const GTK_SVG_ERROR_INVALID_ELEMENT: GtkSvgError = 1;
+pub const GTK_SVG_ERROR_INVALID_ATTRIBUTE: GtkSvgError = 2;
+pub const GTK_SVG_ERROR_MISSING_ATTRIBUTE: GtkSvgError = 3;
+pub const GTK_SVG_ERROR_INVALID_REFERENCE: GtkSvgError = 4;
+pub const GTK_SVG_ERROR_FAILED_UPDATE: GtkSvgError = 5;
+pub const GTK_SVG_ERROR_FAILED_RENDERING: GtkSvgError = 6;
 
 pub type GtkSymbolicColor = c_int;
 pub const GTK_SYMBOLIC_COLOR_FOREGROUND: GtkSymbolicColor = 0;
@@ -1501,6 +1502,7 @@ pub struct GtkAccessibleInterface {
             *mut c_int,
         ) -> gboolean,
     >,
+    pub get_accessible_id: Option<unsafe extern "C" fn(*mut GtkAccessible) -> *mut c_char>,
 }
 
 impl ::std::fmt::Debug for GtkAccessibleInterface {
@@ -1519,6 +1521,7 @@ impl ::std::fmt::Debug for GtkAccessibleInterface {
                 &self.get_next_accessible_sibling,
             )
             .field("get_bounds", &self.get_bounds)
+            .field("get_accessible_id", &self.get_accessible_id)
             .finish()
     }
 }
@@ -21095,6 +21098,9 @@ unsafe extern "C" {
         message: *const c_char,
         priority: GtkAccessibleAnnouncementPriority,
     );
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    pub fn gtk_accessible_get_accessible_id(self_: *mut GtkAccessible) -> *mut c_char;
     #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_accessible_get_accessible_parent(self_: *mut GtkAccessible) -> *mut GtkAccessible;

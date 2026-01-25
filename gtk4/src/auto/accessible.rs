@@ -43,6 +43,18 @@ pub trait AccessibleExt: IsA<Accessible> + 'static {
         }
     }
 
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    #[doc(alias = "gtk_accessible_get_accessible_id")]
+    #[doc(alias = "get_accessible_id")]
+    fn accessible_id(&self) -> Option<glib::GString> {
+        unsafe {
+            from_glib_full(ffi::gtk_accessible_get_accessible_id(
+                self.as_ref().to_glib_none().0,
+            ))
+        }
+    }
+
     #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "gtk_accessible_get_accessible_parent")]
