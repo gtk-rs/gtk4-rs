@@ -190,42 +190,6 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/b
 
 The `gresource_bundle: true` option creates a standalone `.gresource` file that gets installed to `pkgdatadir`.
 
-
-## Building and Running
-
-### Development Build
-
-```
-cd listings/todo/9
-meson setup builddir -Dprofile=development
-meson compile -C builddir
-```
-
-To run without installing, use `meson devenv` which sets up the environment:
-
-```
-meson devenv -C builddir ./builddir/todo
-```
-
-### Release Build and Installation
-
-```
-meson setup builddir --prefix=/usr
-meson compile -C builddir
-meson install -C builddir --destdir=/tmp/install
-```
-
-### Local Installation
-
-For testing, install to a local prefix:
-
-```
-meson setup builddir --prefix=$HOME/.local
-meson compile -C builddir
-meson install -C builddir
-~/.local/bin/todo
-```
-
 ## Cargo.toml Changes
 
 The Meson version no longer needs `glib-build-tools` since resources are compiled by Meson:
@@ -233,3 +197,35 @@ The Meson version no longer needs `glib-build-tools` since resources are compile
 ```
 cargo remove --build glib-build-tools
 ```
+
+
+## Building and Running
+
+Now we can finally install and run the app.
+
+### Release Build and Installation
+
+You first have to setup the builddir and then install it with meson.
+On Linux, the default directory might require root access to modify it.
+
+```
+meson setup builddir
+meson install -C builddir
+```
+
+### Local Installation
+
+For development, it is therefore prefered to install into a local directory.
+Make sure that this directory is in your `PATH`.
+If you install into `~/.local` like in this example, `~/.local/bin` needs to be in your `PATH`.
+
+```
+meson setup builddir -Dprofile=development --prefix=~/.local
+meson install -C builddir
+```
+
+## Summary
+
+That was it. 
+The main thing we gained is proper support for icons, gschemas and desktop files.
+As soon as we add internationalization and publish our package, more advantages will emerge!

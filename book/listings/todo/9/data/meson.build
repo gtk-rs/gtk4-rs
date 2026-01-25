@@ -20,3 +20,4 @@ configure_file(
     install: true,
     install_dir: datadir / 'glib-2.0' / 'schemas',
 )
+
