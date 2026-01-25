@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="en" class="rust sidebar-visible" dir="ltr">
+<html lang="en" class="light sidebar-visible" dir="ltr">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
@@ -35,12 +35,12 @@
         <!-- Provide site root and default themes to javascript -->
         <script>
             const path_to_root = "";
-            const default_light_theme = "rust";
+            const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-d9a4df74.js";
+            window.path_to_searchindex_js = "searchindex-15875aa5.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-6221b6d3.js"></script>
+        <script src="toc-b449c6c5.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -78,7 +78,7 @@
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
             const html = document.documentElement;
-            html.classList.remove('rust')
+            html.classList.remove('light')
             html.classList.add(theme);
             html.classList.add("js");
         </script>
@@ -230,24 +230,24 @@ The only exception are the code snippets which are licensed under the <a href="h
 <h1 id="linux"><a class="header" href="#linux">Linux</a></h1>
 <p>You first have to install rustup.
 You can find the up-to-date instructions on <a href="https://rustup.rs">rustup.rs</a>.</p>
-<p>Then install GTK 4 and the build essentials.
+<p>Then install GTK 4, Libadwaita, Meson, and the build essentials.
 To do this, execute the command belonging to the distribution you are using.</p>
 <p>Fedora and derivatives:</p>
-<pre><code>sudo dnf install gtk4-devel gcc
+<pre><code>sudo dnf install gtk4-devel libadwaita-devel meson desktop-file-utils gcc
 </code></pre>
 <p>Debian and derivatives:</p>
-<pre><code>sudo apt install libgtk-4-dev build-essential
+<pre><code>sudo apt install libgtk-4-dev libadwaita-1-dev meson desktop-file-utils build-essential
 </code></pre>
 <p>Arch and derivatives:</p>
-<pre><code>sudo pacman -S gtk4 base-devel
+<pre><code>sudo pacman -S gtk4 libadwaita meson desktop-file-utils base-devel
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="macos"><a class="header" href="#macos">macOS</a></h1>
 <p>First install rustup.
 You can find the up-to-date instructions on <a href="https://rustup.rs">rustup.rs</a>.</p>
 <p>Then install <a href="https://brew.sh/">homebrew</a>.</p>
-<p>Finally, install GTK 4 by executing the following in your terminal:</p>
-<pre><code class="language-bash">brew install gtk4
+<p>Finally, install GTK 4, Libadwaita, and Meson by executing the following in your terminal:</p>
+<pre><code class="language-bash">brew install gtk4 libadwaita meson desktop-file-utils
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="windows"><a class="header" href="#windows">Windows</a></h1>
@@ -11754,20 +11754,8 @@ In this chapter we will discuss how to follow GNOME’s <a href="https://develop
 <p>The versions of the <code>gtk4</code> and <code>libadwaita</code> crates need to be synced.
 Just remember that when you update one of them to the newest version to update the other one as well.</p>
 <p>Installation of the library itself works similar to GTK.
-Just follow the installation instruction that is suitable for your distribution.</p>
-<h2 id="linux-1"><a class="header" href="#linux-1">Linux</a></h2>
-<p>Fedora and derivatives:</p>
-<pre><code>sudo dnf install libadwaita-devel
-</code></pre>
-<p>Debian and derivatives:</p>
-<pre><code>sudo apt install libadwaita-1-dev
-</code></pre>
-<p>Arch and derivatives:</p>
-<pre><code>sudo pacman -S libadwaita
-</code></pre>
-<h2 id="macos-1"><a class="header" href="#macos-1">macOS</a></h2>
-<pre><code>brew install libadwaita
-</code></pre>
+Just follow the <a href="#installation">installation instructions</a> for your platform.
+For Windows, use the instructions below.</p>
 <h2 id="windows-1"><a class="header" href="#windows-1">Windows</a></h2>
 <h2 id="if-using-gvsbuild"><a class="header" href="#if-using-gvsbuild">If using gvsbuild</a></h2>
 <p>If you used <code>gvsbuild</code> to build GTK 4:</p>
@@ -18958,6 +18946,335 @@ Now we can enjoy the final result.</p>
 Try to implement this missing piece of functionality in your local version of the To-Do app.
 Which edge cases do you have to consider?</p>
 </blockquote>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="building-with-meson"><a class="header" href="#building-with-meson">Building with Meson</a></h1>
+<p>So far we have been using Cargo and <code>build.rs</code> to compile our GResources.
+While this works great for simple setups, it has the following limitations:</p>
+<ul>
+<li>Changes to resources trigger a Rust compilation</li>
+<li>No support for system integration (desktop files, icons, GSettings schemas)</li>
+<li>Difficult to integrate with distribution packaging systems</li>
+</ul>
+<p>That’s why we will start relying on <a href="https://mesonbuild.com/">Meson</a>.
+Meson is a build system used by most GNOME projects.
+We’ll find out how it works as we go, however you can also read this <a href="https://mesonbuild.com/Tutorial.html">tutorial</a> in case you want to prepare in advance.
+It provides:</p>
+<ul>
+<li>Dynamic GResource loading from installed locations</li>
+<li>Automatic installation of desktop files, icons, and GSettings schemas</li>
+<li>Easy integration with Flatpak and distribution packaging</li>
+<li>Foundation for internationalization (gettext)</li>
+</ul>
+<p>In this chapter we convert our To-Do app to use Meson.</p>
+<h2 id="project-structure"><a class="header" href="#project-structure">Project Structure</a></h2>
+<p>With Meson, we organize the To-Do app folder structure differently:</p>
+<pre><code>├── meson.build              # Root build configuration
+├── meson.options            # Build options (e.g., profile)
+├── Cargo.toml
+├── src/
+│   ├── meson.build          # Cargo integration
+│   ├── config.rs            # App metadata via env vars
+│   ├── main.rs
+│   └── ...
+└── data/
+    ├── meson.build          # Desktop file, schema
+    ├── icons/
+    │   └── meson.build
+    └── resources/
+        ├── meson.build      # GResource compilation
+        └── ...
+</code></pre>
+<h2 id="root-mesonbuild"><a class="header" href="#root-mesonbuild">Root meson.build</a></h2>
+<p>The root <code>meson.build</code> file is the heart of the Meson setup.
+It defines variables, executes <code>meson.build</code> files in subdirectories and defines post-install tasks.</p>
+<p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/9/meson.build">listings/todo/9/meson.build</a></p>
+<pre><code class="language-meson"># Set up the project
+project('todo', 'rust', version: '0.1.0', meson_version: '&gt;= 1.4')
+
+# Import GNOME module
+gnome = import('gnome')
+
+# Set the base_id
+base_id = 'org.gtk_rs.Todo9'
+
+# Define variables depending on the current profile
+is_devel = get_option('profile') == 'development'
+if is_devel
+    profile = 'Devel'
+    application_id = '@0@.@1@'.format(base_id, profile)
+else
+    profile = ''
+    application_id = base_id
+endif
+
+# Set a couple of useful variables
+bindir = get_option('prefix') / get_option('bindir')
+localedir = get_option('prefix') / get_option('localedir')
+datadir = get_option('prefix') / get_option('datadir')
+pkgdatadir = datadir / meson.project_name()
+
+# Enter these subdirectories and execute the meson.build files in them
+subdir('data')
+subdir('src')
+# Execute this tasks after installing
+gnome.post_install(
+    gtk_update_icon_cache: true,
+    glib_compile_schemas: true,
+    update_desktop_database: true,
+)
+</code></pre>
+<h2 id="build-options"><a class="header" href="#build-options">Build Options</a></h2>
+<p>Before, we saw that the values of certain variables change depending on which value the option <code>profile</code> has.
+In <code>meson.options</code> we define this option, which values it accepts and its default value.
+Later we’ll see how to set this option in the command line during setup with <code>-Dprofile=development</code>.</p>
+<p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/9/meson.options">listings/todo/9/meson.options</a></p>
+<pre><code class="language-meson">option(
+  'profile',
+  type: 'combo',
+  choices: [
+    'default',
+    'development'
+  ],
+  value: 'default',
+  description: 'The build profile for Todo. One of "default" or "development".'
+)
+</code></pre>
+<h2 id="the-config-module"><a class="header" href="#the-config-module">The Config Module</a></h2>
+<p>The <code>config.rs</code> module provides app metadata given by Meson.
+That way we can let Meson manage this data, while still being able to access it from within our Rust code.</p>
+<p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/9/src/config.rs">listings/todo/9/src/config.rs</a></p>
+<pre><code class="language-rust">pub const APP_ID: Option&lt;&amp;str&gt; = option_env!("APP_ID");
+pub const RESOURCES_FILE: Option&lt;&amp;str&gt; = option_env!("RESOURCES_FILE");
+
+pub fn app_id() -&gt; &amp;'static str {
+    APP_ID.expect("APP_ID env var not set at compile time")
+}
+
+pub fn resources_file() -&gt; &amp;'static str {
+    RESOURCES_FILE.expect("RESOURCES_FILE env var not set at compile time")
+}</code></pre>
+<p>Using <code>option_env!()</code> reads environment variables at compile time.
+Meson passes these values when invoking Cargo (see next section).</p>
+<h2 id="cargo-integration"><a class="header" href="#cargo-integration">Cargo Integration</a></h2>
+<p>The <code>src/meson.build</code> invokes Cargo with the appropriate environment variables.
+While Meson supports Rust, it doesn’t support Cargo.
+That unfortunately leads to this situation where the whole setup becomes a bit involved.
+One might summarize it like this: let everything related to Rust compilation and dependency management be handled by Cargo.
+Meson’s main contribution is setting a few environment variables so they are accessible in the Rust code.</p>
+<p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/9/src/meson.build">listings/todo/9/src/meson.build</a></p>
+<pre><code class="language-meson">cargo = find_program('cargo')
+cargo_options = ['--manifest-path', meson.project_source_root() / 'Cargo.toml']
+cargo_options += ['--target-dir', meson.project_build_root() / 'target']
+
+if not is_devel
+    cargo_options += ['--release']
+    rust_target = 'release'
+else
+    rust_target = 'debug'
+endif
+
+custom_target(
+    'cargo-build',
+    build_by_default: true,
+    build_always_stale: true,
+    output: meson.project_name(),
+    console: true,
+    install: true,
+    install_dir: bindir,
+    depends: resources,
+    env: {
+        'CARGO_HOME': meson.project_build_root() / 'cargo-home',
+        'APP_ID': application_id,
+        'RESOURCES_FILE': pkgdatadir / 'resources.gresource',
+    },
+    command: [
+        cargo,
+        'build',
+        cargo_options,
+        '&amp;&amp;',
+        'cp',
+        meson.project_build_root() / 'target' / rust_target / meson.project_name(),
+        '@OUTPUT@',
+    ],
+)
+</code></pre>
+<h2 id="loading-resources-dynamically"><a class="header" href="#loading-resources-dynamically">Loading Resources Dynamically</a></h2>
+<p>The main change in Rust code is how we load resources:</p>
+<p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/9/src/main.rs">listings/todo/9/src/main.rs</a></p>
+<pre><code class="language-rust"><span class="boring">mod collection_object;
+</span><span class="boring">mod config;
+</span><span class="boring">mod task_object;
+</span><span class="boring">mod utils;
+</span><span class="boring">mod window;
+</span><span class="boring">
+</span><span class="boring">use adw::prelude::*;
+</span><span class="boring">use gtk::{gio, glib};
+</span><span class="boring">use window::Window;
+</span><span class="boring">
+</span><span class="boring">fn main() -&gt; glib::ExitCode {
+</span>    // Load resources from installed location
+    let res = gio::Resource::load(config::resources_file())
+        .expect("Could not load gresource file");
+    gio::resources_register(&amp;res);
+
+    // Create a new application
+    let app = adw::Application::builder()
+        .application_id(config::app_id())
+        .build();
+<span class="boring">
+</span><span class="boring">    // Connect to signals
+</span><span class="boring">    app.connect_startup(setup_shortcuts);
+</span><span class="boring">    app.connect_activate(build_ui);
+</span><span class="boring">
+</span><span class="boring">    // Run the application
+</span><span class="boring">    app.run()
+</span><span class="boring">}
+</span><span class="boring">
+</span><span class="boring">fn setup_shortcuts(app: &amp;adw::Application) {
+</span><span class="boring">    app.set_accels_for_action("win.filter('All')", &amp;["&lt;Ctrl&gt;a"]);
+</span><span class="boring">    app.set_accels_for_action("win.filter('Open')", &amp;["&lt;Ctrl&gt;o"]);
+</span><span class="boring">    app.set_accels_for_action("win.filter('Done')", &amp;["&lt;Ctrl&gt;d"]);
+</span><span class="boring">}
+</span><span class="boring">
+</span><span class="boring">fn build_ui(app: &amp;adw::Application) {
+</span><span class="boring">    // Create a new custom window and present it
+</span><span class="boring">    let window = Window::new(app);
+</span><span class="boring">    window.present();
+</span><span class="boring">}</span></code></pre>
+<p>Instead of <a href="https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/macro.resources_register_include.html"><code>gio::resources_register_include!</code></a> which embeds resources at compile time, we use <a href="https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.Resource.html#method.load"><code>gio::Resource::load()</code></a> to load them from the installed path at runtime.
+That means that we can change images and <code>.ui</code> files without triggering Rust compilation.</p>
+<p>We also use <code>config::app_id()</code> instead of a hardcoded constant.</p>
+<h2 id="system-integration"><a class="header" href="#system-integration">System Integration</a></h2>
+<h3 id="data-mesonbuild"><a class="header" href="#data-mesonbuild">Data meson.build</a></h3>
+<p>This file sets subdirs where <code>meson.build</code> files will be executed, and declares that a desktop and GSettings schema file will be templated and installed.</p>
+<p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/9/data/meson.build">listings/todo/9/data/meson.build</a></p>
+<pre><code class="language-meson">subdir('icons')
+subdir('resources')
+
+desktop_conf = configuration_data()
+desktop_conf.set('APP_ID', application_id)
+configure_file(
+    input: '@0@.desktop.in'.format(base_id),
+    output: '@0@.desktop'.format(application_id),
+    configuration: desktop_conf,
+    install: true,
+    install_dir: datadir / 'applications',
+)
+
+gschema_conf = configuration_data()
+gschema_conf.set('APP_ID', application_id)
+configure_file(
+    input: '@0@.gschema.xml.in'.format(base_id),
+    output: '@0@.gschema.xml'.format(application_id),
+    configuration: gschema_conf,
+    install: true,
+    install_dir: datadir / 'glib-2.0' / 'schemas',
+)
+
+</code></pre>
+<h3 id="desktop-file"><a class="header" href="#desktop-file">Desktop File</a></h3>
+<p>The desktop file tells the system how to display and launch your app:</p>
+<p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/9/data/org.gtk_rs.Todo9.desktop.in">listings/todo/9/data/org.gtk_rs.Todo9.desktop.in</a></p>
+<pre><code class="language-ini">[Desktop Entry]
+Name=Todo 9
+Exec=todo
+Icon=@APP_ID@
+Terminal=false
+Type=Application
+Categories=GNOME;GTK;Utility;
+</code></pre>
+<p>The <code>@APP_ID@</code> placeholder is substituted during the build.
+This way, we can install the app in default and development, without the two installations clashing with each other.</p>
+<h3 id="gsettings-schema"><a class="header" href="#gsettings-schema">GSettings Schema</a></h3>
+<p>As mentioned before, the GSettings schema will be templated now.
+Therefore, we rename the extension from <code>.xml</code> to <code>.xml.in</code> to clarify that.</p>
+<p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/9/data/org.gtk_rs.Todo9.gschema.xml.in">listings/todo/9/data/org.gtk_rs.Todo9.gschema.xml.in</a></p>
+<pre><code class="language-xml">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;schemalist&gt;
+  &lt;schema id="@APP_ID@" path="/org/gtk_rs/Todo9/"&gt;
+    &lt;key name="filter" type="s"&gt;
+      &lt;choices&gt;
+        &lt;choice value='All'/&gt;
+        &lt;choice value='Open'/&gt;
+        &lt;choice value='Done'/&gt;
+      &lt;/choices&gt;
+      &lt;default&gt;'All'&lt;/default&gt;
+      &lt;summary&gt;Filter of the tasks&lt;/summary&gt;
+    &lt;/key&gt;
+  &lt;/schema&gt;
+&lt;/schemalist&gt;
+</code></pre>
+<h3 id="application-icon"><a class="header" href="#application-icon">Application Icon</a></h3>
+<p>It’s also great to have an icon.
+This will then be used for the launcher and dock of the desktop environment.</p>
+<p>Scalable Vector Graphics or <a href="https://de.wikipedia.org/wiki/Scalable_Vector_Graphics">SVG</a> is a good base format for icons and <a href="https://inkscape.org/">Inkscape</a> is a great editor to create them.
+If you are on Linux, creating a good icon is especially easy with <a href="https://flathub.org/apps/org.gnome.design.AppIconPreview">App Icon Preview</a>.
+First, create a new empty icon with App Icon Preview and leave the program open.
+Now, you can start editing with Inkscape, while being able to compare it to other icons in App Icon Preview.</p>
+<div style="text-align:center"><img src="img/app_icon_preview.png" alt="App Icon Preview" /></div>
+
+<p>It even allows you to automatically generate a second icon for the development profile.</p>
+<div style="text-align:center">
+  <figure style="display:inline-block">
+    <img src="img/org.gtk_rs.Todo9.svg" alt="Todo App Icon" />
+    <figcaption>org.gtk_rs.Todo9.svg</figcaption>
+  </figure>
+  <figure style="display:inline-block">
+    <img src="img/org.gtk_rs.Todo9.Devel.svg" alt="Todo App Icon (Development)" />
+    <figcaption>org.gtk_rs.Todo9.Devel.svg</figcaption>
+  </figure>
+</div>
+
+<p>In the corresponding <code>meson.build</code> file, we then make sure to install the correct icon.</p>
+<p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/9/data/icons/meson.build">listings/todo/9/data/icons/meson.build</a></p>
+<pre><code class="language-meson">if is_devel
+    icon_name = '@0@.Devel.svg'.format(base_id)
+else
+    icon_name = '@0@.svg'.format(base_id)
+endif
+
+install_data(
+    icon_name,
+    install_dir: datadir / 'icons' / 'hicolor' / 'scalable' / 'apps',
+    rename: '@0@.svg'.format(application_id),
+)
+</code></pre>
+<h2 id="gresource-compilation"><a class="header" href="#gresource-compilation">GResource Compilation</a></h2>
+<p>Instead of <code>glib_build_tools::compile_resources()</code> in <code>build.rs</code>, we now use Meson’s <code>gnome.compile_resources()</code>:</p>
+<p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/9/data/resources/meson.build">listings/todo/9/data/resources/meson.build</a></p>
+<pre><code class="language-meson">resources = gnome.compile_resources(
+    'resources',
+    'resources.gresource.xml',
+    gresource_bundle: true,
+    source_dir: meson.current_source_dir(),
+    install: true,
+    install_dir: pkgdatadir,
+)
+</code></pre>
+<p>The <code>gresource_bundle: true</code> option creates a standalone <code>.gresource</code> file that gets installed to <code>pkgdatadir</code>.</p>
+<h2 id="cargotoml-changes"><a class="header" href="#cargotoml-changes">Cargo.toml Changes</a></h2>
+<p>The Meson version no longer needs <code>glib-build-tools</code> since resources are compiled by Meson:</p>
+<pre><code>cargo remove --build glib-build-tools
+</code></pre>
+<h2 id="building-and-running"><a class="header" href="#building-and-running">Building and Running</a></h2>
+<p>Now we can finally install and run the app.</p>
+<h3 id="release-build-and-installation"><a class="header" href="#release-build-and-installation">Release Build and Installation</a></h3>
+<p>You first have to set up the <code>builddir</code> and then install it with Meson.
+On Linux, the default directory might require root access to modify it.</p>
+<pre><code>meson setup builddir
+meson install -C builddir
+</code></pre>
+<h3 id="local-installation"><a class="header" href="#local-installation">Local Installation</a></h3>
+<p>For development, it is therefore preferred to install into a local directory.
+Make sure that this directory is in your <code>PATH</code>.
+If you install into <code>~/.local</code> like in this example, <code>~/.local/bin</code> needs to be in your <code>PATH</code>.</p>
+<pre><code>meson setup builddir -Dprofile=development --prefix=~/.local
+meson install -C builddir
+</code></pre>
+<h2 id="summary"><a class="header" href="#summary">Summary</a></h2>
+<p>That was it.
+The main thing we gained is proper support for icons, GSettings schemas and desktop files.
+As soon as we add internationalization and publish our package, more advantages will emerge!</p>
 
                     </main>
 
@@ -18998,6 +19315,7 @@ Which edge cases do you have to consider?</p>
         <script src="book-a0b12cfe.js"></script>
 
         <!-- Custom JS scripts -->
+        <script src="theme/meson-a299a3c8.js"></script>
 
         <script>
         window.addEventListener('load', function() {
