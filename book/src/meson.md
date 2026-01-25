@@ -149,7 +149,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/b
 It's also great to have an icon.
 This will then be used for the launcher and dock of the desktop environment.
 
-Scalable Vector Graphics or [SVG](https://de.wikipedia.org/wiki/Scalable_Vector_Graphics) is a good base format for icons and [Inkscpace](https://inkscape.org/) is a great editor to create them.
+Scalable Vector Graphics or [SVG](https://de.wikipedia.org/wiki/Scalable_Vector_Graphics) is a good base format for icons and [Inkscape](https://inkscape.org/) is a great editor to create them.
 If you are on Linux, creating a good icon is especially easy with [App Icon Preview](https://flathub.org/apps/org.gnome.design.AppIconPreview).
 First, create a new empty icon with App Icon Preview and leave the program open.
 Now, you can start editing with Inkscape, while being able to compare it to other icons in App Icon Preview.
