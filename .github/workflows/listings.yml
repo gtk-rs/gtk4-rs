@@ -27,10 +27,6 @@ jobs:
           override: true
           components: rustfmt, clippy
 
-      - run: cargo xtask configure
-        name: "Configure meson projects"
-        working-directory: book/listings
-
       - run: cargo fmt --check
         name: "Format"
         working-directory: book/listings

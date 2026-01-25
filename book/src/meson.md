@@ -1,13 +1,15 @@
 # Building with Meson
 
 So far we have been using Cargo and `build.rs` to compile our GResources.
-While this works great for development, it has limitations when distributing your app:
+While this works great for simple setups, it has limitations when distributing your app:
 
 - Resources are embedded into the binary at compile time
 - No support for system integration (desktop files, icons, GSettings schemas)
 - Difficult to integrate with distribution packaging systems
 
-[Meson](https://mesonbuild.com/) is a build system used by most GNOME projects.
+That's why we will start relying on [Meson](https://mesonbuild.com/).
+Meson is a build system used by most GNOME projects.
+We'll find out how it works as we go, however you can also read this [tutorial](https://mesonbuild.com/Tutorial.html) in case you want to prepare in advance.
 It provides:
 
 - Dynamic GResource loading from installed locations
@@ -19,13 +21,12 @@ In this chapter we convert our To-Do app to use Meson.
 
 ## Project Structure
 
-With Meson, we organize the project differently:
+With Meson, we organize the todo app folder structure differently:
 
 ```
-todo/
 ├── meson.build              # Root build configuration
 ├── meson.options            # Build options (e.g., profile)
-├── Cargo.toml               # Rust dependencies (no build.rs)
+├── Cargo.toml
 ├── src/
 │   ├── meson.build          # Cargo integration
 │   ├── config.rs            # App metadata via env vars
@@ -42,7 +43,8 @@ todo/
 
 ## Root meson.build
 
-The root `meson.build` file defines the project and sets up common variables:
+The root `meson.build` file is the heart of the Meson setup.
+It defines variables, executes `meson.build` files in subdirectories and defines post-install tasks.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/9/meson.build">listings/todo/9/meson.build</a>
 
@@ -50,15 +52,11 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/b
 {{#include ../listings/todo/9/meson.build}}
 ```
 
-Key points:
-- `gnome = import('gnome')` provides helpers for GNOME integration
-- We support `default` and `development` profiles
-- Development builds get a `.Devel` suffix on the app ID
-- `gnome.post_install()` updates icon caches and compiles schemas after installation
-
 ## Build Options
 
-The `meson.options` file defines configurable options:
+Before, we saw that the values of certain variables change depending on which value the option `profile` has.
+In `meson.options` we define this option, which values it accepts and its default value.
+Later we'll see how to set this option in the command line during setup with `-Dprofile=development`.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/9/meson.options">listings/todo/9/meson.options</a>
 
@@ -66,21 +64,10 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/b
 {{#include ../listings/todo/9/meson.options}}
 ```
 
-## GResource Compilation
+## The Config Module
 
-Instead of `glib_build_tools::compile_resources()` in `build.rs`, we use Meson's `gnome.compile_resources()`:
-
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/9/data/resources/meson.build">listings/todo/9/data/resources/meson.build</a>
-
-```meson
-{{#include ../listings/todo/9/data/resources/meson.build}}
-```
-
-The `gresource_bundle: true` option creates a standalone `.gresource` file that gets installed to `pkgdatadir` (e.g., `/usr/share/todo/resources.gresource`).
-
-## The config Module
-
-The `config.rs` module provides app metadata using compile-time environment variables:
+The `config.rs` module provides app metadata given by Meson.
+That way we can let Meson manage this data, while still being able to access it from within our Rust code.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/9/src/config.rs">listings/todo/9/src/config.rs</a>
 
@@ -93,16 +80,17 @@ Meson passes these values when invoking Cargo (see next section).
 
 ## Cargo Integration
 
-The `src/meson.build` invokes Cargo with the appropriate environment variables:
+The `src/meson.build` invokes Cargo with the appropriate environment variables.
+While Meson supports Rust, it doesn't support Cargo.
+That unfortunately leads to this situation where the whole setup becomes a bit involved.
+One might summarize it like this: let everything related to Rust compilation and dependency management be handled by Cargo.
+Meson's main contribution is setting a few environment variables so they are accessible in the Rust code.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/9/src/meson.build">listings/todo/9/src/meson.build</a>
 
 ```meson
 {{#include ../listings/todo/9/src/meson.build}}
 ```
-
-The `env:` parameter passes `APP_ID` and `RESOURCES_FILE` to Cargo, which `option_env!()` captures at compile time.
-The `depends: resources` ensures GResources are compiled before the Rust code.
 
 ## Loading Resources Dynamically
 
@@ -115,10 +103,21 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/b
 ```
 
 Instead of `gio::resources_register_include!()` which embeds resources at compile time, we use `gio::Resource::load()` to load them from the installed path at runtime.
+That means that we can change images and `.ui` files without triggering Rust compilation.
 
 We also use `config::app_id()` instead of a hardcoded constant.
 
-## System Integration Files
+## System Integration
+
+### Data meson.build
+
+This file sets subdirs where `meson.build` files will be executed, and declares that a desktop and gschema file will be templated and installed.
+
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/9/data/meson.build">listings/todo/9/data/meson.build</a>
+
+```meson
+{{#include ../listings/todo/9/data/meson.build}}
+```
 
 ### Desktop File
 
@@ -131,10 +130,13 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/b
 ```
 
 The `@APP_ID@` placeholder is substituted during the build.
+This way, we can install the app in default and development, without the two installations clashing with each other. 
+
 
 ### GSettings Schema
 
-The schema defines application settings:
+As mentioned before, the GSettings schema will be templated now.
+Therefore, we rename the extension from `.xml` to `.xml.in` to clarify that.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/9/data/org.gtk_rs.Todo9.gschema.xml.in">listings/todo/9/data/org.gtk_rs.Todo9.gschema.xml.in</a>
 
@@ -146,7 +148,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/b
 
 The application needs an icon.
 
-# TODO: Create a simple icon
+<div style="text-align:center"><img src="img/org.gtk_rs.Todo9.svg" alt="Todo App Icon"/></div>
 
 You can create your own icons with Inkscape and [App Icon Preview](https://flathub.org/apps/org.gnome.design.AppIconPreview), which also lets you generate the development version of an icon.
 
@@ -156,15 +158,18 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/b
 {{#include ../listings/todo/9/data/icons/meson.build}}
 ```
 
-### Data meson.build
+## GResource Compilation
 
-This file installs the desktop file, schema, and includes subdirectories:
+Instead of `glib_build_tools::compile_resources()` in `build.rs`, we now use Meson's `gnome.compile_resources()`:
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/9/data/meson.build">listings/todo/9/data/meson.build</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/9/data/resources/meson.build">listings/todo/9/data/resources/meson.build</a>
 
 ```meson
-{{#include ../listings/todo/9/data/meson.build}}
+{{#include ../listings/todo/9/data/resources/meson.build}}
 ```
+
+The `gresource_bundle: true` option creates a standalone `.gresource` file that gets installed to `pkgdatadir`.
+
 
 ## Building and Running
 
