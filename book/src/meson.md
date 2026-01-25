@@ -102,7 +102,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/b
 {{#rustdoc_include ../listings/todo/9/src/main.rs:resource_loading}}
 ```
 
-Instead of `gio::resources_register_include!()` which embeds resources at compile time, we use `gio::Resource::load()` to load them from the installed path at runtime.
+Instead of [`gio::resources_register_include!`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/macro.resources_register_include.html) which embeds resources at compile time, we use [`gio::Resource::load()`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.Resource.html#method.load) to load them from the installed path at runtime.
 That means that we can change images and `.ui` files without triggering Rust compilation.
 
 We also use `config::app_id()` instead of a hardcoded constant.
@@ -146,11 +146,31 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/b
 
 ### Application Icon
 
-The application needs an icon.
+It's also great to have an icon.
+This will then be used for the launcher and dock of the desktop environment.
 
-<div style="text-align:center"><img src="img/org.gtk_rs.Todo9.svg" alt="Todo App Icon"/></div>
+Scalable Vector Graphics or [SVG](https://de.wikipedia.org/wiki/Scalable_Vector_Graphics) is a good base format for icons and inkscpace is a great editor to create them.
+If you are on Linux, creating a good icon is especially easy with [App Icon Preview](https://flathub.org/apps/org.gnome.design.AppIconPreview).
+First, create a new empty icon with App Icon Preview and leave the program open.
+Now, you can start editing with Inkscape, while being able to compare it to other icons in App Icon Preview.
 
-You can create your own icons with Inkscape and [App Icon Preview](https://flathub.org/apps/org.gnome.design.AppIconPreview), which also lets you generate the development version of an icon.
+<div style="text-align:center"><img src="img/app_icon_preview.png" alt="App Icon Preview"/></div>
+
+It even allows you to automatically generate a second icon for the development profile.
+
+<div style="text-align:center">
+  <figure style="display:inline-block">
+    <img src="img/org.gtk_rs.Todo9.svg" alt="Todo App Icon"/>
+    <figcaption>org.gtk_rs.Todo9.svg</figcaption>
+  </figure>
+  <figure style="display:inline-block">
+    <img src="img/org.gtk_rs.Todo9.Devel.svg" alt="Todo App Icon (Development)"/>
+    <figcaption>org.gtk_rs.Todo9.Devel.svg</figcaption>
+  </figure>
+</div>
+
+
+In the corresponding `meson.build` file, we then make sure to install the correct icon.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/9/data/icons/meson.build">listings/todo/9/data/icons/meson.build</a>
 
