@@ -1,9 +1,9 @@
 # Building with Meson
 
 So far we have been using Cargo and `build.rs` to compile our GResources.
-While this works great for simple setups, it has limitations when distributing your app:
+While this works great for simple setups, it has the following limitations:
 
-- Resources are embedded into the binary at compile time
+- Changes to resources trigger a Rust compilation 
 - No support for system integration (desktop files, icons, GSettings schemas)
 - Difficult to integrate with distribution packaging systems
 
@@ -21,7 +21,7 @@ In this chapter we convert our To-Do app to use Meson.
 
 ## Project Structure
 
-With Meson, we organize the todo app folder structure differently:
+With Meson, we organize the To-Do app folder structure differently:
 
 ```
 ├── meson.build              # Root build configuration
@@ -111,7 +111,7 @@ We also use `config::app_id()` instead of a hardcoded constant.
 
 ### Data meson.build
 
-This file sets subdirs where `meson.build` files will be executed, and declares that a desktop and gschema file will be templated and installed.
+This file sets subdirs where `meson.build` files will be executed, and declares that a desktop and GSettings schema file will be templated and installed.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/9/data/meson.build">listings/todo/9/data/meson.build</a>
 
@@ -149,7 +149,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/b
 It's also great to have an icon.
 This will then be used for the launcher and dock of the desktop environment.
 
-Scalable Vector Graphics or [SVG](https://de.wikipedia.org/wiki/Scalable_Vector_Graphics) is a good base format for icons and inkscpace is a great editor to create them.
+Scalable Vector Graphics or [SVG](https://de.wikipedia.org/wiki/Scalable_Vector_Graphics) is a good base format for icons and [Inkscpace](https://inkscape.org/) is a great editor to create them.
 If you are on Linux, creating a good icon is especially easy with [App Icon Preview](https://flathub.org/apps/org.gnome.design.AppIconPreview).
 First, create a new empty icon with App Icon Preview and leave the program open.
 Now, you can start editing with Inkscape, while being able to compare it to other icons in App Icon Preview.
@@ -205,7 +205,7 @@ Now we can finally install and run the app.
 
 ### Release Build and Installation
 
-You first have to setup the builddir and then install it with meson.
+You first have to set up the `builddir` and then install it with Meson.
 On Linux, the default directory might require root access to modify it.
 
 ```
@@ -215,7 +215,7 @@ meson install -C builddir
 
 ### Local Installation
 
-For development, it is therefore prefered to install into a local directory.
+For development, it is therefore preferred to install into a local directory.
 Make sure that this directory is in your `PATH`.
 If you install into `~/.local` like in this example, `~/.local/bin` needs to be in your `PATH`.
 
@@ -227,5 +227,5 @@ meson install -C builddir
 ## Summary
 
 That was it. 
-The main thing we gained is proper support for icons, gschemas and desktop files.
+The main thing we gained is proper support for icons, GSettings schemas and desktop files.
 As soon as we add internationalization and publish our package, more advantages will emerge!
