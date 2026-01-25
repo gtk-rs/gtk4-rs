@@ -101,8 +101,8 @@ pub trait TextBufferExtManual: IsA<TextBuffer> + 'static {
             connect_raw(
                 self.to_glib_none().0 as *mut _,
                 c"insert-text".as_ptr() as *mut _,
-                Some(transmute::<usize, unsafe extern "C" fn()>(
-                    insert_text_trampoline::<Self, F> as usize,
+                Some(transmute::<*const (), unsafe extern "C" fn()>(
+                    insert_text_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )

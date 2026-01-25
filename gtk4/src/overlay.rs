@@ -19,8 +19,8 @@ impl Overlay {
             connect_raw(
                 self.as_ptr() as *mut _,
                 c"get-child-position".as_ptr() as *mut _,
-                Some(transmute::<usize, unsafe extern "C" fn()>(
-                    get_child_position_trampoline::<F> as usize,
+                Some(transmute::<*const (), unsafe extern "C" fn()>(
+                    get_child_position_trampoline::<F> as *const (),
                 )),
                 Box::into_raw(f),
             )
