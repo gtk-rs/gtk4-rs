@@ -73,6 +73,7 @@ manual = [
     "cairo.Path",
     "cairo.Region",
     "cairo.Surface",
+    "Gdk.ColorChannel",
     "Gdk.Display",
     "Gdk.RGBA",
     "Gdk.Surface",
@@ -134,6 +135,12 @@ name = "Gsk.ComponentTransferNode"
 status = "generate"
 # See https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/8880
 version = "4.20"
+
+    [[object.function]]
+    name = "get_transfer"
+    # Changed the parameter type in 4.22 from an i32 to a GDK
+    # enum that was only added in 4.22
+    version = "4.22"
 
 [[object]]
 status = "generate"

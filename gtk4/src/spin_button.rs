@@ -20,8 +20,8 @@ impl SpinButton {
             connect_raw(
                 self.as_ptr() as *mut _,
                 c"input".as_ptr() as *mut _,
-                Some(transmute::<usize, unsafe extern "C" fn()>(
-                    input_trampoline::<F> as usize,
+                Some(transmute::<*const (), unsafe extern "C" fn()>(
+                    input_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )

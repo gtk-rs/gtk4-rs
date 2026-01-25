@@ -52,13 +52,15 @@ impl ComponentTransferNode {
         }
     }
 
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
     #[doc(alias = "gsk_component_transfer_node_get_transfer")]
     #[doc(alias = "get_transfer")]
-    pub fn transfer(&self, component: u32) -> ComponentTransfer {
+    pub fn transfer(&self, component: gdk::ColorChannel) -> ComponentTransfer {
         unsafe {
             from_glib_none(ffi::gsk_component_transfer_node_get_transfer(
                 self.to_glib_none().0,
-                component,
+                component.into_glib(),
             ))
         }
     }
