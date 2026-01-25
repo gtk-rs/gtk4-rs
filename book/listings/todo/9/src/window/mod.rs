@@ -6,10 +6,10 @@ use adw::prelude::*;
 use adw::subclass::prelude::*;
 use adw::{ActionRow, AlertDialog, ResponseAppearance};
 use gio::Settings;
-use glib::{clone, Object};
+use glib::{Object, clone};
 use gtk::{
-    gio, glib, pango, Align, CheckButton, CustomFilter, Entry, FilterListModel, Label, ListBoxRow,
-    NoSelection,
+    Align, CheckButton, CustomFilter, Entry, FilterListModel, Label, ListBoxRow,
+    NoSelection, gio, glib, pango,
 };
 
 use crate::collection_object::{CollectionData, CollectionObject};
@@ -134,9 +134,10 @@ impl Window {
     fn restore_data(&self) {
         if let Ok(file) = File::open(data_path()) {
             // Deserialize data from file to vector
-            let backup_data: Vec<CollectionData> = serde_json::from_reader(file).expect(
-                "It should be possible to read `backup_data` from the json file.",
-            );
+            let backup_data: Vec<CollectionData> = serde_json::from_reader(file)
+                .expect(
+                    "It should be possible to read `backup_data` from the json file.",
+                );
 
             // Convert `Vec<CollectionData>` to `Vec<CollectionObject>`
             let collections: Vec<CollectionObject> = backup_data
@@ -154,7 +155,10 @@ impl Window {
         }
     }
 
-    fn create_collection_row(&self, collection_object: &CollectionObject) -> ListBoxRow {
+    fn create_collection_row(
+        &self,
+        collection_object: &CollectionObject,
+    ) -> ListBoxRow {
         let label = Label::builder()
             .ellipsize(pango::EllipsizeMode::End)
             .xalign(0.0)
@@ -376,7 +380,8 @@ impl Window {
             .default_response(create_response)
             .extra_child(&entry)
             .build();
-        dialog.add_responses(&[(cancel_response, "Cancel"), (create_response, "Create")]);
+        dialog
+            .add_responses(&[(cancel_response, "Cancel"), (create_response, "Create")]);
         // Make the dialog button insensitive initially
         dialog.set_response_enabled(create_response, false);
         dialog.set_response_appearance(create_response, ResponseAppearance::Suggested);

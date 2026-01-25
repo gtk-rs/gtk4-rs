@@ -2,11 +2,11 @@ use std::cell::RefCell;
 use std::fs::File;
 
 use adw::subclass::prelude::*;
-use adw::{prelude::*, NavigationSplitView};
+use adw::{NavigationSplitView, prelude::*};
 use gio::Settings;
 use glib::subclass::InitializingObject;
 use gtk::glib::SignalHandlerId;
-use gtk::{gio, glib, CompositeTemplate, Entry, FilterListModel, ListBox, Stack};
+use gtk::{CompositeTemplate, Entry, FilterListModel, ListBox, Stack, gio, glib};
 use std::cell::OnceCell;
 
 use crate::collection_object::{CollectionData, CollectionObject};
@@ -50,9 +50,13 @@ impl ObjectSubclass for Window {
         });
 
         // Create async action to create new collection and add to action group "win"
-        klass.install_action_async("win.new-collection", None, |window, _, _| async move {
-            window.new_collection().await;
-        });
+        klass.install_action_async(
+            "win.new-collection",
+            None,
+            |window, _, _| async move {
+                window.new_collection().await;
+            },
+        );
     }
 
     fn instance_init(obj: &InitializingObject<Self>) {
@@ -93,7 +97,8 @@ impl WindowImpl for Window {
 
         // Save state to file
         let file = File::create(data_path()).expect("Could not create json file.");
-        serde_json::to_writer(file, &backup_data).expect("Could not write data to json file");
+        serde_json::to_writer(file, &backup_data)
+            .expect("Could not write data to json file");
 
         // Pass close request on to the parent
         self.parent_close_request()
