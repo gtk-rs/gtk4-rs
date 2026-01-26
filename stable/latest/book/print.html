@@ -37,7 +37,7 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-15875aa5.js";
+            window.path_to_searchindex_js = "searchindex-41c2b1ae.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-b449c6c5.js"></script>
@@ -19016,7 +19016,8 @@ pkgdatadir = datadir / meson.project_name()
 # Enter these subdirectories and execute the meson.build files in them
 subdir('data')
 subdir('src')
-# Execute this tasks after installing
+
+# Execute these tasks after installing
 gnome.post_install(
     gtk_update_icon_cache: true,
     glib_compile_schemas: true,
