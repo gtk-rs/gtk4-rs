@@ -26,7 +26,8 @@ pkgdatadir = datadir / meson.project_name()
 # Enter these subdirectories and execute the meson.build files in them
 subdir('data')
 subdir('src')
-# Execute this tasks after installing
+
+# Execute these tasks after installing
 gnome.post_install(
     gtk_update_icon_cache: true,
     glib_compile_schemas: true,
