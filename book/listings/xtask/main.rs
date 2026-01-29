@@ -26,7 +26,7 @@ fn print_help() {
     eprintln!(
         "Tasks:
 install          install everything needed to run the listings
-configure        configure meson projects (generates config.rs, for CI)
+configure        configure meson projects
 "
     )
 }
