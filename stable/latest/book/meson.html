@@ -36,7 +36,7 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-41c2b1ae.js";
+            window.path_to_searchindex_js = "searchindex-4e9870d7.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-b449c6c5.js"></script>
@@ -376,32 +376,50 @@ custom_target(
 <p>Instead of <a href="https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/macro.resources_register_include.html"><code>gio::resources_register_include!</code></a> which embeds resources at compile time, we use <a href="https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.Resource.html#method.load"><code>gio::Resource::load()</code></a> to load them from the installed path at runtime.
 That means that we can change images and <code>.ui</code> files without triggering Rust compilation.</p>
 <p>We also use <code>config::app_id()</code> instead of a hardcoded constant.</p>
-<h2 id="system-integration"><a class="header" href="#system-integration">System Integration</a></h2>
+<h2 id="linuxgnome-integration"><a class="header" href="#linuxgnome-integration">Linux/GNOME Integration</a></h2>
+<p>The following sections cover integration with Linux desktop environments, particularly GNOME.
+These are optional if you’re targeting other platforms, but essential for a polished Linux experience.</p>
 <h3 id="data-mesonbuild"><a class="header" href="#data-mesonbuild">Data meson.build</a></h3>
-<p>This file sets subdirs where <code>meson.build</code> files will be executed, and declares that a desktop and GSettings schema file will be templated and installed.</p>
+<p>This file compiles GResources (cross-platform) and handles Linux-specific installation.
+The desktop file, GSettings schema, and icon installation are wrapped in a <code>host_machine.system() == 'linux'</code> check, so they’re skipped on other platforms.</p>
 <p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/9/data/meson.build">listings/todo/9/data/meson.build</a></p>
-<pre><code class="language-meson">subdir('icons')
-subdir('resources')
+<pre><code class="language-meson">subdir('resources')
 
-desktop_conf = configuration_data()
-desktop_conf.set('APP_ID', application_id)
-configure_file(
-    input: '@0@.desktop.in'.format(base_id),
-    output: '@0@.desktop'.format(application_id),
-    configuration: desktop_conf,
-    install: true,
-    install_dir: datadir / 'applications',
-)
+# Linux-specific: desktop file, GSettings schema, and icons
+if host_machine.system() == 'linux'
+    subdir('icons')
 
-gschema_conf = configuration_data()
-gschema_conf.set('APP_ID', application_id)
-configure_file(
-    input: '@0@.gschema.xml.in'.format(base_id),
-    output: '@0@.gschema.xml'.format(application_id),
-    configuration: gschema_conf,
-    install: true,
-    install_dir: datadir / 'glib-2.0' / 'schemas',
-)
+    desktop_conf = configuration_data()
+    desktop_conf.set('APP_ID', application_id)
+    configure_file(
+        input: '@0@.desktop.in'.format(base_id),
+        output: '@0@.desktop'.format(application_id),
+        configuration: desktop_conf,
+        install: true,
+        install_dir: datadir / 'applications',
+    )
+
+    gschema_conf = configuration_data()
+    gschema_conf.set('APP_ID', application_id)
+    configure_file(
+        input: '@0@.gschema.xml.in'.format(base_id),
+        output: '@0@.gschema.xml'.format(application_id),
+        configuration: gschema_conf,
+        install: true,
+        install_dir: datadir / 'glib-2.0' / 'schemas',
+    )
+
+    service_conf = configuration_data()
+    service_conf.set('APP_ID', application_id)
+    service_conf.set('BINDIR', bindir)
+    configure_file(
+        input: '@0@.service.in'.format(base_id),
+        output: '@0@.service'.format(application_id),
+        configuration: service_conf,
+        install: true,
+        install_dir: datadir / 'dbus-1' / 'services',
+    )
+endif
 
 </code></pre>
 <h3 id="desktop-file"><a class="header" href="#desktop-file">Desktop File</a></h3>
@@ -413,10 +431,23 @@ Exec=todo
 Icon=@APP_ID@
 Terminal=false
 Type=Application
+DBusActivatable=true
 Categories=GNOME;GTK;Utility;
 </code></pre>
 <p>The <code>@APP_ID@</code> placeholder is substituted during the build.
 This way, we can install the app in default and development, without the two installations clashing with each other.</p>
+<p>The <code>DBusActivatable=true</code> entry enables <a href="https://developer.gnome.org/documentation/guidelines/maintainer/integrating.html#d-bus-activation">D-Bus activation</a>.
+Instead of launching your app directly, GNOME can send a D-Bus message to your application’s well-known name.
+If the app is already running, it can respond by raising its existing window instead of spawning a duplicate instance.
+D-Bus activation is also a prerequisite for persistent notifications.</p>
+<h3 id="d-bus-service-file"><a class="header" href="#d-bus-service-file">D-Bus Service File</a></h3>
+<p>For D-Bus activation to work, we also need a service file that tells D-Bus how to start our application:</p>
+<p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/9/data/org.gtk_rs.Todo9.service.in">listings/todo/9/data/org.gtk_rs.Todo9.service.in</a></p>
+<pre><code class="language-ini">[D-BUS Service]
+Name=@APP_ID@
+Exec=@BINDIR@/todo --gapplication-service
+</code></pre>
+<p>The <code>--gapplication-service</code> flag tells GApplication to run as a D-Bus service rather than a standalone application.</p>
 <h3 id="gsettings-schema"><a class="header" href="#gsettings-schema">GSettings Schema</a></h3>
 <p>As mentioned before, the GSettings schema will be templated now.
 Therefore, we rename the extension from <code>.xml</code> to <code>.xml.in</code> to clarify that.</p>
