@@ -107,11 +107,15 @@ That means that we can change images and `.ui` files without triggering Rust com
 
 We also use `config::app_id()` instead of a hardcoded constant.
 
-## System Integration
+## Linux/GNOME Integration
+
+The following sections cover integration with Linux desktop environments, particularly GNOME.
+These are optional if you're targeting other platforms, but essential for a polished Linux experience.
 
 ### Data meson.build
 
-This file sets subdirs where `meson.build` files will be executed, and declares that a desktop and GSettings schema file will be templated and installed.
+This file compiles GResources (cross-platform) and handles Linux-specific installation.
+The desktop file, GSettings schema, and icon installation are wrapped in a `host_machine.system() == 'linux'` check, so they're skipped on other platforms.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/9/data/meson.build">listings/todo/9/data/meson.build</a>
 
@@ -130,7 +134,24 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/b
 ```
 
 The `@APP_ID@` placeholder is substituted during the build.
-This way, we can install the app in default and development, without the two installations clashing with each other. 
+This way, we can install the app in default and development, without the two installations clashing with each other.
+
+The `DBusActivatable=true` entry enables [D-Bus activation](https://developer.gnome.org/documentation/guidelines/maintainer/integrating.html#d-bus-activation).
+Instead of launching your app directly, GNOME can send a D-Bus message to your application's well-known name.
+If the app is already running, it can respond by raising its existing window instead of spawning a duplicate instance.
+D-Bus activation is also a prerequisite for persistent notifications.
+
+### D-Bus Service File
+
+For D-Bus activation to work, we also need a service file that tells D-Bus how to start our application:
+
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/9/data/org.gtk_rs.Todo9.service.in">listings/todo/9/data/org.gtk_rs.Todo9.service.in</a>
+
+```ini
+{{#include ../listings/todo/9/data/org.gtk_rs.Todo9.service.in}}
+```
+
+The `--gapplication-service` flag tells GApplication to run as a D-Bus service rather than a standalone application.
 
 
 ### GSettings Schema

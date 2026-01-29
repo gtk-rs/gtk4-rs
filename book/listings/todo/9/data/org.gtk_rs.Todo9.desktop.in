@@ -4,4 +4,5 @@ Exec=todo
 Icon=@APP_ID@
 Terminal=false
 Type=Application
+DBusActivatable=true
 Categories=GNOME;GTK;Utility;
