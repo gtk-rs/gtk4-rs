@@ -38,7 +38,7 @@ fn build_ui(app: &Application) {
     let number = Rc::new(Cell::new(0));
 
     // Connect callbacks, when a button is clicked `number` will be changed
-    let number_copy = number.clone();
+    let number_copy = Rc::clone(&number);
     button_increase.connect_clicked(move |_| number_copy.set(number_copy.get() + 1));
     button_decrease.connect_clicked(move |_| number.set(number.get() - 1));
     // ANCHOR_END: callback
