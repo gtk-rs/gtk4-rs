@@ -6,6 +6,7 @@ edition = "2024"
 adw = { version = "0.8", package = "libadwaita", features = ["v1_8"] }
 anyhow = "1.0"
 async-channel = "2.5"
+gettext-rs = { version = "0.7" }
 gtk = { version = "0.10", package = "gtk4", features = ["v4_12"] }
 reqwest = { version = "0.12", default-features = false, features = [
     "rustls-tls",
@@ -300,6 +301,10 @@ path = "todo/8/main.rs"
 [[bin]]
 name = "todo_9"
 path = "todo/9/src/main.rs"
+
+[[bin]]
+name = "todo_10"
+path = "todo/10/src/main.rs"
 
 # xtask
 [[bin]]

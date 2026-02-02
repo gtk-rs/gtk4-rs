@@ -1,6 +1,7 @@
 [Desktop Entry]
-Name=Todo 9
-Exec=todo-9
+Name=Todo 10
+_Comment=Keep track of tasks
+Exec=todo-10
 Icon=@APP_ID@
 Terminal=false
 Type=Application

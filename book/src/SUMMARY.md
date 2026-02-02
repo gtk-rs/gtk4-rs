@@ -27,3 +27,4 @@
     - [Let To-Do App use Libadwaita](todo_3.md)
     - [Adding Collections](todo_4.md)
 - [Building with Meson](meson.md)
+- [Internationalization](i18n.md)

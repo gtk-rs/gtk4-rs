@@ -1,0 +1,110 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the todo-10 package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: todo-10\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-02-03 16:52+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: data/org.gtk_rs.Todo10.desktop.in.in:2
+msgid "Todo 10"
+msgstr ""
+
+#: data/resources/window.ui:5
+msgid "_Filter"
+msgstr ""
+
+#: data/resources/window.ui:7
+msgid "_All"
+msgstr ""
+
+#: data/resources/window.ui:12
+msgid "_Open"
+msgstr ""
+
+#: data/resources/window.ui:17
+msgid "_Done"
+msgstr ""
+
+#: data/resources/window.ui:23
+msgid "_Remove Done Tasks"
+msgstr ""
+
+#: data/resources/window.ui:27
+msgid "_Keyboard Shortcuts"
+msgstr ""
+
+#: data/resources/window.ui:32
+msgid "To-Do"
+msgstr ""
+
+#: data/resources/window.ui:62
+msgid "No Tasks"
+msgstr ""
+
+#: data/resources/window.ui:63
+msgid "Create some tasks to start using the app."
+msgstr ""
+
+#: data/resources/window.ui:66
+msgid "_New Collection"
+msgstr ""
+
+#: data/resources/window.ui:101 src/window/mod.rs:380
+msgid "New Collection"
+msgstr ""
+
+#: data/resources/window.ui:124
+msgid "Tasks"
+msgstr ""
+
+#: data/resources/window.ui:134
+msgid "Main Menu"
+msgstr ""
+
+#: data/resources/window.ui:153
+msgid "Enter a Task…"
+msgstr ""
+
+#: data/resources/shortcuts.ui:6
+msgid "General"
+msgstr ""
+
+#: data/resources/shortcuts.ui:9
+msgid "Show shortcuts"
+msgstr ""
+
+#: data/resources/shortcuts.ui:15
+msgid "Filter to show all tasks"
+msgstr ""
+
+#: data/resources/shortcuts.ui:21
+msgid "Filter to show only open tasks"
+msgstr ""
+
+#: data/resources/shortcuts.ui:27
+msgid "Filter to show only completed tasks"
+msgstr ""
+
+#: src/window/mod.rs:371
+msgid "Name"
+msgstr ""
+
+#: src/window/mod.rs:386
+msgid "Cancel"
+msgstr ""
+
+#: src/window/mod.rs:387
+msgid "Create"
+msgstr ""

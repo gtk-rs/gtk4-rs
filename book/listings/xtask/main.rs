@@ -58,7 +58,9 @@ fn configure_meson_projects(sh: &Shell, meson_dirs: &[PathBuf]) -> anyhow::Resul
     for meson_dir in meson_dirs {
         println!("Configuring meson project: {meson_dir:?}");
         let builddir = meson_dir.join("builddir");
-        cmd!(sh, "meson setup --prefix={prefix} {builddir} {meson_dir}").run()?;
+        if !builddir.is_dir() {
+            cmd!(sh, "meson setup --prefix={prefix} {builddir} {meson_dir}").run()?;
+        }
     }
     Ok(())
 }
