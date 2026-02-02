@@ -750,12 +750,6 @@ pub const GTK_RESPONSE_NO: GtkResponseType = -9;
 pub const GTK_RESPONSE_APPLY: GtkResponseType = -10;
 pub const GTK_RESPONSE_HELP: GtkResponseType = -11;
 
-pub type GtkRestoreReason = c_int;
-pub const GTK_RESTORE_REASON_PRISTINE: GtkRestoreReason = 0;
-pub const GTK_RESTORE_REASON_LAUNCH: GtkRestoreReason = 1;
-pub const GTK_RESTORE_REASON_RECOVER: GtkRestoreReason = 2;
-pub const GTK_RESTORE_REASON_RESTORE: GtkRestoreReason = 3;
-
 pub type GtkRevealerTransitionType = c_int;
 pub const GTK_REVEALER_TRANSITION_TYPE_NONE: GtkRevealerTransitionType = 0;
 pub const GTK_REVEALER_TRANSITION_TYPE_CROSSFADE: GtkRevealerTransitionType = 1;
@@ -1748,18 +1742,7 @@ pub struct GtkApplicationClass {
     pub parent_class: gio::GApplicationClass,
     pub window_added: Option<unsafe extern "C" fn(*mut GtkApplication, *mut GtkWindow)>,
     pub window_removed: Option<unsafe extern "C" fn(*mut GtkApplication, *mut GtkWindow)>,
-    pub save_state:
-        Option<unsafe extern "C" fn(*mut GtkApplication, *mut glib::GVariantDict) -> gboolean>,
-    pub restore_state: Option<
-        unsafe extern "C" fn(
-            *mut GtkApplication,
-            GtkRestoreReason,
-            *mut glib::GVariant,
-        ) -> gboolean,
-    >,
-    pub restore_window:
-        Option<unsafe extern "C" fn(*mut GtkApplication, GtkRestoreReason, *mut glib::GVariant)>,
-    pub padding: [gpointer; 5],
+    pub padding: [gpointer; 8],
 }
 
 impl ::std::fmt::Debug for GtkApplicationClass {
@@ -1768,9 +1751,6 @@ impl ::std::fmt::Debug for GtkApplicationClass {
             .field("parent_class", &self.parent_class)
             .field("window_added", &self.window_added)
             .field("window_removed", &self.window_removed)
-            .field("save_state", &self.save_state)
-            .field("restore_state", &self.restore_state)
-            .field("restore_window", &self.restore_window)
             .finish()
     }
 }
@@ -1779,17 +1759,13 @@ impl ::std::fmt::Debug for GtkApplicationClass {
 #[repr(C)]
 pub struct GtkApplicationWindowClass {
     pub parent_class: GtkWindowClass,
-    pub save_state: Option<
-        unsafe extern "C" fn(*mut GtkApplicationWindow, *mut glib::GVariantDict) -> gboolean,
-    >,
-    pub padding: [gpointer; 7],
+    pub padding: [gpointer; 8],
 }
 
 impl ::std::fmt::Debug for GtkApplicationWindowClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("GtkApplicationWindowClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
-            .field("save_state", &self.save_state)
             .finish()
     }
 }
@@ -10591,13 +10567,6 @@ unsafe extern "C" {
     pub fn gtk_response_type_get_type() -> GType;
 
     //=========================================================================
-    // GtkRestoreReason
-    //=========================================================================
-    #[cfg(feature = "v4_22")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
-    pub fn gtk_restore_reason_get_type() -> GType;
-
-    //=========================================================================
     // GtkRevealerTransitionType
     //=========================================================================
     pub fn gtk_revealer_transition_type_get_type() -> GType;
@@ -11930,9 +11899,6 @@ unsafe extern "C" {
         flags: gio::GApplicationFlags,
     ) -> *mut GtkApplication;
     pub fn gtk_application_add_window(application: *mut GtkApplication, window: *mut GtkWindow);
-    #[cfg(feature = "v4_22")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
-    pub fn gtk_application_forget(application: *mut GtkApplication);
     pub fn gtk_application_get_accels_for_action(
         application: *mut GtkApplication,
         detailed_action_name: *const c_char,
@@ -11962,9 +11928,6 @@ unsafe extern "C" {
         application: *mut GtkApplication,
     ) -> *mut *mut c_char;
     pub fn gtk_application_remove_window(application: *mut GtkApplication, window: *mut GtkWindow);
-    #[cfg(feature = "v4_22")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
-    pub fn gtk_application_save(application: *mut GtkApplication);
     pub fn gtk_application_set_accels_for_action(
         application: *mut GtkApplication,
         detailed_action_name: *const c_char,

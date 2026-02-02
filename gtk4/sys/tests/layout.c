@@ -251,7 +251,6 @@ int main() {
     printf("%s;%zu;%zu\n", "GtkRequestedSize", sizeof(GtkRequestedSize), alignof(GtkRequestedSize));
     printf("%s;%zu;%zu\n", "GtkRequisition", sizeof(GtkRequisition), alignof(GtkRequisition));
     printf("%s;%zu;%zu\n", "GtkResponseType", sizeof(GtkResponseType), alignof(GtkResponseType));
-    printf("%s;%zu;%zu\n", "GtkRestoreReason", sizeof(GtkRestoreReason), alignof(GtkRestoreReason));
     printf("%s;%zu;%zu\n", "GtkRevealerTransitionType", sizeof(GtkRevealerTransitionType), alignof(GtkRevealerTransitionType));
     printf("%s;%zu;%zu\n", "GtkScale", sizeof(GtkScale), alignof(GtkScale));
     printf("%s;%zu;%zu\n", "GtkScaleButton", sizeof(GtkScaleButton), alignof(GtkScaleButton));

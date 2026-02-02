@@ -1910,13 +1910,6 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
-        "GtkRestoreReason",
-        Layout {
-            size: size_of::<GtkRestoreReason>(),
-            alignment: align_of::<GtkRestoreReason>(),
-        },
-    ),
-    (
         "GtkRevealerTransitionType",
         Layout {
             size: size_of::<GtkRevealerTransitionType>(),
@@ -3401,10 +3394,6 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(gint) GTK_RESPONSE_OK", "-5"),
     ("(gint) GTK_RESPONSE_REJECT", "-2"),
     ("(gint) GTK_RESPONSE_YES", "-8"),
-    ("(gint) GTK_RESTORE_REASON_LAUNCH", "1"),
-    ("(gint) GTK_RESTORE_REASON_PRISTINE", "0"),
-    ("(gint) GTK_RESTORE_REASON_RECOVER", "2"),
-    ("(gint) GTK_RESTORE_REASON_RESTORE", "3"),
     ("(gint) GTK_REVEALER_TRANSITION_TYPE_CROSSFADE", "1"),
     ("(gint) GTK_REVEALER_TRANSITION_TYPE_FADE_SLIDE_DOWN", "13"),
     ("(gint) GTK_REVEALER_TRANSITION_TYPE_FADE_SLIDE_LEFT", "11"),
