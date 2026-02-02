@@ -4,7 +4,8 @@ RUN dnf update --assumeyes && \
     dnf --assumeyes install xorg-x11-server-Xvfb procps-ng clang-devel \
     libxkbcommon-devel wayland-devel mesa-libEGL-devel blueprint-compiler \
     libXi-devel libXrandr-devel libXcursor-devel libXdamage-devel libXinerama-devel \
-    appstream-devel libdrm-devel vulkan-devel glslc awk && \
+    appstream-devel libdrm-devel vulkan-devel glslc awk \
+    glib-compile-resources gtk4-update-icon-cache update-desktop-database && \
     dnf clean all --assumeyes
 
 RUN git clone https://gitlab.gnome.org/gnome/gtk.git --depth=1 && \
