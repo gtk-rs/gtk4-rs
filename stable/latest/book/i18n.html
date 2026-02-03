@@ -1,0 +1,944 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Internationalization - GUI development with Rust and GTK 4</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="favicon-8114d1fc.png">
+        <link rel="stylesheet" href="css/variables-8adf115d.css">
+        <link rel="stylesheet" href="css/general-2459343d.css">
+        <link rel="stylesheet" href="css/chrome-ae938929.css">
+        <link rel="stylesheet" href="css/print-9e4910d8.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="fonts/fonts-9644e21d.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="mdbook-highlight-css" href="highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="ayu-highlight-3fdfc3ac.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="theme/style-d4d37238.css">
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "searchindex-12801395.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc-b8b98df2.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="mdbook-page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
+                        </button>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
+                        </ul>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">GUI development with Rust and GTK 4</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
+                        </a>
+                        <a href="https://github.com/gtk-rs/gtk4-rs/tree/main/book" title="Git repository" aria-label="Git repository">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg></span>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="mdbook-content" class="content">
+                    <main>
+                        <h1 id="internationalization"><a class="header" href="#internationalization">Internationalization</a></h1>
+<p>Now that we have Meson set up, we can add internationalization to our To-Do app.
+We want users to be able to use the app in their own language.
+With GTK, <a href="https://www.gnu.org/software/gettext/">gettext</a> is the standard system for this.</p>
+<h2 id="how-gettext-works"><a class="header" href="#how-gettext-works">How Gettext Works</a></h2>
+<p>Gettext uses message catalogs to store translations.
+The workflow looks like this:</p>
+<ol>
+<li><strong>Mark strings</strong> in source code and UI files as translatable</li>
+<li><strong>Extract strings</strong> into a template file (<code>.pot</code>)</li>
+<li><strong>Translate strings</strong> into language-specific files (<code>.po</code>)</li>
+<li><strong>Compile translations</strong> into binary format (<code>.mo</code>) during build</li>
+</ol>
+<p>GTK already handles translations for strings marked with <code>translatable="yes"</code> in UI templates.
+However, strings defined in Rust code (like our dialog messages) require explicit gettext calls.
+Let’s set this up!</p>
+<h2 id="project-structure"><a class="header" href="#project-structure">Project Structure</a></h2>
+<p>We extend our project with a <code>po/</code> directory for translation files:</p>
+<pre><code>├── po/
+│   ├── LINGUAS           # List of supported languages
+│   ├── POTFILES.in       # Files containing translatable strings
+│   ├── meson.build       # Meson i18n integration
+│   └── de.po             # German translation
+</code></pre>
+<h2 id="setting-up-translations"><a class="header" href="#setting-up-translations">Setting Up Translations</a></h2>
+<h3 id="the-po-directory"><a class="header" href="#the-po-directory">The po Directory</a></h3>
+<p>We create <code>po/meson.build</code> which tells Meson to handle translations using the glib preset.
+The preset knows how to extract strings from <code>.ui</code> files and Rust source code.</p>
+<p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/10/po/meson.build">listings/todo/10/po/meson.build</a></p>
+<pre><code class="language-meson">i18n.gettext(meson.project_name(), preset: 'glib')
+</code></pre>
+<p><code>POTFILES.in</code> lists all files that contain translatable strings.</p>
+<p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/10/po/POTFILES.in">listings/todo/10/po/POTFILES.in</a></p>
+<pre><code>data/org.gtk_rs.Todo10.desktop.in.in
+data/resources/window.ui
+data/resources/shortcuts.ui
+src/window/mod.rs
+</code></pre>
+<p><code>LINGUAS</code> lists the language codes of available translations.
+In our case, we’ll only add German (de), the mother tongue of the author of this book.</p>
+<p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/10/po/LINGUAS">listings/todo/10/po/LINGUAS</a></p>
+<pre><code>de
+</code></pre>
+<h3 id="updating-mesonbuild"><a class="header" href="#updating-mesonbuild">Updating meson.build</a></h3>
+<p>We import the <code>i18n</code> module and add the <code>po</code> subdirectory.</p>
+<p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/10/meson.build">listings/todo/10/meson.build</a></p>
+<pre><code class="language-meson"># Set up the project
+project('todo-10', 'rust', version: '0.1.0', meson_version: '&gt;= 1.4')
+
+# Import GNOME and i18n modules
+gnome = import('gnome')
+i18n = import('i18n')
+
+# Set the base_id
+base_id = 'org.gtk_rs.Todo10'
+
+# Define variables depending on the current profile
+is_devel = get_option('profile') == 'development'
+if is_devel
+    profile = 'Devel'
+    application_id = '@0@.@1@'.format(base_id, profile)
+else
+    profile = ''
+    application_id = base_id
+endif
+
+# Set a couple of useful variables
+bindir = get_option('prefix') / get_option('bindir')
+localedir = get_option('prefix') / get_option('localedir')
+datadir = get_option('prefix') / get_option('datadir')
+pkgdatadir = datadir / meson.project_name()
+
+# Enter these subdirectories and execute the meson.build files in them
+subdir('data')
+subdir('po')
+subdir('src')
+
+# Execute these tasks after installing
+gnome.post_install(
+    gtk_update_icon_cache: true,
+    glib_compile_schemas: true,
+    update_desktop_database: true,
+)
+</code></pre>
+<p>We also pass <code>LOCALEDIR</code> and <code>GETTEXT_PACKAGE</code> to the Rust build, so our code knows where to find translations.</p>
+<p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/10/src/meson.build">listings/todo/10/src/meson.build</a></p>
+<pre><code class="language-meson">cargo = find_program('cargo')
+cargo_options = ['--manifest-path', meson.project_source_root() / 'Cargo.toml']
+cargo_options += ['--target-dir', meson.project_build_root() / 'target']
+
+if not is_devel
+    cargo_options += ['--release']
+    rust_target = 'release'
+else
+    rust_target = 'debug'
+endif
+
+custom_target(
+    'cargo-build',
+    build_by_default: true,
+    build_always_stale: true,
+    output: meson.project_name(),
+    console: true,
+    install: true,
+    install_dir: bindir,
+    depends: resources,
+    env: {
+        'CARGO_HOME': meson.project_build_root() / 'cargo-home',
+        'APP_ID': application_id,
+        'GETTEXT_PACKAGE': meson.project_name(),
+        'LOCALEDIR': localedir,
+        'RESOURCES_FILE': pkgdatadir / 'resources.gresource',
+    },
+    command: [
+        cargo,
+        'build',
+        cargo_options,
+        '&amp;&amp;',
+        'cp',
+        meson.project_build_root() / 'target' / rust_target / meson.project_name(),
+        '@OUTPUT@',
+    ],
+)
+</code></pre>
+<h2 id="translations-in-rust-code"><a class="header" href="#translations-in-rust-code">Translations in Rust Code</a></h2>
+<p>So far so good.
+The build system is ready, but we haven’t touched the Rust code yet.
+How do we actually translate strings that are defined in code rather than in <code>.ui</code> files?</p>
+<h3 id="adding-the-dependency"><a class="header" href="#adding-the-dependency">Adding the Dependency</a></h3>
+<p>We add <code>gettext-rs</code> to our dependencies.</p>
+<pre><code>cargo add gettext-rs
+</code></pre>
+<h3 id="the-config-module"><a class="header" href="#the-config-module">The Config Module</a></h3>
+<p>We extend <code>config.rs</code> to provide the locale directory and gettext package name:</p>
+<p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/10/src/config.rs">listings/todo/10/src/config.rs</a></p>
+<pre><code class="language-rust">pub const APP_ID: Option&lt;&amp;str&gt; = option_env!("APP_ID");
+pub const GETTEXT_PACKAGE: Option&lt;&amp;str&gt; = option_env!("GETTEXT_PACKAGE");
+pub const LOCALEDIR: Option&lt;&amp;str&gt; = option_env!("LOCALEDIR");
+pub const RESOURCES_FILE: Option&lt;&amp;str&gt; = option_env!("RESOURCES_FILE");
+
+pub fn app_id() -&gt; &amp;'static str {
+    APP_ID.expect("APP_ID env var not set at compile time")
+}
+
+pub fn gettext_package() -&gt; &amp;'static str {
+    GETTEXT_PACKAGE.expect("GETTEXT_PACKAGE env var not set at compile time")
+}
+
+pub fn localedir() -&gt; &amp;'static str {
+    LOCALEDIR.expect("LOCALEDIR env var not set at compile time")
+}
+
+pub fn resources_file() -&gt; &amp;'static str {
+    RESOURCES_FILE.expect("RESOURCES_FILE env var not set at compile time")
+}</code></pre>
+<h3 id="initializing-gettext"><a class="header" href="#initializing-gettext">Initializing Gettext</a></h3>
+<p>We create an <code>i18n</code> module to initialize the translation system.
+This must happen early, before any translatable strings are used.</p>
+<p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/10/src/i18n.rs">listings/todo/10/src/i18n.rs</a></p>
+<pre><code class="language-rust no_run noplayground"><span class="boring">use gettextrs::{
+</span><span class="boring">    LocaleCategory, bind_textdomain_codeset, bindtextdomain, setlocale, textdomain,
+</span><span class="boring">};
+</span><span class="boring">
+</span><span class="boring">use crate::config;
+</span><span class="boring">
+</span>pub fn init() {
+    // Prepare i18n
+    setlocale(LocaleCategory::LcAll, "");
+    bindtextdomain(config::gettext_package(), config::localedir())
+        .expect("Unable to bind the text domain");
+    bind_textdomain_codeset(config::gettext_package(), "UTF-8")
+        .expect("Unable to set text domain encoding");
+    textdomain(config::gettext_package()).expect("Unable to switch to the text domain");
+}</code></pre>
+<p>We call <code>i18n::init()</code> in <code>main.rs</code> before loading resources:</p>
+<p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/10/src/main.rs">listings/todo/10/src/main.rs</a></p>
+<pre><code class="language-rust no_run noplayground"><span class="boring">mod collection_object;
+</span><span class="boring">mod config;
+</span><span class="boring">mod i18n;
+</span><span class="boring">mod task_object;
+</span><span class="boring">mod utils;
+</span><span class="boring">mod window;
+</span><span class="boring">
+</span><span class="boring">use adw::prelude::*;
+</span><span class="boring">use gtk::{gio, glib};
+</span><span class="boring">use window::Window;
+</span><span class="boring">
+</span><span class="boring">fn main() -&gt; glib::ExitCode {
+</span>    // Initialize locale and translations
+    i18n::init();
+<span class="boring">
+</span><span class="boring">    // Load resources from installed location
+</span><span class="boring">    let res = gio::Resource::load(config::resources_file())
+</span><span class="boring">        .expect("Could not load gresource file");
+</span><span class="boring">    gio::resources_register(&amp;res);
+</span><span class="boring">
+</span><span class="boring">    // Create a new application
+</span><span class="boring">    let app = adw::Application::builder()
+</span><span class="boring">        .application_id(config::app_id())
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    // Connect to signals
+</span><span class="boring">    app.connect_startup(setup_shortcuts);
+</span><span class="boring">    app.connect_activate(build_ui);
+</span><span class="boring">
+</span><span class="boring">    // Run the application
+</span><span class="boring">    app.run()
+</span><span class="boring">}
+</span><span class="boring">
+</span><span class="boring">fn setup_shortcuts(app: &amp;adw::Application) {
+</span><span class="boring">    app.set_accels_for_action("win.filter('All')", &amp;["&lt;Ctrl&gt;a"]);
+</span><span class="boring">    app.set_accels_for_action("win.filter('Open')", &amp;["&lt;Ctrl&gt;o"]);
+</span><span class="boring">    app.set_accels_for_action("win.filter('Done')", &amp;["&lt;Ctrl&gt;d"]);
+</span><span class="boring">}
+</span><span class="boring">
+</span><span class="boring">fn build_ui(app: &amp;adw::Application) {
+</span><span class="boring">    // Create a new custom window and present it
+</span><span class="boring">    let window = Window::new(app);
+</span><span class="boring">    window.present();
+</span><span class="boring">}</span></code></pre>
+<h3 id="marking-strings-for-translation"><a class="header" href="#marking-strings-for-translation">Marking Strings for Translation</a></h3>
+<p>Now we can use <code>gettext()</code> to mark strings in our Rust code.
+We wrap each user-visible string in the “New Collection” dialog:</p>
+<p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/10/src/window/mod.rs">listings/todo/10/src/window/mod.rs</a></p>
+<pre><code class="language-rust no_run noplayground"><span class="boring">mod imp;
+</span><span class="boring">
+</span><span class="boring">use std::fs::File;
+</span><span class="boring">
+</span><span class="boring">use adw::prelude::*;
+</span><span class="boring">use adw::subclass::prelude::*;
+</span><span class="boring">use adw::{ActionRow, AlertDialog, ResponseAppearance};
+</span><span class="boring">use gettextrs::gettext;
+</span><span class="boring">use gio::Settings;
+</span><span class="boring">use glib::{Object, clone};
+</span><span class="boring">use gtk::{
+</span><span class="boring">    Align, CheckButton, CustomFilter, Entry, FilterListModel, Label, ListBoxRow,
+</span><span class="boring">    NoSelection, gio, glib, pango,
+</span><span class="boring">};
+</span><span class="boring">
+</span><span class="boring">use crate::collection_object::{CollectionData, CollectionObject};
+</span><span class="boring">use crate::config;
+</span><span class="boring">use crate::task_object::TaskObject;
+</span><span class="boring">use crate::utils::data_path;
+</span><span class="boring">
+</span><span class="boring">glib::wrapper! {
+</span><span class="boring">    pub struct Window(ObjectSubclass&lt;imp::Window&gt;)
+</span><span class="boring">        @extends adw::ApplicationWindow, gtk::ApplicationWindow, gtk::Window, gtk::Widget,
+</span><span class="boring">        @implements gio::ActionGroup, gio::ActionMap, gtk::Accessible, gtk::Buildable,
+</span><span class="boring">                    gtk::ConstraintTarget, gtk::Native, gtk::Root, gtk::ShortcutManager;
+</span><span class="boring">}
+</span><span class="boring">
+</span><span class="boring">impl Window {
+</span><span class="boring">    pub fn new(app: &amp;adw::Application) -&gt; Self {
+</span><span class="boring">        // Create new window
+</span><span class="boring">        Object::builder().property("application", app).build()
+</span><span class="boring">    }
+</span><span class="boring">
+</span><span class="boring">    fn setup_settings(&amp;self) {
+</span><span class="boring">        let settings = Settings::new(config::app_id());
+</span><span class="boring">        self.imp()
+</span><span class="boring">            .settings
+</span><span class="boring">            .set(settings)
+</span><span class="boring">            .expect("`settings` should not be set before calling `setup_settings`.");
+</span><span class="boring">    }
+</span><span class="boring">
+</span><span class="boring">    fn settings(&amp;self) -&gt; &amp;Settings {
+</span><span class="boring">        self.imp()
+</span><span class="boring">            .settings
+</span><span class="boring">            .get()
+</span><span class="boring">            .expect("`settings` should be set in `setup_settings`.")
+</span><span class="boring">    }
+</span><span class="boring">
+</span><span class="boring">    fn tasks(&amp;self) -&gt; gio::ListStore {
+</span><span class="boring">        self.current_collection().tasks()
+</span><span class="boring">    }
+</span><span class="boring">
+</span><span class="boring">    fn current_collection(&amp;self) -&gt; CollectionObject {
+</span><span class="boring">        self.imp()
+</span><span class="boring">            .current_collection
+</span><span class="boring">            .borrow()
+</span><span class="boring">            .clone()
+</span><span class="boring">            .expect("`current_collection` should be set in `set_current_collections`.")
+</span><span class="boring">    }
+</span><span class="boring">
+</span><span class="boring">    fn collections(&amp;self) -&gt; gio::ListStore {
+</span><span class="boring">        self.imp()
+</span><span class="boring">            .collections
+</span><span class="boring">            .get()
+</span><span class="boring">            .expect("`collections` should be set in `setup_collections`.")
+</span><span class="boring">            .clone()
+</span><span class="boring">    }
+</span><span class="boring">
+</span><span class="boring">    fn set_filter(&amp;self) {
+</span><span class="boring">        self.imp()
+</span><span class="boring">            .current_filter_model
+</span><span class="boring">            .borrow()
+</span><span class="boring">            .clone()
+</span><span class="boring">            .expect("`current_filter_model` should be set in `set_current_collection`.")
+</span><span class="boring">            .set_filter(self.filter().as_ref());
+</span><span class="boring">    }
+</span><span class="boring">
+</span><span class="boring">    fn filter(&amp;self) -&gt; Option&lt;CustomFilter&gt; {
+</span><span class="boring">        // Get filter state from settings
+</span><span class="boring">        let filter_state: String = self.settings().get("filter");
+</span><span class="boring">
+</span><span class="boring">        // Create custom filters
+</span><span class="boring">        let filter_open = CustomFilter::new(|obj| {
+</span><span class="boring">            // Get `TaskObject` from `glib::Object`
+</span><span class="boring">            let task_object = obj
+</span><span class="boring">                .downcast_ref::&lt;TaskObject&gt;()
+</span><span class="boring">                .expect("The object needs to be of type `TaskObject`.");
+</span><span class="boring">
+</span><span class="boring">            // Only allow completed tasks
+</span><span class="boring">            !task_object.is_completed()
+</span><span class="boring">        });
+</span><span class="boring">        let filter_done = CustomFilter::new(|obj| {
+</span><span class="boring">            // Get `TaskObject` from `glib::Object`
+</span><span class="boring">            let task_object = obj
+</span><span class="boring">                .downcast_ref::&lt;TaskObject&gt;()
+</span><span class="boring">                .expect("The object needs to be of type `TaskObject`.");
+</span><span class="boring">
+</span><span class="boring">            // Only allow done tasks
+</span><span class="boring">            task_object.is_completed()
+</span><span class="boring">        });
+</span><span class="boring">
+</span><span class="boring">        // Return the correct filter
+</span><span class="boring">        match filter_state.as_str() {
+</span><span class="boring">            "All" =&gt; None,
+</span><span class="boring">            "Open" =&gt; Some(filter_open),
+</span><span class="boring">            "Done" =&gt; Some(filter_done),
+</span><span class="boring">            _ =&gt; unreachable!(),
+</span><span class="boring">        }
+</span><span class="boring">    }
+</span><span class="boring">
+</span><span class="boring">    fn setup_collections(&amp;self) {
+</span><span class="boring">        let collections = gio::ListStore::new::&lt;CollectionObject&gt;();
+</span><span class="boring">        self.imp()
+</span><span class="boring">            .collections
+</span><span class="boring">            .set(collections.clone())
+</span><span class="boring">            .expect("Could not set collections");
+</span><span class="boring">
+</span><span class="boring">        self.imp().collections_list.bind_model(
+</span><span class="boring">            Some(&amp;collections),
+</span><span class="boring">            clone!(
+</span><span class="boring">                #[weak(rename_to = window)]
+</span><span class="boring">                self,
+</span><span class="boring">                #[upgrade_or_panic]
+</span><span class="boring">                move |obj| {
+</span><span class="boring">                    let collection_object = obj
+</span><span class="boring">                        .downcast_ref()
+</span><span class="boring">                        .expect("The object should be of type `CollectionObject`.");
+</span><span class="boring">                    let row = window.create_collection_row(collection_object);
+</span><span class="boring">                    row.upcast()
+</span><span class="boring">                }
+</span><span class="boring">            ),
+</span><span class="boring">        )
+</span><span class="boring">    }
+</span><span class="boring">
+</span><span class="boring">    fn restore_data(&amp;self) {
+</span><span class="boring">        if let Ok(file) = File::open(data_path()) {
+</span><span class="boring">            // Deserialize data from file to vector
+</span><span class="boring">            let backup_data: Vec&lt;CollectionData&gt; = serde_json::from_reader(file)
+</span><span class="boring">                .expect(
+</span><span class="boring">                    "It should be possible to read `backup_data` from the json file.",
+</span><span class="boring">                );
+</span><span class="boring">
+</span><span class="boring">            // Convert `Vec&lt;CollectionData&gt;` to `Vec&lt;CollectionObject&gt;`
+</span><span class="boring">            let collections: Vec&lt;CollectionObject&gt; = backup_data
+</span><span class="boring">                .into_iter()
+</span><span class="boring">                .map(CollectionObject::from_collection_data)
+</span><span class="boring">                .collect();
+</span><span class="boring">
+</span><span class="boring">            // Insert restored objects into model
+</span><span class="boring">            self.collections().extend_from_slice(&amp;collections);
+</span><span class="boring">
+</span><span class="boring">            // Set first collection as current
+</span><span class="boring">            if let Some(first_collection) = collections.first() {
+</span><span class="boring">                self.set_current_collection(first_collection.clone());
+</span><span class="boring">            }
+</span><span class="boring">        }
+</span><span class="boring">    }
+</span><span class="boring">
+</span><span class="boring">    fn create_collection_row(
+</span><span class="boring">        &amp;self,
+</span><span class="boring">        collection_object: &amp;CollectionObject,
+</span><span class="boring">    ) -&gt; ListBoxRow {
+</span><span class="boring">        let label = Label::builder()
+</span><span class="boring">            .ellipsize(pango::EllipsizeMode::End)
+</span><span class="boring">            .xalign(0.0)
+</span><span class="boring">            .build();
+</span><span class="boring">
+</span><span class="boring">        collection_object
+</span><span class="boring">            .bind_property("title", &amp;label, "label")
+</span><span class="boring">            .sync_create()
+</span><span class="boring">            .build();
+</span><span class="boring">
+</span><span class="boring">        ListBoxRow::builder().child(&amp;label).build()
+</span><span class="boring">    }
+</span><span class="boring">
+</span><span class="boring">    fn set_current_collection(&amp;self, collection: CollectionObject) {
+</span><span class="boring">        // Wrap model with filter and selection and pass it to the list box
+</span><span class="boring">        let tasks = collection.tasks();
+</span><span class="boring">        let filter_model = FilterListModel::new(Some(tasks.clone()), self.filter());
+</span><span class="boring">        let selection_model = NoSelection::new(Some(filter_model.clone()));
+</span><span class="boring">        self.imp().tasks_list.bind_model(
+</span><span class="boring">            Some(&amp;selection_model),
+</span><span class="boring">            clone!(
+</span><span class="boring">                #[weak(rename_to = window)]
+</span><span class="boring">                self,
+</span><span class="boring">                #[upgrade_or_panic]
+</span><span class="boring">                move |obj| {
+</span><span class="boring">                    let task_object = obj
+</span><span class="boring">                        .downcast_ref()
+</span><span class="boring">                        .expect("The object should be of type `TaskObject`.");
+</span><span class="boring">                    let row = window.create_task_row(task_object);
+</span><span class="boring">                    row.upcast()
+</span><span class="boring">                }
+</span><span class="boring">            ),
+</span><span class="boring">        );
+</span><span class="boring">
+</span><span class="boring">        // Store filter model
+</span><span class="boring">        self.imp().current_filter_model.replace(Some(filter_model));
+</span><span class="boring">
+</span><span class="boring">        // If present, disconnect old `tasks_changed` handler
+</span><span class="boring">        if let Some(handler_id) = self.imp().tasks_changed_handler_id.take() {
+</span><span class="boring">            self.tasks().disconnect(handler_id);
+</span><span class="boring">        }
+</span><span class="boring">
+</span><span class="boring">        // Assure that the task list is only visible when it is supposed to
+</span><span class="boring">        self.set_task_list_visible(&amp;tasks);
+</span><span class="boring">        let tasks_changed_handler_id = tasks.connect_items_changed(clone!(
+</span><span class="boring">            #[weak(rename_to = window)]
+</span><span class="boring">            self,
+</span><span class="boring">            move |tasks, _, _, _| {
+</span><span class="boring">                window.set_task_list_visible(tasks);
+</span><span class="boring">            }
+</span><span class="boring">        ));
+</span><span class="boring">        self.imp()
+</span><span class="boring">            .tasks_changed_handler_id
+</span><span class="boring">            .replace(Some(tasks_changed_handler_id));
+</span><span class="boring">
+</span><span class="boring">        // Set current tasks
+</span><span class="boring">        self.imp().current_collection.replace(Some(collection));
+</span><span class="boring">
+</span><span class="boring">        self.select_collection_row();
+</span><span class="boring">    }
+</span><span class="boring">
+</span><span class="boring">    fn set_task_list_visible(&amp;self, tasks: &amp;gio::ListStore) {
+</span><span class="boring">        self.imp().tasks_list.set_visible(tasks.n_items() &gt; 0);
+</span><span class="boring">    }
+</span><span class="boring">
+</span><span class="boring">    fn select_collection_row(&amp;self) {
+</span><span class="boring">        if let Some(index) = self.collections().find(&amp;self.current_collection()) {
+</span><span class="boring">            let row = self.imp().collections_list.row_at_index(index as i32);
+</span><span class="boring">            self.imp().collections_list.select_row(row.as_ref());
+</span><span class="boring">        }
+</span><span class="boring">    }
+</span><span class="boring">
+</span><span class="boring">    fn create_task_row(&amp;self, task_object: &amp;TaskObject) -&gt; ActionRow {
+</span><span class="boring">        // Create check button
+</span><span class="boring">        let check_button = CheckButton::builder()
+</span><span class="boring">            .valign(Align::Center)
+</span><span class="boring">            .can_focus(false)
+</span><span class="boring">            .build();
+</span><span class="boring">
+</span><span class="boring">        // Create row
+</span><span class="boring">        let row = ActionRow::builder()
+</span><span class="boring">            .activatable_widget(&amp;check_button)
+</span><span class="boring">            .build();
+</span><span class="boring">        row.add_prefix(&amp;check_button);
+</span><span class="boring">
+</span><span class="boring">        // Bind properties
+</span><span class="boring">        task_object
+</span><span class="boring">            .bind_property("completed", &amp;check_button, "active")
+</span><span class="boring">            .bidirectional()
+</span><span class="boring">            .sync_create()
+</span><span class="boring">            .build();
+</span><span class="boring">        task_object
+</span><span class="boring">            .bind_property("content", &amp;row, "title")
+</span><span class="boring">            .sync_create()
+</span><span class="boring">            .build();
+</span><span class="boring">
+</span><span class="boring">        // Return row
+</span><span class="boring">        row
+</span><span class="boring">    }
+</span><span class="boring">
+</span><span class="boring">    fn setup_callbacks(&amp;self) {
+</span><span class="boring">        // Setup callback for activation of the entry
+</span><span class="boring">        self.imp().entry.connect_activate(clone!(
+</span><span class="boring">            #[weak(rename_to = window)]
+</span><span class="boring">            self,
+</span><span class="boring">            move |_| {
+</span><span class="boring">                window.new_task();
+</span><span class="boring">            }
+</span><span class="boring">        ));
+</span><span class="boring">
+</span><span class="boring">        // Setup callback for clicking (and the releasing) the icon of the entry
+</span><span class="boring">        self.imp().entry.connect_icon_release(clone!(
+</span><span class="boring">            #[weak(rename_to = window)]
+</span><span class="boring">            self,
+</span><span class="boring">            move |_, _| {
+</span><span class="boring">                window.new_task();
+</span><span class="boring">            }
+</span><span class="boring">        ));
+</span><span class="boring">
+</span><span class="boring">        // Filter model whenever the value of the key "filter" changes
+</span><span class="boring">        self.settings().connect_changed(
+</span><span class="boring">            Some("filter"),
+</span><span class="boring">            clone!(
+</span><span class="boring">                #[weak(rename_to = window)]
+</span><span class="boring">                self,
+</span><span class="boring">                move |_, _| {
+</span><span class="boring">                    window.set_filter();
+</span><span class="boring">                }
+</span><span class="boring">            ),
+</span><span class="boring">        );
+</span><span class="boring">
+</span><span class="boring">        // Setup callback when items of collections change
+</span><span class="boring">        self.set_stack();
+</span><span class="boring">        self.collections().connect_items_changed(clone!(
+</span><span class="boring">            #[weak(rename_to = window)]
+</span><span class="boring">            self,
+</span><span class="boring">            move |_, _, _, _| {
+</span><span class="boring">                window.set_stack();
+</span><span class="boring">            }
+</span><span class="boring">        ));
+</span><span class="boring">
+</span><span class="boring">        // Setup callback for activating a row of collections list
+</span><span class="boring">        self.imp().collections_list.connect_row_activated(clone!(
+</span><span class="boring">            #[weak(rename_to = window)]
+</span><span class="boring">            self,
+</span><span class="boring">            move |_, row| {
+</span><span class="boring">                let index = row.index();
+</span><span class="boring">                let selected_collection = window
+</span><span class="boring">                    .collections()
+</span><span class="boring">                    .item(index as u32)
+</span><span class="boring">                    .expect("There needs to be an object at this position.")
+</span><span class="boring">                    .downcast::&lt;CollectionObject&gt;()
+</span><span class="boring">                    .expect("The object needs to be a `CollectionObject`.");
+</span><span class="boring">                window.set_current_collection(selected_collection);
+</span><span class="boring">                window.imp().split_view.set_show_content(true);
+</span><span class="boring">            }
+</span><span class="boring">        ));
+</span><span class="boring">    }
+</span><span class="boring">
+</span><span class="boring">    fn set_stack(&amp;self) {
+</span><span class="boring">        if self.collections().n_items() &gt; 0 {
+</span><span class="boring">            self.imp().stack.set_visible_child_name("main");
+</span><span class="boring">        } else {
+</span><span class="boring">            self.imp().stack.set_visible_child_name("placeholder");
+</span><span class="boring">        }
+</span><span class="boring">    }
+</span><span class="boring">
+</span><span class="boring">    fn new_task(&amp;self) {
+</span><span class="boring">        // Get content from entry and clear it
+</span><span class="boring">        let buffer = self.imp().entry.buffer();
+</span><span class="boring">        let content = buffer.text().to_string();
+</span><span class="boring">        if content.is_empty() {
+</span><span class="boring">            return;
+</span><span class="boring">        }
+</span><span class="boring">        buffer.set_text("");
+</span><span class="boring">
+</span><span class="boring">        // Add new task to model
+</span><span class="boring">        let task = TaskObject::new(false, content);
+</span><span class="boring">        self.tasks().append(&amp;task);
+</span><span class="boring">    }
+</span><span class="boring">
+</span><span class="boring">    fn setup_actions(&amp;self) {
+</span><span class="boring">        // Create action from key "filter" and add to action group "win"
+</span><span class="boring">        let action_filter = self.settings().create_action("filter");
+</span><span class="boring">        self.add_action(&amp;action_filter);
+</span><span class="boring">    }
+</span><span class="boring">
+</span><span class="boring">    fn remove_done_tasks(&amp;self) {
+</span><span class="boring">        let tasks = self.tasks();
+</span><span class="boring">        let mut position = 0;
+</span><span class="boring">        while let Some(item) = tasks.item(position) {
+</span><span class="boring">            // Get `TaskObject` from `glib::Object`
+</span><span class="boring">            let task_object = item
+</span><span class="boring">                .downcast_ref::&lt;TaskObject&gt;()
+</span><span class="boring">                .expect("The object needs to be of type `TaskObject`.");
+</span><span class="boring">
+</span><span class="boring">            if task_object.is_completed() {
+</span><span class="boring">                tasks.remove(position);
+</span><span class="boring">            } else {
+</span><span class="boring">                position += 1;
+</span><span class="boring">            }
+</span><span class="boring">        }
+</span><span class="boring">    }
+</span><span class="boring">
+</span>    async fn new_collection(&amp;self) {
+        // Create entry
+        let entry = Entry::builder()
+            .placeholder_text(gettext("Name"))
+            .activates_default(true)
+            .build();
+
+        let cancel_response = "cancel";
+        let create_response = "create";
+
+        // Create new dialog
+        let dialog = AlertDialog::builder()
+            .heading(gettext("New Collection"))
+            .close_response(cancel_response)
+            .default_response(create_response)
+            .extra_child(&amp;entry)
+            .build();
+        dialog.add_responses(&amp;[
+            (cancel_response, &amp;gettext("Cancel")),
+            (create_response, &amp;gettext("Create")),
+        ]);
+        // Make the dialog button insensitive initially
+        dialog.set_response_enabled(create_response, false);
+        dialog.set_response_appearance(create_response, ResponseAppearance::Suggested);
+
+        // Set entry's css class to "error", when there is no text in it
+        entry.connect_changed(clone!(
+            #[weak]
+            dialog,
+            move |entry| {
+                let text = entry.text();
+                let empty = text.is_empty();
+
+                dialog.set_response_enabled(create_response, !empty);
+
+                if empty {
+                    entry.add_css_class("error");
+                } else {
+                    entry.remove_css_class("error");
+                }
+            }
+        ));
+
+        let response = dialog.choose_future(Some(self)).await;
+
+        // Return if the user chose `cancel_response`
+        if response == cancel_response {
+            return;
+        }
+
+        // Create a new list store
+        let tasks = gio::ListStore::new::&lt;TaskObject&gt;();
+
+        // Create a new collection object from the title the user provided
+        let title = entry.text().to_string();
+        let collection = CollectionObject::new(&amp;title, tasks);
+
+        // Add new collection object and set current tasks
+        self.collections().append(&amp;collection);
+        self.set_current_collection(collection);
+
+        // Show the content
+        self.imp().split_view.set_show_content(true);
+    }
+<span class="boring">}</span></code></pre>
+<p>The <code>gettext()</code> function looks up the translation at runtime.
+If no translation exists, it just returns the original string.</p>
+<h2 id="desktop-file-translation"><a class="header" href="#desktop-file-translation">Desktop File Translation</a></h2>
+<p>Desktop files also support translations.
+We prefix translatable keys with an underscore.
+Also since it is now templated with both Meson and gettext, we change the file extension from <code>org.gtk_rs.Todo10.desktop.in</code> to <code>org.gtk_rs.Todo10.desktop.in.in</code>.</p>
+<p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/10/data/org.gtk_rs.Todo10.desktop.in.in">listings/todo/10/data/org.gtk_rs.Todo10.desktop.in.in</a></p>
+<pre><code class="language-ini">[Desktop Entry]
+Name=Todo 10
+_Comment=Keep track of tasks
+Exec=todo-10
+Icon=@APP_ID@
+Terminal=false
+Type=Application
+DBusActivatable=true
+Categories=GNOME;GTK;Utility;
+</code></pre>
+<p>Meson’s <code>i18n.merge_file()</code> processes <code>_Name</code> and <code>_Comment</code> and merges in the translations.</p>
+<h2 id="creating-a-translation"><a class="header" href="#creating-a-translation">Creating a Translation</a></h2>
+<h3 id="the-translation-file"><a class="header" href="#the-translation-file">The Translation File</a></h3>
+<p>Translation files use the <code>.po</code> format.
+This is how a small section of the file looks like:</p>
+<p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/10/po/de.po">listings/todo/10/po/de.po</a></p>
+<pre><code class="language-po">#: data/resources/window.ui:134
+msgid "Main Menu"
+msgstr "Hauptmenü"
+
+#: data/resources/window.ui:153
+msgid "Enter a Task…"
+msgstr "Aufgabe eingeben…"
+</code></pre>
+<p>Each entry has:</p>
+<ul>
+<li>A comment showing where the string appears</li>
+<li><code>msgid</code>: the original string (must match exactly)</li>
+<li><code>msgstr</code>: the translated string</li>
+</ul>
+<h3 id="generating-the-template"><a class="header" href="#generating-the-template">Generating the Template</a></h3>
+<p>To create a <code>.pot</code> template file with all translatable strings:</p>
+<pre><code>meson compile -C builddir todo-10-pot
+</code></pre>
+<p>Translators can use this template to create new <code>.po</code> files.
+Tools like <a href="https://poedit.net/">Poedit</a> or <a href="https://wiki.gnome.org/Apps/Gtranslator">GNOME Translation Editor</a> make this easier.</p>
+<h2 id="building-and-testing"><a class="header" href="#building-and-testing">Building and Testing</a></h2>
+<p>Build and install as usual:</p>
+<pre><code>meson setup builddir -Dprofile=development --prefix=~/.local
+meson install -C builddir
+</code></pre>
+<p>To test a specific language, set the <code>LANGUAGE</code> environment variable:</p>
+<pre><code>LANGUAGE=de todo-10
+</code></pre>
+<div style="text-align:center"><img src="img/todo_10_german.png" alt="To-Do app in German" /></div>
+
+<p>That was it!
+Our To-Do app can now speak German.
+For projects with many contributors, translation platforms like <a href="https://weblate.org/">Weblate</a> or <a href="https://l10n.gnome.org/">Damned Lies</a> help coordinate the work.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="meson.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                            </a>
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="meson.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                    </a>
+
+            </nav>
+
+        </div>
+
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr-ef4e11c1.min.js"></script>
+        <script src="mark-09e88c2c.min.js"></script>
+        <script src="searcher-c2a407aa.js"></script>
+
+        <script src="clipboard-1626706a.min.js"></script>
+        <script src="highlight-abc7f01d.js"></script>
+        <script src="book-a0b12cfe.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="theme/meson-a299a3c8.js"></script>
+
+
+
+    </div>
+    </body>
+</html>

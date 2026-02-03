@@ -37,10 +37,10 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-4e9870d7.js";
+            window.path_to_searchindex_js = "searchindex-12801395.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-b449c6c5.js"></script>
+        <script src="toc-b8b98df2.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -18989,7 +18989,7 @@ It provides:</p>
 It defines variables, executes <code>meson.build</code> files in subdirectories and defines post-install tasks.</p>
 <p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/9/meson.build">listings/todo/9/meson.build</a></p>
 <pre><code class="language-meson"># Set up the project
-project('todo', 'rust', version: '0.1.0', meson_version: '&gt;= 1.4')
+project('todo-9', 'rust', version: '0.1.0', meson_version: '&gt;= 1.4')
 
 # Import GNOME module
 gnome = import('gnome')
@@ -19196,7 +19196,7 @@ endif
 <p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/9/data/org.gtk_rs.Todo9.desktop.in">listings/todo/9/data/org.gtk_rs.Todo9.desktop.in</a></p>
 <pre><code class="language-ini">[Desktop Entry]
 Name=Todo 9
-Exec=todo
+Exec=todo-9
 Icon=@APP_ID@
 Terminal=false
 Type=Application
@@ -19307,6 +19307,718 @@ meson install -C builddir
 <p>That was it.
 The main thing we gained is proper support for icons, GSettings schemas and desktop files.
 As soon as we add internationalization and publish our package, more advantages will emerge!</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="internationalization"><a class="header" href="#internationalization">Internationalization</a></h1>
+<p>Now that we have Meson set up, we can add internationalization to our To-Do app.
+We want users to be able to use the app in their own language.
+With GTK, <a href="https://www.gnu.org/software/gettext/">gettext</a> is the standard system for this.</p>
+<h2 id="how-gettext-works"><a class="header" href="#how-gettext-works">How Gettext Works</a></h2>
+<p>Gettext uses message catalogs to store translations.
+The workflow looks like this:</p>
+<ol>
+<li><strong>Mark strings</strong> in source code and UI files as translatable</li>
+<li><strong>Extract strings</strong> into a template file (<code>.pot</code>)</li>
+<li><strong>Translate strings</strong> into language-specific files (<code>.po</code>)</li>
+<li><strong>Compile translations</strong> into binary format (<code>.mo</code>) during build</li>
+</ol>
+<p>GTK already handles translations for strings marked with <code>translatable="yes"</code> in UI templates.
+However, strings defined in Rust code (like our dialog messages) require explicit gettext calls.
+Let’s set this up!</p>
+<h2 id="project-structure-1"><a class="header" href="#project-structure-1">Project Structure</a></h2>
+<p>We extend our project with a <code>po/</code> directory for translation files:</p>
+<pre><code>├── po/
+│   ├── LINGUAS           # List of supported languages
+│   ├── POTFILES.in       # Files containing translatable strings
+│   ├── meson.build       # Meson i18n integration
+│   └── de.po             # German translation
+</code></pre>
+<h2 id="setting-up-translations"><a class="header" href="#setting-up-translations">Setting Up Translations</a></h2>
+<h3 id="the-po-directory"><a class="header" href="#the-po-directory">The po Directory</a></h3>
+<p>We create <code>po/meson.build</code> which tells Meson to handle translations using the glib preset.
+The preset knows how to extract strings from <code>.ui</code> files and Rust source code.</p>
+<p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/10/po/meson.build">listings/todo/10/po/meson.build</a></p>
+<pre><code class="language-meson">i18n.gettext(meson.project_name(), preset: 'glib')
+</code></pre>
+<p><code>POTFILES.in</code> lists all files that contain translatable strings.</p>
+<p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/10/po/POTFILES.in">listings/todo/10/po/POTFILES.in</a></p>
+<pre><code>data/org.gtk_rs.Todo10.desktop.in.in
+data/resources/window.ui
+data/resources/shortcuts.ui
+src/window/mod.rs
+</code></pre>
+<p><code>LINGUAS</code> lists the language codes of available translations.
+In our case, we’ll only add German (de), the mother tongue of the author of this book.</p>
+<p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/10/po/LINGUAS">listings/todo/10/po/LINGUAS</a></p>
+<pre><code>de
+</code></pre>
+<h3 id="updating-mesonbuild"><a class="header" href="#updating-mesonbuild">Updating meson.build</a></h3>
+<p>We import the <code>i18n</code> module and add the <code>po</code> subdirectory.</p>
+<p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/10/meson.build">listings/todo/10/meson.build</a></p>
+<pre><code class="language-meson"># Set up the project
+project('todo-10', 'rust', version: '0.1.0', meson_version: '&gt;= 1.4')
+
+# Import GNOME and i18n modules
+gnome = import('gnome')
+i18n = import('i18n')
+
+# Set the base_id
+base_id = 'org.gtk_rs.Todo10'
+
+# Define variables depending on the current profile
+is_devel = get_option('profile') == 'development'
+if is_devel
+    profile = 'Devel'
+    application_id = '@0@.@1@'.format(base_id, profile)
+else
+    profile = ''
+    application_id = base_id
+endif
+
+# Set a couple of useful variables
+bindir = get_option('prefix') / get_option('bindir')
+localedir = get_option('prefix') / get_option('localedir')
+datadir = get_option('prefix') / get_option('datadir')
+pkgdatadir = datadir / meson.project_name()
+
+# Enter these subdirectories and execute the meson.build files in them
+subdir('data')
+subdir('po')
+subdir('src')
+
+# Execute these tasks after installing
+gnome.post_install(
+    gtk_update_icon_cache: true,
+    glib_compile_schemas: true,
+    update_desktop_database: true,
+)
+</code></pre>
+<p>We also pass <code>LOCALEDIR</code> and <code>GETTEXT_PACKAGE</code> to the Rust build, so our code knows where to find translations.</p>
+<p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/10/src/meson.build">listings/todo/10/src/meson.build</a></p>
+<pre><code class="language-meson">cargo = find_program('cargo')
+cargo_options = ['--manifest-path', meson.project_source_root() / 'Cargo.toml']
+cargo_options += ['--target-dir', meson.project_build_root() / 'target']
+
+if not is_devel
+    cargo_options += ['--release']
+    rust_target = 'release'
+else
+    rust_target = 'debug'
+endif
+
+custom_target(
+    'cargo-build',
+    build_by_default: true,
+    build_always_stale: true,
+    output: meson.project_name(),
+    console: true,
+    install: true,
+    install_dir: bindir,
+    depends: resources,
+    env: {
+        'CARGO_HOME': meson.project_build_root() / 'cargo-home',
+        'APP_ID': application_id,
+        'GETTEXT_PACKAGE': meson.project_name(),
+        'LOCALEDIR': localedir,
+        'RESOURCES_FILE': pkgdatadir / 'resources.gresource',
+    },
+    command: [
+        cargo,
+        'build',
+        cargo_options,
+        '&amp;&amp;',
+        'cp',
+        meson.project_build_root() / 'target' / rust_target / meson.project_name(),
+        '@OUTPUT@',
+    ],
+)
+</code></pre>
+<h2 id="translations-in-rust-code"><a class="header" href="#translations-in-rust-code">Translations in Rust Code</a></h2>
+<p>So far so good.
+The build system is ready, but we haven’t touched the Rust code yet.
+How do we actually translate strings that are defined in code rather than in <code>.ui</code> files?</p>
+<h3 id="adding-the-dependency"><a class="header" href="#adding-the-dependency">Adding the Dependency</a></h3>
+<p>We add <code>gettext-rs</code> to our dependencies.</p>
+<pre><code>cargo add gettext-rs
+</code></pre>
+<h3 id="the-config-module-1"><a class="header" href="#the-config-module-1">The Config Module</a></h3>
+<p>We extend <code>config.rs</code> to provide the locale directory and gettext package name:</p>
+<p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/10/src/config.rs">listings/todo/10/src/config.rs</a></p>
+<pre><code class="language-rust">pub const APP_ID: Option&lt;&amp;str&gt; = option_env!("APP_ID");
+pub const GETTEXT_PACKAGE: Option&lt;&amp;str&gt; = option_env!("GETTEXT_PACKAGE");
+pub const LOCALEDIR: Option&lt;&amp;str&gt; = option_env!("LOCALEDIR");
+pub const RESOURCES_FILE: Option&lt;&amp;str&gt; = option_env!("RESOURCES_FILE");
+
+pub fn app_id() -&gt; &amp;'static str {
+    APP_ID.expect("APP_ID env var not set at compile time")
+}
+
+pub fn gettext_package() -&gt; &amp;'static str {
+    GETTEXT_PACKAGE.expect("GETTEXT_PACKAGE env var not set at compile time")
+}
+
+pub fn localedir() -&gt; &amp;'static str {
+    LOCALEDIR.expect("LOCALEDIR env var not set at compile time")
+}
+
+pub fn resources_file() -&gt; &amp;'static str {
+    RESOURCES_FILE.expect("RESOURCES_FILE env var not set at compile time")
+}</code></pre>
+<h3 id="initializing-gettext"><a class="header" href="#initializing-gettext">Initializing Gettext</a></h3>
+<p>We create an <code>i18n</code> module to initialize the translation system.
+This must happen early, before any translatable strings are used.</p>
+<p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/10/src/i18n.rs">listings/todo/10/src/i18n.rs</a></p>
+<pre><code class="language-rust no_run noplayground"><span class="boring">use gettextrs::{
+</span><span class="boring">    LocaleCategory, bind_textdomain_codeset, bindtextdomain, setlocale, textdomain,
+</span><span class="boring">};
+</span><span class="boring">
+</span><span class="boring">use crate::config;
+</span><span class="boring">
+</span>pub fn init() {
+    // Prepare i18n
+    setlocale(LocaleCategory::LcAll, "");
+    bindtextdomain(config::gettext_package(), config::localedir())
+        .expect("Unable to bind the text domain");
+    bind_textdomain_codeset(config::gettext_package(), "UTF-8")
+        .expect("Unable to set text domain encoding");
+    textdomain(config::gettext_package()).expect("Unable to switch to the text domain");
+}</code></pre>
+<p>We call <code>i18n::init()</code> in <code>main.rs</code> before loading resources:</p>
+<p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/10/src/main.rs">listings/todo/10/src/main.rs</a></p>
+<pre><code class="language-rust no_run noplayground"><span class="boring">mod collection_object;
+</span><span class="boring">mod config;
+</span><span class="boring">mod i18n;
+</span><span class="boring">mod task_object;
+</span><span class="boring">mod utils;
+</span><span class="boring">mod window;
+</span><span class="boring">
+</span><span class="boring">use adw::prelude::*;
+</span><span class="boring">use gtk::{gio, glib};
+</span><span class="boring">use window::Window;
+</span><span class="boring">
+</span><span class="boring">fn main() -&gt; glib::ExitCode {
+</span>    // Initialize locale and translations
+    i18n::init();
+<span class="boring">
+</span><span class="boring">    // Load resources from installed location
+</span><span class="boring">    let res = gio::Resource::load(config::resources_file())
+</span><span class="boring">        .expect("Could not load gresource file");
+</span><span class="boring">    gio::resources_register(&amp;res);
+</span><span class="boring">
+</span><span class="boring">    // Create a new application
+</span><span class="boring">    let app = adw::Application::builder()
+</span><span class="boring">        .application_id(config::app_id())
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    // Connect to signals
+</span><span class="boring">    app.connect_startup(setup_shortcuts);
+</span><span class="boring">    app.connect_activate(build_ui);
+</span><span class="boring">
+</span><span class="boring">    // Run the application
+</span><span class="boring">    app.run()
+</span><span class="boring">}
+</span><span class="boring">
+</span><span class="boring">fn setup_shortcuts(app: &amp;adw::Application) {
+</span><span class="boring">    app.set_accels_for_action("win.filter('All')", &amp;["&lt;Ctrl&gt;a"]);
+</span><span class="boring">    app.set_accels_for_action("win.filter('Open')", &amp;["&lt;Ctrl&gt;o"]);
+</span><span class="boring">    app.set_accels_for_action("win.filter('Done')", &amp;["&lt;Ctrl&gt;d"]);
+</span><span class="boring">}
+</span><span class="boring">
+</span><span class="boring">fn build_ui(app: &amp;adw::Application) {
+</span><span class="boring">    // Create a new custom window and present it
+</span><span class="boring">    let window = Window::new(app);
+</span><span class="boring">    window.present();
+</span><span class="boring">}</span></code></pre>
+<h3 id="marking-strings-for-translation"><a class="header" href="#marking-strings-for-translation">Marking Strings for Translation</a></h3>
+<p>Now we can use <code>gettext()</code> to mark strings in our Rust code.
+We wrap each user-visible string in the “New Collection” dialog:</p>
+<p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/10/src/window/mod.rs">listings/todo/10/src/window/mod.rs</a></p>
+<pre><code class="language-rust no_run noplayground"><span class="boring">mod imp;
+</span><span class="boring">
+</span><span class="boring">use std::fs::File;
+</span><span class="boring">
+</span><span class="boring">use adw::prelude::*;
+</span><span class="boring">use adw::subclass::prelude::*;
+</span><span class="boring">use adw::{ActionRow, AlertDialog, ResponseAppearance};
+</span><span class="boring">use gettextrs::gettext;
+</span><span class="boring">use gio::Settings;
+</span><span class="boring">use glib::{Object, clone};
+</span><span class="boring">use gtk::{
+</span><span class="boring">    Align, CheckButton, CustomFilter, Entry, FilterListModel, Label, ListBoxRow,
+</span><span class="boring">    NoSelection, gio, glib, pango,
+</span><span class="boring">};
+</span><span class="boring">
+</span><span class="boring">use crate::collection_object::{CollectionData, CollectionObject};
+</span><span class="boring">use crate::config;
+</span><span class="boring">use crate::task_object::TaskObject;
+</span><span class="boring">use crate::utils::data_path;
+</span><span class="boring">
+</span><span class="boring">glib::wrapper! {
+</span><span class="boring">    pub struct Window(ObjectSubclass&lt;imp::Window&gt;)
+</span><span class="boring">        @extends adw::ApplicationWindow, gtk::ApplicationWindow, gtk::Window, gtk::Widget,
+</span><span class="boring">        @implements gio::ActionGroup, gio::ActionMap, gtk::Accessible, gtk::Buildable,
+</span><span class="boring">                    gtk::ConstraintTarget, gtk::Native, gtk::Root, gtk::ShortcutManager;
+</span><span class="boring">}
+</span><span class="boring">
+</span><span class="boring">impl Window {
+</span><span class="boring">    pub fn new(app: &amp;adw::Application) -&gt; Self {
+</span><span class="boring">        // Create new window
+</span><span class="boring">        Object::builder().property("application", app).build()
+</span><span class="boring">    }
+</span><span class="boring">
+</span><span class="boring">    fn setup_settings(&amp;self) {
+</span><span class="boring">        let settings = Settings::new(config::app_id());
+</span><span class="boring">        self.imp()
+</span><span class="boring">            .settings
+</span><span class="boring">            .set(settings)
+</span><span class="boring">            .expect("`settings` should not be set before calling `setup_settings`.");
+</span><span class="boring">    }
+</span><span class="boring">
+</span><span class="boring">    fn settings(&amp;self) -&gt; &amp;Settings {
+</span><span class="boring">        self.imp()
+</span><span class="boring">            .settings
+</span><span class="boring">            .get()
+</span><span class="boring">            .expect("`settings` should be set in `setup_settings`.")
+</span><span class="boring">    }
+</span><span class="boring">
+</span><span class="boring">    fn tasks(&amp;self) -&gt; gio::ListStore {
+</span><span class="boring">        self.current_collection().tasks()
+</span><span class="boring">    }
+</span><span class="boring">
+</span><span class="boring">    fn current_collection(&amp;self) -&gt; CollectionObject {
+</span><span class="boring">        self.imp()
+</span><span class="boring">            .current_collection
+</span><span class="boring">            .borrow()
+</span><span class="boring">            .clone()
+</span><span class="boring">            .expect("`current_collection` should be set in `set_current_collections`.")
+</span><span class="boring">    }
+</span><span class="boring">
+</span><span class="boring">    fn collections(&amp;self) -&gt; gio::ListStore {
+</span><span class="boring">        self.imp()
+</span><span class="boring">            .collections
+</span><span class="boring">            .get()
+</span><span class="boring">            .expect("`collections` should be set in `setup_collections`.")
+</span><span class="boring">            .clone()
+</span><span class="boring">    }
+</span><span class="boring">
+</span><span class="boring">    fn set_filter(&amp;self) {
+</span><span class="boring">        self.imp()
+</span><span class="boring">            .current_filter_model
+</span><span class="boring">            .borrow()
+</span><span class="boring">            .clone()
+</span><span class="boring">            .expect("`current_filter_model` should be set in `set_current_collection`.")
+</span><span class="boring">            .set_filter(self.filter().as_ref());
+</span><span class="boring">    }
+</span><span class="boring">
+</span><span class="boring">    fn filter(&amp;self) -&gt; Option&lt;CustomFilter&gt; {
+</span><span class="boring">        // Get filter state from settings
+</span><span class="boring">        let filter_state: String = self.settings().get("filter");
+</span><span class="boring">
+</span><span class="boring">        // Create custom filters
+</span><span class="boring">        let filter_open = CustomFilter::new(|obj| {
+</span><span class="boring">            // Get `TaskObject` from `glib::Object`
+</span><span class="boring">            let task_object = obj
+</span><span class="boring">                .downcast_ref::&lt;TaskObject&gt;()
+</span><span class="boring">                .expect("The object needs to be of type `TaskObject`.");
+</span><span class="boring">
+</span><span class="boring">            // Only allow completed tasks
+</span><span class="boring">            !task_object.is_completed()
+</span><span class="boring">        });
+</span><span class="boring">        let filter_done = CustomFilter::new(|obj| {
+</span><span class="boring">            // Get `TaskObject` from `glib::Object`
+</span><span class="boring">            let task_object = obj
+</span><span class="boring">                .downcast_ref::&lt;TaskObject&gt;()
+</span><span class="boring">                .expect("The object needs to be of type `TaskObject`.");
+</span><span class="boring">
+</span><span class="boring">            // Only allow done tasks
+</span><span class="boring">            task_object.is_completed()
+</span><span class="boring">        });
+</span><span class="boring">
+</span><span class="boring">        // Return the correct filter
+</span><span class="boring">        match filter_state.as_str() {
+</span><span class="boring">            "All" =&gt; None,
+</span><span class="boring">            "Open" =&gt; Some(filter_open),
+</span><span class="boring">            "Done" =&gt; Some(filter_done),
+</span><span class="boring">            _ =&gt; unreachable!(),
+</span><span class="boring">        }
+</span><span class="boring">    }
+</span><span class="boring">
+</span><span class="boring">    fn setup_collections(&amp;self) {
+</span><span class="boring">        let collections = gio::ListStore::new::&lt;CollectionObject&gt;();
+</span><span class="boring">        self.imp()
+</span><span class="boring">            .collections
+</span><span class="boring">            .set(collections.clone())
+</span><span class="boring">            .expect("Could not set collections");
+</span><span class="boring">
+</span><span class="boring">        self.imp().collections_list.bind_model(
+</span><span class="boring">            Some(&amp;collections),
+</span><span class="boring">            clone!(
+</span><span class="boring">                #[weak(rename_to = window)]
+</span><span class="boring">                self,
+</span><span class="boring">                #[upgrade_or_panic]
+</span><span class="boring">                move |obj| {
+</span><span class="boring">                    let collection_object = obj
+</span><span class="boring">                        .downcast_ref()
+</span><span class="boring">                        .expect("The object should be of type `CollectionObject`.");
+</span><span class="boring">                    let row = window.create_collection_row(collection_object);
+</span><span class="boring">                    row.upcast()
+</span><span class="boring">                }
+</span><span class="boring">            ),
+</span><span class="boring">        )
+</span><span class="boring">    }
+</span><span class="boring">
+</span><span class="boring">    fn restore_data(&amp;self) {
+</span><span class="boring">        if let Ok(file) = File::open(data_path()) {
+</span><span class="boring">            // Deserialize data from file to vector
+</span><span class="boring">            let backup_data: Vec&lt;CollectionData&gt; = serde_json::from_reader(file)
+</span><span class="boring">                .expect(
+</span><span class="boring">                    "It should be possible to read `backup_data` from the json file.",
+</span><span class="boring">                );
+</span><span class="boring">
+</span><span class="boring">            // Convert `Vec&lt;CollectionData&gt;` to `Vec&lt;CollectionObject&gt;`
+</span><span class="boring">            let collections: Vec&lt;CollectionObject&gt; = backup_data
+</span><span class="boring">                .into_iter()
+</span><span class="boring">                .map(CollectionObject::from_collection_data)
+</span><span class="boring">                .collect();
+</span><span class="boring">
+</span><span class="boring">            // Insert restored objects into model
+</span><span class="boring">            self.collections().extend_from_slice(&amp;collections);
+</span><span class="boring">
+</span><span class="boring">            // Set first collection as current
+</span><span class="boring">            if let Some(first_collection) = collections.first() {
+</span><span class="boring">                self.set_current_collection(first_collection.clone());
+</span><span class="boring">            }
+</span><span class="boring">        }
+</span><span class="boring">    }
+</span><span class="boring">
+</span><span class="boring">    fn create_collection_row(
+</span><span class="boring">        &amp;self,
+</span><span class="boring">        collection_object: &amp;CollectionObject,
+</span><span class="boring">    ) -&gt; ListBoxRow {
+</span><span class="boring">        let label = Label::builder()
+</span><span class="boring">            .ellipsize(pango::EllipsizeMode::End)
+</span><span class="boring">            .xalign(0.0)
+</span><span class="boring">            .build();
+</span><span class="boring">
+</span><span class="boring">        collection_object
+</span><span class="boring">            .bind_property("title", &amp;label, "label")
+</span><span class="boring">            .sync_create()
+</span><span class="boring">            .build();
+</span><span class="boring">
+</span><span class="boring">        ListBoxRow::builder().child(&amp;label).build()
+</span><span class="boring">    }
+</span><span class="boring">
+</span><span class="boring">    fn set_current_collection(&amp;self, collection: CollectionObject) {
+</span><span class="boring">        // Wrap model with filter and selection and pass it to the list box
+</span><span class="boring">        let tasks = collection.tasks();
+</span><span class="boring">        let filter_model = FilterListModel::new(Some(tasks.clone()), self.filter());
+</span><span class="boring">        let selection_model = NoSelection::new(Some(filter_model.clone()));
+</span><span class="boring">        self.imp().tasks_list.bind_model(
+</span><span class="boring">            Some(&amp;selection_model),
+</span><span class="boring">            clone!(
+</span><span class="boring">                #[weak(rename_to = window)]
+</span><span class="boring">                self,
+</span><span class="boring">                #[upgrade_or_panic]
+</span><span class="boring">                move |obj| {
+</span><span class="boring">                    let task_object = obj
+</span><span class="boring">                        .downcast_ref()
+</span><span class="boring">                        .expect("The object should be of type `TaskObject`.");
+</span><span class="boring">                    let row = window.create_task_row(task_object);
+</span><span class="boring">                    row.upcast()
+</span><span class="boring">                }
+</span><span class="boring">            ),
+</span><span class="boring">        );
+</span><span class="boring">
+</span><span class="boring">        // Store filter model
+</span><span class="boring">        self.imp().current_filter_model.replace(Some(filter_model));
+</span><span class="boring">
+</span><span class="boring">        // If present, disconnect old `tasks_changed` handler
+</span><span class="boring">        if let Some(handler_id) = self.imp().tasks_changed_handler_id.take() {
+</span><span class="boring">            self.tasks().disconnect(handler_id);
+</span><span class="boring">        }
+</span><span class="boring">
+</span><span class="boring">        // Assure that the task list is only visible when it is supposed to
+</span><span class="boring">        self.set_task_list_visible(&amp;tasks);
+</span><span class="boring">        let tasks_changed_handler_id = tasks.connect_items_changed(clone!(
+</span><span class="boring">            #[weak(rename_to = window)]
+</span><span class="boring">            self,
+</span><span class="boring">            move |tasks, _, _, _| {
+</span><span class="boring">                window.set_task_list_visible(tasks);
+</span><span class="boring">            }
+</span><span class="boring">        ));
+</span><span class="boring">        self.imp()
+</span><span class="boring">            .tasks_changed_handler_id
+</span><span class="boring">            .replace(Some(tasks_changed_handler_id));
+</span><span class="boring">
+</span><span class="boring">        // Set current tasks
+</span><span class="boring">        self.imp().current_collection.replace(Some(collection));
+</span><span class="boring">
+</span><span class="boring">        self.select_collection_row();
+</span><span class="boring">    }
+</span><span class="boring">
+</span><span class="boring">    fn set_task_list_visible(&amp;self, tasks: &amp;gio::ListStore) {
+</span><span class="boring">        self.imp().tasks_list.set_visible(tasks.n_items() &gt; 0);
+</span><span class="boring">    }
+</span><span class="boring">
+</span><span class="boring">    fn select_collection_row(&amp;self) {
+</span><span class="boring">        if let Some(index) = self.collections().find(&amp;self.current_collection()) {
+</span><span class="boring">            let row = self.imp().collections_list.row_at_index(index as i32);
+</span><span class="boring">            self.imp().collections_list.select_row(row.as_ref());
+</span><span class="boring">        }
+</span><span class="boring">    }
+</span><span class="boring">
+</span><span class="boring">    fn create_task_row(&amp;self, task_object: &amp;TaskObject) -&gt; ActionRow {
+</span><span class="boring">        // Create check button
+</span><span class="boring">        let check_button = CheckButton::builder()
+</span><span class="boring">            .valign(Align::Center)
+</span><span class="boring">            .can_focus(false)
+</span><span class="boring">            .build();
+</span><span class="boring">
+</span><span class="boring">        // Create row
+</span><span class="boring">        let row = ActionRow::builder()
+</span><span class="boring">            .activatable_widget(&amp;check_button)
+</span><span class="boring">            .build();
+</span><span class="boring">        row.add_prefix(&amp;check_button);
+</span><span class="boring">
+</span><span class="boring">        // Bind properties
+</span><span class="boring">        task_object
+</span><span class="boring">            .bind_property("completed", &amp;check_button, "active")
+</span><span class="boring">            .bidirectional()
+</span><span class="boring">            .sync_create()
+</span><span class="boring">            .build();
+</span><span class="boring">        task_object
+</span><span class="boring">            .bind_property("content", &amp;row, "title")
+</span><span class="boring">            .sync_create()
+</span><span class="boring">            .build();
+</span><span class="boring">
+</span><span class="boring">        // Return row
+</span><span class="boring">        row
+</span><span class="boring">    }
+</span><span class="boring">
+</span><span class="boring">    fn setup_callbacks(&amp;self) {
+</span><span class="boring">        // Setup callback for activation of the entry
+</span><span class="boring">        self.imp().entry.connect_activate(clone!(
+</span><span class="boring">            #[weak(rename_to = window)]
+</span><span class="boring">            self,
+</span><span class="boring">            move |_| {
+</span><span class="boring">                window.new_task();
+</span><span class="boring">            }
+</span><span class="boring">        ));
+</span><span class="boring">
+</span><span class="boring">        // Setup callback for clicking (and the releasing) the icon of the entry
+</span><span class="boring">        self.imp().entry.connect_icon_release(clone!(
+</span><span class="boring">            #[weak(rename_to = window)]
+</span><span class="boring">            self,
+</span><span class="boring">            move |_, _| {
+</span><span class="boring">                window.new_task();
+</span><span class="boring">            }
+</span><span class="boring">        ));
+</span><span class="boring">
+</span><span class="boring">        // Filter model whenever the value of the key "filter" changes
+</span><span class="boring">        self.settings().connect_changed(
+</span><span class="boring">            Some("filter"),
+</span><span class="boring">            clone!(
+</span><span class="boring">                #[weak(rename_to = window)]
+</span><span class="boring">                self,
+</span><span class="boring">                move |_, _| {
+</span><span class="boring">                    window.set_filter();
+</span><span class="boring">                }
+</span><span class="boring">            ),
+</span><span class="boring">        );
+</span><span class="boring">
+</span><span class="boring">        // Setup callback when items of collections change
+</span><span class="boring">        self.set_stack();
+</span><span class="boring">        self.collections().connect_items_changed(clone!(
+</span><span class="boring">            #[weak(rename_to = window)]
+</span><span class="boring">            self,
+</span><span class="boring">            move |_, _, _, _| {
+</span><span class="boring">                window.set_stack();
+</span><span class="boring">            }
+</span><span class="boring">        ));
+</span><span class="boring">
+</span><span class="boring">        // Setup callback for activating a row of collections list
+</span><span class="boring">        self.imp().collections_list.connect_row_activated(clone!(
+</span><span class="boring">            #[weak(rename_to = window)]
+</span><span class="boring">            self,
+</span><span class="boring">            move |_, row| {
+</span><span class="boring">                let index = row.index();
+</span><span class="boring">                let selected_collection = window
+</span><span class="boring">                    .collections()
+</span><span class="boring">                    .item(index as u32)
+</span><span class="boring">                    .expect("There needs to be an object at this position.")
+</span><span class="boring">                    .downcast::&lt;CollectionObject&gt;()
+</span><span class="boring">                    .expect("The object needs to be a `CollectionObject`.");
+</span><span class="boring">                window.set_current_collection(selected_collection);
+</span><span class="boring">                window.imp().split_view.set_show_content(true);
+</span><span class="boring">            }
+</span><span class="boring">        ));
+</span><span class="boring">    }
+</span><span class="boring">
+</span><span class="boring">    fn set_stack(&amp;self) {
+</span><span class="boring">        if self.collections().n_items() &gt; 0 {
+</span><span class="boring">            self.imp().stack.set_visible_child_name("main");
+</span><span class="boring">        } else {
+</span><span class="boring">            self.imp().stack.set_visible_child_name("placeholder");
+</span><span class="boring">        }
+</span><span class="boring">    }
+</span><span class="boring">
+</span><span class="boring">    fn new_task(&amp;self) {
+</span><span class="boring">        // Get content from entry and clear it
+</span><span class="boring">        let buffer = self.imp().entry.buffer();
+</span><span class="boring">        let content = buffer.text().to_string();
+</span><span class="boring">        if content.is_empty() {
+</span><span class="boring">            return;
+</span><span class="boring">        }
+</span><span class="boring">        buffer.set_text("");
+</span><span class="boring">
+</span><span class="boring">        // Add new task to model
+</span><span class="boring">        let task = TaskObject::new(false, content);
+</span><span class="boring">        self.tasks().append(&amp;task);
+</span><span class="boring">    }
+</span><span class="boring">
+</span><span class="boring">    fn setup_actions(&amp;self) {
+</span><span class="boring">        // Create action from key "filter" and add to action group "win"
+</span><span class="boring">        let action_filter = self.settings().create_action("filter");
+</span><span class="boring">        self.add_action(&amp;action_filter);
+</span><span class="boring">    }
+</span><span class="boring">
+</span><span class="boring">    fn remove_done_tasks(&amp;self) {
+</span><span class="boring">        let tasks = self.tasks();
+</span><span class="boring">        let mut position = 0;
+</span><span class="boring">        while let Some(item) = tasks.item(position) {
+</span><span class="boring">            // Get `TaskObject` from `glib::Object`
+</span><span class="boring">            let task_object = item
+</span><span class="boring">                .downcast_ref::&lt;TaskObject&gt;()
+</span><span class="boring">                .expect("The object needs to be of type `TaskObject`.");
+</span><span class="boring">
+</span><span class="boring">            if task_object.is_completed() {
+</span><span class="boring">                tasks.remove(position);
+</span><span class="boring">            } else {
+</span><span class="boring">                position += 1;
+</span><span class="boring">            }
+</span><span class="boring">        }
+</span><span class="boring">    }
+</span><span class="boring">
+</span>    async fn new_collection(&amp;self) {
+        // Create entry
+        let entry = Entry::builder()
+            .placeholder_text(gettext("Name"))
+            .activates_default(true)
+            .build();
+
+        let cancel_response = "cancel";
+        let create_response = "create";
+
+        // Create new dialog
+        let dialog = AlertDialog::builder()
+            .heading(gettext("New Collection"))
+            .close_response(cancel_response)
+            .default_response(create_response)
+            .extra_child(&amp;entry)
+            .build();
+        dialog.add_responses(&amp;[
+            (cancel_response, &amp;gettext("Cancel")),
+            (create_response, &amp;gettext("Create")),
+        ]);
+        // Make the dialog button insensitive initially
+        dialog.set_response_enabled(create_response, false);
+        dialog.set_response_appearance(create_response, ResponseAppearance::Suggested);
+
+        // Set entry's css class to "error", when there is no text in it
+        entry.connect_changed(clone!(
+            #[weak]
+            dialog,
+            move |entry| {
+                let text = entry.text();
+                let empty = text.is_empty();
+
+                dialog.set_response_enabled(create_response, !empty);
+
+                if empty {
+                    entry.add_css_class("error");
+                } else {
+                    entry.remove_css_class("error");
+                }
+            }
+        ));
+
+        let response = dialog.choose_future(Some(self)).await;
+
+        // Return if the user chose `cancel_response`
+        if response == cancel_response {
+            return;
+        }
+
+        // Create a new list store
+        let tasks = gio::ListStore::new::&lt;TaskObject&gt;();
+
+        // Create a new collection object from the title the user provided
+        let title = entry.text().to_string();
+        let collection = CollectionObject::new(&amp;title, tasks);
+
+        // Add new collection object and set current tasks
+        self.collections().append(&amp;collection);
+        self.set_current_collection(collection);
+
+        // Show the content
+        self.imp().split_view.set_show_content(true);
+    }
+<span class="boring">}</span></code></pre>
+<p>The <code>gettext()</code> function looks up the translation at runtime.
+If no translation exists, it just returns the original string.</p>
+<h2 id="desktop-file-translation"><a class="header" href="#desktop-file-translation">Desktop File Translation</a></h2>
+<p>Desktop files also support translations.
+We prefix translatable keys with an underscore.
+Also since it is now templated with both Meson and gettext, we change the file extension from <code>org.gtk_rs.Todo10.desktop.in</code> to <code>org.gtk_rs.Todo10.desktop.in.in</code>.</p>
+<p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/10/data/org.gtk_rs.Todo10.desktop.in.in">listings/todo/10/data/org.gtk_rs.Todo10.desktop.in.in</a></p>
+<pre><code class="language-ini">[Desktop Entry]
+Name=Todo 10
+_Comment=Keep track of tasks
+Exec=todo-10
+Icon=@APP_ID@
+Terminal=false
+Type=Application
+DBusActivatable=true
+Categories=GNOME;GTK;Utility;
+</code></pre>
+<p>Meson’s <code>i18n.merge_file()</code> processes <code>_Name</code> and <code>_Comment</code> and merges in the translations.</p>
+<h2 id="creating-a-translation"><a class="header" href="#creating-a-translation">Creating a Translation</a></h2>
+<h3 id="the-translation-file"><a class="header" href="#the-translation-file">The Translation File</a></h3>
+<p>Translation files use the <code>.po</code> format.
+This is how a small section of the file looks like:</p>
+<p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/todo/10/po/de.po">listings/todo/10/po/de.po</a></p>
+<pre><code class="language-po">#: data/resources/window.ui:134
+msgid "Main Menu"
+msgstr "Hauptmenü"
+
+#: data/resources/window.ui:153
+msgid "Enter a Task…"
+msgstr "Aufgabe eingeben…"
+</code></pre>
+<p>Each entry has:</p>
+<ul>
+<li>A comment showing where the string appears</li>
+<li><code>msgid</code>: the original string (must match exactly)</li>
+<li><code>msgstr</code>: the translated string</li>
+</ul>
+<h3 id="generating-the-template"><a class="header" href="#generating-the-template">Generating the Template</a></h3>
+<p>To create a <code>.pot</code> template file with all translatable strings:</p>
+<pre><code>meson compile -C builddir todo-10-pot
+</code></pre>
+<p>Translators can use this template to create new <code>.po</code> files.
+Tools like <a href="https://poedit.net/">Poedit</a> or <a href="https://wiki.gnome.org/Apps/Gtranslator">GNOME Translation Editor</a> make this easier.</p>
+<h2 id="building-and-testing"><a class="header" href="#building-and-testing">Building and Testing</a></h2>
+<p>Build and install as usual:</p>
+<pre><code>meson setup builddir -Dprofile=development --prefix=~/.local
+meson install -C builddir
+</code></pre>
+<p>To test a specific language, set the <code>LANGUAGE</code> environment variable:</p>
+<pre><code>LANGUAGE=de todo-10
+</code></pre>
+<div style="text-align:center"><img src="img/todo_10_german.png" alt="To-Do app in German" /></div>
+
+<p>That was it!
+Our To-Do app can now speak German.
+For projects with many contributors, translation platforms like <a href="https://weblate.org/">Weblate</a> or <a href="https://l10n.gnome.org/">Damned Lies</a> help coordinate the work.</p>
 
                     </main>
 
