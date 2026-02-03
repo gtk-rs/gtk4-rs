@@ -1,0 +1,4 @@
+data/org.gtk_rs.Todo10.desktop.in.in
+data/resources/window.ui
+data/resources/shortcuts.ui
+src/window/mod.rs

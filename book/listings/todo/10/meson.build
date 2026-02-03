@@ -1,11 +1,12 @@
 # Set up the project
-project('todo-9', 'rust', version: '0.1.0', meson_version: '>= 1.4')
+project('todo-10', 'rust', version: '0.1.0', meson_version: '>= 1.4')
 
-# Import GNOME module
+# Import GNOME and i18n modules
 gnome = import('gnome')
+i18n = import('i18n')
 
 # Set the base_id
-base_id = 'org.gtk_rs.Todo9'
+base_id = 'org.gtk_rs.Todo10'
 
 # Define variables depending on the current profile
 is_devel = get_option('profile') == 'development'
@@ -25,6 +26,7 @@ pkgdatadir = datadir / meson.project_name()
 
 # Enter these subdirectories and execute the meson.build files in them
 subdir('data')
+subdir('po')
 subdir('src')
 
 # Execute these tasks after installing

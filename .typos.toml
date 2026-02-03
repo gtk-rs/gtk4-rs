@@ -7,6 +7,7 @@ extend-exclude = [
     "gdk4/sys/tests/constant.c",
     "**/**/versions.txt",
     "*.svg",
+    "*.po"
 ]
 
 [default.extend-words]
@@ -17,3 +18,4 @@ anid = "anid"
 lamda = "lamda"
 inout = "inout"
 relm = "relm"
+consts = "consts"
