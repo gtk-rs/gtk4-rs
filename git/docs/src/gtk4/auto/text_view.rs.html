@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/auto/text_view.rs`."><title>text_view.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-0bd2dfd4.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.95.0-nightly (873d4682c 2026-01-25)" data-channel="nightly" data-search-js="search-86d08462.js" data-stringdex-js="stringdex-b897f86f.js" data-settings-js="settings-170eb4bf.js" ><script src="../../../static.files/storage-f9617a14.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-12f88f4f.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-ffcac47a.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><a class="skip-main-content" href="#main-content">Skip to main content</a><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/auto/text_view.rs`."><title>text_view.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-b7b9f40b.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.95.0-nightly (f60a0f1bc 2026-02-02)" data-channel="nightly" data-search-js="search-fb33671b.js" data-stringdex-js="stringdex-b897f86f.js" data-settings-js="settings-170eb4bf.js" ><script src="../../../static.files/storage-f9617a14.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-12f88f4f.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-f7c3ffd8.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><a class="skip-main-content" href="#main-content">Skip to main content</a><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
 
@@ -80,9 +80,9 @@
 <a href=#7 id=7 data-nosnippet>7</a></span><span class="kw">use </span><a href="accessible_text.rs.html#8-27"><span class="kw">crate</span>::AccessibleText</a>;
 <a href=#8 id=8 data-nosnippet>8</a><span class="kw">use </span>crate::{
 <a href=#9 id=9 data-nosnippet>9</a>    <a href="accessible.rs.html#19-70">Accessible</a>, <a href="enums.rs.html#1029-1329">AccessibleRole</a>, <a href="adjustment.rs.html#14-99">Adjustment</a>, <a href="../enums.rs.html#77-107">Align</a>, <a href="buildable.rs.html#8-31">Buildable</a>, <a href="constraint_target.rs.html#8-23">ConstraintTarget</a>, <a href="enums.rs.html#4342-4375">DeleteType</a>,
-<a href=#10 id=10 data-nosnippet>10</a>    <a href="flags.rs.html#914-973">InputHints</a>, <a href="enums.rs.html#6479-6515">InputPurpose</a>, <a href="enums.rs.html#7019-7034">Justification</a>, <a href="layout_manager.rs.html#8-70">LayoutManager</a>, <a href="enums.rs.html#7664-7697">MovementStep</a>, <a href="enums.rs.html#8376-8387">Overflow</a>, <a href="enums.rs.html#10863-10884">ScrollStep</a>,
-<a href=#11 id=11 data-nosnippet>11</a>    <a href="scrollable.rs.html#13-82">Scrollable</a>, <a href="enums.rs.html#11150-11159">ScrollablePolicy</a>, <a href="text_buffer.rs.html#14-268">TextBuffer</a>, <a href="text_child_anchor.rs.html#8-22">TextChildAnchor</a>, <a href="enums.rs.html#13392-13403">TextExtendSelection</a>, <a href="text_iter.rs.html#8-23">TextIter</a>,
-<a href=#12 id=12 data-nosnippet>12</a>    <a href="text_mark.rs.html#8-70">TextMark</a>, <a href="enums.rs.html#13593-13614">TextWindowType</a>, <a href="widget.rs.html#19-864">Widget</a>, <a href="enums.rs.html#14371-14389">WrapMode</a>, <a href="../../../gtk4_sys/index.html">ffi</a>,
+<a href=#10 id=10 data-nosnippet>10</a>    <a href="flags.rs.html#914-973">InputHints</a>, <a href="enums.rs.html#6479-6515">InputPurpose</a>, <a href="enums.rs.html#7019-7034">Justification</a>, <a href="layout_manager.rs.html#8-70">LayoutManager</a>, <a href="enums.rs.html#7664-7697">MovementStep</a>, <a href="enums.rs.html#8376-8387">Overflow</a>, <a href="enums.rs.html#10734-10755">ScrollStep</a>,
+<a href=#11 id=11 data-nosnippet>11</a>    <a href="scrollable.rs.html#13-82">Scrollable</a>, <a href="enums.rs.html#11021-11030">ScrollablePolicy</a>, <a href="text_buffer.rs.html#14-268">TextBuffer</a>, <a href="text_child_anchor.rs.html#8-22">TextChildAnchor</a>, <a href="enums.rs.html#13263-13274">TextExtendSelection</a>, <a href="text_iter.rs.html#8-23">TextIter</a>,
+<a href=#12 id=12 data-nosnippet>12</a>    <a href="text_mark.rs.html#8-70">TextMark</a>, <a href="enums.rs.html#13464-13485">TextWindowType</a>, <a href="widget.rs.html#19-864">Widget</a>, <a href="enums.rs.html#14242-14260">WrapMode</a>, <a href="../../../gtk4_sys/index.html">ffi</a>,
 <a href=#13 id=13 data-nosnippet>13</a>};
 <a href=#14 id=14 data-nosnippet>14</a><span class="kw">use </span>glib::{
 <a href=#15 id=15 data-nosnippet>15</a>    <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.ObjectType.html">object::ObjectType</a> <span class="kw">as _</span>,
@@ -1280,7 +1280,7 @@
 <a href=#1207 id=1207 data-nosnippet>1207</a>    }
 <a href=#1208 id=1208 data-nosnippet>1208</a>
 <a href=#1209 id=1209 data-nosnippet>1209</a>    <span class="doccomment">/// Whether to wrap lines never, at word boundaries, or at character boundaries.
-<a href=#1210 id=1210 data-nosnippet>1210</a>    </span><span class="kw">pub fn </span>wrap_mode(<span class="self">self</span>, wrap_mode: <a href="enums.rs.html#14371-14389">WrapMode</a>) -&gt; <span class="self">Self </span>{
+<a href=#1210 id=1210 data-nosnippet>1210</a>    </span><span class="kw">pub fn </span>wrap_mode(<span class="self">self</span>, wrap_mode: <a href="enums.rs.html#14242-14260">WrapMode</a>) -&gt; <span class="self">Self </span>{
 <a href=#1211 id=1211 data-nosnippet>1211</a>        <span class="self">Self </span>{
 <a href=#1212 id=1212 data-nosnippet>1212</a>            builder: <a class="self" href="#1210">self</a>.builder.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/struct.ObjectBuilder.html#method.property">property</a>(<span class="string">"wrap-mode"</span>, <a href="#1210">wrap_mode</a>),
 <a href=#1213 id=1213 data-nosnippet>1213</a>        }
@@ -1598,7 +1598,7 @@
 <a href=#1525 id=1525 data-nosnippet>1525</a>    }
 <a href=#1526 id=1526 data-nosnippet>1526</a>
 <a href=#1527 id=1527 data-nosnippet>1527</a>    <span class="doccomment">/// Determines when horizontal scrolling should start.
-<a href=#1528 id=1528 data-nosnippet>1528</a>    </span><span class="kw">pub fn </span>hscroll_policy(<span class="self">self</span>, hscroll_policy: <a href="enums.rs.html#11150-11159">ScrollablePolicy</a>) -&gt; <span class="self">Self </span>{
+<a href=#1528 id=1528 data-nosnippet>1528</a>    </span><span class="kw">pub fn </span>hscroll_policy(<span class="self">self</span>, hscroll_policy: <a href="enums.rs.html#11021-11030">ScrollablePolicy</a>) -&gt; <span class="self">Self </span>{
 <a href=#1529 id=1529 data-nosnippet>1529</a>        <span class="self">Self </span>{
 <a href=#1530 id=1530 data-nosnippet>1530</a>            builder: <a class="self" href="#1528">self</a>.builder.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/struct.ObjectBuilder.html#method.property">property</a>(<span class="string">"hscroll-policy"</span>, <a href="#1528">hscroll_policy</a>),
 <a href=#1531 id=1531 data-nosnippet>1531</a>        }
@@ -1616,7 +1616,7 @@
 <a href=#1543 id=1543 data-nosnippet>1543</a>    }
 <a href=#1544 id=1544 data-nosnippet>1544</a>
 <a href=#1545 id=1545 data-nosnippet>1545</a>    <span class="doccomment">/// Determines when vertical scrolling should start.
-<a href=#1546 id=1546 data-nosnippet>1546</a>    </span><span class="kw">pub fn </span>vscroll_policy(<span class="self">self</span>, vscroll_policy: <a href="enums.rs.html#11150-11159">ScrollablePolicy</a>) -&gt; <span class="self">Self </span>{
+<a href=#1546 id=1546 data-nosnippet>1546</a>    </span><span class="kw">pub fn </span>vscroll_policy(<span class="self">self</span>, vscroll_policy: <a href="enums.rs.html#11021-11030">ScrollablePolicy</a>) -&gt; <span class="self">Self </span>{
 <a href=#1547 id=1547 data-nosnippet>1547</a>        <span class="self">Self </span>{
 <a href=#1548 id=1548 data-nosnippet>1548</a>            builder: <a class="self" href="#1546">self</a>.builder.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/struct.ObjectBuilder.html#method.property">property</a>(<span class="string">"vscroll-policy"</span>, <a href="#1546">vscroll_policy</a>),
 <a href=#1549 id=1549 data-nosnippet>1549</a>        }
@@ -1750,7 +1750,7 @@
 <a href=#1677 id=1677 data-nosnippet>1677</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_text_view_buffer_to_window_coords"</span>)]
 <a href=#1678 id=1678 data-nosnippet>1678</a>    </span><span class="kw">fn </span>buffer_to_window_coords(
 <a href=#1679 id=1679 data-nosnippet>1679</a>        <span class="kw-2">&amp;</span><span class="self">self</span>,
-<a href=#1680 id=1680 data-nosnippet>1680</a>        win: <a href="enums.rs.html#13593-13614">TextWindowType</a>,
+<a href=#1680 id=1680 data-nosnippet>1680</a>        win: <a href="enums.rs.html#13464-13485">TextWindowType</a>,
 <a href=#1681 id=1681 data-nosnippet>1681</a>        buffer_x: <a href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>,
 <a href=#1682 id=1682 data-nosnippet>1682</a>        buffer_y: <a href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>,
 <a href=#1683 id=1683 data-nosnippet>1683</a>    ) -&gt; (<a href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) {
@@ -1958,7 +1958,7 @@
 <a href=#1885 id=1885 data-nosnippet>1885</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_text_view_get_extra_menu"</span>)]
 <a href=#1886 id=1886 data-nosnippet>1886</a>    #[doc(alias = <span class="string">"get_extra_menu"</span>)]
 <a href=#1887 id=1887 data-nosnippet>1887</a>    #[doc(alias = <span class="string">"extra-menu"</span>)]
-<a href=#1888 id=1888 data-nosnippet>1888</a>    </span><span class="kw">fn </span>extra_menu(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; gio::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/gio/auto/menu_model/struct.MenuModel.html">MenuModel</a> {
+<a href=#1888 id=1888 data-nosnippet>1888</a>    </span><span class="kw">fn </span>extra_menu(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;gio::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/gio/auto/menu_model/struct.MenuModel.html">MenuModel</a>&gt; {
 <a href=#1889 id=1889 data-nosnippet>1889</a>        <span class="kw">unsafe </span>{
 <a href=#1890 id=1890 data-nosnippet>1890</a>            <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib_none.html">from_glib_none</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_text_view_get_extra_menu.html">gtk_text_view_get_extra_menu</a>(
 <a href=#1891 id=1891 data-nosnippet>1891</a>                <a class="self" href="#1888">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
@@ -1980,7 +1980,7 @@
 <a href=#1907 id=1907 data-nosnippet>1907</a>    /// a [`Widget`][crate::Widget]
 <a href=#1908 id=1908 data-nosnippet>1908</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_text_view_get_gutter"</span>)]
 <a href=#1909 id=1909 data-nosnippet>1909</a>    #[doc(alias = <span class="string">"get_gutter"</span>)]
-<a href=#1910 id=1910 data-nosnippet>1910</a>    </span><span class="kw">fn </span>gutter(<span class="kw-2">&amp;</span><span class="self">self</span>, win: <a href="enums.rs.html#13593-13614">TextWindowType</a>) -&gt; <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;<a href="widget.rs.html#19-864">Widget</a>&gt; {
+<a href=#1910 id=1910 data-nosnippet>1910</a>    </span><span class="kw">fn </span>gutter(<span class="kw-2">&amp;</span><span class="self">self</span>, win: <a href="enums.rs.html#13464-13485">TextWindowType</a>) -&gt; <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;<a href="widget.rs.html#19-864">Widget</a>&gt; {
 <a href=#1911 id=1911 data-nosnippet>1911</a>        <span class="kw">unsafe </span>{
 <a href=#1912 id=1912 data-nosnippet>1912</a>            <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib_none.html">from_glib_none</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_text_view_get_gutter.html">gtk_text_view_get_gutter</a>(
 <a href=#1913 id=1913 data-nosnippet>1913</a>                <a class="self" href="#1910">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
@@ -2464,7 +2464,7 @@
 <a href=#2391 id=2391 data-nosnippet>2391</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_text_view_get_wrap_mode"</span>)]
 <a href=#2392 id=2392 data-nosnippet>2392</a>    #[doc(alias = <span class="string">"get_wrap_mode"</span>)]
 <a href=#2393 id=2393 data-nosnippet>2393</a>    #[doc(alias = <span class="string">"wrap-mode"</span>)]
-<a href=#2394 id=2394 data-nosnippet>2394</a>    </span><span class="kw">fn </span>wrap_mode(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="enums.rs.html#14371-14389">WrapMode</a> {
+<a href=#2394 id=2394 data-nosnippet>2394</a>    </span><span class="kw">fn </span>wrap_mode(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="enums.rs.html#14242-14260">WrapMode</a> {
 <a href=#2395 id=2395 data-nosnippet>2395</a>        <span class="kw">unsafe </span>{
 <a href=#2396 id=2396 data-nosnippet>2396</a>            <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_text_view_get_wrap_mode.html">gtk_text_view_get_wrap_mode</a>(
 <a href=#2397 id=2397 data-nosnippet>2397</a>                <a class="self" href="#2394">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
@@ -2866,7 +2866,7 @@
 <a href=#2793 id=2793 data-nosnippet>2793</a>    /// ## `widget`
 <a href=#2794 id=2794 data-nosnippet>2794</a>    /// a [`Widget`][crate::Widget]
 <a href=#2795 id=2795 data-nosnippet>2795</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_text_view_set_gutter"</span>)]
-<a href=#2796 id=2796 data-nosnippet>2796</a>    </span><span class="kw">fn </span>set_gutter(<span class="kw-2">&amp;</span><span class="self">self</span>, win: <a href="enums.rs.html#13593-13614">TextWindowType</a>, widget: <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;<span class="kw-2">&amp;</span><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html">IsA</a>&lt;<a href="widget.rs.html#19-864">Widget</a>&gt;&gt;) {
+<a href=#2796 id=2796 data-nosnippet>2796</a>    </span><span class="kw">fn </span>set_gutter(<span class="kw-2">&amp;</span><span class="self">self</span>, win: <a href="enums.rs.html#13464-13485">TextWindowType</a>, widget: <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;<span class="kw-2">&amp;</span><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html">IsA</a>&lt;<a href="widget.rs.html#19-864">Widget</a>&gt;&gt;) {
 <a href=#2797 id=2797 data-nosnippet>2797</a>        <span class="kw">unsafe </span>{
 <a href=#2798 id=2798 data-nosnippet>2798</a>            ffi::<a href="../../../gtk4_sys/fn.gtk_text_view_set_gutter.html">gtk_text_view_set_gutter</a>(
 <a href=#2799 id=2799 data-nosnippet>2799</a>                <a class="self" href="#2796">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
@@ -3076,7 +3076,7 @@
 <a href=#3003 id=3003 data-nosnippet>3003</a>    /// a [`WrapMode`][crate::WrapMode]
 <a href=#3004 id=3004 data-nosnippet>3004</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_text_view_set_wrap_mode"</span>)]
 <a href=#3005 id=3005 data-nosnippet>3005</a>    #[doc(alias = <span class="string">"wrap-mode"</span>)]
-<a href=#3006 id=3006 data-nosnippet>3006</a>    </span><span class="kw">fn </span>set_wrap_mode(<span class="kw-2">&amp;</span><span class="self">self</span>, wrap_mode: <a href="enums.rs.html#14371-14389">WrapMode</a>) {
+<a href=#3006 id=3006 data-nosnippet>3006</a>    </span><span class="kw">fn </span>set_wrap_mode(<span class="kw-2">&amp;</span><span class="self">self</span>, wrap_mode: <a href="enums.rs.html#14242-14260">WrapMode</a>) {
 <a href=#3007 id=3007 data-nosnippet>3007</a>        <span class="kw">unsafe </span>{
 <a href=#3008 id=3008 data-nosnippet>3008</a>            ffi::<a href="../../../gtk4_sys/fn.gtk_text_view_set_wrap_mode.html">gtk_text_view_set_wrap_mode</a>(<a class="self" href="#3006">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>, <a href="#3006">wrap_mode</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>());
 <a href=#3009 id=3009 data-nosnippet>3009</a>        }
@@ -3122,7 +3122,7 @@
 <a href=#3049 id=3049 data-nosnippet>3049</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_text_view_window_to_buffer_coords"</span>)]
 <a href=#3050 id=3050 data-nosnippet>3050</a>    </span><span class="kw">fn </span>window_to_buffer_coords(
 <a href=#3051 id=3051 data-nosnippet>3051</a>        <span class="kw-2">&amp;</span><span class="self">self</span>,
-<a href=#3052 id=3052 data-nosnippet>3052</a>        win: <a href="enums.rs.html#13593-13614">TextWindowType</a>,
+<a href=#3052 id=3052 data-nosnippet>3052</a>        win: <a href="enums.rs.html#13464-13485">TextWindowType</a>,
 <a href=#3053 id=3053 data-nosnippet>3053</a>        window_x: <a href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>,
 <a href=#3054 id=3054 data-nosnippet>3054</a>        window_y: <a href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>,
 <a href=#3055 id=3055 data-nosnippet>3055</a>    ) -&gt; (<a href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) {
@@ -3339,7 +3339,7 @@
 <a href=#3266 id=3266 data-nosnippet>3266</a>    ///   event. `GDK_EVENT_PROPAGATE` to propagate the event further.
 <a href=#3267 id=3267 data-nosnippet>3267</a>    </span><span class="attr">#[doc(alias = <span class="string">"extend-selection"</span>)]
 <a href=#3268 id=3268 data-nosnippet>3268</a>    </span><span class="kw">fn </span>connect_extend_selection&lt;
-<a href=#3269 id=3269 data-nosnippet>3269</a>        F: <a href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html">Fn</a>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <a href="enums.rs.html#13392-13403">TextExtendSelection</a>, <span class="kw-2">&amp;</span><a href="text_iter.rs.html#8-23">TextIter</a>, <span class="kw-2">&amp;</span><a href="text_iter.rs.html#8-23">TextIter</a>, <span class="kw-2">&amp;</span><a href="text_iter.rs.html#8-23">TextIter</a>) -&gt; glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/enum.Propagation.html">Propagation</a>
+<a href=#3269 id=3269 data-nosnippet>3269</a>        F: <a href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html">Fn</a>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <a href="enums.rs.html#13263-13274">TextExtendSelection</a>, <span class="kw-2">&amp;</span><a href="text_iter.rs.html#8-23">TextIter</a>, <span class="kw-2">&amp;</span><a href="text_iter.rs.html#8-23">TextIter</a>, <span class="kw-2">&amp;</span><a href="text_iter.rs.html#8-23">TextIter</a>) -&gt; glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/enum.Propagation.html">Propagation</a>
 <a href=#3270 id=3270 data-nosnippet>3270</a>            + <span class="lifetime">'static</span>,
 <a href=#3271 id=3271 data-nosnippet>3271</a>    &gt;(
 <a href=#3272 id=3272 data-nosnippet>3272</a>        <span class="kw-2">&amp;</span><span class="self">self</span>,
@@ -3347,7 +3347,7 @@
 <a href=#3274 id=3274 data-nosnippet>3274</a>    ) -&gt; <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html">SignalHandlerId</a> {
 <a href=#3275 id=3275 data-nosnippet>3275</a>        <span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn </span>extend_selection_trampoline&lt;
 <a href=#3276 id=3276 data-nosnippet>3276</a>            P: <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html">IsA</a>&lt;<a href="#24-935">TextView</a>&gt;,
-<a href=#3277 id=3277 data-nosnippet>3277</a>            F: <a href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html">Fn</a>(<span class="kw-2">&amp;</span>P, <a href="enums.rs.html#13392-13403">TextExtendSelection</a>, <span class="kw-2">&amp;</span><a href="text_iter.rs.html#8-23">TextIter</a>, <span class="kw-2">&amp;</span><a href="text_iter.rs.html#8-23">TextIter</a>, <span class="kw-2">&amp;</span><a href="text_iter.rs.html#8-23">TextIter</a>) -&gt; glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/enum.Propagation.html">Propagation</a>
+<a href=#3277 id=3277 data-nosnippet>3277</a>            F: <a href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html">Fn</a>(<span class="kw-2">&amp;</span>P, <a href="enums.rs.html#13263-13274">TextExtendSelection</a>, <span class="kw-2">&amp;</span><a href="text_iter.rs.html#8-23">TextIter</a>, <span class="kw-2">&amp;</span><a href="text_iter.rs.html#8-23">TextIter</a>, <span class="kw-2">&amp;</span><a href="text_iter.rs.html#8-23">TextIter</a>) -&gt; glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/enum.Propagation.html">Propagation</a>
 <a href=#3278 id=3278 data-nosnippet>3278</a>                + <span class="lifetime">'static</span>,
 <a href=#3279 id=3279 data-nosnippet>3279</a>        &gt;(
 <a href=#3280 id=3280 data-nosnippet>3280</a>            this: <span class="kw-2">*mut </span>ffi::<a href="../../../gtk4_sys/struct.GtkTextView.html">GtkTextView</a>,
@@ -3544,13 +3544,13 @@
 <a href=#3471 id=3471 data-nosnippet>3471</a>    /// ## `count`
 <a href=#3472 id=3472 data-nosnippet>3472</a>    /// the number of @step units to move
 <a href=#3473 id=3473 data-nosnippet>3473</a>    </span><span class="attr">#[doc(alias = <span class="string">"move-viewport"</span>)]
-<a href=#3474 id=3474 data-nosnippet>3474</a>    </span><span class="kw">fn </span>connect_move_viewport&lt;F: <a href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html">Fn</a>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <a href="enums.rs.html#10863-10884">ScrollStep</a>, <a href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) + <span class="lifetime">'static</span>&gt;(
+<a href=#3474 id=3474 data-nosnippet>3474</a>    </span><span class="kw">fn </span>connect_move_viewport&lt;F: <a href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html">Fn</a>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <a href="enums.rs.html#10734-10755">ScrollStep</a>, <a href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) + <span class="lifetime">'static</span>&gt;(
 <a href=#3475 id=3475 data-nosnippet>3475</a>        <span class="kw-2">&amp;</span><span class="self">self</span>,
 <a href=#3476 id=3476 data-nosnippet>3476</a>        f: F,
 <a href=#3477 id=3477 data-nosnippet>3477</a>    ) -&gt; <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html">SignalHandlerId</a> {
 <a href=#3478 id=3478 data-nosnippet>3478</a>        <span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn </span>move_viewport_trampoline&lt;
 <a href=#3479 id=3479 data-nosnippet>3479</a>            P: <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html">IsA</a>&lt;<a href="#24-935">TextView</a>&gt;,
-<a href=#3480 id=3480 data-nosnippet>3480</a>            F: <a href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html">Fn</a>(<span class="kw-2">&amp;</span>P, <a href="enums.rs.html#10863-10884">ScrollStep</a>, <a href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) + <span class="lifetime">'static</span>,
+<a href=#3480 id=3480 data-nosnippet>3480</a>            F: <a href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html">Fn</a>(<span class="kw-2">&amp;</span>P, <a href="enums.rs.html#10734-10755">ScrollStep</a>, <a href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) + <span class="lifetime">'static</span>,
 <a href=#3481 id=3481 data-nosnippet>3481</a>        &gt;(
 <a href=#3482 id=3482 data-nosnippet>3482</a>            this: <span class="kw-2">*mut </span>ffi::<a href="../../../gtk4_sys/struct.GtkTextView.html">GtkTextView</a>,
 <a href=#3483 id=3483 data-nosnippet>3483</a>            step: ffi::<a href="../../../gtk4_sys/type.GtkScrollStep.html">GtkScrollStep</a>,
@@ -3579,7 +3579,7 @@
 <a href=#3506 id=3506 data-nosnippet>3506</a>        }
 <a href=#3507 id=3507 data-nosnippet>3507</a>    }
 <a href=#3508 id=3508 data-nosnippet>3508</a>
-<a href=#3509 id=3509 data-nosnippet>3509</a>    <span class="kw">fn </span>emit_move_viewport(<span class="kw-2">&amp;</span><span class="self">self</span>, step: <a href="enums.rs.html#10863-10884">ScrollStep</a>, count: <a href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) {
+<a href=#3509 id=3509 data-nosnippet>3509</a>    <span class="kw">fn </span>emit_move_viewport(<span class="kw-2">&amp;</span><span class="self">self</span>, step: <a href="enums.rs.html#10734-10755">ScrollStep</a>, count: <a href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) {
 <a href=#3510 id=3510 data-nosnippet>3510</a>        <a class="self" href="#3509">self</a>.emit_by_name::&lt;()&gt;(<span class="string">"move-viewport"</span>, <span class="kw-2">&amp;</span>[<span class="kw-2">&amp;</span><a href="#3509">step</a>, <span class="kw-2">&amp;</span><a href="#3509">count</a>]);
 <a href=#3511 id=3511 data-nosnippet>3511</a>    }
 <a href=#3512 id=3512 data-nosnippet>3512</a>

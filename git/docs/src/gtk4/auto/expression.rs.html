@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/auto/expression.rs`."><title>expression.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-0bd2dfd4.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.95.0-nightly (873d4682c 2026-01-25)" data-channel="nightly" data-search-js="search-86d08462.js" data-stringdex-js="stringdex-b897f86f.js" data-settings-js="settings-170eb4bf.js" ><script src="../../../static.files/storage-f9617a14.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-12f88f4f.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-ffcac47a.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><a class="skip-main-content" href="#main-content">Skip to main content</a><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/auto/expression.rs`."><title>expression.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-b7b9f40b.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.95.0-nightly (f60a0f1bc 2026-02-02)" data-channel="nightly" data-search-js="search-fb33671b.js" data-stringdex-js="stringdex-b897f86f.js" data-settings-js="settings-170eb4bf.js" ><script src="../../../static.files/storage-f9617a14.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-12f88f4f.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-f7c3ffd8.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><a class="skip-main-content" href="#main-content">Skip to main content</a><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
 
@@ -281,128 +281,126 @@
 <a href=#208 id=208 data-nosnippet>208</a>    /// the object's property stays synchronized with `self`.
 <a href=#209 id=209 data-nosnippet>209</a>    ///
 <a href=#210 id=210 data-nosnippet>210</a>    /// If `self`'s evaluation fails, `target`'s `property` is not updated.
-<a href=#211 id=211 data-nosnippet>211</a>    /// You can ensure that this doesn't happen by using a fallback
-<a href=#212 id=212 data-nosnippet>212</a>    /// expression.
-<a href=#213 id=213 data-nosnippet>213</a>    ///
-<a href=#214 id=214 data-nosnippet>214</a>    /// Note that this function takes ownership of `self`. If you want
-<a href=#215 id=215 data-nosnippet>215</a>    /// to keep it around, you should `Gtk::Expression::ref()` it beforehand.
-<a href=#216 id=216 data-nosnippet>216</a>    /// ## `target`
-<a href=#217 id=217 data-nosnippet>217</a>    /// the target object to bind to
-<a href=#218 id=218 data-nosnippet>218</a>    /// ## `property`
-<a href=#219 id=219 data-nosnippet>219</a>    /// name of the property on `target` to bind to
-<a href=#220 id=220 data-nosnippet>220</a>    /// ## `this_`
-<a href=#221 id=221 data-nosnippet>221</a>    /// the this argument for
-<a href=#222 id=222 data-nosnippet>222</a>    ///   the evaluation of `self`
+<a href=#211 id=211 data-nosnippet>211</a>    ///
+<a href=#212 id=212 data-nosnippet>212</a>    /// Note that this function takes ownership of `self`. If you want
+<a href=#213 id=213 data-nosnippet>213</a>    /// to keep it around, you should `Gtk::Expression::ref()` it beforehand.
+<a href=#214 id=214 data-nosnippet>214</a>    /// ## `target`
+<a href=#215 id=215 data-nosnippet>215</a>    /// the target object to bind to
+<a href=#216 id=216 data-nosnippet>216</a>    /// ## `property`
+<a href=#217 id=217 data-nosnippet>217</a>    /// name of the property on `target` to bind to
+<a href=#218 id=218 data-nosnippet>218</a>    /// ## `this_`
+<a href=#219 id=219 data-nosnippet>219</a>    /// the this argument for
+<a href=#220 id=220 data-nosnippet>220</a>    ///   the evaluation of `self`
+<a href=#221 id=221 data-nosnippet>221</a>    ///
+<a href=#222 id=222 data-nosnippet>222</a>    /// # Returns
 <a href=#223 id=223 data-nosnippet>223</a>    ///
-<a href=#224 id=224 data-nosnippet>224</a>    /// # Returns
-<a href=#225 id=225 data-nosnippet>225</a>    ///
-<a href=#226 id=226 data-nosnippet>226</a>    /// a [`ExpressionWatch`][crate::ExpressionWatch]
-<a href=#227 id=227 data-nosnippet>227</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_expression_bind"</span>)]
-<a href=#228 id=228 data-nosnippet>228</a>    </span><span class="kw">pub fn </span>bind(
-<a href=#229 id=229 data-nosnippet>229</a>        <span class="kw-2">&amp;</span><span class="self">self</span>,
-<a href=#230 id=230 data-nosnippet>230</a>        target: <span class="kw-2">&amp;</span><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html">IsA</a>&lt;glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/struct.Object.html">Object</a>&gt;,
-<a href=#231 id=231 data-nosnippet>231</a>        property: <span class="kw-2">&amp;</span><a href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>,
-<a href=#232 id=232 data-nosnippet>232</a>        this_: <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;<span class="kw-2">&amp;</span><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html">IsA</a>&lt;glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/struct.Object.html">Object</a>&gt;&gt;,
-<a href=#233 id=233 data-nosnippet>233</a>    ) -&gt; <a href="../expression_watch.rs.html#7-20">ExpressionWatch</a> {
-<a href=#234 id=234 data-nosnippet>234</a>        <span class="kw">unsafe </span>{
-<a href=#235 id=235 data-nosnippet>235</a>            <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib_none.html">from_glib_none</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_expression_bind.html">gtk_expression_bind</a>(
-<a href=#236 id=236 data-nosnippet>236</a>                <a class="self" href="#229">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#method.to_glib_full">to_glib_full</a>(),
-<a href=#237 id=237 data-nosnippet>237</a>                <a href="#230">target</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
-<a href=#238 id=238 data-nosnippet>238</a>                <a href="#231">property</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
-<a href=#239 id=239 data-nosnippet>239</a>                <a href="#232">this_</a>.<a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#method.map">map</a>(|p| <a href="#239">p</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>()).<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
-<a href=#240 id=240 data-nosnippet>240</a>            ))
-<a href=#241 id=241 data-nosnippet>241</a>        }
-<a href=#242 id=242 data-nosnippet>242</a>    }
-<a href=#243 id=243 data-nosnippet>243</a>
-<a href=#244 id=244 data-nosnippet>244</a>    <span class="doccomment">/// Gets the `GType` that this expression evaluates to.
-<a href=#245 id=245 data-nosnippet>245</a>    ///
-<a href=#246 id=246 data-nosnippet>246</a>    /// This type is constant and will not change over the lifetime
-<a href=#247 id=247 data-nosnippet>247</a>    /// of this expression.
+<a href=#224 id=224 data-nosnippet>224</a>    /// a [`ExpressionWatch`][crate::ExpressionWatch]
+<a href=#225 id=225 data-nosnippet>225</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_expression_bind"</span>)]
+<a href=#226 id=226 data-nosnippet>226</a>    </span><span class="kw">pub fn </span>bind(
+<a href=#227 id=227 data-nosnippet>227</a>        <span class="kw-2">&amp;</span><span class="self">self</span>,
+<a href=#228 id=228 data-nosnippet>228</a>        target: <span class="kw-2">&amp;</span><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html">IsA</a>&lt;glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/struct.Object.html">Object</a>&gt;,
+<a href=#229 id=229 data-nosnippet>229</a>        property: <span class="kw-2">&amp;</span><a href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>,
+<a href=#230 id=230 data-nosnippet>230</a>        this_: <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;<span class="kw-2">&amp;</span><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html">IsA</a>&lt;glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/struct.Object.html">Object</a>&gt;&gt;,
+<a href=#231 id=231 data-nosnippet>231</a>    ) -&gt; <a href="../expression_watch.rs.html#7-20">ExpressionWatch</a> {
+<a href=#232 id=232 data-nosnippet>232</a>        <span class="kw">unsafe </span>{
+<a href=#233 id=233 data-nosnippet>233</a>            <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib_none.html">from_glib_none</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_expression_bind.html">gtk_expression_bind</a>(
+<a href=#234 id=234 data-nosnippet>234</a>                <a class="self" href="#227">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#method.to_glib_full">to_glib_full</a>(),
+<a href=#235 id=235 data-nosnippet>235</a>                <a href="#228">target</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
+<a href=#236 id=236 data-nosnippet>236</a>                <a href="#229">property</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
+<a href=#237 id=237 data-nosnippet>237</a>                <a href="#230">this_</a>.<a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#method.map">map</a>(|p| <a href="#237">p</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>()).<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
+<a href=#238 id=238 data-nosnippet>238</a>            ))
+<a href=#239 id=239 data-nosnippet>239</a>        }
+<a href=#240 id=240 data-nosnippet>240</a>    }
+<a href=#241 id=241 data-nosnippet>241</a>
+<a href=#242 id=242 data-nosnippet>242</a>    <span class="doccomment">/// Gets the `GType` that this expression evaluates to.
+<a href=#243 id=243 data-nosnippet>243</a>    ///
+<a href=#244 id=244 data-nosnippet>244</a>    /// This type is constant and will not change over the lifetime
+<a href=#245 id=245 data-nosnippet>245</a>    /// of this expression.
+<a href=#246 id=246 data-nosnippet>246</a>    ///
+<a href=#247 id=247 data-nosnippet>247</a>    /// # Returns
 <a href=#248 id=248 data-nosnippet>248</a>    ///
-<a href=#249 id=249 data-nosnippet>249</a>    /// # Returns
-<a href=#250 id=250 data-nosnippet>250</a>    ///
-<a href=#251 id=251 data-nosnippet>251</a>    /// The type returned from [`evaluate()`][Self::evaluate()]
-<a href=#252 id=252 data-nosnippet>252</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_expression_get_value_type"</span>)]
-<a href=#253 id=253 data-nosnippet>253</a>    #[doc(alias = <span class="string">"get_value_type"</span>)]
-<a href=#254 id=254 data-nosnippet>254</a>    </span><span class="kw">pub fn </span>value_type(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; glib::types::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/types/struct.Type.html">Type</a> {
-<a href=#255 id=255 data-nosnippet>255</a>        <span class="kw">unsafe </span>{
-<a href=#256 id=256 data-nosnippet>256</a>            <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_expression_get_value_type.html">gtk_expression_get_value_type</a>(
-<a href=#257 id=257 data-nosnippet>257</a>                <a class="self" href="#254">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
-<a href=#258 id=258 data-nosnippet>258</a>            ))
-<a href=#259 id=259 data-nosnippet>259</a>        }
-<a href=#260 id=260 data-nosnippet>260</a>    }
-<a href=#261 id=261 data-nosnippet>261</a>
-<a href=#262 id=262 data-nosnippet>262</a>    <span class="doccomment">/// Checks if the expression is static.
-<a href=#263 id=263 data-nosnippet>263</a>    ///
-<a href=#264 id=264 data-nosnippet>264</a>    /// A static expression will never change its result when
-<a href=#265 id=265 data-nosnippet>265</a>    /// [`evaluate()`][Self::evaluate()] is called on it with the same arguments.
-<a href=#266 id=266 data-nosnippet>266</a>    ///
-<a href=#267 id=267 data-nosnippet>267</a>    /// That means a call to [`watch()`][Self::watch()] is not necessary because
-<a href=#268 id=268 data-nosnippet>268</a>    /// it will never trigger a notify.
+<a href=#249 id=249 data-nosnippet>249</a>    /// The type returned from [`evaluate()`][Self::evaluate()]
+<a href=#250 id=250 data-nosnippet>250</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_expression_get_value_type"</span>)]
+<a href=#251 id=251 data-nosnippet>251</a>    #[doc(alias = <span class="string">"get_value_type"</span>)]
+<a href=#252 id=252 data-nosnippet>252</a>    </span><span class="kw">pub fn </span>value_type(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; glib::types::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/types/struct.Type.html">Type</a> {
+<a href=#253 id=253 data-nosnippet>253</a>        <span class="kw">unsafe </span>{
+<a href=#254 id=254 data-nosnippet>254</a>            <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_expression_get_value_type.html">gtk_expression_get_value_type</a>(
+<a href=#255 id=255 data-nosnippet>255</a>                <a class="self" href="#252">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
+<a href=#256 id=256 data-nosnippet>256</a>            ))
+<a href=#257 id=257 data-nosnippet>257</a>        }
+<a href=#258 id=258 data-nosnippet>258</a>    }
+<a href=#259 id=259 data-nosnippet>259</a>
+<a href=#260 id=260 data-nosnippet>260</a>    <span class="doccomment">/// Checks if the expression is static.
+<a href=#261 id=261 data-nosnippet>261</a>    ///
+<a href=#262 id=262 data-nosnippet>262</a>    /// A static expression will never change its result when
+<a href=#263 id=263 data-nosnippet>263</a>    /// [`evaluate()`][Self::evaluate()] is called on it with the same arguments.
+<a href=#264 id=264 data-nosnippet>264</a>    ///
+<a href=#265 id=265 data-nosnippet>265</a>    /// That means a call to [`watch()`][Self::watch()] is not necessary because
+<a href=#266 id=266 data-nosnippet>266</a>    /// it will never trigger a notify.
+<a href=#267 id=267 data-nosnippet>267</a>    ///
+<a href=#268 id=268 data-nosnippet>268</a>    /// # Returns
 <a href=#269 id=269 data-nosnippet>269</a>    ///
-<a href=#270 id=270 data-nosnippet>270</a>    /// # Returns
-<a href=#271 id=271 data-nosnippet>271</a>    ///
-<a href=#272 id=272 data-nosnippet>272</a>    /// `TRUE` if the expression is static
-<a href=#273 id=273 data-nosnippet>273</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_expression_is_static"</span>)]
-<a href=#274 id=274 data-nosnippet>274</a>    </span><span class="kw">pub fn </span>is_static(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> {
-<a href=#275 id=275 data-nosnippet>275</a>        <span class="kw">unsafe </span>{
-<a href=#276 id=276 data-nosnippet>276</a>            <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_expression_is_static.html">gtk_expression_is_static</a>(
-<a href=#277 id=277 data-nosnippet>277</a>                <a class="self" href="#274">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
-<a href=#278 id=278 data-nosnippet>278</a>            ))
-<a href=#279 id=279 data-nosnippet>279</a>        }
-<a href=#280 id=280 data-nosnippet>280</a>    }
-<a href=#281 id=281 data-nosnippet>281</a>
-<a href=#282 id=282 data-nosnippet>282</a>    <span class="doccomment">/// Watch the given `expression` for changes.
-<a href=#283 id=283 data-nosnippet>283</a>    ///
-<a href=#284 id=284 data-nosnippet>284</a>    /// The @notify function will be called whenever the evaluation of `self`
-<a href=#285 id=285 data-nosnippet>285</a>    /// may have changed.
-<a href=#286 id=286 data-nosnippet>286</a>    ///
-<a href=#287 id=287 data-nosnippet>287</a>    /// GTK cannot guarantee that the evaluation did indeed change when the @notify
-<a href=#288 id=288 data-nosnippet>288</a>    /// gets invoked, but it guarantees the opposite: When it did in fact change,
-<a href=#289 id=289 data-nosnippet>289</a>    /// the @notify will be invoked.
-<a href=#290 id=290 data-nosnippet>290</a>    /// ## `this_`
-<a href=#291 id=291 data-nosnippet>291</a>    /// the `this` argument to
-<a href=#292 id=292 data-nosnippet>292</a>    ///   watch
-<a href=#293 id=293 data-nosnippet>293</a>    /// ## `notify`
-<a href=#294 id=294 data-nosnippet>294</a>    /// callback to invoke when the expression changes
+<a href=#270 id=270 data-nosnippet>270</a>    /// `TRUE` if the expression is static
+<a href=#271 id=271 data-nosnippet>271</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_expression_is_static"</span>)]
+<a href=#272 id=272 data-nosnippet>272</a>    </span><span class="kw">pub fn </span>is_static(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> {
+<a href=#273 id=273 data-nosnippet>273</a>        <span class="kw">unsafe </span>{
+<a href=#274 id=274 data-nosnippet>274</a>            <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_expression_is_static.html">gtk_expression_is_static</a>(
+<a href=#275 id=275 data-nosnippet>275</a>                <a class="self" href="#272">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
+<a href=#276 id=276 data-nosnippet>276</a>            ))
+<a href=#277 id=277 data-nosnippet>277</a>        }
+<a href=#278 id=278 data-nosnippet>278</a>    }
+<a href=#279 id=279 data-nosnippet>279</a>
+<a href=#280 id=280 data-nosnippet>280</a>    <span class="doccomment">/// Watch the given `expression` for changes.
+<a href=#281 id=281 data-nosnippet>281</a>    ///
+<a href=#282 id=282 data-nosnippet>282</a>    /// The @notify function will be called whenever the evaluation of `self`
+<a href=#283 id=283 data-nosnippet>283</a>    /// may have changed.
+<a href=#284 id=284 data-nosnippet>284</a>    ///
+<a href=#285 id=285 data-nosnippet>285</a>    /// GTK cannot guarantee that the evaluation did indeed change when the @notify
+<a href=#286 id=286 data-nosnippet>286</a>    /// gets invoked, but it guarantees the opposite: When it did in fact change,
+<a href=#287 id=287 data-nosnippet>287</a>    /// the @notify will be invoked.
+<a href=#288 id=288 data-nosnippet>288</a>    /// ## `this_`
+<a href=#289 id=289 data-nosnippet>289</a>    /// the `this` argument to
+<a href=#290 id=290 data-nosnippet>290</a>    ///   watch
+<a href=#291 id=291 data-nosnippet>291</a>    /// ## `notify`
+<a href=#292 id=292 data-nosnippet>292</a>    /// callback to invoke when the expression changes
+<a href=#293 id=293 data-nosnippet>293</a>    ///
+<a href=#294 id=294 data-nosnippet>294</a>    /// # Returns
 <a href=#295 id=295 data-nosnippet>295</a>    ///
-<a href=#296 id=296 data-nosnippet>296</a>    /// # Returns
-<a href=#297 id=297 data-nosnippet>297</a>    ///
-<a href=#298 id=298 data-nosnippet>298</a>    /// The newly installed watch. Note that the only
-<a href=#299 id=299 data-nosnippet>299</a>    ///   reference held to the watch will be released when the watch is unwatched
-<a href=#300 id=300 data-nosnippet>300</a>    ///   which can happen automatically, and not just via
-<a href=#301 id=301 data-nosnippet>301</a>    ///   [`ExpressionWatch::unwatch()`][crate::ExpressionWatch::unwatch()]. You should call `Gtk::ExpressionWatch::ref()`
-<a href=#302 id=302 data-nosnippet>302</a>    ///   if you want to keep the watch around.
-<a href=#303 id=303 data-nosnippet>303</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_expression_watch"</span>)]
-<a href=#304 id=304 data-nosnippet>304</a>    </span><span class="kw">pub fn </span>watch&lt;P: <a href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html">Fn</a>() + <span class="lifetime">'static</span>&gt;(
-<a href=#305 id=305 data-nosnippet>305</a>        <span class="kw-2">&amp;</span><span class="self">self</span>,
-<a href=#306 id=306 data-nosnippet>306</a>        this_: <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;<span class="kw-2">&amp;</span><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html">IsA</a>&lt;glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/struct.Object.html">Object</a>&gt;&gt;,
-<a href=#307 id=307 data-nosnippet>307</a>        notify: P,
-<a href=#308 id=308 data-nosnippet>308</a>    ) -&gt; <a href="../expression_watch.rs.html#7-20">ExpressionWatch</a> {
-<a href=#309 id=309 data-nosnippet>309</a>        <span class="kw">let </span>notify_data: <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">Box_</a>&lt;P&gt; = <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">Box_</a>::<a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html#method.new">new</a>(<a href="#307">notify</a>);
-<a href=#310 id=310 data-nosnippet>310</a>        <span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn </span>notify_func&lt;P: <a href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html">Fn</a>() + <span class="lifetime">'static</span>&gt;(user_data: glib::ffi::gpointer) {
-<a href=#311 id=311 data-nosnippet>311</a>            <span class="kw">unsafe </span>{
-<a href=#312 id=312 data-nosnippet>312</a>                <span class="kw">let </span>callback = <span class="kw-2">&amp;*</span>(<a href="#310">user_data</a> <span class="kw">as </span><span class="kw-2">*mut </span>P);
-<a href=#313 id=313 data-nosnippet>313</a>                (<span class="kw-2">*</span><a href="#312">callback</a>)()
-<a href=#314 id=314 data-nosnippet>314</a>            }
-<a href=#315 id=315 data-nosnippet>315</a>        }
-<a href=#316 id=316 data-nosnippet>316</a>        <span class="kw">let </span>notify = <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.Some">Some</a>(notify_func::&lt;P&gt; <span class="kw">as _</span>);
-<a href=#317 id=317 data-nosnippet>317</a>        <span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn </span>user_destroy_func&lt;P: <a href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html">Fn</a>() + <span class="lifetime">'static</span>&gt;(data: glib::ffi::gpointer) {
-<a href=#318 id=318 data-nosnippet>318</a>            <span class="kw">unsafe </span>{
-<a href=#319 id=319 data-nosnippet>319</a>                <span class="kw">let </span>_callback = <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">Box_</a>::<a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html#method.from_raw">from_raw</a>(<a href="#317">data</a> <span class="kw">as </span><span class="kw-2">*mut </span>P);
-<a href=#320 id=320 data-nosnippet>320</a>            }
-<a href=#321 id=321 data-nosnippet>321</a>        }
-<a href=#322 id=322 data-nosnippet>322</a>        <span class="kw">let </span>destroy_call4 = <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.Some">Some</a>(user_destroy_func::&lt;P&gt; <span class="kw">as _</span>);
-<a href=#323 id=323 data-nosnippet>323</a>        <span class="kw">let </span>super_callback0: <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">Box_</a>&lt;P&gt; = <a href="#309">notify_data</a>;
-<a href=#324 id=324 data-nosnippet>324</a>        <span class="kw">unsafe </span>{
-<a href=#325 id=325 data-nosnippet>325</a>            <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib_none.html">from_glib_none</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_expression_watch.html">gtk_expression_watch</a>(
-<a href=#326 id=326 data-nosnippet>326</a>                <a class="self" href="#305">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
-<a href=#327 id=327 data-nosnippet>327</a>                <a href="#306">this_</a>.<a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#method.map">map</a>(|p| <a href="#327">p</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>()).<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
-<a href=#328 id=328 data-nosnippet>328</a>                <a href="#316">notify</a>,
-<a href=#329 id=329 data-nosnippet>329</a>                <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">Box_</a>::<a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html#method.into_raw">into_raw</a>(<a href="#323">super_callback0</a>) <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>,
-<a href=#330 id=330 data-nosnippet>330</a>                <a href="#322">destroy_call4</a>,
-<a href=#331 id=331 data-nosnippet>331</a>            ))
-<a href=#332 id=332 data-nosnippet>332</a>        }
-<a href=#333 id=333 data-nosnippet>333</a>    }
-<a href=#334 id=334 data-nosnippet>334</a>}
+<a href=#296 id=296 data-nosnippet>296</a>    /// The newly installed watch. Note that the only
+<a href=#297 id=297 data-nosnippet>297</a>    ///   reference held to the watch will be released when the watch is unwatched
+<a href=#298 id=298 data-nosnippet>298</a>    ///   which can happen automatically, and not just via
+<a href=#299 id=299 data-nosnippet>299</a>    ///   [`ExpressionWatch::unwatch()`][crate::ExpressionWatch::unwatch()]. You should call `Gtk::ExpressionWatch::ref()`
+<a href=#300 id=300 data-nosnippet>300</a>    ///   if you want to keep the watch around.
+<a href=#301 id=301 data-nosnippet>301</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_expression_watch"</span>)]
+<a href=#302 id=302 data-nosnippet>302</a>    </span><span class="kw">pub fn </span>watch&lt;P: <a href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html">Fn</a>() + <span class="lifetime">'static</span>&gt;(
+<a href=#303 id=303 data-nosnippet>303</a>        <span class="kw-2">&amp;</span><span class="self">self</span>,
+<a href=#304 id=304 data-nosnippet>304</a>        this_: <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;<span class="kw-2">&amp;</span><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html">IsA</a>&lt;glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/struct.Object.html">Object</a>&gt;&gt;,
+<a href=#305 id=305 data-nosnippet>305</a>        notify: P,
+<a href=#306 id=306 data-nosnippet>306</a>    ) -&gt; <a href="../expression_watch.rs.html#7-20">ExpressionWatch</a> {
+<a href=#307 id=307 data-nosnippet>307</a>        <span class="kw">let </span>notify_data: <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">Box_</a>&lt;P&gt; = <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">Box_</a>::<a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html#method.new">new</a>(<a href="#305">notify</a>);
+<a href=#308 id=308 data-nosnippet>308</a>        <span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn </span>notify_func&lt;P: <a href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html">Fn</a>() + <span class="lifetime">'static</span>&gt;(user_data: glib::ffi::gpointer) {
+<a href=#309 id=309 data-nosnippet>309</a>            <span class="kw">unsafe </span>{
+<a href=#310 id=310 data-nosnippet>310</a>                <span class="kw">let </span>callback = <span class="kw-2">&amp;*</span>(<a href="#308">user_data</a> <span class="kw">as </span><span class="kw-2">*mut </span>P);
+<a href=#311 id=311 data-nosnippet>311</a>                (<span class="kw-2">*</span><a href="#310">callback</a>)()
+<a href=#312 id=312 data-nosnippet>312</a>            }
+<a href=#313 id=313 data-nosnippet>313</a>        }
+<a href=#314 id=314 data-nosnippet>314</a>        <span class="kw">let </span>notify = <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.Some">Some</a>(notify_func::&lt;P&gt; <span class="kw">as _</span>);
+<a href=#315 id=315 data-nosnippet>315</a>        <span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn </span>user_destroy_func&lt;P: <a href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html">Fn</a>() + <span class="lifetime">'static</span>&gt;(data: glib::ffi::gpointer) {
+<a href=#316 id=316 data-nosnippet>316</a>            <span class="kw">unsafe </span>{
+<a href=#317 id=317 data-nosnippet>317</a>                <span class="kw">let </span>_callback = <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">Box_</a>::<a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html#method.from_raw">from_raw</a>(<a href="#315">data</a> <span class="kw">as </span><span class="kw-2">*mut </span>P);
+<a href=#318 id=318 data-nosnippet>318</a>            }
+<a href=#319 id=319 data-nosnippet>319</a>        }
+<a href=#320 id=320 data-nosnippet>320</a>        <span class="kw">let </span>destroy_call4 = <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.Some">Some</a>(user_destroy_func::&lt;P&gt; <span class="kw">as _</span>);
+<a href=#321 id=321 data-nosnippet>321</a>        <span class="kw">let </span>super_callback0: <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">Box_</a>&lt;P&gt; = <a href="#307">notify_data</a>;
+<a href=#322 id=322 data-nosnippet>322</a>        <span class="kw">unsafe </span>{
+<a href=#323 id=323 data-nosnippet>323</a>            <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib_none.html">from_glib_none</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_expression_watch.html">gtk_expression_watch</a>(
+<a href=#324 id=324 data-nosnippet>324</a>                <a class="self" href="#303">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
+<a href=#325 id=325 data-nosnippet>325</a>                <a href="#304">this_</a>.<a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#method.map">map</a>(|p| <a href="#325">p</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>()).<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
+<a href=#326 id=326 data-nosnippet>326</a>                <a href="#314">notify</a>,
+<a href=#327 id=327 data-nosnippet>327</a>                <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">Box_</a>::<a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html#method.into_raw">into_raw</a>(<a href="#321">super_callback0</a>) <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>,
+<a href=#328 id=328 data-nosnippet>328</a>                <a href="#320">destroy_call4</a>,
+<a href=#329 id=329 data-nosnippet>329</a>            ))
+<a href=#330 id=330 data-nosnippet>330</a>        }
+<a href=#331 id=331 data-nosnippet>331</a>    }
+<a href=#332 id=332 data-nosnippet>332</a>}
 </code></pre></div></section></main></body></html>
