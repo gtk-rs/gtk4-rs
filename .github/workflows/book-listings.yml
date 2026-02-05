@@ -27,11 +27,13 @@ jobs:
           override: true
           components: rustfmt, clippy
 
-      - run: cargo fmt --check
+      - run: cargo xtask install
+        name: Install Meson and schemas
+
+      - run: cargo fmt --check --all
         name: "Format"
         working-directory: book/listings
 
       - run: cargo clippy --all-targets --workspace -- -D warnings
         name: "Clippy"
         working-directory: book/listings
-
