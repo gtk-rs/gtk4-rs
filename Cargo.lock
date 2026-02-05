@@ -554,7 +554,7 @@ dependencies = [
 
 [[package]]
 name = "gdk4"
-version = "0.11.0-alpha.2"
+version = "0.11.0-alpha.3"
 dependencies = [
  "cairo-rs",
  "gdk-pixbuf",
@@ -569,7 +569,7 @@ dependencies = [
 
 [[package]]
 name = "gdk4-macos"
-version = "0.11.0-alpha.2"
+version = "0.11.0-alpha.3"
 dependencies = [
  "cocoa",
  "gdk4",
@@ -582,7 +582,7 @@ dependencies = [
 
 [[package]]
 name = "gdk4-macos-sys"
-version = "0.11.0-alpha.2"
+version = "0.11.0-alpha.3"
 dependencies = [
  "gdk4-sys",
  "glib-sys",
@@ -594,7 +594,7 @@ dependencies = [
 
 [[package]]
 name = "gdk4-sys"
-version = "0.11.0-alpha.2"
+version = "0.11.0-alpha.3"
 dependencies = [
  "cairo-sys-rs",
  "gdk-pixbuf-sys",
@@ -611,7 +611,7 @@ dependencies = [
 
 [[package]]
 name = "gdk4-wayland"
-version = "0.11.0-alpha.2"
+version = "0.11.0-alpha.3"
 dependencies = [
  "gdk4",
  "gdk4-wayland-sys",
@@ -627,7 +627,7 @@ dependencies = [
 
 [[package]]
 name = "gdk4-wayland-sys"
-version = "0.11.0-alpha.2"
+version = "0.11.0-alpha.3"
 dependencies = [
  "glib-sys",
  "libc",
@@ -638,7 +638,7 @@ dependencies = [
 
 [[package]]
 name = "gdk4-win32"
-version = "0.11.0-alpha.2"
+version = "0.11.0-alpha.3"
 dependencies = [
  "cairo-rs",
  "gdk4",
@@ -653,7 +653,7 @@ dependencies = [
 
 [[package]]
 name = "gdk4-win32-sys"
-version = "0.11.0-alpha.2"
+version = "0.11.0-alpha.3"
 dependencies = [
  "cairo-sys-rs",
  "gdk4-sys",
@@ -666,7 +666,7 @@ dependencies = [
 
 [[package]]
 name = "gdk4-x11"
-version = "0.11.0-alpha.2"
+version = "0.11.0-alpha.3"
 dependencies = [
  "gdk4",
  "gdk4-x11-sys",
@@ -680,7 +680,7 @@ dependencies = [
 
 [[package]]
 name = "gdk4-x11-sys"
-version = "0.11.0-alpha.2"
+version = "0.11.0-alpha.3"
 dependencies = [
  "gdk4-sys",
  "glib-sys",
@@ -902,7 +902,7 @@ dependencies = [
 
 [[package]]
 name = "gsk4"
-version = "0.11.0-alpha.2"
+version = "0.11.0-alpha.3"
 dependencies = [
  "cairo-rs",
  "gdk4",
@@ -916,7 +916,7 @@ dependencies = [
 
 [[package]]
 name = "gsk4-sys"
-version = "0.11.0-alpha.2"
+version = "0.11.0-alpha.3"
 dependencies = [
  "cairo-sys-rs",
  "gdk4-sys",
@@ -932,7 +932,7 @@ dependencies = [
 
 [[package]]
 name = "gtk4"
-version = "0.11.0-alpha.2"
+version = "0.11.0-alpha.3"
 dependencies = [
  "cairo-rs",
  "field-offset",
@@ -952,7 +952,7 @@ dependencies = [
 
 [[package]]
 name = "gtk4-macros"
-version = "0.11.0-alpha.2"
+version = "0.11.0-alpha.3"
 dependencies = [
  "futures-channel",
  "futures-util",
@@ -967,7 +967,7 @@ dependencies = [
 
 [[package]]
 name = "gtk4-rs-examples"
-version = "0.11.0-alpha.2"
+version = "0.11.0-alpha.3"
 dependencies = [
  "async-channel",
  "chrono",
@@ -986,7 +986,7 @@ dependencies = [
 
 [[package]]
 name = "gtk4-sys"
-version = "0.11.0-alpha.2"
+version = "0.11.0-alpha.3"
 dependencies = [
  "cairo-sys-rs",
  "gdk-pixbuf-sys",
