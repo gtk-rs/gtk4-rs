@@ -1,5 +1,7 @@
 use gtk::prelude::*;
-use gtk::{Application, ApplicationWindow, Box, Button, Orientation, accessible, glib};
+use gtk::{
+    accessible, glib, Application, ApplicationWindow, Entry, Label, Orientation,
+};
 
 const APP_ID: &str = "org.gtk_rs.Accessibility2";
 
@@ -9,43 +11,34 @@ fn main() -> glib::ExitCode {
     app.run()
 }
 
+// ANCHOR: labelled_by
 fn build_ui(app: &Application) {
-    let container = Box::builder()
+    let container = gtk::Box::builder()
         .orientation(Orientation::Horizontal)
         .spacing(12)
-        .halign(gtk::Align::Center)
-        .valign(gtk::Align::Center)
+        .margin_start(12)
+        .margin_end(12)
+        .margin_top(12)
+        .margin_bottom(12)
         .build();
 
-    // ANCHOR: icon_button
-    // Icon-only button needs an accessible label
-    let search_button = Button::builder()
-        .icon_name("system-search-symbolic")
-        .build();
-    search_button.update_property(&[accessible::Property::Label("Search")]);
-    // ANCHOR_END: icon_button
+    let label = Label::new(Some("Username:"));
+    let entry = Entry::new();
 
-    // ANCHOR: description
-    // Add additional context with a description
-    let settings_button = Button::builder()
-        .icon_name("emblem-system-symbolic")
-        .build();
-    settings_button.update_property(&[
-        accessible::Property::Label("Settings"),
-        accessible::Property::Description("Open application preferences"),
-    ]);
-    // ANCHOR_END: description
+    // Tell assistive technologies that the entry is labelled by this label
+    entry.update_relation(&[accessible::Relation::LabelledBy(&[label.upcast_ref()])]);
 
-    container.append(&search_button);
-    container.append(&settings_button);
+    container.append(&label);
+    container.append(&entry);
 
     let window = ApplicationWindow::builder()
         .application(app)
-        .title("Icon Buttons")
+        .title("Form Field")
         .default_width(300)
-        .default_height(200)
+        .default_height(100)
         .child(&container)
         .build();
 
     window.present();
 }
+// ANCHOR_END: labelled_by

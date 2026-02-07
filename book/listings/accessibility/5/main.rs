@@ -1,6 +1,6 @@
 use gtk::prelude::*;
 use gtk::{
-    AccessibleRole, Application, ApplicationWindow, Box, GestureClick, Label, glib,
+    AccessibleRole, Application, ApplicationWindow, GestureClick, Label, glib,
 };
 
 const APP_ID: &str = "org.gtk_rs.Accessibility5";
@@ -14,7 +14,7 @@ fn main() -> glib::ExitCode {
 // ANCHOR: focusable
 fn build_ui(app: &Application) {
     // A custom interactive widget that needs to be focusable
-    let custom_widget = Box::builder()
+    let custom_widget = gtk::Box::builder()
         .css_classes(["card", "activatable"])
         .halign(gtk::Align::Center)
         .valign(gtk::Align::Center)

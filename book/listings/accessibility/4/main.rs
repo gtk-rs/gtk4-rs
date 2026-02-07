@@ -1,6 +1,6 @@
 use gtk::prelude::*;
 use gtk::{
-    AccessibleRole, Application, ApplicationWindow, Box, Button, Label, Orientation,
+    AccessibleRole, Application, ApplicationWindow, Button, Label, Orientation,
     Revealer, RevealerTransitionType, accessible, glib,
 };
 
@@ -14,7 +14,7 @@ fn main() -> glib::ExitCode {
 
 // ANCHOR: collapsible
 fn build_ui(app: &Application) {
-    let container = Box::builder()
+    let container = gtk::Box::builder()
         .orientation(Orientation::Vertical)
         .spacing(6)
         .margin_start(12)

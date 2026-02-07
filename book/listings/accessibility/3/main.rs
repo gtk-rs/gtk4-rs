@@ -1,7 +1,6 @@
 use gtk::prelude::*;
-use gtk::{
-    Application, ApplicationWindow, Box, Entry, Label, Orientation, accessible, glib,
-};
+use gtk::subclass::prelude::*;
+use gtk::{AccessibleRole, Application, ApplicationWindow, GestureClick, Label, glib};
 
 const APP_ID: &str = "org.gtk_rs.Accessibility3";
 
@@ -11,34 +10,79 @@ fn main() -> glib::ExitCode {
     app.run()
 }
 
-// ANCHOR: labelled_by
+// ANCHOR: custom_button
+mod imp {
+    use super::*;
+
+    #[derive(Default)]
+    pub struct CustomButton;
+
+    #[glib::object_subclass]
+    impl ObjectSubclass for CustomButton {
+        const NAME: &'static str = "CustomButton";
+        type Type = super::CustomButton;
+        type ParentType = gtk::Widget;
+
+        fn class_init(klass: &mut Self::Class) {
+            // Set the accessible role to Button
+            klass.set_accessible_role(AccessibleRole::Button);
+            klass.set_layout_manager_type::<gtk::BinLayout>();
+        }
+    }
+
+    impl ObjectImpl for CustomButton {
+        fn constructed(&self) {
+            self.parent_constructed();
+
+            let obj = self.obj();
+            obj.set_focusable(true);
+            obj.set_focus_on_click(true);
+            obj.set_css_classes(&["card", "activatable"]);
+        }
+
+        fn dispose(&self) {
+            while let Some(child) = self.obj().first_child() {
+                child.unparent();
+            }
+        }
+    }
+
+    impl WidgetImpl for CustomButton {}
+}
+
+glib::wrapper! {
+    pub struct CustomButton(ObjectSubclass<imp::CustomButton>)
+        @extends gtk::Widget,
+        @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget;
+}
+
+impl CustomButton {
+    pub fn new(label: &str) -> Self {
+        let obj: Self = glib::Object::builder().build();
+        let child = Label::new(Some(label));
+        child.set_parent(&obj);
+        obj
+    }
+}
+
 fn build_ui(app: &Application) {
-    let container = Box::builder()
-        .orientation(Orientation::Horizontal)
-        .spacing(12)
-        .margin_start(12)
-        .margin_end(12)
-        .margin_top(12)
-        .margin_bottom(12)
-        .build();
+    let custom_button = CustomButton::new("Click me");
 
-    let label = Label::new(Some("Username:"));
-    let entry = Entry::new();
-
-    // Tell assistive technologies that the entry is labelled by this label
-    entry.update_relation(&[accessible::Relation::LabelledBy(&[label.upcast_ref()])]);
-
-    container.append(&label);
-    container.append(&entry);
+    // Add click handling
+    let gesture = GestureClick::new();
+    gesture.connect_released(|_, _, _, _| {
+        println!("Custom button clicked!");
+    });
+    custom_button.add_controller(gesture);
 
     let window = ApplicationWindow::builder()
         .application(app)
-        .title("Form Field")
+        .title("Custom Button")
         .default_width(300)
-        .default_height(100)
-        .child(&container)
+        .default_height(200)
+        .child(&custom_button)
         .build();
 
     window.present();
 }
-// ANCHOR_END: labelled_by
+// ANCHOR_END: custom_button
