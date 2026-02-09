@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gsk4/src/auto/enums.rs`."><title>enums.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-b7b9f40b.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gsk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.95.0-nightly (f60a0f1bc 2026-02-02)" data-channel="nightly" data-search-js="search-fb33671b.js" data-stringdex-js="stringdex-b897f86f.js" data-settings-js="settings-170eb4bf.js" ><script src="../../../static.files/storage-f9617a14.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-12f88f4f.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-f7c3ffd8.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><a class="skip-main-content" href="#main-content">Skip to main content</a><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gsk4/src/auto/enums.rs`."><title>enums.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-b7b9f40b.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gsk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.95.0-nightly (6efa357bf 2026-02-08)" data-channel="nightly" data-search-js="search-fb33671b.js" data-stringdex-js="stringdex-b897f86f.js" data-settings-js="settings-170eb4bf.js" ><script src="../../../static.files/storage-f9617a14.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-12f88f4f.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-f7c3ffd8.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><a class="skip-main-content" href="#main-content">Skip to main content</a><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
 
@@ -88,7 +88,7 @@
 <a href=#15 id=15 data-nosnippet>15</a></span><span class="attr">#[derive(<a href="https://doc.rust-lang.org/nightly/core/fmt/macros/derive.Debug.html">Debug</a>, <a href="https://doc.rust-lang.org/nightly/core/cmp/derive.Eq.html">Eq</a>, <a href="https://doc.rust-lang.org/nightly/core/cmp/derive.PartialEq.html">PartialEq</a>, <a href="https://doc.rust-lang.org/nightly/core/cmp/derive.Ord.html">Ord</a>, <a href="https://doc.rust-lang.org/nightly/core/cmp/derive.PartialOrd.html">PartialOrd</a>, <a href="https://doc.rust-lang.org/nightly/core/hash/macros/derive.Hash.html">Hash</a>, <a href="https://doc.rust-lang.org/nightly/core/clone/derive.Clone.html">Clone</a>, <a href="https://doc.rust-lang.org/nightly/core/marker/derive.Copy.html">Copy</a>)]
 <a href=#16 id=16 data-nosnippet>16</a>#[non_exhaustive]
 <a href=#17 id=17 data-nosnippet>17</a>#[doc(alias = <span class="string">"GskBlendMode"</span>)]
-<a href=#18 id=18 data-nosnippet>18</a></span><span class="kw">pub enum </span><a href="../../../gsk4/enum.BlendMode.html">BlendMode</a> {
+<a href=#18 id=18 data-nosnippet>18</a></span><span class="kw">pub enum </span><a href="#18-72">BlendMode</a> {
 <a href=#19 id=19 data-nosnippet>19</a>    <span class="doccomment">/// The default blend mode, which specifies no blending
 <a href=#20 id=20 data-nosnippet>20</a>    </span><span class="attr">#[doc(alias = <span class="string">"GSK_BLEND_MODE_DEFAULT"</span>)]
 <a href=#21 id=21 data-nosnippet>21</a>    </span>Default,
@@ -258,7 +258,7 @@
 <a href=#185 id=185 data-nosnippet>185</a></span><span class="attr">#[derive(<a href="https://doc.rust-lang.org/nightly/core/fmt/macros/derive.Debug.html">Debug</a>, <a href="https://doc.rust-lang.org/nightly/core/cmp/derive.Eq.html">Eq</a>, <a href="https://doc.rust-lang.org/nightly/core/cmp/derive.PartialEq.html">PartialEq</a>, <a href="https://doc.rust-lang.org/nightly/core/cmp/derive.Ord.html">Ord</a>, <a href="https://doc.rust-lang.org/nightly/core/cmp/derive.PartialOrd.html">PartialOrd</a>, <a href="https://doc.rust-lang.org/nightly/core/hash/macros/derive.Hash.html">Hash</a>, <a href="https://doc.rust-lang.org/nightly/core/clone/derive.Clone.html">Clone</a>, <a href="https://doc.rust-lang.org/nightly/core/marker/derive.Copy.html">Copy</a>)]
 <a href=#186 id=186 data-nosnippet>186</a>#[non_exhaustive]
 <a href=#187 id=187 data-nosnippet>187</a>#[doc(alias = <span class="string">"GskCorner"</span>)]
-<a href=#188 id=188 data-nosnippet>188</a></span><span class="kw">pub enum </span><a href="../../../gsk4/enum.Corner.html">Corner</a> {
+<a href=#188 id=188 data-nosnippet>188</a></span><span class="kw">pub enum </span><a href="#188-203">Corner</a> {
 <a href=#189 id=189 data-nosnippet>189</a>    <span class="doccomment">/// The top left corner
 <a href=#190 id=190 data-nosnippet>190</a>    </span><span class="attr">#[doc(alias = <span class="string">"GSK_CORNER_TOP_LEFT"</span>)]
 <a href=#191 id=191 data-nosnippet>191</a>    </span>TopLeft,
@@ -380,7 +380,7 @@
 <a href=#307 id=307 data-nosnippet>307</a>#[derive(<a href="https://doc.rust-lang.org/nightly/core/fmt/macros/derive.Debug.html">Debug</a>, <a href="https://doc.rust-lang.org/nightly/core/cmp/derive.Eq.html">Eq</a>, <a href="https://doc.rust-lang.org/nightly/core/cmp/derive.PartialEq.html">PartialEq</a>, <a href="https://doc.rust-lang.org/nightly/core/cmp/derive.Ord.html">Ord</a>, <a href="https://doc.rust-lang.org/nightly/core/cmp/derive.PartialOrd.html">PartialOrd</a>, <a href="https://doc.rust-lang.org/nightly/core/hash/macros/derive.Hash.html">Hash</a>, <a href="https://doc.rust-lang.org/nightly/core/clone/derive.Clone.html">Clone</a>, <a href="https://doc.rust-lang.org/nightly/core/marker/derive.Copy.html">Copy</a>)]
 <a href=#308 id=308 data-nosnippet>308</a>#[non_exhaustive]
 <a href=#309 id=309 data-nosnippet>309</a>#[doc(alias = <span class="string">"GskFillRule"</span>)]
-<a href=#310 id=310 data-nosnippet>310</a></span><span class="kw">pub enum </span><a href="../../../gsk4/enum.FillRule.html">FillRule</a> {
+<a href=#310 id=310 data-nosnippet>310</a></span><span class="kw">pub enum </span><a href="#310-326">FillRule</a> {
 <a href=#311 id=311 data-nosnippet>311</a>    <span class="doccomment">/// If the path crosses the ray from
 <a href=#312 id=312 data-nosnippet>312</a>    ///   left-to-right, counts +1. If the path crosses the ray
 <a href=#313 id=313 data-nosnippet>313</a>    ///   from right to left, counts -1. (Left and right are determined
@@ -509,7 +509,7 @@
 <a href=#436 id=436 data-nosnippet>436</a>#[derive(<a href="https://doc.rust-lang.org/nightly/core/fmt/macros/derive.Debug.html">Debug</a>, <a href="https://doc.rust-lang.org/nightly/core/cmp/derive.Eq.html">Eq</a>, <a href="https://doc.rust-lang.org/nightly/core/cmp/derive.PartialEq.html">PartialEq</a>, <a href="https://doc.rust-lang.org/nightly/core/cmp/derive.Ord.html">Ord</a>, <a href="https://doc.rust-lang.org/nightly/core/cmp/derive.PartialOrd.html">PartialOrd</a>, <a href="https://doc.rust-lang.org/nightly/core/hash/macros/derive.Hash.html">Hash</a>, <a href="https://doc.rust-lang.org/nightly/core/clone/derive.Clone.html">Clone</a>, <a href="https://doc.rust-lang.org/nightly/core/marker/derive.Copy.html">Copy</a>)]
 <a href=#437 id=437 data-nosnippet>437</a>#[non_exhaustive]
 <a href=#438 id=438 data-nosnippet>438</a>#[doc(alias = <span class="string">"GskGLUniformType"</span>)]
-<a href=#439 id=439 data-nosnippet>439</a></span><span class="kw">pub enum </span><a href="../../../gsk4/enum.GLUniformType.html">GLUniformType</a> {
+<a href=#439 id=439 data-nosnippet>439</a></span><span class="kw">pub enum </span><a href="#439-466">GLUniformType</a> {
 <a href=#440 id=440 data-nosnippet>440</a>    <span class="doccomment">/// No type, used for uninitialized or unspecified values.
 <a href=#441 id=441 data-nosnippet>441</a>    </span><span class="attr">#[doc(alias = <span class="string">"GSK_GL_UNIFORM_TYPE_NONE"</span>)]
 <a href=#442 id=442 data-nosnippet>442</a>    </span><span class="prelude-val">None</span>,
@@ -661,7 +661,7 @@
 <a href=#588 id=588 data-nosnippet>588</a>#[derive(<a href="https://doc.rust-lang.org/nightly/core/fmt/macros/derive.Debug.html">Debug</a>, <a href="https://doc.rust-lang.org/nightly/core/cmp/derive.Eq.html">Eq</a>, <a href="https://doc.rust-lang.org/nightly/core/cmp/derive.PartialEq.html">PartialEq</a>, <a href="https://doc.rust-lang.org/nightly/core/cmp/derive.Ord.html">Ord</a>, <a href="https://doc.rust-lang.org/nightly/core/cmp/derive.PartialOrd.html">PartialOrd</a>, <a href="https://doc.rust-lang.org/nightly/core/hash/macros/derive.Hash.html">Hash</a>, <a href="https://doc.rust-lang.org/nightly/core/clone/derive.Clone.html">Clone</a>, <a href="https://doc.rust-lang.org/nightly/core/marker/derive.Copy.html">Copy</a>)]
 <a href=#589 id=589 data-nosnippet>589</a>#[non_exhaustive]
 <a href=#590 id=590 data-nosnippet>590</a>#[doc(alias = <span class="string">"GskLineCap"</span>)]
-<a href=#591 id=591 data-nosnippet>591</a></span><span class="kw">pub enum </span><a href="../../../gsk4/enum.LineCap.html">LineCap</a> {
+<a href=#591 id=591 data-nosnippet>591</a></span><span class="kw">pub enum </span><a href="#591-606">LineCap</a> {
 <a href=#592 id=592 data-nosnippet>592</a>    <span class="doccomment">/// Start and stop the line exactly at the start
 <a href=#593 id=593 data-nosnippet>593</a>    ///   and end point
 <a href=#594 id=594 data-nosnippet>594</a>    </span><span class="attr">#[doc(alias = <span class="string">"GSK_LINE_CAP_BUTT"</span>)]
@@ -798,7 +798,7 @@
 <a href=#725 id=725 data-nosnippet>725</a>#[derive(<a href="https://doc.rust-lang.org/nightly/core/fmt/macros/derive.Debug.html">Debug</a>, <a href="https://doc.rust-lang.org/nightly/core/cmp/derive.Eq.html">Eq</a>, <a href="https://doc.rust-lang.org/nightly/core/cmp/derive.PartialEq.html">PartialEq</a>, <a href="https://doc.rust-lang.org/nightly/core/cmp/derive.Ord.html">Ord</a>, <a href="https://doc.rust-lang.org/nightly/core/cmp/derive.PartialOrd.html">PartialOrd</a>, <a href="https://doc.rust-lang.org/nightly/core/hash/macros/derive.Hash.html">Hash</a>, <a href="https://doc.rust-lang.org/nightly/core/clone/derive.Clone.html">Clone</a>, <a href="https://doc.rust-lang.org/nightly/core/marker/derive.Copy.html">Copy</a>)]
 <a href=#726 id=726 data-nosnippet>726</a>#[non_exhaustive]
 <a href=#727 id=727 data-nosnippet>727</a>#[doc(alias = <span class="string">"GskLineJoin"</span>)]
-<a href=#728 id=728 data-nosnippet>728</a></span><span class="kw">pub enum </span><a href="../../../gsk4/enum.LineJoin.html">LineJoin</a> {
+<a href=#728 id=728 data-nosnippet>728</a></span><span class="kw">pub enum </span><a href="#728-742">LineJoin</a> {
 <a href=#729 id=729 data-nosnippet>729</a>    <span class="doccomment">/// Use a sharp angled corner
 <a href=#730 id=730 data-nosnippet>730</a>    </span><span class="attr">#[doc(alias = <span class="string">"GSK_LINE_JOIN_MITER"</span>)]
 <a href=#731 id=731 data-nosnippet>731</a>    </span>Miter,
@@ -922,7 +922,7 @@
 <a href=#849 id=849 data-nosnippet>849</a>#[derive(<a href="https://doc.rust-lang.org/nightly/core/fmt/macros/derive.Debug.html">Debug</a>, <a href="https://doc.rust-lang.org/nightly/core/cmp/derive.Eq.html">Eq</a>, <a href="https://doc.rust-lang.org/nightly/core/cmp/derive.PartialEq.html">PartialEq</a>, <a href="https://doc.rust-lang.org/nightly/core/cmp/derive.Ord.html">Ord</a>, <a href="https://doc.rust-lang.org/nightly/core/cmp/derive.PartialOrd.html">PartialOrd</a>, <a href="https://doc.rust-lang.org/nightly/core/hash/macros/derive.Hash.html">Hash</a>, <a href="https://doc.rust-lang.org/nightly/core/clone/derive.Clone.html">Clone</a>, <a href="https://doc.rust-lang.org/nightly/core/marker/derive.Copy.html">Copy</a>)]
 <a href=#850 id=850 data-nosnippet>850</a>#[non_exhaustive]
 <a href=#851 id=851 data-nosnippet>851</a>#[doc(alias = <span class="string">"GskMaskMode"</span>)]
-<a href=#852 id=852 data-nosnippet>852</a></span><span class="kw">pub enum </span><a href="../../../gsk4/enum.MaskMode.html">MaskMode</a> {
+<a href=#852 id=852 data-nosnippet>852</a></span><span class="kw">pub enum </span><a href="#852-869">MaskMode</a> {
 <a href=#853 id=853 data-nosnippet>853</a>    <span class="doccomment">/// Use the alpha channel of the mask
 <a href=#854 id=854 data-nosnippet>854</a>    </span><span class="attr">#[doc(alias = <span class="string">"GSK_MASK_MODE_ALPHA"</span>)]
 <a href=#855 id=855 data-nosnippet>855</a>    </span>Alpha,
@@ -1060,7 +1060,7 @@
 <a href=#987 id=987 data-nosnippet>987</a>#[derive(<a href="https://doc.rust-lang.org/nightly/core/fmt/macros/derive.Debug.html">Debug</a>, <a href="https://doc.rust-lang.org/nightly/core/cmp/derive.Eq.html">Eq</a>, <a href="https://doc.rust-lang.org/nightly/core/cmp/derive.PartialEq.html">PartialEq</a>, <a href="https://doc.rust-lang.org/nightly/core/cmp/derive.Ord.html">Ord</a>, <a href="https://doc.rust-lang.org/nightly/core/cmp/derive.PartialOrd.html">PartialOrd</a>, <a href="https://doc.rust-lang.org/nightly/core/hash/macros/derive.Hash.html">Hash</a>, <a href="https://doc.rust-lang.org/nightly/core/clone/derive.Clone.html">Clone</a>, <a href="https://doc.rust-lang.org/nightly/core/marker/derive.Copy.html">Copy</a>)]
 <a href=#988 id=988 data-nosnippet>988</a>#[non_exhaustive]
 <a href=#989 id=989 data-nosnippet>989</a>#[doc(alias = <span class="string">"GskPathDirection"</span>)]
-<a href=#990 id=990 data-nosnippet>990</a></span><span class="kw">pub enum </span><a href="../../../gsk4/enum.PathDirection.html">PathDirection</a> {
+<a href=#990 id=990 data-nosnippet>990</a></span><span class="kw">pub enum </span><a href="#990-1009">PathDirection</a> {
 <a href=#991 id=991 data-nosnippet>991</a>    <span class="doccomment">/// The tangent in path direction of the incoming side
 <a href=#992 id=992 data-nosnippet>992</a>    ///   of the path
 <a href=#993 id=993 data-nosnippet>993</a>    </span><span class="attr">#[doc(alias = <span class="string">"GSK_PATH_FROM_START"</span>)]
@@ -1192,7 +1192,7 @@
 <a href=#1119 id=1119 data-nosnippet>1119</a>#[derive(<a href="https://doc.rust-lang.org/nightly/core/fmt/macros/derive.Debug.html">Debug</a>, <a href="https://doc.rust-lang.org/nightly/core/cmp/derive.Eq.html">Eq</a>, <a href="https://doc.rust-lang.org/nightly/core/cmp/derive.PartialEq.html">PartialEq</a>, <a href="https://doc.rust-lang.org/nightly/core/cmp/derive.Ord.html">Ord</a>, <a href="https://doc.rust-lang.org/nightly/core/cmp/derive.PartialOrd.html">PartialOrd</a>, <a href="https://doc.rust-lang.org/nightly/core/hash/macros/derive.Hash.html">Hash</a>, <a href="https://doc.rust-lang.org/nightly/core/clone/derive.Clone.html">Clone</a>, <a href="https://doc.rust-lang.org/nightly/core/marker/derive.Copy.html">Copy</a>)]
 <a href=#1120 id=1120 data-nosnippet>1120</a>#[non_exhaustive]
 <a href=#1121 id=1121 data-nosnippet>1121</a>#[doc(alias = <span class="string">"GskPathIntersection"</span>)]
-<a href=#1122 id=1122 data-nosnippet>1122</a></span><span class="kw">pub enum </span><a href="../../../gsk4/enum.PathIntersection.html">PathIntersection</a> {
+<a href=#1122 id=1122 data-nosnippet>1122</a></span><span class="kw">pub enum </span><a href="#1122-1138">PathIntersection</a> {
 <a href=#1123 id=1123 data-nosnippet>1123</a>    <span class="doccomment">/// No intersection
 <a href=#1124 id=1124 data-nosnippet>1124</a>    </span><span class="attr">#[doc(alias = <span class="string">"GSK_PATH_INTERSECTION_NONE"</span>)]
 <a href=#1125 id=1125 data-nosnippet>1125</a>    </span><span class="prelude-val">None</span>,
@@ -1322,7 +1322,7 @@
 <a href=#1249 id=1249 data-nosnippet>1249</a>#[derive(<a href="https://doc.rust-lang.org/nightly/core/fmt/macros/derive.Debug.html">Debug</a>, <a href="https://doc.rust-lang.org/nightly/core/cmp/derive.Eq.html">Eq</a>, <a href="https://doc.rust-lang.org/nightly/core/cmp/derive.PartialEq.html">PartialEq</a>, <a href="https://doc.rust-lang.org/nightly/core/cmp/derive.Ord.html">Ord</a>, <a href="https://doc.rust-lang.org/nightly/core/cmp/derive.PartialOrd.html">PartialOrd</a>, <a href="https://doc.rust-lang.org/nightly/core/hash/macros/derive.Hash.html">Hash</a>, <a href="https://doc.rust-lang.org/nightly/core/clone/derive.Clone.html">Clone</a>, <a href="https://doc.rust-lang.org/nightly/core/marker/derive.Copy.html">Copy</a>)]
 <a href=#1250 id=1250 data-nosnippet>1250</a>#[non_exhaustive]
 <a href=#1251 id=1251 data-nosnippet>1251</a>#[doc(alias = <span class="string">"GskPathOperation"</span>)]
-<a href=#1252 id=1252 data-nosnippet>1252</a></span><span class="kw">pub enum </span><a href="../../../gsk4/enum.PathOperation.html">PathOperation</a> {
+<a href=#1252 id=1252 data-nosnippet>1252</a></span><span class="kw">pub enum </span><a href="#1252-1281">PathOperation</a> {
 <a href=#1253 id=1253 data-nosnippet>1253</a>    <span class="doccomment">/// A move-to operation, with 1 point describing the target point.
 <a href=#1254 id=1254 data-nosnippet>1254</a>    </span><span class="attr">#[doc(alias = <span class="string">"GSK_PATH_MOVE"</span>)]
 <a href=#1255 id=1255 data-nosnippet>1255</a>    </span>Move,
@@ -1482,7 +1482,7 @@
 <a href=#1409 id=1409 data-nosnippet>1409</a>#[derive(<a href="https://doc.rust-lang.org/nightly/core/fmt/macros/derive.Debug.html">Debug</a>, <a href="https://doc.rust-lang.org/nightly/core/cmp/derive.Eq.html">Eq</a>, <a href="https://doc.rust-lang.org/nightly/core/cmp/derive.PartialEq.html">PartialEq</a>, <a href="https://doc.rust-lang.org/nightly/core/cmp/derive.Ord.html">Ord</a>, <a href="https://doc.rust-lang.org/nightly/core/cmp/derive.PartialOrd.html">PartialOrd</a>, <a href="https://doc.rust-lang.org/nightly/core/hash/macros/derive.Hash.html">Hash</a>, <a href="https://doc.rust-lang.org/nightly/core/clone/derive.Clone.html">Clone</a>, <a href="https://doc.rust-lang.org/nightly/core/marker/derive.Copy.html">Copy</a>)]
 <a href=#1410 id=1410 data-nosnippet>1410</a>#[non_exhaustive]
 <a href=#1411 id=1411 data-nosnippet>1411</a>#[doc(alias = <span class="string">"GskPorterDuff"</span>)]
-<a href=#1412 id=1412 data-nosnippet>1412</a></span><span class="kw">pub enum </span><a href="../../../gsk4/enum.PorterDuff.html">PorterDuff</a> {
+<a href=#1412 id=1412 data-nosnippet>1412</a></span><span class="kw">pub enum </span><a href="#1412-1439">PorterDuff</a> {
 <a href=#1413 id=1413 data-nosnippet>1413</a>    <span class="attr">#[doc(alias = <span class="string">"GSK_PORTER_DUFF_SOURCE"</span>)]
 <a href=#1414 id=1414 data-nosnippet>1414</a>    </span>Source,
 <a href=#1415 id=1415 data-nosnippet>1415</a>    <span class="attr">#[doc(alias = <span class="string">"GSK_PORTER_DUFF_DEST"</span>)]
@@ -1635,7 +1635,7 @@
 <a href=#1562 id=1562 data-nosnippet>1562</a></span><span class="attr">#[derive(<a href="https://doc.rust-lang.org/nightly/core/fmt/macros/derive.Debug.html">Debug</a>, <a href="https://doc.rust-lang.org/nightly/core/cmp/derive.Eq.html">Eq</a>, <a href="https://doc.rust-lang.org/nightly/core/cmp/derive.PartialEq.html">PartialEq</a>, <a href="https://doc.rust-lang.org/nightly/core/cmp/derive.Ord.html">Ord</a>, <a href="https://doc.rust-lang.org/nightly/core/cmp/derive.PartialOrd.html">PartialOrd</a>, <a href="https://doc.rust-lang.org/nightly/core/hash/macros/derive.Hash.html">Hash</a>, <a href="https://doc.rust-lang.org/nightly/core/clone/derive.Clone.html">Clone</a>, <a href="https://doc.rust-lang.org/nightly/core/marker/derive.Copy.html">Copy</a>)]
 <a href=#1563 id=1563 data-nosnippet>1563</a>#[non_exhaustive]
 <a href=#1564 id=1564 data-nosnippet>1564</a>#[doc(alias = <span class="string">"GskRenderNodeType"</span>)]
-<a href=#1565 id=1565 data-nosnippet>1565</a></span><span class="kw">pub enum </span><a href="../../../gsk4/enum.RenderNodeType.html">RenderNodeType</a> {
+<a href=#1565 id=1565 data-nosnippet>1565</a></span><span class="kw">pub enum </span><a href="#1565-1707">RenderNodeType</a> {
 <a href=#1566 id=1566 data-nosnippet>1566</a>    <span class="doccomment">/// Error type. No node will ever have this type.
 <a href=#1567 id=1567 data-nosnippet>1567</a>    </span><span class="attr">#[doc(alias = <span class="string">"GSK_NOT_A_RENDER_NODE"</span>)]
 <a href=#1568 id=1568 data-nosnippet>1568</a>    </span>NotARenderNode,
@@ -1964,7 +1964,7 @@
 <a href=#1891 id=1891 data-nosnippet>1891</a></span><span class="attr">#[derive(<a href="https://doc.rust-lang.org/nightly/core/fmt/macros/derive.Debug.html">Debug</a>, <a href="https://doc.rust-lang.org/nightly/core/cmp/derive.Eq.html">Eq</a>, <a href="https://doc.rust-lang.org/nightly/core/cmp/derive.PartialEq.html">PartialEq</a>, <a href="https://doc.rust-lang.org/nightly/core/cmp/derive.Ord.html">Ord</a>, <a href="https://doc.rust-lang.org/nightly/core/cmp/derive.PartialOrd.html">PartialOrd</a>, <a href="https://doc.rust-lang.org/nightly/core/hash/macros/derive.Hash.html">Hash</a>, <a href="https://doc.rust-lang.org/nightly/core/clone/derive.Clone.html">Clone</a>, <a href="https://doc.rust-lang.org/nightly/core/marker/derive.Copy.html">Copy</a>)]
 <a href=#1892 id=1892 data-nosnippet>1892</a>#[non_exhaustive]
 <a href=#1893 id=1893 data-nosnippet>1893</a>#[doc(alias = <span class="string">"GskScalingFilter"</span>)]
-<a href=#1894 id=1894 data-nosnippet>1894</a></span><span class="kw">pub enum </span><a href="../../../gsk4/enum.ScalingFilter.html">ScalingFilter</a> {
+<a href=#1894 id=1894 data-nosnippet>1894</a></span><span class="kw">pub enum </span><a href="#1894-1908">ScalingFilter</a> {
 <a href=#1895 id=1895 data-nosnippet>1895</a>    <span class="doccomment">/// linear interpolation filter
 <a href=#1896 id=1896 data-nosnippet>1896</a>    </span><span class="attr">#[doc(alias = <span class="string">"GSK_SCALING_FILTER_LINEAR"</span>)]
 <a href=#1897 id=1897 data-nosnippet>1897</a>    </span>Linear,
@@ -2070,7 +2070,7 @@
 <a href=#1997 id=1997 data-nosnippet>1997</a></span><span class="attr">#[derive(<a href="https://doc.rust-lang.org/nightly/core/fmt/macros/derive.Debug.html">Debug</a>, <a href="https://doc.rust-lang.org/nightly/core/cmp/derive.Eq.html">Eq</a>, <a href="https://doc.rust-lang.org/nightly/core/cmp/derive.PartialEq.html">PartialEq</a>, <a href="https://doc.rust-lang.org/nightly/core/cmp/derive.Ord.html">Ord</a>, <a href="https://doc.rust-lang.org/nightly/core/cmp/derive.PartialOrd.html">PartialOrd</a>, <a href="https://doc.rust-lang.org/nightly/core/hash/macros/derive.Hash.html">Hash</a>, <a href="https://doc.rust-lang.org/nightly/core/clone/derive.Clone.html">Clone</a>, <a href="https://doc.rust-lang.org/nightly/core/marker/derive.Copy.html">Copy</a>)]
 <a href=#1998 id=1998 data-nosnippet>1998</a>#[non_exhaustive]
 <a href=#1999 id=1999 data-nosnippet>1999</a>#[doc(alias = <span class="string">"GskSerializationError"</span>)]
-<a href=#2000 id=2000 data-nosnippet>2000</a></span><span class="kw">pub enum </span><a href="../../../gsk4/enum.SerializationError.html">SerializationError</a> {
+<a href=#2000 id=2000 data-nosnippet>2000</a></span><span class="kw">pub enum </span><a href="#2000-2014">SerializationError</a> {
 <a href=#2001 id=2001 data-nosnippet>2001</a>    <span class="doccomment">/// The format can not be identified
 <a href=#2002 id=2002 data-nosnippet>2002</a>    </span><span class="attr">#[doc(alias = <span class="string">"GSK_SERIALIZATION_UNSUPPORTED_FORMAT"</span>)]
 <a href=#2003 id=2003 data-nosnippet>2003</a>    </span>UnsupportedFormat,
@@ -2208,7 +2208,7 @@
 <a href=#2135 id=2135 data-nosnippet>2135</a></span><span class="attr">#[derive(<a href="https://doc.rust-lang.org/nightly/core/fmt/macros/derive.Debug.html">Debug</a>, <a href="https://doc.rust-lang.org/nightly/core/cmp/derive.Eq.html">Eq</a>, <a href="https://doc.rust-lang.org/nightly/core/cmp/derive.PartialEq.html">PartialEq</a>, <a href="https://doc.rust-lang.org/nightly/core/cmp/derive.Ord.html">Ord</a>, <a href="https://doc.rust-lang.org/nightly/core/cmp/derive.PartialOrd.html">PartialOrd</a>, <a href="https://doc.rust-lang.org/nightly/core/hash/macros/derive.Hash.html">Hash</a>, <a href="https://doc.rust-lang.org/nightly/core/clone/derive.Clone.html">Clone</a>, <a href="https://doc.rust-lang.org/nightly/core/marker/derive.Copy.html">Copy</a>)]
 <a href=#2136 id=2136 data-nosnippet>2136</a>#[non_exhaustive]
 <a href=#2137 id=2137 data-nosnippet>2137</a>#[doc(alias = <span class="string">"GskTransformCategory"</span>)]
-<a href=#2138 id=2138 data-nosnippet>2138</a></span><span class="kw">pub enum </span><a href="../../../gsk4/enum.TransformCategory.html">TransformCategory</a> {
+<a href=#2138 id=2138 data-nosnippet>2138</a></span><span class="kw">pub enum </span><a href="#2138-2169">TransformCategory</a> {
 <a href=#2139 id=2139 data-nosnippet>2139</a>    <span class="doccomment">/// The category of the matrix has not been
 <a href=#2140 id=2140 data-nosnippet>2140</a>    ///   determined.
 <a href=#2141 id=2141 data-nosnippet>2141</a>    </span><span class="attr">#[doc(alias = <span class="string">"GSK_TRANSFORM_CATEGORY_UNKNOWN"</span>)]
