@@ -138,7 +138,7 @@ pub trait GskRendererExt: IsA<Renderer> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::realized".as_ptr() as *const _,
+                c"notify::realized".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_realized_trampoline::<Self, F> as *const (),
                 )),
@@ -163,7 +163,7 @@ pub trait GskRendererExt: IsA<Renderer> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::surface".as_ptr() as *const _,
+                c"notify::surface".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_surface_trampoline::<Self, F> as *const (),
                 )),

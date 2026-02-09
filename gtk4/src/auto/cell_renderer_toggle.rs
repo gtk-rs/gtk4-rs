@@ -135,7 +135,7 @@ impl CellRendererToggle {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"toggled".as_ptr() as *const _,
+                c"toggled".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     toggled_trampoline::<F> as *const (),
                 )),
@@ -160,7 +160,7 @@ impl CellRendererToggle {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::activatable".as_ptr() as *const _,
+                c"notify::activatable".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_activatable_trampoline::<F> as *const (),
                 )),
@@ -185,7 +185,7 @@ impl CellRendererToggle {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::active".as_ptr() as *const _,
+                c"notify::active".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_active_trampoline::<F> as *const (),
                 )),
@@ -212,7 +212,7 @@ impl CellRendererToggle {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::inconsistent".as_ptr() as *const _,
+                c"notify::inconsistent".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_inconsistent_trampoline::<F> as *const (),
                 )),
@@ -237,7 +237,7 @@ impl CellRendererToggle {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::radio".as_ptr() as *const _,
+                c"notify::radio".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_radio_trampoline::<F> as *const (),
                 )),

@@ -362,7 +362,7 @@ impl EntryCompletion {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"cursor-on-match".as_ptr() as *const _,
+                c"cursor-on-match".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     cursor_on_match_trampoline::<F> as *const (),
                 )),
@@ -396,7 +396,7 @@ impl EntryCompletion {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"insert-prefix".as_ptr() as *const _,
+                c"insert-prefix".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     insert_prefix_trampoline::<F> as *const (),
                 )),
@@ -434,7 +434,7 @@ impl EntryCompletion {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"match-selected".as_ptr() as *const _,
+                c"match-selected".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     match_selected_trampoline::<F> as *const (),
                 )),
@@ -458,7 +458,7 @@ impl EntryCompletion {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"no-matches".as_ptr() as *const _,
+                c"no-matches".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     no_matches_trampoline::<F> as *const (),
                 )),
@@ -488,7 +488,7 @@ impl EntryCompletion {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::inline-completion".as_ptr() as *const _,
+                c"notify::inline-completion".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_inline_completion_trampoline::<F> as *const (),
                 )),
@@ -515,7 +515,7 @@ impl EntryCompletion {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::inline-selection".as_ptr() as *const _,
+                c"notify::inline-selection".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_inline_selection_trampoline::<F> as *const (),
                 )),
@@ -545,7 +545,7 @@ impl EntryCompletion {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::minimum-key-length".as_ptr() as *const _,
+                c"notify::minimum-key-length".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_minimum_key_length_trampoline::<F> as *const (),
                 )),
@@ -570,7 +570,7 @@ impl EntryCompletion {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::model".as_ptr() as *const _,
+                c"notify::model".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_model_trampoline::<F> as *const (),
                 )),
@@ -597,7 +597,7 @@ impl EntryCompletion {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::popup-completion".as_ptr() as *const _,
+                c"notify::popup-completion".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_popup_completion_trampoline::<F> as *const (),
                 )),
@@ -624,7 +624,7 @@ impl EntryCompletion {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::popup-set-width".as_ptr() as *const _,
+                c"notify::popup-set-width".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_popup_set_width_trampoline::<F> as *const (),
                 )),
@@ -654,7 +654,7 @@ impl EntryCompletion {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::popup-single-match".as_ptr() as *const _,
+                c"notify::popup-single-match".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_popup_single_match_trampoline::<F> as *const (),
                 )),
@@ -679,7 +679,7 @@ impl EntryCompletion {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::text-column".as_ptr() as *const _,
+                c"notify::text-column".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_text_column_trampoline::<F> as *const (),
                 )),

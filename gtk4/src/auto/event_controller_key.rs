@@ -88,7 +88,7 @@ impl EventControllerKey {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"im-update".as_ptr() as *const _,
+                c"im-update".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     im_update_trampoline::<F> as *const (),
                 )),
@@ -118,7 +118,7 @@ impl EventControllerKey {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"modifiers".as_ptr() as *const _,
+                c"modifiers".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     modifiers_trampoline::<F> as *const (),
                 )),

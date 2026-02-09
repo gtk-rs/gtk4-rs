@@ -187,7 +187,7 @@ pub trait ContentProviderExt: IsA<ContentProvider> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"content-changed".as_ptr() as *const _,
+                c"content-changed".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     content_changed_trampoline::<Self, F> as *const (),
                 )),
@@ -215,7 +215,7 @@ pub trait ContentProviderExt: IsA<ContentProvider> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::formats".as_ptr() as *const _,
+                c"notify::formats".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_formats_trampoline::<Self, F> as *const (),
                 )),
@@ -243,7 +243,7 @@ pub trait ContentProviderExt: IsA<ContentProvider> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::storable-formats".as_ptr() as *const _,
+                c"notify::storable-formats".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_storable_formats_trampoline::<Self, F> as *const (),
                 )),

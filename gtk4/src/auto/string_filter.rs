@@ -121,7 +121,7 @@ impl StringFilter {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::expression".as_ptr() as *const _,
+                c"notify::expression".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_expression_trampoline::<F> as *const (),
                 )),
@@ -146,7 +146,7 @@ impl StringFilter {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::ignore-case".as_ptr() as *const _,
+                c"notify::ignore-case".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_ignore_case_trampoline::<F> as *const (),
                 )),
@@ -171,7 +171,7 @@ impl StringFilter {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::match-mode".as_ptr() as *const _,
+                c"notify::match-mode".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_match_mode_trampoline::<F> as *const (),
                 )),
@@ -196,7 +196,7 @@ impl StringFilter {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::search".as_ptr() as *const _,
+                c"notify::search".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_search_trampoline::<F> as *const (),
                 )),

@@ -129,7 +129,7 @@ impl WindowControls {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::decoration-layout".as_ptr() as *const _,
+                c"notify::decoration-layout".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_decoration_layout_trampoline::<F> as *const (),
                 )),
@@ -154,7 +154,7 @@ impl WindowControls {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::empty".as_ptr() as *const _,
+                c"notify::empty".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_empty_trampoline::<F> as *const (),
                 )),
@@ -179,7 +179,7 @@ impl WindowControls {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::side".as_ptr() as *const _,
+                c"notify::side".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_side_trampoline::<F> as *const (),
                 )),
@@ -211,7 +211,7 @@ impl WindowControls {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::use-native-controls".as_ptr() as *const _,
+                c"notify::use-native-controls".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_use_native_controls_trampoline::<F> as *const (),
                 )),

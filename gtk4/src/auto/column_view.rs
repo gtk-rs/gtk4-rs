@@ -319,7 +319,7 @@ impl ColumnView {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"activate".as_ptr() as *const _,
+                c"activate".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     activate_trampoline::<F> as *const (),
                 )),
@@ -344,7 +344,7 @@ impl ColumnView {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::columns".as_ptr() as *const _,
+                c"notify::columns".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_columns_trampoline::<F> as *const (),
                 )),
@@ -372,7 +372,7 @@ impl ColumnView {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::enable-rubberband".as_ptr() as *const _,
+                c"notify::enable-rubberband".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_enable_rubberband_trampoline::<F> as *const (),
                 )),
@@ -399,7 +399,7 @@ impl ColumnView {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::header-factory".as_ptr() as *const _,
+                c"notify::header-factory".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_header_factory_trampoline::<F> as *const (),
                 )),
@@ -424,7 +424,7 @@ impl ColumnView {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::model".as_ptr() as *const _,
+                c"notify::model".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_model_trampoline::<F> as *const (),
                 )),
@@ -449,7 +449,7 @@ impl ColumnView {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::reorderable".as_ptr() as *const _,
+                c"notify::reorderable".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_reorderable_trampoline::<F> as *const (),
                 )),
@@ -476,7 +476,7 @@ impl ColumnView {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::row-factory".as_ptr() as *const _,
+                c"notify::row-factory".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_row_factory_trampoline::<F> as *const (),
                 )),
@@ -506,7 +506,7 @@ impl ColumnView {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::show-column-separators".as_ptr() as *const _,
+                c"notify::show-column-separators".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_show_column_separators_trampoline::<F> as *const (),
                 )),
@@ -534,7 +534,7 @@ impl ColumnView {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::show-row-separators".as_ptr() as *const _,
+                c"notify::show-row-separators".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_show_row_separators_trampoline::<F> as *const (),
                 )),
@@ -564,7 +564,7 @@ impl ColumnView {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::single-click-activate".as_ptr() as *const _,
+                c"notify::single-click-activate".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_single_click_activate_trampoline::<F> as *const (),
                 )),
@@ -589,7 +589,7 @@ impl ColumnView {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::sorter".as_ptr() as *const _,
+                c"notify::sorter".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_sorter_trampoline::<F> as *const (),
                 )),
@@ -616,7 +616,7 @@ impl ColumnView {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::tab-behavior".as_ptr() as *const _,
+                c"notify::tab-behavior".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_tab_behavior_trampoline::<F> as *const (),
                 )),

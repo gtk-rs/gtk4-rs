@@ -181,7 +181,7 @@ impl D3D12TextureBuilder {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::color-state".as_ptr() as *const _,
+                c"notify::color-state".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_color_state_trampoline::<F> as *const (),
                 )),
@@ -213,7 +213,7 @@ impl D3D12TextureBuilder {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::fence".as_ptr() as *const _,
+                c"notify::fence".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_fence_trampoline::<F> as *const (),
                 )),
@@ -245,7 +245,7 @@ impl D3D12TextureBuilder {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::fence-wait".as_ptr() as *const _,
+                c"notify::fence-wait".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_fence_wait_trampoline::<F> as *const (),
                 )),
@@ -277,7 +277,7 @@ impl D3D12TextureBuilder {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::premultiplied".as_ptr() as *const _,
+                c"notify::premultiplied".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_premultiplied_trampoline::<F> as *const (),
                 )),
@@ -309,7 +309,7 @@ impl D3D12TextureBuilder {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::resource".as_ptr() as *const _,
+                c"notify::resource".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_resource_trampoline::<F> as *const (),
                 )),
@@ -341,7 +341,7 @@ impl D3D12TextureBuilder {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::update-region".as_ptr() as *const _,
+                c"notify::update-region".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_update_region_trampoline::<F> as *const (),
                 )),
@@ -373,7 +373,7 @@ impl D3D12TextureBuilder {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::update-texture".as_ptr() as *const _,
+                c"notify::update-texture".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_update_texture_trampoline::<F> as *const (),
                 )),

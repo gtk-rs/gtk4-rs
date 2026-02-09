@@ -387,7 +387,7 @@ impl Text {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::activates-default".as_ptr() as *const _,
+                c"notify::activates-default".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_activates_default_trampoline::<F> as *const (),
                 )),
@@ -412,7 +412,7 @@ impl Text {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::attributes".as_ptr() as *const _,
+                c"notify::attributes".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_attributes_trampoline::<F> as *const (),
                 )),
@@ -437,7 +437,7 @@ impl Text {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::buffer".as_ptr() as *const _,
+                c"notify::buffer".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_buffer_trampoline::<F> as *const (),
                 )),
@@ -465,7 +465,7 @@ impl Text {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::enable-emoji-completion".as_ptr() as *const _,
+                c"notify::enable-emoji-completion".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_enable_emoji_completion_trampoline::<F> as *const (),
                 )),
@@ -490,7 +490,7 @@ impl Text {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::extra-menu".as_ptr() as *const _,
+                c"notify::extra-menu".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_extra_menu_trampoline::<F> as *const (),
                 )),
@@ -515,7 +515,7 @@ impl Text {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::im-module".as_ptr() as *const _,
+                c"notify::im-module".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_im_module_trampoline::<F> as *const (),
                 )),
@@ -540,7 +540,7 @@ impl Text {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::input-hints".as_ptr() as *const _,
+                c"notify::input-hints".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_input_hints_trampoline::<F> as *const (),
                 )),
@@ -565,7 +565,7 @@ impl Text {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::input-purpose".as_ptr() as *const _,
+                c"notify::input-purpose".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_input_purpose_trampoline::<F> as *const (),
                 )),
@@ -590,7 +590,7 @@ impl Text {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::invisible-char".as_ptr() as *const _,
+                c"notify::invisible-char".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_invisible_char_trampoline::<F> as *const (),
                 )),
@@ -618,7 +618,7 @@ impl Text {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::invisible-char-set".as_ptr() as *const _,
+                c"notify::invisible-char-set".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_invisible_char_set_trampoline::<F> as *const (),
                 )),
@@ -643,7 +643,7 @@ impl Text {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::max-length".as_ptr() as *const _,
+                c"notify::max-length".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_max_length_trampoline::<F> as *const (),
                 )),
@@ -668,7 +668,7 @@ impl Text {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::overwrite-mode".as_ptr() as *const _,
+                c"notify::overwrite-mode".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_overwrite_mode_trampoline::<F> as *const (),
                 )),
@@ -693,7 +693,7 @@ impl Text {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::placeholder-text".as_ptr() as *const _,
+                c"notify::placeholder-text".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_placeholder_text_trampoline::<F> as *const (),
                 )),
@@ -721,7 +721,7 @@ impl Text {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::propagate-text-width".as_ptr() as *const _,
+                c"notify::propagate-text-width".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_propagate_text_width_trampoline::<F> as *const (),
                 )),
@@ -746,7 +746,7 @@ impl Text {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::scroll-offset".as_ptr() as *const _,
+                c"notify::scroll-offset".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_scroll_offset_trampoline::<F> as *const (),
                 )),
@@ -771,7 +771,7 @@ impl Text {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::tabs".as_ptr() as *const _,
+                c"notify::tabs".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_tabs_trampoline::<F> as *const (),
                 )),
@@ -799,7 +799,7 @@ impl Text {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::truncate-multiline".as_ptr() as *const _,
+                c"notify::truncate-multiline".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_truncate_multiline_trampoline::<F> as *const (),
                 )),
@@ -824,7 +824,7 @@ impl Text {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::visibility".as_ptr() as *const _,
+                c"notify::visibility".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_visibility_trampoline::<F> as *const (),
                 )),

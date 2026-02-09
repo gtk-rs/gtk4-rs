@@ -87,7 +87,7 @@ impl EventControllerScroll {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"decelerate".as_ptr() as *const _,
+                c"decelerate".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     decelerate_trampoline::<F> as *const (),
                 )),
@@ -118,7 +118,7 @@ impl EventControllerScroll {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"scroll".as_ptr() as *const _,
+                c"scroll".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     scroll_trampoline::<F> as *const (),
                 )),
@@ -142,7 +142,7 @@ impl EventControllerScroll {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"scroll-begin".as_ptr() as *const _,
+                c"scroll-begin".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     scroll_begin_trampoline::<F> as *const (),
                 )),
@@ -166,7 +166,7 @@ impl EventControllerScroll {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"scroll-end".as_ptr() as *const _,
+                c"scroll-end".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     scroll_end_trampoline::<F> as *const (),
                 )),
@@ -191,7 +191,7 @@ impl EventControllerScroll {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::flags".as_ptr() as *const _,
+                c"notify::flags".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_flags_trampoline::<F> as *const (),
                 )),

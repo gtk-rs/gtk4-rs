@@ -150,7 +150,7 @@ pub trait MonitorExt: IsA<Monitor> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"invalidate".as_ptr() as *const _,
+                c"invalidate".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     invalidate_trampoline::<Self, F> as *const (),
                 )),
@@ -175,7 +175,7 @@ pub trait MonitorExt: IsA<Monitor> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::connector".as_ptr() as *const _,
+                c"notify::connector".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_connector_trampoline::<Self, F> as *const (),
                 )),
@@ -202,7 +202,7 @@ pub trait MonitorExt: IsA<Monitor> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::description".as_ptr() as *const _,
+                c"notify::description".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_description_trampoline::<Self, F> as *const (),
                 )),
@@ -227,7 +227,7 @@ pub trait MonitorExt: IsA<Monitor> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::geometry".as_ptr() as *const _,
+                c"notify::geometry".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_geometry_trampoline::<Self, F> as *const (),
                 )),
@@ -252,7 +252,7 @@ pub trait MonitorExt: IsA<Monitor> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::height-mm".as_ptr() as *const _,
+                c"notify::height-mm".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_height_mm_trampoline::<Self, F> as *const (),
                 )),
@@ -280,7 +280,7 @@ pub trait MonitorExt: IsA<Monitor> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::manufacturer".as_ptr() as *const _,
+                c"notify::manufacturer".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_manufacturer_trampoline::<Self, F> as *const (),
                 )),
@@ -305,7 +305,7 @@ pub trait MonitorExt: IsA<Monitor> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::model".as_ptr() as *const _,
+                c"notify::model".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_model_trampoline::<Self, F> as *const (),
                 )),
@@ -333,7 +333,7 @@ pub trait MonitorExt: IsA<Monitor> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::refresh-rate".as_ptr() as *const _,
+                c"notify::refresh-rate".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_refresh_rate_trampoline::<Self, F> as *const (),
                 )),
@@ -360,7 +360,7 @@ pub trait MonitorExt: IsA<Monitor> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::scale".as_ptr() as *const _,
+                c"notify::scale".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_scale_trampoline::<Self, F> as *const (),
                 )),
@@ -388,7 +388,7 @@ pub trait MonitorExt: IsA<Monitor> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::scale-factor".as_ptr() as *const _,
+                c"notify::scale-factor".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_scale_factor_trampoline::<Self, F> as *const (),
                 )),
@@ -416,7 +416,7 @@ pub trait MonitorExt: IsA<Monitor> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::subpixel-layout".as_ptr() as *const _,
+                c"notify::subpixel-layout".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_subpixel_layout_trampoline::<Self, F> as *const (),
                 )),
@@ -441,7 +441,7 @@ pub trait MonitorExt: IsA<Monitor> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::valid".as_ptr() as *const _,
+                c"notify::valid".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_valid_trampoline::<Self, F> as *const (),
                 )),
@@ -466,7 +466,7 @@ pub trait MonitorExt: IsA<Monitor> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::width-mm".as_ptr() as *const _,
+                c"notify::width-mm".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_width_mm_trampoline::<Self, F> as *const (),
                 )),

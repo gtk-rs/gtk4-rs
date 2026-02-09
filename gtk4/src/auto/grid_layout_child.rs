@@ -94,7 +94,7 @@ impl GridLayoutChild {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::column".as_ptr() as *const _,
+                c"notify::column".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_column_trampoline::<F> as *const (),
                 )),
@@ -119,7 +119,7 @@ impl GridLayoutChild {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::column-span".as_ptr() as *const _,
+                c"notify::column-span".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_column_span_trampoline::<F> as *const (),
                 )),
@@ -144,7 +144,7 @@ impl GridLayoutChild {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::row".as_ptr() as *const _,
+                c"notify::row".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_row_trampoline::<F> as *const (),
                 )),
@@ -169,7 +169,7 @@ impl GridLayoutChild {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::row-span".as_ptr() as *const _,
+                c"notify::row-span".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_row_span_trampoline::<F> as *const (),
                 )),

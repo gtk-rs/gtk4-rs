@@ -112,7 +112,7 @@ impl DirectoryList {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::attributes".as_ptr() as *const _,
+                c"notify::attributes".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_attributes_trampoline::<F> as *const (),
                 )),
@@ -137,7 +137,7 @@ impl DirectoryList {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::error".as_ptr() as *const _,
+                c"notify::error".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_error_trampoline::<F> as *const (),
                 )),
@@ -162,7 +162,7 @@ impl DirectoryList {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::file".as_ptr() as *const _,
+                c"notify::file".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_file_trampoline::<F> as *const (),
                 )),
@@ -187,7 +187,7 @@ impl DirectoryList {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::io-priority".as_ptr() as *const _,
+                c"notify::io-priority".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_io_priority_trampoline::<F> as *const (),
                 )),
@@ -212,7 +212,7 @@ impl DirectoryList {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::loading".as_ptr() as *const _,
+                c"notify::loading".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_loading_trampoline::<F> as *const (),
                 )),
@@ -237,7 +237,7 @@ impl DirectoryList {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::monitored".as_ptr() as *const _,
+                c"notify::monitored".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_monitored_trampoline::<F> as *const (),
                 )),

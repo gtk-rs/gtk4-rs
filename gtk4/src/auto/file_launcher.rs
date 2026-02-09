@@ -241,7 +241,7 @@ impl FileLauncher {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::always-ask".as_ptr() as *const _,
+                c"notify::always-ask".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_always_ask_trampoline::<F> as *const (),
                 )),
@@ -268,7 +268,7 @@ impl FileLauncher {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::file".as_ptr() as *const _,
+                c"notify::file".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_file_trampoline::<F> as *const (),
                 )),
@@ -295,7 +295,7 @@ impl FileLauncher {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::writable".as_ptr() as *const _,
+                c"notify::writable".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_writable_trampoline::<F> as *const (),
                 )),

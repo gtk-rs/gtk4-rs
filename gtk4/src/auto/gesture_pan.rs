@@ -71,7 +71,7 @@ impl GesturePan {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"pan".as_ptr() as *const _,
+                c"pan".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     pan_trampoline::<F> as *const (),
                 )),
@@ -96,7 +96,7 @@ impl GesturePan {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::orientation".as_ptr() as *const _,
+                c"notify::orientation".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_orientation_trampoline::<F> as *const (),
                 )),

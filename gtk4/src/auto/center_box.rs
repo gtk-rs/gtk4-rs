@@ -155,7 +155,7 @@ impl CenterBox {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::baseline-position".as_ptr() as *const _,
+                c"notify::baseline-position".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_baseline_position_trampoline::<F> as *const (),
                 )),
@@ -182,7 +182,7 @@ impl CenterBox {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::center-widget".as_ptr() as *const _,
+                c"notify::center-widget".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_center_widget_trampoline::<F> as *const (),
                 )),
@@ -209,7 +209,7 @@ impl CenterBox {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::end-widget".as_ptr() as *const _,
+                c"notify::end-widget".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_end_widget_trampoline::<F> as *const (),
                 )),
@@ -239,7 +239,7 @@ impl CenterBox {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::shrink-center-last".as_ptr() as *const _,
+                c"notify::shrink-center-last".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_shrink_center_last_trampoline::<F> as *const (),
                 )),
@@ -266,7 +266,7 @@ impl CenterBox {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::start-widget".as_ptr() as *const _,
+                c"notify::start-widget".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_start_widget_trampoline::<F> as *const (),
                 )),

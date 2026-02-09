@@ -143,7 +143,7 @@ impl LockButton {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::permission".as_ptr() as *const _,
+                c"notify::permission".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_permission_trampoline::<F> as *const (),
                 )),
@@ -169,7 +169,7 @@ impl LockButton {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::text-lock".as_ptr() as *const _,
+                c"notify::text-lock".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_text_lock_trampoline::<F> as *const (),
                 )),
@@ -195,7 +195,7 @@ impl LockButton {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::text-unlock".as_ptr() as *const _,
+                c"notify::text-unlock".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_text_unlock_trampoline::<F> as *const (),
                 )),
@@ -221,7 +221,7 @@ impl LockButton {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::tooltip-lock".as_ptr() as *const _,
+                c"notify::tooltip-lock".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_tooltip_lock_trampoline::<F> as *const (),
                 )),
@@ -252,7 +252,7 @@ impl LockButton {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::tooltip-not-authorized".as_ptr() as *const _,
+                c"notify::tooltip-not-authorized".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_tooltip_not_authorized_trampoline::<F> as *const (),
                 )),
@@ -278,7 +278,7 @@ impl LockButton {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::tooltip-unlock".as_ptr() as *const _,
+                c"notify::tooltip-unlock".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_tooltip_unlock_trampoline::<F> as *const (),
                 )),

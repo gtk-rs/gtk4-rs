@@ -212,7 +212,7 @@ pub trait CellAreaContextExt: IsA<CellAreaContext> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::minimum-height".as_ptr() as *const _,
+                c"notify::minimum-height".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_minimum_height_trampoline::<Self, F> as *const (),
                 )),
@@ -241,7 +241,7 @@ pub trait CellAreaContextExt: IsA<CellAreaContext> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::minimum-width".as_ptr() as *const _,
+                c"notify::minimum-width".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_minimum_width_trampoline::<Self, F> as *const (),
                 )),
@@ -270,7 +270,7 @@ pub trait CellAreaContextExt: IsA<CellAreaContext> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::natural-height".as_ptr() as *const _,
+                c"notify::natural-height".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_natural_height_trampoline::<Self, F> as *const (),
                 )),
@@ -299,7 +299,7 @@ pub trait CellAreaContextExt: IsA<CellAreaContext> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::natural-width".as_ptr() as *const _,
+                c"notify::natural-width".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_natural_width_trampoline::<Self, F> as *const (),
                 )),

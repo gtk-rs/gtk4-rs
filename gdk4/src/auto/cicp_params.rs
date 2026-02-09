@@ -119,7 +119,7 @@ impl CicpParams {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::color-primaries".as_ptr() as *const _,
+                c"notify::color-primaries".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_color_primaries_trampoline::<F> as *const (),
                 )),
@@ -149,7 +149,7 @@ impl CicpParams {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::matrix-coefficients".as_ptr() as *const _,
+                c"notify::matrix-coefficients".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_matrix_coefficients_trampoline::<F> as *const (),
                 )),
@@ -176,7 +176,7 @@ impl CicpParams {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::range".as_ptr() as *const _,
+                c"notify::range".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_range_trampoline::<F> as *const (),
                 )),
@@ -206,7 +206,7 @@ impl CicpParams {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::transfer-function".as_ptr() as *const _,
+                c"notify::transfer-function".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_transfer_function_trampoline::<F> as *const (),
                 )),

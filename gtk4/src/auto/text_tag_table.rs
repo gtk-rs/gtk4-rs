@@ -100,7 +100,7 @@ impl TextTagTable {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"tag-added".as_ptr() as *const _,
+                c"tag-added".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     tag_added_trampoline::<F> as *const (),
                 )),
@@ -135,7 +135,7 @@ impl TextTagTable {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"tag-changed".as_ptr() as *const _,
+                c"tag-changed".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     tag_changed_trampoline::<F> as *const (),
                 )),
@@ -160,7 +160,7 @@ impl TextTagTable {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"tag-removed".as_ptr() as *const _,
+                c"tag-removed".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     tag_removed_trampoline::<F> as *const (),
                 )),

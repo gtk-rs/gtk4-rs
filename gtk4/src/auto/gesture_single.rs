@@ -117,7 +117,7 @@ pub trait GestureSingleExt: IsA<GestureSingle> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::button".as_ptr() as *const _,
+                c"notify::button".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_button_trampoline::<Self, F> as *const (),
                 )),
@@ -145,7 +145,7 @@ pub trait GestureSingleExt: IsA<GestureSingle> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::exclusive".as_ptr() as *const _,
+                c"notify::exclusive".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_exclusive_trampoline::<Self, F> as *const (),
                 )),
@@ -173,7 +173,7 @@ pub trait GestureSingleExt: IsA<GestureSingle> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::touch-only".as_ptr() as *const _,
+                c"notify::touch-only".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_touch_only_trampoline::<Self, F> as *const (),
                 )),

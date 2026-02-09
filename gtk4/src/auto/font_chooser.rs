@@ -312,7 +312,7 @@ pub trait FontChooserExt: IsA<FontChooser> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"font-activated".as_ptr() as *const _,
+                c"font-activated".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     font_activated_trampoline::<Self, F> as *const (),
                 )),
@@ -338,7 +338,7 @@ pub trait FontChooserExt: IsA<FontChooser> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::font".as_ptr() as *const _,
+                c"notify::font".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_font_trampoline::<Self, F> as *const (),
                 )),
@@ -367,7 +367,7 @@ pub trait FontChooserExt: IsA<FontChooser> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::font-desc".as_ptr() as *const _,
+                c"notify::font-desc".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_font_desc_trampoline::<Self, F> as *const (),
                 )),
@@ -396,7 +396,7 @@ pub trait FontChooserExt: IsA<FontChooser> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::font-features".as_ptr() as *const _,
+                c"notify::font-features".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_font_features_trampoline::<Self, F> as *const (),
                 )),
@@ -425,7 +425,7 @@ pub trait FontChooserExt: IsA<FontChooser> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::language".as_ptr() as *const _,
+                c"notify::language".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_language_trampoline::<Self, F> as *const (),
                 )),
@@ -451,7 +451,7 @@ pub trait FontChooserExt: IsA<FontChooser> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::level".as_ptr() as *const _,
+                c"notify::level".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_level_trampoline::<Self, F> as *const (),
                 )),
@@ -480,7 +480,7 @@ pub trait FontChooserExt: IsA<FontChooser> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::preview-text".as_ptr() as *const _,
+                c"notify::preview-text".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_preview_text_trampoline::<Self, F> as *const (),
                 )),
@@ -509,7 +509,7 @@ pub trait FontChooserExt: IsA<FontChooser> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::show-preview-entry".as_ptr() as *const _,
+                c"notify::show-preview-entry".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_show_preview_entry_trampoline::<Self, F> as *const (),
                 )),

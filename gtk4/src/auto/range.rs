@@ -256,7 +256,7 @@ pub trait RangeExt: IsA<Range> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"adjust-bounds".as_ptr() as *const _,
+                c"adjust-bounds".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     adjust_bounds_trampoline::<Self, F> as *const (),
                 )),
@@ -293,7 +293,7 @@ pub trait RangeExt: IsA<Range> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"change-value".as_ptr() as *const _,
+                c"change-value".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     change_value_trampoline::<Self, F> as *const (),
                 )),
@@ -324,7 +324,7 @@ pub trait RangeExt: IsA<Range> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"move-slider".as_ptr() as *const _,
+                c"move-slider".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     move_slider_trampoline::<Self, F> as *const (),
                 )),
@@ -352,7 +352,7 @@ pub trait RangeExt: IsA<Range> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"value-changed".as_ptr() as *const _,
+                c"value-changed".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     value_changed_trampoline::<Self, F> as *const (),
                 )),
@@ -377,7 +377,7 @@ pub trait RangeExt: IsA<Range> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::adjustment".as_ptr() as *const _,
+                c"notify::adjustment".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_adjustment_trampoline::<Self, F> as *const (),
                 )),
@@ -402,7 +402,7 @@ pub trait RangeExt: IsA<Range> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::fill-level".as_ptr() as *const _,
+                c"notify::fill-level".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_fill_level_trampoline::<Self, F> as *const (),
                 )),
@@ -427,7 +427,7 @@ pub trait RangeExt: IsA<Range> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::inverted".as_ptr() as *const _,
+                c"notify::inverted".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_inverted_trampoline::<Self, F> as *const (),
                 )),
@@ -458,7 +458,7 @@ pub trait RangeExt: IsA<Range> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::restrict-to-fill-level".as_ptr() as *const _,
+                c"notify::restrict-to-fill-level".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_restrict_to_fill_level_trampoline::<Self, F> as *const (),
                 )),
@@ -483,7 +483,7 @@ pub trait RangeExt: IsA<Range> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::round-digits".as_ptr() as *const _,
+                c"notify::round-digits".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_round_digits_trampoline::<Self, F> as *const (),
                 )),
@@ -511,7 +511,7 @@ pub trait RangeExt: IsA<Range> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::show-fill-level".as_ptr() as *const _,
+                c"notify::show-fill-level".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_show_fill_level_trampoline::<Self, F> as *const (),
                 )),

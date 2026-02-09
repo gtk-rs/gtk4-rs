@@ -43,7 +43,7 @@ pub trait StyleProviderExt: IsA<StyleProvider> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"gtk-private-changed".as_ptr() as *const _,
+                c"gtk-private-changed".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     gtk_private_changed_trampoline::<Self, F> as *const (),
                 )),
