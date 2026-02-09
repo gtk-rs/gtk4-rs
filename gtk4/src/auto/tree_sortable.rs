@@ -64,7 +64,7 @@ pub trait TreeSortableExt: IsA<TreeSortable> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"sort-column-changed".as_ptr() as *const _,
+                c"sort-column-changed".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     sort_column_changed_trampoline::<Self, F> as *const (),
                 )),

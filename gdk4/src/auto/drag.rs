@@ -151,7 +151,7 @@ pub trait DragExt: IsA<Drag> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"cancel".as_ptr() as *const _,
+                c"cancel".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     cancel_trampoline::<Self, F> as *const (),
                 )),
@@ -175,7 +175,7 @@ pub trait DragExt: IsA<Drag> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"dnd-finished".as_ptr() as *const _,
+                c"dnd-finished".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     dnd_finished_trampoline::<Self, F> as *const (),
                 )),
@@ -199,7 +199,7 @@ pub trait DragExt: IsA<Drag> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"drop-performed".as_ptr() as *const _,
+                c"drop-performed".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     drop_performed_trampoline::<Self, F> as *const (),
                 )),
@@ -224,7 +224,7 @@ pub trait DragExt: IsA<Drag> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::actions".as_ptr() as *const _,
+                c"notify::actions".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_actions_trampoline::<Self, F> as *const (),
                 )),
@@ -249,7 +249,7 @@ pub trait DragExt: IsA<Drag> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::display".as_ptr() as *const _,
+                c"notify::display".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_display_trampoline::<Self, F> as *const (),
                 )),
@@ -277,7 +277,7 @@ pub trait DragExt: IsA<Drag> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::selected-action".as_ptr() as *const _,
+                c"notify::selected-action".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_selected_action_trampoline::<Self, F> as *const (),
                 )),

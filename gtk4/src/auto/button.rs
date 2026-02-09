@@ -481,7 +481,7 @@ pub trait ButtonExt: IsA<Button> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"activate".as_ptr() as *const _,
+                c"activate".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     activate_trampoline::<Self, F> as *const (),
                 )),
@@ -509,7 +509,7 @@ pub trait ButtonExt: IsA<Button> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"clicked".as_ptr() as *const _,
+                c"clicked".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     clicked_trampoline::<Self, F> as *const (),
                 )),
@@ -540,7 +540,7 @@ pub trait ButtonExt: IsA<Button> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::can-shrink".as_ptr() as *const _,
+                c"notify::can-shrink".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_can_shrink_trampoline::<Self, F> as *const (),
                 )),
@@ -565,7 +565,7 @@ pub trait ButtonExt: IsA<Button> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::child".as_ptr() as *const _,
+                c"notify::child".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_child_trampoline::<Self, F> as *const (),
                 )),
@@ -590,7 +590,7 @@ pub trait ButtonExt: IsA<Button> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::has-frame".as_ptr() as *const _,
+                c"notify::has-frame".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_has_frame_trampoline::<Self, F> as *const (),
                 )),
@@ -615,7 +615,7 @@ pub trait ButtonExt: IsA<Button> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::icon-name".as_ptr() as *const _,
+                c"notify::icon-name".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_icon_name_trampoline::<Self, F> as *const (),
                 )),
@@ -640,7 +640,7 @@ pub trait ButtonExt: IsA<Button> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::label".as_ptr() as *const _,
+                c"notify::label".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_label_trampoline::<Self, F> as *const (),
                 )),
@@ -668,7 +668,7 @@ pub trait ButtonExt: IsA<Button> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::use-underline".as_ptr() as *const _,
+                c"notify::use-underline".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_use_underline_trampoline::<Self, F> as *const (),
                 )),

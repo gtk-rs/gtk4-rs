@@ -215,7 +215,7 @@ pub trait GtkMountOperationExt: IsA<MountOperation> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::display".as_ptr() as *const _,
+                c"notify::display".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_display_trampoline::<Self, F> as *const (),
                 )),
@@ -243,7 +243,7 @@ pub trait GtkMountOperationExt: IsA<MountOperation> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::is-showing".as_ptr() as *const _,
+                c"notify::is-showing".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_is_showing_trampoline::<Self, F> as *const (),
                 )),
@@ -271,7 +271,7 @@ pub trait GtkMountOperationExt: IsA<MountOperation> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::parent".as_ptr() as *const _,
+                c"notify::parent".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_parent_trampoline::<Self, F> as *const (),
                 )),

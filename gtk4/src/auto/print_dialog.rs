@@ -364,7 +364,7 @@ impl PrintDialog {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::accept-label".as_ptr() as *const _,
+                c"notify::accept-label".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_accept_label_trampoline::<F> as *const (),
                 )),
@@ -391,7 +391,7 @@ impl PrintDialog {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::modal".as_ptr() as *const _,
+                c"notify::modal".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_modal_trampoline::<F> as *const (),
                 )),
@@ -418,7 +418,7 @@ impl PrintDialog {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::page-setup".as_ptr() as *const _,
+                c"notify::page-setup".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_page_setup_trampoline::<F> as *const (),
                 )),
@@ -445,7 +445,7 @@ impl PrintDialog {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::print-settings".as_ptr() as *const _,
+                c"notify::print-settings".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_print_settings_trampoline::<F> as *const (),
                 )),
@@ -472,7 +472,7 @@ impl PrintDialog {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::title".as_ptr() as *const _,
+                c"notify::title".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_title_trampoline::<F> as *const (),
                 )),

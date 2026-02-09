@@ -93,7 +93,7 @@ pub trait SeatExt: IsA<Seat> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"device-added".as_ptr() as *const _,
+                c"device-added".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     device_added_trampoline::<Self, F> as *const (),
                 )),
@@ -124,7 +124,7 @@ pub trait SeatExt: IsA<Seat> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"device-removed".as_ptr() as *const _,
+                c"device-removed".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     device_removed_trampoline::<Self, F> as *const (),
                 )),
@@ -155,7 +155,7 @@ pub trait SeatExt: IsA<Seat> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"tool-added".as_ptr() as *const _,
+                c"tool-added".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     tool_added_trampoline::<Self, F> as *const (),
                 )),
@@ -186,7 +186,7 @@ pub trait SeatExt: IsA<Seat> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"tool-removed".as_ptr() as *const _,
+                c"tool-removed".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     tool_removed_trampoline::<Self, F> as *const (),
                 )),

@@ -162,7 +162,7 @@ impl ProgressBar {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::ellipsize".as_ptr() as *const _,
+                c"notify::ellipsize".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_ellipsize_trampoline::<F> as *const (),
                 )),
@@ -187,7 +187,7 @@ impl ProgressBar {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::fraction".as_ptr() as *const _,
+                c"notify::fraction".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_fraction_trampoline::<F> as *const (),
                 )),
@@ -212,7 +212,7 @@ impl ProgressBar {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::inverted".as_ptr() as *const _,
+                c"notify::inverted".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_inverted_trampoline::<F> as *const (),
                 )),
@@ -237,7 +237,7 @@ impl ProgressBar {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::pulse-step".as_ptr() as *const _,
+                c"notify::pulse-step".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_pulse_step_trampoline::<F> as *const (),
                 )),
@@ -262,7 +262,7 @@ impl ProgressBar {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::show-text".as_ptr() as *const _,
+                c"notify::show-text".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_show_text_trampoline::<F> as *const (),
                 )),
@@ -287,7 +287,7 @@ impl ProgressBar {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::text".as_ptr() as *const _,
+                c"notify::text".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_text_trampoline::<F> as *const (),
                 )),

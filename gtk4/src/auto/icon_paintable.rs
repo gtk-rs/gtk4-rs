@@ -111,7 +111,7 @@ impl IconPaintable {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::is-symbolic".as_ptr() as *const _,
+                c"notify::is-symbolic".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_is_symbolic_trampoline::<F> as *const (),
                 )),
@@ -136,7 +136,7 @@ impl IconPaintable {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::scale".as_ptr() as *const _,
+                c"notify::scale".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_scale_trampoline::<F> as *const (),
                 )),
@@ -161,7 +161,7 @@ impl IconPaintable {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::size".as_ptr() as *const _,
+                c"notify::size".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_size_trampoline::<F> as *const (),
                 )),

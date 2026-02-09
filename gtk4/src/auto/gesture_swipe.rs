@@ -71,7 +71,7 @@ impl GestureSwipe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"swipe".as_ptr() as *const _,
+                c"swipe".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     swipe_trampoline::<F> as *const (),
                 )),

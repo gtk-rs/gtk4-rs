@@ -139,7 +139,7 @@ pub trait PaintableExt: IsA<Paintable> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"invalidate-contents".as_ptr() as *const _,
+                c"invalidate-contents".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     invalidate_contents_trampoline::<Self, F> as *const (),
                 )),
@@ -163,7 +163,7 @@ pub trait PaintableExt: IsA<Paintable> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"invalidate-size".as_ptr() as *const _,
+                c"invalidate-size".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     invalidate_size_trampoline::<Self, F> as *const (),
                 )),

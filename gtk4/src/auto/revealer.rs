@@ -122,7 +122,7 @@ impl Revealer {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::child".as_ptr() as *const _,
+                c"notify::child".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_child_trampoline::<F> as *const (),
                 )),
@@ -147,7 +147,7 @@ impl Revealer {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::child-revealed".as_ptr() as *const _,
+                c"notify::child-revealed".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_child_revealed_trampoline::<F> as *const (),
                 )),
@@ -172,7 +172,7 @@ impl Revealer {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::reveal-child".as_ptr() as *const _,
+                c"notify::reveal-child".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_reveal_child_trampoline::<F> as *const (),
                 )),
@@ -200,7 +200,7 @@ impl Revealer {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::transition-duration".as_ptr() as *const _,
+                c"notify::transition-duration".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_transition_duration_trampoline::<F> as *const (),
                 )),
@@ -225,7 +225,7 @@ impl Revealer {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::transition-type".as_ptr() as *const _,
+                c"notify::transition-type".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_transition_type_trampoline::<F> as *const (),
                 )),

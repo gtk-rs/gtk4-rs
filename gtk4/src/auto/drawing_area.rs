@@ -331,7 +331,7 @@ pub trait DrawingAreaExt: IsA<DrawingArea> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"resize".as_ptr() as *const _,
+                c"resize".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     resize_trampoline::<Self, F> as *const (),
                 )),
@@ -359,7 +359,7 @@ pub trait DrawingAreaExt: IsA<DrawingArea> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::content-height".as_ptr() as *const _,
+                c"notify::content-height".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_content_height_trampoline::<Self, F> as *const (),
                 )),
@@ -387,7 +387,7 @@ pub trait DrawingAreaExt: IsA<DrawingArea> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::content-width".as_ptr() as *const _,
+                c"notify::content-width".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_content_width_trampoline::<Self, F> as *const (),
                 )),

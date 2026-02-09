@@ -189,7 +189,7 @@ impl Svg {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"error".as_ptr() as *const _,
+                c"error".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     error_trampoline::<F> as *const (),
                 )),
@@ -216,7 +216,7 @@ impl Svg {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::features".as_ptr() as *const _,
+                c"notify::features".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_features_trampoline::<F> as *const (),
                 )),
@@ -243,7 +243,7 @@ impl Svg {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::playing".as_ptr() as *const _,
+                c"notify::playing".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_playing_trampoline::<F> as *const (),
                 )),
@@ -270,7 +270,7 @@ impl Svg {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::resource".as_ptr() as *const _,
+                c"notify::resource".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_resource_trampoline::<F> as *const (),
                 )),
@@ -297,7 +297,7 @@ impl Svg {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::state".as_ptr() as *const _,
+                c"notify::state".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_state_trampoline::<F> as *const (),
                 )),
@@ -324,7 +324,7 @@ impl Svg {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::weight".as_ptr() as *const _,
+                c"notify::weight".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_weight_trampoline::<F> as *const (),
                 )),

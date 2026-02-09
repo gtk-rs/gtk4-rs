@@ -242,7 +242,7 @@ impl PrintUnixDialog {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::current-page".as_ptr() as *const _,
+                c"notify::current-page".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_current_page_trampoline::<F> as *const (),
                 )),
@@ -269,7 +269,7 @@ impl PrintUnixDialog {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::embed-page-setup".as_ptr() as *const _,
+                c"notify::embed-page-setup".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_embed_page_setup_trampoline::<F> as *const (),
                 )),
@@ -294,7 +294,7 @@ impl PrintUnixDialog {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::has-selection".as_ptr() as *const _,
+                c"notify::has-selection".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_has_selection_trampoline::<F> as *const (),
                 )),
@@ -324,7 +324,7 @@ impl PrintUnixDialog {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::manual-capabilities".as_ptr() as *const _,
+                c"notify::manual-capabilities".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_manual_capabilities_trampoline::<F> as *const (),
                 )),
@@ -349,7 +349,7 @@ impl PrintUnixDialog {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::page-setup".as_ptr() as *const _,
+                c"notify::page-setup".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_page_setup_trampoline::<F> as *const (),
                 )),
@@ -374,7 +374,7 @@ impl PrintUnixDialog {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::print-settings".as_ptr() as *const _,
+                c"notify::print-settings".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_print_settings_trampoline::<F> as *const (),
                 )),
@@ -401,7 +401,7 @@ impl PrintUnixDialog {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::selected-printer".as_ptr() as *const _,
+                c"notify::selected-printer".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_selected_printer_trampoline::<F> as *const (),
                 )),
@@ -431,7 +431,7 @@ impl PrintUnixDialog {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::support-selection".as_ptr() as *const _,
+                c"notify::support-selection".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_support_selection_trampoline::<F> as *const (),
                 )),

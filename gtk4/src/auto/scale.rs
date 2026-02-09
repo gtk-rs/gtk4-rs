@@ -527,7 +527,7 @@ pub trait ScaleExt: IsA<Scale> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::digits".as_ptr() as *const _,
+                c"notify::digits".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_digits_trampoline::<Self, F> as *const (),
                 )),
@@ -552,7 +552,7 @@ pub trait ScaleExt: IsA<Scale> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::draw-value".as_ptr() as *const _,
+                c"notify::draw-value".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_draw_value_trampoline::<Self, F> as *const (),
                 )),
@@ -577,7 +577,7 @@ pub trait ScaleExt: IsA<Scale> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::has-origin".as_ptr() as *const _,
+                c"notify::has-origin".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_has_origin_trampoline::<Self, F> as *const (),
                 )),
@@ -602,7 +602,7 @@ pub trait ScaleExt: IsA<Scale> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::value-pos".as_ptr() as *const _,
+                c"notify::value-pos".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_value_pos_trampoline::<Self, F> as *const (),
                 )),

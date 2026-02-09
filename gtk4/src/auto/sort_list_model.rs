@@ -161,7 +161,7 @@ impl SortListModel {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::incremental".as_ptr() as *const _,
+                c"notify::incremental".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_incremental_trampoline::<F> as *const (),
                 )),
@@ -186,7 +186,7 @@ impl SortListModel {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::model".as_ptr() as *const _,
+                c"notify::model".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_model_trampoline::<F> as *const (),
                 )),
@@ -211,7 +211,7 @@ impl SortListModel {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::pending".as_ptr() as *const _,
+                c"notify::pending".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_pending_trampoline::<F> as *const (),
                 )),
@@ -238,7 +238,7 @@ impl SortListModel {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::section-sorter".as_ptr() as *const _,
+                c"notify::section-sorter".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_section_sorter_trampoline::<F> as *const (),
                 )),
@@ -263,7 +263,7 @@ impl SortListModel {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::sorter".as_ptr() as *const _,
+                c"notify::sorter".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_sorter_trampoline::<F> as *const (),
                 )),

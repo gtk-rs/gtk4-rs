@@ -162,7 +162,7 @@ pub trait MediaFileExt: IsA<MediaFile> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::file".as_ptr() as *const _,
+                c"notify::file".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_file_trampoline::<Self, F> as *const (),
                 )),
@@ -190,7 +190,7 @@ pub trait MediaFileExt: IsA<MediaFile> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::input-stream".as_ptr() as *const _,
+                c"notify::input-stream".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_input_stream_trampoline::<Self, F> as *const (),
                 )),

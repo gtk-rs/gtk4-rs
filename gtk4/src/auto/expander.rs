@@ -177,7 +177,7 @@ impl Expander {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"activate".as_ptr() as *const _,
+                c"activate".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     activate_trampoline::<F> as *const (),
                 )),
@@ -206,7 +206,7 @@ impl Expander {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::child".as_ptr() as *const _,
+                c"notify::child".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_child_trampoline::<F> as *const (),
                 )),
@@ -231,7 +231,7 @@ impl Expander {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::expanded".as_ptr() as *const _,
+                c"notify::expanded".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_expanded_trampoline::<F> as *const (),
                 )),
@@ -256,7 +256,7 @@ impl Expander {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::label".as_ptr() as *const _,
+                c"notify::label".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_label_trampoline::<F> as *const (),
                 )),
@@ -281,7 +281,7 @@ impl Expander {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::label-widget".as_ptr() as *const _,
+                c"notify::label-widget".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_label_widget_trampoline::<F> as *const (),
                 )),
@@ -306,7 +306,7 @@ impl Expander {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::resize-toplevel".as_ptr() as *const _,
+                c"notify::resize-toplevel".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_resize_toplevel_trampoline::<F> as *const (),
                 )),
@@ -331,7 +331,7 @@ impl Expander {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::use-markup".as_ptr() as *const _,
+                c"notify::use-markup".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_use_markup_trampoline::<F> as *const (),
                 )),
@@ -356,7 +356,7 @@ impl Expander {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::use-underline".as_ptr() as *const _,
+                c"notify::use-underline".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_use_underline_trampoline::<F> as *const (),
                 )),

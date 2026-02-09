@@ -11561,7 +11561,7 @@ impl glib::error::ErrorDomain for SvgError {
 
         static QUARK: ::std::sync::OnceLock<glib::ffi::GQuark> = ::std::sync::OnceLock::new();
         let quark = *QUARK.get_or_init(|| unsafe {
-            glib::ffi::g_quark_from_static_string(b"GtkSvgError\0".as_ptr() as *const _)
+            glib::ffi::g_quark_from_static_string(c"GtkSvgError".as_ptr())
         });
         unsafe { from_glib(quark) }
     }

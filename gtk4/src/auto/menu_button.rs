@@ -323,7 +323,7 @@ impl MenuButton {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"activate".as_ptr() as *const _,
+                c"activate".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     activate_trampoline::<F> as *const (),
                 )),
@@ -356,7 +356,7 @@ impl MenuButton {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::active".as_ptr() as *const _,
+                c"notify::active".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_active_trampoline::<F> as *const (),
                 )),
@@ -386,7 +386,7 @@ impl MenuButton {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::always-show-arrow".as_ptr() as *const _,
+                c"notify::always-show-arrow".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_always_show_arrow_trampoline::<F> as *const (),
                 )),
@@ -413,7 +413,7 @@ impl MenuButton {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::can-shrink".as_ptr() as *const _,
+                c"notify::can-shrink".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_can_shrink_trampoline::<F> as *const (),
                 )),
@@ -440,7 +440,7 @@ impl MenuButton {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::child".as_ptr() as *const _,
+                c"notify::child".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_child_trampoline::<F> as *const (),
                 )),
@@ -465,7 +465,7 @@ impl MenuButton {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::direction".as_ptr() as *const _,
+                c"notify::direction".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_direction_trampoline::<F> as *const (),
                 )),
@@ -490,7 +490,7 @@ impl MenuButton {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::has-frame".as_ptr() as *const _,
+                c"notify::has-frame".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_has_frame_trampoline::<F> as *const (),
                 )),
@@ -515,7 +515,7 @@ impl MenuButton {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::icon-name".as_ptr() as *const _,
+                c"notify::icon-name".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_icon_name_trampoline::<F> as *const (),
                 )),
@@ -540,7 +540,7 @@ impl MenuButton {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::label".as_ptr() as *const _,
+                c"notify::label".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_label_trampoline::<F> as *const (),
                 )),
@@ -565,7 +565,7 @@ impl MenuButton {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::menu-model".as_ptr() as *const _,
+                c"notify::menu-model".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_menu_model_trampoline::<F> as *const (),
                 )),
@@ -590,7 +590,7 @@ impl MenuButton {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::popover".as_ptr() as *const _,
+                c"notify::popover".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_popover_trampoline::<F> as *const (),
                 )),
@@ -617,7 +617,7 @@ impl MenuButton {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::primary".as_ptr() as *const _,
+                c"notify::primary".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_primary_trampoline::<F> as *const (),
                 )),
@@ -642,7 +642,7 @@ impl MenuButton {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::use-underline".as_ptr() as *const _,
+                c"notify::use-underline".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_use_underline_trampoline::<F> as *const (),
                 )),

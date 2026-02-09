@@ -114,7 +114,7 @@ impl NotebookPage {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::detachable".as_ptr() as *const _,
+                c"notify::detachable".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_detachable_trampoline::<F> as *const (),
                 )),
@@ -139,7 +139,7 @@ impl NotebookPage {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::menu-label".as_ptr() as *const _,
+                c"notify::menu-label".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_menu_label_trampoline::<F> as *const (),
                 )),
@@ -164,7 +164,7 @@ impl NotebookPage {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::position".as_ptr() as *const _,
+                c"notify::position".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_position_trampoline::<F> as *const (),
                 )),
@@ -189,7 +189,7 @@ impl NotebookPage {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::reorderable".as_ptr() as *const _,
+                c"notify::reorderable".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_reorderable_trampoline::<F> as *const (),
                 )),
@@ -214,7 +214,7 @@ impl NotebookPage {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::tab-expand".as_ptr() as *const _,
+                c"notify::tab-expand".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_tab_expand_trampoline::<F> as *const (),
                 )),
@@ -239,7 +239,7 @@ impl NotebookPage {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::tab-fill".as_ptr() as *const _,
+                c"notify::tab-fill".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_tab_fill_trampoline::<F> as *const (),
                 )),
@@ -264,7 +264,7 @@ impl NotebookPage {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::tab-label".as_ptr() as *const _,
+                c"notify::tab-label".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_tab_label_trampoline::<F> as *const (),
                 )),

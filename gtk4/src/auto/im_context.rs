@@ -274,7 +274,7 @@ pub trait IMContextExt: IsA<IMContext> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"commit".as_ptr() as *const _,
+                c"commit".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     commit_trampoline::<Self, F> as *const (),
                 )),
@@ -311,7 +311,7 @@ pub trait IMContextExt: IsA<IMContext> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"delete-surrounding".as_ptr() as *const _,
+                c"delete-surrounding".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     delete_surrounding_trampoline::<Self, F> as *const (),
                 )),
@@ -348,7 +348,7 @@ pub trait IMContextExt: IsA<IMContext> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"invalid-composition".as_ptr() as *const _,
+                c"invalid-composition".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     invalid_composition_trampoline::<Self, F> as *const (),
                 )),
@@ -372,7 +372,7 @@ pub trait IMContextExt: IsA<IMContext> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"preedit-changed".as_ptr() as *const _,
+                c"preedit-changed".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     preedit_changed_trampoline::<Self, F> as *const (),
                 )),
@@ -396,7 +396,7 @@ pub trait IMContextExt: IsA<IMContext> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"preedit-end".as_ptr() as *const _,
+                c"preedit-end".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     preedit_end_trampoline::<Self, F> as *const (),
                 )),
@@ -420,7 +420,7 @@ pub trait IMContextExt: IsA<IMContext> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"preedit-start".as_ptr() as *const _,
+                c"preedit-start".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     preedit_start_trampoline::<Self, F> as *const (),
                 )),
@@ -450,7 +450,7 @@ pub trait IMContextExt: IsA<IMContext> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"retrieve-surrounding".as_ptr() as *const _,
+                c"retrieve-surrounding".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     retrieve_surrounding_trampoline::<Self, F> as *const (),
                 )),
@@ -478,7 +478,7 @@ pub trait IMContextExt: IsA<IMContext> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::input-hints".as_ptr() as *const _,
+                c"notify::input-hints".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_input_hints_trampoline::<Self, F> as *const (),
                 )),
@@ -506,7 +506,7 @@ pub trait IMContextExt: IsA<IMContext> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::input-purpose".as_ptr() as *const _,
+                c"notify::input-purpose".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_input_purpose_trampoline::<Self, F> as *const (),
                 )),

@@ -90,7 +90,7 @@ impl ShortcutsWindow {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"close".as_ptr() as *const _,
+                c"close".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     close_trampoline::<F> as *const (),
                 )),
@@ -120,7 +120,7 @@ impl ShortcutsWindow {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"search".as_ptr() as *const _,
+                c"search".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     search_trampoline::<F> as *const (),
                 )),
@@ -151,7 +151,7 @@ impl ShortcutsWindow {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::section-name".as_ptr() as *const _,
+                c"notify::section-name".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_section_name_trampoline::<F> as *const (),
                 )),
@@ -177,7 +177,7 @@ impl ShortcutsWindow {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::view-name".as_ptr() as *const _,
+                c"notify::view-name".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_view_name_trampoline::<F> as *const (),
                 )),

@@ -119,7 +119,7 @@ impl FileChooserNative {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::accept-label".as_ptr() as *const _,
+                c"notify::accept-label".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_accept_label_trampoline::<F> as *const (),
                 )),
@@ -144,7 +144,7 @@ impl FileChooserNative {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::cancel-label".as_ptr() as *const _,
+                c"notify::cancel-label".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_cancel_label_trampoline::<F> as *const (),
                 )),

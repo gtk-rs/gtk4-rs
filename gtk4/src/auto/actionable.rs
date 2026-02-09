@@ -97,7 +97,7 @@ pub trait ActionableExt: IsA<Actionable> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::action-name".as_ptr() as *const _,
+                c"notify::action-name".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_action_name_trampoline::<Self, F> as *const (),
                 )),
@@ -125,7 +125,7 @@ pub trait ActionableExt: IsA<Actionable> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::action-target".as_ptr() as *const _,
+                c"notify::action-target".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_action_target_trampoline::<Self, F> as *const (),
                 )),

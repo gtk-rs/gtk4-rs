@@ -82,7 +82,7 @@ impl Spinner {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::spinning".as_ptr() as *const _,
+                c"notify::spinning".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_spinning_trampoline::<F> as *const (),
                 )),

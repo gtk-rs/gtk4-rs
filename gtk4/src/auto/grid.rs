@@ -549,7 +549,7 @@ pub trait GridExt: IsA<Grid> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::baseline-row".as_ptr() as *const _,
+                c"notify::baseline-row".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_baseline_row_trampoline::<Self, F> as *const (),
                 )),
@@ -577,7 +577,7 @@ pub trait GridExt: IsA<Grid> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::column-homogeneous".as_ptr() as *const _,
+                c"notify::column-homogeneous".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_column_homogeneous_trampoline::<Self, F> as *const (),
                 )),
@@ -602,7 +602,7 @@ pub trait GridExt: IsA<Grid> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::column-spacing".as_ptr() as *const _,
+                c"notify::column-spacing".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_column_spacing_trampoline::<Self, F> as *const (),
                 )),
@@ -630,7 +630,7 @@ pub trait GridExt: IsA<Grid> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::row-homogeneous".as_ptr() as *const _,
+                c"notify::row-homogeneous".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_row_homogeneous_trampoline::<Self, F> as *const (),
                 )),
@@ -655,7 +655,7 @@ pub trait GridExt: IsA<Grid> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::row-spacing".as_ptr() as *const _,
+                c"notify::row-spacing".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_row_spacing_trampoline::<Self, F> as *const (),
                 )),

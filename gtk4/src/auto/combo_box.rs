@@ -674,7 +674,7 @@ pub trait ComboBoxExt: IsA<ComboBox> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"activate".as_ptr() as *const _,
+                c"activate".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     activate_trampoline::<Self, F> as *const (),
                 )),
@@ -704,7 +704,7 @@ pub trait ComboBoxExt: IsA<ComboBox> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"changed".as_ptr() as *const _,
+                c"changed".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     changed_trampoline::<Self, F> as *const (),
                 )),
@@ -739,7 +739,7 @@ pub trait ComboBoxExt: IsA<ComboBox> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"format-entry-text".as_ptr() as *const _,
+                c"format-entry-text".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     format_entry_text_trampoline::<Self, F> as *const (),
                 )),
@@ -770,7 +770,7 @@ pub trait ComboBoxExt: IsA<ComboBox> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"move-active".as_ptr() as *const _,
+                c"move-active".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     move_active_trampoline::<Self, F> as *const (),
                 )),
@@ -798,7 +798,7 @@ pub trait ComboBoxExt: IsA<ComboBox> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"popdown".as_ptr() as *const _,
+                c"popdown".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     popdown_trampoline::<Self, F> as *const (),
                 )),
@@ -826,7 +826,7 @@ pub trait ComboBoxExt: IsA<ComboBox> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"popup".as_ptr() as *const _,
+                c"popup".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     popup_trampoline::<Self, F> as *const (),
                 )),
@@ -855,7 +855,7 @@ pub trait ComboBoxExt: IsA<ComboBox> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::active".as_ptr() as *const _,
+                c"notify::active".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_active_trampoline::<Self, F> as *const (),
                 )),
@@ -880,7 +880,7 @@ pub trait ComboBoxExt: IsA<ComboBox> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::active-id".as_ptr() as *const _,
+                c"notify::active-id".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_active_id_trampoline::<Self, F> as *const (),
                 )),
@@ -908,7 +908,7 @@ pub trait ComboBoxExt: IsA<ComboBox> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::button-sensitivity".as_ptr() as *const _,
+                c"notify::button-sensitivity".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_button_sensitivity_trampoline::<Self, F> as *const (),
                 )),
@@ -933,7 +933,7 @@ pub trait ComboBoxExt: IsA<ComboBox> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::child".as_ptr() as *const _,
+                c"notify::child".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_child_trampoline::<Self, F> as *const (),
                 )),
@@ -961,7 +961,7 @@ pub trait ComboBoxExt: IsA<ComboBox> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::entry-text-column".as_ptr() as *const _,
+                c"notify::entry-text-column".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_entry_text_column_trampoline::<Self, F> as *const (),
                 )),
@@ -986,7 +986,7 @@ pub trait ComboBoxExt: IsA<ComboBox> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::has-frame".as_ptr() as *const _,
+                c"notify::has-frame".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_has_frame_trampoline::<Self, F> as *const (),
                 )),
@@ -1011,7 +1011,7 @@ pub trait ComboBoxExt: IsA<ComboBox> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::id-column".as_ptr() as *const _,
+                c"notify::id-column".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_id_column_trampoline::<Self, F> as *const (),
                 )),
@@ -1036,7 +1036,7 @@ pub trait ComboBoxExt: IsA<ComboBox> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::model".as_ptr() as *const _,
+                c"notify::model".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_model_trampoline::<Self, F> as *const (),
                 )),
@@ -1064,7 +1064,7 @@ pub trait ComboBoxExt: IsA<ComboBox> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::popup-fixed-width".as_ptr() as *const _,
+                c"notify::popup-fixed-width".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_popup_fixed_width_trampoline::<Self, F> as *const (),
                 )),
@@ -1092,7 +1092,7 @@ pub trait ComboBoxExt: IsA<ComboBox> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::popup-shown".as_ptr() as *const _,
+                c"notify::popup-shown".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_popup_shown_trampoline::<Self, F> as *const (),
                 )),

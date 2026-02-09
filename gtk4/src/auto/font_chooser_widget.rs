@@ -61,7 +61,7 @@ impl FontChooserWidget {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::tweak-action".as_ptr() as *const _,
+                c"notify::tweak-action".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_tweak_action_trampoline::<F> as *const (),
                 )),

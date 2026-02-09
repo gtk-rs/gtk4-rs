@@ -92,7 +92,7 @@ impl ColorDialogButton {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"activate".as_ptr() as *const _,
+                c"activate".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     activate_trampoline::<F> as *const (),
                 )),
@@ -125,7 +125,7 @@ impl ColorDialogButton {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::dialog".as_ptr() as *const _,
+                c"notify::dialog".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_dialog_trampoline::<F> as *const (),
                 )),
@@ -152,7 +152,7 @@ impl ColorDialogButton {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::rgba".as_ptr() as *const _,
+                c"notify::rgba".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_rgba_trampoline::<F> as *const (),
                 )),

@@ -207,7 +207,7 @@ pub trait ListItemExt: IsA<ListItem> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::accessible-description".as_ptr() as *const _,
+                c"notify::accessible-description".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_accessible_description_trampoline::<Self, F> as *const (),
                 )),
@@ -237,7 +237,7 @@ pub trait ListItemExt: IsA<ListItem> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::accessible-label".as_ptr() as *const _,
+                c"notify::accessible-label".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_accessible_label_trampoline::<Self, F> as *const (),
                 )),
@@ -265,7 +265,7 @@ pub trait ListItemExt: IsA<ListItem> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::activatable".as_ptr() as *const _,
+                c"notify::activatable".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_activatable_trampoline::<Self, F> as *const (),
                 )),
@@ -290,7 +290,7 @@ pub trait ListItemExt: IsA<ListItem> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::child".as_ptr() as *const _,
+                c"notify::child".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_child_trampoline::<Self, F> as *const (),
                 )),
@@ -317,7 +317,7 @@ pub trait ListItemExt: IsA<ListItem> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::focusable".as_ptr() as *const _,
+                c"notify::focusable".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_focusable_trampoline::<Self, F> as *const (),
                 )),
@@ -342,7 +342,7 @@ pub trait ListItemExt: IsA<ListItem> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::item".as_ptr() as *const _,
+                c"notify::item".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_item_trampoline::<Self, F> as *const (),
                 )),
@@ -367,7 +367,7 @@ pub trait ListItemExt: IsA<ListItem> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::position".as_ptr() as *const _,
+                c"notify::position".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_position_trampoline::<Self, F> as *const (),
                 )),
@@ -392,7 +392,7 @@ pub trait ListItemExt: IsA<ListItem> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::selectable".as_ptr() as *const _,
+                c"notify::selectable".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_selectable_trampoline::<Self, F> as *const (),
                 )),
@@ -417,7 +417,7 @@ pub trait ListItemExt: IsA<ListItem> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::selected".as_ptr() as *const _,
+                c"notify::selected".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_selected_trampoline::<Self, F> as *const (),
                 )),

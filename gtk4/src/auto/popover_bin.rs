@@ -136,7 +136,7 @@ impl PopoverBin {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::child".as_ptr() as *const _,
+                c"notify::child".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_child_trampoline::<F> as *const (),
                 )),
@@ -163,7 +163,7 @@ impl PopoverBin {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::handle-input".as_ptr() as *const _,
+                c"notify::handle-input".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_handle_input_trampoline::<F> as *const (),
                 )),
@@ -190,7 +190,7 @@ impl PopoverBin {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::menu-model".as_ptr() as *const _,
+                c"notify::menu-model".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_menu_model_trampoline::<F> as *const (),
                 )),
@@ -217,7 +217,7 @@ impl PopoverBin {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::popover".as_ptr() as *const _,
+                c"notify::popover".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_popover_trampoline::<F> as *const (),
                 )),

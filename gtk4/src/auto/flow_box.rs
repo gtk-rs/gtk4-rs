@@ -415,7 +415,7 @@ impl FlowBox {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"activate-cursor-child".as_ptr() as *const _,
+                c"activate-cursor-child".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     activate_cursor_child_trampoline::<F> as *const (),
                 )),
@@ -449,7 +449,7 @@ impl FlowBox {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"child-activated".as_ptr() as *const _,
+                c"child-activated".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     child_activated_trampoline::<F> as *const (),
                 )),
@@ -489,7 +489,7 @@ impl FlowBox {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"move-cursor".as_ptr() as *const _,
+                c"move-cursor".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     move_cursor_trampoline::<F> as *const (),
                 )),
@@ -523,7 +523,7 @@ impl FlowBox {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"select-all".as_ptr() as *const _,
+                c"select-all".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     select_all_trampoline::<F> as *const (),
                 )),
@@ -554,7 +554,7 @@ impl FlowBox {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"selected-children-changed".as_ptr() as *const _,
+                c"selected-children-changed".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     selected_children_changed_trampoline::<F> as *const (),
                 )),
@@ -578,7 +578,7 @@ impl FlowBox {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"toggle-cursor-child".as_ptr() as *const _,
+                c"toggle-cursor-child".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     toggle_cursor_child_trampoline::<F> as *const (),
                 )),
@@ -606,7 +606,7 @@ impl FlowBox {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"unselect-all".as_ptr() as *const _,
+                c"unselect-all".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     unselect_all_trampoline::<F> as *const (),
                 )),
@@ -640,7 +640,7 @@ impl FlowBox {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::accept-unpaired-release".as_ptr() as *const _,
+                c"notify::accept-unpaired-release".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_accept_unpaired_release_trampoline::<F> as *const (),
                 )),
@@ -670,7 +670,7 @@ impl FlowBox {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::activate-on-single-click".as_ptr() as *const _,
+                c"notify::activate-on-single-click".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_activate_on_single_click_trampoline::<F> as *const (),
                 )),
@@ -695,7 +695,7 @@ impl FlowBox {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::column-spacing".as_ptr() as *const _,
+                c"notify::column-spacing".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_column_spacing_trampoline::<F> as *const (),
                 )),
@@ -720,7 +720,7 @@ impl FlowBox {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::homogeneous".as_ptr() as *const _,
+                c"notify::homogeneous".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_homogeneous_trampoline::<F> as *const (),
                 )),
@@ -748,7 +748,7 @@ impl FlowBox {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::max-children-per-line".as_ptr() as *const _,
+                c"notify::max-children-per-line".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_max_children_per_line_trampoline::<F> as *const (),
                 )),
@@ -776,7 +776,7 @@ impl FlowBox {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::min-children-per-line".as_ptr() as *const _,
+                c"notify::min-children-per-line".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_min_children_per_line_trampoline::<F> as *const (),
                 )),
@@ -801,7 +801,7 @@ impl FlowBox {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::row-spacing".as_ptr() as *const _,
+                c"notify::row-spacing".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_row_spacing_trampoline::<F> as *const (),
                 )),
@@ -826,7 +826,7 @@ impl FlowBox {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::selection-mode".as_ptr() as *const _,
+                c"notify::selection-mode".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_selection_mode_trampoline::<F> as *const (),
                 )),

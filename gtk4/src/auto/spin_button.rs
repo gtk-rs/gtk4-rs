@@ -330,7 +330,7 @@ impl SpinButton {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"activate".as_ptr() as *const _,
+                c"activate".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     activate_trampoline::<F> as *const (),
                 )),
@@ -364,7 +364,7 @@ impl SpinButton {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"change-value".as_ptr() as *const _,
+                c"change-value".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     change_value_trampoline::<F> as *const (),
                 )),
@@ -397,7 +397,7 @@ impl SpinButton {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"output".as_ptr() as *const _,
+                c"output".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     output_trampoline::<F> as *const (),
                 )),
@@ -421,7 +421,7 @@ impl SpinButton {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"value-changed".as_ptr() as *const _,
+                c"value-changed".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     value_changed_trampoline::<F> as *const (),
                 )),
@@ -445,7 +445,7 @@ impl SpinButton {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"wrapped".as_ptr() as *const _,
+                c"wrapped".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     wrapped_trampoline::<F> as *const (),
                 )),
@@ -475,7 +475,7 @@ impl SpinButton {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::activates-default".as_ptr() as *const _,
+                c"notify::activates-default".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_activates_default_trampoline::<F> as *const (),
                 )),
@@ -500,7 +500,7 @@ impl SpinButton {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::adjustment".as_ptr() as *const _,
+                c"notify::adjustment".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_adjustment_trampoline::<F> as *const (),
                 )),
@@ -525,7 +525,7 @@ impl SpinButton {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::climb-rate".as_ptr() as *const _,
+                c"notify::climb-rate".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_climb_rate_trampoline::<F> as *const (),
                 )),
@@ -550,7 +550,7 @@ impl SpinButton {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::digits".as_ptr() as *const _,
+                c"notify::digits".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_digits_trampoline::<F> as *const (),
                 )),
@@ -575,7 +575,7 @@ impl SpinButton {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::numeric".as_ptr() as *const _,
+                c"notify::numeric".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_numeric_trampoline::<F> as *const (),
                 )),
@@ -600,7 +600,7 @@ impl SpinButton {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::snap-to-ticks".as_ptr() as *const _,
+                c"notify::snap-to-ticks".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_snap_to_ticks_trampoline::<F> as *const (),
                 )),
@@ -625,7 +625,7 @@ impl SpinButton {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::update-policy".as_ptr() as *const _,
+                c"notify::update-policy".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_update_policy_trampoline::<F> as *const (),
                 )),
@@ -650,7 +650,7 @@ impl SpinButton {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::value".as_ptr() as *const _,
+                c"notify::value".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_value_trampoline::<F> as *const (),
                 )),
@@ -675,7 +675,7 @@ impl SpinButton {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::wrap".as_ptr() as *const _,
+                c"notify::wrap".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_wrap_trampoline::<F> as *const (),
                 )),

@@ -473,7 +473,7 @@ pub trait CheckButtonExt: IsA<CheckButton> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"activate".as_ptr() as *const _,
+                c"activate".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     activate_trampoline::<Self, F> as *const (),
                 )),
@@ -503,7 +503,7 @@ pub trait CheckButtonExt: IsA<CheckButton> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"toggled".as_ptr() as *const _,
+                c"toggled".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     toggled_trampoline::<Self, F> as *const (),
                 )),
@@ -528,7 +528,7 @@ pub trait CheckButtonExt: IsA<CheckButton> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::active".as_ptr() as *const _,
+                c"notify::active".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_active_trampoline::<Self, F> as *const (),
                 )),
@@ -555,7 +555,7 @@ pub trait CheckButtonExt: IsA<CheckButton> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::child".as_ptr() as *const _,
+                c"notify::child".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_child_trampoline::<Self, F> as *const (),
                 )),
@@ -580,7 +580,7 @@ pub trait CheckButtonExt: IsA<CheckButton> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::group".as_ptr() as *const _,
+                c"notify::group".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_group_trampoline::<Self, F> as *const (),
                 )),
@@ -608,7 +608,7 @@ pub trait CheckButtonExt: IsA<CheckButton> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::inconsistent".as_ptr() as *const _,
+                c"notify::inconsistent".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_inconsistent_trampoline::<Self, F> as *const (),
                 )),
@@ -633,7 +633,7 @@ pub trait CheckButtonExt: IsA<CheckButton> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::label".as_ptr() as *const _,
+                c"notify::label".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_label_trampoline::<Self, F> as *const (),
                 )),
@@ -661,7 +661,7 @@ pub trait CheckButtonExt: IsA<CheckButton> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::use-underline".as_ptr() as *const _,
+                c"notify::use-underline".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_use_underline_trampoline::<Self, F> as *const (),
                 )),

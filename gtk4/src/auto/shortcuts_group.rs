@@ -102,7 +102,7 @@ impl ShortcutsGroup {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::accel-size-group".as_ptr() as *const _,
+                c"notify::accel-size-group".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_accel_size_group_trampoline::<F> as *const (),
                 )),
@@ -128,7 +128,7 @@ impl ShortcutsGroup {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::height".as_ptr() as *const _,
+                c"notify::height".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_height_trampoline::<F> as *const (),
                 )),
@@ -154,7 +154,7 @@ impl ShortcutsGroup {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::title".as_ptr() as *const _,
+                c"notify::title".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_title_trampoline::<F> as *const (),
                 )),
@@ -182,7 +182,7 @@ impl ShortcutsGroup {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::title-size-group".as_ptr() as *const _,
+                c"notify::title-size-group".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_title_size_group_trampoline::<F> as *const (),
                 )),
@@ -208,7 +208,7 @@ impl ShortcutsGroup {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::view".as_ptr() as *const _,
+                c"notify::view".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_view_trampoline::<F> as *const (),
                 )),
