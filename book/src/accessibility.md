@@ -79,6 +79,8 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/b
 
 ### Keyboard Navigation
 
+# Doesn't work yet, also make a video to demonstrate
+
 A custom widget built from a non-focusable base like `gtk::Widget` won't receive keyboard focus by default.
 Setting `focusable` to `true` lets users Tab to it, and setting `focus_on_click` to `true` also gives it focus when clicked.
 
@@ -88,7 +90,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/b
 {{#rustdoc_include ../listings/accessibility/3/custom_button/imp.rs:object_impl}}
 ```
 
-# TODO: Add screenshot of CustomButton
+<div style="text-align:center"><img src="img/accessibility_custom_button.png" alt="Window titled Custom Button with a Click me button"/></div>
 
 Users can now press Tab to move between custom buttons and press Enter or Space to activate them.
 
@@ -136,7 +138,10 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/b
 {{#rustdoc_include ../listings/accessibility/4/main.rs:window}}
 ```
 
-# TODO: Add screenshot of collapsible section (collapsed and expanded)
+<div style="text-align:center">
+  <img src="img/accessibility_collapsed.png" alt="Window titled Collapsible Section with a Details toggle button in collapsed state"/>
+  <img src="img/accessibility_expanded.png" alt="Window titled Collapsible Section with the Details toggle button in expanded state, revealing the text: Here are some additional details that can be expanded"/>
+</div>
 
 ## Don't Rely on Color Alone
 
@@ -167,7 +172,10 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/b
 {{#rustdoc_include ../listings/accessibility/5/main.rs:window}}
 ```
 
-# TODO: Add screenshot of form validation with error (wrong)
+<div style="text-align:center">
+  <img src="img/accessibility_form_empty.png" alt="Window titled Form Validation with an Email label and an empty entry field"/>
+  <img src="img/accessibility_form_wrong.png" alt="Window titled Form Validation with an Email entry containing invalid input highlighted with a red border, but no visible error message"/>
+</div>
 
 Instead, combine color with a visible error message and an accessible state:
 
@@ -179,7 +187,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/b
 
 This way, the error is communicated through three channels: color (red border), text (error label), and the `Invalid` state for screen readers.
 
-# TODO: Add screenshot of form validation with error (correct)
+<div style="text-align:center"><img src="img/accessibility_correct.png" alt="Window titled Form Validation with an Email entry containing invalid input highlighted with a red border and a visible error message reading: Please enter a valid email address"/></div>
 
 ## Testing Accessibility
 
