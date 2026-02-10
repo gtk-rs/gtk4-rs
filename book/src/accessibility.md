@@ -22,13 +22,9 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/b
 The [`update_property`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/prelude/trait.AccessibleExtManual.html#method.update_property) method lets you set accessible properties like `Label` (a short, descriptive name) and `Description` (additional context).
 The `Label` is what screen readers announce when the widget receives focus.
 
-For more complex cases, you can also set a `Description` to provide additional context.
-
 ```rust,no_run
 {{#rustdoc_include ../listings/accessibility/1/main.rs:description}}
 ```
-
-This is what the icon buttons look like — for sighted users it is typically easier to guess the meaning of the symbol from context. Many icons have no unique name, for example for the right icon how should the screen reader know whether the right icon is described by "settings", "emblem-system" or "gear"?  That's why screen readers need the accessible labels we just set.
 
 <div style="text-align:center"><img src="img/accessibility_labels.png" alt="Window with a search and a settings icon button"/></div>
 
@@ -49,68 +45,83 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/b
 
 When a screen reader focuses the entry, it will announce the label's text, so the user knows what information to enter.
 
-The label and entry are visually next to each other, but the `LabelledBy` relation makes that connection explicit for assistive technologies.
-
 <div style="text-align:center"><img src="img/accessibility_relationship.png" alt="Window with a username label and an entry field"/></div>
 
-## Accessible Roles
+Group related components in a single container to improve navigation for assistive technology users.
+For example, place a label and its entry together in a `Box`, as done above.
 
-Every accessible widget has a role that describes what kind of element it represents.
-GTK assigns sensible default roles to built-in widgets: a `Button` has the role `Button`, a `Label` has the role `Label`, and so on.
+## Custom Widgets
 
-You can see the available roles in the [`AccessibleRole`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/enum.AccessibleRole.html) enum.
-For most widgets, you won't need to change the default role.
-However, when creating custom widgets, you should specify a role explicitly.
+When creating a custom widget, follow these steps to make it accessible:
 
-Let's say you build a custom widget that behaves like a button.
-Without setting the role, assistive technologies won't know this is an interactive element.
-You should set the accessible role at the class level in `class_init`, so that every instance of your widget carries the correct role.
-The widget should also be focusable, so that keyboard users can reach it.
+1. **Determine the appropriate role.** Set an [`AccessibleRole`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/enum.AccessibleRole.html) that matches the widget's behavior, so assistive technologies know what kind of element it is.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/accessibility/3/main.rs">listings/accessibility/3/main.rs</a>
+2. **Update properties when content changes.** Keep accessible properties like `Label` and `Description` in sync with the widget's visual content.
+
+3. **Update states when state changes.** Reflect dynamic changes — like expanded/collapsed or checked/unchecked — using [`accessible::State`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/accessible/enum.State.html).
+
+4. **Update relations.** Connect the widget to related widgets using accessible relations.
+
+Let's build a `CustomButton` widget step by step.
+
+### Setting the Role
+
+First, define the subclass and set the accessible role in `class_init`.
+By setting `AccessibleRole::Button`, screen readers will announce this as a button.
+
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/accessibility/3/custom_button/imp.rs">listings/accessibility/3/custom_button/imp.rs</a>
 
 ```rust,no_run
-{{#rustdoc_include ../listings/accessibility/3/main.rs:custom_button}}
+{{#rustdoc_include ../listings/accessibility/3/custom_button/imp.rs:subclass}}
 ```
 
-By setting `AccessibleRole::Button` in `class_init`, screen readers will now announce this as a button.
+### Keyboard Navigation
+
+A custom widget built from a non-focusable base like `gtk::Widget` won't receive keyboard focus by default.
+Setting `focusable` to `true` lets users Tab to it, and setting `focus_on_click` to `true` also gives it focus when clicked.
+
+```rust,no_run
+{{#rustdoc_include ../listings/accessibility/3/custom_button/imp.rs:object_impl}}
+```
+
+Users can now press Tab to move between custom buttons and press Enter or Space to activate them.
+
+Ensure that:
+
+1. **Focus order is logical.** By default, focus follows the widget hierarchy.
+
+2. **Custom keyboard shortcuts are documented and discoverable.** Consider adding them to your application's shortcuts window.
 
 ## Accessible States
 
-Widgets can have states that affect how assistive technologies present them.
-The [`accessible::State`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/accessible/enum.State.html) enum defines states like `Checked`, `Disabled`, `Expanded`, and more.
+For built-in widgets like `CheckButton` or `Expander`, GTK manages states automatically.
+When you compose widgets into your own patterns, you need to update the state yourself.
 
-For built-in widgets like `CheckButton` or `Expander`, GTK manages these states automatically.
-But when you compose widgets into your own patterns, you need to update the state yourself.
-
-Let's build a collapsible section that properly communicates its expanded state:
+Let's build a collapsible section. We start with a vertical container:
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/accessibility/4/main.rs">listings/accessibility/4/main.rs</a>
 
 ```rust,no_run
-{{#rustdoc_include ../listings/accessibility/4/main.rs:collapsible}}
+{{#rustdoc_include ../listings/accessibility/4/main.rs:container}}
 ```
 
-Now screen readers will announce whether the section is expanded or collapsed when users interact with the toggle button.
-
-## Keyboard Navigation
-
-Accessible applications must be fully usable without a mouse.
-GTK handles basic keyboard navigation automatically: users can press Tab to move between widgets and Enter or Space to activate buttons.
-
-However, you should ensure that:
-
-1. **All interactive elements can receive focus.** If you create a custom interactive widget from a non-focusable base, set it to be focusable.
-   Use [`set_focus_on_click`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/prelude/trait.WidgetExt.html#tymethod.set_focus_on_click) to also let users focus the widget by clicking it.
-
-2. **Focus order is logical.** By default, focus follows the widget hierarchy.
-
-3. **Custom keyboard shortcuts are documented and discoverable.** Consider adding them to your application's shortcuts window.
-
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/accessibility/5/main.rs">listings/accessibility/5/main.rs</a>
+Next, create a toggle button and a revealer, then set the initial accessible state and relation.
+The `Controls` relation tells assistive technologies that the button controls the revealer.
 
 ```rust,no_run
-{{#rustdoc_include ../listings/accessibility/5/main.rs:focusable}}
+{{#rustdoc_include ../listings/accessibility/4/main.rs:initial_state}}
+```
+
+When the user clicks the button, we toggle the revealer and update the accessible state to match:
+
+```rust,no_run
+{{#rustdoc_include ../listings/accessibility/4/main.rs:update_state}}
+```
+
+Finally, assemble the widgets and present the window:
+
+```rust,no_run
+{{#rustdoc_include ../listings/accessibility/4/main.rs:window}}
 ```
 
 ## Testing Accessibility
@@ -121,7 +132,6 @@ Testing is essential for ensuring your application works well with assistive tec
 
 [Orca](https://orca.gnome.org/) is the GNOME screen reader.
 You can enable it in Settings → Accessibility → Screen Reader, or toggle it with **Super+Alt+S** (Super is typically the Windows key).
-Testing with an actual screen reader is the best way to experience what your users experience.
 Try navigating your application using only the keyboard while Orca announces elements.
 
 ### Accessibility Checklist
@@ -136,5 +146,9 @@ When reviewing your application's accessibility, check that:
 - Focus is visible and moves in a logical order
 - Color is not the only way to convey information
 
-GTK's accessibility support is extensive.
-For more details, refer to the [GTK accessibility documentation](https://docs.gtk.org/gtk4/section-accessibility.html).
+## Further Reading
+
+- [GTK accessibility documentation](https://docs.gtk.org/gtk4/section-accessibility.html)
+- [GNOME Accessibility Guidelines](https://developer.gnome.org/documentation/guidelines/accessibility.html)
+- [Coding Guidelines for Supporting Accessibility](https://developer.gnome.org/documentation/guidelines/accessibility/coding-guidelines.html)
+- [Making Custom Components Accessible](https://developer.gnome.org/documentation/guidelines/accessibility/custom-widgets.html)

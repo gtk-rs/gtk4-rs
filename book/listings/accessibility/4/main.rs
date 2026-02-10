@@ -12,8 +12,8 @@ fn main() -> glib::ExitCode {
     app.run()
 }
 
-// ANCHOR: collapsible
 fn build_ui(app: &Application) {
+    // ANCHOR: container
     let container = gtk::Box::builder()
         .orientation(Orientation::Vertical)
         .spacing(6)
@@ -22,7 +22,9 @@ fn build_ui(app: &Application) {
         .margin_top(12)
         .margin_bottom(12)
         .build();
+    // ANCHOR_END: container
 
+    // ANCHOR: initial_state
     // Create a toggle button that controls visibility
     let toggle_button = Button::builder().label("Details").build();
 
@@ -40,7 +42,9 @@ fn build_ui(app: &Application) {
     toggle_button.update_state(&[accessible::State::Expanded(Some(false))]);
     toggle_button
         .update_relation(&[accessible::Relation::Controls(&[revealer.upcast_ref()])]);
+    // ANCHOR_END: initial_state
 
+    // ANCHOR: update_state
     // Toggle visibility when clicked
     let revealer_clone = revealer.clone();
     toggle_button.connect_clicked(move |button| {
@@ -59,7 +63,9 @@ fn build_ui(app: &Application) {
             button.set_label("Details");
         }
     });
+    // ANCHOR_END: update_state
 
+    // ANCHOR: window
     container.append(&toggle_button);
     container.append(&revealer);
 
@@ -72,5 +78,5 @@ fn build_ui(app: &Application) {
         .build();
 
     window.present();
+    // ANCHOR_END: window
 }
-// ANCHOR_END: collapsible
