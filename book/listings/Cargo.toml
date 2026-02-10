@@ -327,6 +327,10 @@ path = "accessibility/4/main.rs"
 name = "accessibility_5"
 path = "accessibility/5/main.rs"
 
+[[bin]]
+name = "accessibility_6"
+path = "accessibility/6/main.rs"
+
 # xtask
 [[bin]]
 name = "xtask"

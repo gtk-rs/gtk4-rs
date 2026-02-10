@@ -151,7 +151,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/b
 {{#rustdoc_include ../listings/accessibility/5/main.rs:setup}}
 ```
 
-Changing only the CSS class leaves many users unaware of the error:
+When the input is invalid, we add the `error` CSS class to turn the border red:
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/accessibility/5/main.rs">listings/accessibility/5/main.rs</a>
 

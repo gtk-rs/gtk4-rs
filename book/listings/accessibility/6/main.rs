@@ -1,5 +1,8 @@
 use gtk::prelude::*;
-use gtk::{accessible, glib, Application, ApplicationWindow, Entry, Label, Orientation};
+use gtk::{
+    accessible, glib, AccessibleInvalidState, Application, ApplicationWindow, Entry, Label,
+    Orientation,
+};
 
 const APP_ID: &str = "org.gtk_rs.Accessibility6";
 
@@ -45,13 +48,13 @@ fn build_ui(app: &Application) {
                 entry.add_css_class("error");
                 error_label.set_visible(true);
                 entry.update_state(&[accessible::State::Invalid(
-                    accessible::InvalidState::True,
+                    AccessibleInvalidState::True,
                 )]);
             } else {
                 entry.remove_css_class("error");
                 error_label.set_visible(false);
                 entry.update_state(&[accessible::State::Invalid(
-                    accessible::InvalidState::False,
+                    AccessibleInvalidState::False,
                 )]);
             }
         }
