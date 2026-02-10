@@ -120,6 +120,7 @@ Testing is essential for ensuring your application works well with assistive tec
 ### Orca Screen Reader
 
 [Orca](https://orca.gnome.org/) is the GNOME screen reader.
+You can enable it in Settings → Accessibility → Screen Reader, or toggle it with **Super+Alt+S** (Super is typically the Windows key).
 Testing with an actual screen reader is the best way to experience what your users experience.
 Try navigating your application using only the keyboard while Orca announces elements.
 
