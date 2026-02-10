@@ -22,6 +22,8 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/b
 The [`update_property`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/prelude/trait.AccessibleExtManual.html#method.update_property) method lets you set accessible properties like `Label` (a short, descriptive name) and `Description` (additional context).
 The `Label` is what screen readers announce when the widget receives focus.
 
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/accessibility/1/main.rs">listings/accessibility/1/main.rs</a>
+
 ```rust,no_run
 {{#rustdoc_include ../listings/accessibility/1/main.rs:description}}
 ```
@@ -80,9 +82,13 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/b
 A custom widget built from a non-focusable base like `gtk::Widget` won't receive keyboard focus by default.
 Setting `focusable` to `true` lets users Tab to it, and setting `focus_on_click` to `true` also gives it focus when clicked.
 
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/accessibility/3/custom_button/imp.rs">listings/accessibility/3/custom_button/imp.rs</a>
+
 ```rust,no_run
 {{#rustdoc_include ../listings/accessibility/3/custom_button/imp.rs:object_impl}}
 ```
+
+# TODO: Add screenshot of CustomButton
 
 Users can now press Tab to move between custom buttons and press Enter or Space to activate them.
 
@@ -108,11 +114,15 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/b
 Next, create a toggle button and a revealer, then set the initial accessible state and relation.
 The `Controls` relation tells assistive technologies that the button controls the revealer.
 
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/accessibility/4/main.rs">listings/accessibility/4/main.rs</a>
+
 ```rust,no_run
 {{#rustdoc_include ../listings/accessibility/4/main.rs:initial_state}}
 ```
 
 When the user clicks the button, we toggle the revealer and update the accessible state to match:
+
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/accessibility/4/main.rs">listings/accessibility/4/main.rs</a>
 
 ```rust,no_run
 {{#rustdoc_include ../listings/accessibility/4/main.rs:update_state}}
@@ -120,9 +130,56 @@ When the user clicks the button, we toggle the revealer and update the accessibl
 
 Finally, assemble the widgets and present the window:
 
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/accessibility/4/main.rs">listings/accessibility/4/main.rs</a>
+
 ```rust,no_run
 {{#rustdoc_include ../listings/accessibility/4/main.rs:window}}
 ```
+
+# TODO: Add screenshot of collapsible section (collapsed and expanded)
+
+## Don't Rely on Color Alone
+
+Color should never be the only way to convey information.
+Users who are color-blind or using a screen reader won't notice a red border.
+
+Consider form validation. We set up a labeled entry with a hidden error label:
+
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/accessibility/5/main.rs">listings/accessibility/5/main.rs</a>
+
+```rust,no_run
+{{#rustdoc_include ../listings/accessibility/5/main.rs:setup}}
+```
+
+Changing only the CSS class leaves many users unaware of the error:
+
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/accessibility/5/main.rs">listings/accessibility/5/main.rs</a>
+
+```rust,no_run
+{{#rustdoc_include ../listings/accessibility/5/main.rs:wrong}}
+```
+
+Finally, assemble the widgets and present the window:
+
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/accessibility/5/main.rs">listings/accessibility/5/main.rs</a>
+
+```rust,no_run
+{{#rustdoc_include ../listings/accessibility/5/main.rs:window}}
+```
+
+# TODO: Add screenshot of form validation with error (wrong)
+
+Instead, combine color with a visible error message and an accessible state:
+
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/accessibility/6/main.rs">listings/accessibility/6/main.rs</a>
+
+```rust,no_run
+{{#rustdoc_include ../listings/accessibility/6/main.rs:correct}}
+```
+
+This way, the error is communicated through three channels: color (red border), text (error label), and the `Invalid` state for screen readers.
+
+# TODO: Add screenshot of form validation with error (correct)
 
 ## Testing Accessibility
 
