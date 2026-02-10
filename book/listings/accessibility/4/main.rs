@@ -1,7 +1,7 @@
 use gtk::prelude::*;
 use gtk::{
-    AccessibleRole, Application, ApplicationWindow, Button, Label, Orientation,
-    Revealer, RevealerTransitionType, accessible, glib,
+    Application, ApplicationWindow, Button, Label, Orientation, Revealer,
+    RevealerTransitionType, accessible, glib,
 };
 
 const APP_ID: &str = "org.gtk_rs.Accessibility4";
@@ -24,11 +24,7 @@ fn build_ui(app: &Application) {
         .build();
 
     // Create a toggle button that controls visibility
-    let toggle_button = Button::builder()
-        .label("Details")
-        // Set the accessible role to indicate this controls expansion
-        .accessible_role(AccessibleRole::Button)
-        .build();
+    let toggle_button = Button::builder().label("Details").build();
 
     // The content that will be shown/hidden
     let revealer = Revealer::builder()

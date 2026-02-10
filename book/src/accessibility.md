@@ -81,7 +81,7 @@ Widgets can have states that affect how assistive technologies present them.
 The [`accessible::State`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/accessible/enum.State.html) enum defines states like `Checked`, `Disabled`, `Expanded`, and more.
 
 For built-in widgets like `CheckButton` or `Expander`, GTK manages these states automatically.
-But for custom widgets, you need to update the state yourself.
+But when you compose widgets into your own patterns, you need to update the state yourself.
 
 Let's build a collapsible section that properly communicates its expanded state:
 
@@ -101,9 +101,9 @@ GTK handles basic keyboard navigation automatically: users can press Tab to move
 However, you should ensure that:
 
 1. **All interactive elements can receive focus.** If you create a custom interactive widget from a non-focusable base, set it to be focusable.
+   Use [`set_focus_on_click`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/prelude/trait.WidgetExt.html#tymethod.set_focus_on_click) to also let users focus the widget by clicking it.
 
 2. **Focus order is logical.** By default, focus follows the widget hierarchy.
-   You can adjust this with [`set_focus_on_click`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/prelude/trait.WidgetExt.html#tymethod.set_focus_on_click) and related methods.
 
 3. **Custom keyboard shortcuts are documented and discoverable.** Consider adding them to your application's shortcuts window.
 
