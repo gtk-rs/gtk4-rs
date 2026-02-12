@@ -70,6 +70,7 @@ Let's build a `CustomButton` widget step by step.
 
 First, define the subclass and set the accessible role in `class_init`.
 By setting `AccessibleRole::Button`, screen readers will announce this as a button.
+We also set a custom CSS name so we can style the widget, including a visible focus ring.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/accessibility/3/custom_button/imp.rs">listings/accessibility/3/custom_button/imp.rs</a>
 
@@ -77,12 +78,22 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/b
 {{#rustdoc_include ../listings/accessibility/3/custom_button/imp.rs:subclass}}
 ```
 
-### Keyboard Navigation
+### Focus Ring
 
-# Doesn't work yet, also make a video to demonstrate
+A custom widget doesn't automatically get a visible focus indicator.
+We need to add CSS that draws one when the widget receives keyboard focus.
+
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/accessibility/3/resources/style.css">listings/accessibility/3/resources/style.css</a>
+
+```css
+{{#include ../listings/accessibility/3/resources/style.css}}
+```
+
+### Keyboard Navigation
 
 A custom widget built from a non-focusable base like `gtk::Widget` won't receive keyboard focus by default.
 Setting `focusable` to `true` lets users Tab to it, and setting `focus_on_click` to `true` also gives it focus when clicked.
+The keyboard shortcuts for Enter and Space are bound to the `activate` signal in `class_init`, following the same pattern GTK uses for its built-in button.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/accessibility/3/custom_button/imp.rs">listings/accessibility/3/custom_button/imp.rs</a>
 
