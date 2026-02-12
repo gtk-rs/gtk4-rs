@@ -103,6 +103,8 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/b
 
 <div style="text-align:center"><img src="img/accessibility_custom_button.png" alt="Window titled Custom Button with a Click me button"/></div>
 
+# TODO: Add video demonstrating keyboard navigation and focus ring
+
 Users can now press Tab to move between custom buttons and press Enter or Space to activate them.
 
 Ensure that:
