@@ -28,7 +28,7 @@ glib::wrapper! {
     }
 }
 
-#[cfg(not(any(feature = "v4_10")))]
+#[cfg(not(feature = "v4_10"))]
 glib::wrapper! {
     #[doc(alias = "GtkLevelBar")]
     pub struct LevelBar(Object<ffi::GtkLevelBar>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Orientable;

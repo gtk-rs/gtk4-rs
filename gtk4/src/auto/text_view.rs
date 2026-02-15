@@ -30,7 +30,7 @@ glib::wrapper! {
     }
 }
 
-#[cfg(not(any(feature = "v4_14")))]
+#[cfg(not(feature = "v4_14"))]
 glib::wrapper! {
     #[doc(alias = "GtkTextView")]
     pub struct TextView(Object<ffi::GtkTextView, ffi::GtkTextViewClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Scrollable;

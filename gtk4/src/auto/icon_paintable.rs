@@ -25,7 +25,7 @@ glib::wrapper! {
     }
 }
 
-#[cfg(not(any(feature = "v4_6")))]
+#[cfg(not(feature = "v4_6"))]
 glib::wrapper! {
     #[doc(alias = "GtkIconPaintable")]
     pub struct IconPaintable(Object<ffi::GtkIconPaintable, ffi::GtkIconPaintableClass>) @implements gdk::Paintable;

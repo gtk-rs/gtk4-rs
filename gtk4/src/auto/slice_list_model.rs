@@ -24,7 +24,7 @@ glib::wrapper! {
     }
 }
 
-#[cfg(not(any(feature = "v4_12")))]
+#[cfg(not(feature = "v4_12"))]
 glib::wrapper! {
     #[doc(alias = "GtkSliceListModel")]
     pub struct SliceListModel(Object<ffi::GtkSliceListModel, ffi::GtkSliceListModelClass>) @implements gio::ListModel;

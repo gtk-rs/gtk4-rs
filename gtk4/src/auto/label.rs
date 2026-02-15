@@ -34,7 +34,7 @@ glib::wrapper! {
     }
 }
 
-#[cfg(not(any(feature = "v4_22")))]
+#[cfg(not(feature = "v4_22"))]
 #[cfg(feature = "v4_14")]
 glib::wrapper! {
     #[doc(alias = "GtkLabel")]
@@ -45,7 +45,7 @@ glib::wrapper! {
     }
 }
 
-#[cfg(not(any(feature = "v4_14")))]
+#[cfg(not(feature = "v4_14"))]
 glib::wrapper! {
     #[doc(alias = "GtkLabel")]
     pub struct Label(Object<ffi::GtkLabel>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;

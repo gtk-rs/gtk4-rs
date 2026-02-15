@@ -24,7 +24,7 @@ glib::wrapper! {
     }
 }
 
-#[cfg(not(any(feature = "v4_12")))]
+#[cfg(not(feature = "v4_12"))]
 glib::wrapper! {
     #[doc(alias = "GtkFlattenListModel")]
     pub struct FlattenListModel(Object<ffi::GtkFlattenListModel, ffi::GtkFlattenListModelClass>) @implements gio::ListModel;

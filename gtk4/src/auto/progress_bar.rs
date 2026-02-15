@@ -27,7 +27,7 @@ glib::wrapper! {
     }
 }
 
-#[cfg(not(any(feature = "v4_10")))]
+#[cfg(not(feature = "v4_10"))]
 glib::wrapper! {
     #[doc(alias = "GtkProgressBar")]
     pub struct ProgressBar(Object<ffi::GtkProgressBar>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Orientable;
