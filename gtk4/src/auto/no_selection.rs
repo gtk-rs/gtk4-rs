@@ -24,7 +24,7 @@ glib::wrapper! {
     }
 }
 
-#[cfg(not(any(feature = "v4_12")))]
+#[cfg(not(feature = "v4_12"))]
 glib::wrapper! {
     #[doc(alias = "GtkNoSelection")]
     pub struct NoSelection(Object<ffi::GtkNoSelection, ffi::GtkNoSelectionClass>) @implements gio::ListModel, SelectionModel;

@@ -27,7 +27,7 @@ glib::wrapper! {
     }
 }
 
-#[cfg(not(any(feature = "v4_14")))]
+#[cfg(not(feature = "v4_14"))]
 glib::wrapper! {
     #[doc(alias = "GtkInscription")]
     pub struct Inscription(Object<ffi::GtkInscription, ffi::GtkInscriptionClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
