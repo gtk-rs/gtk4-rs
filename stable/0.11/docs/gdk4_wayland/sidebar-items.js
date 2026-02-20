@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"mod":["prelude"],"struct":["WaylandDevice","WaylandDisplay","WaylandGLContext","WaylandMonitor","WaylandPopup","WaylandSeat","WaylandSurface","WaylandToplevel"]};

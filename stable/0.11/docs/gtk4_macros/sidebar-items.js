@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"attr":["template_callbacks","test"],"derive":["CompositeTemplate"]};

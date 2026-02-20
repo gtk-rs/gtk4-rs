@@ -1,0 +1,2 @@
+window.ALL_CRATES = ["gdk4","gdk4_macos","gdk4_macos_sys","gdk4_sys","gdk4_wayland","gdk4_wayland_sys","gdk4_win32","gdk4_win32_sys","gdk4_x11","gdk4_x11_sys","gsk4","gsk4_sys","gtk4","gtk4_macros","gtk4_sys"];
+//{"start":21,"fragment_lengths":[6,13,17,11,15,19,13,17,11,15,7,11,7,14,11]}
