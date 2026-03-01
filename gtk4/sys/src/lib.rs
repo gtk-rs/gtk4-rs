@@ -1083,7 +1083,7 @@ pub const GTK_STYLE_PROVIDER_PRIORITY_FALLBACK: c_int = 1;
 pub const GTK_STYLE_PROVIDER_PRIORITY_SETTINGS: c_int = 400;
 pub const GTK_STYLE_PROVIDER_PRIORITY_THEME: c_int = 200;
 pub const GTK_STYLE_PROVIDER_PRIORITY_USER: c_int = 800;
-pub const GTK_SVG_ALL_FEATURES: c_int = 15;
+pub const GTK_SVG_DEFAULT_FEATURES: c_int = 15;
 pub const GTK_TEXT_VIEW_PRIORITY_VALIDATE: c_int = 125;
 pub const GTK_TREE_SORTABLE_DEFAULT_SORT_COLUMN_ID: c_int = -1;
 pub const GTK_TREE_SORTABLE_UNSORTED_SORT_COLUMN_ID: c_int = -2;
@@ -1250,6 +1250,7 @@ pub const GTK_SVG_ANIMATIONS: GtkSvgFeatures = 1;
 pub const GTK_SVG_SYSTEM_RESOURCES: GtkSvgFeatures = 2;
 pub const GTK_SVG_EXTERNAL_RESOURCES: GtkSvgFeatures = 4;
 pub const GTK_SVG_EXTENSIONS: GtkSvgFeatures = 8;
+pub const GTK_SVG_TRADITIONAL_SYMBOLIC: GtkSvgFeatures = 16;
 
 pub type GtkTextBufferNotifyFlags = c_uint;
 pub const GTK_TEXT_BUFFER_NOTIFY_BEFORE_INSERT: GtkTextBufferNotifyFlags = 1;
@@ -9594,6 +9595,20 @@ impl ::std::fmt::Debug for GtkTreeViewColumn {
 
 #[repr(C)]
 #[allow(dead_code)]
+pub struct GtkTryExpression {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+impl ::std::fmt::Debug for GtkTryExpression {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GtkTryExpression @ {self:p}"))
+            .finish()
+    }
+}
+
+#[repr(C)]
+#[allow(dead_code)]
 pub struct GtkUriLauncher {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -14504,6 +14519,12 @@ unsafe extern "C" {
     pub fn gtk_file_filter_new() -> *mut GtkFileFilter;
     pub fn gtk_file_filter_new_from_gvariant(variant: *mut glib::GVariant) -> *mut GtkFileFilter;
     pub fn gtk_file_filter_add_mime_type(filter: *mut GtkFileFilter, mime_type: *const c_char);
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    pub fn gtk_file_filter_add_mime_types(
+        filter: *mut GtkFileFilter,
+        mime_types: *mut *const c_char,
+    );
     pub fn gtk_file_filter_add_pattern(filter: *mut GtkFileFilter, pattern: *const c_char);
     pub fn gtk_file_filter_add_pixbuf_formats(filter: *mut GtkFileFilter);
     #[cfg(feature = "v4_4")]
@@ -20517,6 +20538,19 @@ unsafe extern "C" {
         tree_column: *mut GtkTreeViewColumn,
         widget: *mut GtkWidget,
     );
+
+    //=========================================================================
+    // GtkTryExpression
+    //=========================================================================
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    pub fn gtk_try_expression_get_type() -> GType;
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    pub fn gtk_try_expression_new(
+        n_expressions: c_uint,
+        expressions: *mut *mut GtkExpression,
+    ) -> *mut GtkTryExpression;
 
     //=========================================================================
     // GtkUriLauncher

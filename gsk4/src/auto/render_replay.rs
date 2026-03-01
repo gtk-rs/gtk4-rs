@@ -65,16 +65,6 @@ impl RenderReplay {
         }
     }
 
-    #[doc(alias = "gsk_render_replay_foreach_node")]
-    pub fn foreach_node(&mut self, node: impl AsRef<RenderNode>) {
-        unsafe {
-            ffi::gsk_render_replay_foreach_node(
-                self.to_glib_none_mut().0,
-                node.as_ref().to_glib_none().0,
-            );
-        }
-    }
-
     #[doc(alias = "gsk_render_replay_set_font_filter")]
     pub fn set_font_filter(
         &mut self,
@@ -181,57 +171,6 @@ impl RenderReplay {
             ffi::gsk_render_replay_set_node_filter(
                 self.to_glib_none_mut().0,
                 filter,
-                Box_::into_raw(super_callback0) as *mut _,
-                destroy_call3,
-            );
-        }
-    }
-
-    #[doc(alias = "gsk_render_replay_set_node_foreach")]
-    pub fn set_node_foreach(
-        &mut self,
-        foreach: Option<Box_<dyn Fn(&RenderReplay, &RenderNode) -> bool + 'static>>,
-    ) {
-        let foreach_data: Box_<Option<Box_<dyn Fn(&RenderReplay, &RenderNode) -> bool + 'static>>> =
-            Box_::new(foreach);
-        unsafe extern "C" fn foreach_func(
-            replay: *mut ffi::GskRenderReplay,
-            node: *mut ffi::GskRenderNode,
-            user_data: glib::ffi::gpointer,
-        ) -> glib::ffi::gboolean {
-            unsafe {
-                let replay = from_glib_borrow(replay);
-                let node = from_glib_borrow(node);
-                let callback = &*(user_data
-                    as *mut Option<Box_<dyn Fn(&RenderReplay, &RenderNode) -> bool + 'static>>);
-                if let Some(ref callback) = *callback {
-                    callback(&replay, &node)
-                } else {
-                    panic!("cannot get closure...")
-                }
-                .into_glib()
-            }
-        }
-        let foreach = if foreach_data.is_some() {
-            Some(foreach_func as _)
-        } else {
-            None
-        };
-        unsafe extern "C" fn user_destroy_func(data: glib::ffi::gpointer) {
-            unsafe {
-                let _callback = Box_::from_raw(
-                    data as *mut Option<Box_<dyn Fn(&RenderReplay, &RenderNode) -> bool + 'static>>,
-                );
-            }
-        }
-        let destroy_call3 = Some(user_destroy_func as _);
-        let super_callback0: Box_<
-            Option<Box_<dyn Fn(&RenderReplay, &RenderNode) -> bool + 'static>>,
-        > = foreach_data;
-        unsafe {
-            ffi::gsk_render_replay_set_node_foreach(
-                self.to_glib_none_mut().0,
-                foreach,
                 Box_::into_raw(super_callback0) as *mut _,
                 destroy_call3,
             );

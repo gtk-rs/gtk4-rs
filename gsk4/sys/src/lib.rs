@@ -273,8 +273,6 @@ pub type GskRenderReplayFontFilter = Option<
 pub type GskRenderReplayNodeFilter = Option<
     unsafe extern "C" fn(*mut GskRenderReplay, *mut GskRenderNode, gpointer) -> *mut GskRenderNode,
 >;
-pub type GskRenderReplayNodeForeach =
-    Option<unsafe extern "C" fn(*mut GskRenderReplay, *mut GskRenderNode, gpointer) -> gboolean>;
 pub type GskRenderReplayTextureFilter = Option<
     unsafe extern "C" fn(
         *mut GskRenderReplay,
@@ -1750,9 +1748,6 @@ unsafe extern "C" {
     ) -> *mut gdk::GdkTexture;
     #[cfg(feature = "v4_22")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
-    pub fn gsk_render_replay_foreach_node(self_: *mut GskRenderReplay, node: *mut GskRenderNode);
-    #[cfg(feature = "v4_22")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
     pub fn gsk_render_replay_free(self_: *mut GskRenderReplay);
     #[cfg(feature = "v4_22")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
@@ -1767,14 +1762,6 @@ unsafe extern "C" {
     pub fn gsk_render_replay_set_node_filter(
         self_: *mut GskRenderReplay,
         filter: GskRenderReplayNodeFilter,
-        user_data: gpointer,
-        user_destroy: glib::GDestroyNotify,
-    );
-    #[cfg(feature = "v4_22")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
-    pub fn gsk_render_replay_set_node_foreach(
-        self_: *mut GskRenderReplay,
-        foreach: GskRenderReplayNodeForeach,
         user_data: gpointer,
         user_destroy: glib::GDestroyNotify,
     );
@@ -2581,6 +2568,12 @@ unsafe extern "C" {
         node: *mut GskRenderNode,
         bounds: *mut graphene::graphene_rect_t,
     );
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    pub fn gsk_render_node_get_children(
+        self_: *mut GskRenderNode,
+        n_children: *mut size_t,
+    ) -> *mut *mut GskRenderNode;
     pub fn gsk_render_node_get_node_type(node: *const GskRenderNode) -> GskRenderNodeType;
     #[cfg(feature = "v4_16")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_16")))]
