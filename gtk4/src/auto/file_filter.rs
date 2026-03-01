@@ -45,6 +45,15 @@ impl FileFilter {
         }
     }
 
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    #[doc(alias = "gtk_file_filter_add_mime_types")]
+    pub fn add_mime_types(&self, mime_types: &[&str]) {
+        unsafe {
+            ffi::gtk_file_filter_add_mime_types(self.to_glib_none().0, mime_types.to_glib_none().0);
+        }
+    }
+
     #[doc(alias = "gtk_file_filter_add_pattern")]
     pub fn add_pattern(&self, pattern: &str) {
         unsafe {

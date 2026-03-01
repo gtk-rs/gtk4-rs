@@ -1616,6 +1616,8 @@ bitflags! {
         const EXTERNAL_RESOURCES = ffi::GTK_SVG_EXTERNAL_RESOURCES as _;
         #[doc(alias = "GTK_SVG_EXTENSIONS")]
         const EXTENSIONS = ffi::GTK_SVG_EXTENSIONS as _;
+        #[doc(alias = "GTK_SVG_TRADITIONAL_SYMBOLIC")]
+        const TRADITIONAL_SYMBOLIC = ffi::GTK_SVG_TRADITIONAL_SYMBOLIC as _;
     }
 }
 

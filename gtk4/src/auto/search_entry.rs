@@ -65,6 +65,7 @@ impl SearchEntry {
 
     #[doc(alias = "gtk_search_entry_get_key_capture_widget")]
     #[doc(alias = "get_key_capture_widget")]
+    #[doc(alias = "key-capture-widget")]
     pub fn key_capture_widget(&self) -> Option<Widget> {
         unsafe {
             from_glib_none(ffi::gtk_search_entry_get_key_capture_widget(
@@ -103,6 +104,7 @@ impl SearchEntry {
     }
 
     #[doc(alias = "gtk_search_entry_set_key_capture_widget")]
+    #[doc(alias = "key-capture-widget")]
     pub fn set_key_capture_widget(&self, widget: Option<&impl IsA<Widget>>) {
         unsafe {
             ffi::gtk_search_entry_set_key_capture_widget(
@@ -384,6 +386,36 @@ impl SearchEntry {
         }
     }
 
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    #[doc(alias = "key-capture-widget")]
+    pub fn connect_key_capture_widget_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_key_capture_widget_trampoline<F: Fn(&SearchEntry) + 'static>(
+            this: *mut ffi::GtkSearchEntry,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(&from_glib_borrow(this))
+            }
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                c"notify::key-capture-widget".as_ptr(),
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
+                    notify_key_capture_widget_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
     #[doc(alias = "placeholder-text")]
     pub fn connect_placeholder_text_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_placeholder_text_trampoline<F: Fn(&SearchEntry) + 'static>(
@@ -480,6 +512,16 @@ impl SearchEntryBuilder {
     pub fn input_purpose(self, input_purpose: InputPurpose) -> Self {
         Self {
             builder: self.builder.property("input-purpose", input_purpose),
+        }
+    }
+
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    pub fn key_capture_widget(self, key_capture_widget: &impl IsA<Widget>) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("key-capture-widget", key_capture_widget.clone().upcast()),
         }
     }
 
