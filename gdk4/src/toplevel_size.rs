@@ -5,7 +5,7 @@ use glib::translate::*;
 
 #[repr(transparent)]
 #[doc(alias = "GdkToplevelSize")]
-pub struct ToplevelSize(std::ptr::NonNull<ffi::GdkToplevelSize>);
+pub struct ToplevelSize(pub(crate) std::ptr::NonNull<ffi::GdkToplevelSize>);
 
 impl StaticType for ToplevelSize {
     fn static_type() -> glib::Type {
