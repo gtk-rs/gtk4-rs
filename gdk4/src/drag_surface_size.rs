@@ -5,7 +5,7 @@ use glib::translate::*;
 
 #[repr(transparent)]
 #[doc(alias = "GdkDragSurfaceSize")]
-pub struct DragSurfaceSize(std::ptr::NonNull<ffi::GdkDragSurfaceSize>);
+pub struct DragSurfaceSize(pub(crate) std::ptr::NonNull<ffi::GdkDragSurfaceSize>);
 
 impl StaticType for DragSurfaceSize {
     fn static_type() -> glib::Type {
