@@ -26,7 +26,8 @@ pub trait ToplevelExtManual: IsA<Toplevel> {
         ) {
             unsafe {
                 let f: &F = &*(f as *const F);
-                f(&from_glib_borrow(this), &mut *(size as *mut ToplevelSize))
+                let mut size = ToplevelSize(std::ptr::NonNull::new_unchecked(size));
+                f(&from_glib_borrow(this), &mut size)
             }
         }
         unsafe {
