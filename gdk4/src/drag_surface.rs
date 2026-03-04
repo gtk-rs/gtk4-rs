@@ -29,10 +29,8 @@ pub trait DragSurfaceExtManual: IsA<DragSurface> {
         ) {
             unsafe {
                 let f: &F = &*(f as *const F);
-                f(
-                    &from_glib_borrow(this),
-                    &mut *(size as *mut DragSurfaceSize),
-                )
+                let mut size = DragSurfaceSize(std::ptr::NonNull::new_unchecked(size));
+                f(&from_glib_borrow(this), &mut size)
             }
         }
         unsafe {
