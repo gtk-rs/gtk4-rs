@@ -18,8 +18,13 @@ fn gen_set_template(source: &TemplateSource, crate_ident: &proc_macro2::Ident) -
         TemplateSource::File(file) => {
             let template = if file.ends_with(".blp") {
                 if cfg!(feature = "blueprint") {
+                    let Some(local_file) = Span::call_site().local_file() else {
+                        return Error::new(Span::call_site(), "File not found")
+                            .into_compile_error();
+                    };
+                    let local_file = local_file.to_str();
                     quote! {
-                        #crate_ident::gtk4_macros::include_blueprint!(#file).as_bytes()
+                        #crate_ident::gtk4_macros::include_blueprint!(#local_file, #file).as_bytes()
                     }
                 } else {
                     panic!("blueprint feature is disabled")
