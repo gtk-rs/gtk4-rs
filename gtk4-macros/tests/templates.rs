@@ -271,7 +271,7 @@ mod imp5 {
     use super::*;
 
     #[derive(Debug, Default, gtk::CompositeTemplate)]
-    #[template(file = "tests/my_widget.blp")]
+    #[template(file = "/tests/my_widget.blp")]
     pub struct MyWidget5 {
         #[template_child]
         pub label: TemplateChild<gtk::Label>,
@@ -309,10 +309,54 @@ glib::wrapper! {
     @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget;
 }
 
+#[cfg(feature = "blueprint")]
+mod imp5_relative {
+    use super::*;
+
+    #[derive(Debug, Default, gtk::CompositeTemplate)]
+    #[template(file = "my_widget_relative.blp")]
+    pub struct MyWidget5Relative {
+        #[template_child]
+        pub label: TemplateChild<gtk::Label>,
+        #[template_child(id = "my_label2")]
+        pub label2: gtk::TemplateChild<gtk::Label>,
+    }
+
+    #[glib::object_subclass]
+    impl ObjectSubclass for MyWidget5Relative {
+        const NAME: &'static str = "MyWidget5Relative";
+        type Type = super::MyWidget5Relative;
+        type ParentType = gtk::Widget;
+        fn class_init(klass: &mut Self::Class) {
+            klass.bind_template();
+        }
+        fn instance_init(obj: &glib::subclass::InitializingObject<Self>) {
+            obj.init_template();
+        }
+    }
+
+    impl ObjectImpl for MyWidget5Relative {
+        fn dispose(&self) {
+            while let Some(child) = self.obj().first_child() {
+                child.unparent();
+            }
+        }
+    }
+    impl WidgetImpl for MyWidget5Relative {}
+}
+
+#[cfg(feature = "blueprint")]
+glib::wrapper! {
+    pub struct MyWidget5Relative(ObjectSubclass<imp5_relative::MyWidget5Relative>)
+    @extends gtk::Widget,
+    @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget;
+}
+
 #[gtk::test]
 #[cfg(feature = "blueprint")]
 fn blueprint_file() {
     let _: MyWidget5 = glib::Object::new();
+    let _: MyWidget5Relative = glib::Object::new();
 }
 
 mod imp6 {

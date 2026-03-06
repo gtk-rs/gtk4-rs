@@ -27,7 +27,7 @@ pub fn include_blueprint(input: TokenStream) -> TokenStream {
 
     let tokens: Vec<_> = input.into_iter().collect();
 
-    if tokens.len() != 1 {
+    if tokens.len() != 3 {
         return Error::new(Span::call_site(), "File name not found")
             .into_compile_error()
             .into();
@@ -35,11 +35,33 @@ pub fn include_blueprint(input: TokenStream) -> TokenStream {
 
     let root = std::env::var("CARGO_MANIFEST_DIR").unwrap_or_else(|_| ".".into());
 
-    let file_name = tokens[0].to_string();
+    let local_file = tokens[0].to_string();
+    let local_file = local_file.trim();
+    let local_file = &local_file[1..local_file.len() - 1];
+
+    let file_name = tokens[2].to_string();
     let file_name = file_name.trim();
     let file_name = &file_name[1..file_name.len() - 1];
 
-    let path = std::path::Path::new(&root).join(file_name);
+    // Leading slash means take it relative from the cargo manifest dir.
+    // Otherwise it's relative to the file in which it's included.
+    let path = if let Some(file_name) = file_name.strip_prefix('/') {
+        std::path::Path::new(&root).join(file_name)
+    } else {
+        let Some(file_dir) = std::path::Path::new(&local_file).parent() else {
+            return Error::new(Span::call_site(), "File not found")
+                .into_compile_error()
+                .into();
+        };
+
+        let Ok(cwd) = std::env::current_dir() else {
+            return Error::new(Span::call_site(), "Could not get current directory")
+                .into_compile_error()
+                .into();
+        };
+
+        cwd.join(file_dir).join(file_name)
+    };
 
     if !path.exists() {
         return Error::new(
