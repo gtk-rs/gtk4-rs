@@ -168,8 +168,10 @@ pub fn include_blueprint(input: TokenStream) -> TokenStream {
 ///
 /// The [`CompositeTemplate`] macro can also be used with [Blueprint](https://gnome.pages.gitlab.gnome.org/blueprint-compiler/)
 /// if the feature `blueprint` is enabled.
-/// you can use `string` or `file` relative to the project directory but not
-/// `resource`
+///
+/// You can use `string` or `file` but not `resource`. The path given by `file`
+/// is relative to the file by default but you can set it relative to the
+/// project directory by writing it as an absolute path.
 ///
 /// ```ignore
 /// # fn main() {}
@@ -227,6 +229,30 @@ pub fn include_blueprint(input: TokenStream) -> TokenStream {
 ///     @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget;
 /// }
 /// ```
+///
+/// Alternatives to the definition above using `file`, depending on whether you
+/// prefer to put the blueprint file next to the widget code, or put them all
+/// together:
+///
+/// ```ignore
+///     #[derive(Debug, Default, gtk::CompositeTemplate)]
+///     #[template(file = "mywidget.blp")]
+///     pub struct MyWidget {
+///         #[template_child]
+///         pub label: TemplateChild<gtk::Label>,
+///         #[template_child(id = "my_label2")]
+///         pub label2: gtk::TemplateChild<gtk::Label>,
+///     }
+///
+///     #[derive(Debug, Default, gtk::CompositeTemplate)]
+///     #[template(file = "/data/ui/mywidget.blp")]
+///     pub struct MyWidget {
+///         #[template_child]
+///         pub label: TemplateChild<gtk::Label>,
+///         #[template_child(id = "my_label2")]
+///         pub label2: gtk::TemplateChild<gtk::Label>,
+///     }
+///```
 #[proc_macro_derive(CompositeTemplate, attributes(template, template_child))]
 pub fn composite_template_derive(input: TokenStream) -> TokenStream {
     let input = parse_macro_input!(input as DeriveInput);

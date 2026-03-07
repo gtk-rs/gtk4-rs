@@ -2,6 +2,32 @@
 
 ## [Unreleased]
 
+Carlos Martín Nieto:
+
+- `gtk::CompositeTemplate`'s `file` now considers a blueprint path as relative
+  to the file, allowing for it to be relative to the manifest file directory by
+  prepending `/`.
+
+```rust
+#[derive(Debug, Default, gtk::CompositeTemplate)]
+#[template(file = "my_widget.blp")] // relative to the file
+pub struct MyWidget {
+    #[template_child]
+    pub label: TemplateChild<gtk::Label>,
+    #[template_child(id = "my_label2")]
+    pub label2: gtk::TemplateChild<gtk::Label>,
+}
+
+#[derive(Debug, Default, gtk::CompositeTemplate)]
+#[template(file = "/data/ui/my_widget.blp")] // relative to the project directory
+pub struct MyWidget {
+    #[template_child]
+    pub label: TemplateChild<gtk::Label>,
+    #[template_child(id = "my_label2")]
+    pub label2: gtk::TemplateChild<gtk::Label>,
+}
+```
+
 ## [0.6.6]
 
 Bilal Elmoussaoui:
