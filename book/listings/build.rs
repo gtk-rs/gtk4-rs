@@ -48,6 +48,13 @@ fn main() {
         "composite_templates_6.gresource",
     );
 
+    // accessibility
+    glib_build_tools::compile_resources(
+        &["accessibility/3/resources"],
+        "accessibility/3/resources/resources.gresource.xml",
+        "accessibility_3.gresource",
+    );
+
     // todo
     glib_build_tools::compile_resources(
         &["todo/1/resources"],

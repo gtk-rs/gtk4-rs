@@ -306,6 +306,31 @@ path = "todo/9/src/main.rs"
 name = "todo_10"
 path = "todo/10/src/main.rs"
 
+# accessibility
+[[bin]]
+name = "accessibility_1"
+path = "accessibility/1/main.rs"
+
+[[bin]]
+name = "accessibility_2"
+path = "accessibility/2/main.rs"
+
+[[bin]]
+name = "accessibility_3"
+path = "accessibility/3/main.rs"
+
+[[bin]]
+name = "accessibility_4"
+path = "accessibility/4/main.rs"
+
+[[bin]]
+name = "accessibility_5"
+path = "accessibility/5/main.rs"
+
+[[bin]]
+name = "accessibility_6"
+path = "accessibility/6/main.rs"
+
 # xtask
 [[bin]]
 name = "xtask"
