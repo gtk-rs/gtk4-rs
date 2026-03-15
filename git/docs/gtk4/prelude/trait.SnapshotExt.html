@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Trait containing all `struct@Snapshot` methods."><title>SnapshotExt in gtk4::prelude - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-b7b9f40b.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.96.0-nightly (b41f22de2 2026-03-08)" data-channel="nightly" data-search-js="search-63369b7b.js" data-stringdex-js="stringdex-b897f86f.js" data-settings-js="settings-170eb4bf.js" ><script src="../../static.files/storage-41dd4d93.js"></script><script defer src="sidebar-items.js"></script><script defer src="../../static.files/main-5013f961.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-f7c3ffd8.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-044be391.svg"></head><body class="rustdoc trait"><a class="skip-main-content" href="#main-content">Skip to main content</a><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Trait containing all `struct@Snapshot` methods."><title>SnapshotExt in gtk4::prelude - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-17e0aaed.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.96.0-nightly (03749d625 2026-03-14)" data-channel="nightly" data-search-js="search-63369b7b.js" data-stringdex-js="stringdex-2da4960a.js" data-settings-js="settings-170eb4bf.js" ><script src="../../static.files/storage-41dd4d93.js"></script><script defer src="sidebar-items.js"></script><script defer src="../../static.files/main-5013f961.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-f7c3ffd8.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-044be391.svg"></head><body class="rustdoc trait"><a class="skip-main-content" href="#main-content">Skip to main content</a><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
 
@@ -460,7 +460,8 @@ constructed by @self and frees @self.</p>
 or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="variant core::option::Option::None"><code>None</code></a> to use the bounds of the snapshot</p>
 <h5 id="returns-2"><a class="doc-anchor" href="#returns-2">§</a>Returns</h5>
 <p>a newly-created <a href="../../gdk4/auto/paintable/struct.Paintable.html" title="struct gdk4::auto::paintable::Paintable"><code>gdk::Paintable</code></a></p>
-</div></details><details class="toggle method-toggle deprecated" open><summary><section id="method.gl_shader_pop_texture" class="method"><a class="src rightside" href="../../src/gtk4/auto/snapshot.rs.html#569-573">Source</a><h4 class="code-header">fn <a href="#method.gl_shader_pop_texture" class="fn">gl_shader_pop_texture</a>(&amp;self)</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.16</span></div></span></summary><div class="docblock"><p>Removes the top element from the stack of render nodes and
+</div></details><details class="toggle method-toggle deprecated" open><summary><section id="method.gl_shader_pop_texture" class="method"><a class="src rightside" href="../../src/gtk4/auto/snapshot.rs.html#569-573">Source</a><h4 class="code-header">fn <a href="#method.gl_shader_pop_texture" class="fn">gl_shader_pop_texture</a>(&amp;self)</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: <p>Since 4.16</p>
+</span></div></span></summary><div class="docblock"><p>Removes the top element from the stack of render nodes and
 adds it to the nearest <a href="../../gsk4/auto/gl_shader_node/struct.GLShaderNode.html" title="struct gsk4::auto::gl_shader_node::GLShaderNode"><code>gsk::GLShaderNode</code></a> below it.</p>
 <p>This must be called the same number of times as the number
 of textures is needed for the shader in
@@ -548,7 +549,8 @@ may be more convenient.</p>
 <p>The path describing the area to fill</p>
 <h6 id="fill_rule-1"><a class="doc-anchor" href="#fill_rule-1">§</a><code>fill_rule</code></h6>
 <p>The fill rule to use</p>
-</div></details><details class="toggle method-toggle deprecated" open><summary><section id="method.push_gl_shader" class="method"><a class="src rightside" href="../../src/gtk4/auto/snapshot.rs.html#818-832">Source</a><h4 class="code-header">fn <a href="#method.push_gl_shader" class="fn">push_gl_shader</a>(&amp;self, shader: &amp;<a class="struct" href="../../gsk4/auto/gl_shader/struct.GLShader.html" title="struct gsk4::auto::gl_shader::GLShader">GLShader</a>, bounds: &amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/graphene/auto/rect/struct.Rect.html" title="struct graphene::auto::rect::Rect">Rect</a>, take_args: <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/bytes/struct.Bytes.html" title="struct glib::bytes::Bytes">Bytes</a>)</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.16</span></div></span></summary><div class="docblock"><p>Push a <a href="../../gsk4/auto/gl_shader_node/struct.GLShaderNode.html" title="struct gsk4::auto::gl_shader_node::GLShaderNode"><code>gsk::GLShaderNode</code></a>.</p>
+</div></details><details class="toggle method-toggle deprecated" open><summary><section id="method.push_gl_shader" class="method"><a class="src rightside" href="../../src/gtk4/auto/snapshot.rs.html#818-832">Source</a><h4 class="code-header">fn <a href="#method.push_gl_shader" class="fn">push_gl_shader</a>(&amp;self, shader: &amp;<a class="struct" href="../../gsk4/auto/gl_shader/struct.GLShader.html" title="struct gsk4::auto::gl_shader::GLShader">GLShader</a>, bounds: &amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/graphene/auto/rect/struct.Rect.html" title="struct graphene::auto::rect::Rect">Rect</a>, take_args: <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/bytes/struct.Bytes.html" title="struct glib::bytes::Bytes">Bytes</a>)</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: <p>Since 4.16</p>
+</span></div></span></summary><div class="docblock"><p>Push a <a href="../../gsk4/auto/gl_shader_node/struct.GLShaderNode.html" title="struct gsk4::auto::gl_shader_node::GLShaderNode"><code>gsk::GLShaderNode</code></a>.</p>
 <p>The node uses the given <a href="../../gsk4/auto/gl_shader/struct.GLShader.html" title="struct gsk4::auto::gl_shader::GLShader"><code>gsk::GLShader</code></a> and uniform values
 Additionally this takes a list of @n_children other nodes
 which will be passed to the <a href="../../gsk4/auto/gl_shader_node/struct.GLShaderNode.html" title="struct gsk4::auto::gl_shader_node::GLShaderNode"><code>gsk::GLShaderNode</code></a>.</p>
@@ -629,7 +631,8 @@ may be more convenient.</p>
     y: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>,
     width: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>,
     height: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>,
-)</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Creates a render node for the CSS background according to @context,
+)</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: <p>Since 4.10</p>
+</span></div></span></summary><div class="docblock"><p>Creates a render node for the CSS background according to @context,
 and appends it to the current node of @self, without changing
 the current node.</p>
 <h5 id="deprecated-since-410"><a class="doc-anchor" href="#deprecated-since-410">§</a>Deprecated since 4.10</h5><h6 id="context"><a class="doc-anchor" href="#context">§</a><code>context</code></h6>
@@ -649,7 +652,8 @@ the current node.</p>
     y: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>,
     width: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>,
     height: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>,
-)</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Creates a render node for the focus outline according to @context,
+)</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: <p>Since 4.10</p>
+</span></div></span></summary><div class="docblock"><p>Creates a render node for the focus outline according to @context,
 and appends it to the current node of @self, without changing
 the current node.</p>
 <h5 id="deprecated-since-410-1"><a class="doc-anchor" href="#deprecated-since-410-1">§</a>Deprecated since 4.10</h5><h6 id="context-1"><a class="doc-anchor" href="#context-1">§</a><code>context</code></h6>
@@ -669,7 +673,8 @@ the current node.</p>
     y: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>,
     width: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>,
     height: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>,
-)</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Creates a render node for the CSS border according to @context,
+)</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: <p>Since 4.10</p>
+</span></div></span></summary><div class="docblock"><p>Creates a render node for the CSS border according to @context,
 and appends it to the current node of @self, without changing
 the current node.</p>
 <h5 id="deprecated-since-410-2"><a class="doc-anchor" href="#deprecated-since-410-2">§</a>Deprecated since 4.10</h5><h6 id="context-2"><a class="doc-anchor" href="#context-2">§</a><code>context</code></h6>
@@ -690,7 +695,8 @@ the current node.</p>
     layout: &amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/pango/auto/layout/struct.Layout.html" title="struct pango::auto::layout::Layout">Layout</a>,
     index: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>,
     direction: <a class="enum" href="https://gtk-rs.org/gtk-rs-core/git/docs/pango/auto/enums/enum.Direction.html" title="enum pango::auto::enums::Direction">Direction</a>,
-)</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Draws a text caret using @self at the specified index of @layout.</p>
+)</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: <p>Since 4.10</p>
+</span></div></span></summary><div class="docblock"><p>Draws a text caret using @self at the specified index of @layout.</p>
 <h5 id="deprecated-since-410-3"><a class="doc-anchor" href="#deprecated-since-410-3">§</a>Deprecated since 4.10</h5><h6 id="context-3"><a class="doc-anchor" href="#context-3">§</a><code>context</code></h6>
 <p>a <a href="../struct.StyleContext.html" title="struct gtk4::StyleContext"><code>StyleContext</code></a></p>
 <h6 id="x-3"><a class="doc-anchor" href="#x-3">§</a><code>x</code></h6>
@@ -709,7 +715,8 @@ the current node.</p>
     x: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>,
     y: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>,
     layout: &amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/pango/auto/layout/struct.Layout.html" title="struct pango::auto::layout::Layout">Layout</a>,
-)</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Creates a render node for rendering @layout according to the style
+)</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: <p>Since 4.10</p>
+</span></div></span></summary><div class="docblock"><p>Creates a render node for rendering @layout according to the style
 information in @context, and appends it to the current node of @self,
 without changing the current node.</p>
 <h5 id="deprecated-since-410-4"><a class="doc-anchor" href="#deprecated-since-410-4">§</a>Deprecated since 4.10</h5><h6 id="context-4"><a class="doc-anchor" href="#context-4">§</a><code>context</code></h6>
