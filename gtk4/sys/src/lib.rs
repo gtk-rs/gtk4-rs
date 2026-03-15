@@ -909,6 +909,9 @@ pub const GTK_SVG_ERROR_MISSING_ATTRIBUTE: GtkSvgError = 3;
 pub const GTK_SVG_ERROR_INVALID_REFERENCE: GtkSvgError = 4;
 pub const GTK_SVG_ERROR_FAILED_UPDATE: GtkSvgError = 5;
 pub const GTK_SVG_ERROR_FAILED_RENDERING: GtkSvgError = 6;
+pub const GTK_SVG_ERROR_IGNORED_ELEMENT: GtkSvgError = 7;
+pub const GTK_SVG_ERROR_LIMITS_EXCEEDED: GtkSvgError = 8;
+pub const GTK_SVG_ERROR_NOT_IMPLEMENTED: GtkSvgError = 9;
 
 pub type GtkSymbolicColor = c_int;
 pub const GTK_SYMBOLIC_COLOR_FOREGROUND: GtkSymbolicColor = 0;
@@ -19060,10 +19063,10 @@ unsafe extern "C" {
     pub fn gtk_svg_get_features(self_: *mut GtkSvg) -> GtkSvgFeatures;
     #[cfg(feature = "v4_22")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
-    pub fn gtk_svg_get_n_states(self_: *mut GtkSvg) -> c_uint;
+    pub fn gtk_svg_get_state(self_: *mut GtkSvg) -> c_uint;
     #[cfg(feature = "v4_22")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
-    pub fn gtk_svg_get_state(self_: *mut GtkSvg) -> c_uint;
+    pub fn gtk_svg_get_state_names(self_: *mut GtkSvg, length: *mut c_uint) -> *mut *const c_char;
     #[cfg(feature = "v4_22")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
     pub fn gtk_svg_get_weight(self_: *mut GtkSvg) -> c_double;

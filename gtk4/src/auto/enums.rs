@@ -11470,6 +11470,12 @@ pub enum SvgError {
     FailedUpdate,
     #[doc(alias = "GTK_SVG_ERROR_FAILED_RENDERING")]
     FailedRendering,
+    #[doc(alias = "GTK_SVG_ERROR_IGNORED_ELEMENT")]
+    IgnoredElement,
+    #[doc(alias = "GTK_SVG_ERROR_LIMITS_EXCEEDED")]
+    LimitsExceeded,
+    #[doc(alias = "GTK_SVG_ERROR_NOT_IMPLEMENTED")]
+    NotImplemented,
     #[doc(hidden)]
     __Unknown(i32),
 }
@@ -11526,6 +11532,9 @@ impl IntoGlib for SvgError {
             Self::InvalidReference => ffi::GTK_SVG_ERROR_INVALID_REFERENCE,
             Self::FailedUpdate => ffi::GTK_SVG_ERROR_FAILED_UPDATE,
             Self::FailedRendering => ffi::GTK_SVG_ERROR_FAILED_RENDERING,
+            Self::IgnoredElement => ffi::GTK_SVG_ERROR_IGNORED_ELEMENT,
+            Self::LimitsExceeded => ffi::GTK_SVG_ERROR_LIMITS_EXCEEDED,
+            Self::NotImplemented => ffi::GTK_SVG_ERROR_NOT_IMPLEMENTED,
             Self::__Unknown(value) => value,
         }
     }
@@ -11547,6 +11556,9 @@ impl FromGlib<ffi::GtkSvgError> for SvgError {
             ffi::GTK_SVG_ERROR_INVALID_REFERENCE => Self::InvalidReference,
             ffi::GTK_SVG_ERROR_FAILED_UPDATE => Self::FailedUpdate,
             ffi::GTK_SVG_ERROR_FAILED_RENDERING => Self::FailedRendering,
+            ffi::GTK_SVG_ERROR_IGNORED_ELEMENT => Self::IgnoredElement,
+            ffi::GTK_SVG_ERROR_LIMITS_EXCEEDED => Self::LimitsExceeded,
+            ffi::GTK_SVG_ERROR_NOT_IMPLEMENTED => Self::NotImplemented,
             value => Self::__Unknown(value),
         }
     }

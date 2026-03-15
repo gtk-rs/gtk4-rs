@@ -47,16 +47,23 @@ impl Svg {
         unsafe { from_glib(ffi::gtk_svg_get_features(self.to_glib_none().0)) }
     }
 
-    #[doc(alias = "gtk_svg_get_n_states")]
-    #[doc(alias = "get_n_states")]
-    pub fn n_states(&self) -> u32 {
-        unsafe { ffi::gtk_svg_get_n_states(self.to_glib_none().0) }
-    }
-
     #[doc(alias = "gtk_svg_get_state")]
     #[doc(alias = "get_state")]
     pub fn state(&self) -> u32 {
         unsafe { ffi::gtk_svg_get_state(self.to_glib_none().0) }
+    }
+
+    #[doc(alias = "gtk_svg_get_state_names")]
+    #[doc(alias = "get_state_names")]
+    pub fn state_names(&self) -> (Vec<glib::GString>, u32) {
+        unsafe {
+            let mut length = std::mem::MaybeUninit::uninit();
+            let ret = FromGlibPtrContainer::from_glib_none(ffi::gtk_svg_get_state_names(
+                self.to_glib_none().0,
+                length.as_mut_ptr(),
+            ));
+            (ret, length.assume_init())
+        }
     }
 
     #[doc(alias = "gtk_svg_get_weight")]
