@@ -1,5 +1,7 @@
 use gtk::prelude::*;
-use gtk::{accessible, glib, Application, ApplicationWindow, Entry, Label, Orientation};
+use gtk::{
+    accessible, glib, Application, ApplicationWindow, Entry, Label, Orientation,
+};
 
 const APP_ID: &str = "org.gtk_rs.Accessibility5";
 
@@ -36,7 +38,6 @@ fn build_ui(app: &Application) {
     // ANCHOR_END: setup
 
     // ANCHOR: wrong
-    // Wrong: only color indicates the error
     entry.connect_changed(move |entry| {
         let text = entry.text();
         if !text.is_empty() && !is_valid_email(&text) {

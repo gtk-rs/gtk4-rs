@@ -1,7 +1,7 @@
 use gtk::prelude::*;
 use gtk::{
-    Application, ApplicationWindow, Button, Label, Orientation, Revealer,
-    RevealerTransitionType, accessible, glib,
+    AccessibleAnnouncementPriority, Application, ApplicationWindow, Button, Label, Orientation,
+    Revealer, RevealerTransitionType, accessible, glib,
 };
 
 const APP_ID: &str = "org.gtk_rs.Accessibility4";
@@ -47,6 +47,7 @@ fn build_ui(app: &Application) {
     // ANCHOR: update_state
     // Toggle visibility when clicked
     let revealer_clone = revealer.clone();
+    let content_clone = content.clone();
     toggle_button.connect_clicked(move |button| {
         let is_revealed = revealer_clone.reveals_child();
         let new_state = !is_revealed;
@@ -56,9 +57,13 @@ fn build_ui(app: &Application) {
         // Update the accessible state to match
         button.update_state(&[accessible::State::Expanded(Some(new_state))]);
 
-        // Update button label to reflect state
+        // Update button label and announce the revealed content to screen readers
         if new_state {
             button.set_label("Details (expanded)");
+            button.announce(
+                &content_clone.label(),
+                AccessibleAnnouncementPriority::Medium,
+            );
         } else {
             button.set_label("Details");
         }

@@ -7,7 +7,7 @@ adw = { version = "0.8", package = "libadwaita", features = ["v1_8"] }
 anyhow = "1.0"
 async-channel = "2.5"
 gettext-rs = { version = "0.7" }
-gtk = { version = "0.10", package = "gtk4", features = ["v4_12"] }
+gtk = { version = "0.10", package = "gtk4", features = ["v4_14"] }
 reqwest = { version = "0.12", default-features = false, features = [
     "rustls-tls",
 ] }

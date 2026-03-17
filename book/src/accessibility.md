@@ -113,7 +113,7 @@ Let's add two custom buttons in a `gtk::Box`.
 <div style="text-align:center">
  <video autoplay muted loop>
   <source src="vid/accessibility_custom_button.webm" type="video/webm">
-  <p>A video which shows that pressing on one button also changes the label below</p>
+  <p>A video which shows two custom buttons. The focus is constantly switched between those two.</p>
  </video>
 </div>
 
@@ -138,7 +138,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/b
 ```
 
 Next, create a toggle button and a revealer, then set the initial accessible state and relation.
-The `Controls` relation tells assistive technologies that the button controls the revealer.
+The [`accessible::Relation::Controls`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/accessible/enum.Relation.html) relation tells assistive technologies that the button controls the revealer.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/accessibility/4/main.rs">listings/accessibility/4/main.rs</a>
 
@@ -146,7 +146,8 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/b
 {{#rustdoc_include ../listings/accessibility/4/main.rs:initial_state}}
 ```
 
-When the user clicks the button, we toggle the revealer and update the accessible state to match:
+When the user clicks the button, we toggle the revealer and update the accessible state to match.
+We also use [`announce`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/prelude/trait.AccessibleExt.html#method.announce) to tell screen readers about the newly revealed content:
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/accessibility/4/main.rs">listings/accessibility/4/main.rs</a>
 
@@ -162,6 +163,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/b
 {{#rustdoc_include ../listings/accessibility/4/main.rs:window}}
 ```
 
+This is how the app looks like. First in its collapsed, and then in its expanded state.
 <div style="text-align:center">
   <img src="img/accessibility_collapsed.png" alt="Window titled Collapsible Section with a Details toggle button in collapsed state"/>
   <img src="img/accessibility_expanded.png" alt="Window titled Collapsible Section with the Details toggle button in expanded state, revealing the text: Here are some additional details that can be expanded"/>
@@ -170,9 +172,10 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/b
 ## Don't Rely on Color Alone
 
 Color should never be the only way to convey information.
-Users who are color-blind or using a screen reader won't notice a red border.
+Let's demonstrate this with a simple example where we only use color to notify the user about an invalid entry. 
 
-Consider form validation. We set up a labeled entry with a hidden error label:
+
+First, we set up a labeled entry with a hidden error label:
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/accessibility/5/main.rs">listings/accessibility/5/main.rs</a>
 
@@ -196,12 +199,21 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/b
 {{#rustdoc_include ../listings/accessibility/5/main.rs:window}}
 ```
 
+This doesn't look too bad.
+
 <div style="text-align:center">
   <img src="img/accessibility_form_empty.png" alt="Window titled Form Validation with an Email label and an empty entry field"/>
+</div>
+
+And when we enter an invalid email address, the color of my entry turns red.
+
+<div style="text-align:center">
   <img src="img/accessibility_form_wrong.png" alt="Window titled Form Validation with an Email entry containing invalid input highlighted with a red border, but no visible error message"/>
 </div>
 
-Instead, combine color with a visible error message and an accessible state:
+
+However, people who are color-blind or are using a screen reader won't notice the red font.
+What we will therefore do instead is to combine color with a visible error message and an accessible state:
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/accessibility/6/main.rs">listings/accessibility/6/main.rs</a>
 
@@ -209,7 +221,10 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/b
 {{#rustdoc_include ../listings/accessibility/6/main.rs:correct}}
 ```
 
-This way, the error is communicated through three channels: color (red border), text (error label), and the `Invalid` state for screen readers.
+This way, the error is communicated through three channels: 
+- red color,
+- text of an error label, 
+- and the `Invalid` state which will be announced by screen readers.
 
 <div style="text-align:center"><img src="img/accessibility_correct.png" alt="Window titled Form Validation with an Email entry containing invalid input highlighted with a red border and a visible error message reading: Please enter a valid email address"/></div>
 
@@ -219,23 +234,27 @@ Testing is essential for ensuring your application works well with assistive tec
 
 ### Orca Screen Reader
 
-[Orca](https://orca.gnome.org/) is the GNOME screen reader.
-You can enable it in Settings → Accessibility → Screen Reader, or toggle it with **Super+Alt+S** (Super is typically the Windows key).
+On Linux you can use [Orca](https://orca.gnome.org/) which is pre-installed on many linux distributions.
+On GNOME can enable it in Settings → Accessibility → Screen Reader, or toggle it with **Super+Alt+S** (Super is typically the Windows key).
 Try navigating your application using only the keyboard while Orca announces elements.
+If the screen reader isn't announcing the correct thing, it is time to adapt your application.
 
 ### Accessibility Checklist
 
-When reviewing your application's accessibility, check that:
+Here are some things you can look out for:
 
-- All interactive elements have accessible labels
-- Icon-only buttons have descriptive accessible labels
-- Custom widgets have appropriate roles
-- Dynamic state changes are reflected in accessible states
-- The application is fully usable with keyboard only
-- Focus is visible and moves in a logical order
-- Color is not the only way to convey information
+- The application needs to be fully usable with keyboard only
+- Focus should be visible and move in a logical order
+- Color must not be the only way to convey information
+- All interactive elements and icon-only buttons need to have accessible labels
+- Custom widgets need to have appropriate roles
+- Dynamic state changes need to be reflected in accessible states
 
-## Further Reading
+## Conclusion
+
+Hopefully, this gave you a good overview over what it means to create an application that is accessible to everyone.
+Of course that only scratched the surface of this topic. 
+For a more information, I can recommend the following resources.
 
 - [GTK accessibility documentation](https://docs.gtk.org/gtk4/section-accessibility.html)
 - [GNOME Accessibility Guidelines](https://developer.gnome.org/documentation/guidelines/accessibility.html)
