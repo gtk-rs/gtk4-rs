@@ -1,7 +1,7 @@
 mod custom_button;
 
 use gtk::prelude::*;
-use gtk::{gdk, gio, glib, Application, ApplicationWindow, CssProvider, Orientation};
+use gtk::{Application, ApplicationWindow, CssProvider, Orientation, gdk, gio, glib};
 
 use custom_button::CustomButton;
 

@@ -1,7 +1,7 @@
 use gtk::prelude::*;
 use gtk::{
-    AccessibleAnnouncementPriority, Application, ApplicationWindow, Button, Label, Orientation,
-    Revealer, RevealerTransitionType, accessible, glib,
+    AccessibleAnnouncementPriority, Application, ApplicationWindow, Button, Label,
+    Orientation, Revealer, RevealerTransitionType, accessible, glib,
 };
 
 const APP_ID: &str = "org.gtk_rs.Accessibility4";

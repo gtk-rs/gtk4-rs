@@ -29,6 +29,7 @@ jobs:
 
       - run: cargo xtask install
         name: Install Meson and schemas
+        working-directory: book/listings
 
       - run: cargo fmt --check --all
         name: "Format"

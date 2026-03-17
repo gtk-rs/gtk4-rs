@@ -1,6 +1,6 @@
 use gtk::prelude::*;
 use gtk::{
-    accessible, glib, Application, ApplicationWindow, Entry, Label, Orientation,
+    Application, ApplicationWindow, Entry, Label, Orientation, accessible, glib,
 };
 
 const APP_ID: &str = "org.gtk_rs.Accessibility5";

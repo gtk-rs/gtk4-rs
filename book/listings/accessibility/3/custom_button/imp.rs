@@ -22,9 +22,21 @@ impl ObjectSubclass for CustomButton {
         klass.set_layout_manager_type::<gtk::BinLayout>();
 
         // Bind keyboard shortcuts for activation (Enter and Space)
-        klass.add_binding_signal(gdk::Key::space, gdk::ModifierType::empty(), "activate");
-        klass.add_binding_signal(gdk::Key::KP_Enter, gdk::ModifierType::empty(), "activate");
-        klass.add_binding_signal(gdk::Key::Return, gdk::ModifierType::empty(), "activate");
+        klass.add_binding_signal(
+            gdk::Key::space,
+            gdk::ModifierType::empty(),
+            "activate",
+        );
+        klass.add_binding_signal(
+            gdk::Key::KP_Enter,
+            gdk::ModifierType::empty(),
+            "activate",
+        );
+        klass.add_binding_signal(
+            gdk::Key::Return,
+            gdk::ModifierType::empty(),
+            "activate",
+        );
     }
 }
 // ANCHOR_END: subclass
@@ -33,7 +45,9 @@ impl ObjectSubclass for CustomButton {
 impl ObjectImpl for CustomButton {
     fn signals() -> &'static [glib::subclass::Signal] {
         static SIGNALS: OnceLock<Vec<glib::subclass::Signal>> = OnceLock::new();
-        SIGNALS.get_or_init(|| vec![glib::subclass::Signal::builder("activate").action().build()])
+        SIGNALS.get_or_init(|| {
+            vec![glib::subclass::Signal::builder("activate").action().build()]
+        })
     }
 
     fn constructed(&self) {
