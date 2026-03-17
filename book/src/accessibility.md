@@ -21,7 +21,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/b
 {{#rustdoc_include ../listings/accessibility/1/main.rs:icon_button}}
 ```
 
-The [`update_property`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/prelude/trait.AccessibleExtManual.html#method.update_property) method lets you set accessible properties like `Label` (a short, descriptive name) and `Description` (additional context).
+The [`update_property`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/accessible/trait.AccessibleExtManual.html#method.update_property) method lets you set accessible properties like `Label` (a short, descriptive name) and `Description` (additional context).
 The `Label` is what screen readers announce when the widget receives focus.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/accessibility/1/main.rs">listings/accessibility/1/main.rs</a>
@@ -56,7 +56,8 @@ For example, place a label and its entry together in a `Box`, as done above.
 
 ## Custom Widgets
 
-When creating a custom widget, follow these steps to make it accessible:
+When you create a custom widget you are mostly on your own, that includes accessibility.
+Here's a quick checklist you can follow:
 
 1. **Determine the appropriate role.** Set an [`AccessibleRole`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/enum.AccessibleRole.html) that matches the widget's behavior, so assistive technologies know what kind of element it is.
 
@@ -66,12 +67,12 @@ When creating a custom widget, follow these steps to make it accessible:
 
 4. **Update relations.** Connect the widget to related widgets using accessible relations.
 
-Let's build a `CustomButton` widget step by step.
+Let's follow these steps with a custom widget called `Custom Button`.
 
 ### Setting the Role
 
-First, define the subclass and set the accessible role in `class_init`.
-By setting `AccessibleRole::Button`, screen readers will announce this as a button.
+First, we define the subclass and set the accessible role in `class_init`.
+By setting [`AccessibleRole::Button`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/enum.AccessibleRole.html#variant.Button), screen readers will announce this as a button.
 We also set a custom CSS name so we can style the widget, including a visible focus ring.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/accessibility/3/custom_button/imp.rs">listings/accessibility/3/custom_button/imp.rs</a>
@@ -103,22 +104,30 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/b
 {{#rustdoc_include ../listings/accessibility/3/custom_button/imp.rs:object_impl}}
 ```
 
-<div style="text-align:center"><img src="img/accessibility_custom_button.png" alt="Window titled Custom Button with a Click me button"/></div>
+Let's add two custom buttons in a `gtk::Box`.
 
-# TODO: Add video demonstrating keyboard navigation and focus ring
+```rust,no_run
+{{#rustdoc_include ../listings/accessibility/3/main.rs:box}}
+```
+
+<div style="text-align:center">
+ <video autoplay muted loop>
+  <source src="vid/accessibility_custom_button.webm" type="video/webm">
+  <p>A video which shows that pressing on one button also changes the label below</p>
+ </video>
+</div>
 
 Users can now press Tab to move between custom buttons and press Enter or Space to activate them.
 
-Ensure that:
+For your own custom widgets, ensure that:
 
-1. **Focus order is logical.** By default, focus follows the widget hierarchy.
-
-2. **Custom keyboard shortcuts are documented and discoverable.** Consider adding them to your application's shortcuts window.
+- the focus order is logical. By default, focus follows the widget hierarchy.
+- custom keyboard shortcuts are documented and discoverable. Consider adding them to your application's shortcuts window.
 
 ## Accessible States
 
 For built-in widgets like `CheckButton` or `Expander`, GTK manages states automatically.
-When you compose widgets into your own patterns, you need to update the state yourself.
+When you compose widgets into your own patterns, you need to update the accessible state yourself.
 
 Let's build a collapsible section. We start with a vertical container:
 

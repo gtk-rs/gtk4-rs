@@ -1,7 +1,7 @@
 mod custom_button;
 
 use gtk::prelude::*;
-use gtk::{gdk, Application, ApplicationWindow, CssProvider, Orientation, gio, glib};
+use gtk::{gdk, gio, glib, Application, ApplicationWindow, CssProvider, Orientation};
 
 use custom_button::CustomButton;
 
@@ -29,17 +29,33 @@ fn load_css() {
 
 fn build_ui(app: &Application) {
     let button1 = CustomButton::new("Click me");
-    button1.connect_closure("activate", false, glib::closure_local!(|button: CustomButton| {
-        println!("Button '{}' activated!", button.first_child().unwrap().property::<String>("label"));
-    }));
+    button1.connect_closure(
+        "activate",
+        false,
+        glib::closure_local!(|button: CustomButton| {
+            println!(
+                "Button '{}' activated!",
+                button.first_child().unwrap().property::<String>("label")
+            );
+        }),
+    );
     let button2 = CustomButton::new("Or me");
-    button2.connect_closure("activate", false, glib::closure_local!(|button: CustomButton| {
-        println!("Button '{}' activated!", button.first_child().unwrap().property::<String>("label"));
-    }));
+    button2.connect_closure(
+        "activate",
+        false,
+        glib::closure_local!(|button: CustomButton| {
+            println!(
+                "Button '{}' activated!",
+                button.first_child().unwrap().property::<String>("label")
+            );
+        }),
+    );
 
+    // ANCHOR: box
     let container = gtk::Box::new(Orientation::Vertical, 12);
     container.append(&button1);
     container.append(&button2);
+    // ANCHOR_END: box
 
     let window = ApplicationWindow::builder()
         .application(app)
