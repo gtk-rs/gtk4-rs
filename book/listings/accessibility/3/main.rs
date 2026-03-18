@@ -7,6 +7,7 @@ use custom_button::CustomButton;
 
 const APP_ID: &str = "org.gtk_rs.Accessibility3";
 
+// ANCHOR: main
 fn main() -> glib::ExitCode {
     gio::resources_register_include!("accessibility_3.gresource")
         .expect("Failed to register resources.");
@@ -29,33 +30,10 @@ fn load_css() {
 
 fn build_ui(app: &Application) {
     let button1 = CustomButton::new("Click me");
-    button1.connect_closure(
-        "activate",
-        false,
-        glib::closure_local!(|button: CustomButton| {
-            println!(
-                "Button '{}' activated!",
-                button.first_child().unwrap().property::<String>("label")
-            );
-        }),
-    );
     let button2 = CustomButton::new("Or me");
-    button2.connect_closure(
-        "activate",
-        false,
-        glib::closure_local!(|button: CustomButton| {
-            println!(
-                "Button '{}' activated!",
-                button.first_child().unwrap().property::<String>("label")
-            );
-        }),
-    );
-
-    // ANCHOR: box
     let container = gtk::Box::new(Orientation::Vertical, 12);
     container.append(&button1);
     container.append(&button2);
-    // ANCHOR_END: box
 
     let window = ApplicationWindow::builder()
         .application(app)
@@ -67,3 +45,4 @@ fn build_ui(app: &Application) {
 
     window.present();
 }
+// ANCHOR_END: main

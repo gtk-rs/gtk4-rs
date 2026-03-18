@@ -1,7 +1,6 @@
 mod imp;
 
-use gtk::prelude::*;
-use gtk::{Label, accessible, glib};
+use gtk::glib;
 
 glib::wrapper! {
     pub struct CustomButton(ObjectSubclass<imp::CustomButton>)
@@ -11,11 +10,6 @@ glib::wrapper! {
 
 impl CustomButton {
     pub fn new(label: &str) -> Self {
-        let obj: Self = glib::Object::builder().build();
-        let child = Label::new(Some(label));
-        child.set_parent(&obj);
-        // Tell assistive technologies that the button is labelled by its child
-        obj.update_relation(&[accessible::Relation::LabelledBy(&[child.upcast_ref()])]);
-        obj
+        glib::Object::builder().property("label", label).build()
     }
 }

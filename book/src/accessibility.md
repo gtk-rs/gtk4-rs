@@ -74,6 +74,7 @@ Let's follow these steps with a custom widget called `Custom Button`.
 First, we define the subclass and set the accessible role in `class_init`.
 By setting [`AccessibleRole::Button`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/enum.AccessibleRole.html#variant.Button), screen readers will announce this as a button.
 We also set a custom CSS name so we can style the widget, including a visible focus ring.
+The `label` property will hold the button's text and is exposed as a GObject property so it can be bound to the inner `Label` widget.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/accessibility/3/custom_button/imp.rs">listings/accessibility/3/custom_button/imp.rs</a>
 
@@ -98,16 +99,19 @@ A custom widget built from a non-focusable base like `gtk::Widget` won't receive
 Setting `focusable` to `true` lets users Tab to it, and setting `focus_on_click` to `true` also gives it focus when clicked.
 The keyboard shortcuts for Enter and Space are bound to the `activate` signal in `class_init`, following the same pattern GTK uses for its built-in button.
 
+In `constructed`, we also create a child `Label` and use [`bind_property`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/object/trait.ObjectExt.html#method.bind_property) to keep the child's text in sync with our `label` property.
+The [`LabelledBy`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/accessible/enum.Relation.html#variant.LabelledBy) relation tells assistive technologies that the button is labelled by its child, so screen readers will announce the label text when the button receives focus.
+
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/accessibility/3/custom_button/imp.rs">listings/accessibility/3/custom_button/imp.rs</a>
 
 ```rust,no_run
 {{#rustdoc_include ../listings/accessibility/3/custom_button/imp.rs:object_impl}}
 ```
 
-Let's add two custom buttons in a `gtk::Box`.
+Let's load the CSS and add two custom buttons in a `gtk::Box`.
 
 ```rust,no_run
-{{#rustdoc_include ../listings/accessibility/3/main.rs:box}}
+{{#rustdoc_include ../listings/accessibility/3/main.rs:main}}
 ```
 
 <div style="text-align:center">
