@@ -37,7 +37,7 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-aac78bc0.js";
+            window.path_to_searchindex_js = "searchindex-8b585f65.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-850bb23a.js"></script>
@@ -11904,10 +11904,10 @@ You can express this relationship using <a href="https://gtk-rs.org/gtk4-rs/stab
 <p>When a screen reader focuses the entry, it will announce the label’s text, so the user knows what information to enter.</p>
 <div style="text-align:center"><img src="img/accessibility_relationship.png" alt="Window with a username label and an entry field" /></div>
 
-<p>Group related components in a single container to improve navigation for assistive technology users.
+<p>Group related components into a single container to improve navigation for assistive technology users.
 For example, place a label and its entry together in a <code>Box</code>, as done above.</p>
 <h2 id="custom-widgets-1"><a class="header" href="#custom-widgets-1">Custom Widgets</a></h2>
-<p>When you create a custom widget you are mostly on your own, that includes accessibility.
+<p>When creating a custom widget, you are mostly on your own. That includes accessibility.
 Here’s a quick checklist you can follow:</p>
 <ol>
 <li>
@@ -11927,7 +11927,7 @@ Here’s a quick checklist you can follow:</p>
 <h3 id="setting-the-role"><a class="header" href="#setting-the-role">Setting the Role</a></h3>
 <p>First, we define the subclass and set the accessible role in <code>class_init</code>.
 By setting <a href="https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/enum.AccessibleRole.html#variant.Button"><code>AccessibleRole::Button</code></a>, screen readers will announce this as a button.
-We also set a custom CSS name so we can style the widget, including a visible focus ring.
+We also set a custom CSS name, so we can style the widget, including a visible focus ring.
 The <code>label</code> property will hold the button’s text and is exposed as a GObject property so it can be bound to the inner <code>Label</code> widget.</p>
 <p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/accessibility/3/custom_button/imp.rs">listings/accessibility/3/custom_button/imp.rs</a></p>
 <pre><code class="language-rust no_run"><span class="boring">use std::cell::RefCell;
@@ -12558,7 +12558,69 @@ We also use <a href="https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/prelude/
 <h2 id="dont-rely-on-color-alone"><a class="header" href="#dont-rely-on-color-alone">Don’t Rely on Color Alone</a></h2>
 <p>Color should never be the only way to convey information.
 Let’s demonstrate this with a simple example where we only use color to notify the user about an invalid entry.</p>
-<p>First, we set up a labeled entry with a hidden error label:</p>
+<p>First, we should define a function to validate an email address:</p>
+<p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/accessibility/5/main.rs">listings/accessibility/5/main.rs</a></p>
+<pre><code class="language-rust no_run"><span class="boring">use gtk::prelude::*;
+</span><span class="boring">use gtk::{
+</span><span class="boring">    Application, ApplicationWindow, Entry, Label, Orientation, accessible, glib,
+</span><span class="boring">};
+</span><span class="boring">
+</span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.Accessibility5";
+</span><span class="boring">
+</span><span class="boring">fn main() -&gt; glib::ExitCode {
+</span><span class="boring">    let app = Application::builder().application_id(APP_ID).build();
+</span><span class="boring">    app.connect_activate(build_ui);
+</span><span class="boring">    app.run()
+</span><span class="boring">}
+</span><span class="boring">
+</span>fn is_valid_email(text: &amp;str) -&gt; bool {
+    text.contains('@') &amp;&amp; text.contains('.')
+}
+<span class="boring">
+</span><span class="boring">fn build_ui(app: &amp;Application) {
+</span><span class="boring">    let container = gtk::Box::builder()
+</span><span class="boring">        .orientation(Orientation::Vertical)
+</span><span class="boring">        .spacing(6)
+</span><span class="boring">        .margin_start(12)
+</span><span class="boring">        .margin_end(12)
+</span><span class="boring">        .margin_top(12)
+</span><span class="boring">        .margin_bottom(12)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    let label = Label::new(Some("Email:"));
+</span><span class="boring">    let entry = Entry::new();
+</span><span class="boring">    entry.update_relation(&amp;[accessible::Relation::LabelledBy(&amp;[label.upcast_ref()])]);
+</span><span class="boring">
+</span><span class="boring">    let error_label = Label::builder()
+</span><span class="boring">        .label("Please enter a valid email address")
+</span><span class="boring">        .css_classes(["error"])
+</span><span class="boring">        .visible(false)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    entry.connect_changed(move |entry| {
+</span><span class="boring">        let text = entry.text();
+</span><span class="boring">        if !text.is_empty() &amp;&amp; !is_valid_email(&amp;text) {
+</span><span class="boring">            entry.add_css_class("error");
+</span><span class="boring">        } else {
+</span><span class="boring">            entry.remove_css_class("error");
+</span><span class="boring">        }
+</span><span class="boring">    });
+</span><span class="boring">
+</span><span class="boring">    container.append(&amp;label);
+</span><span class="boring">    container.append(&amp;entry);
+</span><span class="boring">    container.append(&amp;error_label);
+</span><span class="boring">
+</span><span class="boring">    let window = ApplicationWindow::builder()
+</span><span class="boring">        .application(app)
+</span><span class="boring">        .title("Form Validation")
+</span><span class="boring">        .default_width(350)
+</span><span class="boring">        .default_height(200)
+</span><span class="boring">        .child(&amp;container)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    window.present();
+</span><span class="boring">}</span></code></pre>
+<p>Then, we set up a labeled entry with a hidden error label:</p>
 <p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/accessibility/5/main.rs">listings/accessibility/5/main.rs</a></p>
 <pre><code class="language-rust no_run"><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::{
@@ -12749,7 +12811,7 @@ Let’s demonstrate this with a simple example where we only use color to notify
   <img src="img/accessibility_form_empty.png" alt="Window titled Form Validation with an Email label and an empty entry field" />
 </div>
 
-<p>And when we enter an invalid email address, the color of my entry turns red.</p>
+<p>And when we enter an invalid email address, the color of our entry turns red.</p>
 <div style="text-align:center">
   <img src="img/accessibility_form_wrong.png" alt="Window titled Form Validation with an Email entry containing invalid input highlighted with a red border, but no visible error message" />
 </div>
