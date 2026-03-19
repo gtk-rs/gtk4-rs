@@ -51,12 +51,12 @@ When a screen reader focuses the entry, it will announce the label's text, so th
 
 <div style="text-align:center"><img src="img/accessibility_relationship.png" alt="Window with a username label and an entry field"/></div>
 
-Group related components in a single container to improve navigation for assistive technology users.
+Group related components into a single container to improve navigation for assistive technology users.
 For example, place a label and its entry together in a `Box`, as done above.
 
 ## Custom Widgets
 
-When you create a custom widget you are mostly on your own, that includes accessibility.
+When creating a custom widget, you are mostly on your own. That includes accessibility.
 Here's a quick checklist you can follow:
 
 1. **Determine the appropriate role.** Set an [`AccessibleRole`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/enum.AccessibleRole.html) that matches the widget's behavior, so assistive technologies know what kind of element it is.
@@ -73,7 +73,7 @@ Let's follow these steps with a custom widget called `Custom Button`.
 
 First, we define the subclass and set the accessible role in `class_init`.
 By setting [`AccessibleRole::Button`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/enum.AccessibleRole.html#variant.Button), screen readers will announce this as a button.
-We also set a custom CSS name so we can style the widget, including a visible focus ring.
+We also set a custom CSS name, so we can style the widget, including a visible focus ring.
 The `label` property will hold the button's text and is exposed as a GObject property so it can be bound to the inner `Label` widget.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/accessibility/3/custom_button/imp.rs">listings/accessibility/3/custom_button/imp.rs</a>
@@ -178,8 +178,16 @@ This is how the app looks like. First in its collapsed, and then in its expanded
 Color should never be the only way to convey information.
 Let's demonstrate this with a simple example where we only use color to notify the user about an invalid entry. 
 
+First, we should define a function to validate an email address:
 
-First, we set up a labeled entry with a hidden error label:
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/accessibility/5/main.rs">listings/accessibility/5/main.rs</a>
+
+```rust,no_run
+{{#rustdoc_include ../listings/accessibility/5/main.rs:validation}}
+```
+
+
+Then, we set up a labeled entry with a hidden error label:
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/accessibility/5/main.rs">listings/accessibility/5/main.rs</a>
 
@@ -195,6 +203,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/b
 {{#rustdoc_include ../listings/accessibility/5/main.rs:wrong}}
 ```
 
+
 Finally, assemble the widgets and present the window:
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/accessibility/5/main.rs">listings/accessibility/5/main.rs</a>
@@ -209,7 +218,7 @@ This doesn't look too bad.
   <img src="img/accessibility_form_empty.png" alt="Window titled Form Validation with an Email label and an empty entry field"/>
 </div>
 
-And when we enter an invalid email address, the color of my entry turns red.
+And when we enter an invalid email address, the color of our entry turns red.
 
 <div style="text-align:center">
   <img src="img/accessibility_form_wrong.png" alt="Window titled Form Validation with an Email entry containing invalid input highlighted with a red border, but no visible error message"/>

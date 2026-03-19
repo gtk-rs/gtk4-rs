@@ -11,9 +11,11 @@ fn main() -> glib::ExitCode {
     app.run()
 }
 
+// ANCHOR: validation
 fn is_valid_email(text: &str) -> bool {
     text.contains('@') && text.contains('.')
 }
+// ANCHOR_END: validation
 
 fn build_ui(app: &Application) {
     // ANCHOR: setup
