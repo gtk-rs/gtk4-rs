@@ -1,0 +1,1368 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Accessibility - GUI development with Rust and GTK 4</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="favicon-8114d1fc.png">
+        <link rel="stylesheet" href="css/variables-8adf115d.css">
+        <link rel="stylesheet" href="css/general-2459343d.css">
+        <link rel="stylesheet" href="css/chrome-ae938929.css">
+        <link rel="stylesheet" href="css/print-9e4910d8.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="fonts/fonts-9644e21d.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="mdbook-highlight-css" href="highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="ayu-highlight-3fdfc3ac.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="theme/style-d4d37238.css">
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "searchindex-aac78bc0.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc-850bb23a.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="mdbook-page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
+                        </button>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
+                        </ul>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">GUI development with Rust and GTK 4</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
+                        </a>
+                        <a href="https://github.com/gtk-rs/gtk4-rs/tree/main/book" title="Git repository" aria-label="Git repository">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg></span>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="mdbook-content" class="content">
+                    <main>
+                        <h1 id="accessibility"><a class="header" href="#accessibility">Accessibility</a></h1>
+<p>Making your app accessible means that people with disabilities are able to use it.
+There are many nuances to this topic, however in this chapter we are discussing the following disabilities and how you can adapt your app to still make it usable for people with these disabilities:</p>
+<ul>
+<li>Visual impairments including blindness and color blindness</li>
+<li>Difficulty or inability to precisely move a mouse</li>
+</ul>
+<p>GTK strives to be accessible by default.
+Most built-in widgets already expose the right information so that screen readers can read the relevant pieces of information to blind people.
+However, when you build custom widgets or use widgets in unusual ways, you may need to provide additional information.</p>
+<h2 id="accessible-labels-and-descriptions"><a class="header" href="#accessible-labels-and-descriptions">Accessible Labels and Descriptions</a></h2>
+<p>When a widget doesn’t have visible text, assistive technologies have no way to describe it to users.
+This commonly happens with icon-only buttons.
+The solution is to set an accessible label.</p>
+<p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/accessibility/1/main.rs">listings/accessibility/1/main.rs</a></p>
+<pre><code class="language-rust no_run"><span class="boring">use gtk::prelude::*;
+</span><span class="boring">use gtk::{Application, ApplicationWindow, Button, Orientation, accessible, glib};
+</span><span class="boring">
+</span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.Accessibility1";
+</span><span class="boring">
+</span><span class="boring">fn main() -&gt; glib::ExitCode {
+</span><span class="boring">    let app = Application::builder().application_id(APP_ID).build();
+</span><span class="boring">    app.connect_activate(build_ui);
+</span><span class="boring">    app.run()
+</span><span class="boring">}
+</span><span class="boring">
+</span><span class="boring">fn build_ui(app: &amp;Application) {
+</span><span class="boring">    let container = gtk::Box::builder()
+</span><span class="boring">        .orientation(Orientation::Horizontal)
+</span><span class="boring">        .spacing(12)
+</span><span class="boring">        .halign(gtk::Align::Center)
+</span><span class="boring">        .valign(gtk::Align::Center)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span>    // Icon-only button needs an accessible label
+    let search_button = Button::builder()
+        .icon_name("system-search-symbolic")
+        .build();
+    search_button.update_property(&amp;[accessible::Property::Label("Search")]);
+<span class="boring">
+</span><span class="boring">    // Add additional context with a description
+</span><span class="boring">    let settings_button = Button::builder()
+</span><span class="boring">        .icon_name("emblem-system-symbolic")
+</span><span class="boring">        .build();
+</span><span class="boring">    settings_button.update_property(&amp;[
+</span><span class="boring">        accessible::Property::Label("Settings"),
+</span><span class="boring">        accessible::Property::Description("Open application preferences"),
+</span><span class="boring">    ]);
+</span><span class="boring">
+</span><span class="boring">    container.append(&amp;search_button);
+</span><span class="boring">    container.append(&amp;settings_button);
+</span><span class="boring">
+</span><span class="boring">    let window = ApplicationWindow::builder()
+</span><span class="boring">        .application(app)
+</span><span class="boring">        .title("Icon Buttons")
+</span><span class="boring">        .default_width(300)
+</span><span class="boring">        .default_height(200)
+</span><span class="boring">        .child(&amp;container)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    window.present();
+</span><span class="boring">}</span></code></pre>
+<p>The <a href="https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/accessible/trait.AccessibleExtManual.html#method.update_property"><code>update_property</code></a> method lets you set accessible properties like <code>Label</code> (a short, descriptive name) and <code>Description</code> (additional context).
+The <code>Label</code> is what screen readers announce when the widget receives focus.</p>
+<p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/accessibility/1/main.rs">listings/accessibility/1/main.rs</a></p>
+<pre><code class="language-rust no_run"><span class="boring">use gtk::prelude::*;
+</span><span class="boring">use gtk::{Application, ApplicationWindow, Button, Orientation, accessible, glib};
+</span><span class="boring">
+</span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.Accessibility1";
+</span><span class="boring">
+</span><span class="boring">fn main() -&gt; glib::ExitCode {
+</span><span class="boring">    let app = Application::builder().application_id(APP_ID).build();
+</span><span class="boring">    app.connect_activate(build_ui);
+</span><span class="boring">    app.run()
+</span><span class="boring">}
+</span><span class="boring">
+</span><span class="boring">fn build_ui(app: &amp;Application) {
+</span><span class="boring">    let container = gtk::Box::builder()
+</span><span class="boring">        .orientation(Orientation::Horizontal)
+</span><span class="boring">        .spacing(12)
+</span><span class="boring">        .halign(gtk::Align::Center)
+</span><span class="boring">        .valign(gtk::Align::Center)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    // Icon-only button needs an accessible label
+</span><span class="boring">    let search_button = Button::builder()
+</span><span class="boring">        .icon_name("system-search-symbolic")
+</span><span class="boring">        .build();
+</span><span class="boring">    search_button.update_property(&amp;[accessible::Property::Label("Search")]);
+</span><span class="boring">
+</span>    // Add additional context with a description
+    let settings_button = Button::builder()
+        .icon_name("emblem-system-symbolic")
+        .build();
+    settings_button.update_property(&amp;[
+        accessible::Property::Label("Settings"),
+        accessible::Property::Description("Open application preferences"),
+    ]);
+<span class="boring">
+</span><span class="boring">    container.append(&amp;search_button);
+</span><span class="boring">    container.append(&amp;settings_button);
+</span><span class="boring">
+</span><span class="boring">    let window = ApplicationWindow::builder()
+</span><span class="boring">        .application(app)
+</span><span class="boring">        .title("Icon Buttons")
+</span><span class="boring">        .default_width(300)
+</span><span class="boring">        .default_height(200)
+</span><span class="boring">        .child(&amp;container)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    window.present();
+</span><span class="boring">}</span></code></pre>
+<div style="text-align:center"><img src="img/accessibility_labels.png" alt="Window with a search and a settings icon button" /></div>
+
+<blockquote>
+<p>When a widget already has visible text (like a regular button with a label), GTK automatically uses that text as the accessible label.
+You only need to set it manually for widgets without visible text.</p>
+</blockquote>
+<h2 id="accessible-relationships"><a class="header" href="#accessible-relationships">Accessible Relationships</a></h2>
+<p>Sometimes widgets are related to each other in ways that help users understand the interface.
+For example, a label might describe an adjacent entry field.
+You can express this relationship using <a href="https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/accessible/enum.Relation.html"><code>accessible::Relation</code></a>.</p>
+<p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/accessibility/2/main.rs">listings/accessibility/2/main.rs</a></p>
+<pre><code class="language-rust no_run"><span class="boring">use gtk::prelude::*;
+</span><span class="boring">use gtk::{
+</span><span class="boring">    Application, ApplicationWindow, Entry, Label, Orientation, accessible, glib,
+</span><span class="boring">};
+</span><span class="boring">
+</span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.Accessibility2";
+</span><span class="boring">
+</span><span class="boring">fn main() -&gt; glib::ExitCode {
+</span><span class="boring">    let app = Application::builder().application_id(APP_ID).build();
+</span><span class="boring">    app.connect_activate(build_ui);
+</span><span class="boring">    app.run()
+</span><span class="boring">}
+</span><span class="boring">
+</span>fn build_ui(app: &amp;Application) {
+    let container = gtk::Box::builder()
+        .orientation(Orientation::Horizontal)
+        .spacing(12)
+        .margin_start(12)
+        .margin_end(12)
+        .margin_top(12)
+        .margin_bottom(12)
+        .build();
+
+    let label = Label::new(Some("Username:"));
+    let entry = Entry::new();
+
+    // Tell assistive technologies that the entry is labelled by this label
+    entry.update_relation(&amp;[accessible::Relation::LabelledBy(&amp;[label.upcast_ref()])]);
+
+    container.append(&amp;label);
+    container.append(&amp;entry);
+
+    let window = ApplicationWindow::builder()
+        .application(app)
+        .title("Form Field")
+        .default_width(300)
+        .default_height(100)
+        .child(&amp;container)
+        .build();
+
+    window.present();
+}</code></pre>
+<p>When a screen reader focuses the entry, it will announce the label’s text, so the user knows what information to enter.</p>
+<div style="text-align:center"><img src="img/accessibility_relationship.png" alt="Window with a username label and an entry field" /></div>
+
+<p>Group related components in a single container to improve navigation for assistive technology users.
+For example, place a label and its entry together in a <code>Box</code>, as done above.</p>
+<h2 id="custom-widgets"><a class="header" href="#custom-widgets">Custom Widgets</a></h2>
+<p>When you create a custom widget you are mostly on your own, that includes accessibility.
+Here’s a quick checklist you can follow:</p>
+<ol>
+<li>
+<p><strong>Determine the appropriate role.</strong> Set an <a href="https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/enum.AccessibleRole.html"><code>AccessibleRole</code></a> that matches the widget’s behavior, so assistive technologies know what kind of element it is.</p>
+</li>
+<li>
+<p><strong>Update properties when content changes.</strong> Keep accessible properties like <code>Label</code> and <code>Description</code> in sync with the widget’s visual content.</p>
+</li>
+<li>
+<p><strong>Update states when state changes.</strong> Reflect dynamic changes using <a href="https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/accessible/enum.State.html"><code>accessible::State</code></a>.</p>
+</li>
+<li>
+<p><strong>Update relations.</strong> Connect the widget to related widgets using accessible relations.</p>
+</li>
+</ol>
+<p>Let’s follow these steps with a custom widget called <code>Custom Button</code>.</p>
+<h3 id="setting-the-role"><a class="header" href="#setting-the-role">Setting the Role</a></h3>
+<p>First, we define the subclass and set the accessible role in <code>class_init</code>.
+By setting <a href="https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/enum.AccessibleRole.html#variant.Button"><code>AccessibleRole::Button</code></a>, screen readers will announce this as a button.
+We also set a custom CSS name so we can style the widget, including a visible focus ring.
+The <code>label</code> property will hold the button’s text and is exposed as a GObject property so it can be bound to the inner <code>Label</code> widget.</p>
+<p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/accessibility/3/custom_button/imp.rs">listings/accessibility/3/custom_button/imp.rs</a></p>
+<pre><code class="language-rust no_run"><span class="boring">use std::cell::RefCell;
+</span><span class="boring">use std::sync::OnceLock;
+</span><span class="boring">
+</span><span class="boring">use glib::Properties;
+</span><span class="boring">use gtk::gdk;
+</span><span class="boring">use gtk::prelude::*;
+</span><span class="boring">use gtk::subclass::prelude::*;
+</span><span class="boring">use gtk::{AccessibleRole, GestureClick, Label, accessible, glib};
+</span><span class="boring">
+</span>#[derive(Properties, Default)]
+#[properties(wrapper_type = super::CustomButton)]
+pub struct CustomButton {
+    #[property(get, set)]
+    label: RefCell&lt;String&gt;,
+    child: RefCell&lt;Option&lt;Label&gt;&gt;,
+}
+
+#[glib::object_subclass]
+impl ObjectSubclass for CustomButton {
+    const NAME: &amp;'static str = "CustomButton";
+    type Type = super::CustomButton;
+    type ParentType = gtk::Widget;
+
+    fn class_init(klass: &amp;mut Self::Class) {
+        // Set the accessible role to Button
+        klass.set_accessible_role(AccessibleRole::Button);
+        klass.set_css_name("custom-button");
+        klass.set_layout_manager_type::&lt;gtk::BinLayout&gt;();
+
+        // Bind keyboard shortcuts for activation (Enter and Space)
+        klass.add_binding_signal(
+            gdk::Key::space,
+            gdk::ModifierType::empty(),
+            "activate",
+        );
+        klass.add_binding_signal(
+            gdk::Key::KP_Enter,
+            gdk::ModifierType::empty(),
+            "activate",
+        );
+        klass.add_binding_signal(
+            gdk::Key::Return,
+            gdk::ModifierType::empty(),
+            "activate",
+        );
+    }
+}
+<span class="boring">
+</span><span class="boring">#[glib::derived_properties]
+</span><span class="boring">impl ObjectImpl for CustomButton {
+</span><span class="boring">    fn signals() -&gt; &amp;'static [glib::subclass::Signal] {
+</span><span class="boring">        static SIGNALS: OnceLock&lt;Vec&lt;glib::subclass::Signal&gt;&gt; = OnceLock::new();
+</span><span class="boring">        SIGNALS.get_or_init(|| {
+</span><span class="boring">            vec![glib::subclass::Signal::builder("activate").action().build()]
+</span><span class="boring">        })
+</span><span class="boring">    }
+</span><span class="boring">
+</span><span class="boring">    fn constructed(&amp;self) {
+</span><span class="boring">        self.parent_constructed();
+</span><span class="boring">
+</span><span class="boring">        let obj = self.obj();
+</span><span class="boring">        // Make the widget focusable so keyboard users can reach it
+</span><span class="boring">        obj.set_focusable(true);
+</span><span class="boring">        // Also allow focusing by clicking
+</span><span class="boring">        obj.set_focus_on_click(true);
+</span><span class="boring">
+</span><span class="boring">        // Create a child label and bind its text to our "label" property
+</span><span class="boring">        let child = Label::new(None);
+</span><span class="boring">        child.set_parent(&amp;*obj);
+</span><span class="boring">        obj.update_relation(&amp;[accessible::Relation::LabelledBy(&amp;[child.upcast_ref()])]);
+</span><span class="boring">        obj.bind_property("label", &amp;child, "label")
+</span><span class="boring">            .sync_create()
+</span><span class="boring">            .build();
+</span><span class="boring">        self.child.replace(Some(child));
+</span><span class="boring">
+</span><span class="boring">        // Handle click events
+</span><span class="boring">        let gesture = GestureClick::new();
+</span><span class="boring">        let button = obj.downgrade();
+</span><span class="boring">        gesture.connect_released(move |_, _, _, _| {
+</span><span class="boring">            if let Some(button) = button.upgrade() {
+</span><span class="boring">                button.emit_by_name::&lt;()&gt;("activate", &amp;[]);
+</span><span class="boring">            }
+</span><span class="boring">        });
+</span><span class="boring">        obj.add_controller(gesture);
+</span><span class="boring">
+</span><span class="boring">        // Add an activation handler
+</span><span class="boring">        obj.connect_local("activate", false, move |values| {
+</span><span class="boring">            let button = values[0].get::&lt;super::CustomButton&gt;().unwrap();
+</span><span class="boring">            println!("Button '{}' activated!", button.label());
+</span><span class="boring">            None
+</span><span class="boring">        });
+</span><span class="boring">    }
+</span><span class="boring">
+</span><span class="boring">    fn dispose(&amp;self) {
+</span><span class="boring">        while let Some(child) = self.obj().first_child() {
+</span><span class="boring">            child.unparent();
+</span><span class="boring">        }
+</span><span class="boring">    }
+</span><span class="boring">}
+</span><span class="boring">
+</span><span class="boring">impl WidgetImpl for CustomButton {}</span></code></pre>
+<h3 id="focus-ring"><a class="header" href="#focus-ring">Focus Ring</a></h3>
+<p>A custom widget doesn’t automatically get a visible focus indicator.
+We need to add CSS that draws one when the widget receives keyboard focus.</p>
+<p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/accessibility/3/resources/style.css">listings/accessibility/3/resources/style.css</a></p>
+<pre><code class="language-css">custom-button {
+    padding: 12px;
+    outline: 0 solid transparent;
+    outline-offset: 4px;
+    transition: outline-color 200ms cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                outline-width 200ms cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                outline-offset 200ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+custom-button:focus:focus-visible {
+    outline-color: rgba(53, 132, 228, 0.5);
+    outline-width: 2px;
+    outline-offset: -2px;
+}
+</code></pre>
+<h3 id="keyboard-navigation"><a class="header" href="#keyboard-navigation">Keyboard Navigation</a></h3>
+<p>A custom widget built from a non-focusable base like <code>gtk::Widget</code> won’t receive keyboard focus by default.
+Setting <code>focusable</code> to <code>true</code> lets users Tab to it, and setting <code>focus_on_click</code> to <code>true</code> also gives it focus when clicked.
+The keyboard shortcuts for Enter and Space are bound to the <code>activate</code> signal in <code>class_init</code>, following the same pattern GTK uses for its built-in button.</p>
+<p>In <code>constructed</code>, we also create a child <code>Label</code> and use <a href="https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/object/trait.ObjectExt.html#method.bind_property"><code>bind_property</code></a> to keep the child’s text in sync with our <code>label</code> property.
+The <a href="https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/accessible/enum.Relation.html#variant.LabelledBy"><code>LabelledBy</code></a> relation tells assistive technologies that the button is labelled by its child, so screen readers will announce the label text when the button receives focus.</p>
+<p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/accessibility/3/custom_button/imp.rs">listings/accessibility/3/custom_button/imp.rs</a></p>
+<pre><code class="language-rust no_run"><span class="boring">use std::cell::RefCell;
+</span><span class="boring">use std::sync::OnceLock;
+</span><span class="boring">
+</span><span class="boring">use glib::Properties;
+</span><span class="boring">use gtk::gdk;
+</span><span class="boring">use gtk::prelude::*;
+</span><span class="boring">use gtk::subclass::prelude::*;
+</span><span class="boring">use gtk::{AccessibleRole, GestureClick, Label, accessible, glib};
+</span><span class="boring">
+</span><span class="boring">#[derive(Properties, Default)]
+</span><span class="boring">#[properties(wrapper_type = super::CustomButton)]
+</span><span class="boring">pub struct CustomButton {
+</span><span class="boring">    #[property(get, set)]
+</span><span class="boring">    label: RefCell&lt;String&gt;,
+</span><span class="boring">    child: RefCell&lt;Option&lt;Label&gt;&gt;,
+</span><span class="boring">}
+</span><span class="boring">
+</span><span class="boring">#[glib::object_subclass]
+</span><span class="boring">impl ObjectSubclass for CustomButton {
+</span><span class="boring">    const NAME: &amp;'static str = "CustomButton";
+</span><span class="boring">    type Type = super::CustomButton;
+</span><span class="boring">    type ParentType = gtk::Widget;
+</span><span class="boring">
+</span><span class="boring">    fn class_init(klass: &amp;mut Self::Class) {
+</span><span class="boring">        // Set the accessible role to Button
+</span><span class="boring">        klass.set_accessible_role(AccessibleRole::Button);
+</span><span class="boring">        klass.set_css_name("custom-button");
+</span><span class="boring">        klass.set_layout_manager_type::&lt;gtk::BinLayout&gt;();
+</span><span class="boring">
+</span><span class="boring">        // Bind keyboard shortcuts for activation (Enter and Space)
+</span><span class="boring">        klass.add_binding_signal(
+</span><span class="boring">            gdk::Key::space,
+</span><span class="boring">            gdk::ModifierType::empty(),
+</span><span class="boring">            "activate",
+</span><span class="boring">        );
+</span><span class="boring">        klass.add_binding_signal(
+</span><span class="boring">            gdk::Key::KP_Enter,
+</span><span class="boring">            gdk::ModifierType::empty(),
+</span><span class="boring">            "activate",
+</span><span class="boring">        );
+</span><span class="boring">        klass.add_binding_signal(
+</span><span class="boring">            gdk::Key::Return,
+</span><span class="boring">            gdk::ModifierType::empty(),
+</span><span class="boring">            "activate",
+</span><span class="boring">        );
+</span><span class="boring">    }
+</span><span class="boring">}
+</span><span class="boring">
+</span>#[glib::derived_properties]
+impl ObjectImpl for CustomButton {
+    fn signals() -&gt; &amp;'static [glib::subclass::Signal] {
+        static SIGNALS: OnceLock&lt;Vec&lt;glib::subclass::Signal&gt;&gt; = OnceLock::new();
+        SIGNALS.get_or_init(|| {
+            vec![glib::subclass::Signal::builder("activate").action().build()]
+        })
+    }
+
+    fn constructed(&amp;self) {
+        self.parent_constructed();
+
+        let obj = self.obj();
+        // Make the widget focusable so keyboard users can reach it
+        obj.set_focusable(true);
+        // Also allow focusing by clicking
+        obj.set_focus_on_click(true);
+
+        // Create a child label and bind its text to our "label" property
+        let child = Label::new(None);
+        child.set_parent(&amp;*obj);
+        obj.update_relation(&amp;[accessible::Relation::LabelledBy(&amp;[child.upcast_ref()])]);
+        obj.bind_property("label", &amp;child, "label")
+            .sync_create()
+            .build();
+        self.child.replace(Some(child));
+
+        // Handle click events
+        let gesture = GestureClick::new();
+        let button = obj.downgrade();
+        gesture.connect_released(move |_, _, _, _| {
+            if let Some(button) = button.upgrade() {
+                button.emit_by_name::&lt;()&gt;("activate", &amp;[]);
+            }
+        });
+        obj.add_controller(gesture);
+
+        // Add an activation handler
+        obj.connect_local("activate", false, move |values| {
+            let button = values[0].get::&lt;super::CustomButton&gt;().unwrap();
+            println!("Button '{}' activated!", button.label());
+            None
+        });
+    }
+
+    fn dispose(&amp;self) {
+        while let Some(child) = self.obj().first_child() {
+            child.unparent();
+        }
+    }
+}
+
+impl WidgetImpl for CustomButton {}</code></pre>
+<p>Let’s load the CSS and add two custom buttons in a <code>gtk::Box</code>.</p>
+<pre><code class="language-rust no_run"><span class="boring">mod custom_button;
+</span><span class="boring">
+</span><span class="boring">use gtk::prelude::*;
+</span><span class="boring">use gtk::{Application, ApplicationWindow, CssProvider, Orientation, gdk, gio, glib};
+</span><span class="boring">
+</span><span class="boring">use custom_button::CustomButton;
+</span><span class="boring">
+</span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.Accessibility3";
+</span><span class="boring">
+</span>fn main() -&gt; glib::ExitCode {
+    gio::resources_register_include!("accessibility_3.gresource")
+        .expect("Failed to register resources.");
+
+    let app = Application::builder().application_id(APP_ID).build();
+    app.connect_startup(|_| load_css());
+    app.connect_activate(build_ui);
+    app.run()
+}
+
+fn load_css() {
+    let provider = CssProvider::new();
+    provider.load_from_resource("/org/gtk_rs/Accessibility3/style.css");
+    gtk::style_context_add_provider_for_display(
+        &amp;gdk::Display::default().expect("Could not connect to a display."),
+        &amp;provider,
+        gtk::STYLE_PROVIDER_PRIORITY_APPLICATION,
+    );
+}
+
+fn build_ui(app: &amp;Application) {
+    let button1 = CustomButton::new("Click me");
+    let button2 = CustomButton::new("Or me");
+    let container = gtk::Box::new(Orientation::Vertical, 12);
+    container.append(&amp;button1);
+    container.append(&amp;button2);
+
+    let window = ApplicationWindow::builder()
+        .application(app)
+        .title("Custom Button")
+        .default_width(300)
+        .default_height(200)
+        .child(&amp;container)
+        .build();
+
+    window.present();
+}</code></pre>
+<div style="text-align:center">
+ <video autoplay="" muted="" loop="">
+  <source src="vid/accessibility_custom_button.webm" type="video/webm">
+  
+<p>A video which shows two custom buttons. The focus is constantly switched between those two.</p>
+
+ </video>
+</div>
+
+<p>Users can now press Tab to move between custom buttons and press Enter or Space to activate them.</p>
+<p>For your own custom widgets, ensure that:</p>
+<ul>
+<li>the focus order is logical. By default, focus follows the widget hierarchy.</li>
+<li>custom keyboard shortcuts are documented and discoverable. Consider adding them to your application’s shortcuts window.</li>
+</ul>
+<h2 id="accessible-states"><a class="header" href="#accessible-states">Accessible States</a></h2>
+<p>For built-in widgets like <code>CheckButton</code> or <code>Expander</code>, GTK manages states automatically.
+When you compose widgets into your own patterns, you need to update the accessible state yourself.</p>
+<p>Let’s build a collapsible section. We start with a vertical container:</p>
+<p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/accessibility/4/main.rs">listings/accessibility/4/main.rs</a></p>
+<pre><code class="language-rust no_run"><span class="boring">use gtk::prelude::*;
+</span><span class="boring">use gtk::{
+</span><span class="boring">    AccessibleAnnouncementPriority, Application, ApplicationWindow, Button, Label,
+</span><span class="boring">    Orientation, Revealer, RevealerTransitionType, accessible, glib,
+</span><span class="boring">};
+</span><span class="boring">
+</span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.Accessibility4";
+</span><span class="boring">
+</span><span class="boring">fn main() -&gt; glib::ExitCode {
+</span><span class="boring">    let app = Application::builder().application_id(APP_ID).build();
+</span><span class="boring">    app.connect_activate(build_ui);
+</span><span class="boring">    app.run()
+</span><span class="boring">}
+</span><span class="boring">
+</span><span class="boring">fn build_ui(app: &amp;Application) {
+</span>    let container = gtk::Box::builder()
+        .orientation(Orientation::Vertical)
+        .spacing(6)
+        .margin_start(12)
+        .margin_end(12)
+        .margin_top(12)
+        .margin_bottom(12)
+        .build();
+<span class="boring">
+</span><span class="boring">    // Create a toggle button that controls visibility
+</span><span class="boring">    let toggle_button = Button::builder().label("Details").build();
+</span><span class="boring">
+</span><span class="boring">    // The content that will be shown/hidden
+</span><span class="boring">    let revealer = Revealer::builder()
+</span><span class="boring">        .transition_type(RevealerTransitionType::SlideDown)
+</span><span class="boring">        .reveal_child(false)
+</span><span class="boring">        .build();
+</span><span class="boring">    let content = Label::new(Some(
+</span><span class="boring">        "Here are some additional details that can be expanded.",
+</span><span class="boring">    ));
+</span><span class="boring">    revealer.set_child(Some(&amp;content));
+</span><span class="boring">
+</span><span class="boring">    // Set initial accessible state
+</span><span class="boring">    toggle_button.update_state(&amp;[accessible::State::Expanded(Some(false))]);
+</span><span class="boring">    toggle_button
+</span><span class="boring">        .update_relation(&amp;[accessible::Relation::Controls(&amp;[revealer.upcast_ref()])]);
+</span><span class="boring">
+</span><span class="boring">    // Toggle visibility when clicked
+</span><span class="boring">    let revealer_clone = revealer.clone();
+</span><span class="boring">    let content_clone = content.clone();
+</span><span class="boring">    toggle_button.connect_clicked(move |button| {
+</span><span class="boring">        let is_revealed = revealer_clone.reveals_child();
+</span><span class="boring">        let new_state = !is_revealed;
+</span><span class="boring">
+</span><span class="boring">        revealer_clone.set_reveal_child(new_state);
+</span><span class="boring">
+</span><span class="boring">        // Update the accessible state to match
+</span><span class="boring">        button.update_state(&amp;[accessible::State::Expanded(Some(new_state))]);
+</span><span class="boring">
+</span><span class="boring">        // Update button label and announce the revealed content to screen readers
+</span><span class="boring">        if new_state {
+</span><span class="boring">            button.set_label("Details (expanded)");
+</span><span class="boring">            button.announce(
+</span><span class="boring">                &amp;content_clone.label(),
+</span><span class="boring">                AccessibleAnnouncementPriority::Medium,
+</span><span class="boring">            );
+</span><span class="boring">        } else {
+</span><span class="boring">            button.set_label("Details");
+</span><span class="boring">        }
+</span><span class="boring">    });
+</span><span class="boring">
+</span><span class="boring">    container.append(&amp;toggle_button);
+</span><span class="boring">    container.append(&amp;revealer);
+</span><span class="boring">
+</span><span class="boring">    let window = ApplicationWindow::builder()
+</span><span class="boring">        .application(app)
+</span><span class="boring">        .title("Collapsible Section")
+</span><span class="boring">        .default_width(350)
+</span><span class="boring">        .default_height(200)
+</span><span class="boring">        .child(&amp;container)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    window.present();
+</span><span class="boring">}</span></code></pre>
+<p>Next, create a toggle button and a revealer, then set the initial accessible state and relation.
+The <a href="https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/accessible/enum.Relation.html"><code>accessible::Relation::Controls</code></a> relation tells assistive technologies that the button controls the revealer.</p>
+<p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/accessibility/4/main.rs">listings/accessibility/4/main.rs</a></p>
+<pre><code class="language-rust no_run"><span class="boring">use gtk::prelude::*;
+</span><span class="boring">use gtk::{
+</span><span class="boring">    AccessibleAnnouncementPriority, Application, ApplicationWindow, Button, Label,
+</span><span class="boring">    Orientation, Revealer, RevealerTransitionType, accessible, glib,
+</span><span class="boring">};
+</span><span class="boring">
+</span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.Accessibility4";
+</span><span class="boring">
+</span><span class="boring">fn main() -&gt; glib::ExitCode {
+</span><span class="boring">    let app = Application::builder().application_id(APP_ID).build();
+</span><span class="boring">    app.connect_activate(build_ui);
+</span><span class="boring">    app.run()
+</span><span class="boring">}
+</span><span class="boring">
+</span><span class="boring">fn build_ui(app: &amp;Application) {
+</span><span class="boring">    let container = gtk::Box::builder()
+</span><span class="boring">        .orientation(Orientation::Vertical)
+</span><span class="boring">        .spacing(6)
+</span><span class="boring">        .margin_start(12)
+</span><span class="boring">        .margin_end(12)
+</span><span class="boring">        .margin_top(12)
+</span><span class="boring">        .margin_bottom(12)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span>    // Create a toggle button that controls visibility
+    let toggle_button = Button::builder().label("Details").build();
+
+    // The content that will be shown/hidden
+    let revealer = Revealer::builder()
+        .transition_type(RevealerTransitionType::SlideDown)
+        .reveal_child(false)
+        .build();
+    let content = Label::new(Some(
+        "Here are some additional details that can be expanded.",
+    ));
+    revealer.set_child(Some(&amp;content));
+
+    // Set initial accessible state
+    toggle_button.update_state(&amp;[accessible::State::Expanded(Some(false))]);
+    toggle_button
+        .update_relation(&amp;[accessible::Relation::Controls(&amp;[revealer.upcast_ref()])]);
+<span class="boring">
+</span><span class="boring">    // Toggle visibility when clicked
+</span><span class="boring">    let revealer_clone = revealer.clone();
+</span><span class="boring">    let content_clone = content.clone();
+</span><span class="boring">    toggle_button.connect_clicked(move |button| {
+</span><span class="boring">        let is_revealed = revealer_clone.reveals_child();
+</span><span class="boring">        let new_state = !is_revealed;
+</span><span class="boring">
+</span><span class="boring">        revealer_clone.set_reveal_child(new_state);
+</span><span class="boring">
+</span><span class="boring">        // Update the accessible state to match
+</span><span class="boring">        button.update_state(&amp;[accessible::State::Expanded(Some(new_state))]);
+</span><span class="boring">
+</span><span class="boring">        // Update button label and announce the revealed content to screen readers
+</span><span class="boring">        if new_state {
+</span><span class="boring">            button.set_label("Details (expanded)");
+</span><span class="boring">            button.announce(
+</span><span class="boring">                &amp;content_clone.label(),
+</span><span class="boring">                AccessibleAnnouncementPriority::Medium,
+</span><span class="boring">            );
+</span><span class="boring">        } else {
+</span><span class="boring">            button.set_label("Details");
+</span><span class="boring">        }
+</span><span class="boring">    });
+</span><span class="boring">
+</span><span class="boring">    container.append(&amp;toggle_button);
+</span><span class="boring">    container.append(&amp;revealer);
+</span><span class="boring">
+</span><span class="boring">    let window = ApplicationWindow::builder()
+</span><span class="boring">        .application(app)
+</span><span class="boring">        .title("Collapsible Section")
+</span><span class="boring">        .default_width(350)
+</span><span class="boring">        .default_height(200)
+</span><span class="boring">        .child(&amp;container)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    window.present();
+</span><span class="boring">}</span></code></pre>
+<p>When the user clicks the button, we toggle the revealer and update the accessible state to match.
+We also use <a href="https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/prelude/trait.AccessibleExt.html#method.announce"><code>announce</code></a> to tell screen readers about the newly revealed content:</p>
+<p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/accessibility/4/main.rs">listings/accessibility/4/main.rs</a></p>
+<pre><code class="language-rust no_run"><span class="boring">use gtk::prelude::*;
+</span><span class="boring">use gtk::{
+</span><span class="boring">    AccessibleAnnouncementPriority, Application, ApplicationWindow, Button, Label,
+</span><span class="boring">    Orientation, Revealer, RevealerTransitionType, accessible, glib,
+</span><span class="boring">};
+</span><span class="boring">
+</span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.Accessibility4";
+</span><span class="boring">
+</span><span class="boring">fn main() -&gt; glib::ExitCode {
+</span><span class="boring">    let app = Application::builder().application_id(APP_ID).build();
+</span><span class="boring">    app.connect_activate(build_ui);
+</span><span class="boring">    app.run()
+</span><span class="boring">}
+</span><span class="boring">
+</span><span class="boring">fn build_ui(app: &amp;Application) {
+</span><span class="boring">    let container = gtk::Box::builder()
+</span><span class="boring">        .orientation(Orientation::Vertical)
+</span><span class="boring">        .spacing(6)
+</span><span class="boring">        .margin_start(12)
+</span><span class="boring">        .margin_end(12)
+</span><span class="boring">        .margin_top(12)
+</span><span class="boring">        .margin_bottom(12)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    // Create a toggle button that controls visibility
+</span><span class="boring">    let toggle_button = Button::builder().label("Details").build();
+</span><span class="boring">
+</span><span class="boring">    // The content that will be shown/hidden
+</span><span class="boring">    let revealer = Revealer::builder()
+</span><span class="boring">        .transition_type(RevealerTransitionType::SlideDown)
+</span><span class="boring">        .reveal_child(false)
+</span><span class="boring">        .build();
+</span><span class="boring">    let content = Label::new(Some(
+</span><span class="boring">        "Here are some additional details that can be expanded.",
+</span><span class="boring">    ));
+</span><span class="boring">    revealer.set_child(Some(&amp;content));
+</span><span class="boring">
+</span><span class="boring">    // Set initial accessible state
+</span><span class="boring">    toggle_button.update_state(&amp;[accessible::State::Expanded(Some(false))]);
+</span><span class="boring">    toggle_button
+</span><span class="boring">        .update_relation(&amp;[accessible::Relation::Controls(&amp;[revealer.upcast_ref()])]);
+</span><span class="boring">
+</span>    // Toggle visibility when clicked
+    let revealer_clone = revealer.clone();
+    let content_clone = content.clone();
+    toggle_button.connect_clicked(move |button| {
+        let is_revealed = revealer_clone.reveals_child();
+        let new_state = !is_revealed;
+
+        revealer_clone.set_reveal_child(new_state);
+
+        // Update the accessible state to match
+        button.update_state(&amp;[accessible::State::Expanded(Some(new_state))]);
+
+        // Update button label and announce the revealed content to screen readers
+        if new_state {
+            button.set_label("Details (expanded)");
+            button.announce(
+                &amp;content_clone.label(),
+                AccessibleAnnouncementPriority::Medium,
+            );
+        } else {
+            button.set_label("Details");
+        }
+    });
+<span class="boring">
+</span><span class="boring">    container.append(&amp;toggle_button);
+</span><span class="boring">    container.append(&amp;revealer);
+</span><span class="boring">
+</span><span class="boring">    let window = ApplicationWindow::builder()
+</span><span class="boring">        .application(app)
+</span><span class="boring">        .title("Collapsible Section")
+</span><span class="boring">        .default_width(350)
+</span><span class="boring">        .default_height(200)
+</span><span class="boring">        .child(&amp;container)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    window.present();
+</span><span class="boring">}</span></code></pre>
+<p>Finally, assemble the widgets and present the window:</p>
+<p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/accessibility/4/main.rs">listings/accessibility/4/main.rs</a></p>
+<pre><code class="language-rust no_run"><span class="boring">use gtk::prelude::*;
+</span><span class="boring">use gtk::{
+</span><span class="boring">    AccessibleAnnouncementPriority, Application, ApplicationWindow, Button, Label,
+</span><span class="boring">    Orientation, Revealer, RevealerTransitionType, accessible, glib,
+</span><span class="boring">};
+</span><span class="boring">
+</span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.Accessibility4";
+</span><span class="boring">
+</span><span class="boring">fn main() -&gt; glib::ExitCode {
+</span><span class="boring">    let app = Application::builder().application_id(APP_ID).build();
+</span><span class="boring">    app.connect_activate(build_ui);
+</span><span class="boring">    app.run()
+</span><span class="boring">}
+</span><span class="boring">
+</span><span class="boring">fn build_ui(app: &amp;Application) {
+</span><span class="boring">    let container = gtk::Box::builder()
+</span><span class="boring">        .orientation(Orientation::Vertical)
+</span><span class="boring">        .spacing(6)
+</span><span class="boring">        .margin_start(12)
+</span><span class="boring">        .margin_end(12)
+</span><span class="boring">        .margin_top(12)
+</span><span class="boring">        .margin_bottom(12)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    // Create a toggle button that controls visibility
+</span><span class="boring">    let toggle_button = Button::builder().label("Details").build();
+</span><span class="boring">
+</span><span class="boring">    // The content that will be shown/hidden
+</span><span class="boring">    let revealer = Revealer::builder()
+</span><span class="boring">        .transition_type(RevealerTransitionType::SlideDown)
+</span><span class="boring">        .reveal_child(false)
+</span><span class="boring">        .build();
+</span><span class="boring">    let content = Label::new(Some(
+</span><span class="boring">        "Here are some additional details that can be expanded.",
+</span><span class="boring">    ));
+</span><span class="boring">    revealer.set_child(Some(&amp;content));
+</span><span class="boring">
+</span><span class="boring">    // Set initial accessible state
+</span><span class="boring">    toggle_button.update_state(&amp;[accessible::State::Expanded(Some(false))]);
+</span><span class="boring">    toggle_button
+</span><span class="boring">        .update_relation(&amp;[accessible::Relation::Controls(&amp;[revealer.upcast_ref()])]);
+</span><span class="boring">
+</span><span class="boring">    // Toggle visibility when clicked
+</span><span class="boring">    let revealer_clone = revealer.clone();
+</span><span class="boring">    let content_clone = content.clone();
+</span><span class="boring">    toggle_button.connect_clicked(move |button| {
+</span><span class="boring">        let is_revealed = revealer_clone.reveals_child();
+</span><span class="boring">        let new_state = !is_revealed;
+</span><span class="boring">
+</span><span class="boring">        revealer_clone.set_reveal_child(new_state);
+</span><span class="boring">
+</span><span class="boring">        // Update the accessible state to match
+</span><span class="boring">        button.update_state(&amp;[accessible::State::Expanded(Some(new_state))]);
+</span><span class="boring">
+</span><span class="boring">        // Update button label and announce the revealed content to screen readers
+</span><span class="boring">        if new_state {
+</span><span class="boring">            button.set_label("Details (expanded)");
+</span><span class="boring">            button.announce(
+</span><span class="boring">                &amp;content_clone.label(),
+</span><span class="boring">                AccessibleAnnouncementPriority::Medium,
+</span><span class="boring">            );
+</span><span class="boring">        } else {
+</span><span class="boring">            button.set_label("Details");
+</span><span class="boring">        }
+</span><span class="boring">    });
+</span><span class="boring">
+</span>    container.append(&amp;toggle_button);
+    container.append(&amp;revealer);
+
+    let window = ApplicationWindow::builder()
+        .application(app)
+        .title("Collapsible Section")
+        .default_width(350)
+        .default_height(200)
+        .child(&amp;container)
+        .build();
+
+    window.present();
+<span class="boring">}</span></code></pre>
+<p>This is how the app looks like. First in its collapsed, and then in its expanded state.</p>
+<div style="text-align:center">
+  <img src="img/accessibility_collapsed.png" alt="Window titled Collapsible Section with a Details toggle button in collapsed state" />
+  <img src="img/accessibility_expanded.png" alt="Window titled Collapsible Section with the Details toggle button in expanded state, revealing the text: Here are some additional details that can be expanded" />
+</div>
+
+<h2 id="dont-rely-on-color-alone"><a class="header" href="#dont-rely-on-color-alone">Don’t Rely on Color Alone</a></h2>
+<p>Color should never be the only way to convey information.
+Let’s demonstrate this with a simple example where we only use color to notify the user about an invalid entry.</p>
+<p>First, we set up a labeled entry with a hidden error label:</p>
+<p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/accessibility/5/main.rs">listings/accessibility/5/main.rs</a></p>
+<pre><code class="language-rust no_run"><span class="boring">use gtk::prelude::*;
+</span><span class="boring">use gtk::{
+</span><span class="boring">    Application, ApplicationWindow, Entry, Label, Orientation, accessible, glib,
+</span><span class="boring">};
+</span><span class="boring">
+</span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.Accessibility5";
+</span><span class="boring">
+</span><span class="boring">fn main() -&gt; glib::ExitCode {
+</span><span class="boring">    let app = Application::builder().application_id(APP_ID).build();
+</span><span class="boring">    app.connect_activate(build_ui);
+</span><span class="boring">    app.run()
+</span><span class="boring">}
+</span><span class="boring">
+</span><span class="boring">fn is_valid_email(text: &amp;str) -&gt; bool {
+</span><span class="boring">    text.contains('@') &amp;&amp; text.contains('.')
+</span><span class="boring">}
+</span><span class="boring">
+</span><span class="boring">fn build_ui(app: &amp;Application) {
+</span>    let container = gtk::Box::builder()
+        .orientation(Orientation::Vertical)
+        .spacing(6)
+        .margin_start(12)
+        .margin_end(12)
+        .margin_top(12)
+        .margin_bottom(12)
+        .build();
+
+    let label = Label::new(Some("Email:"));
+    let entry = Entry::new();
+    entry.update_relation(&amp;[accessible::Relation::LabelledBy(&amp;[label.upcast_ref()])]);
+
+    let error_label = Label::builder()
+        .label("Please enter a valid email address")
+        .css_classes(["error"])
+        .visible(false)
+        .build();
+<span class="boring">
+</span><span class="boring">    entry.connect_changed(move |entry| {
+</span><span class="boring">        let text = entry.text();
+</span><span class="boring">        if !text.is_empty() &amp;&amp; !is_valid_email(&amp;text) {
+</span><span class="boring">            entry.add_css_class("error");
+</span><span class="boring">        } else {
+</span><span class="boring">            entry.remove_css_class("error");
+</span><span class="boring">        }
+</span><span class="boring">    });
+</span><span class="boring">
+</span><span class="boring">    container.append(&amp;label);
+</span><span class="boring">    container.append(&amp;entry);
+</span><span class="boring">    container.append(&amp;error_label);
+</span><span class="boring">
+</span><span class="boring">    let window = ApplicationWindow::builder()
+</span><span class="boring">        .application(app)
+</span><span class="boring">        .title("Form Validation")
+</span><span class="boring">        .default_width(350)
+</span><span class="boring">        .default_height(200)
+</span><span class="boring">        .child(&amp;container)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    window.present();
+</span><span class="boring">}</span></code></pre>
+<p>When the input is invalid, we add the <code>error</code> CSS class to turn the border red:</p>
+<p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/accessibility/5/main.rs">listings/accessibility/5/main.rs</a></p>
+<pre><code class="language-rust no_run"><span class="boring">use gtk::prelude::*;
+</span><span class="boring">use gtk::{
+</span><span class="boring">    Application, ApplicationWindow, Entry, Label, Orientation, accessible, glib,
+</span><span class="boring">};
+</span><span class="boring">
+</span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.Accessibility5";
+</span><span class="boring">
+</span><span class="boring">fn main() -&gt; glib::ExitCode {
+</span><span class="boring">    let app = Application::builder().application_id(APP_ID).build();
+</span><span class="boring">    app.connect_activate(build_ui);
+</span><span class="boring">    app.run()
+</span><span class="boring">}
+</span><span class="boring">
+</span><span class="boring">fn is_valid_email(text: &amp;str) -&gt; bool {
+</span><span class="boring">    text.contains('@') &amp;&amp; text.contains('.')
+</span><span class="boring">}
+</span><span class="boring">
+</span><span class="boring">fn build_ui(app: &amp;Application) {
+</span><span class="boring">    let container = gtk::Box::builder()
+</span><span class="boring">        .orientation(Orientation::Vertical)
+</span><span class="boring">        .spacing(6)
+</span><span class="boring">        .margin_start(12)
+</span><span class="boring">        .margin_end(12)
+</span><span class="boring">        .margin_top(12)
+</span><span class="boring">        .margin_bottom(12)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    let label = Label::new(Some("Email:"));
+</span><span class="boring">    let entry = Entry::new();
+</span><span class="boring">    entry.update_relation(&amp;[accessible::Relation::LabelledBy(&amp;[label.upcast_ref()])]);
+</span><span class="boring">
+</span><span class="boring">    let error_label = Label::builder()
+</span><span class="boring">        .label("Please enter a valid email address")
+</span><span class="boring">        .css_classes(["error"])
+</span><span class="boring">        .visible(false)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span>    entry.connect_changed(move |entry| {
+        let text = entry.text();
+        if !text.is_empty() &amp;&amp; !is_valid_email(&amp;text) {
+            entry.add_css_class("error");
+        } else {
+            entry.remove_css_class("error");
+        }
+    });
+<span class="boring">
+</span><span class="boring">    container.append(&amp;label);
+</span><span class="boring">    container.append(&amp;entry);
+</span><span class="boring">    container.append(&amp;error_label);
+</span><span class="boring">
+</span><span class="boring">    let window = ApplicationWindow::builder()
+</span><span class="boring">        .application(app)
+</span><span class="boring">        .title("Form Validation")
+</span><span class="boring">        .default_width(350)
+</span><span class="boring">        .default_height(200)
+</span><span class="boring">        .child(&amp;container)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    window.present();
+</span><span class="boring">}</span></code></pre>
+<p>Finally, assemble the widgets and present the window:</p>
+<p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/accessibility/5/main.rs">listings/accessibility/5/main.rs</a></p>
+<pre><code class="language-rust no_run"><span class="boring">use gtk::prelude::*;
+</span><span class="boring">use gtk::{
+</span><span class="boring">    Application, ApplicationWindow, Entry, Label, Orientation, accessible, glib,
+</span><span class="boring">};
+</span><span class="boring">
+</span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.Accessibility5";
+</span><span class="boring">
+</span><span class="boring">fn main() -&gt; glib::ExitCode {
+</span><span class="boring">    let app = Application::builder().application_id(APP_ID).build();
+</span><span class="boring">    app.connect_activate(build_ui);
+</span><span class="boring">    app.run()
+</span><span class="boring">}
+</span><span class="boring">
+</span><span class="boring">fn is_valid_email(text: &amp;str) -&gt; bool {
+</span><span class="boring">    text.contains('@') &amp;&amp; text.contains('.')
+</span><span class="boring">}
+</span><span class="boring">
+</span><span class="boring">fn build_ui(app: &amp;Application) {
+</span><span class="boring">    let container = gtk::Box::builder()
+</span><span class="boring">        .orientation(Orientation::Vertical)
+</span><span class="boring">        .spacing(6)
+</span><span class="boring">        .margin_start(12)
+</span><span class="boring">        .margin_end(12)
+</span><span class="boring">        .margin_top(12)
+</span><span class="boring">        .margin_bottom(12)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    let label = Label::new(Some("Email:"));
+</span><span class="boring">    let entry = Entry::new();
+</span><span class="boring">    entry.update_relation(&amp;[accessible::Relation::LabelledBy(&amp;[label.upcast_ref()])]);
+</span><span class="boring">
+</span><span class="boring">    let error_label = Label::builder()
+</span><span class="boring">        .label("Please enter a valid email address")
+</span><span class="boring">        .css_classes(["error"])
+</span><span class="boring">        .visible(false)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    entry.connect_changed(move |entry| {
+</span><span class="boring">        let text = entry.text();
+</span><span class="boring">        if !text.is_empty() &amp;&amp; !is_valid_email(&amp;text) {
+</span><span class="boring">            entry.add_css_class("error");
+</span><span class="boring">        } else {
+</span><span class="boring">            entry.remove_css_class("error");
+</span><span class="boring">        }
+</span><span class="boring">    });
+</span><span class="boring">
+</span>    container.append(&amp;label);
+    container.append(&amp;entry);
+    container.append(&amp;error_label);
+
+    let window = ApplicationWindow::builder()
+        .application(app)
+        .title("Form Validation")
+        .default_width(350)
+        .default_height(200)
+        .child(&amp;container)
+        .build();
+
+    window.present();
+<span class="boring">}</span></code></pre>
+<p>This doesn’t look too bad.</p>
+<div style="text-align:center">
+  <img src="img/accessibility_form_empty.png" alt="Window titled Form Validation with an Email label and an empty entry field" />
+</div>
+
+<p>And when we enter an invalid email address, the color of my entry turns red.</p>
+<div style="text-align:center">
+  <img src="img/accessibility_form_wrong.png" alt="Window titled Form Validation with an Email entry containing invalid input highlighted with a red border, but no visible error message" />
+</div>
+
+<p>However, people who are color-blind or are using a screen reader won’t notice the red font.
+What we will therefore do instead is to combine color with a visible error message and an accessible state:</p>
+<p>Filename: <a class="file-link" href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/accessibility/6/main.rs">listings/accessibility/6/main.rs</a></p>
+<pre><code class="language-rust no_run"><span class="boring">use gtk::prelude::*;
+</span><span class="boring">use gtk::{
+</span><span class="boring">    AccessibleInvalidState, Application, ApplicationWindow, Entry, Label, Orientation,
+</span><span class="boring">    accessible, glib,
+</span><span class="boring">};
+</span><span class="boring">
+</span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.Accessibility6";
+</span><span class="boring">
+</span><span class="boring">fn main() -&gt; glib::ExitCode {
+</span><span class="boring">    let app = Application::builder().application_id(APP_ID).build();
+</span><span class="boring">    app.connect_activate(build_ui);
+</span><span class="boring">    app.run()
+</span><span class="boring">}
+</span><span class="boring">
+</span><span class="boring">fn is_valid_email(text: &amp;str) -&gt; bool {
+</span><span class="boring">    text.contains('@') &amp;&amp; text.contains('.')
+</span><span class="boring">}
+</span><span class="boring">
+</span><span class="boring">fn build_ui(app: &amp;Application) {
+</span><span class="boring">    let container = gtk::Box::builder()
+</span><span class="boring">        .orientation(Orientation::Vertical)
+</span><span class="boring">        .spacing(6)
+</span><span class="boring">        .margin_start(12)
+</span><span class="boring">        .margin_end(12)
+</span><span class="boring">        .margin_top(12)
+</span><span class="boring">        .margin_bottom(12)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    let label = Label::new(Some("Email:"));
+</span><span class="boring">    let entry = Entry::new();
+</span><span class="boring">    entry.update_relation(&amp;[accessible::Relation::LabelledBy(&amp;[label.upcast_ref()])]);
+</span><span class="boring">
+</span><span class="boring">    let error_label = Label::builder()
+</span><span class="boring">        .label("Please enter a valid email address")
+</span><span class="boring">        .css_classes(["error"])
+</span><span class="boring">        .visible(false)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span>    // Correct: color, text and accessible state indicate the error
+    entry.connect_changed({
+        let error_label = error_label.clone();
+        move |entry| {
+            let text = entry.text();
+            if !text.is_empty() &amp;&amp; !is_valid_email(&amp;text) {
+                entry.add_css_class("error");
+                error_label.set_visible(true);
+                entry.update_state(&amp;[accessible::State::Invalid(
+                    AccessibleInvalidState::True,
+                )]);
+            } else {
+                entry.remove_css_class("error");
+                error_label.set_visible(false);
+                entry.update_state(&amp;[accessible::State::Invalid(
+                    AccessibleInvalidState::False,
+                )]);
+            }
+        }
+    });
+<span class="boring">
+</span><span class="boring">    container.append(&amp;label);
+</span><span class="boring">    container.append(&amp;entry);
+</span><span class="boring">    container.append(&amp;error_label);
+</span><span class="boring">
+</span><span class="boring">    let window = ApplicationWindow::builder()
+</span><span class="boring">        .application(app)
+</span><span class="boring">        .title("Form Validation")
+</span><span class="boring">        .default_width(350)
+</span><span class="boring">        .default_height(200)
+</span><span class="boring">        .child(&amp;container)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    window.present();
+</span><span class="boring">}</span></code></pre>
+<p>This way, the error is communicated through three channels:</p>
+<ul>
+<li>red color,</li>
+<li>text of an error label,</li>
+<li>and the <code>Invalid</code> state which will be announced by screen readers.</li>
+</ul>
+<div style="text-align:center"><img src="img/accessibility_correct.png" alt="Window titled Form Validation with an Email entry containing invalid input highlighted with a red border and a visible error message reading: Please enter a valid email address" /></div>
+
+<h2 id="testing-accessibility"><a class="header" href="#testing-accessibility">Testing Accessibility</a></h2>
+<p>Testing is essential for ensuring your application works well with assistive technologies.</p>
+<h3 id="orca-screen-reader"><a class="header" href="#orca-screen-reader">Orca Screen Reader</a></h3>
+<p>On Linux you can use <a href="https://orca.gnome.org/">Orca</a> which is pre-installed on many linux distributions.
+On GNOME can enable it in Settings → Accessibility → Screen Reader, or toggle it with <strong>Super+Alt+S</strong> (Super is typically the Windows key).
+Try navigating your application using only the keyboard while Orca announces elements.
+If the screen reader isn’t announcing the correct thing, it is time to adapt your application.</p>
+<h3 id="accessibility-checklist"><a class="header" href="#accessibility-checklist">Accessibility Checklist</a></h3>
+<p>Here are some things you can look out for:</p>
+<ul>
+<li>The application needs to be fully usable with keyboard only</li>
+<li>Focus should be visible and move in a logical order</li>
+<li>Color must not be the only way to convey information</li>
+<li>All interactive elements and icon-only buttons need to have accessible labels</li>
+<li>Custom widgets need to have appropriate roles</li>
+<li>Dynamic state changes need to be reflected in accessible states</li>
+</ul>
+<h2 id="conclusion"><a class="header" href="#conclusion">Conclusion</a></h2>
+<p>Hopefully, this gave you a good overview over what it means to create an application that is accessible to everyone.
+Of course that only scratched the surface of this topic.
+For a more information, I can recommend the following resources.</p>
+<ul>
+<li><a href="https://docs.gtk.org/gtk4/section-accessibility.html">GTK accessibility documentation</a></li>
+<li><a href="https://developer.gnome.org/documentation/guidelines/accessibility.html">GNOME Accessibility Guidelines</a></li>
+<li><a href="https://developer.gnome.org/documentation/guidelines/accessibility/coding-guidelines.html">Coding Guidelines for Supporting Accessibility</a></li>
+<li><a href="https://developer.gnome.org/documentation/guidelines/accessibility/custom-widgets.html">Making Custom Components Accessible</a></li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="css.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                            </a>
+
+                            <a rel="next prefetch" href="libadwaita.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="css.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                    </a>
+
+                    <a rel="next prefetch" href="libadwaita.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                    </a>
+            </nav>
+
+        </div>
+
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr-ef4e11c1.min.js"></script>
+        <script src="mark-09e88c2c.min.js"></script>
+        <script src="searcher-c2a407aa.js"></script>
+
+        <script src="clipboard-1626706a.min.js"></script>
+        <script src="highlight-abc7f01d.js"></script>
+        <script src="book-a0b12cfe.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="theme/meson-a299a3c8.js"></script>
+
+
+
+    </div>
+    </body>
+</html>
