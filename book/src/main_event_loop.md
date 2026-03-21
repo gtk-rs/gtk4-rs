@@ -214,7 +214,7 @@ It can be configured to depend on `async-std`.
 We can add it to our dependencies by running the following command.
 
 ```
-cargo add ashpd --no-default-features --features "gtk4 async-std"
+cargo add ashpd --no-default-features --features "gtk4 async-io"
 ```
 
 You need to use a Linux desktop environment in order to run the following example locally.
