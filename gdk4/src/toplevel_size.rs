@@ -1,5 +1,7 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
+use std::ffi::c_void;
+
 use crate::{ffi, prelude::*};
 use glib::translate::*;
 
@@ -57,5 +59,42 @@ impl std::fmt::Debug for ToplevelSize {
         f.debug_struct("ToplevelSize")
             .field("bounds", &self.bounds())
             .finish()
+    }
+}
+
+unsafe impl<'a> glib::value::FromValue<'a> for ToplevelSize {
+    type Checker = glib::value::GenericValueTypeChecker<Self>;
+
+    #[inline]
+    unsafe fn from_value(value: &'a glib::Value) -> Self {
+        unsafe {
+            let ptr = glib::gobject_ffi::g_value_get_pointer(value.to_glib_none().0);
+            debug_assert!(
+                !ptr.is_null(),
+                "ToplevelSize in glib::Value is a NULL pointer"
+            );
+            ToplevelSize(std::ptr::NonNull::new_unchecked(
+                ptr as *mut ffi::_GdkToplevelSize,
+            ))
+        }
+    }
+}
+
+impl ToValue for ToplevelSize {
+    #[inline]
+    fn to_value(&self) -> glib::Value {
+        unsafe {
+            let mut v = glib::Value::from_type(Self::static_type());
+            glib::gobject_ffi::g_value_set_pointer(
+                v.to_glib_none_mut().0,
+                self.0.as_ptr() as *mut c_void,
+            );
+            v
+        }
+    }
+
+    #[inline]
+    fn value_type(&self) -> glib::Type {
+        Self::static_type()
     }
 }
