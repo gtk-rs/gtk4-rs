@@ -11476,6 +11476,8 @@ pub enum SvgError {
     LimitsExceeded,
     #[doc(alias = "GTK_SVG_ERROR_NOT_IMPLEMENTED")]
     NotImplemented,
+    #[doc(alias = "GTK_SVG_ERROR_FEATURE_DISABLED")]
+    FeatureDisabled,
     #[doc(hidden)]
     __Unknown(i32),
 }
@@ -11535,6 +11537,7 @@ impl IntoGlib for SvgError {
             Self::IgnoredElement => ffi::GTK_SVG_ERROR_IGNORED_ELEMENT,
             Self::LimitsExceeded => ffi::GTK_SVG_ERROR_LIMITS_EXCEEDED,
             Self::NotImplemented => ffi::GTK_SVG_ERROR_NOT_IMPLEMENTED,
+            Self::FeatureDisabled => ffi::GTK_SVG_ERROR_FEATURE_DISABLED,
             Self::__Unknown(value) => value,
         }
     }
@@ -11559,6 +11562,7 @@ impl FromGlib<ffi::GtkSvgError> for SvgError {
             ffi::GTK_SVG_ERROR_IGNORED_ELEMENT => Self::IgnoredElement,
             ffi::GTK_SVG_ERROR_LIMITS_EXCEEDED => Self::LimitsExceeded,
             ffi::GTK_SVG_ERROR_NOT_IMPLEMENTED => Self::NotImplemented,
+            ffi::GTK_SVG_ERROR_FEATURE_DISABLED => Self::FeatureDisabled,
             value => Self::__Unknown(value),
         }
     }
