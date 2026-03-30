@@ -396,20 +396,19 @@ checksum = "37909eebbb50d72f9059c3b6d82c0463f2ff062c9e95845c43a6c9c0355411be"
 
 [[package]]
 name = "femtovg"
-version = "0.20.4"
+version = "0.22.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "35695993a8264f5dfa8facc135c003965cea40d83705b49e0f8c3a3b632a2171"
+checksum = "e51acc7027a6fa8e3b5daf3b914fb52cf147a6c5f0648bd2682f03c0d221352f"
 dependencies = [
  "bitflags 2.11.0",
  "bytemuck",
  "fnv",
- "glow",
+ "glow 0.17.0",
  "imgref",
  "itertools",
  "log",
  "rgb",
  "slotmap",
- "ttf-parser",
  "wasm-bindgen",
  "web-sys",
 ]
@@ -894,6 +893,18 @@ dependencies = [
 ]
 
 [[package]]
+name = "glow"
+version = "0.17.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "29038e1c483364cc6bb3cf78feee1816002e127c331a1eec55a4d202b9e1adb5"
+dependencies = [
+ "js-sys",
+ "slotmap",
+ "wasm-bindgen",
+ "web-sys",
+]
+
+[[package]]
 name = "gobject-sys"
 version = "0.23.0-alpha"
 source = "git+https://github.com/gtk-rs/gtk-rs-core?branch=main#7ca14ecb95c7c9c254747cde75610dff0e793b40"
@@ -998,7 +1009,7 @@ dependencies = [
  "epoxy",
  "femtovg",
  "glium",
- "glow",
+ "glow 0.16.0",
  "gtk4",
  "im-rc",
  "image",
@@ -2416,12 +2427,6 @@ dependencies = [
  "serde_json",
  "termcolor",
 ]
-
-[[package]]
-name = "ttf-parser"
-version = "0.25.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d2df906b07856748fa3f6e0ad0cbaa047052d4a7dd609e231c4f72cee8c36f31"
 
 [[package]]
 name = "typenum"
