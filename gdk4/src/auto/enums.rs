@@ -2006,6 +2006,28 @@ pub enum MemoryFormat {
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
     #[doc(alias = "GDK_MEMORY_G16_B16_R16_444")]
     G16B16R16444,
+    #[cfg(feature = "v4_24")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+    #[doc(alias = "GDK_MEMORY_ARGB2101010_PREMULTIPLIED")]
+    Argb2101010Premultiplied,
+    #[cfg(feature = "v4_24")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+    #[doc(alias = "GDK_MEMORY_ARGB2101010")]
+    Argb2101010,
+    #[cfg(feature = "v4_24")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+    #[doc(alias = "GDK_MEMORY_XRGB2101010")]
+    Xrgb2101010,
+    #[doc(alias = "GDK_MEMORY_ABGR2101010_PREMULTIPLIED")]
+    Abgr2101010Premultiplied,
+    #[cfg(feature = "v4_24")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+    #[doc(alias = "GDK_MEMORY_ABGR2101010")]
+    Abgr2101010,
+    #[cfg(feature = "v4_24")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+    #[doc(alias = "GDK_MEMORY_XBGR2101010")]
+    Xbgr2101010,
     #[doc(hidden)]
     __Unknown(i32),
 }
@@ -2141,6 +2163,17 @@ impl IntoGlib for MemoryFormat {
             Self::G16B16R16422 => ffi::GDK_MEMORY_G16_B16_R16_422,
             #[cfg(feature = "v4_20")]
             Self::G16B16R16444 => ffi::GDK_MEMORY_G16_B16_R16_444,
+            #[cfg(feature = "v4_24")]
+            Self::Argb2101010Premultiplied => ffi::GDK_MEMORY_ARGB2101010_PREMULTIPLIED,
+            #[cfg(feature = "v4_24")]
+            Self::Argb2101010 => ffi::GDK_MEMORY_ARGB2101010,
+            #[cfg(feature = "v4_24")]
+            Self::Xrgb2101010 => ffi::GDK_MEMORY_XRGB2101010,
+            Self::Abgr2101010Premultiplied => ffi::GDK_MEMORY_ABGR2101010_PREMULTIPLIED,
+            #[cfg(feature = "v4_24")]
+            Self::Abgr2101010 => ffi::GDK_MEMORY_ABGR2101010,
+            #[cfg(feature = "v4_24")]
+            Self::Xbgr2101010 => ffi::GDK_MEMORY_XBGR2101010,
             Self::__Unknown(value) => value,
         }
     }
@@ -2277,6 +2310,17 @@ impl FromGlib<ffi::GdkMemoryFormat> for MemoryFormat {
             ffi::GDK_MEMORY_G16_B16_R16_422 => Self::G16B16R16422,
             #[cfg(feature = "v4_20")]
             ffi::GDK_MEMORY_G16_B16_R16_444 => Self::G16B16R16444,
+            #[cfg(feature = "v4_24")]
+            ffi::GDK_MEMORY_ARGB2101010_PREMULTIPLIED => Self::Argb2101010Premultiplied,
+            #[cfg(feature = "v4_24")]
+            ffi::GDK_MEMORY_ARGB2101010 => Self::Argb2101010,
+            #[cfg(feature = "v4_24")]
+            ffi::GDK_MEMORY_XRGB2101010 => Self::Xrgb2101010,
+            ffi::GDK_MEMORY_ABGR2101010_PREMULTIPLIED => Self::Abgr2101010Premultiplied,
+            #[cfg(feature = "v4_24")]
+            ffi::GDK_MEMORY_ABGR2101010 => Self::Abgr2101010,
+            #[cfg(feature = "v4_24")]
+            ffi::GDK_MEMORY_XBGR2101010 => Self::Xbgr2101010,
             value => Self::__Unknown(value),
         }
     }
