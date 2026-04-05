@@ -214,6 +214,7 @@ generate = [
     "Gtk.RecentInfo",
     "Gtk.RecentManagerError",
     "Gtk.ReducedMotion",
+    "Gtk.RestoreReason",
     "Gtk.Revealer",
     "Gtk.RevealerTransitionType",
     "Gtk.Root",
