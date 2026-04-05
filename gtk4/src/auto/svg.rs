@@ -2,6 +2,9 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+#[cfg(feature = "v4_24")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+use crate::Overflow;
 use crate::{SvgFeatures, SymbolicPaintable, ffi};
 use glib::{
     object::ObjectType as _,
@@ -47,16 +50,31 @@ impl Svg {
         unsafe { from_glib(ffi::gtk_svg_get_features(self.to_glib_none().0)) }
     }
 
-    #[doc(alias = "gtk_svg_get_n_states")]
-    #[doc(alias = "get_n_states")]
-    pub fn n_states(&self) -> u32 {
-        unsafe { ffi::gtk_svg_get_n_states(self.to_glib_none().0) }
+    #[cfg(feature = "v4_24")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+    #[doc(alias = "gtk_svg_get_overflow")]
+    #[doc(alias = "get_overflow")]
+    pub fn overflow(&self) -> Overflow {
+        unsafe { from_glib(ffi::gtk_svg_get_overflow(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_svg_get_state")]
     #[doc(alias = "get_state")]
     pub fn state(&self) -> u32 {
         unsafe { ffi::gtk_svg_get_state(self.to_glib_none().0) }
+    }
+
+    #[doc(alias = "gtk_svg_get_state_names")]
+    #[doc(alias = "get_state_names")]
+    pub fn state_names(&self) -> (Vec<glib::GString>, u32) {
+        unsafe {
+            let mut length = std::mem::MaybeUninit::uninit();
+            let ret = FromGlibPtrContainer::from_glib_none(ffi::gtk_svg_get_state_names(
+                self.to_glib_none().0,
+                length.as_mut_ptr(),
+            ));
+            (ret, length.assume_init())
+        }
     }
 
     #[doc(alias = "gtk_svg_get_weight")]
@@ -110,6 +128,16 @@ impl Svg {
     pub fn set_frame_clock(&self, clock: &gdk::FrameClock) {
         unsafe {
             ffi::gtk_svg_set_frame_clock(self.to_glib_none().0, clock.to_glib_none().0);
+        }
+    }
+
+    #[cfg(feature = "v4_24")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+    #[doc(alias = "gtk_svg_set_overflow")]
+    #[doc(alias = "overflow")]
+    pub fn set_overflow(&self, overflow: Overflow) {
+        unsafe {
+            ffi::gtk_svg_set_overflow(self.to_glib_none().0, overflow.into_glib());
         }
     }
 
@@ -219,6 +247,33 @@ impl Svg {
                 c"notify::features".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_features_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg(feature = "v4_24")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+    #[doc(alias = "overflow")]
+    pub fn connect_overflow_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_overflow_trampoline<F: Fn(&Svg) + 'static>(
+            this: *mut ffi::GtkSvg,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(&from_glib_borrow(this))
+            }
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                c"notify::overflow".as_ptr(),
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
+                    notify_overflow_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
