@@ -77,6 +77,14 @@ impl Svg {
         }
     }
 
+    #[cfg(feature = "v4_24")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+    #[doc(alias = "gtk_svg_get_stylesheet")]
+    #[doc(alias = "get_stylesheet")]
+    pub fn stylesheet(&self) -> Option<glib::Bytes> {
+        unsafe { from_glib_full(ffi::gtk_svg_get_stylesheet(self.to_glib_none().0)) }
+    }
+
     #[doc(alias = "gtk_svg_get_weight")]
     #[doc(alias = "get_weight")]
     pub fn weight(&self) -> f64 {
@@ -146,6 +154,16 @@ impl Svg {
     pub fn set_state(&self, state: u32) {
         unsafe {
             ffi::gtk_svg_set_state(self.to_glib_none().0, state);
+        }
+    }
+
+    #[cfg(feature = "v4_24")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+    #[doc(alias = "gtk_svg_set_stylesheet")]
+    #[doc(alias = "stylesheet")]
+    pub fn set_stylesheet(&self, bytes: Option<&glib::Bytes>) {
+        unsafe {
+            ffi::gtk_svg_set_stylesheet(self.to_glib_none().0, bytes.to_glib_none().0);
         }
     }
 
@@ -355,6 +373,33 @@ impl Svg {
                 c"notify::state".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_state_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg(feature = "v4_24")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+    #[doc(alias = "stylesheet")]
+    pub fn connect_stylesheet_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_stylesheet_trampoline<F: Fn(&Svg) + 'static>(
+            this: *mut ffi::GtkSvg,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(&from_glib_borrow(this))
+            }
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                c"notify::stylesheet".as_ptr(),
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
+                    notify_stylesheet_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )

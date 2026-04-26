@@ -118,6 +118,8 @@ int main() {
     printf("%s;%zu;%zu\n", "GtkEntryBufferClass", sizeof(GtkEntryBufferClass), alignof(GtkEntryBufferClass));
     printf("%s;%zu;%zu\n", "GtkEntryClass", sizeof(GtkEntryClass), alignof(GtkEntryClass));
     printf("%s;%zu;%zu\n", "GtkEntryIconPosition", sizeof(GtkEntryIconPosition), alignof(GtkEntryIconPosition));
+    printf("%s;%zu;%zu\n", "GtkEnumListClass", sizeof(GtkEnumListClass), alignof(GtkEnumListClass));
+    printf("%s;%zu;%zu\n", "GtkEnumListItemClass", sizeof(GtkEnumListItemClass), alignof(GtkEnumListItemClass));
     printf("%s;%zu;%zu\n", "GtkEventControllerScrollFlags", sizeof(GtkEventControllerScrollFlags), alignof(GtkEventControllerScrollFlags));
     printf("%s;%zu;%zu\n", "GtkEventSequenceState", sizeof(GtkEventSequenceState), alignof(GtkEventSequenceState));
     printf("%s;%zu;%zu\n", "GtkFileChooserAction", sizeof(GtkFileChooserAction), alignof(GtkFileChooserAction));
@@ -298,6 +300,7 @@ int main() {
     printf("%s;%zu;%zu\n", "GtkSvgError", sizeof(GtkSvgError), alignof(GtkSvgError));
     printf("%s;%zu;%zu\n", "GtkSvgFeatures", sizeof(GtkSvgFeatures), alignof(GtkSvgFeatures));
     printf("%s;%zu;%zu\n", "GtkSvgLocation", sizeof(GtkSvgLocation), alignof(GtkSvgLocation));
+    printf("%s;%zu;%zu\n", "GtkSvgWidgetClass", sizeof(GtkSvgWidgetClass), alignof(GtkSvgWidgetClass));
     printf("%s;%zu;%zu\n", "GtkSymbolicColor", sizeof(GtkSymbolicColor), alignof(GtkSymbolicColor));
     printf("%s;%zu;%zu\n", "GtkSymbolicPaintableInterface", sizeof(GtkSymbolicPaintableInterface), alignof(GtkSymbolicPaintableInterface));
     printf("%s;%zu;%zu\n", "GtkSystemSetting", sizeof(GtkSystemSetting), alignof(GtkSystemSetting));
