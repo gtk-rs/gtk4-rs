@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/auto/grid_view.rs`."><title>grid_view.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-17e0aaed.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.96.0-nightly (e0e95a718 2026-04-04)" data-channel="nightly" data-search-js="search-1c5d44ff.js" data-stringdex-js="stringdex-2da4960a.js" data-settings-js="settings-170eb4bf.js" ><script src="../../../static.files/storage-41dd4d93.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-5013f961.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-f7c3ffd8.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><a class="skip-main-content" href="#main-content">Skip to main content</a><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/auto/grid_view.rs`."><title>grid_view.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-17e0aaed.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.97.0-nightly (ca9a134e0 2026-04-26)" data-channel="nightly" data-search-js="search-b5634cc7.js" data-stringdex-js="stringdex-2da4960a.js" data-settings-js="settings-170eb4bf.js" ><script src="../../../static.files/storage-41dd4d93.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-aa4d37ac.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-f7c3ffd8.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><a class="skip-main-content" href="#main-content">Skip to main content</a><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
 
@@ -77,12 +77,12 @@
 <a href=#4 id=4 data-nosnippet>4</a>
 <a href=#5 id=5 data-nosnippet>5</a></span><span class="kw">use </span>crate::{
 <a href=#6 id=6 data-nosnippet>6</a>    <a href="accessible.rs.html#19-70">Accessible</a>, <a href="enums.rs.html#1029-1329">AccessibleRole</a>, <a href="adjustment.rs.html#14-99">Adjustment</a>, <a href="../enums.rs.html#77-107">Align</a>, <a href="buildable.rs.html#8-31">Buildable</a>, <a href="constraint_target.rs.html#8-23">ConstraintTarget</a>, <a href="layout_manager.rs.html#8-70">LayoutManager</a>,
-<a href=#7 id=7 data-nosnippet>7</a>    <a href="list_base.rs.html#7-410">ListBase</a>, <a href="list_item_factory.rs.html#7-65">ListItemFactory</a>, <a href="orientable.rs.html#13-42">Orientable</a>, <a href="enums.rs.html#8273-8282">Orientation</a>, <a href="enums.rs.html#8376-8387">Overflow</a>, <a href="scrollable.rs.html#13-82">Scrollable</a>, <a href="enums.rs.html#11150-11159">ScrollablePolicy</a>,
-<a href=#8 id=8 data-nosnippet>8</a>    <a href="selection_model.rs.html#14-88">SelectionModel</a>, <a href="widget.rs.html#19-864">Widget</a>, <a href="../../../gtk4_sys/index.html">ffi</a>,
+<a href=#7 id=7 data-nosnippet>7</a>    <a href="list_base.rs.html#7-410">ListBase</a>, <a href="list_item_factory.rs.html#7-65">ListItemFactory</a>, <a href="orientable.rs.html#13-42">Orientable</a>, <a href="enums.rs.html#8278-8287">Orientation</a>, <a href="enums.rs.html#8381-8392">Overflow</a>, <a href="scrollable.rs.html#13-82">Scrollable</a>, <a href="enums.rs.html#11155-11164">ScrollablePolicy</a>,
+<a href=#8 id=8 data-nosnippet>8</a>    <a href="selection_model.rs.html#14-88">SelectionModel</a>, <a href="widget.rs.html#19-887">Widget</a>, <a href="../../../gtk4_sys/index.html">ffi</a>,
 <a href=#9 id=9 data-nosnippet>9</a>};
 <a href=#10 id=10 data-nosnippet>10</a><span class="attr">#[cfg(feature = <span class="string">"v4_12"</span>)]
 <a href=#11 id=11 data-nosnippet>11</a>#[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_12"</span>)))]
-<a href=#12 id=12 data-nosnippet>12</a></span><span class="kw">use </span>crate::{<a href="flags.rs.html#1051-1069">ListScrollFlags</a>, <a href="enums.rs.html#7423-7441">ListTabBehavior</a>, <a href="scroll_info.rs.html#8-21">ScrollInfo</a>};
+<a href=#12 id=12 data-nosnippet>12</a></span><span class="kw">use </span>crate::{<a href="flags.rs.html#1051-1069">ListScrollFlags</a>, <a href="enums.rs.html#7428-7446">ListTabBehavior</a>, <a href="scroll_info.rs.html#8-21">ScrollInfo</a>};
 <a href=#13 id=13 data-nosnippet>13</a><span class="kw">use </span>glib::{
 <a href=#14 id=14 data-nosnippet>14</a>    <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.ObjectType.html">object::ObjectType</a> <span class="kw">as _</span>,
 <a href=#15 id=15 data-nosnippet>15</a>    prelude::<span class="kw-2">*</span>,
@@ -676,7 +676,7 @@
 <a href=#603 id=603 data-nosnippet>603</a>    ///
 <a href=#604 id=604 data-nosnippet>604</a>    /// [`ListBaseExt`][trait@crate::prelude::ListBaseExt], [`WidgetExt`][trait@crate::prelude::WidgetExt], [`trait@glib::ObjectExt`], [`AccessibleExt`][trait@crate::prelude::AccessibleExt], [`BuildableExt`][trait@crate::prelude::BuildableExt], [`ConstraintTargetExt`][trait@crate::prelude::ConstraintTargetExt], [`OrientableExt`][trait@crate::prelude::OrientableExt], [`ScrollableExt`][trait@crate::prelude::ScrollableExt], [`WidgetExtManual`][trait@crate::prelude::WidgetExtManual], [`AccessibleExtManual`][trait@crate::prelude::AccessibleExtManual]
 <a href=#605 id=605 data-nosnippet>605</a>    </span><span class="attr">#[doc(alias = <span class="string">"GtkGridView"</span>)]
-<a href=#606 id=606 data-nosnippet>606</a>    </span><span class="kw">pub struct </span><a href="#21-611">GridView</a>(Object&lt;ffi::<a href="../../../gtk4_sys/struct.GtkGridView.html">GtkGridView</a>, ffi::<a href="../../../gtk4_sys/type.GtkGridViewClass.html">GtkGridViewClass</a>&gt;) @extends <a href="list_base.rs.html#7-410">ListBase</a>, <a href="widget.rs.html#19-864">Widget</a>, @implements <a href="accessible.rs.html#19-70">Accessible</a>, <a href="buildable.rs.html#8-31">Buildable</a>, <a href="constraint_target.rs.html#8-23">ConstraintTarget</a>, <a href="orientable.rs.html#13-42">Orientable</a>, <a href="scrollable.rs.html#13-82">Scrollable</a>;
+<a href=#606 id=606 data-nosnippet>606</a>    </span><span class="kw">pub struct </span><a href="#21-611">GridView</a>(Object&lt;ffi::<a href="../../../gtk4_sys/struct.GtkGridView.html">GtkGridView</a>, ffi::<a href="../../../gtk4_sys/type.GtkGridViewClass.html">GtkGridViewClass</a>&gt;) @extends <a href="list_base.rs.html#7-410">ListBase</a>, <a href="widget.rs.html#19-887">Widget</a>, @implements <a href="accessible.rs.html#19-70">Accessible</a>, <a href="buildable.rs.html#8-31">Buildable</a>, <a href="constraint_target.rs.html#8-23">ConstraintTarget</a>, <a href="orientable.rs.html#13-42">Orientable</a>, <a href="scrollable.rs.html#13-82">Scrollable</a>;
 <a href=#607 id=607 data-nosnippet>607</a>
 <a href=#608 id=608 data-nosnippet>608</a>    <span class="kw">match fn </span>{
 <a href=#609 id=609 data-nosnippet>609</a>        type_ =&gt; || ffi::gtk_grid_view_get_type(),
@@ -710,7 +710,7 @@
 <a href=#637 id=637 data-nosnippet>637</a>    ) -&gt; <a href="#21-611">GridView</a> {
 <a href=#638 id=638 data-nosnippet>638</a>        <a href="../rt.rs.html#24-36">assert_initialized_main_thread!</a>();
 <a href=#639 id=639 data-nosnippet>639</a>        <span class="kw">unsafe </span>{
-<a href=#640 id=640 data-nosnippet>640</a>            <a href="widget.rs.html#19-864">Widget</a>::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.FromGlibPtrNone.html#tymethod.from_glib_none">from_glib_none</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_grid_view_new.html">gtk_grid_view_new</a>(
+<a href=#640 id=640 data-nosnippet>640</a>            <a href="widget.rs.html#19-887">Widget</a>::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.FromGlibPtrNone.html#tymethod.from_glib_none">from_glib_none</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_grid_view_new.html">gtk_grid_view_new</a>(
 <a href=#641 id=641 data-nosnippet>641</a>                <a href="#635">model</a>.<a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#method.map">map</a>(|p| <a href="#641">p</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.Cast.html#method.upcast">upcast</a>()).<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.IntoGlibPtr.html#tymethod.into_glib_ptr">into_glib_ptr</a>(),
 <a href=#642 id=642 data-nosnippet>642</a>                <a href="#636">factory</a>.<a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#method.map">map</a>(|p| <a href="#642">p</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.Cast.html#method.upcast">upcast</a>()).<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.IntoGlibPtr.html#tymethod.into_glib_ptr">into_glib_ptr</a>(),
 <a href=#643 id=643 data-nosnippet>643</a>            ))
@@ -815,7 +815,7 @@
 <a href=#742 id=742 data-nosnippet>742</a>    #[doc(alias = <span class="string">"gtk_grid_view_get_tab_behavior"</span>)]
 <a href=#743 id=743 data-nosnippet>743</a>    #[doc(alias = <span class="string">"get_tab_behavior"</span>)]
 <a href=#744 id=744 data-nosnippet>744</a>    #[doc(alias = <span class="string">"tab-behavior"</span>)]
-<a href=#745 id=745 data-nosnippet>745</a>    </span><span class="kw">pub fn </span>tab_behavior(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="enums.rs.html#7423-7441">ListTabBehavior</a> {
+<a href=#745 id=745 data-nosnippet>745</a>    </span><span class="kw">pub fn </span>tab_behavior(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="enums.rs.html#7428-7446">ListTabBehavior</a> {
 <a href=#746 id=746 data-nosnippet>746</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_grid_view_get_tab_behavior.html">gtk_grid_view_get_tab_behavior</a>(<a class="self" href="#745">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#747 id=747 data-nosnippet>747</a>    }
 <a href=#748 id=748 data-nosnippet>748</a>
@@ -944,7 +944,7 @@
 <a href=#871 id=871 data-nosnippet>871</a>    #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_12"</span>)))]
 <a href=#872 id=872 data-nosnippet>872</a>    #[doc(alias = <span class="string">"gtk_grid_view_set_tab_behavior"</span>)]
 <a href=#873 id=873 data-nosnippet>873</a>    #[doc(alias = <span class="string">"tab-behavior"</span>)]
-<a href=#874 id=874 data-nosnippet>874</a>    </span><span class="kw">pub fn </span>set_tab_behavior(<span class="kw-2">&amp;</span><span class="self">self</span>, tab_behavior: <a href="enums.rs.html#7423-7441">ListTabBehavior</a>) {
+<a href=#874 id=874 data-nosnippet>874</a>    </span><span class="kw">pub fn </span>set_tab_behavior(<span class="kw-2">&amp;</span><span class="self">self</span>, tab_behavior: <a href="enums.rs.html#7428-7446">ListTabBehavior</a>) {
 <a href=#875 id=875 data-nosnippet>875</a>        <span class="kw">unsafe </span>{
 <a href=#876 id=876 data-nosnippet>876</a>            ffi::<a href="../../../gtk4_sys/fn.gtk_grid_view_set_tab_behavior.html">gtk_grid_view_set_tab_behavior</a>(<a class="self" href="#874">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>, <a href="#874">tab_behavior</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>());
 <a href=#877 id=877 data-nosnippet>877</a>        }
@@ -1243,7 +1243,7 @@
 <a href=#1170 id=1170 data-nosnippet>1170</a>    <span class="doccomment">/// Behavior of the &lt;kbd&gt;Tab&lt;/kbd&gt; key
 <a href=#1171 id=1171 data-nosnippet>1171</a>    </span><span class="attr">#[cfg(feature = <span class="string">"v4_12"</span>)]
 <a href=#1172 id=1172 data-nosnippet>1172</a>    #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_12"</span>)))]
-<a href=#1173 id=1173 data-nosnippet>1173</a>    </span><span class="kw">pub fn </span>tab_behavior(<span class="self">self</span>, tab_behavior: <a href="enums.rs.html#7423-7441">ListTabBehavior</a>) -&gt; <span class="self">Self </span>{
+<a href=#1173 id=1173 data-nosnippet>1173</a>    </span><span class="kw">pub fn </span>tab_behavior(<span class="self">self</span>, tab_behavior: <a href="enums.rs.html#7428-7446">ListTabBehavior</a>) -&gt; <span class="self">Self </span>{
 <a href=#1174 id=1174 data-nosnippet>1174</a>        <span class="self">Self </span>{
 <a href=#1175 id=1175 data-nosnippet>1175</a>            builder: <a class="self" href="#1173">self</a>.builder.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/struct.ObjectBuilder.html#method.property">property</a>(<span class="string">"tab-behavior"</span>, <a href="#1173">tab_behavior</a>),
 <a href=#1176 id=1176 data-nosnippet>1176</a>        }
@@ -1251,7 +1251,7 @@
 <a href=#1178 id=1178 data-nosnippet>1178</a>
 <a href=#1179 id=1179 data-nosnippet>1179</a>    <span class="doccomment">/// The orientation of the list. See GtkOrientable:orientation
 <a href=#1180 id=1180 data-nosnippet>1180</a>    /// for details.
-<a href=#1181 id=1181 data-nosnippet>1181</a>    </span><span class="kw">pub fn </span>orientation(<span class="self">self</span>, orientation: <a href="enums.rs.html#8273-8282">Orientation</a>) -&gt; <span class="self">Self </span>{
+<a href=#1181 id=1181 data-nosnippet>1181</a>    </span><span class="kw">pub fn </span>orientation(<span class="self">self</span>, orientation: <a href="enums.rs.html#8278-8287">Orientation</a>) -&gt; <span class="self">Self </span>{
 <a href=#1182 id=1182 data-nosnippet>1182</a>        <span class="self">Self </span>{
 <a href=#1183 id=1183 data-nosnippet>1183</a>            builder: <a class="self" href="#1181">self</a>.builder.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/struct.ObjectBuilder.html#method.property">property</a>(<span class="string">"orientation"</span>, <a href="#1181">orientation</a>),
 <a href=#1184 id=1184 data-nosnippet>1184</a>        }
@@ -1452,7 +1452,7 @@
 <a href=#1379 id=1379 data-nosnippet>1379</a>    ///
 <a href=#1380 id=1380 data-nosnippet>1380</a>    /// This property is meant to be set by widget implementations,
 <a href=#1381 id=1381 data-nosnippet>1381</a>    /// typically in their instance init function.
-<a href=#1382 id=1382 data-nosnippet>1382</a>    </span><span class="kw">pub fn </span>overflow(<span class="self">self</span>, overflow: <a href="enums.rs.html#8376-8387">Overflow</a>) -&gt; <span class="self">Self </span>{
+<a href=#1382 id=1382 data-nosnippet>1382</a>    </span><span class="kw">pub fn </span>overflow(<span class="self">self</span>, overflow: <a href="enums.rs.html#8381-8392">Overflow</a>) -&gt; <span class="self">Self </span>{
 <a href=#1383 id=1383 data-nosnippet>1383</a>        <span class="self">Self </span>{
 <a href=#1384 id=1384 data-nosnippet>1384</a>            builder: <a class="self" href="#1382">self</a>.builder.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/struct.ObjectBuilder.html#method.property">property</a>(<span class="string">"overflow"</span>, <a href="#1382">overflow</a>),
 <a href=#1385 id=1385 data-nosnippet>1385</a>        }
@@ -1569,7 +1569,7 @@
 <a href=#1496 id=1496 data-nosnippet>1496</a>    }
 <a href=#1497 id=1497 data-nosnippet>1497</a>
 <a href=#1498 id=1498 data-nosnippet>1498</a>    <span class="doccomment">/// Determines when horizontal scrolling should start.
-<a href=#1499 id=1499 data-nosnippet>1499</a>    </span><span class="kw">pub fn </span>hscroll_policy(<span class="self">self</span>, hscroll_policy: <a href="enums.rs.html#11150-11159">ScrollablePolicy</a>) -&gt; <span class="self">Self </span>{
+<a href=#1499 id=1499 data-nosnippet>1499</a>    </span><span class="kw">pub fn </span>hscroll_policy(<span class="self">self</span>, hscroll_policy: <a href="enums.rs.html#11155-11164">ScrollablePolicy</a>) -&gt; <span class="self">Self </span>{
 <a href=#1500 id=1500 data-nosnippet>1500</a>        <span class="self">Self </span>{
 <a href=#1501 id=1501 data-nosnippet>1501</a>            builder: <a class="self" href="#1499">self</a>.builder.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/struct.ObjectBuilder.html#method.property">property</a>(<span class="string">"hscroll-policy"</span>, <a href="#1499">hscroll_policy</a>),
 <a href=#1502 id=1502 data-nosnippet>1502</a>        }
@@ -1587,7 +1587,7 @@
 <a href=#1514 id=1514 data-nosnippet>1514</a>    }
 <a href=#1515 id=1515 data-nosnippet>1515</a>
 <a href=#1516 id=1516 data-nosnippet>1516</a>    <span class="doccomment">/// Determines when vertical scrolling should start.
-<a href=#1517 id=1517 data-nosnippet>1517</a>    </span><span class="kw">pub fn </span>vscroll_policy(<span class="self">self</span>, vscroll_policy: <a href="enums.rs.html#11150-11159">ScrollablePolicy</a>) -&gt; <span class="self">Self </span>{
+<a href=#1517 id=1517 data-nosnippet>1517</a>    </span><span class="kw">pub fn </span>vscroll_policy(<span class="self">self</span>, vscroll_policy: <a href="enums.rs.html#11155-11164">ScrollablePolicy</a>) -&gt; <span class="self">Self </span>{
 <a href=#1518 id=1518 data-nosnippet>1518</a>        <span class="self">Self </span>{
 <a href=#1519 id=1519 data-nosnippet>1519</a>            builder: <a class="self" href="#1517">self</a>.builder.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/struct.ObjectBuilder.html#method.property">property</a>(<span class="string">"vscroll-policy"</span>, <a href="#1517">vscroll_policy</a>),
 <a href=#1520 id=1520 data-nosnippet>1520</a>        }

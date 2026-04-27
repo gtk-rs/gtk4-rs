@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/auto/message_dialog.rs`."><title>message_dialog.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-17e0aaed.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.96.0-nightly (e0e95a718 2026-04-04)" data-channel="nightly" data-search-js="search-1c5d44ff.js" data-stringdex-js="stringdex-2da4960a.js" data-settings-js="settings-170eb4bf.js" ><script src="../../../static.files/storage-41dd4d93.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-5013f961.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-f7c3ffd8.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><a class="skip-main-content" href="#main-content">Skip to main content</a><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/auto/message_dialog.rs`."><title>message_dialog.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-17e0aaed.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.97.0-nightly (ca9a134e0 2026-04-26)" data-channel="nightly" data-search-js="search-b5634cc7.js" data-stringdex-js="stringdex-2da4960a.js" data-settings-js="settings-170eb4bf.js" ><script src="../../../static.files/storage-41dd4d93.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-aa4d37ac.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-f7c3ffd8.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><a class="skip-main-content" href="#main-content">Skip to main content</a><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
 
@@ -78,10 +78,10 @@
 <a href=#5 id=5 data-nosnippet>5</a>
 <a href=#6 id=6 data-nosnippet>6</a>#[cfg(feature = <span class="string">"v4_20"</span>)]
 <a href=#7 id=7 data-nosnippet>7</a>#[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_20"</span>)))]
-<a href=#8 id=8 data-nosnippet>8</a></span><span class="kw">use </span><a href="enums.rs.html#14211-14265"><span class="kw">crate</span>::WindowGravity</a>;
+<a href=#8 id=8 data-nosnippet>8</a></span><span class="kw">use </span><a href="enums.rs.html#14225-14279"><span class="kw">crate</span>::WindowGravity</a>;
 <a href=#9 id=9 data-nosnippet>9</a><span class="kw">use </span>crate::{
-<a href=#10 id=10 data-nosnippet>10</a>    <a href="accessible.rs.html#19-70">Accessible</a>, <a href="enums.rs.html#1029-1329">AccessibleRole</a>, <a href="../enums.rs.html#77-107">Align</a>, <a href="application.rs.html#17-450">Application</a>, <a href="buildable.rs.html#8-31">Buildable</a>, <a href="enums.rs.html#2958-2979">ButtonsType</a>, <a href="constraint_target.rs.html#8-23">ConstraintTarget</a>,
-<a href=#11 id=11 data-nosnippet>11</a>    <a href="dialog.rs.html#21-884">Dialog</a>, <a href="layout_manager.rs.html#8-70">LayoutManager</a>, <a href="enums.rs.html#7549-7567">MessageType</a>, <a href="native.rs.html#8-33">Native</a>, <a href="enums.rs.html#8376-8387">Overflow</a>, <a href="root.rs.html#8-32">Root</a>, <a href="shortcut_manager.rs.html#8-30">ShortcutManager</a>, <a href="widget.rs.html#19-864">Widget</a>, <a href="window.rs.html#21-781">Window</a>,
+<a href=#10 id=10 data-nosnippet>10</a>    <a href="accessible.rs.html#19-70">Accessible</a>, <a href="enums.rs.html#1029-1329">AccessibleRole</a>, <a href="../enums.rs.html#77-107">Align</a>, <a href="application.rs.html#17-457">Application</a>, <a href="buildable.rs.html#8-31">Buildable</a>, <a href="enums.rs.html#2958-2979">ButtonsType</a>, <a href="constraint_target.rs.html#8-23">ConstraintTarget</a>,
+<a href=#11 id=11 data-nosnippet>11</a>    <a href="dialog.rs.html#21-892">Dialog</a>, <a href="layout_manager.rs.html#8-70">LayoutManager</a>, <a href="enums.rs.html#7554-7572">MessageType</a>, <a href="native.rs.html#8-33">Native</a>, <a href="enums.rs.html#8381-8392">Overflow</a>, <a href="root.rs.html#8-32">Root</a>, <a href="shortcut_manager.rs.html#8-30">ShortcutManager</a>, <a href="widget.rs.html#19-887">Widget</a>, <a href="window.rs.html#21-789">Window</a>,
 <a href=#12 id=12 data-nosnippet>12</a>    <a href="../../../gtk4_sys/index.html">ffi</a>,
 <a href=#13 id=13 data-nosnippet>13</a>};
 <a href=#14 id=14 data-nosnippet>14</a><span class="kw">use </span>glib::{
@@ -735,7 +735,7 @@
 <a href=#662 id=662 data-nosnippet>662</a>    ///
 <a href=#663 id=663 data-nosnippet>663</a>    /// [`DialogExt`][trait@crate::prelude::DialogExt], [`GtkWindowExt`][trait@crate::prelude::GtkWindowExt], [`WidgetExt`][trait@crate::prelude::WidgetExt], [`trait@glib::ObjectExt`], [`AccessibleExt`][trait@crate::prelude::AccessibleExt], [`BuildableExt`][trait@crate::prelude::BuildableExt], [`ConstraintTargetExt`][trait@crate::prelude::ConstraintTargetExt], [`NativeExt`][trait@crate::prelude::NativeExt], [`RootExt`][trait@crate::prelude::RootExt], [`ShortcutManagerExt`][trait@crate::prelude::ShortcutManagerExt], [`DialogExtManual`][trait@crate::prelude::DialogExtManual], [`WidgetExtManual`][trait@crate::prelude::WidgetExtManual], [`AccessibleExtManual`][trait@crate::prelude::AccessibleExtManual]
 <a href=#664 id=664 data-nosnippet>664</a>    </span><span class="attr">#[doc(alias = <span class="string">"GtkMessageDialog"</span>)]
-<a href=#665 id=665 data-nosnippet>665</a>    </span><span class="kw">pub struct </span><a href="#21-670">MessageDialog</a>(Object&lt;ffi::<a href="../../../gtk4_sys/struct.GtkMessageDialog.html">GtkMessageDialog</a>, ffi::<a href="../../../gtk4_sys/type.GtkMessageDialogClass.html">GtkMessageDialogClass</a>&gt;) @extends <a href="dialog.rs.html#21-884">Dialog</a>, <a href="window.rs.html#21-781">Window</a>, <a href="widget.rs.html#19-864">Widget</a>, @implements <a href="accessible.rs.html#19-70">Accessible</a>, <a href="buildable.rs.html#8-31">Buildable</a>, <a href="constraint_target.rs.html#8-23">ConstraintTarget</a>, <a href="native.rs.html#8-33">Native</a>, <a href="root.rs.html#8-32">Root</a>, <a href="shortcut_manager.rs.html#8-30">ShortcutManager</a>;
+<a href=#665 id=665 data-nosnippet>665</a>    </span><span class="kw">pub struct </span><a href="#21-670">MessageDialog</a>(Object&lt;ffi::<a href="../../../gtk4_sys/struct.GtkMessageDialog.html">GtkMessageDialog</a>, ffi::<a href="../../../gtk4_sys/type.GtkMessageDialogClass.html">GtkMessageDialogClass</a>&gt;) @extends <a href="dialog.rs.html#21-892">Dialog</a>, <a href="window.rs.html#21-789">Window</a>, <a href="widget.rs.html#19-887">Widget</a>, @implements <a href="accessible.rs.html#19-70">Accessible</a>, <a href="buildable.rs.html#8-31">Buildable</a>, <a href="constraint_target.rs.html#8-23">ConstraintTarget</a>, <a href="native.rs.html#8-33">Native</a>, <a href="root.rs.html#8-32">Root</a>, <a href="shortcut_manager.rs.html#8-30">ShortcutManager</a>;
 <a href=#666 id=666 data-nosnippet>666</a>
 <a href=#667 id=667 data-nosnippet>667</a>    <span class="kw">match fn </span>{
 <a href=#668 id=668 data-nosnippet>668</a>        type_ =&gt; || ffi::gtk_message_dialog_get_type(),
@@ -771,7 +771,7 @@
 <a href=#698 id=698 data-nosnippet>698</a>    #[doc(alias = <span class="string">"gtk_message_dialog_get_message_area"</span>)]
 <a href=#699 id=699 data-nosnippet>699</a>    #[doc(alias = <span class="string">"get_message_area"</span>)]
 <a href=#700 id=700 data-nosnippet>700</a>    #[doc(alias = <span class="string">"message-area"</span>)]
-<a href=#701 id=701 data-nosnippet>701</a>    </span><span class="kw">pub fn </span>message_area(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="widget.rs.html#19-864">Widget</a> {
+<a href=#701 id=701 data-nosnippet>701</a>    </span><span class="kw">pub fn </span>message_area(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="widget.rs.html#19-887">Widget</a> {
 <a href=#702 id=702 data-nosnippet>702</a>        <span class="kw">unsafe </span>{
 <a href=#703 id=703 data-nosnippet>703</a>            <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib_none.html">from_glib_none</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_message_dialog_get_message_area.html">gtk_message_dialog_get_message_area</a>(
 <a href=#704 id=704 data-nosnippet>704</a>                <a class="self" href="#701">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
@@ -797,13 +797,13 @@
 <a href=#724 id=724 data-nosnippet>724</a>
 <a href=#725 id=725 data-nosnippet>725</a>    <span class="doccomment">/// The type of the message.
 <a href=#726 id=726 data-nosnippet>726</a>    </span><span class="attr">#[doc(alias = <span class="string">"message-type"</span>)]
-<a href=#727 id=727 data-nosnippet>727</a>    </span><span class="kw">pub fn </span>message_type(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="enums.rs.html#7549-7567">MessageType</a> {
+<a href=#727 id=727 data-nosnippet>727</a>    </span><span class="kw">pub fn </span>message_type(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="enums.rs.html#7554-7572">MessageType</a> {
 <a href=#728 id=728 data-nosnippet>728</a>        ObjectExt::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.ObjectExt.html#tymethod.property">property</a>(<a class="self" href="#727">self</a>, <span class="string">"message-type"</span>)
 <a href=#729 id=729 data-nosnippet>729</a>    }
 <a href=#730 id=730 data-nosnippet>730</a>
 <a href=#731 id=731 data-nosnippet>731</a>    <span class="doccomment">/// The type of the message.
 <a href=#732 id=732 data-nosnippet>732</a>    </span><span class="attr">#[doc(alias = <span class="string">"message-type"</span>)]
-<a href=#733 id=733 data-nosnippet>733</a>    </span><span class="kw">pub fn </span>set_message_type(<span class="kw-2">&amp;</span><span class="self">self</span>, message_type: <a href="enums.rs.html#7549-7567">MessageType</a>) {
+<a href=#733 id=733 data-nosnippet>733</a>    </span><span class="kw">pub fn </span>set_message_type(<span class="kw-2">&amp;</span><span class="self">self</span>, message_type: <a href="enums.rs.html#7554-7572">MessageType</a>) {
 <a href=#734 id=734 data-nosnippet>734</a>        ObjectExt::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.ObjectExt.html#tymethod.set_property">set_property</a>(<a class="self" href="#733">self</a>, <span class="string">"message-type"</span>, <a href="#733">message_type</a>)
 <a href=#735 id=735 data-nosnippet>735</a>    }
 <a href=#736 id=736 data-nosnippet>736</a>
@@ -1045,7 +1045,7 @@
 <a href=#972 id=972 data-nosnippet>972</a>    }
 <a href=#973 id=973 data-nosnippet>973</a>
 <a href=#974 id=974 data-nosnippet>974</a>    <span class="doccomment">/// The type of the message.
-<a href=#975 id=975 data-nosnippet>975</a>    </span><span class="kw">pub fn </span>message_type(<span class="self">self</span>, message_type: <a href="enums.rs.html#7549-7567">MessageType</a>) -&gt; <span class="self">Self </span>{
+<a href=#975 id=975 data-nosnippet>975</a>    </span><span class="kw">pub fn </span>message_type(<span class="self">self</span>, message_type: <a href="enums.rs.html#7554-7572">MessageType</a>) -&gt; <span class="self">Self </span>{
 <a href=#976 id=976 data-nosnippet>976</a>        <span class="self">Self </span>{
 <a href=#977 id=977 data-nosnippet>977</a>            builder: <a class="self" href="#975">self</a>.builder.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/struct.ObjectBuilder.html#method.property">property</a>(<span class="string">"message-type"</span>, <a href="#975">message_type</a>),
 <a href=#978 id=978 data-nosnippet>978</a>        }
@@ -1126,7 +1126,7 @@
 <a href=#1053 id=1053 data-nosnippet>1053</a>    /// Normally, the connection between the application and the window
 <a href=#1054 id=1054 data-nosnippet>1054</a>    /// will remain until the window is destroyed, but you can explicitly
 <a href=#1055 id=1055 data-nosnippet>1055</a>    /// remove it by setting the this property to `NULL`.
-<a href=#1056 id=1056 data-nosnippet>1056</a>    </span><span class="kw">pub fn </span>application(<span class="self">self</span>, application: <span class="kw-2">&amp;</span><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html">IsA</a>&lt;<a href="application.rs.html#17-450">Application</a>&gt;) -&gt; <span class="self">Self </span>{
+<a href=#1056 id=1056 data-nosnippet>1056</a>    </span><span class="kw">pub fn </span>application(<span class="self">self</span>, application: <span class="kw-2">&amp;</span><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html">IsA</a>&lt;<a href="application.rs.html#17-457">Application</a>&gt;) -&gt; <span class="self">Self </span>{
 <a href=#1057 id=1057 data-nosnippet>1057</a>        <span class="self">Self </span>{
 <a href=#1058 id=1058 data-nosnippet>1058</a>            builder: <a class="self" href="#1056">self</a>
 <a href=#1059 id=1059 data-nosnippet>1059</a>                .builder
@@ -1135,7 +1135,7 @@
 <a href=#1062 id=1062 data-nosnippet>1062</a>    }
 <a href=#1063 id=1063 data-nosnippet>1063</a>
 <a href=#1064 id=1064 data-nosnippet>1064</a>    <span class="doccomment">/// The child widget.
-<a href=#1065 id=1065 data-nosnippet>1065</a>    </span><span class="kw">pub fn </span>child(<span class="self">self</span>, child: <span class="kw-2">&amp;</span><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html">IsA</a>&lt;<a href="widget.rs.html#19-864">Widget</a>&gt;) -&gt; <span class="self">Self </span>{
+<a href=#1065 id=1065 data-nosnippet>1065</a>    </span><span class="kw">pub fn </span>child(<span class="self">self</span>, child: <span class="kw-2">&amp;</span><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html">IsA</a>&lt;<a href="widget.rs.html#19-887">Widget</a>&gt;) -&gt; <span class="self">Self </span>{
 <a href=#1066 id=1066 data-nosnippet>1066</a>        <span class="self">Self </span>{
 <a href=#1067 id=1067 data-nosnippet>1067</a>            builder: <a class="self" href="#1065">self</a>.builder.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/struct.ObjectBuilder.html#method.property">property</a>(<span class="string">"child"</span>, <a href="#1065">child</a>.<a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone">clone</a>().<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.Cast.html#method.upcast">upcast</a>()),
 <a href=#1068 id=1068 data-nosnippet>1068</a>        }
@@ -1156,7 +1156,7 @@
 <a href=#1083 id=1083 data-nosnippet>1083</a>    }
 <a href=#1084 id=1084 data-nosnippet>1084</a>
 <a href=#1085 id=1085 data-nosnippet>1085</a>    <span class="doccomment">/// The default widget.
-<a href=#1086 id=1086 data-nosnippet>1086</a>    </span><span class="kw">pub fn </span>default_widget(<span class="self">self</span>, default_widget: <span class="kw-2">&amp;</span><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html">IsA</a>&lt;<a href="widget.rs.html#19-864">Widget</a>&gt;) -&gt; <span class="self">Self </span>{
+<a href=#1086 id=1086 data-nosnippet>1086</a>    </span><span class="kw">pub fn </span>default_widget(<span class="self">self</span>, default_widget: <span class="kw-2">&amp;</span><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html">IsA</a>&lt;<a href="widget.rs.html#19-887">Widget</a>&gt;) -&gt; <span class="self">Self </span>{
 <a href=#1087 id=1087 data-nosnippet>1087</a>        <span class="self">Self </span>{
 <a href=#1088 id=1088 data-nosnippet>1088</a>            builder: <a class="self" href="#1086">self</a>
 <a href=#1089 id=1089 data-nosnippet>1089</a>                .builder
@@ -1205,7 +1205,7 @@
 <a href=#1132 id=1132 data-nosnippet>1132</a>    }
 <a href=#1133 id=1133 data-nosnippet>1133</a>
 <a href=#1134 id=1134 data-nosnippet>1134</a>    <span class="doccomment">/// The focus widget.
-<a href=#1135 id=1135 data-nosnippet>1135</a>    </span><span class="kw">pub fn </span>focus_widget(<span class="self">self</span>, focus_widget: <span class="kw-2">&amp;</span><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html">IsA</a>&lt;<a href="widget.rs.html#19-864">Widget</a>&gt;) -&gt; <span class="self">Self </span>{
+<a href=#1135 id=1135 data-nosnippet>1135</a>    </span><span class="kw">pub fn </span>focus_widget(<span class="self">self</span>, focus_widget: <span class="kw-2">&amp;</span><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html">IsA</a>&lt;<a href="widget.rs.html#19-887">Widget</a>&gt;) -&gt; <span class="self">Self </span>{
 <a href=#1136 id=1136 data-nosnippet>1136</a>        <span class="self">Self </span>{
 <a href=#1137 id=1137 data-nosnippet>1137</a>            builder: <a class="self" href="#1135">self</a>
 <a href=#1138 id=1138 data-nosnippet>1138</a>                .builder
@@ -1234,7 +1234,7 @@
 <a href=#1161 id=1161 data-nosnippet>1161</a>    /// want the to fix top right corner of the window.
 <a href=#1162 id=1162 data-nosnippet>1162</a>    </span><span class="attr">#[cfg(feature = <span class="string">"v4_20"</span>)]
 <a href=#1163 id=1163 data-nosnippet>1163</a>    #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_20"</span>)))]
-<a href=#1164 id=1164 data-nosnippet>1164</a>    </span><span class="kw">pub fn </span>gravity(<span class="self">self</span>, gravity: <a href="enums.rs.html#14211-14265">WindowGravity</a>) -&gt; <span class="self">Self </span>{
+<a href=#1164 id=1164 data-nosnippet>1164</a>    </span><span class="kw">pub fn </span>gravity(<span class="self">self</span>, gravity: <a href="enums.rs.html#14225-14279">WindowGravity</a>) -&gt; <span class="self">Self </span>{
 <a href=#1165 id=1165 data-nosnippet>1165</a>        <span class="self">Self </span>{
 <a href=#1166 id=1166 data-nosnippet>1166</a>            builder: <a class="self" href="#1164">self</a>.builder.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/struct.ObjectBuilder.html#method.property">property</a>(<span class="string">"gravity"</span>, <a href="#1164">gravity</a>),
 <a href=#1167 id=1167 data-nosnippet>1167</a>        }
@@ -1325,14 +1325,14 @@
 <a href=#1252 id=1252 data-nosnippet>1252</a>    <span class="doccomment">/// The titlebar widget.
 <a href=#1253 id=1253 data-nosnippet>1253</a>    </span><span class="attr">#[cfg(feature = <span class="string">"v4_6"</span>)]
 <a href=#1254 id=1254 data-nosnippet>1254</a>    #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_6"</span>)))]
-<a href=#1255 id=1255 data-nosnippet>1255</a>    </span><span class="kw">pub fn </span>titlebar(<span class="self">self</span>, titlebar: <span class="kw-2">&amp;</span><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html">IsA</a>&lt;<a href="widget.rs.html#19-864">Widget</a>&gt;) -&gt; <span class="self">Self </span>{
+<a href=#1255 id=1255 data-nosnippet>1255</a>    </span><span class="kw">pub fn </span>titlebar(<span class="self">self</span>, titlebar: <span class="kw-2">&amp;</span><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html">IsA</a>&lt;<a href="widget.rs.html#19-887">Widget</a>&gt;) -&gt; <span class="self">Self </span>{
 <a href=#1256 id=1256 data-nosnippet>1256</a>        <span class="self">Self </span>{
 <a href=#1257 id=1257 data-nosnippet>1257</a>            builder: <a class="self" href="#1255">self</a>.builder.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/struct.ObjectBuilder.html#method.property">property</a>(<span class="string">"titlebar"</span>, <a href="#1255">titlebar</a>.<a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone">clone</a>().<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.Cast.html#method.upcast">upcast</a>()),
 <a href=#1258 id=1258 data-nosnippet>1258</a>        }
 <a href=#1259 id=1259 data-nosnippet>1259</a>    }
 <a href=#1260 id=1260 data-nosnippet>1260</a>
 <a href=#1261 id=1261 data-nosnippet>1261</a>    <span class="doccomment">/// The transient parent of the window.
-<a href=#1262 id=1262 data-nosnippet>1262</a>    </span><span class="kw">pub fn </span>transient_for(<span class="self">self</span>, transient_for: <span class="kw-2">&amp;</span><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html">IsA</a>&lt;<a href="window.rs.html#21-781">Window</a>&gt;) -&gt; <span class="self">Self </span>{
+<a href=#1262 id=1262 data-nosnippet>1262</a>    </span><span class="kw">pub fn </span>transient_for(<span class="self">self</span>, transient_for: <span class="kw-2">&amp;</span><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html">IsA</a>&lt;<a href="window.rs.html#21-789">Window</a>&gt;) -&gt; <span class="self">Self </span>{
 <a href=#1263 id=1263 data-nosnippet>1263</a>        <span class="self">Self </span>{
 <a href=#1264 id=1264 data-nosnippet>1264</a>            builder: <a class="self" href="#1262">self</a>
 <a href=#1265 id=1265 data-nosnippet>1265</a>                .builder
@@ -1535,7 +1535,7 @@
 <a href=#1462 id=1462 data-nosnippet>1462</a>    ///
 <a href=#1463 id=1463 data-nosnippet>1463</a>    /// This property is meant to be set by widget implementations,
 <a href=#1464 id=1464 data-nosnippet>1464</a>    /// typically in their instance init function.
-<a href=#1465 id=1465 data-nosnippet>1465</a>    </span><span class="kw">pub fn </span>overflow(<span class="self">self</span>, overflow: <a href="enums.rs.html#8376-8387">Overflow</a>) -&gt; <span class="self">Self </span>{
+<a href=#1465 id=1465 data-nosnippet>1465</a>    </span><span class="kw">pub fn </span>overflow(<span class="self">self</span>, overflow: <a href="enums.rs.html#8381-8392">Overflow</a>) -&gt; <span class="self">Self </span>{
 <a href=#1466 id=1466 data-nosnippet>1466</a>        <span class="self">Self </span>{
 <a href=#1467 id=1467 data-nosnippet>1467</a>            builder: <a class="self" href="#1465">self</a>.builder.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/struct.ObjectBuilder.html#method.property">property</a>(<span class="string">"overflow"</span>, <a href="#1465">overflow</a>),
 <a href=#1468 id=1468 data-nosnippet>1468</a>        }
