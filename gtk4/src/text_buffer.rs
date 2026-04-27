@@ -20,7 +20,7 @@ pub trait TextBufferExtManual: IsA<TextBuffer> + 'static {
     // rustdoc-stripper-ignore-next
     /// # Panics
     ///
-    /// If the properties don't exists or are not writeable.
+    /// If the properties don't exists or are not writable.
     #[doc(alias = "gtk_text_buffer_create_tag")]
     fn create_tag(
         &self,

@@ -313,7 +313,7 @@ unsafe extern "C" fn editable_changed<T: EditableImpl>(editable: *mut ffi::GtkEd
 
 unsafe extern "C" fn editable_get_text<T: EditableImpl>(
     editable: *mut ffi::GtkEditable,
-) -> *const c_char {
+) -> *mut c_char {
     unsafe {
         let instance = &*(editable as *mut T::Instance);
         let imp = instance.imp();

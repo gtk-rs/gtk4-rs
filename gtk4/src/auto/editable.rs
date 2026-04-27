@@ -80,6 +80,19 @@ pub trait EditableExt: IsA<Editable> + 'static {
         }
     }
 
+    #[cfg(feature = "v4_24")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+    #[doc(alias = "gtk_editable_get_complete_text")]
+    #[doc(alias = "get_complete_text")]
+    #[doc(alias = "complete-text")]
+    fn complete_text(&self) -> glib::GString {
+        unsafe {
+            from_glib_full(ffi::gtk_editable_get_complete_text(
+                self.as_ref().to_glib_none().0,
+            ))
+        }
+    }
+
     #[doc(alias = "gtk_editable_get_delegate")]
     #[doc(alias = "get_delegate")]
     #[must_use]
@@ -301,6 +314,36 @@ pub trait EditableExt: IsA<Editable> + 'static {
                 c"delete-text".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     delete_text_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg(feature = "v4_24")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+    #[doc(alias = "complete-text")]
+    fn connect_complete_text_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_complete_text_trampoline<
+            P: IsA<Editable>,
+            F: Fn(&P) + 'static,
+        >(
+            this: *mut ffi::GtkEditable,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(Editable::from_glib_borrow(this).unsafe_cast_ref())
+            }
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                c"notify::complete-text".as_ptr(),
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
+                    notify_complete_text_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
