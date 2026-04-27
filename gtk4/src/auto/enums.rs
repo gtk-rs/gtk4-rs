@@ -4168,6 +4168,8 @@ pub enum EditableProperties {
     PropXalign,
     #[doc(alias = "GTK_EDITABLE_PROP_ENABLE_UNDO")]
     PropEnableUndo,
+    #[doc(alias = "GTK_EDITABLE_PROP_COMPLETE_TEXT")]
+    PropCompleteText,
     #[doc(alias = "GTK_EDITABLE_NUM_PROPERTIES")]
     NumProperties,
     #[doc(hidden)]
@@ -4189,6 +4191,7 @@ impl IntoGlib for EditableProperties {
             Self::PropMaxWidthChars => ffi::GTK_EDITABLE_PROP_MAX_WIDTH_CHARS,
             Self::PropXalign => ffi::GTK_EDITABLE_PROP_XALIGN,
             Self::PropEnableUndo => ffi::GTK_EDITABLE_PROP_ENABLE_UNDO,
+            Self::PropCompleteText => ffi::GTK_EDITABLE_PROP_COMPLETE_TEXT,
             Self::NumProperties => ffi::GTK_EDITABLE_NUM_PROPERTIES,
             Self::__Unknown(value) => value,
         }
@@ -4210,6 +4213,7 @@ impl FromGlib<ffi::GtkEditableProperties> for EditableProperties {
             ffi::GTK_EDITABLE_PROP_MAX_WIDTH_CHARS => Self::PropMaxWidthChars,
             ffi::GTK_EDITABLE_PROP_XALIGN => Self::PropXalign,
             ffi::GTK_EDITABLE_PROP_ENABLE_UNDO => Self::PropEnableUndo,
+            ffi::GTK_EDITABLE_PROP_COMPLETE_TEXT => Self::PropCompleteText,
             ffi::GTK_EDITABLE_NUM_PROPERTIES => Self::NumProperties,
             value => Self::__Unknown(value),
         }
@@ -11626,6 +11630,15 @@ impl SvgError {
     //pub fn end(error: &glib::Error) -> /*Ignored*/Option<SvgLocation> {
     //    unsafe { TODO: call ffi:gtk_svg_error_get_end() }
     //}
+
+    #[cfg(feature = "v4_24")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+    #[doc(alias = "gtk_svg_error_get_input")]
+    #[doc(alias = "get_input")]
+    pub fn input(error: &glib::Error) -> Option<glib::GString> {
+        assert_initialized_main_thread!();
+        unsafe { from_glib_none(ffi::gtk_svg_error_get_input(error.to_glib_none().0)) }
+    }
 
     //#[doc(alias = "gtk_svg_error_get_start")]
     //#[doc(alias = "get_start")]

@@ -433,7 +433,8 @@ pub const GTK_EDITABLE_PROP_WIDTH_CHARS: GtkEditableProperties = 4;
 pub const GTK_EDITABLE_PROP_MAX_WIDTH_CHARS: GtkEditableProperties = 5;
 pub const GTK_EDITABLE_PROP_XALIGN: GtkEditableProperties = 6;
 pub const GTK_EDITABLE_PROP_ENABLE_UNDO: GtkEditableProperties = 7;
-pub const GTK_EDITABLE_NUM_PROPERTIES: GtkEditableProperties = 8;
+pub const GTK_EDITABLE_PROP_COMPLETE_TEXT: GtkEditableProperties = 8;
+pub const GTK_EDITABLE_NUM_PROPERTIES: GtkEditableProperties = 9;
 
 pub type GtkEntryIconPosition = c_int;
 pub const GTK_ENTRY_ICON_PRIMARY: GtkEntryIconPosition = 0;
@@ -2993,7 +2994,7 @@ pub struct GtkEditableInterface {
         Option<unsafe extern "C" fn(*mut GtkEditable, *const c_char, c_int, *mut c_int)>,
     pub delete_text: Option<unsafe extern "C" fn(*mut GtkEditable, c_int, c_int)>,
     pub changed: Option<unsafe extern "C" fn(*mut GtkEditable)>,
-    pub get_text: Option<unsafe extern "C" fn(*mut GtkEditable) -> *const c_char>,
+    pub get_text: Option<unsafe extern "C" fn(*mut GtkEditable) -> *mut c_char>,
     pub do_insert_text:
         Option<unsafe extern "C" fn(*mut GtkEditable, *const c_char, c_int, *mut c_int)>,
     pub do_delete_text: Option<unsafe extern "C" fn(*mut GtkEditable, c_int, c_int)>,
@@ -3001,6 +3002,7 @@ pub struct GtkEditableInterface {
         Option<unsafe extern "C" fn(*mut GtkEditable, *mut c_int, *mut c_int) -> gboolean>,
     pub set_selection_bounds: Option<unsafe extern "C" fn(*mut GtkEditable, c_int, c_int)>,
     pub get_delegate: Option<unsafe extern "C" fn(*mut GtkEditable) -> *mut GtkEditable>,
+    pub get_complete_text: Option<unsafe extern "C" fn(*mut GtkEditable) -> *mut c_char>,
 }
 
 impl ::std::fmt::Debug for GtkEditableInterface {
@@ -3016,6 +3018,7 @@ impl ::std::fmt::Debug for GtkEditableInterface {
             .field("get_selection_bounds", &self.get_selection_bounds)
             .field("set_selection_bounds", &self.set_selection_bounds)
             .field("get_delegate", &self.get_delegate)
+            .field("get_complete_text", &self.get_complete_text)
             .finish()
     }
 }
@@ -3100,6 +3103,34 @@ impl ::std::fmt::Debug for GtkEntryClass {
         f.debug_struct(&format!("GtkEntryClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .field("activate", &self.activate)
+            .finish()
+    }
+}
+
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct GtkEnumListClass {
+    pub parent_class: gobject::GObjectClass,
+}
+
+impl ::std::fmt::Debug for GtkEnumListClass {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GtkEnumListClass @ {self:p}"))
+            .field("parent_class", &self.parent_class)
+            .finish()
+    }
+}
+
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct GtkEnumListItemClass {
+    pub parent_class: gobject::GObjectClass,
+}
+
+impl ::std::fmt::Debug for GtkEnumListItemClass {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GtkEnumListItemClass @ {self:p}"))
+            .field("parent_class", &self.parent_class)
             .finish()
     }
 }
@@ -5125,6 +5156,20 @@ impl ::std::fmt::Debug for GtkSvgLocation {
 
 #[derive(Copy, Clone)]
 #[repr(C)]
+pub struct GtkSvgWidgetClass {
+    pub parent_class: GtkWidgetClass,
+}
+
+impl ::std::fmt::Debug for GtkSvgWidgetClass {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GtkSvgWidgetClass @ {self:p}"))
+            .field("parent_class", &self.parent_class)
+            .finish()
+    }
+}
+
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkSymbolicPaintableInterface {
     pub g_iface: gobject::GTypeInterface,
     pub snapshot_symbolic: Option<
@@ -5979,7 +6024,8 @@ pub struct GtkWindowClass {
     pub keys_changed: Option<unsafe extern "C" fn(*mut GtkWindow)>,
     pub enable_debugging: Option<unsafe extern "C" fn(*mut GtkWindow, gboolean) -> gboolean>,
     pub close_request: Option<unsafe extern "C" fn(*mut GtkWindow) -> gboolean>,
-    pub padding: [gpointer; 8],
+    pub force_close: Option<unsafe extern "C" fn(*mut GtkWindow)>,
+    pub padding: [gpointer; 7],
 }
 
 impl ::std::fmt::Debug for GtkWindowClass {
@@ -5991,6 +6037,7 @@ impl ::std::fmt::Debug for GtkWindowClass {
             .field("keys_changed", &self.keys_changed)
             .field("enable_debugging", &self.enable_debugging)
             .field("close_request", &self.close_request)
+            .field("force_close", &self.force_close)
             .finish()
     }
 }
@@ -7167,6 +7214,33 @@ pub struct GtkEntryCompletion {
 impl ::std::fmt::Debug for GtkEntryCompletion {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("GtkEntryCompletion @ {self:p}"))
+            .finish()
+    }
+}
+
+#[repr(C)]
+#[allow(dead_code)]
+pub struct GtkEnumList {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+impl ::std::fmt::Debug for GtkEnumList {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GtkEnumList @ {self:p}")).finish()
+    }
+}
+
+#[repr(C)]
+#[allow(dead_code)]
+pub struct GtkEnumListItem {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+impl ::std::fmt::Debug for GtkEnumListItem {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GtkEnumListItem @ {self:p}"))
             .finish()
     }
 }
@@ -9337,6 +9411,19 @@ impl ::std::fmt::Debug for GtkSvg {
 
 #[repr(C)]
 #[allow(dead_code)]
+pub struct GtkSvgWidget {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+impl ::std::fmt::Debug for GtkSvgWidget {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GtkSvgWidget @ {self:p}")).finish()
+    }
+}
+
+#[repr(C)]
+#[allow(dead_code)]
 pub struct GtkSwitch {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -10716,6 +10803,9 @@ unsafe extern "C" {
     #[cfg(feature = "v4_22")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
     pub fn gtk_svg_error_get_end(error: *const glib::GError) -> *const GtkSvgLocation;
+    #[cfg(feature = "v4_24")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+    pub fn gtk_svg_error_get_input(error: *const glib::GError) -> *const c_char;
     #[cfg(feature = "v4_22")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
     pub fn gtk_svg_error_get_start(error: *const glib::GError) -> *const GtkSvgLocation;
@@ -14157,6 +14247,38 @@ unsafe extern "C" {
         popup_single_match: gboolean,
     );
     pub fn gtk_entry_completion_set_text_column(completion: *mut GtkEntryCompletion, column: c_int);
+
+    //=========================================================================
+    // GtkEnumList
+    //=========================================================================
+    #[cfg(feature = "v4_24")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+    pub fn gtk_enum_list_get_type() -> GType;
+    #[cfg(feature = "v4_24")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+    pub fn gtk_enum_list_new(enum_type: GType) -> *mut GtkEnumList;
+    #[cfg(feature = "v4_24")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+    pub fn gtk_enum_list_find(self_: *mut GtkEnumList, value: c_int) -> c_uint;
+    #[cfg(feature = "v4_24")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+    pub fn gtk_enum_list_get_enum_type(self_: *mut GtkEnumList) -> GType;
+
+    //=========================================================================
+    // GtkEnumListItem
+    //=========================================================================
+    #[cfg(feature = "v4_24")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+    pub fn gtk_enum_list_item_get_type() -> GType;
+    #[cfg(feature = "v4_24")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+    pub fn gtk_enum_list_item_get_name(self_: *mut GtkEnumListItem) -> *const c_char;
+    #[cfg(feature = "v4_24")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+    pub fn gtk_enum_list_item_get_nick(self_: *mut GtkEnumListItem) -> *const c_char;
+    #[cfg(feature = "v4_24")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+    pub fn gtk_enum_list_item_get_value(self_: *mut GtkEnumListItem) -> c_int;
 
     //=========================================================================
     // GtkEventController
@@ -19108,6 +19230,9 @@ unsafe extern "C" {
     #[cfg(feature = "v4_22")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
     pub fn gtk_svg_get_state_names(self_: *mut GtkSvg, length: *mut c_uint) -> *mut *const c_char;
+    #[cfg(feature = "v4_24")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+    pub fn gtk_svg_get_stylesheet(self_: *mut GtkSvg) -> *mut glib::GBytes;
     #[cfg(feature = "v4_22")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
     pub fn gtk_svg_get_weight(self_: *mut GtkSvg) -> c_double;
@@ -19138,6 +19263,9 @@ unsafe extern "C" {
     #[cfg(feature = "v4_22")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
     pub fn gtk_svg_set_state(self_: *mut GtkSvg, state: c_uint);
+    #[cfg(feature = "v4_24")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+    pub fn gtk_svg_set_stylesheet(self_: *mut GtkSvg, bytes: *mut glib::GBytes);
     #[cfg(feature = "v4_22")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
     pub fn gtk_svg_set_weight(self_: *mut GtkSvg, weight: c_double);
@@ -19148,6 +19276,31 @@ unsafe extern "C" {
         filename: *const c_char,
         error: *mut *mut glib::GError,
     ) -> gboolean;
+
+    //=========================================================================
+    // GtkSvgWidget
+    //=========================================================================
+    #[cfg(feature = "v4_24")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+    pub fn gtk_svg_widget_get_type() -> GType;
+    #[cfg(feature = "v4_24")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+    pub fn gtk_svg_widget_new() -> *mut GtkSvgWidget;
+    #[cfg(feature = "v4_24")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+    pub fn gtk_svg_widget_get_state(self_: *mut GtkSvgWidget) -> c_uint;
+    #[cfg(feature = "v4_24")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+    pub fn gtk_svg_widget_get_stylesheet(self_: *mut GtkSvgWidget) -> *mut glib::GBytes;
+    #[cfg(feature = "v4_24")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+    pub fn gtk_svg_widget_load_from_bytes(self_: *mut GtkSvgWidget, bytes: *mut glib::GBytes);
+    #[cfg(feature = "v4_24")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+    pub fn gtk_svg_widget_set_state(self_: *mut GtkSvgWidget, state: c_uint);
+    #[cfg(feature = "v4_24")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+    pub fn gtk_svg_widget_set_stylesheet(self_: *mut GtkSvgWidget, bytes: *mut glib::GBytes);
 
     //=========================================================================
     // GtkSwitch
@@ -21431,6 +21584,9 @@ unsafe extern "C" {
         start_pos: c_int,
         end_pos: c_int,
     ) -> *mut c_char;
+    #[cfg(feature = "v4_24")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+    pub fn gtk_editable_get_complete_text(editable: *mut GtkEditable) -> *mut c_char;
     pub fn gtk_editable_get_delegate(editable: *mut GtkEditable) -> *mut GtkEditable;
     pub fn gtk_editable_get_editable(editable: *mut GtkEditable) -> gboolean;
     pub fn gtk_editable_get_enable_undo(editable: *mut GtkEditable) -> gboolean;

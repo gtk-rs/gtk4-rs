@@ -1146,6 +1146,32 @@ pub trait GtkWindowExt: IsA<Window> + 'static {
         self.emit_by_name("enable-debugging", &[&toggle])
     }
 
+    #[cfg(feature = "v4_24")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+    #[doc(alias = "force-close")]
+    fn connect_force_close<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn force_close_trampoline<P: IsA<Window>, F: Fn(&P) + 'static>(
+            this: *mut ffi::GtkWindow,
+            f: glib::ffi::gpointer,
+        ) {
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(Window::from_glib_borrow(this).unsafe_cast_ref())
+            }
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                c"force-close".as_ptr(),
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
+                    force_close_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "keys-changed")]
     fn connect_keys_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {

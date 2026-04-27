@@ -979,6 +979,20 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
+        "GtkEnumListClass",
+        Layout {
+            size: size_of::<GtkEnumListClass>(),
+            alignment: align_of::<GtkEnumListClass>(),
+        },
+    ),
+    (
+        "GtkEnumListItemClass",
+        Layout {
+            size: size_of::<GtkEnumListItemClass>(),
+            alignment: align_of::<GtkEnumListItemClass>(),
+        },
+    ),
+    (
         "GtkEventControllerScrollFlags",
         Layout {
             size: size_of::<GtkEventControllerScrollFlags>(),
@@ -2239,6 +2253,13 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
+        "GtkSvgWidgetClass",
+        Layout {
+            size: size_of::<GtkSvgWidgetClass>(),
+            alignment: align_of::<GtkSvgWidgetClass>(),
+        },
+    ),
+    (
         "GtkSymbolicColor",
         Layout {
             size: size_of::<GtkSymbolicColor>(),
@@ -3048,7 +3069,8 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(gint) GTK_DIR_TAB_BACKWARD", "1"),
     ("(gint) GTK_DIR_TAB_FORWARD", "0"),
     ("(gint) GTK_DIR_UP", "2"),
-    ("(gint) GTK_EDITABLE_NUM_PROPERTIES", "8"),
+    ("(gint) GTK_EDITABLE_NUM_PROPERTIES", "9"),
+    ("(gint) GTK_EDITABLE_PROP_COMPLETE_TEXT", "8"),
     ("(gint) GTK_EDITABLE_PROP_CURSOR_POSITION", "1"),
     ("(gint) GTK_EDITABLE_PROP_EDITABLE", "3"),
     ("(gint) GTK_EDITABLE_PROP_ENABLE_UNDO", "7"),
