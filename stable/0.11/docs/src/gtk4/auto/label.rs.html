@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/auto/label.rs`."><title>label.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-17e0aaed.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.96.0-nightly (e0e95a718 2026-04-04)" data-channel="nightly" data-search-js="search-1c5d44ff.js" data-stringdex-js="stringdex-2da4960a.js" data-settings-js="settings-170eb4bf.js" ><script src="../../../static.files/storage-41dd4d93.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-5013f961.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-f7c3ffd8.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><a class="skip-main-content" href="#main-content">Skip to main content</a><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/auto/label.rs`."><title>label.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-17e0aaed.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.97.0-nightly (ca9a134e0 2026-04-26)" data-channel="nightly" data-search-js="search-b5634cc7.js" data-stringdex-js="stringdex-2da4960a.js" data-settings-js="settings-170eb4bf.js" ><script src="../../../static.files/storage-41dd4d93.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-aa4d37ac.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-f7c3ffd8.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><a class="skip-main-content" href="#main-content">Skip to main content</a><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
 
@@ -83,10 +83,10 @@
 <a href=#10 id=10 data-nosnippet>10</a></span><span class="kw">use </span><a href="accessible_text.rs.html#8-27"><span class="kw">crate</span>::AccessibleText</a>;
 <a href=#11 id=11 data-nosnippet>11</a><span class="attr">#[cfg(feature = <span class="string">"v4_6"</span>)]
 <a href=#12 id=12 data-nosnippet>12</a>#[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_6"</span>)))]
-<a href=#13 id=13 data-nosnippet>13</a></span><span class="kw">use </span><a href="enums.rs.html#7808-7825"><span class="kw">crate</span>::NaturalWrapMode</a>;
+<a href=#13 id=13 data-nosnippet>13</a></span><span class="kw">use </span><a href="enums.rs.html#7813-7830"><span class="kw">crate</span>::NaturalWrapMode</a>;
 <a href=#14 id=14 data-nosnippet>14</a><span class="kw">use </span>crate::{
-<a href=#15 id=15 data-nosnippet>15</a>    <a href="accessible.rs.html#19-70">Accessible</a>, <a href="enums.rs.html#1029-1329">AccessibleRole</a>, <a href="../enums.rs.html#77-107">Align</a>, <a href="buildable.rs.html#8-31">Buildable</a>, <a href="constraint_target.rs.html#8-23">ConstraintTarget</a>, <a href="enums.rs.html#7019-7034">Justification</a>, <a href="layout_manager.rs.html#8-70">LayoutManager</a>,
-<a href=#16 id=16 data-nosnippet>16</a>    <a href="enums.rs.html#7664-7697">MovementStep</a>, <a href="enums.rs.html#8376-8387">Overflow</a>, <a href="widget.rs.html#19-864">Widget</a>, <a href="../../../gtk4_sys/index.html">ffi</a>,
+<a href=#15 id=15 data-nosnippet>15</a>    <a href="accessible.rs.html#19-70">Accessible</a>, <a href="enums.rs.html#1029-1329">AccessibleRole</a>, <a href="../enums.rs.html#77-107">Align</a>, <a href="buildable.rs.html#8-31">Buildable</a>, <a href="constraint_target.rs.html#8-23">ConstraintTarget</a>, <a href="enums.rs.html#7024-7039">Justification</a>, <a href="layout_manager.rs.html#8-70">LayoutManager</a>,
+<a href=#16 id=16 data-nosnippet>16</a>    <a href="enums.rs.html#7669-7702">MovementStep</a>, <a href="enums.rs.html#8381-8392">Overflow</a>, <a href="widget.rs.html#19-887">Widget</a>, <a href="../../../gtk4_sys/index.html">ffi</a>,
 <a href=#17 id=17 data-nosnippet>17</a>};
 <a href=#18 id=18 data-nosnippet>18</a><span class="kw">use </span>glib::{
 <a href=#19 id=19 data-nosnippet>19</a>    <a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/object/trait.ObjectType.html">object::ObjectType</a> <span class="kw">as _</span>,
@@ -1015,7 +1015,7 @@
 <a href=#942 id=942 data-nosnippet>942</a>    ///
 <a href=#943 id=943 data-nosnippet>943</a>    /// [`WidgetExt`][trait@crate::prelude::WidgetExt], [`trait@glib::ObjectExt`], [`AccessibleExt`][trait@crate::prelude::AccessibleExt], [`BuildableExt`][trait@crate::prelude::BuildableExt], [`ConstraintTargetExt`][trait@crate::prelude::ConstraintTargetExt], [`AccessibleHypertextExt`][trait@crate::prelude::AccessibleHypertextExt], [`AccessibleTextExt`][trait@crate::prelude::AccessibleTextExt], [`WidgetExtManual`][trait@crate::prelude::WidgetExtManual], [`AccessibleExtManual`][trait@crate::prelude::AccessibleExtManual]
 <a href=#944 id=944 data-nosnippet>944</a>    </span><span class="attr">#[doc(alias = <span class="string">"GtkLabel"</span>)]
-<a href=#945 id=945 data-nosnippet>945</a>    </span><span class="kw">pub struct </span><a href="#28-950">Label</a>(Object&lt;ffi::<a href="../../../gtk4_sys/struct.GtkLabel.html">GtkLabel</a>&gt;) @extends <a href="widget.rs.html#19-864">Widget</a>, @implements <a href="accessible.rs.html#19-70">Accessible</a>, <a href="buildable.rs.html#8-31">Buildable</a>, <a href="constraint_target.rs.html#8-23">ConstraintTarget</a>, <a href="accessible_hypertext.rs.html#8-24">AccessibleHypertext</a>, <a href="accessible_text.rs.html#8-27">AccessibleText</a>;
+<a href=#945 id=945 data-nosnippet>945</a>    </span><span class="kw">pub struct </span><a href="#28-950">Label</a>(Object&lt;ffi::<a href="../../../gtk4_sys/struct.GtkLabel.html">GtkLabel</a>&gt;) @extends <a href="widget.rs.html#19-887">Widget</a>, @implements <a href="accessible.rs.html#19-70">Accessible</a>, <a href="buildable.rs.html#8-31">Buildable</a>, <a href="constraint_target.rs.html#8-23">ConstraintTarget</a>, <a href="accessible_hypertext.rs.html#8-24">AccessibleHypertext</a>, <a href="accessible_text.rs.html#8-27">AccessibleText</a>;
 <a href=#946 id=946 data-nosnippet>946</a>
 <a href=#947 id=947 data-nosnippet>947</a>    <span class="kw">match fn </span>{
 <a href=#948 id=948 data-nosnippet>948</a>        type_ =&gt; || ffi::gtk_label_get_type(),
@@ -1056,7 +1056,7 @@
 <a href=#983 id=983 data-nosnippet>983</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_label_new"</span>)]
 <a href=#984 id=984 data-nosnippet>984</a>    </span><span class="kw">pub fn </span>new(str: <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;<span class="kw-2">&amp;</span><a href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>&gt;) -&gt; <a href="#28-950">Label</a> {
 <a href=#985 id=985 data-nosnippet>985</a>        <a href="../rt.rs.html#24-36">assert_initialized_main_thread!</a>();
-<a href=#986 id=986 data-nosnippet>986</a>        <span class="kw">unsafe </span>{ <a href="widget.rs.html#19-864">Widget</a>::<a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/translate/trait.FromGlibPtrNone.html#tymethod.from_glib_none">from_glib_none</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_label_new.html">gtk_label_new</a>(<a href="#984">str</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)).<a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/object/trait.Cast.html#method.unsafe_cast">unsafe_cast</a>() }
+<a href=#986 id=986 data-nosnippet>986</a>        <span class="kw">unsafe </span>{ <a href="widget.rs.html#19-887">Widget</a>::<a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/translate/trait.FromGlibPtrNone.html#tymethod.from_glib_none">from_glib_none</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_label_new.html">gtk_label_new</a>(<a href="#984">str</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)).<a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/object/trait.Cast.html#method.unsafe_cast">unsafe_cast</a>() }
 <a href=#987 id=987 data-nosnippet>987</a>    }
 <a href=#988 id=988 data-nosnippet>988</a>
 <a href=#989 id=989 data-nosnippet>989</a>    <span class="doccomment">/// Creates a new label with the given text inside it, and a mnemonic.
@@ -1085,7 +1085,7 @@
 <a href=#1012 id=1012 data-nosnippet>1012</a>    </span><span class="kw">pub fn </span>with_mnemonic(str: <span class="kw-2">&amp;</span><a href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>) -&gt; <a href="#28-950">Label</a> {
 <a href=#1013 id=1013 data-nosnippet>1013</a>        <a href="../rt.rs.html#24-36">assert_initialized_main_thread!</a>();
 <a href=#1014 id=1014 data-nosnippet>1014</a>        <span class="kw">unsafe </span>{
-<a href=#1015 id=1015 data-nosnippet>1015</a>            <a href="widget.rs.html#19-864">Widget</a>::<a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/translate/trait.FromGlibPtrNone.html#tymethod.from_glib_none">from_glib_none</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_label_new_with_mnemonic.html">gtk_label_new_with_mnemonic</a>(<a href="#1012">str</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
+<a href=#1015 id=1015 data-nosnippet>1015</a>            <a href="widget.rs.html#19-887">Widget</a>::<a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/translate/trait.FromGlibPtrNone.html#tymethod.from_glib_none">from_glib_none</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_label_new_with_mnemonic.html">gtk_label_new_with_mnemonic</a>(<a href="#1012">str</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>))
 <a href=#1016 id=1016 data-nosnippet>1016</a>                .<a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/object/trait.Cast.html#method.unsafe_cast">unsafe_cast</a>()
 <a href=#1017 id=1017 data-nosnippet>1017</a>        }
 <a href=#1018 id=1018 data-nosnippet>1018</a>    }
@@ -1170,7 +1170,7 @@
 <a href=#1097 id=1097 data-nosnippet>1097</a>    /// the justification value
 <a href=#1098 id=1098 data-nosnippet>1098</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_label_get_justify"</span>)]
 <a href=#1099 id=1099 data-nosnippet>1099</a>    #[doc(alias = <span class="string">"get_justify"</span>)]
-<a href=#1100 id=1100 data-nosnippet>1100</a>    </span><span class="kw">pub fn </span>justify(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="enums.rs.html#7019-7034">Justification</a> {
+<a href=#1100 id=1100 data-nosnippet>1100</a>    </span><span class="kw">pub fn </span>justify(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="enums.rs.html#7024-7039">Justification</a> {
 <a href=#1101 id=1101 data-nosnippet>1101</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/translate/fn.from_glib.html">from_glib</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_label_get_justify.html">gtk_label_get_justify</a>(<a class="self" href="#1100">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#1102 id=1102 data-nosnippet>1102</a>    }
 <a href=#1103 id=1103 data-nosnippet>1103</a>
@@ -1275,7 +1275,7 @@
 <a href=#1202 id=1202 data-nosnippet>1202</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_label_get_mnemonic_widget"</span>)]
 <a href=#1203 id=1203 data-nosnippet>1203</a>    #[doc(alias = <span class="string">"get_mnemonic_widget"</span>)]
 <a href=#1204 id=1204 data-nosnippet>1204</a>    #[doc(alias = <span class="string">"mnemonic-widget"</span>)]
-<a href=#1205 id=1205 data-nosnippet>1205</a>    </span><span class="kw">pub fn </span>mnemonic_widget(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;<a href="widget.rs.html#19-864">Widget</a>&gt; {
+<a href=#1205 id=1205 data-nosnippet>1205</a>    </span><span class="kw">pub fn </span>mnemonic_widget(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;<a href="widget.rs.html#19-887">Widget</a>&gt; {
 <a href=#1206 id=1206 data-nosnippet>1206</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/translate/fn.from_glib_none.html">from_glib_none</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_label_get_mnemonic_widget.html">gtk_label_get_mnemonic_widget</a>(<a class="self" href="#1205">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#1207 id=1207 data-nosnippet>1207</a>    }
 <a href=#1208 id=1208 data-nosnippet>1208</a>
@@ -1291,7 +1291,7 @@
 <a href=#1218 id=1218 data-nosnippet>1218</a>    #[doc(alias = <span class="string">"gtk_label_get_natural_wrap_mode"</span>)]
 <a href=#1219 id=1219 data-nosnippet>1219</a>    #[doc(alias = <span class="string">"get_natural_wrap_mode"</span>)]
 <a href=#1220 id=1220 data-nosnippet>1220</a>    #[doc(alias = <span class="string">"natural-wrap-mode"</span>)]
-<a href=#1221 id=1221 data-nosnippet>1221</a>    </span><span class="kw">pub fn </span>natural_wrap_mode(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="enums.rs.html#7808-7825">NaturalWrapMode</a> {
+<a href=#1221 id=1221 data-nosnippet>1221</a>    </span><span class="kw">pub fn </span>natural_wrap_mode(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="enums.rs.html#7813-7830">NaturalWrapMode</a> {
 <a href=#1222 id=1222 data-nosnippet>1222</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/translate/fn.from_glib.html">from_glib</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_label_get_natural_wrap_mode.html">gtk_label_get_natural_wrap_mode</a>(<a class="self" href="#1221">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#1223 id=1223 data-nosnippet>1223</a>    }
 <a href=#1224 id=1224 data-nosnippet>1224</a>
@@ -1555,7 +1555,7 @@
 <a href=#1482 id=1482 data-nosnippet>1482</a>    /// the new justification
 <a href=#1483 id=1483 data-nosnippet>1483</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_label_set_justify"</span>)]
 <a href=#1484 id=1484 data-nosnippet>1484</a>    #[doc(alias = <span class="string">"justify"</span>)]
-<a href=#1485 id=1485 data-nosnippet>1485</a>    </span><span class="kw">pub fn </span>set_justify(<span class="kw-2">&amp;</span><span class="self">self</span>, jtype: <a href="enums.rs.html#7019-7034">Justification</a>) {
+<a href=#1485 id=1485 data-nosnippet>1485</a>    </span><span class="kw">pub fn </span>set_justify(<span class="kw-2">&amp;</span><span class="self">self</span>, jtype: <a href="enums.rs.html#7024-7039">Justification</a>) {
 <a href=#1486 id=1486 data-nosnippet>1486</a>        <span class="kw">unsafe </span>{
 <a href=#1487 id=1487 data-nosnippet>1487</a>            ffi::<a href="../../../gtk4_sys/fn.gtk_label_set_justify.html">gtk_label_set_justify</a>(<a class="self" href="#1485">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>, <a href="#1485">jtype</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>());
 <a href=#1488 id=1488 data-nosnippet>1488</a>        }
@@ -1675,7 +1675,7 @@
 <a href=#1602 id=1602 data-nosnippet>1602</a>    /// the target widget
 <a href=#1603 id=1603 data-nosnippet>1603</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_label_set_mnemonic_widget"</span>)]
 <a href=#1604 id=1604 data-nosnippet>1604</a>    #[doc(alias = <span class="string">"mnemonic-widget"</span>)]
-<a href=#1605 id=1605 data-nosnippet>1605</a>    </span><span class="kw">pub fn </span>set_mnemonic_widget(<span class="kw-2">&amp;</span><span class="self">self</span>, widget: <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;<span class="kw-2">&amp;</span><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/object/trait.IsA.html">IsA</a>&lt;<a href="widget.rs.html#19-864">Widget</a>&gt;&gt;) {
+<a href=#1605 id=1605 data-nosnippet>1605</a>    </span><span class="kw">pub fn </span>set_mnemonic_widget(<span class="kw-2">&amp;</span><span class="self">self</span>, widget: <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;<span class="kw-2">&amp;</span><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/object/trait.IsA.html">IsA</a>&lt;<a href="widget.rs.html#19-887">Widget</a>&gt;&gt;) {
 <a href=#1606 id=1606 data-nosnippet>1606</a>        <span class="kw">unsafe </span>{
 <a href=#1607 id=1607 data-nosnippet>1607</a>            ffi::<a href="../../../gtk4_sys/fn.gtk_label_set_mnemonic_widget.html">gtk_label_set_mnemonic_widget</a>(
 <a href=#1608 id=1608 data-nosnippet>1608</a>                <a class="self" href="#1605">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
@@ -1694,7 +1694,7 @@
 <a href=#1621 id=1621 data-nosnippet>1621</a>    #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_6"</span>)))]
 <a href=#1622 id=1622 data-nosnippet>1622</a>    #[doc(alias = <span class="string">"gtk_label_set_natural_wrap_mode"</span>)]
 <a href=#1623 id=1623 data-nosnippet>1623</a>    #[doc(alias = <span class="string">"natural-wrap-mode"</span>)]
-<a href=#1624 id=1624 data-nosnippet>1624</a>    </span><span class="kw">pub fn </span>set_natural_wrap_mode(<span class="kw-2">&amp;</span><span class="self">self</span>, wrap_mode: <a href="enums.rs.html#7808-7825">NaturalWrapMode</a>) {
+<a href=#1624 id=1624 data-nosnippet>1624</a>    </span><span class="kw">pub fn </span>set_natural_wrap_mode(<span class="kw-2">&amp;</span><span class="self">self</span>, wrap_mode: <a href="enums.rs.html#7813-7830">NaturalWrapMode</a>) {
 <a href=#1625 id=1625 data-nosnippet>1625</a>        <span class="kw">unsafe </span>{
 <a href=#1626 id=1626 data-nosnippet>1626</a>            ffi::<a href="../../../gtk4_sys/fn.gtk_label_set_natural_wrap_mode.html">gtk_label_set_natural_wrap_mode</a>(<a class="self" href="#1624">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>, <a href="#1624">wrap_mode</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>());
 <a href=#1627 id=1627 data-nosnippet>1627</a>        }
@@ -2014,12 +2014,12 @@
 <a href=#1941 id=1941 data-nosnippet>1941</a>    /// ## `extend_selection`
 <a href=#1942 id=1942 data-nosnippet>1942</a>    /// true if the move should extend the selection
 <a href=#1943 id=1943 data-nosnippet>1943</a>    </span><span class="attr">#[doc(alias = <span class="string">"move-cursor"</span>)]
-<a href=#1944 id=1944 data-nosnippet>1944</a>    </span><span class="kw">pub fn </span>connect_move_cursor&lt;F: <a href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html">Fn</a>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <a href="enums.rs.html#7664-7697">MovementStep</a>, <a href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) + <span class="lifetime">'static</span>&gt;(
+<a href=#1944 id=1944 data-nosnippet>1944</a>    </span><span class="kw">pub fn </span>connect_move_cursor&lt;F: <a href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html">Fn</a>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <a href="enums.rs.html#7669-7702">MovementStep</a>, <a href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) + <span class="lifetime">'static</span>&gt;(
 <a href=#1945 id=1945 data-nosnippet>1945</a>        <span class="kw-2">&amp;</span><span class="self">self</span>,
 <a href=#1946 id=1946 data-nosnippet>1946</a>        f: F,
 <a href=#1947 id=1947 data-nosnippet>1947</a>    ) -&gt; <a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/signal/struct.SignalHandlerId.html">SignalHandlerId</a> {
 <a href=#1948 id=1948 data-nosnippet>1948</a>        <span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn </span>move_cursor_trampoline&lt;
-<a href=#1949 id=1949 data-nosnippet>1949</a>            F: <a href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html">Fn</a>(<span class="kw-2">&amp;</span><a href="#28-950">Label</a>, <a href="enums.rs.html#7664-7697">MovementStep</a>, <a href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) + <span class="lifetime">'static</span>,
+<a href=#1949 id=1949 data-nosnippet>1949</a>            F: <a href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html">Fn</a>(<span class="kw-2">&amp;</span><a href="#28-950">Label</a>, <a href="enums.rs.html#7669-7702">MovementStep</a>, <a href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) + <span class="lifetime">'static</span>,
 <a href=#1950 id=1950 data-nosnippet>1950</a>        &gt;(
 <a href=#1951 id=1951 data-nosnippet>1951</a>            this: <span class="kw-2">*mut </span>ffi::<a href="../../../gtk4_sys/struct.GtkLabel.html">GtkLabel</a>,
 <a href=#1952 id=1952 data-nosnippet>1952</a>            step: ffi::<a href="../../../gtk4_sys/type.GtkMovementStep.html">GtkMovementStep</a>,
@@ -2050,7 +2050,7 @@
 <a href=#1977 id=1977 data-nosnippet>1977</a>        }
 <a href=#1978 id=1978 data-nosnippet>1978</a>    }
 <a href=#1979 id=1979 data-nosnippet>1979</a>
-<a href=#1980 id=1980 data-nosnippet>1980</a>    <span class="kw">pub fn </span>emit_move_cursor(<span class="kw-2">&amp;</span><span class="self">self</span>, step: <a href="enums.rs.html#7664-7697">MovementStep</a>, count: <a href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, extend_selection: <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) {
+<a href=#1980 id=1980 data-nosnippet>1980</a>    <span class="kw">pub fn </span>emit_move_cursor(<span class="kw-2">&amp;</span><span class="self">self</span>, step: <a href="enums.rs.html#7669-7702">MovementStep</a>, count: <a href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, extend_selection: <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) {
 <a href=#1981 id=1981 data-nosnippet>1981</a>        <a class="self" href="#1980">self</a>.emit_by_name::&lt;()&gt;(<span class="string">"move-cursor"</span>, <span class="kw-2">&amp;</span>[<span class="kw-2">&amp;</span><a href="#1980">step</a>, <span class="kw-2">&amp;</span><a href="#1980">count</a>, <span class="kw-2">&amp;</span><a href="#1980">extend_selection</a>]);
 <a href=#1982 id=1982 data-nosnippet>1982</a>    }
 <a href=#1983 id=1983 data-nosnippet>1983</a>
@@ -2621,7 +2621,7 @@
 <a href=#2548 id=2548 data-nosnippet>2548</a>    ///
 <a href=#2549 id=2549 data-nosnippet>2549</a>    /// This does *not* affect the alignment of the label within its allocation.
 <a href=#2550 id=2550 data-nosnippet>2550</a>    /// See [`xalign`][struct@crate::Label#xalign] for that.
-<a href=#2551 id=2551 data-nosnippet>2551</a>    </span><span class="kw">pub fn </span>justify(<span class="self">self</span>, justify: <a href="enums.rs.html#7019-7034">Justification</a>) -&gt; <span class="self">Self </span>{
+<a href=#2551 id=2551 data-nosnippet>2551</a>    </span><span class="kw">pub fn </span>justify(<span class="self">self</span>, justify: <a href="enums.rs.html#7024-7039">Justification</a>) -&gt; <span class="self">Self </span>{
 <a href=#2552 id=2552 data-nosnippet>2552</a>        <span class="self">Self </span>{
 <a href=#2553 id=2553 data-nosnippet>2553</a>            builder: <a class="self" href="#2551">self</a>.builder.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/object/struct.ObjectBuilder.html#method.property">property</a>(<span class="string">"justify"</span>, <a href="#2551">justify</a>),
 <a href=#2554 id=2554 data-nosnippet>2554</a>        }
@@ -2680,7 +2680,7 @@
 <a href=#2607 id=2607 data-nosnippet>2607</a>    }
 <a href=#2608 id=2608 data-nosnippet>2608</a>
 <a href=#2609 id=2609 data-nosnippet>2609</a>    <span class="doccomment">/// The widget to be activated when the labels mnemonic key is pressed.
-<a href=#2610 id=2610 data-nosnippet>2610</a>    </span><span class="kw">pub fn </span>mnemonic_widget(<span class="self">self</span>, mnemonic_widget: <span class="kw-2">&amp;</span><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/object/trait.IsA.html">IsA</a>&lt;<a href="widget.rs.html#19-864">Widget</a>&gt;) -&gt; <span class="self">Self </span>{
+<a href=#2610 id=2610 data-nosnippet>2610</a>    </span><span class="kw">pub fn </span>mnemonic_widget(<span class="self">self</span>, mnemonic_widget: <span class="kw-2">&amp;</span><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/object/trait.IsA.html">IsA</a>&lt;<a href="widget.rs.html#19-887">Widget</a>&gt;) -&gt; <span class="self">Self </span>{
 <a href=#2611 id=2611 data-nosnippet>2611</a>        <span class="self">Self </span>{
 <a href=#2612 id=2612 data-nosnippet>2612</a>            builder: <a class="self" href="#2610">self</a>
 <a href=#2613 id=2613 data-nosnippet>2613</a>                .builder
@@ -2697,7 +2697,7 @@
 <a href=#2624 id=2624 data-nosnippet>2624</a>    /// the behavior of the [`wrap-mode`][struct@crate::Label#wrap-mode] property.
 <a href=#2625 id=2625 data-nosnippet>2625</a>    </span><span class="attr">#[cfg(feature = <span class="string">"v4_6"</span>)]
 <a href=#2626 id=2626 data-nosnippet>2626</a>    #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_6"</span>)))]
-<a href=#2627 id=2627 data-nosnippet>2627</a>    </span><span class="kw">pub fn </span>natural_wrap_mode(<span class="self">self</span>, natural_wrap_mode: <a href="enums.rs.html#7808-7825">NaturalWrapMode</a>) -&gt; <span class="self">Self </span>{
+<a href=#2627 id=2627 data-nosnippet>2627</a>    </span><span class="kw">pub fn </span>natural_wrap_mode(<span class="self">self</span>, natural_wrap_mode: <a href="enums.rs.html#7813-7830">NaturalWrapMode</a>) -&gt; <span class="self">Self </span>{
 <a href=#2628 id=2628 data-nosnippet>2628</a>        <span class="self">Self </span>{
 <a href=#2629 id=2629 data-nosnippet>2629</a>            builder: <a class="self" href="#2627">self</a>
 <a href=#2630 id=2630 data-nosnippet>2630</a>                .builder
@@ -2999,7 +2999,7 @@
 <a href=#2926 id=2926 data-nosnippet>2926</a>    ///
 <a href=#2927 id=2927 data-nosnippet>2927</a>    /// This property is meant to be set by widget implementations,
 <a href=#2928 id=2928 data-nosnippet>2928</a>    /// typically in their instance init function.
-<a href=#2929 id=2929 data-nosnippet>2929</a>    </span><span class="kw">pub fn </span>overflow(<span class="self">self</span>, overflow: <a href="enums.rs.html#8376-8387">Overflow</a>) -&gt; <span class="self">Self </span>{
+<a href=#2929 id=2929 data-nosnippet>2929</a>    </span><span class="kw">pub fn </span>overflow(<span class="self">self</span>, overflow: <a href="enums.rs.html#8381-8392">Overflow</a>) -&gt; <span class="self">Self </span>{
 <a href=#2930 id=2930 data-nosnippet>2930</a>        <span class="self">Self </span>{
 <a href=#2931 id=2931 data-nosnippet>2931</a>            builder: <a class="self" href="#2929">self</a>.builder.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/object/struct.ObjectBuilder.html#method.property">property</a>(<span class="string">"overflow"</span>, <a href="#2929">overflow</a>),
 <a href=#2932 id=2932 data-nosnippet>2932</a>        }

@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/auto/scrolled_window.rs`."><title>scrolled_window.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-17e0aaed.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.96.0-nightly (e0e95a718 2026-04-04)" data-channel="nightly" data-search-js="search-1c5d44ff.js" data-stringdex-js="stringdex-2da4960a.js" data-settings-js="settings-170eb4bf.js" ><script src="../../../static.files/storage-41dd4d93.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-5013f961.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-f7c3ffd8.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><a class="skip-main-content" href="#main-content">Skip to main content</a><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/auto/scrolled_window.rs`."><title>scrolled_window.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-17e0aaed.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.97.0-nightly (ca9a134e0 2026-04-26)" data-channel="nightly" data-search-js="search-b5634cc7.js" data-stringdex-js="stringdex-2da4960a.js" data-settings-js="settings-170eb4bf.js" ><script src="../../../static.files/storage-41dd4d93.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-aa4d37ac.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-f7c3ffd8.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><a class="skip-main-content" href="#main-content">Skip to main content</a><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
 
@@ -77,7 +77,7 @@
 <a href=#4 id=4 data-nosnippet>4</a>
 <a href=#5 id=5 data-nosnippet>5</a></span><span class="kw">use </span>crate::{
 <a href=#6 id=6 data-nosnippet>6</a>    <a href="accessible.rs.html#19-70">Accessible</a>, <a href="enums.rs.html#1029-1329">AccessibleRole</a>, <a href="adjustment.rs.html#14-99">Adjustment</a>, <a href="../enums.rs.html#77-107">Align</a>, <a href="buildable.rs.html#8-31">Buildable</a>, <a href="constraint_target.rs.html#8-23">ConstraintTarget</a>, <a href="enums.rs.html#4091-4110">CornerType</a>,
-<a href=#7 id=7 data-nosnippet>7</a>    <a href="enums.rs.html#4629-4650">DirectionType</a>, <a href="layout_manager.rs.html#8-70">LayoutManager</a>, <a href="enums.rs.html#8376-8387">Overflow</a>, <a href="enums.rs.html#9010-9030">PolicyType</a>, <a href="enums.rs.html#9127-9142">PositionType</a>, <a href="enums.rs.html#10982-11033">ScrollType</a>, <a href="widget.rs.html#19-864">Widget</a>, <a href="../../../gtk4_sys/index.html">ffi</a>,
+<a href=#7 id=7 data-nosnippet>7</a>    <a href="enums.rs.html#4629-4650">DirectionType</a>, <a href="layout_manager.rs.html#8-70">LayoutManager</a>, <a href="enums.rs.html#8381-8392">Overflow</a>, <a href="enums.rs.html#9015-9035">PolicyType</a>, <a href="enums.rs.html#9132-9147">PositionType</a>, <a href="enums.rs.html#10987-11038">ScrollType</a>, <a href="widget.rs.html#19-887">Widget</a>, <a href="../../../gtk4_sys/index.html">ffi</a>,
 <a href=#8 id=8 data-nosnippet>8</a>};
 <a href=#9 id=9 data-nosnippet>9</a><span class="kw">use </span>glib::{
 <a href=#10 id=10 data-nosnippet>10</a>    <a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/object/trait.ObjectType.html">object::ObjectType</a> <span class="kw">as _</span>,
@@ -774,7 +774,7 @@
 <a href=#701 id=701 data-nosnippet>701</a>    ///
 <a href=#702 id=702 data-nosnippet>702</a>    /// [`WidgetExt`][trait@crate::prelude::WidgetExt], [`trait@glib::ObjectExt`], [`AccessibleExt`][trait@crate::prelude::AccessibleExt], [`BuildableExt`][trait@crate::prelude::BuildableExt], [`ConstraintTargetExt`][trait@crate::prelude::ConstraintTargetExt], [`WidgetExtManual`][trait@crate::prelude::WidgetExtManual], [`AccessibleExtManual`][trait@crate::prelude::AccessibleExtManual]
 <a href=#703 id=703 data-nosnippet>703</a>    </span><span class="attr">#[doc(alias = <span class="string">"GtkScrolledWindow"</span>)]
-<a href=#704 id=704 data-nosnippet>704</a>    </span><span class="kw">pub struct </span><a href="#17-709">ScrolledWindow</a>(Object&lt;ffi::<a href="../../../gtk4_sys/struct.GtkScrolledWindow.html">GtkScrolledWindow</a>&gt;) @extends <a href="widget.rs.html#19-864">Widget</a>, @implements <a href="accessible.rs.html#19-70">Accessible</a>, <a href="buildable.rs.html#8-31">Buildable</a>, <a href="constraint_target.rs.html#8-23">ConstraintTarget</a>;
+<a href=#704 id=704 data-nosnippet>704</a>    </span><span class="kw">pub struct </span><a href="#17-709">ScrolledWindow</a>(Object&lt;ffi::<a href="../../../gtk4_sys/struct.GtkScrolledWindow.html">GtkScrolledWindow</a>&gt;) @extends <a href="widget.rs.html#19-887">Widget</a>, @implements <a href="accessible.rs.html#19-70">Accessible</a>, <a href="buildable.rs.html#8-31">Buildable</a>, <a href="constraint_target.rs.html#8-23">ConstraintTarget</a>;
 <a href=#705 id=705 data-nosnippet>705</a>
 <a href=#706 id=706 data-nosnippet>706</a>    <span class="kw">match fn </span>{
 <a href=#707 id=707 data-nosnippet>707</a>        type_ =&gt; || ffi::gtk_scrolled_window_get_type(),
@@ -790,7 +790,7 @@
 <a href=#717 id=717 data-nosnippet>717</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_scrolled_window_new"</span>)]
 <a href=#718 id=718 data-nosnippet>718</a>    </span><span class="kw">pub fn </span>new() -&gt; <a href="#17-709">ScrolledWindow</a> {
 <a href=#719 id=719 data-nosnippet>719</a>        <a href="../rt.rs.html#24-36">assert_initialized_main_thread!</a>();
-<a href=#720 id=720 data-nosnippet>720</a>        <span class="kw">unsafe </span>{ <a href="widget.rs.html#19-864">Widget</a>::<a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/translate/trait.FromGlibPtrNone.html#tymethod.from_glib_none">from_glib_none</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_scrolled_window_new.html">gtk_scrolled_window_new</a>()).<a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/object/trait.Cast.html#method.unsafe_cast">unsafe_cast</a>() }
+<a href=#720 id=720 data-nosnippet>720</a>        <span class="kw">unsafe </span>{ <a href="widget.rs.html#19-887">Widget</a>::<a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/translate/trait.FromGlibPtrNone.html#tymethod.from_glib_none">from_glib_none</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_scrolled_window_new.html">gtk_scrolled_window_new</a>()).<a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/object/trait.Cast.html#method.unsafe_cast">unsafe_cast</a>() }
 <a href=#721 id=721 data-nosnippet>721</a>    }
 <a href=#722 id=722 data-nosnippet>722</a>
 <a href=#723 id=723 data-nosnippet>723</a>    <span class="comment">// rustdoc-stripper-ignore-next
@@ -812,7 +812,7 @@
 <a href=#739 id=739 data-nosnippet>739</a>    /// the child widget of @self
 <a href=#740 id=740 data-nosnippet>740</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_scrolled_window_get_child"</span>)]
 <a href=#741 id=741 data-nosnippet>741</a>    #[doc(alias = <span class="string">"get_child"</span>)]
-<a href=#742 id=742 data-nosnippet>742</a>    </span><span class="kw">pub fn </span>child(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;<a href="widget.rs.html#19-864">Widget</a>&gt; {
+<a href=#742 id=742 data-nosnippet>742</a>    </span><span class="kw">pub fn </span>child(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;<a href="widget.rs.html#19-887">Widget</a>&gt; {
 <a href=#743 id=743 data-nosnippet>743</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/translate/fn.from_glib_none.html">from_glib_none</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_scrolled_window_get_child.html">gtk_scrolled_window_get_child</a>(<a class="self" href="#742">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#744 id=744 data-nosnippet>744</a>    }
 <a href=#745 id=745 data-nosnippet>745</a>
@@ -857,7 +857,7 @@
 <a href=#784 id=784 data-nosnippet>784</a>    /// the horizontal scrollbar of the scrolled window.
 <a href=#785 id=785 data-nosnippet>785</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_scrolled_window_get_hscrollbar"</span>)]
 <a href=#786 id=786 data-nosnippet>786</a>    #[doc(alias = <span class="string">"get_hscrollbar"</span>)]
-<a href=#787 id=787 data-nosnippet>787</a>    </span><span class="kw">pub fn </span>hscrollbar(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="widget.rs.html#19-864">Widget</a> {
+<a href=#787 id=787 data-nosnippet>787</a>    </span><span class="kw">pub fn </span>hscrollbar(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="widget.rs.html#19-887">Widget</a> {
 <a href=#788 id=788 data-nosnippet>788</a>        <span class="kw">unsafe </span>{
 <a href=#789 id=789 data-nosnippet>789</a>            <a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/translate/fn.from_glib_none.html">from_glib_none</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_scrolled_window_get_hscrollbar.html">gtk_scrolled_window_get_hscrollbar</a>(
 <a href=#790 id=790 data-nosnippet>790</a>                <a class="self" href="#787">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
@@ -978,7 +978,7 @@
 <a href=#905 id=905 data-nosnippet>905</a>    ///   for the vertical scrollbar
 <a href=#906 id=906 data-nosnippet>906</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_scrolled_window_get_policy"</span>)]
 <a href=#907 id=907 data-nosnippet>907</a>    #[doc(alias = <span class="string">"get_policy"</span>)]
-<a href=#908 id=908 data-nosnippet>908</a>    </span><span class="kw">pub fn </span>policy(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; (<a href="enums.rs.html#9010-9030">PolicyType</a>, <a href="enums.rs.html#9010-9030">PolicyType</a>) {
+<a href=#908 id=908 data-nosnippet>908</a>    </span><span class="kw">pub fn </span>policy(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; (<a href="enums.rs.html#9015-9035">PolicyType</a>, <a href="enums.rs.html#9015-9035">PolicyType</a>) {
 <a href=#909 id=909 data-nosnippet>909</a>        <span class="kw">unsafe </span>{
 <a href=#910 id=910 data-nosnippet>910</a>            <span class="kw">let </span><span class="kw-2">mut </span>hscrollbar_policy = std::mem::<a href="https://doc.rust-lang.org/nightly/core/mem/maybe_uninit/union.MaybeUninit.html">MaybeUninit</a>::<a href="https://doc.rust-lang.org/nightly/core/mem/maybe_uninit/union.MaybeUninit.html#method.uninit">uninit</a>();
 <a href=#911 id=911 data-nosnippet>911</a>            <span class="kw">let </span><span class="kw-2">mut </span>vscrollbar_policy = std::mem::<a href="https://doc.rust-lang.org/nightly/core/mem/maybe_uninit/union.MaybeUninit.html">MaybeUninit</a>::<a href="https://doc.rust-lang.org/nightly/core/mem/maybe_uninit/union.MaybeUninit.html#method.uninit">uninit</a>();
@@ -1053,7 +1053,7 @@
 <a href=#980 id=980 data-nosnippet>980</a>    /// the vertical scrollbar of the scrolled window.
 <a href=#981 id=981 data-nosnippet>981</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_scrolled_window_get_vscrollbar"</span>)]
 <a href=#982 id=982 data-nosnippet>982</a>    #[doc(alias = <span class="string">"get_vscrollbar"</span>)]
-<a href=#983 id=983 data-nosnippet>983</a>    </span><span class="kw">pub fn </span>vscrollbar(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="widget.rs.html#19-864">Widget</a> {
+<a href=#983 id=983 data-nosnippet>983</a>    </span><span class="kw">pub fn </span>vscrollbar(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="widget.rs.html#19-887">Widget</a> {
 <a href=#984 id=984 data-nosnippet>984</a>        <span class="kw">unsafe </span>{
 <a href=#985 id=985 data-nosnippet>985</a>            <a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/translate/fn.from_glib_none.html">from_glib_none</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_scrolled_window_get_vscrollbar.html">gtk_scrolled_window_get_vscrollbar</a>(
 <a href=#986 id=986 data-nosnippet>986</a>                <a class="self" href="#983">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
@@ -1070,7 +1070,7 @@
 <a href=#997 id=997 data-nosnippet>997</a>    /// the child widget
 <a href=#998 id=998 data-nosnippet>998</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_scrolled_window_set_child"</span>)]
 <a href=#999 id=999 data-nosnippet>999</a>    #[doc(alias = <span class="string">"child"</span>)]
-<a href=#1000 id=1000 data-nosnippet>1000</a>    </span><span class="kw">pub fn </span>set_child(<span class="kw-2">&amp;</span><span class="self">self</span>, child: <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;<span class="kw-2">&amp;</span><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/object/trait.IsA.html">IsA</a>&lt;<a href="widget.rs.html#19-864">Widget</a>&gt;&gt;) {
+<a href=#1000 id=1000 data-nosnippet>1000</a>    </span><span class="kw">pub fn </span>set_child(<span class="kw-2">&amp;</span><span class="self">self</span>, child: <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;<span class="kw-2">&amp;</span><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/object/trait.IsA.html">IsA</a>&lt;<a href="widget.rs.html#19-887">Widget</a>&gt;&gt;) {
 <a href=#1001 id=1001 data-nosnippet>1001</a>        <span class="kw">unsafe </span>{
 <a href=#1002 id=1002 data-nosnippet>1002</a>            ffi::<a href="../../../gtk4_sys/fn.gtk_scrolled_window_set_child.html">gtk_scrolled_window_set_child</a>(
 <a href=#1003 id=1003 data-nosnippet>1003</a>                <a class="self" href="#1000">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
@@ -1239,7 +1239,7 @@
 <a href=#1166 id=1166 data-nosnippet>1166</a>    /// ## `vscrollbar_policy`
 <a href=#1167 id=1167 data-nosnippet>1167</a>    /// policy for vertical bar
 <a href=#1168 id=1168 data-nosnippet>1168</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_scrolled_window_set_policy"</span>)]
-<a href=#1169 id=1169 data-nosnippet>1169</a>    </span><span class="kw">pub fn </span>set_policy(<span class="kw-2">&amp;</span><span class="self">self</span>, hscrollbar_policy: <a href="enums.rs.html#9010-9030">PolicyType</a>, vscrollbar_policy: <a href="enums.rs.html#9010-9030">PolicyType</a>) {
+<a href=#1169 id=1169 data-nosnippet>1169</a>    </span><span class="kw">pub fn </span>set_policy(<span class="kw-2">&amp;</span><span class="self">self</span>, hscrollbar_policy: <a href="enums.rs.html#9015-9035">PolicyType</a>, vscrollbar_policy: <a href="enums.rs.html#9015-9035">PolicyType</a>) {
 <a href=#1170 id=1170 data-nosnippet>1170</a>        <span class="kw">unsafe </span>{
 <a href=#1171 id=1171 data-nosnippet>1171</a>            ffi::<a href="../../../gtk4_sys/fn.gtk_scrolled_window_set_policy.html">gtk_scrolled_window_set_policy</a>(
 <a href=#1172 id=1172 data-nosnippet>1172</a>                <a class="self" href="#1169">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
@@ -1309,7 +1309,7 @@
 <a href=#1236 id=1236 data-nosnippet>1236</a>    /// Use [`set_policy()`][Self::set_policy()] to set
 <a href=#1237 id=1237 data-nosnippet>1237</a>    /// this property.
 <a href=#1238 id=1238 data-nosnippet>1238</a>    </span><span class="attr">#[doc(alias = <span class="string">"hscrollbar-policy"</span>)]
-<a href=#1239 id=1239 data-nosnippet>1239</a>    </span><span class="kw">pub fn </span>hscrollbar_policy(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="enums.rs.html#9010-9030">PolicyType</a> {
+<a href=#1239 id=1239 data-nosnippet>1239</a>    </span><span class="kw">pub fn </span>hscrollbar_policy(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="enums.rs.html#9015-9035">PolicyType</a> {
 <a href=#1240 id=1240 data-nosnippet>1240</a>        ObjectExt::<a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/object/trait.ObjectExt.html#tymethod.property">property</a>(<a class="self" href="#1239">self</a>, <span class="string">"hscrollbar-policy"</span>)
 <a href=#1241 id=1241 data-nosnippet>1241</a>    }
 <a href=#1242 id=1242 data-nosnippet>1242</a>
@@ -1318,7 +1318,7 @@
 <a href=#1245 id=1245 data-nosnippet>1245</a>    /// Use [`set_policy()`][Self::set_policy()] to set
 <a href=#1246 id=1246 data-nosnippet>1246</a>    /// this property.
 <a href=#1247 id=1247 data-nosnippet>1247</a>    </span><span class="attr">#[doc(alias = <span class="string">"hscrollbar-policy"</span>)]
-<a href=#1248 id=1248 data-nosnippet>1248</a>    </span><span class="kw">pub fn </span>set_hscrollbar_policy(<span class="kw-2">&amp;</span><span class="self">self</span>, hscrollbar_policy: <a href="enums.rs.html#9010-9030">PolicyType</a>) {
+<a href=#1248 id=1248 data-nosnippet>1248</a>    </span><span class="kw">pub fn </span>set_hscrollbar_policy(<span class="kw-2">&amp;</span><span class="self">self</span>, hscrollbar_policy: <a href="enums.rs.html#9015-9035">PolicyType</a>) {
 <a href=#1249 id=1249 data-nosnippet>1249</a>        ObjectExt::<a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/object/trait.ObjectExt.html#tymethod.set_property">set_property</a>(<a class="self" href="#1248">self</a>, <span class="string">"hscrollbar-policy"</span>, <a href="#1248">hscrollbar_policy</a>)
 <a href=#1250 id=1250 data-nosnippet>1250</a>    }
 <a href=#1251 id=1251 data-nosnippet>1251</a>
@@ -1327,7 +1327,7 @@
 <a href=#1254 id=1254 data-nosnippet>1254</a>    /// Use [`set_policy()`][Self::set_policy()] to set
 <a href=#1255 id=1255 data-nosnippet>1255</a>    /// this property.
 <a href=#1256 id=1256 data-nosnippet>1256</a>    </span><span class="attr">#[doc(alias = <span class="string">"vscrollbar-policy"</span>)]
-<a href=#1257 id=1257 data-nosnippet>1257</a>    </span><span class="kw">pub fn </span>vscrollbar_policy(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="enums.rs.html#9010-9030">PolicyType</a> {
+<a href=#1257 id=1257 data-nosnippet>1257</a>    </span><span class="kw">pub fn </span>vscrollbar_policy(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="enums.rs.html#9015-9035">PolicyType</a> {
 <a href=#1258 id=1258 data-nosnippet>1258</a>        ObjectExt::<a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/object/trait.ObjectExt.html#tymethod.property">property</a>(<a class="self" href="#1257">self</a>, <span class="string">"vscrollbar-policy"</span>)
 <a href=#1259 id=1259 data-nosnippet>1259</a>    }
 <a href=#1260 id=1260 data-nosnippet>1260</a>
@@ -1336,7 +1336,7 @@
 <a href=#1263 id=1263 data-nosnippet>1263</a>    /// Use [`set_policy()`][Self::set_policy()] to set
 <a href=#1264 id=1264 data-nosnippet>1264</a>    /// this property.
 <a href=#1265 id=1265 data-nosnippet>1265</a>    </span><span class="attr">#[doc(alias = <span class="string">"vscrollbar-policy"</span>)]
-<a href=#1266 id=1266 data-nosnippet>1266</a>    </span><span class="kw">pub fn </span>set_vscrollbar_policy(<span class="kw-2">&amp;</span><span class="self">self</span>, vscrollbar_policy: <a href="enums.rs.html#9010-9030">PolicyType</a>) {
+<a href=#1266 id=1266 data-nosnippet>1266</a>    </span><span class="kw">pub fn </span>set_vscrollbar_policy(<span class="kw-2">&amp;</span><span class="self">self</span>, vscrollbar_policy: <a href="enums.rs.html#9015-9035">PolicyType</a>) {
 <a href=#1267 id=1267 data-nosnippet>1267</a>        ObjectExt::<a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/object/trait.ObjectExt.html#tymethod.set_property">set_property</a>(<a class="self" href="#1266">self</a>, <span class="string">"vscrollbar-policy"</span>, <a href="#1266">vscrollbar_policy</a>)
 <a href=#1268 id=1268 data-nosnippet>1268</a>    }
 <a href=#1269 id=1269 data-nosnippet>1269</a>
@@ -1352,12 +1352,12 @@
 <a href=#1279 id=1279 data-nosnippet>1279</a>    /// ## `pos`
 <a href=#1280 id=1280 data-nosnippet>1280</a>    /// edge side that was hit
 <a href=#1281 id=1281 data-nosnippet>1281</a>    </span><span class="attr">#[doc(alias = <span class="string">"edge-overshot"</span>)]
-<a href=#1282 id=1282 data-nosnippet>1282</a>    </span><span class="kw">pub fn </span>connect_edge_overshot&lt;F: <a href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html">Fn</a>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <a href="enums.rs.html#9127-9142">PositionType</a>) + <span class="lifetime">'static</span>&gt;(
+<a href=#1282 id=1282 data-nosnippet>1282</a>    </span><span class="kw">pub fn </span>connect_edge_overshot&lt;F: <a href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html">Fn</a>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <a href="enums.rs.html#9132-9147">PositionType</a>) + <span class="lifetime">'static</span>&gt;(
 <a href=#1283 id=1283 data-nosnippet>1283</a>        <span class="kw-2">&amp;</span><span class="self">self</span>,
 <a href=#1284 id=1284 data-nosnippet>1284</a>        f: F,
 <a href=#1285 id=1285 data-nosnippet>1285</a>    ) -&gt; <a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/signal/struct.SignalHandlerId.html">SignalHandlerId</a> {
 <a href=#1286 id=1286 data-nosnippet>1286</a>        <span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn </span>edge_overshot_trampoline&lt;
-<a href=#1287 id=1287 data-nosnippet>1287</a>            F: <a href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html">Fn</a>(<span class="kw-2">&amp;</span><a href="#17-709">ScrolledWindow</a>, <a href="enums.rs.html#9127-9142">PositionType</a>) + <span class="lifetime">'static</span>,
+<a href=#1287 id=1287 data-nosnippet>1287</a>            F: <a href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html">Fn</a>(<span class="kw-2">&amp;</span><a href="#17-709">ScrolledWindow</a>, <a href="enums.rs.html#9132-9147">PositionType</a>) + <span class="lifetime">'static</span>,
 <a href=#1288 id=1288 data-nosnippet>1288</a>        &gt;(
 <a href=#1289 id=1289 data-nosnippet>1289</a>            this: <span class="kw-2">*mut </span>ffi::<a href="../../../gtk4_sys/struct.GtkScrolledWindow.html">GtkScrolledWindow</a>,
 <a href=#1290 id=1290 data-nosnippet>1290</a>            pos: ffi::<a href="../../../gtk4_sys/type.GtkPositionType.html">GtkPositionType</a>,
@@ -1393,12 +1393,12 @@
 <a href=#1320 id=1320 data-nosnippet>1320</a>    /// ## `pos`
 <a href=#1321 id=1321 data-nosnippet>1321</a>    /// edge side that was reached
 <a href=#1322 id=1322 data-nosnippet>1322</a>    </span><span class="attr">#[doc(alias = <span class="string">"edge-reached"</span>)]
-<a href=#1323 id=1323 data-nosnippet>1323</a>    </span><span class="kw">pub fn </span>connect_edge_reached&lt;F: <a href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html">Fn</a>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <a href="enums.rs.html#9127-9142">PositionType</a>) + <span class="lifetime">'static</span>&gt;(
+<a href=#1323 id=1323 data-nosnippet>1323</a>    </span><span class="kw">pub fn </span>connect_edge_reached&lt;F: <a href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html">Fn</a>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <a href="enums.rs.html#9132-9147">PositionType</a>) + <span class="lifetime">'static</span>&gt;(
 <a href=#1324 id=1324 data-nosnippet>1324</a>        <span class="kw-2">&amp;</span><span class="self">self</span>,
 <a href=#1325 id=1325 data-nosnippet>1325</a>        f: F,
 <a href=#1326 id=1326 data-nosnippet>1326</a>    ) -&gt; <a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/signal/struct.SignalHandlerId.html">SignalHandlerId</a> {
 <a href=#1327 id=1327 data-nosnippet>1327</a>        <span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn </span>edge_reached_trampoline&lt;
-<a href=#1328 id=1328 data-nosnippet>1328</a>            F: <a href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html">Fn</a>(<span class="kw-2">&amp;</span><a href="#17-709">ScrolledWindow</a>, <a href="enums.rs.html#9127-9142">PositionType</a>) + <span class="lifetime">'static</span>,
+<a href=#1328 id=1328 data-nosnippet>1328</a>            F: <a href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html">Fn</a>(<span class="kw-2">&amp;</span><a href="#17-709">ScrolledWindow</a>, <a href="enums.rs.html#9132-9147">PositionType</a>) + <span class="lifetime">'static</span>,
 <a href=#1329 id=1329 data-nosnippet>1329</a>        &gt;(
 <a href=#1330 id=1330 data-nosnippet>1330</a>            this: <span class="kw-2">*mut </span>ffi::<a href="../../../gtk4_sys/struct.GtkScrolledWindow.html">GtkScrolledWindow</a>,
 <a href=#1331 id=1331 data-nosnippet>1331</a>            pos: ffi::<a href="../../../gtk4_sys/type.GtkPositionType.html">GtkPositionType</a>,
@@ -1483,12 +1483,12 @@
 <a href=#1410 id=1410 data-nosnippet>1410</a>    ///
 <a href=#1411 id=1411 data-nosnippet>1411</a>    /// whether the scroll happened
 <a href=#1412 id=1412 data-nosnippet>1412</a>    </span><span class="attr">#[doc(alias = <span class="string">"scroll-child"</span>)]
-<a href=#1413 id=1413 data-nosnippet>1413</a>    </span><span class="kw">pub fn </span>connect_scroll_child&lt;F: <a href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html">Fn</a>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <a href="enums.rs.html#10982-11033">ScrollType</a>, <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) -&gt; <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> + <span class="lifetime">'static</span>&gt;(
+<a href=#1413 id=1413 data-nosnippet>1413</a>    </span><span class="kw">pub fn </span>connect_scroll_child&lt;F: <a href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html">Fn</a>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <a href="enums.rs.html#10987-11038">ScrollType</a>, <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) -&gt; <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> + <span class="lifetime">'static</span>&gt;(
 <a href=#1414 id=1414 data-nosnippet>1414</a>        <span class="kw-2">&amp;</span><span class="self">self</span>,
 <a href=#1415 id=1415 data-nosnippet>1415</a>        f: F,
 <a href=#1416 id=1416 data-nosnippet>1416</a>    ) -&gt; <a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/signal/struct.SignalHandlerId.html">SignalHandlerId</a> {
 <a href=#1417 id=1417 data-nosnippet>1417</a>        <span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn </span>scroll_child_trampoline&lt;
-<a href=#1418 id=1418 data-nosnippet>1418</a>            F: <a href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html">Fn</a>(<span class="kw-2">&amp;</span><a href="#17-709">ScrolledWindow</a>, <a href="enums.rs.html#10982-11033">ScrollType</a>, <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) -&gt; <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> + <span class="lifetime">'static</span>,
+<a href=#1418 id=1418 data-nosnippet>1418</a>            F: <a href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html">Fn</a>(<span class="kw-2">&amp;</span><a href="#17-709">ScrolledWindow</a>, <a href="enums.rs.html#10987-11038">ScrollType</a>, <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) -&gt; <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> + <span class="lifetime">'static</span>,
 <a href=#1419 id=1419 data-nosnippet>1419</a>        &gt;(
 <a href=#1420 id=1420 data-nosnippet>1420</a>            this: <span class="kw-2">*mut </span>ffi::<a href="../../../gtk4_sys/struct.GtkScrolledWindow.html">GtkScrolledWindow</a>,
 <a href=#1421 id=1421 data-nosnippet>1421</a>            scroll: ffi::<a href="../../../gtk4_sys/type.GtkScrollType.html">GtkScrollType</a>,
@@ -1518,7 +1518,7 @@
 <a href=#1445 id=1445 data-nosnippet>1445</a>        }
 <a href=#1446 id=1446 data-nosnippet>1446</a>    }
 <a href=#1447 id=1447 data-nosnippet>1447</a>
-<a href=#1448 id=1448 data-nosnippet>1448</a>    <span class="kw">pub fn </span>emit_scroll_child(<span class="kw-2">&amp;</span><span class="self">self</span>, scroll: <a href="enums.rs.html#10982-11033">ScrollType</a>, horizontal: <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) -&gt; <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> {
+<a href=#1448 id=1448 data-nosnippet>1448</a>    <span class="kw">pub fn </span>emit_scroll_child(<span class="kw-2">&amp;</span><span class="self">self</span>, scroll: <a href="enums.rs.html#10987-11038">ScrollType</a>, horizontal: <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) -&gt; <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> {
 <a href=#1449 id=1449 data-nosnippet>1449</a>        <a class="self" href="#1448">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/object/trait.ObjectExt.html#tymethod.emit_by_name">emit_by_name</a>(<span class="string">"scroll-child"</span>, <span class="kw-2">&amp;</span>[<span class="kw-2">&amp;</span><a href="#1448">scroll</a>, <span class="kw-2">&amp;</span><a href="#1448">horizontal</a>])
 <a href=#1450 id=1450 data-nosnippet>1450</a>    }
 <a href=#1451 id=1451 data-nosnippet>1451</a>
@@ -1977,7 +1977,7 @@
 <a href=#1904 id=1904 data-nosnippet>1904</a>    /// When setting this property, if the child widget does not implement
 <a href=#1905 id=1905 data-nosnippet>1905</a>    /// [`Scrollable`][crate::Scrollable], the scrolled window will add the child to
 <a href=#1906 id=1906 data-nosnippet>1906</a>    /// a [`Viewport`][crate::Viewport] and then set the viewport as the child.
-<a href=#1907 id=1907 data-nosnippet>1907</a>    </span><span class="kw">pub fn </span>child(<span class="self">self</span>, child: <span class="kw-2">&amp;</span><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/object/trait.IsA.html">IsA</a>&lt;<a href="widget.rs.html#19-864">Widget</a>&gt;) -&gt; <span class="self">Self </span>{
+<a href=#1907 id=1907 data-nosnippet>1907</a>    </span><span class="kw">pub fn </span>child(<span class="self">self</span>, child: <span class="kw-2">&amp;</span><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/object/trait.IsA.html">IsA</a>&lt;<a href="widget.rs.html#19-887">Widget</a>&gt;) -&gt; <span class="self">Self </span>{
 <a href=#1908 id=1908 data-nosnippet>1908</a>        <span class="self">Self </span>{
 <a href=#1909 id=1909 data-nosnippet>1909</a>            builder: <a class="self" href="#1907">self</a>.builder.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/object/struct.ObjectBuilder.html#method.property">property</a>(<span class="string">"child"</span>, <a href="#1907">child</a>.<a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone">clone</a>().<a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/object/trait.Cast.html#method.upcast">upcast</a>()),
 <a href=#1910 id=1910 data-nosnippet>1910</a>        }
@@ -2003,7 +2003,7 @@
 <a href=#1930 id=1930 data-nosnippet>1930</a>    ///
 <a href=#1931 id=1931 data-nosnippet>1931</a>    /// Use [`ScrolledWindow::set_policy()`][crate::ScrolledWindow::set_policy()] to set
 <a href=#1932 id=1932 data-nosnippet>1932</a>    /// this property.
-<a href=#1933 id=1933 data-nosnippet>1933</a>    </span><span class="kw">pub fn </span>hscrollbar_policy(<span class="self">self</span>, hscrollbar_policy: <a href="enums.rs.html#9010-9030">PolicyType</a>) -&gt; <span class="self">Self </span>{
+<a href=#1933 id=1933 data-nosnippet>1933</a>    </span><span class="kw">pub fn </span>hscrollbar_policy(<span class="self">self</span>, hscrollbar_policy: <a href="enums.rs.html#9015-9035">PolicyType</a>) -&gt; <span class="self">Self </span>{
 <a href=#1934 id=1934 data-nosnippet>1934</a>        <span class="self">Self </span>{
 <a href=#1935 id=1935 data-nosnippet>1935</a>            builder: <a class="self" href="#1933">self</a>
 <a href=#1936 id=1936 data-nosnippet>1936</a>                .builder
@@ -2113,7 +2113,7 @@
 <a href=#2040 id=2040 data-nosnippet>2040</a>    ///
 <a href=#2041 id=2041 data-nosnippet>2041</a>    /// Use [`ScrolledWindow::set_policy()`][crate::ScrolledWindow::set_policy()] to set
 <a href=#2042 id=2042 data-nosnippet>2042</a>    /// this property.
-<a href=#2043 id=2043 data-nosnippet>2043</a>    </span><span class="kw">pub fn </span>vscrollbar_policy(<span class="self">self</span>, vscrollbar_policy: <a href="enums.rs.html#9010-9030">PolicyType</a>) -&gt; <span class="self">Self </span>{
+<a href=#2043 id=2043 data-nosnippet>2043</a>    </span><span class="kw">pub fn </span>vscrollbar_policy(<span class="self">self</span>, vscrollbar_policy: <a href="enums.rs.html#9015-9035">PolicyType</a>) -&gt; <span class="self">Self </span>{
 <a href=#2044 id=2044 data-nosnippet>2044</a>        <span class="self">Self </span>{
 <a href=#2045 id=2045 data-nosnippet>2045</a>            builder: <a class="self" href="#2043">self</a>
 <a href=#2046 id=2046 data-nosnippet>2046</a>                .builder
@@ -2323,7 +2323,7 @@
 <a href=#2250 id=2250 data-nosnippet>2250</a>    ///
 <a href=#2251 id=2251 data-nosnippet>2251</a>    /// This property is meant to be set by widget implementations,
 <a href=#2252 id=2252 data-nosnippet>2252</a>    /// typically in their instance init function.
-<a href=#2253 id=2253 data-nosnippet>2253</a>    </span><span class="kw">pub fn </span>overflow(<span class="self">self</span>, overflow: <a href="enums.rs.html#8376-8387">Overflow</a>) -&gt; <span class="self">Self </span>{
+<a href=#2253 id=2253 data-nosnippet>2253</a>    </span><span class="kw">pub fn </span>overflow(<span class="self">self</span>, overflow: <a href="enums.rs.html#8381-8392">Overflow</a>) -&gt; <span class="self">Self </span>{
 <a href=#2254 id=2254 data-nosnippet>2254</a>        <span class="self">Self </span>{
 <a href=#2255 id=2255 data-nosnippet>2255</a>            builder: <a class="self" href="#2253">self</a>.builder.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/object/struct.ObjectBuilder.html#method.property">property</a>(<span class="string">"overflow"</span>, <a href="#2253">overflow</a>),
 <a href=#2256 id=2256 data-nosnippet>2256</a>        }

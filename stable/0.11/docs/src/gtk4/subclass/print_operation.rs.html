@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/subclass/print_operation.rs`."><title>print_operation.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-17e0aaed.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.96.0-nightly (e0e95a718 2026-04-04)" data-channel="nightly" data-search-js="search-1c5d44ff.js" data-stringdex-js="stringdex-2da4960a.js" data-settings-js="settings-170eb4bf.js" ><script src="../../../static.files/storage-41dd4d93.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-5013f961.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-f7c3ffd8.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><a class="skip-main-content" href="#main-content">Skip to main content</a><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/subclass/print_operation.rs`."><title>print_operation.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-17e0aaed.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.97.0-nightly (ca9a134e0 2026-04-26)" data-channel="nightly" data-search-js="search-b5634cc7.js" data-stringdex-js="stringdex-2da4960a.js" data-settings-js="settings-170eb4bf.js" ><script src="../../../static.files/storage-41dd4d93.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-aa4d37ac.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-f7c3ffd8.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><a class="skip-main-content" href="#main-content">Skip to main content</a><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
 
@@ -79,8 +79,8 @@
 <a href=#6 id=6 data-nosnippet>6</a></span><span class="kw">use </span>glib::translate::<span class="kw-2">*</span>;
 <a href=#7 id=7 data-nosnippet>7</a>
 <a href=#8 id=8 data-nosnippet>8</a><span class="kw">use </span>crate::{
-<a href=#9 id=9 data-nosnippet>9</a>    <a href="../auto/page_setup.rs.html#8-63">PageSetup</a>, <a href="../auto/print_context.rs.html#8-90">PrintContext</a>, <a href="../auto/print_operation.rs.html#17-502">PrintOperation</a>, <a href="../auto/print_operation_preview.rs.html#14-51">PrintOperationPreview</a>, <a href="../auto/enums.rs.html#9590-9607">PrintOperationResult</a>,
-<a href=#10 id=10 data-nosnippet>10</a>    <a href="../auto/print_settings.rs.html#11-33">PrintSettings</a>, <a href="../auto/widget.rs.html#19-864">Widget</a>, <a href="../auto/window.rs.html#21-781">Window</a>, <a href="../../../gtk4_sys/index.html">ffi</a>, prelude::<span class="kw-2">*</span>, subclass::prelude::<span class="kw-2">*</span>,
+<a href=#9 id=9 data-nosnippet>9</a>    <a href="../auto/page_setup.rs.html#8-63">PageSetup</a>, <a href="../auto/print_context.rs.html#8-90">PrintContext</a>, <a href="../auto/print_operation.rs.html#17-502">PrintOperation</a>, <a href="../auto/print_operation_preview.rs.html#14-51">PrintOperationPreview</a>, <a href="../auto/enums.rs.html#9595-9612">PrintOperationResult</a>,
+<a href=#10 id=10 data-nosnippet>10</a>    <a href="../auto/print_settings.rs.html#11-33">PrintSettings</a>, <a href="../auto/widget.rs.html#19-887">Widget</a>, <a href="../auto/window.rs.html#21-789">Window</a>, <a href="../../../gtk4_sys/index.html">ffi</a>, prelude::<span class="kw-2">*</span>, subclass::prelude::<span class="kw-2">*</span>,
 <a href=#11 id=11 data-nosnippet>11</a>};
 <a href=#12 id=12 data-nosnippet>12</a>
 <a href=#13 id=13 data-nosnippet>13</a><span class="kw">pub trait </span><a href="../../../gtk4/subclass/print_operation/trait.PrintOperationImpl.html">PrintOperationImpl</a>:
@@ -93,19 +93,19 @@
 <a href=#20 id=20 data-nosnippet>20</a>    }
 <a href=#21 id=21 data-nosnippet>21</a>
 <a href=#22 id=22 data-nosnippet>22</a>    <span class="doccomment">/// Signal emitted when displaying the print dialog.
-<a href=#23 id=23 data-nosnippet>23</a>    </span><span class="kw">fn </span>create_custom_widget(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;<a href="../auto/widget.rs.html#19-864">Widget</a>&gt; {
+<a href=#23 id=23 data-nosnippet>23</a>    </span><span class="kw">fn </span>create_custom_widget(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;<a href="../auto/widget.rs.html#19-887">Widget</a>&gt; {
 <a href=#24 id=24 data-nosnippet>24</a>        <a class="self" href="#23">self</a>.<a href="#101-116">parent_create_custom_widget</a>()
 <a href=#25 id=25 data-nosnippet>25</a>    }
 <a href=#26 id=26 data-nosnippet>26</a>
 <a href=#27 id=27 data-nosnippet>27</a>    <span class="doccomment">/// Signal emitted right before “begin-print” if
 <a href=#28 id=28 data-nosnippet>28</a>    ///    you added a custom widget in the “create-custom-widget” handler.
-<a href=#29 id=29 data-nosnippet>29</a>    </span><span class="kw">fn </span>custom_widget_apply(<span class="kw-2">&amp;</span><span class="self">self</span>, widget: <span class="kw-2">&amp;</span><a href="../auto/widget.rs.html#19-864">Widget</a>) {
+<a href=#29 id=29 data-nosnippet>29</a>    </span><span class="kw">fn </span>custom_widget_apply(<span class="kw-2">&amp;</span><span class="self">self</span>, widget: <span class="kw-2">&amp;</span><a href="../auto/widget.rs.html#19-887">Widget</a>) {
 <a href=#30 id=30 data-nosnippet>30</a>        <a class="self" href="#29">self</a>.<a href="#118-132">parent_custom_widget_apply</a>(<a href="#29">widget</a>)
 <a href=#31 id=31 data-nosnippet>31</a>    }
 <a href=#32 id=32 data-nosnippet>32</a>
 <a href=#33 id=33 data-nosnippet>33</a>    <span class="doccomment">/// Signal emitted when the print operation run has finished
 <a href=#34 id=34 data-nosnippet>34</a>    ///    doing everything required for printing.
-<a href=#35 id=35 data-nosnippet>35</a>    </span><span class="kw">fn </span>done(<span class="kw-2">&amp;</span><span class="self">self</span>, result: <a href="../auto/enums.rs.html#9590-9607">PrintOperationResult</a>) {
+<a href=#35 id=35 data-nosnippet>35</a>    </span><span class="kw">fn </span>done(<span class="kw-2">&amp;</span><span class="self">self</span>, result: <a href="../auto/enums.rs.html#9595-9612">PrintOperationResult</a>) {
 <a href=#36 id=36 data-nosnippet>36</a>        <a class="self" href="#35">self</a>.<a href="#134-148">parent_done</a>(<a href="#35">result</a>)
 <a href=#37 id=37 data-nosnippet>37</a>    }
 <a href=#38 id=38 data-nosnippet>38</a>
@@ -131,7 +131,7 @@
 <a href=#58 id=58 data-nosnippet>58</a>        <span class="kw-2">&amp;</span><span class="self">self</span>,
 <a href=#59 id=59 data-nosnippet>59</a>        preview: <span class="kw-2">&amp;</span><a href="../auto/print_operation_preview.rs.html#14-51">PrintOperationPreview</a>,
 <a href=#60 id=60 data-nosnippet>60</a>        context: <span class="kw-2">&amp;</span><a href="../auto/print_context.rs.html#8-90">PrintContext</a>,
-<a href=#61 id=61 data-nosnippet>61</a>        parent: <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;<span class="kw-2">&amp;</span><a href="../auto/window.rs.html#21-781">Window</a>&gt;,
+<a href=#61 id=61 data-nosnippet>61</a>        parent: <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;<span class="kw-2">&amp;</span><a href="../auto/window.rs.html#21-789">Window</a>&gt;,
 <a href=#62 id=62 data-nosnippet>62</a>    ) -&gt; <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> {
 <a href=#63 id=63 data-nosnippet>63</a>        <a class="self" href="#58">self</a>.<a href="#204-228">parent_preview</a>(<a href="#59">preview</a>, <a href="#60">context</a>, <a href="#61">parent</a>)
 <a href=#64 id=64 data-nosnippet>64</a>    }
@@ -149,7 +149,7 @@
 <a href=#76 id=76 data-nosnippet>76</a>    }
 <a href=#77 id=77 data-nosnippet>77</a>
 <a href=#78 id=78 data-nosnippet>78</a>    <span class="doccomment">/// Emitted after change of selected printer.
-<a href=#79 id=79 data-nosnippet>79</a>    </span><span class="kw">fn </span>update_custom_widget(<span class="kw-2">&amp;</span><span class="self">self</span>, widget: <span class="kw-2">&amp;</span><a href="../auto/widget.rs.html#19-864">Widget</a>, setup: <span class="kw-2">&amp;</span><a href="../auto/page_setup.rs.html#8-63">PageSetup</a>, settings: <span class="kw-2">&amp;</span><a href="../auto/print_settings.rs.html#11-33">PrintSettings</a>) {
+<a href=#79 id=79 data-nosnippet>79</a>    </span><span class="kw">fn </span>update_custom_widget(<span class="kw-2">&amp;</span><span class="self">self</span>, widget: <span class="kw-2">&amp;</span><a href="../auto/widget.rs.html#19-887">Widget</a>, setup: <span class="kw-2">&amp;</span><a href="../auto/page_setup.rs.html#8-63">PageSetup</a>, settings: <span class="kw-2">&amp;</span><a href="../auto/print_settings.rs.html#11-33">PrintSettings</a>) {
 <a href=#80 id=80 data-nosnippet>80</a>        <a class="self" href="#79">self</a>.<a href="#262-283">parent_update_custom_widget</a>(<a href="#79">widget</a>, <a href="#79">setup</a>, <a href="#79">settings</a>)
 <a href=#81 id=81 data-nosnippet>81</a>    }
 <a href=#82 id=82 data-nosnippet>82</a>}
@@ -171,7 +171,7 @@
 <a href=#98 id=98 data-nosnippet>98</a>        }
 <a href=#99 id=99 data-nosnippet>99</a>    }
 <a href=#100 id=100 data-nosnippet>100</a>
-<a href=#101 id=101 data-nosnippet>101</a>    <span class="kw">fn </span>parent_create_custom_widget(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;<a href="../auto/widget.rs.html#19-864">Widget</a>&gt; {
+<a href=#101 id=101 data-nosnippet>101</a>    <span class="kw">fn </span>parent_create_custom_widget(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;<a href="../auto/widget.rs.html#19-887">Widget</a>&gt; {
 <a href=#102 id=102 data-nosnippet>102</a>        <span class="kw">unsafe </span>{
 <a href=#103 id=103 data-nosnippet>103</a>            <span class="kw">let </span>data = <span class="self">Self</span>::<a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/subclass/types/trait.ObjectSubclassType.html#tymethod.type_data">type_data</a>();
 <a href=#104 id=104 data-nosnippet>104</a>            <span class="kw">let </span>parent_class = <a href="#103">data</a>.<a href="https://doc.rust-lang.org/nightly/core/ptr/non_null/struct.NonNull.html#method.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/subclass/types/struct.TypeData.html#method.parent_class">parent_class</a>() <span class="kw">as </span><span class="kw-2">*mut </span>ffi::<a href="../../../gtk4_sys/struct.GtkPrintOperationClass.html">GtkPrintOperationClass</a>;
@@ -188,7 +188,7 @@
 <a href=#115 id=115 data-nosnippet>115</a>        }
 <a href=#116 id=116 data-nosnippet>116</a>    }
 <a href=#117 id=117 data-nosnippet>117</a>
-<a href=#118 id=118 data-nosnippet>118</a>    <span class="kw">fn </span>parent_custom_widget_apply(<span class="kw-2">&amp;</span><span class="self">self</span>, widget: <span class="kw-2">&amp;</span><a href="../auto/widget.rs.html#19-864">Widget</a>) {
+<a href=#118 id=118 data-nosnippet>118</a>    <span class="kw">fn </span>parent_custom_widget_apply(<span class="kw-2">&amp;</span><span class="self">self</span>, widget: <span class="kw-2">&amp;</span><a href="../auto/widget.rs.html#19-887">Widget</a>) {
 <a href=#119 id=119 data-nosnippet>119</a>        <span class="kw">unsafe </span>{
 <a href=#120 id=120 data-nosnippet>120</a>            <span class="kw">let </span>data = <span class="self">Self</span>::<a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/subclass/types/trait.ObjectSubclassType.html#tymethod.type_data">type_data</a>();
 <a href=#121 id=121 data-nosnippet>121</a>            <span class="kw">let </span>parent_class = <a href="#120">data</a>.<a href="https://doc.rust-lang.org/nightly/core/ptr/non_null/struct.NonNull.html#method.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/subclass/types/struct.TypeData.html#method.parent_class">parent_class</a>() <span class="kw">as </span><span class="kw-2">*mut </span>ffi::<a href="../../../gtk4_sys/struct.GtkPrintOperationClass.html">GtkPrintOperationClass</a>;
@@ -204,7 +204,7 @@
 <a href=#131 id=131 data-nosnippet>131</a>        }
 <a href=#132 id=132 data-nosnippet>132</a>    }
 <a href=#133 id=133 data-nosnippet>133</a>
-<a href=#134 id=134 data-nosnippet>134</a>    <span class="kw">fn </span>parent_done(<span class="kw-2">&amp;</span><span class="self">self</span>, result: <a href="../auto/enums.rs.html#9590-9607">PrintOperationResult</a>) {
+<a href=#134 id=134 data-nosnippet>134</a>    <span class="kw">fn </span>parent_done(<span class="kw-2">&amp;</span><span class="self">self</span>, result: <a href="../auto/enums.rs.html#9595-9612">PrintOperationResult</a>) {
 <a href=#135 id=135 data-nosnippet>135</a>        <span class="kw">unsafe </span>{
 <a href=#136 id=136 data-nosnippet>136</a>            <span class="kw">let </span>data = <span class="self">Self</span>::<a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/subclass/types/trait.ObjectSubclassType.html#tymethod.type_data">type_data</a>();
 <a href=#137 id=137 data-nosnippet>137</a>            <span class="kw">let </span>parent_class = <a href="#136">data</a>.<a href="https://doc.rust-lang.org/nightly/core/ptr/non_null/struct.NonNull.html#method.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/subclass/types/struct.TypeData.html#method.parent_class">parent_class</a>() <span class="kw">as </span><span class="kw-2">*mut </span>ffi::<a href="../../../gtk4_sys/struct.GtkPrintOperationClass.html">GtkPrintOperationClass</a>;
@@ -278,7 +278,7 @@
 <a href=#205 id=205 data-nosnippet>205</a>        <span class="kw-2">&amp;</span><span class="self">self</span>,
 <a href=#206 id=206 data-nosnippet>206</a>        preview: <span class="kw-2">&amp;</span><a href="../auto/print_operation_preview.rs.html#14-51">PrintOperationPreview</a>,
 <a href=#207 id=207 data-nosnippet>207</a>        context: <span class="kw-2">&amp;</span><a href="../auto/print_context.rs.html#8-90">PrintContext</a>,
-<a href=#208 id=208 data-nosnippet>208</a>        parent: <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;<span class="kw-2">&amp;</span><a href="../auto/window.rs.html#21-781">Window</a>&gt;,
+<a href=#208 id=208 data-nosnippet>208</a>        parent: <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;<span class="kw-2">&amp;</span><a href="../auto/window.rs.html#21-789">Window</a>&gt;,
 <a href=#209 id=209 data-nosnippet>209</a>    ) -&gt; <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> {
 <a href=#210 id=210 data-nosnippet>210</a>        <span class="kw">unsafe </span>{
 <a href=#211 id=211 data-nosnippet>211</a>            <span class="kw">let </span>data = <span class="self">Self</span>::<a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/subclass/types/trait.ObjectSubclassType.html#tymethod.type_data">type_data</a>();
@@ -334,7 +334,7 @@
 <a href=#261 id=261 data-nosnippet>261</a>
 <a href=#262 id=262 data-nosnippet>262</a>    <span class="kw">fn </span>parent_update_custom_widget(
 <a href=#263 id=263 data-nosnippet>263</a>        <span class="kw-2">&amp;</span><span class="self">self</span>,
-<a href=#264 id=264 data-nosnippet>264</a>        widget: <span class="kw-2">&amp;</span><a href="../auto/widget.rs.html#19-864">Widget</a>,
+<a href=#264 id=264 data-nosnippet>264</a>        widget: <span class="kw-2">&amp;</span><a href="../auto/widget.rs.html#19-887">Widget</a>,
 <a href=#265 id=265 data-nosnippet>265</a>        setup: <span class="kw-2">&amp;</span><a href="../auto/page_setup.rs.html#8-63">PageSetup</a>,
 <a href=#266 id=266 data-nosnippet>266</a>        settings: <span class="kw-2">&amp;</span><a href="../auto/print_settings.rs.html#11-33">PrintSettings</a>,
 <a href=#267 id=267 data-nosnippet>267</a>    ) {
@@ -406,7 +406,7 @@
 <a href=#333 id=333 data-nosnippet>333</a>    <span class="kw">unsafe </span>{
 <a href=#334 id=334 data-nosnippet>334</a>        <span class="kw">let </span>instance = <span class="kw-2">&amp;*</span>(<a href="#330">ptr</a> <span class="kw">as </span><span class="kw-2">*mut </span>T::Instance);
 <a href=#335 id=335 data-nosnippet>335</a>        <span class="kw">let </span>imp = <a href="#334">instance</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/subclass/types/trait.InstanceStructExt.html#tymethod.imp">imp</a>();
-<a href=#336 id=336 data-nosnippet>336</a>        <span class="kw">let </span>widget: <a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/translate/struct.Borrowed.html">Borrowed</a>&lt;<a href="../auto/widget.rs.html#19-864">Widget</a>&gt; = <a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/translate/fn.from_glib_borrow.html">from_glib_borrow</a>(<a href="#331">widgetptr</a>);
+<a href=#336 id=336 data-nosnippet>336</a>        <span class="kw">let </span>widget: <a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/translate/struct.Borrowed.html">Borrowed</a>&lt;<a href="../auto/widget.rs.html#19-887">Widget</a>&gt; = <a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/translate/fn.from_glib_borrow.html">from_glib_borrow</a>(<a href="#331">widgetptr</a>);
 <a href=#337 id=337 data-nosnippet>337</a>
 <a href=#338 id=338 data-nosnippet>338</a>        <a href="#335">imp</a>.<a href="#29-31">custom_widget_apply</a>(<span class="kw-2">&amp;</span><a href="#336">widget</a>)
 <a href=#339 id=339 data-nosnippet>339</a>    }
@@ -487,7 +487,7 @@
 <a href=#414 id=414 data-nosnippet>414</a>    <span class="kw">unsafe </span>{
 <a href=#415 id=415 data-nosnippet>415</a>        <span class="kw">let </span>instance = <span class="kw-2">&amp;*</span>(<a href="#409">ptr</a> <span class="kw">as </span><span class="kw-2">*mut </span>T::Instance);
 <a href=#416 id=416 data-nosnippet>416</a>        <span class="kw">let </span>imp = <a href="#415">instance</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/subclass/types/trait.InstanceStructExt.html#tymethod.imp">imp</a>();
-<a href=#417 id=417 data-nosnippet>417</a>        <span class="kw">let </span>widget: <a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/translate/struct.Borrowed.html">Borrowed</a>&lt;<a href="../auto/widget.rs.html#19-864">Widget</a>&gt; = <a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/translate/fn.from_glib_borrow.html">from_glib_borrow</a>(<a href="#410">widgetptr</a>);
+<a href=#417 id=417 data-nosnippet>417</a>        <span class="kw">let </span>widget: <a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/translate/struct.Borrowed.html">Borrowed</a>&lt;<a href="../auto/widget.rs.html#19-887">Widget</a>&gt; = <a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/translate/fn.from_glib_borrow.html">from_glib_borrow</a>(<a href="#410">widgetptr</a>);
 <a href=#418 id=418 data-nosnippet>418</a>        <span class="kw">let </span>setup: <a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/translate/struct.Borrowed.html">Borrowed</a>&lt;<a href="../auto/page_setup.rs.html#8-63">PageSetup</a>&gt; = <a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/translate/fn.from_glib_borrow.html">from_glib_borrow</a>(<a href="#411">setupptr</a>);
 <a href=#419 id=419 data-nosnippet>419</a>        <span class="kw">let </span>settings: <a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/translate/struct.Borrowed.html">Borrowed</a>&lt;<a href="../auto/print_settings.rs.html#11-33">PrintSettings</a>&gt; = <a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/translate/fn.from_glib_borrow.html">from_glib_borrow</a>(<a href="#412">settingsptr</a>);
 <a href=#420 id=420 data-nosnippet>420</a>
