@@ -114,23 +114,8 @@ pub unsafe trait IsRenderNode:
     fn upcast_ref(&self) -> &RenderNode;
 }
 
-#[doc(hidden)]
-impl AsRef<RenderNode> for RenderNode {
-    #[inline]
-    fn as_ref(&self) -> &Self {
-        self
-    }
-}
-
 macro_rules! define_render_node {
     ($rust_type:ident, $ffi_type:path, $node_type:path) => {
-        impl std::convert::AsRef<crate::RenderNode> for $rust_type {
-            #[inline]
-            fn as_ref(&self) -> &crate::RenderNode {
-                self
-            }
-        }
-
         impl std::ops::Deref for $rust_type {
             type Target = crate::RenderNode;
 
@@ -164,6 +149,16 @@ macro_rules! define_render_node {
             #[inline]
             unsafe fn from_glib_full(ptr: *mut crate::ffi::GskRenderNode) -> Self {
                 unsafe { glib::translate::from_glib_full(ptr as *mut $ffi_type) }
+            }
+        }
+
+        define_render_node!($rust_type, $ffi_type);
+    };
+    ($rust_type:ident, $ffi_type:path) => {
+        impl std::convert::AsRef<crate::RenderNode> for $rust_type {
+            #[inline]
+            fn as_ref(&self) -> &crate::RenderNode {
+                self
             }
         }
 
@@ -229,3 +224,5 @@ macro_rules! define_render_node {
         }
     };
 }
+
+define_render_node!(RenderNode, crate::ffi::GskRenderNode);
