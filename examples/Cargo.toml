@@ -235,3 +235,7 @@ required-features = ["v4_10"]
 [[bin]]
 name = "virtual_methods"
 path = "virtual_methods/main.rs"
+
+[[bin]]
+name = "push_button"
+path = "push_button/main.rs"

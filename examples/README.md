@@ -48,6 +48,7 @@ cargo run --bin basics
 - [ListBox: StringList with Sorter](./list_box_sort_stringlist/)
 - [ListView: Applications Launcher](./list_view_apps_launcher/)
 - [Menubar](./menubar/)
+- [Push Button](./push_button/)
 - [Rotation Bin](./rotation_bin/)
 - [Scale](./scale/)
 - [Scale Bin](./scale_bin/)
