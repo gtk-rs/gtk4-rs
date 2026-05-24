@@ -373,6 +373,20 @@ mod entry_completion;
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 pub use self::entry_completion::EntryCompletion;
 
+#[cfg(feature = "v4_24")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+mod enum_list;
+#[cfg(feature = "v4_24")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+pub use self::enum_list::EnumList;
+
+#[cfg(feature = "v4_24")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+mod enum_list_item;
+#[cfg(feature = "v4_24")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+pub use self::enum_list_item::EnumListItem;
+
 mod event_controller;
 pub use self::event_controller::EventController;
 
