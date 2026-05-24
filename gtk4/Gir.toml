@@ -105,6 +105,7 @@ generate = [
     "Gtk.EditableProperties",
     "Gtk.EmojiChooser",
     "Gtk.EntryIconPosition",
+    "Gtk.EnumListItem",
     "Gtk.EventControllerFocus",
     "Gtk.EventControllerMotion",
     "Gtk.EventControllerScrollFlags",
@@ -1191,6 +1192,14 @@ status = "generate"
     name = "get_entry"
     rename = "entry"
     manual = true # upcast to Entry
+
+[[object]]
+name = "Gtk.EnumList"
+status = "generate"
+generate_builder = false
+    [[object.property]]
+    pattern = "(n-items|item-type)"
+    generate = [] # disable generated getter/notify, use the ones from GListModel iface
 
 [[object]]
 name = "Gtk.EventController"
