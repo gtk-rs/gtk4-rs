@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/auto/flags.rs`."><title>flags.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-17e0aaed.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.97.0-nightly (82bee9650 2026-05-09)" data-channel="nightly" data-search-js="search-b5634cc7.js" data-stringdex-js="stringdex-2da4960a.js" data-settings-js="settings-170eb4bf.js" ><script src="../../../static.files/storage-41dd4d93.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-aa4d37ac.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-f7c3ffd8.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><a class="skip-main-content" href="#main-content">Skip to main content</a><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/auto/flags.rs`."><title>flags.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-17e0aaed.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.98.0-nightly (6368fd52c 2026-05-29)" data-channel="nightly" data-search-js="search-fd9372ac.js" data-stringdex-js="stringdex-2da4960a.js" data-settings-js="settings-170eb4bf.js" ><script src="../../../static.files/storage-41dd4d93.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-fcd733ba.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-f7c3ffd8.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><a class="skip-main-content" href="#main-content">Skip to main content</a><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
 
@@ -76,7 +76,7 @@
 <a href=#3 id=3 data-nosnippet>3</a>// DO NOT EDIT
 <a href=#4 id=4 data-nosnippet>4</a>
 <a href=#5 id=5 data-nosnippet>5</a></span><span class="kw">use </span><a href="../../../gtk4_sys/index.html"><span class="kw">crate</span>::ffi</a>;
-<a href=#6 id=6 data-nosnippet>6</a><span class="kw">use </span>glib::{bitflags::bitflags, prelude::<span class="kw-2">*</span>, translate::<span class="kw-2">*</span>};
+<a href=#6 id=6 data-nosnippet>6</a><span class="kw">use </span>glib::{bitflags::bitflags, <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/prelude/index.html">prelude</a>::<span class="kw-2">*</span>, <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/index.html">translate</a>::<span class="kw-2">*</span>};
 <a href=#7 id=7 data-nosnippet>7</a>
 <a href=#8 id=8 data-nosnippet>8</a><span class="macro">bitflags!</span> {
 <a href=#9 id=9 data-nosnippet>9</a>    <span class="doccomment">/// Types of user actions that may be blocked by [`Application`][crate::Application].
@@ -88,18 +88,18 @@
 <a href=#15 id=15 data-nosnippet>15</a>        <span class="doccomment">/// Inhibit ending the user session
 <a href=#16 id=16 data-nosnippet>16</a>        ///   by logging out or by shutting down the computer
 <a href=#17 id=17 data-nosnippet>17</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_APPLICATION_INHIBIT_LOGOUT"</span>)]
-<a href=#18 id=18 data-nosnippet>18</a>        </span><span class="kw">const </span>LOGOUT = ffi::<a href="../../../gtk4_sys/constant.GTK_APPLICATION_INHIBIT_LOGOUT.html">GTK_APPLICATION_INHIBIT_LOGOUT</a> <span class="kw">as _</span>;
+<a href=#18 id=18 data-nosnippet>18</a>        </span><span class="kw">const </span>LOGOUT = ffi::GTK_APPLICATION_INHIBIT_LOGOUT <span class="kw">as _</span>;
 <a href=#19 id=19 data-nosnippet>19</a>        <span class="doccomment">/// Inhibit user switching
 <a href=#20 id=20 data-nosnippet>20</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_APPLICATION_INHIBIT_SWITCH"</span>)]
-<a href=#21 id=21 data-nosnippet>21</a>        </span><span class="kw">const </span>SWITCH = ffi::<a href="../../../gtk4_sys/constant.GTK_APPLICATION_INHIBIT_SWITCH.html">GTK_APPLICATION_INHIBIT_SWITCH</a> <span class="kw">as _</span>;
+<a href=#21 id=21 data-nosnippet>21</a>        </span><span class="kw">const </span>SWITCH = ffi::GTK_APPLICATION_INHIBIT_SWITCH <span class="kw">as _</span>;
 <a href=#22 id=22 data-nosnippet>22</a>        <span class="doccomment">/// Inhibit suspending the
 <a href=#23 id=23 data-nosnippet>23</a>        ///   session or computer
 <a href=#24 id=24 data-nosnippet>24</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_APPLICATION_INHIBIT_SUSPEND"</span>)]
-<a href=#25 id=25 data-nosnippet>25</a>        </span><span class="kw">const </span>SUSPEND = ffi::<a href="../../../gtk4_sys/constant.GTK_APPLICATION_INHIBIT_SUSPEND.html">GTK_APPLICATION_INHIBIT_SUSPEND</a> <span class="kw">as _</span>;
+<a href=#25 id=25 data-nosnippet>25</a>        </span><span class="kw">const </span>SUSPEND = ffi::GTK_APPLICATION_INHIBIT_SUSPEND <span class="kw">as _</span>;
 <a href=#26 id=26 data-nosnippet>26</a>        <span class="doccomment">/// Inhibit the session being
 <a href=#27 id=27 data-nosnippet>27</a>        ///   marked as idle (and possibly locked)
 <a href=#28 id=28 data-nosnippet>28</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_APPLICATION_INHIBIT_IDLE"</span>)]
-<a href=#29 id=29 data-nosnippet>29</a>        </span><span class="kw">const </span>IDLE = ffi::<a href="../../../gtk4_sys/constant.GTK_APPLICATION_INHIBIT_IDLE.html">GTK_APPLICATION_INHIBIT_IDLE</a> <span class="kw">as _</span>;
+<a href=#29 id=29 data-nosnippet>29</a>        </span><span class="kw">const </span>IDLE = ffi::GTK_APPLICATION_INHIBIT_IDLE <span class="kw">as _</span>;
 <a href=#30 id=30 data-nosnippet>30</a>    }
 <a href=#31 id=31 data-nosnippet>31</a>}
 <a href=#32 id=32 data-nosnippet>32</a>
@@ -157,7 +157,7 @@
 <a href=#84 id=84 data-nosnippet>84</a><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/trait.ToValue.html">ToValue</a> <span class="kw">for </span><a href="#8-31">ApplicationInhibitFlags</a> {
 <a href=#85 id=85 data-nosnippet>85</a>    <span class="attr">#[inline]
 <a href=#86 id=86 data-nosnippet>86</a>    </span><span class="kw">fn </span>to_value(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a> {
-<a href=#87 id=87 data-nosnippet>87</a>        <span class="kw">let </span><span class="kw-2">mut </span>value = glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>::for_value_type::&lt;<span class="self">Self</span>&gt;();
+<a href=#87 id=87 data-nosnippet>87</a>        <span class="kw">let </span><span class="kw-2">mut </span>value = glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html#method.for_value_type">for_value_type</a>::&lt;<span class="self">Self</span>&gt;();
 <a href=#88 id=88 data-nosnippet>88</a>        <span class="kw">unsafe </span>{
 <a href=#89 id=89 data-nosnippet>89</a>            glib::gobject_ffi::g_value_set_flags(<a href="#87">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtrMut.html#tymethod.to_glib_none_mut">to_glib_none_mut</a>().<span class="number">0</span>, <a class="self" href="#86">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>());
 <a href=#90 id=90 data-nosnippet>90</a>        }
@@ -191,7 +191,7 @@
 <a href=#118 id=118 data-nosnippet>118</a>        <span class="doccomment">/// The closure should be created swapped. See
 <a href=#119 id=119 data-nosnippet>119</a>        ///   g_cclosure_new_swap() for details.
 <a href=#120 id=120 data-nosnippet>120</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_BUILDER_CLOSURE_SWAPPED"</span>)]
-<a href=#121 id=121 data-nosnippet>121</a>        </span><span class="kw">const </span>SWAPPED = ffi::<a href="../../../gtk4_sys/constant.GTK_BUILDER_CLOSURE_SWAPPED.html">GTK_BUILDER_CLOSURE_SWAPPED</a> <span class="kw">as _</span>;
+<a href=#121 id=121 data-nosnippet>121</a>        </span><span class="kw">const </span>SWAPPED = ffi::GTK_BUILDER_CLOSURE_SWAPPED <span class="kw">as _</span>;
 <a href=#122 id=122 data-nosnippet>122</a>    }
 <a href=#123 id=123 data-nosnippet>123</a>}
 <a href=#124 id=124 data-nosnippet>124</a>
@@ -249,7 +249,7 @@
 <a href=#176 id=176 data-nosnippet>176</a><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/trait.ToValue.html">ToValue</a> <span class="kw">for </span><a href="#108-123">BuilderClosureFlags</a> {
 <a href=#177 id=177 data-nosnippet>177</a>    <span class="attr">#[inline]
 <a href=#178 id=178 data-nosnippet>178</a>    </span><span class="kw">fn </span>to_value(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a> {
-<a href=#179 id=179 data-nosnippet>179</a>        <span class="kw">let </span><span class="kw-2">mut </span>value = glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>::for_value_type::&lt;<span class="self">Self</span>&gt;();
+<a href=#179 id=179 data-nosnippet>179</a>        <span class="kw">let </span><span class="kw-2">mut </span>value = glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html#method.for_value_type">for_value_type</a>::&lt;<span class="self">Self</span>&gt;();
 <a href=#180 id=180 data-nosnippet>180</a>        <span class="kw">unsafe </span>{
 <a href=#181 id=181 data-nosnippet>181</a>            glib::gobject_ffi::g_value_set_flags(<a href="#179">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtrMut.html#tymethod.to_glib_none_mut">to_glib_none_mut</a>().<span class="number">0</span>, <a class="self" href="#178">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>());
 <a href=#182 id=182 data-nosnippet>182</a>        }
@@ -283,25 +283,25 @@
 <a href=#210 id=210 data-nosnippet>210</a>        <span class="doccomment">/// The cell is currently selected, and
 <a href=#211 id=211 data-nosnippet>211</a>        ///  probably has a selection colored background to render to.
 <a href=#212 id=212 data-nosnippet>212</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_CELL_RENDERER_SELECTED"</span>)]
-<a href=#213 id=213 data-nosnippet>213</a>        </span><span class="kw">const </span>SELECTED = ffi::<a href="../../../gtk4_sys/constant.GTK_CELL_RENDERER_SELECTED.html">GTK_CELL_RENDERER_SELECTED</a> <span class="kw">as _</span>;
+<a href=#213 id=213 data-nosnippet>213</a>        </span><span class="kw">const </span>SELECTED = ffi::GTK_CELL_RENDERER_SELECTED <span class="kw">as _</span>;
 <a href=#214 id=214 data-nosnippet>214</a>        <span class="doccomment">/// The mouse is hovering over the cell.
 <a href=#215 id=215 data-nosnippet>215</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_CELL_RENDERER_PRELIT"</span>)]
-<a href=#216 id=216 data-nosnippet>216</a>        </span><span class="kw">const </span>PRELIT = ffi::<a href="../../../gtk4_sys/constant.GTK_CELL_RENDERER_PRELIT.html">GTK_CELL_RENDERER_PRELIT</a> <span class="kw">as _</span>;
+<a href=#216 id=216 data-nosnippet>216</a>        </span><span class="kw">const </span>PRELIT = ffi::GTK_CELL_RENDERER_PRELIT <span class="kw">as _</span>;
 <a href=#217 id=217 data-nosnippet>217</a>        <span class="doccomment">/// The cell is drawn in an insensitive manner
 <a href=#218 id=218 data-nosnippet>218</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_CELL_RENDERER_INSENSITIVE"</span>)]
-<a href=#219 id=219 data-nosnippet>219</a>        </span><span class="kw">const </span>INSENSITIVE = ffi::<a href="../../../gtk4_sys/constant.GTK_CELL_RENDERER_INSENSITIVE.html">GTK_CELL_RENDERER_INSENSITIVE</a> <span class="kw">as _</span>;
+<a href=#219 id=219 data-nosnippet>219</a>        </span><span class="kw">const </span>INSENSITIVE = ffi::GTK_CELL_RENDERER_INSENSITIVE <span class="kw">as _</span>;
 <a href=#220 id=220 data-nosnippet>220</a>        <span class="doccomment">/// The cell is in a sorted row
 <a href=#221 id=221 data-nosnippet>221</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_CELL_RENDERER_SORTED"</span>)]
-<a href=#222 id=222 data-nosnippet>222</a>        </span><span class="kw">const </span>SORTED = ffi::<a href="../../../gtk4_sys/constant.GTK_CELL_RENDERER_SORTED.html">GTK_CELL_RENDERER_SORTED</a> <span class="kw">as _</span>;
+<a href=#222 id=222 data-nosnippet>222</a>        </span><span class="kw">const </span>SORTED = ffi::GTK_CELL_RENDERER_SORTED <span class="kw">as _</span>;
 <a href=#223 id=223 data-nosnippet>223</a>        <span class="doccomment">/// The cell is in the focus row.
 <a href=#224 id=224 data-nosnippet>224</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_CELL_RENDERER_FOCUSED"</span>)]
-<a href=#225 id=225 data-nosnippet>225</a>        </span><span class="kw">const </span>FOCUSED = ffi::<a href="../../../gtk4_sys/constant.GTK_CELL_RENDERER_FOCUSED.html">GTK_CELL_RENDERER_FOCUSED</a> <span class="kw">as _</span>;
+<a href=#225 id=225 data-nosnippet>225</a>        </span><span class="kw">const </span>FOCUSED = ffi::GTK_CELL_RENDERER_FOCUSED <span class="kw">as _</span>;
 <a href=#226 id=226 data-nosnippet>226</a>        <span class="doccomment">/// The cell is in a row that can be expanded
 <a href=#227 id=227 data-nosnippet>227</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_CELL_RENDERER_EXPANDABLE"</span>)]
-<a href=#228 id=228 data-nosnippet>228</a>        </span><span class="kw">const </span>EXPANDABLE = ffi::<a href="../../../gtk4_sys/constant.GTK_CELL_RENDERER_EXPANDABLE.html">GTK_CELL_RENDERER_EXPANDABLE</a> <span class="kw">as _</span>;
+<a href=#228 id=228 data-nosnippet>228</a>        </span><span class="kw">const </span>EXPANDABLE = ffi::GTK_CELL_RENDERER_EXPANDABLE <span class="kw">as _</span>;
 <a href=#229 id=229 data-nosnippet>229</a>        <span class="doccomment">/// The cell is in a row that is expanded
 <a href=#230 id=230 data-nosnippet>230</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_CELL_RENDERER_EXPANDED"</span>)]
-<a href=#231 id=231 data-nosnippet>231</a>        </span><span class="kw">const </span>EXPANDED = ffi::<a href="../../../gtk4_sys/constant.GTK_CELL_RENDERER_EXPANDED.html">GTK_CELL_RENDERER_EXPANDED</a> <span class="kw">as _</span>;
+<a href=#231 id=231 data-nosnippet>231</a>        </span><span class="kw">const </span>EXPANDED = ffi::GTK_CELL_RENDERER_EXPANDED <span class="kw">as _</span>;
 <a href=#232 id=232 data-nosnippet>232</a>    }
 <a href=#233 id=233 data-nosnippet>233</a>}
 <a href=#234 id=234 data-nosnippet>234</a>
@@ -366,7 +366,7 @@
 <a href=#293 id=293 data-nosnippet>293</a></span><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/trait.ToValue.html">ToValue</a> <span class="kw">for </span><a href="#200-233">CellRendererState</a> {
 <a href=#294 id=294 data-nosnippet>294</a>    <span class="attr">#[inline]
 <a href=#295 id=295 data-nosnippet>295</a>    </span><span class="kw">fn </span>to_value(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a> {
-<a href=#296 id=296 data-nosnippet>296</a>        <span class="kw">let </span><span class="kw-2">mut </span>value = glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>::for_value_type::&lt;<span class="self">Self</span>&gt;();
+<a href=#296 id=296 data-nosnippet>296</a>        <span class="kw">let </span><span class="kw-2">mut </span>value = glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html#method.for_value_type">for_value_type</a>::&lt;<span class="self">Self</span>&gt;();
 <a href=#297 id=297 data-nosnippet>297</a>        <span class="kw">unsafe </span>{
 <a href=#298 id=298 data-nosnippet>298</a>            glib::gobject_ffi::g_value_set_flags(<a href="#296">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtrMut.html#tymethod.to_glib_none_mut">to_glib_none_mut</a>().<span class="number">0</span>, <a class="self" href="#295">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>());
 <a href=#299 id=299 data-nosnippet>299</a>        }
@@ -399,85 +399,85 @@
 <a href=#326 id=326 data-nosnippet>326</a>    </span><span class="kw">pub struct </span><a href="#318-409">DebugFlags</a>: <a href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a> {
 <a href=#327 id=327 data-nosnippet>327</a>        <span class="doccomment">/// Information about GtkTextView
 <a href=#328 id=328 data-nosnippet>328</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_DEBUG_TEXT"</span>)]
-<a href=#329 id=329 data-nosnippet>329</a>        </span><span class="kw">const </span>TEXT = ffi::<a href="../../../gtk4_sys/constant.GTK_DEBUG_TEXT.html">GTK_DEBUG_TEXT</a> <span class="kw">as _</span>;
+<a href=#329 id=329 data-nosnippet>329</a>        </span><span class="kw">const </span>TEXT = ffi::GTK_DEBUG_TEXT <span class="kw">as _</span>;
 <a href=#330 id=330 data-nosnippet>330</a>        <span class="doccomment">/// Information about GtkTreeView
 <a href=#331 id=331 data-nosnippet>331</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_DEBUG_TREE"</span>)]
-<a href=#332 id=332 data-nosnippet>332</a>        </span><span class="kw">const </span>TREE = ffi::<a href="../../../gtk4_sys/constant.GTK_DEBUG_TREE.html">GTK_DEBUG_TREE</a> <span class="kw">as _</span>;
+<a href=#332 id=332 data-nosnippet>332</a>        </span><span class="kw">const </span>TREE = ffi::GTK_DEBUG_TREE <span class="kw">as _</span>;
 <a href=#333 id=333 data-nosnippet>333</a>        <span class="doccomment">/// Information about keyboard shortcuts
 <a href=#334 id=334 data-nosnippet>334</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_DEBUG_KEYBINDINGS"</span>)]
-<a href=#335 id=335 data-nosnippet>335</a>        </span><span class="kw">const </span>KEYBINDINGS = ffi::<a href="../../../gtk4_sys/constant.GTK_DEBUG_KEYBINDINGS.html">GTK_DEBUG_KEYBINDINGS</a> <span class="kw">as _</span>;
+<a href=#335 id=335 data-nosnippet>335</a>        </span><span class="kw">const </span>KEYBINDINGS = ffi::GTK_DEBUG_KEYBINDINGS <span class="kw">as _</span>;
 <a href=#336 id=336 data-nosnippet>336</a>        <span class="doccomment">/// Information about modules and extensions
 <a href=#337 id=337 data-nosnippet>337</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_DEBUG_MODULES"</span>)]
-<a href=#338 id=338 data-nosnippet>338</a>        </span><span class="kw">const </span>MODULES = ffi::<a href="../../../gtk4_sys/constant.GTK_DEBUG_MODULES.html">GTK_DEBUG_MODULES</a> <span class="kw">as _</span>;
+<a href=#338 id=338 data-nosnippet>338</a>        </span><span class="kw">const </span>MODULES = ffi::GTK_DEBUG_MODULES <span class="kw">as _</span>;
 <a href=#339 id=339 data-nosnippet>339</a>        <span class="doccomment">/// Information about size allocation
 <a href=#340 id=340 data-nosnippet>340</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_DEBUG_GEOMETRY"</span>)]
-<a href=#341 id=341 data-nosnippet>341</a>        </span><span class="kw">const </span>GEOMETRY = ffi::<a href="../../../gtk4_sys/constant.GTK_DEBUG_GEOMETRY.html">GTK_DEBUG_GEOMETRY</a> <span class="kw">as _</span>;
+<a href=#341 id=341 data-nosnippet>341</a>        </span><span class="kw">const </span>GEOMETRY = ffi::GTK_DEBUG_GEOMETRY <span class="kw">as _</span>;
 <a href=#342 id=342 data-nosnippet>342</a>        <span class="doccomment">/// Information about icon themes
 <a href=#343 id=343 data-nosnippet>343</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_DEBUG_ICONTHEME"</span>)]
-<a href=#344 id=344 data-nosnippet>344</a>        </span><span class="kw">const </span>ICONTHEME = ffi::<a href="../../../gtk4_sys/constant.GTK_DEBUG_ICONTHEME.html">GTK_DEBUG_ICONTHEME</a> <span class="kw">as _</span>;
+<a href=#344 id=344 data-nosnippet>344</a>        </span><span class="kw">const </span>ICONTHEME = ffi::GTK_DEBUG_ICONTHEME <span class="kw">as _</span>;
 <a href=#345 id=345 data-nosnippet>345</a>        <span class="doccomment">/// Information about printing
 <a href=#346 id=346 data-nosnippet>346</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_DEBUG_PRINTING"</span>)]
-<a href=#347 id=347 data-nosnippet>347</a>        </span><span class="kw">const </span>PRINTING = ffi::<a href="../../../gtk4_sys/constant.GTK_DEBUG_PRINTING.html">GTK_DEBUG_PRINTING</a> <span class="kw">as _</span>;
+<a href=#347 id=347 data-nosnippet>347</a>        </span><span class="kw">const </span>PRINTING = ffi::GTK_DEBUG_PRINTING <span class="kw">as _</span>;
 <a href=#348 id=348 data-nosnippet>348</a>        <span class="doccomment">/// Trace GtkBuilder operation
 <a href=#349 id=349 data-nosnippet>349</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_DEBUG_BUILDER_TRACE"</span>)]
-<a href=#350 id=350 data-nosnippet>350</a>        </span><span class="kw">const </span>BUILDER_TRACE = ffi::<a href="../../../gtk4_sys/constant.GTK_DEBUG_BUILDER_TRACE.html">GTK_DEBUG_BUILDER_TRACE</a> <span class="kw">as _</span>;
+<a href=#350 id=350 data-nosnippet>350</a>        </span><span class="kw">const </span>BUILDER_TRACE = ffi::GTK_DEBUG_BUILDER_TRACE <span class="kw">as _</span>;
 <a href=#351 id=351 data-nosnippet>351</a>        <span class="doccomment">/// Information about size requests
 <a href=#352 id=352 data-nosnippet>352</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_DEBUG_SIZE_REQUEST"</span>)]
-<a href=#353 id=353 data-nosnippet>353</a>        </span><span class="kw">const </span>SIZE_REQUEST = ffi::<a href="../../../gtk4_sys/constant.GTK_DEBUG_SIZE_REQUEST.html">GTK_DEBUG_SIZE_REQUEST</a> <span class="kw">as _</span>;
+<a href=#353 id=353 data-nosnippet>353</a>        </span><span class="kw">const </span>SIZE_REQUEST = ffi::GTK_DEBUG_SIZE_REQUEST <span class="kw">as _</span>;
 <a href=#354 id=354 data-nosnippet>354</a>        <span class="doccomment">/// Disable the style property cache
 <a href=#355 id=355 data-nosnippet>355</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_DEBUG_NO_CSS_CACHE"</span>)]
-<a href=#356 id=356 data-nosnippet>356</a>        </span><span class="kw">const </span>NO_CSS_CACHE = ffi::<a href="../../../gtk4_sys/constant.GTK_DEBUG_NO_CSS_CACHE.html">GTK_DEBUG_NO_CSS_CACHE</a> <span class="kw">as _</span>;
+<a href=#356 id=356 data-nosnippet>356</a>        </span><span class="kw">const </span>NO_CSS_CACHE = ffi::GTK_DEBUG_NO_CSS_CACHE <span class="kw">as _</span>;
 <a href=#357 id=357 data-nosnippet>357</a>        <span class="doccomment">/// Open the GTK inspector
 <a href=#358 id=358 data-nosnippet>358</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_DEBUG_INTERACTIVE"</span>)]
-<a href=#359 id=359 data-nosnippet>359</a>        </span><span class="kw">const </span>INTERACTIVE = ffi::<a href="../../../gtk4_sys/constant.GTK_DEBUG_INTERACTIVE.html">GTK_DEBUG_INTERACTIVE</a> <span class="kw">as _</span>;
+<a href=#359 id=359 data-nosnippet>359</a>        </span><span class="kw">const </span>INTERACTIVE = ffi::GTK_DEBUG_INTERACTIVE <span class="kw">as _</span>;
 <a href=#360 id=360 data-nosnippet>360</a>        <span class="doccomment">/// Show touch UI elements for pointer events.
 <a href=#361 id=361 data-nosnippet>361</a>        </span><span class="attr">#[cfg(feature = <span class="string">"v4_20"</span>)]
 <a href=#362 id=362 data-nosnippet>362</a>        #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_20"</span>)))]
 <a href=#363 id=363 data-nosnippet>363</a>        #[doc(alias = <span class="string">"GTK_DEBUG_TOUCHSCREEN"</span>)]
-<a href=#364 id=364 data-nosnippet>364</a>        </span><span class="kw">const </span>TOUCHSCREEN = ffi::<a href="../../../gtk4_sys/constant.GTK_DEBUG_TOUCHSCREEN.html">GTK_DEBUG_TOUCHSCREEN</a> <span class="kw">as _</span>;
+<a href=#364 id=364 data-nosnippet>364</a>        </span><span class="kw">const </span>TOUCHSCREEN = ffi::GTK_DEBUG_TOUCHSCREEN <span class="kw">as _</span>;
 <a href=#365 id=365 data-nosnippet>365</a>        <span class="doccomment">/// Information about actions and menu models
 <a href=#366 id=366 data-nosnippet>366</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_DEBUG_ACTIONS"</span>)]
-<a href=#367 id=367 data-nosnippet>367</a>        </span><span class="kw">const </span>ACTIONS = ffi::<a href="../../../gtk4_sys/constant.GTK_DEBUG_ACTIONS.html">GTK_DEBUG_ACTIONS</a> <span class="kw">as _</span>;
+<a href=#367 id=367 data-nosnippet>367</a>        </span><span class="kw">const </span>ACTIONS = ffi::GTK_DEBUG_ACTIONS <span class="kw">as _</span>;
 <a href=#368 id=368 data-nosnippet>368</a>        <span class="doccomment">/// Information from layout managers
 <a href=#369 id=369 data-nosnippet>369</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_DEBUG_LAYOUT"</span>)]
-<a href=#370 id=370 data-nosnippet>370</a>        </span><span class="kw">const </span>LAYOUT = ffi::<a href="../../../gtk4_sys/constant.GTK_DEBUG_LAYOUT.html">GTK_DEBUG_LAYOUT</a> <span class="kw">as _</span>;
+<a href=#370 id=370 data-nosnippet>370</a>        </span><span class="kw">const </span>LAYOUT = ffi::GTK_DEBUG_LAYOUT <span class="kw">as _</span>;
 <a href=#371 id=371 data-nosnippet>371</a>        <span class="doccomment">/// Include debug render nodes in the generated snapshots
 <a href=#372 id=372 data-nosnippet>372</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_DEBUG_SNAPSHOT"</span>)]
-<a href=#373 id=373 data-nosnippet>373</a>        </span><span class="kw">const </span>SNAPSHOT = ffi::<a href="../../../gtk4_sys/constant.GTK_DEBUG_SNAPSHOT.html">GTK_DEBUG_SNAPSHOT</a> <span class="kw">as _</span>;
+<a href=#373 id=373 data-nosnippet>373</a>        </span><span class="kw">const </span>SNAPSHOT = ffi::GTK_DEBUG_SNAPSHOT <span class="kw">as _</span>;
 <a href=#374 id=374 data-nosnippet>374</a>        <span class="doccomment">/// Information from the constraints solver
 <a href=#375 id=375 data-nosnippet>375</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_DEBUG_CONSTRAINTS"</span>)]
-<a href=#376 id=376 data-nosnippet>376</a>        </span><span class="kw">const </span>CONSTRAINTS = ffi::<a href="../../../gtk4_sys/constant.GTK_DEBUG_CONSTRAINTS.html">GTK_DEBUG_CONSTRAINTS</a> <span class="kw">as _</span>;
+<a href=#376 id=376 data-nosnippet>376</a>        </span><span class="kw">const </span>CONSTRAINTS = ffi::GTK_DEBUG_CONSTRAINTS <span class="kw">as _</span>;
 <a href=#377 id=377 data-nosnippet>377</a>        <span class="doccomment">/// Log unused GtkBuilder objects
 <a href=#378 id=378 data-nosnippet>378</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_DEBUG_BUILDER_OBJECTS"</span>)]
-<a href=#379 id=379 data-nosnippet>379</a>        </span><span class="kw">const </span>BUILDER_OBJECTS = ffi::<a href="../../../gtk4_sys/constant.GTK_DEBUG_BUILDER_OBJECTS.html">GTK_DEBUG_BUILDER_OBJECTS</a> <span class="kw">as _</span>;
+<a href=#379 id=379 data-nosnippet>379</a>        </span><span class="kw">const </span>BUILDER_OBJECTS = ffi::GTK_DEBUG_BUILDER_OBJECTS <span class="kw">as _</span>;
 <a href=#380 id=380 data-nosnippet>380</a>        <span class="doccomment">/// Information about accessibility state changes
 <a href=#381 id=381 data-nosnippet>381</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_DEBUG_A11Y"</span>)]
-<a href=#382 id=382 data-nosnippet>382</a>        </span><span class="kw">const </span>A11Y = ffi::<a href="../../../gtk4_sys/constant.GTK_DEBUG_A11Y.html">GTK_DEBUG_A11Y</a> <span class="kw">as _</span>;
+<a href=#382 id=382 data-nosnippet>382</a>        </span><span class="kw">const </span>A11Y = ffi::GTK_DEBUG_A11Y <span class="kw">as _</span>;
 <a href=#383 id=383 data-nosnippet>383</a>        <span class="doccomment">/// Information about icon fallback.
 <a href=#384 id=384 data-nosnippet>384</a>        </span><span class="attr">#[cfg(feature = <span class="string">"v4_2"</span>)]
 <a href=#385 id=385 data-nosnippet>385</a>        #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_2"</span>)))]
 <a href=#386 id=386 data-nosnippet>386</a>        #[doc(alias = <span class="string">"GTK_DEBUG_ICONFALLBACK"</span>)]
-<a href=#387 id=387 data-nosnippet>387</a>        </span><span class="kw">const </span>ICONFALLBACK = ffi::<a href="../../../gtk4_sys/constant.GTK_DEBUG_ICONFALLBACK.html">GTK_DEBUG_ICONFALLBACK</a> <span class="kw">as _</span>;
+<a href=#387 id=387 data-nosnippet>387</a>        </span><span class="kw">const </span>ICONFALLBACK = ffi::GTK_DEBUG_ICONFALLBACK <span class="kw">as _</span>;
 <a href=#388 id=388 data-nosnippet>388</a>        <span class="doccomment">/// Inverts the default text-direction.
 <a href=#389 id=389 data-nosnippet>389</a>        </span><span class="attr">#[cfg(feature = <span class="string">"v4_8"</span>)]
 <a href=#390 id=390 data-nosnippet>390</a>        #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_8"</span>)))]
 <a href=#391 id=391 data-nosnippet>391</a>        #[doc(alias = <span class="string">"GTK_DEBUG_INVERT_TEXT_DIR"</span>)]
-<a href=#392 id=392 data-nosnippet>392</a>        </span><span class="kw">const </span>INVERT_TEXT_DIR = ffi::<a href="../../../gtk4_sys/constant.GTK_DEBUG_INVERT_TEXT_DIR.html">GTK_DEBUG_INVERT_TEXT_DIR</a> <span class="kw">as _</span>;
+<a href=#392 id=392 data-nosnippet>392</a>        </span><span class="kw">const </span>INVERT_TEXT_DIR = ffi::GTK_DEBUG_INVERT_TEXT_DIR <span class="kw">as _</span>;
 <a href=#393 id=393 data-nosnippet>393</a>        <span class="doccomment">/// Information about deprecated CSS features.
 <a href=#394 id=394 data-nosnippet>394</a>        </span><span class="attr">#[cfg(feature = <span class="string">"v4_16"</span>)]
 <a href=#395 id=395 data-nosnippet>395</a>        #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_16"</span>)))]
 <a href=#396 id=396 data-nosnippet>396</a>        #[doc(alias = <span class="string">"GTK_DEBUG_CSS"</span>)]
-<a href=#397 id=397 data-nosnippet>397</a>        </span><span class="kw">const </span>CSS = ffi::<a href="../../../gtk4_sys/constant.GTK_DEBUG_CSS.html">GTK_DEBUG_CSS</a> <span class="kw">as _</span>;
+<a href=#397 id=397 data-nosnippet>397</a>        </span><span class="kw">const </span>CSS = ffi::GTK_DEBUG_CSS <span class="kw">as _</span>;
 <a href=#398 id=398 data-nosnippet>398</a>        <span class="doccomment">/// Information about deprecated GtkBuilder features.
 <a href=#399 id=399 data-nosnippet>399</a>        </span><span class="attr">#[cfg(feature = <span class="string">"v4_18"</span>)]
 <a href=#400 id=400 data-nosnippet>400</a>        #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_18"</span>)))]
 <a href=#401 id=401 data-nosnippet>401</a>        #[doc(alias = <span class="string">"GTK_DEBUG_BUILDER"</span>)]
-<a href=#402 id=402 data-nosnippet>402</a>        </span><span class="kw">const </span>BUILDER = ffi::<a href="../../../gtk4_sys/constant.GTK_DEBUG_BUILDER.html">GTK_DEBUG_BUILDER</a> <span class="kw">as _</span>;
+<a href=#402 id=402 data-nosnippet>402</a>        </span><span class="kw">const </span>BUILDER = ffi::GTK_DEBUG_BUILDER <span class="kw">as _</span>;
 <a href=#403 id=403 data-nosnippet>403</a>        <span class="doccomment">/// Information about session saving.
 <a href=#404 id=404 data-nosnippet>404</a>        </span><span class="attr">#[cfg(feature = <span class="string">"v4_22"</span>)]
 <a href=#405 id=405 data-nosnippet>405</a>        #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_22"</span>)))]
 <a href=#406 id=406 data-nosnippet>406</a>        #[doc(alias = <span class="string">"GTK_DEBUG_SESSION"</span>)]
-<a href=#407 id=407 data-nosnippet>407</a>        </span><span class="kw">const </span>SESSION = ffi::<a href="../../../gtk4_sys/constant.GTK_DEBUG_SESSION.html">GTK_DEBUG_SESSION</a> <span class="kw">as _</span>;
+<a href=#407 id=407 data-nosnippet>407</a>        </span><span class="kw">const </span>SESSION = ffi::GTK_DEBUG_SESSION <span class="kw">as _</span>;
 <a href=#408 id=408 data-nosnippet>408</a>    }
 <a href=#409 id=409 data-nosnippet>409</a>}
 <a href=#410 id=410 data-nosnippet>410</a>
@@ -535,7 +535,7 @@
 <a href=#462 id=462 data-nosnippet>462</a><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/trait.ToValue.html">ToValue</a> <span class="kw">for </span><a href="#318-409">DebugFlags</a> {
 <a href=#463 id=463 data-nosnippet>463</a>    <span class="attr">#[inline]
 <a href=#464 id=464 data-nosnippet>464</a>    </span><span class="kw">fn </span>to_value(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a> {
-<a href=#465 id=465 data-nosnippet>465</a>        <span class="kw">let </span><span class="kw-2">mut </span>value = glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>::for_value_type::&lt;<span class="self">Self</span>&gt;();
+<a href=#465 id=465 data-nosnippet>465</a>        <span class="kw">let </span><span class="kw-2">mut </span>value = glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html#method.for_value_type">for_value_type</a>::&lt;<span class="self">Self</span>&gt;();
 <a href=#466 id=466 data-nosnippet>466</a>        <span class="kw">unsafe </span>{
 <a href=#467 id=467 data-nosnippet>467</a>            glib::gobject_ffi::g_value_set_flags(<a href="#465">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtrMut.html#tymethod.to_glib_none_mut">to_glib_none_mut</a>().<span class="number">0</span>, <a class="self" href="#464">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>());
 <a href=#468 id=468 data-nosnippet>468</a>        }
@@ -568,14 +568,14 @@
 <a href=#495 id=495 data-nosnippet>495</a>    </span><span class="kw">pub struct </span><a href="#486-507">DialogFlags</a>: <a href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a> {
 <a href=#496 id=496 data-nosnippet>496</a>        <span class="doccomment">/// Make the constructed dialog modal
 <a href=#497 id=497 data-nosnippet>497</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_DIALOG_MODAL"</span>)]
-<a href=#498 id=498 data-nosnippet>498</a>        </span><span class="kw">const </span>MODAL = ffi::<a href="../../../gtk4_sys/constant.GTK_DIALOG_MODAL.html">GTK_DIALOG_MODAL</a> <span class="kw">as _</span>;
+<a href=#498 id=498 data-nosnippet>498</a>        </span><span class="kw">const </span>MODAL = ffi::GTK_DIALOG_MODAL <span class="kw">as _</span>;
 <a href=#499 id=499 data-nosnippet>499</a>        <span class="doccomment">/// Destroy the dialog when its parent is destroyed
 <a href=#500 id=500 data-nosnippet>500</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_DIALOG_DESTROY_WITH_PARENT"</span>)]
-<a href=#501 id=501 data-nosnippet>501</a>        </span><span class="kw">const </span>DESTROY_WITH_PARENT = ffi::<a href="../../../gtk4_sys/constant.GTK_DIALOG_DESTROY_WITH_PARENT.html">GTK_DIALOG_DESTROY_WITH_PARENT</a> <span class="kw">as _</span>;
+<a href=#501 id=501 data-nosnippet>501</a>        </span><span class="kw">const </span>DESTROY_WITH_PARENT = ffi::GTK_DIALOG_DESTROY_WITH_PARENT <span class="kw">as _</span>;
 <a href=#502 id=502 data-nosnippet>502</a>        <span class="doccomment">/// Create dialog with actions in header
 <a href=#503 id=503 data-nosnippet>503</a>        ///   bar instead of action area
 <a href=#504 id=504 data-nosnippet>504</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_DIALOG_USE_HEADER_BAR"</span>)]
-<a href=#505 id=505 data-nosnippet>505</a>        </span><span class="kw">const </span>USE_HEADER_BAR = ffi::<a href="../../../gtk4_sys/constant.GTK_DIALOG_USE_HEADER_BAR.html">GTK_DIALOG_USE_HEADER_BAR</a> <span class="kw">as _</span>;
+<a href=#505 id=505 data-nosnippet>505</a>        </span><span class="kw">const </span>USE_HEADER_BAR = ffi::GTK_DIALOG_USE_HEADER_BAR <span class="kw">as _</span>;
 <a href=#506 id=506 data-nosnippet>506</a>    }
 <a href=#507 id=507 data-nosnippet>507</a>}
 <a href=#508 id=508 data-nosnippet>508</a>
@@ -640,7 +640,7 @@
 <a href=#567 id=567 data-nosnippet>567</a></span><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/trait.ToValue.html">ToValue</a> <span class="kw">for </span><a href="#486-507">DialogFlags</a> {
 <a href=#568 id=568 data-nosnippet>568</a>    <span class="attr">#[inline]
 <a href=#569 id=569 data-nosnippet>569</a>    </span><span class="kw">fn </span>to_value(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a> {
-<a href=#570 id=570 data-nosnippet>570</a>        <span class="kw">let </span><span class="kw-2">mut </span>value = glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>::for_value_type::&lt;<span class="self">Self</span>&gt;();
+<a href=#570 id=570 data-nosnippet>570</a>        <span class="kw">let </span><span class="kw-2">mut </span>value = glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html#method.for_value_type">for_value_type</a>::&lt;<span class="self">Self</span>&gt;();
 <a href=#571 id=571 data-nosnippet>571</a>        <span class="kw">unsafe </span>{
 <a href=#572 id=572 data-nosnippet>572</a>            glib::gobject_ffi::g_value_set_flags(<a href="#570">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtrMut.html#tymethod.to_glib_none_mut">to_glib_none_mut</a>().<span class="number">0</span>, <a class="self" href="#569">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>());
 <a href=#573 id=573 data-nosnippet>573</a>        }
@@ -669,28 +669,28 @@
 <a href=#596 id=596 data-nosnippet>596</a>    </span><span class="kw">pub struct </span><a href="#592-622">EventControllerScrollFlags</a>: <a href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a> {
 <a href=#597 id=597 data-nosnippet>597</a>        <span class="doccomment">/// Don't emit scroll.
 <a href=#598 id=598 data-nosnippet>598</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_EVENT_CONTROLLER_SCROLL_NONE"</span>)]
-<a href=#599 id=599 data-nosnippet>599</a>        </span><span class="kw">const </span>NONE = ffi::<a href="../../../gtk4_sys/constant.GTK_EVENT_CONTROLLER_SCROLL_NONE.html">GTK_EVENT_CONTROLLER_SCROLL_NONE</a> <span class="kw">as _</span>;
+<a href=#599 id=599 data-nosnippet>599</a>        </span><span class="kw">const </span>NONE = ffi::GTK_EVENT_CONTROLLER_SCROLL_NONE <span class="kw">as _</span>;
 <a href=#600 id=600 data-nosnippet>600</a>        <span class="doccomment">/// Emit scroll with vertical deltas.
 <a href=#601 id=601 data-nosnippet>601</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_EVENT_CONTROLLER_SCROLL_VERTICAL"</span>)]
-<a href=#602 id=602 data-nosnippet>602</a>        </span><span class="kw">const </span>VERTICAL = ffi::<a href="../../../gtk4_sys/constant.GTK_EVENT_CONTROLLER_SCROLL_VERTICAL.html">GTK_EVENT_CONTROLLER_SCROLL_VERTICAL</a> <span class="kw">as _</span>;
+<a href=#602 id=602 data-nosnippet>602</a>        </span><span class="kw">const </span>VERTICAL = ffi::GTK_EVENT_CONTROLLER_SCROLL_VERTICAL <span class="kw">as _</span>;
 <a href=#603 id=603 data-nosnippet>603</a>        <span class="doccomment">/// Emit scroll with horizontal deltas.
 <a href=#604 id=604 data-nosnippet>604</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_EVENT_CONTROLLER_SCROLL_HORIZONTAL"</span>)]
-<a href=#605 id=605 data-nosnippet>605</a>        </span><span class="kw">const </span>HORIZONTAL = ffi::<a href="../../../gtk4_sys/constant.GTK_EVENT_CONTROLLER_SCROLL_HORIZONTAL.html">GTK_EVENT_CONTROLLER_SCROLL_HORIZONTAL</a> <span class="kw">as _</span>;
+<a href=#605 id=605 data-nosnippet>605</a>        </span><span class="kw">const </span>HORIZONTAL = ffi::GTK_EVENT_CONTROLLER_SCROLL_HORIZONTAL <span class="kw">as _</span>;
 <a href=#606 id=606 data-nosnippet>606</a>        <span class="doccomment">/// Only emit deltas that are multiples of 1.
 <a href=#607 id=607 data-nosnippet>607</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_EVENT_CONTROLLER_SCROLL_DISCRETE"</span>)]
-<a href=#608 id=608 data-nosnippet>608</a>        </span><span class="kw">const </span>DISCRETE = ffi::<a href="../../../gtk4_sys/constant.GTK_EVENT_CONTROLLER_SCROLL_DISCRETE.html">GTK_EVENT_CONTROLLER_SCROLL_DISCRETE</a> <span class="kw">as _</span>;
+<a href=#608 id=608 data-nosnippet>608</a>        </span><span class="kw">const </span>DISCRETE = ffi::GTK_EVENT_CONTROLLER_SCROLL_DISCRETE <span class="kw">as _</span>;
 <a href=#609 id=609 data-nosnippet>609</a>        <span class="doccomment">/// Emit ::decelerate after continuous scroll finishes.
 <a href=#610 id=610 data-nosnippet>610</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_EVENT_CONTROLLER_SCROLL_KINETIC"</span>)]
-<a href=#611 id=611 data-nosnippet>611</a>        </span><span class="kw">const </span>KINETIC = ffi::<a href="../../../gtk4_sys/constant.GTK_EVENT_CONTROLLER_SCROLL_KINETIC.html">GTK_EVENT_CONTROLLER_SCROLL_KINETIC</a> <span class="kw">as _</span>;
+<a href=#611 id=611 data-nosnippet>611</a>        </span><span class="kw">const </span>KINETIC = ffi::GTK_EVENT_CONTROLLER_SCROLL_KINETIC <span class="kw">as _</span>;
 <a href=#612 id=612 data-nosnippet>612</a>        <span class="doccomment">/// A #GtkEventControllerScrollFlags value to prefer physical direction over
 <a href=#613 id=613 data-nosnippet>613</a>        /// logical direction (i.e. oblivious to natural scroll).
 <a href=#614 id=614 data-nosnippet>614</a>        </span><span class="attr">#[cfg(feature = <span class="string">"v4_20"</span>)]
 <a href=#615 id=615 data-nosnippet>615</a>        #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_20"</span>)))]
 <a href=#616 id=616 data-nosnippet>616</a>        #[doc(alias = <span class="string">"GTK_EVENT_CONTROLLER_SCROLL_PHYSICAL_DIRECTION"</span>)]
-<a href=#617 id=617 data-nosnippet>617</a>        </span><span class="kw">const </span>PHYSICAL_DIRECTION = ffi::<a href="../../../gtk4_sys/constant.GTK_EVENT_CONTROLLER_SCROLL_PHYSICAL_DIRECTION.html">GTK_EVENT_CONTROLLER_SCROLL_PHYSICAL_DIRECTION</a> <span class="kw">as _</span>;
+<a href=#617 id=617 data-nosnippet>617</a>        </span><span class="kw">const </span>PHYSICAL_DIRECTION = ffi::GTK_EVENT_CONTROLLER_SCROLL_PHYSICAL_DIRECTION <span class="kw">as _</span>;
 <a href=#618 id=618 data-nosnippet>618</a>        <span class="doccomment">/// Emit scroll on both axes.
 <a href=#619 id=619 data-nosnippet>619</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_EVENT_CONTROLLER_SCROLL_BOTH_AXES"</span>)]
-<a href=#620 id=620 data-nosnippet>620</a>        </span><span class="kw">const </span>BOTH_AXES = ffi::<a href="../../../gtk4_sys/constant.GTK_EVENT_CONTROLLER_SCROLL_BOTH_AXES.html">GTK_EVENT_CONTROLLER_SCROLL_BOTH_AXES</a> <span class="kw">as _</span>;
+<a href=#620 id=620 data-nosnippet>620</a>        </span><span class="kw">const </span>BOTH_AXES = ffi::GTK_EVENT_CONTROLLER_SCROLL_BOTH_AXES <span class="kw">as _</span>;
 <a href=#621 id=621 data-nosnippet>621</a>    }
 <a href=#622 id=622 data-nosnippet>622</a>}
 <a href=#623 id=623 data-nosnippet>623</a>
@@ -748,7 +748,7 @@
 <a href=#675 id=675 data-nosnippet>675</a><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/trait.ToValue.html">ToValue</a> <span class="kw">for </span><a href="#592-622">EventControllerScrollFlags</a> {
 <a href=#676 id=676 data-nosnippet>676</a>    <span class="attr">#[inline]
 <a href=#677 id=677 data-nosnippet>677</a>    </span><span class="kw">fn </span>to_value(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a> {
-<a href=#678 id=678 data-nosnippet>678</a>        <span class="kw">let </span><span class="kw-2">mut </span>value = glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>::for_value_type::&lt;<span class="self">Self</span>&gt;();
+<a href=#678 id=678 data-nosnippet>678</a>        <span class="kw">let </span><span class="kw-2">mut </span>value = glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html#method.for_value_type">for_value_type</a>::&lt;<span class="self">Self</span>&gt;();
 <a href=#679 id=679 data-nosnippet>679</a>        <span class="kw">unsafe </span>{
 <a href=#680 id=680 data-nosnippet>680</a>            glib::gobject_ffi::g_value_set_flags(<a href="#678">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtrMut.html#tymethod.to_glib_none_mut">to_glib_none_mut</a>().<span class="number">0</span>, <a class="self" href="#677">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>());
 <a href=#681 id=681 data-nosnippet>681</a>        }
@@ -785,19 +785,19 @@
 <a href=#712 id=712 data-nosnippet>712</a>    </span><span class="kw">pub struct </span><a href="#699-729">FontChooserLevel</a>: <a href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a> {
 <a href=#713 id=713 data-nosnippet>713</a>        <span class="doccomment">/// Allow selecting a font family
 <a href=#714 id=714 data-nosnippet>714</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_FONT_CHOOSER_LEVEL_FAMILY"</span>)]
-<a href=#715 id=715 data-nosnippet>715</a>        </span><span class="kw">const </span>FAMILY = ffi::<a href="../../../gtk4_sys/constant.GTK_FONT_CHOOSER_LEVEL_FAMILY.html">GTK_FONT_CHOOSER_LEVEL_FAMILY</a> <span class="kw">as _</span>;
+<a href=#715 id=715 data-nosnippet>715</a>        </span><span class="kw">const </span>FAMILY = ffi::GTK_FONT_CHOOSER_LEVEL_FAMILY <span class="kw">as _</span>;
 <a href=#716 id=716 data-nosnippet>716</a>        <span class="doccomment">/// Allow selecting a specific font face
 <a href=#717 id=717 data-nosnippet>717</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_FONT_CHOOSER_LEVEL_STYLE"</span>)]
-<a href=#718 id=718 data-nosnippet>718</a>        </span><span class="kw">const </span>STYLE = ffi::<a href="../../../gtk4_sys/constant.GTK_FONT_CHOOSER_LEVEL_STYLE.html">GTK_FONT_CHOOSER_LEVEL_STYLE</a> <span class="kw">as _</span>;
+<a href=#718 id=718 data-nosnippet>718</a>        </span><span class="kw">const </span>STYLE = ffi::GTK_FONT_CHOOSER_LEVEL_STYLE <span class="kw">as _</span>;
 <a href=#719 id=719 data-nosnippet>719</a>        <span class="doccomment">/// Allow selecting a specific font size
 <a href=#720 id=720 data-nosnippet>720</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_FONT_CHOOSER_LEVEL_SIZE"</span>)]
-<a href=#721 id=721 data-nosnippet>721</a>        </span><span class="kw">const </span>SIZE = ffi::<a href="../../../gtk4_sys/constant.GTK_FONT_CHOOSER_LEVEL_SIZE.html">GTK_FONT_CHOOSER_LEVEL_SIZE</a> <span class="kw">as _</span>;
+<a href=#721 id=721 data-nosnippet>721</a>        </span><span class="kw">const </span>SIZE = ffi::GTK_FONT_CHOOSER_LEVEL_SIZE <span class="kw">as _</span>;
 <a href=#722 id=722 data-nosnippet>722</a>        <span class="doccomment">/// Allow changing OpenType font variation axes
 <a href=#723 id=723 data-nosnippet>723</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_FONT_CHOOSER_LEVEL_VARIATIONS"</span>)]
-<a href=#724 id=724 data-nosnippet>724</a>        </span><span class="kw">const </span>VARIATIONS = ffi::<a href="../../../gtk4_sys/constant.GTK_FONT_CHOOSER_LEVEL_VARIATIONS.html">GTK_FONT_CHOOSER_LEVEL_VARIATIONS</a> <span class="kw">as _</span>;
+<a href=#724 id=724 data-nosnippet>724</a>        </span><span class="kw">const </span>VARIATIONS = ffi::GTK_FONT_CHOOSER_LEVEL_VARIATIONS <span class="kw">as _</span>;
 <a href=#725 id=725 data-nosnippet>725</a>        <span class="doccomment">/// Allow selecting specific OpenType font features
 <a href=#726 id=726 data-nosnippet>726</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_FONT_CHOOSER_LEVEL_FEATURES"</span>)]
-<a href=#727 id=727 data-nosnippet>727</a>        </span><span class="kw">const </span>FEATURES = ffi::<a href="../../../gtk4_sys/constant.GTK_FONT_CHOOSER_LEVEL_FEATURES.html">GTK_FONT_CHOOSER_LEVEL_FEATURES</a> <span class="kw">as _</span>;
+<a href=#727 id=727 data-nosnippet>727</a>        </span><span class="kw">const </span>FEATURES = ffi::GTK_FONT_CHOOSER_LEVEL_FEATURES <span class="kw">as _</span>;
 <a href=#728 id=728 data-nosnippet>728</a>    }
 <a href=#729 id=729 data-nosnippet>729</a>}
 <a href=#730 id=730 data-nosnippet>730</a>
@@ -862,7 +862,7 @@
 <a href=#789 id=789 data-nosnippet>789</a></span><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/trait.ToValue.html">ToValue</a> <span class="kw">for </span><a href="#699-729">FontChooserLevel</a> {
 <a href=#790 id=790 data-nosnippet>790</a>    <span class="attr">#[inline]
 <a href=#791 id=791 data-nosnippet>791</a>    </span><span class="kw">fn </span>to_value(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a> {
-<a href=#792 id=792 data-nosnippet>792</a>        <span class="kw">let </span><span class="kw-2">mut </span>value = glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>::for_value_type::&lt;<span class="self">Self</span>&gt;();
+<a href=#792 id=792 data-nosnippet>792</a>        <span class="kw">let </span><span class="kw-2">mut </span>value = glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html#method.for_value_type">for_value_type</a>::&lt;<span class="self">Self</span>&gt;();
 <a href=#793 id=793 data-nosnippet>793</a>        <span class="kw">unsafe </span>{
 <a href=#794 id=794 data-nosnippet>794</a>            glib::gobject_ffi::g_value_set_flags(<a href="#792">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtrMut.html#tymethod.to_glib_none_mut">to_glib_none_mut</a>().<span class="number">0</span>, <a class="self" href="#791">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>());
 <a href=#795 id=795 data-nosnippet>795</a>        }
@@ -893,19 +893,19 @@
 <a href=#820 id=820 data-nosnippet>820</a>        </span><span class="attr">#[cfg(feature = <span class="string">"v4_18"</span>)]
 <a href=#821 id=821 data-nosnippet>821</a>        #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_18"</span>)))]
 <a href=#822 id=822 data-nosnippet>822</a>        #[doc(alias = <span class="string">"GTK_ICON_LOOKUP_NONE"</span>)]
-<a href=#823 id=823 data-nosnippet>823</a>        </span><span class="kw">const </span>NONE = ffi::<a href="../../../gtk4_sys/constant.GTK_ICON_LOOKUP_NONE.html">GTK_ICON_LOOKUP_NONE</a> <span class="kw">as _</span>;
+<a href=#823 id=823 data-nosnippet>823</a>        </span><span class="kw">const </span>NONE = ffi::GTK_ICON_LOOKUP_NONE <span class="kw">as _</span>;
 <a href=#824 id=824 data-nosnippet>824</a>        <span class="doccomment">/// Try to always load regular icons, even
 <a href=#825 id=825 data-nosnippet>825</a>        ///   when symbolic icon names are given
 <a href=#826 id=826 data-nosnippet>826</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_ICON_LOOKUP_FORCE_REGULAR"</span>)]
-<a href=#827 id=827 data-nosnippet>827</a>        </span><span class="kw">const </span>FORCE_REGULAR = ffi::<a href="../../../gtk4_sys/constant.GTK_ICON_LOOKUP_FORCE_REGULAR.html">GTK_ICON_LOOKUP_FORCE_REGULAR</a> <span class="kw">as _</span>;
+<a href=#827 id=827 data-nosnippet>827</a>        </span><span class="kw">const </span>FORCE_REGULAR = ffi::GTK_ICON_LOOKUP_FORCE_REGULAR <span class="kw">as _</span>;
 <a href=#828 id=828 data-nosnippet>828</a>        <span class="doccomment">/// Try to always load symbolic icons, even
 <a href=#829 id=829 data-nosnippet>829</a>        ///   when regular icon names are given
 <a href=#830 id=830 data-nosnippet>830</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_ICON_LOOKUP_FORCE_SYMBOLIC"</span>)]
-<a href=#831 id=831 data-nosnippet>831</a>        </span><span class="kw">const </span>FORCE_SYMBOLIC = ffi::<a href="../../../gtk4_sys/constant.GTK_ICON_LOOKUP_FORCE_SYMBOLIC.html">GTK_ICON_LOOKUP_FORCE_SYMBOLIC</a> <span class="kw">as _</span>;
+<a href=#831 id=831 data-nosnippet>831</a>        </span><span class="kw">const </span>FORCE_SYMBOLIC = ffi::GTK_ICON_LOOKUP_FORCE_SYMBOLIC <span class="kw">as _</span>;
 <a href=#832 id=832 data-nosnippet>832</a>        <span class="doccomment">/// Starts loading the texture in the background
 <a href=#833 id=833 data-nosnippet>833</a>        ///   so it is ready when later needed.
 <a href=#834 id=834 data-nosnippet>834</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_ICON_LOOKUP_PRELOAD"</span>)]
-<a href=#835 id=835 data-nosnippet>835</a>        </span><span class="kw">const </span>PRELOAD = ffi::<a href="../../../gtk4_sys/constant.GTK_ICON_LOOKUP_PRELOAD.html">GTK_ICON_LOOKUP_PRELOAD</a> <span class="kw">as _</span>;
+<a href=#835 id=835 data-nosnippet>835</a>        </span><span class="kw">const </span>PRELOAD = ffi::GTK_ICON_LOOKUP_PRELOAD <span class="kw">as _</span>;
 <a href=#836 id=836 data-nosnippet>836</a>    }
 <a href=#837 id=837 data-nosnippet>837</a>}
 <a href=#838 id=838 data-nosnippet>838</a>
@@ -963,7 +963,7 @@
 <a href=#890 id=890 data-nosnippet>890</a><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/trait.ToValue.html">ToValue</a> <span class="kw">for </span><a href="#814-837">IconLookupFlags</a> {
 <a href=#891 id=891 data-nosnippet>891</a>    <span class="attr">#[inline]
 <a href=#892 id=892 data-nosnippet>892</a>    </span><span class="kw">fn </span>to_value(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a> {
-<a href=#893 id=893 data-nosnippet>893</a>        <span class="kw">let </span><span class="kw-2">mut </span>value = glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>::for_value_type::&lt;<span class="self">Self</span>&gt;();
+<a href=#893 id=893 data-nosnippet>893</a>        <span class="kw">let </span><span class="kw-2">mut </span>value = glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html#method.for_value_type">for_value_type</a>::&lt;<span class="self">Self</span>&gt;();
 <a href=#894 id=894 data-nosnippet>894</a>        <span class="kw">unsafe </span>{
 <a href=#895 id=895 data-nosnippet>895</a>            glib::gobject_ffi::g_value_set_flags(<a href="#893">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtrMut.html#tymethod.to_glib_none_mut">to_glib_none_mut</a>().<span class="number">0</span>, <a class="self" href="#892">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>());
 <a href=#896 id=896 data-nosnippet>896</a>        }
@@ -1001,47 +1001,47 @@
 <a href=#928 id=928 data-nosnippet>928</a>    </span><span class="kw">pub struct </span><a href="#914-973">InputHints</a>: <a href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a> {
 <a href=#929 id=929 data-nosnippet>929</a>        <span class="doccomment">/// No special behaviour suggested
 <a href=#930 id=930 data-nosnippet>930</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_INPUT_HINT_NONE"</span>)]
-<a href=#931 id=931 data-nosnippet>931</a>        </span><span class="kw">const </span>NONE = ffi::<a href="../../../gtk4_sys/constant.GTK_INPUT_HINT_NONE.html">GTK_INPUT_HINT_NONE</a> <span class="kw">as _</span>;
+<a href=#931 id=931 data-nosnippet>931</a>        </span><span class="kw">const </span>NONE = ffi::GTK_INPUT_HINT_NONE <span class="kw">as _</span>;
 <a href=#932 id=932 data-nosnippet>932</a>        <span class="doccomment">/// Suggest checking for typos
 <a href=#933 id=933 data-nosnippet>933</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_INPUT_HINT_SPELLCHECK"</span>)]
-<a href=#934 id=934 data-nosnippet>934</a>        </span><span class="kw">const </span>SPELLCHECK = ffi::<a href="../../../gtk4_sys/constant.GTK_INPUT_HINT_SPELLCHECK.html">GTK_INPUT_HINT_SPELLCHECK</a> <span class="kw">as _</span>;
+<a href=#934 id=934 data-nosnippet>934</a>        </span><span class="kw">const </span>SPELLCHECK = ffi::GTK_INPUT_HINT_SPELLCHECK <span class="kw">as _</span>;
 <a href=#935 id=935 data-nosnippet>935</a>        <span class="doccomment">/// Suggest not checking for typos
 <a href=#936 id=936 data-nosnippet>936</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_INPUT_HINT_NO_SPELLCHECK"</span>)]
-<a href=#937 id=937 data-nosnippet>937</a>        </span><span class="kw">const </span>NO_SPELLCHECK = ffi::<a href="../../../gtk4_sys/constant.GTK_INPUT_HINT_NO_SPELLCHECK.html">GTK_INPUT_HINT_NO_SPELLCHECK</a> <span class="kw">as _</span>;
+<a href=#937 id=937 data-nosnippet>937</a>        </span><span class="kw">const </span>NO_SPELLCHECK = ffi::GTK_INPUT_HINT_NO_SPELLCHECK <span class="kw">as _</span>;
 <a href=#938 id=938 data-nosnippet>938</a>        <span class="doccomment">/// Suggest word completion
 <a href=#939 id=939 data-nosnippet>939</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_INPUT_HINT_WORD_COMPLETION"</span>)]
-<a href=#940 id=940 data-nosnippet>940</a>        </span><span class="kw">const </span>WORD_COMPLETION = ffi::<a href="../../../gtk4_sys/constant.GTK_INPUT_HINT_WORD_COMPLETION.html">GTK_INPUT_HINT_WORD_COMPLETION</a> <span class="kw">as _</span>;
+<a href=#940 id=940 data-nosnippet>940</a>        </span><span class="kw">const </span>WORD_COMPLETION = ffi::GTK_INPUT_HINT_WORD_COMPLETION <span class="kw">as _</span>;
 <a href=#941 id=941 data-nosnippet>941</a>        <span class="doccomment">/// Suggest to convert all text to lowercase
 <a href=#942 id=942 data-nosnippet>942</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_INPUT_HINT_LOWERCASE"</span>)]
-<a href=#943 id=943 data-nosnippet>943</a>        </span><span class="kw">const </span>LOWERCASE = ffi::<a href="../../../gtk4_sys/constant.GTK_INPUT_HINT_LOWERCASE.html">GTK_INPUT_HINT_LOWERCASE</a> <span class="kw">as _</span>;
+<a href=#943 id=943 data-nosnippet>943</a>        </span><span class="kw">const </span>LOWERCASE = ffi::GTK_INPUT_HINT_LOWERCASE <span class="kw">as _</span>;
 <a href=#944 id=944 data-nosnippet>944</a>        <span class="doccomment">/// Suggest to capitalize all text
 <a href=#945 id=945 data-nosnippet>945</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_INPUT_HINT_UPPERCASE_CHARS"</span>)]
-<a href=#946 id=946 data-nosnippet>946</a>        </span><span class="kw">const </span>UPPERCASE_CHARS = ffi::<a href="../../../gtk4_sys/constant.GTK_INPUT_HINT_UPPERCASE_CHARS.html">GTK_INPUT_HINT_UPPERCASE_CHARS</a> <span class="kw">as _</span>;
+<a href=#946 id=946 data-nosnippet>946</a>        </span><span class="kw">const </span>UPPERCASE_CHARS = ffi::GTK_INPUT_HINT_UPPERCASE_CHARS <span class="kw">as _</span>;
 <a href=#947 id=947 data-nosnippet>947</a>        <span class="doccomment">/// Suggest to capitalize the first
 <a href=#948 id=948 data-nosnippet>948</a>        ///   character of each word
 <a href=#949 id=949 data-nosnippet>949</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_INPUT_HINT_UPPERCASE_WORDS"</span>)]
-<a href=#950 id=950 data-nosnippet>950</a>        </span><span class="kw">const </span>UPPERCASE_WORDS = ffi::<a href="../../../gtk4_sys/constant.GTK_INPUT_HINT_UPPERCASE_WORDS.html">GTK_INPUT_HINT_UPPERCASE_WORDS</a> <span class="kw">as _</span>;
+<a href=#950 id=950 data-nosnippet>950</a>        </span><span class="kw">const </span>UPPERCASE_WORDS = ffi::GTK_INPUT_HINT_UPPERCASE_WORDS <span class="kw">as _</span>;
 <a href=#951 id=951 data-nosnippet>951</a>        <span class="doccomment">/// Suggest to capitalize the
 <a href=#952 id=952 data-nosnippet>952</a>        ///   first word of each sentence
 <a href=#953 id=953 data-nosnippet>953</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_INPUT_HINT_UPPERCASE_SENTENCES"</span>)]
-<a href=#954 id=954 data-nosnippet>954</a>        </span><span class="kw">const </span>UPPERCASE_SENTENCES = ffi::<a href="../../../gtk4_sys/constant.GTK_INPUT_HINT_UPPERCASE_SENTENCES.html">GTK_INPUT_HINT_UPPERCASE_SENTENCES</a> <span class="kw">as _</span>;
+<a href=#954 id=954 data-nosnippet>954</a>        </span><span class="kw">const </span>UPPERCASE_SENTENCES = ffi::GTK_INPUT_HINT_UPPERCASE_SENTENCES <span class="kw">as _</span>;
 <a href=#955 id=955 data-nosnippet>955</a>        <span class="doccomment">/// Suggest to not show an onscreen keyboard
 <a href=#956 id=956 data-nosnippet>956</a>        ///   (e.g for a calculator that already has all the keys).
 <a href=#957 id=957 data-nosnippet>957</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_INPUT_HINT_INHIBIT_OSK"</span>)]
-<a href=#958 id=958 data-nosnippet>958</a>        </span><span class="kw">const </span>INHIBIT_OSK = ffi::<a href="../../../gtk4_sys/constant.GTK_INPUT_HINT_INHIBIT_OSK.html">GTK_INPUT_HINT_INHIBIT_OSK</a> <span class="kw">as _</span>;
+<a href=#958 id=958 data-nosnippet>958</a>        </span><span class="kw">const </span>INHIBIT_OSK = ffi::GTK_INPUT_HINT_INHIBIT_OSK <span class="kw">as _</span>;
 <a href=#959 id=959 data-nosnippet>959</a>        <span class="doccomment">/// The text is vertical
 <a href=#960 id=960 data-nosnippet>960</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_INPUT_HINT_VERTICAL_WRITING"</span>)]
-<a href=#961 id=961 data-nosnippet>961</a>        </span><span class="kw">const </span>VERTICAL_WRITING = ffi::<a href="../../../gtk4_sys/constant.GTK_INPUT_HINT_VERTICAL_WRITING.html">GTK_INPUT_HINT_VERTICAL_WRITING</a> <span class="kw">as _</span>;
+<a href=#961 id=961 data-nosnippet>961</a>        </span><span class="kw">const </span>VERTICAL_WRITING = ffi::GTK_INPUT_HINT_VERTICAL_WRITING <span class="kw">as _</span>;
 <a href=#962 id=962 data-nosnippet>962</a>        <span class="doccomment">/// Suggest offering Emoji support
 <a href=#963 id=963 data-nosnippet>963</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_INPUT_HINT_EMOJI"</span>)]
-<a href=#964 id=964 data-nosnippet>964</a>        </span><span class="kw">const </span>EMOJI = ffi::<a href="../../../gtk4_sys/constant.GTK_INPUT_HINT_EMOJI.html">GTK_INPUT_HINT_EMOJI</a> <span class="kw">as _</span>;
+<a href=#964 id=964 data-nosnippet>964</a>        </span><span class="kw">const </span>EMOJI = ffi::GTK_INPUT_HINT_EMOJI <span class="kw">as _</span>;
 <a href=#965 id=965 data-nosnippet>965</a>        <span class="doccomment">/// Suggest not offering Emoji support
 <a href=#966 id=966 data-nosnippet>966</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_INPUT_HINT_NO_EMOJI"</span>)]
-<a href=#967 id=967 data-nosnippet>967</a>        </span><span class="kw">const </span>NO_EMOJI = ffi::<a href="../../../gtk4_sys/constant.GTK_INPUT_HINT_NO_EMOJI.html">GTK_INPUT_HINT_NO_EMOJI</a> <span class="kw">as _</span>;
+<a href=#967 id=967 data-nosnippet>967</a>        </span><span class="kw">const </span>NO_EMOJI = ffi::GTK_INPUT_HINT_NO_EMOJI <span class="kw">as _</span>;
 <a href=#968 id=968 data-nosnippet>968</a>        <span class="doccomment">/// Request that the input method should not
 <a href=#969 id=969 data-nosnippet>969</a>        ///    update personalized data (like typing history)
 <a href=#970 id=970 data-nosnippet>970</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_INPUT_HINT_PRIVATE"</span>)]
-<a href=#971 id=971 data-nosnippet>971</a>        </span><span class="kw">const </span>PRIVATE = ffi::<a href="../../../gtk4_sys/constant.GTK_INPUT_HINT_PRIVATE.html">GTK_INPUT_HINT_PRIVATE</a> <span class="kw">as _</span>;
+<a href=#971 id=971 data-nosnippet>971</a>        </span><span class="kw">const </span>PRIVATE = ffi::GTK_INPUT_HINT_PRIVATE <span class="kw">as _</span>;
 <a href=#972 id=972 data-nosnippet>972</a>    }
 <a href=#973 id=973 data-nosnippet>973</a>}
 <a href=#974 id=974 data-nosnippet>974</a>
@@ -1099,7 +1099,7 @@
 <a href=#1026 id=1026 data-nosnippet>1026</a><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/trait.ToValue.html">ToValue</a> <span class="kw">for </span><a href="#914-973">InputHints</a> {
 <a href=#1027 id=1027 data-nosnippet>1027</a>    <span class="attr">#[inline]
 <a href=#1028 id=1028 data-nosnippet>1028</a>    </span><span class="kw">fn </span>to_value(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a> {
-<a href=#1029 id=1029 data-nosnippet>1029</a>        <span class="kw">let </span><span class="kw-2">mut </span>value = glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>::for_value_type::&lt;<span class="self">Self</span>&gt;();
+<a href=#1029 id=1029 data-nosnippet>1029</a>        <span class="kw">let </span><span class="kw-2">mut </span>value = glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html#method.for_value_type">for_value_type</a>::&lt;<span class="self">Self</span>&gt;();
 <a href=#1030 id=1030 data-nosnippet>1030</a>        <span class="kw">unsafe </span>{
 <a href=#1031 id=1031 data-nosnippet>1031</a>            glib::gobject_ffi::g_value_set_flags(<a href="#1029">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtrMut.html#tymethod.to_glib_none_mut">to_glib_none_mut</a>().<span class="number">0</span>, <a class="self" href="#1028">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>());
 <a href=#1032 id=1032 data-nosnippet>1032</a>        }
@@ -1130,14 +1130,14 @@
 <a href=#1057 id=1057 data-nosnippet>1057</a>    </span><span class="kw">pub struct </span><a href="#1051-1069">ListScrollFlags</a>: <a href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a> {
 <a href=#1058 id=1058 data-nosnippet>1058</a>        <span class="doccomment">/// Don't do anything extra
 <a href=#1059 id=1059 data-nosnippet>1059</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_LIST_SCROLL_NONE"</span>)]
-<a href=#1060 id=1060 data-nosnippet>1060</a>        </span><span class="kw">const </span>NONE = ffi::<a href="../../../gtk4_sys/constant.GTK_LIST_SCROLL_NONE.html">GTK_LIST_SCROLL_NONE</a> <span class="kw">as _</span>;
+<a href=#1060 id=1060 data-nosnippet>1060</a>        </span><span class="kw">const </span>NONE = ffi::GTK_LIST_SCROLL_NONE <span class="kw">as _</span>;
 <a href=#1061 id=1061 data-nosnippet>1061</a>        <span class="doccomment">/// Focus the target item
 <a href=#1062 id=1062 data-nosnippet>1062</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_LIST_SCROLL_FOCUS"</span>)]
-<a href=#1063 id=1063 data-nosnippet>1063</a>        </span><span class="kw">const </span>FOCUS = ffi::<a href="../../../gtk4_sys/constant.GTK_LIST_SCROLL_FOCUS.html">GTK_LIST_SCROLL_FOCUS</a> <span class="kw">as _</span>;
+<a href=#1063 id=1063 data-nosnippet>1063</a>        </span><span class="kw">const </span>FOCUS = ffi::GTK_LIST_SCROLL_FOCUS <span class="kw">as _</span>;
 <a href=#1064 id=1064 data-nosnippet>1064</a>        <span class="doccomment">/// Select the target item and
 <a href=#1065 id=1065 data-nosnippet>1065</a>        ///   unselect all other items.
 <a href=#1066 id=1066 data-nosnippet>1066</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_LIST_SCROLL_SELECT"</span>)]
-<a href=#1067 id=1067 data-nosnippet>1067</a>        </span><span class="kw">const </span>SELECT = ffi::<a href="../../../gtk4_sys/constant.GTK_LIST_SCROLL_SELECT.html">GTK_LIST_SCROLL_SELECT</a> <span class="kw">as _</span>;
+<a href=#1067 id=1067 data-nosnippet>1067</a>        </span><span class="kw">const </span>SELECT = ffi::GTK_LIST_SCROLL_SELECT <span class="kw">as _</span>;
 <a href=#1068 id=1068 data-nosnippet>1068</a>    }
 <a href=#1069 id=1069 data-nosnippet>1069</a>}
 <a href=#1070 id=1070 data-nosnippet>1070</a>
@@ -1209,7 +1209,7 @@
 <a href=#1136 id=1136 data-nosnippet>1136</a></span><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/trait.ToValue.html">ToValue</a> <span class="kw">for </span><a href="#1051-1069">ListScrollFlags</a> {
 <a href=#1137 id=1137 data-nosnippet>1137</a>    <span class="attr">#[inline]
 <a href=#1138 id=1138 data-nosnippet>1138</a>    </span><span class="kw">fn </span>to_value(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a> {
-<a href=#1139 id=1139 data-nosnippet>1139</a>        <span class="kw">let </span><span class="kw-2">mut </span>value = glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>::for_value_type::&lt;<span class="self">Self</span>&gt;();
+<a href=#1139 id=1139 data-nosnippet>1139</a>        <span class="kw">let </span><span class="kw-2">mut </span>value = glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html#method.for_value_type">for_value_type</a>::&lt;<span class="self">Self</span>&gt;();
 <a href=#1140 id=1140 data-nosnippet>1140</a>        <span class="kw">unsafe </span>{
 <a href=#1141 id=1141 data-nosnippet>1141</a>            glib::gobject_ffi::g_value_set_flags(<a href="#1139">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtrMut.html#tymethod.to_glib_none_mut">to_glib_none_mut</a>().<span class="number">0</span>, <a class="self" href="#1138">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>());
 <a href=#1142 id=1142 data-nosnippet>1142</a>        }
@@ -1239,13 +1239,13 @@
 <a href=#1166 id=1166 data-nosnippet>1166</a>    </span><span class="kw">pub struct </span><a href="#1162-1177">PickFlags</a>: <a href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a> {
 <a href=#1167 id=1167 data-nosnippet>1167</a>        <span class="doccomment">/// The default behavior, include widgets that are receiving events
 <a href=#1168 id=1168 data-nosnippet>1168</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_PICK_DEFAULT"</span>)]
-<a href=#1169 id=1169 data-nosnippet>1169</a>        </span><span class="kw">const </span>DEFAULT = ffi::<a href="../../../gtk4_sys/constant.GTK_PICK_DEFAULT.html">GTK_PICK_DEFAULT</a> <span class="kw">as _</span>;
+<a href=#1169 id=1169 data-nosnippet>1169</a>        </span><span class="kw">const </span>DEFAULT = ffi::GTK_PICK_DEFAULT <span class="kw">as _</span>;
 <a href=#1170 id=1170 data-nosnippet>1170</a>        <span class="doccomment">/// Include widgets that are insensitive
 <a href=#1171 id=1171 data-nosnippet>1171</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_PICK_INSENSITIVE"</span>)]
-<a href=#1172 id=1172 data-nosnippet>1172</a>        </span><span class="kw">const </span>INSENSITIVE = ffi::<a href="../../../gtk4_sys/constant.GTK_PICK_INSENSITIVE.html">GTK_PICK_INSENSITIVE</a> <span class="kw">as _</span>;
+<a href=#1172 id=1172 data-nosnippet>1172</a>        </span><span class="kw">const </span>INSENSITIVE = ffi::GTK_PICK_INSENSITIVE <span class="kw">as _</span>;
 <a href=#1173 id=1173 data-nosnippet>1173</a>        <span class="doccomment">/// Include widgets that are marked as non-targetable. See [`can-target`][struct@crate::Widget#can-target]
 <a href=#1174 id=1174 data-nosnippet>1174</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_PICK_NON_TARGETABLE"</span>)]
-<a href=#1175 id=1175 data-nosnippet>1175</a>        </span><span class="kw">const </span>NON_TARGETABLE = ffi::<a href="../../../gtk4_sys/constant.GTK_PICK_NON_TARGETABLE.html">GTK_PICK_NON_TARGETABLE</a> <span class="kw">as _</span>;
+<a href=#1175 id=1175 data-nosnippet>1175</a>        </span><span class="kw">const </span>NON_TARGETABLE = ffi::GTK_PICK_NON_TARGETABLE <span class="kw">as _</span>;
 <a href=#1176 id=1176 data-nosnippet>1176</a>    }
 <a href=#1177 id=1177 data-nosnippet>1177</a>}
 <a href=#1178 id=1178 data-nosnippet>1178</a>
@@ -1303,7 +1303,7 @@
 <a href=#1230 id=1230 data-nosnippet>1230</a><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/trait.ToValue.html">ToValue</a> <span class="kw">for </span><a href="#1162-1177">PickFlags</a> {
 <a href=#1231 id=1231 data-nosnippet>1231</a>    <span class="attr">#[inline]
 <a href=#1232 id=1232 data-nosnippet>1232</a>    </span><span class="kw">fn </span>to_value(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a> {
-<a href=#1233 id=1233 data-nosnippet>1233</a>        <span class="kw">let </span><span class="kw-2">mut </span>value = glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>::for_value_type::&lt;<span class="self">Self</span>&gt;();
+<a href=#1233 id=1233 data-nosnippet>1233</a>        <span class="kw">let </span><span class="kw-2">mut </span>value = glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html#method.for_value_type">for_value_type</a>::&lt;<span class="self">Self</span>&gt;();
 <a href=#1234 id=1234 data-nosnippet>1234</a>        <span class="kw">unsafe </span>{
 <a href=#1235 id=1235 data-nosnippet>1235</a>            glib::gobject_ffi::g_value_set_flags(<a href="#1233">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtrMut.html#tymethod.to_glib_none_mut">to_glib_none_mut</a>().<span class="number">0</span>, <a class="self" href="#1232">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>());
 <a href=#1236 id=1236 data-nosnippet>1236</a>        }
@@ -1334,11 +1334,11 @@
 <a href=#1261 id=1261 data-nosnippet>1261</a>        </span><span class="attr">#[cfg(feature = <span class="string">"v4_14"</span>)]
 <a href=#1262 id=1262 data-nosnippet>1262</a>        #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_14"</span>)))]
 <a href=#1263 id=1263 data-nosnippet>1263</a>        #[doc(alias = <span class="string">"GTK_POPOVER_MENU_SLIDING"</span>)]
-<a href=#1264 id=1264 data-nosnippet>1264</a>        </span><span class="kw">const </span>SLIDING = ffi::<a href="../../../gtk4_sys/constant.GTK_POPOVER_MENU_SLIDING.html">GTK_POPOVER_MENU_SLIDING</a> <span class="kw">as _</span>;
+<a href=#1264 id=1264 data-nosnippet>1264</a>        </span><span class="kw">const </span>SLIDING = ffi::GTK_POPOVER_MENU_SLIDING <span class="kw">as _</span>;
 <a href=#1265 id=1265 data-nosnippet>1265</a>        <span class="doccomment">/// Submenus are presented as traditional, nested
 <a href=#1266 id=1266 data-nosnippet>1266</a>        ///   popovers.
 <a href=#1267 id=1267 data-nosnippet>1267</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_POPOVER_MENU_NESTED"</span>)]
-<a href=#1268 id=1268 data-nosnippet>1268</a>        </span><span class="kw">const </span>NESTED = ffi::<a href="../../../gtk4_sys/constant.GTK_POPOVER_MENU_NESTED.html">GTK_POPOVER_MENU_NESTED</a> <span class="kw">as _</span>;
+<a href=#1268 id=1268 data-nosnippet>1268</a>        </span><span class="kw">const </span>NESTED = ffi::GTK_POPOVER_MENU_NESTED <span class="kw">as _</span>;
 <a href=#1269 id=1269 data-nosnippet>1269</a>    }
 <a href=#1270 id=1270 data-nosnippet>1270</a>}
 <a href=#1271 id=1271 data-nosnippet>1271</a>
@@ -1396,7 +1396,7 @@
 <a href=#1323 id=1323 data-nosnippet>1323</a><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/trait.ToValue.html">ToValue</a> <span class="kw">for </span><a href="#1254-1270">PopoverMenuFlags</a> {
 <a href=#1324 id=1324 data-nosnippet>1324</a>    <span class="attr">#[inline]
 <a href=#1325 id=1325 data-nosnippet>1325</a>    </span><span class="kw">fn </span>to_value(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a> {
-<a href=#1326 id=1326 data-nosnippet>1326</a>        <span class="kw">let </span><span class="kw-2">mut </span>value = glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>::for_value_type::&lt;<span class="self">Self</span>&gt;();
+<a href=#1326 id=1326 data-nosnippet>1326</a>        <span class="kw">let </span><span class="kw-2">mut </span>value = glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html#method.for_value_type">for_value_type</a>::&lt;<span class="self">Self</span>&gt;();
 <a href=#1327 id=1327 data-nosnippet>1327</a>        <span class="kw">unsafe </span>{
 <a href=#1328 id=1328 data-nosnippet>1328</a>            glib::gobject_ffi::g_value_set_flags(<a href="#1326">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtrMut.html#tymethod.to_glib_none_mut">to_glib_none_mut</a>().<span class="number">0</span>, <a class="self" href="#1325">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>());
 <a href=#1329 id=1329 data-nosnippet>1329</a>        }
@@ -1430,38 +1430,38 @@
 <a href=#1357 id=1357 data-nosnippet>1357</a>    </span><span class="kw">pub struct </span><a href="#1348-1393">PrintCapabilities</a>: <a href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a> {
 <a href=#1358 id=1358 data-nosnippet>1358</a>        <span class="doccomment">/// Print dialog will offer printing even/odd pages.
 <a href=#1359 id=1359 data-nosnippet>1359</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_PRINT_CAPABILITY_PAGE_SET"</span>)]
-<a href=#1360 id=1360 data-nosnippet>1360</a>        </span><span class="kw">const </span>PAGE_SET = ffi::<a href="../../../gtk4_sys/constant.GTK_PRINT_CAPABILITY_PAGE_SET.html">GTK_PRINT_CAPABILITY_PAGE_SET</a> <span class="kw">as _</span>;
+<a href=#1360 id=1360 data-nosnippet>1360</a>        </span><span class="kw">const </span>PAGE_SET = ffi::GTK_PRINT_CAPABILITY_PAGE_SET <span class="kw">as _</span>;
 <a href=#1361 id=1361 data-nosnippet>1361</a>        <span class="doccomment">/// Print dialog will allow to print multiple copies.
 <a href=#1362 id=1362 data-nosnippet>1362</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_PRINT_CAPABILITY_COPIES"</span>)]
-<a href=#1363 id=1363 data-nosnippet>1363</a>        </span><span class="kw">const </span>COPIES = ffi::<a href="../../../gtk4_sys/constant.GTK_PRINT_CAPABILITY_COPIES.html">GTK_PRINT_CAPABILITY_COPIES</a> <span class="kw">as _</span>;
+<a href=#1363 id=1363 data-nosnippet>1363</a>        </span><span class="kw">const </span>COPIES = ffi::GTK_PRINT_CAPABILITY_COPIES <span class="kw">as _</span>;
 <a href=#1364 id=1364 data-nosnippet>1364</a>        <span class="doccomment">/// Print dialog will allow to collate multiple copies.
 <a href=#1365 id=1365 data-nosnippet>1365</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_PRINT_CAPABILITY_COLLATE"</span>)]
-<a href=#1366 id=1366 data-nosnippet>1366</a>        </span><span class="kw">const </span>COLLATE = ffi::<a href="../../../gtk4_sys/constant.GTK_PRINT_CAPABILITY_COLLATE.html">GTK_PRINT_CAPABILITY_COLLATE</a> <span class="kw">as _</span>;
+<a href=#1366 id=1366 data-nosnippet>1366</a>        </span><span class="kw">const </span>COLLATE = ffi::GTK_PRINT_CAPABILITY_COLLATE <span class="kw">as _</span>;
 <a href=#1367 id=1367 data-nosnippet>1367</a>        <span class="doccomment">/// Print dialog will allow to print pages in reverse order.
 <a href=#1368 id=1368 data-nosnippet>1368</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_PRINT_CAPABILITY_REVERSE"</span>)]
-<a href=#1369 id=1369 data-nosnippet>1369</a>        </span><span class="kw">const </span>REVERSE = ffi::<a href="../../../gtk4_sys/constant.GTK_PRINT_CAPABILITY_REVERSE.html">GTK_PRINT_CAPABILITY_REVERSE</a> <span class="kw">as _</span>;
+<a href=#1369 id=1369 data-nosnippet>1369</a>        </span><span class="kw">const </span>REVERSE = ffi::GTK_PRINT_CAPABILITY_REVERSE <span class="kw">as _</span>;
 <a href=#1370 id=1370 data-nosnippet>1370</a>        <span class="doccomment">/// Print dialog will allow to scale the output.
 <a href=#1371 id=1371 data-nosnippet>1371</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_PRINT_CAPABILITY_SCALE"</span>)]
-<a href=#1372 id=1372 data-nosnippet>1372</a>        </span><span class="kw">const </span>SCALE = ffi::<a href="../../../gtk4_sys/constant.GTK_PRINT_CAPABILITY_SCALE.html">GTK_PRINT_CAPABILITY_SCALE</a> <span class="kw">as _</span>;
+<a href=#1372 id=1372 data-nosnippet>1372</a>        </span><span class="kw">const </span>SCALE = ffi::GTK_PRINT_CAPABILITY_SCALE <span class="kw">as _</span>;
 <a href=#1373 id=1373 data-nosnippet>1373</a>        <span class="doccomment">/// The program will send the document to
 <a href=#1374 id=1374 data-nosnippet>1374</a>        ///   the printer in PDF format
 <a href=#1375 id=1375 data-nosnippet>1375</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_PRINT_CAPABILITY_GENERATE_PDF"</span>)]
-<a href=#1376 id=1376 data-nosnippet>1376</a>        </span><span class="kw">const </span>GENERATE_PDF = ffi::<a href="../../../gtk4_sys/constant.GTK_PRINT_CAPABILITY_GENERATE_PDF.html">GTK_PRINT_CAPABILITY_GENERATE_PDF</a> <span class="kw">as _</span>;
+<a href=#1376 id=1376 data-nosnippet>1376</a>        </span><span class="kw">const </span>GENERATE_PDF = ffi::GTK_PRINT_CAPABILITY_GENERATE_PDF <span class="kw">as _</span>;
 <a href=#1377 id=1377 data-nosnippet>1377</a>        <span class="doccomment">/// The program will send the document to
 <a href=#1378 id=1378 data-nosnippet>1378</a>        ///   the printer in Postscript format
 <a href=#1379 id=1379 data-nosnippet>1379</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_PRINT_CAPABILITY_GENERATE_PS"</span>)]
-<a href=#1380 id=1380 data-nosnippet>1380</a>        </span><span class="kw">const </span>GENERATE_PS = ffi::<a href="../../../gtk4_sys/constant.GTK_PRINT_CAPABILITY_GENERATE_PS.html">GTK_PRINT_CAPABILITY_GENERATE_PS</a> <span class="kw">as _</span>;
+<a href=#1380 id=1380 data-nosnippet>1380</a>        </span><span class="kw">const </span>GENERATE_PS = ffi::GTK_PRINT_CAPABILITY_GENERATE_PS <span class="kw">as _</span>;
 <a href=#1381 id=1381 data-nosnippet>1381</a>        <span class="doccomment">/// Print dialog will offer a preview
 <a href=#1382 id=1382 data-nosnippet>1382</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_PRINT_CAPABILITY_PREVIEW"</span>)]
-<a href=#1383 id=1383 data-nosnippet>1383</a>        </span><span class="kw">const </span>PREVIEW = ffi::<a href="../../../gtk4_sys/constant.GTK_PRINT_CAPABILITY_PREVIEW.html">GTK_PRINT_CAPABILITY_PREVIEW</a> <span class="kw">as _</span>;
+<a href=#1383 id=1383 data-nosnippet>1383</a>        </span><span class="kw">const </span>PREVIEW = ffi::GTK_PRINT_CAPABILITY_PREVIEW <span class="kw">as _</span>;
 <a href=#1384 id=1384 data-nosnippet>1384</a>        <span class="doccomment">/// Print dialog will offer printing multiple
 <a href=#1385 id=1385 data-nosnippet>1385</a>        ///   pages per sheet
 <a href=#1386 id=1386 data-nosnippet>1386</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_PRINT_CAPABILITY_NUMBER_UP"</span>)]
-<a href=#1387 id=1387 data-nosnippet>1387</a>        </span><span class="kw">const </span>NUMBER_UP = ffi::<a href="../../../gtk4_sys/constant.GTK_PRINT_CAPABILITY_NUMBER_UP.html">GTK_PRINT_CAPABILITY_NUMBER_UP</a> <span class="kw">as _</span>;
+<a href=#1387 id=1387 data-nosnippet>1387</a>        </span><span class="kw">const </span>NUMBER_UP = ffi::GTK_PRINT_CAPABILITY_NUMBER_UP <span class="kw">as _</span>;
 <a href=#1388 id=1388 data-nosnippet>1388</a>        <span class="doccomment">/// Print dialog will allow to rearrange
 <a href=#1389 id=1389 data-nosnippet>1389</a>        ///   pages when printing multiple pages per sheet
 <a href=#1390 id=1390 data-nosnippet>1390</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_PRINT_CAPABILITY_NUMBER_UP_LAYOUT"</span>)]
-<a href=#1391 id=1391 data-nosnippet>1391</a>        </span><span class="kw">const </span>NUMBER_UP_LAYOUT = ffi::<a href="../../../gtk4_sys/constant.GTK_PRINT_CAPABILITY_NUMBER_UP_LAYOUT.html">GTK_PRINT_CAPABILITY_NUMBER_UP_LAYOUT</a> <span class="kw">as _</span>;
+<a href=#1391 id=1391 data-nosnippet>1391</a>        </span><span class="kw">const </span>NUMBER_UP_LAYOUT = ffi::GTK_PRINT_CAPABILITY_NUMBER_UP_LAYOUT <span class="kw">as _</span>;
 <a href=#1392 id=1392 data-nosnippet>1392</a>    }
 <a href=#1393 id=1393 data-nosnippet>1393</a>}
 <a href=#1394 id=1394 data-nosnippet>1394</a>
@@ -1526,7 +1526,7 @@
 <a href=#1453 id=1453 data-nosnippet>1453</a></span><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/trait.ToValue.html">ToValue</a> <span class="kw">for </span><a href="#1348-1393">PrintCapabilities</a> {
 <a href=#1454 id=1454 data-nosnippet>1454</a>    <span class="attr">#[inline]
 <a href=#1455 id=1455 data-nosnippet>1455</a>    </span><span class="kw">fn </span>to_value(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a> {
-<a href=#1456 id=1456 data-nosnippet>1456</a>        <span class="kw">let </span><span class="kw-2">mut </span>value = glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>::for_value_type::&lt;<span class="self">Self</span>&gt;();
+<a href=#1456 id=1456 data-nosnippet>1456</a>        <span class="kw">let </span><span class="kw-2">mut </span>value = glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html#method.for_value_type">for_value_type</a>::&lt;<span class="self">Self</span>&gt;();
 <a href=#1457 id=1457 data-nosnippet>1457</a>        <span class="kw">unsafe </span>{
 <a href=#1458 id=1458 data-nosnippet>1458</a>            glib::gobject_ffi::g_value_set_flags(<a href="#1456">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtrMut.html#tymethod.to_glib_none_mut">to_glib_none_mut</a>().<span class="number">0</span>, <a class="self" href="#1455">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>());
 <a href=#1459 id=1459 data-nosnippet>1459</a>        }
@@ -1559,7 +1559,7 @@
 <a href=#1486 id=1486 data-nosnippet>1486</a>        ///   action that can be activated. If this flag is not set,
 <a href=#1487 id=1487 data-nosnippet>1487</a>        ///   a future activation may select a different action.
 <a href=#1488 id=1488 data-nosnippet>1488</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_SHORTCUT_ACTION_EXCLUSIVE"</span>)]
-<a href=#1489 id=1489 data-nosnippet>1489</a>        </span><span class="kw">const </span>EXCLUSIVE = ffi::<a href="../../../gtk4_sys/constant.GTK_SHORTCUT_ACTION_EXCLUSIVE.html">GTK_SHORTCUT_ACTION_EXCLUSIVE</a> <span class="kw">as _</span>;
+<a href=#1489 id=1489 data-nosnippet>1489</a>        </span><span class="kw">const </span>EXCLUSIVE = ffi::GTK_SHORTCUT_ACTION_EXCLUSIVE <span class="kw">as _</span>;
 <a href=#1490 id=1490 data-nosnippet>1490</a>    }
 <a href=#1491 id=1491 data-nosnippet>1491</a>}
 <a href=#1492 id=1492 data-nosnippet>1492</a>
@@ -1617,7 +1617,7 @@
 <a href=#1544 id=1544 data-nosnippet>1544</a><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/trait.ToValue.html">ToValue</a> <span class="kw">for </span><a href="#1478-1491">ShortcutActionFlags</a> {
 <a href=#1545 id=1545 data-nosnippet>1545</a>    <span class="attr">#[inline]
 <a href=#1546 id=1546 data-nosnippet>1546</a>    </span><span class="kw">fn </span>to_value(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a> {
-<a href=#1547 id=1547 data-nosnippet>1547</a>        <span class="kw">let </span><span class="kw-2">mut </span>value = glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>::for_value_type::&lt;<span class="self">Self</span>&gt;();
+<a href=#1547 id=1547 data-nosnippet>1547</a>        <span class="kw">let </span><span class="kw-2">mut </span>value = glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html#method.for_value_type">for_value_type</a>::&lt;<span class="self">Self</span>&gt;();
 <a href=#1548 id=1548 data-nosnippet>1548</a>        <span class="kw">unsafe </span>{
 <a href=#1549 id=1549 data-nosnippet>1549</a>            glib::gobject_ffi::g_value_set_flags(<a href="#1547">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtrMut.html#tymethod.to_glib_none_mut">to_glib_none_mut</a>().<span class="number">0</span>, <a class="self" href="#1546">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>());
 <a href=#1550 id=1550 data-nosnippet>1550</a>        }
@@ -1649,52 +1649,52 @@
 <a href=#1576 id=1576 data-nosnippet>1576</a>    </span><span class="kw">pub struct </span><a href="#1568-1626">StateFlags</a>: <a href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a> {
 <a href=#1577 id=1577 data-nosnippet>1577</a>        <span class="doccomment">/// State during normal operation
 <a href=#1578 id=1578 data-nosnippet>1578</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_STATE_FLAG_NORMAL"</span>)]
-<a href=#1579 id=1579 data-nosnippet>1579</a>        </span><span class="kw">const </span>NORMAL = ffi::<a href="../../../gtk4_sys/constant.GTK_STATE_FLAG_NORMAL.html">GTK_STATE_FLAG_NORMAL</a> <span class="kw">as _</span>;
+<a href=#1579 id=1579 data-nosnippet>1579</a>        </span><span class="kw">const </span>NORMAL = ffi::GTK_STATE_FLAG_NORMAL <span class="kw">as _</span>;
 <a href=#1580 id=1580 data-nosnippet>1580</a>        <span class="doccomment">/// Widget is active
 <a href=#1581 id=1581 data-nosnippet>1581</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_STATE_FLAG_ACTIVE"</span>)]
-<a href=#1582 id=1582 data-nosnippet>1582</a>        </span><span class="kw">const </span>ACTIVE = ffi::<a href="../../../gtk4_sys/constant.GTK_STATE_FLAG_ACTIVE.html">GTK_STATE_FLAG_ACTIVE</a> <span class="kw">as _</span>;
+<a href=#1582 id=1582 data-nosnippet>1582</a>        </span><span class="kw">const </span>ACTIVE = ffi::GTK_STATE_FLAG_ACTIVE <span class="kw">as _</span>;
 <a href=#1583 id=1583 data-nosnippet>1583</a>        <span class="doccomment">/// Widget has a mouse pointer over it
 <a href=#1584 id=1584 data-nosnippet>1584</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_STATE_FLAG_PRELIGHT"</span>)]
-<a href=#1585 id=1585 data-nosnippet>1585</a>        </span><span class="kw">const </span>PRELIGHT = ffi::<a href="../../../gtk4_sys/constant.GTK_STATE_FLAG_PRELIGHT.html">GTK_STATE_FLAG_PRELIGHT</a> <span class="kw">as _</span>;
+<a href=#1585 id=1585 data-nosnippet>1585</a>        </span><span class="kw">const </span>PRELIGHT = ffi::GTK_STATE_FLAG_PRELIGHT <span class="kw">as _</span>;
 <a href=#1586 id=1586 data-nosnippet>1586</a>        <span class="doccomment">/// Widget is selected
 <a href=#1587 id=1587 data-nosnippet>1587</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_STATE_FLAG_SELECTED"</span>)]
-<a href=#1588 id=1588 data-nosnippet>1588</a>        </span><span class="kw">const </span>SELECTED = ffi::<a href="../../../gtk4_sys/constant.GTK_STATE_FLAG_SELECTED.html">GTK_STATE_FLAG_SELECTED</a> <span class="kw">as _</span>;
+<a href=#1588 id=1588 data-nosnippet>1588</a>        </span><span class="kw">const </span>SELECTED = ffi::GTK_STATE_FLAG_SELECTED <span class="kw">as _</span>;
 <a href=#1589 id=1589 data-nosnippet>1589</a>        <span class="doccomment">/// Widget is insensitive
 <a href=#1590 id=1590 data-nosnippet>1590</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_STATE_FLAG_INSENSITIVE"</span>)]
-<a href=#1591 id=1591 data-nosnippet>1591</a>        </span><span class="kw">const </span>INSENSITIVE = ffi::<a href="../../../gtk4_sys/constant.GTK_STATE_FLAG_INSENSITIVE.html">GTK_STATE_FLAG_INSENSITIVE</a> <span class="kw">as _</span>;
+<a href=#1591 id=1591 data-nosnippet>1591</a>        </span><span class="kw">const </span>INSENSITIVE = ffi::GTK_STATE_FLAG_INSENSITIVE <span class="kw">as _</span>;
 <a href=#1592 id=1592 data-nosnippet>1592</a>        <span class="doccomment">/// Widget is inconsistent
 <a href=#1593 id=1593 data-nosnippet>1593</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_STATE_FLAG_INCONSISTENT"</span>)]
-<a href=#1594 id=1594 data-nosnippet>1594</a>        </span><span class="kw">const </span>INCONSISTENT = ffi::<a href="../../../gtk4_sys/constant.GTK_STATE_FLAG_INCONSISTENT.html">GTK_STATE_FLAG_INCONSISTENT</a> <span class="kw">as _</span>;
+<a href=#1594 id=1594 data-nosnippet>1594</a>        </span><span class="kw">const </span>INCONSISTENT = ffi::GTK_STATE_FLAG_INCONSISTENT <span class="kw">as _</span>;
 <a href=#1595 id=1595 data-nosnippet>1595</a>        <span class="doccomment">/// Widget has the keyboard focus
 <a href=#1596 id=1596 data-nosnippet>1596</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_STATE_FLAG_FOCUSED"</span>)]
-<a href=#1597 id=1597 data-nosnippet>1597</a>        </span><span class="kw">const </span>FOCUSED = ffi::<a href="../../../gtk4_sys/constant.GTK_STATE_FLAG_FOCUSED.html">GTK_STATE_FLAG_FOCUSED</a> <span class="kw">as _</span>;
+<a href=#1597 id=1597 data-nosnippet>1597</a>        </span><span class="kw">const </span>FOCUSED = ffi::GTK_STATE_FLAG_FOCUSED <span class="kw">as _</span>;
 <a href=#1598 id=1598 data-nosnippet>1598</a>        <span class="doccomment">/// Widget is in a background toplevel window
 <a href=#1599 id=1599 data-nosnippet>1599</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_STATE_FLAG_BACKDROP"</span>)]
-<a href=#1600 id=1600 data-nosnippet>1600</a>        </span><span class="kw">const </span>BACKDROP = ffi::<a href="../../../gtk4_sys/constant.GTK_STATE_FLAG_BACKDROP.html">GTK_STATE_FLAG_BACKDROP</a> <span class="kw">as _</span>;
+<a href=#1600 id=1600 data-nosnippet>1600</a>        </span><span class="kw">const </span>BACKDROP = ffi::GTK_STATE_FLAG_BACKDROP <span class="kw">as _</span>;
 <a href=#1601 id=1601 data-nosnippet>1601</a>        <span class="doccomment">/// Widget is in left-to-right text direction
 <a href=#1602 id=1602 data-nosnippet>1602</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_STATE_FLAG_DIR_LTR"</span>)]
-<a href=#1603 id=1603 data-nosnippet>1603</a>        </span><span class="kw">const </span>DIR_LTR = ffi::<a href="../../../gtk4_sys/constant.GTK_STATE_FLAG_DIR_LTR.html">GTK_STATE_FLAG_DIR_LTR</a> <span class="kw">as _</span>;
+<a href=#1603 id=1603 data-nosnippet>1603</a>        </span><span class="kw">const </span>DIR_LTR = ffi::GTK_STATE_FLAG_DIR_LTR <span class="kw">as _</span>;
 <a href=#1604 id=1604 data-nosnippet>1604</a>        <span class="doccomment">/// Widget is in right-to-left text direction
 <a href=#1605 id=1605 data-nosnippet>1605</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_STATE_FLAG_DIR_RTL"</span>)]
-<a href=#1606 id=1606 data-nosnippet>1606</a>        </span><span class="kw">const </span>DIR_RTL = ffi::<a href="../../../gtk4_sys/constant.GTK_STATE_FLAG_DIR_RTL.html">GTK_STATE_FLAG_DIR_RTL</a> <span class="kw">as _</span>;
+<a href=#1606 id=1606 data-nosnippet>1606</a>        </span><span class="kw">const </span>DIR_RTL = ffi::GTK_STATE_FLAG_DIR_RTL <span class="kw">as _</span>;
 <a href=#1607 id=1607 data-nosnippet>1607</a>        <span class="doccomment">/// Widget is a link
 <a href=#1608 id=1608 data-nosnippet>1608</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_STATE_FLAG_LINK"</span>)]
-<a href=#1609 id=1609 data-nosnippet>1609</a>        </span><span class="kw">const </span>LINK = ffi::<a href="../../../gtk4_sys/constant.GTK_STATE_FLAG_LINK.html">GTK_STATE_FLAG_LINK</a> <span class="kw">as _</span>;
+<a href=#1609 id=1609 data-nosnippet>1609</a>        </span><span class="kw">const </span>LINK = ffi::GTK_STATE_FLAG_LINK <span class="kw">as _</span>;
 <a href=#1610 id=1610 data-nosnippet>1610</a>        <span class="doccomment">/// The location the widget points to has already been visited
 <a href=#1611 id=1611 data-nosnippet>1611</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_STATE_FLAG_VISITED"</span>)]
-<a href=#1612 id=1612 data-nosnippet>1612</a>        </span><span class="kw">const </span>VISITED = ffi::<a href="../../../gtk4_sys/constant.GTK_STATE_FLAG_VISITED.html">GTK_STATE_FLAG_VISITED</a> <span class="kw">as _</span>;
+<a href=#1612 id=1612 data-nosnippet>1612</a>        </span><span class="kw">const </span>VISITED = ffi::GTK_STATE_FLAG_VISITED <span class="kw">as _</span>;
 <a href=#1613 id=1613 data-nosnippet>1613</a>        <span class="doccomment">/// Widget is checked
 <a href=#1614 id=1614 data-nosnippet>1614</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_STATE_FLAG_CHECKED"</span>)]
-<a href=#1615 id=1615 data-nosnippet>1615</a>        </span><span class="kw">const </span>CHECKED = ffi::<a href="../../../gtk4_sys/constant.GTK_STATE_FLAG_CHECKED.html">GTK_STATE_FLAG_CHECKED</a> <span class="kw">as _</span>;
+<a href=#1615 id=1615 data-nosnippet>1615</a>        </span><span class="kw">const </span>CHECKED = ffi::GTK_STATE_FLAG_CHECKED <span class="kw">as _</span>;
 <a href=#1616 id=1616 data-nosnippet>1616</a>        <span class="doccomment">/// Widget is highlighted as a drop target for DND
 <a href=#1617 id=1617 data-nosnippet>1617</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_STATE_FLAG_DROP_ACTIVE"</span>)]
-<a href=#1618 id=1618 data-nosnippet>1618</a>        </span><span class="kw">const </span>DROP_ACTIVE = ffi::<a href="../../../gtk4_sys/constant.GTK_STATE_FLAG_DROP_ACTIVE.html">GTK_STATE_FLAG_DROP_ACTIVE</a> <span class="kw">as _</span>;
+<a href=#1618 id=1618 data-nosnippet>1618</a>        </span><span class="kw">const </span>DROP_ACTIVE = ffi::GTK_STATE_FLAG_DROP_ACTIVE <span class="kw">as _</span>;
 <a href=#1619 id=1619 data-nosnippet>1619</a>        <span class="doccomment">/// Widget has the visible focus
 <a href=#1620 id=1620 data-nosnippet>1620</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_STATE_FLAG_FOCUS_VISIBLE"</span>)]
-<a href=#1621 id=1621 data-nosnippet>1621</a>        </span><span class="kw">const </span>FOCUS_VISIBLE = ffi::<a href="../../../gtk4_sys/constant.GTK_STATE_FLAG_FOCUS_VISIBLE.html">GTK_STATE_FLAG_FOCUS_VISIBLE</a> <span class="kw">as _</span>;
+<a href=#1621 id=1621 data-nosnippet>1621</a>        </span><span class="kw">const </span>FOCUS_VISIBLE = ffi::GTK_STATE_FLAG_FOCUS_VISIBLE <span class="kw">as _</span>;
 <a href=#1622 id=1622 data-nosnippet>1622</a>        <span class="doccomment">/// Widget contains the keyboard focus
 <a href=#1623 id=1623 data-nosnippet>1623</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_STATE_FLAG_FOCUS_WITHIN"</span>)]
-<a href=#1624 id=1624 data-nosnippet>1624</a>        </span><span class="kw">const </span>FOCUS_WITHIN = ffi::<a href="../../../gtk4_sys/constant.GTK_STATE_FLAG_FOCUS_WITHIN.html">GTK_STATE_FLAG_FOCUS_WITHIN</a> <span class="kw">as _</span>;
+<a href=#1624 id=1624 data-nosnippet>1624</a>        </span><span class="kw">const </span>FOCUS_WITHIN = ffi::GTK_STATE_FLAG_FOCUS_WITHIN <span class="kw">as _</span>;
 <a href=#1625 id=1625 data-nosnippet>1625</a>    }
 <a href=#1626 id=1626 data-nosnippet>1626</a>}
 <a href=#1627 id=1627 data-nosnippet>1627</a>
@@ -1752,7 +1752,7 @@
 <a href=#1679 id=1679 data-nosnippet>1679</a><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/trait.ToValue.html">ToValue</a> <span class="kw">for </span><a href="#1568-1626">StateFlags</a> {
 <a href=#1680 id=1680 data-nosnippet>1680</a>    <span class="attr">#[inline]
 <a href=#1681 id=1681 data-nosnippet>1681</a>    </span><span class="kw">fn </span>to_value(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a> {
-<a href=#1682 id=1682 data-nosnippet>1682</a>        <span class="kw">let </span><span class="kw-2">mut </span>value = glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>::for_value_type::&lt;<span class="self">Self</span>&gt;();
+<a href=#1682 id=1682 data-nosnippet>1682</a>        <span class="kw">let </span><span class="kw-2">mut </span>value = glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html#method.for_value_type">for_value_type</a>::&lt;<span class="self">Self</span>&gt;();
 <a href=#1683 id=1683 data-nosnippet>1683</a>        <span class="kw">unsafe </span>{
 <a href=#1684 id=1684 data-nosnippet>1684</a>            glib::gobject_ffi::g_value_set_flags(<a href="#1682">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtrMut.html#tymethod.to_glib_none_mut">to_glib_none_mut</a>().<span class="number">0</span>, <a class="self" href="#1681">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>());
 <a href=#1685 id=1685 data-nosnippet>1685</a>        }
@@ -1782,19 +1782,19 @@
 <a href=#1709 id=1709 data-nosnippet>1709</a>    </span><span class="kw">pub struct </span><a href="#1703-1726">StyleContextPrintFlags</a>: <a href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a> {
 <a href=#1710 id=1710 data-nosnippet>1710</a>        <span class="doccomment">/// Default value.
 <a href=#1711 id=1711 data-nosnippet>1711</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_STYLE_CONTEXT_PRINT_NONE"</span>)]
-<a href=#1712 id=1712 data-nosnippet>1712</a>        </span><span class="kw">const </span>NONE = ffi::<a href="../../../gtk4_sys/constant.GTK_STYLE_CONTEXT_PRINT_NONE.html">GTK_STYLE_CONTEXT_PRINT_NONE</a> <span class="kw">as _</span>;
+<a href=#1712 id=1712 data-nosnippet>1712</a>        </span><span class="kw">const </span>NONE = ffi::GTK_STYLE_CONTEXT_PRINT_NONE <span class="kw">as _</span>;
 <a href=#1713 id=1713 data-nosnippet>1713</a>        <span class="doccomment">/// Print the entire tree of
 <a href=#1714 id=1714 data-nosnippet>1714</a>        ///   CSS nodes starting at the style context's node
 <a href=#1715 id=1715 data-nosnippet>1715</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_STYLE_CONTEXT_PRINT_RECURSE"</span>)]
-<a href=#1716 id=1716 data-nosnippet>1716</a>        </span><span class="kw">const </span>RECURSE = ffi::<a href="../../../gtk4_sys/constant.GTK_STYLE_CONTEXT_PRINT_RECURSE.html">GTK_STYLE_CONTEXT_PRINT_RECURSE</a> <span class="kw">as _</span>;
+<a href=#1716 id=1716 data-nosnippet>1716</a>        </span><span class="kw">const </span>RECURSE = ffi::GTK_STYLE_CONTEXT_PRINT_RECURSE <span class="kw">as _</span>;
 <a href=#1717 id=1717 data-nosnippet>1717</a>        <span class="doccomment">/// Show the values of the
 <a href=#1718 id=1718 data-nosnippet>1718</a>        ///   CSS properties for each node
 <a href=#1719 id=1719 data-nosnippet>1719</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_STYLE_CONTEXT_PRINT_SHOW_STYLE"</span>)]
-<a href=#1720 id=1720 data-nosnippet>1720</a>        </span><span class="kw">const </span>SHOW_STYLE = ffi::<a href="../../../gtk4_sys/constant.GTK_STYLE_CONTEXT_PRINT_SHOW_STYLE.html">GTK_STYLE_CONTEXT_PRINT_SHOW_STYLE</a> <span class="kw">as _</span>;
+<a href=#1720 id=1720 data-nosnippet>1720</a>        </span><span class="kw">const </span>SHOW_STYLE = ffi::GTK_STYLE_CONTEXT_PRINT_SHOW_STYLE <span class="kw">as _</span>;
 <a href=#1721 id=1721 data-nosnippet>1721</a>        <span class="doccomment">/// Show information about
 <a href=#1722 id=1722 data-nosnippet>1722</a>        ///   what changes affect the styles
 <a href=#1723 id=1723 data-nosnippet>1723</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_STYLE_CONTEXT_PRINT_SHOW_CHANGE"</span>)]
-<a href=#1724 id=1724 data-nosnippet>1724</a>        </span><span class="kw">const </span>SHOW_CHANGE = ffi::<a href="../../../gtk4_sys/constant.GTK_STYLE_CONTEXT_PRINT_SHOW_CHANGE.html">GTK_STYLE_CONTEXT_PRINT_SHOW_CHANGE</a> <span class="kw">as _</span>;
+<a href=#1724 id=1724 data-nosnippet>1724</a>        </span><span class="kw">const </span>SHOW_CHANGE = ffi::GTK_STYLE_CONTEXT_PRINT_SHOW_CHANGE <span class="kw">as _</span>;
 <a href=#1725 id=1725 data-nosnippet>1725</a>    }
 <a href=#1726 id=1726 data-nosnippet>1726</a>}
 <a href=#1727 id=1727 data-nosnippet>1727</a>
@@ -1852,7 +1852,7 @@
 <a href=#1779 id=1779 data-nosnippet>1779</a><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/trait.ToValue.html">ToValue</a> <span class="kw">for </span><a href="#1703-1726">StyleContextPrintFlags</a> {
 <a href=#1780 id=1780 data-nosnippet>1780</a>    <span class="attr">#[inline]
 <a href=#1781 id=1781 data-nosnippet>1781</a>    </span><span class="kw">fn </span>to_value(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a> {
-<a href=#1782 id=1782 data-nosnippet>1782</a>        <span class="kw">let </span><span class="kw-2">mut </span>value = glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>::for_value_type::&lt;<span class="self">Self</span>&gt;();
+<a href=#1782 id=1782 data-nosnippet>1782</a>        <span class="kw">let </span><span class="kw-2">mut </span>value = glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html#method.for_value_type">for_value_type</a>::&lt;<span class="self">Self</span>&gt;();
 <a href=#1783 id=1783 data-nosnippet>1783</a>        <span class="kw">unsafe </span>{
 <a href=#1784 id=1784 data-nosnippet>1784</a>            glib::gobject_ffi::g_value_set_flags(<a href="#1782">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtrMut.html#tymethod.to_glib_none_mut">to_glib_none_mut</a>().<span class="number">0</span>, <a class="self" href="#1781">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>());
 <a href=#1785 id=1785 data-nosnippet>1785</a>        }
@@ -1888,27 +1888,27 @@
 <a href=#1815 id=1815 data-nosnippet>1815</a>        <span class="doccomment">/// Whether to run animations. If disabled,
 <a href=#1816 id=1816 data-nosnippet>1816</a>        ///   state changes are applied without transitions
 <a href=#1817 id=1817 data-nosnippet>1817</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_SVG_ANIMATIONS"</span>)]
-<a href=#1818 id=1818 data-nosnippet>1818</a>        </span><span class="kw">const </span>ANIMATIONS = ffi::<a href="../../../gtk4_sys/constant.GTK_SVG_ANIMATIONS.html">GTK_SVG_ANIMATIONS</a> <span class="kw">as _</span>;
+<a href=#1818 id=1818 data-nosnippet>1818</a>        </span><span class="kw">const </span>ANIMATIONS = ffi::GTK_SVG_ANIMATIONS <span class="kw">as _</span>;
 <a href=#1819 id=1819 data-nosnippet>1819</a>        <span class="doccomment">/// Whether to use system resources,
 <a href=#1820 id=1820 data-nosnippet>1820</a>        ///   such as fonts. If disabled, only embedded fonts are used
 <a href=#1821 id=1821 data-nosnippet>1821</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_SVG_SYSTEM_RESOURCES"</span>)]
-<a href=#1822 id=1822 data-nosnippet>1822</a>        </span><span class="kw">const </span>SYSTEM_RESOURCES = ffi::<a href="../../../gtk4_sys/constant.GTK_SVG_SYSTEM_RESOURCES.html">GTK_SVG_SYSTEM_RESOURCES</a> <span class="kw">as _</span>;
+<a href=#1822 id=1822 data-nosnippet>1822</a>        </span><span class="kw">const </span>SYSTEM_RESOURCES = ffi::GTK_SVG_SYSTEM_RESOURCES <span class="kw">as _</span>;
 <a href=#1823 id=1823 data-nosnippet>1823</a>        <span class="doccomment">/// Whether to load external
 <a href=#1824 id=1824 data-nosnippet>1824</a>        ///   resources, such as images. If disabled, only embedded
 <a href=#1825 id=1825 data-nosnippet>1825</a>        ///   images are loaded
 <a href=#1826 id=1826 data-nosnippet>1826</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_SVG_EXTERNAL_RESOURCES"</span>)]
-<a href=#1827 id=1827 data-nosnippet>1827</a>        </span><span class="kw">const </span>EXTERNAL_RESOURCES = ffi::<a href="../../../gtk4_sys/constant.GTK_SVG_EXTERNAL_RESOURCES.html">GTK_SVG_EXTERNAL_RESOURCES</a> <span class="kw">as _</span>;
+<a href=#1827 id=1827 data-nosnippet>1827</a>        </span><span class="kw">const </span>EXTERNAL_RESOURCES = ffi::GTK_SVG_EXTERNAL_RESOURCES <span class="kw">as _</span>;
 <a href=#1828 id=1828 data-nosnippet>1828</a>        <span class="doccomment">/// Whether to allow gpa extensions, such
 <a href=#1829 id=1829 data-nosnippet>1829</a>        ///   as states and transitions
 <a href=#1830 id=1830 data-nosnippet>1830</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_SVG_EXTENSIONS"</span>)]
-<a href=#1831 id=1831 data-nosnippet>1831</a>        </span><span class="kw">const </span>EXTENSIONS = ffi::<a href="../../../gtk4_sys/constant.GTK_SVG_EXTENSIONS.html">GTK_SVG_EXTENSIONS</a> <span class="kw">as _</span>;
+<a href=#1831 id=1831 data-nosnippet>1831</a>        </span><span class="kw">const </span>EXTENSIONS = ffi::GTK_SVG_EXTENSIONS <span class="kw">as _</span>;
 <a href=#1832 id=1832 data-nosnippet>1832</a>        <span class="doccomment">/// This feature is meant for
 <a href=#1833 id=1833 data-nosnippet>1833</a>        ///   compatibility with old symbolic icons. If this is enabled,
 <a href=#1834 id=1834 data-nosnippet>1834</a>        ///   fill and stroke attributes are ignored. The used colors
 <a href=#1835 id=1835 data-nosnippet>1835</a>        ///   are derived from symbolic style classes if present, and
 <a href=#1836 id=1836 data-nosnippet>1836</a>        ///   the default fill color is the symbolic foreground color.
 <a href=#1837 id=1837 data-nosnippet>1837</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_SVG_TRADITIONAL_SYMBOLIC"</span>)]
-<a href=#1838 id=1838 data-nosnippet>1838</a>        </span><span class="kw">const </span>TRADITIONAL_SYMBOLIC = ffi::<a href="../../../gtk4_sys/constant.GTK_SVG_TRADITIONAL_SYMBOLIC.html">GTK_SVG_TRADITIONAL_SYMBOLIC</a> <span class="kw">as _</span>;
+<a href=#1838 id=1838 data-nosnippet>1838</a>        </span><span class="kw">const </span>TRADITIONAL_SYMBOLIC = ffi::GTK_SVG_TRADITIONAL_SYMBOLIC <span class="kw">as _</span>;
 <a href=#1839 id=1839 data-nosnippet>1839</a>    }
 <a href=#1840 id=1840 data-nosnippet>1840</a>}
 <a href=#1841 id=1841 data-nosnippet>1841</a>
@@ -1980,7 +1980,7 @@
 <a href=#1907 id=1907 data-nosnippet>1907</a></span><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/trait.ToValue.html">ToValue</a> <span class="kw">for </span><a href="#1804-1840">SvgFeatures</a> {
 <a href=#1908 id=1908 data-nosnippet>1908</a>    <span class="attr">#[inline]
 <a href=#1909 id=1909 data-nosnippet>1909</a>    </span><span class="kw">fn </span>to_value(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a> {
-<a href=#1910 id=1910 data-nosnippet>1910</a>        <span class="kw">let </span><span class="kw-2">mut </span>value = glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>::for_value_type::&lt;<span class="self">Self</span>&gt;();
+<a href=#1910 id=1910 data-nosnippet>1910</a>        <span class="kw">let </span><span class="kw-2">mut </span>value = glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html#method.for_value_type">for_value_type</a>::&lt;<span class="self">Self</span>&gt;();
 <a href=#1911 id=1911 data-nosnippet>1911</a>        <span class="kw">unsafe </span>{
 <a href=#1912 id=1912 data-nosnippet>1912</a>            glib::gobject_ffi::g_value_set_flags(<a href="#1910">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtrMut.html#tymethod.to_glib_none_mut">to_glib_none_mut</a>().<span class="number">0</span>, <a class="self" href="#1909">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>());
 <a href=#1913 id=1913 data-nosnippet>1913</a>        }
@@ -2014,19 +2014,19 @@
 <a href=#1941 id=1941 data-nosnippet>1941</a>        <span class="doccomment">/// Be notified before text
 <a href=#1942 id=1942 data-nosnippet>1942</a>        ///   is inserted into the underlying buffer.
 <a href=#1943 id=1943 data-nosnippet>1943</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_TEXT_BUFFER_NOTIFY_BEFORE_INSERT"</span>)]
-<a href=#1944 id=1944 data-nosnippet>1944</a>        </span><span class="kw">const </span>BEFORE_INSERT = ffi::<a href="../../../gtk4_sys/constant.GTK_TEXT_BUFFER_NOTIFY_BEFORE_INSERT.html">GTK_TEXT_BUFFER_NOTIFY_BEFORE_INSERT</a> <span class="kw">as _</span>;
+<a href=#1944 id=1944 data-nosnippet>1944</a>        </span><span class="kw">const </span>BEFORE_INSERT = ffi::GTK_TEXT_BUFFER_NOTIFY_BEFORE_INSERT <span class="kw">as _</span>;
 <a href=#1945 id=1945 data-nosnippet>1945</a>        <span class="doccomment">/// Be notified after text
 <a href=#1946 id=1946 data-nosnippet>1946</a>        ///   has been inserted into the underlying buffer.
 <a href=#1947 id=1947 data-nosnippet>1947</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_TEXT_BUFFER_NOTIFY_AFTER_INSERT"</span>)]
-<a href=#1948 id=1948 data-nosnippet>1948</a>        </span><span class="kw">const </span>AFTER_INSERT = ffi::<a href="../../../gtk4_sys/constant.GTK_TEXT_BUFFER_NOTIFY_AFTER_INSERT.html">GTK_TEXT_BUFFER_NOTIFY_AFTER_INSERT</a> <span class="kw">as _</span>;
+<a href=#1948 id=1948 data-nosnippet>1948</a>        </span><span class="kw">const </span>AFTER_INSERT = ffi::GTK_TEXT_BUFFER_NOTIFY_AFTER_INSERT <span class="kw">as _</span>;
 <a href=#1949 id=1949 data-nosnippet>1949</a>        <span class="doccomment">/// Be notified before text
 <a href=#1950 id=1950 data-nosnippet>1950</a>        ///   is deleted from the underlying buffer.
 <a href=#1951 id=1951 data-nosnippet>1951</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_TEXT_BUFFER_NOTIFY_BEFORE_DELETE"</span>)]
-<a href=#1952 id=1952 data-nosnippet>1952</a>        </span><span class="kw">const </span>BEFORE_DELETE = ffi::<a href="../../../gtk4_sys/constant.GTK_TEXT_BUFFER_NOTIFY_BEFORE_DELETE.html">GTK_TEXT_BUFFER_NOTIFY_BEFORE_DELETE</a> <span class="kw">as _</span>;
+<a href=#1952 id=1952 data-nosnippet>1952</a>        </span><span class="kw">const </span>BEFORE_DELETE = ffi::GTK_TEXT_BUFFER_NOTIFY_BEFORE_DELETE <span class="kw">as _</span>;
 <a href=#1953 id=1953 data-nosnippet>1953</a>        <span class="doccomment">/// Be notified after text
 <a href=#1954 id=1954 data-nosnippet>1954</a>        ///   has been deleted from the underlying buffer.
 <a href=#1955 id=1955 data-nosnippet>1955</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_TEXT_BUFFER_NOTIFY_AFTER_DELETE"</span>)]
-<a href=#1956 id=1956 data-nosnippet>1956</a>        </span><span class="kw">const </span>AFTER_DELETE = ffi::<a href="../../../gtk4_sys/constant.GTK_TEXT_BUFFER_NOTIFY_AFTER_DELETE.html">GTK_TEXT_BUFFER_NOTIFY_AFTER_DELETE</a> <span class="kw">as _</span>;
+<a href=#1956 id=1956 data-nosnippet>1956</a>        </span><span class="kw">const </span>AFTER_DELETE = ffi::GTK_TEXT_BUFFER_NOTIFY_AFTER_DELETE <span class="kw">as _</span>;
 <a href=#1957 id=1957 data-nosnippet>1957</a>    }
 <a href=#1958 id=1958 data-nosnippet>1958</a>}
 <a href=#1959 id=1959 data-nosnippet>1959</a>
@@ -2098,7 +2098,7 @@
 <a href=#2025 id=2025 data-nosnippet>2025</a></span><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/trait.ToValue.html">ToValue</a> <span class="kw">for </span><a href="#1934-1958">TextBufferNotifyFlags</a> {
 <a href=#2026 id=2026 data-nosnippet>2026</a>    <span class="attr">#[inline]
 <a href=#2027 id=2027 data-nosnippet>2027</a>    </span><span class="kw">fn </span>to_value(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a> {
-<a href=#2028 id=2028 data-nosnippet>2028</a>        <span class="kw">let </span><span class="kw-2">mut </span>value = glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>::for_value_type::&lt;<span class="self">Self</span>&gt;();
+<a href=#2028 id=2028 data-nosnippet>2028</a>        <span class="kw">let </span><span class="kw-2">mut </span>value = glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html#method.for_value_type">for_value_type</a>::&lt;<span class="self">Self</span>&gt;();
 <a href=#2029 id=2029 data-nosnippet>2029</a>        <span class="kw">unsafe </span>{
 <a href=#2030 id=2030 data-nosnippet>2030</a>            glib::gobject_ffi::g_value_set_flags(<a href="#2028">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtrMut.html#tymethod.to_glib_none_mut">to_glib_none_mut</a>().<span class="number">0</span>, <a class="self" href="#2027">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>());
 <a href=#2031 id=2031 data-nosnippet>2031</a>        }
@@ -2133,15 +2133,15 @@
 <a href=#2060 id=2060 data-nosnippet>2060</a>        <span class="doccomment">/// Search only visible data. A search match may
 <a href=#2061 id=2061 data-nosnippet>2061</a>        /// have invisible text interspersed.
 <a href=#2062 id=2062 data-nosnippet>2062</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_TEXT_SEARCH_VISIBLE_ONLY"</span>)]
-<a href=#2063 id=2063 data-nosnippet>2063</a>        </span><span class="kw">const </span>VISIBLE_ONLY = ffi::<a href="../../../gtk4_sys/constant.GTK_TEXT_SEARCH_VISIBLE_ONLY.html">GTK_TEXT_SEARCH_VISIBLE_ONLY</a> <span class="kw">as _</span>;
+<a href=#2063 id=2063 data-nosnippet>2063</a>        </span><span class="kw">const </span>VISIBLE_ONLY = ffi::GTK_TEXT_SEARCH_VISIBLE_ONLY <span class="kw">as _</span>;
 <a href=#2064 id=2064 data-nosnippet>2064</a>        <span class="doccomment">/// Search only text. A match may have paintables or
 <a href=#2065 id=2065 data-nosnippet>2065</a>        /// child widgets mixed inside the matched range.
 <a href=#2066 id=2066 data-nosnippet>2066</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_TEXT_SEARCH_TEXT_ONLY"</span>)]
-<a href=#2067 id=2067 data-nosnippet>2067</a>        </span><span class="kw">const </span>TEXT_ONLY = ffi::<a href="../../../gtk4_sys/constant.GTK_TEXT_SEARCH_TEXT_ONLY.html">GTK_TEXT_SEARCH_TEXT_ONLY</a> <span class="kw">as _</span>;
+<a href=#2067 id=2067 data-nosnippet>2067</a>        </span><span class="kw">const </span>TEXT_ONLY = ffi::GTK_TEXT_SEARCH_TEXT_ONLY <span class="kw">as _</span>;
 <a href=#2068 id=2068 data-nosnippet>2068</a>        <span class="doccomment">/// The text will be matched regardless of
 <a href=#2069 id=2069 data-nosnippet>2069</a>        /// what case it is in.
 <a href=#2070 id=2070 data-nosnippet>2070</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_TEXT_SEARCH_CASE_INSENSITIVE"</span>)]
-<a href=#2071 id=2071 data-nosnippet>2071</a>        </span><span class="kw">const </span>CASE_INSENSITIVE = ffi::<a href="../../../gtk4_sys/constant.GTK_TEXT_SEARCH_CASE_INSENSITIVE.html">GTK_TEXT_SEARCH_CASE_INSENSITIVE</a> <span class="kw">as _</span>;
+<a href=#2071 id=2071 data-nosnippet>2071</a>        </span><span class="kw">const </span>CASE_INSENSITIVE = ffi::GTK_TEXT_SEARCH_CASE_INSENSITIVE <span class="kw">as _</span>;
 <a href=#2072 id=2072 data-nosnippet>2072</a>    }
 <a href=#2073 id=2073 data-nosnippet>2073</a>}
 <a href=#2074 id=2074 data-nosnippet>2074</a>
@@ -2199,7 +2199,7 @@
 <a href=#2126 id=2126 data-nosnippet>2126</a><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/trait.ToValue.html">ToValue</a> <span class="kw">for </span><a href="#2051-2073">TextSearchFlags</a> {
 <a href=#2127 id=2127 data-nosnippet>2127</a>    <span class="attr">#[inline]
 <a href=#2128 id=2128 data-nosnippet>2128</a>    </span><span class="kw">fn </span>to_value(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a> {
-<a href=#2129 id=2129 data-nosnippet>2129</a>        <span class="kw">let </span><span class="kw-2">mut </span>value = glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>::for_value_type::&lt;<span class="self">Self</span>&gt;();
+<a href=#2129 id=2129 data-nosnippet>2129</a>        <span class="kw">let </span><span class="kw-2">mut </span>value = glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html#method.for_value_type">for_value_type</a>::&lt;<span class="self">Self</span>&gt;();
 <a href=#2130 id=2130 data-nosnippet>2130</a>        <span class="kw">unsafe </span>{
 <a href=#2131 id=2131 data-nosnippet>2131</a>            glib::gobject_ffi::g_value_set_flags(<a href="#2129">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtrMut.html#tymethod.to_glib_none_mut">to_glib_none_mut</a>().<span class="number">0</span>, <a class="self" href="#2128">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>());
 <a href=#2132 id=2132 data-nosnippet>2132</a>        }
@@ -2238,11 +2238,11 @@
 <a href=#2165 id=2165 data-nosnippet>2165</a>        <span class="doccomment">/// iterators survive all signals
 <a href=#2166 id=2166 data-nosnippet>2166</a>        ///   emitted by the tree
 <a href=#2167 id=2167 data-nosnippet>2167</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_TREE_MODEL_ITERS_PERSIST"</span>)]
-<a href=#2168 id=2168 data-nosnippet>2168</a>        </span><span class="kw">const </span>ITERS_PERSIST = ffi::<a href="../../../gtk4_sys/constant.GTK_TREE_MODEL_ITERS_PERSIST.html">GTK_TREE_MODEL_ITERS_PERSIST</a> <span class="kw">as _</span>;
+<a href=#2168 id=2168 data-nosnippet>2168</a>        </span><span class="kw">const </span>ITERS_PERSIST = ffi::GTK_TREE_MODEL_ITERS_PERSIST <span class="kw">as _</span>;
 <a href=#2169 id=2169 data-nosnippet>2169</a>        <span class="doccomment">/// the model is a list only, and never
 <a href=#2170 id=2170 data-nosnippet>2170</a>        ///   has children
 <a href=#2171 id=2171 data-nosnippet>2171</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_TREE_MODEL_LIST_ONLY"</span>)]
-<a href=#2172 id=2172 data-nosnippet>2172</a>        </span><span class="kw">const </span>LIST_ONLY = ffi::<a href="../../../gtk4_sys/constant.GTK_TREE_MODEL_LIST_ONLY.html">GTK_TREE_MODEL_LIST_ONLY</a> <span class="kw">as _</span>;
+<a href=#2172 id=2172 data-nosnippet>2172</a>        </span><span class="kw">const </span>LIST_ONLY = ffi::GTK_TREE_MODEL_LIST_ONLY <span class="kw">as _</span>;
 <a href=#2173 id=2173 data-nosnippet>2173</a>    }
 <a href=#2174 id=2174 data-nosnippet>2174</a>}
 <a href=#2175 id=2175 data-nosnippet>2175</a>
@@ -2307,7 +2307,7 @@
 <a href=#2234 id=2234 data-nosnippet>2234</a></span><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/trait.ToValue.html">ToValue</a> <span class="kw">for </span><a href="#2150-2174">TreeModelFlags</a> {
 <a href=#2235 id=2235 data-nosnippet>2235</a>    <span class="attr">#[inline]
 <a href=#2236 id=2236 data-nosnippet>2236</a>    </span><span class="kw">fn </span>to_value(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a> {
-<a href=#2237 id=2237 data-nosnippet>2237</a>        <span class="kw">let </span><span class="kw-2">mut </span>value = glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>::for_value_type::&lt;<span class="self">Self</span>&gt;();
+<a href=#2237 id=2237 data-nosnippet>2237</a>        <span class="kw">let </span><span class="kw-2">mut </span>value = glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html#method.for_value_type">for_value_type</a>::&lt;<span class="self">Self</span>&gt;();
 <a href=#2238 id=2238 data-nosnippet>2238</a>        <span class="kw">unsafe </span>{
 <a href=#2239 id=2239 data-nosnippet>2239</a>            glib::gobject_ffi::g_value_set_flags(<a href="#2237">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtrMut.html#tymethod.to_glib_none_mut">to_glib_none_mut</a>().<span class="number">0</span>, <a class="self" href="#2236">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>());
 <a href=#2240 id=2240 data-nosnippet>2240</a>        }

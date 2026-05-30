@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gdk4/src/auto/flags.rs`."><title>flags.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-17e0aaed.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gdk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.97.0-nightly (82bee9650 2026-05-09)" data-channel="nightly" data-search-js="search-b5634cc7.js" data-stringdex-js="stringdex-2da4960a.js" data-settings-js="settings-170eb4bf.js" ><script src="../../../static.files/storage-41dd4d93.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-aa4d37ac.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-f7c3ffd8.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><a class="skip-main-content" href="#main-content">Skip to main content</a><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gdk4/src/auto/flags.rs`."><title>flags.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-17e0aaed.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gdk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.98.0-nightly (6368fd52c 2026-05-29)" data-channel="nightly" data-search-js="search-fd9372ac.js" data-stringdex-js="stringdex-2da4960a.js" data-settings-js="settings-170eb4bf.js" ><script src="../../../static.files/storage-41dd4d93.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-fcd733ba.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-f7c3ffd8.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><a class="skip-main-content" href="#main-content">Skip to main content</a><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
 
@@ -76,7 +76,7 @@
 <a href=#3 id=3 data-nosnippet>3</a>// DO NOT EDIT
 <a href=#4 id=4 data-nosnippet>4</a>
 <a href=#5 id=5 data-nosnippet>5</a></span><span class="kw">use </span><a href="../../../gdk4_sys/index.html"><span class="kw">crate</span>::ffi</a>;
-<a href=#6 id=6 data-nosnippet>6</a><span class="kw">use </span>glib::{bitflags::bitflags, prelude::<span class="kw-2">*</span>, translate::<span class="kw-2">*</span>};
+<a href=#6 id=6 data-nosnippet>6</a><span class="kw">use </span>glib::{bitflags::bitflags, <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/prelude/index.html">prelude</a>::<span class="kw-2">*</span>, <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/index.html">translate</a>::<span class="kw-2">*</span>};
 <a href=#7 id=7 data-nosnippet>7</a>
 <a href=#8 id=8 data-nosnippet>8</a><span class="macro">bitflags!</span> {
 <a href=#9 id=9 data-nosnippet>9</a>    <span class="doccomment">/// Positioning hints for aligning a surface relative to a rectangle.
@@ -99,31 +99,31 @@
 <a href=#26 id=26 data-nosnippet>26</a>    </span><span class="kw">pub struct </span><a href="#8-55">AnchorHints</a>: <a href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a> {
 <a href=#27 id=27 data-nosnippet>27</a>        <span class="doccomment">/// allow flipping anchors horizontally
 <a href=#28 id=28 data-nosnippet>28</a>        </span><span class="attr">#[doc(alias = <span class="string">"GDK_ANCHOR_FLIP_X"</span>)]
-<a href=#29 id=29 data-nosnippet>29</a>        </span><span class="kw">const </span>FLIP_X = ffi::<a href="../../../gdk4_sys/constant.GDK_ANCHOR_FLIP_X.html">GDK_ANCHOR_FLIP_X</a> <span class="kw">as _</span>;
+<a href=#29 id=29 data-nosnippet>29</a>        </span><span class="kw">const </span>FLIP_X = ffi::GDK_ANCHOR_FLIP_X <span class="kw">as _</span>;
 <a href=#30 id=30 data-nosnippet>30</a>        <span class="doccomment">/// allow flipping anchors vertically
 <a href=#31 id=31 data-nosnippet>31</a>        </span><span class="attr">#[doc(alias = <span class="string">"GDK_ANCHOR_FLIP_Y"</span>)]
-<a href=#32 id=32 data-nosnippet>32</a>        </span><span class="kw">const </span>FLIP_Y = ffi::<a href="../../../gdk4_sys/constant.GDK_ANCHOR_FLIP_Y.html">GDK_ANCHOR_FLIP_Y</a> <span class="kw">as _</span>;
+<a href=#32 id=32 data-nosnippet>32</a>        </span><span class="kw">const </span>FLIP_Y = ffi::GDK_ANCHOR_FLIP_Y <span class="kw">as _</span>;
 <a href=#33 id=33 data-nosnippet>33</a>        <span class="doccomment">/// allow sliding surface horizontally
 <a href=#34 id=34 data-nosnippet>34</a>        </span><span class="attr">#[doc(alias = <span class="string">"GDK_ANCHOR_SLIDE_X"</span>)]
-<a href=#35 id=35 data-nosnippet>35</a>        </span><span class="kw">const </span>SLIDE_X = ffi::<a href="../../../gdk4_sys/constant.GDK_ANCHOR_SLIDE_X.html">GDK_ANCHOR_SLIDE_X</a> <span class="kw">as _</span>;
+<a href=#35 id=35 data-nosnippet>35</a>        </span><span class="kw">const </span>SLIDE_X = ffi::GDK_ANCHOR_SLIDE_X <span class="kw">as _</span>;
 <a href=#36 id=36 data-nosnippet>36</a>        <span class="doccomment">/// allow sliding surface vertically
 <a href=#37 id=37 data-nosnippet>37</a>        </span><span class="attr">#[doc(alias = <span class="string">"GDK_ANCHOR_SLIDE_Y"</span>)]
-<a href=#38 id=38 data-nosnippet>38</a>        </span><span class="kw">const </span>SLIDE_Y = ffi::<a href="../../../gdk4_sys/constant.GDK_ANCHOR_SLIDE_Y.html">GDK_ANCHOR_SLIDE_Y</a> <span class="kw">as _</span>;
+<a href=#38 id=38 data-nosnippet>38</a>        </span><span class="kw">const </span>SLIDE_Y = ffi::GDK_ANCHOR_SLIDE_Y <span class="kw">as _</span>;
 <a href=#39 id=39 data-nosnippet>39</a>        <span class="doccomment">/// allow resizing surface horizontally
 <a href=#40 id=40 data-nosnippet>40</a>        </span><span class="attr">#[doc(alias = <span class="string">"GDK_ANCHOR_RESIZE_X"</span>)]
-<a href=#41 id=41 data-nosnippet>41</a>        </span><span class="kw">const </span>RESIZE_X = ffi::<a href="../../../gdk4_sys/constant.GDK_ANCHOR_RESIZE_X.html">GDK_ANCHOR_RESIZE_X</a> <span class="kw">as _</span>;
+<a href=#41 id=41 data-nosnippet>41</a>        </span><span class="kw">const </span>RESIZE_X = ffi::GDK_ANCHOR_RESIZE_X <span class="kw">as _</span>;
 <a href=#42 id=42 data-nosnippet>42</a>        <span class="doccomment">/// allow resizing surface vertically
 <a href=#43 id=43 data-nosnippet>43</a>        </span><span class="attr">#[doc(alias = <span class="string">"GDK_ANCHOR_RESIZE_Y"</span>)]
-<a href=#44 id=44 data-nosnippet>44</a>        </span><span class="kw">const </span>RESIZE_Y = ffi::<a href="../../../gdk4_sys/constant.GDK_ANCHOR_RESIZE_Y.html">GDK_ANCHOR_RESIZE_Y</a> <span class="kw">as _</span>;
+<a href=#44 id=44 data-nosnippet>44</a>        </span><span class="kw">const </span>RESIZE_Y = ffi::GDK_ANCHOR_RESIZE_Y <span class="kw">as _</span>;
 <a href=#45 id=45 data-nosnippet>45</a>        <span class="doccomment">/// allow flipping anchors on both axes
 <a href=#46 id=46 data-nosnippet>46</a>        </span><span class="attr">#[doc(alias = <span class="string">"GDK_ANCHOR_FLIP"</span>)]
-<a href=#47 id=47 data-nosnippet>47</a>        </span><span class="kw">const </span>FLIP = ffi::<a href="../../../gdk4_sys/constant.GDK_ANCHOR_FLIP.html">GDK_ANCHOR_FLIP</a> <span class="kw">as _</span>;
+<a href=#47 id=47 data-nosnippet>47</a>        </span><span class="kw">const </span>FLIP = ffi::GDK_ANCHOR_FLIP <span class="kw">as _</span>;
 <a href=#48 id=48 data-nosnippet>48</a>        <span class="doccomment">/// allow sliding surface on both axes
 <a href=#49 id=49 data-nosnippet>49</a>        </span><span class="attr">#[doc(alias = <span class="string">"GDK_ANCHOR_SLIDE"</span>)]
-<a href=#50 id=50 data-nosnippet>50</a>        </span><span class="kw">const </span>SLIDE = ffi::<a href="../../../gdk4_sys/constant.GDK_ANCHOR_SLIDE.html">GDK_ANCHOR_SLIDE</a> <span class="kw">as _</span>;
+<a href=#50 id=50 data-nosnippet>50</a>        </span><span class="kw">const </span>SLIDE = ffi::GDK_ANCHOR_SLIDE <span class="kw">as _</span>;
 <a href=#51 id=51 data-nosnippet>51</a>        <span class="doccomment">/// allow resizing surface on both axes
 <a href=#52 id=52 data-nosnippet>52</a>        </span><span class="attr">#[doc(alias = <span class="string">"GDK_ANCHOR_RESIZE"</span>)]
-<a href=#53 id=53 data-nosnippet>53</a>        </span><span class="kw">const </span>RESIZE = ffi::<a href="../../../gdk4_sys/constant.GDK_ANCHOR_RESIZE.html">GDK_ANCHOR_RESIZE</a> <span class="kw">as _</span>;
+<a href=#53 id=53 data-nosnippet>53</a>        </span><span class="kw">const </span>RESIZE = ffi::GDK_ANCHOR_RESIZE <span class="kw">as _</span>;
 <a href=#54 id=54 data-nosnippet>54</a>    }
 <a href=#55 id=55 data-nosnippet>55</a>}
 <a href=#56 id=56 data-nosnippet>56</a>
@@ -181,7 +181,7 @@
 <a href=#108 id=108 data-nosnippet>108</a><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/trait.ToValue.html">ToValue</a> <span class="kw">for </span><a href="#8-55">AnchorHints</a> {
 <a href=#109 id=109 data-nosnippet>109</a>    <span class="attr">#[inline]
 <a href=#110 id=110 data-nosnippet>110</a>    </span><span class="kw">fn </span>to_value(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a> {
-<a href=#111 id=111 data-nosnippet>111</a>        <span class="kw">let </span><span class="kw-2">mut </span>value = glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>::for_value_type::&lt;<span class="self">Self</span>&gt;();
+<a href=#111 id=111 data-nosnippet>111</a>        <span class="kw">let </span><span class="kw-2">mut </span>value = glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html#method.for_value_type">for_value_type</a>::&lt;<span class="self">Self</span>&gt;();
 <a href=#112 id=112 data-nosnippet>112</a>        <span class="kw">unsafe </span>{
 <a href=#113 id=113 data-nosnippet>113</a>            glib::gobject_ffi::g_value_set_flags(<a href="#111">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtrMut.html#tymethod.to_glib_none_mut">to_glib_none_mut</a>().<span class="number">0</span>, <a class="self" href="#110">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>());
 <a href=#114 id=114 data-nosnippet>114</a>        }
@@ -209,37 +209,37 @@
 <a href=#136 id=136 data-nosnippet>136</a>    </span><span class="kw">pub struct </span><a href="#132-171">AxisFlags</a>: <a href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a> {
 <a href=#137 id=137 data-nosnippet>137</a>        <span class="doccomment">/// X axis is present
 <a href=#138 id=138 data-nosnippet>138</a>        </span><span class="attr">#[doc(alias = <span class="string">"GDK_AXIS_FLAG_X"</span>)]
-<a href=#139 id=139 data-nosnippet>139</a>        </span><span class="kw">const </span>X = ffi::<a href="../../../gdk4_sys/constant.GDK_AXIS_FLAG_X.html">GDK_AXIS_FLAG_X</a> <span class="kw">as _</span>;
+<a href=#139 id=139 data-nosnippet>139</a>        </span><span class="kw">const </span>X = ffi::GDK_AXIS_FLAG_X <span class="kw">as _</span>;
 <a href=#140 id=140 data-nosnippet>140</a>        <span class="doccomment">/// Y axis is present
 <a href=#141 id=141 data-nosnippet>141</a>        </span><span class="attr">#[doc(alias = <span class="string">"GDK_AXIS_FLAG_Y"</span>)]
-<a href=#142 id=142 data-nosnippet>142</a>        </span><span class="kw">const </span>Y = ffi::<a href="../../../gdk4_sys/constant.GDK_AXIS_FLAG_Y.html">GDK_AXIS_FLAG_Y</a> <span class="kw">as _</span>;
+<a href=#142 id=142 data-nosnippet>142</a>        </span><span class="kw">const </span>Y = ffi::GDK_AXIS_FLAG_Y <span class="kw">as _</span>;
 <a href=#143 id=143 data-nosnippet>143</a>        <span class="doccomment">/// Scroll X delta axis is present
 <a href=#144 id=144 data-nosnippet>144</a>        </span><span class="attr">#[doc(alias = <span class="string">"GDK_AXIS_FLAG_DELTA_X"</span>)]
-<a href=#145 id=145 data-nosnippet>145</a>        </span><span class="kw">const </span>DELTA_X = ffi::<a href="../../../gdk4_sys/constant.GDK_AXIS_FLAG_DELTA_X.html">GDK_AXIS_FLAG_DELTA_X</a> <span class="kw">as _</span>;
+<a href=#145 id=145 data-nosnippet>145</a>        </span><span class="kw">const </span>DELTA_X = ffi::GDK_AXIS_FLAG_DELTA_X <span class="kw">as _</span>;
 <a href=#146 id=146 data-nosnippet>146</a>        <span class="doccomment">/// Scroll Y delta axis is present
 <a href=#147 id=147 data-nosnippet>147</a>        </span><span class="attr">#[doc(alias = <span class="string">"GDK_AXIS_FLAG_DELTA_Y"</span>)]
-<a href=#148 id=148 data-nosnippet>148</a>        </span><span class="kw">const </span>DELTA_Y = ffi::<a href="../../../gdk4_sys/constant.GDK_AXIS_FLAG_DELTA_Y.html">GDK_AXIS_FLAG_DELTA_Y</a> <span class="kw">as _</span>;
+<a href=#148 id=148 data-nosnippet>148</a>        </span><span class="kw">const </span>DELTA_Y = ffi::GDK_AXIS_FLAG_DELTA_Y <span class="kw">as _</span>;
 <a href=#149 id=149 data-nosnippet>149</a>        <span class="doccomment">/// Pressure axis is present
 <a href=#150 id=150 data-nosnippet>150</a>        </span><span class="attr">#[doc(alias = <span class="string">"GDK_AXIS_FLAG_PRESSURE"</span>)]
-<a href=#151 id=151 data-nosnippet>151</a>        </span><span class="kw">const </span>PRESSURE = ffi::<a href="../../../gdk4_sys/constant.GDK_AXIS_FLAG_PRESSURE.html">GDK_AXIS_FLAG_PRESSURE</a> <span class="kw">as _</span>;
+<a href=#151 id=151 data-nosnippet>151</a>        </span><span class="kw">const </span>PRESSURE = ffi::GDK_AXIS_FLAG_PRESSURE <span class="kw">as _</span>;
 <a href=#152 id=152 data-nosnippet>152</a>        <span class="doccomment">/// X tilt axis is present
 <a href=#153 id=153 data-nosnippet>153</a>        </span><span class="attr">#[doc(alias = <span class="string">"GDK_AXIS_FLAG_XTILT"</span>)]
-<a href=#154 id=154 data-nosnippet>154</a>        </span><span class="kw">const </span>XTILT = ffi::<a href="../../../gdk4_sys/constant.GDK_AXIS_FLAG_XTILT.html">GDK_AXIS_FLAG_XTILT</a> <span class="kw">as _</span>;
+<a href=#154 id=154 data-nosnippet>154</a>        </span><span class="kw">const </span>XTILT = ffi::GDK_AXIS_FLAG_XTILT <span class="kw">as _</span>;
 <a href=#155 id=155 data-nosnippet>155</a>        <span class="doccomment">/// Y tilt axis is present
 <a href=#156 id=156 data-nosnippet>156</a>        </span><span class="attr">#[doc(alias = <span class="string">"GDK_AXIS_FLAG_YTILT"</span>)]
-<a href=#157 id=157 data-nosnippet>157</a>        </span><span class="kw">const </span>YTILT = ffi::<a href="../../../gdk4_sys/constant.GDK_AXIS_FLAG_YTILT.html">GDK_AXIS_FLAG_YTILT</a> <span class="kw">as _</span>;
+<a href=#157 id=157 data-nosnippet>157</a>        </span><span class="kw">const </span>YTILT = ffi::GDK_AXIS_FLAG_YTILT <span class="kw">as _</span>;
 <a href=#158 id=158 data-nosnippet>158</a>        <span class="doccomment">/// Wheel axis is present
 <a href=#159 id=159 data-nosnippet>159</a>        </span><span class="attr">#[doc(alias = <span class="string">"GDK_AXIS_FLAG_WHEEL"</span>)]
-<a href=#160 id=160 data-nosnippet>160</a>        </span><span class="kw">const </span>WHEEL = ffi::<a href="../../../gdk4_sys/constant.GDK_AXIS_FLAG_WHEEL.html">GDK_AXIS_FLAG_WHEEL</a> <span class="kw">as _</span>;
+<a href=#160 id=160 data-nosnippet>160</a>        </span><span class="kw">const </span>WHEEL = ffi::GDK_AXIS_FLAG_WHEEL <span class="kw">as _</span>;
 <a href=#161 id=161 data-nosnippet>161</a>        <span class="doccomment">/// Distance axis is present
 <a href=#162 id=162 data-nosnippet>162</a>        </span><span class="attr">#[doc(alias = <span class="string">"GDK_AXIS_FLAG_DISTANCE"</span>)]
-<a href=#163 id=163 data-nosnippet>163</a>        </span><span class="kw">const </span>DISTANCE = ffi::<a href="../../../gdk4_sys/constant.GDK_AXIS_FLAG_DISTANCE.html">GDK_AXIS_FLAG_DISTANCE</a> <span class="kw">as _</span>;
+<a href=#163 id=163 data-nosnippet>163</a>        </span><span class="kw">const </span>DISTANCE = ffi::GDK_AXIS_FLAG_DISTANCE <span class="kw">as _</span>;
 <a href=#164 id=164 data-nosnippet>164</a>        <span class="doccomment">/// Z-axis rotation is present
 <a href=#165 id=165 data-nosnippet>165</a>        </span><span class="attr">#[doc(alias = <span class="string">"GDK_AXIS_FLAG_ROTATION"</span>)]
-<a href=#166 id=166 data-nosnippet>166</a>        </span><span class="kw">const </span>ROTATION = ffi::<a href="../../../gdk4_sys/constant.GDK_AXIS_FLAG_ROTATION.html">GDK_AXIS_FLAG_ROTATION</a> <span class="kw">as _</span>;
+<a href=#166 id=166 data-nosnippet>166</a>        </span><span class="kw">const </span>ROTATION = ffi::GDK_AXIS_FLAG_ROTATION <span class="kw">as _</span>;
 <a href=#167 id=167 data-nosnippet>167</a>        <span class="doccomment">/// Slider axis is present
 <a href=#168 id=168 data-nosnippet>168</a>        </span><span class="attr">#[doc(alias = <span class="string">"GDK_AXIS_FLAG_SLIDER"</span>)]
-<a href=#169 id=169 data-nosnippet>169</a>        </span><span class="kw">const </span>SLIDER = ffi::<a href="../../../gdk4_sys/constant.GDK_AXIS_FLAG_SLIDER.html">GDK_AXIS_FLAG_SLIDER</a> <span class="kw">as _</span>;
+<a href=#169 id=169 data-nosnippet>169</a>        </span><span class="kw">const </span>SLIDER = ffi::GDK_AXIS_FLAG_SLIDER <span class="kw">as _</span>;
 <a href=#170 id=170 data-nosnippet>170</a>    }
 <a href=#171 id=171 data-nosnippet>171</a>}
 <a href=#172 id=172 data-nosnippet>172</a>
@@ -297,7 +297,7 @@
 <a href=#224 id=224 data-nosnippet>224</a><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/trait.ToValue.html">ToValue</a> <span class="kw">for </span><a href="#132-171">AxisFlags</a> {
 <a href=#225 id=225 data-nosnippet>225</a>    <span class="attr">#[inline]
 <a href=#226 id=226 data-nosnippet>226</a>    </span><span class="kw">fn </span>to_value(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a> {
-<a href=#227 id=227 data-nosnippet>227</a>        <span class="kw">let </span><span class="kw-2">mut </span>value = glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>::for_value_type::&lt;<span class="self">Self</span>&gt;();
+<a href=#227 id=227 data-nosnippet>227</a>        <span class="kw">let </span><span class="kw-2">mut </span>value = glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html#method.for_value_type">for_value_type</a>::&lt;<span class="self">Self</span>&gt;();
 <a href=#228 id=228 data-nosnippet>228</a>        <span class="kw">unsafe </span>{
 <a href=#229 id=229 data-nosnippet>229</a>            glib::gobject_ffi::g_value_set_flags(<a href="#227">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtrMut.html#tymethod.to_glib_none_mut">to_glib_none_mut</a>().<span class="number">0</span>, <a class="self" href="#226">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>());
 <a href=#230 id=230 data-nosnippet>230</a>        }
@@ -328,22 +328,22 @@
 <a href=#255 id=255 data-nosnippet>255</a>        </span><span class="attr">#[cfg(feature = <span class="string">"v4_20"</span>)]
 <a href=#256 id=256 data-nosnippet>256</a>        #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_20"</span>)))]
 <a href=#257 id=257 data-nosnippet>257</a>        #[doc(alias = <span class="string">"GDK_ACTION_NONE"</span>)]
-<a href=#258 id=258 data-nosnippet>258</a>        </span><span class="kw">const </span>NONE = ffi::<a href="../../../gdk4_sys/constant.GDK_ACTION_NONE.html">GDK_ACTION_NONE</a> <span class="kw">as _</span>;
+<a href=#258 id=258 data-nosnippet>258</a>        </span><span class="kw">const </span>NONE = ffi::GDK_ACTION_NONE <span class="kw">as _</span>;
 <a href=#259 id=259 data-nosnippet>259</a>        <span class="doccomment">/// Copy the data.
 <a href=#260 id=260 data-nosnippet>260</a>        </span><span class="attr">#[doc(alias = <span class="string">"GDK_ACTION_COPY"</span>)]
-<a href=#261 id=261 data-nosnippet>261</a>        </span><span class="kw">const </span>COPY = ffi::<a href="../../../gdk4_sys/constant.GDK_ACTION_COPY.html">GDK_ACTION_COPY</a> <span class="kw">as _</span>;
+<a href=#261 id=261 data-nosnippet>261</a>        </span><span class="kw">const </span>COPY = ffi::GDK_ACTION_COPY <span class="kw">as _</span>;
 <a href=#262 id=262 data-nosnippet>262</a>        <span class="doccomment">/// Move the data, i.e. first copy it, then delete
 <a href=#263 id=263 data-nosnippet>263</a>        ///   it from the source using the DELETE target of the X selection protocol.
 <a href=#264 id=264 data-nosnippet>264</a>        </span><span class="attr">#[doc(alias = <span class="string">"GDK_ACTION_MOVE"</span>)]
-<a href=#265 id=265 data-nosnippet>265</a>        </span><span class="kw">const </span>MOVE = ffi::<a href="../../../gdk4_sys/constant.GDK_ACTION_MOVE.html">GDK_ACTION_MOVE</a> <span class="kw">as _</span>;
+<a href=#265 id=265 data-nosnippet>265</a>        </span><span class="kw">const </span>MOVE = ffi::GDK_ACTION_MOVE <span class="kw">as _</span>;
 <a href=#266 id=266 data-nosnippet>266</a>        <span class="doccomment">/// Add a link to the data. Note that this is only
 <a href=#267 id=267 data-nosnippet>267</a>        ///   useful if source and destination agree on what it means, and is not
 <a href=#268 id=268 data-nosnippet>268</a>        ///   supported on all platforms.
 <a href=#269 id=269 data-nosnippet>269</a>        </span><span class="attr">#[doc(alias = <span class="string">"GDK_ACTION_LINK"</span>)]
-<a href=#270 id=270 data-nosnippet>270</a>        </span><span class="kw">const </span>LINK = ffi::<a href="../../../gdk4_sys/constant.GDK_ACTION_LINK.html">GDK_ACTION_LINK</a> <span class="kw">as _</span>;
+<a href=#270 id=270 data-nosnippet>270</a>        </span><span class="kw">const </span>LINK = ffi::GDK_ACTION_LINK <span class="kw">as _</span>;
 <a href=#271 id=271 data-nosnippet>271</a>        <span class="doccomment">/// Ask the user what to do with the data.
 <a href=#272 id=272 data-nosnippet>272</a>        </span><span class="attr">#[doc(alias = <span class="string">"GDK_ACTION_ASK"</span>)]
-<a href=#273 id=273 data-nosnippet>273</a>        </span><span class="kw">const </span>ASK = ffi::<a href="../../../gdk4_sys/constant.GDK_ACTION_ASK.html">GDK_ACTION_ASK</a> <span class="kw">as _</span>;
+<a href=#273 id=273 data-nosnippet>273</a>        </span><span class="kw">const </span>ASK = ffi::GDK_ACTION_ASK <span class="kw">as _</span>;
 <a href=#274 id=274 data-nosnippet>274</a>    }
 <a href=#275 id=275 data-nosnippet>275</a>}
 <a href=#276 id=276 data-nosnippet>276</a>
@@ -409,7 +409,7 @@
 <a href=#336 id=336 data-nosnippet>336</a><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/trait.ToValue.html">ToValue</a> <span class="kw">for </span><a href="#248-275">DragAction</a> {
 <a href=#337 id=337 data-nosnippet>337</a>    <span class="attr">#[inline]
 <a href=#338 id=338 data-nosnippet>338</a>    </span><span class="kw">fn </span>to_value(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a> {
-<a href=#339 id=339 data-nosnippet>339</a>        <span class="kw">let </span><span class="kw-2">mut </span>value = glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>::for_value_type::&lt;<span class="self">Self</span>&gt;();
+<a href=#339 id=339 data-nosnippet>339</a>        <span class="kw">let </span><span class="kw-2">mut </span>value = glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html#method.for_value_type">for_value_type</a>::&lt;<span class="self">Self</span>&gt;();
 <a href=#340 id=340 data-nosnippet>340</a>        <span class="kw">unsafe </span>{
 <a href=#341 id=341 data-nosnippet>341</a>            glib::gobject_ffi::g_value_set_flags(<a href="#339">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtrMut.html#tymethod.to_glib_none_mut">to_glib_none_mut</a>().<span class="number">0</span>, <a class="self" href="#338">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>());
 <a href=#342 id=342 data-nosnippet>342</a>        }
@@ -439,28 +439,28 @@
 <a href=#366 id=366 data-nosnippet>366</a>    </span><span class="kw">pub struct </span><a href="#360-392">FrameClockPhase</a>: <a href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a> {
 <a href=#367 id=367 data-nosnippet>367</a>        <span class="doccomment">/// no phase
 <a href=#368 id=368 data-nosnippet>368</a>        </span><span class="attr">#[doc(alias = <span class="string">"GDK_FRAME_CLOCK_PHASE_NONE"</span>)]
-<a href=#369 id=369 data-nosnippet>369</a>        </span><span class="kw">const </span>NONE = ffi::<a href="../../../gdk4_sys/constant.GDK_FRAME_CLOCK_PHASE_NONE.html">GDK_FRAME_CLOCK_PHASE_NONE</a> <span class="kw">as _</span>;
+<a href=#369 id=369 data-nosnippet>369</a>        </span><span class="kw">const </span>NONE = ffi::GDK_FRAME_CLOCK_PHASE_NONE <span class="kw">as _</span>;
 <a href=#370 id=370 data-nosnippet>370</a>        <span class="doccomment">/// corresponds to GdkFrameClock::flush-events. Should not be handled by applications.
 <a href=#371 id=371 data-nosnippet>371</a>        </span><span class="attr">#[doc(alias = <span class="string">"GDK_FRAME_CLOCK_PHASE_FLUSH_EVENTS"</span>)]
-<a href=#372 id=372 data-nosnippet>372</a>        </span><span class="kw">const </span>FLUSH_EVENTS = ffi::<a href="../../../gdk4_sys/constant.GDK_FRAME_CLOCK_PHASE_FLUSH_EVENTS.html">GDK_FRAME_CLOCK_PHASE_FLUSH_EVENTS</a> <span class="kw">as _</span>;
+<a href=#372 id=372 data-nosnippet>372</a>        </span><span class="kw">const </span>FLUSH_EVENTS = ffi::GDK_FRAME_CLOCK_PHASE_FLUSH_EVENTS <span class="kw">as _</span>;
 <a href=#373 id=373 data-nosnippet>373</a>        <span class="doccomment">/// corresponds to GdkFrameClock::before-paint. Should not be handled by applications.
 <a href=#374 id=374 data-nosnippet>374</a>        </span><span class="attr">#[doc(alias = <span class="string">"GDK_FRAME_CLOCK_PHASE_BEFORE_PAINT"</span>)]
-<a href=#375 id=375 data-nosnippet>375</a>        </span><span class="kw">const </span>BEFORE_PAINT = ffi::<a href="../../../gdk4_sys/constant.GDK_FRAME_CLOCK_PHASE_BEFORE_PAINT.html">GDK_FRAME_CLOCK_PHASE_BEFORE_PAINT</a> <span class="kw">as _</span>;
+<a href=#375 id=375 data-nosnippet>375</a>        </span><span class="kw">const </span>BEFORE_PAINT = ffi::GDK_FRAME_CLOCK_PHASE_BEFORE_PAINT <span class="kw">as _</span>;
 <a href=#376 id=376 data-nosnippet>376</a>        <span class="doccomment">/// corresponds to GdkFrameClock::update.
 <a href=#377 id=377 data-nosnippet>377</a>        </span><span class="attr">#[doc(alias = <span class="string">"GDK_FRAME_CLOCK_PHASE_UPDATE"</span>)]
-<a href=#378 id=378 data-nosnippet>378</a>        </span><span class="kw">const </span>UPDATE = ffi::<a href="../../../gdk4_sys/constant.GDK_FRAME_CLOCK_PHASE_UPDATE.html">GDK_FRAME_CLOCK_PHASE_UPDATE</a> <span class="kw">as _</span>;
+<a href=#378 id=378 data-nosnippet>378</a>        </span><span class="kw">const </span>UPDATE = ffi::GDK_FRAME_CLOCK_PHASE_UPDATE <span class="kw">as _</span>;
 <a href=#379 id=379 data-nosnippet>379</a>        <span class="doccomment">/// corresponds to GdkFrameClock::layout. Should not be handled by applications.
 <a href=#380 id=380 data-nosnippet>380</a>        </span><span class="attr">#[doc(alias = <span class="string">"GDK_FRAME_CLOCK_PHASE_LAYOUT"</span>)]
-<a href=#381 id=381 data-nosnippet>381</a>        </span><span class="kw">const </span>LAYOUT = ffi::<a href="../../../gdk4_sys/constant.GDK_FRAME_CLOCK_PHASE_LAYOUT.html">GDK_FRAME_CLOCK_PHASE_LAYOUT</a> <span class="kw">as _</span>;
+<a href=#381 id=381 data-nosnippet>381</a>        </span><span class="kw">const </span>LAYOUT = ffi::GDK_FRAME_CLOCK_PHASE_LAYOUT <span class="kw">as _</span>;
 <a href=#382 id=382 data-nosnippet>382</a>        <span class="doccomment">/// corresponds to GdkFrameClock::paint.
 <a href=#383 id=383 data-nosnippet>383</a>        </span><span class="attr">#[doc(alias = <span class="string">"GDK_FRAME_CLOCK_PHASE_PAINT"</span>)]
-<a href=#384 id=384 data-nosnippet>384</a>        </span><span class="kw">const </span>PAINT = ffi::<a href="../../../gdk4_sys/constant.GDK_FRAME_CLOCK_PHASE_PAINT.html">GDK_FRAME_CLOCK_PHASE_PAINT</a> <span class="kw">as _</span>;
+<a href=#384 id=384 data-nosnippet>384</a>        </span><span class="kw">const </span>PAINT = ffi::GDK_FRAME_CLOCK_PHASE_PAINT <span class="kw">as _</span>;
 <a href=#385 id=385 data-nosnippet>385</a>        <span class="doccomment">/// corresponds to GdkFrameClock::resume-events. Should not be handled by applications.
 <a href=#386 id=386 data-nosnippet>386</a>        </span><span class="attr">#[doc(alias = <span class="string">"GDK_FRAME_CLOCK_PHASE_RESUME_EVENTS"</span>)]
-<a href=#387 id=387 data-nosnippet>387</a>        </span><span class="kw">const </span>RESUME_EVENTS = ffi::<a href="../../../gdk4_sys/constant.GDK_FRAME_CLOCK_PHASE_RESUME_EVENTS.html">GDK_FRAME_CLOCK_PHASE_RESUME_EVENTS</a> <span class="kw">as _</span>;
+<a href=#387 id=387 data-nosnippet>387</a>        </span><span class="kw">const </span>RESUME_EVENTS = ffi::GDK_FRAME_CLOCK_PHASE_RESUME_EVENTS <span class="kw">as _</span>;
 <a href=#388 id=388 data-nosnippet>388</a>        <span class="doccomment">/// corresponds to GdkFrameClock::after-paint. Should not be handled by applications.
 <a href=#389 id=389 data-nosnippet>389</a>        </span><span class="attr">#[doc(alias = <span class="string">"GDK_FRAME_CLOCK_PHASE_AFTER_PAINT"</span>)]
-<a href=#390 id=390 data-nosnippet>390</a>        </span><span class="kw">const </span>AFTER_PAINT = ffi::<a href="../../../gdk4_sys/constant.GDK_FRAME_CLOCK_PHASE_AFTER_PAINT.html">GDK_FRAME_CLOCK_PHASE_AFTER_PAINT</a> <span class="kw">as _</span>;
+<a href=#390 id=390 data-nosnippet>390</a>        </span><span class="kw">const </span>AFTER_PAINT = ffi::GDK_FRAME_CLOCK_PHASE_AFTER_PAINT <span class="kw">as _</span>;
 <a href=#391 id=391 data-nosnippet>391</a>    }
 <a href=#392 id=392 data-nosnippet>392</a>}
 <a href=#393 id=393 data-nosnippet>393</a>
@@ -518,7 +518,7 @@
 <a href=#445 id=445 data-nosnippet>445</a><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/trait.ToValue.html">ToValue</a> <span class="kw">for </span><a href="#360-392">FrameClockPhase</a> {
 <a href=#446 id=446 data-nosnippet>446</a>    <span class="attr">#[inline]
 <a href=#447 id=447 data-nosnippet>447</a>    </span><span class="kw">fn </span>to_value(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a> {
-<a href=#448 id=448 data-nosnippet>448</a>        <span class="kw">let </span><span class="kw-2">mut </span>value = glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>::for_value_type::&lt;<span class="self">Self</span>&gt;();
+<a href=#448 id=448 data-nosnippet>448</a>        <span class="kw">let </span><span class="kw-2">mut </span>value = glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html#method.for_value_type">for_value_type</a>::&lt;<span class="self">Self</span>&gt;();
 <a href=#449 id=449 data-nosnippet>449</a>        <span class="kw">unsafe </span>{
 <a href=#450 id=450 data-nosnippet>450</a>            glib::gobject_ffi::g_value_set_flags(<a href="#448">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtrMut.html#tymethod.to_glib_none_mut">to_glib_none_mut</a>().<span class="number">0</span>, <a class="self" href="#447">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>());
 <a href=#451 id=451 data-nosnippet>451</a>        }
@@ -548,10 +548,10 @@
 <a href=#475 id=475 data-nosnippet>475</a>    </span><span class="kw">pub struct </span><a href="#470-483">GLAPI</a>: <a href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a> {
 <a href=#476 id=476 data-nosnippet>476</a>        <span class="doccomment">/// The OpenGL API
 <a href=#477 id=477 data-nosnippet>477</a>        </span><span class="attr">#[doc(alias = <span class="string">"GDK_GL_API_GL"</span>)]
-<a href=#478 id=478 data-nosnippet>478</a>        </span><span class="kw">const </span>GL = ffi::<a href="../../../gdk4_sys/constant.GDK_GL_API_GL.html">GDK_GL_API_GL</a> <span class="kw">as _</span>;
+<a href=#478 id=478 data-nosnippet>478</a>        </span><span class="kw">const </span>GL = ffi::GDK_GL_API_GL <span class="kw">as _</span>;
 <a href=#479 id=479 data-nosnippet>479</a>        <span class="doccomment">/// The OpenGL ES API
 <a href=#480 id=480 data-nosnippet>480</a>        </span><span class="attr">#[doc(alias = <span class="string">"GDK_GL_API_GLES"</span>)]
-<a href=#481 id=481 data-nosnippet>481</a>        </span><span class="kw">const </span>GLES = ffi::<a href="../../../gdk4_sys/constant.GDK_GL_API_GLES.html">GDK_GL_API_GLES</a> <span class="kw">as _</span>;
+<a href=#481 id=481 data-nosnippet>481</a>        </span><span class="kw">const </span>GLES = ffi::GDK_GL_API_GLES <span class="kw">as _</span>;
 <a href=#482 id=482 data-nosnippet>482</a>    }
 <a href=#483 id=483 data-nosnippet>483</a>}
 <a href=#484 id=484 data-nosnippet>484</a>
@@ -623,7 +623,7 @@
 <a href=#550 id=550 data-nosnippet>550</a></span><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/trait.ToValue.html">ToValue</a> <span class="kw">for </span><a href="#470-483">GLAPI</a> {
 <a href=#551 id=551 data-nosnippet>551</a>    <span class="attr">#[inline]
 <a href=#552 id=552 data-nosnippet>552</a>    </span><span class="kw">fn </span>to_value(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a> {
-<a href=#553 id=553 data-nosnippet>553</a>        <span class="kw">let </span><span class="kw-2">mut </span>value = glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>::for_value_type::&lt;<span class="self">Self</span>&gt;();
+<a href=#553 id=553 data-nosnippet>553</a>        <span class="kw">let </span><span class="kw-2">mut </span>value = glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html#method.for_value_type">for_value_type</a>::&lt;<span class="self">Self</span>&gt;();
 <a href=#554 id=554 data-nosnippet>554</a>        <span class="kw">unsafe </span>{
 <a href=#555 id=555 data-nosnippet>555</a>            glib::gobject_ffi::g_value_set_flags(<a href="#553">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtrMut.html#tymethod.to_glib_none_mut">to_glib_none_mut</a>().<span class="number">0</span>, <a class="self" href="#552">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>());
 <a href=#556 id=556 data-nosnippet>556</a>        }
@@ -663,46 +663,46 @@
 <a href=#590 id=590 data-nosnippet>590</a>        </span><span class="attr">#[cfg(feature = <span class="string">"v4_14"</span>)]
 <a href=#591 id=591 data-nosnippet>591</a>        #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_14"</span>)))]
 <a href=#592 id=592 data-nosnippet>592</a>        #[doc(alias = <span class="string">"GDK_NO_MODIFIER_MASK"</span>)]
-<a href=#593 id=593 data-nosnippet>593</a>        </span><span class="kw">const </span>NO_MODIFIER_MASK = ffi::<a href="../../../gdk4_sys/constant.GDK_NO_MODIFIER_MASK.html">GDK_NO_MODIFIER_MASK</a> <span class="kw">as _</span>;
+<a href=#593 id=593 data-nosnippet>593</a>        </span><span class="kw">const </span>NO_MODIFIER_MASK = ffi::GDK_NO_MODIFIER_MASK <span class="kw">as _</span>;
 <a href=#594 id=594 data-nosnippet>594</a>        <span class="doccomment">/// the Shift key.
 <a href=#595 id=595 data-nosnippet>595</a>        </span><span class="attr">#[doc(alias = <span class="string">"GDK_SHIFT_MASK"</span>)]
-<a href=#596 id=596 data-nosnippet>596</a>        </span><span class="kw">const </span>SHIFT_MASK = ffi::<a href="../../../gdk4_sys/constant.GDK_SHIFT_MASK.html">GDK_SHIFT_MASK</a> <span class="kw">as _</span>;
+<a href=#596 id=596 data-nosnippet>596</a>        </span><span class="kw">const </span>SHIFT_MASK = ffi::GDK_SHIFT_MASK <span class="kw">as _</span>;
 <a href=#597 id=597 data-nosnippet>597</a>        <span class="doccomment">/// a Lock key (depending on the Windowing System configuration,
 <a href=#598 id=598 data-nosnippet>598</a>        ///    this may either be &lt;kbd&gt;CapsLock&lt;/kbd&gt; or &lt;kbd&gt;ShiftLock&lt;/kbd&gt;).
 <a href=#599 id=599 data-nosnippet>599</a>        </span><span class="attr">#[doc(alias = <span class="string">"GDK_LOCK_MASK"</span>)]
-<a href=#600 id=600 data-nosnippet>600</a>        </span><span class="kw">const </span>LOCK_MASK = ffi::<a href="../../../gdk4_sys/constant.GDK_LOCK_MASK.html">GDK_LOCK_MASK</a> <span class="kw">as _</span>;
+<a href=#600 id=600 data-nosnippet>600</a>        </span><span class="kw">const </span>LOCK_MASK = ffi::GDK_LOCK_MASK <span class="kw">as _</span>;
 <a href=#601 id=601 data-nosnippet>601</a>        <span class="doccomment">/// the Control key.
 <a href=#602 id=602 data-nosnippet>602</a>        </span><span class="attr">#[doc(alias = <span class="string">"GDK_CONTROL_MASK"</span>)]
-<a href=#603 id=603 data-nosnippet>603</a>        </span><span class="kw">const </span>CONTROL_MASK = ffi::<a href="../../../gdk4_sys/constant.GDK_CONTROL_MASK.html">GDK_CONTROL_MASK</a> <span class="kw">as _</span>;
+<a href=#603 id=603 data-nosnippet>603</a>        </span><span class="kw">const </span>CONTROL_MASK = ffi::GDK_CONTROL_MASK <span class="kw">as _</span>;
 <a href=#604 id=604 data-nosnippet>604</a>        <span class="doccomment">/// the fourth modifier key (it depends on the Windowing System
 <a href=#605 id=605 data-nosnippet>605</a>        ///    configuration which key is interpreted as this modifier, but normally it
 <a href=#606 id=606 data-nosnippet>606</a>        ///    is the &lt;kbd&gt;Alt&lt;/kbd&gt; key).
 <a href=#607 id=607 data-nosnippet>607</a>        </span><span class="attr">#[doc(alias = <span class="string">"GDK_ALT_MASK"</span>)]
-<a href=#608 id=608 data-nosnippet>608</a>        </span><span class="kw">const </span>ALT_MASK = ffi::<a href="../../../gdk4_sys/constant.GDK_ALT_MASK.html">GDK_ALT_MASK</a> <span class="kw">as _</span>;
+<a href=#608 id=608 data-nosnippet>608</a>        </span><span class="kw">const </span>ALT_MASK = ffi::GDK_ALT_MASK <span class="kw">as _</span>;
 <a href=#609 id=609 data-nosnippet>609</a>        <span class="doccomment">/// the first mouse button.
 <a href=#610 id=610 data-nosnippet>610</a>        </span><span class="attr">#[doc(alias = <span class="string">"GDK_BUTTON1_MASK"</span>)]
-<a href=#611 id=611 data-nosnippet>611</a>        </span><span class="kw">const </span>BUTTON1_MASK = ffi::<a href="../../../gdk4_sys/constant.GDK_BUTTON1_MASK.html">GDK_BUTTON1_MASK</a> <span class="kw">as _</span>;
+<a href=#611 id=611 data-nosnippet>611</a>        </span><span class="kw">const </span>BUTTON1_MASK = ffi::GDK_BUTTON1_MASK <span class="kw">as _</span>;
 <a href=#612 id=612 data-nosnippet>612</a>        <span class="doccomment">/// the second mouse button.
 <a href=#613 id=613 data-nosnippet>613</a>        </span><span class="attr">#[doc(alias = <span class="string">"GDK_BUTTON2_MASK"</span>)]
-<a href=#614 id=614 data-nosnippet>614</a>        </span><span class="kw">const </span>BUTTON2_MASK = ffi::<a href="../../../gdk4_sys/constant.GDK_BUTTON2_MASK.html">GDK_BUTTON2_MASK</a> <span class="kw">as _</span>;
+<a href=#614 id=614 data-nosnippet>614</a>        </span><span class="kw">const </span>BUTTON2_MASK = ffi::GDK_BUTTON2_MASK <span class="kw">as _</span>;
 <a href=#615 id=615 data-nosnippet>615</a>        <span class="doccomment">/// the third mouse button.
 <a href=#616 id=616 data-nosnippet>616</a>        </span><span class="attr">#[doc(alias = <span class="string">"GDK_BUTTON3_MASK"</span>)]
-<a href=#617 id=617 data-nosnippet>617</a>        </span><span class="kw">const </span>BUTTON3_MASK = ffi::<a href="../../../gdk4_sys/constant.GDK_BUTTON3_MASK.html">GDK_BUTTON3_MASK</a> <span class="kw">as _</span>;
+<a href=#617 id=617 data-nosnippet>617</a>        </span><span class="kw">const </span>BUTTON3_MASK = ffi::GDK_BUTTON3_MASK <span class="kw">as _</span>;
 <a href=#618 id=618 data-nosnippet>618</a>        <span class="doccomment">/// the fourth mouse button.
 <a href=#619 id=619 data-nosnippet>619</a>        </span><span class="attr">#[doc(alias = <span class="string">"GDK_BUTTON4_MASK"</span>)]
-<a href=#620 id=620 data-nosnippet>620</a>        </span><span class="kw">const </span>BUTTON4_MASK = ffi::<a href="../../../gdk4_sys/constant.GDK_BUTTON4_MASK.html">GDK_BUTTON4_MASK</a> <span class="kw">as _</span>;
+<a href=#620 id=620 data-nosnippet>620</a>        </span><span class="kw">const </span>BUTTON4_MASK = ffi::GDK_BUTTON4_MASK <span class="kw">as _</span>;
 <a href=#621 id=621 data-nosnippet>621</a>        <span class="doccomment">/// the fifth mouse button.
 <a href=#622 id=622 data-nosnippet>622</a>        </span><span class="attr">#[doc(alias = <span class="string">"GDK_BUTTON5_MASK"</span>)]
-<a href=#623 id=623 data-nosnippet>623</a>        </span><span class="kw">const </span>BUTTON5_MASK = ffi::<a href="../../../gdk4_sys/constant.GDK_BUTTON5_MASK.html">GDK_BUTTON5_MASK</a> <span class="kw">as _</span>;
+<a href=#623 id=623 data-nosnippet>623</a>        </span><span class="kw">const </span>BUTTON5_MASK = ffi::GDK_BUTTON5_MASK <span class="kw">as _</span>;
 <a href=#624 id=624 data-nosnippet>624</a>        <span class="doccomment">/// the Super modifier.
 <a href=#625 id=625 data-nosnippet>625</a>        </span><span class="attr">#[doc(alias = <span class="string">"GDK_SUPER_MASK"</span>)]
-<a href=#626 id=626 data-nosnippet>626</a>        </span><span class="kw">const </span>SUPER_MASK = ffi::<a href="../../../gdk4_sys/constant.GDK_SUPER_MASK.html">GDK_SUPER_MASK</a> <span class="kw">as _</span>;
+<a href=#626 id=626 data-nosnippet>626</a>        </span><span class="kw">const </span>SUPER_MASK = ffi::GDK_SUPER_MASK <span class="kw">as _</span>;
 <a href=#627 id=627 data-nosnippet>627</a>        <span class="doccomment">/// the Hyper modifier.
 <a href=#628 id=628 data-nosnippet>628</a>        </span><span class="attr">#[doc(alias = <span class="string">"GDK_HYPER_MASK"</span>)]
-<a href=#629 id=629 data-nosnippet>629</a>        </span><span class="kw">const </span>HYPER_MASK = ffi::<a href="../../../gdk4_sys/constant.GDK_HYPER_MASK.html">GDK_HYPER_MASK</a> <span class="kw">as _</span>;
+<a href=#629 id=629 data-nosnippet>629</a>        </span><span class="kw">const </span>HYPER_MASK = ffi::GDK_HYPER_MASK <span class="kw">as _</span>;
 <a href=#630 id=630 data-nosnippet>630</a>        <span class="doccomment">/// the Meta modifier. Maps to Command on macOS.
 <a href=#631 id=631 data-nosnippet>631</a>        </span><span class="attr">#[doc(alias = <span class="string">"GDK_META_MASK"</span>)]
-<a href=#632 id=632 data-nosnippet>632</a>        </span><span class="kw">const </span>META_MASK = ffi::<a href="../../../gdk4_sys/constant.GDK_META_MASK.html">GDK_META_MASK</a> <span class="kw">as _</span>;
+<a href=#632 id=632 data-nosnippet>632</a>        </span><span class="kw">const </span>META_MASK = ffi::GDK_META_MASK <span class="kw">as _</span>;
 <a href=#633 id=633 data-nosnippet>633</a>    }
 <a href=#634 id=634 data-nosnippet>634</a>}
 <a href=#635 id=635 data-nosnippet>635</a>
@@ -760,7 +760,7 @@
 <a href=#687 id=687 data-nosnippet>687</a><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/trait.ToValue.html">ToValue</a> <span class="kw">for </span><a href="#576-634">ModifierType</a> {
 <a href=#688 id=688 data-nosnippet>688</a>    <span class="attr">#[inline]
 <a href=#689 id=689 data-nosnippet>689</a>    </span><span class="kw">fn </span>to_value(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a> {
-<a href=#690 id=690 data-nosnippet>690</a>        <span class="kw">let </span><span class="kw-2">mut </span>value = glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>::for_value_type::&lt;<span class="self">Self</span>&gt;();
+<a href=#690 id=690 data-nosnippet>690</a>        <span class="kw">let </span><span class="kw-2">mut </span>value = glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html#method.for_value_type">for_value_type</a>::&lt;<span class="self">Self</span>&gt;();
 <a href=#691 id=691 data-nosnippet>691</a>        <span class="kw">unsafe </span>{
 <a href=#692 id=692 data-nosnippet>692</a>            glib::gobject_ffi::g_value_set_flags(<a href="#690">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtrMut.html#tymethod.to_glib_none_mut">to_glib_none_mut</a>().<span class="number">0</span>, <a class="self" href="#689">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>());
 <a href=#693 id=693 data-nosnippet>693</a>        }
@@ -792,12 +792,12 @@
 <a href=#719 id=719 data-nosnippet>719</a>        ///   The [`invalidate-size`][struct@crate::Paintable#invalidate-size] signal will never be
 <a href=#720 id=720 data-nosnippet>720</a>        ///   emitted.
 <a href=#721 id=721 data-nosnippet>721</a>        </span><span class="attr">#[doc(alias = <span class="string">"GDK_PAINTABLE_STATIC_SIZE"</span>)]
-<a href=#722 id=722 data-nosnippet>722</a>        </span><span class="kw">const </span>STATIC_SIZE = ffi::<a href="../../../gdk4_sys/constant.GDK_PAINTABLE_STATIC_SIZE.html">GDK_PAINTABLE_STATIC_SIZE</a> <span class="kw">as _</span>;
+<a href=#722 id=722 data-nosnippet>722</a>        </span><span class="kw">const </span>STATIC_SIZE = ffi::GDK_PAINTABLE_STATIC_SIZE <span class="kw">as _</span>;
 <a href=#723 id=723 data-nosnippet>723</a>        <span class="doccomment">/// The content is immutable.
 <a href=#724 id=724 data-nosnippet>724</a>        ///   The [`invalidate-contents`][struct@crate::Paintable#invalidate-contents] signal will never be
 <a href=#725 id=725 data-nosnippet>725</a>        ///   emitted.
 <a href=#726 id=726 data-nosnippet>726</a>        </span><span class="attr">#[doc(alias = <span class="string">"GDK_PAINTABLE_STATIC_CONTENTS"</span>)]
-<a href=#727 id=727 data-nosnippet>727</a>        </span><span class="kw">const </span>STATIC_CONTENTS = ffi::<a href="../../../gdk4_sys/constant.GDK_PAINTABLE_STATIC_CONTENTS.html">GDK_PAINTABLE_STATIC_CONTENTS</a> <span class="kw">as _</span>;
+<a href=#727 id=727 data-nosnippet>727</a>        </span><span class="kw">const </span>STATIC_CONTENTS = ffi::GDK_PAINTABLE_STATIC_CONTENTS <span class="kw">as _</span>;
 <a href=#728 id=728 data-nosnippet>728</a>    }
 <a href=#729 id=729 data-nosnippet>729</a>}
 <a href=#730 id=730 data-nosnippet>730</a>
@@ -855,7 +855,7 @@
 <a href=#782 id=782 data-nosnippet>782</a><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/trait.ToValue.html">ToValue</a> <span class="kw">for </span><a href="#711-729">PaintableFlags</a> {
 <a href=#783 id=783 data-nosnippet>783</a>    <span class="attr">#[inline]
 <a href=#784 id=784 data-nosnippet>784</a>    </span><span class="kw">fn </span>to_value(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a> {
-<a href=#785 id=785 data-nosnippet>785</a>        <span class="kw">let </span><span class="kw-2">mut </span>value = glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>::for_value_type::&lt;<span class="self">Self</span>&gt;();
+<a href=#785 id=785 data-nosnippet>785</a>        <span class="kw">let </span><span class="kw-2">mut </span>value = glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html#method.for_value_type">for_value_type</a>::&lt;<span class="self">Self</span>&gt;();
 <a href=#786 id=786 data-nosnippet>786</a>        <span class="kw">unsafe </span>{
 <a href=#787 id=787 data-nosnippet>787</a>            glib::gobject_ffi::g_value_set_flags(<a href="#785">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtrMut.html#tymethod.to_glib_none_mut">to_glib_none_mut</a>().<span class="number">0</span>, <a class="self" href="#784">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>());
 <a href=#788 id=788 data-nosnippet>788</a>        }
@@ -883,28 +883,28 @@
 <a href=#810 id=810 data-nosnippet>810</a>    </span><span class="kw">pub struct </span><a href="#806-836">SeatCapabilities</a>: <a href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a> {
 <a href=#811 id=811 data-nosnippet>811</a>        <span class="doccomment">/// No input capabilities
 <a href=#812 id=812 data-nosnippet>812</a>        </span><span class="attr">#[doc(alias = <span class="string">"GDK_SEAT_CAPABILITY_NONE"</span>)]
-<a href=#813 id=813 data-nosnippet>813</a>        </span><span class="kw">const </span>NONE = ffi::<a href="../../../gdk4_sys/constant.GDK_SEAT_CAPABILITY_NONE.html">GDK_SEAT_CAPABILITY_NONE</a> <span class="kw">as _</span>;
+<a href=#813 id=813 data-nosnippet>813</a>        </span><span class="kw">const </span>NONE = ffi::GDK_SEAT_CAPABILITY_NONE <span class="kw">as _</span>;
 <a href=#814 id=814 data-nosnippet>814</a>        <span class="doccomment">/// The seat has a pointer (e.g. mouse)
 <a href=#815 id=815 data-nosnippet>815</a>        </span><span class="attr">#[doc(alias = <span class="string">"GDK_SEAT_CAPABILITY_POINTER"</span>)]
-<a href=#816 id=816 data-nosnippet>816</a>        </span><span class="kw">const </span>POINTER = ffi::<a href="../../../gdk4_sys/constant.GDK_SEAT_CAPABILITY_POINTER.html">GDK_SEAT_CAPABILITY_POINTER</a> <span class="kw">as _</span>;
+<a href=#816 id=816 data-nosnippet>816</a>        </span><span class="kw">const </span>POINTER = ffi::GDK_SEAT_CAPABILITY_POINTER <span class="kw">as _</span>;
 <a href=#817 id=817 data-nosnippet>817</a>        <span class="doccomment">/// The seat has touchscreen(s) attached
 <a href=#818 id=818 data-nosnippet>818</a>        </span><span class="attr">#[doc(alias = <span class="string">"GDK_SEAT_CAPABILITY_TOUCH"</span>)]
-<a href=#819 id=819 data-nosnippet>819</a>        </span><span class="kw">const </span>TOUCH = ffi::<a href="../../../gdk4_sys/constant.GDK_SEAT_CAPABILITY_TOUCH.html">GDK_SEAT_CAPABILITY_TOUCH</a> <span class="kw">as _</span>;
+<a href=#819 id=819 data-nosnippet>819</a>        </span><span class="kw">const </span>TOUCH = ffi::GDK_SEAT_CAPABILITY_TOUCH <span class="kw">as _</span>;
 <a href=#820 id=820 data-nosnippet>820</a>        <span class="doccomment">/// The seat has drawing tablet(s) attached
 <a href=#821 id=821 data-nosnippet>821</a>        </span><span class="attr">#[doc(alias = <span class="string">"GDK_SEAT_CAPABILITY_TABLET_STYLUS"</span>)]
-<a href=#822 id=822 data-nosnippet>822</a>        </span><span class="kw">const </span>TABLET_STYLUS = ffi::<a href="../../../gdk4_sys/constant.GDK_SEAT_CAPABILITY_TABLET_STYLUS.html">GDK_SEAT_CAPABILITY_TABLET_STYLUS</a> <span class="kw">as _</span>;
+<a href=#822 id=822 data-nosnippet>822</a>        </span><span class="kw">const </span>TABLET_STYLUS = ffi::GDK_SEAT_CAPABILITY_TABLET_STYLUS <span class="kw">as _</span>;
 <a href=#823 id=823 data-nosnippet>823</a>        <span class="doccomment">/// The seat has keyboard(s) attached
 <a href=#824 id=824 data-nosnippet>824</a>        </span><span class="attr">#[doc(alias = <span class="string">"GDK_SEAT_CAPABILITY_KEYBOARD"</span>)]
-<a href=#825 id=825 data-nosnippet>825</a>        </span><span class="kw">const </span>KEYBOARD = ffi::<a href="../../../gdk4_sys/constant.GDK_SEAT_CAPABILITY_KEYBOARD.html">GDK_SEAT_CAPABILITY_KEYBOARD</a> <span class="kw">as _</span>;
+<a href=#825 id=825 data-nosnippet>825</a>        </span><span class="kw">const </span>KEYBOARD = ffi::GDK_SEAT_CAPABILITY_KEYBOARD <span class="kw">as _</span>;
 <a href=#826 id=826 data-nosnippet>826</a>        <span class="doccomment">/// The seat has drawing tablet pad(s) attached
 <a href=#827 id=827 data-nosnippet>827</a>        </span><span class="attr">#[doc(alias = <span class="string">"GDK_SEAT_CAPABILITY_TABLET_PAD"</span>)]
-<a href=#828 id=828 data-nosnippet>828</a>        </span><span class="kw">const </span>TABLET_PAD = ffi::<a href="../../../gdk4_sys/constant.GDK_SEAT_CAPABILITY_TABLET_PAD.html">GDK_SEAT_CAPABILITY_TABLET_PAD</a> <span class="kw">as _</span>;
+<a href=#828 id=828 data-nosnippet>828</a>        </span><span class="kw">const </span>TABLET_PAD = ffi::GDK_SEAT_CAPABILITY_TABLET_PAD <span class="kw">as _</span>;
 <a href=#829 id=829 data-nosnippet>829</a>        <span class="doccomment">/// The union of all pointing capabilities
 <a href=#830 id=830 data-nosnippet>830</a>        </span><span class="attr">#[doc(alias = <span class="string">"GDK_SEAT_CAPABILITY_ALL_POINTING"</span>)]
-<a href=#831 id=831 data-nosnippet>831</a>        </span><span class="kw">const </span>ALL_POINTING = ffi::<a href="../../../gdk4_sys/constant.GDK_SEAT_CAPABILITY_ALL_POINTING.html">GDK_SEAT_CAPABILITY_ALL_POINTING</a> <span class="kw">as _</span>;
+<a href=#831 id=831 data-nosnippet>831</a>        </span><span class="kw">const </span>ALL_POINTING = ffi::GDK_SEAT_CAPABILITY_ALL_POINTING <span class="kw">as _</span>;
 <a href=#832 id=832 data-nosnippet>832</a>        <span class="doccomment">/// The union of all capabilities
 <a href=#833 id=833 data-nosnippet>833</a>        </span><span class="attr">#[doc(alias = <span class="string">"GDK_SEAT_CAPABILITY_ALL"</span>)]
-<a href=#834 id=834 data-nosnippet>834</a>        </span><span class="kw">const </span>ALL = ffi::<a href="../../../gdk4_sys/constant.GDK_SEAT_CAPABILITY_ALL.html">GDK_SEAT_CAPABILITY_ALL</a> <span class="kw">as _</span>;
+<a href=#834 id=834 data-nosnippet>834</a>        </span><span class="kw">const </span>ALL = ffi::GDK_SEAT_CAPABILITY_ALL <span class="kw">as _</span>;
 <a href=#835 id=835 data-nosnippet>835</a>    }
 <a href=#836 id=836 data-nosnippet>836</a>}
 <a href=#837 id=837 data-nosnippet>837</a>
@@ -962,7 +962,7 @@
 <a href=#889 id=889 data-nosnippet>889</a><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/trait.ToValue.html">ToValue</a> <span class="kw">for </span><a href="#806-836">SeatCapabilities</a> {
 <a href=#890 id=890 data-nosnippet>890</a>    <span class="attr">#[inline]
 <a href=#891 id=891 data-nosnippet>891</a>    </span><span class="kw">fn </span>to_value(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a> {
-<a href=#892 id=892 data-nosnippet>892</a>        <span class="kw">let </span><span class="kw-2">mut </span>value = glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>::for_value_type::&lt;<span class="self">Self</span>&gt;();
+<a href=#892 id=892 data-nosnippet>892</a>        <span class="kw">let </span><span class="kw-2">mut </span>value = glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html#method.for_value_type">for_value_type</a>::&lt;<span class="self">Self</span>&gt;();
 <a href=#893 id=893 data-nosnippet>893</a>        <span class="kw">unsafe </span>{
 <a href=#894 id=894 data-nosnippet>894</a>            glib::gobject_ffi::g_value_set_flags(<a href="#892">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtrMut.html#tymethod.to_glib_none_mut">to_glib_none_mut</a>().<span class="number">0</span>, <a class="self" href="#891">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>());
 <a href=#895 id=895 data-nosnippet>895</a>        }
@@ -994,47 +994,47 @@
 <a href=#921 id=921 data-nosnippet>921</a>        </span><span class="attr">#[cfg(feature = <span class="string">"v4_20"</span>)]
 <a href=#922 id=922 data-nosnippet>922</a>        #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_20"</span>)))]
 <a href=#923 id=923 data-nosnippet>923</a>        #[doc(alias = <span class="string">"GDK_TOPLEVEL_CAPABILITIES_EDGE_CONSTRAINTS"</span>)]
-<a href=#924 id=924 data-nosnippet>924</a>        </span><span class="kw">const </span>EDGE_CONSTRAINTS = ffi::<a href="../../../gdk4_sys/constant.GDK_TOPLEVEL_CAPABILITIES_EDGE_CONSTRAINTS.html">GDK_TOPLEVEL_CAPABILITIES_EDGE_CONSTRAINTS</a> <span class="kw">as _</span>;
+<a href=#924 id=924 data-nosnippet>924</a>        </span><span class="kw">const </span>EDGE_CONSTRAINTS = ffi::GDK_TOPLEVEL_CAPABILITIES_EDGE_CONSTRAINTS <span class="kw">as _</span>;
 <a href=#925 id=925 data-nosnippet>925</a>        <span class="doccomment">/// Whether inhibiting system shortcuts is supported.
 <a href=#926 id=926 data-nosnippet>926</a>        /// See [`ToplevelExt::inhibit_system_shortcuts()`][crate::prelude::ToplevelExt::inhibit_system_shortcuts()].
 <a href=#927 id=927 data-nosnippet>927</a>        </span><span class="attr">#[cfg(feature = <span class="string">"v4_20"</span>)]
 <a href=#928 id=928 data-nosnippet>928</a>        #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_20"</span>)))]
 <a href=#929 id=929 data-nosnippet>929</a>        #[doc(alias = <span class="string">"GDK_TOPLEVEL_CAPABILITIES_INHIBIT_SHORTCUTS"</span>)]
-<a href=#930 id=930 data-nosnippet>930</a>        </span><span class="kw">const </span>INHIBIT_SHORTCUTS = ffi::<a href="../../../gdk4_sys/constant.GDK_TOPLEVEL_CAPABILITIES_INHIBIT_SHORTCUTS.html">GDK_TOPLEVEL_CAPABILITIES_INHIBIT_SHORTCUTS</a> <span class="kw">as _</span>;
+<a href=#930 id=930 data-nosnippet>930</a>        </span><span class="kw">const </span>INHIBIT_SHORTCUTS = ffi::GDK_TOPLEVEL_CAPABILITIES_INHIBIT_SHORTCUTS <span class="kw">as _</span>;
 <a href=#931 id=931 data-nosnippet>931</a>        <span class="doccomment">/// Whether titlebar gestures are supported.
 <a href=#932 id=932 data-nosnippet>932</a>        /// See [`ToplevelExt::titlebar_gesture()`][crate::prelude::ToplevelExt::titlebar_gesture()].
 <a href=#933 id=933 data-nosnippet>933</a>        </span><span class="attr">#[cfg(feature = <span class="string">"v4_20"</span>)]
 <a href=#934 id=934 data-nosnippet>934</a>        #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_20"</span>)))]
 <a href=#935 id=935 data-nosnippet>935</a>        #[doc(alias = <span class="string">"GDK_TOPLEVEL_CAPABILITIES_TITLEBAR_GESTURES"</span>)]
-<a href=#936 id=936 data-nosnippet>936</a>        </span><span class="kw">const </span>TITLEBAR_GESTURES = ffi::<a href="../../../gdk4_sys/constant.GDK_TOPLEVEL_CAPABILITIES_TITLEBAR_GESTURES.html">GDK_TOPLEVEL_CAPABILITIES_TITLEBAR_GESTURES</a> <span class="kw">as _</span>;
+<a href=#936 id=936 data-nosnippet>936</a>        </span><span class="kw">const </span>TITLEBAR_GESTURES = ffi::GDK_TOPLEVEL_CAPABILITIES_TITLEBAR_GESTURES <span class="kw">as _</span>;
 <a href=#937 id=937 data-nosnippet>937</a>        <span class="doccomment">/// Whether showing the window menu is supported.
 <a href=#938 id=938 data-nosnippet>938</a>        /// See [`ToplevelExt::show_window_menu()`][crate::prelude::ToplevelExt::show_window_menu()].
 <a href=#939 id=939 data-nosnippet>939</a>        </span><span class="attr">#[cfg(feature = <span class="string">"v4_20"</span>)]
 <a href=#940 id=940 data-nosnippet>940</a>        #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_20"</span>)))]
 <a href=#941 id=941 data-nosnippet>941</a>        #[doc(alias = <span class="string">"GDK_TOPLEVEL_CAPABILITIES_WINDOW_MENU"</span>)]
-<a href=#942 id=942 data-nosnippet>942</a>        </span><span class="kw">const </span>WINDOW_MENU = ffi::<a href="../../../gdk4_sys/constant.GDK_TOPLEVEL_CAPABILITIES_WINDOW_MENU.html">GDK_TOPLEVEL_CAPABILITIES_WINDOW_MENU</a> <span class="kw">as _</span>;
+<a href=#942 id=942 data-nosnippet>942</a>        </span><span class="kw">const </span>WINDOW_MENU = ffi::GDK_TOPLEVEL_CAPABILITIES_WINDOW_MENU <span class="kw">as _</span>;
 <a href=#943 id=943 data-nosnippet>943</a>        <span class="doccomment">/// Whether the toplevel can be maximized.
 <a href=#944 id=944 data-nosnippet>944</a>        </span><span class="attr">#[cfg(feature = <span class="string">"v4_20"</span>)]
 <a href=#945 id=945 data-nosnippet>945</a>        #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_20"</span>)))]
 <a href=#946 id=946 data-nosnippet>946</a>        #[doc(alias = <span class="string">"GDK_TOPLEVEL_CAPABILITIES_MAXIMIZE"</span>)]
-<a href=#947 id=947 data-nosnippet>947</a>        </span><span class="kw">const </span>MAXIMIZE = ffi::<a href="../../../gdk4_sys/constant.GDK_TOPLEVEL_CAPABILITIES_MAXIMIZE.html">GDK_TOPLEVEL_CAPABILITIES_MAXIMIZE</a> <span class="kw">as _</span>;
+<a href=#947 id=947 data-nosnippet>947</a>        </span><span class="kw">const </span>MAXIMIZE = ffi::GDK_TOPLEVEL_CAPABILITIES_MAXIMIZE <span class="kw">as _</span>;
 <a href=#948 id=948 data-nosnippet>948</a>        <span class="doccomment">/// Whether the toplevel can be made fullscreen.
 <a href=#949 id=949 data-nosnippet>949</a>        </span><span class="attr">#[cfg(feature = <span class="string">"v4_20"</span>)]
 <a href=#950 id=950 data-nosnippet>950</a>        #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_20"</span>)))]
 <a href=#951 id=951 data-nosnippet>951</a>        #[doc(alias = <span class="string">"GDK_TOPLEVEL_CAPABILITIES_FULLSCREEN"</span>)]
-<a href=#952 id=952 data-nosnippet>952</a>        </span><span class="kw">const </span>FULLSCREEN = ffi::<a href="../../../gdk4_sys/constant.GDK_TOPLEVEL_CAPABILITIES_FULLSCREEN.html">GDK_TOPLEVEL_CAPABILITIES_FULLSCREEN</a> <span class="kw">as _</span>;
+<a href=#952 id=952 data-nosnippet>952</a>        </span><span class="kw">const </span>FULLSCREEN = ffi::GDK_TOPLEVEL_CAPABILITIES_FULLSCREEN <span class="kw">as _</span>;
 <a href=#953 id=953 data-nosnippet>953</a>        <span class="doccomment">/// Whether the toplevel can be minimized.
 <a href=#954 id=954 data-nosnippet>954</a>        /// See [`ToplevelExt::minimize()`][crate::prelude::ToplevelExt::minimize()].
 <a href=#955 id=955 data-nosnippet>955</a>        </span><span class="attr">#[cfg(feature = <span class="string">"v4_20"</span>)]
 <a href=#956 id=956 data-nosnippet>956</a>        #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_20"</span>)))]
 <a href=#957 id=957 data-nosnippet>957</a>        #[doc(alias = <span class="string">"GDK_TOPLEVEL_CAPABILITIES_MINIMIZE"</span>)]
-<a href=#958 id=958 data-nosnippet>958</a>        </span><span class="kw">const </span>MINIMIZE = ffi::<a href="../../../gdk4_sys/constant.GDK_TOPLEVEL_CAPABILITIES_MINIMIZE.html">GDK_TOPLEVEL_CAPABILITIES_MINIMIZE</a> <span class="kw">as _</span>;
+<a href=#958 id=958 data-nosnippet>958</a>        </span><span class="kw">const </span>MINIMIZE = ffi::GDK_TOPLEVEL_CAPABILITIES_MINIMIZE <span class="kw">as _</span>;
 <a href=#959 id=959 data-nosnippet>959</a>        <span class="doccomment">/// Whether the toplevel can be lowered.
 <a href=#960 id=960 data-nosnippet>960</a>        /// See [`ToplevelExt::lower()`][crate::prelude::ToplevelExt::lower()].
 <a href=#961 id=961 data-nosnippet>961</a>        </span><span class="attr">#[cfg(feature = <span class="string">"v4_20"</span>)]
 <a href=#962 id=962 data-nosnippet>962</a>        #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_20"</span>)))]
 <a href=#963 id=963 data-nosnippet>963</a>        #[doc(alias = <span class="string">"GDK_TOPLEVEL_CAPABILITIES_LOWER"</span>)]
-<a href=#964 id=964 data-nosnippet>964</a>        </span><span class="kw">const </span>LOWER = ffi::<a href="../../../gdk4_sys/constant.GDK_TOPLEVEL_CAPABILITIES_LOWER.html">GDK_TOPLEVEL_CAPABILITIES_LOWER</a> <span class="kw">as _</span>;
+<a href=#964 id=964 data-nosnippet>964</a>        </span><span class="kw">const </span>LOWER = ffi::GDK_TOPLEVEL_CAPABILITIES_LOWER <span class="kw">as _</span>;
 <a href=#965 id=965 data-nosnippet>965</a>    }
 <a href=#966 id=966 data-nosnippet>966</a>}
 <a href=#967 id=967 data-nosnippet>967</a>
@@ -1106,7 +1106,7 @@
 <a href=#1033 id=1033 data-nosnippet>1033</a></span><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/trait.ToValue.html">ToValue</a> <span class="kw">for </span><a href="#914-966">ToplevelCapabilities</a> {
 <a href=#1034 id=1034 data-nosnippet>1034</a>    <span class="attr">#[inline]
 <a href=#1035 id=1035 data-nosnippet>1035</a>    </span><span class="kw">fn </span>to_value(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a> {
-<a href=#1036 id=1036 data-nosnippet>1036</a>        <span class="kw">let </span><span class="kw-2">mut </span>value = glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>::for_value_type::&lt;<span class="self">Self</span>&gt;();
+<a href=#1036 id=1036 data-nosnippet>1036</a>        <span class="kw">let </span><span class="kw-2">mut </span>value = glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html#method.for_value_type">for_value_type</a>::&lt;<span class="self">Self</span>&gt;();
 <a href=#1037 id=1037 data-nosnippet>1037</a>        <span class="kw">unsafe </span>{
 <a href=#1038 id=1038 data-nosnippet>1038</a>            glib::gobject_ffi::g_value_set_flags(<a href="#1036">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtrMut.html#tymethod.to_glib_none_mut">to_glib_none_mut</a>().<span class="number">0</span>, <a class="self" href="#1035">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>());
 <a href=#1039 id=1039 data-nosnippet>1039</a>        }
@@ -1142,57 +1142,57 @@
 <a href=#1069 id=1069 data-nosnippet>1069</a>    </span><span class="kw">pub struct </span><a href="#1059-1124">ToplevelState</a>: <a href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a> {
 <a href=#1070 id=1070 data-nosnippet>1070</a>        <span class="doccomment">/// the surface is minimized
 <a href=#1071 id=1071 data-nosnippet>1071</a>        </span><span class="attr">#[doc(alias = <span class="string">"GDK_TOPLEVEL_STATE_MINIMIZED"</span>)]
-<a href=#1072 id=1072 data-nosnippet>1072</a>        </span><span class="kw">const </span>MINIMIZED = ffi::<a href="../../../gdk4_sys/constant.GDK_TOPLEVEL_STATE_MINIMIZED.html">GDK_TOPLEVEL_STATE_MINIMIZED</a> <span class="kw">as _</span>;
+<a href=#1072 id=1072 data-nosnippet>1072</a>        </span><span class="kw">const </span>MINIMIZED = ffi::GDK_TOPLEVEL_STATE_MINIMIZED <span class="kw">as _</span>;
 <a href=#1073 id=1073 data-nosnippet>1073</a>        <span class="doccomment">/// the surface is maximized
 <a href=#1074 id=1074 data-nosnippet>1074</a>        </span><span class="attr">#[doc(alias = <span class="string">"GDK_TOPLEVEL_STATE_MAXIMIZED"</span>)]
-<a href=#1075 id=1075 data-nosnippet>1075</a>        </span><span class="kw">const </span>MAXIMIZED = ffi::<a href="../../../gdk4_sys/constant.GDK_TOPLEVEL_STATE_MAXIMIZED.html">GDK_TOPLEVEL_STATE_MAXIMIZED</a> <span class="kw">as _</span>;
+<a href=#1075 id=1075 data-nosnippet>1075</a>        </span><span class="kw">const </span>MAXIMIZED = ffi::GDK_TOPLEVEL_STATE_MAXIMIZED <span class="kw">as _</span>;
 <a href=#1076 id=1076 data-nosnippet>1076</a>        <span class="doccomment">/// the surface is sticky
 <a href=#1077 id=1077 data-nosnippet>1077</a>        </span><span class="attr">#[doc(alias = <span class="string">"GDK_TOPLEVEL_STATE_STICKY"</span>)]
-<a href=#1078 id=1078 data-nosnippet>1078</a>        </span><span class="kw">const </span>STICKY = ffi::<a href="../../../gdk4_sys/constant.GDK_TOPLEVEL_STATE_STICKY.html">GDK_TOPLEVEL_STATE_STICKY</a> <span class="kw">as _</span>;
+<a href=#1078 id=1078 data-nosnippet>1078</a>        </span><span class="kw">const </span>STICKY = ffi::GDK_TOPLEVEL_STATE_STICKY <span class="kw">as _</span>;
 <a href=#1079 id=1079 data-nosnippet>1079</a>        <span class="doccomment">/// the surface is maximized without decorations
 <a href=#1080 id=1080 data-nosnippet>1080</a>        </span><span class="attr">#[doc(alias = <span class="string">"GDK_TOPLEVEL_STATE_FULLSCREEN"</span>)]
-<a href=#1081 id=1081 data-nosnippet>1081</a>        </span><span class="kw">const </span>FULLSCREEN = ffi::<a href="../../../gdk4_sys/constant.GDK_TOPLEVEL_STATE_FULLSCREEN.html">GDK_TOPLEVEL_STATE_FULLSCREEN</a> <span class="kw">as _</span>;
+<a href=#1081 id=1081 data-nosnippet>1081</a>        </span><span class="kw">const </span>FULLSCREEN = ffi::GDK_TOPLEVEL_STATE_FULLSCREEN <span class="kw">as _</span>;
 <a href=#1082 id=1082 data-nosnippet>1082</a>        <span class="doccomment">/// the surface is kept above other surfaces
 <a href=#1083 id=1083 data-nosnippet>1083</a>        </span><span class="attr">#[doc(alias = <span class="string">"GDK_TOPLEVEL_STATE_ABOVE"</span>)]
-<a href=#1084 id=1084 data-nosnippet>1084</a>        </span><span class="kw">const </span>ABOVE = ffi::<a href="../../../gdk4_sys/constant.GDK_TOPLEVEL_STATE_ABOVE.html">GDK_TOPLEVEL_STATE_ABOVE</a> <span class="kw">as _</span>;
+<a href=#1084 id=1084 data-nosnippet>1084</a>        </span><span class="kw">const </span>ABOVE = ffi::GDK_TOPLEVEL_STATE_ABOVE <span class="kw">as _</span>;
 <a href=#1085 id=1085 data-nosnippet>1085</a>        <span class="doccomment">/// the surface is kept below other surfaces
 <a href=#1086 id=1086 data-nosnippet>1086</a>        </span><span class="attr">#[doc(alias = <span class="string">"GDK_TOPLEVEL_STATE_BELOW"</span>)]
-<a href=#1087 id=1087 data-nosnippet>1087</a>        </span><span class="kw">const </span>BELOW = ffi::<a href="../../../gdk4_sys/constant.GDK_TOPLEVEL_STATE_BELOW.html">GDK_TOPLEVEL_STATE_BELOW</a> <span class="kw">as _</span>;
+<a href=#1087 id=1087 data-nosnippet>1087</a>        </span><span class="kw">const </span>BELOW = ffi::GDK_TOPLEVEL_STATE_BELOW <span class="kw">as _</span>;
 <a href=#1088 id=1088 data-nosnippet>1088</a>        <span class="doccomment">/// the surface is presented as focused (with active decorations)
 <a href=#1089 id=1089 data-nosnippet>1089</a>        </span><span class="attr">#[doc(alias = <span class="string">"GDK_TOPLEVEL_STATE_FOCUSED"</span>)]
-<a href=#1090 id=1090 data-nosnippet>1090</a>        </span><span class="kw">const </span>FOCUSED = ffi::<a href="../../../gdk4_sys/constant.GDK_TOPLEVEL_STATE_FOCUSED.html">GDK_TOPLEVEL_STATE_FOCUSED</a> <span class="kw">as _</span>;
+<a href=#1090 id=1090 data-nosnippet>1090</a>        </span><span class="kw">const </span>FOCUSED = ffi::GDK_TOPLEVEL_STATE_FOCUSED <span class="kw">as _</span>;
 <a href=#1091 id=1091 data-nosnippet>1091</a>        <span class="doccomment">/// the surface is in a tiled state
 <a href=#1092 id=1092 data-nosnippet>1092</a>        </span><span class="attr">#[doc(alias = <span class="string">"GDK_TOPLEVEL_STATE_TILED"</span>)]
-<a href=#1093 id=1093 data-nosnippet>1093</a>        </span><span class="kw">const </span>TILED = ffi::<a href="../../../gdk4_sys/constant.GDK_TOPLEVEL_STATE_TILED.html">GDK_TOPLEVEL_STATE_TILED</a> <span class="kw">as _</span>;
+<a href=#1093 id=1093 data-nosnippet>1093</a>        </span><span class="kw">const </span>TILED = ffi::GDK_TOPLEVEL_STATE_TILED <span class="kw">as _</span>;
 <a href=#1094 id=1094 data-nosnippet>1094</a>        <span class="doccomment">/// whether the top edge is tiled
 <a href=#1095 id=1095 data-nosnippet>1095</a>        </span><span class="attr">#[doc(alias = <span class="string">"GDK_TOPLEVEL_STATE_TOP_TILED"</span>)]
-<a href=#1096 id=1096 data-nosnippet>1096</a>        </span><span class="kw">const </span>TOP_TILED = ffi::<a href="../../../gdk4_sys/constant.GDK_TOPLEVEL_STATE_TOP_TILED.html">GDK_TOPLEVEL_STATE_TOP_TILED</a> <span class="kw">as _</span>;
+<a href=#1096 id=1096 data-nosnippet>1096</a>        </span><span class="kw">const </span>TOP_TILED = ffi::GDK_TOPLEVEL_STATE_TOP_TILED <span class="kw">as _</span>;
 <a href=#1097 id=1097 data-nosnippet>1097</a>        <span class="doccomment">/// whether the top edge is resizable
 <a href=#1098 id=1098 data-nosnippet>1098</a>        </span><span class="attr">#[doc(alias = <span class="string">"GDK_TOPLEVEL_STATE_TOP_RESIZABLE"</span>)]
-<a href=#1099 id=1099 data-nosnippet>1099</a>        </span><span class="kw">const </span>TOP_RESIZABLE = ffi::<a href="../../../gdk4_sys/constant.GDK_TOPLEVEL_STATE_TOP_RESIZABLE.html">GDK_TOPLEVEL_STATE_TOP_RESIZABLE</a> <span class="kw">as _</span>;
+<a href=#1099 id=1099 data-nosnippet>1099</a>        </span><span class="kw">const </span>TOP_RESIZABLE = ffi::GDK_TOPLEVEL_STATE_TOP_RESIZABLE <span class="kw">as _</span>;
 <a href=#1100 id=1100 data-nosnippet>1100</a>        <span class="doccomment">/// whether the right edge is tiled
 <a href=#1101 id=1101 data-nosnippet>1101</a>        </span><span class="attr">#[doc(alias = <span class="string">"GDK_TOPLEVEL_STATE_RIGHT_TILED"</span>)]
-<a href=#1102 id=1102 data-nosnippet>1102</a>        </span><span class="kw">const </span>RIGHT_TILED = ffi::<a href="../../../gdk4_sys/constant.GDK_TOPLEVEL_STATE_RIGHT_TILED.html">GDK_TOPLEVEL_STATE_RIGHT_TILED</a> <span class="kw">as _</span>;
+<a href=#1102 id=1102 data-nosnippet>1102</a>        </span><span class="kw">const </span>RIGHT_TILED = ffi::GDK_TOPLEVEL_STATE_RIGHT_TILED <span class="kw">as _</span>;
 <a href=#1103 id=1103 data-nosnippet>1103</a>        <span class="doccomment">/// whether the right edge is resizable
 <a href=#1104 id=1104 data-nosnippet>1104</a>        </span><span class="attr">#[doc(alias = <span class="string">"GDK_TOPLEVEL_STATE_RIGHT_RESIZABLE"</span>)]
-<a href=#1105 id=1105 data-nosnippet>1105</a>        </span><span class="kw">const </span>RIGHT_RESIZABLE = ffi::<a href="../../../gdk4_sys/constant.GDK_TOPLEVEL_STATE_RIGHT_RESIZABLE.html">GDK_TOPLEVEL_STATE_RIGHT_RESIZABLE</a> <span class="kw">as _</span>;
+<a href=#1105 id=1105 data-nosnippet>1105</a>        </span><span class="kw">const </span>RIGHT_RESIZABLE = ffi::GDK_TOPLEVEL_STATE_RIGHT_RESIZABLE <span class="kw">as _</span>;
 <a href=#1106 id=1106 data-nosnippet>1106</a>        <span class="doccomment">/// whether the bottom edge is tiled
 <a href=#1107 id=1107 data-nosnippet>1107</a>        </span><span class="attr">#[doc(alias = <span class="string">"GDK_TOPLEVEL_STATE_BOTTOM_TILED"</span>)]
-<a href=#1108 id=1108 data-nosnippet>1108</a>        </span><span class="kw">const </span>BOTTOM_TILED = ffi::<a href="../../../gdk4_sys/constant.GDK_TOPLEVEL_STATE_BOTTOM_TILED.html">GDK_TOPLEVEL_STATE_BOTTOM_TILED</a> <span class="kw">as _</span>;
+<a href=#1108 id=1108 data-nosnippet>1108</a>        </span><span class="kw">const </span>BOTTOM_TILED = ffi::GDK_TOPLEVEL_STATE_BOTTOM_TILED <span class="kw">as _</span>;
 <a href=#1109 id=1109 data-nosnippet>1109</a>        <span class="doccomment">/// whether the bottom edge is resizable
 <a href=#1110 id=1110 data-nosnippet>1110</a>        </span><span class="attr">#[doc(alias = <span class="string">"GDK_TOPLEVEL_STATE_BOTTOM_RESIZABLE"</span>)]
-<a href=#1111 id=1111 data-nosnippet>1111</a>        </span><span class="kw">const </span>BOTTOM_RESIZABLE = ffi::<a href="../../../gdk4_sys/constant.GDK_TOPLEVEL_STATE_BOTTOM_RESIZABLE.html">GDK_TOPLEVEL_STATE_BOTTOM_RESIZABLE</a> <span class="kw">as _</span>;
+<a href=#1111 id=1111 data-nosnippet>1111</a>        </span><span class="kw">const </span>BOTTOM_RESIZABLE = ffi::GDK_TOPLEVEL_STATE_BOTTOM_RESIZABLE <span class="kw">as _</span>;
 <a href=#1112 id=1112 data-nosnippet>1112</a>        <span class="doccomment">/// whether the left edge is tiled
 <a href=#1113 id=1113 data-nosnippet>1113</a>        </span><span class="attr">#[doc(alias = <span class="string">"GDK_TOPLEVEL_STATE_LEFT_TILED"</span>)]
-<a href=#1114 id=1114 data-nosnippet>1114</a>        </span><span class="kw">const </span>LEFT_TILED = ffi::<a href="../../../gdk4_sys/constant.GDK_TOPLEVEL_STATE_LEFT_TILED.html">GDK_TOPLEVEL_STATE_LEFT_TILED</a> <span class="kw">as _</span>;
+<a href=#1114 id=1114 data-nosnippet>1114</a>        </span><span class="kw">const </span>LEFT_TILED = ffi::GDK_TOPLEVEL_STATE_LEFT_TILED <span class="kw">as _</span>;
 <a href=#1115 id=1115 data-nosnippet>1115</a>        <span class="doccomment">/// whether the left edge is resizable
 <a href=#1116 id=1116 data-nosnippet>1116</a>        </span><span class="attr">#[doc(alias = <span class="string">"GDK_TOPLEVEL_STATE_LEFT_RESIZABLE"</span>)]
-<a href=#1117 id=1117 data-nosnippet>1117</a>        </span><span class="kw">const </span>LEFT_RESIZABLE = ffi::<a href="../../../gdk4_sys/constant.GDK_TOPLEVEL_STATE_LEFT_RESIZABLE.html">GDK_TOPLEVEL_STATE_LEFT_RESIZABLE</a> <span class="kw">as _</span>;
+<a href=#1117 id=1117 data-nosnippet>1117</a>        </span><span class="kw">const </span>LEFT_RESIZABLE = ffi::GDK_TOPLEVEL_STATE_LEFT_RESIZABLE <span class="kw">as _</span>;
 <a href=#1118 id=1118 data-nosnippet>1118</a>        <span class="doccomment">/// The surface is not visible to the user.
 <a href=#1119 id=1119 data-nosnippet>1119</a>        </span><span class="attr">#[cfg(feature = <span class="string">"v4_12"</span>)]
 <a href=#1120 id=1120 data-nosnippet>1120</a>        #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_12"</span>)))]
 <a href=#1121 id=1121 data-nosnippet>1121</a>        #[doc(alias = <span class="string">"GDK_TOPLEVEL_STATE_SUSPENDED"</span>)]
-<a href=#1122 id=1122 data-nosnippet>1122</a>        </span><span class="kw">const </span>SUSPENDED = ffi::<a href="../../../gdk4_sys/constant.GDK_TOPLEVEL_STATE_SUSPENDED.html">GDK_TOPLEVEL_STATE_SUSPENDED</a> <span class="kw">as _</span>;
+<a href=#1122 id=1122 data-nosnippet>1122</a>        </span><span class="kw">const </span>SUSPENDED = ffi::GDK_TOPLEVEL_STATE_SUSPENDED <span class="kw">as _</span>;
 <a href=#1123 id=1123 data-nosnippet>1123</a>    }
 <a href=#1124 id=1124 data-nosnippet>1124</a>}
 <a href=#1125 id=1125 data-nosnippet>1125</a>
@@ -1250,7 +1250,7 @@
 <a href=#1177 id=1177 data-nosnippet>1177</a><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/trait.ToValue.html">ToValue</a> <span class="kw">for </span><a href="#1059-1124">ToplevelState</a> {
 <a href=#1178 id=1178 data-nosnippet>1178</a>    <span class="attr">#[inline]
 <a href=#1179 id=1179 data-nosnippet>1179</a>    </span><span class="kw">fn </span>to_value(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a> {
-<a href=#1180 id=1180 data-nosnippet>1180</a>        <span class="kw">let </span><span class="kw-2">mut </span>value = glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>::for_value_type::&lt;<span class="self">Self</span>&gt;();
+<a href=#1180 id=1180 data-nosnippet>1180</a>        <span class="kw">let </span><span class="kw-2">mut </span>value = glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html#method.for_value_type">for_value_type</a>::&lt;<span class="self">Self</span>&gt;();
 <a href=#1181 id=1181 data-nosnippet>1181</a>        <span class="kw">unsafe </span>{
 <a href=#1182 id=1182 data-nosnippet>1182</a>            glib::gobject_ffi::g_value_set_flags(<a href="#1180">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtrMut.html#tymethod.to_glib_none_mut">to_glib_none_mut</a>().<span class="number">0</span>, <a class="self" href="#1179">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>());
 <a href=#1183 id=1183 data-nosnippet>1183</a>        }

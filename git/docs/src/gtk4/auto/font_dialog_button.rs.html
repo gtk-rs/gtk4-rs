@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/auto/font_dialog_button.rs`."><title>font_dialog_button.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-17e0aaed.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.97.0-nightly (82bee9650 2026-05-09)" data-channel="nightly" data-search-js="search-b5634cc7.js" data-stringdex-js="stringdex-2da4960a.js" data-settings-js="settings-170eb4bf.js" ><script src="../../../static.files/storage-41dd4d93.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-aa4d37ac.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-f7c3ffd8.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><a class="skip-main-content" href="#main-content">Skip to main content</a><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/auto/font_dialog_button.rs`."><title>font_dialog_button.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-17e0aaed.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.98.0-nightly (6368fd52c 2026-05-29)" data-channel="nightly" data-search-js="search-fd9372ac.js" data-stringdex-js="stringdex-2da4960a.js" data-settings-js="settings-170eb4bf.js" ><script src="../../../static.files/storage-41dd4d93.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-fcd733ba.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-f7c3ffd8.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><a class="skip-main-content" href="#main-content">Skip to main content</a><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
 
@@ -75,7 +75,7 @@
 <a href=#2 id=2 data-nosnippet>2</a>// from gir-files (https://github.com/gtk-rs/gir-files)
 <a href=#3 id=3 data-nosnippet>3</a>// DO NOT EDIT
 <a href=#4 id=4 data-nosnippet>4</a>
-<a href=#5 id=5 data-nosnippet>5</a></span><span class="kw">use </span>crate::{
+<a href=#5 id=5 data-nosnippet>5</a></span><span class="kw">use crate</span>::{
 <a href=#6 id=6 data-nosnippet>6</a>    <a href="accessible.rs.html#19-70">Accessible</a>, <a href="enums.rs.html#1029-1329">AccessibleRole</a>, <a href="../enums.rs.html#77-107">Align</a>, <a href="buildable.rs.html#8-31">Buildable</a>, <a href="constraint_target.rs.html#8-23">ConstraintTarget</a>, <a href="font_dialog.rs.html#13-71">FontDialog</a>, <a href="enums.rs.html#5621-5636">FontLevel</a>,
 <a href=#7 id=7 data-nosnippet>7</a>    <a href="layout_manager.rs.html#8-70">LayoutManager</a>, <a href="enums.rs.html#8381-8392">Overflow</a>, <a href="widget.rs.html#19-887">Widget</a>, <a href="../../../gtk4_sys/index.html">ffi</a>,
 <a href=#8 id=8 data-nosnippet>8</a>};
@@ -83,9 +83,9 @@
 <a href=#10 id=10 data-nosnippet>10</a>#[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_14"</span>)))]
 <a href=#11 id=11 data-nosnippet>11</a></span><span class="kw">use </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.ObjectType.html">glib::object::ObjectType</a> <span class="kw">as _</span>;
 <a href=#12 id=12 data-nosnippet>12</a><span class="kw">use </span>glib::{
-<a href=#13 id=13 data-nosnippet>13</a>    prelude::<span class="kw-2">*</span>,
+<a href=#13 id=13 data-nosnippet>13</a>    <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/prelude/index.html">prelude</a>::<span class="kw-2">*</span>,
 <a href=#14 id=14 data-nosnippet>14</a>    signal::{<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html">SignalHandlerId</a>, <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/fn.connect_raw.html">connect_raw</a>},
-<a href=#15 id=15 data-nosnippet>15</a>    translate::<span class="kw-2">*</span>,
+<a href=#15 id=15 data-nosnippet>15</a>    <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/index.html">translate</a>::<span class="kw-2">*</span>,
 <a href=#16 id=16 data-nosnippet>16</a>};
 <a href=#17 id=17 data-nosnippet>17</a><span class="kw">use </span><a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">std::boxed::Box</a> <span class="kw">as </span>Box_;
 <a href=#18 id=18 data-nosnippet>18</a>
@@ -926,8 +926,8 @@
 <a href=#853 id=853 data-nosnippet>853</a>            <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/fn.connect_raw.html">connect_raw</a>(
 <a href=#854 id=854 data-nosnippet>854</a>                <a class="self" href="#841">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.ObjectType.html#tymethod.as_ptr">as_ptr</a>() <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>,
 <a href=#855 id=855 data-nosnippet>855</a>                <span class="string">c"activate"</span>.<a href="https://doc.rust-lang.org/nightly/core/ffi/c_str/struct.CStr.html#method.as_ptr">as_ptr</a>(),
-<a href=#856 id=856 data-nosnippet>856</a>                <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.Some">Some</a>(std::mem::transmute::&lt;<span class="kw-2">*const </span>(), <span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn</span>()&gt;(
-<a href=#857 id=857 data-nosnippet>857</a>                    activate_trampoline::&lt;F&gt; <span class="kw">as </span><span class="kw-2">*const </span>(),
+<a href=#856 id=856 data-nosnippet>856</a>                <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.Some">Some</a>(std::mem::<a href="https://doc.rust-lang.org/nightly/core/intrinsics/fn.transmute.html">transmute</a>::&lt;<span class="kw-2">*const </span>(), <span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn</span>()&gt;(
+<a href=#857 id=857 data-nosnippet>857</a>                    <a href="#842-850">activate_trampoline</a>::&lt;F&gt; <span class="kw">as </span><span class="kw-2">*const </span>(),
 <a href=#858 id=858 data-nosnippet>858</a>                )),
 <a href=#859 id=859 data-nosnippet>859</a>                <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">Box_</a>::<a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html#method.into_raw">into_raw</a>(<a href="#852">f</a>),
 <a href=#860 id=860 data-nosnippet>860</a>            )
@@ -937,7 +937,7 @@
 <a href=#864 id=864 data-nosnippet>864</a>    <span class="attr">#[cfg(feature = <span class="string">"v4_14"</span>)]
 <a href=#865 id=865 data-nosnippet>865</a>    #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_14"</span>)))]
 <a href=#866 id=866 data-nosnippet>866</a>    </span><span class="kw">pub fn </span>emit_activate(<span class="kw-2">&amp;</span><span class="self">self</span>) {
-<a href=#867 id=867 data-nosnippet>867</a>        <a class="self" href="#866">self</a>.emit_by_name::&lt;()&gt;(<span class="string">"activate"</span>, <span class="kw-2">&amp;</span>[]);
+<a href=#867 id=867 data-nosnippet>867</a>        <a class="self" href="#866">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.ObjectExt.html#tymethod.emit_by_name">emit_by_name</a>::&lt;()&gt;(<span class="string">"activate"</span>, <span class="kw-2">&amp;</span>[]);
 <a href=#868 id=868 data-nosnippet>868</a>    }
 <a href=#869 id=869 data-nosnippet>869</a>
 <a href=#870 id=870 data-nosnippet>870</a>    <span class="attr">#[cfg(feature = <span class="string">"v4_10"</span>)]
@@ -959,8 +959,8 @@
 <a href=#886 id=886 data-nosnippet>886</a>            <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/fn.connect_raw.html">connect_raw</a>(
 <a href=#887 id=887 data-nosnippet>887</a>                <a class="self" href="#873">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.ObjectType.html#tymethod.as_ptr">as_ptr</a>() <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>,
 <a href=#888 id=888 data-nosnippet>888</a>                <span class="string">c"notify::dialog"</span>.<a href="https://doc.rust-lang.org/nightly/core/ffi/c_str/struct.CStr.html#method.as_ptr">as_ptr</a>(),
-<a href=#889 id=889 data-nosnippet>889</a>                <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.Some">Some</a>(std::mem::transmute::&lt;<span class="kw-2">*const </span>(), <span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn</span>()&gt;(
-<a href=#890 id=890 data-nosnippet>890</a>                    notify_dialog_trampoline::&lt;F&gt; <span class="kw">as </span><span class="kw-2">*const </span>(),
+<a href=#889 id=889 data-nosnippet>889</a>                <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.Some">Some</a>(std::mem::<a href="https://doc.rust-lang.org/nightly/core/intrinsics/fn.transmute.html">transmute</a>::&lt;<span class="kw-2">*const </span>(), <span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn</span>()&gt;(
+<a href=#890 id=890 data-nosnippet>890</a>                    <a href="#874-883">notify_dialog_trampoline</a>::&lt;F&gt; <span class="kw">as </span><span class="kw-2">*const </span>(),
 <a href=#891 id=891 data-nosnippet>891</a>                )),
 <a href=#892 id=892 data-nosnippet>892</a>                <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">Box_</a>::<a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html#method.into_raw">into_raw</a>(<a href="#885">f</a>),
 <a href=#893 id=893 data-nosnippet>893</a>            )
@@ -986,8 +986,8 @@
 <a href=#913 id=913 data-nosnippet>913</a>            <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/fn.connect_raw.html">connect_raw</a>(
 <a href=#914 id=914 data-nosnippet>914</a>                <a class="self" href="#900">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.ObjectType.html#tymethod.as_ptr">as_ptr</a>() <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>,
 <a href=#915 id=915 data-nosnippet>915</a>                <span class="string">c"notify::font-desc"</span>.<a href="https://doc.rust-lang.org/nightly/core/ffi/c_str/struct.CStr.html#method.as_ptr">as_ptr</a>(),
-<a href=#916 id=916 data-nosnippet>916</a>                <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.Some">Some</a>(std::mem::transmute::&lt;<span class="kw-2">*const </span>(), <span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn</span>()&gt;(
-<a href=#917 id=917 data-nosnippet>917</a>                    notify_font_desc_trampoline::&lt;F&gt; <span class="kw">as </span><span class="kw-2">*const </span>(),
+<a href=#916 id=916 data-nosnippet>916</a>                <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.Some">Some</a>(std::mem::<a href="https://doc.rust-lang.org/nightly/core/intrinsics/fn.transmute.html">transmute</a>::&lt;<span class="kw-2">*const </span>(), <span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn</span>()&gt;(
+<a href=#917 id=917 data-nosnippet>917</a>                    <a href="#901-910">notify_font_desc_trampoline</a>::&lt;F&gt; <span class="kw">as </span><span class="kw-2">*const </span>(),
 <a href=#918 id=918 data-nosnippet>918</a>                )),
 <a href=#919 id=919 data-nosnippet>919</a>                <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">Box_</a>::<a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html#method.into_raw">into_raw</a>(<a href="#912">f</a>),
 <a href=#920 id=920 data-nosnippet>920</a>            )
@@ -1013,8 +1013,8 @@
 <a href=#940 id=940 data-nosnippet>940</a>            <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/fn.connect_raw.html">connect_raw</a>(
 <a href=#941 id=941 data-nosnippet>941</a>                <a class="self" href="#927">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.ObjectType.html#tymethod.as_ptr">as_ptr</a>() <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>,
 <a href=#942 id=942 data-nosnippet>942</a>                <span class="string">c"notify::font-features"</span>.<a href="https://doc.rust-lang.org/nightly/core/ffi/c_str/struct.CStr.html#method.as_ptr">as_ptr</a>(),
-<a href=#943 id=943 data-nosnippet>943</a>                <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.Some">Some</a>(std::mem::transmute::&lt;<span class="kw-2">*const </span>(), <span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn</span>()&gt;(
-<a href=#944 id=944 data-nosnippet>944</a>                    notify_font_features_trampoline::&lt;F&gt; <span class="kw">as </span><span class="kw-2">*const </span>(),
+<a href=#943 id=943 data-nosnippet>943</a>                <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.Some">Some</a>(std::mem::<a href="https://doc.rust-lang.org/nightly/core/intrinsics/fn.transmute.html">transmute</a>::&lt;<span class="kw-2">*const </span>(), <span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn</span>()&gt;(
+<a href=#944 id=944 data-nosnippet>944</a>                    <a href="#928-937">notify_font_features_trampoline</a>::&lt;F&gt; <span class="kw">as </span><span class="kw-2">*const </span>(),
 <a href=#945 id=945 data-nosnippet>945</a>                )),
 <a href=#946 id=946 data-nosnippet>946</a>                <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">Box_</a>::<a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html#method.into_raw">into_raw</a>(<a href="#939">f</a>),
 <a href=#947 id=947 data-nosnippet>947</a>            )
@@ -1040,8 +1040,8 @@
 <a href=#967 id=967 data-nosnippet>967</a>            <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/fn.connect_raw.html">connect_raw</a>(
 <a href=#968 id=968 data-nosnippet>968</a>                <a class="self" href="#954">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.ObjectType.html#tymethod.as_ptr">as_ptr</a>() <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>,
 <a href=#969 id=969 data-nosnippet>969</a>                <span class="string">c"notify::language"</span>.<a href="https://doc.rust-lang.org/nightly/core/ffi/c_str/struct.CStr.html#method.as_ptr">as_ptr</a>(),
-<a href=#970 id=970 data-nosnippet>970</a>                <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.Some">Some</a>(std::mem::transmute::&lt;<span class="kw-2">*const </span>(), <span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn</span>()&gt;(
-<a href=#971 id=971 data-nosnippet>971</a>                    notify_language_trampoline::&lt;F&gt; <span class="kw">as </span><span class="kw-2">*const </span>(),
+<a href=#970 id=970 data-nosnippet>970</a>                <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.Some">Some</a>(std::mem::<a href="https://doc.rust-lang.org/nightly/core/intrinsics/fn.transmute.html">transmute</a>::&lt;<span class="kw-2">*const </span>(), <span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn</span>()&gt;(
+<a href=#971 id=971 data-nosnippet>971</a>                    <a href="#955-964">notify_language_trampoline</a>::&lt;F&gt; <span class="kw">as </span><span class="kw-2">*const </span>(),
 <a href=#972 id=972 data-nosnippet>972</a>                )),
 <a href=#973 id=973 data-nosnippet>973</a>                <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">Box_</a>::<a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html#method.into_raw">into_raw</a>(<a href="#966">f</a>),
 <a href=#974 id=974 data-nosnippet>974</a>            )
@@ -1065,8 +1065,8 @@
 <a href=#992 id=992 data-nosnippet>992</a>            <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/fn.connect_raw.html">connect_raw</a>(
 <a href=#993 id=993 data-nosnippet>993</a>                <a class="self" href="#979">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.ObjectType.html#tymethod.as_ptr">as_ptr</a>() <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>,
 <a href=#994 id=994 data-nosnippet>994</a>                <span class="string">c"notify::level"</span>.<a href="https://doc.rust-lang.org/nightly/core/ffi/c_str/struct.CStr.html#method.as_ptr">as_ptr</a>(),
-<a href=#995 id=995 data-nosnippet>995</a>                <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.Some">Some</a>(std::mem::transmute::&lt;<span class="kw-2">*const </span>(), <span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn</span>()&gt;(
-<a href=#996 id=996 data-nosnippet>996</a>                    notify_level_trampoline::&lt;F&gt; <span class="kw">as </span><span class="kw-2">*const </span>(),
+<a href=#995 id=995 data-nosnippet>995</a>                <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.Some">Some</a>(std::mem::<a href="https://doc.rust-lang.org/nightly/core/intrinsics/fn.transmute.html">transmute</a>::&lt;<span class="kw-2">*const </span>(), <span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn</span>()&gt;(
+<a href=#996 id=996 data-nosnippet>996</a>                    <a href="#980-989">notify_level_trampoline</a>::&lt;F&gt; <span class="kw">as </span><span class="kw-2">*const </span>(),
 <a href=#997 id=997 data-nosnippet>997</a>                )),
 <a href=#998 id=998 data-nosnippet>998</a>                <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">Box_</a>::<a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html#method.into_raw">into_raw</a>(<a href="#991">f</a>),
 <a href=#999 id=999 data-nosnippet>999</a>            )
@@ -1090,8 +1090,8 @@
 <a href=#1017 id=1017 data-nosnippet>1017</a>            <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/fn.connect_raw.html">connect_raw</a>(
 <a href=#1018 id=1018 data-nosnippet>1018</a>                <a class="self" href="#1004">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.ObjectType.html#tymethod.as_ptr">as_ptr</a>() <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>,
 <a href=#1019 id=1019 data-nosnippet>1019</a>                <span class="string">c"notify::use-font"</span>.<a href="https://doc.rust-lang.org/nightly/core/ffi/c_str/struct.CStr.html#method.as_ptr">as_ptr</a>(),
-<a href=#1020 id=1020 data-nosnippet>1020</a>                <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.Some">Some</a>(std::mem::transmute::&lt;<span class="kw-2">*const </span>(), <span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn</span>()&gt;(
-<a href=#1021 id=1021 data-nosnippet>1021</a>                    notify_use_font_trampoline::&lt;F&gt; <span class="kw">as </span><span class="kw-2">*const </span>(),
+<a href=#1020 id=1020 data-nosnippet>1020</a>                <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.Some">Some</a>(std::mem::<a href="https://doc.rust-lang.org/nightly/core/intrinsics/fn.transmute.html">transmute</a>::&lt;<span class="kw-2">*const </span>(), <span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn</span>()&gt;(
+<a href=#1021 id=1021 data-nosnippet>1021</a>                    <a href="#1005-1014">notify_use_font_trampoline</a>::&lt;F&gt; <span class="kw">as </span><span class="kw-2">*const </span>(),
 <a href=#1022 id=1022 data-nosnippet>1022</a>                )),
 <a href=#1023 id=1023 data-nosnippet>1023</a>                <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">Box_</a>::<a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html#method.into_raw">into_raw</a>(<a href="#1016">f</a>),
 <a href=#1024 id=1024 data-nosnippet>1024</a>            )
@@ -1115,8 +1115,8 @@
 <a href=#1042 id=1042 data-nosnippet>1042</a>            <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/fn.connect_raw.html">connect_raw</a>(
 <a href=#1043 id=1043 data-nosnippet>1043</a>                <a class="self" href="#1029">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.ObjectType.html#tymethod.as_ptr">as_ptr</a>() <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>,
 <a href=#1044 id=1044 data-nosnippet>1044</a>                <span class="string">c"notify::use-size"</span>.<a href="https://doc.rust-lang.org/nightly/core/ffi/c_str/struct.CStr.html#method.as_ptr">as_ptr</a>(),
-<a href=#1045 id=1045 data-nosnippet>1045</a>                <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.Some">Some</a>(std::mem::transmute::&lt;<span class="kw-2">*const </span>(), <span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn</span>()&gt;(
-<a href=#1046 id=1046 data-nosnippet>1046</a>                    notify_use_size_trampoline::&lt;F&gt; <span class="kw">as </span><span class="kw-2">*const </span>(),
+<a href=#1045 id=1045 data-nosnippet>1045</a>                <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.Some">Some</a>(std::mem::<a href="https://doc.rust-lang.org/nightly/core/intrinsics/fn.transmute.html">transmute</a>::&lt;<span class="kw-2">*const </span>(), <span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn</span>()&gt;(
+<a href=#1046 id=1046 data-nosnippet>1046</a>                    <a href="#1030-1039">notify_use_size_trampoline</a>::&lt;F&gt; <span class="kw">as </span><span class="kw-2">*const </span>(),
 <a href=#1047 id=1047 data-nosnippet>1047</a>                )),
 <a href=#1048 id=1048 data-nosnippet>1048</a>                <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">Box_</a>::<a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html#method.into_raw">into_raw</a>(<a href="#1041">f</a>),
 <a href=#1049 id=1049 data-nosnippet>1049</a>            )
@@ -1128,7 +1128,7 @@
 <a href=#1055 id=1055 data-nosnippet>1055</a>#[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_10"</span>)))]
 <a href=#1056 id=1056 data-nosnippet>1056</a></span><span class="kw">impl </span><a href="https://doc.rust-lang.org/nightly/core/default/trait.Default.html">Default</a> <span class="kw">for </span><a href="#19-552">FontDialogButton</a> {
 <a href=#1057 id=1057 data-nosnippet>1057</a>    <span class="kw">fn </span>default() -&gt; <span class="self">Self </span>{
-<a href=#1058 id=1058 data-nosnippet>1058</a>        glib::object::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/struct.Object.html">Object</a>::new::&lt;<span class="self">Self</span>&gt;()
+<a href=#1058 id=1058 data-nosnippet>1058</a>        glib::object::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/struct.Object.html">Object</a>::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/struct.Object.html#method.new">new</a>::&lt;<span class="self">Self</span>&gt;()
 <a href=#1059 id=1059 data-nosnippet>1059</a>    }
 <a href=#1060 id=1060 data-nosnippet>1060</a>}
 <a href=#1061 id=1061 data-nosnippet>1061</a>

@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/auto/print_settings.rs`."><title>print_settings.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-17e0aaed.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.97.0-nightly (82bee9650 2026-05-09)" data-channel="nightly" data-search-js="search-b5634cc7.js" data-stringdex-js="stringdex-2da4960a.js" data-settings-js="settings-170eb4bf.js" ><script src="../../../static.files/storage-41dd4d93.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-aa4d37ac.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-f7c3ffd8.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><a class="skip-main-content" href="#main-content">Skip to main content</a><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/auto/print_settings.rs`."><title>print_settings.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-17e0aaed.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.98.0-nightly (6368fd52c 2026-05-29)" data-channel="nightly" data-search-js="search-fd9372ac.js" data-stringdex-js="stringdex-2da4960a.js" data-settings-js="settings-170eb4bf.js" ><script src="../../../static.files/storage-41dd4d93.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-fcd733ba.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-f7c3ffd8.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><a class="skip-main-content" href="#main-content">Skip to main content</a><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
 
@@ -75,11 +75,11 @@
 <a href=#2 id=2 data-nosnippet>2</a>// from gir-files (https://github.com/gtk-rs/gir-files)
 <a href=#3 id=3 data-nosnippet>3</a>// DO NOT EDIT
 <a href=#4 id=4 data-nosnippet>4</a>
-<a href=#5 id=5 data-nosnippet>5</a></span><span class="kw">use </span>crate::{
+<a href=#5 id=5 data-nosnippet>5</a></span><span class="kw">use crate</span>::{
 <a href=#6 id=6 data-nosnippet>6</a>    <a href="enums.rs.html#8038-8065">NumberUpLayout</a>, <a href="enums.rs.html#8692-8707">PageOrientation</a>, <a href="../page_range.rs.html#8-14">PageRange</a>, <a href="enums.rs.html#8801-8813">PageSet</a>, <a href="paper_size.rs.html#8-28">PaperSize</a>, <a href="enums.rs.html#9241-9253">PrintDuplex</a>, <a href="enums.rs.html#9706-9721">PrintPages</a>,
 <a href=#7 id=7 data-nosnippet>7</a>    <a href="enums.rs.html#9815-9830">PrintQuality</a>, <a href="enums.rs.html#14113-14128">Unit</a>, <a href="../../../gtk4_sys/index.html">ffi</a>,
 <a href=#8 id=8 data-nosnippet>8</a>};
-<a href=#9 id=9 data-nosnippet>9</a><span class="kw">use </span>glib::translate::<span class="kw-2">*</span>;
+<a href=#9 id=9 data-nosnippet>9</a><span class="kw">use </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/index.html">glib::translate</a>::<span class="kw-2">*</span>;
 <a href=#10 id=10 data-nosnippet>10</a>
 <a href=#11 id=11 data-nosnippet>11</a><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/macro.wrapper.html">glib::wrapper!</a> {
 <a href=#12 id=12 data-nosnippet>12</a>    <span class="doccomment">/// Collects the settings of a print dialog in a system-independent way.
@@ -140,7 +140,7 @@
 <a href=#67 id=67 data-nosnippet>67</a>                <a href="#62">file_name</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
 <a href=#68 id=68 data-nosnippet>68</a>                <span class="kw-2">&amp;mut </span><a href="#65">error</a>,
 <a href=#69 id=69 data-nosnippet>69</a>            );
-<a href=#70 id=70 data-nosnippet>70</a>            <span class="kw">if </span><a href="#65">error</a>.<a href="https://doc.rust-lang.org/nightly/core/ptr/foreigntype.mut_ptr.html#method.is_null">is_null</a>() {
+<a href=#70 id=70 data-nosnippet>70</a>            <span class="kw">if </span><a href="#65">error</a>.<a href="https://doc.rust-lang.org/nightly/core/primitive.pointer.html#method.is_null">is_null</a>() {
 <a href=#71 id=71 data-nosnippet>71</a>                <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html#variant.Ok">Ok</a>(<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib_full.html">from_glib_full</a>(<a href="#66">ret</a>))
 <a href=#72 id=72 data-nosnippet>72</a>            } <span class="kw">else </span>{
 <a href=#73 id=73 data-nosnippet>73</a>                <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html#variant.Err">Err</a>(<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib_full.html">from_glib_full</a>(<a href="#65">error</a>))
@@ -197,7 +197,7 @@
 <a href=#124 id=124 data-nosnippet>124</a>                <a href="#117">group_name</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
 <a href=#125 id=125 data-nosnippet>125</a>                <span class="kw-2">&amp;mut </span><a href="#121">error</a>,
 <a href=#126 id=126 data-nosnippet>126</a>            );
-<a href=#127 id=127 data-nosnippet>127</a>            <span class="kw">if </span><a href="#121">error</a>.<a href="https://doc.rust-lang.org/nightly/core/ptr/foreigntype.mut_ptr.html#method.is_null">is_null</a>() {
+<a href=#127 id=127 data-nosnippet>127</a>            <span class="kw">if </span><a href="#121">error</a>.<a href="https://doc.rust-lang.org/nightly/core/primitive.pointer.html#method.is_null">is_null</a>() {
 <a href=#128 id=128 data-nosnippet>128</a>                <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html#variant.Ok">Ok</a>(<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib_full.html">from_glib_full</a>(<a href="#122">ret</a>))
 <a href=#129 id=129 data-nosnippet>129</a>            } <span class="kw">else </span>{
 <a href=#130 id=130 data-nosnippet>130</a>                <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html#variant.Err">Err</a>(<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib_full.html">from_glib_full</a>(<a href="#121">error</a>))
@@ -229,7 +229,7 @@
 <a href=#156 id=156 data-nosnippet>156</a>                (<span class="kw-2">*</span><a href="#155">callback</a>)(<a href="#153">key</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/gstring/struct.GString.html#method.as_str">as_str</a>(), <a href="#154">value</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/gstring/struct.GString.html#method.as_str">as_str</a>())
 <a href=#157 id=157 data-nosnippet>157</a>            }
 <a href=#158 id=158 data-nosnippet>158</a>        }
-<a href=#159 id=159 data-nosnippet>159</a>        <span class="kw">let </span>func = <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.Some">Some</a>(func_func::&lt;P&gt; <span class="kw">as _</span>);
+<a href=#159 id=159 data-nosnippet>159</a>        <span class="kw">let </span>func = <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.Some">Some</a>(<a href="#147-158">func_func</a>::&lt;P&gt; <span class="kw">as _</span>);
 <a href=#160 id=160 data-nosnippet>160</a>        <span class="kw">let </span>super_callback0: <span class="kw-2">&amp;mut </span>P = <span class="kw-2">&amp;mut </span><a href="#146">func_data</a>;
 <a href=#161 id=161 data-nosnippet>161</a>        <span class="kw">unsafe </span>{
 <a href=#162 id=162 data-nosnippet>162</a>            ffi::<a href="../../../gtk4_sys/fn.gtk_print_settings_foreach.html">gtk_print_settings_foreach</a>(
@@ -756,7 +756,7 @@
 <a href=#683 id=683 data-nosnippet>683</a>                <span class="kw-2">&amp;mut </span><a href="#679">error</a>,
 <a href=#684 id=684 data-nosnippet>684</a>            );
 <a href=#685 id=685 data-nosnippet>685</a>            <a href="https://doc.rust-lang.org/nightly/core/macro.debug_assert_eq.html">debug_assert_eq!</a>(is_ok == glib::ffi::GFALSE, !error.is_null());
-<a href=#686 id=686 data-nosnippet>686</a>            <span class="kw">if </span><a href="#679">error</a>.<a href="https://doc.rust-lang.org/nightly/core/ptr/foreigntype.mut_ptr.html#method.is_null">is_null</a>() {
+<a href=#686 id=686 data-nosnippet>686</a>            <span class="kw">if </span><a href="#679">error</a>.<a href="https://doc.rust-lang.org/nightly/core/primitive.pointer.html#method.is_null">is_null</a>() {
 <a href=#687 id=687 data-nosnippet>687</a>                <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html#variant.Ok">Ok</a>(())
 <a href=#688 id=688 data-nosnippet>688</a>            } <span class="kw">else </span>{
 <a href=#689 id=689 data-nosnippet>689</a>                <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html#variant.Err">Err</a>(<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib_full.html">from_glib_full</a>(<a href="#679">error</a>))
@@ -792,7 +792,7 @@
 <a href=#719 id=719 data-nosnippet>719</a>                <span class="kw-2">&amp;mut </span><a href="#714">error</a>,
 <a href=#720 id=720 data-nosnippet>720</a>            );
 <a href=#721 id=721 data-nosnippet>721</a>            <a href="https://doc.rust-lang.org/nightly/core/macro.debug_assert_eq.html">debug_assert_eq!</a>(is_ok == glib::ffi::GFALSE, !error.is_null());
-<a href=#722 id=722 data-nosnippet>722</a>            <span class="kw">if </span><a href="#714">error</a>.<a href="https://doc.rust-lang.org/nightly/core/ptr/foreigntype.mut_ptr.html#method.is_null">is_null</a>() {
+<a href=#722 id=722 data-nosnippet>722</a>            <span class="kw">if </span><a href="#714">error</a>.<a href="https://doc.rust-lang.org/nightly/core/primitive.pointer.html#method.is_null">is_null</a>() {
 <a href=#723 id=723 data-nosnippet>723</a>                <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html#variant.Ok">Ok</a>(())
 <a href=#724 id=724 data-nosnippet>724</a>            } <span class="kw">else </span>{
 <a href=#725 id=725 data-nosnippet>725</a>                <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html#variant.Err">Err</a>(<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib_full.html">from_glib_full</a>(<a href="#714">error</a>))
@@ -1176,7 +1176,7 @@
 <a href=#1103 id=1103 data-nosnippet>1103</a>                <span class="kw-2">&amp;mut </span><a href="#1099">error</a>,
 <a href=#1104 id=1104 data-nosnippet>1104</a>            );
 <a href=#1105 id=1105 data-nosnippet>1105</a>            <a href="https://doc.rust-lang.org/nightly/core/macro.debug_assert_eq.html">debug_assert_eq!</a>(is_ok == glib::ffi::GFALSE, !error.is_null());
-<a href=#1106 id=1106 data-nosnippet>1106</a>            <span class="kw">if </span><a href="#1099">error</a>.<a href="https://doc.rust-lang.org/nightly/core/ptr/foreigntype.mut_ptr.html#method.is_null">is_null</a>() {
+<a href=#1106 id=1106 data-nosnippet>1106</a>            <span class="kw">if </span><a href="#1099">error</a>.<a href="https://doc.rust-lang.org/nightly/core/primitive.pointer.html#method.is_null">is_null</a>() {
 <a href=#1107 id=1107 data-nosnippet>1107</a>                <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html#variant.Ok">Ok</a>(())
 <a href=#1108 id=1108 data-nosnippet>1108</a>            } <span class="kw">else </span>{
 <a href=#1109 id=1109 data-nosnippet>1109</a>                <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html#variant.Err">Err</a>(<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib_full.html">from_glib_full</a>(<a href="#1099">error</a>))
