@@ -16,16 +16,22 @@ glib::wrapper! {
 }
 
 impl X11Display {
+    //#[cfg_attr(feature = "v4_18", deprecated = "Since 4.18")]
+    //#[allow(deprecated)]
     //#[doc(alias = "gdk_x11_display_broadcast_startup_message")]
     //pub fn broadcast_startup_message(&self, message_type: &str, : /*Unknown conversion*//*Unimplemented*/Basic: VarArgs) {
     //    unsafe { TODO: call ffi:gdk_x11_display_broadcast_startup_message() }
     //}
 
+    #[cfg_attr(feature = "v4_18", deprecated = "Since 4.18")]
+    #[allow(deprecated)]
     #[doc(alias = "gdk_x11_display_error_trap_pop")]
     pub fn error_trap_pop(&self) -> i32 {
         unsafe { ffi::gdk_x11_display_error_trap_pop(self.to_glib_none().0) }
     }
 
+    #[cfg_attr(feature = "v4_18", deprecated = "Since 4.18")]
+    #[allow(deprecated)]
     #[doc(alias = "gdk_x11_display_error_trap_pop_ignored")]
     pub fn error_trap_pop_ignored(&self) {
         unsafe {
@@ -33,6 +39,8 @@ impl X11Display {
         }
     }
 
+    #[cfg_attr(feature = "v4_18", deprecated = "Since 4.18")]
+    #[allow(deprecated)]
     #[doc(alias = "gdk_x11_display_error_trap_push")]
     pub fn error_trap_push(&self) {
         unsafe {
@@ -40,6 +48,8 @@ impl X11Display {
         }
     }
 
+    #[cfg_attr(feature = "v4_18", deprecated = "Since 4.18")]
+    #[allow(deprecated)]
     #[doc(alias = "gdk_x11_display_get_default_group")]
     #[doc(alias = "get_default_group")]
     pub fn default_group(&self) -> gdk::Surface {
@@ -94,6 +104,8 @@ impl X11Display {
         }
     }
 
+    #[cfg_attr(feature = "v4_18", deprecated = "Since 4.18")]
+    #[allow(deprecated)]
     #[doc(alias = "gdk_x11_display_get_primary_monitor")]
     #[doc(alias = "get_primary_monitor")]
     pub fn primary_monitor(&self) -> gdk::Monitor {
@@ -104,6 +116,8 @@ impl X11Display {
         }
     }
 
+    #[cfg_attr(feature = "v4_18", deprecated = "Since 4.18")]
+    #[allow(deprecated)]
     #[doc(alias = "gdk_x11_display_get_screen")]
     #[doc(alias = "get_screen")]
     pub fn screen(&self) -> X11Screen {
@@ -122,12 +136,16 @@ impl X11Display {
         }
     }
 
+    #[cfg_attr(feature = "v4_18", deprecated = "Since 4.18")]
+    #[allow(deprecated)]
     #[doc(alias = "gdk_x11_display_get_user_time")]
     #[doc(alias = "get_user_time")]
     pub fn user_time(&self) -> u32 {
         unsafe { ffi::gdk_x11_display_get_user_time(self.to_glib_none().0) }
     }
 
+    #[cfg_attr(feature = "v4_18", deprecated = "Since 4.18")]
+    #[allow(deprecated)]
     #[doc(alias = "gdk_x11_display_grab")]
     pub fn grab(&self) {
         unsafe {
@@ -160,6 +178,8 @@ impl X11Display {
         }
     }
 
+    #[cfg_attr(feature = "v4_18", deprecated = "Since 4.18")]
+    #[allow(deprecated)]
     #[doc(alias = "gdk_x11_display_set_surface_scale")]
     pub fn set_surface_scale(&self, scale: i32) {
         unsafe {
@@ -193,6 +213,8 @@ impl X11Display {
         }
     }
 
+    #[cfg_attr(feature = "v4_18", deprecated = "Since 4.18")]
+    #[allow(deprecated)]
     #[doc(alias = "gdk_x11_display_ungrab")]
     pub fn ungrab(&self) {
         unsafe {

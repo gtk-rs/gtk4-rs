@@ -2,9 +2,12 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
+use crate::Accessible;
 use crate::{
-    Accessible, AccessibleRole, Adjustment, Align, Buildable, ConstraintTarget, LayoutManager,
-    ListBase, ListItemFactory, Orientable, Orientation, Overflow, Scrollable, ScrollablePolicy,
+    AccessibleRole, Adjustment, Align, Buildable, ConstraintTarget, LayoutManager, ListBase,
+    ListItemFactory, Orientable, Orientation, Overflow, Scrollable, ScrollablePolicy,
     SelectionModel, Widget, ffi,
 };
 #[cfg(feature = "v4_12")]
@@ -18,9 +21,21 @@ use glib::{
 };
 use std::boxed::Box as Box_;
 
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 glib::wrapper! {
     #[doc(alias = "GtkListView")]
     pub struct ListView(Object<ffi::GtkListView, ffi::GtkListViewClass>) @extends ListBase, Widget, @implements Accessible, Buildable, ConstraintTarget, Orientable, Scrollable;
+
+    match fn {
+        type_ => || ffi::gtk_list_view_get_type(),
+    }
+}
+
+#[cfg(not(feature = "v4_10"))]
+glib::wrapper! {
+    #[doc(alias = "GtkListView")]
+    pub struct ListView(Object<ffi::GtkListView, ffi::GtkListViewClass>) @extends ListBase, Widget, @implements Buildable, ConstraintTarget, Orientable, Scrollable;
 
     match fn {
         type_ => || ffi::gtk_list_view_get_type(),

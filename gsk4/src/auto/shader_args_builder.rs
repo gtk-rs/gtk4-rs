@@ -39,6 +39,8 @@ impl ShaderArgsBuilder {
         }
     }
 
+    #[cfg_attr(feature = "v4_16", deprecated = "Since 4.16")]
+    #[allow(deprecated)]
     #[doc(alias = "gsk_shader_args_builder_set_float")]
     pub fn set_float(&self, idx: i32, value: f32) {
         unsafe {

@@ -3,10 +3,13 @@
 // DO NOT EDIT
 #![allow(deprecated)]
 
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
+use crate::Accessible;
 use crate::{
-    Accessible, AccessibleRole, Align, Buildable, CellEditable, ConstraintTarget, Editable,
-    EntryBuffer, EntryCompletion, EntryIconPosition, ImageType, InputHints, InputPurpose,
-    LayoutManager, Overflow, Widget, ffi,
+    AccessibleRole, Align, Buildable, CellEditable, ConstraintTarget, Editable, EntryBuffer,
+    EntryCompletion, EntryIconPosition, ImageType, InputHints, InputPurpose, LayoutManager,
+    Overflow, Widget, ffi,
 };
 use glib::{
     object::ObjectType as _,
@@ -16,9 +19,21 @@ use glib::{
 };
 use std::boxed::Box as Box_;
 
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 glib::wrapper! {
     #[doc(alias = "GtkEntry")]
     pub struct Entry(Object<ffi::GtkEntry, ffi::GtkEntryClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, CellEditable, Editable;
+
+    match fn {
+        type_ => || ffi::gtk_entry_get_type(),
+    }
+}
+
+#[cfg(not(feature = "v4_10"))]
+glib::wrapper! {
+    #[doc(alias = "GtkEntry")]
+    pub struct Entry(Object<ffi::GtkEntry, ffi::GtkEntryClass>) @extends Widget, @implements Buildable, ConstraintTarget, CellEditable, Editable;
 
     match fn {
         type_ => || ffi::gtk_entry_get_type(),

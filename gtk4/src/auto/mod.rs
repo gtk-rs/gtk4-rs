@@ -8,7 +8,11 @@ pub use self::at_context::ATContext;
 mod about_dialog;
 pub use self::about_dialog::AboutDialog;
 
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 mod accessible;
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 pub use self::accessible::Accessible;
 
 #[cfg(feature = "v4_22")]
@@ -1524,6 +1528,8 @@ pub use self::constants::PRINT_SETTINGS_WIN32_DRIVER_EXTRA;
 pub use self::constants::PRINT_SETTINGS_WIN32_DRIVER_VERSION;
 
 pub(crate) mod traits {
+    #[cfg(feature = "v4_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub use super::accessible::AccessibleExt;
     #[cfg(feature = "v4_22")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]

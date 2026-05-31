@@ -3,12 +3,14 @@
 // DO NOT EDIT
 #![allow(deprecated)]
 
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
+use crate::Accessible;
 #[cfg(feature = "v4_8")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
 use crate::ContentFit;
 use crate::{
-    Accessible, AccessibleRole, Align, Buildable, ConstraintTarget, LayoutManager, Overflow,
-    Widget, ffi,
+    AccessibleRole, Align, Buildable, ConstraintTarget, LayoutManager, Overflow, Widget, ffi,
 };
 use glib::{
     prelude::*,
@@ -17,9 +19,21 @@ use glib::{
 };
 use std::boxed::Box as Box_;
 
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 glib::wrapper! {
     #[doc(alias = "GtkPicture")]
     pub struct Picture(Object<ffi::GtkPicture, ffi::GtkPictureClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
+
+    match fn {
+        type_ => || ffi::gtk_picture_get_type(),
+    }
+}
+
+#[cfg(not(feature = "v4_10"))]
+glib::wrapper! {
+    #[doc(alias = "GtkPicture")]
+    pub struct Picture(Object<ffi::GtkPicture, ffi::GtkPictureClass>) @extends Widget, @implements Buildable, ConstraintTarget;
 
     match fn {
         type_ => || ffi::gtk_picture_get_type(),

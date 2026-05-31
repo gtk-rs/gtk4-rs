@@ -3,9 +3,12 @@
 // DO NOT EDIT
 #![allow(deprecated)]
 
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
+use crate::Accessible;
 use crate::{
-    Accessible, AccessibleRole, Actionable, Align, Buildable, Button, ConstraintTarget,
-    LayoutManager, Overflow, Widget, ffi,
+    AccessibleRole, Actionable, Align, Buildable, Button, ConstraintTarget, LayoutManager,
+    Overflow, Widget, ffi,
 };
 use glib::{
     prelude::*,
@@ -14,9 +17,21 @@ use glib::{
 };
 use std::boxed::Box as Box_;
 
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 glib::wrapper! {
     #[doc(alias = "GtkLockButton")]
     pub struct LockButton(Object<ffi::GtkLockButton>) @extends Button, Widget, @implements Accessible, Buildable, ConstraintTarget, Actionable;
+
+    match fn {
+        type_ => || ffi::gtk_lock_button_get_type(),
+    }
+}
+
+#[cfg(not(feature = "v4_10"))]
+glib::wrapper! {
+    #[doc(alias = "GtkLockButton")]
+    pub struct LockButton(Object<ffi::GtkLockButton>) @extends Button, Widget, @implements Buildable, ConstraintTarget, Actionable;
 
     match fn {
         type_ => || ffi::gtk_lock_button_get_type(),

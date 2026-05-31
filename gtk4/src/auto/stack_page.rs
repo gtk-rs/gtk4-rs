@@ -2,7 +2,10 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::{Accessible, Widget, ffi};
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
+use crate::Accessible;
+use crate::{Widget, ffi};
 use glib::{
     prelude::*,
     signal::{SignalHandlerId, connect_raw},
@@ -10,9 +13,21 @@ use glib::{
 };
 use std::boxed::Box as Box_;
 
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 glib::wrapper! {
     #[doc(alias = "GtkStackPage")]
     pub struct StackPage(Object<ffi::GtkStackPage>) @implements Accessible;
+
+    match fn {
+        type_ => || ffi::gtk_stack_page_get_type(),
+    }
+}
+
+#[cfg(not(feature = "v4_10"))]
+glib::wrapper! {
+    #[doc(alias = "GtkStackPage")]
+    pub struct StackPage(Object<ffi::GtkStackPage>);
 
     match fn {
         type_ => || ffi::gtk_stack_page_get_type(),

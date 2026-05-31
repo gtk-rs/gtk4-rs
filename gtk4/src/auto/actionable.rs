@@ -2,7 +2,10 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::{Accessible, Buildable, ConstraintTarget, Widget, ffi};
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
+use crate::Accessible;
+use crate::{Buildable, ConstraintTarget, Widget, ffi};
 use glib::{
     prelude::*,
     signal::{SignalHandlerId, connect_raw},
@@ -10,9 +13,21 @@ use glib::{
 };
 use std::boxed::Box as Box_;
 
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 glib::wrapper! {
     #[doc(alias = "GtkActionable")]
     pub struct Actionable(Interface<ffi::GtkActionable, ffi::GtkActionableInterface>) @requires Widget, Accessible, Buildable, ConstraintTarget;
+
+    match fn {
+        type_ => || ffi::gtk_actionable_get_type(),
+    }
+}
+
+#[cfg(not(feature = "v4_10"))]
+glib::wrapper! {
+    #[doc(alias = "GtkActionable")]
+    pub struct Actionable(Interface<ffi::GtkActionable, ffi::GtkActionableInterface>) @requires Widget, Buildable, ConstraintTarget;
 
     match fn {
         type_ => || ffi::gtk_actionable_get_type(),

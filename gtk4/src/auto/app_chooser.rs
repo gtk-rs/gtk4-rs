@@ -3,12 +3,27 @@
 // DO NOT EDIT
 #![allow(deprecated)]
 
-use crate::{Accessible, Buildable, ConstraintTarget, Widget, ffi};
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
+use crate::Accessible;
+use crate::{Buildable, ConstraintTarget, Widget, ffi};
 use glib::{prelude::*, translate::*};
 
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 glib::wrapper! {
     #[doc(alias = "GtkAppChooser")]
     pub struct AppChooser(Interface<ffi::GtkAppChooser>) @requires Widget, Accessible, Buildable, ConstraintTarget;
+
+    match fn {
+        type_ => || ffi::gtk_app_chooser_get_type(),
+    }
+}
+
+#[cfg(not(feature = "v4_10"))]
+glib::wrapper! {
+    #[doc(alias = "GtkAppChooser")]
+    pub struct AppChooser(Interface<ffi::GtkAppChooser>) @requires Widget, Buildable, ConstraintTarget;
 
     match fn {
         type_ => || ffi::gtk_app_chooser_get_type(),

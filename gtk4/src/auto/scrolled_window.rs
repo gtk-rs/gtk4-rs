@@ -2,9 +2,12 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
+use crate::Accessible;
 use crate::{
-    Accessible, AccessibleRole, Adjustment, Align, Buildable, ConstraintTarget, CornerType,
-    DirectionType, LayoutManager, Overflow, PolicyType, PositionType, ScrollType, Widget, ffi,
+    AccessibleRole, Adjustment, Align, Buildable, ConstraintTarget, CornerType, DirectionType,
+    LayoutManager, Overflow, PolicyType, PositionType, ScrollType, Widget, ffi,
 };
 use glib::{
     object::ObjectType as _,
@@ -14,9 +17,21 @@ use glib::{
 };
 use std::boxed::Box as Box_;
 
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 glib::wrapper! {
     #[doc(alias = "GtkScrolledWindow")]
     pub struct ScrolledWindow(Object<ffi::GtkScrolledWindow>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
+
+    match fn {
+        type_ => || ffi::gtk_scrolled_window_get_type(),
+    }
+}
+
+#[cfg(not(feature = "v4_10"))]
+glib::wrapper! {
+    #[doc(alias = "GtkScrolledWindow")]
+    pub struct ScrolledWindow(Object<ffi::GtkScrolledWindow>) @extends Widget, @implements Buildable, ConstraintTarget;
 
     match fn {
         type_ => || ffi::gtk_scrolled_window_get_type(),
