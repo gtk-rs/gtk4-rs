@@ -2,9 +2,12 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
+use crate::Accessible;
 use crate::{
-    Accessible, AccessibleRole, Align, BaselinePosition, Buildable, ConstraintTarget,
-    LayoutManager, Orientable, Orientation, Overflow, Widget, ffi,
+    AccessibleRole, Align, BaselinePosition, Buildable, ConstraintTarget, LayoutManager,
+    Orientable, Orientation, Overflow, Widget, ffi,
 };
 use glib::{
     prelude::*,
@@ -13,9 +16,21 @@ use glib::{
 };
 use std::boxed::Box as Box_;
 
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 glib::wrapper! {
     #[doc(alias = "GtkCenterBox")]
     pub struct CenterBox(Object<ffi::GtkCenterBox, ffi::GtkCenterBoxClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Orientable;
+
+    match fn {
+        type_ => || ffi::gtk_center_box_get_type(),
+    }
+}
+
+#[cfg(not(feature = "v4_10"))]
+glib::wrapper! {
+    #[doc(alias = "GtkCenterBox")]
+    pub struct CenterBox(Object<ffi::GtkCenterBox, ffi::GtkCenterBoxClass>) @extends Widget, @implements Buildable, ConstraintTarget, Orientable;
 
     match fn {
         type_ => || ffi::gtk_center_box_get_type(),

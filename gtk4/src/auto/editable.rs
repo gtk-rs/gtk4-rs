@@ -4,8 +4,8 @@
 
 #[cfg(feature = "v4_10")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
-use crate::AccessiblePlatformState;
-use crate::{Accessible, Buildable, ConstraintTarget, Widget, ffi};
+use crate::{Accessible, AccessiblePlatformState};
+use crate::{Buildable, ConstraintTarget, Widget, ffi};
 use glib::{
     object::ObjectType as _,
     prelude::*,
@@ -14,9 +14,21 @@ use glib::{
 };
 use std::boxed::Box as Box_;
 
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 glib::wrapper! {
     #[doc(alias = "GtkEditable")]
     pub struct Editable(Interface<ffi::GtkEditable, ffi::GtkEditableInterface>) @requires Widget, Accessible, Buildable, ConstraintTarget;
+
+    match fn {
+        type_ => || ffi::gtk_editable_get_type(),
+    }
+}
+
+#[cfg(not(feature = "v4_10"))]
+glib::wrapper! {
+    #[doc(alias = "GtkEditable")]
+    pub struct Editable(Interface<ffi::GtkEditable, ffi::GtkEditableInterface>) @requires Widget, Buildable, ConstraintTarget;
 
     match fn {
         type_ => || ffi::gtk_editable_get_type(),

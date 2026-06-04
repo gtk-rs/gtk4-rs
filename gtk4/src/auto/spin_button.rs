@@ -4,11 +4,11 @@
 
 #[cfg(feature = "v4_10")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
-use crate::AccessibleRange;
+use crate::{Accessible, AccessibleRange};
 use crate::{
-    Accessible, AccessibleRole, Adjustment, Align, Buildable, CellEditable, ConstraintTarget,
-    Editable, LayoutManager, Orientable, Orientation, Overflow, ScrollType, SpinButtonUpdatePolicy,
-    SpinType, Widget, ffi,
+    AccessibleRole, Adjustment, Align, Buildable, CellEditable, ConstraintTarget, Editable,
+    LayoutManager, Orientable, Orientation, Overflow, ScrollType, SpinButtonUpdatePolicy, SpinType,
+    Widget, ffi,
 };
 use glib::{
     object::ObjectType as _,
@@ -30,9 +30,20 @@ glib::wrapper! {
 }
 
 #[cfg(not(feature = "v4_10"))]
+#[cfg(feature = "v4_10")]
 glib::wrapper! {
     #[doc(alias = "GtkSpinButton")]
-    pub struct SpinButton(Object<ffi::GtkSpinButton>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, CellEditable, Editable, Orientable;
+    pub struct SpinButton(Object<ffi::GtkSpinButton>) @extends Widget, @implements Buildable, ConstraintTarget, AccessibleRange, CellEditable, Editable, Orientable;
+
+    match fn {
+        type_ => || ffi::gtk_spin_button_get_type(),
+    }
+}
+
+#[cfg(not(feature = "v4_10"))]
+glib::wrapper! {
+    #[doc(alias = "GtkSpinButton")]
+    pub struct SpinButton(Object<ffi::GtkSpinButton>) @extends Widget, @implements Buildable, ConstraintTarget, CellEditable, Editable, Orientable;
 
     match fn {
         type_ => || ffi::gtk_spin_button_get_type(),

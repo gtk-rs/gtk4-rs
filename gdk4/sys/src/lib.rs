@@ -4638,6 +4638,8 @@ unsafe extern "C" {
     pub fn gdk_rgba_is_clear(rgba: *const GdkRGBA) -> gboolean;
     pub fn gdk_rgba_is_opaque(rgba: *const GdkRGBA) -> gboolean;
     pub fn gdk_rgba_parse(rgba: *mut GdkRGBA, spec: *const c_char) -> gboolean;
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
     pub fn gdk_rgba_print(rgba: *const GdkRGBA, string: *mut glib::GString) -> *mut glib::GString;
     pub fn gdk_rgba_to_string(rgba: *const GdkRGBA) -> *mut c_char;
 

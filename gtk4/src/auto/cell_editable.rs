@@ -3,7 +3,10 @@
 // DO NOT EDIT
 #![allow(deprecated)]
 
-use crate::{Accessible, Buildable, ConstraintTarget, Widget, ffi};
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
+use crate::Accessible;
+use crate::{Buildable, ConstraintTarget, Widget, ffi};
 use glib::{
     object::ObjectType as _,
     prelude::*,
@@ -12,9 +15,21 @@ use glib::{
 };
 use std::boxed::Box as Box_;
 
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 glib::wrapper! {
     #[doc(alias = "GtkCellEditable")]
     pub struct CellEditable(Interface<ffi::GtkCellEditable, ffi::GtkCellEditableIface>) @requires Widget, Accessible, Buildable, ConstraintTarget;
+
+    match fn {
+        type_ => || ffi::gtk_cell_editable_get_type(),
+    }
+}
+
+#[cfg(not(feature = "v4_10"))]
+glib::wrapper! {
+    #[doc(alias = "GtkCellEditable")]
+    pub struct CellEditable(Interface<ffi::GtkCellEditable, ffi::GtkCellEditableIface>) @requires Widget, Buildable, ConstraintTarget;
 
     match fn {
         type_ => || ffi::gtk_cell_editable_get_type(),
@@ -44,6 +59,8 @@ pub trait CellEditableExt: IsA<CellEditable> + 'static {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+    #[allow(deprecated)]
     #[doc(alias = "gtk_cell_editable_start_editing")]
     fn start_editing(&self, event: Option<impl AsRef<gdk::Event>>) {
         unsafe {

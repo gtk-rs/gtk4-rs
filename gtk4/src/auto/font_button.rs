@@ -3,8 +3,11 @@
 // DO NOT EDIT
 #![allow(deprecated)]
 
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
+use crate::Accessible;
 use crate::{
-    Accessible, AccessibleRole, Align, Buildable, ConstraintTarget, FontChooser, FontChooserLevel,
+    AccessibleRole, Align, Buildable, ConstraintTarget, FontChooser, FontChooserLevel,
     LayoutManager, Overflow, Widget, ffi,
 };
 use glib::{
@@ -15,9 +18,21 @@ use glib::{
 };
 use std::boxed::Box as Box_;
 
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 glib::wrapper! {
     #[doc(alias = "GtkFontButton")]
     pub struct FontButton(Object<ffi::GtkFontButton>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, FontChooser;
+
+    match fn {
+        type_ => || ffi::gtk_font_button_get_type(),
+    }
+}
+
+#[cfg(not(feature = "v4_10"))]
+glib::wrapper! {
+    #[doc(alias = "GtkFontButton")]
+    pub struct FontButton(Object<ffi::GtkFontButton>) @extends Widget, @implements Buildable, ConstraintTarget, FontChooser;
 
     match fn {
         type_ => || ffi::gtk_font_button_get_type(),

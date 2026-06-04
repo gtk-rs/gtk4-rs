@@ -4,10 +4,10 @@
 
 #[cfg(feature = "v4_10")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
-use crate::AccessibleRange;
+use crate::{Accessible, AccessibleRange};
 use crate::{
-    Accessible, AccessibleRole, Align, Buildable, ConstraintTarget, LayoutManager, LevelBarMode,
-    Orientable, Orientation, Overflow, Widget, ffi,
+    AccessibleRole, Align, Buildable, ConstraintTarget, LayoutManager, LevelBarMode, Orientable,
+    Orientation, Overflow, Widget, ffi,
 };
 use glib::{
     object::ObjectType as _,
@@ -29,9 +29,20 @@ glib::wrapper! {
 }
 
 #[cfg(not(feature = "v4_10"))]
+#[cfg(feature = "v4_10")]
 glib::wrapper! {
     #[doc(alias = "GtkLevelBar")]
-    pub struct LevelBar(Object<ffi::GtkLevelBar>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Orientable;
+    pub struct LevelBar(Object<ffi::GtkLevelBar>) @extends Widget, @implements Buildable, ConstraintTarget, AccessibleRange, Orientable;
+
+    match fn {
+        type_ => || ffi::gtk_level_bar_get_type(),
+    }
+}
+
+#[cfg(not(feature = "v4_10"))]
+glib::wrapper! {
+    #[doc(alias = "GtkLevelBar")]
+    pub struct LevelBar(Object<ffi::GtkLevelBar>) @extends Widget, @implements Buildable, ConstraintTarget, Orientable;
 
     match fn {
         type_ => || ffi::gtk_level_bar_get_type(),

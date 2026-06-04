@@ -61,6 +61,8 @@ impl GLShaderNode {
         unsafe { ffi::gsk_gl_shader_node_get_n_children(self.to_glib_none().0) }
     }
 
+    #[cfg_attr(feature = "v4_16", deprecated = "Since 4.16")]
+    #[allow(deprecated)]
     #[doc(alias = "gsk_gl_shader_node_get_shader")]
     #[doc(alias = "get_shader")]
     pub fn shader(&self) -> GLShader {

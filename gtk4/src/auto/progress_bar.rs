@@ -4,10 +4,10 @@
 
 #[cfg(feature = "v4_10")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
-use crate::AccessibleRange;
+use crate::{Accessible, AccessibleRange};
 use crate::{
-    Accessible, AccessibleRole, Align, Buildable, ConstraintTarget, LayoutManager, Orientable,
-    Orientation, Overflow, Widget, ffi,
+    AccessibleRole, Align, Buildable, ConstraintTarget, LayoutManager, Orientable, Orientation,
+    Overflow, Widget, ffi,
 };
 use glib::{
     prelude::*,
@@ -28,9 +28,20 @@ glib::wrapper! {
 }
 
 #[cfg(not(feature = "v4_10"))]
+#[cfg(feature = "v4_10")]
 glib::wrapper! {
     #[doc(alias = "GtkProgressBar")]
-    pub struct ProgressBar(Object<ffi::GtkProgressBar>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Orientable;
+    pub struct ProgressBar(Object<ffi::GtkProgressBar>) @extends Widget, @implements Buildable, ConstraintTarget, AccessibleRange, Orientable;
+
+    match fn {
+        type_ => || ffi::gtk_progress_bar_get_type(),
+    }
+}
+
+#[cfg(not(feature = "v4_10"))]
+glib::wrapper! {
+    #[doc(alias = "GtkProgressBar")]
+    pub struct ProgressBar(Object<ffi::GtkProgressBar>) @extends Widget, @implements Buildable, ConstraintTarget, Orientable;
 
     match fn {
         type_ => || ffi::gtk_progress_bar_get_type(),

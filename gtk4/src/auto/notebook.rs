@@ -2,9 +2,12 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
+use crate::Accessible;
 use crate::{
-    Accessible, AccessibleRole, Align, Buildable, ConstraintTarget, DirectionType, LayoutManager,
-    NotebookPage, NotebookTab, Overflow, PackType, PositionType, Widget, ffi,
+    AccessibleRole, Align, Buildable, ConstraintTarget, DirectionType, LayoutManager, NotebookPage,
+    NotebookTab, Overflow, PackType, PositionType, Widget, ffi,
 };
 use glib::{
     object::ObjectType as _,
@@ -14,9 +17,21 @@ use glib::{
 };
 use std::boxed::Box as Box_;
 
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 glib::wrapper! {
     #[doc(alias = "GtkNotebook")]
     pub struct Notebook(Object<ffi::GtkNotebook>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
+
+    match fn {
+        type_ => || ffi::gtk_notebook_get_type(),
+    }
+}
+
+#[cfg(not(feature = "v4_10"))]
+glib::wrapper! {
+    #[doc(alias = "GtkNotebook")]
+    pub struct Notebook(Object<ffi::GtkNotebook>) @extends Widget, @implements Buildable, ConstraintTarget;
 
     match fn {
         type_ => || ffi::gtk_notebook_get_type(),

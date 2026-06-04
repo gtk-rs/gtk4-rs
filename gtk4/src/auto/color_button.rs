@@ -3,9 +3,12 @@
 // DO NOT EDIT
 #![allow(deprecated)]
 
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
+use crate::Accessible;
 use crate::{
-    Accessible, AccessibleRole, Align, Buildable, ColorChooser, ConstraintTarget, LayoutManager,
-    Overflow, Widget, ffi,
+    AccessibleRole, Align, Buildable, ColorChooser, ConstraintTarget, LayoutManager, Overflow,
+    Widget, ffi,
 };
 use glib::{
     object::ObjectType as _,
@@ -15,9 +18,21 @@ use glib::{
 };
 use std::boxed::Box as Box_;
 
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 glib::wrapper! {
     #[doc(alias = "GtkColorButton")]
     pub struct ColorButton(Object<ffi::GtkColorButton>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, ColorChooser;
+
+    match fn {
+        type_ => || ffi::gtk_color_button_get_type(),
+    }
+}
+
+#[cfg(not(feature = "v4_10"))]
+glib::wrapper! {
+    #[doc(alias = "GtkColorButton")]
+    pub struct ColorButton(Object<ffi::GtkColorButton>) @extends Widget, @implements Buildable, ConstraintTarget, ColorChooser;
 
     match fn {
         type_ => || ffi::gtk_color_button_get_type(),
@@ -33,6 +48,8 @@ impl ColorButton {
         unsafe { Widget::from_glib_none(ffi::gtk_color_button_new()).unsafe_cast() }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+    #[allow(deprecated)]
     #[doc(alias = "gtk_color_button_new_with_rgba")]
     #[doc(alias = "new_with_rgba")]
     pub fn with_rgba(rgba: &gdk::RGBA) -> ColorButton {

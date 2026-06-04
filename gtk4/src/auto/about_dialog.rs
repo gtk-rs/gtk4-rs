@@ -2,12 +2,15 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
+use crate::Accessible;
 #[cfg(feature = "v4_20")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
 use crate::WindowGravity;
 use crate::{
-    Accessible, AccessibleRole, Align, Application, Buildable, ConstraintTarget, LayoutManager,
-    License, Native, Overflow, Root, ShortcutManager, Widget, Window, ffi,
+    AccessibleRole, Align, Application, Buildable, ConstraintTarget, LayoutManager, License,
+    Native, Overflow, Root, ShortcutManager, Widget, Window, ffi,
 };
 use glib::{
     object::ObjectType as _,
@@ -17,9 +20,21 @@ use glib::{
 };
 use std::boxed::Box as Box_;
 
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 glib::wrapper! {
     #[doc(alias = "GtkAboutDialog")]
     pub struct AboutDialog(Object<ffi::GtkAboutDialog>) @extends Window, Widget, @implements Accessible, Buildable, ConstraintTarget, Native, Root, ShortcutManager;
+
+    match fn {
+        type_ => || ffi::gtk_about_dialog_get_type(),
+    }
+}
+
+#[cfg(not(feature = "v4_10"))]
+glib::wrapper! {
+    #[doc(alias = "GtkAboutDialog")]
+    pub struct AboutDialog(Object<ffi::GtkAboutDialog>) @extends Window, Widget, @implements Buildable, ConstraintTarget, Native, Root, ShortcutManager;
 
     match fn {
         type_ => || ffi::gtk_about_dialog_get_type(),

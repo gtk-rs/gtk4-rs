@@ -21,6 +21,8 @@ glib::wrapper! {
 }
 
 impl ATContext {
+    #[cfg(feature = "v4_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "gtk_at_context_create")]
     pub fn create(
         accessible_role: AccessibleRole,
@@ -37,6 +39,8 @@ impl ATContext {
         }
     }
 
+    #[cfg(feature = "v4_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "gtk_at_context_get_accessible")]
     #[doc(alias = "get_accessible")]
     pub fn accessible(&self) -> Accessible {
@@ -52,6 +56,12 @@ impl ATContext {
                 self.to_glib_none().0,
             ))
         }
+    }
+
+    #[cfg(not(feature = "v4_10"))]
+    #[cfg_attr(docsrs, doc(cfg(not(feature = "v4_10"))))]
+    pub fn accessible(&self) -> Option<Accessible> {
+        ObjectExt::property(self, "accessible")
     }
 
     #[doc(alias = "accessible-role")]

@@ -2,8 +2,11 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
+use crate::Accessible;
 use crate::{
-    Accessible, AccessibleRole, Adjustment, Align, Buildable, ColumnViewColumn, ConstraintTarget,
+    AccessibleRole, Adjustment, Align, Buildable, ColumnViewColumn, ConstraintTarget,
     LayoutManager, Overflow, Scrollable, ScrollablePolicy, SelectionModel, SortType, Sorter,
     Widget, ffi,
 };
@@ -18,9 +21,21 @@ use glib::{
 };
 use std::boxed::Box as Box_;
 
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 glib::wrapper! {
     #[doc(alias = "GtkColumnView")]
     pub struct ColumnView(Object<ffi::GtkColumnView, ffi::GtkColumnViewClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Scrollable;
+
+    match fn {
+        type_ => || ffi::gtk_column_view_get_type(),
+    }
+}
+
+#[cfg(not(feature = "v4_10"))]
+glib::wrapper! {
+    #[doc(alias = "GtkColumnView")]
+    pub struct ColumnView(Object<ffi::GtkColumnView, ffi::GtkColumnViewClass>) @extends Widget, @implements Buildable, ConstraintTarget, Scrollable;
 
     match fn {
         type_ => || ffi::gtk_column_view_get_type(),

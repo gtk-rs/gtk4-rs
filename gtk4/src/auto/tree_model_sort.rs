@@ -18,6 +18,8 @@ glib::wrapper! {
 impl TreeModelSort {
     pub const NONE: Option<&'static TreeModelSort> = None;
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+    #[allow(deprecated)]
     #[doc(alias = "gtk_tree_model_sort_new_with_model")]
     #[doc(alias = "new_with_model")]
     pub fn with_model(child_model: &impl IsA<TreeModel>) -> TreeModelSort {
@@ -94,6 +96,8 @@ pub trait TreeModelSortExt: IsA<TreeModelSort> + 'static {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+    #[allow(deprecated)]
     #[doc(alias = "gtk_tree_model_sort_get_model")]
     #[doc(alias = "get_model")]
     fn model(&self) -> TreeModel {

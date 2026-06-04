@@ -5,8 +5,10 @@
 #[cfg(target_os = "linux")]
 #[cfg_attr(docsrs, doc(cfg(target_os = "linux")))]
 use crate::Printer;
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
+use crate::{Accessible, AccessibleProperty, AccessibleRelation, AccessibleRole, AccessibleState};
 use crate::{
-    Accessible, AccessibleProperty, AccessibleRelation, AccessibleRole, AccessibleState,
     DebugFlags, PageSetup, PrintSettings, StyleContext, TextDirection, TreeModel, TreePath, Widget,
     Window, ffi,
 };
@@ -554,6 +556,8 @@ pub fn show_uri(parent: Option<&impl IsA<Window>>, uri: &str, timestamp: u32) {
     }
 }
 
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 #[doc(alias = "gtk_test_accessible_assertion_message_role")]
 pub fn test_accessible_assertion_message_role(
     domain: &str,
@@ -580,6 +584,8 @@ pub fn test_accessible_assertion_message_role(
     }
 }
 
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 #[doc(alias = "gtk_test_accessible_has_property")]
 pub fn test_accessible_has_property(
     accessible: &impl IsA<Accessible>,
@@ -594,6 +600,8 @@ pub fn test_accessible_has_property(
     }
 }
 
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 #[doc(alias = "gtk_test_accessible_has_relation")]
 pub fn test_accessible_has_relation(
     accessible: &impl IsA<Accessible>,
@@ -608,6 +616,8 @@ pub fn test_accessible_has_relation(
     }
 }
 
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 #[doc(alias = "gtk_test_accessible_has_role")]
 pub fn test_accessible_has_role(accessible: &impl IsA<Accessible>, role: AccessibleRole) -> bool {
     skip_assert_initialized!();
@@ -619,6 +629,8 @@ pub fn test_accessible_has_role(accessible: &impl IsA<Accessible>, role: Accessi
     }
 }
 
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 #[doc(alias = "gtk_test_accessible_has_state")]
 pub fn test_accessible_has_state(
     accessible: &impl IsA<Accessible>,

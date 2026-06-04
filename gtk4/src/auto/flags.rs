@@ -346,6 +346,10 @@ bitflags! {
         #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
         #[doc(alias = "GTK_DEBUG_SESSION")]
         const SESSION = ffi::GTK_DEBUG_SESSION as _;
+        #[cfg(feature = "v4_24")]
+        #[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+        #[doc(alias = "GTK_DEBUG_GENERAL_INFO")]
+        const GENERAL_INFO = ffi::GTK_DEBUG_GENERAL_INFO as _;
     }
 }
 

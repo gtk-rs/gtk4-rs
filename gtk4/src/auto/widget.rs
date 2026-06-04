@@ -3,10 +3,13 @@
 // DO NOT EDIT
 #![allow(deprecated)]
 
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
+use crate::Accessible;
 use crate::{
-    Accessible, Align, Allocation, Buildable, ConstraintTarget, DirectionType, EventController,
-    LayoutManager, Native, Orientation, Overflow, PickFlags, Requisition, Root, Settings,
-    SizeRequestMode, Snapshot, StateFlags, StyleContext, TextDirection, Tooltip, ffi,
+    Align, Allocation, Buildable, ConstraintTarget, DirectionType, EventController, LayoutManager,
+    Native, Orientation, Overflow, PickFlags, Requisition, Root, Settings, SizeRequestMode,
+    Snapshot, StateFlags, StyleContext, TextDirection, Tooltip, ffi,
 };
 use glib::{
     object::ObjectType as _,
@@ -16,9 +19,21 @@ use glib::{
 };
 use std::boxed::Box as Box_;
 
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 glib::wrapper! {
     #[doc(alias = "GtkWidget")]
     pub struct Widget(Object<ffi::GtkWidget, ffi::GtkWidgetClass>) @implements Accessible, Buildable, ConstraintTarget;
+
+    match fn {
+        type_ => || ffi::gtk_widget_get_type(),
+    }
+}
+
+#[cfg(not(feature = "v4_10"))]
+glib::wrapper! {
+    #[doc(alias = "GtkWidget")]
+    pub struct Widget(Object<ffi::GtkWidget, ffi::GtkWidgetClass>) @implements Buildable, ConstraintTarget;
 
     match fn {
         type_ => || ffi::gtk_widget_get_type(),

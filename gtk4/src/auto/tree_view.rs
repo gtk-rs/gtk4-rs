@@ -3,11 +3,14 @@
 // DO NOT EDIT
 #![allow(deprecated)]
 
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
+use crate::Accessible;
 use crate::{
-    Accessible, AccessibleRole, Adjustment, Align, Buildable, CellRenderer, ConstraintTarget,
-    Editable, LayoutManager, MovementStep, Overflow, Scrollable, ScrollablePolicy, Tooltip,
-    TreeIter, TreeModel, TreePath, TreeSelection, TreeViewColumn, TreeViewDropPosition,
-    TreeViewGridLines, Widget, ffi,
+    AccessibleRole, Adjustment, Align, Buildable, CellRenderer, ConstraintTarget, Editable,
+    LayoutManager, MovementStep, Overflow, Scrollable, ScrollablePolicy, Tooltip, TreeIter,
+    TreeModel, TreePath, TreeSelection, TreeViewColumn, TreeViewDropPosition, TreeViewGridLines,
+    Widget, ffi,
 };
 use glib::{
     object::ObjectType as _,
@@ -17,9 +20,21 @@ use glib::{
 };
 use std::boxed::Box as Box_;
 
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 glib::wrapper! {
     #[doc(alias = "GtkTreeView")]
     pub struct TreeView(Object<ffi::GtkTreeView, ffi::GtkTreeViewClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Scrollable;
+
+    match fn {
+        type_ => || ffi::gtk_tree_view_get_type(),
+    }
+}
+
+#[cfg(not(feature = "v4_10"))]
+glib::wrapper! {
+    #[doc(alias = "GtkTreeView")]
+    pub struct TreeView(Object<ffi::GtkTreeView, ffi::GtkTreeViewClass>) @extends Widget, @implements Buildable, ConstraintTarget, Scrollable;
 
     match fn {
         type_ => || ffi::gtk_tree_view_get_type(),

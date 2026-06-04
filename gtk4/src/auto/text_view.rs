@@ -2,14 +2,17 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
+use crate::Accessible;
 #[cfg(feature = "v4_14")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
 use crate::AccessibleText;
 use crate::{
-    Accessible, AccessibleRole, Adjustment, Align, Buildable, ConstraintTarget, DeleteType,
-    InputHints, InputPurpose, Justification, LayoutManager, MovementStep, Overflow, ScrollStep,
-    Scrollable, ScrollablePolicy, TextBuffer, TextChildAnchor, TextExtendSelection, TextIter,
-    TextMark, TextWindowType, Widget, WrapMode, ffi,
+    AccessibleRole, Adjustment, Align, Buildable, ConstraintTarget, DeleteType, InputHints,
+    InputPurpose, Justification, LayoutManager, MovementStep, Overflow, ScrollStep, Scrollable,
+    ScrollablePolicy, TextBuffer, TextChildAnchor, TextExtendSelection, TextIter, TextMark,
+    TextWindowType, Widget, WrapMode, ffi,
 };
 use glib::{
     object::ObjectType as _,
@@ -19,8 +22,8 @@ use glib::{
 };
 use std::boxed::Box as Box_;
 
-#[cfg(feature = "v4_14")]
-#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 glib::wrapper! {
     #[doc(alias = "GtkTextView")]
     pub struct TextView(Object<ffi::GtkTextView, ffi::GtkTextViewClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, AccessibleText, Scrollable;
@@ -30,10 +33,21 @@ glib::wrapper! {
     }
 }
 
+#[cfg(not(feature = "v4_10"))]
+#[cfg(feature = "v4_14")]
+glib::wrapper! {
+    #[doc(alias = "GtkTextView")]
+    pub struct TextView(Object<ffi::GtkTextView, ffi::GtkTextViewClass>) @extends Widget, @implements Buildable, ConstraintTarget, AccessibleText, Scrollable;
+
+    match fn {
+        type_ => || ffi::gtk_text_view_get_type(),
+    }
+}
+
 #[cfg(not(feature = "v4_14"))]
 glib::wrapper! {
     #[doc(alias = "GtkTextView")]
-    pub struct TextView(Object<ffi::GtkTextView, ffi::GtkTextViewClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Scrollable;
+    pub struct TextView(Object<ffi::GtkTextView, ffi::GtkTextViewClass>) @extends Widget, @implements Buildable, ConstraintTarget, Scrollable;
 
     match fn {
         type_ => || ffi::gtk_text_view_get_type(),
