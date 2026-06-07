@@ -697,6 +697,13 @@ pub trait SnapshotExt: IsA<Snapshot> + 'static {
         }
     }
 
+    //#[cfg(feature = "v4_24")]
+    //#[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+    //#[doc(alias = "gtk_snapshot_set_snap")]
+    //fn set_snap(&self, snap: /*Ignored*/gsk::RectSnap) {
+    //    unsafe { TODO: call ffi:gtk_snapshot_set_snap() }
+    //}
+
     #[doc(alias = "gtk_snapshot_transform")]
     fn transform(&self, transform: Option<&gsk::Transform>) {
         unsafe {

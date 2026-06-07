@@ -18842,6 +18842,9 @@ unsafe extern "C" {
         factor_y: c_float,
         factor_z: c_float,
     );
+    #[cfg(feature = "v4_24")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+    pub fn gtk_snapshot_set_snap(self_: *mut GtkSnapshot, snap: gsk::GskRectSnap);
     pub fn gtk_snapshot_to_node(snapshot: *mut GtkSnapshot) -> *mut gsk::GskRenderNode;
     pub fn gtk_snapshot_to_paintable(
         snapshot: *mut GtkSnapshot,

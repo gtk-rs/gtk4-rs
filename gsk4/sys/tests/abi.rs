@@ -321,6 +321,13 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
+        "GskRectSnap",
+        Layout {
+            size: size_of::<GskRectSnap>(),
+            alignment: align_of::<GskRectSnap>(),
+        },
+    ),
+    (
         "GskRenderNodeType",
         Layout {
             size: size_of::<GskRenderNodeType>(),
@@ -353,6 +360,20 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         Layout {
             size: size_of::<GskShadow>(),
             alignment: align_of::<GskShadow>(),
+        },
+    ),
+    (
+        "GskSide",
+        Layout {
+            size: size_of::<GskSide>(),
+            alignment: align_of::<GskSide>(),
+        },
+    ),
+    (
+        "GskSnapDirection",
+        Layout {
+            size: size_of::<GskSnapDirection>(),
+            alignment: align_of::<GskSnapDirection>(),
         },
     ),
     (
@@ -466,6 +487,10 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(gint) GSK_PORTER_DUFF_SOURCE_OVER_DEST", "2"),
     ("(gint) GSK_PORTER_DUFF_XOR", "10"),
     ("(gint) GSK_RADIAL_GRADIENT_NODE", "6"),
+    ("GSK_RECT_SNAP_GROW", "16908801"),
+    ("GSK_RECT_SNAP_NONE", "0"),
+    ("GSK_RECT_SNAP_ROUND", "50529027"),
+    ("GSK_RECT_SNAP_SHRINK", "33620226"),
     ("(gint) GSK_REPEATING_LINEAR_GRADIENT_NODE", "5"),
     ("(gint) GSK_REPEATING_RADIAL_GRADIENT_NODE", "7"),
     ("(gint) GSK_REPEAT_NODE", "16"),
@@ -477,6 +502,14 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(gint) GSK_SERIALIZATION_UNSUPPORTED_FORMAT", "0"),
     ("(gint) GSK_SERIALIZATION_UNSUPPORTED_VERSION", "1"),
     ("(gint) GSK_SHADOW_NODE", "19"),
+    ("(gint) GSK_SIDE_BOTTOM", "2"),
+    ("(gint) GSK_SIDE_LEFT", "3"),
+    ("(gint) GSK_SIDE_RIGHT", "1"),
+    ("(gint) GSK_SIDE_TOP", "0"),
+    ("(gint) GSK_SNAP_CEIL", "2"),
+    ("(gint) GSK_SNAP_FLOOR", "1"),
+    ("(gint) GSK_SNAP_NONE", "0"),
+    ("(gint) GSK_SNAP_ROUND", "3"),
     ("(gint) GSK_STROKE_NODE", "29"),
     ("(gint) GSK_SUBSURFACE_NODE", "30"),
     ("(gint) GSK_TEXTURE_NODE", "10"),
