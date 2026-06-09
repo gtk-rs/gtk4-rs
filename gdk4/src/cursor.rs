@@ -41,9 +41,7 @@ impl Cursor {
                     &mut *hotspot_x,
                     &mut *hotspot_y,
                 )
-                /*Not checked*/
-                .to_glib_none()
-                .0
+                .to_glib_full()
             }
         }
         let callback = Some(callback_func::<P> as _);
