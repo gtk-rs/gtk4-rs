@@ -49,7 +49,6 @@ generate = [
     "Gtk.ArrowType",
     "Gtk.AspectFrame",
     "Gtk.AssistantPageType",
-    "Gtk.ATContext",
     "Gtk.BaselinePosition",
     "Gtk.BinLayout",
     "Gtk.Bitset",
@@ -594,6 +593,13 @@ status = "generate"
     [[object.signal]]
     name = "activate-link"
     inhibit = true
+
+[[object]]
+name = "Gtk.ATContext"
+status = "generate"
+    [[object.property]]
+    name = "accessible"
+    generate = []
 
 [[object]]
 name = "Gtk.Accessible"
