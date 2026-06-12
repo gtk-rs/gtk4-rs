@@ -104,6 +104,8 @@ pub mod prelude;
 pub use auto::*;
 pub use rt::*;
 
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 pub mod accessible;
 #[cfg(feature = "v4_14")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
