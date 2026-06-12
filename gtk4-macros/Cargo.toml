@@ -30,5 +30,5 @@ syn = {version = "2.0", features = ["full"]}
 [dev-dependencies]
 futures-channel = "0.3"
 futures-util = "0.3"
-gtk.workspace = true
+gtk = { workspace = true, features = ["v4_10"] }
 trybuild2 = "1.0"
