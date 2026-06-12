@@ -142,13 +142,6 @@ status = "generate"
     manual = true
 
 [[object]]
-name = "Gsk.ConicGradientNode"
-status = "generate"
-    [[object.function]]
-    name = "get_snap"
-    manual = true
-
-[[object]]
 name = "Gsk.ColorStop"
 status = "manual"
 boxed_inline = true
@@ -172,18 +165,18 @@ name = "Gsk.CompositeNode"
 version = "4.22"
 
 [[object]]
+name = "Gsk.ConicGradientNode"
+status = "generate"
+    [[object.function]]
+    name = "get_snap"
+    manual = true
+
+[[object]]
 name = "Gsk.ContainerNode"
 status = "generate"
     [[object.function]]
     name = "get_child"
     manual = true # assert that idx < n_children
-
-[[object]]
-name = "Gsk.InsetShadowNode"
-status = "generate"
-    [[object.function]]
-    name = "get_snap"
-    manual = true
 
 [[object]]
 name = "Gsk.GLShader"
@@ -210,18 +203,25 @@ generate_builder = true
     manual = true # TODO: fix me once (https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/3744) is merged
 
 [[object]]
-name = "Gsk.LinearGradientNode"
+name = "Gsk.GLShaderNode"
+status = "generate"
+    [[object.function]]
+    name = "get_child"
+    manual = true # assert that idx < n_children
+
+[[object]]
+name = "Gsk.InsetShadowNode"
 status = "generate"
     [[object.function]]
     name = "get_snap"
     manual = true
 
 [[object]]
-name = "Gsk.GLShaderNode"
+name = "Gsk.LinearGradientNode"
 status = "generate"
     [[object.function]]
-    name = "get_child"
-    manual = true # assert that idx < n_children
+    name = "get_snap"
+    manual = true
 
 [[object]]
 name = "Gsk.OutsetShadowNode"
@@ -292,13 +292,6 @@ status = "generate"
 trait_name = "GskRendererExt"
 
 [[object]]
-name = "Gsk.RepeatNode"
-status = "generate"
-    [[object.function]]
-    pattern = "(get_child_snap|get_snap)"
-    manual = true
-
-[[object]]
 name = "Gsk.RenderNode"
 status = "generate"
     [[object.function]]
@@ -309,6 +302,13 @@ status = "generate"
         [[object.function.parameter]]
         name = "cr"
         const = true
+
+[[object]]
+name = "Gsk.RepeatNode"
+status = "generate"
+    [[object.function]]
+    pattern = "(get_child_snap|get_snap)"
+    manual = true
 
 [[object]]
 name = "Gsk.RoundedClipNode"
