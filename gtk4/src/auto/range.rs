@@ -26,17 +26,6 @@ glib::wrapper! {
 }
 
 #[cfg(not(feature = "v4_10"))]
-#[cfg(feature = "v4_10")]
-glib::wrapper! {
-    #[doc(alias = "GtkRange")]
-    pub struct Range(Object<ffi::GtkRange, ffi::GtkRangeClass>) @extends Widget, @implements Buildable, ConstraintTarget, AccessibleRange, Orientable;
-
-    match fn {
-        type_ => || ffi::gtk_range_get_type(),
-    }
-}
-
-#[cfg(not(feature = "v4_10"))]
 glib::wrapper! {
     #[doc(alias = "GtkRange")]
     pub struct Range(Object<ffi::GtkRange, ffi::GtkRangeClass>) @extends Widget, @implements Buildable, ConstraintTarget, Orientable;

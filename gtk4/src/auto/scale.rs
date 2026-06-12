@@ -28,17 +28,6 @@ glib::wrapper! {
 }
 
 #[cfg(not(feature = "v4_10"))]
-#[cfg(feature = "v4_10")]
-glib::wrapper! {
-    #[doc(alias = "GtkScale")]
-    pub struct Scale(Object<ffi::GtkScale, ffi::GtkScaleClass>) @extends Range, Widget, @implements Buildable, ConstraintTarget, AccessibleRange, Orientable;
-
-    match fn {
-        type_ => || ffi::gtk_scale_get_type(),
-    }
-}
-
-#[cfg(not(feature = "v4_10"))]
 glib::wrapper! {
     #[doc(alias = "GtkScale")]
     pub struct Scale(Object<ffi::GtkScale, ffi::GtkScaleClass>) @extends Range, Widget, @implements Buildable, ConstraintTarget, Orientable;

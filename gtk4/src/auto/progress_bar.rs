@@ -28,17 +28,6 @@ glib::wrapper! {
 }
 
 #[cfg(not(feature = "v4_10"))]
-#[cfg(feature = "v4_10")]
-glib::wrapper! {
-    #[doc(alias = "GtkProgressBar")]
-    pub struct ProgressBar(Object<ffi::GtkProgressBar>) @extends Widget, @implements Buildable, ConstraintTarget, AccessibleRange, Orientable;
-
-    match fn {
-        type_ => || ffi::gtk_progress_bar_get_type(),
-    }
-}
-
-#[cfg(not(feature = "v4_10"))]
 glib::wrapper! {
     #[doc(alias = "GtkProgressBar")]
     pub struct ProgressBar(Object<ffi::GtkProgressBar>) @extends Widget, @implements Buildable, ConstraintTarget, Orientable;

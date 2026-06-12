@@ -30,17 +30,6 @@ glib::wrapper! {
 }
 
 #[cfg(not(feature = "v4_10"))]
-#[cfg(feature = "v4_10")]
-glib::wrapper! {
-    #[doc(alias = "GtkSpinButton")]
-    pub struct SpinButton(Object<ffi::GtkSpinButton>) @extends Widget, @implements Buildable, ConstraintTarget, AccessibleRange, CellEditable, Editable, Orientable;
-
-    match fn {
-        type_ => || ffi::gtk_spin_button_get_type(),
-    }
-}
-
-#[cfg(not(feature = "v4_10"))]
 glib::wrapper! {
     #[doc(alias = "GtkSpinButton")]
     pub struct SpinButton(Object<ffi::GtkSpinButton>) @extends Widget, @implements Buildable, ConstraintTarget, CellEditable, Editable, Orientable;

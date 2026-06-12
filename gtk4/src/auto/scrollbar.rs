@@ -28,17 +28,6 @@ glib::wrapper! {
 }
 
 #[cfg(not(feature = "v4_10"))]
-#[cfg(feature = "v4_10")]
-glib::wrapper! {
-    #[doc(alias = "GtkScrollbar")]
-    pub struct Scrollbar(Object<ffi::GtkScrollbar>) @extends Widget, @implements Buildable, ConstraintTarget, AccessibleRange, Orientable;
-
-    match fn {
-        type_ => || ffi::gtk_scrollbar_get_type(),
-    }
-}
-
-#[cfg(not(feature = "v4_10"))]
 glib::wrapper! {
     #[doc(alias = "GtkScrollbar")]
     pub struct Scrollbar(Object<ffi::GtkScrollbar>) @extends Widget, @implements Buildable, ConstraintTarget, Orientable;
