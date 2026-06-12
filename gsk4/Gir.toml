@@ -60,6 +60,8 @@ generate = [
     "Gsk.RoundedClipNode",
     "Gsk.ScalingFilter",
     "Gsk.SerializationError",
+    "Gsk.Side",
+    "Gsk.SnapDirection",
     "Gsk.StrokeNode",
     "Gsk.SubsurfaceNode",
     "Gsk.TextureNode",
