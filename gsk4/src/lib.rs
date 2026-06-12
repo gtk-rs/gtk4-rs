@@ -89,6 +89,9 @@ mod path_builder;
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
 mod path_point;
 mod radial_gradient_node;
+#[cfg(feature = "v4_24")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+mod rect_snap;
 mod repeat_node;
 mod repeating_linear_gradient_node;
 mod repeating_radial_gradient_node;
