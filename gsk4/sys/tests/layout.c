@@ -24,11 +24,14 @@ int main() {
     printf("%s;%zu;%zu\n", "GskPathOperation", sizeof(GskPathOperation), alignof(GskPathOperation));
     printf("%s;%zu;%zu\n", "GskPathPoint", sizeof(GskPathPoint), alignof(GskPathPoint));
     printf("%s;%zu;%zu\n", "GskPorterDuff", sizeof(GskPorterDuff), alignof(GskPorterDuff));
+    printf("%s;%zu;%zu\n", "GskRectSnap", sizeof(GskRectSnap), alignof(GskRectSnap));
     printf("%s;%zu;%zu\n", "GskRenderNodeType", sizeof(GskRenderNodeType), alignof(GskRenderNodeType));
     printf("%s;%zu;%zu\n", "GskRoundedRect", sizeof(GskRoundedRect), alignof(GskRoundedRect));
     printf("%s;%zu;%zu\n", "GskScalingFilter", sizeof(GskScalingFilter), alignof(GskScalingFilter));
     printf("%s;%zu;%zu\n", "GskSerializationError", sizeof(GskSerializationError), alignof(GskSerializationError));
     printf("%s;%zu;%zu\n", "GskShadow", sizeof(GskShadow), alignof(GskShadow));
+    printf("%s;%zu;%zu\n", "GskSide", sizeof(GskSide), alignof(GskSide));
+    printf("%s;%zu;%zu\n", "GskSnapDirection", sizeof(GskSnapDirection), alignof(GskSnapDirection));
     printf("%s;%zu;%zu\n", "GskTransformCategory", sizeof(GskTransformCategory), alignof(GskTransformCategory));
     return 0;
 }
