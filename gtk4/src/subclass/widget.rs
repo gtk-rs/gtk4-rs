@@ -14,9 +14,9 @@ use glib::{
 };
 
 use crate::{
-    Accessible, AccessibleRole, Buildable, BuilderRustScope, BuilderScope, ConstraintTarget,
-    DirectionType, LayoutManager, Orientation, Shortcut, SizeRequestMode, Snapshot, StateFlags,
-    SystemSetting, TextDirection, Tooltip, Widget, ffi, prelude::*, subclass::prelude::*,
+    AccessibleRole, Buildable, BuilderRustScope, BuilderScope, ConstraintTarget, DirectionType,
+    LayoutManager, Orientation, Shortcut, SizeRequestMode, Snapshot, StateFlags, SystemSetting,
+    TextDirection, Tooltip, Widget, ffi, prelude::*, subclass::prelude::*,
 };
 
 #[derive(Debug, Default)]
@@ -110,10 +110,25 @@ impl Iterator for WidgetActionIter {
 
 impl std::iter::FusedIterator for WidgetActionIter {}
 
-pub trait WidgetImpl:
-    ObjectImpl
-    + ObjectSubclass<Type: IsA<Widget> + IsA<Accessible> + IsA<Buildable> + IsA<ConstraintTarget>>
+#[cfg(feature = "v4_10")]
+#[doc(hidden)]
+pub trait WidgetImplBounds:
+    IsA<Widget> + IsA<crate::Accessible> + IsA<Buildable> + IsA<ConstraintTarget>
 {
+}
+#[cfg(feature = "v4_10")]
+impl<T: IsA<Widget> + IsA<crate::Accessible> + IsA<Buildable> + IsA<ConstraintTarget>>
+    WidgetImplBounds for T
+{
+}
+
+#[cfg(not(feature = "v4_10"))]
+#[doc(hidden)]
+pub trait WidgetImplBounds: IsA<Widget> + IsA<Buildable> + IsA<ConstraintTarget> {}
+#[cfg(not(feature = "v4_10"))]
+impl<T: IsA<Widget> + IsA<Buildable> + IsA<ConstraintTarget>> WidgetImplBounds for T {}
+
+pub trait WidgetImpl: ObjectImpl + ObjectSubclass<Type: WidgetImplBounds> {
     fn compute_expand(&self, hexpand: &mut bool, vexpand: &mut bool) {
         self.parent_compute_expand(hexpand, vexpand)
     }
