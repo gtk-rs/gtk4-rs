@@ -381,6 +381,7 @@ manual = [
     "Gsk.MaskNode",
     "Gsk.Path",
     "Gsk.PorterDuff",
+    "Gsk.RectSnap",
     "Gsk.Renderer",
     "Gsk.RenderNode",
     "Gsk.RoundedRect",
@@ -2118,6 +2119,9 @@ final_type = false
 manual_traits = ["SnapshotExtManual"]
     [[object.function]]
     name = "append_border"
+    manual = true
+    [[object.function]]
+    name = "set_snap"
     manual = true
     [[object.function]]
     name = "push_debug"
