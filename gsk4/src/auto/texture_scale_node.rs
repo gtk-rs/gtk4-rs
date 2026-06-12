@@ -2,9 +2,6 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-#[cfg(feature = "v4_24")]
-#[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
-use crate::RectSnap;
 use crate::{ScalingFilter, ffi};
 use glib::{prelude::*, translate::*};
 
@@ -49,14 +46,6 @@ impl TextureScaleNode {
                 self.to_glib_none().0,
             ))
         }
-    }
-
-    #[cfg(feature = "v4_24")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
-    #[doc(alias = "gsk_texture_scale_node_get_snap")]
-    #[doc(alias = "get_snap")]
-    pub fn snap(&self) -> RectSnap {
-        unsafe { ffi::gsk_texture_scale_node_get_snap(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gsk_texture_scale_node_get_texture")]
