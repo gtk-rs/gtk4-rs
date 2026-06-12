@@ -2,9 +2,6 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-#[cfg(feature = "v4_24")]
-#[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
-use crate::RectSnap;
 use crate::{ColorStop, ffi};
 use glib::{prelude::*, translate::*};
 
@@ -89,13 +86,5 @@ impl ConicGradientNode {
     #[doc(alias = "get_rotation")]
     pub fn rotation(&self) -> f32 {
         unsafe { ffi::gsk_conic_gradient_node_get_rotation(self.to_glib_none().0) }
-    }
-
-    #[cfg(feature = "v4_24")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
-    #[doc(alias = "gsk_conic_gradient_node_get_snap")]
-    #[doc(alias = "get_snap")]
-    pub fn snap(&self) -> RectSnap {
-        unsafe { ffi::gsk_conic_gradient_node_get_snap(self.to_glib_none().0) }
     }
 }
