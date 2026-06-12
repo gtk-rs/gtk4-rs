@@ -595,13 +595,6 @@ status = "generate"
     inhibit = true
 
 [[object]]
-name = "Gtk.ATContext"
-status = "generate"
-    [[object.property]]
-    name = "accessible"
-    generate = []
-
-[[object]]
 name = "Gtk.Accessible"
 status = "generate"
 manual_traits = ["AccessibleExtManual"]
@@ -683,6 +676,13 @@ status = "generate"
 name = "Gtk.AssistantPage"
 status = "generate"
 generate_builder = false
+
+[[object]]
+name = "Gtk.ATContext"
+status = "generate"
+    [[object.property]]
+    name = "accessible"
+    generate = []
 
 [[object]]
 name = "Gtk.BookmarkList"
