@@ -29,17 +29,6 @@ glib::wrapper! {
 }
 
 #[cfg(not(feature = "v4_10"))]
-#[cfg(feature = "v4_10")]
-glib::wrapper! {
-    #[doc(alias = "GtkLevelBar")]
-    pub struct LevelBar(Object<ffi::GtkLevelBar>) @extends Widget, @implements Buildable, ConstraintTarget, AccessibleRange, Orientable;
-
-    match fn {
-        type_ => || ffi::gtk_level_bar_get_type(),
-    }
-}
-
-#[cfg(not(feature = "v4_10"))]
 glib::wrapper! {
     #[doc(alias = "GtkLevelBar")]
     pub struct LevelBar(Object<ffi::GtkLevelBar>) @extends Widget, @implements Buildable, ConstraintTarget, Orientable;

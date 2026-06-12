@@ -26,8 +26,8 @@ use glib::{
 };
 use std::boxed::Box as Box_;
 
-#[cfg(feature = "v4_10")]
-#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
+#[cfg(all(feature = "v4_10", feature = "v4_14", feature = "v4_22"))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
 glib::wrapper! {
     #[doc(alias = "GtkLabel")]
     pub struct Label(Object<ffi::GtkLabel>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, AccessibleHypertext, AccessibleText;
@@ -37,29 +37,27 @@ glib::wrapper! {
     }
 }
 
-#[cfg(not(feature = "v4_10"))]
-#[cfg(feature = "v4_22")]
+#[cfg(all(feature = "v4_10", feature = "v4_14", not(feature = "v4_22")))]
 glib::wrapper! {
     #[doc(alias = "GtkLabel")]
-    pub struct Label(Object<ffi::GtkLabel>) @extends Widget, @implements Buildable, ConstraintTarget, AccessibleHypertext, AccessibleText;
+    pub struct Label(Object<ffi::GtkLabel>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, AccessibleText;
 
     match fn {
         type_ => || ffi::gtk_label_get_type(),
     }
 }
 
-#[cfg(not(feature = "v4_22"))]
-#[cfg(feature = "v4_14")]
+#[cfg(all(feature = "v4_10", not(feature = "v4_14")))]
 glib::wrapper! {
     #[doc(alias = "GtkLabel")]
-    pub struct Label(Object<ffi::GtkLabel>) @extends Widget, @implements Buildable, ConstraintTarget, AccessibleText;
+    pub struct Label(Object<ffi::GtkLabel>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
 
     match fn {
         type_ => || ffi::gtk_label_get_type(),
     }
 }
 
-#[cfg(not(feature = "v4_14"))]
+#[cfg(not(any(feature = "v4_10", feature = "v4_14", feature = "v4_22")))]
 glib::wrapper! {
     #[doc(alias = "GtkLabel")]
     pub struct Label(Object<ffi::GtkLabel>) @extends Widget, @implements Buildable, ConstraintTarget;
