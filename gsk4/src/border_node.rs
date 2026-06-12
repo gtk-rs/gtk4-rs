@@ -35,6 +35,22 @@ impl BorderNode {
     pub fn widths(&self) -> &[f32; 4] {
         unsafe { &*ffi::gsk_border_node_get_widths(self.to_glib_none().0) }
     }
+
+    #[cfg(feature = "v4_24")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+    #[doc(alias = "gsk_border_node_get_border_snap")]
+    #[doc(alias = "get_border_snap")]
+    pub fn border_snap(&self) -> crate::RectSnap {
+        unsafe { from_glib(ffi::gsk_border_node_get_border_snap(self.to_glib_none().0)) }
+    }
+
+    #[cfg(feature = "v4_24")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+    #[doc(alias = "gsk_border_node_get_snap")]
+    #[doc(alias = "get_snap")]
+    pub fn snap(&self) -> crate::RectSnap {
+        unsafe { from_glib(ffi::gsk_border_node_get_snap(self.to_glib_none().0)) }
+    }
 }
 
 impl std::fmt::Debug for BorderNode {

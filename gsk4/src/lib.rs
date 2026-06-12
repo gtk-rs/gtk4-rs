@@ -92,6 +92,9 @@ mod radial_gradient_node;
 #[cfg(feature = "v4_24")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
 mod rect_snap;
+#[cfg(feature = "v4_24")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+pub use rect_snap::RectSnap;
 mod repeat_node;
 mod repeating_linear_gradient_node;
 mod repeating_radial_gradient_node;

@@ -17,11 +17,7 @@ generate = [
     "Gsk.BlurNode",
     "Gsk.CairoNode",
     "Gsk.CairoRenderer",
-    "Gsk.ClipNode",
-    "Gsk.ColorMatrixNode",
-    "Gsk.ColorNode",
     "Gsk.ComponentTransfer",
-    "Gsk.ConicGradientNode",
     "Gsk.CopyNode",
     "Gsk.Corner",
     "Gsk.CrossFadeNode",
@@ -30,24 +26,19 @@ generate = [
     "Gsk.FillRule",
     "Gsk.GLRenderer",
     "Gsk.GLUniformType",
-    "Gsk.InsetShadowNode",
     "Gsk.Isolation",
     "Gsk.IsolationNode",
-    "Gsk.LinearGradientNode",
     "Gsk.LineCap",
     "Gsk.LineJoin",
     "Gsk.MaskMode",
     "Gsk.MaskNode",
     "Gsk.OpacityNode",
-    "Gsk.OutsetShadowNode",
-    "Gsk.PasteNode",
     "Gsk.PathDirection",
     "Gsk.PathForeachFlags",
     "Gsk.PathIntersection",
     "Gsk.PathMeasure",
     "Gsk.PathOperation",
     "Gsk.PorterDuff",
-    "Gsk.RadialGradientNode",
     "Gsk.RenderNodeType",
     "Gsk.RenderReplay",
     "Gsk.RenderReplayFontFilter",
@@ -56,16 +47,12 @@ generate = [
     "Gsk.RenderReplayTextureFilter",
     "Gsk.RepeatingLinearGradientNode",
     "Gsk.RepeatingRadialGradientNode",
-    "Gsk.RepeatNode",
-    "Gsk.RoundedClipNode",
     "Gsk.ScalingFilter",
     "Gsk.SerializationError",
     "Gsk.Side",
     "Gsk.SnapDirection",
     "Gsk.StrokeNode",
     "Gsk.SubsurfaceNode",
-    "Gsk.TextureNode",
-    "Gsk.TextureScaleNode",
     "Gsk.TransformCategory",
     "Gsk.TransformNode",
 ]
@@ -124,11 +111,42 @@ status = "generate"
     [[object.function]]
     name = "get_colors"
     manual = true
+    [[object.function]]
+    pattern = "(get_border_snap|get_snap)"
+    manual = true
 
 [[object]]
 name = "Gsk.BroadwayRenderer"
 status = "generate"
 cfg_condition = "feature = \"broadway\""
+
+[[object]]
+name = "Gsk.ClipNode"
+status = "generate"
+    [[object.function]]
+    name = "get_snap"
+    manual = true
+
+[[object]]
+name = "Gsk.ColorMatrixNode"
+status = "generate"
+    [[object.function]]
+    name = "get_snap"
+    manual = true
+
+[[object]]
+name = "Gsk.ColorNode"
+status = "generate"
+    [[object.function]]
+    name = "get_snap"
+    manual = true
+
+[[object]]
+name = "Gsk.ConicGradientNode"
+status = "generate"
+    [[object.function]]
+    name = "get_snap"
+    manual = true
 
 [[object]]
 name = "Gsk.ColorStop"
@@ -161,6 +179,13 @@ status = "generate"
     manual = true # assert that idx < n_children
 
 [[object]]
+name = "Gsk.InsetShadowNode"
+status = "generate"
+    [[object.function]]
+    name = "get_snap"
+    manual = true
+
+[[object]]
 name = "Gsk.GLShader"
 status = "generate"
 generate_builder = true
@@ -185,11 +210,32 @@ generate_builder = true
     manual = true # TODO: fix me once (https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/3744) is merged
 
 [[object]]
+name = "Gsk.LinearGradientNode"
+status = "generate"
+    [[object.function]]
+    name = "get_snap"
+    manual = true
+
+[[object]]
 name = "Gsk.GLShaderNode"
 status = "generate"
     [[object.function]]
     name = "get_child"
     manual = true # assert that idx < n_children
+
+[[object]]
+name = "Gsk.OutsetShadowNode"
+status = "generate"
+    [[object.function]]
+    name = "get_snap"
+    manual = true
+
+[[object]]
+name = "Gsk.PasteNode"
+status = "generate"
+    [[object.function]]
+    name = "get_snap"
+    manual = true
 
 [[object]]
 name = "Gsk.Path"
@@ -234,9 +280,23 @@ boxed_inline = true
     manual = true # handle nullable point return value
 
 [[object]]
+name = "Gsk.RadialGradientNode"
+status = "generate"
+    [[object.function]]
+    name = "get_snap"
+    manual = true
+
+[[object]]
 name = "Gsk.Renderer"
 status = "generate"
 trait_name = "GskRendererExt"
+
+[[object]]
+name = "Gsk.RepeatNode"
+status = "generate"
+    [[object.function]]
+    pattern = "(get_child_snap|get_snap)"
+    manual = true
 
 [[object]]
 name = "Gsk.RenderNode"
@@ -249,6 +309,13 @@ status = "generate"
         [[object.function.parameter]]
         name = "cr"
         const = true
+
+[[object]]
+name = "Gsk.RoundedClipNode"
+status = "generate"
+    [[object.function]]
+    name = "get_snap"
+    manual = true
 
 [[object]]
 name = "Gsk.RoundedRect"
@@ -306,6 +373,20 @@ status = "generate"
         [[object.function.parameter]]
         name = "glyphs"
         const = true
+
+[[object]]
+name = "Gsk.TextureNode"
+status = "generate"
+    [[object.function]]
+    name = "get_snap"
+    manual = true
+
+[[object]]
+name = "Gsk.TextureScaleNode"
+status = "generate"
+    [[object.function]]
+    name = "get_snap"
+    manual = true
 
 [[object]]
 name = "Gsk.Transform"
