@@ -49,11 +49,11 @@ jobs:
         conf:
           - {
               name: "gtk4",
-              features: "v4_22,xml_validation,blueprint",
+              features: "v4_24,xml_validation,blueprint",
               test_sys: false,
             }
-          - { name: "gsk4", features: "v4_22,broadway,vulkan", test_sys: true }
-          - { name: "gdk4", features: "v4_22,gl", test_sys: true }
+          - { name: "gsk4", features: "v4_24,broadway,vulkan", test_sys: true }
+          - { name: "gdk4", features: "v4_24,gl", test_sys: true }
           - {
               name: "gdk4-wayland",
               features: "v4_20,wayland_crate,egl",
