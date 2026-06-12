@@ -2741,6 +2741,13 @@ status = "generate"
     manual = true
 
 [[object]]
+name = "Gtk.TryExpression"
+status = "generate"
+    [[object.function]]
+    name = "new"
+    manual = true
+
+[[object]]
 name = "Gtk.UriLauncher"
 status = "generate"
     [[object.function]]

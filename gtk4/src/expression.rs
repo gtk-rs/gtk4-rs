@@ -155,6 +155,16 @@ impl Expression {
     {
         crate::ClosureExpression::with_callback([self], f)
     }
+
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+    // rustdoc-stripper-ignore-next
+    /// Create a [`TryExpression`](crate::TryExpression) with self as the first
+    /// parameter and `fallback` as the second parameter. This is useful in long
+    /// chains of [`Expression`](crate::Expression)s.
+    pub fn chain_try(&self, fallback: impl AsRef<Expression>) -> crate::TryExpression {
+        crate::TryExpression::new([self, fallback.as_ref()])
+    }
 }
 
 impl std::fmt::Debug for Expression {
