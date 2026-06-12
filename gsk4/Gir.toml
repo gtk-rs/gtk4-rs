@@ -108,6 +108,9 @@ status = "generate"
     [[object.function]]
     pattern = "value_(dup|get|set|take)_render_node"
     ignore = true # used to implement Value traits manually
+    [[object.function]]
+    pattern = "rect_snap_(get_direction|new)"
+    manual = true # implemented as enum methods
 
 [[object]]
 name = "Gsk.BorderNode"
