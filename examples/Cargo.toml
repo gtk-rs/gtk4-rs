@@ -80,10 +80,12 @@ required-features = ["v4_10"]
 [[bin]]
 name = "composite_dialog"
 path = "composite_dialog/main.rs"
+required-features = ["v4_10"]
 
 [[bin]]
 name = "confetti_snapshot_animation"
 path = "confetti_snapshot_animation/main.rs"
+required-features = ["v4_10"]
 
 [[bin]]
 name = "content_provider"
@@ -111,6 +113,7 @@ required-features = ["v4_12"]
 [[bin]]
 name = "custom_layout_manager"
 path = "custom_layout_manager/main.rs"
+required-features = ["v4_10"]
 
 [[bin]]
 name = "custom_paintable"
@@ -119,10 +122,12 @@ path = "custom_paintable/main.rs"
 [[bin]]
 name = "custom_orientable"
 path = "custom_orientable/main.rs"
+required-features = ["v4_10"]
 
 [[bin]]
 name = "custom_widget"
 path = "custom_widget/main.rs"
+required-features = ["v4_10"]
 
 [[bin]]
 name = "dialog"
@@ -144,7 +149,7 @@ path = "expressions/main.rs"
 [[bin]]
 name = "femtovg_area"
 path = "femtovg_area/main.rs"
-required-features = ["femtovg-support"]
+required-features = ["femtovg-support", "v4_10"]
 
 [[bin]]
 name = "flow_box"
@@ -153,12 +158,12 @@ path = "flow_box/main.rs"
 [[bin]]
 name = "gif_paintable"
 path = "gif_paintable/main.rs"
-required-features = ["image"]
+required-features = ["image", "v4_10"]
 
 [[bin]]
 name = "glium_gl_area"
 path = "glium_gl_area/main.rs"
-required-features = ["glium-support"]
+required-features = ["glium-support", "v4_10"]
 
 [[bin]]
 name = "grid_packing"
@@ -172,7 +177,7 @@ required-features = ["v4_10"]
 [[bin]]
 name = "list_box_model"
 path = "list_box_model/main.rs"
-required-features = ["im-rc"]
+required-features = ["im-rc", "v4_10"]
 
 [[bin]]
 name = "list_box_sort_stringlist"
@@ -191,6 +196,7 @@ path = "menubar/main.rs"
 [[bin]]
 name = "rotation_bin"
 path = "rotation_bin/main.rs"
+required-features = ["v4_10"]
 
 [[bin]]
 name = "scale"
@@ -199,6 +205,7 @@ path = "scale/main.rs"
 [[bin]]
 name = "scale_bin"
 path = "scale_bin/main.rs"
+required-features = ["v4_10"]
 
 [[bin]]
 name = "search_bar"
@@ -207,10 +214,12 @@ path = "search_bar/main.rs"
 [[bin]]
 name = "squares"
 path = "squares/main.rs"
+required-features = ["v4_10"]
 
 [[bin]]
 name = "squeezer_bin"
 path = "squeezer_bin/main.rs"
+required-features = ["v4_10"]
 
 [[bin]]
 name = "fill_and_stroke"
@@ -235,3 +244,4 @@ required-features = ["v4_10"]
 [[bin]]
 name = "virtual_methods"
 path = "virtual_methods/main.rs"
+required-features = ["v4_10"]
