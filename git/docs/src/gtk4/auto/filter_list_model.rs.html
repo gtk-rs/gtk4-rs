@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/auto/filter_list_model.rs`."><title>filter_list_model.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-1ed95124.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.98.0-nightly (485ec3fbc 2026-06-10)" data-channel="nightly" data-search-js="search-fd9372ac.js" data-stringdex-js="stringdex-2da4960a.js" data-settings-js="settings-170eb4bf.js" ><script src="../../../static.files/storage-41dd4d93.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-fcd733ba.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-f7c3ffd8.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><a class="skip-main-content" href="#main-content">Skip to main content</a><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/auto/filter_list_model.rs`."><title>filter_list_model.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-1ed95124.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.98.0-nightly (654079540 2026-06-12)" data-channel="nightly" data-search-js="search-fd9372ac.js" data-stringdex-js="stringdex-2da4960a.js" data-settings-js="settings-170eb4bf.js" ><script src="../../../static.files/storage-41dd4d93.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-fcd733ba.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-f7c3ffd8.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><a class="skip-main-content" href="#main-content">Skip to main content</a><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
 
@@ -106,13 +106,13 @@
 <a href=#33 id=33 data-nosnippet>33</a>    /// #### `filter`
 <a href=#34 id=34 data-nosnippet>34</a>    ///  The filter for this model.
 <a href=#35 id=35 data-nosnippet>35</a>    ///
-<a href=#36 id=36 data-nosnippet>36</a>    /// Readable | Writeable
+<a href=#36 id=36 data-nosnippet>36</a>    /// Readable | Writable
 <a href=#37 id=37 data-nosnippet>37</a>    ///
 <a href=#38 id=38 data-nosnippet>38</a>    ///
 <a href=#39 id=39 data-nosnippet>39</a>    /// #### `incremental`
 <a href=#40 id=40 data-nosnippet>40</a>    ///  If the model should filter items incrementally.
 <a href=#41 id=41 data-nosnippet>41</a>    ///
-<a href=#42 id=42 data-nosnippet>42</a>    /// Readable | Writeable
+<a href=#42 id=42 data-nosnippet>42</a>    /// Readable | Writable
 <a href=#43 id=43 data-nosnippet>43</a>    ///
 <a href=#44 id=44 data-nosnippet>44</a>    ///
 <a href=#45 id=45 data-nosnippet>45</a>    /// #### `item-type`
@@ -124,7 +124,7 @@
 <a href=#51 id=51 data-nosnippet>51</a>    /// #### `model`
 <a href=#52 id=52 data-nosnippet>52</a>    ///  The model being filtered.
 <a href=#53 id=53 data-nosnippet>53</a>    ///
-<a href=#54 id=54 data-nosnippet>54</a>    /// Readable | Writeable
+<a href=#54 id=54 data-nosnippet>54</a>    /// Readable | Writable
 <a href=#55 id=55 data-nosnippet>55</a>    ///
 <a href=#56 id=56 data-nosnippet>56</a>    ///
 <a href=#57 id=57 data-nosnippet>57</a>    /// #### `n-items`
@@ -142,7 +142,7 @@
 <a href=#69 id=69 data-nosnippet>69</a>    /// #### `watch-items`
 <a href=#70 id=70 data-nosnippet>70</a>    ///  Monitor the list items for changes. It may impact performance.
 <a href=#71 id=71 data-nosnippet>71</a>    ///
-<a href=#72 id=72 data-nosnippet>72</a>    /// Readable | Writeable
+<a href=#72 id=72 data-nosnippet>72</a>    /// Readable | Writable
 <a href=#73 id=73 data-nosnippet>73</a>    ///
 <a href=#74 id=74 data-nosnippet>74</a>    /// # Implements
 <a href=#75 id=75 data-nosnippet>75</a>    ///

@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/auto/file_chooser_native.rs`."><title>file_chooser_native.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-1ed95124.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.98.0-nightly (485ec3fbc 2026-06-10)" data-channel="nightly" data-search-js="search-fd9372ac.js" data-stringdex-js="stringdex-2da4960a.js" data-settings-js="settings-170eb4bf.js" ><script src="../../../static.files/storage-41dd4d93.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-fcd733ba.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-f7c3ffd8.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><a class="skip-main-content" href="#main-content">Skip to main content</a><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/auto/file_chooser_native.rs`."><title>file_chooser_native.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-1ed95124.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.98.0-nightly (654079540 2026-06-12)" data-channel="nightly" data-search-js="search-fd9372ac.js" data-stringdex-js="stringdex-2da4960a.js" data-settings-js="settings-170eb4bf.js" ><script src="../../../static.files/storage-41dd4d93.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-fcd733ba.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-f7c3ffd8.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><a class="skip-main-content" href="#main-content">Skip to main content</a><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
 
@@ -244,39 +244,39 @@
 <a href=#171 id=171 data-nosnippet>171</a>    ///  The text used for the label on the accept button in the dialog, or
 <a href=#172 id=172 data-nosnippet>172</a>    /// [`None`] to use the default text.
 <a href=#173 id=173 data-nosnippet>173</a>    ///
-<a href=#174 id=174 data-nosnippet>174</a>    /// Readable | Writeable
+<a href=#174 id=174 data-nosnippet>174</a>    /// Readable | Writable
 <a href=#175 id=175 data-nosnippet>175</a>    ///
 <a href=#176 id=176 data-nosnippet>176</a>    ///
 <a href=#177 id=177 data-nosnippet>177</a>    /// #### `cancel-label`
 <a href=#178 id=178 data-nosnippet>178</a>    ///  The text used for the label on the cancel button in the dialog, or
 <a href=#179 id=179 data-nosnippet>179</a>    /// [`None`] to use the default text.
 <a href=#180 id=180 data-nosnippet>180</a>    ///
-<a href=#181 id=181 data-nosnippet>181</a>    /// Readable | Writeable
+<a href=#181 id=181 data-nosnippet>181</a>    /// Readable | Writable
 <a href=#182 id=182 data-nosnippet>182</a>    /// &lt;details&gt;&lt;summary&gt;&lt;h4&gt;NativeDialog&lt;/h4&gt;&lt;/summary&gt;
 <a href=#183 id=183 data-nosnippet>183</a>    ///
 <a href=#184 id=184 data-nosnippet>184</a>    ///
 <a href=#185 id=185 data-nosnippet>185</a>    /// #### `modal`
 <a href=#186 id=186 data-nosnippet>186</a>    ///  Whether the window should be modal with respect to its transient parent.
 <a href=#187 id=187 data-nosnippet>187</a>    ///
-<a href=#188 id=188 data-nosnippet>188</a>    /// Readable | Writeable
+<a href=#188 id=188 data-nosnippet>188</a>    /// Readable | Writable
 <a href=#189 id=189 data-nosnippet>189</a>    ///
 <a href=#190 id=190 data-nosnippet>190</a>    ///
 <a href=#191 id=191 data-nosnippet>191</a>    /// #### `title`
 <a href=#192 id=192 data-nosnippet>192</a>    ///  The title of the dialog window
 <a href=#193 id=193 data-nosnippet>193</a>    ///
-<a href=#194 id=194 data-nosnippet>194</a>    /// Readable | Writeable
+<a href=#194 id=194 data-nosnippet>194</a>    /// Readable | Writable
 <a href=#195 id=195 data-nosnippet>195</a>    ///
 <a href=#196 id=196 data-nosnippet>196</a>    ///
 <a href=#197 id=197 data-nosnippet>197</a>    /// #### `transient-for`
 <a href=#198 id=198 data-nosnippet>198</a>    ///  The transient parent of the dialog, or [`None`] for none.
 <a href=#199 id=199 data-nosnippet>199</a>    ///
-<a href=#200 id=200 data-nosnippet>200</a>    /// Readable | Writeable | Construct
+<a href=#200 id=200 data-nosnippet>200</a>    /// Readable | Writable | Construct
 <a href=#201 id=201 data-nosnippet>201</a>    ///
 <a href=#202 id=202 data-nosnippet>202</a>    ///
 <a href=#203 id=203 data-nosnippet>203</a>    /// #### `visible`
 <a href=#204 id=204 data-nosnippet>204</a>    ///  Whether the window is currently visible.
 <a href=#205 id=205 data-nosnippet>205</a>    ///
-<a href=#206 id=206 data-nosnippet>206</a>    /// Readable | Writeable
+<a href=#206 id=206 data-nosnippet>206</a>    /// Readable | Writable
 <a href=#207 id=207 data-nosnippet>207</a>    /// &lt;/details&gt;
 <a href=#208 id=208 data-nosnippet>208</a>    /// &lt;details&gt;&lt;summary&gt;&lt;h4&gt;FileChooser&lt;/h4&gt;&lt;/summary&gt;
 <a href=#209 id=209 data-nosnippet>209</a>    ///
@@ -284,20 +284,20 @@
 <a href=#211 id=211 data-nosnippet>211</a>    /// #### `action`
 <a href=#212 id=212 data-nosnippet>212</a>    ///  The type of operation that the file chooser is performing.
 <a href=#213 id=213 data-nosnippet>213</a>    ///
-<a href=#214 id=214 data-nosnippet>214</a>    /// Readable | Writeable
+<a href=#214 id=214 data-nosnippet>214</a>    /// Readable | Writable
 <a href=#215 id=215 data-nosnippet>215</a>    ///
 <a href=#216 id=216 data-nosnippet>216</a>    ///
 <a href=#217 id=217 data-nosnippet>217</a>    /// #### `create-folders`
 <a href=#218 id=218 data-nosnippet>218</a>    ///  Whether a file chooser not in [`FileChooserAction::Open`][crate::FileChooserAction::Open] mode
 <a href=#219 id=219 data-nosnippet>219</a>    /// will offer the user to create new folders.
 <a href=#220 id=220 data-nosnippet>220</a>    ///
-<a href=#221 id=221 data-nosnippet>221</a>    /// Readable | Writeable
+<a href=#221 id=221 data-nosnippet>221</a>    /// Readable | Writable
 <a href=#222 id=222 data-nosnippet>222</a>    ///
 <a href=#223 id=223 data-nosnippet>223</a>    ///
 <a href=#224 id=224 data-nosnippet>224</a>    /// #### `filter`
 <a href=#225 id=225 data-nosnippet>225</a>    ///  The current filter for selecting files that are displayed.
 <a href=#226 id=226 data-nosnippet>226</a>    ///
-<a href=#227 id=227 data-nosnippet>227</a>    /// Readable | Writeable
+<a href=#227 id=227 data-nosnippet>227</a>    /// Readable | Writable
 <a href=#228 id=228 data-nosnippet>228</a>    ///
 <a href=#229 id=229 data-nosnippet>229</a>    ///
 <a href=#230 id=230 data-nosnippet>230</a>    /// #### `filters`
@@ -313,7 +313,7 @@
 <a href=#240 id=240 data-nosnippet>240</a>    /// #### `select-multiple`
 <a href=#241 id=241 data-nosnippet>241</a>    ///  Whether to allow multiple files to be selected.
 <a href=#242 id=242 data-nosnippet>242</a>    ///
-<a href=#243 id=243 data-nosnippet>243</a>    /// Readable | Writeable
+<a href=#243 id=243 data-nosnippet>243</a>    /// Readable | Writable
 <a href=#244 id=244 data-nosnippet>244</a>    ///
 <a href=#245 id=245 data-nosnippet>245</a>    ///
 <a href=#246 id=246 data-nosnippet>246</a>    /// #### `shortcut-folders`

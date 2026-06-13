@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/auto/overlay_layout_child.rs`."><title>overlay_layout_child.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-1ed95124.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.98.0-nightly (485ec3fbc 2026-06-10)" data-channel="nightly" data-search-js="search-fd9372ac.js" data-stringdex-js="stringdex-2da4960a.js" data-settings-js="settings-170eb4bf.js" ><script src="../../../static.files/storage-41dd4d93.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-fcd733ba.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-f7c3ffd8.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><a class="skip-main-content" href="#main-content">Skip to main content</a><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/auto/overlay_layout_child.rs`."><title>overlay_layout_child.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-1ed95124.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.98.0-nightly (654079540 2026-06-12)" data-channel="nightly" data-search-js="search-fd9372ac.js" data-stringdex-js="stringdex-2da4960a.js" data-settings-js="settings-170eb4bf.js" ><script src="../../../static.files/storage-41dd4d93.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-fcd733ba.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-f7c3ffd8.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><a class="skip-main-content" href="#main-content">Skip to main content</a><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
 
@@ -92,27 +92,27 @@
 <a href=#19 id=19 data-nosnippet>19</a>    /// #### `clip-overlay`
 <a href=#20 id=20 data-nosnippet>20</a>    ///  Whether the child should be clipped to fit the parent's size.
 <a href=#21 id=21 data-nosnippet>21</a>    ///
-<a href=#22 id=22 data-nosnippet>22</a>    /// Readable | Writeable
+<a href=#22 id=22 data-nosnippet>22</a>    /// Readable | Writable
 <a href=#23 id=23 data-nosnippet>23</a>    ///
 <a href=#24 id=24 data-nosnippet>24</a>    ///
 <a href=#25 id=25 data-nosnippet>25</a>    /// #### `measure`
 <a href=#26 id=26 data-nosnippet>26</a>    ///  Whether the child size should contribute to the [`OverlayLayout`][crate::OverlayLayout]'s
 <a href=#27 id=27 data-nosnippet>27</a>    /// measurement.
 <a href=#28 id=28 data-nosnippet>28</a>    ///
-<a href=#29 id=29 data-nosnippet>29</a>    /// Readable | Writeable
+<a href=#29 id=29 data-nosnippet>29</a>    /// Readable | Writable
 <a href=#30 id=30 data-nosnippet>30</a>    /// &lt;details&gt;&lt;summary&gt;&lt;h4&gt;LayoutChild&lt;/h4&gt;&lt;/summary&gt;
 <a href=#31 id=31 data-nosnippet>31</a>    ///
 <a href=#32 id=32 data-nosnippet>32</a>    ///
 <a href=#33 id=33 data-nosnippet>33</a>    /// #### `child-widget`
 <a href=#34 id=34 data-nosnippet>34</a>    ///  The widget that is associated to the [`LayoutChild`][crate::LayoutChild] instance.
 <a href=#35 id=35 data-nosnippet>35</a>    ///
-<a href=#36 id=36 data-nosnippet>36</a>    /// Readable | Writeable | Construct Only
+<a href=#36 id=36 data-nosnippet>36</a>    /// Readable | Writable | Construct Only
 <a href=#37 id=37 data-nosnippet>37</a>    ///
 <a href=#38 id=38 data-nosnippet>38</a>    ///
 <a href=#39 id=39 data-nosnippet>39</a>    /// #### `layout-manager`
 <a href=#40 id=40 data-nosnippet>40</a>    ///  The layout manager that created the [`LayoutChild`][crate::LayoutChild] instance.
 <a href=#41 id=41 data-nosnippet>41</a>    ///
-<a href=#42 id=42 data-nosnippet>42</a>    /// Readable | Writeable | Construct Only
+<a href=#42 id=42 data-nosnippet>42</a>    /// Readable | Writable | Construct Only
 <a href=#43 id=43 data-nosnippet>43</a>    /// &lt;/details&gt;
 <a href=#44 id=44 data-nosnippet>44</a>    ///
 <a href=#45 id=45 data-nosnippet>45</a>    /// # Implements

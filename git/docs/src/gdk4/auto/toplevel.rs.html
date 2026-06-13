@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gdk4/src/auto/toplevel.rs`."><title>toplevel.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-1ed95124.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gdk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.98.0-nightly (485ec3fbc 2026-06-10)" data-channel="nightly" data-search-js="search-fd9372ac.js" data-stringdex-js="stringdex-2da4960a.js" data-settings-js="settings-170eb4bf.js" ><script src="../../../static.files/storage-41dd4d93.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-fcd733ba.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-f7c3ffd8.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><a class="skip-main-content" href="#main-content">Skip to main content</a><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gdk4/src/auto/toplevel.rs`."><title>toplevel.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-1ed95124.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gdk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.98.0-nightly (654079540 2026-06-12)" data-channel="nightly" data-search-js="search-fd9372ac.js" data-stringdex-js="stringdex-2da4960a.js" data-settings-js="settings-170eb4bf.js" ><script src="../../../static.files/storage-41dd4d93.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-fcd733ba.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-f7c3ffd8.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><a class="skip-main-content" href="#main-content">Skip to main content</a><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
 
@@ -111,19 +111,19 @@
 <a href=#38 id=38 data-nosnippet>38</a>    /// #### `decorated`
 <a href=#39 id=39 data-nosnippet>39</a>    ///  Whether the window manager should add decorations.
 <a href=#40 id=40 data-nosnippet>40</a>    ///
-<a href=#41 id=41 data-nosnippet>41</a>    /// Readable | Writeable
+<a href=#41 id=41 data-nosnippet>41</a>    /// Readable | Writable
 <a href=#42 id=42 data-nosnippet>42</a>    ///
 <a href=#43 id=43 data-nosnippet>43</a>    ///
 <a href=#44 id=44 data-nosnippet>44</a>    /// #### `deletable`
 <a href=#45 id=45 data-nosnippet>45</a>    ///  Whether the window manager should allow to close the surface.
 <a href=#46 id=46 data-nosnippet>46</a>    ///
-<a href=#47 id=47 data-nosnippet>47</a>    /// Readable | Writeable
+<a href=#47 id=47 data-nosnippet>47</a>    /// Readable | Writable
 <a href=#48 id=48 data-nosnippet>48</a>    ///
 <a href=#49 id=49 data-nosnippet>49</a>    ///
 <a href=#50 id=50 data-nosnippet>50</a>    /// #### `fullscreen-mode`
 <a href=#51 id=51 data-nosnippet>51</a>    ///  The fullscreen mode of the surface.
 <a href=#52 id=52 data-nosnippet>52</a>    ///
-<a href=#53 id=53 data-nosnippet>53</a>    /// Readable | Writeable
+<a href=#53 id=53 data-nosnippet>53</a>    /// Readable | Writable
 <a href=#54 id=54 data-nosnippet>54</a>    ///
 <a href=#55 id=55 data-nosnippet>55</a>    ///
 <a href=#56 id=56 data-nosnippet>56</a>    /// #### `gravity`
@@ -138,19 +138,19 @@
 <a href=#65 id=65 data-nosnippet>65</a>    /// toplevel sizes with the windowing system. It does not affect interactive
 <a href=#66 id=66 data-nosnippet>66</a>    /// resizes started with [`ToplevelExt::begin_resize()`][crate::prelude::ToplevelExt::begin_resize()].
 <a href=#67 id=67 data-nosnippet>67</a>    ///
-<a href=#68 id=68 data-nosnippet>68</a>    /// Readable | Writeable
+<a href=#68 id=68 data-nosnippet>68</a>    /// Readable | Writable
 <a href=#69 id=69 data-nosnippet>69</a>    ///
 <a href=#70 id=70 data-nosnippet>70</a>    ///
 <a href=#71 id=71 data-nosnippet>71</a>    /// #### `icon-list`
 <a href=#72 id=72 data-nosnippet>72</a>    ///  A list of textures to use as icon.
 <a href=#73 id=73 data-nosnippet>73</a>    ///
-<a href=#74 id=74 data-nosnippet>74</a>    /// Readable | Writeable
+<a href=#74 id=74 data-nosnippet>74</a>    /// Readable | Writable
 <a href=#75 id=75 data-nosnippet>75</a>    ///
 <a href=#76 id=76 data-nosnippet>76</a>    ///
 <a href=#77 id=77 data-nosnippet>77</a>    /// #### `modal`
 <a href=#78 id=78 data-nosnippet>78</a>    ///  Whether the surface is modal.
 <a href=#79 id=79 data-nosnippet>79</a>    ///
-<a href=#80 id=80 data-nosnippet>80</a>    /// Readable | Writeable
+<a href=#80 id=80 data-nosnippet>80</a>    /// Readable | Writable
 <a href=#81 id=81 data-nosnippet>81</a>    ///
 <a href=#82 id=82 data-nosnippet>82</a>    ///
 <a href=#83 id=83 data-nosnippet>83</a>    /// #### `shortcuts-inhibited`
@@ -165,7 +165,7 @@
 <a href=#92 id=92 data-nosnippet>92</a>    /// See [`AppLaunchContext`][crate::AppLaunchContext] for more information about
 <a href=#93 id=93 data-nosnippet>93</a>    /// startup feedback.
 <a href=#94 id=94 data-nosnippet>94</a>    ///
-<a href=#95 id=95 data-nosnippet>95</a>    /// Readable | Writeable
+<a href=#95 id=95 data-nosnippet>95</a>    /// Readable | Writable
 <a href=#96 id=96 data-nosnippet>96</a>    ///
 <a href=#97 id=97 data-nosnippet>97</a>    ///
 <a href=#98 id=98 data-nosnippet>98</a>    /// #### `state`
@@ -177,32 +177,32 @@
 <a href=#104 id=104 data-nosnippet>104</a>    /// #### `title`
 <a href=#105 id=105 data-nosnippet>105</a>    ///  The title of the surface.
 <a href=#106 id=106 data-nosnippet>106</a>    ///
-<a href=#107 id=107 data-nosnippet>107</a>    /// Readable | Writeable
+<a href=#107 id=107 data-nosnippet>107</a>    /// Readable | Writable
 <a href=#108 id=108 data-nosnippet>108</a>    ///
 <a href=#109 id=109 data-nosnippet>109</a>    ///
 <a href=#110 id=110 data-nosnippet>110</a>    /// #### `transient-for`
 <a href=#111 id=111 data-nosnippet>111</a>    ///  The transient parent of the surface.
 <a href=#112 id=112 data-nosnippet>112</a>    ///
-<a href=#113 id=113 data-nosnippet>113</a>    /// Readable | Writeable
+<a href=#113 id=113 data-nosnippet>113</a>    /// Readable | Writable
 <a href=#114 id=114 data-nosnippet>114</a>    /// &lt;details&gt;&lt;summary&gt;&lt;h4&gt;Surface&lt;/h4&gt;&lt;/summary&gt;
 <a href=#115 id=115 data-nosnippet>115</a>    ///
 <a href=#116 id=116 data-nosnippet>116</a>    ///
 <a href=#117 id=117 data-nosnippet>117</a>    /// #### `cursor`
 <a href=#118 id=118 data-nosnippet>118</a>    ///  The mouse pointer for the [`Surface`][crate::Surface].
 <a href=#119 id=119 data-nosnippet>119</a>    ///
-<a href=#120 id=120 data-nosnippet>120</a>    /// Readable | Writeable
+<a href=#120 id=120 data-nosnippet>120</a>    /// Readable | Writable
 <a href=#121 id=121 data-nosnippet>121</a>    ///
 <a href=#122 id=122 data-nosnippet>122</a>    ///
 <a href=#123 id=123 data-nosnippet>123</a>    /// #### `display`
 <a href=#124 id=124 data-nosnippet>124</a>    ///  The [`Display`][crate::Display] connection of the surface.
 <a href=#125 id=125 data-nosnippet>125</a>    ///
-<a href=#126 id=126 data-nosnippet>126</a>    /// Readable | Writeable | Construct Only
+<a href=#126 id=126 data-nosnippet>126</a>    /// Readable | Writable | Construct Only
 <a href=#127 id=127 data-nosnippet>127</a>    ///
 <a href=#128 id=128 data-nosnippet>128</a>    ///
 <a href=#129 id=129 data-nosnippet>129</a>    /// #### `frame-clock`
 <a href=#130 id=130 data-nosnippet>130</a>    ///  The [`FrameClock`][crate::FrameClock] of the surface.
 <a href=#131 id=131 data-nosnippet>131</a>    ///
-<a href=#132 id=132 data-nosnippet>132</a>    /// Readable | Writeable | Construct Only
+<a href=#132 id=132 data-nosnippet>132</a>    /// Readable | Writable | Construct Only
 <a href=#133 id=133 data-nosnippet>133</a>    ///
 <a href=#134 id=134 data-nosnippet>134</a>    ///
 <a href=#135 id=135 data-nosnippet>135</a>    /// #### `height`

@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/auto/shortcut_controller.rs`."><title>shortcut_controller.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-1ed95124.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.98.0-nightly (485ec3fbc 2026-06-10)" data-channel="nightly" data-search-js="search-fd9372ac.js" data-stringdex-js="stringdex-2da4960a.js" data-settings-js="settings-170eb4bf.js" ><script src="../../../static.files/storage-41dd4d93.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-fcd733ba.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-f7c3ffd8.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><a class="skip-main-content" href="#main-content">Skip to main content</a><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/auto/shortcut_controller.rs`."><title>shortcut_controller.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-1ed95124.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.98.0-nightly (654079540 2026-06-12)" data-channel="nightly" data-search-js="search-fd9372ac.js" data-stringdex-js="stringdex-2da4960a.js" data-settings-js="settings-170eb4bf.js" ><script src="../../../static.files/storage-41dd4d93.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-fcd733ba.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-f7c3ffd8.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><a class="skip-main-content" href="#main-content">Skip to main content</a><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
 
@@ -137,13 +137,13 @@
 <a href=#64 id=64 data-nosnippet>64</a>    /// #### `mnemonic-modifiers`
 <a href=#65 id=65 data-nosnippet>65</a>    ///  The modifiers that need to be pressed to allow mnemonics activation.
 <a href=#66 id=66 data-nosnippet>66</a>    ///
-<a href=#67 id=67 data-nosnippet>67</a>    /// Readable | Writeable
+<a href=#67 id=67 data-nosnippet>67</a>    /// Readable | Writable
 <a href=#68 id=68 data-nosnippet>68</a>    ///
 <a href=#69 id=69 data-nosnippet>69</a>    ///
 <a href=#70 id=70 data-nosnippet>70</a>    /// #### `model`
 <a href=#71 id=71 data-nosnippet>71</a>    ///  A list model to take shortcuts from.
 <a href=#72 id=72 data-nosnippet>72</a>    ///
-<a href=#73 id=73 data-nosnippet>73</a>    /// Writeable | Construct Only
+<a href=#73 id=73 data-nosnippet>73</a>    /// Writable | Construct Only
 <a href=#74 id=74 data-nosnippet>74</a>    ///
 <a href=#75 id=75 data-nosnippet>75</a>    ///
 <a href=#76 id=76 data-nosnippet>76</a>    /// #### `n-items`
@@ -155,26 +155,26 @@
 <a href=#82 id=82 data-nosnippet>82</a>    /// #### `scope`
 <a href=#83 id=83 data-nosnippet>83</a>    ///  What scope the shortcuts will be handled in.
 <a href=#84 id=84 data-nosnippet>84</a>    ///
-<a href=#85 id=85 data-nosnippet>85</a>    /// Readable | Writeable
+<a href=#85 id=85 data-nosnippet>85</a>    /// Readable | Writable
 <a href=#86 id=86 data-nosnippet>86</a>    /// &lt;details&gt;&lt;summary&gt;&lt;h4&gt;EventController&lt;/h4&gt;&lt;/summary&gt;
 <a href=#87 id=87 data-nosnippet>87</a>    ///
 <a href=#88 id=88 data-nosnippet>88</a>    ///
 <a href=#89 id=89 data-nosnippet>89</a>    /// #### `name`
 <a href=#90 id=90 data-nosnippet>90</a>    ///  The name for this controller, typically used for debugging purposes.
 <a href=#91 id=91 data-nosnippet>91</a>    ///
-<a href=#92 id=92 data-nosnippet>92</a>    /// Readable | Writeable
+<a href=#92 id=92 data-nosnippet>92</a>    /// Readable | Writable
 <a href=#93 id=93 data-nosnippet>93</a>    ///
 <a href=#94 id=94 data-nosnippet>94</a>    ///
 <a href=#95 id=95 data-nosnippet>95</a>    /// #### `propagation-limit`
 <a href=#96 id=96 data-nosnippet>96</a>    ///  The limit for which events this controller will handle.
 <a href=#97 id=97 data-nosnippet>97</a>    ///
-<a href=#98 id=98 data-nosnippet>98</a>    /// Readable | Writeable
+<a href=#98 id=98 data-nosnippet>98</a>    /// Readable | Writable
 <a href=#99 id=99 data-nosnippet>99</a>    ///
 <a href=#100 id=100 data-nosnippet>100</a>    ///
 <a href=#101 id=101 data-nosnippet>101</a>    /// #### `propagation-phase`
 <a href=#102 id=102 data-nosnippet>102</a>    ///  The propagation phase at which this controller will handle events.
 <a href=#103 id=103 data-nosnippet>103</a>    ///
-<a href=#104 id=104 data-nosnippet>104</a>    /// Readable | Writeable
+<a href=#104 id=104 data-nosnippet>104</a>    /// Readable | Writable
 <a href=#105 id=105 data-nosnippet>105</a>    ///
 <a href=#106 id=106 data-nosnippet>106</a>    ///
 <a href=#107 id=107 data-nosnippet>107</a>    /// #### `widget`

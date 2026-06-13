@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/auto/header_bar.rs`."><title>header_bar.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-1ed95124.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.98.0-nightly (485ec3fbc 2026-06-10)" data-channel="nightly" data-search-js="search-fd9372ac.js" data-stringdex-js="stringdex-2da4960a.js" data-settings-js="settings-170eb4bf.js" ><script src="../../../static.files/storage-41dd4d93.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-fcd733ba.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-f7c3ffd8.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><a class="skip-main-content" href="#main-content">Skip to main content</a><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/auto/header_bar.rs`."><title>header_bar.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-1ed95124.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.98.0-nightly (654079540 2026-06-12)" data-channel="nightly" data-search-js="search-fd9372ac.js" data-stringdex-js="stringdex-2da4960a.js" data-settings-js="settings-170eb4bf.js" ><script src="../../../static.files/storage-41dd4d93.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-fcd733ba.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-f7c3ffd8.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><a class="skip-main-content" href="#main-content">Skip to main content</a><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
 
@@ -175,7 +175,7 @@
 <a href=#102 id=102 data-nosnippet>102</a>    /// If this property is not set, the
 <a href=#103 id=103 data-nosnippet>103</a>    /// [`gtk-decoration-layout`][struct@crate::Settings#gtk-decoration-layout] setting is used.
 <a href=#104 id=104 data-nosnippet>104</a>    ///
-<a href=#105 id=105 data-nosnippet>105</a>    /// Readable | Writeable
+<a href=#105 id=105 data-nosnippet>105</a>    /// Readable | Writable
 <a href=#106 id=106 data-nosnippet>106</a>    ///
 <a href=#107 id=107 data-nosnippet>107</a>    ///
 <a href=#108 id=108 data-nosnippet>108</a>    /// #### `show-title-buttons`
@@ -186,13 +186,13 @@
 <a href=#113 id=113 data-nosnippet>113</a>    /// and by the state of the window (e.g. a close button will not
 <a href=#114 id=114 data-nosnippet>114</a>    /// be shown if the window can't be closed).
 <a href=#115 id=115 data-nosnippet>115</a>    ///
-<a href=#116 id=116 data-nosnippet>116</a>    /// Readable | Writeable
+<a href=#116 id=116 data-nosnippet>116</a>    /// Readable | Writable
 <a href=#117 id=117 data-nosnippet>117</a>    ///
 <a href=#118 id=118 data-nosnippet>118</a>    ///
 <a href=#119 id=119 data-nosnippet>119</a>    /// #### `title-widget`
 <a href=#120 id=120 data-nosnippet>120</a>    ///  The title widget to display.
 <a href=#121 id=121 data-nosnippet>121</a>    ///
-<a href=#122 id=122 data-nosnippet>122</a>    /// Readable | Writeable
+<a href=#122 id=122 data-nosnippet>122</a>    /// Readable | Writable
 <a href=#123 id=123 data-nosnippet>123</a>    ///
 <a href=#124 id=124 data-nosnippet>124</a>    ///
 <a href=#125 id=125 data-nosnippet>125</a>    /// #### `use-native-controls`
@@ -205,7 +205,7 @@
 <a href=#132 id=132 data-nosnippet>132</a>    ///
 <a href=#133 id=133 data-nosnippet>133</a>    /// See also [Using GTK on Apple macOS](osx.html?native-window-controls).
 <a href=#134 id=134 data-nosnippet>134</a>    ///
-<a href=#135 id=135 data-nosnippet>135</a>    /// Readable | Writeable
+<a href=#135 id=135 data-nosnippet>135</a>    /// Readable | Writable
 <a href=#136 id=136 data-nosnippet>136</a>    /// &lt;details&gt;&lt;summary&gt;&lt;h4&gt;Widget&lt;/h4&gt;&lt;/summary&gt;
 <a href=#137 id=137 data-nosnippet>137</a>    ///
 <a href=#138 id=138 data-nosnippet>138</a>    ///
@@ -216,19 +216,19 @@
 <a href=#143 id=143 data-nosnippet>143</a>    /// This property is meant to be set by widget implementations,
 <a href=#144 id=144 data-nosnippet>144</a>    /// typically in their instance init function.
 <a href=#145 id=145 data-nosnippet>145</a>    ///
-<a href=#146 id=146 data-nosnippet>146</a>    /// Readable | Writeable
+<a href=#146 id=146 data-nosnippet>146</a>    /// Readable | Writable
 <a href=#147 id=147 data-nosnippet>147</a>    ///
 <a href=#148 id=148 data-nosnippet>148</a>    ///
 <a href=#149 id=149 data-nosnippet>149</a>    /// #### `can-target`
 <a href=#150 id=150 data-nosnippet>150</a>    ///  Whether the widget can receive pointer events.
 <a href=#151 id=151 data-nosnippet>151</a>    ///
-<a href=#152 id=152 data-nosnippet>152</a>    /// Readable | Writeable
+<a href=#152 id=152 data-nosnippet>152</a>    /// Readable | Writable
 <a href=#153 id=153 data-nosnippet>153</a>    ///
 <a href=#154 id=154 data-nosnippet>154</a>    ///
 <a href=#155 id=155 data-nosnippet>155</a>    /// #### `css-classes`
 <a href=#156 id=156 data-nosnippet>156</a>    ///  A list of css classes applied to this widget.
 <a href=#157 id=157 data-nosnippet>157</a>    ///
-<a href=#158 id=158 data-nosnippet>158</a>    /// Readable | Writeable
+<a href=#158 id=158 data-nosnippet>158</a>    /// Readable | Writable
 <a href=#159 id=159 data-nosnippet>159</a>    ///
 <a href=#160 id=160 data-nosnippet>160</a>    ///
 <a href=#161 id=161 data-nosnippet>161</a>    /// #### `css-name`
@@ -237,13 +237,13 @@
 <a href=#164 id=164 data-nosnippet>164</a>    /// This property is meant to be set by widget implementations,
 <a href=#165 id=165 data-nosnippet>165</a>    /// typically in their instance init function.
 <a href=#166 id=166 data-nosnippet>166</a>    ///
-<a href=#167 id=167 data-nosnippet>167</a>    /// Readable | Writeable | Construct Only
+<a href=#167 id=167 data-nosnippet>167</a>    /// Readable | Writable | Construct Only
 <a href=#168 id=168 data-nosnippet>168</a>    ///
 <a href=#169 id=169 data-nosnippet>169</a>    ///
 <a href=#170 id=170 data-nosnippet>170</a>    /// #### `cursor`
 <a href=#171 id=171 data-nosnippet>171</a>    ///  The cursor used by @widget.
 <a href=#172 id=172 data-nosnippet>172</a>    ///
-<a href=#173 id=173 data-nosnippet>173</a>    /// Readable | Writeable
+<a href=#173 id=173 data-nosnippet>173</a>    /// Readable | Writable
 <a href=#174 id=174 data-nosnippet>174</a>    ///
 <a href=#175 id=175 data-nosnippet>175</a>    ///
 <a href=#176 id=176 data-nosnippet>176</a>    /// #### `focus-on-click`
@@ -251,19 +251,19 @@
 <a href=#178 id=178 data-nosnippet>178</a>    ///
 <a href=#179 id=179 data-nosnippet>179</a>    /// This property is only relevant for widgets that can take focus.
 <a href=#180 id=180 data-nosnippet>180</a>    ///
-<a href=#181 id=181 data-nosnippet>181</a>    /// Readable | Writeable
+<a href=#181 id=181 data-nosnippet>181</a>    /// Readable | Writable
 <a href=#182 id=182 data-nosnippet>182</a>    ///
 <a href=#183 id=183 data-nosnippet>183</a>    ///
 <a href=#184 id=184 data-nosnippet>184</a>    /// #### `focusable`
 <a href=#185 id=185 data-nosnippet>185</a>    ///  Whether this widget itself will accept the input focus.
 <a href=#186 id=186 data-nosnippet>186</a>    ///
-<a href=#187 id=187 data-nosnippet>187</a>    /// Readable | Writeable
+<a href=#187 id=187 data-nosnippet>187</a>    /// Readable | Writable
 <a href=#188 id=188 data-nosnippet>188</a>    ///
 <a href=#189 id=189 data-nosnippet>189</a>    ///
 <a href=#190 id=190 data-nosnippet>190</a>    /// #### `halign`
 <a href=#191 id=191 data-nosnippet>191</a>    ///  How to distribute horizontal space if widget gets extra space.
 <a href=#192 id=192 data-nosnippet>192</a>    ///
-<a href=#193 id=193 data-nosnippet>193</a>    /// Readable | Writeable
+<a href=#193 id=193 data-nosnippet>193</a>    /// Readable | Writable
 <a href=#194 id=194 data-nosnippet>194</a>    ///
 <a href=#195 id=195 data-nosnippet>195</a>    ///
 <a href=#196 id=196 data-nosnippet>196</a>    /// #### `has-default`
@@ -286,7 +286,7 @@
 <a href=#213 id=213 data-nosnippet>213</a>    /// the widget will be queried using [`query-tooltip`][struct@crate::Widget#query-tooltip] to
 <a href=#214 id=214 data-nosnippet>214</a>    /// determine whether it will provide a tooltip or not.
 <a href=#215 id=215 data-nosnippet>215</a>    ///
-<a href=#216 id=216 data-nosnippet>216</a>    /// Readable | Writeable
+<a href=#216 id=216 data-nosnippet>216</a>    /// Readable | Writable
 <a href=#217 id=217 data-nosnippet>217</a>    ///
 <a href=#218 id=218 data-nosnippet>218</a>    ///
 <a href=#219 id=219 data-nosnippet>219</a>    /// #### `height-request`
@@ -294,19 +294,19 @@
 <a href=#221 id=221 data-nosnippet>221</a>    ///
 <a href=#222 id=222 data-nosnippet>222</a>    /// If this is -1, the natural request will be used.
 <a href=#223 id=223 data-nosnippet>223</a>    ///
-<a href=#224 id=224 data-nosnippet>224</a>    /// Readable | Writeable
+<a href=#224 id=224 data-nosnippet>224</a>    /// Readable | Writable
 <a href=#225 id=225 data-nosnippet>225</a>    ///
 <a href=#226 id=226 data-nosnippet>226</a>    ///
 <a href=#227 id=227 data-nosnippet>227</a>    /// #### `hexpand`
 <a href=#228 id=228 data-nosnippet>228</a>    ///  Whether to expand horizontally.
 <a href=#229 id=229 data-nosnippet>229</a>    ///
-<a href=#230 id=230 data-nosnippet>230</a>    /// Readable | Writeable
+<a href=#230 id=230 data-nosnippet>230</a>    /// Readable | Writable
 <a href=#231 id=231 data-nosnippet>231</a>    ///
 <a href=#232 id=232 data-nosnippet>232</a>    ///
 <a href=#233 id=233 data-nosnippet>233</a>    /// #### `hexpand-set`
 <a href=#234 id=234 data-nosnippet>234</a>    ///  Whether to use the `hexpand` property.
 <a href=#235 id=235 data-nosnippet>235</a>    ///
-<a href=#236 id=236 data-nosnippet>236</a>    /// Readable | Writeable
+<a href=#236 id=236 data-nosnippet>236</a>    /// Readable | Writable
 <a href=#237 id=237 data-nosnippet>237</a>    ///
 <a href=#238 id=238 data-nosnippet>238</a>    ///
 <a href=#239 id=239 data-nosnippet>239</a>    /// #### `layout-manager`
@@ -316,7 +316,7 @@
 <a href=#243 id=243 data-nosnippet>243</a>    /// This property is meant to be set by widget implementations,
 <a href=#244 id=244 data-nosnippet>244</a>    /// typically in their instance init function.
 <a href=#245 id=245 data-nosnippet>245</a>    ///
-<a href=#246 id=246 data-nosnippet>246</a>    /// Readable | Writeable
+<a href=#246 id=246 data-nosnippet>246</a>    /// Readable | Writable
 <a href=#247 id=247 data-nosnippet>247</a>    ///
 <a href=#248 id=248 data-nosnippet>248</a>    ///
 <a href=#249 id=249 data-nosnippet>249</a>    /// #### `limit-events`
@@ -327,7 +327,7 @@
 <a href=#254 id=254 data-nosnippet>254</a>    /// inside the widget, unless they are set up to ignore propagation
 <a href=#255 id=255 data-nosnippet>255</a>    /// limits. See [`EventControllerExt::set_propagation_limit()`][crate::prelude::EventControllerExt::set_propagation_limit()].
 <a href=#256 id=256 data-nosnippet>256</a>    ///
-<a href=#257 id=257 data-nosnippet>257</a>    /// Readable | Writeable
+<a href=#257 id=257 data-nosnippet>257</a>    /// Readable | Writable
 <a href=#258 id=258 data-nosnippet>258</a>    ///
 <a href=#259 id=259 data-nosnippet>259</a>    ///
 <a href=#260 id=260 data-nosnippet>260</a>    /// #### `margin-bottom`
@@ -337,7 +337,7 @@
 <a href=#264 id=264 data-nosnippet>264</a>    /// request, the margin will be added in addition to the size from
 <a href=#265 id=265 data-nosnippet>265</a>    /// [`WidgetExt::set_size_request()`][crate::prelude::WidgetExt::set_size_request()] for example.
 <a href=#266 id=266 data-nosnippet>266</a>    ///
-<a href=#267 id=267 data-nosnippet>267</a>    /// Readable | Writeable
+<a href=#267 id=267 data-nosnippet>267</a>    /// Readable | Writable
 <a href=#268 id=268 data-nosnippet>268</a>    ///
 <a href=#269 id=269 data-nosnippet>269</a>    ///
 <a href=#270 id=270 data-nosnippet>270</a>    /// #### `margin-end`
@@ -350,7 +350,7 @@
 <a href=#277 id=277 data-nosnippet>277</a>    /// request, the margin will be added in addition to the size from
 <a href=#278 id=278 data-nosnippet>278</a>    /// [`WidgetExt::set_size_request()`][crate::prelude::WidgetExt::set_size_request()] for example.
 <a href=#279 id=279 data-nosnippet>279</a>    ///
-<a href=#280 id=280 data-nosnippet>280</a>    /// Readable | Writeable
+<a href=#280 id=280 data-nosnippet>280</a>    /// Readable | Writable
 <a href=#281 id=281 data-nosnippet>281</a>    ///
 <a href=#282 id=282 data-nosnippet>282</a>    ///
 <a href=#283 id=283 data-nosnippet>283</a>    /// #### `margin-start`
@@ -363,7 +363,7 @@
 <a href=#290 id=290 data-nosnippet>290</a>    /// request, the margin will be added in addition to the size from
 <a href=#291 id=291 data-nosnippet>291</a>    /// [`WidgetExt::set_size_request()`][crate::prelude::WidgetExt::set_size_request()] for example.
 <a href=#292 id=292 data-nosnippet>292</a>    ///
-<a href=#293 id=293 data-nosnippet>293</a>    /// Readable | Writeable
+<a href=#293 id=293 data-nosnippet>293</a>    /// Readable | Writable
 <a href=#294 id=294 data-nosnippet>294</a>    ///
 <a href=#295 id=295 data-nosnippet>295</a>    ///
 <a href=#296 id=296 data-nosnippet>296</a>    /// #### `margin-top`
@@ -373,19 +373,19 @@
 <a href=#300 id=300 data-nosnippet>300</a>    /// request, the margin will be added in addition to the size from
 <a href=#301 id=301 data-nosnippet>301</a>    /// [`WidgetExt::set_size_request()`][crate::prelude::WidgetExt::set_size_request()] for example.
 <a href=#302 id=302 data-nosnippet>302</a>    ///
-<a href=#303 id=303 data-nosnippet>303</a>    /// Readable | Writeable
+<a href=#303 id=303 data-nosnippet>303</a>    /// Readable | Writable
 <a href=#304 id=304 data-nosnippet>304</a>    ///
 <a href=#305 id=305 data-nosnippet>305</a>    ///
 <a href=#306 id=306 data-nosnippet>306</a>    /// #### `name`
 <a href=#307 id=307 data-nosnippet>307</a>    ///  The name of the widget.
 <a href=#308 id=308 data-nosnippet>308</a>    ///
-<a href=#309 id=309 data-nosnippet>309</a>    /// Readable | Writeable
+<a href=#309 id=309 data-nosnippet>309</a>    /// Readable | Writable
 <a href=#310 id=310 data-nosnippet>310</a>    ///
 <a href=#311 id=311 data-nosnippet>311</a>    ///
 <a href=#312 id=312 data-nosnippet>312</a>    /// #### `opacity`
 <a href=#313 id=313 data-nosnippet>313</a>    ///  The requested opacity of the widget.
 <a href=#314 id=314 data-nosnippet>314</a>    ///
-<a href=#315 id=315 data-nosnippet>315</a>    /// Readable | Writeable
+<a href=#315 id=315 data-nosnippet>315</a>    /// Readable | Writable
 <a href=#316 id=316 data-nosnippet>316</a>    ///
 <a href=#317 id=317 data-nosnippet>317</a>    ///
 <a href=#318 id=318 data-nosnippet>318</a>    /// #### `overflow`
@@ -394,7 +394,7 @@
 <a href=#321 id=321 data-nosnippet>321</a>    /// This property is meant to be set by widget implementations,
 <a href=#322 id=322 data-nosnippet>322</a>    /// typically in their instance init function.
 <a href=#323 id=323 data-nosnippet>323</a>    ///
-<a href=#324 id=324 data-nosnippet>324</a>    /// Readable | Writeable
+<a href=#324 id=324 data-nosnippet>324</a>    /// Readable | Writable
 <a href=#325 id=325 data-nosnippet>325</a>    ///
 <a href=#326 id=326 data-nosnippet>326</a>    ///
 <a href=#327 id=327 data-nosnippet>327</a>    /// #### `parent`
@@ -406,7 +406,7 @@
 <a href=#333 id=333 data-nosnippet>333</a>    /// #### `receives-default`
 <a href=#334 id=334 data-nosnippet>334</a>    ///  Whether the widget will receive the default action when it is focused.
 <a href=#335 id=335 data-nosnippet>335</a>    ///
-<a href=#336 id=336 data-nosnippet>336</a>    /// Readable | Writeable
+<a href=#336 id=336 data-nosnippet>336</a>    /// Readable | Writable
 <a href=#337 id=337 data-nosnippet>337</a>    ///
 <a href=#338 id=338 data-nosnippet>338</a>    ///
 <a href=#339 id=339 data-nosnippet>339</a>    /// #### `root`
@@ -426,7 +426,7 @@
 <a href=#353 id=353 data-nosnippet>353</a>    /// #### `sensitive`
 <a href=#354 id=354 data-nosnippet>354</a>    ///  Whether the widget responds to input.
 <a href=#355 id=355 data-nosnippet>355</a>    ///
-<a href=#356 id=356 data-nosnippet>356</a>    /// Readable | Writeable
+<a href=#356 id=356 data-nosnippet>356</a>    /// Readable | Writable
 <a href=#357 id=357 data-nosnippet>357</a>    ///
 <a href=#358 id=358 data-nosnippet>358</a>    ///
 <a href=#359 id=359 data-nosnippet>359</a>    /// #### `tooltip-markup`
@@ -444,7 +444,7 @@
 <a href=#371 id=371 data-nosnippet>371</a>    /// Note that if both [`tooltip-text`][struct@crate::Widget#tooltip-text] and
 <a href=#372 id=372 data-nosnippet>372</a>    /// [`tooltip-markup`][struct@crate::Widget#tooltip-markup] are set, the last one wins.
 <a href=#373 id=373 data-nosnippet>373</a>    ///
-<a href=#374 id=374 data-nosnippet>374</a>    /// Readable | Writeable
+<a href=#374 id=374 data-nosnippet>374</a>    /// Readable | Writable
 <a href=#375 id=375 data-nosnippet>375</a>    ///
 <a href=#376 id=376 data-nosnippet>376</a>    ///
 <a href=#377 id=377 data-nosnippet>377</a>    /// #### `tooltip-text`
@@ -461,31 +461,31 @@
 <a href=#388 id=388 data-nosnippet>388</a>    /// Note that if both [`tooltip-text`][struct@crate::Widget#tooltip-text] and
 <a href=#389 id=389 data-nosnippet>389</a>    /// [`tooltip-markup`][struct@crate::Widget#tooltip-markup] are set, the last one wins.
 <a href=#390 id=390 data-nosnippet>390</a>    ///
-<a href=#391 id=391 data-nosnippet>391</a>    /// Readable | Writeable
+<a href=#391 id=391 data-nosnippet>391</a>    /// Readable | Writable
 <a href=#392 id=392 data-nosnippet>392</a>    ///
 <a href=#393 id=393 data-nosnippet>393</a>    ///
 <a href=#394 id=394 data-nosnippet>394</a>    /// #### `valign`
 <a href=#395 id=395 data-nosnippet>395</a>    ///  How to distribute vertical space if widget gets extra space.
 <a href=#396 id=396 data-nosnippet>396</a>    ///
-<a href=#397 id=397 data-nosnippet>397</a>    /// Readable | Writeable
+<a href=#397 id=397 data-nosnippet>397</a>    /// Readable | Writable
 <a href=#398 id=398 data-nosnippet>398</a>    ///
 <a href=#399 id=399 data-nosnippet>399</a>    ///
 <a href=#400 id=400 data-nosnippet>400</a>    /// #### `vexpand`
 <a href=#401 id=401 data-nosnippet>401</a>    ///  Whether to expand vertically.
 <a href=#402 id=402 data-nosnippet>402</a>    ///
-<a href=#403 id=403 data-nosnippet>403</a>    /// Readable | Writeable
+<a href=#403 id=403 data-nosnippet>403</a>    /// Readable | Writable
 <a href=#404 id=404 data-nosnippet>404</a>    ///
 <a href=#405 id=405 data-nosnippet>405</a>    ///
 <a href=#406 id=406 data-nosnippet>406</a>    /// #### `vexpand-set`
 <a href=#407 id=407 data-nosnippet>407</a>    ///  Whether to use the `vexpand` property.
 <a href=#408 id=408 data-nosnippet>408</a>    ///
-<a href=#409 id=409 data-nosnippet>409</a>    /// Readable | Writeable
+<a href=#409 id=409 data-nosnippet>409</a>    /// Readable | Writable
 <a href=#410 id=410 data-nosnippet>410</a>    ///
 <a href=#411 id=411 data-nosnippet>411</a>    ///
 <a href=#412 id=412 data-nosnippet>412</a>    /// #### `visible`
 <a href=#413 id=413 data-nosnippet>413</a>    ///  Whether the widget is visible.
 <a href=#414 id=414 data-nosnippet>414</a>    ///
-<a href=#415 id=415 data-nosnippet>415</a>    /// Readable | Writeable
+<a href=#415 id=415 data-nosnippet>415</a>    /// Readable | Writable
 <a href=#416 id=416 data-nosnippet>416</a>    ///
 <a href=#417 id=417 data-nosnippet>417</a>    ///
 <a href=#418 id=418 data-nosnippet>418</a>    /// #### `width-request`
@@ -493,7 +493,7 @@
 <a href=#420 id=420 data-nosnippet>420</a>    ///
 <a href=#421 id=421 data-nosnippet>421</a>    /// If this is -1, the natural request will be used.
 <a href=#422 id=422 data-nosnippet>422</a>    ///
-<a href=#423 id=423 data-nosnippet>423</a>    /// Readable | Writeable
+<a href=#423 id=423 data-nosnippet>423</a>    /// Readable | Writable
 <a href=#424 id=424 data-nosnippet>424</a>    /// &lt;/details&gt;
 <a href=#425 id=425 data-nosnippet>425</a>    /// &lt;details&gt;&lt;summary&gt;&lt;h4&gt;Accessible&lt;/h4&gt;&lt;/summary&gt;
 <a href=#426 id=426 data-nosnippet>426</a>    ///
@@ -503,7 +503,7 @@
 <a href=#430 id=430 data-nosnippet>430</a>    ///
 <a href=#431 id=431 data-nosnippet>431</a>    /// The accessible role cannot be changed once set.
 <a href=#432 id=432 data-nosnippet>432</a>    ///
-<a href=#433 id=433 data-nosnippet>433</a>    /// Readable | Writeable
+<a href=#433 id=433 data-nosnippet>433</a>    /// Readable | Writable
 <a href=#434 id=434 data-nosnippet>434</a>    /// &lt;/details&gt;
 <a href=#435 id=435 data-nosnippet>435</a>    ///
 <a href=#436 id=436 data-nosnippet>436</a>    /// # Implements

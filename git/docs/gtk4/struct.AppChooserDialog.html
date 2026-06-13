@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="The application selection widgets should be implemented according to the design of each platform and/or application requiring them. `AppChooserDialog` shows a `AppChooserWidget` inside a `Dialog`."><title>AppChooserDialog in gtk4 - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../static.files/rustdoc-1ed95124.css"><meta name="rustdoc-vars" data-root-path="../" data-static-root-path="../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.98.0-nightly (485ec3fbc 2026-06-10)" data-channel="nightly" data-search-js="search-fd9372ac.js" data-stringdex-js="stringdex-2da4960a.js" data-settings-js="settings-170eb4bf.js" ><script src="../static.files/storage-41dd4d93.js"></script><script defer src="sidebar-items.js"></script><script defer src="../static.files/main-fcd733ba.js"></script><noscript><link rel="stylesheet" href="../static.files/noscript-f7c3ffd8.css"></noscript><link rel="alternate icon" type="image/png" href="../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../static.files/favicon-044be391.svg"></head><body class="rustdoc struct"><a class="skip-main-content" href="#main-content">Skip to main content</a><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="The application selection widgets should be implemented according to the design of each platform and/or application requiring them. `AppChooserDialog` shows a `AppChooserWidget` inside a `Dialog`."><title>AppChooserDialog in gtk4 - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../static.files/rustdoc-1ed95124.css"><meta name="rustdoc-vars" data-root-path="../" data-static-root-path="../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.98.0-nightly (654079540 2026-06-12)" data-channel="nightly" data-search-js="search-fd9372ac.js" data-stringdex-js="stringdex-2da4960a.js" data-settings-js="settings-170eb4bf.js" ><script src="../static.files/storage-41dd4d93.js"></script><script defer src="sidebar-items.js"></script><script defer src="../static.files/main-fcd733ba.js"></script><noscript><link rel="stylesheet" href="../static.files/noscript-f7c3ffd8.css"></noscript><link rel="alternate icon" type="image/png" href="../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../static.files/favicon-044be391.svg"></head><body class="rustdoc struct"><a class="skip-main-content" href="#main-content">Skip to main content</a><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
 
@@ -94,11 +94,11 @@ class <code>.appchooser</code>.</p>
 <p>The GFile used by the <a href="struct.AppChooserDialog.html" title="struct gtk4::AppChooserDialog"><code>AppChooserDialog</code></a>.</p>
 <p>The dialog’s <a href="struct.AppChooserWidget.html" title="struct gtk4::AppChooserWidget"><code>AppChooserWidget</code></a> content type will
 be guessed from the file, if present.</p>
-<p>Readable | Writeable | Construct Only</p>
+<p>Readable | Writable | Construct Only</p>
 <h5 id="heading"><a class="doc-anchor" href="#heading">§</a><code>heading</code></h5>
 <p>The text to show at the top of the dialog.</p>
 <p>The string may contain Pango markup.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
  <details><summary><h4>Dialog</h4></summary>
 <h5 id="use-header-bar"><a class="doc-anchor" href="#use-header-bar">§</a><code>use-header-bar</code></h5>
 <p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> if the dialog uses a headerbar for action buttons
@@ -113,7 +113,7 @@ set this property according to platform conventions (using the
 <p><strong>⚠️ The following code is in c ⚠️</strong></p>
 <div class="example-wrap"><pre class="language-c"><code>g_object_get (settings, &quot;gtk-dialogs-use-header&quot;, &amp;header, NULL);
 dialog = g_object_new (GTK_TYPE_DIALOG, header, TRUE, NULL);</code></pre></div>
-<p>Readable | Writeable | Construct Only</p>
+<p>Readable | Writable | Construct Only</p>
  </details>
  <details><summary><h4>Window</h4></summary>
 <h5 id="application"><a class="doc-anchor" href="#application">§</a><code>application</code></h5>
@@ -124,39 +124,39 @@ for a way to keep it alive without windows).</p>
 <p>Normally, the connection between the application and the window
 will remain until the window is destroyed, but you can explicitly
 remove it by setting the this property to <code>NULL</code>.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="child"><a class="doc-anchor" href="#child">§</a><code>child</code></h5>
 <p>The child widget.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="decorated"><a class="doc-anchor" href="#decorated">§</a><code>decorated</code></h5>
 <p>Whether the window should have a frame (also known as <em>decorations</em>).</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="default-height"><a class="doc-anchor" href="#default-height">§</a><code>default-height</code></h5>
 <p>The default height of the window.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="default-widget"><a class="doc-anchor" href="#default-widget">§</a><code>default-widget</code></h5>
 <p>The default widget.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="default-width"><a class="doc-anchor" href="#default-width">§</a><code>default-width</code></h5>
 <p>The default width of the window.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="deletable"><a class="doc-anchor" href="#deletable">§</a><code>deletable</code></h5>
 <p>Whether the window frame should have a close button.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="destroy-with-parent"><a class="doc-anchor" href="#destroy-with-parent">§</a><code>destroy-with-parent</code></h5>
 <p>If this window should be destroyed when the parent is destroyed.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="display"><a class="doc-anchor" href="#display">§</a><code>display</code></h5>
 <p>The display that will display this window.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="focus-visible"><a class="doc-anchor" href="#focus-visible">§</a><code>focus-visible</code></h5>
 <p>Whether ‘focus rectangles’ are currently visible in this window.</p>
 <p>This property is maintained by GTK based on user input
 and should not be set by applications.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="focus-widget"><a class="doc-anchor" href="#focus-widget">§</a><code>focus-widget</code></h5>
 <p>The focus widget.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="fullscreened"><a class="doc-anchor" href="#fullscreened">§</a><code>fullscreened</code></h5>
 <p>Whether the window is fullscreen.</p>
 <p>Setting this property is the equivalent of calling
@@ -164,26 +164,26 @@ and should not be set by applications.</p>
 either operation is asynchronous, which means you will need to
 connect to the ::notify signal in order to know whether the
 operation was successful.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="gravity"><a class="doc-anchor" href="#gravity">§</a><code>gravity</code></h5>
 <p>The gravity to use when resizing the window programmatically.</p>
 <p>Gravity describes which point of the window we want to keep
 fixed (meaning that the window will grow in the opposite direction).
 For example, a gravity of <code>GTK_WINDOW_GRAVITY_TOP_RIGHT</code> means that we
 want the to fix top right corner of the window.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="handle-menubar-accel"><a class="doc-anchor" href="#handle-menubar-accel">§</a><code>handle-menubar-accel</code></h5>
 <p>Whether the window frame should handle <kbd>F10</kbd> for activating
 menubars.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="hide-on-close"><a class="doc-anchor" href="#hide-on-close">§</a><code>hide-on-close</code></h5>
 <p>If this window should be hidden instead of destroyed when the user clicks
 the close button.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="icon-name"><a class="doc-anchor" href="#icon-name">§</a><code>icon-name</code></h5>
 <p>Specifies the name of the themed icon to use as the window icon.</p>
 <p>See <a href="struct.IconTheme.html" title="struct gtk4::IconTheme"><code>IconTheme</code></a> for more details.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="is-active"><a class="doc-anchor" href="#is-active">§</a><code>is-active</code></h5>
 <p>Whether the toplevel is the currently active window.</p>
 <p>Readable</p>
@@ -194,34 +194,34 @@ the close button.</p>
 either operation is asynchronous, which means you will need to
 connect to the ::notify signal in order to know whether the
 operation was successful.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="mnemonics-visible"><a class="doc-anchor" href="#mnemonics-visible">§</a><code>mnemonics-visible</code></h5>
 <p>Whether mnemonics are currently visible in this window.</p>
 <p>This property is maintained by GTK based on user input,
 and should not be set by applications.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="modal"><a class="doc-anchor" href="#modal">§</a><code>modal</code></h5>
 <p>If true, the window is modal.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="resizable"><a class="doc-anchor" href="#resizable">§</a><code>resizable</code></h5>
 <p>If true, users can resize the window.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="startup-id"><a class="doc-anchor" href="#startup-id">§</a><code>startup-id</code></h5>
 <p>A write-only property for setting window’s startup notification identifier.</p>
-<p>Writeable</p>
+<p>Writable</p>
 <h5 id="suspended"><a class="doc-anchor" href="#suspended">§</a><code>suspended</code></h5>
 <p>Whether the window is suspended.</p>
 <p>See <a href="prelude/trait.GtkWindowExt.html#method.is_suspended" title="method gtk4::prelude::GtkWindowExt::is_suspended"><code>GtkWindowExt::is_suspended()</code></a> for details about what suspended means.</p>
 <p>Readable</p>
 <h5 id="title"><a class="doc-anchor" href="#title">§</a><code>title</code></h5>
 <p>The title of the window.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="titlebar"><a class="doc-anchor" href="#titlebar">§</a><code>titlebar</code></h5>
 <p>The titlebar widget.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="transient-for"><a class="doc-anchor" href="#transient-for">§</a><code>transient-for</code></h5>
 <p>The transient parent of the window.</p>
-<p>Readable | Writeable | Construct</p>
+<p>Readable | Writable | Construct</p>
  </details>
  <details><summary><h4>Widget</h4></summary>
 <h5 id="can-focus"><a class="doc-anchor" href="#can-focus">§</a><code>can-focus</code></h5>
@@ -229,31 +229,31 @@ and should not be set by applications.</p>
 the input focus.</p>
 <p>This property is meant to be set by widget implementations,
 typically in their instance init function.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="can-target"><a class="doc-anchor" href="#can-target">§</a><code>can-target</code></h5>
 <p>Whether the widget can receive pointer events.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="css-classes"><a class="doc-anchor" href="#css-classes">§</a><code>css-classes</code></h5>
 <p>A list of css classes applied to this widget.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="css-name"><a class="doc-anchor" href="#css-name">§</a><code>css-name</code></h5>
 <p>The name of this widget in the CSS tree.</p>
 <p>This property is meant to be set by widget implementations,
 typically in their instance init function.</p>
-<p>Readable | Writeable | Construct Only</p>
+<p>Readable | Writable | Construct Only</p>
 <h5 id="cursor"><a class="doc-anchor" href="#cursor">§</a><code>cursor</code></h5>
 <p>The cursor used by @widget.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="focus-on-click"><a class="doc-anchor" href="#focus-on-click">§</a><code>focus-on-click</code></h5>
 <p>Whether the widget should grab focus when it is clicked with the mouse.</p>
 <p>This property is only relevant for widgets that can take focus.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="focusable"><a class="doc-anchor" href="#focusable">§</a><code>focusable</code></h5>
 <p>Whether this widget itself will accept the input focus.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="halign"><a class="doc-anchor" href="#halign">§</a><code>halign</code></h5>
 <p>How to distribute horizontal space if widget gets extra space.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="has-default"><a class="doc-anchor" href="#has-default">§</a><code>has-default</code></h5>
 <p>Whether the widget is the default widget.</p>
 <p>Readable</p>
@@ -266,36 +266,36 @@ signal on @widget.</p>
 <p>A true value indicates that @widget can have a tooltip, in this case
 the widget will be queried using <a href="struct.Widget.html#query-tooltip" title="struct gtk4::Widget"><code>query-tooltip</code></a> to
 determine whether it will provide a tooltip or not.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="height-request"><a class="doc-anchor" href="#height-request">§</a><code>height-request</code></h5>
 <p>Overrides for height request of the widget.</p>
 <p>If this is -1, the natural request will be used.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="hexpand"><a class="doc-anchor" href="#hexpand">§</a><code>hexpand</code></h5>
 <p>Whether to expand horizontally.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="hexpand-set"><a class="doc-anchor" href="#hexpand-set">§</a><code>hexpand-set</code></h5>
 <p>Whether to use the <code>hexpand</code> property.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="layout-manager"><a class="doc-anchor" href="#layout-manager">§</a><code>layout-manager</code></h5>
 <p>The <a href="struct.LayoutManager.html" title="struct gtk4::LayoutManager"><code>LayoutManager</code></a> instance to use to compute
 the preferred size of the widget, and allocate its children.</p>
 <p>This property is meant to be set by widget implementations,
 typically in their instance init function.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="limit-events"><a class="doc-anchor" href="#limit-events">§</a><code>limit-events</code></h5>
 <p>Makes this widget act like a modal dialog, with respect to
 event delivery.</p>
 <p>Global event controllers will not handle events with targets
 inside the widget, unless they are set up to ignore propagation
 limits. See <a href="prelude/trait.EventControllerExt.html#method.set_propagation_limit" title="method gtk4::prelude::EventControllerExt::set_propagation_limit"><code>EventControllerExt::set_propagation_limit()</code></a>.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="margin-bottom"><a class="doc-anchor" href="#margin-bottom">§</a><code>margin-bottom</code></h5>
 <p>Margin on bottom side of widget.</p>
 <p>This property adds margin outside of the widget’s normal size
 request, the margin will be added in addition to the size from
 <a href="prelude/trait.WidgetExt.html#method.set_size_request" title="method gtk4::prelude::WidgetExt::set_size_request"><code>WidgetExt::set_size_request()</code></a> for example.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="margin-end"><a class="doc-anchor" href="#margin-end">§</a><code>margin-end</code></h5>
 <p>Margin on end of widget, horizontally.</p>
 <p>This property supports left-to-right and right-to-left text
@@ -303,7 +303,7 @@ directions.</p>
 <p>This property adds margin outside of the widget’s normal size
 request, the margin will be added in addition to the size from
 <a href="prelude/trait.WidgetExt.html#method.set_size_request" title="method gtk4::prelude::WidgetExt::set_size_request"><code>WidgetExt::set_size_request()</code></a> for example.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="margin-start"><a class="doc-anchor" href="#margin-start">§</a><code>margin-start</code></h5>
 <p>Margin on start of widget, horizontally.</p>
 <p>This property supports left-to-right and right-to-left text
@@ -311,30 +311,30 @@ directions.</p>
 <p>This property adds margin outside of the widget’s normal size
 request, the margin will be added in addition to the size from
 <a href="prelude/trait.WidgetExt.html#method.set_size_request" title="method gtk4::prelude::WidgetExt::set_size_request"><code>WidgetExt::set_size_request()</code></a> for example.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="margin-top"><a class="doc-anchor" href="#margin-top">§</a><code>margin-top</code></h5>
 <p>Margin on top side of widget.</p>
 <p>This property adds margin outside of the widget’s normal size
 request, the margin will be added in addition to the size from
 <a href="prelude/trait.WidgetExt.html#method.set_size_request" title="method gtk4::prelude::WidgetExt::set_size_request"><code>WidgetExt::set_size_request()</code></a> for example.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="name"><a class="doc-anchor" href="#name">§</a><code>name</code></h5>
 <p>The name of the widget.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="opacity"><a class="doc-anchor" href="#opacity">§</a><code>opacity</code></h5>
 <p>The requested opacity of the widget.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="overflow"><a class="doc-anchor" href="#overflow">§</a><code>overflow</code></h5>
 <p>How content outside the widget’s content area is treated.</p>
 <p>This property is meant to be set by widget implementations,
 typically in their instance init function.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="parent"><a class="doc-anchor" href="#parent">§</a><code>parent</code></h5>
 <p>The parent widget of this widget.</p>
 <p>Readable</p>
 <h5 id="receives-default"><a class="doc-anchor" href="#receives-default">§</a><code>receives-default</code></h5>
 <p>Whether the widget will receive the default action when it is focused.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="root"><a class="doc-anchor" href="#root">§</a><code>root</code></h5>
 <p>The <a href="struct.Root.html" title="struct gtk4::Root"><code>Root</code></a> widget of the widget tree containing this widget.</p>
 <p>This will be <code>NULL</code> if the widget is not contained in a root widget.</p>
@@ -344,7 +344,7 @@ typically in their instance init function.</p>
 <p>Readable</p>
 <h5 id="sensitive"><a class="doc-anchor" href="#sensitive">§</a><code>sensitive</code></h5>
 <p>Whether the widget responds to input.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="tooltip-markup"><a class="doc-anchor" href="#tooltip-markup">§</a><code>tooltip-markup</code></h5>
 <p>Sets the text of tooltip to be the given string, which is marked up
 with Pango markup.</p>
@@ -356,7 +356,7 @@ and there will be taken care of <a href="struct.Widget.html#query-tooltip" title
 the default signal handler.</p>
 <p>Note that if both <a href="struct.Widget.html#tooltip-text" title="struct gtk4::Widget"><code>tooltip-text</code></a> and
 <a href="struct.Widget.html#tooltip-markup" title="struct gtk4::Widget"><code>tooltip-markup</code></a> are set, the last one wins.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="tooltip-text"><a class="doc-anchor" href="#tooltip-text">§</a><code>tooltip-text</code></h5>
 <p>Sets the text of tooltip to be the given string.</p>
 <p>Also see <a href="struct.Tooltip.html#method.set_text" title="method gtk4::Tooltip::set_text"><code>Tooltip::set_text()</code></a>.</p>
@@ -367,35 +367,35 @@ and there will be taken care of <a href="struct.Widget.html#query-tooltip" title
 the default signal handler.</p>
 <p>Note that if both <a href="struct.Widget.html#tooltip-text" title="struct gtk4::Widget"><code>tooltip-text</code></a> and
 <a href="struct.Widget.html#tooltip-markup" title="struct gtk4::Widget"><code>tooltip-markup</code></a> are set, the last one wins.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="valign"><a class="doc-anchor" href="#valign">§</a><code>valign</code></h5>
 <p>How to distribute vertical space if widget gets extra space.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="vexpand"><a class="doc-anchor" href="#vexpand">§</a><code>vexpand</code></h5>
 <p>Whether to expand vertically.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="vexpand-set"><a class="doc-anchor" href="#vexpand-set">§</a><code>vexpand-set</code></h5>
 <p>Whether to use the <code>vexpand</code> property.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="visible"><a class="doc-anchor" href="#visible">§</a><code>visible</code></h5>
 <p>Whether the widget is visible.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="width-request"><a class="doc-anchor" href="#width-request">§</a><code>width-request</code></h5>
 <p>Overrides for width request of the widget.</p>
 <p>If this is -1, the natural request will be used.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
  </details>
  <details><summary><h4>Accessible</h4></summary>
 <h5 id="accessible-role"><a class="doc-anchor" href="#accessible-role">§</a><code>accessible-role</code></h5>
 <p>The accessible role of the given <a href="struct.Accessible.html" title="struct gtk4::Accessible"><code>Accessible</code></a> implementation.</p>
 <p>The accessible role cannot be changed once set.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
  </details>
  <details><summary><h4>AppChooser</h4></summary>
 <h5 id="content-type"><a class="doc-anchor" href="#content-type">§</a><code>content-type</code></h5>
 <p>The content type of the <a href="struct.AppChooser.html" title="struct gtk4::AppChooser"><code>AppChooser</code></a> object.</p>
 <p>See <code>GContentType</code> for more information about content types.</p>
-<p>Readable | Writeable | Construct Only</p>
+<p>Readable | Writable | Construct Only</p>
  </details>
 <h2 id="implements"><a class="doc-anchor" href="#implements">§</a>Implements</h2>
 <p><a href="prelude/trait.DialogExt.html" title="trait gtk4::prelude::DialogExt"><code>DialogExt</code></a>, <a href="prelude/trait.GtkWindowExt.html" title="trait gtk4::prelude::GtkWindowExt"><code>GtkWindowExt</code></a>, <a href="prelude/trait.WidgetExt.html" title="trait gtk4::prelude::WidgetExt"><code>WidgetExt</code></a>, [<code>trait@glib::ObjectExt</code>], <a href="prelude/trait.AccessibleExt.html" title="trait gtk4::prelude::AccessibleExt"><code>AccessibleExt</code></a>, <a href="prelude/trait.BuildableExt.html" title="trait gtk4::prelude::BuildableExt"><code>BuildableExt</code></a>, <a href="prelude/trait.ConstraintTargetExt.html" title="trait gtk4::prelude::ConstraintTargetExt"><code>ConstraintTargetExt</code></a>, <a href="prelude/trait.NativeExt.html" title="trait gtk4::prelude::NativeExt"><code>NativeExt</code></a>, <a href="prelude/trait.RootExt.html" title="trait gtk4::prelude::RootExt"><code>RootExt</code></a>, <a href="prelude/trait.ShortcutManagerExt.html" title="trait gtk4::prelude::ShortcutManagerExt"><code>ShortcutManagerExt</code></a>, <a href="prelude/trait.AppChooserExt.html" title="trait gtk4::prelude::AppChooserExt"><code>AppChooserExt</code></a>, <a href="prelude/trait.DialogExtManual.html" title="trait gtk4::prelude::DialogExtManual"><code>DialogExtManual</code></a>, <a href="prelude/trait.WidgetExtManual.html" title="trait gtk4::prelude::WidgetExtManual"><code>WidgetExtManual</code></a>, <a href="accessible/trait.AccessibleExtManual.html" title="trait gtk4::accessible::AccessibleExtManual"><code>AccessibleExtManual</code></a></p>
@@ -493,7 +493,7 @@ the <code>&gt;=</code> operator. <a href="https://doc.rust-lang.org/nightly/core
     &amp;self,
     f: F,
 ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section></summary><span class="item-info"><div class="stab portability">Available on <strong>crate feature <code>v4_10</code></strong> only.</div></span></details></div></details><details class="toggle implementors-toggle"><summary><section id="impl-AccessibleExtManual-for-O" class="impl"><a class="src rightside" href="../src/gtk4/accessible.rs.html#123">Source</a><a href="#impl-AccessibleExtManual-for-O" class="anchor">§</a><h3 class="code-header">impl&lt;O&gt; <a class="trait" href="accessible/trait.AccessibleExtManual.html" title="trait gtk4::accessible::AccessibleExtManual">AccessibleExtManual</a> for O<div class="where">where
-    O: <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="struct.Accessible.html" title="struct gtk4::Accessible">Accessible</a>&gt;,</div></h3></section></summary><div class="impl-items"><details class="toggle method-toggle" open><summary><section id="method.update_property" class="method trait-impl"><a class="src rightside" href="../src/gtk4/accessible.rs.html#41-58">Source</a><a href="#method.update_property" class="anchor">§</a><h4 class="code-header">fn <a href="accessible/trait.AccessibleExtManual.html#method.update_property" class="fn">update_property</a>(&amp;self, properties: &amp;[<a class="enum" href="accessible/enum.Property.html" title="enum gtk4::accessible::Property">Property</a>&lt;'_&gt;])</h4></section></summary><div class='docblock'>Updates an array of accessible properties. <a href="accessible/trait.AccessibleExtManual.html#method.update_property">Read more</a></div></details><details class="toggle method-toggle" open><summary><section id="method.update_relation" class="method trait-impl"><a class="src rightside" href="../src/gtk4/accessible.rs.html#72-89">Source</a><a href="#method.update_relation" class="anchor">§</a><h4 class="code-header">fn <a href="accessible/trait.AccessibleExtManual.html#method.update_relation" class="fn">update_relation</a>(&amp;self, relations: &amp;[<a class="enum" href="accessible/enum.Relation.html" title="enum gtk4::accessible::Relation">Relation</a>&lt;'_&gt;])</h4></section></summary><div class='docblock'>Updates an array of accessible relations. <a href="accessible/trait.AccessibleExtManual.html#method.update_relation">Read more</a></div></details><details class="toggle method-toggle" open><summary><section id="method.update_state" class="method trait-impl"><a class="src rightside" href="../src/gtk4/accessible.rs.html#103-120">Source</a><a href="#method.update_state" class="anchor">§</a><h4 class="code-header">fn <a href="accessible/trait.AccessibleExtManual.html#method.update_state" class="fn">update_state</a>(&amp;self, states: &amp;[<a class="enum" href="accessible/enum.State.html" title="enum gtk4::accessible::State">State</a>])</h4></section></summary><div class='docblock'>Updates an array of accessible states. <a href="accessible/trait.AccessibleExtManual.html#method.update_state">Read more</a></div></details></div></details><details class="toggle implementors-toggle"><summary><section id="impl-Any-for-T" class="impl"><a class="src rightside" href="https://doc.rust-lang.org/nightly/src/core/any.rs.html#141">Source</a><a href="#impl-Any-for-T" class="anchor">§</a><h3 class="code-header">impl&lt;T&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/core/any/trait.Any.html" title="trait core::any::Any">Any</a> for T<div class="where">where
+    O: <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="struct.Accessible.html" title="struct gtk4::Accessible">Accessible</a>&gt;,</div></h3></section></summary><div class="impl-items"><details class="toggle method-toggle" open><summary><section id="method.update_property" class="method trait-impl"><a class="src rightside" href="../src/gtk4/accessible.rs.html#41-58">Source</a><a href="#method.update_property" class="anchor">§</a><h4 class="code-header">fn <a href="accessible/trait.AccessibleExtManual.html#method.update_property" class="fn">update_property</a>(&amp;self, properties: &amp;[<a class="enum" href="accessible/enum.Property.html" title="enum gtk4::accessible::Property">Property</a>&lt;'_&gt;])</h4></section></summary><span class="item-info"><div class="stab portability">Available on <strong>crate feature <code>v4_10</code></strong> only.</div></span><div class='docblock'>Updates an array of accessible properties. <a href="accessible/trait.AccessibleExtManual.html#method.update_property">Read more</a></div></details><details class="toggle method-toggle" open><summary><section id="method.update_relation" class="method trait-impl"><a class="src rightside" href="../src/gtk4/accessible.rs.html#72-89">Source</a><a href="#method.update_relation" class="anchor">§</a><h4 class="code-header">fn <a href="accessible/trait.AccessibleExtManual.html#method.update_relation" class="fn">update_relation</a>(&amp;self, relations: &amp;[<a class="enum" href="accessible/enum.Relation.html" title="enum gtk4::accessible::Relation">Relation</a>&lt;'_&gt;])</h4></section></summary><span class="item-info"><div class="stab portability">Available on <strong>crate feature <code>v4_10</code></strong> only.</div></span><div class='docblock'>Updates an array of accessible relations. <a href="accessible/trait.AccessibleExtManual.html#method.update_relation">Read more</a></div></details><details class="toggle method-toggle" open><summary><section id="method.update_state" class="method trait-impl"><a class="src rightside" href="../src/gtk4/accessible.rs.html#103-120">Source</a><a href="#method.update_state" class="anchor">§</a><h4 class="code-header">fn <a href="accessible/trait.AccessibleExtManual.html#method.update_state" class="fn">update_state</a>(&amp;self, states: &amp;[<a class="enum" href="accessible/enum.State.html" title="enum gtk4::accessible::State">State</a>])</h4></section></summary><span class="item-info"><div class="stab portability">Available on <strong>crate feature <code>v4_10</code></strong> only.</div></span><div class='docblock'>Updates an array of accessible states. <a href="accessible/trait.AccessibleExtManual.html#method.update_state">Read more</a></div></details></div></details><details class="toggle implementors-toggle"><summary><section id="impl-Any-for-T" class="impl"><a class="src rightside" href="https://doc.rust-lang.org/nightly/src/core/any.rs.html#141">Source</a><a href="#impl-Any-for-T" class="anchor">§</a><h3 class="code-header">impl&lt;T&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/core/any/trait.Any.html" title="trait core::any::Any">Any</a> for T<div class="where">where
     T: 'static + ?<a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Sized.html" title="trait core::marker::Sized">Sized</a>,</div></h3></section></summary><div class="impl-items"><details class="toggle method-toggle" open><summary><section id="method.type_id" class="method trait-impl"><a class="src rightside" href="https://doc.rust-lang.org/nightly/src/core/any.rs.html#142">Source</a><a href="#method.type_id" class="anchor">§</a><h4 class="code-header">fn <a href="https://doc.rust-lang.org/nightly/core/any/trait.Any.html#tymethod.type_id" class="fn">type_id</a>(&amp;self) -&gt; <a class="struct" href="https://doc.rust-lang.org/nightly/core/any/struct.TypeId.html" title="struct core::any::TypeId">TypeId</a></h4></section></summary><div class='docblock'>Gets the <code>TypeId</code> of <code>self</code>. <a href="https://doc.rust-lang.org/nightly/core/any/trait.Any.html#tymethod.type_id">Read more</a></div></details></div></details><details class="toggle implementors-toggle deprecated"><summary><section id="impl-AppChooserExt-for-O" class="impl"><a class="src rightside" href="../src/gtk4/auto/app_chooser.rs.html#438">Source</a><a href="#impl-AppChooserExt-for-O" class="anchor">§</a><h3 class="code-header">impl&lt;O&gt; <a class="trait" href="prelude/trait.AppChooserExt.html" title="trait gtk4::prelude::AppChooserExt">AppChooserExt</a> for O<div class="where">where
     O: <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="struct.AppChooser.html" title="struct gtk4::AppChooser">AppChooser</a>&gt;,</div></h3></section></summary><div class="impl-items"><details class="toggle method-toggle deprecated" open><summary><section id="method.app_info" class="method trait-impl"><a class="src rightside" href="../src/gtk4/auto/app_chooser.rs.html#392-398">Source</a><a href="#method.app_info" class="anchor">§</a><h4 class="code-header">fn <a href="prelude/trait.AppChooserExt.html#method.app_info" class="fn">app_info</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/gio/auto/app_info/struct.AppInfo.html" title="struct gio::auto::app_info::AppInfo">AppInfo</a>&gt;</h4></section></summary><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: <p>Since 4.10</p>
 </span></div></span><div class='docblock'>Returns the currently selected application. <a href="prelude/trait.AppChooserExt.html#method.app_info">Read more</a></div></details><details class="toggle method-toggle deprecated" open><summary><section id="method.content_type" class="method trait-impl"><a class="src rightside" href="../src/gtk4/auto/app_chooser.rs.html#415-421">Source</a><a href="#method.content_type" class="anchor">§</a><h4 class="code-header">fn <a href="prelude/trait.AppChooserExt.html#method.content_type" class="fn">content_type</a>(&amp;self) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/gstring/struct.GString.html" title="struct glib::gstring::GString">GString</a></h4></section></summary><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: <p>Since 4.10</p>
@@ -521,8 +521,8 @@ compile-time safety. <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/objec
 and casting between interface and interface implementors. All checks are performed at
 runtime, while <code>downcast</code> and <code>upcast</code> will do many checks at compile-time already. <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.Cast.html#method.dynamic_cast_ref">Read more</a></div></details><details class="toggle method-toggle" open><summary><section id="method.unsafe_cast" class="method trait-impl"><a class="src rightside" href="https://gtk-rs.org/gtk-rs-core/git/docs/src/glib/object.rs.html#260">Source</a><a href="#method.unsafe_cast" class="anchor">§</a><h4 class="code-header">unsafe fn <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.Cast.html#method.unsafe_cast" class="fn">unsafe_cast</a>&lt;T&gt;(self) -&gt; T<div class="where">where
     T: <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.ObjectType.html" title="trait glib::object::ObjectType">ObjectType</a>,</div></h4></section></summary><div class='docblock'>Casts to <code>T</code> unconditionally. <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.Cast.html#method.unsafe_cast">Read more</a></div></details><details class="toggle method-toggle" open><summary><section id="method.unsafe_cast_ref" class="method trait-impl"><a class="src rightside" href="https://gtk-rs.org/gtk-rs-core/git/docs/src/glib/object.rs.html#280">Source</a><a href="#method.unsafe_cast_ref" class="anchor">§</a><h4 class="code-header">unsafe fn <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.Cast.html#method.unsafe_cast_ref" class="fn">unsafe_cast_ref</a>&lt;T&gt;(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;T</a><div class="where">where
-    T: <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.ObjectType.html" title="trait glib::object::ObjectType">ObjectType</a>,</div></h4></section></summary><div class='docblock'>Casts to <code>&amp;T</code> unconditionally. <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.Cast.html#method.unsafe_cast_ref">Read more</a></div></details></div></details><details class="toggle implementors-toggle"><summary><section id="impl-CloneToUninit-for-T" class="impl"><a class="src rightside" href="https://doc.rust-lang.org/nightly/src/core/clone.rs.html#631">Source</a><a href="#impl-CloneToUninit-for-T" class="anchor">§</a><h3 class="code-header">impl&lt;T&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/core/clone/trait.CloneToUninit.html" title="trait core::clone::CloneToUninit">CloneToUninit</a> for T<div class="where">where
-    T: <a class="trait" href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html" title="trait core::clone::Clone">Clone</a>,</div></h3></section></summary><div class="impl-items"><details class="toggle method-toggle" open><summary><section id="method.clone_to_uninit" class="method trait-impl"><a class="src rightside" href="https://doc.rust-lang.org/nightly/src/core/clone.rs.html#633">Source</a><a href="#method.clone_to_uninit" class="anchor">§</a><h4 class="code-header">unsafe fn <a href="https://doc.rust-lang.org/nightly/core/clone/trait.CloneToUninit.html#tymethod.clone_to_uninit" class="fn">clone_to_uninit</a>(&amp;self, dest: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.pointer.html">*mut </a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u8.html">u8</a>)</h4></section></summary><span class="item-info"><div class="stab unstable"><span class="emoji">🔬</span><span>This is a nightly-only experimental API. (<code>clone_to_uninit</code>)</span></div></span><div class='docblock'>Performs copy-assignment from <code>self</code> to <code>dest</code>. <a href="https://doc.rust-lang.org/nightly/core/clone/trait.CloneToUninit.html#tymethod.clone_to_uninit">Read more</a></div></details></div></details><section id="impl-ConstraintTargetExt-for-O" class="impl"><a class="src rightside" href="../src/gtk4/auto/constraint_target.rs.html#36">Source</a><a href="#impl-ConstraintTargetExt-for-O" class="anchor">§</a><h3 class="code-header">impl&lt;O&gt; <a class="trait" href="prelude/trait.ConstraintTargetExt.html" title="trait gtk4::prelude::ConstraintTargetExt">ConstraintTargetExt</a> for O<div class="where">where
+    T: <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.ObjectType.html" title="trait glib::object::ObjectType">ObjectType</a>,</div></h4></section></summary><div class='docblock'>Casts to <code>&amp;T</code> unconditionally. <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.Cast.html#method.unsafe_cast_ref">Read more</a></div></details></div></details><details class="toggle implementors-toggle"><summary><section id="impl-CloneToUninit-for-T" class="impl"><a class="src rightside" href="https://doc.rust-lang.org/nightly/src/core/clone.rs.html#648">Source</a><a href="#impl-CloneToUninit-for-T" class="anchor">§</a><h3 class="code-header">impl&lt;T&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/core/clone/trait.CloneToUninit.html" title="trait core::clone::CloneToUninit">CloneToUninit</a> for T<div class="where">where
+    T: <a class="trait" href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html" title="trait core::clone::Clone">Clone</a>,</div></h3></section></summary><div class="impl-items"><details class="toggle method-toggle" open><summary><section id="method.clone_to_uninit" class="method trait-impl"><a class="src rightside" href="https://doc.rust-lang.org/nightly/src/core/clone.rs.html#650">Source</a><a href="#method.clone_to_uninit" class="anchor">§</a><h4 class="code-header">unsafe fn <a href="https://doc.rust-lang.org/nightly/core/clone/trait.CloneToUninit.html#tymethod.clone_to_uninit" class="fn">clone_to_uninit</a>(&amp;self, dest: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.pointer.html">*mut </a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u8.html">u8</a>)</h4></section></summary><span class="item-info"><div class="stab unstable"><span class="emoji">🔬</span><span>This is a nightly-only experimental API. (<code>clone_to_uninit</code>)</span></div></span><div class='docblock'>Performs copy-assignment from <code>self</code> to <code>dest</code>. <a href="https://doc.rust-lang.org/nightly/core/clone/trait.CloneToUninit.html#tymethod.clone_to_uninit">Read more</a></div></details></div></details><section id="impl-ConstraintTargetExt-for-O" class="impl"><a class="src rightside" href="../src/gtk4/auto/constraint_target.rs.html#36">Source</a><a href="#impl-ConstraintTargetExt-for-O" class="anchor">§</a><h3 class="code-header">impl&lt;O&gt; <a class="trait" href="prelude/trait.ConstraintTargetExt.html" title="trait gtk4::prelude::ConstraintTargetExt">ConstraintTargetExt</a> for O<div class="where">where
     O: <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="struct.ConstraintTarget.html" title="struct gtk4::ConstraintTarget">ConstraintTarget</a>&gt;,</div></h3></section><details class="toggle implementors-toggle deprecated"><summary><section id="impl-DialogExt-for-O" class="impl"><a class="src rightside" href="../src/gtk4/auto/dialog.rs.html#1839">Source</a><a href="#impl-DialogExt-for-O" class="anchor">§</a><h3 class="code-header">impl&lt;O&gt; <a class="trait" href="prelude/trait.DialogExt.html" title="trait gtk4::prelude::DialogExt">DialogExt</a> for O<div class="where">where
     O: <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="struct.Dialog.html" title="struct gtk4::Dialog">Dialog</a>&gt;,</div></h3></section></summary><div class="impl-items"><details class="toggle method-toggle deprecated" open><summary><section id="method.add_action_widget" class="method trait-impl"><a class="src rightside" href="../src/gtk4/auto/dialog.rs.html#1550-1558">Source</a><a href="#method.add_action_widget" class="anchor">§</a><h4 class="code-header">fn <a href="prelude/trait.DialogExt.html#method.add_action_widget" class="fn">add_action_widget</a>(&amp;self, child: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;, response_id: <a class="enum" href="enum.ResponseType.html" title="enum gtk4::ResponseType">ResponseType</a>)</h4></section></summary><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: <p>Since 4.10</p>
 </span></div></span><div class='docblock'>Adds an activatable widget to the action area of a <a href="struct.Dialog.html" title="struct gtk4::Dialog"><code>Dialog</code></a>. <a href="prelude/trait.DialogExt.html#method.add_action_widget">Read more</a></div></details><details class="toggle method-toggle deprecated" open><summary><section id="method.add_button" class="method trait-impl"><a class="src rightside" href="../src/gtk4/auto/dialog.rs.html#1581-1589">Source</a><a href="#method.add_button" class="anchor">§</a><h4 class="code-header">fn <a href="prelude/trait.DialogExt.html#method.add_button" class="fn">add_button</a>(&amp;self, button_text: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>, response_id: <a class="enum" href="enum.ResponseType.html" title="enum gtk4::ResponseType">ResponseType</a>) -&gt; <a class="struct" href="struct.Widget.html" title="struct gtk4::Widget">Widget</a></h4></section></summary><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: <p>Since 4.10</p>

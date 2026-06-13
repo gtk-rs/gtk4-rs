@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gdk4/src/auto/device.rs`."><title>device.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-1ed95124.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gdk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.98.0-nightly (485ec3fbc 2026-06-10)" data-channel="nightly" data-search-js="search-fd9372ac.js" data-stringdex-js="stringdex-2da4960a.js" data-settings-js="settings-170eb4bf.js" ><script src="../../../static.files/storage-41dd4d93.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-fcd733ba.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-f7c3ffd8.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><a class="skip-main-content" href="#main-content">Skip to main content</a><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gdk4/src/auto/device.rs`."><title>device.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-1ed95124.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gdk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.98.0-nightly (654079540 2026-06-12)" data-channel="nightly" data-search-js="search-fd9372ac.js" data-stringdex-js="stringdex-2da4960a.js" data-settings-js="settings-170eb4bf.js" ><script src="../../../static.files/storage-41dd4d93.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-fcd733ba.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-f7c3ffd8.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><a class="skip-main-content" href="#main-content">Skip to main content</a><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
 
@@ -126,7 +126,7 @@
 <a href=#53 id=53 data-nosnippet>53</a>    /// #### `display`
 <a href=#54 id=54 data-nosnippet>54</a>    ///  The [`Display`][crate::Display] the [`Device`][crate::Device] pertains to.
 <a href=#55 id=55 data-nosnippet>55</a>    ///
-<a href=#56 id=56 data-nosnippet>56</a>    /// Readable | Writeable | Construct Only
+<a href=#56 id=56 data-nosnippet>56</a>    /// Readable | Writable | Construct Only
 <a href=#57 id=57 data-nosnippet>57</a>    ///
 <a href=#58 id=58 data-nosnippet>58</a>    ///
 <a href=#59 id=59 data-nosnippet>59</a>    /// #### `has-bidi-layouts`
@@ -140,7 +140,7 @@
 <a href=#67 id=67 data-nosnippet>67</a>    /// #### `has-cursor`
 <a href=#68 id=68 data-nosnippet>68</a>    ///  Whether the device is represented by a cursor on the screen.
 <a href=#69 id=69 data-nosnippet>69</a>    ///
-<a href=#70 id=70 data-nosnippet>70</a>    /// Readable | Writeable | Construct Only
+<a href=#70 id=70 data-nosnippet>70</a>    /// Readable | Writable | Construct Only
 <a href=#71 id=71 data-nosnippet>71</a>    ///
 <a href=#72 id=72 data-nosnippet>72</a>    ///
 <a href=#73 id=73 data-nosnippet>73</a>    /// #### `layout-names`
@@ -170,7 +170,7 @@
 <a href=#97 id=97 data-nosnippet>97</a>    /// #### `name`
 <a href=#98 id=98 data-nosnippet>98</a>    ///  The device name.
 <a href=#99 id=99 data-nosnippet>99</a>    ///
-<a href=#100 id=100 data-nosnippet>100</a>    /// Readable | Writeable | Construct Only
+<a href=#100 id=100 data-nosnippet>100</a>    /// Readable | Writable | Construct Only
 <a href=#101 id=101 data-nosnippet>101</a>    ///
 <a href=#102 id=102 data-nosnippet>102</a>    ///
 <a href=#103 id=103 data-nosnippet>103</a>    /// #### `num-lock-state`
@@ -187,7 +187,7 @@
 <a href=#114 id=114 data-nosnippet>114</a>    /// Will be 0 if the device is not a touch device or if the number
 <a href=#115 id=115 data-nosnippet>115</a>    /// of touches is unknown.
 <a href=#116 id=116 data-nosnippet>116</a>    ///
-<a href=#117 id=117 data-nosnippet>117</a>    /// Readable | Writeable | Construct Only
+<a href=#117 id=117 data-nosnippet>117</a>    /// Readable | Writable | Construct Only
 <a href=#118 id=118 data-nosnippet>118</a>    ///
 <a href=#119 id=119 data-nosnippet>119</a>    ///
 <a href=#120 id=120 data-nosnippet>120</a>    /// #### `product-id`
@@ -195,7 +195,7 @@
 <a href=#122 id=122 data-nosnippet>122</a>    ///
 <a href=#123 id=123 data-nosnippet>123</a>    /// See [`DeviceExt::product_id()`][crate::prelude::DeviceExt::product_id()].
 <a href=#124 id=124 data-nosnippet>124</a>    ///
-<a href=#125 id=125 data-nosnippet>125</a>    /// Readable | Writeable | Construct Only
+<a href=#125 id=125 data-nosnippet>125</a>    /// Readable | Writable | Construct Only
 <a href=#126 id=126 data-nosnippet>126</a>    ///
 <a href=#127 id=127 data-nosnippet>127</a>    ///
 <a href=#128 id=128 data-nosnippet>128</a>    /// #### `scroll-lock-state`
@@ -209,13 +209,13 @@
 <a href=#136 id=136 data-nosnippet>136</a>    /// #### `seat`
 <a href=#137 id=137 data-nosnippet>137</a>    ///  [`Seat`][crate::Seat] of this device.
 <a href=#138 id=138 data-nosnippet>138</a>    ///
-<a href=#139 id=139 data-nosnippet>139</a>    /// Readable | Writeable
+<a href=#139 id=139 data-nosnippet>139</a>    /// Readable | Writable
 <a href=#140 id=140 data-nosnippet>140</a>    ///
 <a href=#141 id=141 data-nosnippet>141</a>    ///
 <a href=#142 id=142 data-nosnippet>142</a>    /// #### `source`
 <a href=#143 id=143 data-nosnippet>143</a>    ///  Source type for the device.
 <a href=#144 id=144 data-nosnippet>144</a>    ///
-<a href=#145 id=145 data-nosnippet>145</a>    /// Readable | Writeable | Construct Only
+<a href=#145 id=145 data-nosnippet>145</a>    /// Readable | Writable | Construct Only
 <a href=#146 id=146 data-nosnippet>146</a>    ///
 <a href=#147 id=147 data-nosnippet>147</a>    ///
 <a href=#148 id=148 data-nosnippet>148</a>    /// #### `tool`
@@ -229,7 +229,7 @@
 <a href=#156 id=156 data-nosnippet>156</a>    ///
 <a href=#157 id=157 data-nosnippet>157</a>    /// See [`DeviceExt::vendor_id()`][crate::prelude::DeviceExt::vendor_id()].
 <a href=#158 id=158 data-nosnippet>158</a>    ///
-<a href=#159 id=159 data-nosnippet>159</a>    /// Readable | Writeable | Construct Only
+<a href=#159 id=159 data-nosnippet>159</a>    /// Readable | Writable | Construct Only
 <a href=#160 id=160 data-nosnippet>160</a>    ///
 <a href=#161 id=161 data-nosnippet>161</a>    /// ## Signals
 <a href=#162 id=162 data-nosnippet>162</a>    ///

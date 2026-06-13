@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Provides a mechanism to share global settings between applications."><title>Settings in gtk4 - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../static.files/rustdoc-1ed95124.css"><meta name="rustdoc-vars" data-root-path="../" data-static-root-path="../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.98.0-nightly (485ec3fbc 2026-06-10)" data-channel="nightly" data-search-js="search-fd9372ac.js" data-stringdex-js="stringdex-2da4960a.js" data-settings-js="settings-170eb4bf.js" ><script src="../static.files/storage-41dd4d93.js"></script><script defer src="sidebar-items.js"></script><script defer src="../static.files/main-fcd733ba.js"></script><noscript><link rel="stylesheet" href="../static.files/noscript-f7c3ffd8.css"></noscript><link rel="alternate icon" type="image/png" href="../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../static.files/favicon-044be391.svg"></head><body class="rustdoc struct"><a class="skip-main-content" href="#main-content">Skip to main content</a><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Provides a mechanism to share global settings between applications."><title>Settings in gtk4 - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../static.files/rustdoc-1ed95124.css"><meta name="rustdoc-vars" data-root-path="../" data-static-root-path="../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.98.0-nightly (654079540 2026-06-12)" data-channel="nightly" data-search-js="search-fd9372ac.js" data-stringdex-js="stringdex-2da4960a.js" data-settings-js="settings-170eb4bf.js" ><script src="../static.files/storage-41dd4d93.js"></script><script defer src="sidebar-items.js"></script><script defer src="../static.files/main-fcd733ba.js"></script><noscript><link rel="stylesheet" href="../static.files/noscript-f7c3ffd8.css"></noscript><link rel="alternate icon" type="image/png" href="../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../static.files/favicon-044be391.svg"></head><body class="rustdoc struct"><a class="skip-main-content" href="#main-content">Skip to main content</a><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
 
@@ -95,13 +95,13 @@ configuration facility.</p>
 convenient to use <a href="prelude/trait.WidgetExt.html#method.settings" title="method gtk4::prelude::WidgetExt::settings"><code>WidgetExt::settings()</code></a>.</p>
 <h3 id="properties"><a class="doc-anchor" href="#properties">§</a>Properties</h3><h5 id="gtk-alternative-button-order"><a class="doc-anchor" href="#gtk-alternative-button-order">§</a><code>gtk-alternative-button-order</code></h5>
 <p>Whether buttons in dialogs should use the alternative button order.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="gtk-alternative-sort-arrows"><a class="doc-anchor" href="#gtk-alternative-sort-arrows">§</a><code>gtk-alternative-sort-arrows</code></h5>
 <p>Controls the direction of the sort indicators in sorted list and tree
 views.</p>
 <p>By default an arrow pointing down means the column is sorted
 in ascending order. When set to <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a>, this order will be inverted.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="gtk-application-prefer-dark-theme"><a class="doc-anchor" href="#gtk-application-prefer-dark-theme">§</a><code>gtk-application-prefer-dark-theme</code></h5>
 <p>Whether the application prefers to use a dark theme.</p>
 <p>If a GTK theme includes a dark variant, it will be used
@@ -114,32 +114,32 @@ the chrome.</p>
 <p>Dark themes should not be used for documents, where large spaces
 are white/light and the dark chrome creates too much contrast
 (web browser, text editor…).</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="gtk-cursor-aspect-ratio"><a class="doc-anchor" href="#gtk-cursor-aspect-ratio">§</a><code>gtk-cursor-aspect-ratio</code></h5>
 <p>The aspect ratio of the text caret.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="gtk-cursor-blink"><a class="doc-anchor" href="#gtk-cursor-blink">§</a><code>gtk-cursor-blink</code></h5>
 <p>Whether the cursor should blink.</p>
 <p>Also see the <a href="struct.Settings.html#gtk-cursor-blink-timeout" title="struct gtk4::Settings"><code>gtk-cursor-blink-timeout</code></a> setting,
 which allows more flexible control over cursor blinking.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="gtk-cursor-blink-time"><a class="doc-anchor" href="#gtk-cursor-blink-time">§</a><code>gtk-cursor-blink-time</code></h5>
 <p>Length of the cursor blink cycle, in milliseconds.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="gtk-cursor-blink-timeout"><a class="doc-anchor" href="#gtk-cursor-blink-timeout">§</a><code>gtk-cursor-blink-timeout</code></h5>
 <p>Time after which the cursor stops blinking, in seconds.</p>
 <p>The timer is reset after each user interaction.</p>
 <p>Setting this to zero has the same effect as setting
 <a href="struct.Settings.html#gtk-cursor-blink" title="struct gtk4::Settings"><code>gtk-cursor-blink</code></a> to <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>false</code></a>.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="gtk-cursor-theme-name"><a class="doc-anchor" href="#gtk-cursor-theme-name">§</a><code>gtk-cursor-theme-name</code></h5>
 <p>Name of the cursor theme to use.</p>
 <p>Use <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="variant core::option::Option::None"><code>None</code></a> to use the default theme.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="gtk-cursor-theme-size"><a class="doc-anchor" href="#gtk-cursor-theme-size">§</a><code>gtk-cursor-theme-size</code></h5>
 <p>The size to use for cursors.</p>
 <p>0 means to use the default size.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="gtk-decoration-layout"><a class="doc-anchor" href="#gtk-decoration-layout">§</a><code>gtk-decoration-layout</code></h5>
 <p>Determines which buttons should be put in the
 titlebar of client-side decorated windows, and whether they
@@ -157,70 +157,70 @@ show the app menu, and a close button only appears on a window
 that can be closed.</p>
 <p>Also note that the setting can be overridden with the
 <a href="struct.HeaderBar.html#decoration-layout" title="struct gtk4::HeaderBar"><code>decoration-layout</code></a> property.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="gtk-dialogs-use-header"><a class="doc-anchor" href="#gtk-dialogs-use-header">§</a><code>gtk-dialogs-use-header</code></h5>
 <p>Whether builtin GTK dialogs such as the file chooser, the
 color chooser or the font chooser will use a header bar at
 the top to show action widgets, or an action area at the bottom.</p>
 <p>This setting does not affect custom dialogs using <a href="struct.Dialog.html" title="struct gtk4::Dialog"><code>Dialog</code></a>
 directly, or message dialogs.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="gtk-dnd-drag-threshold"><a class="doc-anchor" href="#gtk-dnd-drag-threshold">§</a><code>gtk-dnd-drag-threshold</code></h5>
 <p>The number of pixels the cursor can move before dragging.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="gtk-double-click-distance"><a class="doc-anchor" href="#gtk-double-click-distance">§</a><code>gtk-double-click-distance</code></h5>
 <p>The maximum distance allowed between two clicks for them to be considered
 a double click, in pixels.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="gtk-double-click-time"><a class="doc-anchor" href="#gtk-double-click-time">§</a><code>gtk-double-click-time</code></h5>
 <p>The maximum time to allow between two clicks for them to be considered
 a double click, in milliseconds.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="gtk-enable-accels"><a class="doc-anchor" href="#gtk-enable-accels">§</a><code>gtk-enable-accels</code></h5>
 <p>Whether menu items should have visible accelerators which can be
 activated.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="gtk-enable-animations"><a class="doc-anchor" href="#gtk-enable-animations">§</a><code>gtk-enable-animations</code></h5>
 <p>Whether to enable toolkit-wide animations.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="gtk-enable-event-sounds"><a class="doc-anchor" href="#gtk-enable-event-sounds">§</a><code>gtk-enable-event-sounds</code></h5>
 <p>Whether to play any event sounds at all.</p>
 <p>See the <a href="http://www.freedesktop.org/wiki/Specifications/sound-theme-spec">Sound Theme Specifications</a>
 for more information on event sounds and sound themes.</p>
 <p>GTK itself does not support event sounds, you have to use a loadable
 module like the one that comes with libcanberra.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="gtk-enable-input-feedback-sounds"><a class="doc-anchor" href="#gtk-enable-input-feedback-sounds">§</a><code>gtk-enable-input-feedback-sounds</code></h5>
 <p>Whether to play event sounds as feedback to user input.</p>
 <p>See the <a href="http://www.freedesktop.org/wiki/Specifications/sound-theme-spec">Sound Theme Specifications</a>
 for more information on event sounds and sound themes.</p>
 <p>GTK itself does not support event sounds, you have to use a loadable
 module like the one that comes with libcanberra.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="gtk-enable-primary-paste"><a class="doc-anchor" href="#gtk-enable-primary-paste">§</a><code>gtk-enable-primary-paste</code></h5>
 <p>Whether a middle click on a mouse should paste the
 ‘PRIMARY’ clipboard content at the cursor location.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="gtk-entry-password-hint-timeout"><a class="doc-anchor" href="#gtk-entry-password-hint-timeout">§</a><code>gtk-entry-password-hint-timeout</code></h5>
 <p>How long to show the last input character in hidden
 entries.</p>
 <p>This value is in milliseconds. 0 disables showing the
 last char. 600 is a good value for enabling it.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="gtk-entry-select-on-focus"><a class="doc-anchor" href="#gtk-entry-select-on-focus">§</a><code>gtk-entry-select-on-focus</code></h5>
 <p>Whether to select the contents of an entry when it is focused.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="gtk-error-bell"><a class="doc-anchor" href="#gtk-error-bell">§</a><code>gtk-error-bell</code></h5>
 <p>When <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a>, keyboard navigation and other input-related errors
 will cause a beep.</p>
 <p>Since the error bell is implemented using gdk_surface_beep(), the
 windowing system may offer ways to configure the error bell in many
 ways, such as flashing the window or similar visual effects.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="gtk-font-name"><a class="doc-anchor" href="#gtk-font-name">§</a><code>gtk-font-name</code></h5>
 <p>The default font to use.</p>
 <p>GTK uses the family name and size from this string.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="gtk-font-rendering"><a class="doc-anchor" href="#gtk-font-rendering">§</a><code>gtk-font-rendering</code></h5>
 <p>How GTK font rendering is set up.</p>
 <p>When set to [enum@Gtk.FontRendering.MANUAL], GTK respects the low-level
@@ -230,20 +230,20 @@ font-related settings (<a href="struct.Settings.html#gtk-hint-font-metrics" titl
 as much as practical.</p>
 <p>When set to [enum@Gtk.FontRendering.AUTOMATIC], GTK will consider factors such
 as screen resolution and scale in deciding how to render fonts.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="gtk-fontconfig-timestamp"><a class="doc-anchor" href="#gtk-fontconfig-timestamp">§</a><code>gtk-fontconfig-timestamp</code></h5>
 <p>Timestamp of the current fontconfig configuration.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="gtk-hint-font-metrics"><a class="doc-anchor" href="#gtk-hint-font-metrics">§</a><code>gtk-hint-font-metrics</code></h5>
 <p>Whether hinting should be applied to font metrics.</p>
 <p>Note that this also turns off subpixel positioning of glyphs,
 since it conflicts with metrics hinting.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="gtk-icon-theme-name"><a class="doc-anchor" href="#gtk-icon-theme-name">§</a><code>gtk-icon-theme-name</code></h5>
 <p>Name of the icon theme to use.</p>
 <p>See <a href="struct.IconTheme.html" title="struct gtk4::IconTheme"><code>IconTheme</code></a> for details about how
 GTK handles icon themes.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="gtk-im-module"><a class="doc-anchor" href="#gtk-im-module">§</a><code>gtk-im-module</code></h5>
 <p>Which IM (input method) module should be used by default.</p>
 <p>This is the input method that will be used if the user has not
@@ -251,46 +251,46 @@ explicitly chosen another input method from the IM context menu.
 This also can be a colon-separated list of input methods, which GTK
 will try in turn until it finds one available on the system.</p>
 <p>See <a href="struct.IMContext.html" title="struct gtk4::IMContext"><code>IMContext</code></a>.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="gtk-interface-color-scheme"><a class="doc-anchor" href="#gtk-interface-color-scheme">§</a><code>gtk-interface-color-scheme</code></h5>
 <p>The color scheme used for rendering the user interface.</p>
 <p>This setting communicates the system-wide preference.
 The color scheme that is actually used when applying CSS
 styles can be set with the <a href="struct.CssProvider.html#prefers-color-scheme" title="struct gtk4::CssProvider"><code>prefers-color-scheme</code></a>
 property.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="gtk-interface-contrast"><a class="doc-anchor" href="#gtk-interface-contrast">§</a><code>gtk-interface-contrast</code></h5>
 <p>The level of contrast to use for the user interface.</p>
 <p>This setting communicates the system-wide preference.
 The contrast level that is actually used when applying CSS
 styles can be set with the <a href="struct.CssProvider.html#prefers-contrast" title="struct gtk4::CssProvider"><code>prefers-contrast</code></a>
 property.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="gtk-interface-reduced-motion"><a class="doc-anchor" href="#gtk-interface-reduced-motion">§</a><code>gtk-interface-reduced-motion</code></h5>
 <p>Whether animations should be reduced to essential motions.</p>
 <p>This setting communicates the system-wide preference.
 The motion level that is actually used when applying CSS
 styles can be set with the <a href="struct.CssProvider.html#prefers-reduced-motion" title="struct gtk4::CssProvider"><code>prefers-reduced-motion</code></a>
 property.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="gtk-keynav-use-caret"><a class="doc-anchor" href="#gtk-keynav-use-caret">§</a><code>gtk-keynav-use-caret</code></h5>
 <p>Whether GTK should make sure that text can be navigated with
 a caret, even if it is not editable.</p>
 <p>This is useful when using a screen reader.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="gtk-label-select-on-focus"><a class="doc-anchor" href="#gtk-label-select-on-focus">§</a><code>gtk-label-select-on-focus</code></h5>
 <p>Whether to select the contents of a selectable
 label when it is focused.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="gtk-long-press-time"><a class="doc-anchor" href="#gtk-long-press-time">§</a><code>gtk-long-press-time</code></h5>
 <p>The time for a button or touch press to be considered a “long press”.</p>
 <p>See <a href="struct.GestureLongPress.html" title="struct gtk4::GestureLongPress"><code>GestureLongPress</code></a>.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="gtk-overlay-scrolling"><a class="doc-anchor" href="#gtk-overlay-scrolling">§</a><code>gtk-overlay-scrolling</code></h5>
 <p>Whether scrolled windows may use overlaid scrolling indicators.</p>
 <p>If this is set to <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>false</code></a>, scrolled windows will have permanent
 scrollbars.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="gtk-primary-button-warps-slider"><a class="doc-anchor" href="#gtk-primary-button-warps-slider">§</a><code>gtk-primary-button-warps-slider</code></h5>
 <p>If the value of this setting is <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a>, clicking the primary button in a
 <a href="struct.Range.html" title="struct gtk4::Range"><code>Range</code></a> trough will move the slider, and hence set the range’s value, to
@@ -300,13 +300,13 @@ by the range’s page-size towards the point clicked.</p>
 <p>Whichever action you choose for the primary button, the other action will
 be available by holding Shift and primary-clicking, or clicking the middle
 mouse button.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="gtk-print-backends"><a class="doc-anchor" href="#gtk-print-backends">§</a><code>gtk-print-backends</code></h5>
 <p>A comma-separated list of print backends to use in the print
 dialog.</p>
 <p>Available print backends depend on the GTK installation,
 and may include “file”, “cups”, “lpr” or “papi”.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="gtk-print-preview-command"><a class="doc-anchor" href="#gtk-print-preview-command">§</a><code>gtk-print-preview-command</code></h5>
 <p>A command to run for displaying the print preview.</p>
 <p>The command should contain a <code>f</code> placeholder, which will get
@@ -316,91 +316,91 @@ path to a file containing the print settings in the format
 produced by <a href="struct.PrintSettings.html#method.to_file" title="method gtk4::PrintSettings::to_file"><code>PrintSettings::to_file()</code></a>.</p>
 <p>The preview application is responsible for removing the pdf
 file and the print settings file when it is done.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="gtk-recent-files-enabled"><a class="doc-anchor" href="#gtk-recent-files-enabled">§</a><code>gtk-recent-files-enabled</code></h5>
 <p>Whether GTK should keep track of items inside the recently used
 resources list.</p>
 <p>If set to <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>false</code></a>, the list will always be empty.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="gtk-recent-files-max-age"><a class="doc-anchor" href="#gtk-recent-files-max-age">§</a><code>gtk-recent-files-max-age</code></h5>
 <p>The maximum age, in days, of the items inside the recently used
 resources list.</p>
 <p>Items older than this setting will be excised from the list.
 If set to 0, the list will always be empty; if set to -1, no
 item will be removed.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="gtk-shell-shows-app-menu"><a class="doc-anchor" href="#gtk-shell-shows-app-menu">§</a><code>gtk-shell-shows-app-menu</code></h5>
 <p>Set to <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> if the desktop environment is displaying
 the app menu, <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>false</code></a> if the app should display it itself.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="gtk-shell-shows-desktop"><a class="doc-anchor" href="#gtk-shell-shows-desktop">§</a><code>gtk-shell-shows-desktop</code></h5>
 <p>Set to <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> if the desktop environment is displaying
 the desktop folder, <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>false</code></a> if not.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="gtk-shell-shows-menubar"><a class="doc-anchor" href="#gtk-shell-shows-menubar">§</a><code>gtk-shell-shows-menubar</code></h5>
 <p>Set to <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> if the desktop environment is displaying
 the menubar, <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>false</code></a> if the app should display it itself.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="gtk-show-status-shapes"><a class="doc-anchor" href="#gtk-show-status-shapes">§</a><code>gtk-show-status-shapes</code></h5>
 <p>When <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a>, widgets like switches include shapes to indicate their on/off state.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="gtk-sound-theme-name"><a class="doc-anchor" href="#gtk-sound-theme-name">§</a><code>gtk-sound-theme-name</code></h5>
 <p>The XDG sound theme to use for event sounds.</p>
 <p>See the <a href="http://www.freedesktop.org/wiki/Specifications/sound-theme-spec">Sound Theme Specifications</a>
 for more information on event sounds and sound themes.</p>
 <p>GTK itself does not support event sounds, you have to use
 a loadable module like the one that comes with libcanberra.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="gtk-split-cursor"><a class="doc-anchor" href="#gtk-split-cursor">§</a><code>gtk-split-cursor</code></h5>
 <p>Whether two cursors should be displayed for mixed left-to-right and
 right-to-left text.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="gtk-theme-name"><a class="doc-anchor" href="#gtk-theme-name">§</a><code>gtk-theme-name</code></h5>
 <p>Name of the theme to load.</p>
 <p>See <a href="struct.CssProvider.html" title="struct gtk4::CssProvider"><code>CssProvider</code></a> for details about how
 GTK finds the CSS stylesheet for a theme.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="gtk-titlebar-double-click"><a class="doc-anchor" href="#gtk-titlebar-double-click">§</a><code>gtk-titlebar-double-click</code></h5>
 <p>Determines the action to take when a double-click
 occurs on the titlebar of client-side decorated windows.</p>
 <p>Recognized actions are minimize, toggle-maximize, menu, lower
 or none.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="gtk-titlebar-middle-click"><a class="doc-anchor" href="#gtk-titlebar-middle-click">§</a><code>gtk-titlebar-middle-click</code></h5>
 <p>Determines the action to take when a middle-click
 occurs on the titlebar of client-side decorated windows.</p>
 <p>Recognized actions are minimize, toggle-maximize, menu, lower
 or none.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="gtk-titlebar-right-click"><a class="doc-anchor" href="#gtk-titlebar-right-click">§</a><code>gtk-titlebar-right-click</code></h5>
 <p>Determines the action to take when a right-click
 occurs on the titlebar of client-side decorated windows.</p>
 <p>Recognized actions are minimize, toggle-maximize, menu, lower
 or none.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="gtk-xft-antialias"><a class="doc-anchor" href="#gtk-xft-antialias">§</a><code>gtk-xft-antialias</code></h5>
 <p>Whether to antialias fonts.</p>
 <p>The values are 0 for no, 1 for yes, or -1 for the system default.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="gtk-xft-dpi"><a class="doc-anchor" href="#gtk-xft-dpi">§</a><code>gtk-xft-dpi</code></h5>
 <p>The font resolution, in 1024 * dots/inch.</p>
 <p>-1 to use the default value.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="gtk-xft-hinting"><a class="doc-anchor" href="#gtk-xft-hinting">§</a><code>gtk-xft-hinting</code></h5>
 <p>Whether to enable font hinting.</p>
 <p>The values are 0 for no, 1 for yes, or -1 for the system default.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="gtk-xft-hintstyle"><a class="doc-anchor" href="#gtk-xft-hintstyle">§</a><code>gtk-xft-hintstyle</code></h5>
 <p>What degree of font hinting to use.</p>
 <p>The possible vaues are hintnone, hintslight,
 hintmedium, hintfull.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="gtk-xft-rgba"><a class="doc-anchor" href="#gtk-xft-rgba">§</a><code>gtk-xft-rgba</code></h5>
 <p>The type of subpixel antialiasing to use.</p>
 <p>The possible values are none, rgb, bgr, vrgb, vbgr.</p>
 <p>Note that GSK does not support subpixel antialiasing, and this
 setting has no effect on font rendering in GTK.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h2 id="implements"><a class="doc-anchor" href="#implements">§</a>Implements</h2>
 <p>[<code>trait@glib::ObjectExt</code>], <a href="prelude/trait.StyleProviderExt.html" title="trait gtk4::prelude::StyleProviderExt"><code>StyleProviderExt</code></a></p>
 <p>GLib type: GObject with reference counted clone semantics.</p>
@@ -1089,8 +1089,8 @@ compile-time safety. <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/objec
 and casting between interface and interface implementors. All checks are performed at
 runtime, while <code>downcast</code> and <code>upcast</code> will do many checks at compile-time already. <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.Cast.html#method.dynamic_cast_ref">Read more</a></div></details><details class="toggle method-toggle" open><summary><section id="method.unsafe_cast" class="method trait-impl"><a class="src rightside" href="https://gtk-rs.org/gtk-rs-core/git/docs/src/glib/object.rs.html#260">Source</a><a href="#method.unsafe_cast" class="anchor">§</a><h4 class="code-header">unsafe fn <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.Cast.html#method.unsafe_cast" class="fn">unsafe_cast</a>&lt;T&gt;(self) -&gt; T<div class="where">where
     T: <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.ObjectType.html" title="trait glib::object::ObjectType">ObjectType</a>,</div></h4></section></summary><div class='docblock'>Casts to <code>T</code> unconditionally. <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.Cast.html#method.unsafe_cast">Read more</a></div></details><details class="toggle method-toggle" open><summary><section id="method.unsafe_cast_ref" class="method trait-impl"><a class="src rightside" href="https://gtk-rs.org/gtk-rs-core/git/docs/src/glib/object.rs.html#280">Source</a><a href="#method.unsafe_cast_ref" class="anchor">§</a><h4 class="code-header">unsafe fn <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.Cast.html#method.unsafe_cast_ref" class="fn">unsafe_cast_ref</a>&lt;T&gt;(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;T</a><div class="where">where
-    T: <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.ObjectType.html" title="trait glib::object::ObjectType">ObjectType</a>,</div></h4></section></summary><div class='docblock'>Casts to <code>&amp;T</code> unconditionally. <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.Cast.html#method.unsafe_cast_ref">Read more</a></div></details></div></details><details class="toggle implementors-toggle"><summary><section id="impl-CloneToUninit-for-T" class="impl"><a class="src rightside" href="https://doc.rust-lang.org/nightly/src/core/clone.rs.html#631">Source</a><a href="#impl-CloneToUninit-for-T" class="anchor">§</a><h3 class="code-header">impl&lt;T&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/core/clone/trait.CloneToUninit.html" title="trait core::clone::CloneToUninit">CloneToUninit</a> for T<div class="where">where
-    T: <a class="trait" href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html" title="trait core::clone::Clone">Clone</a>,</div></h3></section></summary><div class="impl-items"><details class="toggle method-toggle" open><summary><section id="method.clone_to_uninit" class="method trait-impl"><a class="src rightside" href="https://doc.rust-lang.org/nightly/src/core/clone.rs.html#633">Source</a><a href="#method.clone_to_uninit" class="anchor">§</a><h4 class="code-header">unsafe fn <a href="https://doc.rust-lang.org/nightly/core/clone/trait.CloneToUninit.html#tymethod.clone_to_uninit" class="fn">clone_to_uninit</a>(&amp;self, dest: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.pointer.html">*mut </a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u8.html">u8</a>)</h4></section></summary><span class="item-info"><div class="stab unstable"><span class="emoji">🔬</span><span>This is a nightly-only experimental API. (<code>clone_to_uninit</code>)</span></div></span><div class='docblock'>Performs copy-assignment from <code>self</code> to <code>dest</code>. <a href="https://doc.rust-lang.org/nightly/core/clone/trait.CloneToUninit.html#tymethod.clone_to_uninit">Read more</a></div></details></div></details><details class="toggle implementors-toggle"><summary><section id="impl-From%3CT%3E-for-T" class="impl"><a class="src rightside" href="https://doc.rust-lang.org/nightly/src/core/convert/mod.rs.html#787">Source</a><a href="#impl-From%3CT%3E-for-T" class="anchor">§</a><h3 class="code-header">impl&lt;T&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.From.html" title="trait core::convert::From">From</a>&lt;T&gt; for T</h3></section></summary><div class="impl-items"><details class="toggle method-toggle" open><summary><section id="method.from" class="method trait-impl"><a class="src rightside" href="https://doc.rust-lang.org/nightly/src/core/convert/mod.rs.html#790">Source</a><a href="#method.from" class="anchor">§</a><h4 class="code-header">fn <a href="https://doc.rust-lang.org/nightly/core/convert/trait.From.html#tymethod.from" class="fn">from</a>(t: T) -&gt; T</h4></section></summary><div class="docblock"><p>Returns the argument unchanged.</p>
+    T: <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.ObjectType.html" title="trait glib::object::ObjectType">ObjectType</a>,</div></h4></section></summary><div class='docblock'>Casts to <code>&amp;T</code> unconditionally. <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.Cast.html#method.unsafe_cast_ref">Read more</a></div></details></div></details><details class="toggle implementors-toggle"><summary><section id="impl-CloneToUninit-for-T" class="impl"><a class="src rightside" href="https://doc.rust-lang.org/nightly/src/core/clone.rs.html#648">Source</a><a href="#impl-CloneToUninit-for-T" class="anchor">§</a><h3 class="code-header">impl&lt;T&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/core/clone/trait.CloneToUninit.html" title="trait core::clone::CloneToUninit">CloneToUninit</a> for T<div class="where">where
+    T: <a class="trait" href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html" title="trait core::clone::Clone">Clone</a>,</div></h3></section></summary><div class="impl-items"><details class="toggle method-toggle" open><summary><section id="method.clone_to_uninit" class="method trait-impl"><a class="src rightside" href="https://doc.rust-lang.org/nightly/src/core/clone.rs.html#650">Source</a><a href="#method.clone_to_uninit" class="anchor">§</a><h4 class="code-header">unsafe fn <a href="https://doc.rust-lang.org/nightly/core/clone/trait.CloneToUninit.html#tymethod.clone_to_uninit" class="fn">clone_to_uninit</a>(&amp;self, dest: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.pointer.html">*mut </a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u8.html">u8</a>)</h4></section></summary><span class="item-info"><div class="stab unstable"><span class="emoji">🔬</span><span>This is a nightly-only experimental API. (<code>clone_to_uninit</code>)</span></div></span><div class='docblock'>Performs copy-assignment from <code>self</code> to <code>dest</code>. <a href="https://doc.rust-lang.org/nightly/core/clone/trait.CloneToUninit.html#tymethod.clone_to_uninit">Read more</a></div></details></div></details><details class="toggle implementors-toggle"><summary><section id="impl-From%3CT%3E-for-T" class="impl"><a class="src rightside" href="https://doc.rust-lang.org/nightly/src/core/convert/mod.rs.html#787">Source</a><a href="#impl-From%3CT%3E-for-T" class="anchor">§</a><h3 class="code-header">impl&lt;T&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.From.html" title="trait core::convert::From">From</a>&lt;T&gt; for T</h3></section></summary><div class="impl-items"><details class="toggle method-toggle" open><summary><section id="method.from" class="method trait-impl"><a class="src rightside" href="https://doc.rust-lang.org/nightly/src/core/convert/mod.rs.html#790">Source</a><a href="#method.from" class="anchor">§</a><h4 class="code-header">fn <a href="https://doc.rust-lang.org/nightly/core/convert/trait.From.html#tymethod.from" class="fn">from</a>(t: T) -&gt; T</h4></section></summary><div class="docblock"><p>Returns the argument unchanged.</p>
 </div></details></div></details><details class="toggle implementors-toggle"><summary><section id="impl-FromGlibContainerAsVec%3C%3CT+as+GlibPtrDefault%3E::GlibType,+*const+GList%3E-for-T" class="impl"><a class="src rightside" href="https://gtk-rs.org/gtk-rs-core/git/docs/src/glib/translate.rs.html#2491-2495">Source</a><a href="#impl-FromGlibContainerAsVec%3C%3CT+as+GlibPtrDefault%3E::GlibType,+*const+GList%3E-for-T" class="anchor">§</a><h3 class="code-header">impl&lt;T&gt; <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.FromGlibContainerAsVec.html" title="trait glib::translate::FromGlibContainerAsVec">FromGlibContainerAsVec</a>&lt;&lt;T as <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.GlibPtrDefault.html" title="trait glib::translate::GlibPtrDefault">GlibPtrDefault</a>&gt;::<a class="associatedtype" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.GlibPtrDefault.html#associatedtype.GlibType" title="type glib::translate::GlibPtrDefault::GlibType">GlibType</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.pointer.html">*const </a>GList&gt; for T<div class="where">where
     T: <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.GlibPtrDefault.html" title="trait glib::translate::GlibPtrDefault">GlibPtrDefault</a> + <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.FromGlibPtrNone.html" title="trait glib::translate::FromGlibPtrNone">FromGlibPtrNone</a>&lt;&lt;T as <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.GlibPtrDefault.html" title="trait glib::translate::GlibPtrDefault">GlibPtrDefault</a>&gt;::<a class="associatedtype" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.GlibPtrDefault.html#associatedtype.GlibType" title="type glib::translate::GlibPtrDefault::GlibType">GlibType</a>&gt; + <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.FromGlibPtrFull.html" title="trait glib::translate::FromGlibPtrFull">FromGlibPtrFull</a>&lt;&lt;T as <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.GlibPtrDefault.html" title="trait glib::translate::GlibPtrDefault">GlibPtrDefault</a>&gt;::<a class="associatedtype" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.GlibPtrDefault.html#associatedtype.GlibType" title="type glib::translate::GlibPtrDefault::GlibType">GlibType</a>&gt;,</div></h3></section></summary><div class="impl-items"><section id="method.from_glib_none_num_as_vec" class="method trait-impl"><a class="src rightside" href="https://gtk-rs.org/gtk-rs-core/git/docs/src/glib/translate.rs.html#2497">Source</a><a href="#method.from_glib_none_num_as_vec" class="anchor">§</a><h4 class="code-header">unsafe fn <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.FromGlibContainerAsVec.html#tymethod.from_glib_none_num_as_vec" class="fn">from_glib_none_num_as_vec</a>(ptr: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.pointer.html">*const </a>GList, num: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.usize.html">usize</a>) -&gt; <a class="struct" href="https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html" title="struct alloc::vec::Vec">Vec</a>&lt;T&gt;</h4></section><section id="method.from_glib_container_num_as_vec" class="method trait-impl"><a class="src rightside" href="https://gtk-rs.org/gtk-rs-core/git/docs/src/glib/translate.rs.html#2501">Source</a><a href="#method.from_glib_container_num_as_vec" class="anchor">§</a><h4 class="code-header">unsafe fn <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.FromGlibContainerAsVec.html#tymethod.from_glib_container_num_as_vec" class="fn">from_glib_container_num_as_vec</a>(_: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.pointer.html">*const </a>GList, _: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.usize.html">usize</a>) -&gt; <a class="struct" href="https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html" title="struct alloc::vec::Vec">Vec</a>&lt;T&gt;</h4></section><section id="method.from_glib_full_num_as_vec" class="method trait-impl"><a class="src rightside" href="https://gtk-rs.org/gtk-rs-core/git/docs/src/glib/translate.rs.html#2506">Source</a><a href="#method.from_glib_full_num_as_vec" class="anchor">§</a><h4 class="code-header">unsafe fn <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.FromGlibContainerAsVec.html#tymethod.from_glib_full_num_as_vec" class="fn">from_glib_full_num_as_vec</a>(_: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.pointer.html">*const </a>GList, _: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.usize.html">usize</a>) -&gt; <a class="struct" href="https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html" title="struct alloc::vec::Vec">Vec</a>&lt;T&gt;</h4></section></div></details><details class="toggle implementors-toggle"><summary><section id="impl-FromGlibContainerAsVec%3C%3CT+as+GlibPtrDefault%3E::GlibType,+*const+GPtrArray%3E-for-T" class="impl"><a class="src rightside" href="https://gtk-rs.org/gtk-rs-core/git/docs/src/glib/translate.rs.html#2716-2720">Source</a><a href="#impl-FromGlibContainerAsVec%3C%3CT+as+GlibPtrDefault%3E::GlibType,+*const+GPtrArray%3E-for-T" class="anchor">§</a><h3 class="code-header">impl&lt;T&gt; <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.FromGlibContainerAsVec.html" title="trait glib::translate::FromGlibContainerAsVec">FromGlibContainerAsVec</a>&lt;&lt;T as <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.GlibPtrDefault.html" title="trait glib::translate::GlibPtrDefault">GlibPtrDefault</a>&gt;::<a class="associatedtype" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.GlibPtrDefault.html#associatedtype.GlibType" title="type glib::translate::GlibPtrDefault::GlibType">GlibType</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.pointer.html">*const </a>GPtrArray&gt; for T<div class="where">where
     T: <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.GlibPtrDefault.html" title="trait glib::translate::GlibPtrDefault">GlibPtrDefault</a> + <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.FromGlibPtrNone.html" title="trait glib::translate::FromGlibPtrNone">FromGlibPtrNone</a>&lt;&lt;T as <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.GlibPtrDefault.html" title="trait glib::translate::GlibPtrDefault">GlibPtrDefault</a>&gt;::<a class="associatedtype" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.GlibPtrDefault.html#associatedtype.GlibType" title="type glib::translate::GlibPtrDefault::GlibType">GlibType</a>&gt; + <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.FromGlibPtrFull.html" title="trait glib::translate::FromGlibPtrFull">FromGlibPtrFull</a>&lt;&lt;T as <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.GlibPtrDefault.html" title="trait glib::translate::GlibPtrDefault">GlibPtrDefault</a>&gt;::<a class="associatedtype" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.GlibPtrDefault.html#associatedtype.GlibType" title="type glib::translate::GlibPtrDefault::GlibType">GlibType</a>&gt;,</div></h3></section></summary><div class="impl-items"><section id="method.from_glib_none_num_as_vec-1" class="method trait-impl"><a class="src rightside" href="https://gtk-rs.org/gtk-rs-core/git/docs/src/glib/translate.rs.html#2722">Source</a><a href="#method.from_glib_none_num_as_vec-1" class="anchor">§</a><h4 class="code-header">unsafe fn <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.FromGlibContainerAsVec.html#tymethod.from_glib_none_num_as_vec" class="fn">from_glib_none_num_as_vec</a>(ptr: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.pointer.html">*const </a>GPtrArray, num: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.usize.html">usize</a>) -&gt; <a class="struct" href="https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html" title="struct alloc::vec::Vec">Vec</a>&lt;T&gt;</h4></section><section id="method.from_glib_container_num_as_vec-1" class="method trait-impl"><a class="src rightside" href="https://gtk-rs.org/gtk-rs-core/git/docs/src/glib/translate.rs.html#2726">Source</a><a href="#method.from_glib_container_num_as_vec-1" class="anchor">§</a><h4 class="code-header">unsafe fn <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.FromGlibContainerAsVec.html#tymethod.from_glib_container_num_as_vec" class="fn">from_glib_container_num_as_vec</a>(

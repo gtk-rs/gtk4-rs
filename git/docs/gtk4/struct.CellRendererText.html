@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="List views use widgets to display their contents. You should use `Inscription` or `Label` instead Renders text in a cell"><title>CellRendererText in gtk4 - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../static.files/rustdoc-1ed95124.css"><meta name="rustdoc-vars" data-root-path="../" data-static-root-path="../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.98.0-nightly (485ec3fbc 2026-06-10)" data-channel="nightly" data-search-js="search-fd9372ac.js" data-stringdex-js="stringdex-2da4960a.js" data-settings-js="settings-170eb4bf.js" ><script src="../static.files/storage-41dd4d93.js"></script><script defer src="sidebar-items.js"></script><script defer src="../static.files/main-fcd733ba.js"></script><noscript><link rel="stylesheet" href="../static.files/noscript-f7c3ffd8.css"></noscript><link rel="alternate icon" type="image/png" href="../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../static.files/favicon-044be391.svg"></head><body class="rustdoc struct"><a class="skip-main-content" href="#main-content">Skip to main content</a><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="List views use widgets to display their contents. You should use `Inscription` or `Label` instead Renders text in a cell"><title>CellRendererText in gtk4 - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../static.files/rustdoc-1ed95124.css"><meta name="rustdoc-vars" data-root-path="../" data-static-root-path="../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.98.0-nightly (654079540 2026-06-12)" data-channel="nightly" data-search-js="search-fd9372ac.js" data-stringdex-js="stringdex-2da4960a.js" data-settings-js="settings-170eb4bf.js" ><script src="../static.files/storage-41dd4d93.js"></script><script defer src="sidebar-items.js"></script><script defer src="../static.files/main-fcd733ba.js"></script><noscript><link rel="stylesheet" href="../static.files/noscript-f7c3ffd8.css"></noscript><link rel="alternate icon" type="image/png" href="../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../static.files/favicon-044be391.svg"></head><body class="rustdoc struct"><a class="skip-main-content" href="#main-content">Skip to main content</a><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
 
@@ -81,55 +81,55 @@ too long and the <code>GtkCellRendererText:ellipsize</code> property allows it.<
 <p>If the <code>GtkCellRenderer:mode</code> is <a href="enum.CellRendererMode.html#variant.Editable" title="variant gtk4::CellRendererMode::Editable"><code>CellRendererMode::Editable</code></a>,
 the <a href="struct.CellRendererText.html" title="struct gtk4::CellRendererText"><code>CellRendererText</code></a> allows to edit its text using an entry.</p>
 <h3 id="properties"><a class="doc-anchor" href="#properties">§</a>Properties</h3><h5 id="align-set"><a class="doc-anchor" href="#align-set">§</a><code>align-set</code></h5>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="alignment"><a class="doc-anchor" href="#alignment">§</a><code>alignment</code></h5>
 <p>Specifies how to align the lines of text with respect to each other.</p>
 <p>Note that this property describes how to align the lines of text in
 case there are several of them. The “xalign” property of <a href="struct.CellRenderer.html" title="struct gtk4::CellRenderer"><code>CellRenderer</code></a>,
 on the other hand, sets the horizontal alignment of the whole text.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="attributes"><a class="doc-anchor" href="#attributes">§</a><code>attributes</code></h5>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="background"><a class="doc-anchor" href="#background">§</a><code>background</code></h5>
-<p>Writeable</p>
+<p>Writable</p>
 <h5 id="background-rgba"><a class="doc-anchor" href="#background-rgba">§</a><code>background-rgba</code></h5>
 <p>Background color as a <a href="../gdk4/auto/rgba/struct.RGBA.html" title="struct gdk4::auto::rgba::RGBA"><code>gdk::RGBA</code></a></p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="background-set"><a class="doc-anchor" href="#background-set">§</a><code>background-set</code></h5>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="editable"><a class="doc-anchor" href="#editable">§</a><code>editable</code></h5>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="editable-set"><a class="doc-anchor" href="#editable-set">§</a><code>editable-set</code></h5>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="ellipsize"><a class="doc-anchor" href="#ellipsize">§</a><code>ellipsize</code></h5>
 <p>Specifies the preferred place to ellipsize the string, if the cell renderer
 does not have enough room to display the entire string. Setting it to
 <a href="https://gtk-rs.org/gtk-rs-core/git/docs/pango/auto/enums/enum.EllipsizeMode.html#variant.None" title="variant pango::auto::enums::EllipsizeMode::None"><code>pango::EllipsizeMode::None</code></a> turns off ellipsizing. See the wrap-width property
 for another way of making the text fit into a given width.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="ellipsize-set"><a class="doc-anchor" href="#ellipsize-set">§</a><code>ellipsize-set</code></h5>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="family"><a class="doc-anchor" href="#family">§</a><code>family</code></h5>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="family-set"><a class="doc-anchor" href="#family-set">§</a><code>family-set</code></h5>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="font"><a class="doc-anchor" href="#font">§</a><code>font</code></h5>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="font-desc"><a class="doc-anchor" href="#font-desc">§</a><code>font-desc</code></h5>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="foreground"><a class="doc-anchor" href="#foreground">§</a><code>foreground</code></h5>
-<p>Writeable</p>
+<p>Writable</p>
 <h5 id="foreground-rgba"><a class="doc-anchor" href="#foreground-rgba">§</a><code>foreground-rgba</code></h5>
 <p>Foreground color as a <a href="../gdk4/auto/rgba/struct.RGBA.html" title="struct gdk4::auto::rgba::RGBA"><code>gdk::RGBA</code></a></p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="foreground-set"><a class="doc-anchor" href="#foreground-set">§</a><code>foreground-set</code></h5>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="language"><a class="doc-anchor" href="#language">§</a><code>language</code></h5>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="language-set"><a class="doc-anchor" href="#language-set">§</a><code>language-set</code></h5>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="markup"><a class="doc-anchor" href="#markup">§</a><code>markup</code></h5>
-<p>Writeable</p>
+<p>Writable</p>
 <h5 id="max-width-chars"><a class="doc-anchor" href="#max-width-chars">§</a><code>max-width-chars</code></h5>
 <p>The desired maximum width of the cell, in characters. If this property
 is set to -1, the width will be calculated automatically.</p>
@@ -138,100 +138,100 @@ controls the maximum reported width of the cell. The
 cell should not receive any greater allocation unless it is
 set to expand in its <a href="struct.CellLayout.html" title="struct gtk4::CellLayout"><code>CellLayout</code></a> and all of the cell’s siblings
 have received their natural width.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="placeholder-text"><a class="doc-anchor" href="#placeholder-text">§</a><code>placeholder-text</code></h5>
 <p>The text that will be displayed in the <a href="struct.CellRenderer.html" title="struct gtk4::CellRenderer"><code>CellRenderer</code></a> if
 <code>GtkCellRendererText:editable</code> is <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> and the cell is empty.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="rise"><a class="doc-anchor" href="#rise">§</a><code>rise</code></h5>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="rise-set"><a class="doc-anchor" href="#rise-set">§</a><code>rise-set</code></h5>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="scale"><a class="doc-anchor" href="#scale">§</a><code>scale</code></h5>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="scale-set"><a class="doc-anchor" href="#scale-set">§</a><code>scale-set</code></h5>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="single-paragraph-mode"><a class="doc-anchor" href="#single-paragraph-mode">§</a><code>single-paragraph-mode</code></h5>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="size"><a class="doc-anchor" href="#size">§</a><code>size</code></h5>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="size-points"><a class="doc-anchor" href="#size-points">§</a><code>size-points</code></h5>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="size-set"><a class="doc-anchor" href="#size-set">§</a><code>size-set</code></h5>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="stretch"><a class="doc-anchor" href="#stretch">§</a><code>stretch</code></h5>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="stretch-set"><a class="doc-anchor" href="#stretch-set">§</a><code>stretch-set</code></h5>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="strikethrough"><a class="doc-anchor" href="#strikethrough">§</a><code>strikethrough</code></h5>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="strikethrough-set"><a class="doc-anchor" href="#strikethrough-set">§</a><code>strikethrough-set</code></h5>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="style"><a class="doc-anchor" href="#style">§</a><code>style</code></h5>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="style-set"><a class="doc-anchor" href="#style-set">§</a><code>style-set</code></h5>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="text"><a class="doc-anchor" href="#text">§</a><code>text</code></h5>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="underline"><a class="doc-anchor" href="#underline">§</a><code>underline</code></h5>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="underline-set"><a class="doc-anchor" href="#underline-set">§</a><code>underline-set</code></h5>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="variant"><a class="doc-anchor" href="#variant">§</a><code>variant</code></h5>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="variant-set"><a class="doc-anchor" href="#variant-set">§</a><code>variant-set</code></h5>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="weight"><a class="doc-anchor" href="#weight">§</a><code>weight</code></h5>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="weight-set"><a class="doc-anchor" href="#weight-set">§</a><code>weight-set</code></h5>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="width-chars"><a class="doc-anchor" href="#width-chars">§</a><code>width-chars</code></h5>
 <p>The desired width of the cell, in characters. If this property is set to
 -1, the width will be calculated automatically, otherwise the cell will
 request either 3 characters or the property value, whichever is greater.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="wrap-mode"><a class="doc-anchor" href="#wrap-mode">§</a><code>wrap-mode</code></h5>
 <p>Specifies how to break the string into multiple lines, if the cell
 renderer does not have enough room to display the entire string.
 This property has no effect unless the wrap-width property is set.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="wrap-width"><a class="doc-anchor" href="#wrap-width">§</a><code>wrap-width</code></h5>
 <p>Specifies the minimum width at which the text is wrapped. The wrap-mode property can
 be used to influence at what character positions the line breaks can be placed.
 Setting wrap-width to -1 turns wrapping off.</p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
  <details><summary><h4>CellRenderer</h4></summary>
 <h5 id="cell-background"><a class="doc-anchor" href="#cell-background">§</a><code>cell-background</code></h5>
-<p>Writeable</p>
+<p>Writable</p>
 <h5 id="cell-background-rgba"><a class="doc-anchor" href="#cell-background-rgba">§</a><code>cell-background-rgba</code></h5>
 <p>Cell background as a <a href="../gdk4/auto/rgba/struct.RGBA.html" title="struct gdk4::auto::rgba::RGBA"><code>gdk::RGBA</code></a></p>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="cell-background-set"><a class="doc-anchor" href="#cell-background-set">§</a><code>cell-background-set</code></h5>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="editing"><a class="doc-anchor" href="#editing">§</a><code>editing</code></h5>
 <p>Readable</p>
 <h5 id="height"><a class="doc-anchor" href="#height">§</a><code>height</code></h5>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="is-expanded"><a class="doc-anchor" href="#is-expanded">§</a><code>is-expanded</code></h5>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="is-expander"><a class="doc-anchor" href="#is-expander">§</a><code>is-expander</code></h5>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="mode"><a class="doc-anchor" href="#mode">§</a><code>mode</code></h5>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="sensitive"><a class="doc-anchor" href="#sensitive">§</a><code>sensitive</code></h5>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="visible"><a class="doc-anchor" href="#visible">§</a><code>visible</code></h5>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="width"><a class="doc-anchor" href="#width">§</a><code>width</code></h5>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="xalign"><a class="doc-anchor" href="#xalign">§</a><code>xalign</code></h5>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="xpad"><a class="doc-anchor" href="#xpad">§</a><code>xpad</code></h5>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="yalign"><a class="doc-anchor" href="#yalign">§</a><code>yalign</code></h5>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
 <h5 id="ypad"><a class="doc-anchor" href="#ypad">§</a><code>ypad</code></h5>
-<p>Readable | Writeable</p>
+<p>Readable | Writable</p>
  </details>
 <h3 id="signals"><a class="doc-anchor" href="#signals">§</a>Signals</h3><h5 id="edited"><a class="doc-anchor" href="#edited">§</a><code>edited</code></h5>
 <p>This signal is emitted after @renderer has been edited.</p>
@@ -753,8 +753,8 @@ Setting wrap-width to -1 turns wrapping off.</div></details><details class="togg
     &amp;self,
     f: F,
 ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section></summary><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: <p>Since 4.10</p>
-</span></div></span></details></div></details><details class="toggle implementors-toggle"><summary><section id="impl-CloneToUninit-for-T" class="impl"><a class="src rightside" href="https://doc.rust-lang.org/nightly/src/core/clone.rs.html#631">Source</a><a href="#impl-CloneToUninit-for-T" class="anchor">§</a><h3 class="code-header">impl&lt;T&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/core/clone/trait.CloneToUninit.html" title="trait core::clone::CloneToUninit">CloneToUninit</a> for T<div class="where">where
-    T: <a class="trait" href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html" title="trait core::clone::Clone">Clone</a>,</div></h3></section></summary><div class="impl-items"><details class="toggle method-toggle" open><summary><section id="method.clone_to_uninit" class="method trait-impl"><a class="src rightside" href="https://doc.rust-lang.org/nightly/src/core/clone.rs.html#633">Source</a><a href="#method.clone_to_uninit" class="anchor">§</a><h4 class="code-header">unsafe fn <a href="https://doc.rust-lang.org/nightly/core/clone/trait.CloneToUninit.html#tymethod.clone_to_uninit" class="fn">clone_to_uninit</a>(&amp;self, dest: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.pointer.html">*mut </a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u8.html">u8</a>)</h4></section></summary><span class="item-info"><div class="stab unstable"><span class="emoji">🔬</span><span>This is a nightly-only experimental API. (<code>clone_to_uninit</code>)</span></div></span><div class='docblock'>Performs copy-assignment from <code>self</code> to <code>dest</code>. <a href="https://doc.rust-lang.org/nightly/core/clone/trait.CloneToUninit.html#tymethod.clone_to_uninit">Read more</a></div></details></div></details><details class="toggle implementors-toggle"><summary><section id="impl-From%3CT%3E-for-T" class="impl"><a class="src rightside" href="https://doc.rust-lang.org/nightly/src/core/convert/mod.rs.html#787">Source</a><a href="#impl-From%3CT%3E-for-T" class="anchor">§</a><h3 class="code-header">impl&lt;T&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.From.html" title="trait core::convert::From">From</a>&lt;T&gt; for T</h3></section></summary><div class="impl-items"><details class="toggle method-toggle" open><summary><section id="method.from" class="method trait-impl"><a class="src rightside" href="https://doc.rust-lang.org/nightly/src/core/convert/mod.rs.html#790">Source</a><a href="#method.from" class="anchor">§</a><h4 class="code-header">fn <a href="https://doc.rust-lang.org/nightly/core/convert/trait.From.html#tymethod.from" class="fn">from</a>(t: T) -&gt; T</h4></section></summary><div class="docblock"><p>Returns the argument unchanged.</p>
+</span></div></span></details></div></details><details class="toggle implementors-toggle"><summary><section id="impl-CloneToUninit-for-T" class="impl"><a class="src rightside" href="https://doc.rust-lang.org/nightly/src/core/clone.rs.html#648">Source</a><a href="#impl-CloneToUninit-for-T" class="anchor">§</a><h3 class="code-header">impl&lt;T&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/core/clone/trait.CloneToUninit.html" title="trait core::clone::CloneToUninit">CloneToUninit</a> for T<div class="where">where
+    T: <a class="trait" href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html" title="trait core::clone::Clone">Clone</a>,</div></h3></section></summary><div class="impl-items"><details class="toggle method-toggle" open><summary><section id="method.clone_to_uninit" class="method trait-impl"><a class="src rightside" href="https://doc.rust-lang.org/nightly/src/core/clone.rs.html#650">Source</a><a href="#method.clone_to_uninit" class="anchor">§</a><h4 class="code-header">unsafe fn <a href="https://doc.rust-lang.org/nightly/core/clone/trait.CloneToUninit.html#tymethod.clone_to_uninit" class="fn">clone_to_uninit</a>(&amp;self, dest: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.pointer.html">*mut </a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u8.html">u8</a>)</h4></section></summary><span class="item-info"><div class="stab unstable"><span class="emoji">🔬</span><span>This is a nightly-only experimental API. (<code>clone_to_uninit</code>)</span></div></span><div class='docblock'>Performs copy-assignment from <code>self</code> to <code>dest</code>. <a href="https://doc.rust-lang.org/nightly/core/clone/trait.CloneToUninit.html#tymethod.clone_to_uninit">Read more</a></div></details></div></details><details class="toggle implementors-toggle"><summary><section id="impl-From%3CT%3E-for-T" class="impl"><a class="src rightside" href="https://doc.rust-lang.org/nightly/src/core/convert/mod.rs.html#787">Source</a><a href="#impl-From%3CT%3E-for-T" class="anchor">§</a><h3 class="code-header">impl&lt;T&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.From.html" title="trait core::convert::From">From</a>&lt;T&gt; for T</h3></section></summary><div class="impl-items"><details class="toggle method-toggle" open><summary><section id="method.from" class="method trait-impl"><a class="src rightside" href="https://doc.rust-lang.org/nightly/src/core/convert/mod.rs.html#790">Source</a><a href="#method.from" class="anchor">§</a><h4 class="code-header">fn <a href="https://doc.rust-lang.org/nightly/core/convert/trait.From.html#tymethod.from" class="fn">from</a>(t: T) -&gt; T</h4></section></summary><div class="docblock"><p>Returns the argument unchanged.</p>
 </div></details></div></details><details class="toggle implementors-toggle"><summary><section id="impl-FromGlibContainerAsVec%3C%3CT+as+GlibPtrDefault%3E::GlibType,+*const+GList%3E-for-T" class="impl"><a class="src rightside" href="https://gtk-rs.org/gtk-rs-core/git/docs/src/glib/translate.rs.html#2491-2495">Source</a><a href="#impl-FromGlibContainerAsVec%3C%3CT+as+GlibPtrDefault%3E::GlibType,+*const+GList%3E-for-T" class="anchor">§</a><h3 class="code-header">impl&lt;T&gt; <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.FromGlibContainerAsVec.html" title="trait glib::translate::FromGlibContainerAsVec">FromGlibContainerAsVec</a>&lt;&lt;T as <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.GlibPtrDefault.html" title="trait glib::translate::GlibPtrDefault">GlibPtrDefault</a>&gt;::<a class="associatedtype" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.GlibPtrDefault.html#associatedtype.GlibType" title="type glib::translate::GlibPtrDefault::GlibType">GlibType</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.pointer.html">*const </a>GList&gt; for T<div class="where">where
     T: <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.GlibPtrDefault.html" title="trait glib::translate::GlibPtrDefault">GlibPtrDefault</a> + <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.FromGlibPtrNone.html" title="trait glib::translate::FromGlibPtrNone">FromGlibPtrNone</a>&lt;&lt;T as <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.GlibPtrDefault.html" title="trait glib::translate::GlibPtrDefault">GlibPtrDefault</a>&gt;::<a class="associatedtype" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.GlibPtrDefault.html#associatedtype.GlibType" title="type glib::translate::GlibPtrDefault::GlibType">GlibType</a>&gt; + <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.FromGlibPtrFull.html" title="trait glib::translate::FromGlibPtrFull">FromGlibPtrFull</a>&lt;&lt;T as <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.GlibPtrDefault.html" title="trait glib::translate::GlibPtrDefault">GlibPtrDefault</a>&gt;::<a class="associatedtype" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.GlibPtrDefault.html#associatedtype.GlibType" title="type glib::translate::GlibPtrDefault::GlibType">GlibType</a>&gt;,</div></h3></section></summary><div class="impl-items"><section id="method.from_glib_none_num_as_vec" class="method trait-impl"><a class="src rightside" href="https://gtk-rs.org/gtk-rs-core/git/docs/src/glib/translate.rs.html#2497">Source</a><a href="#method.from_glib_none_num_as_vec" class="anchor">§</a><h4 class="code-header">unsafe fn <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.FromGlibContainerAsVec.html#tymethod.from_glib_none_num_as_vec" class="fn">from_glib_none_num_as_vec</a>(ptr: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.pointer.html">*const </a>GList, num: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.usize.html">usize</a>) -&gt; <a class="struct" href="https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html" title="struct alloc::vec::Vec">Vec</a>&lt;T&gt;</h4></section><section id="method.from_glib_container_num_as_vec" class="method trait-impl"><a class="src rightside" href="https://gtk-rs.org/gtk-rs-core/git/docs/src/glib/translate.rs.html#2501">Source</a><a href="#method.from_glib_container_num_as_vec" class="anchor">§</a><h4 class="code-header">unsafe fn <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.FromGlibContainerAsVec.html#tymethod.from_glib_container_num_as_vec" class="fn">from_glib_container_num_as_vec</a>(_: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.pointer.html">*const </a>GList, _: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.usize.html">usize</a>) -&gt; <a class="struct" href="https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html" title="struct alloc::vec::Vec">Vec</a>&lt;T&gt;</h4></section><section id="method.from_glib_full_num_as_vec" class="method trait-impl"><a class="src rightside" href="https://gtk-rs.org/gtk-rs-core/git/docs/src/glib/translate.rs.html#2506">Source</a><a href="#method.from_glib_full_num_as_vec" class="anchor">§</a><h4 class="code-header">unsafe fn <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.FromGlibContainerAsVec.html#tymethod.from_glib_full_num_as_vec" class="fn">from_glib_full_num_as_vec</a>(_: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.pointer.html">*const </a>GList, _: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.usize.html">usize</a>) -&gt; <a class="struct" href="https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html" title="struct alloc::vec::Vec">Vec</a>&lt;T&gt;</h4></section></div></details><details class="toggle implementors-toggle"><summary><section id="impl-FromGlibContainerAsVec%3C%3CT+as+GlibPtrDefault%3E::GlibType,+*const+GPtrArray%3E-for-T" class="impl"><a class="src rightside" href="https://gtk-rs.org/gtk-rs-core/git/docs/src/glib/translate.rs.html#2716-2720">Source</a><a href="#impl-FromGlibContainerAsVec%3C%3CT+as+GlibPtrDefault%3E::GlibType,+*const+GPtrArray%3E-for-T" class="anchor">§</a><h3 class="code-header">impl&lt;T&gt; <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.FromGlibContainerAsVec.html" title="trait glib::translate::FromGlibContainerAsVec">FromGlibContainerAsVec</a>&lt;&lt;T as <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.GlibPtrDefault.html" title="trait glib::translate::GlibPtrDefault">GlibPtrDefault</a>&gt;::<a class="associatedtype" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.GlibPtrDefault.html#associatedtype.GlibType" title="type glib::translate::GlibPtrDefault::GlibType">GlibType</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.pointer.html">*const </a>GPtrArray&gt; for T<div class="where">where
     T: <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.GlibPtrDefault.html" title="trait glib::translate::GlibPtrDefault">GlibPtrDefault</a> + <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.FromGlibPtrNone.html" title="trait glib::translate::FromGlibPtrNone">FromGlibPtrNone</a>&lt;&lt;T as <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.GlibPtrDefault.html" title="trait glib::translate::GlibPtrDefault">GlibPtrDefault</a>&gt;::<a class="associatedtype" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.GlibPtrDefault.html#associatedtype.GlibType" title="type glib::translate::GlibPtrDefault::GlibType">GlibType</a>&gt; + <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.FromGlibPtrFull.html" title="trait glib::translate::FromGlibPtrFull">FromGlibPtrFull</a>&lt;&lt;T as <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.GlibPtrDefault.html" title="trait glib::translate::GlibPtrDefault">GlibPtrDefault</a>&gt;::<a class="associatedtype" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.GlibPtrDefault.html#associatedtype.GlibType" title="type glib::translate::GlibPtrDefault::GlibType">GlibType</a>&gt;,</div></h3></section></summary><div class="impl-items"><section id="method.from_glib_none_num_as_vec-1" class="method trait-impl"><a class="src rightside" href="https://gtk-rs.org/gtk-rs-core/git/docs/src/glib/translate.rs.html#2722">Source</a><a href="#method.from_glib_none_num_as_vec-1" class="anchor">§</a><h4 class="code-header">unsafe fn <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.FromGlibContainerAsVec.html#tymethod.from_glib_none_num_as_vec" class="fn">from_glib_none_num_as_vec</a>(ptr: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.pointer.html">*const </a>GPtrArray, num: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.usize.html">usize</a>) -&gt; <a class="struct" href="https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html" title="struct alloc::vec::Vec">Vec</a>&lt;T&gt;</h4></section><section id="method.from_glib_container_num_as_vec-1" class="method trait-impl"><a class="src rightside" href="https://gtk-rs.org/gtk-rs-core/git/docs/src/glib/translate.rs.html#2726">Source</a><a href="#method.from_glib_container_num_as_vec-1" class="anchor">§</a><h4 class="code-header">unsafe fn <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.FromGlibContainerAsVec.html#tymethod.from_glib_container_num_as_vec" class="fn">from_glib_container_num_as_vec</a>(
