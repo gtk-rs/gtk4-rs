@@ -89,7 +89,7 @@
 <a href=#16 id=16 data-nosnippet>16</a>    </span><span class="attr">#[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_22"</span>)))]
 <a href=#17 id=17 data-nosnippet>17</a>    #[derive(<a href="https://doc.rust-lang.org/nightly/core/clone/derive.Clone.html">Clone</a>, <a href="https://doc.rust-lang.org/nightly/core/marker/derive.Copy.html">Copy</a>, <a href="https://doc.rust-lang.org/nightly/core/fmt/macros/derive.Debug.html">Debug</a>, <a href="https://doc.rust-lang.org/nightly/core/cmp/derive.PartialEq.html">PartialEq</a>, <a href="https://doc.rust-lang.org/nightly/core/cmp/derive.Eq.html">Eq</a>, <a href="https://doc.rust-lang.org/nightly/core/hash/macros/derive.Hash.html">Hash</a>)]
 <a href=#18 id=18 data-nosnippet>18</a>    #[doc(alias = <span class="string">"GskIsolation"</span>)]
-<a href=#19 id=19 data-nosnippet>19</a>    </span><span class="kw">pub struct </span><a href="#11-38">Isolation</a>: <a href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a> {
+<a href=#19 id=19 data-nosnippet>19</a>    </span><span class="kw">pub struct </span><a href="#11-38">Isolation</a>: u32 {
 <a href=#20 id=20 data-nosnippet>20</a>        <span class="doccomment">/// No isolation is defined.
 <a href=#21 id=21 data-nosnippet>21</a>        </span><span class="attr">#[doc(alias = <span class="string">"GSK_ISOLATION_NONE"</span>)]
 <a href=#22 id=22 data-nosnippet>22</a>        </span><span class="kw">const </span>NONE = ffi::GSK_ISOLATION_NONE <span class="kw">as _</span>;
@@ -213,7 +213,7 @@
 <a href=#140 id=140 data-nosnippet>140</a>    </span><span class="attr">#[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_14"</span>)))]
 <a href=#141 id=141 data-nosnippet>141</a>    #[derive(<a href="https://doc.rust-lang.org/nightly/core/clone/derive.Clone.html">Clone</a>, <a href="https://doc.rust-lang.org/nightly/core/marker/derive.Copy.html">Copy</a>, <a href="https://doc.rust-lang.org/nightly/core/fmt/macros/derive.Debug.html">Debug</a>, <a href="https://doc.rust-lang.org/nightly/core/cmp/derive.PartialEq.html">PartialEq</a>, <a href="https://doc.rust-lang.org/nightly/core/cmp/derive.Eq.html">Eq</a>, <a href="https://doc.rust-lang.org/nightly/core/hash/macros/derive.Hash.html">Hash</a>)]
 <a href=#142 id=142 data-nosnippet>142</a>    #[doc(alias = <span class="string">"GskPathForeachFlags"</span>)]
-<a href=#143 id=143 data-nosnippet>143</a>    </span><span class="kw">pub struct </span><a href="#132-157">PathForeachFlags</a>: <a href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a> {
+<a href=#143 id=143 data-nosnippet>143</a>    </span><span class="kw">pub struct </span><a href="#132-157">PathForeachFlags</a>: u32 {
 <a href=#144 id=144 data-nosnippet>144</a>        <span class="doccomment">/// The default behavior, only allow lines.
 <a href=#145 id=145 data-nosnippet>145</a>        </span><span class="attr">#[doc(alias = <span class="string">"GSK_PATH_FOREACH_ALLOW_ONLY_LINES"</span>)]
 <a href=#146 id=146 data-nosnippet>146</a>        </span><span class="kw">const </span>ONLY_LINES = ffi::GSK_PATH_FOREACH_ALLOW_ONLY_LINES <span class="kw">as _</span>;
