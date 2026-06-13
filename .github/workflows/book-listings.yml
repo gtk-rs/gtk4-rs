@@ -26,6 +26,8 @@ jobs:
           toolchain: stable
           override: true
           components: rustfmt, clippy
+      - run: dnf install gettext-devel
+        name: Install gettext
 
       - run: cargo xtask install
         name: Install Meson and schemas
