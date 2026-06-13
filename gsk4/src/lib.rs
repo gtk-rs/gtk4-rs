@@ -47,6 +47,9 @@ mod clip_node;
 mod color_matrix_node;
 mod color_node;
 mod color_stop;
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+mod component_transfer_node;
 #[cfg(feature = "v4_22")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
 mod composite_node;
