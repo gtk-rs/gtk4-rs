@@ -214,7 +214,7 @@ It can be configured to depend on `async-std`.
 We can add it to our dependencies by running the following command.
 
 ```
-cargo add ashpd --no-default-features --features "gtk4 async-std"
+cargo add ashpd --no-default-features --features "gtk4 async-io account"
 ```
 
 You need to use a Linux desktop environment in order to run the following example locally.
@@ -242,7 +242,7 @@ The web client [`reqwest`](https://docs.rs/reqwest/latest/reqwest/) belongs to t
 Let's add it by executing the following command
 
 ```
-cargo add reqwest@0.12 --features rustls-tls --no-default-features
+cargo add reqwest@0.13 --features rustls --no-default-features
 ```
 
 As soon as the button is pressed, we want to send a `GET` request to [www.gtk-rs.org](https://www.gtk-rs.org).
