@@ -1,13 +1,9 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-#[cfg(any(feature = "wayland_crate", all(feature = "v4_4", feature = "egl")))]
-#[cfg_attr(
-    docsrs,
-    doc(cfg(any(feature = "wayland_crate", all(feature = "v4_4", feature = "egl"))))
-)]
+use std::ffi::c_void;
+use std::ptr::NonNull;
+
 use crate::ffi;
-#[cfg(any(feature = "wayland_crate", all(feature = "v4_4", feature = "egl")))]
-#[cfg_attr(docsrs, doc(cfg(feature = "wayland_crate")))]
 use glib::translate::*;
 #[cfg(feature = "wayland_crate")]
 #[cfg_attr(docsrs, doc(cfg(feature = "wayland_crate")))]
@@ -27,19 +23,27 @@ use wayland_client::{
 use crate::WaylandDisplay;
 
 impl WaylandDisplay {
+    #[cfg(feature = "v4_4")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
+    #[doc(alias = "gdk_wayland_display_get_egl_display")]
+    #[doc(alias = "get_egl_display")]
+    pub fn egl_display_raw(&self) -> Option<NonNull<c_void>> {
+        NonNull::new(unsafe { ffi::gdk_wayland_display_get_egl_display(self.to_glib_none().0) })
+    }
+
     #[cfg(all(feature = "v4_4", feature = "egl"))]
     #[cfg_attr(docsrs, doc(cfg(all(feature = "v4_4", feature = "egl"))))]
     #[doc(alias = "gdk_wayland_display_get_egl_display")]
     #[doc(alias = "get_egl_display")]
     pub fn egl_display(&self) -> Option<egl::Display> {
-        unsafe {
-            let ptr = ffi::gdk_wayland_display_get_egl_display(self.to_glib_none().0);
-            if ptr.is_null() {
-                None
-            } else {
-                Some(egl::Display::from_ptr(ptr))
-            }
-        }
+        let ptr = self.egl_display_raw()?;
+        Some(unsafe { egl::Display::from_ptr(ptr.as_ptr()) })
+    }
+
+    #[doc(alias = "gdk_wayland_display_get_wl_compositor")]
+    #[doc(alias = "get_wl_compositor")]
+    pub fn wl_compositor_raw(&self) -> Option<NonNull<c_void>> {
+        NonNull::new(unsafe { ffi::gdk_wayland_display_get_wl_compositor(self.to_glib_none().0) })
     }
 
     #[doc(alias = "gdk_wayland_display_get_wl_compositor")]
@@ -47,18 +51,19 @@ impl WaylandDisplay {
     #[cfg(feature = "wayland_crate")]
     #[cfg_attr(docsrs, doc(cfg(feature = "wayland_crate")))]
     pub fn wl_compositor(&self) -> Option<WlCompositor> {
+        let ptr = self.wl_compositor_raw()?;
         unsafe {
-            let compositor_ptr = ffi::gdk_wayland_display_get_wl_compositor(self.to_glib_none().0);
-            if compositor_ptr.is_null() {
-                None
-            } else {
-                let cnx = self.connection();
-                let id = ObjectId::from_ptr(WlCompositor::interface(), compositor_ptr as *mut _)
-                    .unwrap();
+            let cnx = self.connection();
+            let id = ObjectId::from_ptr(WlCompositor::interface(), ptr.as_ptr() as *mut _).unwrap();
 
-                WlCompositor::from_id(&cnx, id).ok()
-            }
+            WlCompositor::from_id(&cnx, id).ok()
         }
+    }
+
+    #[doc(alias = "gdk_wayland_display_get_wl_display")]
+    #[doc(alias = "get_wl_display")]
+    pub fn wl_display_raw(&self) -> Option<NonNull<c_void>> {
+        NonNull::new(unsafe { ffi::gdk_wayland_display_get_wl_display(self.to_glib_none().0) })
     }
 
     #[doc(alias = "gdk_wayland_display_get_wl_display")]
@@ -66,16 +71,12 @@ impl WaylandDisplay {
     #[cfg(feature = "wayland_crate")]
     #[cfg_attr(docsrs, doc(cfg(feature = "wayland_crate")))]
     pub fn wl_display(&self) -> Option<WlDisplay> {
+        let ptr = self.wl_display_raw()?;
         unsafe {
-            let display_ptr = ffi::gdk_wayland_display_get_wl_display(self.to_glib_none().0);
-            if display_ptr.is_null() {
-                None
-            } else {
-                let cnx = self.connection();
-                let id = ObjectId::from_ptr(WlDisplay::interface(), display_ptr as *mut _).unwrap();
+            let cnx = self.connection();
+            let id = ObjectId::from_ptr(WlDisplay::interface(), ptr.as_ptr() as *mut _).unwrap();
 
-                WlDisplay::from_id(&cnx, id).ok()
-            }
+            WlDisplay::from_id(&cnx, id).ok()
         }
     }
 
