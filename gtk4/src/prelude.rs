@@ -34,7 +34,7 @@ pub use crate::{
     tree_model_filter::TreeModelFilterExtManual,
     tree_sortable::TreeSortableExtManual,
     tree_view::TreeViewExtManual,
-    widget::WidgetExtManual,
+    widget::{WidgetClassManualExt, WidgetExtManual},
 };
 
 #[cfg(feature = "v4_10")]
