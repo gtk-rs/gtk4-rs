@@ -179,4 +179,5 @@ pub mod prelude {
         window::{WindowImpl, WindowImplExt},
         window_group::WindowGroupImpl,
     };
+    pub use crate::widget::WidgetClassManualExt;
 }
