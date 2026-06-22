@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gdk4/src/event.rs`."><title>event.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-1ed95124.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gdk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.98.0-nightly (c1b22f44c 2026-06-17)" data-channel="nightly" data-search-js="search-fd9372ac.js" data-stringdex-js="stringdex-2da4960a.js" data-settings-js="settings-170eb4bf.js" ><script src="../../static.files/storage-41dd4d93.js"></script><script defer src="../../static.files/src-script-813739b1.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-fcd733ba.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-f7c3ffd8.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><a class="skip-main-content" href="#main-content">Skip to main content</a><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gdk4/src/event.rs`."><title>event.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-1ed95124.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gdk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.98.0-nightly (91fe22da8 2026-06-21)" data-channel="nightly" data-search-js="search-fd9372ac.js" data-stringdex-js="stringdex-2da4960a.js" data-settings-js="settings-170eb4bf.js" ><script src="../../static.files/storage-41dd4d93.js"></script><script defer src="../../static.files/src-script-813739b1.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-417ebf0a.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-f7c3ffd8.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><a class="skip-main-content" href="#main-content">Skip to main content</a><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
 
@@ -267,13 +267,13 @@
 <a href=#194 id=194 data-nosnippet>194</a>    (<span class="macro-nonterminal">$rust_type</span>:ident, <span class="macro-nonterminal">$ffi_type</span>:path,<span class="macro-nonterminal">$event_event_types</span>:expr) =&gt; {
 <a href=#195 id=195 data-nosnippet>195</a>        <span class="kw">unsafe impl </span><span class="kw">crate</span>::event::EventKind <span class="kw">for </span><span class="macro-nonterminal">$rust_type </span>{
 <a href=#196 id=196 data-nosnippet>196</a>            <span class="attr">#[inline]
-<a href=#197 id=197 data-nosnippet>197</a>            </span><span class="kw">fn </span>event_types() -&gt; <span class="kw-2">&amp;</span><span class="lifetime">'static </span>[<span class="kw">crate</span>::<a href="auto/enums.rs.html#1055-1160">EventType</a>] {
+<a href=#197 id=197 data-nosnippet>197</a>            </span><span class="kw">fn </span>event_types() -&gt; <span class="kw-2">&amp;</span><span class="lifetime">'static </span>[<span class="kw">crate</span>::EventType] {
 <a href=#198 id=198 data-nosnippet>198</a>                <span class="macro-nonterminal">$event_event_types
 <a href=#199 id=199 data-nosnippet>199</a>            </span>}
 <a href=#200 id=200 data-nosnippet>200</a>        }
 <a href=#201 id=201 data-nosnippet>201</a>
 <a href=#202 id=202 data-nosnippet>202</a>        <span class="kw">impl </span>std::ops::Deref <span class="kw">for </span><span class="macro-nonterminal">$rust_type </span>{
-<a href=#203 id=203 data-nosnippet>203</a>            <span class="kw">type </span>Target = <span class="kw">crate</span>::<a href="auto/event.rs.html#11-28">Event</a>;
+<a href=#203 id=203 data-nosnippet>203</a>            <span class="kw">type </span>Target = <span class="kw">crate</span>::Event;
 <a href=#204 id=204 data-nosnippet>204</a>
 <a href=#205 id=205 data-nosnippet>205</a>            <span class="attr">#[inline]
 <a href=#206 id=206 data-nosnippet>206</a>            </span><span class="kw">fn </span>deref(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="self">Self</span>::Target {
@@ -283,7 +283,7 @@
 <a href=#210 id=210 data-nosnippet>210</a>
 <a href=#211 id=211 data-nosnippet>211</a>        <span class="kw">impl </span>AsRef&lt;<span class="kw">crate</span>::Event&gt; <span class="kw">for </span><span class="macro-nonterminal">$rust_type </span>{
 <a href=#212 id=212 data-nosnippet>212</a>            <span class="attr">#[inline]
-<a href=#213 id=213 data-nosnippet>213</a>            </span><span class="kw">fn </span>as_ref(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="kw">crate</span>::<a href="auto/event.rs.html#11-28">Event</a> {
+<a href=#213 id=213 data-nosnippet>213</a>            </span><span class="kw">fn </span>as_ref(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="kw">crate</span>::Event {
 <a href=#214 id=214 data-nosnippet>214</a>                <span class="self">self</span>.upcast_ref()
 <a href=#215 id=215 data-nosnippet>215</a>            }
 <a href=#216 id=216 data-nosnippet>216</a>        }
@@ -291,19 +291,19 @@
 <a href=#218 id=218 data-nosnippet>218</a>        <span class="attr">#[doc(hidden)]
 <a href=#219 id=219 data-nosnippet>219</a>        </span><span class="kw">impl </span>glib::translate::FromGlibPtrFull&lt;<span class="kw-2">*mut </span><span class="kw">crate</span>::ffi::GdkEvent&gt; <span class="kw">for </span><span class="macro-nonterminal">$rust_type </span>{
 <a href=#220 id=220 data-nosnippet>220</a>            <span class="attr">#[inline]
-<a href=#221 id=221 data-nosnippet>221</a>            </span><span class="kw">unsafe fn </span>from_glib_full(ptr: <span class="kw-2">*mut </span><span class="kw">crate</span>::ffi::<a href="../../gdk4_sys/struct.GdkEvent.html">GdkEvent</a>) -&gt; <span class="self">Self </span>{
+<a href=#221 id=221 data-nosnippet>221</a>            </span><span class="kw">unsafe fn </span>from_glib_full(ptr: <span class="kw-2">*mut </span><span class="kw">crate</span>::ffi::GdkEvent) -&gt; <span class="self">Self </span>{
 <a href=#222 id=222 data-nosnippet>222</a>                <span class="kw">unsafe </span>{ glib::translate::FromGlibPtrFull::from_glib_full(ptr <span class="kw">as </span><span class="kw-2">*mut </span><span class="macro-nonterminal">$ffi_type</span>) }
 <a href=#223 id=223 data-nosnippet>223</a>            }
 <a href=#224 id=224 data-nosnippet>224</a>        }
 <a href=#225 id=225 data-nosnippet>225</a>
 <a href=#226 id=226 data-nosnippet>226</a>        <span class="kw">impl </span><span class="macro-nonterminal">$rust_type </span>{
 <a href=#227 id=227 data-nosnippet>227</a>            <span class="attr">#[inline]
-<a href=#228 id=228 data-nosnippet>228</a>            </span><span class="kw">pub fn </span>upcast(<span class="self">self</span>) -&gt; <span class="kw">crate</span>::<a href="auto/event.rs.html#11-28">Event</a> {
+<a href=#228 id=228 data-nosnippet>228</a>            </span><span class="kw">pub fn </span>upcast(<span class="self">self</span>) -&gt; <span class="kw">crate</span>::Event {
 <a href=#229 id=229 data-nosnippet>229</a>                <span class="kw">unsafe </span>{ std::mem::transmute(<span class="self">self</span>) }
 <a href=#230 id=230 data-nosnippet>230</a>            }
 <a href=#231 id=231 data-nosnippet>231</a>
 <a href=#232 id=232 data-nosnippet>232</a>            <span class="attr">#[inline]
-<a href=#233 id=233 data-nosnippet>233</a>            </span><span class="kw">pub fn </span>upcast_ref(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="kw">crate</span>::<a href="auto/event.rs.html#11-28">Event</a> {
+<a href=#233 id=233 data-nosnippet>233</a>            </span><span class="kw">pub fn </span>upcast_ref(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="kw">crate</span>::Event {
 <a href=#234 id=234 data-nosnippet>234</a>                <span class="self">self
 <a href=#235 id=235 data-nosnippet>235</a>            </span>}
 <a href=#236 id=236 data-nosnippet>236</a>        }

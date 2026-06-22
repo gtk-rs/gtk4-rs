@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gsk4/src/render_node.rs`."><title>render_node.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-1ed95124.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gsk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.98.0-nightly (c1b22f44c 2026-06-17)" data-channel="nightly" data-search-js="search-fd9372ac.js" data-stringdex-js="stringdex-2da4960a.js" data-settings-js="settings-170eb4bf.js" ><script src="../../static.files/storage-41dd4d93.js"></script><script defer src="../../static.files/src-script-813739b1.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-fcd733ba.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-f7c3ffd8.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><a class="skip-main-content" href="#main-content">Skip to main content</a><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gsk4/src/render_node.rs`."><title>render_node.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-1ed95124.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gsk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.98.0-nightly (91fe22da8 2026-06-21)" data-channel="nightly" data-search-js="search-fd9372ac.js" data-stringdex-js="stringdex-2da4960a.js" data-settings-js="settings-170eb4bf.js" ><script src="../../static.files/storage-41dd4d93.js"></script><script defer src="../../static.files/src-script-813739b1.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-417ebf0a.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-f7c3ffd8.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><a class="skip-main-content" href="#main-content">Skip to main content</a><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
 
@@ -201,7 +201,7 @@
 <a href=#128 id=128 data-nosnippet>128</a><span class="macro">macro_rules!</span> define_render_node {
 <a href=#129 id=129 data-nosnippet>129</a>    (<span class="macro-nonterminal">$rust_type</span>:ident, <span class="macro-nonterminal">$ffi_type</span>:path, <span class="macro-nonterminal">$node_type</span>:path) =&gt; {
 <a href=#130 id=130 data-nosnippet>130</a>        <span class="kw">impl </span>std::ops::Deref <span class="kw">for </span><span class="macro-nonterminal">$rust_type </span>{
-<a href=#131 id=131 data-nosnippet>131</a>            <span class="kw">type </span>Target = <span class="kw">crate</span>::<a href="auto/render_node.rs.html#8-30">RenderNode</a>;
+<a href=#131 id=131 data-nosnippet>131</a>            <span class="kw">type </span>Target = <span class="kw">crate</span>::RenderNode;
 <a href=#132 id=132 data-nosnippet>132</a>
 <a href=#133 id=133 data-nosnippet>133</a>            <span class="attr">#[inline]
 <a href=#134 id=134 data-nosnippet>134</a>            </span><span class="kw">fn </span>deref(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="self">Self</span>::Target {
@@ -210,10 +210,10 @@
 <a href=#137 id=137 data-nosnippet>137</a>        }
 <a href=#138 id=138 data-nosnippet>138</a>
 <a href=#139 id=139 data-nosnippet>139</a>        <span class="kw">unsafe impl </span><span class="kw">crate</span>::render_node::IsRenderNode <span class="kw">for </span><span class="macro-nonterminal">$rust_type </span>{
-<a href=#140 id=140 data-nosnippet>140</a>            <span class="kw">const </span>NODE_TYPE: <a href="auto/enums.rs.html#1565-1707">RenderNodeType</a> = <span class="macro-nonterminal">$node_type</span>;
+<a href=#140 id=140 data-nosnippet>140</a>            <span class="kw">const </span>NODE_TYPE: RenderNodeType = <span class="macro-nonterminal">$node_type</span>;
 <a href=#141 id=141 data-nosnippet>141</a>
 <a href=#142 id=142 data-nosnippet>142</a>            <span class="attr">#[inline]
-<a href=#143 id=143 data-nosnippet>143</a>            </span><span class="kw">fn </span>upcast(<span class="self">self</span>) -&gt; <span class="kw">crate</span>::<a href="auto/render_node.rs.html#8-30">RenderNode</a> {
+<a href=#143 id=143 data-nosnippet>143</a>            </span><span class="kw">fn </span>upcast(<span class="self">self</span>) -&gt; <span class="kw">crate</span>::RenderNode {
 <a href=#144 id=144 data-nosnippet>144</a>                <span class="kw">unsafe </span>{
 <a href=#145 id=145 data-nosnippet>145</a>                    glib::translate::from_glib_full(
 <a href=#146 id=146 data-nosnippet>146</a>                        glib::translate::IntoGlibPtr::&lt;<span class="kw-2">*mut </span><span class="macro-nonterminal">$ffi_type</span>&gt;::into_glib_ptr(<span class="self">self</span>)
@@ -223,7 +223,7 @@
 <a href=#150 id=150 data-nosnippet>150</a>            }
 <a href=#151 id=151 data-nosnippet>151</a>
 <a href=#152 id=152 data-nosnippet>152</a>            <span class="attr">#[inline]
-<a href=#153 id=153 data-nosnippet>153</a>            </span><span class="kw">fn </span>upcast_ref(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="kw">crate</span>::<a href="auto/render_node.rs.html#8-30">RenderNode</a> {
+<a href=#153 id=153 data-nosnippet>153</a>            </span><span class="kw">fn </span>upcast_ref(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="kw">crate</span>::RenderNode {
 <a href=#154 id=154 data-nosnippet>154</a>                <span class="self">self
 <a href=#155 id=155 data-nosnippet>155</a>            </span>}
 <a href=#156 id=156 data-nosnippet>156</a>        }
@@ -231,7 +231,7 @@
 <a href=#158 id=158 data-nosnippet>158</a>        <span class="attr">#[doc(hidden)]
 <a href=#159 id=159 data-nosnippet>159</a>        </span><span class="kw">impl </span>glib::translate::FromGlibPtrFull&lt;<span class="kw-2">*mut </span><span class="kw">crate</span>::ffi::GskRenderNode&gt; <span class="kw">for </span><span class="macro-nonterminal">$rust_type </span>{
 <a href=#160 id=160 data-nosnippet>160</a>            <span class="attr">#[inline]
-<a href=#161 id=161 data-nosnippet>161</a>            </span><span class="kw">unsafe fn </span>from_glib_full(ptr: <span class="kw-2">*mut </span><span class="kw">crate</span>::ffi::<a href="../../gsk4_sys/struct.GskRenderNode.html">GskRenderNode</a>) -&gt; <span class="self">Self </span>{
+<a href=#161 id=161 data-nosnippet>161</a>            </span><span class="kw">unsafe fn </span>from_glib_full(ptr: <span class="kw-2">*mut </span><span class="kw">crate</span>::ffi::GskRenderNode) -&gt; <span class="self">Self </span>{
 <a href=#162 id=162 data-nosnippet>162</a>                <span class="kw">unsafe </span>{ glib::translate::from_glib_full(ptr <span class="kw">as </span><span class="kw-2">*mut </span><span class="macro-nonterminal">$ffi_type</span>) }
 <a href=#163 id=163 data-nosnippet>163</a>            }
 <a href=#164 id=164 data-nosnippet>164</a>        }
@@ -241,7 +241,7 @@
 <a href=#168 id=168 data-nosnippet>168</a>    (<span class="macro-nonterminal">$rust_type</span>:ident, <span class="macro-nonterminal">$ffi_type</span>:path) =&gt; {
 <a href=#169 id=169 data-nosnippet>169</a>        <span class="kw">impl </span>std::convert::AsRef&lt;<span class="kw">crate</span>::RenderNode&gt; <span class="kw">for </span><span class="macro-nonterminal">$rust_type </span>{
 <a href=#170 id=170 data-nosnippet>170</a>            <span class="attr">#[inline]
-<a href=#171 id=171 data-nosnippet>171</a>            </span><span class="kw">fn </span>as_ref(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="kw">crate</span>::<a href="auto/render_node.rs.html#8-30">RenderNode</a> {
+<a href=#171 id=171 data-nosnippet>171</a>            </span><span class="kw">fn </span>as_ref(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="kw">crate</span>::RenderNode {
 <a href=#172 id=172 data-nosnippet>172</a>                <span class="self">self
 <a href=#173 id=173 data-nosnippet>173</a>            </span>}
 <a href=#174 id=174 data-nosnippet>174</a>        }
@@ -255,10 +255,10 @@
 <a href=#182 id=182 data-nosnippet>182</a>        <span class="attr">#[cfg(feature = <span class="string">"v4_6"</span>)]
 <a href=#183 id=183 data-nosnippet>183</a>        #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_6"</span>)))]
 <a href=#184 id=184 data-nosnippet>184</a>        </span><span class="kw">unsafe impl</span>&lt;<span class="lifetime">'a</span>&gt; glib::value::FromValue&lt;<span class="lifetime">'a</span>&gt; <span class="kw">for </span><span class="macro-nonterminal">$rust_type </span>{
-<a href=#185 id=185 data-nosnippet>185</a>            <span class="kw">type </span>Checker = glib::value::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.GenericValueTypeOrNoneChecker.html">GenericValueTypeOrNoneChecker</a>&lt;<span class="self">Self</span>&gt;;
+<a href=#185 id=185 data-nosnippet>185</a>            <span class="kw">type </span>Checker = glib::value::GenericValueTypeOrNoneChecker&lt;<span class="self">Self</span>&gt;;
 <a href=#186 id=186 data-nosnippet>186</a>
 <a href=#187 id=187 data-nosnippet>187</a>            <span class="attr">#[inline]
-<a href=#188 id=188 data-nosnippet>188</a>            </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a>) -&gt; <span class="self">Self </span>{
+<a href=#188 id=188 data-nosnippet>188</a>            </span><span class="kw">unsafe fn </span>from_value(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>glib::Value) -&gt; <span class="self">Self </span>{
 <a href=#189 id=189 data-nosnippet>189</a>                <span class="kw">unsafe </span>{
 <a href=#190 id=190 data-nosnippet>190</a>                    <span class="macro">skip_assert_initialized!</span>();
 <a href=#191 id=191 data-nosnippet>191</a>                    glib::translate::from_glib_full(<span class="kw">crate</span>::ffi::gsk_value_dup_render_node(
@@ -272,7 +272,7 @@
 <a href=#199 id=199 data-nosnippet>199</a>        #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_6"</span>)))]
 <a href=#200 id=200 data-nosnippet>200</a>        </span><span class="kw">impl </span>glib::value::ToValue <span class="kw">for </span><span class="macro-nonterminal">$rust_type </span>{
 <a href=#201 id=201 data-nosnippet>201</a>            <span class="attr">#[inline]
-<a href=#202 id=202 data-nosnippet>202</a>            </span><span class="kw">fn </span>to_value(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a> {
+<a href=#202 id=202 data-nosnippet>202</a>            </span><span class="kw">fn </span>to_value(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; glib::Value {
 <a href=#203 id=203 data-nosnippet>203</a>                <span class="kw">let </span><span class="kw-2">mut </span>value = glib::Value::for_value_type::&lt;<span class="self">Self</span>&gt;();
 <a href=#204 id=204 data-nosnippet>204</a>                <span class="kw">unsafe </span>{
 <a href=#205 id=205 data-nosnippet>205</a>                    <span class="kw">crate</span>::ffi::gsk_value_set_render_node(
@@ -284,7 +284,7 @@
 <a href=#211 id=211 data-nosnippet>211</a>            }
 <a href=#212 id=212 data-nosnippet>212</a>
 <a href=#213 id=213 data-nosnippet>213</a>            <span class="attr">#[inline]
-<a href=#214 id=214 data-nosnippet>214</a>            </span><span class="kw">fn </span>value_type(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/types/struct.Type.html">Type</a> {
+<a href=#214 id=214 data-nosnippet>214</a>            </span><span class="kw">fn </span>value_type(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; glib::Type {
 <a href=#215 id=215 data-nosnippet>215</a>                <span class="kw">use </span>glib::prelude::StaticType;
 <a href=#216 id=216 data-nosnippet>216</a>                <span class="self">Self</span>::static_type()
 <a href=#217 id=217 data-nosnippet>217</a>            }
@@ -294,7 +294,7 @@
 <a href=#221 id=221 data-nosnippet>221</a>        #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_6"</span>)))]
 <a href=#222 id=222 data-nosnippet>222</a>        </span><span class="kw">impl </span>glib::value::ToValueOptional <span class="kw">for </span><span class="macro-nonterminal">$rust_type </span>{
 <a href=#223 id=223 data-nosnippet>223</a>            <span class="attr">#[inline]
-<a href=#224 id=224 data-nosnippet>224</a>            </span><span class="kw">fn </span>to_value_optional(s: <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;<span class="kw-2">&amp;</span><span class="self">Self</span>&gt;) -&gt; glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html">Value</a> {
+<a href=#224 id=224 data-nosnippet>224</a>            </span><span class="kw">fn </span>to_value_optional(s: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="self">Self</span>&gt;) -&gt; glib::Value {
 <a href=#225 id=225 data-nosnippet>225</a>                <span class="macro">skip_assert_initialized!</span>();
 <a href=#226 id=226 data-nosnippet>226</a>                <span class="kw">let </span><span class="kw-2">mut </span>value = glib::Value::for_value_type::&lt;<span class="self">Self</span>&gt;();
 <a href=#227 id=227 data-nosnippet>227</a>                <span class="kw">unsafe </span>{
@@ -309,5 +309,5 @@
 <a href=#236 id=236 data-nosnippet>236</a>    };
 <a href=#237 id=237 data-nosnippet>237</a>}
 <a href=#238 id=238 data-nosnippet>238</a>
-<a href=#239 id=239 data-nosnippet>239</a><a href="#128-237">define_render_node!</a>(<a href="auto/render_node.rs.html#8-30">RenderNode</a>, <span class="kw">crate</span>::ffi::GskRenderNode);
+<a href=#239 id=239 data-nosnippet>239</a><a href="#128-237">define_render_node!</a>(RenderNode, <span class="kw">crate</span>::ffi::GskRenderNode);
 </code></pre></div></section></main></body></html>

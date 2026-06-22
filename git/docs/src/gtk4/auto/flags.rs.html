@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/auto/flags.rs`."><title>flags.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-1ed95124.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.98.0-nightly (c1b22f44c 2026-06-17)" data-channel="nightly" data-search-js="search-fd9372ac.js" data-stringdex-js="stringdex-2da4960a.js" data-settings-js="settings-170eb4bf.js" ><script src="../../../static.files/storage-41dd4d93.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-fcd733ba.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-f7c3ffd8.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><a class="skip-main-content" href="#main-content">Skip to main content</a><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/auto/flags.rs`."><title>flags.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-1ed95124.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.98.0-nightly (91fe22da8 2026-06-21)" data-channel="nightly" data-search-js="search-fd9372ac.js" data-stringdex-js="stringdex-2da4960a.js" data-settings-js="settings-170eb4bf.js" ><script src="../../../static.files/storage-41dd4d93.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-417ebf0a.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-f7c3ffd8.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><a class="skip-main-content" href="#main-content">Skip to main content</a><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
 
@@ -84,7 +84,7 @@
 <a href=#11 id=11 data-nosnippet>11</a>    /// See [`GtkApplicationExt::inhibit()`][crate::prelude::GtkApplicationExt::inhibit()].
 <a href=#12 id=12 data-nosnippet>12</a>    </span><span class="attr">#[derive(<a href="https://doc.rust-lang.org/nightly/core/clone/derive.Clone.html">Clone</a>, <a href="https://doc.rust-lang.org/nightly/core/marker/derive.Copy.html">Copy</a>, <a href="https://doc.rust-lang.org/nightly/core/fmt/macros/derive.Debug.html">Debug</a>, <a href="https://doc.rust-lang.org/nightly/core/cmp/derive.PartialEq.html">PartialEq</a>, <a href="https://doc.rust-lang.org/nightly/core/cmp/derive.Eq.html">Eq</a>, <a href="https://doc.rust-lang.org/nightly/core/hash/macros/derive.Hash.html">Hash</a>)]
 <a href=#13 id=13 data-nosnippet>13</a>    #[doc(alias = <span class="string">"GtkApplicationInhibitFlags"</span>)]
-<a href=#14 id=14 data-nosnippet>14</a>    </span><span class="kw">pub struct </span><a href="#8-31">ApplicationInhibitFlags</a>: u32 {
+<a href=#14 id=14 data-nosnippet>14</a>    </span><span class="kw">pub struct </span><a href="../../../gtk4/struct.ApplicationInhibitFlags.html">ApplicationInhibitFlags</a>: u32 {
 <a href=#15 id=15 data-nosnippet>15</a>        <span class="doccomment">/// Inhibit ending the user session
 <a href=#16 id=16 data-nosnippet>16</a>        ///   by logging out or by shutting down the computer
 <a href=#17 id=17 data-nosnippet>17</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_APPLICATION_INHIBIT_LOGOUT"</span>)]
@@ -187,7 +187,7 @@
 <a href=#114 id=114 data-nosnippet>114</a>    /// when they encounter one.
 <a href=#115 id=115 data-nosnippet>115</a>    </span><span class="attr">#[derive(<a href="https://doc.rust-lang.org/nightly/core/clone/derive.Clone.html">Clone</a>, <a href="https://doc.rust-lang.org/nightly/core/marker/derive.Copy.html">Copy</a>, <a href="https://doc.rust-lang.org/nightly/core/fmt/macros/derive.Debug.html">Debug</a>, <a href="https://doc.rust-lang.org/nightly/core/cmp/derive.PartialEq.html">PartialEq</a>, <a href="https://doc.rust-lang.org/nightly/core/cmp/derive.Eq.html">Eq</a>, <a href="https://doc.rust-lang.org/nightly/core/hash/macros/derive.Hash.html">Hash</a>)]
 <a href=#116 id=116 data-nosnippet>116</a>    #[doc(alias = <span class="string">"GtkBuilderClosureFlags"</span>)]
-<a href=#117 id=117 data-nosnippet>117</a>    </span><span class="kw">pub struct </span><a href="#108-123">BuilderClosureFlags</a>: u32 {
+<a href=#117 id=117 data-nosnippet>117</a>    </span><span class="kw">pub struct </span><a href="../../../gtk4/struct.BuilderClosureFlags.html">BuilderClosureFlags</a>: u32 {
 <a href=#118 id=118 data-nosnippet>118</a>        <span class="doccomment">/// The closure should be created swapped. See
 <a href=#119 id=119 data-nosnippet>119</a>        ///   g_cclosure_new_swap() for details.
 <a href=#120 id=120 data-nosnippet>120</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_BUILDER_CLOSURE_SWAPPED"</span>)]
@@ -279,7 +279,7 @@
 <a href=#206 id=206 data-nosnippet>206</a>    </span><span class="attr">#[cfg_attr(feature = <span class="string">"v4_20"</span>, deprecated = <span class="string">"Since 4.20"</span>)]
 <a href=#207 id=207 data-nosnippet>207</a>    #[derive(<a href="https://doc.rust-lang.org/nightly/core/clone/derive.Clone.html">Clone</a>, <a href="https://doc.rust-lang.org/nightly/core/marker/derive.Copy.html">Copy</a>, <a href="https://doc.rust-lang.org/nightly/core/fmt/macros/derive.Debug.html">Debug</a>, <a href="https://doc.rust-lang.org/nightly/core/cmp/derive.PartialEq.html">PartialEq</a>, <a href="https://doc.rust-lang.org/nightly/core/cmp/derive.Eq.html">Eq</a>, <a href="https://doc.rust-lang.org/nightly/core/hash/macros/derive.Hash.html">Hash</a>)]
 <a href=#208 id=208 data-nosnippet>208</a>    #[doc(alias = <span class="string">"GtkCellRendererState"</span>)]
-<a href=#209 id=209 data-nosnippet>209</a>    </span><span class="kw">pub struct </span><a href="#200-233">CellRendererState</a>: u32 {
+<a href=#209 id=209 data-nosnippet>209</a>    </span><span class="kw">pub struct </span><a href="../../../gtk4/struct.CellRendererState.html">CellRendererState</a>: u32 {
 <a href=#210 id=210 data-nosnippet>210</a>        <span class="doccomment">/// The cell is currently selected, and
 <a href=#211 id=211 data-nosnippet>211</a>        ///  probably has a selection colored background to render to.
 <a href=#212 id=212 data-nosnippet>212</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_CELL_RENDERER_SELECTED"</span>)]
@@ -396,7 +396,7 @@
 <a href=#323 id=323 data-nosnippet>323</a>    /// only available when GTK has been configured with `-Ddebug=true`.
 <a href=#324 id=324 data-nosnippet>324</a>    </span><span class="attr">#[derive(<a href="https://doc.rust-lang.org/nightly/core/clone/derive.Clone.html">Clone</a>, <a href="https://doc.rust-lang.org/nightly/core/marker/derive.Copy.html">Copy</a>, <a href="https://doc.rust-lang.org/nightly/core/fmt/macros/derive.Debug.html">Debug</a>, <a href="https://doc.rust-lang.org/nightly/core/cmp/derive.PartialEq.html">PartialEq</a>, <a href="https://doc.rust-lang.org/nightly/core/cmp/derive.Eq.html">Eq</a>, <a href="https://doc.rust-lang.org/nightly/core/hash/macros/derive.Hash.html">Hash</a>)]
 <a href=#325 id=325 data-nosnippet>325</a>    #[doc(alias = <span class="string">"GtkDebugFlags"</span>)]
-<a href=#326 id=326 data-nosnippet>326</a>    </span><span class="kw">pub struct </span><a href="#318-415">DebugFlags</a>: u32 {
+<a href=#326 id=326 data-nosnippet>326</a>    </span><span class="kw">pub struct </span><a href="../../../gtk4/struct.DebugFlags.html">DebugFlags</a>: u32 {
 <a href=#327 id=327 data-nosnippet>327</a>        <span class="doccomment">/// Information about GtkTextView
 <a href=#328 id=328 data-nosnippet>328</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_DEBUG_TEXT"</span>)]
 <a href=#329 id=329 data-nosnippet>329</a>        </span><span class="kw">const </span>TEXT = ffi::GTK_DEBUG_TEXT <span class="kw">as _</span>;
@@ -571,7 +571,7 @@
 <a href=#498 id=498 data-nosnippet>498</a>    </span><span class="attr">#[cfg_attr(feature = <span class="string">"v4_20"</span>, deprecated = <span class="string">"Since 4.20"</span>)]
 <a href=#499 id=499 data-nosnippet>499</a>    #[derive(<a href="https://doc.rust-lang.org/nightly/core/clone/derive.Clone.html">Clone</a>, <a href="https://doc.rust-lang.org/nightly/core/marker/derive.Copy.html">Copy</a>, <a href="https://doc.rust-lang.org/nightly/core/fmt/macros/derive.Debug.html">Debug</a>, <a href="https://doc.rust-lang.org/nightly/core/cmp/derive.PartialEq.html">PartialEq</a>, <a href="https://doc.rust-lang.org/nightly/core/cmp/derive.Eq.html">Eq</a>, <a href="https://doc.rust-lang.org/nightly/core/hash/macros/derive.Hash.html">Hash</a>)]
 <a href=#500 id=500 data-nosnippet>500</a>    #[doc(alias = <span class="string">"GtkDialogFlags"</span>)]
-<a href=#501 id=501 data-nosnippet>501</a>    </span><span class="kw">pub struct </span><a href="#492-513">DialogFlags</a>: u32 {
+<a href=#501 id=501 data-nosnippet>501</a>    </span><span class="kw">pub struct </span><a href="../../../gtk4/struct.DialogFlags.html">DialogFlags</a>: u32 {
 <a href=#502 id=502 data-nosnippet>502</a>        <span class="doccomment">/// Make the constructed dialog modal
 <a href=#503 id=503 data-nosnippet>503</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_DIALOG_MODAL"</span>)]
 <a href=#504 id=504 data-nosnippet>504</a>        </span><span class="kw">const </span>MODAL = ffi::GTK_DIALOG_MODAL <span class="kw">as _</span>;
@@ -672,7 +672,7 @@
 <a href=#599 id=599 data-nosnippet>599</a>    <span class="doccomment">/// Describes the behavior of a [`EventControllerScroll`][crate::EventControllerScroll].
 <a href=#600 id=600 data-nosnippet>600</a>    </span><span class="attr">#[derive(<a href="https://doc.rust-lang.org/nightly/core/clone/derive.Clone.html">Clone</a>, <a href="https://doc.rust-lang.org/nightly/core/marker/derive.Copy.html">Copy</a>, <a href="https://doc.rust-lang.org/nightly/core/fmt/macros/derive.Debug.html">Debug</a>, <a href="https://doc.rust-lang.org/nightly/core/cmp/derive.PartialEq.html">PartialEq</a>, <a href="https://doc.rust-lang.org/nightly/core/cmp/derive.Eq.html">Eq</a>, <a href="https://doc.rust-lang.org/nightly/core/hash/macros/derive.Hash.html">Hash</a>)]
 <a href=#601 id=601 data-nosnippet>601</a>    #[doc(alias = <span class="string">"GtkEventControllerScrollFlags"</span>)]
-<a href=#602 id=602 data-nosnippet>602</a>    </span><span class="kw">pub struct </span><a href="#598-628">EventControllerScrollFlags</a>: u32 {
+<a href=#602 id=602 data-nosnippet>602</a>    </span><span class="kw">pub struct </span><a href="../../../gtk4/struct.EventControllerScrollFlags.html">EventControllerScrollFlags</a>: u32 {
 <a href=#603 id=603 data-nosnippet>603</a>        <span class="doccomment">/// Don't emit scroll.
 <a href=#604 id=604 data-nosnippet>604</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_EVENT_CONTROLLER_SCROLL_NONE"</span>)]
 <a href=#605 id=605 data-nosnippet>605</a>        </span><span class="kw">const </span>NONE = ffi::GTK_EVENT_CONTROLLER_SCROLL_NONE <span class="kw">as _</span>;
@@ -788,7 +788,7 @@
 <a href=#715 id=715 data-nosnippet>715</a>    </span><span class="attr">#[cfg_attr(feature = <span class="string">"v4_20"</span>, deprecated = <span class="string">"Since 4.20"</span>)]
 <a href=#716 id=716 data-nosnippet>716</a>    #[derive(<a href="https://doc.rust-lang.org/nightly/core/clone/derive.Clone.html">Clone</a>, <a href="https://doc.rust-lang.org/nightly/core/marker/derive.Copy.html">Copy</a>, <a href="https://doc.rust-lang.org/nightly/core/fmt/macros/derive.Debug.html">Debug</a>, <a href="https://doc.rust-lang.org/nightly/core/cmp/derive.PartialEq.html">PartialEq</a>, <a href="https://doc.rust-lang.org/nightly/core/cmp/derive.Eq.html">Eq</a>, <a href="https://doc.rust-lang.org/nightly/core/hash/macros/derive.Hash.html">Hash</a>)]
 <a href=#717 id=717 data-nosnippet>717</a>    #[doc(alias = <span class="string">"GtkFontChooserLevel"</span>)]
-<a href=#718 id=718 data-nosnippet>718</a>    </span><span class="kw">pub struct </span><a href="#705-735">FontChooserLevel</a>: u32 {
+<a href=#718 id=718 data-nosnippet>718</a>    </span><span class="kw">pub struct </span><a href="../../../gtk4/struct.FontChooserLevel.html">FontChooserLevel</a>: u32 {
 <a href=#719 id=719 data-nosnippet>719</a>        <span class="doccomment">/// Allow selecting a font family
 <a href=#720 id=720 data-nosnippet>720</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_FONT_CHOOSER_LEVEL_FAMILY"</span>)]
 <a href=#721 id=721 data-nosnippet>721</a>        </span><span class="kw">const </span>FAMILY = ffi::GTK_FONT_CHOOSER_LEVEL_FAMILY <span class="kw">as _</span>;
@@ -894,7 +894,7 @@
 <a href=#821 id=821 data-nosnippet>821</a>    <span class="doccomment">/// Used to specify options for gtk_icon_theme_lookup_icon().
 <a href=#822 id=822 data-nosnippet>822</a>    </span><span class="attr">#[derive(<a href="https://doc.rust-lang.org/nightly/core/clone/derive.Clone.html">Clone</a>, <a href="https://doc.rust-lang.org/nightly/core/marker/derive.Copy.html">Copy</a>, <a href="https://doc.rust-lang.org/nightly/core/fmt/macros/derive.Debug.html">Debug</a>, <a href="https://doc.rust-lang.org/nightly/core/cmp/derive.PartialEq.html">PartialEq</a>, <a href="https://doc.rust-lang.org/nightly/core/cmp/derive.Eq.html">Eq</a>, <a href="https://doc.rust-lang.org/nightly/core/hash/macros/derive.Hash.html">Hash</a>)]
 <a href=#823 id=823 data-nosnippet>823</a>    #[doc(alias = <span class="string">"GtkIconLookupFlags"</span>)]
-<a href=#824 id=824 data-nosnippet>824</a>    </span><span class="kw">pub struct </span><a href="#820-843">IconLookupFlags</a>: u32 {
+<a href=#824 id=824 data-nosnippet>824</a>    </span><span class="kw">pub struct </span><a href="../../../gtk4/struct.IconLookupFlags.html">IconLookupFlags</a>: u32 {
 <a href=#825 id=825 data-nosnippet>825</a>        <span class="doccomment">/// Perform a regular lookup.
 <a href=#826 id=826 data-nosnippet>826</a>        </span><span class="attr">#[cfg(feature = <span class="string">"v4_18"</span>)]
 <a href=#827 id=827 data-nosnippet>827</a>        #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_18"</span>)))]
@@ -1004,7 +1004,7 @@
 <a href=#931 id=931 data-nosnippet>931</a>    /// ignore unknown values.
 <a href=#932 id=932 data-nosnippet>932</a>    </span><span class="attr">#[derive(<a href="https://doc.rust-lang.org/nightly/core/clone/derive.Clone.html">Clone</a>, <a href="https://doc.rust-lang.org/nightly/core/marker/derive.Copy.html">Copy</a>, <a href="https://doc.rust-lang.org/nightly/core/fmt/macros/derive.Debug.html">Debug</a>, <a href="https://doc.rust-lang.org/nightly/core/cmp/derive.PartialEq.html">PartialEq</a>, <a href="https://doc.rust-lang.org/nightly/core/cmp/derive.Eq.html">Eq</a>, <a href="https://doc.rust-lang.org/nightly/core/hash/macros/derive.Hash.html">Hash</a>)]
 <a href=#933 id=933 data-nosnippet>933</a>    #[doc(alias = <span class="string">"GtkInputHints"</span>)]
-<a href=#934 id=934 data-nosnippet>934</a>    </span><span class="kw">pub struct </span><a href="#920-979">InputHints</a>: u32 {
+<a href=#934 id=934 data-nosnippet>934</a>    </span><span class="kw">pub struct </span><a href="../../../gtk4/struct.InputHints.html">InputHints</a>: u32 {
 <a href=#935 id=935 data-nosnippet>935</a>        <span class="doccomment">/// No special behaviour suggested
 <a href=#936 id=936 data-nosnippet>936</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_INPUT_HINT_NONE"</span>)]
 <a href=#937 id=937 data-nosnippet>937</a>        </span><span class="kw">const </span>NONE = ffi::GTK_INPUT_HINT_NONE <span class="kw">as _</span>;
@@ -1133,7 +1133,7 @@
 <a href=#1060 id=1060 data-nosnippet>1060</a>    </span><span class="attr">#[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_12"</span>)))]
 <a href=#1061 id=1061 data-nosnippet>1061</a>    #[derive(<a href="https://doc.rust-lang.org/nightly/core/clone/derive.Clone.html">Clone</a>, <a href="https://doc.rust-lang.org/nightly/core/marker/derive.Copy.html">Copy</a>, <a href="https://doc.rust-lang.org/nightly/core/fmt/macros/derive.Debug.html">Debug</a>, <a href="https://doc.rust-lang.org/nightly/core/cmp/derive.PartialEq.html">PartialEq</a>, <a href="https://doc.rust-lang.org/nightly/core/cmp/derive.Eq.html">Eq</a>, <a href="https://doc.rust-lang.org/nightly/core/hash/macros/derive.Hash.html">Hash</a>)]
 <a href=#1062 id=1062 data-nosnippet>1062</a>    #[doc(alias = <span class="string">"GtkListScrollFlags"</span>)]
-<a href=#1063 id=1063 data-nosnippet>1063</a>    </span><span class="kw">pub struct </span><a href="#1057-1075">ListScrollFlags</a>: u32 {
+<a href=#1063 id=1063 data-nosnippet>1063</a>    </span><span class="kw">pub struct </span><a href="../../../gtk4/struct.ListScrollFlags.html">ListScrollFlags</a>: u32 {
 <a href=#1064 id=1064 data-nosnippet>1064</a>        <span class="doccomment">/// Don't do anything extra
 <a href=#1065 id=1065 data-nosnippet>1065</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_LIST_SCROLL_NONE"</span>)]
 <a href=#1066 id=1066 data-nosnippet>1066</a>        </span><span class="kw">const </span>NONE = ffi::GTK_LIST_SCROLL_NONE <span class="kw">as _</span>;
@@ -1242,7 +1242,7 @@
 <a href=#1169 id=1169 data-nosnippet>1169</a>    <span class="doccomment">/// Flags that influence the behavior of [`WidgetExt::pick()`][crate::prelude::WidgetExt::pick()].
 <a href=#1170 id=1170 data-nosnippet>1170</a>    </span><span class="attr">#[derive(<a href="https://doc.rust-lang.org/nightly/core/clone/derive.Clone.html">Clone</a>, <a href="https://doc.rust-lang.org/nightly/core/marker/derive.Copy.html">Copy</a>, <a href="https://doc.rust-lang.org/nightly/core/fmt/macros/derive.Debug.html">Debug</a>, <a href="https://doc.rust-lang.org/nightly/core/cmp/derive.PartialEq.html">PartialEq</a>, <a href="https://doc.rust-lang.org/nightly/core/cmp/derive.Eq.html">Eq</a>, <a href="https://doc.rust-lang.org/nightly/core/hash/macros/derive.Hash.html">Hash</a>)]
 <a href=#1171 id=1171 data-nosnippet>1171</a>    #[doc(alias = <span class="string">"GtkPickFlags"</span>)]
-<a href=#1172 id=1172 data-nosnippet>1172</a>    </span><span class="kw">pub struct </span><a href="#1168-1183">PickFlags</a>: u32 {
+<a href=#1172 id=1172 data-nosnippet>1172</a>    </span><span class="kw">pub struct </span><a href="../../../gtk4/struct.PickFlags.html">PickFlags</a>: u32 {
 <a href=#1173 id=1173 data-nosnippet>1173</a>        <span class="doccomment">/// The default behavior, include widgets that are receiving events
 <a href=#1174 id=1174 data-nosnippet>1174</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_PICK_DEFAULT"</span>)]
 <a href=#1175 id=1175 data-nosnippet>1175</a>        </span><span class="kw">const </span>DEFAULT = ffi::GTK_PICK_DEFAULT <span class="kw">as _</span>;
@@ -1335,7 +1335,7 @@
 <a href=#1262 id=1262 data-nosnippet>1262</a>    /// a [`gio::MenuModel`][crate::gio::MenuModel] are created and displayed.
 <a href=#1263 id=1263 data-nosnippet>1263</a>    </span><span class="attr">#[derive(<a href="https://doc.rust-lang.org/nightly/core/clone/derive.Clone.html">Clone</a>, <a href="https://doc.rust-lang.org/nightly/core/marker/derive.Copy.html">Copy</a>, <a href="https://doc.rust-lang.org/nightly/core/fmt/macros/derive.Debug.html">Debug</a>, <a href="https://doc.rust-lang.org/nightly/core/cmp/derive.PartialEq.html">PartialEq</a>, <a href="https://doc.rust-lang.org/nightly/core/cmp/derive.Eq.html">Eq</a>, <a href="https://doc.rust-lang.org/nightly/core/hash/macros/derive.Hash.html">Hash</a>)]
 <a href=#1264 id=1264 data-nosnippet>1264</a>    #[doc(alias = <span class="string">"GtkPopoverMenuFlags"</span>)]
-<a href=#1265 id=1265 data-nosnippet>1265</a>    </span><span class="kw">pub struct </span><a href="#1260-1276">PopoverMenuFlags</a>: u32 {
+<a href=#1265 id=1265 data-nosnippet>1265</a>    </span><span class="kw">pub struct </span><a href="../../../gtk4/struct.PopoverMenuFlags.html">PopoverMenuFlags</a>: u32 {
 <a href=#1266 id=1266 data-nosnippet>1266</a>        <span class="doccomment">/// Submenus are presented as sliding submenus that replace the main menu.
 <a href=#1267 id=1267 data-nosnippet>1267</a>        </span><span class="attr">#[cfg(feature = <span class="string">"v4_14"</span>)]
 <a href=#1268 id=1268 data-nosnippet>1268</a>        #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_14"</span>)))]
@@ -1433,7 +1433,7 @@
 <a href=#1360 id=1360 data-nosnippet>1360</a>    </span><span class="attr">#[cfg_attr(docsrs, doc(cfg(target_os = <span class="string">"linux"</span>)))]
 <a href=#1361 id=1361 data-nosnippet>1361</a>    #[derive(<a href="https://doc.rust-lang.org/nightly/core/clone/derive.Clone.html">Clone</a>, <a href="https://doc.rust-lang.org/nightly/core/marker/derive.Copy.html">Copy</a>, <a href="https://doc.rust-lang.org/nightly/core/fmt/macros/derive.Debug.html">Debug</a>, <a href="https://doc.rust-lang.org/nightly/core/cmp/derive.PartialEq.html">PartialEq</a>, <a href="https://doc.rust-lang.org/nightly/core/cmp/derive.Eq.html">Eq</a>, <a href="https://doc.rust-lang.org/nightly/core/hash/macros/derive.Hash.html">Hash</a>)]
 <a href=#1362 id=1362 data-nosnippet>1362</a>    #[doc(alias = <span class="string">"GtkPrintCapabilities"</span>)]
-<a href=#1363 id=1363 data-nosnippet>1363</a>    </span><span class="kw">pub struct </span><a href="#1354-1399">PrintCapabilities</a>: u32 {
+<a href=#1363 id=1363 data-nosnippet>1363</a>    </span><span class="kw">pub struct </span><a href="../../../gtk4/struct.PrintCapabilities.html">PrintCapabilities</a>: u32 {
 <a href=#1364 id=1364 data-nosnippet>1364</a>        <span class="doccomment">/// Print dialog will offer printing even/odd pages.
 <a href=#1365 id=1365 data-nosnippet>1365</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_PRINT_CAPABILITY_PAGE_SET"</span>)]
 <a href=#1366 id=1366 data-nosnippet>1366</a>        </span><span class="kw">const </span>PAGE_SET = ffi::GTK_PRINT_CAPABILITY_PAGE_SET <span class="kw">as _</span>;
@@ -1560,7 +1560,7 @@
 <a href=#1487 id=1487 data-nosnippet>1487</a>    /// More flags may be added in the future.
 <a href=#1488 id=1488 data-nosnippet>1488</a>    </span><span class="attr">#[derive(<a href="https://doc.rust-lang.org/nightly/core/clone/derive.Clone.html">Clone</a>, <a href="https://doc.rust-lang.org/nightly/core/marker/derive.Copy.html">Copy</a>, <a href="https://doc.rust-lang.org/nightly/core/fmt/macros/derive.Debug.html">Debug</a>, <a href="https://doc.rust-lang.org/nightly/core/cmp/derive.PartialEq.html">PartialEq</a>, <a href="https://doc.rust-lang.org/nightly/core/cmp/derive.Eq.html">Eq</a>, <a href="https://doc.rust-lang.org/nightly/core/hash/macros/derive.Hash.html">Hash</a>)]
 <a href=#1489 id=1489 data-nosnippet>1489</a>    #[doc(alias = <span class="string">"GtkShortcutActionFlags"</span>)]
-<a href=#1490 id=1490 data-nosnippet>1490</a>    </span><span class="kw">pub struct </span><a href="#1484-1497">ShortcutActionFlags</a>: u32 {
+<a href=#1490 id=1490 data-nosnippet>1490</a>    </span><span class="kw">pub struct </span><a href="../../../gtk4/struct.ShortcutActionFlags.html">ShortcutActionFlags</a>: u32 {
 <a href=#1491 id=1491 data-nosnippet>1491</a>        <span class="doccomment">/// The action is the only
 <a href=#1492 id=1492 data-nosnippet>1492</a>        ///   action that can be activated. If this flag is not set,
 <a href=#1493 id=1493 data-nosnippet>1493</a>        ///   a future activation may select a different action.
@@ -1652,7 +1652,7 @@
 <a href=#1579 id=1579 data-nosnippet>1579</a>    /// different names.
 <a href=#1580 id=1580 data-nosnippet>1580</a>    </span><span class="attr">#[derive(<a href="https://doc.rust-lang.org/nightly/core/clone/derive.Clone.html">Clone</a>, <a href="https://doc.rust-lang.org/nightly/core/marker/derive.Copy.html">Copy</a>, <a href="https://doc.rust-lang.org/nightly/core/fmt/macros/derive.Debug.html">Debug</a>, <a href="https://doc.rust-lang.org/nightly/core/cmp/derive.PartialEq.html">PartialEq</a>, <a href="https://doc.rust-lang.org/nightly/core/cmp/derive.Eq.html">Eq</a>, <a href="https://doc.rust-lang.org/nightly/core/hash/macros/derive.Hash.html">Hash</a>)]
 <a href=#1581 id=1581 data-nosnippet>1581</a>    #[doc(alias = <span class="string">"GtkStateFlags"</span>)]
-<a href=#1582 id=1582 data-nosnippet>1582</a>    </span><span class="kw">pub struct </span><a href="#1574-1632">StateFlags</a>: u32 {
+<a href=#1582 id=1582 data-nosnippet>1582</a>    </span><span class="kw">pub struct </span><a href="../../../gtk4/struct.StateFlags.html">StateFlags</a>: u32 {
 <a href=#1583 id=1583 data-nosnippet>1583</a>        <span class="doccomment">/// State during normal operation
 <a href=#1584 id=1584 data-nosnippet>1584</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_STATE_FLAG_NORMAL"</span>)]
 <a href=#1585 id=1585 data-nosnippet>1585</a>        </span><span class="kw">const </span>NORMAL = ffi::GTK_STATE_FLAG_NORMAL <span class="kw">as _</span>;
@@ -1785,7 +1785,7 @@
 <a href=#1712 id=1712 data-nosnippet>1712</a>    /// New values may be added to this enumeration.
 <a href=#1713 id=1713 data-nosnippet>1713</a>    </span><span class="attr">#[derive(<a href="https://doc.rust-lang.org/nightly/core/clone/derive.Clone.html">Clone</a>, <a href="https://doc.rust-lang.org/nightly/core/marker/derive.Copy.html">Copy</a>, <a href="https://doc.rust-lang.org/nightly/core/fmt/macros/derive.Debug.html">Debug</a>, <a href="https://doc.rust-lang.org/nightly/core/cmp/derive.PartialEq.html">PartialEq</a>, <a href="https://doc.rust-lang.org/nightly/core/cmp/derive.Eq.html">Eq</a>, <a href="https://doc.rust-lang.org/nightly/core/hash/macros/derive.Hash.html">Hash</a>)]
 <a href=#1714 id=1714 data-nosnippet>1714</a>    #[doc(alias = <span class="string">"GtkStyleContextPrintFlags"</span>)]
-<a href=#1715 id=1715 data-nosnippet>1715</a>    </span><span class="kw">pub struct </span><a href="#1709-1732">StyleContextPrintFlags</a>: u32 {
+<a href=#1715 id=1715 data-nosnippet>1715</a>    </span><span class="kw">pub struct </span><a href="../../../gtk4/struct.StyleContextPrintFlags.html">StyleContextPrintFlags</a>: u32 {
 <a href=#1716 id=1716 data-nosnippet>1716</a>        <span class="doccomment">/// Default value.
 <a href=#1717 id=1717 data-nosnippet>1717</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_STYLE_CONTEXT_PRINT_NONE"</span>)]
 <a href=#1718 id=1718 data-nosnippet>1718</a>        </span><span class="kw">const </span>NONE = ffi::GTK_STYLE_CONTEXT_PRINT_NONE <span class="kw">as _</span>;
@@ -1890,7 +1890,7 @@
 <a href=#1817 id=1817 data-nosnippet>1817</a>    </span><span class="attr">#[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_22"</span>)))]
 <a href=#1818 id=1818 data-nosnippet>1818</a>    #[derive(<a href="https://doc.rust-lang.org/nightly/core/clone/derive.Clone.html">Clone</a>, <a href="https://doc.rust-lang.org/nightly/core/marker/derive.Copy.html">Copy</a>, <a href="https://doc.rust-lang.org/nightly/core/fmt/macros/derive.Debug.html">Debug</a>, <a href="https://doc.rust-lang.org/nightly/core/cmp/derive.PartialEq.html">PartialEq</a>, <a href="https://doc.rust-lang.org/nightly/core/cmp/derive.Eq.html">Eq</a>, <a href="https://doc.rust-lang.org/nightly/core/hash/macros/derive.Hash.html">Hash</a>)]
 <a href=#1819 id=1819 data-nosnippet>1819</a>    #[doc(alias = <span class="string">"GtkSvgFeatures"</span>)]
-<a href=#1820 id=1820 data-nosnippet>1820</a>    </span><span class="kw">pub struct </span><a href="#1810-1846">SvgFeatures</a>: u32 {
+<a href=#1820 id=1820 data-nosnippet>1820</a>    </span><span class="kw">pub struct </span><a href="../../../gtk4/struct.SvgFeatures.html">SvgFeatures</a>: u32 {
 <a href=#1821 id=1821 data-nosnippet>1821</a>        <span class="doccomment">/// Whether to run animations. If disabled,
 <a href=#1822 id=1822 data-nosnippet>1822</a>        ///   state changes are applied without transitions
 <a href=#1823 id=1823 data-nosnippet>1823</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_SVG_ANIMATIONS"</span>)]
@@ -2016,7 +2016,7 @@
 <a href=#1943 id=1943 data-nosnippet>1943</a>    </span><span class="attr">#[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_16"</span>)))]
 <a href=#1944 id=1944 data-nosnippet>1944</a>    #[derive(<a href="https://doc.rust-lang.org/nightly/core/clone/derive.Clone.html">Clone</a>, <a href="https://doc.rust-lang.org/nightly/core/marker/derive.Copy.html">Copy</a>, <a href="https://doc.rust-lang.org/nightly/core/fmt/macros/derive.Debug.html">Debug</a>, <a href="https://doc.rust-lang.org/nightly/core/cmp/derive.PartialEq.html">PartialEq</a>, <a href="https://doc.rust-lang.org/nightly/core/cmp/derive.Eq.html">Eq</a>, <a href="https://doc.rust-lang.org/nightly/core/hash/macros/derive.Hash.html">Hash</a>)]
 <a href=#1945 id=1945 data-nosnippet>1945</a>    #[doc(alias = <span class="string">"GtkTextBufferNotifyFlags"</span>)]
-<a href=#1946 id=1946 data-nosnippet>1946</a>    </span><span class="kw">pub struct </span><a href="#1940-1964">TextBufferNotifyFlags</a>: u32 {
+<a href=#1946 id=1946 data-nosnippet>1946</a>    </span><span class="kw">pub struct </span><a href="../../../gtk4/struct.TextBufferNotifyFlags.html">TextBufferNotifyFlags</a>: u32 {
 <a href=#1947 id=1947 data-nosnippet>1947</a>        <span class="doccomment">/// Be notified before text
 <a href=#1948 id=1948 data-nosnippet>1948</a>        ///   is inserted into the underlying buffer.
 <a href=#1949 id=1949 data-nosnippet>1949</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_TEXT_BUFFER_NOTIFY_BEFORE_INSERT"</span>)]
@@ -2135,7 +2135,7 @@
 <a href=#2062 id=2062 data-nosnippet>2062</a>    /// match embedded paintables or child widgets.
 <a href=#2063 id=2063 data-nosnippet>2063</a>    </span><span class="attr">#[derive(<a href="https://doc.rust-lang.org/nightly/core/clone/derive.Clone.html">Clone</a>, <a href="https://doc.rust-lang.org/nightly/core/marker/derive.Copy.html">Copy</a>, <a href="https://doc.rust-lang.org/nightly/core/fmt/macros/derive.Debug.html">Debug</a>, <a href="https://doc.rust-lang.org/nightly/core/cmp/derive.PartialEq.html">PartialEq</a>, <a href="https://doc.rust-lang.org/nightly/core/cmp/derive.Eq.html">Eq</a>, <a href="https://doc.rust-lang.org/nightly/core/hash/macros/derive.Hash.html">Hash</a>)]
 <a href=#2064 id=2064 data-nosnippet>2064</a>    #[doc(alias = <span class="string">"GtkTextSearchFlags"</span>)]
-<a href=#2065 id=2065 data-nosnippet>2065</a>    </span><span class="kw">pub struct </span><a href="#2057-2079">TextSearchFlags</a>: u32 {
+<a href=#2065 id=2065 data-nosnippet>2065</a>    </span><span class="kw">pub struct </span><a href="../../../gtk4/struct.TextSearchFlags.html">TextSearchFlags</a>: u32 {
 <a href=#2066 id=2066 data-nosnippet>2066</a>        <span class="doccomment">/// Search only visible data. A search match may
 <a href=#2067 id=2067 data-nosnippet>2067</a>        /// have invisible text interspersed.
 <a href=#2068 id=2068 data-nosnippet>2068</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_TEXT_SEARCH_VISIBLE_ONLY"</span>)]
@@ -2240,7 +2240,7 @@
 <a href=#2167 id=2167 data-nosnippet>2167</a>    </span><span class="attr">#[cfg_attr(feature = <span class="string">"v4_10"</span>, deprecated = <span class="string">"Since 4.10"</span>)]
 <a href=#2168 id=2168 data-nosnippet>2168</a>    #[derive(<a href="https://doc.rust-lang.org/nightly/core/clone/derive.Clone.html">Clone</a>, <a href="https://doc.rust-lang.org/nightly/core/marker/derive.Copy.html">Copy</a>, <a href="https://doc.rust-lang.org/nightly/core/fmt/macros/derive.Debug.html">Debug</a>, <a href="https://doc.rust-lang.org/nightly/core/cmp/derive.PartialEq.html">PartialEq</a>, <a href="https://doc.rust-lang.org/nightly/core/cmp/derive.Eq.html">Eq</a>, <a href="https://doc.rust-lang.org/nightly/core/hash/macros/derive.Hash.html">Hash</a>)]
 <a href=#2169 id=2169 data-nosnippet>2169</a>    #[doc(alias = <span class="string">"GtkTreeModelFlags"</span>)]
-<a href=#2170 id=2170 data-nosnippet>2170</a>    </span><span class="kw">pub struct </span><a href="#2156-2180">TreeModelFlags</a>: u32 {
+<a href=#2170 id=2170 data-nosnippet>2170</a>    </span><span class="kw">pub struct </span><a href="../../../gtk4/struct.TreeModelFlags.html">TreeModelFlags</a>: u32 {
 <a href=#2171 id=2171 data-nosnippet>2171</a>        <span class="doccomment">/// iterators survive all signals
 <a href=#2172 id=2172 data-nosnippet>2172</a>        ///   emitted by the tree
 <a href=#2173 id=2173 data-nosnippet>2173</a>        </span><span class="attr">#[doc(alias = <span class="string">"GTK_TREE_MODEL_ITERS_PERSIST"</span>)]

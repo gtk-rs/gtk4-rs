@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gdk4/sys/src/lib.rs`."><title>lib.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-1ed95124.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gdk4_sys" data-themes="" data-resource-suffix="" data-rustdoc-version="1.98.0-nightly (c1b22f44c 2026-06-17)" data-channel="nightly" data-search-js="search-fd9372ac.js" data-stringdex-js="stringdex-2da4960a.js" data-settings-js="settings-170eb4bf.js" ><script src="../../static.files/storage-41dd4d93.js"></script><script defer src="../../static.files/src-script-813739b1.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-fcd733ba.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-f7c3ffd8.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><a class="skip-main-content" href="#main-content">Skip to main content</a><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gdk4/sys/src/lib.rs`."><title>lib.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-1ed95124.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gdk4_sys" data-themes="" data-resource-suffix="" data-rustdoc-version="1.98.0-nightly (91fe22da8 2026-06-21)" data-channel="nightly" data-search-js="search-fd9372ac.js" data-stringdex-js="stringdex-2da4960a.js" data-settings-js="settings-170eb4bf.js" ><script src="../../static.files/storage-41dd4d93.js"></script><script defer src="../../static.files/src-script-813739b1.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-417ebf0a.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-f7c3ffd8.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><a class="skip-main-content" href="#main-content">Skip to main content</a><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
 
@@ -3152,7 +3152,7 @@
 <a href=#3079 id=3079 data-nosnippet>3079</a>
 <a href=#3080 id=3080 data-nosnippet>3080</a><span class="attr">#[derive(<a href="https://doc.rust-lang.org/nightly/core/marker/derive.Copy.html">Copy</a>, <a href="https://doc.rust-lang.org/nightly/core/clone/derive.Clone.html">Clone</a>)]
 <a href=#3081 id=3081 data-nosnippet>3081</a>#[repr(C)]
-<a href=#3082 id=3082 data-nosnippet>3082</a></span><span class="kw">pub struct </span><a href="#3082-3117">GdkContentProviderClass</a> {
+<a href=#3082 id=3082 data-nosnippet>3082</a></span><span class="kw">pub struct </span><a href="../../gdk4_sys/struct.GdkContentProviderClass.html">GdkContentProviderClass</a> {
 <a href=#3083 id=3083 data-nosnippet>3083</a>    <span class="kw">pub </span>parent_class: gobject::GObjectClass,
 <a href=#3084 id=3084 data-nosnippet>3084</a>    <span class="kw">pub </span>content_changed: <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;<span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn</span>(<span class="kw-2">*mut </span><a href="#3585-3587">GdkContentProvider</a>)&gt;,
 <a href=#3085 id=3085 data-nosnippet>3085</a>    <span class="kw">pub </span>attach_clipboard: <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;<span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn</span>(<span class="kw-2">*mut </span><a href="#3585-3587">GdkContentProvider</a>, <span class="kw-2">*mut </span><a href="#3558-3561">GdkClipboard</a>)&gt;,
@@ -3343,7 +3343,7 @@
 <a href=#3270 id=3270 data-nosnippet>3270</a>
 <a href=#3271 id=3271 data-nosnippet>3271</a><span class="attr">#[derive(<a href="https://doc.rust-lang.org/nightly/core/marker/derive.Copy.html">Copy</a>, <a href="https://doc.rust-lang.org/nightly/core/clone/derive.Clone.html">Clone</a>)]
 <a href=#3272 id=3272 data-nosnippet>3272</a>#[repr(C)]
-<a href=#3273 id=3273 data-nosnippet>3273</a></span><span class="kw">pub struct </span><a href="#3273-3277">GdkKeymapKey</a> {
+<a href=#3273 id=3273 data-nosnippet>3273</a></span><span class="kw">pub struct </span><a href="../../gdk4_sys/struct.GdkKeymapKey.html">GdkKeymapKey</a> {
 <a href=#3274 id=3274 data-nosnippet>3274</a>    <span class="kw">pub </span>keycode: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_uint.html">c_uint</a>,
 <a href=#3275 id=3275 data-nosnippet>3275</a>    <span class="kw">pub </span>group: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>,
 <a href=#3276 id=3276 data-nosnippet>3276</a>    <span class="kw">pub </span>level: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>,
@@ -3388,7 +3388,7 @@
 <a href=#3315 id=3315 data-nosnippet>3315</a>
 <a href=#3316 id=3316 data-nosnippet>3316</a><span class="attr">#[derive(<a href="https://doc.rust-lang.org/nightly/core/marker/derive.Copy.html">Copy</a>, <a href="https://doc.rust-lang.org/nightly/core/clone/derive.Clone.html">Clone</a>)]
 <a href=#3317 id=3317 data-nosnippet>3317</a>#[repr(C)]
-<a href=#3318 id=3318 data-nosnippet>3318</a></span><span class="kw">pub struct </span><a href="#3318-3327">GdkPaintableInterface</a> {
+<a href=#3318 id=3318 data-nosnippet>3318</a></span><span class="kw">pub struct </span><a href="../../gdk4_sys/struct.GdkPaintableInterface.html">GdkPaintableInterface</a> {
 <a href=#3319 id=3319 data-nosnippet>3319</a>    <span class="kw">pub </span>g_iface: gobject::GTypeInterface,
 <a href=#3320 id=3320 data-nosnippet>3320</a>    <span class="kw">pub </span>snapshot:
 <a href=#3321 id=3321 data-nosnippet>3321</a>        <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;<span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn</span>(<span class="kw-2">*mut </span><a href="#4115-4118">GdkPaintable</a>, <span class="kw-2">*mut </span><a href="#4007-4010">GdkSnapshot</a>, <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_double.html">c_double</a>, <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_double.html">c_double</a>)&gt;,
@@ -3440,7 +3440,7 @@
 <a href=#3367 id=3367 data-nosnippet>3367</a>
 <a href=#3368 id=3368 data-nosnippet>3368</a><span class="attr">#[derive(<a href="https://doc.rust-lang.org/nightly/core/marker/derive.Copy.html">Copy</a>, <a href="https://doc.rust-lang.org/nightly/core/clone/derive.Clone.html">Clone</a>)]
 <a href=#3369 id=3369 data-nosnippet>3369</a>#[repr(C)]
-<a href=#3370 id=3370 data-nosnippet>3370</a></span><span class="kw">pub struct </span><a href="#3370-3375">GdkRGBA</a> {
+<a href=#3370 id=3370 data-nosnippet>3370</a></span><span class="kw">pub struct </span><a href="../../gdk4_sys/struct.GdkRGBA.html">GdkRGBA</a> {
 <a href=#3371 id=3371 data-nosnippet>3371</a>    <span class="kw">pub </span>red: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_float.html">c_float</a>,
 <a href=#3372 id=3372 data-nosnippet>3372</a>    <span class="kw">pub </span>green: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_float.html">c_float</a>,
 <a href=#3373 id=3373 data-nosnippet>3373</a>    <span class="kw">pub </span>blue: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_float.html">c_float</a>,
@@ -3460,7 +3460,7 @@
 <a href=#3387 id=3387 data-nosnippet>3387</a>
 <a href=#3388 id=3388 data-nosnippet>3388</a><span class="attr">#[derive(<a href="https://doc.rust-lang.org/nightly/core/marker/derive.Copy.html">Copy</a>, <a href="https://doc.rust-lang.org/nightly/core/clone/derive.Clone.html">Clone</a>)]
 <a href=#3389 id=3389 data-nosnippet>3389</a>#[repr(C)]
-<a href=#3390 id=3390 data-nosnippet>3390</a></span><span class="kw">pub struct </span><a href="#3390-3395">GdkRectangle</a> {
+<a href=#3390 id=3390 data-nosnippet>3390</a></span><span class="kw">pub struct </span><a href="../../gdk4_sys/struct.GdkRectangle.html">GdkRectangle</a> {
 <a href=#3391 id=3391 data-nosnippet>3391</a>    <span class="kw">pub </span>x: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>,
 <a href=#3392 id=3392 data-nosnippet>3392</a>    <span class="kw">pub </span>y: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>,
 <a href=#3393 id=3393 data-nosnippet>3393</a>    <span class="kw">pub </span>width: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>,
@@ -3521,7 +3521,7 @@
 <a href=#3448 id=3448 data-nosnippet>3448</a>
 <a href=#3449 id=3449 data-nosnippet>3449</a><span class="attr">#[derive(<a href="https://doc.rust-lang.org/nightly/core/marker/derive.Copy.html">Copy</a>, <a href="https://doc.rust-lang.org/nightly/core/clone/derive.Clone.html">Clone</a>)]
 <a href=#3450 id=3450 data-nosnippet>3450</a>#[repr(C)]
-<a href=#3451 id=3451 data-nosnippet>3451</a></span><span class="kw">pub struct </span><a href="#3451-3455">GdkTimeCoord</a> {
+<a href=#3451 id=3451 data-nosnippet>3451</a></span><span class="kw">pub struct </span><a href="../../gdk4_sys/struct.GdkTimeCoord.html">GdkTimeCoord</a> {
 <a href=#3452 id=3452 data-nosnippet>3452</a>    <span class="kw">pub </span>time: <a href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>,
 <a href=#3453 id=3453 data-nosnippet>3453</a>    <span class="kw">pub </span>flags: <a href="#2898">GdkAxisFlags</a>,
 <a href=#3454 id=3454 data-nosnippet>3454</a>    <span class="kw">pub </span>axes: [<a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_double.html">c_double</a>; <span class="number">12</span>],
@@ -3655,7 +3655,7 @@
 <a href=#3582 id=3582 data-nosnippet>3582</a>
 <a href=#3583 id=3583 data-nosnippet>3583</a><span class="attr">#[derive(<a href="https://doc.rust-lang.org/nightly/core/marker/derive.Copy.html">Copy</a>, <a href="https://doc.rust-lang.org/nightly/core/clone/derive.Clone.html">Clone</a>)]
 <a href=#3584 id=3584 data-nosnippet>3584</a>#[repr(C)]
-<a href=#3585 id=3585 data-nosnippet>3585</a></span><span class="kw">pub struct </span><a href="#3585-3587">GdkContentProvider</a> {
+<a href=#3585 id=3585 data-nosnippet>3585</a></span><span class="kw">pub struct </span><a href="../../gdk4_sys/struct.GdkContentProvider.html">GdkContentProvider</a> {
 <a href=#3586 id=3586 data-nosnippet>3586</a>    <span class="kw">pub </span>parent: gobject::GObject,
 <a href=#3587 id=3587 data-nosnippet>3587</a>}
 <a href=#3588 id=3588 data-nosnippet>3588</a>
@@ -4063,7 +4063,7 @@
 <a href=#3990 id=3990 data-nosnippet>3990</a>
 <a href=#3991 id=3991 data-nosnippet>3991</a><span class="attr">#[derive(<a href="https://doc.rust-lang.org/nightly/core/marker/derive.Copy.html">Copy</a>, <a href="https://doc.rust-lang.org/nightly/core/clone/derive.Clone.html">Clone</a>)]
 <a href=#3992 id=3992 data-nosnippet>3992</a>#[repr(C)]
-<a href=#3993 id=3993 data-nosnippet>3993</a></span><span class="kw">pub struct </span><a href="#3993-3995">GdkSeat</a> {
+<a href=#3993 id=3993 data-nosnippet>3993</a></span><span class="kw">pub struct </span><a href="../../gdk4_sys/struct.GdkSeat.html">GdkSeat</a> {
 <a href=#3994 id=3994 data-nosnippet>3994</a>    <span class="kw">pub </span>parent_instance: gobject::GObject,
 <a href=#3995 id=3995 data-nosnippet>3995</a>}
 <a href=#3996 id=3996 data-nosnippet>3996</a>
