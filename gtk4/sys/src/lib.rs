@@ -11928,6 +11928,12 @@ unsafe extern "C" {
         first: *mut GtkShortcutTrigger,
         second: *mut GtkShortcutTrigger,
     ) -> *mut GtkShortcutTrigger;
+    #[cfg(feature = "v4_24")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+    pub fn gtk_alternative_trigger_newv(
+        triggers: *mut *mut GtkShortcutTrigger,
+        n_triggers: size_t,
+    ) -> *mut GtkShortcutTrigger;
     pub fn gtk_alternative_trigger_get_first(
         self_: *mut GtkAlternativeTrigger,
     ) -> *mut GtkShortcutTrigger;
@@ -18456,6 +18462,15 @@ unsafe extern "C" {
     //=========================================================================
     pub fn gtk_shortcut_trigger_get_type() -> GType;
     pub fn gtk_shortcut_trigger_parse_string(string: *const c_char) -> *mut GtkShortcutTrigger;
+    #[cfg(feature = "v4_24")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+    pub fn gtk_shortcut_trigger_create_for_menu() -> *mut GtkShortcutTrigger;
+    #[cfg(feature = "v4_24")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+    pub fn gtk_shortcut_trigger_create_with_aliases(
+        keyval: c_uint,
+        modifiers: gdk::GdkModifierType,
+    ) -> *mut GtkShortcutTrigger;
     pub fn gtk_shortcut_trigger_compare(trigger1: gconstpointer, trigger2: gconstpointer) -> c_int;
     pub fn gtk_shortcut_trigger_equal(trigger1: gconstpointer, trigger2: gconstpointer)
     -> gboolean;

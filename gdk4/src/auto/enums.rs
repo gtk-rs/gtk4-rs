@@ -2018,6 +2018,8 @@ pub enum MemoryFormat {
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
     #[doc(alias = "GDK_MEMORY_XRGB2101010")]
     Xrgb2101010,
+    #[cfg(feature = "v4_24")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
     #[doc(alias = "GDK_MEMORY_ABGR2101010_PREMULTIPLIED")]
     Abgr2101010Premultiplied,
     #[cfg(feature = "v4_24")]
@@ -2169,6 +2171,7 @@ impl IntoGlib for MemoryFormat {
             Self::Argb2101010 => ffi::GDK_MEMORY_ARGB2101010,
             #[cfg(feature = "v4_24")]
             Self::Xrgb2101010 => ffi::GDK_MEMORY_XRGB2101010,
+            #[cfg(feature = "v4_24")]
             Self::Abgr2101010Premultiplied => ffi::GDK_MEMORY_ABGR2101010_PREMULTIPLIED,
             #[cfg(feature = "v4_24")]
             Self::Abgr2101010 => ffi::GDK_MEMORY_ABGR2101010,
@@ -2316,6 +2319,7 @@ impl FromGlib<ffi::GdkMemoryFormat> for MemoryFormat {
             ffi::GDK_MEMORY_ARGB2101010 => Self::Argb2101010,
             #[cfg(feature = "v4_24")]
             ffi::GDK_MEMORY_XRGB2101010 => Self::Xrgb2101010,
+            #[cfg(feature = "v4_24")]
             ffi::GDK_MEMORY_ABGR2101010_PREMULTIPLIED => Self::Abgr2101010Premultiplied,
             #[cfg(feature = "v4_24")]
             ffi::GDK_MEMORY_ABGR2101010 => Self::Abgr2101010,
