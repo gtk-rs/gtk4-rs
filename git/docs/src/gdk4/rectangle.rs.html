@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gdk4/src/rectangle.rs`."><title>rectangle.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-1ed95124.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gdk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.98.0-nightly (4429659e4 2026-06-22)" data-channel="nightly" data-search-js="search-fd9372ac.js" data-stringdex-js="stringdex-2da4960a.js" data-settings-js="settings-170eb4bf.js" ><script src="../../static.files/storage-41dd4d93.js"></script><script defer src="../../static.files/src-script-813739b1.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-417ebf0a.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-f7c3ffd8.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><a class="skip-main-content" href="#main-content">Skip to main content</a><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gdk4/src/rectangle.rs`."><title>rectangle.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-1ed95124.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gdk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.98.0-nightly (df6ee909e 2026-06-28)" data-channel="nightly" data-search-js="search-9944d736.js" data-stringdex-js="stringdex-2da4960a.js" data-settings-js="settings-170eb4bf.js" ><script src="../../static.files/storage-41dd4d93.js"></script><script defer src="../../static.files/src-script-813739b1.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-417ebf0a.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-f7c3ffd8.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><a class="skip-main-content" href="#main-content">Skip to main content</a><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
 
@@ -78,9 +78,9 @@
 <a href=#5 id=5 data-nosnippet>5</a><span class="kw">use </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/cairo/rectangle_int/struct.RectangleInt.html">cairo::RectangleInt</a>;
 <a href=#6 id=6 data-nosnippet>6</a><span class="kw">use </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/index.html">glib::translate</a>::<span class="kw-2">*</span>;
 <a href=#7 id=7 data-nosnippet>7</a>
-<a href=#8 id=8 data-nosnippet>8</a><span class="kw">use </span><a href="auto/rectangle.rs.html#8-31"><span class="kw">crate</span>::Rectangle</a>;
+<a href=#8 id=8 data-nosnippet>8</a><span class="kw">use </span><a href="auto/rectangle.rs.html#8-29"><span class="kw">crate</span>::Rectangle</a>;
 <a href=#9 id=9 data-nosnippet>9</a>
-<a href=#10 id=10 data-nosnippet>10</a><span class="kw">impl </span><a href="auto/rectangle.rs.html#8-31">Rectangle</a> {
+<a href=#10 id=10 data-nosnippet>10</a><span class="kw">impl </span><a href="auto/rectangle.rs.html#8-29">Rectangle</a> {
 <a href=#11 id=11 data-nosnippet>11</a>    <span class="attr">#[inline]
 <a href=#12 id=12 data-nosnippet>12</a>    </span><span class="kw">pub fn </span>new(x: <a href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, y: <a href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, width: <a href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, height: <a href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) -&gt; <span class="self">Self </span>{
 <a href=#13 id=13 data-nosnippet>13</a>        <span class="macro">skip_assert_initialized!</span>();
@@ -135,7 +135,7 @@
 <a href=#62 id=62 data-nosnippet>62</a>    }
 <a href=#63 id=63 data-nosnippet>63</a>}
 <a href=#64 id=64 data-nosnippet>64</a>
-<a href=#65 id=65 data-nosnippet>65</a><span class="kw">impl </span><a href="https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html">fmt::Debug</a> <span class="kw">for </span><a href="auto/rectangle.rs.html#8-31">Rectangle</a> {
+<a href=#65 id=65 data-nosnippet>65</a><span class="kw">impl </span><a href="https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html">fmt::Debug</a> <span class="kw">for </span><a href="auto/rectangle.rs.html#8-29">Rectangle</a> {
 <a href=#66 id=66 data-nosnippet>66</a>    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>fmt::<a href="https://doc.rust-lang.org/nightly/core/fmt/struct.Formatter.html">Formatter</a>) -&gt; fmt::<a href="https://doc.rust-lang.org/nightly/core/fmt/type.Result.html">Result</a> {
 <a href=#67 id=67 data-nosnippet>67</a>        <a href="#66">f</a>.<a href="https://doc.rust-lang.org/nightly/core/fmt/struct.Formatter.html#method.debug_struct">debug_struct</a>(<span class="string">"Rectangle"</span>)
 <a href=#68 id=68 data-nosnippet>68</a>            .<a href="https://doc.rust-lang.org/nightly/core/fmt/builders/struct.DebugStruct.html#method.field">field</a>(<span class="string">"x"</span>, <span class="kw-2">&amp;</span><a class="self" href="#66">self</a>.<a href="#25-27">x</a>())
@@ -146,14 +146,14 @@
 <a href=#73 id=73 data-nosnippet>73</a>    }
 <a href=#74 id=74 data-nosnippet>74</a>}
 <a href=#75 id=75 data-nosnippet>75</a>
-<a href=#76 id=76 data-nosnippet>76</a><span class="kw">impl </span><a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html">AsRef</a>&lt;<a href="https://gtk-rs.org/gtk-rs-core/git/docs/cairo/rectangle_int/struct.RectangleInt.html">RectangleInt</a>&gt; <span class="kw">for </span><a href="auto/rectangle.rs.html#8-31">Rectangle</a> {
+<a href=#76 id=76 data-nosnippet>76</a><span class="kw">impl </span><a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html">AsRef</a>&lt;<a href="https://gtk-rs.org/gtk-rs-core/git/docs/cairo/rectangle_int/struct.RectangleInt.html">RectangleInt</a>&gt; <span class="kw">for </span><a href="auto/rectangle.rs.html#8-29">Rectangle</a> {
 <a href=#77 id=77 data-nosnippet>77</a>    <span class="attr">#[inline]
 <a href=#78 id=78 data-nosnippet>78</a>    </span><span class="kw">fn </span>as_ref(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/cairo/rectangle_int/struct.RectangleInt.html">RectangleInt</a> {
 <a href=#79 id=79 data-nosnippet>79</a>        <span class="kw">unsafe </span>{ <span class="kw-2">&amp;*</span>(<a class="self" href="#78">self</a> <span class="kw">as </span><span class="kw-2">*const </span><span class="kw">_ as </span><span class="kw-2">*const </span><span class="kw">_</span>) }
 <a href=#80 id=80 data-nosnippet>80</a>    }
 <a href=#81 id=81 data-nosnippet>81</a>}
 <a href=#82 id=82 data-nosnippet>82</a>
-<a href=#83 id=83 data-nosnippet>83</a><span class="kw">impl </span><a href="https://doc.rust-lang.org/nightly/core/convert/trait.From.html">From</a>&lt;<a href="https://gtk-rs.org/gtk-rs-core/git/docs/cairo/rectangle_int/struct.RectangleInt.html">RectangleInt</a>&gt; <span class="kw">for </span><a href="auto/rectangle.rs.html#8-31">Rectangle</a> {
+<a href=#83 id=83 data-nosnippet>83</a><span class="kw">impl </span><a href="https://doc.rust-lang.org/nightly/core/convert/trait.From.html">From</a>&lt;<a href="https://gtk-rs.org/gtk-rs-core/git/docs/cairo/rectangle_int/struct.RectangleInt.html">RectangleInt</a>&gt; <span class="kw">for </span><a href="auto/rectangle.rs.html#8-29">Rectangle</a> {
 <a href=#84 id=84 data-nosnippet>84</a>    <span class="attr">#[inline]
 <a href=#85 id=85 data-nosnippet>85</a>    </span><span class="kw">fn </span>from(r: <a href="https://gtk-rs.org/gtk-rs-core/git/docs/cairo/rectangle_int/struct.RectangleInt.html">RectangleInt</a>) -&gt; <span class="self">Self </span>{
 <a href=#86 id=86 data-nosnippet>86</a>        <span class="macro">skip_assert_initialized!</span>();
@@ -161,15 +161,15 @@
 <a href=#88 id=88 data-nosnippet>88</a>    }
 <a href=#89 id=89 data-nosnippet>89</a>}
 <a href=#90 id=90 data-nosnippet>90</a>
-<a href=#91 id=91 data-nosnippet>91</a><span class="kw">impl </span><a href="https://doc.rust-lang.org/nightly/core/convert/trait.From.html">From</a>&lt;<a href="auto/rectangle.rs.html#8-31">Rectangle</a>&gt; <span class="kw">for </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/cairo/rectangle_int/struct.RectangleInt.html">RectangleInt</a> {
+<a href=#91 id=91 data-nosnippet>91</a><span class="kw">impl </span><a href="https://doc.rust-lang.org/nightly/core/convert/trait.From.html">From</a>&lt;<a href="auto/rectangle.rs.html#8-29">Rectangle</a>&gt; <span class="kw">for </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/cairo/rectangle_int/struct.RectangleInt.html">RectangleInt</a> {
 <a href=#92 id=92 data-nosnippet>92</a>    <span class="attr">#[inline]
-<a href=#93 id=93 data-nosnippet>93</a>    </span><span class="kw">fn </span>from(r: <a href="auto/rectangle.rs.html#8-31">Rectangle</a>) -&gt; <span class="self">Self </span>{
+<a href=#93 id=93 data-nosnippet>93</a>    </span><span class="kw">fn </span>from(r: <a href="auto/rectangle.rs.html#8-29">Rectangle</a>) -&gt; <span class="self">Self </span>{
 <a href=#94 id=94 data-nosnippet>94</a>        <span class="macro">skip_assert_initialized!</span>();
 <a href=#95 id=95 data-nosnippet>95</a>        <span class="kw">unsafe </span>{ <span class="kw-2">*</span>(<span class="kw-2">&amp;</span><a href="#93">r</a> <span class="kw">as </span><span class="kw-2">*const </span><span class="kw">_ as </span><span class="kw-2">*const </span><span class="kw">_</span>) }
 <a href=#96 id=96 data-nosnippet>96</a>    }
 <a href=#97 id=97 data-nosnippet>97</a>}
 <a href=#98 id=98 data-nosnippet>98</a>
-<a href=#99 id=99 data-nosnippet>99</a><span class="kw">impl </span><a href="https://doc.rust-lang.org/nightly/core/convert/trait.From.html">From</a>&lt;cairo::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/cairo/rectangle/struct.Rectangle.html">Rectangle</a>&gt; <span class="kw">for </span><a href="auto/rectangle.rs.html#8-31">Rectangle</a> {
+<a href=#99 id=99 data-nosnippet>99</a><span class="kw">impl </span><a href="https://doc.rust-lang.org/nightly/core/convert/trait.From.html">From</a>&lt;cairo::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/cairo/rectangle/struct.Rectangle.html">Rectangle</a>&gt; <span class="kw">for </span><a href="auto/rectangle.rs.html#8-29">Rectangle</a> {
 <a href=#100 id=100 data-nosnippet>100</a>    <span class="comment">// rustdoc-stripper-ignore-next
 <a href=#101 id=101 data-nosnippet>101</a>    </span><span class="doccomment">/// Note that converting between a [`cairo::Rectangle`] and [`Rectangle`]
 <a href=#102 id=102 data-nosnippet>102</a>    /// will probably lead to precisison errors. Use cautiously.
@@ -185,9 +185,9 @@
 <a href=#112 id=112 data-nosnippet>112</a>    }
 <a href=#113 id=113 data-nosnippet>113</a>}
 <a href=#114 id=114 data-nosnippet>114</a>
-<a href=#115 id=115 data-nosnippet>115</a><span class="kw">impl </span><a href="https://doc.rust-lang.org/nightly/core/convert/trait.From.html">From</a>&lt;<a href="auto/rectangle.rs.html#8-31">Rectangle</a>&gt; <span class="kw">for </span>cairo::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/cairo/rectangle/struct.Rectangle.html">Rectangle</a> {
+<a href=#115 id=115 data-nosnippet>115</a><span class="kw">impl </span><a href="https://doc.rust-lang.org/nightly/core/convert/trait.From.html">From</a>&lt;<a href="auto/rectangle.rs.html#8-29">Rectangle</a>&gt; <span class="kw">for </span>cairo::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/cairo/rectangle/struct.Rectangle.html">Rectangle</a> {
 <a href=#116 id=116 data-nosnippet>116</a>    <span class="attr">#[inline]
-<a href=#117 id=117 data-nosnippet>117</a>    </span><span class="kw">fn </span>from(r: <a href="auto/rectangle.rs.html#8-31">Rectangle</a>) -&gt; <span class="self">Self </span>{
+<a href=#117 id=117 data-nosnippet>117</a>    </span><span class="kw">fn </span>from(r: <a href="auto/rectangle.rs.html#8-29">Rectangle</a>) -&gt; <span class="self">Self </span>{
 <a href=#118 id=118 data-nosnippet>118</a>        <span class="macro">skip_assert_initialized!</span>();
 <a href=#119 id=119 data-nosnippet>119</a>        cairo::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/cairo/rectangle/struct.Rectangle.html">Rectangle</a>::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/cairo/rectangle/struct.Rectangle.html#method.new">new</a>(
 <a href=#120 id=120 data-nosnippet>120</a>            <a href="#117">r</a>.<a href="#25-27">x</a>() <span class="kw">as </span><a href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>,
@@ -198,7 +198,7 @@
 <a href=#125 id=125 data-nosnippet>125</a>    }
 <a href=#126 id=126 data-nosnippet>126</a>}
 <a href=#127 id=127 data-nosnippet>127</a>
-<a href=#128 id=128 data-nosnippet>128</a><span class="kw">impl </span><a href="https://doc.rust-lang.org/nightly/core/convert/trait.From.html">From</a>&lt;pango::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/pango/rectangle/struct.Rectangle.html">Rectangle</a>&gt; <span class="kw">for </span><a href="auto/rectangle.rs.html#8-31">Rectangle</a> {
+<a href=#128 id=128 data-nosnippet>128</a><span class="kw">impl </span><a href="https://doc.rust-lang.org/nightly/core/convert/trait.From.html">From</a>&lt;pango::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/pango/rectangle/struct.Rectangle.html">Rectangle</a>&gt; <span class="kw">for </span><a href="auto/rectangle.rs.html#8-29">Rectangle</a> {
 <a href=#129 id=129 data-nosnippet>129</a>    <span class="attr">#[inline]
 <a href=#130 id=130 data-nosnippet>130</a>    </span><span class="kw">fn </span>from(r: pango::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/pango/rectangle/struct.Rectangle.html">Rectangle</a>) -&gt; <span class="self">Self </span>{
 <a href=#131 id=131 data-nosnippet>131</a>        <span class="macro">skip_assert_initialized!</span>();
@@ -206,9 +206,9 @@
 <a href=#133 id=133 data-nosnippet>133</a>    }
 <a href=#134 id=134 data-nosnippet>134</a>}
 <a href=#135 id=135 data-nosnippet>135</a>
-<a href=#136 id=136 data-nosnippet>136</a><span class="kw">impl </span><a href="https://doc.rust-lang.org/nightly/core/convert/trait.From.html">From</a>&lt;<a href="auto/rectangle.rs.html#8-31">Rectangle</a>&gt; <span class="kw">for </span>pango::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/pango/rectangle/struct.Rectangle.html">Rectangle</a> {
+<a href=#136 id=136 data-nosnippet>136</a><span class="kw">impl </span><a href="https://doc.rust-lang.org/nightly/core/convert/trait.From.html">From</a>&lt;<a href="auto/rectangle.rs.html#8-29">Rectangle</a>&gt; <span class="kw">for </span>pango::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/pango/rectangle/struct.Rectangle.html">Rectangle</a> {
 <a href=#137 id=137 data-nosnippet>137</a>    <span class="attr">#[inline]
-<a href=#138 id=138 data-nosnippet>138</a>    </span><span class="kw">fn </span>from(r: <a href="auto/rectangle.rs.html#8-31">Rectangle</a>) -&gt; <span class="self">Self </span>{
+<a href=#138 id=138 data-nosnippet>138</a>    </span><span class="kw">fn </span>from(r: <a href="auto/rectangle.rs.html#8-29">Rectangle</a>) -&gt; <span class="self">Self </span>{
 <a href=#139 id=139 data-nosnippet>139</a>        <span class="macro">skip_assert_initialized!</span>();
 <a href=#140 id=140 data-nosnippet>140</a>        <span class="self">Self</span>::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/pango/rectangle/struct.Rectangle.html#method.new">new</a>(<a href="#138">r</a>.<a href="#25-27">x</a>(), <a href="#138">r</a>.<a href="#35-37">y</a>(), <a href="#138">r</a>.<a href="#45-47">width</a>(), <a href="#138">r</a>.<a href="#55-57">height</a>())
 <a href=#141 id=141 data-nosnippet>141</a>    }

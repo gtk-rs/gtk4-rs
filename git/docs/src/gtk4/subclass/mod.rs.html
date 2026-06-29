@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/subclass/mod.rs`."><title>mod.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-1ed95124.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.98.0-nightly (4429659e4 2026-06-22)" data-channel="nightly" data-search-js="search-fd9372ac.js" data-stringdex-js="stringdex-2da4960a.js" data-settings-js="settings-170eb4bf.js" ><script src="../../../static.files/storage-41dd4d93.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-417ebf0a.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-f7c3ffd8.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><a class="skip-main-content" href="#main-content">Skip to main content</a><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/subclass/mod.rs`."><title>mod.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-1ed95124.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.98.0-nightly (df6ee909e 2026-06-28)" data-channel="nightly" data-search-js="search-9944d736.js" data-stringdex-js="stringdex-2da4960a.js" data-settings-js="settings-170eb4bf.js" ><script src="../../../static.files/storage-41dd4d93.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-417ebf0a.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-f7c3ffd8.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><a class="skip-main-content" href="#main-content">Skip to main content</a><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
 
@@ -105,7 +105,7 @@
 <a href=#32 id=32 data-nosnippet>32</a><span class="kw">mod </span><a href="buildable_parser.rs.html#3-203">buildable_parser</a>;
 <a href=#33 id=33 data-nosnippet>33</a><span class="kw">pub mod </span><a href="builder_scope.rs.html#4-193">builder_scope</a>;
 <a href=#34 id=34 data-nosnippet>34</a><span class="kw">pub mod </span><a href="button.rs.html#4-73">button</a>;
-<a href=#35 id=35 data-nosnippet>35</a><span class="kw">pub mod </span><a href="cell_area.rs.html#4-1306">cell_area</a>;
+<a href=#35 id=35 data-nosnippet>35</a><span class="kw">pub mod </span><a href="cell_area.rs.html#4-1292">cell_area</a>;
 <a href=#36 id=36 data-nosnippet>36</a><span class="kw">pub mod </span><a href="cell_area_context.rs.html#4-271">cell_area_context</a>;
 <a href=#37 id=37 data-nosnippet>37</a><span class="kw">pub mod </span><a href="cell_editable.rs.html#4-126">cell_editable</a>;
 <a href=#38 id=38 data-nosnippet>38</a><span class="kw">pub mod </span><a href="cell_layout.rs.html#4-419">cell_layout</a>;
@@ -113,7 +113,7 @@
 <a href=#40 id=40 data-nosnippet>40</a><span class="kw">pub mod </span><a href="cell_renderer_text.rs.html#4-66">cell_renderer_text</a>;
 <a href=#41 id=41 data-nosnippet>41</a><span class="kw">pub mod </span><a href="check_button.rs.html#4-83">check_button</a>;
 <a href=#42 id=42 data-nosnippet>42</a><span class="kw">pub mod </span><a href="color_chooser.rs.html#4-182">color_chooser</a>;
-<a href=#43 id=43 data-nosnippet>43</a><span class="kw">pub mod </span><a href="combo_box.rs.html#4-117">combo_box</a>;
+<a href=#43 id=43 data-nosnippet>43</a><span class="kw">pub mod </span><a href="combo_box.rs.html#4-116">combo_box</a>;
 <a href=#44 id=44 data-nosnippet>44</a><span class="kw">pub mod </span><a href="dialog.rs.html#4-84">dialog</a>;
 <a href=#45 id=45 data-nosnippet>45</a><span class="kw">pub mod </span><a href="drawing_area.rs.html#4-54">drawing_area</a>;
 <a href=#46 id=46 data-nosnippet>46</a><span class="kw">pub mod </span><a href="editable.rs.html#4-417">editable</a>;
@@ -135,7 +135,7 @@
 <a href=#62 id=62 data-nosnippet>62</a><span class="kw">pub mod </span><a href="native_dialog.rs.html#4-135">native_dialog</a>;
 <a href=#63 id=63 data-nosnippet>63</a><span class="kw">pub mod </span><a href="orientable.rs.html#4-10">orientable</a>;
 <a href=#64 id=64 data-nosnippet>64</a><span class="kw">pub mod </span><a href="popover.rs.html#4-72">popover</a>;
-<a href=#65 id=65 data-nosnippet>65</a><span class="kw">pub mod </span><a href="print_operation.rs.html#4-423">print_operation</a>;
+<a href=#65 id=65 data-nosnippet>65</a><span class="kw">pub mod </span><a href="print_operation.rs.html#4-422">print_operation</a>;
 <a href=#66 id=66 data-nosnippet>66</a><span class="kw">pub mod </span><a href="print_operation_preview.rs.html#4-209">print_operation_preview</a>;
 <a href=#67 id=67 data-nosnippet>67</a><span class="kw">pub mod </span><a href="range.rs.html#4-171">range</a>;
 <a href=#68 id=68 data-nosnippet>68</a><span class="kw">pub mod </span><a href="recent_manager.rs.html#4-52">recent_manager</a>;
@@ -152,14 +152,14 @@
 <a href=#79 id=79 data-nosnippet>79</a><span class="attr">#[cfg(feature = <span class="string">"v4_6"</span>)]
 <a href=#80 id=80 data-nosnippet>80</a>#[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_6"</span>)))]
 <a href=#81 id=81 data-nosnippet>81</a></span><span class="kw">pub mod </span><a href="symbolic_paintable.rs.html#4-168">symbolic_paintable</a>;
-<a href=#82 id=82 data-nosnippet>82</a><span class="kw">pub mod </span><a href="text_buffer.rs.html#4-556">text_buffer</a>;
+<a href=#82 id=82 data-nosnippet>82</a><span class="kw">pub mod </span><a href="text_buffer.rs.html#4-528">text_buffer</a>;
 <a href=#83 id=83 data-nosnippet>83</a><span class="kw">pub mod </span><a href="text_view.rs.html#4-409">text_view</a>;
 <a href=#84 id=84 data-nosnippet>84</a><span class="kw">pub mod </span><a href="toggle_button.rs.html#4-57">toggle_button</a>;
 <a href=#85 id=85 data-nosnippet>85</a><span class="kw">pub mod </span><a href="tree_drag_dest.rs.html#4-105">tree_drag_dest</a>;
 <a href=#86 id=86 data-nosnippet>86</a><span class="kw">pub mod </span><a href="tree_drag_source.rs.html#4-138">tree_drag_source</a>;
 <a href=#87 id=87 data-nosnippet>87</a><span class="kw">pub mod </span><a href="tree_model_filter.rs.html#4-122">tree_model_filter</a>;
 <a href=#88 id=88 data-nosnippet>88</a><span class="kw">pub mod </span><a href="tree_view.rs.html#4-537">tree_view</a>;
-<a href=#89 id=89 data-nosnippet>89</a><span class="kw">pub mod </span><a href="widget.rs.html#4-1781">widget</a>;
+<a href=#89 id=89 data-nosnippet>89</a><span class="kw">pub mod </span><a href="widget.rs.html#4-1747">widget</a>;
 <a href=#90 id=90 data-nosnippet>90</a><span class="kw">pub mod </span><a href="window.rs.html#4-170">window</a>;
 <a href=#91 id=91 data-nosnippet>91</a><span class="kw">pub mod </span><a href="window_group.rs.html#4-10">window_group</a>;
 <a href=#92 id=92 data-nosnippet>92</a>
@@ -195,7 +195,7 @@
 <a href=#122 id=122 data-nosnippet>122</a>        buildable::{<a href="buildable.rs.html#13-73">BuildableImpl</a>, <a href="buildable.rs.html#75-115">BuildableImplExt</a>},
 <a href=#123 id=123 data-nosnippet>123</a>        builder_scope::{<a href="builder_scope.rs.html#13">BuilderCScopeImpl</a>, <a href="builder_scope.rs.html#17-35">BuilderScopeImpl</a>, <a href="builder_scope.rs.html#37-115">BuilderScopeImplExt</a>},
 <a href=#124 id=124 data-nosnippet>124</a>        button::{<a href="button.rs.html#10-22">ButtonImpl</a>, <a href="button.rs.html#24-44">ButtonImplExt</a>},
-<a href=#125 id=125 data-nosnippet>125</a>        cell_area::{<a href="cell_area.rs.html#1260-1304">CellAreaClassExt</a>, <a href="cell_area.rs.html#67-514">CellAreaImpl</a>, <a href="cell_area.rs.html#518-852">CellAreaImplExt</a>},
+<a href=#125 id=125 data-nosnippet>125</a>        cell_area::{<a href="cell_area.rs.html#1246-1290">CellAreaClassExt</a>, <a href="cell_area.rs.html#67-500">CellAreaImpl</a>, <a href="cell_area.rs.html#504-838">CellAreaImplExt</a>},
 <a href=#126 id=126 data-nosnippet>126</a>        cell_area_context::{<a href="cell_area_context.rs.html#14-116">CellAreaContextImpl</a>, <a href="cell_area_context.rs.html#120-197">CellAreaContextImplExt</a>},
 <a href=#127 id=127 data-nosnippet>127</a>        cell_editable::{<a href="cell_editable.rs.html#12-24">CellEditableImpl</a>, <a href="cell_editable.rs.html#28-78">CellEditableImplExt</a>},
 <a href=#128 id=128 data-nosnippet>128</a>        cell_layout::{<a href="cell_layout.rs.html#55-96">CellLayoutImpl</a>, <a href="cell_layout.rs.html#100-262">CellLayoutImplExt</a>},
@@ -203,7 +203,7 @@
 <a href=#130 id=130 data-nosnippet>130</a>        cell_renderer_text::{<a href="cell_renderer_text.rs.html#12-18">CellRendererTextImpl</a>, <a href="cell_renderer_text.rs.html#22-39">CellRendererTextImplExt</a>},
 <a href=#131 id=131 data-nosnippet>131</a>        check_button::{<a href="check_button.rs.html#10-22">CheckButtonImpl</a>, <a href="check_button.rs.html#24-46">CheckButtonImplExt</a>},
 <a href=#132 id=132 data-nosnippet>132</a>        color_chooser::{<a href="color_chooser.rs.html#13-25">ColorChooserImpl</a>, <a href="color_chooser.rs.html#29-110">ColorChooserImplExt</a>},
-<a href=#133 id=133 data-nosnippet>133</a>        combo_box::{<a href="combo_box.rs.html#12-29">ComboBoxImpl</a>, <a href="combo_box.rs.html#33-67">ComboBoxImplExt</a>},
+<a href=#133 id=133 data-nosnippet>133</a>        combo_box::{<a href="combo_box.rs.html#12-28">ComboBoxImpl</a>, <a href="combo_box.rs.html#32-66">ComboBoxImplExt</a>},
 <a href=#134 id=134 data-nosnippet>134</a>        dialog::{<a href="dialog.rs.html#10-28">DialogImpl</a>, <a href="dialog.rs.html#30-53">DialogImplExt</a>},
 <a href=#135 id=135 data-nosnippet>135</a>        drawing_area::{<a href="drawing_area.rs.html#10-14">DrawingAreaImpl</a>, <a href="drawing_area.rs.html#16-30">DrawingAreaImplExt</a>},
 <a href=#136 id=136 data-nosnippet>136</a>        editable::{<a href="editable.rs.html#12-51">EditableImpl</a>, <a href="editable.rs.html#53-242">EditableImplExt</a>},
@@ -225,7 +225,7 @@
 <a href=#152 id=152 data-nosnippet>152</a>        native_dialog::{<a href="native_dialog.rs.html#12-39">NativeDialogImpl</a>, <a href="native_dialog.rs.html#43-89">NativeDialogImplExt</a>},
 <a href=#153 id=153 data-nosnippet>153</a>        <a href="orientable.rs.html#8">orientable::OrientableImpl</a>,
 <a href=#154 id=154 data-nosnippet>154</a>        popover::{<a href="popover.rs.html#10-20">PopoverImpl</a>, <a href="popover.rs.html#22-42">PopoverImplExt</a>},
-<a href=#155 id=155 data-nosnippet>155</a>        print_operation::{<a href="print_operation.rs.html#13-82">PrintOperationImpl</a>, <a href="print_operation.rs.html#84-284">PrintOperationImplExt</a>},
+<a href=#155 id=155 data-nosnippet>155</a>        print_operation::{<a href="print_operation.rs.html#13-81">PrintOperationImpl</a>, <a href="print_operation.rs.html#83-283">PrintOperationImplExt</a>},
 <a href=#156 id=156 data-nosnippet>156</a>        <a href="print_operation_preview.rs.html#12-26">print_operation_preview::PrintOperationPreviewImpl</a>,
 <a href=#157 id=157 data-nosnippet>157</a>        range::{<a href="range.rs.html#10-31">RangeImpl</a>, <a href="range.rs.html#33-99">RangeImplExt</a>},
 <a href=#158 id=158 data-nosnippet>158</a>        recent_manager::{<a href="recent_manager.rs.html#10-14">RecentManagerImpl</a>, <a href="recent_manager.rs.html#16-30">RecentManagerImplExt</a>},
@@ -236,7 +236,7 @@
 <a href=#163 id=163 data-nosnippet>163</a>        shortcut_manager::{<a href="shortcut_manager.rs.html#10-18">ShortcutManagerImpl</a>, <a href="shortcut_manager.rs.html#20-60">ShortcutManagerImplExt</a>},
 <a href=#164 id=164 data-nosnippet>164</a>        sorter::{<a href="sorter.rs.html#10-28">SorterImpl</a>, <a href="sorter.rs.html#30-56">SorterImplExt</a>},
 <a href=#165 id=165 data-nosnippet>165</a>        style_context::{<a href="style_context.rs.html#12-16">StyleContextImpl</a>, <a href="style_context.rs.html#20-34">StyleContextImplExt</a>},
-<a href=#166 id=166 data-nosnippet>166</a>        text_buffer::{<a href="text_buffer.rs.html#12-142">TextBufferImpl</a>, <a href="text_buffer.rs.html#144-331">TextBufferImplExt</a>},
+<a href=#166 id=166 data-nosnippet>166</a>        text_buffer::{<a href="text_buffer.rs.html#12-114">TextBufferImpl</a>, <a href="text_buffer.rs.html#116-303">TextBufferImplExt</a>},
 <a href=#167 id=167 data-nosnippet>167</a>        text_view::{<a href="text_view.rs.html#13-92">TextViewImpl</a>, <a href="text_view.rs.html#94-244">TextViewImplExt</a>},
 <a href=#168 id=168 data-nosnippet>168</a>        toggle_button::{<a href="toggle_button.rs.html#10-21">ToggleButtonImpl</a>, <a href="toggle_button.rs.html#23-37">ToggleButtonImplExt</a>},
 <a href=#169 id=169 data-nosnippet>169</a>        tree_drag_dest::{<a href="tree_drag_dest.rs.html#12-15">TreeDragDestImpl</a>, <a href="tree_drag_dest.rs.html#19-61">TreeDragDestImplExt</a>},
@@ -244,14 +244,14 @@
 <a href=#171 id=171 data-nosnippet>171</a>        tree_model_filter::{<a href="tree_model_filter.rs.html#12-26">TreeModelFilterImpl</a>, <a href="tree_model_filter.rs.html#30-75">TreeModelFilterImplExt</a>},
 <a href=#172 id=172 data-nosnippet>172</a>        tree_view::{<a href="tree_view.rs.html#15-84">TreeViewImpl</a>, <a href="tree_view.rs.html#88-321">TreeViewImplExt</a>},
 <a href=#173 id=173 data-nosnippet>173</a>        widget::{
-<a href=#174 id=174 data-nosnippet>174</a>            <a href="widget.rs.html#1636-1639">CompositeTemplate</a>, <a href="widget.rs.html#1669-1699">CompositeTemplateCallbacks</a>, <a href="widget.rs.html#1705-1710">CompositeTemplateCallbacksClass</a>,
-<a href=#175 id=175 data-nosnippet>175</a>            <a href="widget.rs.html#1645-1650">CompositeTemplateClass</a>, <a href="widget.rs.html#1764-1768">CompositeTemplateDisposeExt</a>, <a href="widget.rs.html#1745-1747">CompositeTemplateInitializingExt</a>,
-<a href=#176 id=176 data-nosnippet>176</a>            <a href="widget.rs.html#1727-1732">CompositeTemplateInstanceCallbacksClass</a>, <a href="widget.rs.html#1531-1536">TemplateChild</a>, <a href="widget.rs.html#1124-1525">WidgetClassExt</a>, <a href="widget.rs.html#137-425">WidgetImpl</a>,
-<a href=#177 id=177 data-nosnippet>177</a>            <a href="widget.rs.html#427-763">WidgetImplExt</a>,
+<a href=#174 id=174 data-nosnippet>174</a>            <a href="widget.rs.html#1602-1605">CompositeTemplate</a>, <a href="widget.rs.html#1635-1665">CompositeTemplateCallbacks</a>, <a href="widget.rs.html#1671-1676">CompositeTemplateCallbacksClass</a>,
+<a href=#175 id=175 data-nosnippet>175</a>            <a href="widget.rs.html#1611-1616">CompositeTemplateClass</a>, <a href="widget.rs.html#1730-1734">CompositeTemplateDisposeExt</a>, <a href="widget.rs.html#1711-1713">CompositeTemplateInitializingExt</a>,
+<a href=#176 id=176 data-nosnippet>176</a>            <a href="widget.rs.html#1693-1698">CompositeTemplateInstanceCallbacksClass</a>, <a href="widget.rs.html#1497-1502">TemplateChild</a>, <a href="widget.rs.html#1091-1491">WidgetClassExt</a>, <a href="widget.rs.html#137-392">WidgetImpl</a>,
+<a href=#177 id=177 data-nosnippet>177</a>            <a href="widget.rs.html#394-730">WidgetImplExt</a>,
 <a href=#178 id=178 data-nosnippet>178</a>        },
 <a href=#179 id=179 data-nosnippet>179</a>        window::{<a href="window.rs.html#10-43">WindowImpl</a>, <a href="window.rs.html#45-104">WindowImplExt</a>},
 <a href=#180 id=180 data-nosnippet>180</a>        <a href="window_group.rs.html#8">window_group::WindowGroupImpl</a>,
 <a href=#181 id=181 data-nosnippet>181</a>    };
-<a href=#182 id=182 data-nosnippet>182</a>    <span class="kw">pub use </span><a href="../widget.rs.html#148-176"><span class="kw">crate</span>::widget::WidgetClassManualExt</a>;
+<a href=#182 id=182 data-nosnippet>182</a>    <span class="kw">pub use </span><a href="../widget.rs.html#138-166"><span class="kw">crate</span>::widget::WidgetClassManualExt</a>;
 <a href=#183 id=183 data-nosnippet>183</a>}
 </code></pre></div></section></main></body></html>

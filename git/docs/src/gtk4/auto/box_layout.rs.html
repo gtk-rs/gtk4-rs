@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/auto/box_layout.rs`."><title>box_layout.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-1ed95124.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.98.0-nightly (4429659e4 2026-06-22)" data-channel="nightly" data-search-js="search-fd9372ac.js" data-stringdex-js="stringdex-2da4960a.js" data-settings-js="settings-170eb4bf.js" ><script src="../../../static.files/storage-41dd4d93.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-417ebf0a.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-f7c3ffd8.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><a class="skip-main-content" href="#main-content">Skip to main content</a><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/auto/box_layout.rs`."><title>box_layout.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-1ed95124.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.98.0-nightly (df6ee909e 2026-06-28)" data-channel="nightly" data-search-js="search-9944d736.js" data-stringdex-js="stringdex-2da4960a.js" data-settings-js="settings-170eb4bf.js" ><script src="../../../static.files/storage-41dd4d93.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-417ebf0a.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-f7c3ffd8.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><a class="skip-main-content" href="#main-content">Skip to main content</a><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
 
@@ -75,7 +75,7 @@
 <a href=#2 id=2 data-nosnippet>2</a>// from gir-files (https://github.com/gtk-rs/gir-files)
 <a href=#3 id=3 data-nosnippet>3</a>// DO NOT EDIT
 <a href=#4 id=4 data-nosnippet>4</a>
-<a href=#5 id=5 data-nosnippet>5</a></span><span class="kw">use crate</span>::{<a href="enums.rs.html#2511-2523">BaselinePosition</a>, <a href="layout_manager.rs.html#8-70">LayoutManager</a>, <a href="orientable.rs.html#13-42">Orientable</a>, <a href="enums.rs.html#8278-8287">Orientation</a>, <a href="../../../gtk4_sys/index.html">ffi</a>};
+<a href=#5 id=5 data-nosnippet>5</a></span><span class="kw">use crate</span>::{<a href="enums.rs.html#2501-2513">BaselinePosition</a>, <a href="layout_manager.rs.html#8-70">LayoutManager</a>, <a href="orientable.rs.html#13-39">Orientable</a>, <a href="enums.rs.html#8236-8245">Orientation</a>, <a href="../../../gtk4_sys/index.html">ffi</a>};
 <a href=#6 id=6 data-nosnippet>6</a><span class="kw">use </span>glib::{
 <a href=#7 id=7 data-nosnippet>7</a>    <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/prelude/index.html">prelude</a>::<span class="kw-2">*</span>,
 <a href=#8 id=8 data-nosnippet>8</a>    signal::{<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html">SignalHandlerId</a>, <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/fn.connect_raw.html">connect_raw</a>},
@@ -146,7 +146,7 @@
 <a href=#73 id=73 data-nosnippet>73</a>    ///
 <a href=#74 id=74 data-nosnippet>74</a>    /// [`LayoutManagerExt`][trait@crate::prelude::LayoutManagerExt], [`trait@glib::ObjectExt`], [`OrientableExt`][trait@crate::prelude::OrientableExt]
 <a href=#75 id=75 data-nosnippet>75</a>    </span><span class="attr">#[doc(alias = <span class="string">"GtkBoxLayout"</span>)]
-<a href=#76 id=76 data-nosnippet>76</a>    </span><span class="kw">pub struct </span><a href="../../../gtk4/struct.BoxLayout.html">BoxLayout</a>(Object&lt;ffi::<a href="../../../gtk4_sys/struct.GtkBoxLayout.html">GtkBoxLayout</a>, ffi::<a href="../../../gtk4_sys/struct.GtkBoxLayoutClass.html">GtkBoxLayoutClass</a>&gt;) @extends <a href="layout_manager.rs.html#8-70">LayoutManager</a>, @implements <a href="orientable.rs.html#13-42">Orientable</a>;
+<a href=#76 id=76 data-nosnippet>76</a>    </span><span class="kw">pub struct </span><a href="../../../gtk4/struct.BoxLayout.html">BoxLayout</a>(Object&lt;ffi::<a href="../../../gtk4_sys/struct.GtkBoxLayout.html">GtkBoxLayout</a>, ffi::<a href="../../../gtk4_sys/struct.GtkBoxLayoutClass.html">GtkBoxLayoutClass</a>&gt;) @extends <a href="layout_manager.rs.html#8-70">LayoutManager</a>, @implements <a href="orientable.rs.html#13-39">Orientable</a>;
 <a href=#77 id=77 data-nosnippet>77</a>
 <a href=#78 id=78 data-nosnippet>78</a>    <span class="kw">match fn </span>{
 <a href=#79 id=79 data-nosnippet>79</a>        type_ =&gt; || ffi::gtk_box_layout_get_type(),
@@ -162,7 +162,7 @@
 <a href=#89 id=89 data-nosnippet>89</a>    ///
 <a href=#90 id=90 data-nosnippet>90</a>    /// a new box layout
 <a href=#91 id=91 data-nosnippet>91</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_box_layout_new"</span>)]
-<a href=#92 id=92 data-nosnippet>92</a>    </span><span class="kw">pub fn </span>new(orientation: <a href="enums.rs.html#8278-8287">Orientation</a>) -&gt; <a href="#13-81">BoxLayout</a> {
+<a href=#92 id=92 data-nosnippet>92</a>    </span><span class="kw">pub fn </span>new(orientation: <a href="enums.rs.html#8236-8245">Orientation</a>) -&gt; <a href="#13-81">BoxLayout</a> {
 <a href=#93 id=93 data-nosnippet>93</a>        <a href="../rt.rs.html#24-36">assert_initialized_main_thread!</a>();
 <a href=#94 id=94 data-nosnippet>94</a>        <span class="kw">unsafe </span>{
 <a href=#95 id=95 data-nosnippet>95</a>            <a href="layout_manager.rs.html#8-70">LayoutManager</a>::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.FromGlibPtrFull.html#tymethod.from_glib_full">from_glib_full</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_box_layout_new.html">gtk_box_layout_new</a>(<a href="#92">orientation</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>()))
@@ -201,7 +201,7 @@
 <a href=#128 id=128 data-nosnippet>128</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_box_layout_get_baseline_position"</span>)]
 <a href=#129 id=129 data-nosnippet>129</a>    #[doc(alias = <span class="string">"get_baseline_position"</span>)]
 <a href=#130 id=130 data-nosnippet>130</a>    #[doc(alias = <span class="string">"baseline-position"</span>)]
-<a href=#131 id=131 data-nosnippet>131</a>    </span><span class="kw">pub fn </span>baseline_position(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="enums.rs.html#2511-2523">BaselinePosition</a> {
+<a href=#131 id=131 data-nosnippet>131</a>    </span><span class="kw">pub fn </span>baseline_position(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="enums.rs.html#2501-2513">BaselinePosition</a> {
 <a href=#132 id=132 data-nosnippet>132</a>        <span class="kw">unsafe </span>{
 <a href=#133 id=133 data-nosnippet>133</a>            <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_box_layout_get_baseline_position.html">gtk_box_layout_get_baseline_position</a>(
 <a href=#134 id=134 data-nosnippet>134</a>                <a class="self" href="#131">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
@@ -257,7 +257,7 @@
 <a href=#184 id=184 data-nosnippet>184</a>    /// a [`BaselinePosition`][crate::BaselinePosition]
 <a href=#185 id=185 data-nosnippet>185</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_box_layout_set_baseline_position"</span>)]
 <a href=#186 id=186 data-nosnippet>186</a>    #[doc(alias = <span class="string">"baseline-position"</span>)]
-<a href=#187 id=187 data-nosnippet>187</a>    </span><span class="kw">pub fn </span>set_baseline_position(<span class="kw-2">&amp;</span><span class="self">self</span>, position: <a href="enums.rs.html#2511-2523">BaselinePosition</a>) {
+<a href=#187 id=187 data-nosnippet>187</a>    </span><span class="kw">pub fn </span>set_baseline_position(<span class="kw-2">&amp;</span><span class="self">self</span>, position: <a href="enums.rs.html#2501-2513">BaselinePosition</a>) {
 <a href=#188 id=188 data-nosnippet>188</a>        <span class="kw">unsafe </span>{
 <a href=#189 id=189 data-nosnippet>189</a>            ffi::<a href="../../../gtk4_sys/fn.gtk_box_layout_set_baseline_position.html">gtk_box_layout_set_baseline_position</a>(<a class="self" href="#187">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>, <a href="#187">position</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>());
 <a href=#190 id=190 data-nosnippet>190</a>        }
@@ -433,7 +433,7 @@
 <a href=#360 id=360 data-nosnippet>360</a>    ///
 <a href=#361 id=361 data-nosnippet>361</a>    /// This property is only relevant for horizontal layouts containing
 <a href=#362 id=362 data-nosnippet>362</a>    /// at least one child with a baseline alignment.
-<a href=#363 id=363 data-nosnippet>363</a>    </span><span class="kw">pub fn </span>baseline_position(<span class="self">self</span>, baseline_position: <a href="enums.rs.html#2511-2523">BaselinePosition</a>) -&gt; <span class="self">Self </span>{
+<a href=#363 id=363 data-nosnippet>363</a>    </span><span class="kw">pub fn </span>baseline_position(<span class="self">self</span>, baseline_position: <a href="enums.rs.html#2501-2513">BaselinePosition</a>) -&gt; <span class="self">Self </span>{
 <a href=#364 id=364 data-nosnippet>364</a>        <span class="self">Self </span>{
 <a href=#365 id=365 data-nosnippet>365</a>            builder: <a class="self" href="#363">self</a>
 <a href=#366 id=366 data-nosnippet>366</a>                .builder
@@ -457,7 +457,7 @@
 <a href=#384 id=384 data-nosnippet>384</a>    }
 <a href=#385 id=385 data-nosnippet>385</a>
 <a href=#386 id=386 data-nosnippet>386</a>    <span class="doccomment">/// The orientation of the orientable.
-<a href=#387 id=387 data-nosnippet>387</a>    </span><span class="kw">pub fn </span>orientation(<span class="self">self</span>, orientation: <a href="enums.rs.html#8278-8287">Orientation</a>) -&gt; <span class="self">Self </span>{
+<a href=#387 id=387 data-nosnippet>387</a>    </span><span class="kw">pub fn </span>orientation(<span class="self">self</span>, orientation: <a href="enums.rs.html#8236-8245">Orientation</a>) -&gt; <span class="self">Self </span>{
 <a href=#388 id=388 data-nosnippet>388</a>        <span class="self">Self </span>{
 <a href=#389 id=389 data-nosnippet>389</a>            builder: <a class="self" href="#387">self</a>.builder.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/struct.ObjectBuilder.html#method.property">property</a>(<span class="string">"orientation"</span>, <a href="#387">orientation</a>),
 <a href=#390 id=390 data-nosnippet>390</a>        }

@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/auto/recent_info.rs`."><title>recent_info.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-1ed95124.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.98.0-nightly (4429659e4 2026-06-22)" data-channel="nightly" data-search-js="search-fd9372ac.js" data-stringdex-js="stringdex-2da4960a.js" data-settings-js="settings-170eb4bf.js" ><script src="../../../static.files/storage-41dd4d93.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-417ebf0a.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-f7c3ffd8.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><a class="skip-main-content" href="#main-content">Skip to main content</a><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/auto/recent_info.rs`."><title>recent_info.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-1ed95124.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.98.0-nightly (df6ee909e 2026-06-28)" data-channel="nightly" data-search-js="search-9944d736.js" data-stringdex-js="stringdex-2da4960a.js" data-settings-js="settings-170eb4bf.js" ><script src="../../../static.files/storage-41dd4d93.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-417ebf0a.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-f7c3ffd8.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><a class="skip-main-content" href="#main-content">Skip to main content</a><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
 
@@ -318,7 +318,7 @@
 <a href=#245 id=245 data-nosnippet>245</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib_none.html">from_glib_none</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_recent_info_get_modified.html">gtk_recent_info_get_modified</a>(<a class="self" href="#244">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#246 id=246 data-nosnippet>246</a>    }
 <a href=#247 id=247 data-nosnippet>247</a>
-<a href=#248 id=248 data-nosnippet>248</a>    <span class="doccomment">/// Gets the value of the “private” flag.
+<a href=#248 id=248 data-nosnippet>248</a>    <span class="doccomment">///  flag.
 <a href=#249 id=249 data-nosnippet>249</a>    ///
 <a href=#250 id=250 data-nosnippet>250</a>    /// Resources in the recently used list that have this flag
 <a href=#251 id=251 data-nosnippet>251</a>    /// set to [`true`] should only be displayed by the applications
@@ -333,138 +333,133 @@
 <a href=#260 id=260 data-nosnippet>260</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_recent_info_get_private_hint.html">gtk_recent_info_get_private_hint</a>(<a class="self" href="#259">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#261 id=261 data-nosnippet>261</a>    }
 <a href=#262 id=262 data-nosnippet>262</a>
-<a href=#263 id=263 data-nosnippet>263</a>    <span class="doccomment">/// Computes a valid UTF-8 string that can be used as the
-<a href=#264 id=264 data-nosnippet>264</a>    /// name of the item in a menu or list.
-<a href=#265 id=265 data-nosnippet>265</a>    ///
-<a href=#266 id=266 data-nosnippet>266</a>    /// For example, calling this function on an item that refers
-<a href=#267 id=267 data-nosnippet>267</a>    /// to “file:///foo/bar.txt” will yield “bar.txt”.
-<a href=#268 id=268 data-nosnippet>268</a>    ///
-<a href=#269 id=269 data-nosnippet>269</a>    /// # Returns
-<a href=#270 id=270 data-nosnippet>270</a>    ///
-<a href=#271 id=271 data-nosnippet>271</a>    /// A newly-allocated string in UTF-8 encoding
-<a href=#272 id=272 data-nosnippet>272</a>    ///   free it with g_free()
-<a href=#273 id=273 data-nosnippet>273</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_recent_info_get_short_name"</span>)]
-<a href=#274 id=274 data-nosnippet>274</a>    #[doc(alias = <span class="string">"get_short_name"</span>)]
-<a href=#275 id=275 data-nosnippet>275</a>    </span><span class="kw">pub fn </span>short_name(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/gstring/struct.GString.html">GString</a> {
-<a href=#276 id=276 data-nosnippet>276</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib_full.html">from_glib_full</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_recent_info_get_short_name.html">gtk_recent_info_get_short_name</a>(<a class="self" href="#275">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
-<a href=#277 id=277 data-nosnippet>277</a>    }
-<a href=#278 id=278 data-nosnippet>278</a>
-<a href=#279 id=279 data-nosnippet>279</a>    <span class="doccomment">/// Gets the URI of the resource.
-<a href=#280 id=280 data-nosnippet>280</a>    ///
-<a href=#281 id=281 data-nosnippet>281</a>    /// # Returns
-<a href=#282 id=282 data-nosnippet>282</a>    ///
-<a href=#283 id=283 data-nosnippet>283</a>    /// the URI of the resource. The returned string is
-<a href=#284 id=284 data-nosnippet>284</a>    ///   owned by the recent manager, and should not be freed.
-<a href=#285 id=285 data-nosnippet>285</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_recent_info_get_uri"</span>)]
-<a href=#286 id=286 data-nosnippet>286</a>    #[doc(alias = <span class="string">"get_uri"</span>)]
-<a href=#287 id=287 data-nosnippet>287</a>    </span><span class="kw">pub fn </span>uri(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/gstring/struct.GString.html">GString</a> {
-<a href=#288 id=288 data-nosnippet>288</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib_none.html">from_glib_none</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_recent_info_get_uri.html">gtk_recent_info_get_uri</a>(<a class="self" href="#287">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
-<a href=#289 id=289 data-nosnippet>289</a>    }
-<a href=#290 id=290 data-nosnippet>290</a>
-<a href=#291 id=291 data-nosnippet>291</a>    <span class="doccomment">/// Gets a displayable version of the resource’s URI.
+<a href=#263 id=263 data-nosnippet>263</a>    <span class="doccomment">/// .
+<a href=#264 id=264 data-nosnippet>264</a>    ///
+<a href=#265 id=265 data-nosnippet>265</a>    /// # Returns
+<a href=#266 id=266 data-nosnippet>266</a>    ///
+<a href=#267 id=267 data-nosnippet>267</a>    /// A newly-allocated string in UTF-8 encoding
+<a href=#268 id=268 data-nosnippet>268</a>    ///   free it with g_free()
+<a href=#269 id=269 data-nosnippet>269</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_recent_info_get_short_name"</span>)]
+<a href=#270 id=270 data-nosnippet>270</a>    #[doc(alias = <span class="string">"get_short_name"</span>)]
+<a href=#271 id=271 data-nosnippet>271</a>    </span><span class="kw">pub fn </span>short_name(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/gstring/struct.GString.html">GString</a> {
+<a href=#272 id=272 data-nosnippet>272</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib_full.html">from_glib_full</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_recent_info_get_short_name.html">gtk_recent_info_get_short_name</a>(<a class="self" href="#271">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
+<a href=#273 id=273 data-nosnippet>273</a>    }
+<a href=#274 id=274 data-nosnippet>274</a>
+<a href=#275 id=275 data-nosnippet>275</a>    <span class="doccomment">/// Gets the URI of the resource.
+<a href=#276 id=276 data-nosnippet>276</a>    ///
+<a href=#277 id=277 data-nosnippet>277</a>    /// # Returns
+<a href=#278 id=278 data-nosnippet>278</a>    ///
+<a href=#279 id=279 data-nosnippet>279</a>    /// the URI of the resource. The returned string is
+<a href=#280 id=280 data-nosnippet>280</a>    ///   owned by the recent manager, and should not be freed.
+<a href=#281 id=281 data-nosnippet>281</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_recent_info_get_uri"</span>)]
+<a href=#282 id=282 data-nosnippet>282</a>    #[doc(alias = <span class="string">"get_uri"</span>)]
+<a href=#283 id=283 data-nosnippet>283</a>    </span><span class="kw">pub fn </span>uri(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/gstring/struct.GString.html">GString</a> {
+<a href=#284 id=284 data-nosnippet>284</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib_none.html">from_glib_none</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_recent_info_get_uri.html">gtk_recent_info_get_uri</a>(<a class="self" href="#283">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
+<a href=#285 id=285 data-nosnippet>285</a>    }
+<a href=#286 id=286 data-nosnippet>286</a>
+<a href=#287 id=287 data-nosnippet>287</a>    <span class="doccomment">/// s URI.
+<a href=#288 id=288 data-nosnippet>288</a>    ///
+<a href=#289 id=289 data-nosnippet>289</a>    /// If the resource is local, it returns a local path; if the
+<a href=#290 id=290 data-nosnippet>290</a>    /// resource is not local, it returns the UTF-8 encoded content
+<a href=#291 id=291 data-nosnippet>291</a>    /// of [`uri()`][Self::uri()].
 <a href=#292 id=292 data-nosnippet>292</a>    ///
-<a href=#293 id=293 data-nosnippet>293</a>    /// If the resource is local, it returns a local path; if the
-<a href=#294 id=294 data-nosnippet>294</a>    /// resource is not local, it returns the UTF-8 encoded content
-<a href=#295 id=295 data-nosnippet>295</a>    /// of [`uri()`][Self::uri()].
-<a href=#296 id=296 data-nosnippet>296</a>    ///
-<a href=#297 id=297 data-nosnippet>297</a>    /// # Returns
-<a href=#298 id=298 data-nosnippet>298</a>    ///
-<a href=#299 id=299 data-nosnippet>299</a>    /// a newly allocated UTF-8 string containing the
-<a href=#300 id=300 data-nosnippet>300</a>    ///   resource’s URI or [`None`]. Use g_free() when done using it.
-<a href=#301 id=301 data-nosnippet>301</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_recent_info_get_uri_display"</span>)]
-<a href=#302 id=302 data-nosnippet>302</a>    #[doc(alias = <span class="string">"get_uri_display"</span>)]
-<a href=#303 id=303 data-nosnippet>303</a>    </span><span class="kw">pub fn </span>uri_display(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/gstring/struct.GString.html">GString</a>&gt; {
-<a href=#304 id=304 data-nosnippet>304</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib_full.html">from_glib_full</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_recent_info_get_uri_display.html">gtk_recent_info_get_uri_display</a>(<a class="self" href="#303">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
-<a href=#305 id=305 data-nosnippet>305</a>    }
-<a href=#306 id=306 data-nosnippet>306</a>
-<a href=#307 id=307 data-nosnippet>307</a>    <span class="doccomment">/// Gets the time when the meta-data
-<a href=#308 id=308 data-nosnippet>308</a>    /// for the resource was last visited.
-<a href=#309 id=309 data-nosnippet>309</a>    ///
-<a href=#310 id=310 data-nosnippet>310</a>    /// # Returns
-<a href=#311 id=311 data-nosnippet>311</a>    ///
-<a href=#312 id=312 data-nosnippet>312</a>    /// a `GDateTime` for the time
-<a href=#313 id=313 data-nosnippet>313</a>    ///    when the resource was last visited
-<a href=#314 id=314 data-nosnippet>314</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_recent_info_get_visited"</span>)]
-<a href=#315 id=315 data-nosnippet>315</a>    #[doc(alias = <span class="string">"get_visited"</span>)]
-<a href=#316 id=316 data-nosnippet>316</a>    </span><span class="kw">pub fn </span>visited(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/auto/date_time/struct.DateTime.html">DateTime</a> {
-<a href=#317 id=317 data-nosnippet>317</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib_none.html">from_glib_none</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_recent_info_get_visited.html">gtk_recent_info_get_visited</a>(<a class="self" href="#316">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
-<a href=#318 id=318 data-nosnippet>318</a>    }
-<a href=#319 id=319 data-nosnippet>319</a>
-<a href=#320 id=320 data-nosnippet>320</a>    <span class="doccomment">/// Checks whether an application registered this resource using @app_name.
-<a href=#321 id=321 data-nosnippet>321</a>    /// ## `app_name`
-<a href=#322 id=322 data-nosnippet>322</a>    /// a string containing an application name
-<a href=#323 id=323 data-nosnippet>323</a>    ///
-<a href=#324 id=324 data-nosnippet>324</a>    /// # Returns
-<a href=#325 id=325 data-nosnippet>325</a>    ///
-<a href=#326 id=326 data-nosnippet>326</a>    /// [`true`] if an application with name @app_name was found,
-<a href=#327 id=327 data-nosnippet>327</a>    ///   [`false`] otherwise
-<a href=#328 id=328 data-nosnippet>328</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_recent_info_has_application"</span>)]
-<a href=#329 id=329 data-nosnippet>329</a>    </span><span class="kw">pub fn </span>has_application(<span class="kw-2">&amp;</span><span class="self">self</span>, app_name: <span class="kw-2">&amp;</span><a href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>) -&gt; <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> {
-<a href=#330 id=330 data-nosnippet>330</a>        <span class="kw">unsafe </span>{
-<a href=#331 id=331 data-nosnippet>331</a>            <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_recent_info_has_application.html">gtk_recent_info_has_application</a>(
-<a href=#332 id=332 data-nosnippet>332</a>                <a class="self" href="#329">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
-<a href=#333 id=333 data-nosnippet>333</a>                <a href="#329">app_name</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
-<a href=#334 id=334 data-nosnippet>334</a>            ))
-<a href=#335 id=335 data-nosnippet>335</a>        }
-<a href=#336 id=336 data-nosnippet>336</a>    }
-<a href=#337 id=337 data-nosnippet>337</a>
-<a href=#338 id=338 data-nosnippet>338</a>    <span class="doccomment">/// Checks whether @group_name appears inside the groups
-<a href=#339 id=339 data-nosnippet>339</a>    /// registered for the recently used item @self.
-<a href=#340 id=340 data-nosnippet>340</a>    /// ## `group_name`
-<a href=#341 id=341 data-nosnippet>341</a>    /// name of a group
-<a href=#342 id=342 data-nosnippet>342</a>    ///
-<a href=#343 id=343 data-nosnippet>343</a>    /// # Returns
-<a href=#344 id=344 data-nosnippet>344</a>    ///
-<a href=#345 id=345 data-nosnippet>345</a>    /// [`true`] if the group was found
-<a href=#346 id=346 data-nosnippet>346</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_recent_info_has_group"</span>)]
-<a href=#347 id=347 data-nosnippet>347</a>    </span><span class="kw">pub fn </span>has_group(<span class="kw-2">&amp;</span><span class="self">self</span>, group_name: <span class="kw-2">&amp;</span><a href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>) -&gt; <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> {
-<a href=#348 id=348 data-nosnippet>348</a>        <span class="kw">unsafe </span>{
-<a href=#349 id=349 data-nosnippet>349</a>            <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_recent_info_has_group.html">gtk_recent_info_has_group</a>(
-<a href=#350 id=350 data-nosnippet>350</a>                <a class="self" href="#347">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
-<a href=#351 id=351 data-nosnippet>351</a>                <a href="#347">group_name</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
-<a href=#352 id=352 data-nosnippet>352</a>            ))
-<a href=#353 id=353 data-nosnippet>353</a>        }
-<a href=#354 id=354 data-nosnippet>354</a>    }
-<a href=#355 id=355 data-nosnippet>355</a>
-<a href=#356 id=356 data-nosnippet>356</a>    <span class="doccomment">/// Checks whether the resource is local or not by looking at the
-<a href=#357 id=357 data-nosnippet>357</a>    /// scheme of its URI.
-<a href=#358 id=358 data-nosnippet>358</a>    ///
-<a href=#359 id=359 data-nosnippet>359</a>    /// # Returns
-<a href=#360 id=360 data-nosnippet>360</a>    ///
-<a href=#361 id=361 data-nosnippet>361</a>    /// [`true`] if the resource is local
-<a href=#362 id=362 data-nosnippet>362</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_recent_info_is_local"</span>)]
-<a href=#363 id=363 data-nosnippet>363</a>    </span><span class="kw">pub fn </span>is_local(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> {
-<a href=#364 id=364 data-nosnippet>364</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_recent_info_is_local.html">gtk_recent_info_is_local</a>(<a class="self" href="#363">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
-<a href=#365 id=365 data-nosnippet>365</a>    }
-<a href=#366 id=366 data-nosnippet>366</a>
-<a href=#367 id=367 data-nosnippet>367</a>    <span class="doccomment">/// Gets the name of the last application that have registered the
-<a href=#368 id=368 data-nosnippet>368</a>    /// recently used resource represented by @self.
-<a href=#369 id=369 data-nosnippet>369</a>    ///
-<a href=#370 id=370 data-nosnippet>370</a>    /// # Returns
-<a href=#371 id=371 data-nosnippet>371</a>    ///
-<a href=#372 id=372 data-nosnippet>372</a>    /// an application name. Use g_free() to free it.
-<a href=#373 id=373 data-nosnippet>373</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_recent_info_last_application"</span>)]
-<a href=#374 id=374 data-nosnippet>374</a>    </span><span class="kw">pub fn </span>last_application(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/gstring/struct.GString.html">GString</a> {
-<a href=#375 id=375 data-nosnippet>375</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib_full.html">from_glib_full</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_recent_info_last_application.html">gtk_recent_info_last_application</a>(<a class="self" href="#374">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
-<a href=#376 id=376 data-nosnippet>376</a>    }
-<a href=#377 id=377 data-nosnippet>377</a>
-<a href=#378 id=378 data-nosnippet>378</a>    <span class="doccomment">/// Checks whether two [`RecentInfo`][crate::RecentInfo] point to the same resource.
-<a href=#379 id=379 data-nosnippet>379</a>    /// ## `info_b`
-<a href=#380 id=380 data-nosnippet>380</a>    /// a [`RecentInfo`][crate::RecentInfo]
-<a href=#381 id=381 data-nosnippet>381</a>    ///
-<a href=#382 id=382 data-nosnippet>382</a>    /// # Returns
-<a href=#383 id=383 data-nosnippet>383</a>    ///
-<a href=#384 id=384 data-nosnippet>384</a>    /// [`true`] if both [`RecentInfo`][crate::RecentInfo] point to the same
-<a href=#385 id=385 data-nosnippet>385</a>    ///   resource, [`false`] otherwise
-<a href=#386 id=386 data-nosnippet>386</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_recent_info_match"</span>)]
-<a href=#387 id=387 data-nosnippet>387</a>    #[doc(alias = <span class="string">"match"</span>)]
-<a href=#388 id=388 data-nosnippet>388</a>    </span><span class="kw">pub fn </span>match_(<span class="kw-2">&amp;</span><span class="self">self</span>, info_b: <span class="kw-2">&amp;</span><a href="#8-19">RecentInfo</a>) -&gt; <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> {
-<a href=#389 id=389 data-nosnippet>389</a>        <span class="kw">unsafe </span>{
-<a href=#390 id=390 data-nosnippet>390</a>            <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_recent_info_match.html">gtk_recent_info_match</a>(
-<a href=#391 id=391 data-nosnippet>391</a>                <a class="self" href="#388">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
-<a href=#392 id=392 data-nosnippet>392</a>                <a href="#388">info_b</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
-<a href=#393 id=393 data-nosnippet>393</a>            ))
-<a href=#394 id=394 data-nosnippet>394</a>        }
-<a href=#395 id=395 data-nosnippet>395</a>    }
-<a href=#396 id=396 data-nosnippet>396</a>}
+<a href=#293 id=293 data-nosnippet>293</a>    /// # Returns
+<a href=#294 id=294 data-nosnippet>294</a>    ///
+<a href=#295 id=295 data-nosnippet>295</a>    /// s URI or [`None`]. Use g_free() when done using it.
+<a href=#296 id=296 data-nosnippet>296</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_recent_info_get_uri_display"</span>)]
+<a href=#297 id=297 data-nosnippet>297</a>    #[doc(alias = <span class="string">"get_uri_display"</span>)]
+<a href=#298 id=298 data-nosnippet>298</a>    </span><span class="kw">pub fn </span>uri_display(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/gstring/struct.GString.html">GString</a>&gt; {
+<a href=#299 id=299 data-nosnippet>299</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib_full.html">from_glib_full</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_recent_info_get_uri_display.html">gtk_recent_info_get_uri_display</a>(<a class="self" href="#298">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
+<a href=#300 id=300 data-nosnippet>300</a>    }
+<a href=#301 id=301 data-nosnippet>301</a>
+<a href=#302 id=302 data-nosnippet>302</a>    <span class="doccomment">/// Gets the time when the meta-data
+<a href=#303 id=303 data-nosnippet>303</a>    /// for the resource was last visited.
+<a href=#304 id=304 data-nosnippet>304</a>    ///
+<a href=#305 id=305 data-nosnippet>305</a>    /// # Returns
+<a href=#306 id=306 data-nosnippet>306</a>    ///
+<a href=#307 id=307 data-nosnippet>307</a>    /// a `GDateTime` for the time
+<a href=#308 id=308 data-nosnippet>308</a>    ///    when the resource was last visited
+<a href=#309 id=309 data-nosnippet>309</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_recent_info_get_visited"</span>)]
+<a href=#310 id=310 data-nosnippet>310</a>    #[doc(alias = <span class="string">"get_visited"</span>)]
+<a href=#311 id=311 data-nosnippet>311</a>    </span><span class="kw">pub fn </span>visited(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/auto/date_time/struct.DateTime.html">DateTime</a> {
+<a href=#312 id=312 data-nosnippet>312</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib_none.html">from_glib_none</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_recent_info_get_visited.html">gtk_recent_info_get_visited</a>(<a class="self" href="#311">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
+<a href=#313 id=313 data-nosnippet>313</a>    }
+<a href=#314 id=314 data-nosnippet>314</a>
+<a href=#315 id=315 data-nosnippet>315</a>    <span class="doccomment">/// Checks whether an application registered this resource using @app_name.
+<a href=#316 id=316 data-nosnippet>316</a>    /// ## `app_name`
+<a href=#317 id=317 data-nosnippet>317</a>    /// a string containing an application name
+<a href=#318 id=318 data-nosnippet>318</a>    ///
+<a href=#319 id=319 data-nosnippet>319</a>    /// # Returns
+<a href=#320 id=320 data-nosnippet>320</a>    ///
+<a href=#321 id=321 data-nosnippet>321</a>    /// [`true`] if an application with name @app_name was found,
+<a href=#322 id=322 data-nosnippet>322</a>    ///   [`false`] otherwise
+<a href=#323 id=323 data-nosnippet>323</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_recent_info_has_application"</span>)]
+<a href=#324 id=324 data-nosnippet>324</a>    </span><span class="kw">pub fn </span>has_application(<span class="kw-2">&amp;</span><span class="self">self</span>, app_name: <span class="kw-2">&amp;</span><a href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>) -&gt; <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> {
+<a href=#325 id=325 data-nosnippet>325</a>        <span class="kw">unsafe </span>{
+<a href=#326 id=326 data-nosnippet>326</a>            <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_recent_info_has_application.html">gtk_recent_info_has_application</a>(
+<a href=#327 id=327 data-nosnippet>327</a>                <a class="self" href="#324">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
+<a href=#328 id=328 data-nosnippet>328</a>                <a href="#324">app_name</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
+<a href=#329 id=329 data-nosnippet>329</a>            ))
+<a href=#330 id=330 data-nosnippet>330</a>        }
+<a href=#331 id=331 data-nosnippet>331</a>    }
+<a href=#332 id=332 data-nosnippet>332</a>
+<a href=#333 id=333 data-nosnippet>333</a>    <span class="doccomment">/// Checks whether @group_name appears inside the groups
+<a href=#334 id=334 data-nosnippet>334</a>    /// registered for the recently used item @self.
+<a href=#335 id=335 data-nosnippet>335</a>    /// ## `group_name`
+<a href=#336 id=336 data-nosnippet>336</a>    /// name of a group
+<a href=#337 id=337 data-nosnippet>337</a>    ///
+<a href=#338 id=338 data-nosnippet>338</a>    /// # Returns
+<a href=#339 id=339 data-nosnippet>339</a>    ///
+<a href=#340 id=340 data-nosnippet>340</a>    /// [`true`] if the group was found
+<a href=#341 id=341 data-nosnippet>341</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_recent_info_has_group"</span>)]
+<a href=#342 id=342 data-nosnippet>342</a>    </span><span class="kw">pub fn </span>has_group(<span class="kw-2">&amp;</span><span class="self">self</span>, group_name: <span class="kw-2">&amp;</span><a href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>) -&gt; <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> {
+<a href=#343 id=343 data-nosnippet>343</a>        <span class="kw">unsafe </span>{
+<a href=#344 id=344 data-nosnippet>344</a>            <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_recent_info_has_group.html">gtk_recent_info_has_group</a>(
+<a href=#345 id=345 data-nosnippet>345</a>                <a class="self" href="#342">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
+<a href=#346 id=346 data-nosnippet>346</a>                <a href="#342">group_name</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
+<a href=#347 id=347 data-nosnippet>347</a>            ))
+<a href=#348 id=348 data-nosnippet>348</a>        }
+<a href=#349 id=349 data-nosnippet>349</a>    }
+<a href=#350 id=350 data-nosnippet>350</a>
+<a href=#351 id=351 data-nosnippet>351</a>    <span class="doccomment">/// Checks whether the resource is local or not by looking at the
+<a href=#352 id=352 data-nosnippet>352</a>    /// scheme of its URI.
+<a href=#353 id=353 data-nosnippet>353</a>    ///
+<a href=#354 id=354 data-nosnippet>354</a>    /// # Returns
+<a href=#355 id=355 data-nosnippet>355</a>    ///
+<a href=#356 id=356 data-nosnippet>356</a>    /// [`true`] if the resource is local
+<a href=#357 id=357 data-nosnippet>357</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_recent_info_is_local"</span>)]
+<a href=#358 id=358 data-nosnippet>358</a>    </span><span class="kw">pub fn </span>is_local(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> {
+<a href=#359 id=359 data-nosnippet>359</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_recent_info_is_local.html">gtk_recent_info_is_local</a>(<a class="self" href="#358">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
+<a href=#360 id=360 data-nosnippet>360</a>    }
+<a href=#361 id=361 data-nosnippet>361</a>
+<a href=#362 id=362 data-nosnippet>362</a>    <span class="doccomment">/// Gets the name of the last application that have registered the
+<a href=#363 id=363 data-nosnippet>363</a>    /// recently used resource represented by @self.
+<a href=#364 id=364 data-nosnippet>364</a>    ///
+<a href=#365 id=365 data-nosnippet>365</a>    /// # Returns
+<a href=#366 id=366 data-nosnippet>366</a>    ///
+<a href=#367 id=367 data-nosnippet>367</a>    /// an application name. Use g_free() to free it.
+<a href=#368 id=368 data-nosnippet>368</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_recent_info_last_application"</span>)]
+<a href=#369 id=369 data-nosnippet>369</a>    </span><span class="kw">pub fn </span>last_application(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/gstring/struct.GString.html">GString</a> {
+<a href=#370 id=370 data-nosnippet>370</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib_full.html">from_glib_full</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_recent_info_last_application.html">gtk_recent_info_last_application</a>(<a class="self" href="#369">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
+<a href=#371 id=371 data-nosnippet>371</a>    }
+<a href=#372 id=372 data-nosnippet>372</a>
+<a href=#373 id=373 data-nosnippet>373</a>    <span class="doccomment">/// Checks whether two [`RecentInfo`][crate::RecentInfo] point to the same resource.
+<a href=#374 id=374 data-nosnippet>374</a>    /// ## `info_b`
+<a href=#375 id=375 data-nosnippet>375</a>    /// a [`RecentInfo`][crate::RecentInfo]
+<a href=#376 id=376 data-nosnippet>376</a>    ///
+<a href=#377 id=377 data-nosnippet>377</a>    /// # Returns
+<a href=#378 id=378 data-nosnippet>378</a>    ///
+<a href=#379 id=379 data-nosnippet>379</a>    /// [`true`] if both [`RecentInfo`][crate::RecentInfo] point to the same
+<a href=#380 id=380 data-nosnippet>380</a>    ///   resource, [`false`] otherwise
+<a href=#381 id=381 data-nosnippet>381</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_recent_info_match"</span>)]
+<a href=#382 id=382 data-nosnippet>382</a>    #[doc(alias = <span class="string">"match"</span>)]
+<a href=#383 id=383 data-nosnippet>383</a>    </span><span class="kw">pub fn </span>match_(<span class="kw-2">&amp;</span><span class="self">self</span>, info_b: <span class="kw-2">&amp;</span><a href="#8-19">RecentInfo</a>) -&gt; <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> {
+<a href=#384 id=384 data-nosnippet>384</a>        <span class="kw">unsafe </span>{
+<a href=#385 id=385 data-nosnippet>385</a>            <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_recent_info_match.html">gtk_recent_info_match</a>(
+<a href=#386 id=386 data-nosnippet>386</a>                <a class="self" href="#383">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
+<a href=#387 id=387 data-nosnippet>387</a>                <a href="#383">info_b</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
+<a href=#388 id=388 data-nosnippet>388</a>            ))
+<a href=#389 id=389 data-nosnippet>389</a>        }
+<a href=#390 id=390 data-nosnippet>390</a>    }
+<a href=#391 id=391 data-nosnippet>391</a>}
 </code></pre></div></section></main></body></html>

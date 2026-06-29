@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/auto/alert_dialog.rs`."><title>alert_dialog.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-1ed95124.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.98.0-nightly (4429659e4 2026-06-22)" data-channel="nightly" data-search-js="search-fd9372ac.js" data-stringdex-js="stringdex-2da4960a.js" data-settings-js="settings-170eb4bf.js" ><script src="../../../static.files/storage-41dd4d93.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-417ebf0a.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-f7c3ffd8.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><a class="skip-main-content" href="#main-content">Skip to main content</a><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/auto/alert_dialog.rs`."><title>alert_dialog.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-1ed95124.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.98.0-nightly (df6ee909e 2026-06-28)" data-channel="nightly" data-search-js="search-9944d736.js" data-stringdex-js="stringdex-2da4960a.js" data-settings-js="settings-170eb4bf.js" ><script src="../../../static.files/storage-41dd4d93.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-417ebf0a.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-f7c3ffd8.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><a class="skip-main-content" href="#main-content">Skip to main content</a><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
 
@@ -75,7 +75,7 @@
 <a href=#2 id=2 data-nosnippet>2</a>// from gir-files (https://github.com/gtk-rs/gir-files)
 <a href=#3 id=3 data-nosnippet>3</a>// DO NOT EDIT
 <a href=#4 id=4 data-nosnippet>4</a>
-<a href=#5 id=5 data-nosnippet>5</a></span><span class="kw">use crate</span>::{<a href="window.rs.html#26-794">Window</a>, <a href="../../../gtk4_sys/index.html">ffi</a>};
+<a href=#5 id=5 data-nosnippet>5</a></span><span class="kw">use crate</span>::{<a href="window.rs.html#26-726">Window</a>, <a href="../../../gtk4_sys/index.html">ffi</a>};
 <a href=#6 id=6 data-nosnippet>6</a><span class="kw">use </span>glib::{
 <a href=#7 id=7 data-nosnippet>7</a>    <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/prelude/index.html">prelude</a>::<span class="kw-2">*</span>,
 <a href=#8 id=8 data-nosnippet>8</a>    signal::{<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html">SignalHandlerId</a>, <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/fn.connect_raw.html">connect_raw</a>},
@@ -108,7 +108,7 @@
 <a href=#35 id=35 data-nosnippet>35</a>    ///
 <a href=#36 id=36 data-nosnippet>36</a>    ///
 <a href=#37 id=37 data-nosnippet>37</a>    /// #### `cancel-button`
-<a href=#38 id=38 data-nosnippet>38</a>    ///  Determines what happens when the &lt;kbd&gt;Escape&lt;/kbd&gt; key is pressed
+<a href=#38 id=38 data-nosnippet>38</a>    ///   key is pressed
 <a href=#39 id=39 data-nosnippet>39</a>    /// while the alert is shown.
 <a href=#40 id=40 data-nosnippet>40</a>    ///
 <a href=#41 id=41 data-nosnippet>41</a>    /// If this property holds the index of a button in [`buttons`][struct@crate::AlertDialog#buttons],
@@ -122,7 +122,7 @@
 <a href=#49 id=49 data-nosnippet>49</a>    ///
 <a href=#50 id=50 data-nosnippet>50</a>    ///
 <a href=#51 id=51 data-nosnippet>51</a>    /// #### `default-button`
-<a href=#52 id=52 data-nosnippet>52</a>    ///  Determines what happens when the &lt;kbd&gt;Return&lt;/kbd&gt; key is pressed
+<a href=#52 id=52 data-nosnippet>52</a>    ///   key is pressed
 <a href=#53 id=53 data-nosnippet>53</a>    /// while the alert is shown.
 <a href=#54 id=54 data-nosnippet>54</a>    ///
 <a href=#55 id=55 data-nosnippet>55</a>    /// If this property holds the index of a button in [`buttons`][struct@crate::AlertDialog#buttons],
@@ -192,7 +192,7 @@
 <a href=#119 id=119 data-nosnippet>119</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_alert_dialog_choose"</span>)]
 <a href=#120 id=120 data-nosnippet>120</a>    </span><span class="kw">pub fn </span>choose&lt;P: <a href="https://doc.rust-lang.org/nightly/core/ops/function/trait.FnOnce.html">FnOnce</a>(<a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html">Result</a>&lt;<a href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/error/struct.Error.html">Error</a>&gt;) + <span class="lifetime">'static</span>&gt;(
 <a href=#121 id=121 data-nosnippet>121</a>        <span class="kw-2">&amp;</span><span class="self">self</span>,
-<a href=#122 id=122 data-nosnippet>122</a>        parent: <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;<span class="kw-2">&amp;</span><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html">IsA</a>&lt;<a href="window.rs.html#26-794">Window</a>&gt;&gt;,
+<a href=#122 id=122 data-nosnippet>122</a>        parent: <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;<span class="kw-2">&amp;</span><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html">IsA</a>&lt;<a href="window.rs.html#26-726">Window</a>&gt;&gt;,
 <a href=#123 id=123 data-nosnippet>123</a>        cancellable: <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;<span class="kw-2">&amp;</span><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html">IsA</a>&lt;gio::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/gio/auto/cancellable/struct.Cancellable.html">Cancellable</a>&gt;&gt;,
 <a href=#124 id=124 data-nosnippet>124</a>        callback: P,
 <a href=#125 id=125 data-nosnippet>125</a>    ) {
@@ -242,7 +242,7 @@
 <a href=#169 id=169 data-nosnippet>169</a>
 <a href=#170 id=170 data-nosnippet>170</a>    <span class="kw">pub fn </span>choose_future(
 <a href=#171 id=171 data-nosnippet>171</a>        <span class="kw-2">&amp;</span><span class="self">self</span>,
-<a href=#172 id=172 data-nosnippet>172</a>        parent: <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;<span class="kw-2">&amp;</span>(<span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html">IsA</a>&lt;<a href="window.rs.html#26-794">Window</a>&gt; + <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html">Clone</a> + <span class="lifetime">'static</span>)&gt;,
+<a href=#172 id=172 data-nosnippet>172</a>        parent: <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;<span class="kw-2">&amp;</span>(<span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html">IsA</a>&lt;<a href="window.rs.html#26-726">Window</a>&gt; + <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html">Clone</a> + <span class="lifetime">'static</span>)&gt;,
 <a href=#173 id=173 data-nosnippet>173</a>    ) -&gt; <a href="https://doc.rust-lang.org/nightly/core/pin/struct.Pin.html">Pin</a>&lt;<a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">Box_</a>&lt;<span class="kw">dyn </span><a href="https://doc.rust-lang.org/nightly/core/future/future/trait.Future.html">std::future::Future</a>&lt;Output = <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html">Result</a>&lt;<a href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/error/struct.Error.html">Error</a>&gt;&gt; + <span class="lifetime">'static</span>&gt;&gt; {
 <a href=#174 id=174 data-nosnippet>174</a>        <span class="kw">let </span>parent = <a href="#172">parent</a>.<a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#method.map">map</a>(ToOwned::<a href="https://doc.rust-lang.org/nightly/alloc/borrow/trait.ToOwned.html#tymethod.to_owned">to_owned</a>);
 <a href=#175 id=175 data-nosnippet>175</a>        <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">Box_</a>::<a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html#method.pin">pin</a>(gio::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/gio/gio_future/struct.GioFuture.html">GioFuture</a>::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/gio/gio_future/struct.GioFuture.html#method.new">new</a>(<a class="self" href="#171">self</a>, <span class="kw">move </span>|obj, cancellable, send| {
@@ -414,7 +414,7 @@
 <a href=#341 id=341 data-nosnippet>341</a>    /// ## `parent`
 <a href=#342 id=342 data-nosnippet>342</a>    /// the parent window
 <a href=#343 id=343 data-nosnippet>343</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_alert_dialog_show"</span>)]
-<a href=#344 id=344 data-nosnippet>344</a>    </span><span class="kw">pub fn </span>show(<span class="kw-2">&amp;</span><span class="self">self</span>, parent: <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;<span class="kw-2">&amp;</span><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html">IsA</a>&lt;<a href="window.rs.html#26-794">Window</a>&gt;&gt;) {
+<a href=#344 id=344 data-nosnippet>344</a>    </span><span class="kw">pub fn </span>show(<span class="kw-2">&amp;</span><span class="self">self</span>, parent: <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;<span class="kw-2">&amp;</span><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html">IsA</a>&lt;<a href="window.rs.html#26-726">Window</a>&gt;&gt;) {
 <a href=#345 id=345 data-nosnippet>345</a>        <span class="kw">unsafe </span>{
 <a href=#346 id=346 data-nosnippet>346</a>            ffi::<a href="../../../gtk4_sys/fn.gtk_alert_dialog_show.html">gtk_alert_dialog_show</a>(
 <a href=#347 id=347 data-nosnippet>347</a>                <a class="self" href="#344">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
@@ -625,7 +625,7 @@
 <a href=#552 id=552 data-nosnippet>552</a>        }
 <a href=#553 id=553 data-nosnippet>553</a>    }
 <a href=#554 id=554 data-nosnippet>554</a>
-<a href=#555 id=555 data-nosnippet>555</a>    <span class="doccomment">/// Determines what happens when the &lt;kbd&gt;Escape&lt;/kbd&gt; key is pressed
+<a href=#555 id=555 data-nosnippet>555</a>    <span class="doccomment">///  key is pressed
 <a href=#556 id=556 data-nosnippet>556</a>    /// while the alert is shown.
 <a href=#557 id=557 data-nosnippet>557</a>    ///
 <a href=#558 id=558 data-nosnippet>558</a>    /// If this property holds the index of a button in [`buttons`][struct@crate::AlertDialog#buttons],
@@ -642,7 +642,7 @@
 <a href=#569 id=569 data-nosnippet>569</a>        }
 <a href=#570 id=570 data-nosnippet>570</a>    }
 <a href=#571 id=571 data-nosnippet>571</a>
-<a href=#572 id=572 data-nosnippet>572</a>    <span class="doccomment">/// Determines what happens when the &lt;kbd&gt;Return&lt;/kbd&gt; key is pressed
+<a href=#572 id=572 data-nosnippet>572</a>    <span class="doccomment">///  key is pressed
 <a href=#573 id=573 data-nosnippet>573</a>    /// while the alert is shown.
 <a href=#574 id=574 data-nosnippet>574</a>    ///
 <a href=#575 id=575 data-nosnippet>575</a>    /// If this property holds the index of a button in [`buttons`][struct@crate::AlertDialog#buttons],

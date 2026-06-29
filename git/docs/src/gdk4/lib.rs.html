@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gdk4/src/lib.rs`."><title>lib.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-1ed95124.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gdk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.98.0-nightly (4429659e4 2026-06-22)" data-channel="nightly" data-search-js="search-fd9372ac.js" data-stringdex-js="stringdex-2da4960a.js" data-settings-js="settings-170eb4bf.js" ><script src="../../static.files/storage-41dd4d93.js"></script><script defer src="../../static.files/src-script-813739b1.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-417ebf0a.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-f7c3ffd8.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><a class="skip-main-content" href="#main-content">Skip to main content</a><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gdk4/src/lib.rs`."><title>lib.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-1ed95124.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gdk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.98.0-nightly (df6ee909e 2026-06-28)" data-channel="nightly" data-search-js="search-9944d736.js" data-stringdex-js="stringdex-2da4960a.js" data-settings-js="settings-170eb4bf.js" ><script src="../../static.files/storage-41dd4d93.js"></script><script defer src="../../static.files/src-script-813739b1.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-417ebf0a.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-f7c3ffd8.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><a class="skip-main-content" href="#main-content">Skip to main content</a><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
 
@@ -95,7 +95,7 @@
 <a href=#22 id=22 data-nosnippet>22</a>
 <a href=#23 id=23 data-nosnippet>23</a><span class="doccomment">/// A mask covering all entries in [`ModifierType`][crate::ModifierType].
 <a href=#24 id=24 data-nosnippet>24</a></span><span class="attr">#[doc(alias = <span class="string">"GDK_MODIFIER_MASK"</span>)]
-<a href=#25 id=25 data-nosnippet>25</a></span><span class="kw">pub const </span><a href="../../gdk4/constant.MODIFIER_MASK.html">MODIFIER_MASK</a>: <a href="auto/flags.rs.html#576-634">ModifierType</a> = <a href="auto/flags.rs.html#576-634">ModifierType</a>::<a href="auto/flags.rs.html#576-634">all</a>();
+<a href=#25 id=25 data-nosnippet>25</a></span><span class="kw">pub const </span><a href="../../gdk4/constant.MODIFIER_MASK.html">MODIFIER_MASK</a>: <a href="auto/flags.rs.html#576-631">ModifierType</a> = <a href="auto/flags.rs.html#576-631">ModifierType</a>::<a href="auto/flags.rs.html#576-631">all</a>();
 <a href=#26 id=26 data-nosnippet>26</a>
 <a href=#27 id=27 data-nosnippet>27</a><span class="doccomment">/// Defines all possible DND actions.
 <a href=#28 id=28 data-nosnippet>28</a>///
@@ -168,7 +168,7 @@
 <a href=#95 id=95 data-nosnippet>95</a>#[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_16"</span>)))]
 <a href=#96 id=96 data-nosnippet>96</a></span><span class="kw">mod </span><a href="cursor.rs.html#3-81">cursor</a>;
 <a href=#97 id=97 data-nosnippet>97</a><span class="kw">mod </span><a href="delete_event.rs.html#3-17">delete_event</a>;
-<a href=#98 id=98 data-nosnippet>98</a><span class="kw">mod </span><a href="display.rs.html#3-274">display</a>;
+<a href=#98 id=98 data-nosnippet>98</a><span class="kw">mod </span><a href="display.rs.html#3-261">display</a>;
 <a href=#99 id=99 data-nosnippet>99</a><span class="attr">#[cfg(target_os = <span class="string">"linux"</span>)]
 <a href=#100 id=100 data-nosnippet>100</a>#[cfg_attr(docsrs, doc(cfg(target_os = <span class="string">"linux"</span>)))]
 <a href=#101 id=101 data-nosnippet>101</a>#[cfg(feature = <span class="string">"v4_14"</span>)]
@@ -184,7 +184,7 @@
 <a href=#111 id=111 data-nosnippet>111</a><span class="kw">mod </span><a href="draw_context.rs.html#3-39">draw_context</a>;
 <a href=#112 id=112 data-nosnippet>112</a><span class="kw">mod </span><a href="drop.rs.html#3-104">drop</a>;
 <a href=#113 id=113 data-nosnippet>113</a><span class="kw">mod </span><a href="focus_event.rs.html#3-19">focus_event</a>;
-<a href=#114 id=114 data-nosnippet>114</a><span class="kw">mod </span><a href="functions.rs.html#3-458">functions</a>;
+<a href=#114 id=114 data-nosnippet>114</a><span class="kw">mod </span><a href="functions.rs.html#3-450">functions</a>;
 <a href=#115 id=115 data-nosnippet>115</a><span class="kw">mod </span><a href="gl_texture.rs.html#3-89">gl_texture</a>;
 <a href=#116 id=116 data-nosnippet>116</a><span class="attr">#[cfg(feature = <span class="string">"v4_12"</span>)]
 <a href=#117 id=117 data-nosnippet>117</a>#[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_12"</span>)))]
@@ -192,7 +192,7 @@
 <a href=#119 id=119 data-nosnippet>119</a><span class="kw">mod </span><a href="grab_broken_event.rs.html#3-20">grab_broken_event</a>;
 <a href=#120 id=120 data-nosnippet>120</a><span class="kw">mod </span><a href="key_event.rs.html#3-102">key_event</a>;
 <a href=#121 id=121 data-nosnippet>121</a><span class="kw">mod </span><a href="keymap_key.rs.html#3-51">keymap_key</a>;
-<a href=#122 id=122 data-nosnippet>122</a><span class="kw">mod </span><a href="keys.rs.html#3-5161">keys</a>;
+<a href=#122 id=122 data-nosnippet>122</a><span class="kw">mod </span><a href="keys.rs.html#3-5184">keys</a>;
 <a href=#123 id=123 data-nosnippet>123</a><span class="attr">#[cfg(feature = <span class="string">"v4_16"</span>)]
 <a href=#124 id=124 data-nosnippet>124</a>#[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_16"</span>)))]
 <a href=#125 id=125 data-nosnippet>125</a></span><span class="kw">mod </span><a href="memory_texture_builder.rs.html#3-185">memory_texture_builder</a>;
@@ -201,9 +201,9 @@
 <a href=#128 id=128 data-nosnippet>128</a><span class="kw">mod </span><a href="popup_layout.rs.html#3-28">popup_layout</a>;
 <a href=#129 id=129 data-nosnippet>129</a><span class="kw">mod </span><a href="proximity_event.rs.html#3-17">proximity_event</a>;
 <a href=#130 id=130 data-nosnippet>130</a><span class="kw">mod </span><a href="rectangle.rs.html#3-142">rectangle</a>;
-<a href=#131 id=131 data-nosnippet>131</a><span class="kw">mod </span><a href="rgba.rs.html#3-274">rgba</a>;
+<a href=#131 id=131 data-nosnippet>131</a><span class="kw">mod </span><a href="rgba.rs.html#3-254">rgba</a>;
 <a href=#132 id=132 data-nosnippet>132</a><span class="kw">mod </span><a href="scroll_event.rs.html#3-21">scroll_event</a>;
-<a href=#133 id=133 data-nosnippet>133</a><span class="kw">mod </span><a href="surface.rs.html#3-87">surface</a>;
+<a href=#133 id=133 data-nosnippet>133</a><span class="kw">mod </span><a href="surface.rs.html#3-76">surface</a>;
 <a href=#134 id=134 data-nosnippet>134</a><span class="kw">mod </span><a href="texture.rs.html#3-60">texture</a>;
 <a href=#135 id=135 data-nosnippet>135</a><span class="kw">mod </span><a href="time_coord.rs.html#3-57">time_coord</a>;
 <a href=#136 id=136 data-nosnippet>136</a><span class="kw">mod </span><a href="toplevel.rs.html#3-62">toplevel</a>;

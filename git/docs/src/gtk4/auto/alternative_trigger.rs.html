@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/auto/alternative_trigger.rs`."><title>alternative_trigger.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-1ed95124.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.98.0-nightly (4429659e4 2026-06-22)" data-channel="nightly" data-search-js="search-fd9372ac.js" data-stringdex-js="stringdex-2da4960a.js" data-settings-js="settings-170eb4bf.js" ><script src="../../../static.files/storage-41dd4d93.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-417ebf0a.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-f7c3ffd8.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><a class="skip-main-content" href="#main-content">Skip to main content</a><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/auto/alternative_trigger.rs`."><title>alternative_trigger.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-1ed95124.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.98.0-nightly (df6ee909e 2026-06-28)" data-channel="nightly" data-search-js="search-9944d736.js" data-stringdex-js="stringdex-2da4960a.js" data-settings-js="settings-170eb4bf.js" ><script src="../../../static.files/storage-41dd4d93.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-417ebf0a.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-f7c3ffd8.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><a class="skip-main-content" href="#main-content">Skip to main content</a><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
 
@@ -101,9 +101,9 @@
 <a href=#28 id=28 data-nosnippet>28</a>    ///
 <a href=#29 id=29 data-nosnippet>29</a>    /// # Implements
 <a href=#30 id=30 data-nosnippet>30</a>    ///
-<a href=#31 id=31 data-nosnippet>31</a>    /// [`ShortcutTriggerExt`][trait@crate::prelude::ShortcutTriggerExt], [`trait@glib::ObjectExt`], [`ShortcutTriggerExtManual`][trait@crate::prelude::ShortcutTriggerExtManual]
+<a href=#31 id=31 data-nosnippet>31</a>    /// [`ShortcutTriggerExt`][trait@crate::prelude::ShortcutTriggerExt], [`trait@glib::ObjectExt`], [`trait@gio::prelude::ListModelExt`], [`ShortcutTriggerExtManual`][trait@crate::prelude::ShortcutTriggerExtManual]
 <a href=#32 id=32 data-nosnippet>32</a>    </span><span class="attr">#[doc(alias = <span class="string">"GtkAlternativeTrigger"</span>)]
-<a href=#33 id=33 data-nosnippet>33</a>    </span><span class="kw">pub struct </span><a href="../../../gtk4/struct.AlternativeTrigger.html">AlternativeTrigger</a>(Object&lt;ffi::<a href="../../../gtk4_sys/struct.GtkAlternativeTrigger.html">GtkAlternativeTrigger</a>, ffi::<a href="../../../gtk4_sys/type.GtkAlternativeTriggerClass.html">GtkAlternativeTriggerClass</a>&gt;) @extends <a href="shortcut_trigger.rs.html#8-32">ShortcutTrigger</a>;
+<a href=#33 id=33 data-nosnippet>33</a>    </span><span class="kw">pub struct </span><a href="../../../gtk4/struct.AlternativeTrigger.html">AlternativeTrigger</a>(Object&lt;ffi::<a href="../../../gtk4_sys/struct.GtkAlternativeTrigger.html">GtkAlternativeTrigger</a>, ffi::<a href="../../../gtk4_sys/type.GtkAlternativeTriggerClass.html">GtkAlternativeTriggerClass</a>&gt;) @extends <a href="shortcut_trigger.rs.html#8-32">ShortcutTrigger</a>, @implements gio::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/gio/auto/list_model/struct.ListModel.html">ListModel</a>;
 <a href=#34 id=34 data-nosnippet>34</a>
 <a href=#35 id=35 data-nosnippet>35</a>    <span class="kw">match fn </span>{
 <a href=#36 id=36 data-nosnippet>36</a>        type_ =&gt; || ffi::gtk_alternative_trigger_get_type(),
@@ -139,95 +139,118 @@
 <a href=#66 id=66 data-nosnippet>66</a>        }
 <a href=#67 id=67 data-nosnippet>67</a>    }
 <a href=#68 id=68 data-nosnippet>68</a>
-<a href=#69 id=69 data-nosnippet>69</a>    <span class="comment">// rustdoc-stripper-ignore-next
-<a href=#70 id=70 data-nosnippet>70</a>    </span><span class="doccomment">/// Creates a new builder-pattern struct instance to construct [`AlternativeTrigger`] objects.
-<a href=#71 id=71 data-nosnippet>71</a>    ///
-<a href=#72 id=72 data-nosnippet>72</a>    /// This method returns an instance of [`AlternativeTriggerBuilder`](crate::builders::AlternativeTriggerBuilder) which can be used to create [`AlternativeTrigger`] objects.
-<a href=#73 id=73 data-nosnippet>73</a>    </span><span class="kw">pub fn </span>builder() -&gt; <a href="#127-129">AlternativeTriggerBuilder</a> {
-<a href=#74 id=74 data-nosnippet>74</a>        <a href="#127-129">AlternativeTriggerBuilder</a>::<a href="#132-136">new</a>()
-<a href=#75 id=75 data-nosnippet>75</a>    }
-<a href=#76 id=76 data-nosnippet>76</a>
-<a href=#77 id=77 data-nosnippet>77</a>    <span class="doccomment">/// Gets the first of the two alternative triggers that may
-<a href=#78 id=78 data-nosnippet>78</a>    /// trigger @self.
-<a href=#79 id=79 data-nosnippet>79</a>    ///
-<a href=#80 id=80 data-nosnippet>80</a>    /// [`second()`][Self::second()] will return
-<a href=#81 id=81 data-nosnippet>81</a>    /// the other one.
-<a href=#82 id=82 data-nosnippet>82</a>    ///
-<a href=#83 id=83 data-nosnippet>83</a>    /// # Returns
-<a href=#84 id=84 data-nosnippet>84</a>    ///
-<a href=#85 id=85 data-nosnippet>85</a>    /// the first alternative trigger
-<a href=#86 id=86 data-nosnippet>86</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_alternative_trigger_get_first"</span>)]
-<a href=#87 id=87 data-nosnippet>87</a>    #[doc(alias = <span class="string">"get_first"</span>)]
-<a href=#88 id=88 data-nosnippet>88</a>    </span><span class="kw">pub fn </span>first(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="shortcut_trigger.rs.html#8-32">ShortcutTrigger</a> {
-<a href=#89 id=89 data-nosnippet>89</a>        <span class="kw">unsafe </span>{
-<a href=#90 id=90 data-nosnippet>90</a>            <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib_none.html">from_glib_none</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_alternative_trigger_get_first.html">gtk_alternative_trigger_get_first</a>(
-<a href=#91 id=91 data-nosnippet>91</a>                <a class="self" href="#88">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
-<a href=#92 id=92 data-nosnippet>92</a>            ))
-<a href=#93 id=93 data-nosnippet>93</a>        }
-<a href=#94 id=94 data-nosnippet>94</a>    }
-<a href=#95 id=95 data-nosnippet>95</a>
-<a href=#96 id=96 data-nosnippet>96</a>    <span class="doccomment">/// Gets the second of the two alternative triggers that may
-<a href=#97 id=97 data-nosnippet>97</a>    /// trigger @self.
-<a href=#98 id=98 data-nosnippet>98</a>    ///
-<a href=#99 id=99 data-nosnippet>99</a>    /// [`first()`][Self::first()] will return
-<a href=#100 id=100 data-nosnippet>100</a>    /// the other one.
-<a href=#101 id=101 data-nosnippet>101</a>    ///
-<a href=#102 id=102 data-nosnippet>102</a>    /// # Returns
-<a href=#103 id=103 data-nosnippet>103</a>    ///
-<a href=#104 id=104 data-nosnippet>104</a>    /// the second alternative trigger
-<a href=#105 id=105 data-nosnippet>105</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_alternative_trigger_get_second"</span>)]
-<a href=#106 id=106 data-nosnippet>106</a>    #[doc(alias = <span class="string">"get_second"</span>)]
-<a href=#107 id=107 data-nosnippet>107</a>    </span><span class="kw">pub fn </span>second(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="shortcut_trigger.rs.html#8-32">ShortcutTrigger</a> {
-<a href=#108 id=108 data-nosnippet>108</a>        <span class="kw">unsafe </span>{
-<a href=#109 id=109 data-nosnippet>109</a>            <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib_none.html">from_glib_none</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_alternative_trigger_get_second.html">gtk_alternative_trigger_get_second</a>(
-<a href=#110 id=110 data-nosnippet>110</a>                <a class="self" href="#107">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
-<a href=#111 id=111 data-nosnippet>111</a>            ))
-<a href=#112 id=112 data-nosnippet>112</a>        }
-<a href=#113 id=113 data-nosnippet>113</a>    }
-<a href=#114 id=114 data-nosnippet>114</a>}
-<a href=#115 id=115 data-nosnippet>115</a>
-<a href=#116 id=116 data-nosnippet>116</a><span class="kw">impl </span><a href="https://doc.rust-lang.org/nightly/core/default/trait.Default.html">Default</a> <span class="kw">for </span><a href="#8-38">AlternativeTrigger</a> {
-<a href=#117 id=117 data-nosnippet>117</a>    <span class="kw">fn </span>default() -&gt; <span class="self">Self </span>{
-<a href=#118 id=118 data-nosnippet>118</a>        glib::object::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/struct.Object.html">Object</a>::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/struct.Object.html#method.new">new</a>::&lt;<span class="self">Self</span>&gt;()
-<a href=#119 id=119 data-nosnippet>119</a>    }
-<a href=#120 id=120 data-nosnippet>120</a>}
-<a href=#121 id=121 data-nosnippet>121</a>
-<a href=#122 id=122 data-nosnippet>122</a><span class="comment">// rustdoc-stripper-ignore-next
-<a href=#123 id=123 data-nosnippet>123</a></span><span class="doccomment">/// A [builder-pattern] type to construct [`AlternativeTrigger`] objects.
-<a href=#124 id=124 data-nosnippet>124</a>///
-<a href=#125 id=125 data-nosnippet>125</a>/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
-<a href=#126 id=126 data-nosnippet>126</a></span><span class="attr">#[must_use = <span class="string">"The builder must be built to be used"</span>]
-<a href=#127 id=127 data-nosnippet>127</a></span><span class="kw">pub struct </span><a href="../../../gtk4/builders/struct.AlternativeTriggerBuilder.html">AlternativeTriggerBuilder</a> {
-<a href=#128 id=128 data-nosnippet>128</a>    builder: glib::object::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/struct.ObjectBuilder.html">ObjectBuilder</a>&lt;<span class="lifetime">'static</span>, <a href="#8-38">AlternativeTrigger</a>&gt;,
-<a href=#129 id=129 data-nosnippet>129</a>}
-<a href=#130 id=130 data-nosnippet>130</a>
-<a href=#131 id=131 data-nosnippet>131</a><span class="kw">impl </span><a href="#127-129">AlternativeTriggerBuilder</a> {
-<a href=#132 id=132 data-nosnippet>132</a>    <span class="kw">fn </span>new() -&gt; <span class="self">Self </span>{
-<a href=#133 id=133 data-nosnippet>133</a>        <span class="self">Self </span>{
-<a href=#134 id=134 data-nosnippet>134</a>            builder: glib::object::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/struct.Object.html">Object</a>::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/struct.Object.html#method.builder">builder</a>(),
+<a href=#69 id=69 data-nosnippet>69</a>    <span class="doccomment">/// Creates a [`ShortcutTrigger`][crate::ShortcutTrigger] that will trigger whenever
+<a href=#70 id=70 data-nosnippet>70</a>    /// any of the given triggers gets triggered.
+<a href=#71 id=71 data-nosnippet>71</a>    /// ## `triggers`
+<a href=#72 id=72 data-nosnippet>72</a>    /// the triggers
+<a href=#73 id=73 data-nosnippet>73</a>    ///
+<a href=#74 id=74 data-nosnippet>74</a>    /// # Returns
+<a href=#75 id=75 data-nosnippet>75</a>    ///
+<a href=#76 id=76 data-nosnippet>76</a>    /// a new [`ShortcutTrigger`][crate::ShortcutTrigger]
+<a href=#77 id=77 data-nosnippet>77</a>    </span><span class="attr">#[cfg(feature = <span class="string">"v4_24"</span>)]
+<a href=#78 id=78 data-nosnippet>78</a>    #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_24"</span>)))]
+<a href=#79 id=79 data-nosnippet>79</a>    #[doc(alias = <span class="string">"gtk_alternative_trigger_newv"</span>)]
+<a href=#80 id=80 data-nosnippet>80</a>    </span><span class="kw">pub fn </span>newv(triggers: <span class="kw-2">&amp;</span>[<a href="shortcut_trigger.rs.html#8-32">ShortcutTrigger</a>]) -&gt; <a href="#8-38">AlternativeTrigger</a> {
+<a href=#81 id=81 data-nosnippet>81</a>        <a href="../rt.rs.html#24-36">assert_initialized_main_thread!</a>();
+<a href=#82 id=82 data-nosnippet>82</a>        <span class="kw">let </span>n_triggers = <a href="#80">triggers</a>.<a href="https://doc.rust-lang.org/nightly/core/primitive.slice.html#method.len">len</a>() <span class="kw">as _</span>;
+<a href=#83 id=83 data-nosnippet>83</a>        <span class="kw">unsafe </span>{
+<a href=#84 id=84 data-nosnippet>84</a>            <a href="shortcut_trigger.rs.html#8-32">ShortcutTrigger</a>::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.FromGlibPtrFull.html#tymethod.from_glib_full">from_glib_full</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_alternative_trigger_newv.html">gtk_alternative_trigger_newv</a>(
+<a href=#85 id=85 data-nosnippet>85</a>                <a href="#80">triggers</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#method.to_glib_full">to_glib_full</a>(),
+<a href=#86 id=86 data-nosnippet>86</a>                <a href="#82">n_triggers</a>,
+<a href=#87 id=87 data-nosnippet>87</a>            ))
+<a href=#88 id=88 data-nosnippet>88</a>            .<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.Cast.html#method.unsafe_cast">unsafe_cast</a>()
+<a href=#89 id=89 data-nosnippet>89</a>        }
+<a href=#90 id=90 data-nosnippet>90</a>    }
+<a href=#91 id=91 data-nosnippet>91</a>
+<a href=#92 id=92 data-nosnippet>92</a>    <span class="comment">// rustdoc-stripper-ignore-next
+<a href=#93 id=93 data-nosnippet>93</a>    </span><span class="doccomment">/// Creates a new builder-pattern struct instance to construct [`AlternativeTrigger`] objects.
+<a href=#94 id=94 data-nosnippet>94</a>    ///
+<a href=#95 id=95 data-nosnippet>95</a>    /// This method returns an instance of [`AlternativeTriggerBuilder`](crate::builders::AlternativeTriggerBuilder) which can be used to create [`AlternativeTrigger`] objects.
+<a href=#96 id=96 data-nosnippet>96</a>    </span><span class="kw">pub fn </span>builder() -&gt; <a href="#150-152">AlternativeTriggerBuilder</a> {
+<a href=#97 id=97 data-nosnippet>97</a>        <a href="#150-152">AlternativeTriggerBuilder</a>::<a href="#155-159">new</a>()
+<a href=#98 id=98 data-nosnippet>98</a>    }
+<a href=#99 id=99 data-nosnippet>99</a>
+<a href=#100 id=100 data-nosnippet>100</a>    <span class="doccomment">/// Gets the first of the two alternative triggers that may
+<a href=#101 id=101 data-nosnippet>101</a>    /// trigger @self.
+<a href=#102 id=102 data-nosnippet>102</a>    ///
+<a href=#103 id=103 data-nosnippet>103</a>    /// [`second()`][Self::second()] will return
+<a href=#104 id=104 data-nosnippet>104</a>    /// the other one.
+<a href=#105 id=105 data-nosnippet>105</a>    ///
+<a href=#106 id=106 data-nosnippet>106</a>    /// # Returns
+<a href=#107 id=107 data-nosnippet>107</a>    ///
+<a href=#108 id=108 data-nosnippet>108</a>    /// the first alternative trigger
+<a href=#109 id=109 data-nosnippet>109</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_alternative_trigger_get_first"</span>)]
+<a href=#110 id=110 data-nosnippet>110</a>    #[doc(alias = <span class="string">"get_first"</span>)]
+<a href=#111 id=111 data-nosnippet>111</a>    </span><span class="kw">pub fn </span>first(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="shortcut_trigger.rs.html#8-32">ShortcutTrigger</a> {
+<a href=#112 id=112 data-nosnippet>112</a>        <span class="kw">unsafe </span>{
+<a href=#113 id=113 data-nosnippet>113</a>            <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib_none.html">from_glib_none</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_alternative_trigger_get_first.html">gtk_alternative_trigger_get_first</a>(
+<a href=#114 id=114 data-nosnippet>114</a>                <a class="self" href="#111">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
+<a href=#115 id=115 data-nosnippet>115</a>            ))
+<a href=#116 id=116 data-nosnippet>116</a>        }
+<a href=#117 id=117 data-nosnippet>117</a>    }
+<a href=#118 id=118 data-nosnippet>118</a>
+<a href=#119 id=119 data-nosnippet>119</a>    <span class="doccomment">/// Gets the second of the two alternative triggers that may
+<a href=#120 id=120 data-nosnippet>120</a>    /// trigger @self.
+<a href=#121 id=121 data-nosnippet>121</a>    ///
+<a href=#122 id=122 data-nosnippet>122</a>    /// [`first()`][Self::first()] will return
+<a href=#123 id=123 data-nosnippet>123</a>    /// the other one.
+<a href=#124 id=124 data-nosnippet>124</a>    ///
+<a href=#125 id=125 data-nosnippet>125</a>    /// # Returns
+<a href=#126 id=126 data-nosnippet>126</a>    ///
+<a href=#127 id=127 data-nosnippet>127</a>    /// the second alternative trigger
+<a href=#128 id=128 data-nosnippet>128</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_alternative_trigger_get_second"</span>)]
+<a href=#129 id=129 data-nosnippet>129</a>    #[doc(alias = <span class="string">"get_second"</span>)]
+<a href=#130 id=130 data-nosnippet>130</a>    </span><span class="kw">pub fn </span>second(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="shortcut_trigger.rs.html#8-32">ShortcutTrigger</a> {
+<a href=#131 id=131 data-nosnippet>131</a>        <span class="kw">unsafe </span>{
+<a href=#132 id=132 data-nosnippet>132</a>            <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib_none.html">from_glib_none</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_alternative_trigger_get_second.html">gtk_alternative_trigger_get_second</a>(
+<a href=#133 id=133 data-nosnippet>133</a>                <a class="self" href="#130">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
+<a href=#134 id=134 data-nosnippet>134</a>            ))
 <a href=#135 id=135 data-nosnippet>135</a>        }
 <a href=#136 id=136 data-nosnippet>136</a>    }
-<a href=#137 id=137 data-nosnippet>137</a>
-<a href=#138 id=138 data-nosnippet>138</a>    <span class="doccomment">/// The first [`ShortcutTrigger`][crate::ShortcutTrigger] to check.
-<a href=#139 id=139 data-nosnippet>139</a>    </span><span class="kw">pub fn </span>first(<span class="self">self</span>, first: <span class="kw-2">&amp;</span><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html">IsA</a>&lt;<a href="shortcut_trigger.rs.html#8-32">ShortcutTrigger</a>&gt;) -&gt; <span class="self">Self </span>{
-<a href=#140 id=140 data-nosnippet>140</a>        <span class="self">Self </span>{
-<a href=#141 id=141 data-nosnippet>141</a>            builder: <a class="self" href="#139">self</a>.builder.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/struct.ObjectBuilder.html#method.property">property</a>(<span class="string">"first"</span>, <a href="#139">first</a>.<a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone">clone</a>().<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.Cast.html#method.upcast">upcast</a>()),
-<a href=#142 id=142 data-nosnippet>142</a>        }
-<a href=#143 id=143 data-nosnippet>143</a>    }
+<a href=#137 id=137 data-nosnippet>137</a>}
+<a href=#138 id=138 data-nosnippet>138</a>
+<a href=#139 id=139 data-nosnippet>139</a><span class="kw">impl </span><a href="https://doc.rust-lang.org/nightly/core/default/trait.Default.html">Default</a> <span class="kw">for </span><a href="#8-38">AlternativeTrigger</a> {
+<a href=#140 id=140 data-nosnippet>140</a>    <span class="kw">fn </span>default() -&gt; <span class="self">Self </span>{
+<a href=#141 id=141 data-nosnippet>141</a>        glib::object::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/struct.Object.html">Object</a>::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/struct.Object.html#method.new">new</a>::&lt;<span class="self">Self</span>&gt;()
+<a href=#142 id=142 data-nosnippet>142</a>    }
+<a href=#143 id=143 data-nosnippet>143</a>}
 <a href=#144 id=144 data-nosnippet>144</a>
-<a href=#145 id=145 data-nosnippet>145</a>    <span class="doccomment">/// The second [`ShortcutTrigger`][crate::ShortcutTrigger] to check.
-<a href=#146 id=146 data-nosnippet>146</a>    </span><span class="kw">pub fn </span>second(<span class="self">self</span>, second: <span class="kw-2">&amp;</span><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html">IsA</a>&lt;<a href="shortcut_trigger.rs.html#8-32">ShortcutTrigger</a>&gt;) -&gt; <span class="self">Self </span>{
-<a href=#147 id=147 data-nosnippet>147</a>        <span class="self">Self </span>{
-<a href=#148 id=148 data-nosnippet>148</a>            builder: <a class="self" href="#146">self</a>.builder.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/struct.ObjectBuilder.html#method.property">property</a>(<span class="string">"second"</span>, <a href="#146">second</a>.<a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone">clone</a>().<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.Cast.html#method.upcast">upcast</a>()),
-<a href=#149 id=149 data-nosnippet>149</a>        }
-<a href=#150 id=150 data-nosnippet>150</a>    }
-<a href=#151 id=151 data-nosnippet>151</a>
-<a href=#152 id=152 data-nosnippet>152</a>    <span class="comment">// rustdoc-stripper-ignore-next
-<a href=#153 id=153 data-nosnippet>153</a>    </span><span class="doccomment">/// Build the [`AlternativeTrigger`].
-<a href=#154 id=154 data-nosnippet>154</a>    </span><span class="attr">#[must_use = <span class="string">"Building the object from the builder is usually expensive and is not expected to have side effects"</span>]
-<a href=#155 id=155 data-nosnippet>155</a>    </span><span class="kw">pub fn </span>build(<span class="self">self</span>) -&gt; <a href="#8-38">AlternativeTrigger</a> {
-<a href=#156 id=156 data-nosnippet>156</a>        <a href="../rt.rs.html#24-36">assert_initialized_main_thread!</a>();
-<a href=#157 id=157 data-nosnippet>157</a>        <a class="self" href="#155">self</a>.builder.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/struct.ObjectBuilder.html#method.build">build</a>()
-<a href=#158 id=158 data-nosnippet>158</a>    }
-<a href=#159 id=159 data-nosnippet>159</a>}
+<a href=#145 id=145 data-nosnippet>145</a><span class="comment">// rustdoc-stripper-ignore-next
+<a href=#146 id=146 data-nosnippet>146</a></span><span class="doccomment">/// A [builder-pattern] type to construct [`AlternativeTrigger`] objects.
+<a href=#147 id=147 data-nosnippet>147</a>///
+<a href=#148 id=148 data-nosnippet>148</a>/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
+<a href=#149 id=149 data-nosnippet>149</a></span><span class="attr">#[must_use = <span class="string">"The builder must be built to be used"</span>]
+<a href=#150 id=150 data-nosnippet>150</a></span><span class="kw">pub struct </span><a href="../../../gtk4/builders/struct.AlternativeTriggerBuilder.html">AlternativeTriggerBuilder</a> {
+<a href=#151 id=151 data-nosnippet>151</a>    builder: glib::object::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/struct.ObjectBuilder.html">ObjectBuilder</a>&lt;<span class="lifetime">'static</span>, <a href="#8-38">AlternativeTrigger</a>&gt;,
+<a href=#152 id=152 data-nosnippet>152</a>}
+<a href=#153 id=153 data-nosnippet>153</a>
+<a href=#154 id=154 data-nosnippet>154</a><span class="kw">impl </span><a href="#150-152">AlternativeTriggerBuilder</a> {
+<a href=#155 id=155 data-nosnippet>155</a>    <span class="kw">fn </span>new() -&gt; <span class="self">Self </span>{
+<a href=#156 id=156 data-nosnippet>156</a>        <span class="self">Self </span>{
+<a href=#157 id=157 data-nosnippet>157</a>            builder: glib::object::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/struct.Object.html">Object</a>::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/struct.Object.html#method.builder">builder</a>(),
+<a href=#158 id=158 data-nosnippet>158</a>        }
+<a href=#159 id=159 data-nosnippet>159</a>    }
+<a href=#160 id=160 data-nosnippet>160</a>
+<a href=#161 id=161 data-nosnippet>161</a>    <span class="doccomment">/// The first [`ShortcutTrigger`][crate::ShortcutTrigger] to check.
+<a href=#162 id=162 data-nosnippet>162</a>    </span><span class="kw">pub fn </span>first(<span class="self">self</span>, first: <span class="kw-2">&amp;</span><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html">IsA</a>&lt;<a href="shortcut_trigger.rs.html#8-32">ShortcutTrigger</a>&gt;) -&gt; <span class="self">Self </span>{
+<a href=#163 id=163 data-nosnippet>163</a>        <span class="self">Self </span>{
+<a href=#164 id=164 data-nosnippet>164</a>            builder: <a class="self" href="#162">self</a>.builder.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/struct.ObjectBuilder.html#method.property">property</a>(<span class="string">"first"</span>, <a href="#162">first</a>.<a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone">clone</a>().<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.Cast.html#method.upcast">upcast</a>()),
+<a href=#165 id=165 data-nosnippet>165</a>        }
+<a href=#166 id=166 data-nosnippet>166</a>    }
+<a href=#167 id=167 data-nosnippet>167</a>
+<a href=#168 id=168 data-nosnippet>168</a>    <span class="doccomment">/// The second [`ShortcutTrigger`][crate::ShortcutTrigger] to check.
+<a href=#169 id=169 data-nosnippet>169</a>    </span><span class="kw">pub fn </span>second(<span class="self">self</span>, second: <span class="kw-2">&amp;</span><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html">IsA</a>&lt;<a href="shortcut_trigger.rs.html#8-32">ShortcutTrigger</a>&gt;) -&gt; <span class="self">Self </span>{
+<a href=#170 id=170 data-nosnippet>170</a>        <span class="self">Self </span>{
+<a href=#171 id=171 data-nosnippet>171</a>            builder: <a class="self" href="#169">self</a>.builder.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/struct.ObjectBuilder.html#method.property">property</a>(<span class="string">"second"</span>, <a href="#169">second</a>.<a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone">clone</a>().<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.Cast.html#method.upcast">upcast</a>()),
+<a href=#172 id=172 data-nosnippet>172</a>        }
+<a href=#173 id=173 data-nosnippet>173</a>    }
+<a href=#174 id=174 data-nosnippet>174</a>
+<a href=#175 id=175 data-nosnippet>175</a>    <span class="comment">// rustdoc-stripper-ignore-next
+<a href=#176 id=176 data-nosnippet>176</a>    </span><span class="doccomment">/// Build the [`AlternativeTrigger`].
+<a href=#177 id=177 data-nosnippet>177</a>    </span><span class="attr">#[must_use = <span class="string">"Building the object from the builder is usually expensive and is not expected to have side effects"</span>]
+<a href=#178 id=178 data-nosnippet>178</a>    </span><span class="kw">pub fn </span>build(<span class="self">self</span>) -&gt; <a href="#8-38">AlternativeTrigger</a> {
+<a href=#179 id=179 data-nosnippet>179</a>        <a href="../rt.rs.html#24-36">assert_initialized_main_thread!</a>();
+<a href=#180 id=180 data-nosnippet>180</a>        <a class="self" href="#178">self</a>.builder.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/struct.ObjectBuilder.html#method.build">build</a>()
+<a href=#181 id=181 data-nosnippet>181</a>    }
+<a href=#182 id=182 data-nosnippet>182</a>}
 </code></pre></div></section></main></body></html>

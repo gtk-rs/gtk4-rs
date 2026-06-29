@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gdk4/src/auto/event.rs`."><title>event.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-1ed95124.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gdk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.98.0-nightly (4429659e4 2026-06-22)" data-channel="nightly" data-search-js="search-fd9372ac.js" data-stringdex-js="stringdex-2da4960a.js" data-settings-js="settings-170eb4bf.js" ><script src="../../../static.files/storage-41dd4d93.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-417ebf0a.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-f7c3ffd8.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><a class="skip-main-content" href="#main-content">Skip to main content</a><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gdk4/src/auto/event.rs`."><title>event.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-1ed95124.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gdk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.98.0-nightly (df6ee909e 2026-06-28)" data-channel="nightly" data-search-js="search-9944d736.js" data-stringdex-js="stringdex-2da4960a.js" data-settings-js="settings-170eb4bf.js" ><script src="../../../static.files/storage-41dd4d93.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-417ebf0a.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-f7c3ffd8.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><a class="skip-main-content" href="#main-content">Skip to main content</a><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
 
@@ -76,7 +76,7 @@
 <a href=#3 id=3 data-nosnippet>3</a>// DO NOT EDIT
 <a href=#4 id=4 data-nosnippet>4</a>
 <a href=#5 id=5 data-nosnippet>5</a></span><span class="kw">use crate</span>::{
-<a href=#6 id=6 data-nosnippet>6</a>    <a href="enums.rs.html#16-55">AxisUse</a>, <a href="device.rs.html#14-190">Device</a>, <a href="device_tool.rs.html#8-42">DeviceTool</a>, <a href="display.rs.html#23-112">Display</a>, <a href="event_sequence.rs.html#7-17">EventSequence</a>, <a href="enums.rs.html#1055-1160">EventType</a>, <a href="flags.rs.html#576-634">ModifierType</a>, <a href="seat.rs.html#14-68">Seat</a>, <a href="surface.rs.html#18-129">Surface</a>,
+<a href=#6 id=6 data-nosnippet>6</a>    <a href="enums.rs.html#16-55">AxisUse</a>, <a href="device.rs.html#14-190">Device</a>, <a href="device_tool.rs.html#8-42">DeviceTool</a>, <a href="display.rs.html#23-112">Display</a>, <a href="event_sequence.rs.html#7-17">EventSequence</a>, <a href="enums.rs.html#1053-1158">EventType</a>, <a href="flags.rs.html#576-631">ModifierType</a>, <a href="seat.rs.html#14-68">Seat</a>, <a href="surface.rs.html#18-123">Surface</a>,
 <a href=#7 id=7 data-nosnippet>7</a>    <a href="../time_coord.rs.html#9-18">TimeCoord</a>, <a href="../../../gdk4_sys/index.html">ffi</a>,
 <a href=#8 id=8 data-nosnippet>8</a>};
 <a href=#9 id=9 data-nosnippet>9</a><span class="kw">use </span>glib::{<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/prelude/index.html">prelude</a>::<span class="kw-2">*</span>, <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/index.html">translate</a>::<span class="kw-2">*</span>};
@@ -241,7 +241,7 @@
 <a href=#168 id=168 data-nosnippet>168</a>    /// a [`Event`][crate::Event]Type
 <a href=#169 id=169 data-nosnippet>169</a>    </span><span class="attr">#[doc(alias = <span class="string">"gdk_event_get_event_type"</span>)]
 <a href=#170 id=170 data-nosnippet>170</a>    #[doc(alias = <span class="string">"get_event_type"</span>)]
-<a href=#171 id=171 data-nosnippet>171</a>    </span><span class="kw">pub fn </span>event_type(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="enums.rs.html#1055-1160">EventType</a> {
+<a href=#171 id=171 data-nosnippet>171</a>    </span><span class="kw">pub fn </span>event_type(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="enums.rs.html#1053-1158">EventType</a> {
 <a href=#172 id=172 data-nosnippet>172</a>        <span class="kw">unsafe </span>{
 <a href=#173 id=173 data-nosnippet>173</a>            <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(ffi::<a href="../../../gdk4_sys/fn.gdk_event_get_event_type.html">gdk_event_get_event_type</a>(
 <a href=#174 id=174 data-nosnippet>174</a>                <a class="self" href="#171">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
@@ -286,7 +286,7 @@
 <a href=#213 id=213 data-nosnippet>213</a>    /// the modifier state of @self
 <a href=#214 id=214 data-nosnippet>214</a>    </span><span class="attr">#[doc(alias = <span class="string">"gdk_event_get_modifier_state"</span>)]
 <a href=#215 id=215 data-nosnippet>215</a>    #[doc(alias = <span class="string">"get_modifier_state"</span>)]
-<a href=#216 id=216 data-nosnippet>216</a>    </span><span class="kw">pub fn </span>modifier_state(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="flags.rs.html#576-634">ModifierType</a> {
+<a href=#216 id=216 data-nosnippet>216</a>    </span><span class="kw">pub fn </span>modifier_state(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="flags.rs.html#576-631">ModifierType</a> {
 <a href=#217 id=217 data-nosnippet>217</a>        <span class="kw">unsafe </span>{
 <a href=#218 id=218 data-nosnippet>218</a>            <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(ffi::<a href="../../../gdk4_sys/fn.gdk_event_get_modifier_state.html">gdk_event_get_modifier_state</a>(
 <a href=#219 id=219 data-nosnippet>219</a>                <a class="self" href="#216">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
@@ -361,7 +361,7 @@
 <a href=#288 id=288 data-nosnippet>288</a>    /// The [`Surface`][crate::Surface] associated with the event
 <a href=#289 id=289 data-nosnippet>289</a>    </span><span class="attr">#[doc(alias = <span class="string">"gdk_event_get_surface"</span>)]
 <a href=#290 id=290 data-nosnippet>290</a>    #[doc(alias = <span class="string">"get_surface"</span>)]
-<a href=#291 id=291 data-nosnippet>291</a>    </span><span class="kw">pub fn </span>surface(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;<a href="surface.rs.html#18-129">Surface</a>&gt; {
+<a href=#291 id=291 data-nosnippet>291</a>    </span><span class="kw">pub fn </span>surface(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;<a href="surface.rs.html#18-123">Surface</a>&gt; {
 <a href=#292 id=292 data-nosnippet>292</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib_none.html">from_glib_none</a>(ffi::<a href="../../../gdk4_sys/fn.gdk_event_get_surface.html">gdk_event_get_surface</a>(<a class="self" href="#291">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#293 id=293 data-nosnippet>293</a>    }
 <a href=#294 id=294 data-nosnippet>294</a>
@@ -379,30 +379,20 @@
 <a href=#306 id=306 data-nosnippet>306</a>        <span class="kw">unsafe </span>{ ffi::<a href="../../../gdk4_sys/fn.gdk_event_get_time.html">gdk_event_get_time</a>(<a class="self" href="#305">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>) }
 <a href=#307 id=307 data-nosnippet>307</a>    }
 <a href=#308 id=308 data-nosnippet>308</a>
-<a href=#309 id=309 data-nosnippet>309</a>    <span class="doccomment">/// Returns whether a [`Event`][crate::Event] should trigger a context menu,
-<a href=#310 id=310 data-nosnippet>310</a>    /// according to platform conventions.
+<a href=#309 id=309 data-nosnippet>309</a>    <span class="doccomment">/// button == GDK_BUTTON_SECONDARY
+<a href=#310 id=310 data-nosnippet>310</a>    /// ```text
 <a href=#311 id=311 data-nosnippet>311</a>    ///
-<a href=#312 id=312 data-nosnippet>312</a>    /// The right mouse button typically triggers context menus.
-<a href=#313 id=313 data-nosnippet>313</a>    /// On macOS, Control+left mouse button also triggers.
+<a href=#312 id=312 data-nosnippet>312</a>    ///
+<a href=#313 id=313 data-nosnippet>313</a>    /// # Returns
 <a href=#314 id=314 data-nosnippet>314</a>    ///
-<a href=#315 id=315 data-nosnippet>315</a>    /// This function should always be used instead of simply checking for
-<a href=#316 id=316 data-nosnippet>316</a>    ///
-<a href=#317 id=317 data-nosnippet>317</a>    /// **⚠️ The following code is in c ⚠️**
-<a href=#318 id=318 data-nosnippet>318</a>    ///
-<a href=#319 id=319 data-nosnippet>319</a>    /// ```c
-<a href=#320 id=320 data-nosnippet>320</a>    /// event-&gt;button == GDK_BUTTON_SECONDARY
-<a href=#321 id=321 data-nosnippet>321</a>    /// ```
-<a href=#322 id=322 data-nosnippet>322</a>    ///
-<a href=#323 id=323 data-nosnippet>323</a>    /// # Returns
-<a href=#324 id=324 data-nosnippet>324</a>    ///
-<a href=#325 id=325 data-nosnippet>325</a>    /// [`true`] if the event should trigger a context menu.
-<a href=#326 id=326 data-nosnippet>326</a>    </span><span class="attr">#[doc(alias = <span class="string">"gdk_event_triggers_context_menu"</span>)]
-<a href=#327 id=327 data-nosnippet>327</a>    </span><span class="kw">pub fn </span>triggers_context_menu(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> {
-<a href=#328 id=328 data-nosnippet>328</a>        <span class="kw">unsafe </span>{
-<a href=#329 id=329 data-nosnippet>329</a>            <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(ffi::<a href="../../../gdk4_sys/fn.gdk_event_triggers_context_menu.html">gdk_event_triggers_context_menu</a>(
-<a href=#330 id=330 data-nosnippet>330</a>                <a class="self" href="#327">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
-<a href=#331 id=331 data-nosnippet>331</a>            ))
-<a href=#332 id=332 data-nosnippet>332</a>        }
-<a href=#333 id=333 data-nosnippet>333</a>    }
-<a href=#334 id=334 data-nosnippet>334</a>}
+<a href=#315 id=315 data-nosnippet>315</a>    /// [`true`] if the event should trigger a context menu.
+<a href=#316 id=316 data-nosnippet>316</a>    </span><span class="attr">#[doc(alias = <span class="string">"gdk_event_triggers_context_menu"</span>)]
+<a href=#317 id=317 data-nosnippet>317</a>    </span><span class="kw">pub fn </span>triggers_context_menu(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> {
+<a href=#318 id=318 data-nosnippet>318</a>        <span class="kw">unsafe </span>{
+<a href=#319 id=319 data-nosnippet>319</a>            <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(ffi::<a href="../../../gdk4_sys/fn.gdk_event_triggers_context_menu.html">gdk_event_triggers_context_menu</a>(
+<a href=#320 id=320 data-nosnippet>320</a>                <a class="self" href="#317">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
+<a href=#321 id=321 data-nosnippet>321</a>            ))
+<a href=#322 id=322 data-nosnippet>322</a>        }
+<a href=#323 id=323 data-nosnippet>323</a>    }
+<a href=#324 id=324 data-nosnippet>324</a>}
 </code></pre></div></section></main></body></html>

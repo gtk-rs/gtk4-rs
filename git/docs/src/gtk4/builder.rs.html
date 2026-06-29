@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/builder.rs`."><title>builder.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-1ed95124.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.98.0-nightly (4429659e4 2026-06-22)" data-channel="nightly" data-search-js="search-fd9372ac.js" data-stringdex-js="stringdex-2da4960a.js" data-settings-js="settings-170eb4bf.js" ><script src="../../static.files/storage-41dd4d93.js"></script><script defer src="../../static.files/src-script-813739b1.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-417ebf0a.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-f7c3ffd8.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><a class="skip-main-content" href="#main-content">Skip to main content</a><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/builder.rs`."><title>builder.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-1ed95124.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.98.0-nightly (df6ee909e 2026-06-28)" data-channel="nightly" data-search-js="search-9944d736.js" data-stringdex-js="stringdex-2da4960a.js" data-settings-js="settings-170eb4bf.js" ><script src="../../static.files/storage-41dd4d93.js"></script><script defer src="../../static.files/src-script-813739b1.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-417ebf0a.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-f7c3ffd8.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><a class="skip-main-content" href="#main-content">Skip to main content</a><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
 
@@ -77,9 +77,9 @@
 <a href=#4 id=4 data-nosnippet>4</a>
 <a href=#5 id=5 data-nosnippet>5</a><span class="kw">use </span>glib::{<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/struct.Object.html">Object</a>, <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/index.html">translate</a>::<span class="kw-2">*</span>};
 <a href=#6 id=6 data-nosnippet>6</a>
-<a href=#7 id=7 data-nosnippet>7</a><span class="kw">use crate</span>::{<a href="auto/builder.rs.html#13-407">Builder</a>, <a href="../../gtk4_sys/index.html">ffi</a>, <a href="lib.rs.html#141">prelude</a>::<span class="kw-2">*</span>};
+<a href=#7 id=7 data-nosnippet>7</a><span class="kw">use crate</span>::{<a href="auto/builder.rs.html#13-55">Builder</a>, <a href="../../gtk4_sys/index.html">ffi</a>, <a href="lib.rs.html#141">prelude</a>::<span class="kw-2">*</span>};
 <a href=#8 id=8 data-nosnippet>8</a>
-<a href=#9 id=9 data-nosnippet>9</a><span class="kw">impl </span><a href="auto/builder.rs.html#13-407">Builder</a> {
+<a href=#9 id=9 data-nosnippet>9</a><span class="kw">impl </span><a href="auto/builder.rs.html#13-55">Builder</a> {
 <a href=#10 id=10 data-nosnippet>10</a>    <span class="doccomment">/// Parses the UI definition in the file @filename.
 <a href=#11 id=11 data-nosnippet>11</a>    ///
 <a href=#12 id=12 data-nosnippet>12</a>    /// If there is an error opening the file or parsing the description then
@@ -146,45 +146,30 @@
 <a href=#73 id=73 data-nosnippet>73</a>        }
 <a href=#74 id=74 data-nosnippet>74</a>    }
 <a href=#75 id=75 data-nosnippet>75</a>
-<a href=#76 id=76 data-nosnippet>76</a>    <span class="doccomment">/// Parses a file containing a UI definition and merges it with
-<a href=#77 id=77 data-nosnippet>77</a>    /// the current contents of @self.
-<a href=#78 id=78 data-nosnippet>78</a>    ///
-<a href=#79 id=79 data-nosnippet>79</a>    /// This function is useful if you need to call
-<a href=#80 id=80 data-nosnippet>80</a>    /// [`set_current_object()`][Self::set_current_object()]) to add user data to
-<a href=#81 id=81 data-nosnippet>81</a>    /// callbacks before loading GtkBuilder UI. Otherwise, you probably
-<a href=#82 id=82 data-nosnippet>82</a>    /// want [`from_file()`][Self::from_file()] instead.
+<a href=#76 id=76 data-nosnippet>76</a>    <span class="doccomment">/// s possible that memory
+<a href=#77 id=77 data-nosnippet>77</a>    /// was leaked leading up to the reported failure. The only reasonable
+<a href=#78 id=78 data-nosnippet>78</a>    /// thing to do when an error is detected is to call `g_error()`.
+<a href=#79 id=79 data-nosnippet>79</a>    /// ## `filename`
+<a href=#80 id=80 data-nosnippet>80</a>    /// the name of the file to parse
+<a href=#81 id=81 data-nosnippet>81</a>    ///
+<a href=#82 id=82 data-nosnippet>82</a>    /// # Returns
 <a href=#83 id=83 data-nosnippet>83</a>    ///
-<a href=#84 id=84 data-nosnippet>84</a>    /// If an error occurs, 0 will be returned and @error will be assigned a
-<a href=#85 id=85 data-nosnippet>85</a>    /// `GError` from the `GTK_BUILDER_ERROR`, `G_MARKUP_ERROR` or `G_FILE_ERROR`
-<a href=#86 id=86 data-nosnippet>86</a>    /// domains.
-<a href=#87 id=87 data-nosnippet>87</a>    ///
-<a href=#88 id=88 data-nosnippet>88</a>    /// It’s not really reasonable to attempt to handle failures of this
-<a href=#89 id=89 data-nosnippet>89</a>    /// call. You should not use this function with untrusted files (ie:
-<a href=#90 id=90 data-nosnippet>90</a>    /// files that are not part of your application). Broken [`Builder`][crate::Builder]
-<a href=#91 id=91 data-nosnippet>91</a>    /// files can easily crash your program, and it’s possible that memory
-<a href=#92 id=92 data-nosnippet>92</a>    /// was leaked leading up to the reported failure. The only reasonable
-<a href=#93 id=93 data-nosnippet>93</a>    /// thing to do when an error is detected is to call `g_error()`.
-<a href=#94 id=94 data-nosnippet>94</a>    /// ## `filename`
-<a href=#95 id=95 data-nosnippet>95</a>    /// the name of the file to parse
-<a href=#96 id=96 data-nosnippet>96</a>    ///
-<a href=#97 id=97 data-nosnippet>97</a>    /// # Returns
-<a href=#98 id=98 data-nosnippet>98</a>    ///
-<a href=#99 id=99 data-nosnippet>99</a>    /// [`true`] on success, [`false`] if an error occurred
-<a href=#100 id=100 data-nosnippet>100</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_builder_add_from_file"</span>)]
-<a href=#101 id=101 data-nosnippet>101</a>    </span><span class="kw">pub fn </span>add_from_file(<span class="kw-2">&amp;</span><span class="self">self</span>, file_path: <span class="kw">impl </span><a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html">AsRef</a>&lt;<a href="https://doc.rust-lang.org/nightly/std/path/struct.Path.html">Path</a>&gt;) -&gt; <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html">Result</a>&lt;(), glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/error/struct.Error.html">Error</a>&gt; {
-<a href=#102 id=102 data-nosnippet>102</a>        <span class="kw">unsafe </span>{
-<a href=#103 id=103 data-nosnippet>103</a>            <span class="kw">let </span><span class="kw-2">mut </span>error = ::std::ptr::<a href="https://doc.rust-lang.org/nightly/core/ptr/fn.null_mut.html">null_mut</a>();
-<a href=#104 id=104 data-nosnippet>104</a>            ffi::<a href="../../gtk4_sys/fn.gtk_builder_add_from_file.html">gtk_builder_add_from_file</a>(
-<a href=#105 id=105 data-nosnippet>105</a>                <a class="self" href="#101">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
-<a href=#106 id=106 data-nosnippet>106</a>                <a href="#101">file_path</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
-<a href=#107 id=107 data-nosnippet>107</a>                <span class="kw-2">&amp;mut </span><a href="#103">error</a>,
-<a href=#108 id=108 data-nosnippet>108</a>            );
-<a href=#109 id=109 data-nosnippet>109</a>            <span class="kw">if </span><a href="#103">error</a>.<a href="https://doc.rust-lang.org/nightly/core/primitive.pointer.html#method.is_null">is_null</a>() {
-<a href=#110 id=110 data-nosnippet>110</a>                <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html#variant.Ok">Ok</a>(())
-<a href=#111 id=111 data-nosnippet>111</a>            } <span class="kw">else </span>{
-<a href=#112 id=112 data-nosnippet>112</a>                <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html#variant.Err">Err</a>(<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib_full.html">from_glib_full</a>(<a href="#103">error</a>))
-<a href=#113 id=113 data-nosnippet>113</a>            }
-<a href=#114 id=114 data-nosnippet>114</a>        }
-<a href=#115 id=115 data-nosnippet>115</a>    }
-<a href=#116 id=116 data-nosnippet>116</a>}
+<a href=#84 id=84 data-nosnippet>84</a>    /// [`true`] on success, [`false`] if an error occurred
+<a href=#85 id=85 data-nosnippet>85</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_builder_add_from_file"</span>)]
+<a href=#86 id=86 data-nosnippet>86</a>    </span><span class="kw">pub fn </span>add_from_file(<span class="kw-2">&amp;</span><span class="self">self</span>, file_path: <span class="kw">impl </span><a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html">AsRef</a>&lt;<a href="https://doc.rust-lang.org/nightly/std/path/struct.Path.html">Path</a>&gt;) -&gt; <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html">Result</a>&lt;(), glib::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/error/struct.Error.html">Error</a>&gt; {
+<a href=#87 id=87 data-nosnippet>87</a>        <span class="kw">unsafe </span>{
+<a href=#88 id=88 data-nosnippet>88</a>            <span class="kw">let </span><span class="kw-2">mut </span>error = ::std::ptr::<a href="https://doc.rust-lang.org/nightly/core/ptr/fn.null_mut.html">null_mut</a>();
+<a href=#89 id=89 data-nosnippet>89</a>            ffi::<a href="../../gtk4_sys/fn.gtk_builder_add_from_file.html">gtk_builder_add_from_file</a>(
+<a href=#90 id=90 data-nosnippet>90</a>                <a class="self" href="#86">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
+<a href=#91 id=91 data-nosnippet>91</a>                <a href="#86">file_path</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
+<a href=#92 id=92 data-nosnippet>92</a>                <span class="kw-2">&amp;mut </span><a href="#88">error</a>,
+<a href=#93 id=93 data-nosnippet>93</a>            );
+<a href=#94 id=94 data-nosnippet>94</a>            <span class="kw">if </span><a href="#88">error</a>.<a href="https://doc.rust-lang.org/nightly/core/primitive.pointer.html#method.is_null">is_null</a>() {
+<a href=#95 id=95 data-nosnippet>95</a>                <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html#variant.Ok">Ok</a>(())
+<a href=#96 id=96 data-nosnippet>96</a>            } <span class="kw">else </span>{
+<a href=#97 id=97 data-nosnippet>97</a>                <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html#variant.Err">Err</a>(<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib_full.html">from_glib_full</a>(<a href="#88">error</a>))
+<a href=#98 id=98 data-nosnippet>98</a>            }
+<a href=#99 id=99 data-nosnippet>99</a>        }
+<a href=#100 id=100 data-nosnippet>100</a>    }
+<a href=#101 id=101 data-nosnippet>101</a>}
 </code></pre></div></section></main></body></html>
