@@ -1,91 +1,18 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/dialog.rs`."><title>dialog.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-17e0aaed.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.97.0-nightly (ca9a134e0 2026-04-26)" data-channel="nightly" data-search-js="search-b5634cc7.js" data-stringdex-js="stringdex-2da4960a.js" data-settings-js="settings-170eb4bf.js" ><script src="../../static.files/storage-41dd4d93.js"></script><script defer src="../../static.files/src-script-813739b1.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-aa4d37ac.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-f7c3ffd8.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><a class="skip-main-content" href="#main-content">Skip to main content</a><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
-<script type="text/javascript">
-    document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
-
-    function checkDocsLatestStable() {
-        function popup(msg, url) { return `
-            <style scoped="scoped">
-                .popup {
-                    max-width: 16em;
-                    background-color: #fff;
-                    position: fixed;
-                    z-index: 1;
-                    margin-left: auto;
-                    bottom: 1em;
-                    right: 1em;
-                    border-radius: 5px;
-                    box-shadow: 1px 1px 4px #777;
-                }
-
-                .popup a.version {
-                    color: #e57300;
-                    padding: 0.6em 1em;
-                    display: block;
-                }
-                .popup a.version:hover {
-                    color: #b25900;
-                }
-
-                .popup a.close {
-                    color: white;
-                    background: grey;
-                    border-radius: 99px;
-                    display: inline-block;
-                    width: 19px;
-                    line-height: 19px;
-                    font-weight: bold;
-                    text-align: center;
-                    margin: 0.6em;
-                    float: right;
-                }
-                .popup a.close:hover {
-                    background: black;
-                }
-            </style>
-            <section class="popup" id="gir_docs_popup">
-                <a class="close" href="#" onclick="document.getElementById('gir_docs_popup').remove(); return false">×</a>
-                <a class="version" href="https://gtk-rs.org/gtk4-rs/stable/latest/docs">
-                    ⚠ ${msg}
-                </a>
-            </section>
-        ` };
-
-        if ("0.11" == "main") {
-            document.body.insertAdjacentHTML(
-                'beforeend',
-                popup("This is the development version. Go to latest stable version.", "stable/latest")
-            );
-        } else {
-            fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
-                .then(response => response.text())
-                .then(latest_branch => {
-                    if (latest_branch.trim() != "0.11") {
-                        document.body.insertAdjacentHTML(
-                            'beforeend',
-                            popup("This version is outdated. Go to latest version.", "stable/latest")
-                        );
-                    }
-                });
-        }
-    }
-</script>
-
-
-<nav class="sidebar"><div class="src-sidebar-title"><h2>Files</h2></div></nav><div class="sidebar-resizer" title="Drag to resize sidebar"></div><main><section id="main-content" class="content" tabindex="-1"><div class="main-heading"><h1><div class="sub-heading">gtk4/</div>dialog.rs</h1><rustdoc-toolbar></rustdoc-toolbar></div><div class="example-wrap digits-3"><pre class="rust"><code><a href=#1 id=1 data-nosnippet>1</a><span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/dialog.rs`."><title>dialog.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-1ed95124.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.98.0-nightly (df6ee909e 2026-06-28)" data-channel="nightly" data-search-js="search-9944d736.js" data-stringdex-js="stringdex-2da4960a.js" data-settings-js="settings-170eb4bf.js" ><script src="../../static.files/storage-41dd4d93.js"></script><script defer src="../../static.files/src-script-813739b1.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-417ebf0a.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-f7c3ffd8.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><a class="skip-main-content" href="#main-content">Skip to main content</a><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title"><h2>Files</h2></div></nav><div class="sidebar-resizer" title="Drag to resize sidebar"></div><main><section id="main-content" class="content" tabindex="-1"><div class="main-heading"><h1><div class="sub-heading">gtk4/</div>dialog.rs</h1><rustdoc-toolbar></rustdoc-toolbar></div><div class="example-wrap digits-3"><pre class="rust"><code><a href=#1 id=1 data-nosnippet>1</a><span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.
 <a href=#2 id=2 data-nosnippet>2</a>
 <a href=#3 id=3 data-nosnippet>3</a></span><span class="kw">use </span>std::{
-<a href=#4 id=4 data-nosnippet>4</a>    cell::{<a href="https://doc.rust-lang.org/nightly/core/cell/struct.Cell.html">Cell</a>, <a href="https://doc.rust-lang.org/nightly/core/cell/struct.RefCell.html">RefCell</a>},
-<a href=#5 id=5 data-nosnippet>5</a>    <a href="https://doc.rust-lang.org/nightly/core/future/future/trait.Future.html">future::Future</a>,
-<a href=#6 id=6 data-nosnippet>6</a>    <a href="https://doc.rust-lang.org/nightly/core/pin/struct.Pin.html">pin::Pin</a>,
-<a href=#7 id=7 data-nosnippet>7</a>    <a href="https://doc.rust-lang.org/nightly/core/ptr/index.html">ptr</a>,
-<a href=#8 id=8 data-nosnippet>8</a>    <a href="https://doc.rust-lang.org/nightly/alloc/rc/struct.Rc.html">rc::Rc</a>,
+<a href=#4 id=4 data-nosnippet>4</a>    cell::{Cell, RefCell},
+<a href=#5 id=5 data-nosnippet>5</a>    future::Future,
+<a href=#6 id=6 data-nosnippet>6</a>    pin::Pin,
+<a href=#7 id=7 data-nosnippet>7</a>    ptr,
+<a href=#8 id=8 data-nosnippet>8</a>    rc::Rc,
 <a href=#9 id=9 data-nosnippet>9</a>};
 <a href=#10 id=10 data-nosnippet>10</a>
 <a href=#11 id=11 data-nosnippet>11</a><span class="kw">use </span>glib::translate::<span class="kw-2">*</span>;
 <a href=#12 id=12 data-nosnippet>12</a>
-<a href=#13 id=13 data-nosnippet>13</a><span class="kw">use </span>crate::{<a href="auto/dialog.rs.html#21-892">Dialog</a>, <a href="auto/flags.rs.html#486-507">DialogFlags</a>, <a href="response_type.rs.html#18-56">ResponseType</a>, <a href="auto/widget.rs.html#19-887">Widget</a>, <a href="auto/window.rs.html#21-789">Window</a>, <a href="../../gtk4_sys/index.html">ffi</a>, prelude::<span class="kw-2">*</span>};
+<a href=#13 id=13 data-nosnippet>13</a><span class="kw">use crate</span>::{Dialog, DialogFlags, ResponseType, Widget, Window, ffi, prelude::<span class="kw-2">*</span>};
 <a href=#14 id=14 data-nosnippet>14</a>
-<a href=#15 id=15 data-nosnippet>15</a><span class="kw">impl </span><a href="auto/dialog.rs.html#21-892">Dialog</a> {
+<a href=#15 id=15 data-nosnippet>15</a><span class="kw">impl </span>Dialog {
 <a href=#16 id=16 data-nosnippet>16</a>    <span class="doccomment">/// Creates a new [`Dialog`][crate::Dialog] with the given title and transient parent.
 <a href=#17 id=17 data-nosnippet>17</a>    ///
 <a href=#18 id=18 data-nosnippet>18</a>    /// The @flags argument can be used to make the dialog modal, have it
@@ -141,27 +68,27 @@
 <a href=#68 id=68 data-nosnippet>68</a>    #[doc(alias = <span class="string">"new_with_buttons"</span>)]
 <a href=#69 id=69 data-nosnippet>69</a>    #[cfg_attr(feature = <span class="string">"v4_10"</span>, deprecated = <span class="string">"Since 4.10"</span>)]
 <a href=#70 id=70 data-nosnippet>70</a>    #[allow(deprecated)]
-<a href=#71 id=71 data-nosnippet>71</a>    </span><span class="kw">pub fn </span>with_buttons&lt;T: <a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/object/trait.IsA.html">IsA</a>&lt;<a href="auto/window.rs.html#21-789">Window</a>&gt;&gt;(
-<a href=#72 id=72 data-nosnippet>72</a>        title: <span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/gstring/trait.IntoOptionalGStr.html">IntoOptionalGStr</a>,
-<a href=#73 id=73 data-nosnippet>73</a>        parent: <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;<span class="kw-2">&amp;</span>T&gt;,
-<a href=#74 id=74 data-nosnippet>74</a>        flags: <a href="auto/flags.rs.html#486-507">DialogFlags</a>,
-<a href=#75 id=75 data-nosnippet>75</a>        buttons: <span class="kw-2">&amp;</span>[(<span class="kw-2">&amp;</span><a href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>, <a href="response_type.rs.html#18-56">ResponseType</a>)],
+<a href=#71 id=71 data-nosnippet>71</a>    </span><span class="kw">pub fn </span>with_buttons&lt;T: IsA&lt;Window&gt;&gt;(
+<a href=#72 id=72 data-nosnippet>72</a>        title: <span class="kw">impl </span>IntoOptionalGStr,
+<a href=#73 id=73 data-nosnippet>73</a>        parent: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>T&gt;,
+<a href=#74 id=74 data-nosnippet>74</a>        flags: DialogFlags,
+<a href=#75 id=75 data-nosnippet>75</a>        buttons: <span class="kw-2">&amp;</span>[(<span class="kw-2">&amp;</span>str, ResponseType)],
 <a href=#76 id=76 data-nosnippet>76</a>    ) -&gt; <span class="self">Self </span>{
-<a href=#77 id=77 data-nosnippet>77</a>        <a href="rt.rs.html#24-36">assert_initialized_main_thread!</a>();
+<a href=#77 id=77 data-nosnippet>77</a>        <span class="macro">assert_initialized_main_thread!</span>();
 <a href=#78 id=78 data-nosnippet>78</a>        <span class="kw">let </span>ret: <span class="self">Self </span>= <span class="kw">unsafe </span>{
-<a href=#79 id=79 data-nosnippet>79</a>            <a href="#72">title</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/gstring/trait.IntoOptionalGStr.html#tymethod.run_with_gstr">run_with_gstr</a>(|title| {
-<a href=#80 id=80 data-nosnippet>80</a>                <a href="auto/widget.rs.html#19-887">Widget</a>::<a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/translate/trait.FromGlibPtrNone.html#tymethod.from_glib_none">from_glib_none</a>(ffi::<a href="../../gtk4_sys/fn.gtk_dialog_new_with_buttons.html">gtk_dialog_new_with_buttons</a>(
-<a href=#81 id=81 data-nosnippet>81</a>                    <a href="#79">title</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
-<a href=#82 id=82 data-nosnippet>82</a>                    <a href="#73">parent</a>.<a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#method.map">map</a>(|p| <a href="#82">p</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>()).<a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
-<a href=#83 id=83 data-nosnippet>83</a>                    <a href="#74">flags</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>(),
-<a href=#84 id=84 data-nosnippet>84</a>                    ptr::<a href="https://doc.rust-lang.org/nightly/core/ptr/fn.null_mut.html">null_mut</a>(),
+<a href=#79 id=79 data-nosnippet>79</a>            title.run_with_gstr(|title| {
+<a href=#80 id=80 data-nosnippet>80</a>                Widget::from_glib_none(ffi::gtk_dialog_new_with_buttons(
+<a href=#81 id=81 data-nosnippet>81</a>                    title.to_glib_none().<span class="number">0</span>,
+<a href=#82 id=82 data-nosnippet>82</a>                    parent.map(|p| p.as_ref()).to_glib_none().<span class="number">0</span>,
+<a href=#83 id=83 data-nosnippet>83</a>                    flags.into_glib(),
+<a href=#84 id=84 data-nosnippet>84</a>                    ptr::null_mut(),
 <a href=#85 id=85 data-nosnippet>85</a>                ))
-<a href=#86 id=86 data-nosnippet>86</a>                .<a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/object/trait.Cast.html#method.unsafe_cast">unsafe_cast</a>()
+<a href=#86 id=86 data-nosnippet>86</a>                .unsafe_cast()
 <a href=#87 id=87 data-nosnippet>87</a>            })
 <a href=#88 id=88 data-nosnippet>88</a>        };
 <a href=#89 id=89 data-nosnippet>89</a>
-<a href=#90 id=90 data-nosnippet>90</a>        <a href="#78">ret</a>.<a href="#113-117">add_buttons</a>(<a href="#75">buttons</a>);
-<a href=#91 id=91 data-nosnippet>91</a>        <a href="#78">ret</a>
+<a href=#90 id=90 data-nosnippet>90</a>        ret.add_buttons(buttons);
+<a href=#91 id=91 data-nosnippet>91</a>        ret
 <a href=#92 id=92 data-nosnippet>92</a>    }
 <a href=#93 id=93 data-nosnippet>93</a>}
 <a href=#94 id=94 data-nosnippet>94</a>
@@ -169,7 +96,7 @@
 <a href=#96 id=96 data-nosnippet>96</a></span><span class="doccomment">/// Trait containing manually implemented methods of [`Dialog`](crate::Dialog).
 <a href=#97 id=97 data-nosnippet>97</a></span><span class="attr">#[cfg_attr(feature = <span class="string">"v4_10"</span>, deprecated = <span class="string">"Since 4.10"</span>)]
 <a href=#98 id=98 data-nosnippet>98</a>#[allow(deprecated)]
-<a href=#99 id=99 data-nosnippet>99</a></span><span class="kw">pub trait </span><a href="../../gtk4/prelude/trait.DialogExtManual.html">DialogExtManual</a>: <a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/object/trait.IsA.html">IsA</a>&lt;<a href="auto/dialog.rs.html#21-892">Dialog</a>&gt; + <span class="lifetime">'static </span>{
+<a href=#99 id=99 data-nosnippet>99</a></span><span class="kw">pub trait </span>DialogExtManual: IsA&lt;Dialog&gt; + <span class="lifetime">'static </span>{
 <a href=#100 id=100 data-nosnippet>100</a>    <span class="doccomment">/// Adds multiple buttons.
 <a href=#101 id=101 data-nosnippet>101</a>    ///
 <a href=#102 id=102 data-nosnippet>102</a>    /// This is the same as calling [`DialogExt::add_button()`][crate::prelude::DialogExt::add_button()]
@@ -183,7 +110,7 @@
 <a href=#110 id=110 data-nosnippet>110</a>    /// ## `first_button_text`
 <a href=#111 id=111 data-nosnippet>111</a>    /// button text
 <a href=#112 id=112 data-nosnippet>112</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_dialog_add_buttons"</span>)]
-<a href=#113 id=113 data-nosnippet>113</a>    </span><span class="kw">fn </span>add_buttons(<span class="kw-2">&amp;</span><span class="self">self</span>, buttons: <span class="kw-2">&amp;</span>[(<span class="kw-2">&amp;</span><a href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>, <a href="response_type.rs.html#18-56">ResponseType</a>)]) {
+<a href=#113 id=113 data-nosnippet>113</a>    </span><span class="kw">fn </span>add_buttons(<span class="kw-2">&amp;</span><span class="self">self</span>, buttons: <span class="kw-2">&amp;</span>[(<span class="kw-2">&amp;</span>str, ResponseType)]) {
 <a href=#114 id=114 data-nosnippet>114</a>        <span class="kw">for </span><span class="kw-2">&amp;</span>(text, id) <span class="kw">in </span>buttons {
 <a href=#115 id=115 data-nosnippet>115</a>            <span class="self">Self</span>::add_button(<span class="self">self</span>, text, id);
 <a href=#116 id=116 data-nosnippet>116</a>        }
@@ -204,11 +131,11 @@
 <a href=#131 id=131 data-nosnippet>131</a>    ///  if @widget doesn’t have a response id set.
 <a href=#132 id=132 data-nosnippet>132</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_dialog_get_response_for_widget"</span>)]
 <a href=#133 id=133 data-nosnippet>133</a>    #[doc(alias = <span class="string">"get_response_for_widget"</span>)]
-<a href=#134 id=134 data-nosnippet>134</a>    </span><span class="kw">fn </span>response_for_widget&lt;P: <a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/object/trait.IsA.html">IsA</a>&lt;<a href="auto/widget.rs.html#19-887">Widget</a>&gt;&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, widget: <span class="kw-2">&amp;</span>P) -&gt; <a href="response_type.rs.html#18-56">ResponseType</a> {
+<a href=#134 id=134 data-nosnippet>134</a>    </span><span class="kw">fn </span>response_for_widget&lt;P: IsA&lt;Widget&gt;&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, widget: <span class="kw-2">&amp;</span>P) -&gt; ResponseType {
 <a href=#135 id=135 data-nosnippet>135</a>        <span class="kw">unsafe </span>{
-<a href=#136 id=136 data-nosnippet>136</a>            <a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/translate/fn.from_glib.html">from_glib</a>(ffi::<a href="../../gtk4_sys/fn.gtk_dialog_get_response_for_widget.html">gtk_dialog_get_response_for_widget</a>(
-<a href=#137 id=137 data-nosnippet>137</a>                AsRef::&lt;<a href="auto/dialog.rs.html#21-892">Dialog</a>&gt;::<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>(<a class="self" href="#134">self</a>).<a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
-<a href=#138 id=138 data-nosnippet>138</a>                <a href="#134">widget</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
+<a href=#136 id=136 data-nosnippet>136</a>            from_glib(ffi::gtk_dialog_get_response_for_widget(
+<a href=#137 id=137 data-nosnippet>137</a>                AsRef::&lt;Dialog&gt;::as_ref(<span class="self">self</span>).to_glib_none().<span class="number">0</span>,
+<a href=#138 id=138 data-nosnippet>138</a>                widget.as_ref().to_glib_none().<span class="number">0</span>,
 <a href=#139 id=139 data-nosnippet>139</a>            ))
 <a href=#140 id=140 data-nosnippet>140</a>        }
 <a href=#141 id=141 data-nosnippet>141</a>    }
@@ -231,25 +158,25 @@
 <a href=#158 id=158 data-nosnippet>158</a>    /// println!("Answer: {:?}", answer);
 <a href=#159 id=159 data-nosnippet>159</a>    /// # }
 <a href=#160 id=160 data-nosnippet>160</a>    /// ```
-<a href=#161 id=161 data-nosnippet>161</a>    </span><span class="kw">fn </span>run_future&lt;<span class="lifetime">'a</span>&gt;(<span class="kw-2">&amp;</span><span class="lifetime">'a </span><span class="self">self</span>) -&gt; <a href="https://doc.rust-lang.org/nightly/core/pin/struct.Pin.html">Pin</a>&lt;<a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">Box</a>&lt;<span class="kw">dyn </span><a href="https://doc.rust-lang.org/nightly/core/future/future/trait.Future.html">Future</a>&lt;Output = <a href="response_type.rs.html#18-56">ResponseType</a>&gt; + <span class="lifetime">'a</span>&gt;&gt; {
-<a href=#162 id=162 data-nosnippet>162</a>        <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">Box</a>::<a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html#method.pin">pin</a>(<span class="kw">async move </span>{
+<a href=#161 id=161 data-nosnippet>161</a>    </span><span class="kw">fn </span>run_future&lt;<span class="lifetime">'a</span>&gt;(<span class="kw-2">&amp;</span><span class="lifetime">'a </span><span class="self">self</span>) -&gt; Pin&lt;Box&lt;<span class="kw">dyn </span>Future&lt;Output = ResponseType&gt; + <span class="lifetime">'a</span>&gt;&gt; {
+<a href=#162 id=162 data-nosnippet>162</a>        Box::pin(<span class="kw">async move </span>{
 <a href=#163 id=163 data-nosnippet>163</a>            <span class="kw">let </span>(sender, receiver) = futures_channel::oneshot::channel();
 <a href=#164 id=164 data-nosnippet>164</a>
-<a href=#165 id=165 data-nosnippet>165</a>            <span class="kw">let </span>sender = <a href="https://doc.rust-lang.org/nightly/core/cell/struct.Cell.html">Cell</a>::<a href="https://doc.rust-lang.org/nightly/core/cell/struct.Cell.html#method.new">new</a>(<a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.Some">Some</a>(<a href="#163">sender</a>));
+<a href=#165 id=165 data-nosnippet>165</a>            <span class="kw">let </span>sender = Cell::new(<span class="prelude-val">Some</span>(sender));
 <a href=#166 id=166 data-nosnippet>166</a>
-<a href=#167 id=167 data-nosnippet>167</a>            <span class="kw">let </span>response_handler = <a class="self" href="#161">self</a>.<a href="auto/dialog.rs.html#1793-1821">connect_response</a>(<span class="kw">move </span>|<span class="kw">_</span>, response_type| {
-<a href=#168 id=168 data-nosnippet>168</a>                <span class="kw">if let </span><a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.Some">Some</a>(m) = <a href="#165">sender</a>.<a href="https://doc.rust-lang.org/nightly/core/cell/struct.Cell.html#method.replace">replace</a>(<a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None">None</a>) {
-<a href=#169 id=169 data-nosnippet>169</a>                    <span class="kw">let </span>_result = <a href="#168">m</a>.send(<a href="#167">response_type</a>);
+<a href=#167 id=167 data-nosnippet>167</a>            <span class="kw">let </span>response_handler = <span class="self">self</span>.connect_response(<span class="kw">move </span>|<span class="kw">_</span>, response_type| {
+<a href=#168 id=168 data-nosnippet>168</a>                <span class="kw">if let </span><span class="prelude-val">Some</span>(m) = sender.replace(<span class="prelude-val">None</span>) {
+<a href=#169 id=169 data-nosnippet>169</a>                    <span class="kw">let </span>_result = m.send(response_type);
 <a href=#170 id=170 data-nosnippet>170</a>                }
 <a href=#171 id=171 data-nosnippet>171</a>            });
 <a href=#172 id=172 data-nosnippet>172</a>
-<a href=#173 id=173 data-nosnippet>173</a>            <a class="self" href="#161">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="auto/window.rs.html#2023-2027">present</a>();
+<a href=#173 id=173 data-nosnippet>173</a>            <span class="self">self</span>.as_ref().present();
 <a href=#174 id=174 data-nosnippet>174</a>
-<a href=#175 id=175 data-nosnippet>175</a>            <span class="kw">if let </span><a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html#variant.Ok">Ok</a>(response) = <a href="#163">receiver</a>.<span class="kw">await </span>{
-<a href=#176 id=176 data-nosnippet>176</a>                <a class="self" href="#161">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/object/trait.ObjectExt.html#tymethod.disconnect">disconnect</a>(<a href="#167">response_handler</a>);
-<a href=#177 id=177 data-nosnippet>177</a>                <a href="#175">response</a>
+<a href=#175 id=175 data-nosnippet>175</a>            <span class="kw">if let </span><span class="prelude-val">Ok</span>(response) = receiver.<span class="kw">await </span>{
+<a href=#176 id=176 data-nosnippet>176</a>                <span class="self">self</span>.disconnect(response_handler);
+<a href=#177 id=177 data-nosnippet>177</a>                response
 <a href=#178 id=178 data-nosnippet>178</a>            } <span class="kw">else </span>{
-<a href=#179 id=179 data-nosnippet>179</a>                ResponseType::<a href="response_type.rs.html#22">None</a>
+<a href=#179 id=179 data-nosnippet>179</a>                ResponseType::None
 <a href=#180 id=180 data-nosnippet>180</a>            }
 <a href=#181 id=181 data-nosnippet>181</a>        })
 <a href=#182 id=182 data-nosnippet>182</a>    }
@@ -273,25 +200,25 @@
 <a href=#200 id=200 data-nosnippet>200</a>    ///     println!("Answer: {:?}", answer);
 <a href=#201 id=201 data-nosnippet>201</a>    /// });
 <a href=#202 id=202 data-nosnippet>202</a>    /// ```
-<a href=#203 id=203 data-nosnippet>203</a>    </span><span class="kw">fn </span>run_async&lt;F: <a href="https://doc.rust-lang.org/nightly/core/ops/function/trait.FnOnce.html">FnOnce</a>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <a href="response_type.rs.html#18-56">ResponseType</a>) + <span class="lifetime">'static</span>&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, f: F) {
-<a href=#204 id=204 data-nosnippet>204</a>        <span class="kw">let </span>response_handler = <a href="https://doc.rust-lang.org/nightly/alloc/rc/struct.Rc.html">Rc</a>::<a href="https://doc.rust-lang.org/nightly/alloc/rc/struct.Rc.html#method.new">new</a>(<a href="https://doc.rust-lang.org/nightly/core/cell/struct.RefCell.html">RefCell</a>::<a href="https://doc.rust-lang.org/nightly/core/cell/struct.RefCell.html#method.new">new</a>(<a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None">None</a>));
-<a href=#205 id=205 data-nosnippet>205</a>        <span class="kw">let </span>response_handler_clone = <a href="#204">response_handler</a>.<a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone">clone</a>();
-<a href=#206 id=206 data-nosnippet>206</a>        <span class="kw">let </span>f = <a href="https://doc.rust-lang.org/nightly/core/cell/struct.RefCell.html">RefCell</a>::<a href="https://doc.rust-lang.org/nightly/core/cell/struct.RefCell.html#method.new">new</a>(<a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.Some">Some</a>(<a href="#203">f</a>));
-<a href=#207 id=207 data-nosnippet>207</a>        <span class="kw-2">*</span><a href="#204">response_handler</a>.<a href="https://doc.rust-lang.org/nightly/core/cell/struct.RefCell.html#method.borrow_mut">borrow_mut</a>() = <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.Some">Some</a>(<a class="self" href="#203">self</a>.<a href="auto/dialog.rs.html#1793-1821">connect_response</a>(<span class="kw">move </span>|s, response_type| {
-<a href=#208 id=208 data-nosnippet>208</a>            <span class="kw">if let </span><a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.Some">Some</a>(handler) = <a href="#205">response_handler_clone</a>.<a href="https://doc.rust-lang.org/nightly/core/cell/struct.RefCell.html#method.borrow_mut">borrow_mut</a>().<a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#method.take">take</a>() {
-<a href=#209 id=209 data-nosnippet>209</a>                <a href="#207">s</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/object/trait.ObjectExt.html#tymethod.disconnect">disconnect</a>(<a href="#208">handler</a>);
+<a href=#203 id=203 data-nosnippet>203</a>    </span><span class="kw">fn </span>run_async&lt;F: FnOnce(<span class="kw-2">&amp;</span><span class="self">Self</span>, ResponseType) + <span class="lifetime">'static</span>&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, f: F) {
+<a href=#204 id=204 data-nosnippet>204</a>        <span class="kw">let </span>response_handler = Rc::new(RefCell::new(<span class="prelude-val">None</span>));
+<a href=#205 id=205 data-nosnippet>205</a>        <span class="kw">let </span>response_handler_clone = response_handler.clone();
+<a href=#206 id=206 data-nosnippet>206</a>        <span class="kw">let </span>f = RefCell::new(<span class="prelude-val">Some</span>(f));
+<a href=#207 id=207 data-nosnippet>207</a>        <span class="kw-2">*</span>response_handler.borrow_mut() = <span class="prelude-val">Some</span>(<span class="self">self</span>.connect_response(<span class="kw">move </span>|s, response_type| {
+<a href=#208 id=208 data-nosnippet>208</a>            <span class="kw">if let </span><span class="prelude-val">Some</span>(handler) = response_handler_clone.borrow_mut().take() {
+<a href=#209 id=209 data-nosnippet>209</a>                s.disconnect(handler);
 <a href=#210 id=210 data-nosnippet>210</a>            }
-<a href=#211 id=211 data-nosnippet>211</a>            (<span class="kw-2">*</span><a href="#206">f</a>.<a href="https://doc.rust-lang.org/nightly/core/cell/struct.RefCell.html#method.borrow_mut">borrow_mut</a>()).<a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#method.take">take</a>().<a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#method.expect">expect</a>(<span class="string">"cannot get callback"</span>)(<a href="#207">s</a>, <a href="#207">response_type</a>);
+<a href=#211 id=211 data-nosnippet>211</a>            (<span class="kw-2">*</span>f.borrow_mut()).take().expect(<span class="string">"cannot get callback"</span>)(s, response_type);
 <a href=#212 id=212 data-nosnippet>212</a>        }));
-<a href=#213 id=213 data-nosnippet>213</a>        <a class="self" href="#203">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="auto/window.rs.html#2023-2027">present</a>();
+<a href=#213 id=213 data-nosnippet>213</a>        <span class="self">self</span>.as_ref().present();
 <a href=#214 id=214 data-nosnippet>214</a>    }
 <a href=#215 id=215 data-nosnippet>215</a>}
 <a href=#216 id=216 data-nosnippet>216</a>
-<a href=#217 id=217 data-nosnippet>217</a><span class="kw">impl</span>&lt;O: <a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/object/trait.IsA.html">IsA</a>&lt;<a href="auto/dialog.rs.html#21-892">Dialog</a>&gt;&gt; <a href="#99-215">DialogExtManual</a> <span class="kw">for </span>O {}
+<a href=#217 id=217 data-nosnippet>217</a><span class="kw">impl</span>&lt;O: IsA&lt;Dialog&gt;&gt; DialogExtManual <span class="kw">for </span>O {}
 <a href=#218 id=218 data-nosnippet>218</a>
 <a href=#219 id=219 data-nosnippet>219</a><span class="attr">#[cfg(test)]
 <a href=#220 id=220 data-nosnippet>220</a></span><span class="kw">mod </span>tests {
-<a href=#221 id=221 data-nosnippet>221</a>    <span class="kw">use </span>super::<span class="kw-2">*</span>;
+<a href=#221 id=221 data-nosnippet>221</a>    <span class="kw">use super</span>::<span class="kw-2">*</span>;
 <a href=#222 id=222 data-nosnippet>222</a>    <span class="kw">use crate as </span>gtk4;
 <a href=#223 id=223 data-nosnippet>223</a>
 <a href=#224 id=224 data-nosnippet>224</a>    <span class="attr">#[test]

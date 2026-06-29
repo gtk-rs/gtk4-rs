@@ -1,86 +1,13 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/auto/cell_layout.rs`."><title>cell_layout.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-17e0aaed.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.97.0-nightly (ca9a134e0 2026-04-26)" data-channel="nightly" data-search-js="search-b5634cc7.js" data-stringdex-js="stringdex-2da4960a.js" data-settings-js="settings-170eb4bf.js" ><script src="../../../static.files/storage-41dd4d93.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-aa4d37ac.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-f7c3ffd8.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><a class="skip-main-content" href="#main-content">Skip to main content</a><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
-<script type="text/javascript">
-    document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
-
-    function checkDocsLatestStable() {
-        function popup(msg, url) { return `
-            <style scoped="scoped">
-                .popup {
-                    max-width: 16em;
-                    background-color: #fff;
-                    position: fixed;
-                    z-index: 1;
-                    margin-left: auto;
-                    bottom: 1em;
-                    right: 1em;
-                    border-radius: 5px;
-                    box-shadow: 1px 1px 4px #777;
-                }
-
-                .popup a.version {
-                    color: #e57300;
-                    padding: 0.6em 1em;
-                    display: block;
-                }
-                .popup a.version:hover {
-                    color: #b25900;
-                }
-
-                .popup a.close {
-                    color: white;
-                    background: grey;
-                    border-radius: 99px;
-                    display: inline-block;
-                    width: 19px;
-                    line-height: 19px;
-                    font-weight: bold;
-                    text-align: center;
-                    margin: 0.6em;
-                    float: right;
-                }
-                .popup a.close:hover {
-                    background: black;
-                }
-            </style>
-            <section class="popup" id="gir_docs_popup">
-                <a class="close" href="#" onclick="document.getElementById('gir_docs_popup').remove(); return false">×</a>
-                <a class="version" href="https://gtk-rs.org/gtk4-rs/stable/latest/docs">
-                    ⚠ ${msg}
-                </a>
-            </section>
-        ` };
-
-        if ("0.11" == "main") {
-            document.body.insertAdjacentHTML(
-                'beforeend',
-                popup("This is the development version. Go to latest stable version.", "stable/latest")
-            );
-        } else {
-            fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
-                .then(response => response.text())
-                .then(latest_branch => {
-                    if (latest_branch.trim() != "0.11") {
-                        document.body.insertAdjacentHTML(
-                            'beforeend',
-                            popup("This version is outdated. Go to latest version.", "stable/latest")
-                        );
-                    }
-                });
-        }
-    }
-</script>
-
-
-<nav class="sidebar"><div class="src-sidebar-title"><h2>Files</h2></div></nav><div class="sidebar-resizer" title="Drag to resize sidebar"></div><main><section id="main-content" class="content" tabindex="-1"><div class="main-heading"><h1><div class="sub-heading">gtk4/auto/</div>cell_layout.rs</h1><rustdoc-toolbar></rustdoc-toolbar></div><div class="example-wrap digits-3"><pre class="rust"><code><a href=#1 id=1 data-nosnippet>1</a><span class="comment">// This file was generated by gir (https://github.com/gtk-rs/gir)
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/auto/cell_layout.rs`."><title>cell_layout.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-1ed95124.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.98.0-nightly (df6ee909e 2026-06-28)" data-channel="nightly" data-search-js="search-9944d736.js" data-stringdex-js="stringdex-2da4960a.js" data-settings-js="settings-170eb4bf.js" ><script src="../../../static.files/storage-41dd4d93.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-417ebf0a.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-f7c3ffd8.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><a class="skip-main-content" href="#main-content">Skip to main content</a><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title"><h2>Files</h2></div></nav><div class="sidebar-resizer" title="Drag to resize sidebar"></div><main><section id="main-content" class="content" tabindex="-1"><div class="main-heading"><h1><div class="sub-heading">gtk4/auto/</div>cell_layout.rs</h1><rustdoc-toolbar></rustdoc-toolbar></div><div class="example-wrap digits-3"><pre class="rust"><code><a href=#1 id=1 data-nosnippet>1</a><span class="comment">// This file was generated by gir (https://github.com/gtk-rs/gir)
 <a href=#2 id=2 data-nosnippet>2</a>// from gir-files (https://github.com/gtk-rs/gir-files)
 <a href=#3 id=3 data-nosnippet>3</a>// DO NOT EDIT
 <a href=#4 id=4 data-nosnippet>4</a></span><span class="attr">#![allow(deprecated)]
 <a href=#5 id=5 data-nosnippet>5</a>
-<a href=#6 id=6 data-nosnippet>6</a></span><span class="kw">use </span>crate::{<a href="cell_area.rs.html#19-416">CellArea</a>, <a href="cell_renderer.rs.html#18-183">CellRenderer</a>, <a href="tree_iter.rs.html#8-25">TreeIter</a>, <a href="tree_model.rs.html#15-277">TreeModel</a>, <a href="../../../gtk4_sys/index.html">ffi</a>};
+<a href=#6 id=6 data-nosnippet>6</a></span><span class="kw">use crate</span>::{CellArea, CellRenderer, TreeIter, TreeModel, ffi};
 <a href=#7 id=7 data-nosnippet>7</a><span class="kw">use </span>glib::{prelude::<span class="kw-2">*</span>, translate::<span class="kw-2">*</span>};
-<a href=#8 id=8 data-nosnippet>8</a><span class="kw">use </span><a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">std::boxed::Box</a> <span class="kw">as </span>Box_;
+<a href=#8 id=8 data-nosnippet>8</a><span class="kw">use </span>std::boxed::Box <span class="kw">as </span>Box_;
 <a href=#9 id=9 data-nosnippet>9</a>
-<a href=#10 id=10 data-nosnippet>10</a><a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/macro.wrapper.html">glib::wrapper!</a> {
+<a href=#10 id=10 data-nosnippet>10</a><span class="macro">glib::wrapper!</span> {
 <a href=#11 id=11 data-nosnippet>11</a>    <span class="doccomment">/// List views use widgets to display their contents.
 <a href=#12 id=12 data-nosnippet>12</a>    ///   See [`LayoutManager`][crate::LayoutManager] for layout manager delegate objects
 <a href=#13 id=13 data-nosnippet>13</a>    /// An interface for packing cells
@@ -200,15 +127,15 @@
 <a href=#127 id=127 data-nosnippet>127</a>    ///
 <a href=#128 id=128 data-nosnippet>128</a>    /// [`CellLayoutExt`][trait@crate::prelude::CellLayoutExt], [`CellLayoutExtManual`][trait@crate::prelude::CellLayoutExtManual]
 <a href=#129 id=129 data-nosnippet>129</a>    </span><span class="attr">#[doc(alias = <span class="string">"GtkCellLayout"</span>)]
-<a href=#130 id=130 data-nosnippet>130</a>    </span><span class="kw">pub struct </span><a href="#10-135">CellLayout</a>(Interface&lt;ffi::<a href="../../../gtk4_sys/struct.GtkCellLayout.html">GtkCellLayout</a>, ffi::<a href="../../../gtk4_sys/struct.GtkCellLayoutIface.html">GtkCellLayoutIface</a>&gt;);
+<a href=#130 id=130 data-nosnippet>130</a>    </span><span class="kw">pub struct </span>CellLayout(Interface&lt;ffi::GtkCellLayout, ffi::GtkCellLayoutIface&gt;);
 <a href=#131 id=131 data-nosnippet>131</a>
 <a href=#132 id=132 data-nosnippet>132</a>    <span class="kw">match fn </span>{
 <a href=#133 id=133 data-nosnippet>133</a>        type_ =&gt; || ffi::gtk_cell_layout_get_type(),
 <a href=#134 id=134 data-nosnippet>134</a>    }
 <a href=#135 id=135 data-nosnippet>135</a>}
 <a href=#136 id=136 data-nosnippet>136</a>
-<a href=#137 id=137 data-nosnippet>137</a><span class="kw">impl </span><a href="#10-135">CellLayout</a> {
-<a href=#138 id=138 data-nosnippet>138</a>    <span class="kw">pub const </span>NONE: <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'static </span><a href="#10-135">CellLayout</a>&gt; = <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None">None</a>;
+<a href=#137 id=137 data-nosnippet>137</a><span class="kw">impl </span>CellLayout {
+<a href=#138 id=138 data-nosnippet>138</a>    <span class="kw">pub const </span>NONE: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'static </span>CellLayout&gt; = <span class="prelude-val">None</span>;
 <a href=#139 id=139 data-nosnippet>139</a>}
 <a href=#140 id=140 data-nosnippet>140</a>
 <a href=#141 id=141 data-nosnippet>141</a><span class="doccomment">/// Trait containing all [`struct@CellLayout`] methods.
@@ -216,7 +143,7 @@
 <a href=#143 id=143 data-nosnippet>143</a>/// # Implementors
 <a href=#144 id=144 data-nosnippet>144</a>///
 <a href=#145 id=145 data-nosnippet>145</a>/// [`CellAreaBox`][struct@crate::CellAreaBox], [`CellArea`][struct@crate::CellArea], [`CellLayout`][struct@crate::CellLayout], [`CellView`][struct@crate::CellView], [`ComboBoxText`][struct@crate::ComboBoxText], [`ComboBox`][struct@crate::ComboBox], [`EntryCompletion`][struct@crate::EntryCompletion], [`IconView`][struct@crate::IconView], [`TreeViewColumn`][struct@crate::TreeViewColumn]
-<a href=#146 id=146 data-nosnippet>146</a></span><span class="kw">pub trait </span><a href="../../../gtk4/prelude/trait.CellLayoutExt.html">CellLayoutExt</a>: <a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/object/trait.IsA.html">IsA</a>&lt;<a href="#10-135">CellLayout</a>&gt; + <span class="lifetime">'static </span>{
+<a href=#146 id=146 data-nosnippet>146</a></span><span class="kw">pub trait </span>CellLayoutExt: IsA&lt;CellLayout&gt; + <span class="lifetime">'static </span>{
 <a href=#147 id=147 data-nosnippet>147</a>    <span class="doccomment">/// Adds an attribute mapping to the list in @self.
 <a href=#148 id=148 data-nosnippet>148</a>    ///
 <a href=#149 id=149 data-nosnippet>149</a>    /// The @column is the column of the model to get a value from, and the
@@ -236,13 +163,13 @@
 <a href=#163 id=163 data-nosnippet>163</a>    </span><span class="attr">#[cfg_attr(feature = <span class="string">"v4_10"</span>, deprecated = <span class="string">"Since 4.10"</span>)]
 <a href=#164 id=164 data-nosnippet>164</a>    #[allow(deprecated)]
 <a href=#165 id=165 data-nosnippet>165</a>    #[doc(alias = <span class="string">"gtk_cell_layout_add_attribute"</span>)]
-<a href=#166 id=166 data-nosnippet>166</a>    </span><span class="kw">fn </span>add_attribute(<span class="kw-2">&amp;</span><span class="self">self</span>, cell: <span class="kw-2">&amp;</span><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/object/trait.IsA.html">IsA</a>&lt;<a href="cell_renderer.rs.html#18-183">CellRenderer</a>&gt;, attribute: <span class="kw-2">&amp;</span><a href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>, column: <a href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) {
+<a href=#166 id=166 data-nosnippet>166</a>    </span><span class="kw">fn </span>add_attribute(<span class="kw-2">&amp;</span><span class="self">self</span>, cell: <span class="kw-2">&amp;</span><span class="kw">impl </span>IsA&lt;CellRenderer&gt;, attribute: <span class="kw-2">&amp;</span>str, column: i32) {
 <a href=#167 id=167 data-nosnippet>167</a>        <span class="kw">unsafe </span>{
-<a href=#168 id=168 data-nosnippet>168</a>            ffi::<a href="../../../gtk4_sys/fn.gtk_cell_layout_add_attribute.html">gtk_cell_layout_add_attribute</a>(
-<a href=#169 id=169 data-nosnippet>169</a>                <a class="self" href="#166">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
-<a href=#170 id=170 data-nosnippet>170</a>                <a href="#166">cell</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
-<a href=#171 id=171 data-nosnippet>171</a>                <a href="#166">attribute</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
-<a href=#172 id=172 data-nosnippet>172</a>                <a href="#166">column</a>,
+<a href=#168 id=168 data-nosnippet>168</a>            ffi::gtk_cell_layout_add_attribute(
+<a href=#169 id=169 data-nosnippet>169</a>                <span class="self">self</span>.as_ref().to_glib_none().<span class="number">0</span>,
+<a href=#170 id=170 data-nosnippet>170</a>                cell.as_ref().to_glib_none().<span class="number">0</span>,
+<a href=#171 id=171 data-nosnippet>171</a>                attribute.to_glib_none().<span class="number">0</span>,
+<a href=#172 id=172 data-nosnippet>172</a>                column,
 <a href=#173 id=173 data-nosnippet>173</a>            );
 <a href=#174 id=174 data-nosnippet>174</a>        }
 <a href=#175 id=175 data-nosnippet>175</a>    }
@@ -257,7 +184,7 @@
 <a href=#184 id=184 data-nosnippet>184</a>    #[doc(alias = <span class="string">"gtk_cell_layout_clear"</span>)]
 <a href=#185 id=185 data-nosnippet>185</a>    </span><span class="kw">fn </span>clear(<span class="kw-2">&amp;</span><span class="self">self</span>) {
 <a href=#186 id=186 data-nosnippet>186</a>        <span class="kw">unsafe </span>{
-<a href=#187 id=187 data-nosnippet>187</a>            ffi::<a href="../../../gtk4_sys/fn.gtk_cell_layout_clear.html">gtk_cell_layout_clear</a>(<a class="self" href="#185">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>);
+<a href=#187 id=187 data-nosnippet>187</a>            ffi::gtk_cell_layout_clear(<span class="self">self</span>.as_ref().to_glib_none().<span class="number">0</span>);
 <a href=#188 id=188 data-nosnippet>188</a>        }
 <a href=#189 id=189 data-nosnippet>189</a>    }
 <a href=#190 id=190 data-nosnippet>190</a>
@@ -271,11 +198,11 @@
 <a href=#198 id=198 data-nosnippet>198</a>    </span><span class="attr">#[cfg_attr(feature = <span class="string">"v4_10"</span>, deprecated = <span class="string">"Since 4.10"</span>)]
 <a href=#199 id=199 data-nosnippet>199</a>    #[allow(deprecated)]
 <a href=#200 id=200 data-nosnippet>200</a>    #[doc(alias = <span class="string">"gtk_cell_layout_clear_attributes"</span>)]
-<a href=#201 id=201 data-nosnippet>201</a>    </span><span class="kw">fn </span>clear_attributes(<span class="kw-2">&amp;</span><span class="self">self</span>, cell: <span class="kw-2">&amp;</span><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/object/trait.IsA.html">IsA</a>&lt;<a href="cell_renderer.rs.html#18-183">CellRenderer</a>&gt;) {
+<a href=#201 id=201 data-nosnippet>201</a>    </span><span class="kw">fn </span>clear_attributes(<span class="kw-2">&amp;</span><span class="self">self</span>, cell: <span class="kw-2">&amp;</span><span class="kw">impl </span>IsA&lt;CellRenderer&gt;) {
 <a href=#202 id=202 data-nosnippet>202</a>        <span class="kw">unsafe </span>{
-<a href=#203 id=203 data-nosnippet>203</a>            ffi::<a href="../../../gtk4_sys/fn.gtk_cell_layout_clear_attributes.html">gtk_cell_layout_clear_attributes</a>(
-<a href=#204 id=204 data-nosnippet>204</a>                <a class="self" href="#201">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
-<a href=#205 id=205 data-nosnippet>205</a>                <a href="#201">cell</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
+<a href=#203 id=203 data-nosnippet>203</a>            ffi::gtk_cell_layout_clear_attributes(
+<a href=#204 id=204 data-nosnippet>204</a>                <span class="self">self</span>.as_ref().to_glib_none().<span class="number">0</span>,
+<a href=#205 id=205 data-nosnippet>205</a>                cell.as_ref().to_glib_none().<span class="number">0</span>,
 <a href=#206 id=206 data-nosnippet>206</a>            );
 <a href=#207 id=207 data-nosnippet>207</a>        }
 <a href=#208 id=208 data-nosnippet>208</a>    }
@@ -294,10 +221,10 @@
 <a href=#221 id=221 data-nosnippet>221</a>    #[allow(deprecated)]
 <a href=#222 id=222 data-nosnippet>222</a>    #[doc(alias = <span class="string">"gtk_cell_layout_get_area"</span>)]
 <a href=#223 id=223 data-nosnippet>223</a>    #[doc(alias = <span class="string">"get_area"</span>)]
-<a href=#224 id=224 data-nosnippet>224</a>    </span><span class="kw">fn </span>area(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;<a href="cell_area.rs.html#19-416">CellArea</a>&gt; {
+<a href=#224 id=224 data-nosnippet>224</a>    </span><span class="kw">fn </span>area(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;CellArea&gt; {
 <a href=#225 id=225 data-nosnippet>225</a>        <span class="kw">unsafe </span>{
-<a href=#226 id=226 data-nosnippet>226</a>            <a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/translate/fn.from_glib_none.html">from_glib_none</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_cell_layout_get_area.html">gtk_cell_layout_get_area</a>(
-<a href=#227 id=227 data-nosnippet>227</a>                <a class="self" href="#224">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
+<a href=#226 id=226 data-nosnippet>226</a>            from_glib_none(ffi::gtk_cell_layout_get_area(
+<a href=#227 id=227 data-nosnippet>227</a>                <span class="self">self</span>.as_ref().to_glib_none().<span class="number">0</span>,
 <a href=#228 id=228 data-nosnippet>228</a>            ))
 <a href=#229 id=229 data-nosnippet>229</a>        }
 <a href=#230 id=230 data-nosnippet>230</a>    }
@@ -317,10 +244,10 @@
 <a href=#244 id=244 data-nosnippet>244</a>    #[allow(deprecated)]
 <a href=#245 id=245 data-nosnippet>245</a>    #[doc(alias = <span class="string">"gtk_cell_layout_get_cells"</span>)]
 <a href=#246 id=246 data-nosnippet>246</a>    #[doc(alias = <span class="string">"get_cells"</span>)]
-<a href=#247 id=247 data-nosnippet>247</a>    </span><span class="kw">fn </span>cells(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html">Vec</a>&lt;<a href="cell_renderer.rs.html#18-183">CellRenderer</a>&gt; {
+<a href=#247 id=247 data-nosnippet>247</a>    </span><span class="kw">fn </span>cells(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Vec&lt;CellRenderer&gt; {
 <a href=#248 id=248 data-nosnippet>248</a>        <span class="kw">unsafe </span>{
-<a href=#249 id=249 data-nosnippet>249</a>            FromGlibPtrContainer::<a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/translate/trait.FromGlibPtrContainer.html#tymethod.from_glib_container">from_glib_container</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_cell_layout_get_cells.html">gtk_cell_layout_get_cells</a>(
-<a href=#250 id=250 data-nosnippet>250</a>                <a class="self" href="#247">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
+<a href=#249 id=249 data-nosnippet>249</a>            FromGlibPtrContainer::from_glib_container(ffi::gtk_cell_layout_get_cells(
+<a href=#250 id=250 data-nosnippet>250</a>                <span class="self">self</span>.as_ref().to_glib_none().<span class="number">0</span>,
 <a href=#251 id=251 data-nosnippet>251</a>            ))
 <a href=#252 id=252 data-nosnippet>252</a>        }
 <a href=#253 id=253 data-nosnippet>253</a>    }
@@ -340,12 +267,12 @@
 <a href=#267 id=267 data-nosnippet>267</a>    </span><span class="attr">#[cfg_attr(feature = <span class="string">"v4_10"</span>, deprecated = <span class="string">"Since 4.10"</span>)]
 <a href=#268 id=268 data-nosnippet>268</a>    #[allow(deprecated)]
 <a href=#269 id=269 data-nosnippet>269</a>    #[doc(alias = <span class="string">"gtk_cell_layout_pack_end"</span>)]
-<a href=#270 id=270 data-nosnippet>270</a>    </span><span class="kw">fn </span>pack_end(<span class="kw-2">&amp;</span><span class="self">self</span>, cell: <span class="kw-2">&amp;</span><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/object/trait.IsA.html">IsA</a>&lt;<a href="cell_renderer.rs.html#18-183">CellRenderer</a>&gt;, expand: <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) {
+<a href=#270 id=270 data-nosnippet>270</a>    </span><span class="kw">fn </span>pack_end(<span class="kw-2">&amp;</span><span class="self">self</span>, cell: <span class="kw-2">&amp;</span><span class="kw">impl </span>IsA&lt;CellRenderer&gt;, expand: bool) {
 <a href=#271 id=271 data-nosnippet>271</a>        <span class="kw">unsafe </span>{
-<a href=#272 id=272 data-nosnippet>272</a>            ffi::<a href="../../../gtk4_sys/fn.gtk_cell_layout_pack_end.html">gtk_cell_layout_pack_end</a>(
-<a href=#273 id=273 data-nosnippet>273</a>                <a class="self" href="#270">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
-<a href=#274 id=274 data-nosnippet>274</a>                <a href="#270">cell</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
-<a href=#275 id=275 data-nosnippet>275</a>                <a href="#270">expand</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>(),
+<a href=#272 id=272 data-nosnippet>272</a>            ffi::gtk_cell_layout_pack_end(
+<a href=#273 id=273 data-nosnippet>273</a>                <span class="self">self</span>.as_ref().to_glib_none().<span class="number">0</span>,
+<a href=#274 id=274 data-nosnippet>274</a>                cell.as_ref().to_glib_none().<span class="number">0</span>,
+<a href=#275 id=275 data-nosnippet>275</a>                expand.into_glib(),
 <a href=#276 id=276 data-nosnippet>276</a>            );
 <a href=#277 id=277 data-nosnippet>277</a>        }
 <a href=#278 id=278 data-nosnippet>278</a>    }
@@ -365,12 +292,12 @@
 <a href=#292 id=292 data-nosnippet>292</a>    </span><span class="attr">#[cfg_attr(feature = <span class="string">"v4_10"</span>, deprecated = <span class="string">"Since 4.10"</span>)]
 <a href=#293 id=293 data-nosnippet>293</a>    #[allow(deprecated)]
 <a href=#294 id=294 data-nosnippet>294</a>    #[doc(alias = <span class="string">"gtk_cell_layout_pack_start"</span>)]
-<a href=#295 id=295 data-nosnippet>295</a>    </span><span class="kw">fn </span>pack_start(<span class="kw-2">&amp;</span><span class="self">self</span>, cell: <span class="kw-2">&amp;</span><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/object/trait.IsA.html">IsA</a>&lt;<a href="cell_renderer.rs.html#18-183">CellRenderer</a>&gt;, expand: <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) {
+<a href=#295 id=295 data-nosnippet>295</a>    </span><span class="kw">fn </span>pack_start(<span class="kw-2">&amp;</span><span class="self">self</span>, cell: <span class="kw-2">&amp;</span><span class="kw">impl </span>IsA&lt;CellRenderer&gt;, expand: bool) {
 <a href=#296 id=296 data-nosnippet>296</a>        <span class="kw">unsafe </span>{
-<a href=#297 id=297 data-nosnippet>297</a>            ffi::<a href="../../../gtk4_sys/fn.gtk_cell_layout_pack_start.html">gtk_cell_layout_pack_start</a>(
-<a href=#298 id=298 data-nosnippet>298</a>                <a class="self" href="#295">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
-<a href=#299 id=299 data-nosnippet>299</a>                <a href="#295">cell</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
-<a href=#300 id=300 data-nosnippet>300</a>                <a href="#295">expand</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>(),
+<a href=#297 id=297 data-nosnippet>297</a>            ffi::gtk_cell_layout_pack_start(
+<a href=#298 id=298 data-nosnippet>298</a>                <span class="self">self</span>.as_ref().to_glib_none().<span class="number">0</span>,
+<a href=#299 id=299 data-nosnippet>299</a>                cell.as_ref().to_glib_none().<span class="number">0</span>,
+<a href=#300 id=300 data-nosnippet>300</a>                expand.into_glib(),
 <a href=#301 id=301 data-nosnippet>301</a>            );
 <a href=#302 id=302 data-nosnippet>302</a>        }
 <a href=#303 id=303 data-nosnippet>303</a>    }
@@ -389,12 +316,12 @@
 <a href=#316 id=316 data-nosnippet>316</a>    </span><span class="attr">#[cfg_attr(feature = <span class="string">"v4_10"</span>, deprecated = <span class="string">"Since 4.10"</span>)]
 <a href=#317 id=317 data-nosnippet>317</a>    #[allow(deprecated)]
 <a href=#318 id=318 data-nosnippet>318</a>    #[doc(alias = <span class="string">"gtk_cell_layout_reorder"</span>)]
-<a href=#319 id=319 data-nosnippet>319</a>    </span><span class="kw">fn </span>reorder(<span class="kw-2">&amp;</span><span class="self">self</span>, cell: <span class="kw-2">&amp;</span><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/object/trait.IsA.html">IsA</a>&lt;<a href="cell_renderer.rs.html#18-183">CellRenderer</a>&gt;, position: <a href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) {
+<a href=#319 id=319 data-nosnippet>319</a>    </span><span class="kw">fn </span>reorder(<span class="kw-2">&amp;</span><span class="self">self</span>, cell: <span class="kw-2">&amp;</span><span class="kw">impl </span>IsA&lt;CellRenderer&gt;, position: i32) {
 <a href=#320 id=320 data-nosnippet>320</a>        <span class="kw">unsafe </span>{
-<a href=#321 id=321 data-nosnippet>321</a>            ffi::<a href="../../../gtk4_sys/fn.gtk_cell_layout_reorder.html">gtk_cell_layout_reorder</a>(
-<a href=#322 id=322 data-nosnippet>322</a>                <a class="self" href="#319">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
-<a href=#323 id=323 data-nosnippet>323</a>                <a href="#319">cell</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
-<a href=#324 id=324 data-nosnippet>324</a>                <a href="#319">position</a>,
+<a href=#321 id=321 data-nosnippet>321</a>            ffi::gtk_cell_layout_reorder(
+<a href=#322 id=322 data-nosnippet>322</a>                <span class="self">self</span>.as_ref().to_glib_none().<span class="number">0</span>,
+<a href=#323 id=323 data-nosnippet>323</a>                cell.as_ref().to_glib_none().<span class="number">0</span>,
+<a href=#324 id=324 data-nosnippet>324</a>                position,
 <a href=#325 id=325 data-nosnippet>325</a>            );
 <a href=#326 id=326 data-nosnippet>326</a>        }
 <a href=#327 id=327 data-nosnippet>327</a>    }
@@ -418,53 +345,53 @@
 <a href=#345 id=345 data-nosnippet>345</a>    </span><span class="attr">#[cfg_attr(feature = <span class="string">"v4_10"</span>, deprecated = <span class="string">"Since 4.10"</span>)]
 <a href=#346 id=346 data-nosnippet>346</a>    #[allow(deprecated)]
 <a href=#347 id=347 data-nosnippet>347</a>    #[doc(alias = <span class="string">"gtk_cell_layout_set_cell_data_func"</span>)]
-<a href=#348 id=348 data-nosnippet>348</a>    </span><span class="kw">fn </span>set_cell_data_func&lt;P: <a href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html">Fn</a>(<span class="kw-2">&amp;</span><a href="#10-135">CellLayout</a>, <span class="kw-2">&amp;</span><a href="cell_renderer.rs.html#18-183">CellRenderer</a>, <span class="kw-2">&amp;</span><a href="tree_model.rs.html#15-277">TreeModel</a>, <span class="kw-2">&amp;</span><a href="tree_iter.rs.html#8-25">TreeIter</a>) + <span class="lifetime">'static</span>&gt;(
+<a href=#348 id=348 data-nosnippet>348</a>    </span><span class="kw">fn </span>set_cell_data_func&lt;P: Fn(<span class="kw-2">&amp;</span>CellLayout, <span class="kw-2">&amp;</span>CellRenderer, <span class="kw-2">&amp;</span>TreeModel, <span class="kw-2">&amp;</span>TreeIter) + <span class="lifetime">'static</span>&gt;(
 <a href=#349 id=349 data-nosnippet>349</a>        <span class="kw-2">&amp;</span><span class="self">self</span>,
-<a href=#350 id=350 data-nosnippet>350</a>        cell: <span class="kw-2">&amp;</span><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/object/trait.IsA.html">IsA</a>&lt;<a href="cell_renderer.rs.html#18-183">CellRenderer</a>&gt;,
+<a href=#350 id=350 data-nosnippet>350</a>        cell: <span class="kw-2">&amp;</span><span class="kw">impl </span>IsA&lt;CellRenderer&gt;,
 <a href=#351 id=351 data-nosnippet>351</a>        func: P,
 <a href=#352 id=352 data-nosnippet>352</a>    ) {
-<a href=#353 id=353 data-nosnippet>353</a>        <span class="kw">let </span>func_data: <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">Box_</a>&lt;P&gt; = <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">Box_</a>::<a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html#method.new">new</a>(<a href="#351">func</a>);
+<a href=#353 id=353 data-nosnippet>353</a>        <span class="kw">let </span>func_data: Box_&lt;P&gt; = Box_::new(func);
 <a href=#354 id=354 data-nosnippet>354</a>        <span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn </span>func_func&lt;
-<a href=#355 id=355 data-nosnippet>355</a>            P: <a href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html">Fn</a>(<span class="kw-2">&amp;</span><a href="#10-135">CellLayout</a>, <span class="kw-2">&amp;</span><a href="cell_renderer.rs.html#18-183">CellRenderer</a>, <span class="kw-2">&amp;</span><a href="tree_model.rs.html#15-277">TreeModel</a>, <span class="kw-2">&amp;</span><a href="tree_iter.rs.html#8-25">TreeIter</a>) + <span class="lifetime">'static</span>,
+<a href=#355 id=355 data-nosnippet>355</a>            P: Fn(<span class="kw-2">&amp;</span>CellLayout, <span class="kw-2">&amp;</span>CellRenderer, <span class="kw-2">&amp;</span>TreeModel, <span class="kw-2">&amp;</span>TreeIter) + <span class="lifetime">'static</span>,
 <a href=#356 id=356 data-nosnippet>356</a>        &gt;(
-<a href=#357 id=357 data-nosnippet>357</a>            cell_layout: <span class="kw-2">*mut </span>ffi::<a href="../../../gtk4_sys/struct.GtkCellLayout.html">GtkCellLayout</a>,
-<a href=#358 id=358 data-nosnippet>358</a>            cell: <span class="kw-2">*mut </span>ffi::<a href="../../../gtk4_sys/struct.GtkCellRenderer.html">GtkCellRenderer</a>,
-<a href=#359 id=359 data-nosnippet>359</a>            tree_model: <span class="kw-2">*mut </span>ffi::<a href="../../../gtk4_sys/struct.GtkTreeModel.html">GtkTreeModel</a>,
-<a href=#360 id=360 data-nosnippet>360</a>            iter: <span class="kw-2">*mut </span>ffi::<a href="../../../gtk4_sys/struct.GtkTreeIter.html">GtkTreeIter</a>,
+<a href=#357 id=357 data-nosnippet>357</a>            cell_layout: <span class="kw-2">*mut </span>ffi::GtkCellLayout,
+<a href=#358 id=358 data-nosnippet>358</a>            cell: <span class="kw-2">*mut </span>ffi::GtkCellRenderer,
+<a href=#359 id=359 data-nosnippet>359</a>            tree_model: <span class="kw-2">*mut </span>ffi::GtkTreeModel,
+<a href=#360 id=360 data-nosnippet>360</a>            iter: <span class="kw-2">*mut </span>ffi::GtkTreeIter,
 <a href=#361 id=361 data-nosnippet>361</a>            data: glib::ffi::gpointer,
 <a href=#362 id=362 data-nosnippet>362</a>        ) {
 <a href=#363 id=363 data-nosnippet>363</a>            <span class="kw">unsafe </span>{
-<a href=#364 id=364 data-nosnippet>364</a>                <span class="kw">let </span>cell_layout = <a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/translate/fn.from_glib_borrow.html">from_glib_borrow</a>(<a href="#357">cell_layout</a>);
-<a href=#365 id=365 data-nosnippet>365</a>                <span class="kw">let </span>cell = <a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/translate/fn.from_glib_borrow.html">from_glib_borrow</a>(<a href="#358">cell</a>);
-<a href=#366 id=366 data-nosnippet>366</a>                <span class="kw">let </span>tree_model = <a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/translate/fn.from_glib_borrow.html">from_glib_borrow</a>(<a href="#359">tree_model</a>);
-<a href=#367 id=367 data-nosnippet>367</a>                <span class="kw">let </span>iter = <a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/translate/fn.from_glib_borrow.html">from_glib_borrow</a>(<a href="#360">iter</a>);
-<a href=#368 id=368 data-nosnippet>368</a>                <span class="kw">let </span>callback = <span class="kw-2">&amp;*</span>(<a href="#361">data</a> <span class="kw">as </span><span class="kw-2">*mut </span>P);
-<a href=#369 id=369 data-nosnippet>369</a>                (<span class="kw-2">*</span><a href="#368">callback</a>)(<span class="kw-2">&amp;</span><a href="#364">cell_layout</a>, <span class="kw-2">&amp;</span><a href="#365">cell</a>, <span class="kw-2">&amp;</span><a href="#366">tree_model</a>, <span class="kw-2">&amp;</span><a href="#367">iter</a>)
+<a href=#364 id=364 data-nosnippet>364</a>                <span class="kw">let </span>cell_layout = from_glib_borrow(cell_layout);
+<a href=#365 id=365 data-nosnippet>365</a>                <span class="kw">let </span>cell = from_glib_borrow(cell);
+<a href=#366 id=366 data-nosnippet>366</a>                <span class="kw">let </span>tree_model = from_glib_borrow(tree_model);
+<a href=#367 id=367 data-nosnippet>367</a>                <span class="kw">let </span>iter = from_glib_borrow(iter);
+<a href=#368 id=368 data-nosnippet>368</a>                <span class="kw">let </span>callback = <span class="kw-2">&amp;*</span>(data <span class="kw">as </span><span class="kw-2">*mut </span>P);
+<a href=#369 id=369 data-nosnippet>369</a>                (<span class="kw-2">*</span>callback)(<span class="kw-2">&amp;</span>cell_layout, <span class="kw-2">&amp;</span>cell, <span class="kw-2">&amp;</span>tree_model, <span class="kw-2">&amp;</span>iter)
 <a href=#370 id=370 data-nosnippet>370</a>            }
 <a href=#371 id=371 data-nosnippet>371</a>        }
-<a href=#372 id=372 data-nosnippet>372</a>        <span class="kw">let </span>func = <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.Some">Some</a>(func_func::&lt;P&gt; <span class="kw">as _</span>);
+<a href=#372 id=372 data-nosnippet>372</a>        <span class="kw">let </span>func = <span class="prelude-val">Some</span>(func_func::&lt;P&gt; <span class="kw">as _</span>);
 <a href=#373 id=373 data-nosnippet>373</a>        <span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn </span>destroy_func&lt;
-<a href=#374 id=374 data-nosnippet>374</a>            P: <a href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html">Fn</a>(<span class="kw-2">&amp;</span><a href="#10-135">CellLayout</a>, <span class="kw-2">&amp;</span><a href="cell_renderer.rs.html#18-183">CellRenderer</a>, <span class="kw-2">&amp;</span><a href="tree_model.rs.html#15-277">TreeModel</a>, <span class="kw-2">&amp;</span><a href="tree_iter.rs.html#8-25">TreeIter</a>) + <span class="lifetime">'static</span>,
+<a href=#374 id=374 data-nosnippet>374</a>            P: Fn(<span class="kw-2">&amp;</span>CellLayout, <span class="kw-2">&amp;</span>CellRenderer, <span class="kw-2">&amp;</span>TreeModel, <span class="kw-2">&amp;</span>TreeIter) + <span class="lifetime">'static</span>,
 <a href=#375 id=375 data-nosnippet>375</a>        &gt;(
 <a href=#376 id=376 data-nosnippet>376</a>            data: glib::ffi::gpointer,
 <a href=#377 id=377 data-nosnippet>377</a>        ) {
 <a href=#378 id=378 data-nosnippet>378</a>            <span class="kw">unsafe </span>{
-<a href=#379 id=379 data-nosnippet>379</a>                <span class="kw">let </span>_callback = <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">Box_</a>::<a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html#method.from_raw">from_raw</a>(<a href="#376">data</a> <span class="kw">as </span><span class="kw-2">*mut </span>P);
+<a href=#379 id=379 data-nosnippet>379</a>                <span class="kw">let </span>_callback = Box_::from_raw(data <span class="kw">as </span><span class="kw-2">*mut </span>P);
 <a href=#380 id=380 data-nosnippet>380</a>            }
 <a href=#381 id=381 data-nosnippet>381</a>        }
-<a href=#382 id=382 data-nosnippet>382</a>        <span class="kw">let </span>destroy_call4 = <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.Some">Some</a>(destroy_func::&lt;P&gt; <span class="kw">as _</span>);
-<a href=#383 id=383 data-nosnippet>383</a>        <span class="kw">let </span>super_callback0: <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">Box_</a>&lt;P&gt; = <a href="#353">func_data</a>;
+<a href=#382 id=382 data-nosnippet>382</a>        <span class="kw">let </span>destroy_call4 = <span class="prelude-val">Some</span>(destroy_func::&lt;P&gt; <span class="kw">as _</span>);
+<a href=#383 id=383 data-nosnippet>383</a>        <span class="kw">let </span>super_callback0: Box_&lt;P&gt; = func_data;
 <a href=#384 id=384 data-nosnippet>384</a>        <span class="kw">unsafe </span>{
-<a href=#385 id=385 data-nosnippet>385</a>            ffi::<a href="../../../gtk4_sys/fn.gtk_cell_layout_set_cell_data_func.html">gtk_cell_layout_set_cell_data_func</a>(
-<a href=#386 id=386 data-nosnippet>386</a>                <a class="self" href="#349">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
-<a href=#387 id=387 data-nosnippet>387</a>                <a href="#350">cell</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
-<a href=#388 id=388 data-nosnippet>388</a>                <a href="#372">func</a>,
-<a href=#389 id=389 data-nosnippet>389</a>                <a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">Box_</a>::<a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html#method.into_raw">into_raw</a>(<a href="#383">super_callback0</a>) <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>,
-<a href=#390 id=390 data-nosnippet>390</a>                <a href="#382">destroy_call4</a>,
+<a href=#385 id=385 data-nosnippet>385</a>            ffi::gtk_cell_layout_set_cell_data_func(
+<a href=#386 id=386 data-nosnippet>386</a>                <span class="self">self</span>.as_ref().to_glib_none().<span class="number">0</span>,
+<a href=#387 id=387 data-nosnippet>387</a>                cell.as_ref().to_glib_none().<span class="number">0</span>,
+<a href=#388 id=388 data-nosnippet>388</a>                func,
+<a href=#389 id=389 data-nosnippet>389</a>                Box_::into_raw(super_callback0) <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>,
+<a href=#390 id=390 data-nosnippet>390</a>                destroy_call4,
 <a href=#391 id=391 data-nosnippet>391</a>            );
 <a href=#392 id=392 data-nosnippet>392</a>        }
 <a href=#393 id=393 data-nosnippet>393</a>    }
 <a href=#394 id=394 data-nosnippet>394</a>}
 <a href=#395 id=395 data-nosnippet>395</a>
-<a href=#396 id=396 data-nosnippet>396</a><span class="kw">impl</span>&lt;O: <a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/object/trait.IsA.html">IsA</a>&lt;<a href="#10-135">CellLayout</a>&gt;&gt; <a href="#146-394">CellLayoutExt</a> <span class="kw">for </span>O {}
+<a href=#396 id=396 data-nosnippet>396</a><span class="kw">impl</span>&lt;O: IsA&lt;CellLayout&gt;&gt; CellLayoutExt <span class="kw">for </span>O {}
 </code></pre></div></section></main></body></html>

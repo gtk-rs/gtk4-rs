@@ -1,83 +1,10 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gsk4/src/transform.rs`."><title>transform.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-17e0aaed.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gsk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.97.0-nightly (ca9a134e0 2026-04-26)" data-channel="nightly" data-search-js="search-b5634cc7.js" data-stringdex-js="stringdex-2da4960a.js" data-settings-js="settings-170eb4bf.js" ><script src="../../static.files/storage-41dd4d93.js"></script><script defer src="../../static.files/src-script-813739b1.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-aa4d37ac.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-f7c3ffd8.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><a class="skip-main-content" href="#main-content">Skip to main content</a><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
-<script type="text/javascript">
-    document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
-
-    function checkDocsLatestStable() {
-        function popup(msg, url) { return `
-            <style scoped="scoped">
-                .popup {
-                    max-width: 16em;
-                    background-color: #fff;
-                    position: fixed;
-                    z-index: 1;
-                    margin-left: auto;
-                    bottom: 1em;
-                    right: 1em;
-                    border-radius: 5px;
-                    box-shadow: 1px 1px 4px #777;
-                }
-
-                .popup a.version {
-                    color: #e57300;
-                    padding: 0.6em 1em;
-                    display: block;
-                }
-                .popup a.version:hover {
-                    color: #b25900;
-                }
-
-                .popup a.close {
-                    color: white;
-                    background: grey;
-                    border-radius: 99px;
-                    display: inline-block;
-                    width: 19px;
-                    line-height: 19px;
-                    font-weight: bold;
-                    text-align: center;
-                    margin: 0.6em;
-                    float: right;
-                }
-                .popup a.close:hover {
-                    background: black;
-                }
-            </style>
-            <section class="popup" id="gir_docs_popup">
-                <a class="close" href="#" onclick="document.getElementById('gir_docs_popup').remove(); return false">×</a>
-                <a class="version" href="https://gtk-rs.org/gtk4-rs/stable/latest/docs">
-                    ⚠ ${msg}
-                </a>
-            </section>
-        ` };
-
-        if ("0.11" == "main") {
-            document.body.insertAdjacentHTML(
-                'beforeend',
-                popup("This is the development version. Go to latest stable version.", "stable/latest")
-            );
-        } else {
-            fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
-                .then(response => response.text())
-                .then(latest_branch => {
-                    if (latest_branch.trim() != "0.11") {
-                        document.body.insertAdjacentHTML(
-                            'beforeend',
-                            popup("This version is outdated. Go to latest version.", "stable/latest")
-                        );
-                    }
-                });
-        }
-    }
-</script>
-
-
-<nav class="sidebar"><div class="src-sidebar-title"><h2>Files</h2></div></nav><div class="sidebar-resizer" title="Drag to resize sidebar"></div><main><section id="main-content" class="content" tabindex="-1"><div class="main-heading"><h1><div class="sub-heading">gsk4/</div>transform.rs</h1><rustdoc-toolbar></rustdoc-toolbar></div><div class="example-wrap digits-3"><pre class="rust"><code><a href=#1 id=1 data-nosnippet>1</a><span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gsk4/src/transform.rs`."><title>transform.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-1ed95124.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gsk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.98.0-nightly (df6ee909e 2026-06-28)" data-channel="nightly" data-search-js="search-9944d736.js" data-stringdex-js="stringdex-2da4960a.js" data-settings-js="settings-170eb4bf.js" ><script src="../../static.files/storage-41dd4d93.js"></script><script defer src="../../static.files/src-script-813739b1.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-417ebf0a.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-f7c3ffd8.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><a class="skip-main-content" href="#main-content">Skip to main content</a><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title"><h2>Files</h2></div></nav><div class="sidebar-resizer" title="Drag to resize sidebar"></div><main><section id="main-content" class="content" tabindex="-1"><div class="main-heading"><h1><div class="sub-heading">gsk4/</div>transform.rs</h1><rustdoc-toolbar></rustdoc-toolbar></div><div class="example-wrap digits-3"><pre class="rust"><code><a href=#1 id=1 data-nosnippet>1</a><span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.
 <a href=#2 id=2 data-nosnippet>2</a>
 <a href=#3 id=3 data-nosnippet>3</a></span><span class="kw">use </span>glib::translate::<span class="kw-2">*</span>;
 <a href=#4 id=4 data-nosnippet>4</a>
-<a href=#5 id=5 data-nosnippet>5</a><span class="kw">use </span>crate::{<a href="auto/transform.rs.html#8-26">Transform</a>, <a href="../../gsk4_sys/index.html">ffi</a>};
+<a href=#5 id=5 data-nosnippet>5</a><span class="kw">use crate</span>::{Transform, ffi};
 <a href=#6 id=6 data-nosnippet>6</a>
-<a href=#7 id=7 data-nosnippet>7</a><span class="kw">impl </span><a href="auto/transform.rs.html#8-26">Transform</a> {
+<a href=#7 id=7 data-nosnippet>7</a><span class="kw">impl </span>Transform {
 <a href=#8 id=8 data-nosnippet>8</a>    <span class="doccomment">/// Parses a given into a transform.
 <a href=#9 id=9 data-nosnippet>9</a>    ///
 <a href=#10 id=10 data-nosnippet>10</a>    /// Strings printed via [`to_str()`][Self::to_str()]
@@ -95,19 +22,19 @@
 <a href=#22 id=22 data-nosnippet>22</a>    /// ## `out_transform`
 <a href=#23 id=23 data-nosnippet>23</a>    /// return location for the transform
 <a href=#24 id=24 data-nosnippet>24</a>    </span><span class="attr">#[doc(alias = <span class="string">"gsk_transform_parse"</span>)]
-<a href=#25 id=25 data-nosnippet>25</a>    </span><span class="kw">pub fn </span>parse(string: <span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/gstring/trait.IntoGStr.html">IntoGStr</a>) -&gt; <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html">Result</a>&lt;<span class="self">Self</span>, glib::<a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/error/struct.BoolError.html">BoolError</a>&gt; {
+<a href=#25 id=25 data-nosnippet>25</a>    </span><span class="kw">pub fn </span>parse(string: <span class="kw">impl </span>IntoGStr) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, glib::BoolError&gt; {
 <a href=#26 id=26 data-nosnippet>26</a>        <span class="macro">assert_initialized_main_thread!</span>();
 <a href=#27 id=27 data-nosnippet>27</a>        <span class="kw">unsafe </span>{
-<a href=#28 id=28 data-nosnippet>28</a>            <a href="#25">string</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/gstring/trait.IntoGStr.html#tymethod.run_with_gstr">run_with_gstr</a>(|string| {
-<a href=#29 id=29 data-nosnippet>29</a>                <span class="kw">let </span><span class="kw-2">mut </span>out_transform = std::ptr::<a href="https://doc.rust-lang.org/nightly/core/ptr/fn.null_mut.html">null_mut</a>();
-<a href=#30 id=30 data-nosnippet>30</a>                <span class="kw">let </span>ret = <a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/translate/fn.from_glib.html">from_glib</a>(ffi::<a href="../../gsk4_sys/fn.gsk_transform_parse.html">gsk_transform_parse</a>(
-<a href=#31 id=31 data-nosnippet>31</a>                    <a href="#28">string</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/gstring/struct.GStr.html#method.as_ptr">as_ptr</a>(),
-<a href=#32 id=32 data-nosnippet>32</a>                    <span class="kw-2">&amp;mut </span><a href="#29">out_transform</a>,
+<a href=#28 id=28 data-nosnippet>28</a>            string.run_with_gstr(|string| {
+<a href=#29 id=29 data-nosnippet>29</a>                <span class="kw">let </span><span class="kw-2">mut </span>out_transform = std::ptr::null_mut();
+<a href=#30 id=30 data-nosnippet>30</a>                <span class="kw">let </span>ret = from_glib(ffi::gsk_transform_parse(
+<a href=#31 id=31 data-nosnippet>31</a>                    string.as_ptr(),
+<a href=#32 id=32 data-nosnippet>32</a>                    <span class="kw-2">&amp;mut </span>out_transform,
 <a href=#33 id=33 data-nosnippet>33</a>                ));
-<a href=#34 id=34 data-nosnippet>34</a>                <span class="kw">if </span><a href="#30">ret</a> {
-<a href=#35 id=35 data-nosnippet>35</a>                    <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html#variant.Ok">Ok</a>(<a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/translate/fn.from_glib_full.html">from_glib_full</a>(<a href="#29">out_transform</a>))
+<a href=#34 id=34 data-nosnippet>34</a>                <span class="kw">if </span>ret {
+<a href=#35 id=35 data-nosnippet>35</a>                    <span class="prelude-val">Ok</span>(from_glib_full(out_transform))
 <a href=#36 id=36 data-nosnippet>36</a>                } <span class="kw">else </span>{
-<a href=#37 id=37 data-nosnippet>37</a>                    <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html#variant.Err">Err</a>(<a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/macro.bool_error.html">glib::bool_error!</a>(<span class="string">"Can't parse Transform"</span>))
+<a href=#37 id=37 data-nosnippet>37</a>                    <span class="prelude-val">Err</span>(<span class="macro">glib::bool_error!</span>(<span class="string">"Can't parse Transform"</span>))
 <a href=#38 id=38 data-nosnippet>38</a>                }
 <a href=#39 id=39 data-nosnippet>39</a>            })
 <a href=#40 id=40 data-nosnippet>40</a>        }
@@ -128,15 +55,15 @@
 <a href=#55 id=55 data-nosnippet>55</a>    ///
 <a href=#56 id=56 data-nosnippet>56</a>    /// The inverted transform
 <a href=#57 id=57 data-nosnippet>57</a>    </span><span class="attr">#[doc(alias = <span class="string">"gsk_transform_invert"</span>)]
-<a href=#58 id=58 data-nosnippet>58</a>    </span><span class="kw">pub fn </span>invert(<span class="self">self</span>) -&gt; <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html">Result</a>&lt;<span class="self">Self</span>, glib::<a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/error/struct.BoolError.html">BoolError</a>&gt; {
+<a href=#58 id=58 data-nosnippet>58</a>    </span><span class="kw">pub fn </span>invert(<span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, glib::BoolError&gt; {
 <a href=#59 id=59 data-nosnippet>59</a>        <span class="kw">unsafe </span>{
-<a href=#60 id=60 data-nosnippet>60</a>            <span class="kw">let </span>matrix = <a class="self" href="#58">self</a>.<a href="auto/transform.rs.html#331-337">to_matrix</a>();
-<a href=#61 id=61 data-nosnippet>61</a>            <span class="kw">if </span><a href="#60">matrix</a> == graphene::<a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/graphene/auto/matrix/struct.Matrix.html">Matrix</a>::<a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/graphene/auto/matrix/struct.Matrix.html#method.new_identity">new_identity</a>() {
-<a href=#62 id=62 data-nosnippet>62</a>                <span class="kw">return </span><a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html#variant.Ok">Ok</a>(<a class="self" href="#58">self</a>);
+<a href=#60 id=60 data-nosnippet>60</a>            <span class="kw">let </span>matrix = <span class="self">self</span>.to_matrix();
+<a href=#61 id=61 data-nosnippet>61</a>            <span class="kw">if </span>matrix == graphene::Matrix::new_identity() {
+<a href=#62 id=62 data-nosnippet>62</a>                <span class="kw">return </span><span class="prelude-val">Ok</span>(<span class="self">self</span>);
 <a href=#63 id=63 data-nosnippet>63</a>            }
 <a href=#64 id=64 data-nosnippet>64</a>
-<a href=#65 id=65 data-nosnippet>65</a>            <span class="kw">let </span>res: <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;<span class="self">Self</span>&gt; = <a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/translate/fn.from_glib_full.html">from_glib_full</a>(ffi::<a href="../../gsk4_sys/fn.gsk_transform_invert.html">gsk_transform_invert</a>(<a class="self" href="#58">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/translate/trait.IntoGlibPtr.html#tymethod.into_glib_ptr">into_glib_ptr</a>()));
-<a href=#66 id=66 data-nosnippet>66</a>            <a href="#65">res</a>.<a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#method.ok_or_else">ok_or_else</a>(|| <a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/macro.bool_error.html">glib::bool_error!</a>(<span class="string">"Failed to invert the transform"</span>))
+<a href=#65 id=65 data-nosnippet>65</a>            <span class="kw">let </span>res: <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>&gt; = from_glib_full(ffi::gsk_transform_invert(<span class="self">self</span>.into_glib_ptr()));
+<a href=#66 id=66 data-nosnippet>66</a>            res.ok_or_else(|| <span class="macro">glib::bool_error!</span>(<span class="string">"Failed to invert the transform"</span>))
 <a href=#67 id=67 data-nosnippet>67</a>        }
 <a href=#68 id=68 data-nosnippet>68</a>    }
 <a href=#69 id=69 data-nosnippet>69</a>
@@ -154,11 +81,11 @@
 <a href=#81 id=81 data-nosnippet>81</a>    /// The new transform
 <a href=#82 id=82 data-nosnippet>82</a>    </span><span class="attr">#[doc(alias = <span class="string">"gsk_transform_rotate"</span>)]
 <a href=#83 id=83 data-nosnippet>83</a>    #[must_use]
-<a href=#84 id=84 data-nosnippet>84</a>    </span><span class="kw">pub fn </span>rotate(<span class="self">self</span>, angle: <a href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>) -&gt; <span class="self">Self </span>{
+<a href=#84 id=84 data-nosnippet>84</a>    </span><span class="kw">pub fn </span>rotate(<span class="self">self</span>, angle: f32) -&gt; <span class="self">Self </span>{
 <a href=#85 id=85 data-nosnippet>85</a>        <span class="kw">unsafe </span>{
-<a href=#86 id=86 data-nosnippet>86</a>            <span class="kw">let </span>res: <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;<span class="self">Self</span>&gt; =
-<a href=#87 id=87 data-nosnippet>87</a>                <a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/translate/fn.from_glib_full.html">from_glib_full</a>(ffi::<a href="../../gsk4_sys/fn.gsk_transform_rotate.html">gsk_transform_rotate</a>(<a class="self" href="#84">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/translate/trait.IntoGlibPtr.html#tymethod.into_glib_ptr">into_glib_ptr</a>(), <a href="#84">angle</a>));
-<a href=#88 id=88 data-nosnippet>88</a>            <a href="#86">res</a>.<a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#method.unwrap_or_default">unwrap_or_default</a>()
+<a href=#86 id=86 data-nosnippet>86</a>            <span class="kw">let </span>res: <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>&gt; =
+<a href=#87 id=87 data-nosnippet>87</a>                from_glib_full(ffi::gsk_transform_rotate(<span class="self">self</span>.into_glib_ptr(), angle));
+<a href=#88 id=88 data-nosnippet>88</a>            res.unwrap_or_default()
 <a href=#89 id=89 data-nosnippet>89</a>        }
 <a href=#90 id=90 data-nosnippet>90</a>    }
 <a href=#91 id=91 data-nosnippet>91</a>
@@ -178,14 +105,14 @@
 <a href=#105 id=105 data-nosnippet>105</a>    /// The new transform
 <a href=#106 id=106 data-nosnippet>106</a>    </span><span class="attr">#[doc(alias = <span class="string">"gsk_transform_rotate_3d"</span>)]
 <a href=#107 id=107 data-nosnippet>107</a>    #[must_use]
-<a href=#108 id=108 data-nosnippet>108</a>    </span><span class="kw">pub fn </span>rotate_3d(<span class="self">self</span>, angle: <a href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>, axis: <span class="kw-2">&amp;</span>graphene::<a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/graphene/auto/vec3/struct.Vec3.html">Vec3</a>) -&gt; <span class="self">Self </span>{
+<a href=#108 id=108 data-nosnippet>108</a>    </span><span class="kw">pub fn </span>rotate_3d(<span class="self">self</span>, angle: f32, axis: <span class="kw-2">&amp;</span>graphene::Vec3) -&gt; <span class="self">Self </span>{
 <a href=#109 id=109 data-nosnippet>109</a>        <span class="kw">unsafe </span>{
-<a href=#110 id=110 data-nosnippet>110</a>            <span class="kw">let </span>res: <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;<span class="self">Self</span>&gt; = <a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/translate/fn.from_glib_full.html">from_glib_full</a>(ffi::<a href="../../gsk4_sys/fn.gsk_transform_rotate_3d.html">gsk_transform_rotate_3d</a>(
-<a href=#111 id=111 data-nosnippet>111</a>                <a class="self" href="#108">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/translate/trait.IntoGlibPtr.html#tymethod.into_glib_ptr">into_glib_ptr</a>(),
-<a href=#112 id=112 data-nosnippet>112</a>                <a href="#108">angle</a>,
-<a href=#113 id=113 data-nosnippet>113</a>                <a href="#108">axis</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
+<a href=#110 id=110 data-nosnippet>110</a>            <span class="kw">let </span>res: <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>&gt; = from_glib_full(ffi::gsk_transform_rotate_3d(
+<a href=#111 id=111 data-nosnippet>111</a>                <span class="self">self</span>.into_glib_ptr(),
+<a href=#112 id=112 data-nosnippet>112</a>                angle,
+<a href=#113 id=113 data-nosnippet>113</a>                axis.to_glib_none().<span class="number">0</span>,
 <a href=#114 id=114 data-nosnippet>114</a>            ));
-<a href=#115 id=115 data-nosnippet>115</a>            <a href="#110">res</a>.<a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#method.unwrap_or_default">unwrap_or_default</a>()
+<a href=#115 id=115 data-nosnippet>115</a>            res.unwrap_or_default()
 <a href=#116 id=116 data-nosnippet>116</a>        }
 <a href=#117 id=117 data-nosnippet>117</a>    }
 <a href=#118 id=118 data-nosnippet>118</a>
@@ -205,14 +132,14 @@
 <a href=#132 id=132 data-nosnippet>132</a>    /// The new transform
 <a href=#133 id=133 data-nosnippet>133</a>    </span><span class="attr">#[doc(alias = <span class="string">"gsk_transform_scale"</span>)]
 <a href=#134 id=134 data-nosnippet>134</a>    #[must_use]
-<a href=#135 id=135 data-nosnippet>135</a>    </span><span class="kw">pub fn </span>scale(<span class="self">self</span>, factor_x: <a href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>, factor_y: <a href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>) -&gt; <span class="self">Self </span>{
+<a href=#135 id=135 data-nosnippet>135</a>    </span><span class="kw">pub fn </span>scale(<span class="self">self</span>, factor_x: f32, factor_y: f32) -&gt; <span class="self">Self </span>{
 <a href=#136 id=136 data-nosnippet>136</a>        <span class="kw">unsafe </span>{
-<a href=#137 id=137 data-nosnippet>137</a>            <span class="kw">let </span>res: <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;<span class="self">Self</span>&gt; = <a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/translate/fn.from_glib_full.html">from_glib_full</a>(ffi::<a href="../../gsk4_sys/fn.gsk_transform_scale.html">gsk_transform_scale</a>(
-<a href=#138 id=138 data-nosnippet>138</a>                <a class="self" href="#135">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/translate/trait.IntoGlibPtr.html#tymethod.into_glib_ptr">into_glib_ptr</a>(),
-<a href=#139 id=139 data-nosnippet>139</a>                <a href="#135">factor_x</a>,
-<a href=#140 id=140 data-nosnippet>140</a>                <a href="#135">factor_y</a>,
+<a href=#137 id=137 data-nosnippet>137</a>            <span class="kw">let </span>res: <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>&gt; = from_glib_full(ffi::gsk_transform_scale(
+<a href=#138 id=138 data-nosnippet>138</a>                <span class="self">self</span>.into_glib_ptr(),
+<a href=#139 id=139 data-nosnippet>139</a>                factor_x,
+<a href=#140 id=140 data-nosnippet>140</a>                factor_y,
 <a href=#141 id=141 data-nosnippet>141</a>            ));
-<a href=#142 id=142 data-nosnippet>142</a>            <a href="#137">res</a>.<a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#method.unwrap_or_default">unwrap_or_default</a>()
+<a href=#142 id=142 data-nosnippet>142</a>            res.unwrap_or_default()
 <a href=#143 id=143 data-nosnippet>143</a>        }
 <a href=#144 id=144 data-nosnippet>144</a>    }
 <a href=#145 id=145 data-nosnippet>145</a>
@@ -232,15 +159,15 @@
 <a href=#159 id=159 data-nosnippet>159</a>    /// The new transform
 <a href=#160 id=160 data-nosnippet>160</a>    </span><span class="attr">#[doc(alias = <span class="string">"gsk_transform_scale_3d"</span>)]
 <a href=#161 id=161 data-nosnippet>161</a>    #[must_use]
-<a href=#162 id=162 data-nosnippet>162</a>    </span><span class="kw">pub fn </span>scale_3d(<span class="self">self</span>, factor_x: <a href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>, factor_y: <a href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>, factor_z: <a href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>) -&gt; <span class="self">Self </span>{
+<a href=#162 id=162 data-nosnippet>162</a>    </span><span class="kw">pub fn </span>scale_3d(<span class="self">self</span>, factor_x: f32, factor_y: f32, factor_z: f32) -&gt; <span class="self">Self </span>{
 <a href=#163 id=163 data-nosnippet>163</a>        <span class="kw">unsafe </span>{
-<a href=#164 id=164 data-nosnippet>164</a>            <span class="kw">let </span>res: <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;<span class="self">Self</span>&gt; = <a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/translate/fn.from_glib_full.html">from_glib_full</a>(ffi::<a href="../../gsk4_sys/fn.gsk_transform_scale_3d.html">gsk_transform_scale_3d</a>(
-<a href=#165 id=165 data-nosnippet>165</a>                <a class="self" href="#162">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/translate/trait.IntoGlibPtr.html#tymethod.into_glib_ptr">into_glib_ptr</a>(),
-<a href=#166 id=166 data-nosnippet>166</a>                <a href="#162">factor_x</a>,
-<a href=#167 id=167 data-nosnippet>167</a>                <a href="#162">factor_y</a>,
-<a href=#168 id=168 data-nosnippet>168</a>                <a href="#162">factor_z</a>,
+<a href=#164 id=164 data-nosnippet>164</a>            <span class="kw">let </span>res: <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>&gt; = from_glib_full(ffi::gsk_transform_scale_3d(
+<a href=#165 id=165 data-nosnippet>165</a>                <span class="self">self</span>.into_glib_ptr(),
+<a href=#166 id=166 data-nosnippet>166</a>                factor_x,
+<a href=#167 id=167 data-nosnippet>167</a>                factor_y,
+<a href=#168 id=168 data-nosnippet>168</a>                factor_z,
 <a href=#169 id=169 data-nosnippet>169</a>            ));
-<a href=#170 id=170 data-nosnippet>170</a>            <a href="#164">res</a>.<a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#method.unwrap_or_default">unwrap_or_default</a>()
+<a href=#170 id=170 data-nosnippet>170</a>            res.unwrap_or_default()
 <a href=#171 id=171 data-nosnippet>171</a>        }
 <a href=#172 id=172 data-nosnippet>172</a>    }
 <a href=#173 id=173 data-nosnippet>173</a>
@@ -260,14 +187,14 @@
 <a href=#187 id=187 data-nosnippet>187</a>    #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_6"</span>)))]
 <a href=#188 id=188 data-nosnippet>188</a>    #[doc(alias = <span class="string">"gsk_transform_skew"</span>)]
 <a href=#189 id=189 data-nosnippet>189</a>    #[must_use]
-<a href=#190 id=190 data-nosnippet>190</a>    </span><span class="kw">pub fn </span>skew(<span class="self">self</span>, skew_x: <a href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>, skew_y: <a href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>) -&gt; <span class="self">Self </span>{
+<a href=#190 id=190 data-nosnippet>190</a>    </span><span class="kw">pub fn </span>skew(<span class="self">self</span>, skew_x: f32, skew_y: f32) -&gt; <span class="self">Self </span>{
 <a href=#191 id=191 data-nosnippet>191</a>        <span class="kw">unsafe </span>{
-<a href=#192 id=192 data-nosnippet>192</a>            <span class="kw">let </span>res: <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;<span class="self">Self</span>&gt; = <a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/translate/fn.from_glib_full.html">from_glib_full</a>(ffi::<a href="../../gsk4_sys/fn.gsk_transform_skew.html">gsk_transform_skew</a>(
-<a href=#193 id=193 data-nosnippet>193</a>                <a class="self" href="#190">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/translate/trait.IntoGlibPtr.html#tymethod.into_glib_ptr">into_glib_ptr</a>(),
-<a href=#194 id=194 data-nosnippet>194</a>                <a href="#190">skew_x</a>,
-<a href=#195 id=195 data-nosnippet>195</a>                <a href="#190">skew_y</a>,
+<a href=#192 id=192 data-nosnippet>192</a>            <span class="kw">let </span>res: <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>&gt; = from_glib_full(ffi::gsk_transform_skew(
+<a href=#193 id=193 data-nosnippet>193</a>                <span class="self">self</span>.into_glib_ptr(),
+<a href=#194 id=194 data-nosnippet>194</a>                skew_x,
+<a href=#195 id=195 data-nosnippet>195</a>                skew_y,
 <a href=#196 id=196 data-nosnippet>196</a>            ));
-<a href=#197 id=197 data-nosnippet>197</a>            <a href="#192">res</a>.<a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#method.unwrap_or_default">unwrap_or_default</a>()
+<a href=#197 id=197 data-nosnippet>197</a>            res.unwrap_or_default()
 <a href=#198 id=198 data-nosnippet>198</a>        }
 <a href=#199 id=199 data-nosnippet>199</a>    }
 <a href=#200 id=200 data-nosnippet>200</a>
@@ -283,13 +210,13 @@
 <a href=#210 id=210 data-nosnippet>210</a>    /// The new transform
 <a href=#211 id=211 data-nosnippet>211</a>    </span><span class="attr">#[doc(alias = <span class="string">"gsk_transform_transform"</span>)]
 <a href=#212 id=212 data-nosnippet>212</a>    #[must_use]
-<a href=#213 id=213 data-nosnippet>213</a>    </span><span class="kw">pub fn </span>transform(<span class="self">self</span>, other: <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;<span class="kw-2">&amp;</span><span class="self">Self</span>&gt;) -&gt; <span class="self">Self </span>{
+<a href=#213 id=213 data-nosnippet>213</a>    </span><span class="kw">pub fn </span>transform(<span class="self">self</span>, other: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="self">Self</span>&gt;) -&gt; <span class="self">Self </span>{
 <a href=#214 id=214 data-nosnippet>214</a>        <span class="kw">unsafe </span>{
-<a href=#215 id=215 data-nosnippet>215</a>            <span class="kw">let </span>res: <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;<span class="self">Self</span>&gt; = <a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/translate/fn.from_glib_full.html">from_glib_full</a>(ffi::<a href="../../gsk4_sys/fn.gsk_transform_transform.html">gsk_transform_transform</a>(
-<a href=#216 id=216 data-nosnippet>216</a>                <a class="self" href="#213">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/translate/trait.IntoGlibPtr.html#tymethod.into_glib_ptr">into_glib_ptr</a>(),
-<a href=#217 id=217 data-nosnippet>217</a>                <a href="#213">other</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
+<a href=#215 id=215 data-nosnippet>215</a>            <span class="kw">let </span>res: <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>&gt; = from_glib_full(ffi::gsk_transform_transform(
+<a href=#216 id=216 data-nosnippet>216</a>                <span class="self">self</span>.into_glib_ptr(),
+<a href=#217 id=217 data-nosnippet>217</a>                other.to_glib_none().<span class="number">0</span>,
 <a href=#218 id=218 data-nosnippet>218</a>            ));
-<a href=#219 id=219 data-nosnippet>219</a>            <a href="#215">res</a>.<a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#method.unwrap_or_default">unwrap_or_default</a>()
+<a href=#219 id=219 data-nosnippet>219</a>            res.unwrap_or_default()
 <a href=#220 id=220 data-nosnippet>220</a>        }
 <a href=#221 id=221 data-nosnippet>221</a>    }
 <a href=#222 id=222 data-nosnippet>222</a>
@@ -305,13 +232,13 @@
 <a href=#232 id=232 data-nosnippet>232</a>    /// The new transform
 <a href=#233 id=233 data-nosnippet>233</a>    </span><span class="attr">#[doc(alias = <span class="string">"gsk_transform_translate"</span>)]
 <a href=#234 id=234 data-nosnippet>234</a>    #[must_use]
-<a href=#235 id=235 data-nosnippet>235</a>    </span><span class="kw">pub fn </span>translate(<span class="self">self</span>, point: <span class="kw-2">&amp;</span>graphene::<a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/graphene/auto/point/struct.Point.html">Point</a>) -&gt; <span class="self">Self </span>{
+<a href=#235 id=235 data-nosnippet>235</a>    </span><span class="kw">pub fn </span>translate(<span class="self">self</span>, point: <span class="kw-2">&amp;</span>graphene::Point) -&gt; <span class="self">Self </span>{
 <a href=#236 id=236 data-nosnippet>236</a>        <span class="kw">unsafe </span>{
-<a href=#237 id=237 data-nosnippet>237</a>            <span class="kw">let </span>res: <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;<span class="self">Self</span>&gt; = <a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/translate/fn.from_glib_full.html">from_glib_full</a>(ffi::<a href="../../gsk4_sys/fn.gsk_transform_translate.html">gsk_transform_translate</a>(
-<a href=#238 id=238 data-nosnippet>238</a>                <a class="self" href="#235">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/translate/trait.IntoGlibPtr.html#tymethod.into_glib_ptr">into_glib_ptr</a>(),
-<a href=#239 id=239 data-nosnippet>239</a>                <a href="#235">point</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
+<a href=#237 id=237 data-nosnippet>237</a>            <span class="kw">let </span>res: <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>&gt; = from_glib_full(ffi::gsk_transform_translate(
+<a href=#238 id=238 data-nosnippet>238</a>                <span class="self">self</span>.into_glib_ptr(),
+<a href=#239 id=239 data-nosnippet>239</a>                point.to_glib_none().<span class="number">0</span>,
 <a href=#240 id=240 data-nosnippet>240</a>            ));
-<a href=#241 id=241 data-nosnippet>241</a>            <a href="#237">res</a>.<a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#method.unwrap_or_default">unwrap_or_default</a>()
+<a href=#241 id=241 data-nosnippet>241</a>            res.unwrap_or_default()
 <a href=#242 id=242 data-nosnippet>242</a>        }
 <a href=#243 id=243 data-nosnippet>243</a>    }
 <a href=#244 id=244 data-nosnippet>244</a>
@@ -327,13 +254,13 @@
 <a href=#254 id=254 data-nosnippet>254</a>    /// The new transform
 <a href=#255 id=255 data-nosnippet>255</a>    </span><span class="attr">#[doc(alias = <span class="string">"gsk_transform_translate_3d"</span>)]
 <a href=#256 id=256 data-nosnippet>256</a>    #[must_use]
-<a href=#257 id=257 data-nosnippet>257</a>    </span><span class="kw">pub fn </span>translate_3d(<span class="self">self</span>, point: <span class="kw-2">&amp;</span>graphene::<a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/graphene/auto/point3_d/struct.Point3D.html">Point3D</a>) -&gt; <span class="self">Self </span>{
+<a href=#257 id=257 data-nosnippet>257</a>    </span><span class="kw">pub fn </span>translate_3d(<span class="self">self</span>, point: <span class="kw-2">&amp;</span>graphene::Point3D) -&gt; <span class="self">Self </span>{
 <a href=#258 id=258 data-nosnippet>258</a>        <span class="kw">unsafe </span>{
-<a href=#259 id=259 data-nosnippet>259</a>            <span class="kw">let </span>res: <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;<span class="self">Self</span>&gt; = <a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/translate/fn.from_glib_full.html">from_glib_full</a>(ffi::<a href="../../gsk4_sys/fn.gsk_transform_translate_3d.html">gsk_transform_translate_3d</a>(
-<a href=#260 id=260 data-nosnippet>260</a>                <a class="self" href="#257">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/translate/trait.IntoGlibPtr.html#tymethod.into_glib_ptr">into_glib_ptr</a>(),
-<a href=#261 id=261 data-nosnippet>261</a>                <a href="#257">point</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
+<a href=#259 id=259 data-nosnippet>259</a>            <span class="kw">let </span>res: <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>&gt; = from_glib_full(ffi::gsk_transform_translate_3d(
+<a href=#260 id=260 data-nosnippet>260</a>                <span class="self">self</span>.into_glib_ptr(),
+<a href=#261 id=261 data-nosnippet>261</a>                point.to_glib_none().<span class="number">0</span>,
 <a href=#262 id=262 data-nosnippet>262</a>            ));
-<a href=#263 id=263 data-nosnippet>263</a>            <a href="#259">res</a>.<a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#method.unwrap_or_default">unwrap_or_default</a>()
+<a href=#263 id=263 data-nosnippet>263</a>            res.unwrap_or_default()
 <a href=#264 id=264 data-nosnippet>264</a>        }
 <a href=#265 id=265 data-nosnippet>265</a>    }
 <a href=#266 id=266 data-nosnippet>266</a>
@@ -365,27 +292,27 @@
 <a href=#292 id=292 data-nosnippet>292</a>    #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_20"</span>)))]
 <a href=#293 id=293 data-nosnippet>293</a>    #[doc(alias = <span class="string">"gsk_transform_matrix_2d"</span>)]
 <a href=#294 id=294 data-nosnippet>294</a>    #[must_use]
-<a href=#295 id=295 data-nosnippet>295</a>    </span><span class="kw">pub fn </span>matrix_2d(<span class="self">self</span>, xx: <a href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>, yx: <a href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>, xy: <a href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>, yy: <a href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>, dx: <a href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>, dy: <a href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>) -&gt; <a href="auto/transform.rs.html#8-26">Transform</a> {
+<a href=#295 id=295 data-nosnippet>295</a>    </span><span class="kw">pub fn </span>matrix_2d(<span class="self">self</span>, xx: f32, yx: f32, xy: f32, yy: f32, dx: f32, dy: f32) -&gt; Transform {
 <a href=#296 id=296 data-nosnippet>296</a>        <span class="kw">unsafe </span>{
-<a href=#297 id=297 data-nosnippet>297</a>            <span class="kw">let </span>res: <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;<span class="self">Self</span>&gt; = <a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/translate/fn.from_glib_full.html">from_glib_full</a>(ffi::<a href="../../gsk4_sys/fn.gsk_transform_matrix_2d.html">gsk_transform_matrix_2d</a>(
-<a href=#298 id=298 data-nosnippet>298</a>                <a class="self" href="#295">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/translate/trait.IntoGlibPtr.html#tymethod.into_glib_ptr">into_glib_ptr</a>(),
-<a href=#299 id=299 data-nosnippet>299</a>                <a href="#295">xx</a>,
-<a href=#300 id=300 data-nosnippet>300</a>                <a href="#295">yx</a>,
-<a href=#301 id=301 data-nosnippet>301</a>                <a href="#295">xy</a>,
-<a href=#302 id=302 data-nosnippet>302</a>                <a href="#295">yy</a>,
-<a href=#303 id=303 data-nosnippet>303</a>                <a href="#295">dx</a>,
-<a href=#304 id=304 data-nosnippet>304</a>                <a href="#295">dy</a>,
+<a href=#297 id=297 data-nosnippet>297</a>            <span class="kw">let </span>res: <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>&gt; = from_glib_full(ffi::gsk_transform_matrix_2d(
+<a href=#298 id=298 data-nosnippet>298</a>                <span class="self">self</span>.into_glib_ptr(),
+<a href=#299 id=299 data-nosnippet>299</a>                xx,
+<a href=#300 id=300 data-nosnippet>300</a>                yx,
+<a href=#301 id=301 data-nosnippet>301</a>                xy,
+<a href=#302 id=302 data-nosnippet>302</a>                yy,
+<a href=#303 id=303 data-nosnippet>303</a>                dx,
+<a href=#304 id=304 data-nosnippet>304</a>                dy,
 <a href=#305 id=305 data-nosnippet>305</a>            ));
-<a href=#306 id=306 data-nosnippet>306</a>            <a href="#297">res</a>.<a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#method.unwrap_or_default">unwrap_or_default</a>()
+<a href=#306 id=306 data-nosnippet>306</a>            res.unwrap_or_default()
 <a href=#307 id=307 data-nosnippet>307</a>        }
 <a href=#308 id=308 data-nosnippet>308</a>    }
 <a href=#309 id=309 data-nosnippet>309</a>}
 <a href=#310 id=310 data-nosnippet>310</a>
-<a href=#311 id=311 data-nosnippet>311</a><span class="kw">impl </span><a href="https://doc.rust-lang.org/nightly/core/str/traits/trait.FromStr.html">std::str::FromStr</a> <span class="kw">for </span><a href="auto/transform.rs.html#8-26">Transform</a> {
-<a href=#312 id=312 data-nosnippet>312</a>    <span class="kw">type </span><span class="prelude-val">Err </span>= glib::<a href="https://gtk-rs.org/gtk-rs-core/stable/0.22/docs/glib/error/struct.BoolError.html">BoolError</a>;
-<a href=#313 id=313 data-nosnippet>313</a>    <span class="kw">fn </span>from_str(s: <span class="kw-2">&amp;</span><a href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>) -&gt; <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html">Result</a>&lt;<span class="self">Self</span>, <span class="self">Self</span>::Err&gt; {
+<a href=#311 id=311 data-nosnippet>311</a><span class="kw">impl </span>std::str::FromStr <span class="kw">for </span>Transform {
+<a href=#312 id=312 data-nosnippet>312</a>    <span class="kw">type </span><span class="prelude-val">Err </span>= glib::BoolError;
+<a href=#313 id=313 data-nosnippet>313</a>    <span class="kw">fn </span>from_str(s: <span class="kw-2">&amp;</span>str) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, <span class="self">Self</span>::Err&gt; {
 <a href=#314 id=314 data-nosnippet>314</a>        <span class="macro">skip_assert_initialized!</span>();
-<a href=#315 id=315 data-nosnippet>315</a>        <span class="self">Self</span>::<a href="#25-41">parse</a>(<a href="#313">s</a>)
+<a href=#315 id=315 data-nosnippet>315</a>        <span class="self">Self</span>::parse(s)
 <a href=#316 id=316 data-nosnippet>316</a>    }
 <a href=#317 id=317 data-nosnippet>317</a>}
 <a href=#318 id=318 data-nosnippet>318</a>
