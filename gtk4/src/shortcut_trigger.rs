@@ -4,6 +4,21 @@ use glib::translate::*;
 
 use crate::{ShortcutTrigger, ffi, prelude::*};
 
+impl ShortcutTrigger {
+    #[cfg(feature = "v4_24")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+    #[doc(alias = "gtk_shortcut_trigger_create_with_aliases")]
+    pub fn create_with_aliases(key: gdk::Key, modifiers: gdk::ModifierType) -> ShortcutTrigger {
+        assert_initialized_main_thread!();
+        unsafe {
+            from_glib_full(ffi::gtk_shortcut_trigger_create_with_aliases(
+                key.into_glib(),
+                modifiers.into_glib(),
+            ))
+        }
+    }
+}
+
 // rustdoc-stripper-ignore-next
 /// Trait containing manually implemented methods of
 /// [`ShortcutTrigger`](crate::ShortcutTrigger).
