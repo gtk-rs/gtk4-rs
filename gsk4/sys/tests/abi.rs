@@ -523,4 +523,5 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(gint) GSK_TRANSFORM_CATEGORY_IDENTITY", "6"),
     ("(gint) GSK_TRANSFORM_CATEGORY_UNKNOWN", "0"),
     ("(gint) GSK_TRANSFORM_NODE", "13"),
+    ("(gint) GSK_TURBULENCE_NODE", "38"),
 ];

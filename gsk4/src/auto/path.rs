@@ -84,7 +84,7 @@ impl Path {
     //#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
     //#[doc(alias = "gsk_path_get_next")]
     //#[doc(alias = "get_next")]
-    //pub fn next(&self, point: /*Unimplemented*/PathPoint) -> bool {
+    //pub fn is_next(&self, point: /*Unimplemented*/PathPoint) -> bool {
     //    unsafe { TODO: call ffi:gsk_path_get_next() }
     //}
 
@@ -92,7 +92,7 @@ impl Path {
     //#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
     //#[doc(alias = "gsk_path_get_previous")]
     //#[doc(alias = "get_previous")]
-    //pub fn previous(&self, point: /*Unimplemented*/PathPoint) -> bool {
+    //pub fn is_previous(&self, point: /*Unimplemented*/PathPoint) -> bool {
     //    unsafe { TODO: call ffi:gsk_path_get_previous() }
     //}
 

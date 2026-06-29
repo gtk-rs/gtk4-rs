@@ -186,6 +186,9 @@ pub const GSK_DISPLACEMENT_NODE: GskRenderNodeType = 36;
 #[cfg(feature = "v4_22")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
 pub const GSK_ARITHMETIC_NODE: GskRenderNodeType = 37;
+#[cfg(feature = "v4_24")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+pub const GSK_TURBULENCE_NODE: GskRenderNodeType = 38;
 
 pub type GskScalingFilter = c_int;
 pub const GSK_SCALING_FILTER_LINEAR: GskScalingFilter = 0;

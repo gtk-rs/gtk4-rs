@@ -1492,6 +1492,10 @@ pub enum RenderNodeType {
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
     #[doc(alias = "GSK_ARITHMETIC_NODE")]
     ArithmeticNode,
+    #[cfg(feature = "v4_24")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+    #[doc(alias = "GSK_TURBULENCE_NODE")]
+    TurbulenceNode,
     #[doc(hidden)]
     __Unknown(i32),
 }
@@ -1552,6 +1556,8 @@ impl IntoGlib for RenderNodeType {
             Self::DisplacementNode => ffi::GSK_DISPLACEMENT_NODE,
             #[cfg(feature = "v4_22")]
             Self::ArithmeticNode => ffi::GSK_ARITHMETIC_NODE,
+            #[cfg(feature = "v4_24")]
+            Self::TurbulenceNode => ffi::GSK_TURBULENCE_NODE,
             Self::__Unknown(value) => value,
         }
     }
@@ -1613,6 +1619,8 @@ impl FromGlib<ffi::GskRenderNodeType> for RenderNodeType {
             ffi::GSK_DISPLACEMENT_NODE => Self::DisplacementNode,
             #[cfg(feature = "v4_22")]
             ffi::GSK_ARITHMETIC_NODE => Self::ArithmeticNode,
+            #[cfg(feature = "v4_24")]
+            ffi::GSK_TURBULENCE_NODE => Self::TurbulenceNode,
             value => Self::__Unknown(value),
         }
     }
