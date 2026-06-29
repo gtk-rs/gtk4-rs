@@ -34,19 +34,6 @@ impl ShortcutTrigger {
         assert_initialized_main_thread!();
         unsafe { from_glib_full(ffi::gtk_shortcut_trigger_create_for_menu()) }
     }
-
-    #[cfg(feature = "v4_24")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
-    #[doc(alias = "gtk_shortcut_trigger_create_with_aliases")]
-    pub fn create_with_aliases(keyval: u32, modifiers: gdk::ModifierType) -> ShortcutTrigger {
-        assert_initialized_main_thread!();
-        unsafe {
-            from_glib_full(ffi::gtk_shortcut_trigger_create_with_aliases(
-                keyval,
-                modifiers.into_glib(),
-            ))
-        }
-    }
 }
 
 impl std::fmt::Display for ShortcutTrigger {

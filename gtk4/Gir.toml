@@ -2086,6 +2086,9 @@ manual_traits = ["ShortcutTriggerExtManual"]
     name = "compare"
     manual = true # complains about the trait IsA<T> being so generic
     doc_trait_name = "ShortcutTriggerExtManual"
+    [[object.function]]
+    name = "create_with_aliases"
+    manual = true # to make use of gdk::Key
 
 [[object]]
 name = "Gtk.SignalAction"

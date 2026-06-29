@@ -11,21 +11,6 @@ pub fn intern_mime_type(string: &str) -> Option<glib::GString> {
     unsafe { from_glib_none(ffi::gdk_intern_mime_type(string.to_glib_none().0)) }
 }
 
-#[cfg(feature = "v4_24")]
-#[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
-#[doc(alias = "gdk_keyval_get_aliases")]
-pub fn keyval_get_aliases(keyval: u32) -> Vec<u32> {
-    assert_initialized_main_thread!();
-    unsafe {
-        let mut n_aliases = std::mem::MaybeUninit::uninit();
-        let ret = FromGlibContainer::from_glib_none_num(
-            ffi::gdk_keyval_get_aliases(keyval, n_aliases.as_mut_ptr()),
-            n_aliases.assume_init() as _,
-        );
-        ret
-    }
-}
-
 #[cfg_attr(feature = "v4_12", deprecated = "Since 4.12")]
 #[allow(deprecated)]
 #[doc(alias = "gdk_pixbuf_get_from_surface")]
