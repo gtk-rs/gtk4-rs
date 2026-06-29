@@ -7,7 +7,7 @@ use glib::{prelude::*, translate::*};
 
 glib::wrapper! {
     #[doc(alias = "GtkAlternativeTrigger")]
-    pub struct AlternativeTrigger(Object<ffi::GtkAlternativeTrigger, ffi::GtkAlternativeTriggerClass>) @extends ShortcutTrigger;
+    pub struct AlternativeTrigger(Object<ffi::GtkAlternativeTrigger, ffi::GtkAlternativeTriggerClass>) @extends ShortcutTrigger, @implements gio::ListModel;
 
     match fn {
         type_ => || ffi::gtk_alternative_trigger_get_type(),
@@ -25,6 +25,21 @@ impl AlternativeTrigger {
             ShortcutTrigger::from_glib_full(ffi::gtk_alternative_trigger_new(
                 first.upcast().into_glib_ptr(),
                 second.upcast().into_glib_ptr(),
+            ))
+            .unsafe_cast()
+        }
+    }
+
+    #[cfg(feature = "v4_24")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+    #[doc(alias = "gtk_alternative_trigger_newv")]
+    pub fn newv(triggers: &[ShortcutTrigger]) -> AlternativeTrigger {
+        assert_initialized_main_thread!();
+        let n_triggers = triggers.len() as _;
+        unsafe {
+            ShortcutTrigger::from_glib_full(ffi::gtk_alternative_trigger_newv(
+                triggers.to_glib_full(),
+                n_triggers,
             ))
             .unsafe_cast()
         }

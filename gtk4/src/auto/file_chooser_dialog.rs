@@ -3,19 +3,34 @@
 // DO NOT EDIT
 #![allow(deprecated)]
 
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
+use crate::Accessible;
 #[cfg(feature = "v4_20")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
 use crate::WindowGravity;
 use crate::{
-    Accessible, AccessibleRole, Align, Application, Buildable, ConstraintTarget, Dialog,
-    FileChooser, FileChooserAction, FileFilter, LayoutManager, Native, Overflow, Root,
-    ShortcutManager, Widget, Window, ffi,
+    AccessibleRole, Align, Application, Buildable, ConstraintTarget, Dialog, FileChooser,
+    FileChooserAction, FileFilter, LayoutManager, Native, Overflow, Root, ShortcutManager, Widget,
+    Window, ffi,
 };
 use glib::prelude::*;
 
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 glib::wrapper! {
     #[doc(alias = "GtkFileChooserDialog")]
     pub struct FileChooserDialog(Object<ffi::GtkFileChooserDialog>) @extends Dialog, Window, Widget, @implements Accessible, Buildable, ConstraintTarget, Native, Root, ShortcutManager, FileChooser;
+
+    match fn {
+        type_ => || ffi::gtk_file_chooser_dialog_get_type(),
+    }
+}
+
+#[cfg(not(feature = "v4_10"))]
+glib::wrapper! {
+    #[doc(alias = "GtkFileChooserDialog")]
+    pub struct FileChooserDialog(Object<ffi::GtkFileChooserDialog>) @extends Dialog, Window, Widget, @implements Buildable, ConstraintTarget, Native, Root, ShortcutManager, FileChooser;
 
     match fn {
         type_ => || ffi::gtk_file_chooser_dialog_get_type(),

@@ -4,10 +4,10 @@
 
 #[cfg(feature = "v4_10")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
-use crate::AccessibleRange;
+use crate::{Accessible, AccessibleRange};
 use crate::{
-    Accessible, AccessibleRole, Adjustment, Align, Buildable, ConstraintTarget, LayoutManager,
-    Orientable, Orientation, Overflow, PositionType, Range, Widget, ffi,
+    AccessibleRole, Adjustment, Align, Buildable, ConstraintTarget, LayoutManager, Orientable,
+    Orientation, Overflow, PositionType, Range, Widget, ffi,
 };
 use glib::{
     prelude::*,
@@ -30,7 +30,7 @@ glib::wrapper! {
 #[cfg(not(feature = "v4_10"))]
 glib::wrapper! {
     #[doc(alias = "GtkScale")]
-    pub struct Scale(Object<ffi::GtkScale, ffi::GtkScaleClass>) @extends Range, Widget, @implements Accessible, Buildable, ConstraintTarget, Orientable;
+    pub struct Scale(Object<ffi::GtkScale, ffi::GtkScaleClass>) @extends Range, Widget, @implements Buildable, ConstraintTarget, Orientable;
 
     match fn {
         type_ => || ffi::gtk_scale_get_type(),

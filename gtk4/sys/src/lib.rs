@@ -1154,6 +1154,9 @@ pub const GTK_DEBUG_BUILDER: GtkDebugFlags = 2097152;
 #[cfg(feature = "v4_22")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
 pub const GTK_DEBUG_SESSION: GtkDebugFlags = 4194304;
+#[cfg(feature = "v4_24")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+pub const GTK_DEBUG_GENERAL_INFO: GtkDebugFlags = 8388608;
 
 pub type GtkDialogFlags = c_uint;
 pub const GTK_DIALOG_MODAL: GtkDialogFlags = 1;
@@ -10583,8 +10586,6 @@ unsafe extern "C" {
     // GtkOrdering
     //=========================================================================
     pub fn gtk_ordering_get_type() -> GType;
-    #[cfg(feature = "v4_2")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v4_2")))]
     pub fn gtk_ordering_from_cmpfunc(cmpfunc_result: c_int) -> GtkOrdering;
 
     //=========================================================================
@@ -11694,11 +11695,15 @@ unsafe extern "C" {
     // GtkATContext
     //=========================================================================
     pub fn gtk_at_context_get_type() -> GType;
+    #[cfg(feature = "v4_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_at_context_create(
         accessible_role: GtkAccessibleRole,
         accessible: *mut GtkAccessible,
         display: *mut gdk::GdkDisplay,
     ) -> *mut GtkATContext;
+    #[cfg(feature = "v4_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_at_context_get_accessible(self_: *mut GtkATContext) -> *mut GtkAccessible;
     pub fn gtk_at_context_get_accessible_role(self_: *mut GtkATContext) -> GtkAccessibleRole;
 
@@ -11922,6 +11927,12 @@ unsafe extern "C" {
     pub fn gtk_alternative_trigger_new(
         first: *mut GtkShortcutTrigger,
         second: *mut GtkShortcutTrigger,
+    ) -> *mut GtkShortcutTrigger;
+    #[cfg(feature = "v4_24")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+    pub fn gtk_alternative_trigger_newv(
+        triggers: *mut *mut GtkShortcutTrigger,
+        n_triggers: size_t,
     ) -> *mut GtkShortcutTrigger;
     pub fn gtk_alternative_trigger_get_first(
         self_: *mut GtkAlternativeTrigger,
@@ -18451,6 +18462,15 @@ unsafe extern "C" {
     //=========================================================================
     pub fn gtk_shortcut_trigger_get_type() -> GType;
     pub fn gtk_shortcut_trigger_parse_string(string: *const c_char) -> *mut GtkShortcutTrigger;
+    #[cfg(feature = "v4_24")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+    pub fn gtk_shortcut_trigger_create_for_menu() -> *mut GtkShortcutTrigger;
+    #[cfg(feature = "v4_24")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+    pub fn gtk_shortcut_trigger_create_with_aliases(
+        keyval: c_uint,
+        modifiers: gdk::GdkModifierType,
+    ) -> *mut GtkShortcutTrigger;
     pub fn gtk_shortcut_trigger_compare(trigger1: gconstpointer, trigger2: gconstpointer) -> c_int;
     pub fn gtk_shortcut_trigger_equal(trigger1: gconstpointer, trigger2: gconstpointer)
     -> gboolean;
@@ -18837,6 +18857,9 @@ unsafe extern "C" {
         factor_y: c_float,
         factor_z: c_float,
     );
+    #[cfg(feature = "v4_24")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+    pub fn gtk_snapshot_set_snap(self_: *mut GtkSnapshot, snap: gsk::GskRectSnap);
     pub fn gtk_snapshot_to_node(snapshot: *mut GtkSnapshot) -> *mut gsk::GskRenderNode;
     pub fn gtk_snapshot_to_paintable(
         snapshot: *mut GtkSnapshot,
@@ -19260,6 +19283,9 @@ unsafe extern "C" {
     #[cfg(feature = "v4_24")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
     pub fn gtk_svg_set_overflow(self_: *mut GtkSvg, overflow: GtkOverflow);
+    #[cfg(feature = "v4_24")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+    pub fn gtk_svg_set_settings(self_: *mut GtkSvg, settings: *mut GtkSettings);
     #[cfg(feature = "v4_22")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
     pub fn gtk_svg_set_state(self_: *mut GtkSvg, state: c_uint);
@@ -21287,6 +21313,8 @@ unsafe extern "C" {
     //=========================================================================
     // GtkAccessible
     //=========================================================================
+    #[cfg(feature = "v4_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_accessible_get_type() -> GType;
     #[cfg(feature = "v4_14")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
@@ -21301,6 +21329,8 @@ unsafe extern "C" {
     #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_accessible_get_accessible_parent(self_: *mut GtkAccessible) -> *mut GtkAccessible;
+    #[cfg(feature = "v4_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_accessible_get_accessible_role(self_: *mut GtkAccessible) -> GtkAccessibleRole;
     #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
@@ -21330,14 +21360,20 @@ unsafe extern "C" {
         self_: *mut GtkAccessible,
         state: GtkAccessiblePlatformState,
     ) -> gboolean;
+    #[cfg(feature = "v4_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_accessible_reset_property(
         self_: *mut GtkAccessible,
         property: GtkAccessibleProperty,
     );
+    #[cfg(feature = "v4_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_accessible_reset_relation(
         self_: *mut GtkAccessible,
         relation: GtkAccessibleRelation,
     );
+    #[cfg(feature = "v4_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_accessible_reset_state(self_: *mut GtkAccessible, state: GtkAccessibleState);
     #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
@@ -21358,33 +21394,45 @@ unsafe extern "C" {
         self_: *mut GtkAccessible,
         state: GtkAccessiblePlatformState,
     );
+    #[cfg(feature = "v4_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_accessible_update_property(
         self_: *mut GtkAccessible,
         first_property: GtkAccessibleProperty,
         ...
     );
+    #[cfg(feature = "v4_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_accessible_update_property_value(
         self_: *mut GtkAccessible,
         n_properties: c_int,
         properties: *mut GtkAccessibleProperty,
         values: *const gobject::GValue,
     );
+    #[cfg(feature = "v4_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_accessible_update_relation(
         self_: *mut GtkAccessible,
         first_relation: GtkAccessibleRelation,
         ...
     );
+    #[cfg(feature = "v4_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_accessible_update_relation_value(
         self_: *mut GtkAccessible,
         n_relations: c_int,
         relations: *mut GtkAccessibleRelation,
         values: *const gobject::GValue,
     );
+    #[cfg(feature = "v4_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_accessible_update_state(
         self_: *mut GtkAccessible,
         first_state: GtkAccessibleState,
         ...
     );
+    #[cfg(feature = "v4_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_accessible_update_state_value(
         self_: *mut GtkAccessible,
         n_states: c_int,
@@ -22308,6 +22356,8 @@ unsafe extern "C" {
         result: *mut gio::GAsyncResult,
         error: *mut *mut glib::GError,
     ) -> gboolean;
+    #[cfg(feature = "v4_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_test_accessible_assertion_message_role(
         domain: *const c_char,
         file: *const c_char,
@@ -22318,33 +22368,47 @@ unsafe extern "C" {
         expected_role: GtkAccessibleRole,
         actual_role: GtkAccessibleRole,
     );
+    #[cfg(feature = "v4_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_test_accessible_check_property(
         accessible: *mut GtkAccessible,
         property: GtkAccessibleProperty,
         ...
     ) -> *mut c_char;
+    #[cfg(feature = "v4_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_test_accessible_check_relation(
         accessible: *mut GtkAccessible,
         relation: GtkAccessibleRelation,
         ...
     ) -> *mut c_char;
+    #[cfg(feature = "v4_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_test_accessible_check_state(
         accessible: *mut GtkAccessible,
         state: GtkAccessibleState,
         ...
     ) -> *mut c_char;
+    #[cfg(feature = "v4_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_test_accessible_has_property(
         accessible: *mut GtkAccessible,
         property: GtkAccessibleProperty,
     ) -> gboolean;
+    #[cfg(feature = "v4_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_test_accessible_has_relation(
         accessible: *mut GtkAccessible,
         relation: GtkAccessibleRelation,
     ) -> gboolean;
+    #[cfg(feature = "v4_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_test_accessible_has_role(
         accessible: *mut GtkAccessible,
         role: GtkAccessibleRole,
     ) -> gboolean;
+    #[cfg(feature = "v4_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_test_accessible_has_state(
         accessible: *mut GtkAccessible,
         state: GtkAccessibleState,

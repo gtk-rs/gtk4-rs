@@ -250,6 +250,8 @@ pub trait CellAreaExt: IsA<CellArea> + 'static {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+    #[allow(deprecated)]
     #[doc(alias = "gtk_cell_area_foreach_alloc")]
     fn foreach_alloc<P: FnMut(&CellRenderer, &gdk::Rectangle, &gdk::Rectangle) -> bool>(
         &self,
@@ -343,6 +345,8 @@ pub trait CellAreaExt: IsA<CellArea> + 'static {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+    #[allow(deprecated)]
     #[doc(alias = "gtk_cell_area_get_current_path_string")]
     #[doc(alias = "get_current_path_string")]
     fn current_path_string(&self) -> glib::GString {
@@ -514,6 +518,8 @@ pub trait CellAreaExt: IsA<CellArea> + 'static {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+    #[allow(deprecated)]
     #[doc(alias = "gtk_cell_area_get_request_mode")]
     #[doc(alias = "get_request_mode")]
     fn request_mode(&self) -> SizeRequestMode {

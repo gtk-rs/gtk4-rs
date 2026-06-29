@@ -3,13 +3,15 @@
 // DO NOT EDIT
 #![allow(deprecated)]
 
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
+use crate::Accessible;
 #[cfg(feature = "v4_20")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
 use crate::WindowGravity;
 use crate::{
-    Accessible, AccessibleRole, Align, Application, Buildable, ButtonsType, ConstraintTarget,
-    Dialog, LayoutManager, MessageType, Native, Overflow, Root, ShortcutManager, Widget, Window,
-    ffi,
+    AccessibleRole, Align, Application, Buildable, ButtonsType, ConstraintTarget, Dialog,
+    LayoutManager, MessageType, Native, Overflow, Root, ShortcutManager, Widget, Window, ffi,
 };
 use glib::{
     prelude::*,
@@ -18,9 +20,21 @@ use glib::{
 };
 use std::boxed::Box as Box_;
 
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 glib::wrapper! {
     #[doc(alias = "GtkMessageDialog")]
     pub struct MessageDialog(Object<ffi::GtkMessageDialog, ffi::GtkMessageDialogClass>) @extends Dialog, Window, Widget, @implements Accessible, Buildable, ConstraintTarget, Native, Root, ShortcutManager;
+
+    match fn {
+        type_ => || ffi::gtk_message_dialog_get_type(),
+    }
+}
+
+#[cfg(not(feature = "v4_10"))]
+glib::wrapper! {
+    #[doc(alias = "GtkMessageDialog")]
+    pub struct MessageDialog(Object<ffi::GtkMessageDialog, ffi::GtkMessageDialogClass>) @extends Dialog, Window, Widget, @implements Buildable, ConstraintTarget, Native, Root, ShortcutManager;
 
     match fn {
         type_ => || ffi::gtk_message_dialog_get_type(),

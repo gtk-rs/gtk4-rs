@@ -2,6 +2,9 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
+use crate::Accessible;
 #[cfg(feature = "v4_22")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
 use crate::AccessibleHypertext;
@@ -12,8 +15,8 @@ use crate::AccessibleText;
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
 use crate::NaturalWrapMode;
 use crate::{
-    Accessible, AccessibleRole, Align, Buildable, ConstraintTarget, Justification, LayoutManager,
-    MovementStep, Overflow, Widget, ffi,
+    AccessibleRole, Align, Buildable, ConstraintTarget, Justification, LayoutManager, MovementStep,
+    Overflow, Widget, ffi,
 };
 use glib::{
     object::ObjectType as _,
@@ -23,7 +26,7 @@ use glib::{
 };
 use std::boxed::Box as Box_;
 
-#[cfg(feature = "v4_22")]
+#[cfg(all(feature = "v4_10", feature = "v4_14", feature = "v4_22"))]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
 glib::wrapper! {
     #[doc(alias = "GtkLabel")]
@@ -34,8 +37,7 @@ glib::wrapper! {
     }
 }
 
-#[cfg(not(feature = "v4_22"))]
-#[cfg(feature = "v4_14")]
+#[cfg(all(feature = "v4_10", feature = "v4_14", not(feature = "v4_22")))]
 glib::wrapper! {
     #[doc(alias = "GtkLabel")]
     pub struct Label(Object<ffi::GtkLabel>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, AccessibleText;
@@ -45,10 +47,20 @@ glib::wrapper! {
     }
 }
 
-#[cfg(not(feature = "v4_14"))]
+#[cfg(all(feature = "v4_10", not(feature = "v4_14")))]
 glib::wrapper! {
     #[doc(alias = "GtkLabel")]
     pub struct Label(Object<ffi::GtkLabel>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
+
+    match fn {
+        type_ => || ffi::gtk_label_get_type(),
+    }
+}
+
+#[cfg(not(any(feature = "v4_10", feature = "v4_14", feature = "v4_22")))]
+glib::wrapper! {
+    #[doc(alias = "GtkLabel")]
+    pub struct Label(Object<ffi::GtkLabel>) @extends Widget, @implements Buildable, ConstraintTarget;
 
     match fn {
         type_ => || ffi::gtk_label_get_type(),

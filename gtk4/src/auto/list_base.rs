@@ -2,11 +2,26 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::{Accessible, Buildable, ConstraintTarget, Orientable, Scrollable, Widget, ffi};
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
+use crate::Accessible;
+use crate::{Buildable, ConstraintTarget, Orientable, Scrollable, Widget, ffi};
 
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 glib::wrapper! {
     #[doc(alias = "GtkListBase")]
     pub struct ListBase(Object<ffi::GtkListBase, ffi::GtkListBaseClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Orientable, Scrollable;
+
+    match fn {
+        type_ => || ffi::gtk_list_base_get_type(),
+    }
+}
+
+#[cfg(not(feature = "v4_10"))]
+glib::wrapper! {
+    #[doc(alias = "GtkListBase")]
+    pub struct ListBase(Object<ffi::GtkListBase, ffi::GtkListBaseClass>) @extends Widget, @implements Buildable, ConstraintTarget, Orientable, Scrollable;
 
     match fn {
         type_ => || ffi::gtk_list_base_get_type(),

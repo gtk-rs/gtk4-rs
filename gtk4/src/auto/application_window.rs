@@ -3,12 +3,15 @@
 // DO NOT EDIT
 #![allow(deprecated)]
 
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
+use crate::Accessible;
 #[cfg(feature = "v4_20")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
 use crate::WindowGravity;
 use crate::{
-    Accessible, AccessibleRole, Align, Application, Buildable, ConstraintTarget, LayoutManager,
-    Native, Overflow, Root, ShortcutManager, ShortcutsWindow, Widget, Window, ffi,
+    AccessibleRole, Align, Application, Buildable, ConstraintTarget, LayoutManager, Native,
+    Overflow, Root, ShortcutManager, ShortcutsWindow, Widget, Window, ffi,
 };
 #[cfg(feature = "v4_24")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
@@ -20,9 +23,21 @@ use glib::{
 };
 use std::boxed::Box as Box_;
 
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 glib::wrapper! {
     #[doc(alias = "GtkApplicationWindow")]
     pub struct ApplicationWindow(Object<ffi::GtkApplicationWindow, ffi::GtkApplicationWindowClass>) @extends Window, Widget, @implements Accessible, Buildable, ConstraintTarget, Native, Root, ShortcutManager, gio::ActionGroup, gio::ActionMap;
+
+    match fn {
+        type_ => || ffi::gtk_application_window_get_type(),
+    }
+}
+
+#[cfg(not(feature = "v4_10"))]
+glib::wrapper! {
+    #[doc(alias = "GtkApplicationWindow")]
+    pub struct ApplicationWindow(Object<ffi::GtkApplicationWindow, ffi::GtkApplicationWindowClass>) @extends Window, Widget, @implements Buildable, ConstraintTarget, Native, Root, ShortcutManager, gio::ActionGroup, gio::ActionMap;
 
     match fn {
         type_ => || ffi::gtk_application_window_get_type(),

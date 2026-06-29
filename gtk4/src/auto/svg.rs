@@ -4,7 +4,7 @@
 
 #[cfg(feature = "v4_24")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
-use crate::Overflow;
+use crate::{Overflow, Settings};
 use crate::{SvgFeatures, SymbolicPaintable, ffi};
 use glib::{
     object::ObjectType as _,
@@ -146,6 +146,15 @@ impl Svg {
     pub fn set_overflow(&self, overflow: Overflow) {
         unsafe {
             ffi::gtk_svg_set_overflow(self.to_glib_none().0, overflow.into_glib());
+        }
+    }
+
+    #[cfg(feature = "v4_24")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+    #[doc(alias = "gtk_svg_set_settings")]
+    pub fn set_settings(&self, settings: Option<&Settings>) {
+        unsafe {
+            ffi::gtk_svg_set_settings(self.to_glib_none().0, settings.to_glib_none().0);
         }
     }
 

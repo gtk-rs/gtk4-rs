@@ -2,12 +2,15 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
+use crate::Accessible;
 #[cfg(feature = "v4_14")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
 use crate::AccessibleText;
 use crate::{
-    Accessible, AccessibleRole, Align, Buildable, ConstraintTarget, InscriptionOverflow,
-    LayoutManager, Overflow, Widget, ffi,
+    AccessibleRole, Align, Buildable, ConstraintTarget, InscriptionOverflow, LayoutManager,
+    Overflow, Widget, ffi,
 };
 use glib::{
     prelude::*,
@@ -16,7 +19,7 @@ use glib::{
 };
 use std::boxed::Box as Box_;
 
-#[cfg(feature = "v4_14")]
+#[cfg(all(feature = "v4_10", feature = "v4_14"))]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
 glib::wrapper! {
     #[doc(alias = "GtkInscription")]
@@ -27,10 +30,20 @@ glib::wrapper! {
     }
 }
 
-#[cfg(not(feature = "v4_14"))]
+#[cfg(all(feature = "v4_10", not(feature = "v4_14")))]
 glib::wrapper! {
     #[doc(alias = "GtkInscription")]
     pub struct Inscription(Object<ffi::GtkInscription, ffi::GtkInscriptionClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
+
+    match fn {
+        type_ => || ffi::gtk_inscription_get_type(),
+    }
+}
+
+#[cfg(not(any(feature = "v4_10", feature = "v4_14")))]
+glib::wrapper! {
+    #[doc(alias = "GtkInscription")]
+    pub struct Inscription(Object<ffi::GtkInscription, ffi::GtkInscriptionClass>) @extends Widget, @implements Buildable, ConstraintTarget;
 
     match fn {
         type_ => || ffi::gtk_inscription_get_type(),

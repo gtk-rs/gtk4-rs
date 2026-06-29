@@ -350,6 +350,8 @@ pub const GDK_MEMORY_ARGB2101010: GdkMemoryFormat = 66;
 #[cfg(feature = "v4_24")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
 pub const GDK_MEMORY_XRGB2101010: GdkMemoryFormat = 67;
+#[cfg(feature = "v4_24")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
 pub const GDK_MEMORY_ABGR2101010_PREMULTIPLIED: GdkMemoryFormat = 68;
 #[cfg(feature = "v4_24")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
@@ -4638,6 +4640,8 @@ unsafe extern "C" {
     pub fn gdk_rgba_is_clear(rgba: *const GdkRGBA) -> gboolean;
     pub fn gdk_rgba_is_opaque(rgba: *const GdkRGBA) -> gboolean;
     pub fn gdk_rgba_parse(rgba: *mut GdkRGBA, spec: *const c_char) -> gboolean;
+    #[cfg(feature = "v4_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
     pub fn gdk_rgba_print(rgba: *const GdkRGBA, string: *mut glib::GString) -> *mut glib::GString;
     pub fn gdk_rgba_to_string(rgba: *const GdkRGBA) -> *mut c_char;
 
@@ -6312,6 +6316,9 @@ unsafe extern "C" {
     pub fn gdk_intern_mime_type(string: *const c_char) -> *const c_char;
     pub fn gdk_keyval_convert_case(symbol: c_uint, lower: *mut c_uint, upper: *mut c_uint);
     pub fn gdk_keyval_from_name(keyval_name: *const c_char) -> c_uint;
+    #[cfg(feature = "v4_24")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+    pub fn gdk_keyval_get_aliases(keyval: c_uint, n_aliases: *mut c_uint) -> *const c_uint;
     pub fn gdk_keyval_is_lower(keyval: c_uint) -> gboolean;
     pub fn gdk_keyval_is_upper(keyval: c_uint) -> gboolean;
     pub fn gdk_keyval_name(keyval: c_uint) -> *const c_char;

@@ -4,10 +4,10 @@
 
 #[cfg(feature = "v4_10")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
-use crate::AccessibleRange;
+use crate::{Accessible, AccessibleRange};
 use crate::{
-    Accessible, AccessibleRole, Adjustment, Align, Buildable, Button, ConstraintTarget,
-    LayoutManager, Orientable, Orientation, Overflow, Widget, ffi,
+    AccessibleRole, Adjustment, Align, Buildable, Button, ConstraintTarget, LayoutManager,
+    Orientable, Orientation, Overflow, Widget, ffi,
 };
 use glib::{
     object::ObjectType as _,
@@ -31,7 +31,7 @@ glib::wrapper! {
 #[cfg(not(feature = "v4_10"))]
 glib::wrapper! {
     #[doc(alias = "GtkScaleButton")]
-    pub struct ScaleButton(Object<ffi::GtkScaleButton, ffi::GtkScaleButtonClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Orientable;
+    pub struct ScaleButton(Object<ffi::GtkScaleButton, ffi::GtkScaleButtonClass>) @extends Widget, @implements Buildable, ConstraintTarget, Orientable;
 
     match fn {
         type_ => || ffi::gtk_scale_button_get_type(),

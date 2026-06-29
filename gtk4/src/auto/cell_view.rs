@@ -3,10 +3,12 @@
 // DO NOT EDIT
 #![allow(deprecated)]
 
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
+use crate::Accessible;
 use crate::{
-    Accessible, AccessibleRole, Align, Buildable, CellArea, CellAreaContext, CellLayout,
-    ConstraintTarget, LayoutManager, Orientable, Orientation, Overflow, TreeModel, TreePath,
-    Widget, ffi,
+    AccessibleRole, Align, Buildable, CellArea, CellAreaContext, CellLayout, ConstraintTarget,
+    LayoutManager, Orientable, Orientation, Overflow, TreeModel, TreePath, Widget, ffi,
 };
 use glib::{
     prelude::*,
@@ -15,9 +17,21 @@ use glib::{
 };
 use std::boxed::Box as Box_;
 
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 glib::wrapper! {
     #[doc(alias = "GtkCellView")]
     pub struct CellView(Object<ffi::GtkCellView>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, CellLayout, Orientable;
+
+    match fn {
+        type_ => || ffi::gtk_cell_view_get_type(),
+    }
+}
+
+#[cfg(not(feature = "v4_10"))]
+glib::wrapper! {
+    #[doc(alias = "GtkCellView")]
+    pub struct CellView(Object<ffi::GtkCellView>) @extends Widget, @implements Buildable, ConstraintTarget, CellLayout, Orientable;
 
     match fn {
         type_ => || ffi::gtk_cell_view_get_type(),

@@ -2,9 +2,12 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
+use crate::Accessible;
 use crate::{
-    Accessible, AccessibleRole, Adjustment, Align, Buildable, ConstraintTarget, FlowBoxChild,
-    LayoutManager, MovementStep, Orientable, Orientation, Overflow, SelectionMode, Widget, ffi,
+    AccessibleRole, Adjustment, Align, Buildable, ConstraintTarget, FlowBoxChild, LayoutManager,
+    MovementStep, Orientable, Orientation, Overflow, SelectionMode, Widget, ffi,
 };
 use glib::{
     object::ObjectType as _,
@@ -14,9 +17,21 @@ use glib::{
 };
 use std::boxed::Box as Box_;
 
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 glib::wrapper! {
     #[doc(alias = "GtkFlowBox")]
     pub struct FlowBox(Object<ffi::GtkFlowBox>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Orientable;
+
+    match fn {
+        type_ => || ffi::gtk_flow_box_get_type(),
+    }
+}
+
+#[cfg(not(feature = "v4_10"))]
+glib::wrapper! {
+    #[doc(alias = "GtkFlowBox")]
+    pub struct FlowBox(Object<ffi::GtkFlowBox>) @extends Widget, @implements Buildable, ConstraintTarget, Orientable;
 
     match fn {
         type_ => || ffi::gtk_flow_box_get_type(),

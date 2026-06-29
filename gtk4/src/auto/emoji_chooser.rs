@@ -2,9 +2,12 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
+use crate::Accessible;
 use crate::{
-    Accessible, AccessibleRole, Align, Buildable, ConstraintTarget, LayoutManager, Native,
-    Overflow, Popover, PositionType, ShortcutManager, Widget, ffi,
+    AccessibleRole, Align, Buildable, ConstraintTarget, LayoutManager, Native, Overflow, Popover,
+    PositionType, ShortcutManager, Widget, ffi,
 };
 use glib::{
     object::ObjectType as _,
@@ -14,9 +17,21 @@ use glib::{
 };
 use std::boxed::Box as Box_;
 
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 glib::wrapper! {
     #[doc(alias = "GtkEmojiChooser")]
     pub struct EmojiChooser(Object<ffi::GtkEmojiChooser, ffi::GtkEmojiChooserClass>) @extends Popover, Widget, @implements Accessible, Buildable, ConstraintTarget, Native, ShortcutManager;
+
+    match fn {
+        type_ => || ffi::gtk_emoji_chooser_get_type(),
+    }
+}
+
+#[cfg(not(feature = "v4_10"))]
+glib::wrapper! {
+    #[doc(alias = "GtkEmojiChooser")]
+    pub struct EmojiChooser(Object<ffi::GtkEmojiChooser, ffi::GtkEmojiChooserClass>) @extends Popover, Widget, @implements Buildable, ConstraintTarget, Native, ShortcutManager;
 
     match fn {
         type_ => || ffi::gtk_emoji_chooser_get_type(),

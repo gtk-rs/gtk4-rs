@@ -279,6 +279,8 @@ pub use self::flags::Isolation;
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
 pub use self::flags::PathForeachFlags;
 
+pub(crate) mod functions;
+
 pub(crate) mod traits {
     pub use super::renderer::GskRendererExt;
 }
