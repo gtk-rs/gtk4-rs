@@ -8,7 +8,11 @@ pub use self::at_context::ATContext;
 mod about_dialog;
 pub use self::about_dialog::AboutDialog;
 
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 mod accessible;
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 pub use self::accessible::Accessible;
 
 #[cfg(feature = "v4_22")]
@@ -372,6 +376,20 @@ pub use self::entry_buffer::EntryBuffer;
 mod entry_completion;
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 pub use self::entry_completion::EntryCompletion;
+
+#[cfg(feature = "v4_24")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+mod enum_list;
+#[cfg(feature = "v4_24")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+pub use self::enum_list::EnumList;
+
+#[cfg(feature = "v4_24")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+mod enum_list_item;
+#[cfg(feature = "v4_24")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+pub use self::enum_list_item::EnumListItem;
 
 mod event_controller;
 pub use self::event_controller::EventController;
@@ -1074,6 +1092,13 @@ mod tree_view_column;
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 pub use self::tree_view_column::TreeViewColumn;
 
+#[cfg(feature = "v4_22")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+mod try_expression;
+#[cfg(feature = "v4_22")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
+pub use self::try_expression::TryExpression;
+
 #[cfg(feature = "v4_10")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 mod uri_launcher;
@@ -1510,6 +1535,8 @@ pub use self::constants::PRINT_SETTINGS_WIN32_DRIVER_EXTRA;
 pub use self::constants::PRINT_SETTINGS_WIN32_DRIVER_VERSION;
 
 pub(crate) mod traits {
+    #[cfg(feature = "v4_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub use super::accessible::AccessibleExt;
     #[cfg(feature = "v4_22")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]

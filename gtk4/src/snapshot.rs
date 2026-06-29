@@ -26,6 +26,15 @@ pub trait SnapshotExtManual: IsA<Snapshot> + 'static {
         }
     }
 
+    #[cfg(feature = "v4_24")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+    #[doc(alias = "gtk_snapshot_set_snap")]
+    fn set_snap(&self, snap: gsk::RectSnap) {
+        unsafe {
+            ffi::gtk_snapshot_set_snap(self.as_ref().to_glib_none().0, snap.into_glib());
+        }
+    }
+
     #[doc(alias = "gtk_snapshot_push_debug")]
     fn push_debug(&self, message: impl IntoGStr) {
         unsafe {

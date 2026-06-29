@@ -2,12 +2,15 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
+use crate::Accessible;
 #[cfg(feature = "v4_12")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
 use crate::StringFilterMatchMode;
 use crate::{
-    Accessible, AccessibleRole, Align, Buildable, ConstraintTarget, Expression, LayoutManager,
-    ListItemFactory, Overflow, Widget, ffi,
+    AccessibleRole, Align, Buildable, ConstraintTarget, Expression, LayoutManager, ListItemFactory,
+    Overflow, Widget, ffi,
 };
 #[cfg(feature = "v4_6")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
@@ -19,9 +22,21 @@ use glib::{
 };
 use std::boxed::Box as Box_;
 
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 glib::wrapper! {
     #[doc(alias = "GtkDropDown")]
     pub struct DropDown(Object<ffi::GtkDropDown, ffi::GtkDropDownClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
+
+    match fn {
+        type_ => || ffi::gtk_drop_down_get_type(),
+    }
+}
+
+#[cfg(not(feature = "v4_10"))]
+glib::wrapper! {
+    #[doc(alias = "GtkDropDown")]
+    pub struct DropDown(Object<ffi::GtkDropDown, ffi::GtkDropDownClass>) @extends Widget, @implements Buildable, ConstraintTarget;
 
     match fn {
         type_ => || ffi::gtk_drop_down_get_type(),

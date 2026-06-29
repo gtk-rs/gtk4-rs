@@ -14,9 +14,9 @@ use glib::{
 };
 
 use crate::{
-    Accessible, AccessibleRole, Buildable, BuilderRustScope, BuilderScope, ConstraintTarget,
-    DirectionType, LayoutManager, Orientation, Shortcut, SizeRequestMode, Snapshot, StateFlags,
-    SystemSetting, TextDirection, Tooltip, Widget, ffi, prelude::*, subclass::prelude::*,
+    AccessibleRole, Buildable, BuilderRustScope, BuilderScope, ConstraintTarget, DirectionType,
+    LayoutManager, Orientation, SizeRequestMode, Snapshot, StateFlags, SystemSetting,
+    TextDirection, Tooltip, Widget, ffi, prelude::*, subclass::prelude::*,
 };
 
 #[derive(Debug, Default)]
@@ -28,6 +28,12 @@ unsafe impl Sync for Internal {}
 unsafe impl Send for Internal {}
 
 pub struct WidgetActionIter(*mut ffi::GtkWidgetClass, u32);
+
+impl WidgetActionIter {
+    pub(crate) fn new(widget_class: *mut ffi::GtkWidgetClass) -> Self {
+        Self(widget_class, 0)
+    }
+}
 
 pub struct WidgetAction(
     glib::Type,
@@ -110,10 +116,25 @@ impl Iterator for WidgetActionIter {
 
 impl std::iter::FusedIterator for WidgetActionIter {}
 
-pub trait WidgetImpl:
-    ObjectImpl
-    + ObjectSubclass<Type: IsA<Widget> + IsA<Accessible> + IsA<Buildable> + IsA<ConstraintTarget>>
+#[cfg(feature = "v4_10")]
+#[doc(hidden)]
+pub trait WidgetImplBounds:
+    IsA<Widget> + IsA<crate::Accessible> + IsA<Buildable> + IsA<ConstraintTarget>
 {
+}
+#[cfg(feature = "v4_10")]
+impl<T: IsA<Widget> + IsA<crate::Accessible> + IsA<Buildable> + IsA<ConstraintTarget>>
+    WidgetImplBounds for T
+{
+}
+
+#[cfg(not(feature = "v4_10"))]
+#[doc(hidden)]
+pub trait WidgetImplBounds: IsA<Widget> + IsA<Buildable> + IsA<ConstraintTarget> {}
+#[cfg(not(feature = "v4_10"))]
+impl<T: IsA<Widget> + IsA<Buildable> + IsA<ConstraintTarget>> WidgetImplBounds for T {}
+
+pub trait WidgetImpl: ObjectImpl + ObjectSubclass<Type: WidgetImplBounds> {
     fn compute_expand(&self, hexpand: &mut bool, vexpand: &mut bool) {
         self.parent_compute_expand(hexpand, vexpand)
     }
@@ -1056,12 +1077,6 @@ pub unsafe trait WidgetClassExt: ClassStruct {
         }
     }
 
-    #[doc(alias = "gtk_widget_class_query_action")]
-    fn query_action(&self) -> WidgetActionIter {
-        let widget_class = self as *const _ as *mut ffi::GtkWidgetClass;
-        WidgetActionIter(widget_class, 0)
-    }
-
     #[doc(alias = "gtk_widget_class_set_template_scope")]
     fn set_template_scope<S: IsA<BuilderScope>>(&mut self, scope: &S) {
         unsafe {
@@ -1087,16 +1102,10 @@ pub unsafe trait WidgetClassExt: ClassStruct {
                 },
             )),
         );
-        self.add_shortcut(&shortcut);
-    }
-
-    #[doc(alias = "gtk_widget_class_add_binding_action")]
-    fn add_binding_action(&mut self, keyval: gdk::Key, mods: gdk::ModifierType, action_name: &str) {
-        let shortcut = crate::Shortcut::new(
-            Some(crate::KeyvalTrigger::new(keyval, mods)),
-            Some(crate::NamedAction::new(action_name)),
-        );
-        self.add_shortcut(&shortcut);
+        unsafe {
+            let widget_class = self as *mut _ as *mut ffi::GtkWidgetClass;
+            ffi::gtk_widget_class_add_shortcut(widget_class, shortcut.to_glib_none().0);
+        }
     }
 
     #[doc(alias = "gtk_widget_class_add_binding_signal")]
@@ -1111,40 +1120,9 @@ pub unsafe trait WidgetClassExt: ClassStruct {
             Some(crate::KeyvalTrigger::new(keyval, mods)),
             Some(crate::SignalAction::new(signal_name)),
         );
-        self.add_shortcut(&shortcut);
-    }
-
-    #[doc(alias = "gtk_widget_class_add_shortcut")]
-    fn add_shortcut(&mut self, shortcut: &Shortcut) {
         unsafe {
             let widget_class = self as *mut _ as *mut ffi::GtkWidgetClass;
             ffi::gtk_widget_class_add_shortcut(widget_class, shortcut.to_glib_none().0);
-        }
-    }
-
-    #[doc(alias = "gtk_widget_class_install_property_action")]
-    fn install_property_action(&mut self, action_name: &str, property_name: &str) {
-        unsafe {
-            let widget_class = self as *mut _ as *mut ffi::GtkWidgetClass;
-            ffi::gtk_widget_class_install_property_action(
-                widget_class,
-                action_name.to_glib_none().0,
-                property_name.to_glib_none().0,
-            );
-        }
-    }
-
-    #[doc(alias = "gtk_widget_class_get_activate_signal")]
-    #[doc(alias = "get_activate_signal")]
-    fn activate_signal(&self) -> Option<SignalId> {
-        unsafe {
-            let widget_class = self as *const _ as *mut ffi::GtkWidgetClass;
-            let signal_id = ffi::gtk_widget_class_get_activate_signal(widget_class);
-            if signal_id == 0 {
-                None
-            } else {
-                Some(from_glib(signal_id))
-            }
         }
     }
 
@@ -1184,15 +1162,6 @@ pub unsafe trait WidgetClassExt: ClassStruct {
         }
     }
 
-    #[doc(alias = "gtk_widget_class_get_layout_manager_type")]
-    #[doc(alias = "get_layout_manager_type")]
-    fn layout_manager_type(&self) -> glib::Type {
-        unsafe {
-            let widget_class = self as *const _ as *mut ffi::GtkWidgetClass;
-            from_glib(ffi::gtk_widget_class_get_layout_manager_type(widget_class))
-        }
-    }
-
     #[doc(alias = "gtk_widget_class_set_css_name")]
     fn set_css_name(&mut self, name: &str) {
         unsafe {
@@ -1201,29 +1170,11 @@ pub unsafe trait WidgetClassExt: ClassStruct {
         }
     }
 
-    #[doc(alias = "gtk_widget_class_get_css_name")]
-    #[doc(alias = "get_css_name")]
-    fn css_name(&self) -> glib::GString {
-        unsafe {
-            let widget_class = self as *const _ as *mut ffi::GtkWidgetClass;
-            from_glib_none(ffi::gtk_widget_class_get_css_name(widget_class))
-        }
-    }
-
     #[doc(alias = "gtk_widget_class_set_accessible_role")]
     fn set_accessible_role(&mut self, role: AccessibleRole) {
         unsafe {
             let widget_class = self as *mut _ as *mut ffi::GtkWidgetClass;
             ffi::gtk_widget_class_set_accessible_role(widget_class, role.into_glib());
-        }
-    }
-
-    #[doc(alias = "gtk_widget_class_get_accessible_role")]
-    #[doc(alias = "get_accessible_role")]
-    fn accessible_role(&self) -> AccessibleRole {
-        unsafe {
-            let widget_class = self as *const _ as *mut ffi::GtkWidgetClass;
-            from_glib(ffi::gtk_widget_class_get_accessible_role(widget_class))
         }
     }
 

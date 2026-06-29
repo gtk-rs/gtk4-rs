@@ -2,19 +2,33 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
+use crate::Accessible;
 #[cfg(feature = "v4_20")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
 use crate::WindowGravity;
 use crate::{
-    Accessible, AccessibleRole, Align, Application, Buildable, ConstraintTarget, Dialog,
-    LayoutManager, Native, Overflow, PageSetup, PrintSettings, Root, ShortcutManager, Widget,
-    Window, ffi,
+    AccessibleRole, Align, Application, Buildable, ConstraintTarget, Dialog, LayoutManager, Native,
+    Overflow, PageSetup, PrintSettings, Root, ShortcutManager, Widget, Window, ffi,
 };
 use glib::{prelude::*, translate::*};
 
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 glib::wrapper! {
     #[doc(alias = "GtkPageSetupUnixDialog")]
     pub struct PageSetupUnixDialog(Object<ffi::GtkPageSetupUnixDialog>) @extends Dialog, Window, Widget, @implements Accessible, Buildable, ConstraintTarget, Native, Root, ShortcutManager;
+
+    match fn {
+        type_ => || ffi::gtk_page_setup_unix_dialog_get_type(),
+    }
+}
+
+#[cfg(not(feature = "v4_10"))]
+glib::wrapper! {
+    #[doc(alias = "GtkPageSetupUnixDialog")]
+    pub struct PageSetupUnixDialog(Object<ffi::GtkPageSetupUnixDialog>) @extends Dialog, Window, Widget, @implements Buildable, ConstraintTarget, Native, Root, ShortcutManager;
 
     match fn {
         type_ => || ffi::gtk_page_setup_unix_dialog_get_type(),

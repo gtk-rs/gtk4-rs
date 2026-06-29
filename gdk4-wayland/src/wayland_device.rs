@@ -1,7 +1,8 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-#[cfg(feature = "wayland_crate")]
-#[cfg_attr(docsrs, doc(cfg(feature = "wayland_crate")))]
+use std::ffi::c_void;
+use std::ptr::NonNull;
+
 use glib::translate::*;
 #[cfg(feature = "wayland_crate")]
 #[cfg_attr(docsrs, doc(cfg(feature = "wayland_crate")))]
@@ -11,30 +12,37 @@ use wayland_client::{
     protocol::{wl_keyboard::WlKeyboard, wl_pointer::WlPointer, wl_seat::WlSeat},
 };
 
-use crate::WaylandDevice;
 #[cfg(feature = "wayland_crate")]
 #[cfg_attr(docsrs, doc(cfg(feature = "wayland_crate")))]
-use crate::{ffi, prelude::*};
+use crate::prelude::*;
+use crate::{WaylandDevice, ffi};
 
 impl WaylandDevice {
+    #[doc(alias = "gdk_wayland_device_get_wl_keyboard")]
+    #[doc(alias = "get_wl_keyboard")]
+    pub fn wl_keyboard_raw(&self) -> Option<NonNull<c_void>> {
+        NonNull::new(unsafe { ffi::gdk_wayland_device_get_wl_keyboard(self.to_glib_none().0) })
+    }
+
     #[doc(alias = "gdk_wayland_device_get_wl_keyboard")]
     #[doc(alias = "get_wl_keyboard")]
     #[cfg(feature = "wayland_crate")]
     #[cfg_attr(docsrs, doc(cfg(feature = "wayland_crate")))]
     pub fn wl_keyboard(&self) -> Option<WlKeyboard> {
         let display = self.display().downcast::<crate::WaylandDisplay>().unwrap();
+        let ptr = self.wl_keyboard_raw()?;
         unsafe {
-            let keyboard_ptr = ffi::gdk_wayland_device_get_wl_keyboard(self.to_glib_none().0);
-            if keyboard_ptr.is_null() {
-                None
-            } else {
-                let cnx = display.connection();
-                let id =
-                    ObjectId::from_ptr(WlKeyboard::interface(), keyboard_ptr as *mut _).unwrap();
+            let cnx = display.connection();
+            let id = ObjectId::from_ptr(WlKeyboard::interface(), ptr.as_ptr() as *mut _).unwrap();
 
-                WlKeyboard::from_id(&cnx, id).ok()
-            }
+            WlKeyboard::from_id(&cnx, id).ok()
         }
+    }
+
+    #[doc(alias = "gdk_wayland_device_get_wl_pointer")]
+    #[doc(alias = "get_wl_pointer")]
+    pub fn wl_pointer_raw(&self) -> Option<NonNull<c_void>> {
+        NonNull::new(unsafe { ffi::gdk_wayland_device_get_wl_pointer(self.to_glib_none().0) })
     }
 
     #[doc(alias = "gdk_wayland_device_get_wl_pointer")]
@@ -43,17 +51,19 @@ impl WaylandDevice {
     #[cfg_attr(docsrs, doc(cfg(feature = "wayland_crate")))]
     pub fn wl_pointer(&self) -> Option<WlPointer> {
         let display = self.display().downcast::<crate::WaylandDisplay>().unwrap();
+        let ptr = self.wl_pointer_raw()?;
         unsafe {
-            let pointer_ptr = ffi::gdk_wayland_device_get_wl_pointer(self.to_glib_none().0);
-            if pointer_ptr.is_null() {
-                None
-            } else {
-                let cnx = display.connection();
-                let id = ObjectId::from_ptr(WlPointer::interface(), pointer_ptr as *mut _).unwrap();
+            let cnx = display.connection();
+            let id = ObjectId::from_ptr(WlPointer::interface(), ptr.as_ptr() as *mut _).unwrap();
 
-                WlPointer::from_id(&cnx, id).ok()
-            }
+            WlPointer::from_id(&cnx, id).ok()
         }
+    }
+
+    #[doc(alias = "gdk_wayland_device_get_wl_seat")]
+    #[doc(alias = "get_wl_seat")]
+    pub fn wl_seat_raw(&self) -> Option<NonNull<c_void>> {
+        NonNull::new(unsafe { ffi::gdk_wayland_device_get_wl_seat(self.to_glib_none().0) })
     }
 
     #[doc(alias = "gdk_wayland_device_get_wl_seat")]
@@ -62,16 +72,12 @@ impl WaylandDevice {
     #[cfg_attr(docsrs, doc(cfg(feature = "wayland_crate")))]
     pub fn wl_seat(&self) -> Option<WlSeat> {
         let display = self.display().downcast::<crate::WaylandDisplay>().unwrap();
+        let ptr = self.wl_seat_raw()?;
         unsafe {
-            let seat_ptr = ffi::gdk_wayland_device_get_wl_seat(self.to_glib_none().0);
-            if seat_ptr.is_null() {
-                None
-            } else {
-                let cnx = display.connection();
-                let id = ObjectId::from_ptr(WlSeat::interface(), seat_ptr as *mut _).unwrap();
+            let cnx = display.connection();
+            let id = ObjectId::from_ptr(WlSeat::interface(), ptr.as_ptr() as *mut _).unwrap();
 
-                WlSeat::from_id(&cnx, id).ok()
-            }
+            WlSeat::from_id(&cnx, id).ok()
         }
     }
 }

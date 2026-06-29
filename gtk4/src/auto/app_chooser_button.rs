@@ -3,9 +3,12 @@
 // DO NOT EDIT
 #![allow(deprecated)]
 
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
+use crate::Accessible;
 use crate::{
-    Accessible, AccessibleRole, Align, AppChooser, Buildable, ConstraintTarget, LayoutManager,
-    Overflow, Widget, ffi,
+    AccessibleRole, Align, AppChooser, Buildable, ConstraintTarget, LayoutManager, Overflow,
+    Widget, ffi,
 };
 use glib::{
     object::ObjectType as _,
@@ -15,9 +18,21 @@ use glib::{
 };
 use std::boxed::Box as Box_;
 
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 glib::wrapper! {
     #[doc(alias = "GtkAppChooserButton")]
     pub struct AppChooserButton(Object<ffi::GtkAppChooserButton>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, AppChooser;
+
+    match fn {
+        type_ => || ffi::gtk_app_chooser_button_get_type(),
+    }
+}
+
+#[cfg(not(feature = "v4_10"))]
+glib::wrapper! {
+    #[doc(alias = "GtkAppChooserButton")]
+    pub struct AppChooserButton(Object<ffi::GtkAppChooserButton>) @extends Widget, @implements Buildable, ConstraintTarget, AppChooser;
 
     match fn {
         type_ => || ffi::gtk_app_chooser_button_get_type(),

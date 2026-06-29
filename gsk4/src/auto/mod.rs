@@ -269,6 +269,12 @@ pub use self::enums::PorterDuff;
 pub use self::enums::RenderNodeType;
 pub use self::enums::ScalingFilter;
 pub use self::enums::SerializationError;
+#[cfg(feature = "v4_24")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+pub use self::enums::Side;
+#[cfg(feature = "v4_24")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+pub use self::enums::SnapDirection;
 pub use self::enums::TransformCategory;
 
 mod flags;
@@ -278,6 +284,8 @@ pub use self::flags::Isolation;
 #[cfg(feature = "v4_14")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
 pub use self::flags::PathForeachFlags;
+
+pub(crate) mod functions;
 
 pub(crate) mod traits {
     pub use super::renderer::GskRendererExt;

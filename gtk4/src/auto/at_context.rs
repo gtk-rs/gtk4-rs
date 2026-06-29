@@ -2,7 +2,10 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::{Accessible, AccessibleRole, ffi};
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
+use crate::Accessible;
+use crate::{AccessibleRole, ffi};
 use glib::{
     object::ObjectType as _,
     prelude::*,
@@ -21,6 +24,8 @@ glib::wrapper! {
 }
 
 impl ATContext {
+    #[cfg(feature = "v4_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "gtk_at_context_create")]
     pub fn create(
         accessible_role: AccessibleRole,
@@ -37,6 +42,8 @@ impl ATContext {
         }
     }
 
+    #[cfg(feature = "v4_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "gtk_at_context_get_accessible")]
     #[doc(alias = "get_accessible")]
     pub fn accessible(&self) -> Accessible {

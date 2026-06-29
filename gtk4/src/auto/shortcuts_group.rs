@@ -3,12 +3,15 @@
 // DO NOT EDIT
 #![allow(deprecated)]
 
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
+use crate::Accessible;
 #[cfg(feature = "v4_14")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
 use crate::ShortcutsShortcut;
 use crate::{
-    Accessible, AccessibleRole, Align, BaselinePosition, Box, Buildable, ConstraintTarget,
-    LayoutManager, Orientable, Orientation, Overflow, SizeGroup, Widget, ffi,
+    AccessibleRole, Align, BaselinePosition, Box, Buildable, ConstraintTarget, LayoutManager,
+    Orientable, Orientation, Overflow, SizeGroup, Widget, ffi,
 };
 use glib::{
     prelude::*,
@@ -17,9 +20,21 @@ use glib::{
 };
 use std::boxed::Box as Box_;
 
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 glib::wrapper! {
     #[doc(alias = "GtkShortcutsGroup")]
     pub struct ShortcutsGroup(Object<ffi::GtkShortcutsGroup, ffi::GtkShortcutsGroupClass>) @extends Box, Widget, @implements Accessible, Buildable, ConstraintTarget, Orientable;
+
+    match fn {
+        type_ => || ffi::gtk_shortcuts_group_get_type(),
+    }
+}
+
+#[cfg(not(feature = "v4_10"))]
+glib::wrapper! {
+    #[doc(alias = "GtkShortcutsGroup")]
+    pub struct ShortcutsGroup(Object<ffi::GtkShortcutsGroup, ffi::GtkShortcutsGroupClass>) @extends Box, Widget, @implements Buildable, ConstraintTarget, Orientable;
 
     match fn {
         type_ => || ffi::gtk_shortcuts_group_get_type(),

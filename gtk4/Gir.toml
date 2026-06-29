@@ -49,7 +49,6 @@ generate = [
     "Gtk.ArrowType",
     "Gtk.AspectFrame",
     "Gtk.AssistantPageType",
-    "Gtk.ATContext",
     "Gtk.BaselinePosition",
     "Gtk.BinLayout",
     "Gtk.Bitset",
@@ -105,6 +104,7 @@ generate = [
     "Gtk.EditableProperties",
     "Gtk.EmojiChooser",
     "Gtk.EntryIconPosition",
+    "Gtk.EnumListItem",
     "Gtk.EventControllerFocus",
     "Gtk.EventControllerMotion",
     "Gtk.EventControllerScrollFlags",
@@ -380,6 +380,7 @@ manual = [
     "Gsk.MaskNode",
     "Gsk.Path",
     "Gsk.PorterDuff",
+    "Gsk.RectSnap",
     "Gsk.Renderer",
     "Gsk.RenderNode",
     "Gsk.RoundedRect",
@@ -675,6 +676,13 @@ status = "generate"
 name = "Gtk.AssistantPage"
 status = "generate"
 generate_builder = false
+
+[[object]]
+name = "Gtk.ATContext"
+status = "generate"
+    [[object.property]]
+    name = "accessible"
+    generate = []
 
 [[object]]
 name = "Gtk.BookmarkList"
@@ -1191,6 +1199,14 @@ status = "generate"
     name = "get_entry"
     rename = "entry"
     manual = true # upcast to Entry
+
+[[object]]
+name = "Gtk.EnumList"
+status = "generate"
+generate_builder = false
+    [[object.property]]
+    pattern = "(n-items|item-type)"
+    generate = [] # disable generated getter/notify, use the ones from GListModel iface
 
 [[object]]
 name = "Gtk.EventController"
@@ -2070,6 +2086,9 @@ manual_traits = ["ShortcutTriggerExtManual"]
     name = "compare"
     manual = true # complains about the trait IsA<T> being so generic
     doc_trait_name = "ShortcutTriggerExtManual"
+    [[object.function]]
+    name = "create_with_aliases"
+    manual = true # to make use of gdk::Key
 
 [[object]]
 name = "Gtk.SignalAction"
@@ -2109,6 +2128,9 @@ final_type = false
 manual_traits = ["SnapshotExtManual"]
     [[object.function]]
     name = "append_border"
+    manual = true
+    [[object.function]]
+    name = "set_snap"
     manual = true
     [[object.function]]
     name = "push_debug"
@@ -2719,6 +2741,13 @@ status = "generate"
     [[object.function]]
     name = "new_with_attributes"
     rename = "with_attributes"
+    manual = true
+
+[[object]]
+name = "Gtk.TryExpression"
+status = "generate"
+    [[object.function]]
+    name = "new"
     manual = true
 
 [[object]]

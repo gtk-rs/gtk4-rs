@@ -25,6 +25,23 @@ impl Key {
         }
     }
 
+    #[cfg(feature = "v4_24")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+    #[doc(alias = "gdk_keyval_get_aliases")]
+    pub fn aliases(&self) -> &[Key] {
+        assert_initialized_main_thread!();
+        unsafe {
+            let mut n_aliases = std::mem::MaybeUninit::uninit();
+            let ret = ffi::gdk_keyval_get_aliases(self.into_glib(), n_aliases.as_mut_ptr());
+            let n_aliases = n_aliases.assume_init() as _;
+            if n_aliases == 0 || ret.is_null() {
+                &[]
+            } else {
+                std::slice::from_raw_parts(ret as *const _, n_aliases)
+            }
+        }
+    }
+
     #[doc(alias = "gdk_keyval_convert_case")]
     pub fn convert_case(&self) -> (Self, Self) {
         assert_initialized_main_thread!();

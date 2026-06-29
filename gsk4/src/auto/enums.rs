@@ -1492,6 +1492,10 @@ pub enum RenderNodeType {
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
     #[doc(alias = "GSK_ARITHMETIC_NODE")]
     ArithmeticNode,
+    #[cfg(feature = "v4_24")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+    #[doc(alias = "GSK_TURBULENCE_NODE")]
+    TurbulenceNode,
     #[doc(hidden)]
     __Unknown(i32),
 }
@@ -1552,6 +1556,8 @@ impl IntoGlib for RenderNodeType {
             Self::DisplacementNode => ffi::GSK_DISPLACEMENT_NODE,
             #[cfg(feature = "v4_22")]
             Self::ArithmeticNode => ffi::GSK_ARITHMETIC_NODE,
+            #[cfg(feature = "v4_24")]
+            Self::TurbulenceNode => ffi::GSK_TURBULENCE_NODE,
             Self::__Unknown(value) => value,
         }
     }
@@ -1613,6 +1619,8 @@ impl FromGlib<ffi::GskRenderNodeType> for RenderNodeType {
             ffi::GSK_DISPLACEMENT_NODE => Self::DisplacementNode,
             #[cfg(feature = "v4_22")]
             ffi::GSK_ARITHMETIC_NODE => Self::ArithmeticNode,
+            #[cfg(feature = "v4_24")]
+            ffi::GSK_TURBULENCE_NODE => Self::TurbulenceNode,
             value => Self::__Unknown(value),
         }
     }
@@ -1892,6 +1900,250 @@ impl ToValue for SerializationError {
 impl From<SerializationError> for glib::Value {
     #[inline]
     fn from(v: SerializationError) -> Self {
+        skip_assert_initialized!();
+        ToValue::to_value(&v)
+    }
+}
+
+#[cfg(feature = "v4_24")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
+#[doc(alias = "GskSide")]
+pub enum Side {
+    #[doc(alias = "GSK_SIDE_TOP")]
+    Top,
+    #[doc(alias = "GSK_SIDE_RIGHT")]
+    Right,
+    #[doc(alias = "GSK_SIDE_BOTTOM")]
+    Bottom,
+    #[doc(alias = "GSK_SIDE_LEFT")]
+    Left,
+    #[doc(hidden)]
+    __Unknown(i32),
+}
+
+#[cfg(feature = "v4_24")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+#[doc(hidden)]
+impl IntoGlib for Side {
+    type GlibType = ffi::GskSide;
+
+    #[inline]
+    fn into_glib(self) -> ffi::GskSide {
+        match self {
+            Self::Top => ffi::GSK_SIDE_TOP,
+            Self::Right => ffi::GSK_SIDE_RIGHT,
+            Self::Bottom => ffi::GSK_SIDE_BOTTOM,
+            Self::Left => ffi::GSK_SIDE_LEFT,
+            Self::__Unknown(value) => value,
+        }
+    }
+}
+
+#[cfg(feature = "v4_24")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+#[doc(hidden)]
+impl FromGlib<ffi::GskSide> for Side {
+    #[inline]
+    unsafe fn from_glib(value: ffi::GskSide) -> Self {
+        skip_assert_initialized!();
+
+        match value {
+            ffi::GSK_SIDE_TOP => Self::Top,
+            ffi::GSK_SIDE_RIGHT => Self::Right,
+            ffi::GSK_SIDE_BOTTOM => Self::Bottom,
+            ffi::GSK_SIDE_LEFT => Self::Left,
+            value => Self::__Unknown(value),
+        }
+    }
+}
+
+#[cfg(feature = "v4_24")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+impl StaticType for Side {
+    #[inline]
+    #[doc(alias = "gsk_side_get_type")]
+    fn static_type() -> glib::Type {
+        unsafe { from_glib(ffi::gsk_side_get_type()) }
+    }
+}
+
+#[cfg(feature = "v4_24")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+impl glib::HasParamSpec for Side {
+    type ParamSpec = glib::ParamSpecEnum;
+    type SetValue = Self;
+    type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
+
+    fn param_spec_builder() -> Self::BuilderFn {
+        Self::ParamSpec::builder_with_default
+    }
+}
+
+#[cfg(feature = "v4_24")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+impl glib::value::ValueType for Side {
+    type Type = Self;
+}
+
+#[cfg(feature = "v4_24")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+unsafe impl<'a> glib::value::FromValue<'a> for Side {
+    type Checker = glib::value::GenericValueTypeChecker<Self>;
+
+    #[inline]
+    unsafe fn from_value(value: &'a glib::Value) -> Self {
+        skip_assert_initialized!();
+        unsafe { from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0)) }
+    }
+}
+
+#[cfg(feature = "v4_24")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+impl ToValue for Side {
+    #[inline]
+    fn to_value(&self) -> glib::Value {
+        let mut value = glib::Value::for_value_type::<Self>();
+        unsafe {
+            glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
+        }
+        value
+    }
+
+    #[inline]
+    fn value_type(&self) -> glib::Type {
+        Self::static_type()
+    }
+}
+
+#[cfg(feature = "v4_24")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+impl From<Side> for glib::Value {
+    #[inline]
+    fn from(v: Side) -> Self {
+        skip_assert_initialized!();
+        ToValue::to_value(&v)
+    }
+}
+
+#[cfg(feature = "v4_24")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
+#[doc(alias = "GskSnapDirection")]
+pub enum SnapDirection {
+    #[doc(alias = "GSK_SNAP_NONE")]
+    None,
+    #[doc(alias = "GSK_SNAP_FLOOR")]
+    Floor,
+    #[doc(alias = "GSK_SNAP_CEIL")]
+    Ceil,
+    #[doc(alias = "GSK_SNAP_ROUND")]
+    Round,
+    #[doc(hidden)]
+    __Unknown(i32),
+}
+
+#[cfg(feature = "v4_24")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+#[doc(hidden)]
+impl IntoGlib for SnapDirection {
+    type GlibType = ffi::GskSnapDirection;
+
+    #[inline]
+    fn into_glib(self) -> ffi::GskSnapDirection {
+        match self {
+            Self::None => ffi::GSK_SNAP_NONE,
+            Self::Floor => ffi::GSK_SNAP_FLOOR,
+            Self::Ceil => ffi::GSK_SNAP_CEIL,
+            Self::Round => ffi::GSK_SNAP_ROUND,
+            Self::__Unknown(value) => value,
+        }
+    }
+}
+
+#[cfg(feature = "v4_24")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+#[doc(hidden)]
+impl FromGlib<ffi::GskSnapDirection> for SnapDirection {
+    #[inline]
+    unsafe fn from_glib(value: ffi::GskSnapDirection) -> Self {
+        skip_assert_initialized!();
+
+        match value {
+            ffi::GSK_SNAP_NONE => Self::None,
+            ffi::GSK_SNAP_FLOOR => Self::Floor,
+            ffi::GSK_SNAP_CEIL => Self::Ceil,
+            ffi::GSK_SNAP_ROUND => Self::Round,
+            value => Self::__Unknown(value),
+        }
+    }
+}
+
+#[cfg(feature = "v4_24")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+impl StaticType for SnapDirection {
+    #[inline]
+    #[doc(alias = "gsk_snap_direction_get_type")]
+    fn static_type() -> glib::Type {
+        unsafe { from_glib(ffi::gsk_snap_direction_get_type()) }
+    }
+}
+
+#[cfg(feature = "v4_24")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+impl glib::HasParamSpec for SnapDirection {
+    type ParamSpec = glib::ParamSpecEnum;
+    type SetValue = Self;
+    type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
+
+    fn param_spec_builder() -> Self::BuilderFn {
+        Self::ParamSpec::builder_with_default
+    }
+}
+
+#[cfg(feature = "v4_24")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+impl glib::value::ValueType for SnapDirection {
+    type Type = Self;
+}
+
+#[cfg(feature = "v4_24")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+unsafe impl<'a> glib::value::FromValue<'a> for SnapDirection {
+    type Checker = glib::value::GenericValueTypeChecker<Self>;
+
+    #[inline]
+    unsafe fn from_value(value: &'a glib::Value) -> Self {
+        skip_assert_initialized!();
+        unsafe { from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0)) }
+    }
+}
+
+#[cfg(feature = "v4_24")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+impl ToValue for SnapDirection {
+    #[inline]
+    fn to_value(&self) -> glib::Value {
+        let mut value = glib::Value::for_value_type::<Self>();
+        unsafe {
+            glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
+        }
+        value
+    }
+
+    #[inline]
+    fn value_type(&self) -> glib::Type {
+        Self::static_type()
+    }
+}
+
+#[cfg(feature = "v4_24")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+impl From<SnapDirection> for glib::Value {
+    #[inline]
+    fn from(v: SnapDirection) -> Self {
         skip_assert_initialized!();
         ToValue::to_value(&v)
     }

@@ -2,9 +2,12 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
+use crate::Accessible;
 use crate::{
-    Accessible, AccessibleRole, Align, ArrowType, Buildable, ConstraintTarget, LayoutManager,
-    Overflow, Popover, Widget, ffi,
+    AccessibleRole, Align, ArrowType, Buildable, ConstraintTarget, LayoutManager, Overflow,
+    Popover, Widget, ffi,
 };
 #[cfg(feature = "v4_4")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
@@ -16,9 +19,21 @@ use glib::{
 };
 use std::boxed::Box as Box_;
 
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 glib::wrapper! {
     #[doc(alias = "GtkMenuButton")]
     pub struct MenuButton(Object<ffi::GtkMenuButton>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
+
+    match fn {
+        type_ => || ffi::gtk_menu_button_get_type(),
+    }
+}
+
+#[cfg(not(feature = "v4_10"))]
+glib::wrapper! {
+    #[doc(alias = "GtkMenuButton")]
+    pub struct MenuButton(Object<ffi::GtkMenuButton>) @extends Widget, @implements Buildable, ConstraintTarget;
 
     match fn {
         type_ => || ffi::gtk_menu_button_get_type(),

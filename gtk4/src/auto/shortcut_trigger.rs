@@ -26,6 +26,14 @@ impl ShortcutTrigger {
             ))
         }
     }
+
+    #[cfg(feature = "v4_24")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+    #[doc(alias = "gtk_shortcut_trigger_create_for_menu")]
+    pub fn create_for_menu() -> ShortcutTrigger {
+        assert_initialized_main_thread!();
+        unsafe { from_glib_full(ffi::gtk_shortcut_trigger_create_for_menu()) }
+    }
 }
 
 impl std::fmt::Display for ShortcutTrigger {

@@ -4,10 +4,8 @@
 
 #[cfg(feature = "v4_10")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
-use crate::AccessibleRange;
-use crate::{
-    Accessible, Adjustment, Buildable, ConstraintTarget, Orientable, ScrollType, Widget, ffi,
-};
+use crate::{Accessible, AccessibleRange};
+use crate::{Adjustment, Buildable, ConstraintTarget, Orientable, ScrollType, Widget, ffi};
 use glib::{
     object::ObjectType as _,
     prelude::*,
@@ -30,7 +28,7 @@ glib::wrapper! {
 #[cfg(not(feature = "v4_10"))]
 glib::wrapper! {
     #[doc(alias = "GtkRange")]
-    pub struct Range(Object<ffi::GtkRange, ffi::GtkRangeClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Orientable;
+    pub struct Range(Object<ffi::GtkRange, ffi::GtkRangeClass>) @extends Widget, @implements Buildable, ConstraintTarget, Orientable;
 
     match fn {
         type_ => || ffi::gtk_range_get_type(),

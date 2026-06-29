@@ -2,9 +2,12 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
+use crate::Accessible;
 use crate::{
-    Accessible, AccessibleRole, Align, Buildable, ConstraintTarget, Editable, LayoutManager,
-    Overflow, Widget, ffi,
+    AccessibleRole, Align, Buildable, ConstraintTarget, Editable, LayoutManager, Overflow, Widget,
+    ffi,
 };
 #[cfg(feature = "v4_14")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
@@ -17,9 +20,21 @@ use glib::{
 };
 use std::boxed::Box as Box_;
 
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 glib::wrapper! {
     #[doc(alias = "GtkSearchEntry")]
     pub struct SearchEntry(Object<ffi::GtkSearchEntry>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Editable;
+
+    match fn {
+        type_ => || ffi::gtk_search_entry_get_type(),
+    }
+}
+
+#[cfg(not(feature = "v4_10"))]
+glib::wrapper! {
+    #[doc(alias = "GtkSearchEntry")]
+    pub struct SearchEntry(Object<ffi::GtkSearchEntry>) @extends Widget, @implements Buildable, ConstraintTarget, Editable;
 
     match fn {
         type_ => || ffi::gtk_search_entry_get_type(),

@@ -3033,6 +3033,7 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(guint) GTK_DEBUG_BUILDER_TRACE", "128"),
     ("(guint) GTK_DEBUG_CONSTRAINTS", "32768"),
     ("(guint) GTK_DEBUG_CSS", "1048576"),
+    ("(guint) GTK_DEBUG_GENERAL_INFO", "8388608"),
     ("(guint) GTK_DEBUG_GEOMETRY", "16"),
     ("(guint) GTK_DEBUG_ICONFALLBACK", "262144"),
     ("(guint) GTK_DEBUG_ICONTHEME", "32"),

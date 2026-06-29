@@ -3,9 +3,12 @@
 // DO NOT EDIT
 #![allow(deprecated)]
 
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
+use crate::Accessible;
 use crate::{
-    Accessible, AccessibleRole, Align, Buildable, CellEditable, CellLayout, ConstraintTarget,
-    LayoutManager, Overflow, ScrollType, SensitivityType, TreeIter, TreeModel, Widget, ffi,
+    AccessibleRole, Align, Buildable, CellEditable, CellLayout, ConstraintTarget, LayoutManager,
+    Overflow, ScrollType, SensitivityType, TreeIter, TreeModel, Widget, ffi,
 };
 use glib::{
     object::ObjectType as _,
@@ -15,9 +18,21 @@ use glib::{
 };
 use std::boxed::Box as Box_;
 
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 glib::wrapper! {
     #[doc(alias = "GtkComboBox")]
     pub struct ComboBox(Object<ffi::GtkComboBox, ffi::GtkComboBoxClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, CellEditable, CellLayout;
+
+    match fn {
+        type_ => || ffi::gtk_combo_box_get_type(),
+    }
+}
+
+#[cfg(not(feature = "v4_10"))]
+glib::wrapper! {
+    #[doc(alias = "GtkComboBox")]
+    pub struct ComboBox(Object<ffi::GtkComboBox, ffi::GtkComboBoxClass>) @extends Widget, @implements Buildable, ConstraintTarget, CellEditable, CellLayout;
 
     match fn {
         type_ => || ffi::gtk_combo_box_get_type(),

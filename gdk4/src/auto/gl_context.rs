@@ -238,6 +238,8 @@ pub trait GLContextExt: IsA<GLContext> + 'static {
         }
     }
 
+    #[cfg_attr(feature = "v4_6", deprecated = "Since 4.6")]
+    #[allow(deprecated)]
     #[doc(alias = "gdk_gl_context_set_use_es")]
     fn set_use_es(&self, use_es: i32) {
         unsafe {

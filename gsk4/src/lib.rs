@@ -47,6 +47,9 @@ mod clip_node;
 mod color_matrix_node;
 mod color_node;
 mod color_stop;
+#[cfg(feature = "v4_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
+mod component_transfer_node;
 #[cfg(feature = "v4_22")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
 mod composite_node;
@@ -89,6 +92,12 @@ mod path_builder;
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
 mod path_point;
 mod radial_gradient_node;
+#[cfg(feature = "v4_24")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+mod rect_snap;
+#[cfg(feature = "v4_24")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+pub use rect_snap::RectSnap;
 mod repeat_node;
 mod repeating_linear_gradient_node;
 mod repeating_radial_gradient_node;

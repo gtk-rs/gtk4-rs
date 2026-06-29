@@ -3,9 +3,12 @@
 // DO NOT EDIT
 #![allow(deprecated)]
 
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
+use crate::Accessible;
 use crate::{
-    Accessible, AccessibleRole, Align, Buildable, Button, ConstraintTarget, LayoutManager,
-    MessageType, Overflow, ResponseType, Widget, ffi,
+    AccessibleRole, Align, Buildable, Button, ConstraintTarget, LayoutManager, MessageType,
+    Overflow, ResponseType, Widget, ffi,
 };
 use glib::{
     object::ObjectType as _,
@@ -15,9 +18,21 @@ use glib::{
 };
 use std::boxed::Box as Box_;
 
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 glib::wrapper! {
     #[doc(alias = "GtkInfoBar")]
     pub struct InfoBar(Object<ffi::GtkInfoBar>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
+
+    match fn {
+        type_ => || ffi::gtk_info_bar_get_type(),
+    }
+}
+
+#[cfg(not(feature = "v4_10"))]
+glib::wrapper! {
+    #[doc(alias = "GtkInfoBar")]
+    pub struct InfoBar(Object<ffi::GtkInfoBar>) @extends Widget, @implements Buildable, ConstraintTarget;
 
     match fn {
         type_ => || ffi::gtk_info_bar_get_type(),

@@ -23,5 +23,10 @@
         </child>
       </object>
     </child>
+    <items>
+      <item>Tag 1</item>
+      <item>Tag 2</item>
+      <item>Tag 3</item>
+    </items>
   </template>
 </interface>

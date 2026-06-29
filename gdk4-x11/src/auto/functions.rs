@@ -37,6 +37,8 @@ pub fn x11_get_server_time(surface: &X11Surface) -> u32 {
     unsafe { ffi::gdk_x11_get_server_time(surface.to_glib_none().0) }
 }
 
+#[cfg_attr(feature = "v4_18", deprecated = "Since 4.18")]
+#[allow(deprecated)]
 #[doc(alias = "gdk_x11_set_sm_client_id")]
 pub fn x11_set_sm_client_id(sm_client_id: Option<&str>) {
     assert_initialized_main_thread!();

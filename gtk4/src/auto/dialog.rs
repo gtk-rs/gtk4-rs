@@ -3,12 +3,15 @@
 // DO NOT EDIT
 #![allow(deprecated)]
 
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
+use crate::Accessible;
 #[cfg(feature = "v4_20")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
 use crate::WindowGravity;
 use crate::{
-    Accessible, AccessibleRole, Align, Application, Box, Buildable, ConstraintTarget, HeaderBar,
-    LayoutManager, Native, Overflow, ResponseType, Root, ShortcutManager, Widget, Window, ffi,
+    AccessibleRole, Align, Application, Box, Buildable, ConstraintTarget, HeaderBar, LayoutManager,
+    Native, Overflow, ResponseType, Root, ShortcutManager, Widget, Window, ffi,
 };
 use glib::{
     object::ObjectType as _,
@@ -18,9 +21,21 @@ use glib::{
 };
 use std::boxed::Box as Box_;
 
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 glib::wrapper! {
     #[doc(alias = "GtkDialog")]
     pub struct Dialog(Object<ffi::GtkDialog, ffi::GtkDialogClass>) @extends Window, Widget, @implements Accessible, Buildable, ConstraintTarget, Native, Root, ShortcutManager;
+
+    match fn {
+        type_ => || ffi::gtk_dialog_get_type(),
+    }
+}
+
+#[cfg(not(feature = "v4_10"))]
+glib::wrapper! {
+    #[doc(alias = "GtkDialog")]
+    pub struct Dialog(Object<ffi::GtkDialog, ffi::GtkDialogClass>) @extends Window, Widget, @implements Buildable, ConstraintTarget, Native, Root, ShortcutManager;
 
     match fn {
         type_ => || ffi::gtk_dialog_get_type(),
