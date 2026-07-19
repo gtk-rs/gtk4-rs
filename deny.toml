@@ -26,6 +26,8 @@ multiple-versions = "deny"
 wildcards = "allow"
 highlight = "all"
 skip = [
+    {name = "quick-xml", version = "0.39.4"},
+    {name = "syn", version = "2.0.119"},
 ]
 
 [sources]
