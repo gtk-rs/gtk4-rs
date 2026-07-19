@@ -22,7 +22,7 @@ use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GdkDisplay")]
-    pub struct Display(Object<ffi::GdkDisplay>);
+    pub struct Display(Object<ffi::GdkDisplay, ffi::GdkDisplayClass>);
 
     match fn {
         type_ => || ffi::gdk_display_get_type(),

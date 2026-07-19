@@ -13,7 +13,7 @@ use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GdkDevice")]
-    pub struct Device(Object<ffi::GdkDevice>);
+    pub struct Device(Object<ffi::GdkDevice, ffi::GdkDeviceClass>);
 
     match fn {
         type_ => || ffi::gdk_device_get_type(),

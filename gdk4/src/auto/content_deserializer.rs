@@ -7,7 +7,7 @@ use glib::translate::*;
 
 glib::wrapper! {
     #[doc(alias = "GdkContentDeserializer")]
-    pub struct ContentDeserializer(Object<ffi::GdkContentDeserializer>);
+    pub struct ContentDeserializer(Object<ffi::GdkContentDeserializer, ffi::GdkContentDeserializerClass>);
 
     match fn {
         type_ => || ffi::gdk_content_deserializer_get_type(),

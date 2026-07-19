@@ -15,7 +15,7 @@ use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GdkDrag")]
-    pub struct Drag(Object<ffi::GdkDrag>);
+    pub struct Drag(Object<ffi::GdkDrag, ffi::GdkDragClass>);
 
     match fn {
         type_ => || ffi::gdk_drag_get_type(),

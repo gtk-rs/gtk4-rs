@@ -8,7 +8,7 @@ use glib::{prelude::*, translate::*};
 
 glib::wrapper! {
     #[doc(alias = "GdkDrawContext")]
-    pub struct DrawContext(Object<ffi::GdkDrawContext>);
+    pub struct DrawContext(Object<ffi::GdkDrawContext, ffi::GdkDrawContextClass>);
 
     match fn {
         type_ => || ffi::gdk_draw_context_get_type(),

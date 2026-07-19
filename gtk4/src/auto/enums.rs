@@ -4170,6 +4170,8 @@ pub enum EditableProperties {
     PropEnableUndo,
     #[doc(alias = "GTK_EDITABLE_PROP_COMPLETE_TEXT")]
     PropCompleteText,
+    #[doc(alias = "GTK_EDITABLE_PROP_INPUT_INTERCEPTOR")]
+    PropInputInterceptor,
     #[doc(alias = "GTK_EDITABLE_NUM_PROPERTIES")]
     NumProperties,
     #[doc(hidden)]
@@ -4192,6 +4194,7 @@ impl IntoGlib for EditableProperties {
             Self::PropXalign => ffi::GTK_EDITABLE_PROP_XALIGN,
             Self::PropEnableUndo => ffi::GTK_EDITABLE_PROP_ENABLE_UNDO,
             Self::PropCompleteText => ffi::GTK_EDITABLE_PROP_COMPLETE_TEXT,
+            Self::PropInputInterceptor => ffi::GTK_EDITABLE_PROP_INPUT_INTERCEPTOR,
             Self::NumProperties => ffi::GTK_EDITABLE_NUM_PROPERTIES,
             Self::__Unknown(value) => value,
         }
@@ -4214,6 +4217,7 @@ impl FromGlib<ffi::GtkEditableProperties> for EditableProperties {
             ffi::GTK_EDITABLE_PROP_XALIGN => Self::PropXalign,
             ffi::GTK_EDITABLE_PROP_ENABLE_UNDO => Self::PropEnableUndo,
             ffi::GTK_EDITABLE_PROP_COMPLETE_TEXT => Self::PropCompleteText,
+            ffi::GTK_EDITABLE_PROP_INPUT_INTERCEPTOR => Self::PropInputInterceptor,
             ffi::GTK_EDITABLE_NUM_PROPERTIES => Self::NumProperties,
             value => Self::__Unknown(value),
         }

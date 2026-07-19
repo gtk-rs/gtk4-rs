@@ -52,4 +52,12 @@ impl FrameTimings {
     pub fn refresh_interval(&self) -> i64 {
         unsafe { ffi::gdk_frame_timings_get_refresh_interval(self.to_glib_none().0) }
     }
+
+    //#[cfg(feature = "v4_24")]
+    //#[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+    //#[doc(alias = "gdk_frame_timings_get_result")]
+    //#[doc(alias = "get_result")]
+    //pub fn result(&self) -> /*Ignored*/FrameResult {
+    //    unsafe { TODO: call ffi:gdk_frame_timings_get_result() }
+    //}
 }
