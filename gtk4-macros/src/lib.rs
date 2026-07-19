@@ -66,7 +66,7 @@ pub fn include_blueprint(input: TokenStream) -> TokenStream {
     if !path.exists() {
         return Error::new(
             Span::call_site(),
-            format!("{} not found", &path.to_string_lossy()),
+            format!("{} not found", path.to_string_lossy()),
         )
         .into_compile_error()
         .into();
