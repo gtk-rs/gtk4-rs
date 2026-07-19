@@ -1189,6 +1189,16 @@ impl TextBuilder {
         }
     }
 
+    #[cfg(feature = "v4_24")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+    pub fn input_interceptor(self, input_interceptor: &impl IsA<Widget>) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("input-interceptor", input_interceptor.clone().upcast()),
+        }
+    }
+
     pub fn max_width_chars(self, max_width_chars: i32) -> Self {
         Self {
             builder: self.builder.property("max-width-chars", max_width_chars),

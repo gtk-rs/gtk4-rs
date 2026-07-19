@@ -13,7 +13,7 @@ use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GdkSeat")]
-    pub struct Seat(Object<ffi::GdkSeat>);
+    pub struct Seat(Object<ffi::GdkSeat, ffi::GdkSeatClass>);
 
     match fn {
         type_ => || ffi::gdk_seat_get_type(),

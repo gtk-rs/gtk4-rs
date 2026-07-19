@@ -404,6 +404,20 @@ impl Settings {
         )
     }
 
+    #[doc(alias = "gtk-keyboard-focus-visible-timeout")]
+    pub fn gtk_keyboard_focus_visible_timeout(&self) -> i32 {
+        ObjectExt::property(self, "gtk-keyboard-focus-visible-timeout")
+    }
+
+    #[doc(alias = "gtk-keyboard-focus-visible-timeout")]
+    pub fn set_gtk_keyboard_focus_visible_timeout(&self, gtk_keyboard_focus_visible_timeout: i32) {
+        ObjectExt::set_property(
+            self,
+            "gtk-keyboard-focus-visible-timeout",
+            gtk_keyboard_focus_visible_timeout,
+        )
+    }
+
     #[doc(alias = "gtk-keynav-use-caret")]
     pub fn is_gtk_keynav_use_caret(&self) -> bool {
         ObjectExt::property(self, "gtk-keynav-use-caret")
@@ -1578,6 +1592,36 @@ impl Settings {
         }
     }
 
+    #[doc(alias = "gtk-keyboard-focus-visible-timeout")]
+    pub fn connect_gtk_keyboard_focus_visible_timeout_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_gtk_keyboard_focus_visible_timeout_trampoline<
+            F: Fn(&Settings) + 'static,
+        >(
+            this: *mut ffi::GtkSettings,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(&from_glib_borrow(this))
+            }
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                c"notify::gtk-keyboard-focus-visible-timeout".as_ptr(),
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
+                    notify_gtk_keyboard_focus_visible_timeout_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
     #[doc(alias = "gtk-keynav-use-caret")]
     pub fn connect_gtk_keynav_use_caret_notify<F: Fn(&Self) + 'static>(
         &self,
@@ -2538,6 +2582,18 @@ impl SettingsBuilder {
             builder: self
                 .builder
                 .property("gtk-interface-reduced-motion", gtk_interface_reduced_motion),
+        }
+    }
+
+    pub fn gtk_keyboard_focus_visible_timeout(
+        self,
+        gtk_keyboard_focus_visible_timeout: i32,
+    ) -> Self {
+        Self {
+            builder: self.builder.property(
+                "gtk-keyboard-focus-visible-timeout",
+                gtk_keyboard_focus_visible_timeout,
+            ),
         }
     }
 

@@ -12,7 +12,7 @@ use std::{boxed::Box as Box_, pin::Pin};
 
 glib::wrapper! {
     #[doc(alias = "GdkDrop")]
-    pub struct Drop(Object<ffi::GdkDrop>);
+    pub struct Drop(Object<ffi::GdkDrop, ffi::GdkDropClass>);
 
     match fn {
         type_ => || ffi::gdk_drop_get_type(),

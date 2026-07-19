@@ -434,7 +434,8 @@ pub const GTK_EDITABLE_PROP_MAX_WIDTH_CHARS: GtkEditableProperties = 5;
 pub const GTK_EDITABLE_PROP_XALIGN: GtkEditableProperties = 6;
 pub const GTK_EDITABLE_PROP_ENABLE_UNDO: GtkEditableProperties = 7;
 pub const GTK_EDITABLE_PROP_COMPLETE_TEXT: GtkEditableProperties = 8;
-pub const GTK_EDITABLE_NUM_PROPERTIES: GtkEditableProperties = 9;
+pub const GTK_EDITABLE_PROP_INPUT_INTERCEPTOR: GtkEditableProperties = 9;
+pub const GTK_EDITABLE_NUM_PROPERTIES: GtkEditableProperties = 10;
 
 pub type GtkEntryIconPosition = c_int;
 pub const GTK_ENTRY_ICON_PRIMARY: GtkEntryIconPosition = 0;
@@ -15620,6 +15621,9 @@ unsafe extern "C" {
     ) -> gboolean;
     pub fn gtk_im_context_focus_in(context: *mut GtkIMContext);
     pub fn gtk_im_context_focus_out(context: *mut GtkIMContext);
+    #[cfg(feature = "v4_24")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+    pub fn gtk_im_context_get_client_widget(context: *mut GtkIMContext) -> *mut GtkWidget;
     pub fn gtk_im_context_get_preedit_string(
         context: *mut GtkIMContext,
         str: *mut *mut c_char,
@@ -21638,6 +21642,9 @@ unsafe extern "C" {
     pub fn gtk_editable_get_delegate(editable: *mut GtkEditable) -> *mut GtkEditable;
     pub fn gtk_editable_get_editable(editable: *mut GtkEditable) -> gboolean;
     pub fn gtk_editable_get_enable_undo(editable: *mut GtkEditable) -> gboolean;
+    #[cfg(feature = "v4_24")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+    pub fn gtk_editable_get_input_interceptor(editable: *mut GtkEditable) -> *mut GtkWidget;
     pub fn gtk_editable_get_max_width_chars(editable: *mut GtkEditable) -> c_int;
     pub fn gtk_editable_get_position(editable: *mut GtkEditable) -> c_int;
     pub fn gtk_editable_get_selection_bounds(
@@ -21658,6 +21665,12 @@ unsafe extern "C" {
     pub fn gtk_editable_set_alignment(editable: *mut GtkEditable, xalign: c_float);
     pub fn gtk_editable_set_editable(editable: *mut GtkEditable, is_editable: gboolean);
     pub fn gtk_editable_set_enable_undo(editable: *mut GtkEditable, enable_undo: gboolean);
+    #[cfg(feature = "v4_24")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+    pub fn gtk_editable_set_input_interceptor(
+        editable: *mut GtkEditable,
+        interceptor: *mut GtkWidget,
+    );
     pub fn gtk_editable_set_max_width_chars(editable: *mut GtkEditable, n_chars: c_int);
     pub fn gtk_editable_set_position(editable: *mut GtkEditable, position: c_int);
     pub fn gtk_editable_set_text(editable: *mut GtkEditable, text: *const c_char);

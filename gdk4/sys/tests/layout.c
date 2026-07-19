@@ -12,9 +12,12 @@ int main() {
     printf("%s;%zu;%zu\n", "GdkAxisUse", sizeof(GdkAxisUse), alignof(GdkAxisUse));
     printf("%s;%zu;%zu\n", "GdkCicpRange", sizeof(GdkCicpRange), alignof(GdkCicpRange));
     printf("%s;%zu;%zu\n", "GdkColorChannel", sizeof(GdkColorChannel), alignof(GdkColorChannel));
+    printf("%s;%zu;%zu\n", "GdkContentDeserializerClass", sizeof(GdkContentDeserializerClass), alignof(GdkContentDeserializerClass));
     printf("%s;%zu;%zu\n", "GdkContentProvider", sizeof(GdkContentProvider), alignof(GdkContentProvider));
     printf("%s;%zu;%zu\n", "GdkContentProviderClass", sizeof(GdkContentProviderClass), alignof(GdkContentProviderClass));
+    printf("%s;%zu;%zu\n", "GdkContentSerializerClass", sizeof(GdkContentSerializerClass), alignof(GdkContentSerializerClass));
     printf("%s;%zu;%zu\n", "GdkCrossingMode", sizeof(GdkCrossingMode), alignof(GdkCrossingMode));
+    printf("%s;%zu;%zu\n", "GdkCursorClass", sizeof(GdkCursorClass), alignof(GdkCursorClass));
     printf("%s;%zu;%zu\n", "GdkDevicePadFeature", sizeof(GdkDevicePadFeature), alignof(GdkDevicePadFeature));
     printf("%s;%zu;%zu\n", "GdkDeviceToolType", sizeof(GdkDeviceToolType), alignof(GdkDeviceToolType));
     printf("%s;%zu;%zu\n", "GdkDmabufError", sizeof(GdkDmabufError), alignof(GdkDmabufError));
@@ -22,6 +25,7 @@ int main() {
     printf("%s;%zu;%zu\n", "GdkDragCancelReason", sizeof(GdkDragCancelReason), alignof(GdkDragCancelReason));
     printf("%s;%zu;%zu\n", "GdkEventType", sizeof(GdkEventType), alignof(GdkEventType));
     printf("%s;%zu;%zu\n", "GdkFrameClockPhase", sizeof(GdkFrameClockPhase), alignof(GdkFrameClockPhase));
+    printf("%s;%zu;%zu\n", "GdkFrameResult", sizeof(GdkFrameResult), alignof(GdkFrameResult));
     printf("%s;%zu;%zu\n", "GdkFullscreenMode", sizeof(GdkFullscreenMode), alignof(GdkFullscreenMode));
     printf("%s;%zu;%zu\n", "GdkGLAPI", sizeof(GdkGLAPI), alignof(GdkGLAPI));
     printf("%s;%zu;%zu\n", "GdkGLError", sizeof(GdkGLError), alignof(GdkGLError));
