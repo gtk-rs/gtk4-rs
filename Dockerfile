@@ -12,7 +12,7 @@ RUN git clone https://gitlab.gnome.org/gnome/gtk.git --depth=1 && \
     (cd /gtk && \
         meson setup builddir --prefix=/usr --buildtype release -Dintrospection=enabled -Dbuild-examples=false -Dbuild-tests=false -Dmedia-gstreamer=disabled -Dlibepoxy:tests=false -Dbroadway-backend=true && \
         meson install -C builddir) && \
-    git clone https://gitlab.gnome.org/GNOME/libadwaita.git --depth=1 --branch libadwaita-1-8 && \
+    git clone https://gitlab.gnome.org/GNOME/libadwaita.git --depth=1 --branch libadwaita-1-9 && \
     (cd /libadwaita && \
         meson setup builddir --prefix=/usr --buildtype release -Dintrospection=disabled -Dvapi=false -Dexamples=false -Dtests=false && \
         meson install -C builddir) && \
