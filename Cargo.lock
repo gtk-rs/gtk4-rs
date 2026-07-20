@@ -169,7 +169,7 @@ source = "git+https://github.com/gtk-rs/gtk-rs-core?branch=main#3ccd745cb9e16297
 dependencies = [
  "glib-sys",
  "libc",
- "system-deps",
+ "system-deps 7.0.8",
 ]
 
 [[package]]
@@ -559,7 +559,7 @@ dependencies = [
  "glib-sys",
  "gobject-sys",
  "libc",
- "system-deps",
+ "system-deps 7.0.8",
 ]
 
 [[package]]
@@ -598,7 +598,7 @@ dependencies = [
  "glib-sys",
  "libc",
  "shell-words",
- "system-deps",
+ "system-deps 8.0.0",
  "tempfile",
 ]
 
@@ -615,7 +615,7 @@ dependencies = [
  "pango-sys",
  "pkg-config",
  "shell-words",
- "system-deps",
+ "system-deps 8.0.0",
  "tempfile",
 ]
 
@@ -642,7 +642,7 @@ dependencies = [
  "glib-sys",
  "libc",
  "shell-words",
- "system-deps",
+ "system-deps 8.0.0",
  "tempfile",
 ]
 
@@ -670,7 +670,7 @@ dependencies = [
  "glib-sys",
  "libc",
  "shell-words",
- "system-deps",
+ "system-deps 8.0.0",
  "tempfile",
 ]
 
@@ -696,7 +696,7 @@ dependencies = [
  "glib-sys",
  "libc",
  "shell-words",
- "system-deps",
+ "system-deps 8.0.0",
  "tempfile",
 ]
 
@@ -780,7 +780,7 @@ dependencies = [
  "glib-sys",
  "gobject-sys",
  "libc",
- "system-deps",
+ "system-deps 7.0.8",
  "windows-sys 0.61.2",
 ]
 
@@ -858,7 +858,7 @@ version = "0.23.0-alpha"
 source = "git+https://github.com/gtk-rs/gtk-rs-core?branch=main#3ccd745cb9e162972acff100db4d2eb44fa622d9"
 dependencies = [
  "libc",
- "system-deps",
+ "system-deps 7.0.8",
 ]
 
 [[package]]
@@ -899,7 +899,7 @@ source = "git+https://github.com/gtk-rs/gtk-rs-core?branch=main#3ccd745cb9e16297
 dependencies = [
  "glib-sys",
  "libc",
- "system-deps",
+ "system-deps 7.0.8",
 ]
 
 [[package]]
@@ -918,7 +918,7 @@ source = "git+https://github.com/gtk-rs/gtk-rs-core?branch=main#3ccd745cb9e16297
 dependencies = [
  "glib-sys",
  "libc",
- "system-deps",
+ "system-deps 7.0.8",
 ]
 
 [[package]]
@@ -947,7 +947,7 @@ dependencies = [
  "libc",
  "pango-sys",
  "shell-words",
- "system-deps",
+ "system-deps 8.0.0",
  "tempfile",
 ]
 
@@ -1020,7 +1020,7 @@ dependencies = [
  "libc",
  "pango-sys",
  "shell-words",
- "system-deps",
+ "system-deps 8.0.0",
  "tempfile",
 ]
 
@@ -1551,7 +1551,7 @@ dependencies = [
  "glib-sys",
  "gobject-sys",
  "libc",
- "system-deps",
+ "system-deps 7.0.8",
 ]
 
 [[package]]
@@ -2136,6 +2136,19 @@ name = "system-deps"
 version = "7.0.8"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "396a35feb67335377e0251fcbc1092fc85c484bd4e3a7a54319399da127796e7"
+dependencies = [
+ "cfg-expr",
+ "heck",
+ "pkg-config",
+ "toml",
+ "version-compare",
+]
+
+[[package]]
+name = "system-deps"
+version = "8.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "83779a5c956bcb6ba627a4ecf0a9d7625db47d7537e0892d97f712ac995648a3"
 dependencies = [
  "cfg-expr",
  "heck",
