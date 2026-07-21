@@ -179,10 +179,10 @@ pub fn impl_template_callbacks(mut input: syn::ItemImpl, args: Args) -> Result<T
                         let err_msg = format!(
                             "Wrong type for `self` in template callback `{ident}`: {{:?}}",
                         );
-                        if receiver.reference.is_none() {
+                        if !matches!(receiver.kind, syn::ReceiverKind::Reference(..)) {
                             Ok(Some(unwrap_value(quote! { #self_ty }, err_msg)))
                         } else {
-                            if receiver.mutability.is_some() {
+                            if matches!(receiver.kind, syn::ReceiverKind::Reference(_, _, Some(_))) {
                                 return Err(Error::new_spanned(receiver, "Receiver cannot be a mutable reference"));
                             }
                             let self_value_ty = quote! {
