@@ -95,6 +95,13 @@ impl TickCallbackId {
 /// This trait is implemented for `glib::Class<T>` for any `T: IsA<Widget>`
 /// (e.g., `Class<Widget>`, `Class<TextView>`, `Class<Button>`).
 ///
+/// Inside [`ObjectSubclass::class_init()`](glib::subclass::types::ObjectSubclass::class_init)
+/// the same methods are provided by
+/// [`WidgetClassExt`](crate::subclass::widget::WidgetClassExt), which is
+/// implemented for every [`ClassStruct`](glib::subclass::types::ClassStruct)
+/// whose type implements [`WidgetImpl`](crate::subclass::widget::WidgetImpl) --
+/// including user-defined class structs.
+///
 /// # Example
 ///
 /// ```no_run
