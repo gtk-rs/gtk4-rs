@@ -15,7 +15,7 @@ use glib::{
 
 use crate::{
     AccessibleRole, Buildable, BuilderRustScope, BuilderScope, ConstraintTarget, DirectionType,
-    LayoutManager, Orientation, SizeRequestMode, Snapshot, StateFlags, SystemSetting,
+    LayoutManager, Orientation, Shortcut, SizeRequestMode, Snapshot, StateFlags, SystemSetting,
     TextDirection, Tooltip, Widget, ffi, prelude::*, subclass::prelude::*,
 };
 
@@ -1077,6 +1077,12 @@ pub unsafe trait WidgetClassExt: ClassStruct {
         }
     }
 
+    #[doc(alias = "gtk_widget_class_query_action")]
+    fn query_action(&self) -> WidgetActionIter {
+        let widget_class = self as *const _ as *mut ffi::GtkWidgetClass;
+        WidgetActionIter::new(widget_class)
+    }
+
     #[doc(alias = "gtk_widget_class_set_template_scope")]
     fn set_template_scope<S: IsA<BuilderScope>>(&mut self, scope: &S) {
         unsafe {
@@ -1102,10 +1108,16 @@ pub unsafe trait WidgetClassExt: ClassStruct {
                 },
             )),
         );
-        unsafe {
-            let widget_class = self as *mut _ as *mut ffi::GtkWidgetClass;
-            ffi::gtk_widget_class_add_shortcut(widget_class, shortcut.to_glib_none().0);
-        }
+        self.add_shortcut(&shortcut);
+    }
+
+    #[doc(alias = "gtk_widget_class_add_binding_action")]
+    fn add_binding_action(&mut self, keyval: gdk::Key, mods: gdk::ModifierType, action_name: &str) {
+        let shortcut = crate::Shortcut::new(
+            Some(crate::KeyvalTrigger::new(keyval, mods)),
+            Some(crate::NamedAction::new(action_name)),
+        );
+        self.add_shortcut(&shortcut);
     }
 
     #[doc(alias = "gtk_widget_class_add_binding_signal")]
@@ -1120,9 +1132,40 @@ pub unsafe trait WidgetClassExt: ClassStruct {
             Some(crate::KeyvalTrigger::new(keyval, mods)),
             Some(crate::SignalAction::new(signal_name)),
         );
+        self.add_shortcut(&shortcut);
+    }
+
+    #[doc(alias = "gtk_widget_class_add_shortcut")]
+    fn add_shortcut(&mut self, shortcut: &Shortcut) {
         unsafe {
             let widget_class = self as *mut _ as *mut ffi::GtkWidgetClass;
             ffi::gtk_widget_class_add_shortcut(widget_class, shortcut.to_glib_none().0);
+        }
+    }
+
+    #[doc(alias = "gtk_widget_class_install_property_action")]
+    fn install_property_action(&mut self, action_name: &str, property_name: &str) {
+        unsafe {
+            let widget_class = self as *mut _ as *mut ffi::GtkWidgetClass;
+            ffi::gtk_widget_class_install_property_action(
+                widget_class,
+                action_name.to_glib_none().0,
+                property_name.to_glib_none().0,
+            );
+        }
+    }
+
+    #[doc(alias = "gtk_widget_class_get_activate_signal")]
+    #[doc(alias = "get_activate_signal")]
+    fn activate_signal(&self) -> Option<SignalId> {
+        unsafe {
+            let widget_class = self as *const _ as *mut ffi::GtkWidgetClass;
+            let signal_id = ffi::gtk_widget_class_get_activate_signal(widget_class);
+            if signal_id == 0 {
+                None
+            } else {
+                Some(from_glib(signal_id))
+            }
         }
     }
 
@@ -1162,6 +1205,15 @@ pub unsafe trait WidgetClassExt: ClassStruct {
         }
     }
 
+    #[doc(alias = "gtk_widget_class_get_layout_manager_type")]
+    #[doc(alias = "get_layout_manager_type")]
+    fn layout_manager_type(&self) -> glib::Type {
+        unsafe {
+            let widget_class = self as *const _ as *mut ffi::GtkWidgetClass;
+            from_glib(ffi::gtk_widget_class_get_layout_manager_type(widget_class))
+        }
+    }
+
     #[doc(alias = "gtk_widget_class_set_css_name")]
     fn set_css_name(&mut self, name: &str) {
         unsafe {
@@ -1170,11 +1222,29 @@ pub unsafe trait WidgetClassExt: ClassStruct {
         }
     }
 
+    #[doc(alias = "gtk_widget_class_get_css_name")]
+    #[doc(alias = "get_css_name")]
+    fn css_name(&self) -> glib::GString {
+        unsafe {
+            let widget_class = self as *const _ as *mut ffi::GtkWidgetClass;
+            from_glib_none(ffi::gtk_widget_class_get_css_name(widget_class))
+        }
+    }
+
     #[doc(alias = "gtk_widget_class_set_accessible_role")]
     fn set_accessible_role(&mut self, role: AccessibleRole) {
         unsafe {
             let widget_class = self as *mut _ as *mut ffi::GtkWidgetClass;
             ffi::gtk_widget_class_set_accessible_role(widget_class, role.into_glib());
+        }
+    }
+
+    #[doc(alias = "gtk_widget_class_get_accessible_role")]
+    #[doc(alias = "get_accessible_role")]
+    fn accessible_role(&self) -> AccessibleRole {
+        unsafe {
+            let widget_class = self as *const _ as *mut ffi::GtkWidgetClass;
+            from_glib(ffi::gtk_widget_class_get_accessible_role(widget_class))
         }
     }
 
@@ -1473,5 +1543,124 @@ impl<T: WidgetImpl + CompositeTemplate> CompositeTemplateDisposeExt for T {
                 <T as ObjectSubclass>::Type::static_type().into_glib(),
             );
         }
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use crate::{self as gtk4};
+
+    // Regression test for https://github.com/gtk-rs/gtk4-rs/issues/2345:
+    // widget class methods must stay callable on a custom `ClassStruct`, not
+    // only on `glib::Class<T>`.
+    mod imp {
+        use super::*;
+
+        #[derive(Default)]
+        pub struct CustomClassWidget;
+
+        #[glib::object_subclass]
+        impl ObjectSubclass for CustomClassWidget {
+            const NAME: &'static str = "GtkRsTestCustomClassWidget";
+            type Type = super::CustomClassWidget;
+            type ParentType = Widget;
+            type Class = super::CustomClassWidgetClass;
+
+            fn class_init(klass: &mut Self::Class) {
+                klass.set_css_name("gtkrstestcustomclasswidget");
+                klass.set_accessible_role(AccessibleRole::Group);
+                klass.set_layout_manager_type::<crate::BinLayout>();
+
+                klass.install_property_action("test.visible", "visible");
+                klass.add_binding_action(
+                    gdk::Key::a,
+                    gdk::ModifierType::CONTROL_MASK,
+                    "test.visible",
+                );
+                klass.add_shortcut(&crate::Shortcut::new(
+                    Some(crate::KeyvalTrigger::new(
+                        gdk::Key::b,
+                        gdk::ModifierType::CONTROL_MASK,
+                    )),
+                    Some(crate::NamedAction::new("test.visible")),
+                ));
+
+                // The `&self` getters must be callable on a custom class struct
+                // too. Deliberately no assertions here: a panic inside
+                // `class_init()` unwinds across an `extern "C"` boundary and
+                // aborts the whole test binary instead of reporting a single
+                // failed test. Every value below is read back and asserted on
+                // in the test body, where a failure is reported normally.
+                let _ = klass.css_name();
+                let _ = klass.accessible_role();
+                let _ = klass.layout_manager_type();
+                let _ = klass.activate_signal();
+                let _ = klass.query_action();
+            }
+        }
+
+        impl ObjectImpl for CustomClassWidget {}
+        impl WidgetImpl for CustomClassWidget {}
+    }
+
+    #[cfg(feature = "v4_10")]
+    glib::wrapper! {
+        pub struct CustomClassWidget(ObjectSubclass<imp::CustomClassWidget>)
+            @extends gtk4::Widget,
+            @implements gtk4::Accessible, gtk4::Buildable, gtk4::ConstraintTarget;
+    }
+
+    #[cfg(not(feature = "v4_10"))]
+    glib::wrapper! {
+        pub struct CustomClassWidget(ObjectSubclass<imp::CustomClassWidget>)
+            @extends gtk4::Widget,
+            @implements gtk4::Buildable, gtk4::ConstraintTarget;
+    }
+
+    // A user-defined class struct, i.e. *not* `glib::Class<Self>`. It
+    // deliberately has no `Deref` impl, so nothing can be reached through
+    // auto-deref.
+    #[repr(C)]
+    pub struct CustomClassWidgetClass {
+        pub parent_class: ffi::GtkWidgetClass,
+    }
+
+    unsafe impl ClassStruct for CustomClassWidgetClass {
+        type Type = imp::CustomClassWidget;
+    }
+
+    #[crate::test]
+    fn class_methods_on_custom_class_struct() {
+        // Instantiating runs `class_init()`, which is where the class methods
+        // are called on the custom class struct.
+        let widget = glib::Object::new::<CustomClassWidget>();
+
+        // Read the results back through `glib::Class<T>`, which is what
+        // https://github.com/gtk-rs/gtk4-rs/pull/2319 added. This checks both
+        // trait impls against the same `GtkWidgetClass`.
+        let class = widget.class();
+        assert_eq!(class.css_name(), "gtkrstestcustomclasswidget");
+        assert_eq!(class.accessible_role(), AccessibleRole::Group);
+        assert_eq!(class.layout_manager_type(), crate::BinLayout::static_type());
+        assert!(class.activate_signal().is_none());
+
+        // `query_action()` also enumerates actions inherited from parent
+        // classes, so only assert that the action we installed is present --
+        // a future GTK may well add class actions to `GtkWidget` itself.
+        let actions: Vec<_> = class.query_action().map(|a| a.name().to_owned()).collect();
+        assert!(
+            actions.iter().any(|name| name == "test.visible"),
+            "installed action missing from {actions:?}"
+        );
+
+        // ... and on a class looked up by type rather than via an instance.
+        // Deliberately our own test type: `from_type()` hands out the
+        // process-global class, so binding a shortcut on e.g. `GtkTextView`
+        // here would leak into every other test in this binary.
+        let class = glib::Class::<CustomClassWidget>::from_type(CustomClassWidget::static_type())
+            .expect("CustomClassWidget class");
+        class.add_binding_action(gdk::Key::c, gdk::ModifierType::CONTROL_MASK, "test.visible");
+        assert!(class.query_action().any(|a| a.name() == "test.visible"));
     }
 }
