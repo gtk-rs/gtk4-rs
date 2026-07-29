@@ -1049,7 +1049,7 @@ pub unsafe trait WidgetClassExt: ClassStruct {
                         .unwrap();
                     let activate_callback = *internal
                         .actions
-                        .get(&action_name.to_string())
+                        .get(action_name.as_str())
                         .unwrap_or_else(|| {
                             panic!("Action name '{}' was not found", action_name.as_str());
                         });
