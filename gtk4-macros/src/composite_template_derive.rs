@@ -129,17 +129,23 @@ fn gen_template_child_bindings(fields: &[AttributedField]) -> TokenStream {
 
     let recurse = fields.iter().map(|field| match field.attr.ty {
         FieldAttributeType::TemplateChild => {
-            let mut value_id = &field.ident.to_string();
+            let mut value_id = None::<&str>;
             let ident = &field.ident;
             let mut value_internal = false;
             field.attr.args.iter().for_each(|arg| match arg {
                 FieldAttributeArg::Id(value, _) => {
-                    value_id = value;
+                    value_id = Some(value);
                 }
                 FieldAttributeArg::Internal(internal) => {
                     value_internal = *internal;
                 }
             });
+
+            let value_id = if let Some(value_id) = value_id {
+                value_id
+            } else {
+                &ident.to_string()
+            };
 
             quote! {
                 klass.bind_template_child_with_offset(
