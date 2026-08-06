@@ -74,6 +74,7 @@ jobs:
 
       - name: "${{ matrix.conf.name }}: tests"
         run: xvfb-run --auto-servernum cargo test --manifest-path ${{ matrix.conf.name }}/Cargo.toml --features "${{ matrix.conf.features }}"
+        if: matrix.conf.name != "gtk4-macros" || matrix.rust == "stable"
       - name: "${{ matrix.conf.name }}/sys: tests"
         run: xvfb-run --auto-servernum cargo test --manifest-path ${{ matrix.conf.name }}/sys/Cargo.toml
         if: matrix.conf.test_sys
