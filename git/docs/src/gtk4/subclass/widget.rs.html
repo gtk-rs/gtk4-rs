@@ -1296,7 +1296,7 @@
 <a href=#1223 id=1223 data-nosnippet>1223</a>                        .<a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#method.unwrap">unwrap</a>();
 <a href=#1224 id=1224 data-nosnippet>1224</a>                    <span class="kw">let </span>activate_callback = <span class="kw-2">*</span><a href="#1220">internal</a>
 <a href=#1225 id=1225 data-nosnippet>1225</a>                        .actions
-<a href=#1226 id=1226 data-nosnippet>1226</a>                        .<a href="https://doc.rust-lang.org/nightly/std/collections/hash/map/struct.HashMap.html#method.get">get</a>(<span class="kw-2">&amp;</span><a href="#1217">action_name</a>.<a href="https://doc.rust-lang.org/nightly/alloc/string/trait.ToString.html#tymethod.to_string">to_string</a>())
+<a href=#1226 id=1226 data-nosnippet>1226</a>                        .<a href="https://doc.rust-lang.org/nightly/std/collections/hash/map/struct.HashMap.html#method.get">get</a>(<a href="#1217">action_name</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/gstring/struct.GString.html#method.as_str">as_str</a>())
 <a href=#1227 id=1227 data-nosnippet>1227</a>                        .<a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#method.unwrap_or_else">unwrap_or_else</a>(|| {
 <a href=#1228 id=1228 data-nosnippet>1228</a>                            <a href="https://doc.rust-lang.org/nightly/std/macro.panic.html">panic!</a>(<span class="string">"Action name '{}' was not found"</span>, action_name.as_str());
 <a href=#1229 id=1229 data-nosnippet>1229</a>                        });
