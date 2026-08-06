@@ -68,7 +68,7 @@ workspace = true
 workspace = true
 
 [build-dependencies]
-system-deps = "7"
+system-deps = "8"
 
 [dev-dependencies]
 shell-words = "1.0.0"
