@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/auto/video.rs`."><title>video.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-650bd49d.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.99.0-nightly (7608eb7b0 2026-08-05)" data-channel="nightly" data-search-js="search-cf4fc35e.js" data-stringdex-js="stringdex-b5109af9.js" data-settings-js="settings-170eb4bf.js" ><script src="../../../static.files/storage-41dd4d93.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-417ebf0a.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-d4bd101e.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><a class="skip-main-content" href="#main-content">Skip to main content</a><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/auto/video.rs`."><title>video.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-0c87338a.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.100.0-nightly (67854e511 2026-08-15)" data-channel="nightly" data-search-js="search-cf4fc35e.js" data-stringdex-js="stringdex-b5109af9.js" data-settings-js="settings-170eb4bf.js" ><script src="../../../static.files/storage-41dd4d93.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-417ebf0a.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-9f56287d.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><a class="skip-main-content" href="#main-content">Skip to main content</a><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
 
@@ -77,12 +77,12 @@
 <a href=#4 id=4 data-nosnippet>4</a>
 <a href=#5 id=5 data-nosnippet>5</a></span><span class="attr">#[cfg(feature = <span class="string">"v4_10"</span>)]
 <a href=#6 id=6 data-nosnippet>6</a>#[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_10"</span>)))]
-<a href=#7 id=7 data-nosnippet>7</a></span><span class="kw">use </span><a href="accessible.rs.html#19-65"><span class="kw">crate</span>::Accessible</a>;
+<a href=#7 id=7 data-nosnippet>7</a></span><span class="kw">use </span><a href="accessible.rs.html#19-70"><span class="kw">crate</span>::Accessible</a>;
 <a href=#8 id=8 data-nosnippet>8</a><span class="attr">#[cfg(feature = <span class="string">"v4_14"</span>)]
 <a href=#9 id=9 data-nosnippet>9</a>#[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_14"</span>)))]
-<a href=#10 id=10 data-nosnippet>10</a></span><span class="kw">use </span><a href="enums.rs.html#5845-5854"><span class="kw">crate</span>::GraphicsOffloadEnabled</a>;
+<a href=#10 id=10 data-nosnippet>10</a></span><span class="kw">use </span><a href="enums.rs.html#5866-5875"><span class="kw">crate</span>::GraphicsOffloadEnabled</a>;
 <a href=#11 id=11 data-nosnippet>11</a><span class="kw">use crate</span>::{
-<a href=#12 id=12 data-nosnippet>12</a>    <a href="enums.rs.html#1027-1327">AccessibleRole</a>, <a href="../enums.rs.html#75-105">Align</a>, <a href="buildable.rs.html#8-31">Buildable</a>, <a href="constraint_target.rs.html#8-23">ConstraintTarget</a>, <a href="layout_manager.rs.html#8-70">LayoutManager</a>, <a href="media_stream.rs.html#14-126">MediaStream</a>, <a href="enums.rs.html#8339-8350">Overflow</a>,
+<a href=#12 id=12 data-nosnippet>12</a>    <a href="enums.rs.html#1029-1329">AccessibleRole</a>, <a href="../enums.rs.html#77-107">Align</a>, <a href="buildable.rs.html#8-31">Buildable</a>, <a href="constraint_target.rs.html#8-23">ConstraintTarget</a>, <a href="layout_manager.rs.html#8-70">LayoutManager</a>, <a href="media_stream.rs.html#14-126">MediaStream</a>, <a href="enums.rs.html#8378-8389">Overflow</a>,
 <a href=#13 id=13 data-nosnippet>13</a>    <a href="widget.rs.html#24-502">Widget</a>, <a href="../../../gtk4_sys/index.html">ffi</a>,
 <a href=#14 id=14 data-nosnippet>14</a>};
 <a href=#15 id=15 data-nosnippet>15</a><span class="kw">use </span>glib::{
@@ -443,7 +443,7 @@
 <a href=#370 id=370 data-nosnippet>370</a>    ///
 <a href=#371 id=371 data-nosnippet>371</a>    /// [`WidgetExt`][trait@crate::prelude::WidgetExt], [`trait@glib::ObjectExt`], [`AccessibleExt`][trait@crate::prelude::AccessibleExt], [`BuildableExt`][trait@crate::prelude::BuildableExt], [`ConstraintTargetExt`][trait@crate::prelude::ConstraintTargetExt], [`WidgetExtManual`][trait@crate::prelude::WidgetExtManual], [`AccessibleExtManual`][trait@crate::prelude::AccessibleExtManual]
 <a href=#372 id=372 data-nosnippet>372</a>    </span><span class="attr">#[doc(alias = <span class="string">"GtkVideo"</span>)]
-<a href=#373 id=373 data-nosnippet>373</a>    </span><span class="kw">pub struct </span><a href="../../../gtk4/struct.Video.html">Video</a>(Object&lt;ffi::<a href="../../../gtk4_sys/struct.GtkVideo.html">GtkVideo</a>, ffi::<a href="../../../gtk4_sys/struct.GtkVideoClass.html">GtkVideoClass</a>&gt;) @extends <a href="widget.rs.html#24-502">Widget</a>, @implements <a href="accessible.rs.html#19-65">Accessible</a>, <a href="buildable.rs.html#8-31">Buildable</a>, <a href="constraint_target.rs.html#8-23">ConstraintTarget</a>;
+<a href=#373 id=373 data-nosnippet>373</a>    </span><span class="kw">pub struct </span><a href="../../../gtk4/struct.Video.html">Video</a>(Object&lt;ffi::<a href="../../../gtk4_sys/struct.GtkVideo.html">GtkVideo</a>, ffi::<a href="../../../gtk4_sys/struct.GtkVideoClass.html">GtkVideoClass</a>&gt;) @extends <a href="widget.rs.html#24-502">Widget</a>, @implements <a href="accessible.rs.html#19-70">Accessible</a>, <a href="buildable.rs.html#8-31">Buildable</a>, <a href="constraint_target.rs.html#8-23">ConstraintTarget</a>;
 <a href=#374 id=374 data-nosnippet>374</a>
 <a href=#375 id=375 data-nosnippet>375</a>    <span class="kw">match fn </span>{
 <a href=#376 id=376 data-nosnippet>376</a>        type_ =&gt; || ffi::gtk_video_get_type(),
@@ -598,7 +598,7 @@
 <a href=#525 id=525 data-nosnippet>525</a>    #[doc(alias = <span class="string">"gtk_video_get_graphics_offload"</span>)]
 <a href=#526 id=526 data-nosnippet>526</a>    #[doc(alias = <span class="string">"get_graphics_offload"</span>)]
 <a href=#527 id=527 data-nosnippet>527</a>    #[doc(alias = <span class="string">"graphics-offload"</span>)]
-<a href=#528 id=528 data-nosnippet>528</a>    </span><span class="kw">pub fn </span>graphics_offload(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="enums.rs.html#5845-5854">GraphicsOffloadEnabled</a> {
+<a href=#528 id=528 data-nosnippet>528</a>    </span><span class="kw">pub fn </span>graphics_offload(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="enums.rs.html#5866-5875">GraphicsOffloadEnabled</a> {
 <a href=#529 id=529 data-nosnippet>529</a>        <span class="kw">unsafe </span>{ <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_video_get_graphics_offload.html">gtk_video_get_graphics_offload</a>(<a class="self" href="#528">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>)) }
 <a href=#530 id=530 data-nosnippet>530</a>    }
 <a href=#531 id=531 data-nosnippet>531</a>
@@ -676,7 +676,7 @@
 <a href=#603 id=603 data-nosnippet>603</a>    #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_14"</span>)))]
 <a href=#604 id=604 data-nosnippet>604</a>    #[doc(alias = <span class="string">"gtk_video_set_graphics_offload"</span>)]
 <a href=#605 id=605 data-nosnippet>605</a>    #[doc(alias = <span class="string">"graphics-offload"</span>)]
-<a href=#606 id=606 data-nosnippet>606</a>    </span><span class="kw">pub fn </span>set_graphics_offload(<span class="kw-2">&amp;</span><span class="self">self</span>, enabled: <a href="enums.rs.html#5845-5854">GraphicsOffloadEnabled</a>) {
+<a href=#606 id=606 data-nosnippet>606</a>    </span><span class="kw">pub fn </span>set_graphics_offload(<span class="kw-2">&amp;</span><span class="self">self</span>, enabled: <a href="enums.rs.html#5866-5875">GraphicsOffloadEnabled</a>) {
 <a href=#607 id=607 data-nosnippet>607</a>        <span class="kw">unsafe </span>{
 <a href=#608 id=608 data-nosnippet>608</a>            ffi::<a href="../../../gtk4_sys/fn.gtk_video_set_graphics_offload.html">gtk_video_set_graphics_offload</a>(<a class="self" href="#606">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>, <a href="#606">enabled</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.IntoGlib.html#tymethod.into_glib">into_glib</a>());
 <a href=#609 id=609 data-nosnippet>609</a>        }
@@ -893,7 +893,7 @@
 <a href=#820 id=820 data-nosnippet>820</a>    <span class="doccomment">/// Whether to enable graphics offload.
 <a href=#821 id=821 data-nosnippet>821</a>    </span><span class="attr">#[cfg(feature = <span class="string">"v4_14"</span>)]
 <a href=#822 id=822 data-nosnippet>822</a>    #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_14"</span>)))]
-<a href=#823 id=823 data-nosnippet>823</a>    </span><span class="kw">pub fn </span>graphics_offload(<span class="self">self</span>, graphics_offload: <a href="enums.rs.html#5845-5854">GraphicsOffloadEnabled</a>) -&gt; <span class="self">Self </span>{
+<a href=#823 id=823 data-nosnippet>823</a>    </span><span class="kw">pub fn </span>graphics_offload(<span class="self">self</span>, graphics_offload: <a href="enums.rs.html#5866-5875">GraphicsOffloadEnabled</a>) -&gt; <span class="self">Self </span>{
 <a href=#824 id=824 data-nosnippet>824</a>        <span class="self">Self </span>{
 <a href=#825 id=825 data-nosnippet>825</a>            builder: <a class="self" href="#823">self</a>.builder.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/struct.ObjectBuilder.html#method.property">property</a>(<span class="string">"graphics-offload"</span>, <a href="#823">graphics_offload</a>),
 <a href=#826 id=826 data-nosnippet>826</a>        }
@@ -973,7 +973,7 @@
 <a href=#900 id=900 data-nosnippet>900</a>    }
 <a href=#901 id=901 data-nosnippet>901</a>
 <a href=#902 id=902 data-nosnippet>902</a>    <span class="doccomment">/// How to distribute horizontal space if widget gets extra space.
-<a href=#903 id=903 data-nosnippet>903</a>    </span><span class="kw">pub fn </span>halign(<span class="self">self</span>, halign: <a href="../enums.rs.html#75-105">Align</a>) -&gt; <span class="self">Self </span>{
+<a href=#903 id=903 data-nosnippet>903</a>    </span><span class="kw">pub fn </span>halign(<span class="self">self</span>, halign: <a href="../enums.rs.html#77-107">Align</a>) -&gt; <span class="self">Self </span>{
 <a href=#904 id=904 data-nosnippet>904</a>        <span class="self">Self </span>{
 <a href=#905 id=905 data-nosnippet>905</a>            builder: <a class="self" href="#903">self</a>.builder.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/struct.ObjectBuilder.html#method.property">property</a>(<span class="string">"halign"</span>, <a href="#903">halign</a>),
 <a href=#906 id=906 data-nosnippet>906</a>        }
@@ -1109,7 +1109,7 @@
 <a href=#1036 id=1036 data-nosnippet>1036</a>    ///
 <a href=#1037 id=1037 data-nosnippet>1037</a>    /// This property is meant to be set by widget implementations,
 <a href=#1038 id=1038 data-nosnippet>1038</a>    /// typically in their instance init function.
-<a href=#1039 id=1039 data-nosnippet>1039</a>    </span><span class="kw">pub fn </span>overflow(<span class="self">self</span>, overflow: <a href="enums.rs.html#8339-8350">Overflow</a>) -&gt; <span class="self">Self </span>{
+<a href=#1039 id=1039 data-nosnippet>1039</a>    </span><span class="kw">pub fn </span>overflow(<span class="self">self</span>, overflow: <a href="enums.rs.html#8378-8389">Overflow</a>) -&gt; <span class="self">Self </span>{
 <a href=#1040 id=1040 data-nosnippet>1040</a>        <span class="self">Self </span>{
 <a href=#1041 id=1041 data-nosnippet>1041</a>            builder: <a class="self" href="#1039">self</a>.builder.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/struct.ObjectBuilder.html#method.property">property</a>(<span class="string">"overflow"</span>, <a href="#1039">overflow</a>),
 <a href=#1042 id=1042 data-nosnippet>1042</a>        }
@@ -1169,7 +1169,7 @@
 <a href=#1096 id=1096 data-nosnippet>1096</a>    }
 <a href=#1097 id=1097 data-nosnippet>1097</a>
 <a href=#1098 id=1098 data-nosnippet>1098</a>    <span class="doccomment">/// How to distribute vertical space if widget gets extra space.
-<a href=#1099 id=1099 data-nosnippet>1099</a>    </span><span class="kw">pub fn </span>valign(<span class="self">self</span>, valign: <a href="../enums.rs.html#75-105">Align</a>) -&gt; <span class="self">Self </span>{
+<a href=#1099 id=1099 data-nosnippet>1099</a>    </span><span class="kw">pub fn </span>valign(<span class="self">self</span>, valign: <a href="../enums.rs.html#77-107">Align</a>) -&gt; <span class="self">Self </span>{
 <a href=#1100 id=1100 data-nosnippet>1100</a>        <span class="self">Self </span>{
 <a href=#1101 id=1101 data-nosnippet>1101</a>            builder: <a class="self" href="#1099">self</a>.builder.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/struct.ObjectBuilder.html#method.property">property</a>(<span class="string">"valign"</span>, <a href="#1099">valign</a>),
 <a href=#1102 id=1102 data-nosnippet>1102</a>        }
@@ -1208,7 +1208,7 @@
 <a href=#1135 id=1135 data-nosnippet>1135</a>    <span class="doccomment">/// The accessible role of the given [`Accessible`][crate::Accessible] implementation.
 <a href=#1136 id=1136 data-nosnippet>1136</a>    ///
 <a href=#1137 id=1137 data-nosnippet>1137</a>    /// The accessible role cannot be changed once set.
-<a href=#1138 id=1138 data-nosnippet>1138</a>    </span><span class="kw">pub fn </span>accessible_role(<span class="self">self</span>, accessible_role: <a href="enums.rs.html#1027-1327">AccessibleRole</a>) -&gt; <span class="self">Self </span>{
+<a href=#1138 id=1138 data-nosnippet>1138</a>    </span><span class="kw">pub fn </span>accessible_role(<span class="self">self</span>, accessible_role: <a href="enums.rs.html#1029-1329">AccessibleRole</a>) -&gt; <span class="self">Self </span>{
 <a href=#1139 id=1139 data-nosnippet>1139</a>        <span class="self">Self </span>{
 <a href=#1140 id=1140 data-nosnippet>1140</a>            builder: <a class="self" href="#1138">self</a>.builder.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/struct.ObjectBuilder.html#method.property">property</a>(<span class="string">"accessible-role"</span>, <a href="#1138">accessible_role</a>),
 <a href=#1141 id=1141 data-nosnippet>1141</a>        }

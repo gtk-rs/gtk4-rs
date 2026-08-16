@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/auto/drop_down.rs`."><title>drop_down.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-650bd49d.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.99.0-nightly (7608eb7b0 2026-08-05)" data-channel="nightly" data-search-js="search-cf4fc35e.js" data-stringdex-js="stringdex-b5109af9.js" data-settings-js="settings-170eb4bf.js" ><script src="../../../static.files/storage-41dd4d93.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-417ebf0a.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-d4bd101e.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><a class="skip-main-content" href="#main-content">Skip to main content</a><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/auto/drop_down.rs`."><title>drop_down.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-0c87338a.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.100.0-nightly (67854e511 2026-08-15)" data-channel="nightly" data-search-js="search-cf4fc35e.js" data-stringdex-js="stringdex-b5109af9.js" data-settings-js="settings-170eb4bf.js" ><script src="../../../static.files/storage-41dd4d93.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-417ebf0a.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-9f56287d.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><a class="skip-main-content" href="#main-content">Skip to main content</a><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
 
@@ -77,13 +77,13 @@
 <a href=#4 id=4 data-nosnippet>4</a>
 <a href=#5 id=5 data-nosnippet>5</a></span><span class="attr">#[cfg(feature = <span class="string">"v4_10"</span>)]
 <a href=#6 id=6 data-nosnippet>6</a>#[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_10"</span>)))]
-<a href=#7 id=7 data-nosnippet>7</a></span><span class="kw">use </span><a href="accessible.rs.html#19-65"><span class="kw">crate</span>::Accessible</a>;
+<a href=#7 id=7 data-nosnippet>7</a></span><span class="kw">use </span><a href="accessible.rs.html#19-70"><span class="kw">crate</span>::Accessible</a>;
 <a href=#8 id=8 data-nosnippet>8</a><span class="attr">#[cfg(feature = <span class="string">"v4_12"</span>)]
 <a href=#9 id=9 data-nosnippet>9</a>#[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_12"</span>)))]
-<a href=#10 id=10 data-nosnippet>10</a></span><span class="kw">use </span><a href="enums.rs.html#12656-12671"><span class="kw">crate</span>::StringFilterMatchMode</a>;
+<a href=#10 id=10 data-nosnippet>10</a></span><span class="kw">use </span><a href="enums.rs.html#12570-12585"><span class="kw">crate</span>::StringFilterMatchMode</a>;
 <a href=#11 id=11 data-nosnippet>11</a><span class="kw">use crate</span>::{
-<a href=#12 id=12 data-nosnippet>12</a>    <a href="enums.rs.html#1027-1327">AccessibleRole</a>, <a href="../enums.rs.html#75-105">Align</a>, <a href="buildable.rs.html#8-31">Buildable</a>, <a href="constraint_target.rs.html#8-23">ConstraintTarget</a>, <a href="expression.rs.html#9-22">Expression</a>, <a href="layout_manager.rs.html#8-70">LayoutManager</a>, <a href="list_item_factory.rs.html#7-65">ListItemFactory</a>,
-<a href=#13 id=13 data-nosnippet>13</a>    <a href="enums.rs.html#8339-8350">Overflow</a>, <a href="widget.rs.html#24-502">Widget</a>, <a href="../../../gtk4_sys/index.html">ffi</a>,
+<a href=#12 id=12 data-nosnippet>12</a>    <a href="enums.rs.html#1029-1329">AccessibleRole</a>, <a href="../enums.rs.html#77-107">Align</a>, <a href="buildable.rs.html#8-31">Buildable</a>, <a href="constraint_target.rs.html#8-23">ConstraintTarget</a>, <a href="expression.rs.html#9-22">Expression</a>, <a href="layout_manager.rs.html#8-70">LayoutManager</a>, <a href="list_item_factory.rs.html#7-65">ListItemFactory</a>,
+<a href=#13 id=13 data-nosnippet>13</a>    <a href="enums.rs.html#8378-8389">Overflow</a>, <a href="widget.rs.html#24-502">Widget</a>, <a href="../../../gtk4_sys/index.html">ffi</a>,
 <a href=#14 id=14 data-nosnippet>14</a>};
 <a href=#15 id=15 data-nosnippet>15</a><span class="attr">#[cfg(feature = <span class="string">"v4_6"</span>)]
 <a href=#16 id=16 data-nosnippet>16</a>#[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_6"</span>)))]
@@ -565,7 +565,7 @@
 <a href=#492 id=492 data-nosnippet>492</a>    ///
 <a href=#493 id=493 data-nosnippet>493</a>    ///
 <a href=#494 id=494 data-nosnippet>494</a>    /// #### `query-tooltip`
-<a href=#495 id=495 data-nosnippet>495</a>    ///  s tooltip is about to be shown.
+<a href=#495 id=495 data-nosnippet>495</a>    ///  Emitted when the widget’s tooltip is about to be shown.
 <a href=#496 id=496 data-nosnippet>496</a>    ///
 <a href=#497 id=497 data-nosnippet>497</a>    /// This happens when the [`has-tooltip`][struct@crate::Widget#has-tooltip] property
 <a href=#498 id=498 data-nosnippet>498</a>    /// is true and the hover timeout has expired with the cursor hovering
@@ -630,7 +630,7 @@
 <a href=#557 id=557 data-nosnippet>557</a>    ///
 <a href=#558 id=558 data-nosnippet>558</a>    /// [`WidgetExt`][trait@crate::prelude::WidgetExt], [`trait@glib::ObjectExt`], [`AccessibleExt`][trait@crate::prelude::AccessibleExt], [`BuildableExt`][trait@crate::prelude::BuildableExt], [`ConstraintTargetExt`][trait@crate::prelude::ConstraintTargetExt], [`WidgetExtManual`][trait@crate::prelude::WidgetExtManual], [`AccessibleExtManual`][trait@crate::prelude::AccessibleExtManual]
 <a href=#559 id=559 data-nosnippet>559</a>    </span><span class="attr">#[doc(alias = <span class="string">"GtkDropDown"</span>)]
-<a href=#560 id=560 data-nosnippet>560</a>    </span><span class="kw">pub struct </span><a href="../../../gtk4/struct.DropDown.html">DropDown</a>(Object&lt;ffi::<a href="../../../gtk4_sys/struct.GtkDropDown.html">GtkDropDown</a>, ffi::<a href="../../../gtk4_sys/struct.GtkDropDownClass.html">GtkDropDownClass</a>&gt;) @extends <a href="widget.rs.html#24-502">Widget</a>, @implements <a href="accessible.rs.html#19-65">Accessible</a>, <a href="buildable.rs.html#8-31">Buildable</a>, <a href="constraint_target.rs.html#8-23">ConstraintTarget</a>;
+<a href=#560 id=560 data-nosnippet>560</a>    </span><span class="kw">pub struct </span><a href="../../../gtk4/struct.DropDown.html">DropDown</a>(Object&lt;ffi::<a href="../../../gtk4_sys/struct.GtkDropDown.html">GtkDropDown</a>, ffi::<a href="../../../gtk4_sys/struct.GtkDropDownClass.html">GtkDropDownClass</a>&gt;) @extends <a href="widget.rs.html#24-502">Widget</a>, @implements <a href="accessible.rs.html#19-70">Accessible</a>, <a href="buildable.rs.html#8-31">Buildable</a>, <a href="constraint_target.rs.html#8-23">ConstraintTarget</a>;
 <a href=#561 id=561 data-nosnippet>561</a>
 <a href=#562 id=562 data-nosnippet>562</a>    <span class="kw">match fn </span>{
 <a href=#563 id=563 data-nosnippet>563</a>        type_ =&gt; || ffi::gtk_drop_down_get_type(),
@@ -792,7 +792,7 @@
 <a href=#719 id=719 data-nosnippet>719</a>    #[doc(alias = <span class="string">"gtk_drop_down_get_search_match_mode"</span>)]
 <a href=#720 id=720 data-nosnippet>720</a>    #[doc(alias = <span class="string">"get_search_match_mode"</span>)]
 <a href=#721 id=721 data-nosnippet>721</a>    #[doc(alias = <span class="string">"search-match-mode"</span>)]
-<a href=#722 id=722 data-nosnippet>722</a>    </span><span class="kw">pub fn </span>search_match_mode(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="enums.rs.html#12656-12671">StringFilterMatchMode</a> {
+<a href=#722 id=722 data-nosnippet>722</a>    </span><span class="kw">pub fn </span>search_match_mode(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="enums.rs.html#12570-12585">StringFilterMatchMode</a> {
 <a href=#723 id=723 data-nosnippet>723</a>        <span class="kw">unsafe </span>{
 <a href=#724 id=724 data-nosnippet>724</a>            <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/fn.from_glib.html">from_glib</a>(ffi::<a href="../../../gtk4_sys/fn.gtk_drop_down_get_search_match_mode.html">gtk_drop_down_get_search_match_mode</a>(
 <a href=#725 id=725 data-nosnippet>725</a>                <a class="self" href="#722">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
@@ -935,7 +935,7 @@
 <a href=#862 id=862 data-nosnippet>862</a>    #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_12"</span>)))]
 <a href=#863 id=863 data-nosnippet>863</a>    #[doc(alias = <span class="string">"gtk_drop_down_set_search_match_mode"</span>)]
 <a href=#864 id=864 data-nosnippet>864</a>    #[doc(alias = <span class="string">"search-match-mode"</span>)]
-<a href=#865 id=865 data-nosnippet>865</a>    </span><span class="kw">pub fn </span>set_search_match_mode(<span class="kw-2">&amp;</span><span class="self">self</span>, search_match_mode: <a href="enums.rs.html#12656-12671">StringFilterMatchMode</a>) {
+<a href=#865 id=865 data-nosnippet>865</a>    </span><span class="kw">pub fn </span>set_search_match_mode(<span class="kw-2">&amp;</span><span class="self">self</span>, search_match_mode: <a href="enums.rs.html#12570-12585">StringFilterMatchMode</a>) {
 <a href=#866 id=866 data-nosnippet>866</a>        <span class="kw">unsafe </span>{
 <a href=#867 id=867 data-nosnippet>867</a>            ffi::<a href="../../../gtk4_sys/fn.gtk_drop_down_set_search_match_mode.html">gtk_drop_down_set_search_match_mode</a>(
 <a href=#868 id=868 data-nosnippet>868</a>                <a class="self" href="#865">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
@@ -1349,7 +1349,7 @@
 <a href=#1276 id=1276 data-nosnippet>1276</a>    <span class="doccomment">/// The match mode for the search filter.
 <a href=#1277 id=1277 data-nosnippet>1277</a>    </span><span class="attr">#[cfg(feature = <span class="string">"v4_12"</span>)]
 <a href=#1278 id=1278 data-nosnippet>1278</a>    #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_12"</span>)))]
-<a href=#1279 id=1279 data-nosnippet>1279</a>    </span><span class="kw">pub fn </span>search_match_mode(<span class="self">self</span>, search_match_mode: <a href="enums.rs.html#12656-12671">StringFilterMatchMode</a>) -&gt; <span class="self">Self </span>{
+<a href=#1279 id=1279 data-nosnippet>1279</a>    </span><span class="kw">pub fn </span>search_match_mode(<span class="self">self</span>, search_match_mode: <a href="enums.rs.html#12570-12585">StringFilterMatchMode</a>) -&gt; <span class="self">Self </span>{
 <a href=#1280 id=1280 data-nosnippet>1280</a>        <span class="self">Self </span>{
 <a href=#1281 id=1281 data-nosnippet>1281</a>            builder: <a class="self" href="#1279">self</a>
 <a href=#1282 id=1282 data-nosnippet>1282</a>                .builder
@@ -1435,7 +1435,7 @@
 <a href=#1362 id=1362 data-nosnippet>1362</a>    }
 <a href=#1363 id=1363 data-nosnippet>1363</a>
 <a href=#1364 id=1364 data-nosnippet>1364</a>    <span class="doccomment">/// How to distribute horizontal space if widget gets extra space.
-<a href=#1365 id=1365 data-nosnippet>1365</a>    </span><span class="kw">pub fn </span>halign(<span class="self">self</span>, halign: <a href="../enums.rs.html#75-105">Align</a>) -&gt; <span class="self">Self </span>{
+<a href=#1365 id=1365 data-nosnippet>1365</a>    </span><span class="kw">pub fn </span>halign(<span class="self">self</span>, halign: <a href="../enums.rs.html#77-107">Align</a>) -&gt; <span class="self">Self </span>{
 <a href=#1366 id=1366 data-nosnippet>1366</a>        <span class="self">Self </span>{
 <a href=#1367 id=1367 data-nosnippet>1367</a>            builder: <a class="self" href="#1365">self</a>.builder.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/struct.ObjectBuilder.html#method.property">property</a>(<span class="string">"halign"</span>, <a href="#1365">halign</a>),
 <a href=#1368 id=1368 data-nosnippet>1368</a>        }
@@ -1571,7 +1571,7 @@
 <a href=#1498 id=1498 data-nosnippet>1498</a>    ///
 <a href=#1499 id=1499 data-nosnippet>1499</a>    /// This property is meant to be set by widget implementations,
 <a href=#1500 id=1500 data-nosnippet>1500</a>    /// typically in their instance init function.
-<a href=#1501 id=1501 data-nosnippet>1501</a>    </span><span class="kw">pub fn </span>overflow(<span class="self">self</span>, overflow: <a href="enums.rs.html#8339-8350">Overflow</a>) -&gt; <span class="self">Self </span>{
+<a href=#1501 id=1501 data-nosnippet>1501</a>    </span><span class="kw">pub fn </span>overflow(<span class="self">self</span>, overflow: <a href="enums.rs.html#8378-8389">Overflow</a>) -&gt; <span class="self">Self </span>{
 <a href=#1502 id=1502 data-nosnippet>1502</a>        <span class="self">Self </span>{
 <a href=#1503 id=1503 data-nosnippet>1503</a>            builder: <a class="self" href="#1501">self</a>.builder.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/struct.ObjectBuilder.html#method.property">property</a>(<span class="string">"overflow"</span>, <a href="#1501">overflow</a>),
 <a href=#1504 id=1504 data-nosnippet>1504</a>        }
@@ -1631,7 +1631,7 @@
 <a href=#1558 id=1558 data-nosnippet>1558</a>    }
 <a href=#1559 id=1559 data-nosnippet>1559</a>
 <a href=#1560 id=1560 data-nosnippet>1560</a>    <span class="doccomment">/// How to distribute vertical space if widget gets extra space.
-<a href=#1561 id=1561 data-nosnippet>1561</a>    </span><span class="kw">pub fn </span>valign(<span class="self">self</span>, valign: <a href="../enums.rs.html#75-105">Align</a>) -&gt; <span class="self">Self </span>{
+<a href=#1561 id=1561 data-nosnippet>1561</a>    </span><span class="kw">pub fn </span>valign(<span class="self">self</span>, valign: <a href="../enums.rs.html#77-107">Align</a>) -&gt; <span class="self">Self </span>{
 <a href=#1562 id=1562 data-nosnippet>1562</a>        <span class="self">Self </span>{
 <a href=#1563 id=1563 data-nosnippet>1563</a>            builder: <a class="self" href="#1561">self</a>.builder.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/struct.ObjectBuilder.html#method.property">property</a>(<span class="string">"valign"</span>, <a href="#1561">valign</a>),
 <a href=#1564 id=1564 data-nosnippet>1564</a>        }
@@ -1670,7 +1670,7 @@
 <a href=#1597 id=1597 data-nosnippet>1597</a>    <span class="doccomment">/// The accessible role of the given [`Accessible`][crate::Accessible] implementation.
 <a href=#1598 id=1598 data-nosnippet>1598</a>    ///
 <a href=#1599 id=1599 data-nosnippet>1599</a>    /// The accessible role cannot be changed once set.
-<a href=#1600 id=1600 data-nosnippet>1600</a>    </span><span class="kw">pub fn </span>accessible_role(<span class="self">self</span>, accessible_role: <a href="enums.rs.html#1027-1327">AccessibleRole</a>) -&gt; <span class="self">Self </span>{
+<a href=#1600 id=1600 data-nosnippet>1600</a>    </span><span class="kw">pub fn </span>accessible_role(<span class="self">self</span>, accessible_role: <a href="enums.rs.html#1029-1329">AccessibleRole</a>) -&gt; <span class="self">Self </span>{
 <a href=#1601 id=1601 data-nosnippet>1601</a>        <span class="self">Self </span>{
 <a href=#1602 id=1602 data-nosnippet>1602</a>            builder: <a class="self" href="#1600">self</a>.builder.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/struct.ObjectBuilder.html#method.property">property</a>(<span class="string">"accessible-role"</span>, <a href="#1600">accessible_role</a>),
 <a href=#1603 id=1603 data-nosnippet>1603</a>        }
