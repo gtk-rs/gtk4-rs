@@ -231,7 +231,6 @@ generate = [
     "Gtk.SelectionModel",
     "Gtk.SensitivityType",
     "Gtk.Separator",
-    "Gtk.Settings",
     "Gtk.ShortcutActionFlags",
     "Gtk.ShortcutLabel",
     "Gtk.ShortcutManager",
@@ -2026,6 +2025,14 @@ generate_builder = false
     [[object.property]]
     pattern = "(n-items|item-type)"
     generate = [] # disable generated getter/notify, use the ones from GListModel iface
+
+[[object]]
+name = "Gtk.Settings"
+status = "generate"
+    [[object.property]]
+    # missing version in the GIR
+    name = "gtk-keyboard-focus-visible-timeout"
+    version = "4.24"
 
 [[object]]
 name = "Gtk.Shortcut"
