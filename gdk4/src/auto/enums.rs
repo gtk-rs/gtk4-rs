@@ -1189,6 +1189,168 @@ impl From<EventType> for glib::Value {
     }
 }
 
+#[cfg(feature = "v4_24")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
+#[doc(alias = "GdkFrameResult")]
+pub enum FrameResult {
+    #[cfg(feature = "v4_24")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+    #[doc(alias = "GDK_FRAME_PREPARING")]
+    Preparing,
+    #[cfg(feature = "v4_24")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+    #[doc(alias = "GDK_FRAME_SKIPPED")]
+    Skipped,
+    #[cfg(feature = "v4_24")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+    #[doc(alias = "GDK_FRAME_EMPTY")]
+    Empty,
+    #[cfg(feature = "v4_24")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+    #[doc(alias = "GDK_FRAME_SUBMITTED")]
+    Submitted,
+    #[cfg(feature = "v4_24")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+    #[doc(alias = "GDK_FRAME_OUTSTANDING")]
+    Outstanding,
+    #[cfg(feature = "v4_24")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+    #[doc(alias = "GDK_FRAME_DISCARDED")]
+    Discarded,
+    #[cfg(feature = "v4_24")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+    #[doc(alias = "GDK_FRAME_PRESENTED")]
+    Presented,
+    #[doc(hidden)]
+    __Unknown(i32),
+}
+
+#[cfg(feature = "v4_24")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+#[doc(hidden)]
+impl IntoGlib for FrameResult {
+    type GlibType = ffi::GdkFrameResult;
+
+    #[inline]
+    fn into_glib(self) -> ffi::GdkFrameResult {
+        match self {
+            #[cfg(feature = "v4_24")]
+            Self::Preparing => ffi::GDK_FRAME_PREPARING,
+            #[cfg(feature = "v4_24")]
+            Self::Skipped => ffi::GDK_FRAME_SKIPPED,
+            #[cfg(feature = "v4_24")]
+            Self::Empty => ffi::GDK_FRAME_EMPTY,
+            #[cfg(feature = "v4_24")]
+            Self::Submitted => ffi::GDK_FRAME_SUBMITTED,
+            #[cfg(feature = "v4_24")]
+            Self::Outstanding => ffi::GDK_FRAME_OUTSTANDING,
+            #[cfg(feature = "v4_24")]
+            Self::Discarded => ffi::GDK_FRAME_DISCARDED,
+            #[cfg(feature = "v4_24")]
+            Self::Presented => ffi::GDK_FRAME_PRESENTED,
+            Self::__Unknown(value) => value,
+        }
+    }
+}
+
+#[cfg(feature = "v4_24")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+#[doc(hidden)]
+impl FromGlib<ffi::GdkFrameResult> for FrameResult {
+    #[inline]
+    unsafe fn from_glib(value: ffi::GdkFrameResult) -> Self {
+        skip_assert_initialized!();
+
+        match value {
+            #[cfg(feature = "v4_24")]
+            ffi::GDK_FRAME_PREPARING => Self::Preparing,
+            #[cfg(feature = "v4_24")]
+            ffi::GDK_FRAME_SKIPPED => Self::Skipped,
+            #[cfg(feature = "v4_24")]
+            ffi::GDK_FRAME_EMPTY => Self::Empty,
+            #[cfg(feature = "v4_24")]
+            ffi::GDK_FRAME_SUBMITTED => Self::Submitted,
+            #[cfg(feature = "v4_24")]
+            ffi::GDK_FRAME_OUTSTANDING => Self::Outstanding,
+            #[cfg(feature = "v4_24")]
+            ffi::GDK_FRAME_DISCARDED => Self::Discarded,
+            #[cfg(feature = "v4_24")]
+            ffi::GDK_FRAME_PRESENTED => Self::Presented,
+            value => Self::__Unknown(value),
+        }
+    }
+}
+
+#[cfg(feature = "v4_24")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+impl StaticType for FrameResult {
+    #[inline]
+    #[doc(alias = "gdk_frame_result_get_type")]
+    fn static_type() -> glib::Type {
+        unsafe { from_glib(ffi::gdk_frame_result_get_type()) }
+    }
+}
+
+#[cfg(feature = "v4_24")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+impl glib::HasParamSpec for FrameResult {
+    type ParamSpec = glib::ParamSpecEnum;
+    type SetValue = Self;
+    type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
+
+    fn param_spec_builder() -> Self::BuilderFn {
+        Self::ParamSpec::builder_with_default
+    }
+}
+
+#[cfg(feature = "v4_24")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+impl glib::value::ValueType for FrameResult {
+    type Type = Self;
+}
+
+#[cfg(feature = "v4_24")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+unsafe impl<'a> glib::value::FromValue<'a> for FrameResult {
+    type Checker = glib::value::GenericValueTypeChecker<Self>;
+
+    #[inline]
+    unsafe fn from_value(value: &'a glib::Value) -> Self {
+        skip_assert_initialized!();
+        unsafe { from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0)) }
+    }
+}
+
+#[cfg(feature = "v4_24")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+impl ToValue for FrameResult {
+    #[inline]
+    fn to_value(&self) -> glib::Value {
+        let mut value = glib::Value::for_value_type::<Self>();
+        unsafe {
+            glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
+        }
+        value
+    }
+
+    #[inline]
+    fn value_type(&self) -> glib::Type {
+        Self::static_type()
+    }
+}
+
+#[cfg(feature = "v4_24")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+impl From<FrameResult> for glib::Value {
+    #[inline]
+    fn from(v: FrameResult) -> Self {
+        skip_assert_initialized!();
+        ToValue::to_value(&v)
+    }
+}
+
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GdkFullscreenMode")]

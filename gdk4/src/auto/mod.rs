@@ -250,6 +250,9 @@ pub use self::enums::DeviceToolType;
 pub use self::enums::DmabufError;
 pub use self::enums::DragCancelReason;
 pub use self::enums::EventType;
+#[cfg(feature = "v4_24")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+pub use self::enums::FrameResult;
 pub use self::enums::FullscreenMode;
 pub use self::enums::GLError;
 pub use self::enums::Gravity;
