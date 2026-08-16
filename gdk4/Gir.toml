@@ -37,6 +37,7 @@ generate = [
     "Gdk.FocusEvent",
     "Gdk.FrameClock",
     "Gdk.FrameClockPhase",
+    "Gdk.FrameResult",
     "Gdk.FrameTimings",
     "Gdk.FullscreenMode",
     "Gdk.GLAPI",
