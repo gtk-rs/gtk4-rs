@@ -7,9 +7,9 @@ authors.workspace = true
 [dependencies]
 chrono = "0.4"
 
-femtovg = { version = "0.25", optional = true, default-features = false }
+femtovg = { version = "0.26", optional = true, default-features = false }
 glium = { version = "0.36", optional = true, default-features = false }
-glow = { version = "0.17", optional = true }
+glow = { version = "0.18", optional = true }
 libloading = { version = "0.9", optional = true }
 im-rc = { version = "15", optional = true }
 async-channel = { version = "2.3", optional = true }
