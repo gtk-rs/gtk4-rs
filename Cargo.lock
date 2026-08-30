@@ -82,12 +82,6 @@ dependencies = [
 
 [[package]]
 name = "bitflags"
-version = "1.3.2"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "bef38d45163c2f1dde094a7dfd33ccf595c92905c8f8f4fdc18d06fb1037718a"
-
-[[package]]
-name = "bitflags"
 version = "2.13.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "b588b76d00fde79687d7646a9b5bdf3cc0f655e0bbd080335a95d7e96f3587da"
@@ -150,7 +144,7 @@ name = "cairo-rs"
 version = "0.23.0-alpha"
 source = "git+https://github.com/gtk-rs/gtk-rs-core?branch=main#d2b6bc20e1c53e0ee6c26be695dbdb2c5d1922bf"
 dependencies = [
- "bitflags 2.13.1",
+ "bitflags",
  "cairo-sys-rs",
  "glib",
  "libc",
@@ -228,7 +222,7 @@ version = "0.26.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "ad36507aeb7e16159dfe68db81ccc27571c3ccd4b76fb2fb72fc59e7a4b1b64c"
 dependencies = [
- "bitflags 2.13.1",
+ "bitflags",
  "block",
  "cocoa-foundation",
  "core-foundation",
@@ -244,7 +238,7 @@ version = "0.2.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "81411967c50ee9a1fc11365f8c585f863a22a9697c89239c452292c40ba79b0d"
 dependencies = [
- "bitflags 2.13.1",
+ "bitflags",
  "block",
  "core-foundation",
  "core-graphics-types",
@@ -288,7 +282,7 @@ version = "0.24.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "fa95a34622365fa5bbf40b20b75dba8dfa8c94c734aea8ac9a5ca38af14316f1"
 dependencies = [
- "bitflags 2.13.1",
+ "bitflags",
  "core-foundation",
  "core-graphics-types",
  "foreign-types",
@@ -301,7 +295,7 @@ version = "0.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "3d44a101f213f6c4cdc1853d4b78aef6db6bdfa3468798cc1d9912f4735013eb"
 dependencies = [
- "bitflags 2.13.1",
+ "bitflags",
  "core-foundation",
  "libc",
 ]
@@ -354,18 +348,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "9e5e8f6c15a24b9a3ee5efec809ccd006d3b30e8b3bb63c39af737c7f87daa1d"
 
 [[package]]
-name = "epoxy"
-version = "0.1.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "9b96028ce3ff03972312fd8243281858e80fc0f9838b1f035676b6c199214d9e"
-dependencies = [
- "gl_generator 0.9.0",
- "libc",
- "pkg-config",
- "shared_library",
-]
-
-[[package]]
 name = "equivalent"
 version = "1.0.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -413,7 +395,7 @@ version = "0.25.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "f43d05da42e81724c16d34a150fb7fda53d3f786e5a94673ee526ff8602f0f6a"
 dependencies = [
- "bitflags 2.13.1",
+ "bitflags",
  "bytemuck",
  "fnv",
  "glow",
@@ -790,18 +772,7 @@ version = "0.14.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "a94edab108827d67608095e269cf862e60d920f144a5026d3dbcfd8b877fb404"
 dependencies = [
- "gl_generator 0.14.0",
-]
-
-[[package]]
-name = "gl_generator"
-version = "0.9.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "7a795170cbd85b5a7baa58d6d7525cae6a03e486859860c220f7ebbbdd379d0a"
-dependencies = [
- "khronos_api 2.2.0",
- "log",
- "xml-rs 0.7.0",
+ "gl_generator",
 ]
 
 [[package]]
@@ -810,9 +781,9 @@ version = "0.14.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "1a95dfc23a2b4a9a2f5ab41d194f8bfda3cabec42af4e39f08c339eb2a0c124d"
 dependencies = [
- "khronos_api 3.1.0",
+ "khronos_api",
  "log",
- "xml-rs 0.8.28",
+ "xml-rs",
 ]
 
 [[package]]
@@ -820,7 +791,7 @@ name = "glib"
 version = "0.23.0-alpha"
 source = "git+https://github.com/gtk-rs/gtk-rs-core?branch=main#d2b6bc20e1c53e0ee6c26be695dbdb2c5d1922bf"
 dependencies = [
- "bitflags 2.13.1",
+ "bitflags",
  "futures-channel",
  "futures-core",
  "futures-executor",
@@ -863,7 +834,7 @@ checksum = "8cf52ce4f5ce1501bb056627f35484a819e812d1d93f0f3da413676421b1bbe0"
 dependencies = [
  "backtrace",
  "fnv",
- "gl_generator 0.14.0",
+ "gl_generator",
  "memoffset",
  "smallvec",
 ]
@@ -986,7 +957,6 @@ version = "0.12.0-alpha"
 dependencies = [
  "async-channel",
  "chrono",
- "epoxy",
  "femtovg",
  "glium",
  "glow",
@@ -1342,21 +1312,9 @@ dependencies = [
 
 [[package]]
 name = "khronos_api"
-version = "2.2.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "037ab472c33f67b5fbd3e9163a2645319e5356fcd355efa6d4eb7fff4bbcb554"
-
-[[package]]
-name = "khronos_api"
 version = "3.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "e2db585e1d738fc771bf08a151420d3ed193d9d895a36df7f6f8a9456b911ddc"
-
-[[package]]
-name = "lazy_static"
-version = "1.5.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "bbd2bcb4c963f2ddae06a2efc7e9f3591312473c50c6685e1f298068316e66fe"
 
 [[package]]
 name = "libc"
@@ -1732,7 +1690,7 @@ version = "0.5.18"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "ed2bf2547551a7053d6fdfafda3f938979645c44812fbfcda098faae3f1a362d"
 dependencies = [
- "bitflags 2.13.1",
+ "bitflags",
 ]
 
 [[package]]
@@ -1823,7 +1781,7 @@ version = "1.1.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "b6fe4565b9518b83ef4f91bb47ce29620ca828bd32cb7e408f0062e9930ba190"
 dependencies = [
- "bitflags 2.13.1",
+ "bitflags",
  "errno",
  "libc",
  "linux-raw-sys",
@@ -1957,16 +1915,6 @@ dependencies = [
  "itoa",
  "ryu",
  "serde",
-]
-
-[[package]]
-name = "shared_library"
-version = "0.1.9"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "5a9e7e0f2bfae24d8a5b5a66c5b257a83c7412304311512a0c054cd5e619da11"
-dependencies = [
- "lazy_static",
- "libc",
 ]
 
 [[package]]
@@ -2282,7 +2230,7 @@ version = "0.6.11"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "4cfcf7e2740e6fc6d4d688b4ef00650406bb94adf4731e43c096c3a19fe40840"
 dependencies = [
- "bitflags 2.13.1",
+ "bitflags",
  "bytes",
  "futures-util",
  "http",
@@ -2484,7 +2432,7 @@ version = "0.31.15"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "e3c36a0f861ad76d0901f2800b46321410d9f73f2ea88aac0650d86c32688073"
 dependencies = [
- "bitflags 2.13.1",
+ "bitflags",
  "rustix",
  "wayland-backend",
  "wayland-scanner",
@@ -2496,7 +2444,7 @@ version = "0.32.13"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "23d0c813de3daa2ed6520af85a3bd49b0e722a3078506899aa9686fea58dc4b6"
 dependencies = [
- "bitflags 2.13.1",
+ "bitflags",
  "wayland-backend",
  "wayland-client",
  "wayland-scanner",
@@ -2784,15 +2732,6 @@ dependencies = [
  "libc",
  "once_cell",
  "pkg-config",
-]
-
-[[package]]
-name = "xml-rs"
-version = "0.7.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "3c1cb601d29fe2c2ac60a2b2e5e293994d87a1f6fa9687a31a15270f909be9c2"
-dependencies = [
- "bitflags 1.3.2",
 ]
 
 [[package]]
