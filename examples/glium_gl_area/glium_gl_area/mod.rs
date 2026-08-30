@@ -23,7 +23,7 @@ unsafe impl glium::backend::Backend for GliumGLArea {
     }
 
     unsafe fn get_proc_address(&self, symbol: &str) -> *const std::ffi::c_void {
-        epoxy::get_proc_addr(symbol)
+        crate::get_proc_address(symbol)
     }
 
     fn get_framebuffer_dimensions(&self) -> (u32, u32) {
