@@ -102,11 +102,11 @@ fn check_template_fields(source: &TemplateSource, fields: &[AttributedField]) ->
         };
         if let Some(e) = elem {
             let name = e.name();
-            if name == QName(b"object") || name == QName(b"template") {
+            if name == QName("object") || name == QName("template") {
                 let id = e
                     .attributes()
-                    .find_map(|a| a.ok().and_then(|a| (a.key == QName(b"id")).then_some(a)));
-                let id = id.as_ref().and_then(|a| std::str::from_utf8(&a.value).ok());
+                    .find_map(|a| a.ok().and_then(|a| (a.key == QName("id")).then_some(a)));
+                let id = id.as_ref().map(|a| a.value.as_ref());
                 if let Some(id) = id {
                     ids_left.remove(id);
                 }
