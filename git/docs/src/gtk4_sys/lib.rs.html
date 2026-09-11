@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/sys/src/lib.rs`."><title>lib.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-203241e4.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gtk4_sys" data-themes="" data-resource-suffix="" data-rustdoc-version="1.100.0-nightly (f248f4038 2026-09-05)" data-channel="nightly" data-search-js="search-b167f383.js" data-stringdex-js="stringdex-b5109af9.js" data-settings-js="settings-170eb4bf.js" ><script src="../../static.files/storage-41dd4d93.js"></script><script defer src="../../static.files/src-script-813739b1.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-1814ead3.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-9f56287d.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><a class="skip-main-content" href="#main-content">Skip to main content</a><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/sys/src/lib.rs`."><title>lib.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-203241e4.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gtk4_sys" data-themes="" data-resource-suffix="" data-rustdoc-version="1.100.0-nightly (67eda617e 2026-09-10)" data-channel="nightly" data-search-js="search-b167f383.js" data-stringdex-js="stringdex-b5109af9.js" data-settings-js="settings-170eb4bf.js" ><script src="../../static.files/storage-41dd4d93.js"></script><script defer src="../../static.files/src-script-813739b1.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-1814ead3.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-9f56287d.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><a class="skip-main-content" href="#main-content">Skip to main content</a><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
 
@@ -91,7 +91,7 @@
 <a href=#18 id=18 data-nosnippet>18</a><span class="kw">use </span>glib_sys <span class="kw">as </span>glib;
 <a href=#19 id=19 data-nosnippet>19</a><span class="kw">use </span>gobject_sys <span class="kw">as </span>gobject;
 <a href=#20 id=20 data-nosnippet>20</a><span class="kw">use </span>graphene_sys <span class="kw">as </span>graphene;
-<a href=#21 id=21 data-nosnippet>21</a><span class="kw">use </span><a href="../../gsk4_sys/index.html">gsk4_sys</a> <span class="kw">as </span>gsk;
+<a href=#21 id=21 data-nosnippet>21</a><span class="kw">use </span>gsk4_sys <span class="kw">as </span>gsk;
 <a href=#22 id=22 data-nosnippet>22</a><span class="kw">use </span>pango_sys <span class="kw">as </span>pango;
 <a href=#23 id=23 data-nosnippet>23</a>
 <a href=#24 id=24 data-nosnippet>24</a><span class="attr">#[allow(unused_imports)]
@@ -14859,14 +14859,14 @@
 <a href=#14786 id=14786 data-nosnippet>14786</a>    <span class="kw">pub fn </span>gtk_fixed_get_child_transform(
 <a href=#14787 id=14787 data-nosnippet>14787</a>        fixed: <span class="kw-2">*mut </span><a href="#7467-7469">GtkFixed</a>,
 <a href=#14788 id=14788 data-nosnippet>14788</a>        widget: <span class="kw-2">*mut </span><a href="#9761-9764">GtkWidget</a>,
-<a href=#14789 id=14789 data-nosnippet>14789</a>    ) -&gt; <span class="kw-2">*mut </span>gsk::<a href="../../gsk4_sys/struct.GskTransform.html">GskTransform</a>;
+<a href=#14789 id=14789 data-nosnippet>14789</a>    ) -&gt; <span class="kw-2">*mut </span>gsk::GskTransform;
 <a href=#14790 id=14790 data-nosnippet>14790</a>    <span class="kw">pub fn </span>gtk_fixed_move(fixed: <span class="kw-2">*mut </span><a href="#7467-7469">GtkFixed</a>, widget: <span class="kw-2">*mut </span><a href="#9761-9764">GtkWidget</a>, x: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_double.html">c_double</a>, y: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_double.html">c_double</a>);
 <a href=#14791 id=14791 data-nosnippet>14791</a>    <span class="kw">pub fn </span>gtk_fixed_put(fixed: <span class="kw-2">*mut </span><a href="#7467-7469">GtkFixed</a>, widget: <span class="kw-2">*mut </span><a href="#9761-9764">GtkWidget</a>, x: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_double.html">c_double</a>, y: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_double.html">c_double</a>);
 <a href=#14792 id=14792 data-nosnippet>14792</a>    <span class="kw">pub fn </span>gtk_fixed_remove(fixed: <span class="kw-2">*mut </span><a href="#7467-7469">GtkFixed</a>, widget: <span class="kw-2">*mut </span><a href="#9761-9764">GtkWidget</a>);
 <a href=#14793 id=14793 data-nosnippet>14793</a>    <span class="kw">pub fn </span>gtk_fixed_set_child_transform(
 <a href=#14794 id=14794 data-nosnippet>14794</a>        fixed: <span class="kw-2">*mut </span><a href="#7467-7469">GtkFixed</a>,
 <a href=#14795 id=14795 data-nosnippet>14795</a>        widget: <span class="kw-2">*mut </span><a href="#9761-9764">GtkWidget</a>,
-<a href=#14796 id=14796 data-nosnippet>14796</a>        transform: <span class="kw-2">*mut </span>gsk::<a href="../../gsk4_sys/struct.GskTransform.html">GskTransform</a>,
+<a href=#14796 id=14796 data-nosnippet>14796</a>        transform: <span class="kw-2">*mut </span>gsk::GskTransform,
 <a href=#14797 id=14797 data-nosnippet>14797</a>    );
 <a href=#14798 id=14798 data-nosnippet>14798</a>
 <a href=#14799 id=14799 data-nosnippet>14799</a>    <span class="comment">//=========================================================================
@@ -14881,10 +14881,10 @@
 <a href=#14808 id=14808 data-nosnippet>14808</a>    </span><span class="kw">pub fn </span>gtk_fixed_layout_child_get_type() -&gt; GType;
 <a href=#14809 id=14809 data-nosnippet>14809</a>    <span class="kw">pub fn </span>gtk_fixed_layout_child_get_transform(
 <a href=#14810 id=14810 data-nosnippet>14810</a>        child: <span class="kw-2">*mut </span><a href="#7495-7498">GtkFixedLayoutChild</a>,
-<a href=#14811 id=14811 data-nosnippet>14811</a>    ) -&gt; <span class="kw-2">*mut </span>gsk::<a href="../../gsk4_sys/struct.GskTransform.html">GskTransform</a>;
+<a href=#14811 id=14811 data-nosnippet>14811</a>    ) -&gt; <span class="kw-2">*mut </span>gsk::GskTransform;
 <a href=#14812 id=14812 data-nosnippet>14812</a>    <span class="kw">pub fn </span>gtk_fixed_layout_child_set_transform(
 <a href=#14813 id=14813 data-nosnippet>14813</a>        child: <span class="kw-2">*mut </span><a href="#7495-7498">GtkFixedLayoutChild</a>,
-<a href=#14814 id=14814 data-nosnippet>14814</a>        transform: <span class="kw-2">*mut </span>gsk::<a href="../../gsk4_sys/struct.GskTransform.html">GskTransform</a>,
+<a href=#14814 id=14814 data-nosnippet>14814</a>        transform: <span class="kw-2">*mut </span>gsk::GskTransform,
 <a href=#14815 id=14815 data-nosnippet>14815</a>    );
 <a href=#14816 id=14816 data-nosnippet>14816</a>
 <a href=#14817 id=14817 data-nosnippet>14817</a>    <span class="comment">//=========================================================================
@@ -18646,7 +18646,7 @@
 <a href=#18573 id=18573 data-nosnippet>18573</a>    <span class="kw">pub fn </span>gtk_snapshot_new() -&gt; <span class="kw-2">*mut </span><a href="#9176-9179">GtkSnapshot</a>;
 <a href=#18574 id=18574 data-nosnippet>18574</a>    <span class="kw">pub fn </span>gtk_snapshot_append_border(
 <a href=#18575 id=18575 data-nosnippet>18575</a>        snapshot: <span class="kw-2">*mut </span><a href="#9176-9179">GtkSnapshot</a>,
-<a href=#18576 id=18576 data-nosnippet>18576</a>        outline: <span class="kw-2">*const </span>gsk::<a href="../../gsk4_sys/struct.GskRoundedRect.html">GskRoundedRect</a>,
+<a href=#18576 id=18576 data-nosnippet>18576</a>        outline: <span class="kw-2">*const </span>gsk::GskRoundedRect,
 <a href=#18577 id=18577 data-nosnippet>18577</a>        border_width: <span class="kw-2">*const </span>[<a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_float.html">c_float</a>; <span class="number">4</span>],
 <a href=#18578 id=18578 data-nosnippet>18578</a>        border_color: <span class="kw-2">*const </span>[gdk::GdkRGBA; <span class="number">4</span>],
 <a href=#18579 id=18579 data-nosnippet>18579</a>    );
@@ -18664,20 +18664,20 @@
 <a href=#18591 id=18591 data-nosnippet>18591</a>        bounds: <span class="kw-2">*const </span>graphene::graphene_rect_t,
 <a href=#18592 id=18592 data-nosnippet>18592</a>        center: <span class="kw-2">*const </span>graphene::graphene_point_t,
 <a href=#18593 id=18593 data-nosnippet>18593</a>        rotation: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_float.html">c_float</a>,
-<a href=#18594 id=18594 data-nosnippet>18594</a>        stops: <span class="kw-2">*const </span>gsk::<a href="../../gsk4_sys/struct.GskColorStop.html">GskColorStop</a>,
+<a href=#18594 id=18594 data-nosnippet>18594</a>        stops: <span class="kw-2">*const </span>gsk::GskColorStop,
 <a href=#18595 id=18595 data-nosnippet>18595</a>        n_stops: size_t,
 <a href=#18596 id=18596 data-nosnippet>18596</a>    );
 <a href=#18597 id=18597 data-nosnippet>18597</a>    <span class="attr">#[cfg(feature = <span class="string">"v4_14"</span>)]
 <a href=#18598 id=18598 data-nosnippet>18598</a>    #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_14"</span>)))]
 <a href=#18599 id=18599 data-nosnippet>18599</a>    </span><span class="kw">pub fn </span>gtk_snapshot_append_fill(
 <a href=#18600 id=18600 data-nosnippet>18600</a>        snapshot: <span class="kw-2">*mut </span><a href="#9176-9179">GtkSnapshot</a>,
-<a href=#18601 id=18601 data-nosnippet>18601</a>        path: <span class="kw-2">*mut </span>gsk::<a href="../../gsk4_sys/struct.GskPath.html">GskPath</a>,
-<a href=#18602 id=18602 data-nosnippet>18602</a>        fill_rule: gsk::<a href="../../gsk4_sys/type.GskFillRule.html">GskFillRule</a>,
+<a href=#18601 id=18601 data-nosnippet>18601</a>        path: <span class="kw-2">*mut </span>gsk::GskPath,
+<a href=#18602 id=18602 data-nosnippet>18602</a>        fill_rule: gsk::GskFillRule,
 <a href=#18603 id=18603 data-nosnippet>18603</a>        color: <span class="kw-2">*const </span>gdk::GdkRGBA,
 <a href=#18604 id=18604 data-nosnippet>18604</a>    );
 <a href=#18605 id=18605 data-nosnippet>18605</a>    <span class="kw">pub fn </span>gtk_snapshot_append_inset_shadow(
 <a href=#18606 id=18606 data-nosnippet>18606</a>        snapshot: <span class="kw-2">*mut </span><a href="#9176-9179">GtkSnapshot</a>,
-<a href=#18607 id=18607 data-nosnippet>18607</a>        outline: <span class="kw-2">*const </span>gsk::<a href="../../gsk4_sys/struct.GskRoundedRect.html">GskRoundedRect</a>,
+<a href=#18607 id=18607 data-nosnippet>18607</a>        outline: <span class="kw-2">*const </span>gsk::GskRoundedRect,
 <a href=#18608 id=18608 data-nosnippet>18608</a>        color: <span class="kw-2">*const </span>gdk::GdkRGBA,
 <a href=#18609 id=18609 data-nosnippet>18609</a>        dx: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_float.html">c_float</a>,
 <a href=#18610 id=18610 data-nosnippet>18610</a>        dy: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_float.html">c_float</a>,
@@ -18694,13 +18694,13 @@
 <a href=#18621 id=18621 data-nosnippet>18621</a>        bounds: <span class="kw-2">*const </span>graphene::graphene_rect_t,
 <a href=#18622 id=18622 data-nosnippet>18622</a>        start_point: <span class="kw-2">*const </span>graphene::graphene_point_t,
 <a href=#18623 id=18623 data-nosnippet>18623</a>        end_point: <span class="kw-2">*const </span>graphene::graphene_point_t,
-<a href=#18624 id=18624 data-nosnippet>18624</a>        stops: <span class="kw-2">*const </span>gsk::<a href="../../gsk4_sys/struct.GskColorStop.html">GskColorStop</a>,
+<a href=#18624 id=18624 data-nosnippet>18624</a>        stops: <span class="kw-2">*const </span>gsk::GskColorStop,
 <a href=#18625 id=18625 data-nosnippet>18625</a>        n_stops: size_t,
 <a href=#18626 id=18626 data-nosnippet>18626</a>    );
-<a href=#18627 id=18627 data-nosnippet>18627</a>    <span class="kw">pub fn </span>gtk_snapshot_append_node(snapshot: <span class="kw-2">*mut </span><a href="#9176-9179">GtkSnapshot</a>, node: <span class="kw-2">*mut </span>gsk::<a href="../../gsk4_sys/struct.GskRenderNode.html">GskRenderNode</a>);
+<a href=#18627 id=18627 data-nosnippet>18627</a>    <span class="kw">pub fn </span>gtk_snapshot_append_node(snapshot: <span class="kw-2">*mut </span><a href="#9176-9179">GtkSnapshot</a>, node: <span class="kw-2">*mut </span>gsk::GskRenderNode);
 <a href=#18628 id=18628 data-nosnippet>18628</a>    <span class="kw">pub fn </span>gtk_snapshot_append_outset_shadow(
 <a href=#18629 id=18629 data-nosnippet>18629</a>        snapshot: <span class="kw-2">*mut </span><a href="#9176-9179">GtkSnapshot</a>,
-<a href=#18630 id=18630 data-nosnippet>18630</a>        outline: <span class="kw-2">*const </span>gsk::<a href="../../gsk4_sys/struct.GskRoundedRect.html">GskRoundedRect</a>,
+<a href=#18630 id=18630 data-nosnippet>18630</a>        outline: <span class="kw-2">*const </span>gsk::GskRoundedRect,
 <a href=#18631 id=18631 data-nosnippet>18631</a>        color: <span class="kw-2">*const </span>gdk::GdkRGBA,
 <a href=#18632 id=18632 data-nosnippet>18632</a>        dx: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_float.html">c_float</a>,
 <a href=#18633 id=18633 data-nosnippet>18633</a>        dy: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_float.html">c_float</a>,
@@ -18722,7 +18722,7 @@
 <a href=#18649 id=18649 data-nosnippet>18649</a>        vradius: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_float.html">c_float</a>,
 <a href=#18650 id=18650 data-nosnippet>18650</a>        start: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_float.html">c_float</a>,
 <a href=#18651 id=18651 data-nosnippet>18651</a>        end: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_float.html">c_float</a>,
-<a href=#18652 id=18652 data-nosnippet>18652</a>        stops: <span class="kw-2">*const </span>gsk::<a href="../../gsk4_sys/struct.GskColorStop.html">GskColorStop</a>,
+<a href=#18652 id=18652 data-nosnippet>18652</a>        stops: <span class="kw-2">*const </span>gsk::GskColorStop,
 <a href=#18653 id=18653 data-nosnippet>18653</a>        n_stops: size_t,
 <a href=#18654 id=18654 data-nosnippet>18654</a>    );
 <a href=#18655 id=18655 data-nosnippet>18655</a>    <span class="kw">pub fn </span>gtk_snapshot_append_repeating_linear_gradient(
@@ -18730,7 +18730,7 @@
 <a href=#18657 id=18657 data-nosnippet>18657</a>        bounds: <span class="kw-2">*const </span>graphene::graphene_rect_t,
 <a href=#18658 id=18658 data-nosnippet>18658</a>        start_point: <span class="kw-2">*const </span>graphene::graphene_point_t,
 <a href=#18659 id=18659 data-nosnippet>18659</a>        end_point: <span class="kw-2">*const </span>graphene::graphene_point_t,
-<a href=#18660 id=18660 data-nosnippet>18660</a>        stops: <span class="kw-2">*const </span>gsk::<a href="../../gsk4_sys/struct.GskColorStop.html">GskColorStop</a>,
+<a href=#18660 id=18660 data-nosnippet>18660</a>        stops: <span class="kw-2">*const </span>gsk::GskColorStop,
 <a href=#18661 id=18661 data-nosnippet>18661</a>        n_stops: size_t,
 <a href=#18662 id=18662 data-nosnippet>18662</a>    );
 <a href=#18663 id=18663 data-nosnippet>18663</a>    <span class="kw">pub fn </span>gtk_snapshot_append_repeating_radial_gradient(
@@ -18741,7 +18741,7 @@
 <a href=#18668 id=18668 data-nosnippet>18668</a>        vradius: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_float.html">c_float</a>,
 <a href=#18669 id=18669 data-nosnippet>18669</a>        start: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_float.html">c_float</a>,
 <a href=#18670 id=18670 data-nosnippet>18670</a>        end: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_float.html">c_float</a>,
-<a href=#18671 id=18671 data-nosnippet>18671</a>        stops: <span class="kw-2">*const </span>gsk::<a href="../../gsk4_sys/struct.GskColorStop.html">GskColorStop</a>,
+<a href=#18671 id=18671 data-nosnippet>18671</a>        stops: <span class="kw-2">*const </span>gsk::GskColorStop,
 <a href=#18672 id=18672 data-nosnippet>18672</a>        n_stops: size_t,
 <a href=#18673 id=18673 data-nosnippet>18673</a>    );
 <a href=#18674 id=18674 data-nosnippet>18674</a>    <span class="attr">#[cfg(feature = <span class="string">"v4_10"</span>)]
@@ -18749,15 +18749,15 @@
 <a href=#18676 id=18676 data-nosnippet>18676</a>    </span><span class="kw">pub fn </span>gtk_snapshot_append_scaled_texture(
 <a href=#18677 id=18677 data-nosnippet>18677</a>        snapshot: <span class="kw-2">*mut </span><a href="#9176-9179">GtkSnapshot</a>,
 <a href=#18678 id=18678 data-nosnippet>18678</a>        texture: <span class="kw-2">*mut </span>gdk::GdkTexture,
-<a href=#18679 id=18679 data-nosnippet>18679</a>        filter: gsk::<a href="../../gsk4_sys/type.GskScalingFilter.html">GskScalingFilter</a>,
+<a href=#18679 id=18679 data-nosnippet>18679</a>        filter: gsk::GskScalingFilter,
 <a href=#18680 id=18680 data-nosnippet>18680</a>        bounds: <span class="kw-2">*const </span>graphene::graphene_rect_t,
 <a href=#18681 id=18681 data-nosnippet>18681</a>    );
 <a href=#18682 id=18682 data-nosnippet>18682</a>    <span class="attr">#[cfg(feature = <span class="string">"v4_14"</span>)]
 <a href=#18683 id=18683 data-nosnippet>18683</a>    #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_14"</span>)))]
 <a href=#18684 id=18684 data-nosnippet>18684</a>    </span><span class="kw">pub fn </span>gtk_snapshot_append_stroke(
 <a href=#18685 id=18685 data-nosnippet>18685</a>        snapshot: <span class="kw-2">*mut </span><a href="#9176-9179">GtkSnapshot</a>,
-<a href=#18686 id=18686 data-nosnippet>18686</a>        path: <span class="kw-2">*mut </span>gsk::<a href="../../gsk4_sys/struct.GskPath.html">GskPath</a>,
-<a href=#18687 id=18687 data-nosnippet>18687</a>        stroke: <span class="kw-2">*const </span>gsk::<a href="../../gsk4_sys/struct.GskStroke.html">GskStroke</a>,
+<a href=#18686 id=18686 data-nosnippet>18686</a>        path: <span class="kw-2">*mut </span>gsk::GskPath,
+<a href=#18687 id=18687 data-nosnippet>18687</a>        stroke: <span class="kw-2">*const </span>gsk::GskStroke,
 <a href=#18688 id=18688 data-nosnippet>18688</a>        color: <span class="kw-2">*const </span>gdk::GdkRGBA,
 <a href=#18689 id=18689 data-nosnippet>18689</a>    );
 <a href=#18690 id=18690 data-nosnippet>18690</a>    <span class="kw">pub fn </span>gtk_snapshot_append_texture(
@@ -18765,7 +18765,7 @@
 <a href=#18692 id=18692 data-nosnippet>18692</a>        texture: <span class="kw-2">*mut </span>gdk::GdkTexture,
 <a href=#18693 id=18693 data-nosnippet>18693</a>        bounds: <span class="kw-2">*const </span>graphene::graphene_rect_t,
 <a href=#18694 id=18694 data-nosnippet>18694</a>    );
-<a href=#18695 id=18695 data-nosnippet>18695</a>    <span class="kw">pub fn </span>gtk_snapshot_free_to_node(snapshot: <span class="kw-2">*mut </span><a href="#9176-9179">GtkSnapshot</a>) -&gt; <span class="kw-2">*mut </span>gsk::<a href="../../gsk4_sys/struct.GskRenderNode.html">GskRenderNode</a>;
+<a href=#18695 id=18695 data-nosnippet>18695</a>    <span class="kw">pub fn </span>gtk_snapshot_free_to_node(snapshot: <span class="kw-2">*mut </span><a href="#9176-9179">GtkSnapshot</a>) -&gt; <span class="kw-2">*mut </span>gsk::GskRenderNode;
 <a href=#18696 id=18696 data-nosnippet>18696</a>    <span class="kw">pub fn </span>gtk_snapshot_free_to_paintable(
 <a href=#18697 id=18697 data-nosnippet>18697</a>        snapshot: <span class="kw-2">*mut </span><a href="#9176-9179">GtkSnapshot</a>,
 <a href=#18698 id=18698 data-nosnippet>18698</a>        size: <span class="kw-2">*const </span>graphene::graphene_size_t,
@@ -18773,7 +18773,7 @@
 <a href=#18700 id=18700 data-nosnippet>18700</a>    <span class="kw">pub fn </span>gtk_snapshot_gl_shader_pop_texture(snapshot: <span class="kw-2">*mut </span><a href="#9176-9179">GtkSnapshot</a>);
 <a href=#18701 id=18701 data-nosnippet>18701</a>    <span class="kw">pub fn </span>gtk_snapshot_perspective(snapshot: <span class="kw-2">*mut </span><a href="#9176-9179">GtkSnapshot</a>, depth: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_float.html">c_float</a>);
 <a href=#18702 id=18702 data-nosnippet>18702</a>    <span class="kw">pub fn </span>gtk_snapshot_pop(snapshot: <span class="kw-2">*mut </span><a href="#9176-9179">GtkSnapshot</a>);
-<a href=#18703 id=18703 data-nosnippet>18703</a>    <span class="kw">pub fn </span>gtk_snapshot_push_blend(snapshot: <span class="kw-2">*mut </span><a href="#9176-9179">GtkSnapshot</a>, blend_mode: gsk::<a href="../../gsk4_sys/type.GskBlendMode.html">GskBlendMode</a>);
+<a href=#18703 id=18703 data-nosnippet>18703</a>    <span class="kw">pub fn </span>gtk_snapshot_push_blend(snapshot: <span class="kw-2">*mut </span><a href="#9176-9179">GtkSnapshot</a>, blend_mode: gsk::GskBlendMode);
 <a href=#18704 id=18704 data-nosnippet>18704</a>    <span class="kw">pub fn </span>gtk_snapshot_push_blur(snapshot: <span class="kw-2">*mut </span><a href="#9176-9179">GtkSnapshot</a>, radius: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_double.html">c_double</a>);
 <a href=#18705 id=18705 data-nosnippet>18705</a>    <span class="kw">pub fn </span>gtk_snapshot_push_clip(
 <a href=#18706 id=18706 data-nosnippet>18706</a>        snapshot: <span class="kw-2">*mut </span><a href="#9176-9179">GtkSnapshot</a>,
@@ -18788,14 +18788,14 @@
 <a href=#18715 id=18715 data-nosnippet>18715</a>    #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_20"</span>)))]
 <a href=#18716 id=18716 data-nosnippet>18716</a>    </span><span class="kw">pub fn </span>gtk_snapshot_push_component_transfer(
 <a href=#18717 id=18717 data-nosnippet>18717</a>        snapshot: <span class="kw-2">*mut </span><a href="#9176-9179">GtkSnapshot</a>,
-<a href=#18718 id=18718 data-nosnippet>18718</a>        red: <span class="kw-2">*const </span>gsk::<a href="../../gsk4_sys/struct.GskComponentTransfer.html">GskComponentTransfer</a>,
-<a href=#18719 id=18719 data-nosnippet>18719</a>        green: <span class="kw-2">*const </span>gsk::<a href="../../gsk4_sys/struct.GskComponentTransfer.html">GskComponentTransfer</a>,
-<a href=#18720 id=18720 data-nosnippet>18720</a>        blue: <span class="kw-2">*const </span>gsk::<a href="../../gsk4_sys/struct.GskComponentTransfer.html">GskComponentTransfer</a>,
-<a href=#18721 id=18721 data-nosnippet>18721</a>        alpha: <span class="kw-2">*const </span>gsk::<a href="../../gsk4_sys/struct.GskComponentTransfer.html">GskComponentTransfer</a>,
+<a href=#18718 id=18718 data-nosnippet>18718</a>        red: <span class="kw-2">*const </span>gsk::GskComponentTransfer,
+<a href=#18719 id=18719 data-nosnippet>18719</a>        green: <span class="kw-2">*const </span>gsk::GskComponentTransfer,
+<a href=#18720 id=18720 data-nosnippet>18720</a>        blue: <span class="kw-2">*const </span>gsk::GskComponentTransfer,
+<a href=#18721 id=18721 data-nosnippet>18721</a>        alpha: <span class="kw-2">*const </span>gsk::GskComponentTransfer,
 <a href=#18722 id=18722 data-nosnippet>18722</a>    );
 <a href=#18723 id=18723 data-nosnippet>18723</a>    <span class="attr">#[cfg(feature = <span class="string">"v4_22"</span>)]
 <a href=#18724 id=18724 data-nosnippet>18724</a>    #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_22"</span>)))]
-<a href=#18725 id=18725 data-nosnippet>18725</a>    </span><span class="kw">pub fn </span>gtk_snapshot_push_composite(snapshot: <span class="kw-2">*mut </span><a href="#9176-9179">GtkSnapshot</a>, op: gsk::<a href="../../gsk4_sys/type.GskPorterDuff.html">GskPorterDuff</a>);
+<a href=#18725 id=18725 data-nosnippet>18725</a>    </span><span class="kw">pub fn </span>gtk_snapshot_push_composite(snapshot: <span class="kw-2">*mut </span><a href="#9176-9179">GtkSnapshot</a>, op: gsk::GskPorterDuff);
 <a href=#18726 id=18726 data-nosnippet>18726</a>    <span class="attr">#[cfg(feature = <span class="string">"v4_22"</span>)]
 <a href=#18727 id=18727 data-nosnippet>18727</a>    #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_22"</span>)))]
 <a href=#18728 id=18728 data-nosnippet>18728</a>    </span><span class="kw">pub fn </span>gtk_snapshot_push_copy(snapshot: <span class="kw-2">*mut </span><a href="#9176-9179">GtkSnapshot</a>);
@@ -18805,21 +18805,21 @@
 <a href=#18732 id=18732 data-nosnippet>18732</a>    #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_14"</span>)))]
 <a href=#18733 id=18733 data-nosnippet>18733</a>    </span><span class="kw">pub fn </span>gtk_snapshot_push_fill(
 <a href=#18734 id=18734 data-nosnippet>18734</a>        snapshot: <span class="kw-2">*mut </span><a href="#9176-9179">GtkSnapshot</a>,
-<a href=#18735 id=18735 data-nosnippet>18735</a>        path: <span class="kw-2">*mut </span>gsk::<a href="../../gsk4_sys/struct.GskPath.html">GskPath</a>,
-<a href=#18736 id=18736 data-nosnippet>18736</a>        fill_rule: gsk::<a href="../../gsk4_sys/type.GskFillRule.html">GskFillRule</a>,
+<a href=#18735 id=18735 data-nosnippet>18735</a>        path: <span class="kw-2">*mut </span>gsk::GskPath,
+<a href=#18736 id=18736 data-nosnippet>18736</a>        fill_rule: gsk::GskFillRule,
 <a href=#18737 id=18737 data-nosnippet>18737</a>    );
 <a href=#18738 id=18738 data-nosnippet>18738</a>    <span class="kw">pub fn </span>gtk_snapshot_push_gl_shader(
 <a href=#18739 id=18739 data-nosnippet>18739</a>        snapshot: <span class="kw-2">*mut </span><a href="#9176-9179">GtkSnapshot</a>,
-<a href=#18740 id=18740 data-nosnippet>18740</a>        shader: <span class="kw-2">*mut </span>gsk::<a href="../../gsk4_sys/struct.GskGLShader.html">GskGLShader</a>,
+<a href=#18740 id=18740 data-nosnippet>18740</a>        shader: <span class="kw-2">*mut </span>gsk::GskGLShader,
 <a href=#18741 id=18741 data-nosnippet>18741</a>        bounds: <span class="kw-2">*const </span>graphene::graphene_rect_t,
 <a href=#18742 id=18742 data-nosnippet>18742</a>        take_args: <span class="kw-2">*mut </span>glib::GBytes,
 <a href=#18743 id=18743 data-nosnippet>18743</a>    );
 <a href=#18744 id=18744 data-nosnippet>18744</a>    <span class="attr">#[cfg(feature = <span class="string">"v4_22"</span>)]
 <a href=#18745 id=18745 data-nosnippet>18745</a>    #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_22"</span>)))]
-<a href=#18746 id=18746 data-nosnippet>18746</a>    </span><span class="kw">pub fn </span>gtk_snapshot_push_isolation(snapshot: <span class="kw-2">*mut </span><a href="#9176-9179">GtkSnapshot</a>, features: gsk::<a href="../../gsk4_sys/type.GskIsolation.html">GskIsolation</a>);
+<a href=#18746 id=18746 data-nosnippet>18746</a>    </span><span class="kw">pub fn </span>gtk_snapshot_push_isolation(snapshot: <span class="kw-2">*mut </span><a href="#9176-9179">GtkSnapshot</a>, features: gsk::GskIsolation);
 <a href=#18747 id=18747 data-nosnippet>18747</a>    <span class="attr">#[cfg(feature = <span class="string">"v4_10"</span>)]
 <a href=#18748 id=18748 data-nosnippet>18748</a>    #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_10"</span>)))]
-<a href=#18749 id=18749 data-nosnippet>18749</a>    </span><span class="kw">pub fn </span>gtk_snapshot_push_mask(snapshot: <span class="kw-2">*mut </span><a href="#9176-9179">GtkSnapshot</a>, mask_mode: gsk::<a href="../../gsk4_sys/type.GskMaskMode.html">GskMaskMode</a>);
+<a href=#18749 id=18749 data-nosnippet>18749</a>    </span><span class="kw">pub fn </span>gtk_snapshot_push_mask(snapshot: <span class="kw-2">*mut </span><a href="#9176-9179">GtkSnapshot</a>, mask_mode: gsk::GskMaskMode);
 <a href=#18750 id=18750 data-nosnippet>18750</a>    <span class="kw">pub fn </span>gtk_snapshot_push_opacity(snapshot: <span class="kw-2">*mut </span><a href="#9176-9179">GtkSnapshot</a>, opacity: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_double.html">c_double</a>);
 <a href=#18751 id=18751 data-nosnippet>18751</a>    <span class="kw">pub fn </span>gtk_snapshot_push_repeat(
 <a href=#18752 id=18752 data-nosnippet>18752</a>        snapshot: <span class="kw-2">*mut </span><a href="#9176-9179">GtkSnapshot</a>,
@@ -18828,19 +18828,19 @@
 <a href=#18755 id=18755 data-nosnippet>18755</a>    );
 <a href=#18756 id=18756 data-nosnippet>18756</a>    <span class="kw">pub fn </span>gtk_snapshot_push_rounded_clip(
 <a href=#18757 id=18757 data-nosnippet>18757</a>        snapshot: <span class="kw-2">*mut </span><a href="#9176-9179">GtkSnapshot</a>,
-<a href=#18758 id=18758 data-nosnippet>18758</a>        bounds: <span class="kw-2">*const </span>gsk::<a href="../../gsk4_sys/struct.GskRoundedRect.html">GskRoundedRect</a>,
+<a href=#18758 id=18758 data-nosnippet>18758</a>        bounds: <span class="kw-2">*const </span>gsk::GskRoundedRect,
 <a href=#18759 id=18759 data-nosnippet>18759</a>    );
 <a href=#18760 id=18760 data-nosnippet>18760</a>    <span class="kw">pub fn </span>gtk_snapshot_push_shadow(
 <a href=#18761 id=18761 data-nosnippet>18761</a>        snapshot: <span class="kw-2">*mut </span><a href="#9176-9179">GtkSnapshot</a>,
-<a href=#18762 id=18762 data-nosnippet>18762</a>        shadow: <span class="kw-2">*const </span>gsk::<a href="../../gsk4_sys/struct.GskShadow.html">GskShadow</a>,
+<a href=#18762 id=18762 data-nosnippet>18762</a>        shadow: <span class="kw-2">*const </span>gsk::GskShadow,
 <a href=#18763 id=18763 data-nosnippet>18763</a>        n_shadows: size_t,
 <a href=#18764 id=18764 data-nosnippet>18764</a>    );
 <a href=#18765 id=18765 data-nosnippet>18765</a>    <span class="attr">#[cfg(feature = <span class="string">"v4_14"</span>)]
 <a href=#18766 id=18766 data-nosnippet>18766</a>    #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_14"</span>)))]
 <a href=#18767 id=18767 data-nosnippet>18767</a>    </span><span class="kw">pub fn </span>gtk_snapshot_push_stroke(
 <a href=#18768 id=18768 data-nosnippet>18768</a>        snapshot: <span class="kw-2">*mut </span><a href="#9176-9179">GtkSnapshot</a>,
-<a href=#18769 id=18769 data-nosnippet>18769</a>        path: <span class="kw-2">*mut </span>gsk::<a href="../../gsk4_sys/struct.GskPath.html">GskPath</a>,
-<a href=#18770 id=18770 data-nosnippet>18770</a>        stroke: <span class="kw-2">*const </span>gsk::<a href="../../gsk4_sys/struct.GskStroke.html">GskStroke</a>,
+<a href=#18769 id=18769 data-nosnippet>18769</a>        path: <span class="kw-2">*mut </span>gsk::GskPath,
+<a href=#18770 id=18770 data-nosnippet>18770</a>        stroke: <span class="kw-2">*const </span>gsk::GskStroke,
 <a href=#18771 id=18771 data-nosnippet>18771</a>    );
 <a href=#18772 id=18772 data-nosnippet>18772</a>    <span class="kw">pub fn </span>gtk_snapshot_render_background(
 <a href=#18773 id=18773 data-nosnippet>18773</a>        snapshot: <span class="kw-2">*mut </span><a href="#9176-9179">GtkSnapshot</a>,
@@ -18899,13 +18899,13 @@
 <a href=#18826 id=18826 data-nosnippet>18826</a>    );
 <a href=#18827 id=18827 data-nosnippet>18827</a>    <span class="attr">#[cfg(feature = <span class="string">"v4_24"</span>)]
 <a href=#18828 id=18828 data-nosnippet>18828</a>    #[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_24"</span>)))]
-<a href=#18829 id=18829 data-nosnippet>18829</a>    </span><span class="kw">pub fn </span>gtk_snapshot_set_snap(self_: <span class="kw-2">*mut </span><a href="#9176-9179">GtkSnapshot</a>, snap: gsk::<a href="../../gsk4_sys/type.GskRectSnap.html">GskRectSnap</a>);
-<a href=#18830 id=18830 data-nosnippet>18830</a>    <span class="kw">pub fn </span>gtk_snapshot_to_node(snapshot: <span class="kw-2">*mut </span><a href="#9176-9179">GtkSnapshot</a>) -&gt; <span class="kw-2">*mut </span>gsk::<a href="../../gsk4_sys/struct.GskRenderNode.html">GskRenderNode</a>;
+<a href=#18829 id=18829 data-nosnippet>18829</a>    </span><span class="kw">pub fn </span>gtk_snapshot_set_snap(self_: <span class="kw-2">*mut </span><a href="#9176-9179">GtkSnapshot</a>, snap: gsk::GskRectSnap);
+<a href=#18830 id=18830 data-nosnippet>18830</a>    <span class="kw">pub fn </span>gtk_snapshot_to_node(snapshot: <span class="kw-2">*mut </span><a href="#9176-9179">GtkSnapshot</a>) -&gt; <span class="kw-2">*mut </span>gsk::GskRenderNode;
 <a href=#18831 id=18831 data-nosnippet>18831</a>    <span class="kw">pub fn </span>gtk_snapshot_to_paintable(
 <a href=#18832 id=18832 data-nosnippet>18832</a>        snapshot: <span class="kw-2">*mut </span><a href="#9176-9179">GtkSnapshot</a>,
 <a href=#18833 id=18833 data-nosnippet>18833</a>        size: <span class="kw-2">*const </span>graphene::graphene_size_t,
 <a href=#18834 id=18834 data-nosnippet>18834</a>    ) -&gt; <span class="kw-2">*mut </span>gdk::GdkPaintable;
-<a href=#18835 id=18835 data-nosnippet>18835</a>    <span class="kw">pub fn </span>gtk_snapshot_transform(snapshot: <span class="kw-2">*mut </span><a href="#9176-9179">GtkSnapshot</a>, transform: <span class="kw-2">*mut </span>gsk::<a href="../../gsk4_sys/struct.GskTransform.html">GskTransform</a>);
+<a href=#18835 id=18835 data-nosnippet>18835</a>    <span class="kw">pub fn </span>gtk_snapshot_transform(snapshot: <span class="kw-2">*mut </span><a href="#9176-9179">GtkSnapshot</a>, transform: <span class="kw-2">*mut </span>gsk::GskTransform);
 <a href=#18836 id=18836 data-nosnippet>18836</a>    <span class="kw">pub fn </span>gtk_snapshot_transform_matrix(
 <a href=#18837 id=18837 data-nosnippet>18837</a>        snapshot: <span class="kw-2">*mut </span><a href="#9176-9179">GtkSnapshot</a>,
 <a href=#18838 id=18838 data-nosnippet>18838</a>        matrix: <span class="kw-2">*const </span>graphene::graphene_matrix_t,
@@ -20946,7 +20946,7 @@
 <a href=#20873 id=20873 data-nosnippet>20873</a>        width: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>,
 <a href=#20874 id=20874 data-nosnippet>20874</a>        height: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>,
 <a href=#20875 id=20875 data-nosnippet>20875</a>        baseline: <a href="https://doc.rust-lang.org/nightly/core/ffi/primitives/type.c_int.html">c_int</a>,
-<a href=#20876 id=20876 data-nosnippet>20876</a>        transform: <span class="kw-2">*mut </span>gsk::<a href="../../gsk4_sys/struct.GskTransform.html">GskTransform</a>,
+<a href=#20876 id=20876 data-nosnippet>20876</a>        transform: <span class="kw-2">*mut </span>gsk::GskTransform,
 <a href=#20877 id=20877 data-nosnippet>20877</a>    );
 <a href=#20878 id=20878 data-nosnippet>20878</a>    <span class="kw">pub fn </span>gtk_widget_child_focus(widget: <span class="kw-2">*mut </span><a href="#9761-9764">GtkWidget</a>, direction: <a href="#419">GtkDirectionType</a>) -&gt; gboolean;
 <a href=#20879 id=20879 data-nosnippet>20879</a>    <span class="kw">pub fn </span>gtk_widget_compute_bounds(
@@ -21830,7 +21830,7 @@
 <a href=#21757 id=21757 data-nosnippet>21757</a>    //=========================================================================
 <a href=#21758 id=21758 data-nosnippet>21758</a>    </span><span class="kw">pub fn </span>gtk_native_get_type() -&gt; GType;
 <a href=#21759 id=21759 data-nosnippet>21759</a>    <span class="kw">pub fn </span>gtk_native_get_for_surface(surface: <span class="kw-2">*mut </span>gdk::GdkSurface) -&gt; <span class="kw-2">*mut </span><a href="#10044-10047">GtkNative</a>;
-<a href=#21760 id=21760 data-nosnippet>21760</a>    <span class="kw">pub fn </span>gtk_native_get_renderer(self_: <span class="kw-2">*mut </span><a href="#10044-10047">GtkNative</a>) -&gt; <span class="kw-2">*mut </span>gsk::<a href="../../gsk4_sys/struct.GskRenderer.html">GskRenderer</a>;
+<a href=#21760 id=21760 data-nosnippet>21760</a>    <span class="kw">pub fn </span>gtk_native_get_renderer(self_: <span class="kw-2">*mut </span><a href="#10044-10047">GtkNative</a>) -&gt; <span class="kw-2">*mut </span>gsk::GskRenderer;
 <a href=#21761 id=21761 data-nosnippet>21761</a>    <span class="kw">pub fn </span>gtk_native_get_surface(self_: <span class="kw-2">*mut </span><a href="#10044-10047">GtkNative</a>) -&gt; <span class="kw-2">*mut </span>gdk::GdkSurface;
 <a href=#21762 id=21762 data-nosnippet>21762</a>    <span class="kw">pub fn </span>gtk_native_get_surface_transform(
 <a href=#21763 id=21763 data-nosnippet>21763</a>        self_: <span class="kw-2">*mut </span><a href="#10044-10047">GtkNative</a>,
