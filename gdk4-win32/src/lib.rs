@@ -32,7 +32,6 @@ pub use auto::*;
 mod win32_display;
 pub use win32_display::Win32DisplayFilterHandle;
 
-mod win32_hcursor;
 mod win32_surface;
 
 #[cfg(not(all(feature = "win32", windows)))]
