@@ -19,17 +19,11 @@ pub use self::d3d12_texture_builder::D3D12TextureBuilder;
 mod win32_display;
 pub use self::win32_display::Win32Display;
 
-mod win32_display_manager;
-pub use self::win32_display_manager::Win32DisplayManager;
-
 mod win32_drag;
 pub use self::win32_drag::Win32Drag;
 
 mod win32_gl_context;
 pub use self::win32_gl_context::Win32GLContext;
-
-mod win32_hcursor;
-pub use self::win32_hcursor::Win32HCursor;
 
 mod win32_monitor;
 pub use self::win32_monitor::Win32Monitor;
