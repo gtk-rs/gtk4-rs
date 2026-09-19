@@ -78,15 +78,6 @@ pub type GdkWin32DisplayClass = _GdkWin32DisplayClass;
 
 #[repr(C)]
 #[allow(dead_code)]
-pub struct _GdkWin32DisplayManagerClass {
-    _data: [u8; 0],
-    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
-}
-
-pub type GdkWin32DisplayManagerClass = _GdkWin32DisplayManagerClass;
-
-#[repr(C)]
-#[allow(dead_code)]
 pub struct _GdkWin32DragClass {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -102,15 +93,6 @@ pub struct _GdkWin32GLContextClass {
 }
 
 pub type GdkWin32GLContextClass = _GdkWin32GLContextClass;
-
-#[repr(C)]
-#[allow(dead_code)]
-pub struct _GdkWin32HCursorClass {
-    _data: [u8; 0],
-    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
-}
-
-pub type GdkWin32HCursorClass = _GdkWin32HCursorClass;
 
 #[repr(C)]
 #[allow(dead_code)]
@@ -175,20 +157,6 @@ impl ::std::fmt::Debug for GdkWin32Display {
 
 #[repr(C)]
 #[allow(dead_code)]
-pub struct GdkWin32DisplayManager {
-    _data: [u8; 0],
-    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
-}
-
-impl ::std::fmt::Debug for GdkWin32DisplayManager {
-    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GdkWin32DisplayManager @ {self:p}"))
-            .finish()
-    }
-}
-
-#[repr(C)]
-#[allow(dead_code)]
 pub struct GdkWin32Drag {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -210,20 +178,6 @@ pub struct GdkWin32GLContext {
 impl ::std::fmt::Debug for GdkWin32GLContext {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("GdkWin32GLContext @ {self:p}"))
-            .finish()
-    }
-}
-
-#[repr(C)]
-#[allow(dead_code)]
-pub struct GdkWin32HCursor {
-    _data: [u8; 0],
-    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
-}
-
-impl ::std::fmt::Debug for GdkWin32HCursor {
-    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GdkWin32HCursor @ {self:p}"))
             .finish()
     }
 }
@@ -371,10 +325,6 @@ unsafe extern "C" {
     #[cfg(feature = "v4_4")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
     pub fn gdk_win32_display_get_egl_display(display: *mut GdkWin32Display) -> gpointer;
-    pub fn gdk_win32_display_get_win32hcursor(
-        display: *mut GdkWin32Display,
-        cursor: *mut gdk::GdkCursor,
-    ) -> *mut GdkWin32HCursor;
     pub fn gdk_win32_display_remove_filter(
         display: *mut GdkWin32Display,
         function: GdkWin32MessageFilterFunc,
@@ -387,11 +337,6 @@ unsafe extern "C" {
     );
 
     //=========================================================================
-    // GdkWin32DisplayManager
-    //=========================================================================
-    pub fn gdk_win32_display_manager_get_type() -> GType;
-
-    //=========================================================================
     // GdkWin32Drag
     //=========================================================================
     pub fn gdk_win32_drag_get_type() -> GType;
@@ -400,16 +345,6 @@ unsafe extern "C" {
     // GdkWin32GLContext
     //=========================================================================
     pub fn gdk_win32_gl_context_get_type() -> GType;
-
-    //=========================================================================
-    // GdkWin32HCursor
-    //=========================================================================
-    pub fn gdk_win32_hcursor_get_type() -> GType;
-    pub fn gdk_win32_hcursor_new(
-        display: *mut GdkWin32Display,
-        handle: ssize_t,
-        destroyable: gboolean,
-    ) -> *mut GdkWin32HCursor;
 
     //=========================================================================
     // GdkWin32Monitor
