@@ -14,7 +14,6 @@ trust_return_value_nullability = true
 generate = [
     "GdkWin32.D3D12Error",
     "GdkWin32.D3D12Texture",
-    "GdkWin32.Win32DisplayManager",
     "GdkWin32.Win32Drag",
     "GdkWin32.Win32GLContext",
     "GdkWin32.Win32MessageFilterReturn",
@@ -24,8 +23,6 @@ generate = [
 manual = [
     "cairo.Region",
     "Gdk.ColorState",
-    "Gdk.Cursor",
-    "Gdk.DisplayManager",
     "Gdk.DrawContext",
     "Gdk.Paintable",
     "Gdk.Rectangle",
@@ -120,18 +117,6 @@ status = "generate"
     manual = true
     [[object.function]]
     pattern = "(add|remove)_filter"
-    manual = true
-
-[[object]]
-name = "GdkWin32.Win32HCursor"
-status = "generate"
-# doesn't work with HANDLE
-# generate_builder = true
-    [[object.function]]
-    name = "new"
-    manual = true
-    [[object.property]]
-    name = "handle"
     manual = true
 
 [[object]]
