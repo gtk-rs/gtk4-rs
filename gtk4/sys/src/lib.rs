@@ -434,7 +434,8 @@ pub const GTK_EDITABLE_PROP_MAX_WIDTH_CHARS: GtkEditableProperties = 5;
 pub const GTK_EDITABLE_PROP_XALIGN: GtkEditableProperties = 6;
 pub const GTK_EDITABLE_PROP_ENABLE_UNDO: GtkEditableProperties = 7;
 pub const GTK_EDITABLE_PROP_COMPLETE_TEXT: GtkEditableProperties = 8;
-pub const GTK_EDITABLE_NUM_PROPERTIES: GtkEditableProperties = 9;
+pub const GTK_EDITABLE_PROP_INPUT_INTERCEPTOR: GtkEditableProperties = 9;
+pub const GTK_EDITABLE_NUM_PROPERTIES: GtkEditableProperties = 10;
 
 pub type GtkEntryIconPosition = c_int;
 pub const GTK_ENTRY_ICON_PRIMARY: GtkEntryIconPosition = 0;
@@ -750,12 +751,6 @@ pub const GTK_RESPONSE_YES: GtkResponseType = -8;
 pub const GTK_RESPONSE_NO: GtkResponseType = -9;
 pub const GTK_RESPONSE_APPLY: GtkResponseType = -10;
 pub const GTK_RESPONSE_HELP: GtkResponseType = -11;
-
-pub type GtkRestoreReason = c_int;
-pub const GTK_RESTORE_REASON_PRISTINE: GtkRestoreReason = 0;
-pub const GTK_RESTORE_REASON_LAUNCH: GtkRestoreReason = 1;
-pub const GTK_RESTORE_REASON_RECOVER: GtkRestoreReason = 2;
-pub const GTK_RESTORE_REASON_RESTORE: GtkRestoreReason = 3;
 
 pub type GtkRevealerTransitionType = c_int;
 pub const GTK_REVEALER_TRANSITION_TYPE_NONE: GtkRevealerTransitionType = 0;
@@ -1757,18 +1752,7 @@ pub struct GtkApplicationClass {
     pub parent_class: gio::GApplicationClass,
     pub window_added: Option<unsafe extern "C" fn(*mut GtkApplication, *mut GtkWindow)>,
     pub window_removed: Option<unsafe extern "C" fn(*mut GtkApplication, *mut GtkWindow)>,
-    pub save_state:
-        Option<unsafe extern "C" fn(*mut GtkApplication, *mut glib::GVariantDict) -> gboolean>,
-    pub restore_state: Option<
-        unsafe extern "C" fn(
-            *mut GtkApplication,
-            GtkRestoreReason,
-            *mut glib::GVariant,
-        ) -> gboolean,
-    >,
-    pub restore_window:
-        Option<unsafe extern "C" fn(*mut GtkApplication, GtkRestoreReason, *mut glib::GVariant)>,
-    pub padding: [gpointer; 5],
+    pub padding: [gpointer; 8],
 }
 
 impl ::std::fmt::Debug for GtkApplicationClass {
@@ -1777,9 +1761,6 @@ impl ::std::fmt::Debug for GtkApplicationClass {
             .field("parent_class", &self.parent_class)
             .field("window_added", &self.window_added)
             .field("window_removed", &self.window_removed)
-            .field("save_state", &self.save_state)
-            .field("restore_state", &self.restore_state)
-            .field("restore_window", &self.restore_window)
             .finish()
     }
 }
@@ -1788,17 +1769,13 @@ impl ::std::fmt::Debug for GtkApplicationClass {
 #[repr(C)]
 pub struct GtkApplicationWindowClass {
     pub parent_class: GtkWindowClass,
-    pub save_state: Option<
-        unsafe extern "C" fn(*mut GtkApplicationWindow, *mut glib::GVariantDict) -> gboolean,
-    >,
-    pub padding: [gpointer; 7],
+    pub padding: [gpointer; 8],
 }
 
 impl ::std::fmt::Debug for GtkApplicationWindowClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("GtkApplicationWindowClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
-            .field("save_state", &self.save_state)
             .finish()
     }
 }
@@ -10698,13 +10675,6 @@ unsafe extern "C" {
     pub fn gtk_response_type_get_type() -> GType;
 
     //=========================================================================
-    // GtkRestoreReason
-    //=========================================================================
-    #[cfg(feature = "v4_24")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
-    pub fn gtk_restore_reason_get_type() -> GType;
-
-    //=========================================================================
     // GtkRevealerTransitionType
     //=========================================================================
     pub fn gtk_revealer_transition_type_get_type() -> GType;
@@ -12050,9 +12020,6 @@ unsafe extern "C" {
         flags: gio::GApplicationFlags,
     ) -> *mut GtkApplication;
     pub fn gtk_application_add_window(application: *mut GtkApplication, window: *mut GtkWindow);
-    #[cfg(feature = "v4_24")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
-    pub fn gtk_application_forget(application: *mut GtkApplication);
     pub fn gtk_application_get_accels_for_action(
         application: *mut GtkApplication,
         detailed_action_name: *const c_char,
@@ -12082,9 +12049,6 @@ unsafe extern "C" {
         application: *mut GtkApplication,
     ) -> *mut *mut c_char;
     pub fn gtk_application_remove_window(application: *mut GtkApplication, window: *mut GtkWindow);
-    #[cfg(feature = "v4_24")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
-    pub fn gtk_application_save(application: *mut GtkApplication);
     pub fn gtk_application_set_accels_for_action(
         application: *mut GtkApplication,
         detailed_action_name: *const c_char,
@@ -15620,6 +15584,9 @@ unsafe extern "C" {
     ) -> gboolean;
     pub fn gtk_im_context_focus_in(context: *mut GtkIMContext);
     pub fn gtk_im_context_focus_out(context: *mut GtkIMContext);
+    #[cfg(feature = "v4_24")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+    pub fn gtk_im_context_get_client_widget(context: *mut GtkIMContext) -> *mut GtkWidget;
     pub fn gtk_im_context_get_preedit_string(
         context: *mut GtkIMContext,
         str: *mut *mut c_char,
@@ -21638,6 +21605,9 @@ unsafe extern "C" {
     pub fn gtk_editable_get_delegate(editable: *mut GtkEditable) -> *mut GtkEditable;
     pub fn gtk_editable_get_editable(editable: *mut GtkEditable) -> gboolean;
     pub fn gtk_editable_get_enable_undo(editable: *mut GtkEditable) -> gboolean;
+    #[cfg(feature = "v4_24")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+    pub fn gtk_editable_get_input_interceptor(editable: *mut GtkEditable) -> *mut GtkWidget;
     pub fn gtk_editable_get_max_width_chars(editable: *mut GtkEditable) -> c_int;
     pub fn gtk_editable_get_position(editable: *mut GtkEditable) -> c_int;
     pub fn gtk_editable_get_selection_bounds(
@@ -21658,6 +21628,12 @@ unsafe extern "C" {
     pub fn gtk_editable_set_alignment(editable: *mut GtkEditable, xalign: c_float);
     pub fn gtk_editable_set_editable(editable: *mut GtkEditable, is_editable: gboolean);
     pub fn gtk_editable_set_enable_undo(editable: *mut GtkEditable, enable_undo: gboolean);
+    #[cfg(feature = "v4_24")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+    pub fn gtk_editable_set_input_interceptor(
+        editable: *mut GtkEditable,
+        interceptor: *mut GtkWidget,
+    );
     pub fn gtk_editable_set_max_width_chars(editable: *mut GtkEditable, n_chars: c_int);
     pub fn gtk_editable_set_position(editable: *mut GtkEditable, position: c_int);
     pub fn gtk_editable_set_text(editable: *mut GtkEditable, text: *const c_char);

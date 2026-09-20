@@ -7,7 +7,7 @@ use glib::{prelude::*, translate::*};
 
 glib::wrapper! {
     #[doc(alias = "GdkAppLaunchContext")]
-    pub struct AppLaunchContext(Object<ffi::GdkAppLaunchContext>) @extends gio::AppLaunchContext;
+    pub struct AppLaunchContext(Object<ffi::GdkAppLaunchContext, ffi::GdkAppLaunchContextClass>) @extends gio::AppLaunchContext;
 
     match fn {
         type_ => || ffi::gdk_app_launch_context_get_type(),

@@ -2,7 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::{Win32HCursor, ffi};
+use crate::ffi;
 use glib::{prelude::*, translate::*};
 
 glib::wrapper! {
@@ -15,17 +15,6 @@ glib::wrapper! {
 }
 
 impl Win32Display {
-    #[doc(alias = "gdk_win32_display_get_win32hcursor")]
-    #[doc(alias = "get_win32hcursor")]
-    pub fn win32hcursor(&self, cursor: &gdk::Cursor) -> Win32HCursor {
-        unsafe {
-            from_glib_none(ffi::gdk_win32_display_get_win32hcursor(
-                self.to_glib_none().0,
-                cursor.to_glib_none().0,
-            ))
-        }
-    }
-
     #[doc(alias = "gdk_win32_display_set_cursor_theme")]
     pub fn set_cursor_theme(&self, name: Option<&str>, size: i32) {
         unsafe {

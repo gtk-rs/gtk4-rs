@@ -17,7 +17,7 @@ use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GdkGLContext")]
-    pub struct GLContext(Object<ffi::GdkGLContext>) @extends DrawContext;
+    pub struct GLContext(Object<ffi::GdkGLContext, ffi::GdkGLContextClass>) @extends DrawContext;
 
     match fn {
         type_ => || ffi::gdk_gl_context_get_type(),

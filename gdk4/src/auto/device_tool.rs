@@ -7,7 +7,7 @@ use glib::translate::*;
 
 glib::wrapper! {
     #[doc(alias = "GdkDeviceTool")]
-    pub struct DeviceTool(Object<ffi::GdkDeviceTool>);
+    pub struct DeviceTool(Object<ffi::GdkDeviceTool, ffi::GdkDeviceToolClass>);
 
     match fn {
         type_ => || ffi::gdk_device_tool_get_type(),

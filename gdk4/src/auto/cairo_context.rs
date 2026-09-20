@@ -8,7 +8,7 @@ use glib::translate::*;
 
 glib::wrapper! {
     #[doc(alias = "GdkCairoContext")]
-    pub struct CairoContext(Object<ffi::GdkCairoContext>) @extends DrawContext;
+    pub struct CairoContext(Object<ffi::GdkCairoContext, ffi::GdkCairoContextClass>) @extends DrawContext;
 
     match fn {
         type_ => || ffi::gdk_cairo_context_get_type(),

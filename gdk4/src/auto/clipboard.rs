@@ -13,7 +13,7 @@ use std::{boxed::Box as Box_, pin::Pin};
 
 glib::wrapper! {
     #[doc(alias = "GdkClipboard")]
-    pub struct Clipboard(Object<ffi::GdkClipboard>);
+    pub struct Clipboard(Object<ffi::GdkClipboard, ffi::GdkClipboardClass>);
 
     match fn {
         type_ => || ffi::gdk_clipboard_get_type(),
