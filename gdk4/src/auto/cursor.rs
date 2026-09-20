@@ -7,7 +7,7 @@ use glib::{prelude::*, translate::*};
 
 glib::wrapper! {
     #[doc(alias = "GdkCursor")]
-    pub struct Cursor(Object<ffi::GdkCursor>);
+    pub struct Cursor(Object<ffi::GdkCursor, ffi::GdkCursorClass>);
 
     match fn {
         type_ => || ffi::gdk_cursor_get_type(),

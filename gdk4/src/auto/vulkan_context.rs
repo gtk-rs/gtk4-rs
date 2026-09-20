@@ -13,7 +13,7 @@ use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GdkVulkanContext")]
-    pub struct VulkanContext(Object<ffi::GdkVulkanContext>) @extends DrawContext;
+    pub struct VulkanContext(Object<ffi::GdkVulkanContext, ffi::GdkVulkanContextClass>) @extends DrawContext;
 
     match fn {
         type_ => || ffi::gdk_vulkan_context_get_type(),

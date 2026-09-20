@@ -98,6 +98,18 @@ pub trait IMContextExt: IsA<IMContext> + 'static {
         }
     }
 
+    #[cfg(feature = "v4_24")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+    #[doc(alias = "gtk_im_context_get_client_widget")]
+    #[doc(alias = "get_client_widget")]
+    fn client_widget(&self) -> Option<Widget> {
+        unsafe {
+            from_glib_none(ffi::gtk_im_context_get_client_widget(
+                self.as_ref().to_glib_none().0,
+            ))
+        }
+    }
+
     #[doc(alias = "gtk_im_context_get_preedit_string")]
     #[doc(alias = "get_preedit_string")]
     fn preedit_string(&self) -> (glib::GString, pango::AttrList, i32) {

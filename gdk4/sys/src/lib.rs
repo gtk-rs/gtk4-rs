@@ -128,6 +128,29 @@ pub const GDK_TOUCHPAD_HOLD: GdkEventType = 28;
 pub const GDK_PAD_DIAL: GdkEventType = 29;
 pub const GDK_EVENT_LAST: GdkEventType = 30;
 
+pub type GdkFrameResult = c_int;
+#[cfg(feature = "v4_24")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+pub const GDK_FRAME_PREPARING: GdkFrameResult = 0;
+#[cfg(feature = "v4_24")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+pub const GDK_FRAME_SKIPPED: GdkFrameResult = 1;
+#[cfg(feature = "v4_24")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+pub const GDK_FRAME_EMPTY: GdkFrameResult = 2;
+#[cfg(feature = "v4_24")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+pub const GDK_FRAME_SUBMITTED: GdkFrameResult = 3;
+#[cfg(feature = "v4_24")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+pub const GDK_FRAME_OUTSTANDING: GdkFrameResult = 4;
+#[cfg(feature = "v4_24")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+pub const GDK_FRAME_DISCARDED: GdkFrameResult = 5;
+#[cfg(feature = "v4_24")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+pub const GDK_FRAME_PRESENTED: GdkFrameResult = 6;
+
 pub type GdkFullscreenMode = c_int;
 pub const GDK_FULLSCREEN_ON_CURRENT_MONITOR: GdkFullscreenMode = 0;
 pub const GDK_FULLSCREEN_ON_ALL_MONITORS: GdkFullscreenMode = 1;
@@ -3030,12 +3053,39 @@ pub type GdkCursorGetTextureCallback = Option<
 // Records
 #[repr(C)]
 #[allow(dead_code)]
+pub struct _GdkAppLaunchContextClass {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+pub type GdkAppLaunchContextClass = _GdkAppLaunchContextClass;
+
+#[repr(C)]
+#[allow(dead_code)]
+pub struct _GdkCairoContextClass {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+pub type GdkCairoContextClass = _GdkCairoContextClass;
+
+#[repr(C)]
+#[allow(dead_code)]
 pub struct _GdkCicpParamsClass {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
 pub type GdkCicpParamsClass = _GdkCicpParamsClass;
+
+#[repr(C)]
+#[allow(dead_code)]
+pub struct _GdkClipboardClass {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+pub type GdkClipboardClass = _GdkClipboardClass;
 
 #[repr(C)]
 #[allow(dead_code)]
@@ -3047,6 +3097,20 @@ pub struct GdkColorState {
 impl ::std::fmt::Debug for GdkColorState {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("GdkColorState @ {self:p}"))
+            .finish()
+    }
+}
+
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct GdkContentDeserializerClass {
+    pub parent_class: gobject::GObjectClass,
+}
+
+impl ::std::fmt::Debug for GdkContentDeserializerClass {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GdkContentDeserializerClass @ {self:p}"))
+            .field("parent_class", &self.parent_class)
             .finish()
     }
 }
@@ -3134,6 +3198,52 @@ impl ::std::fmt::Debug for GdkContentProviderClass {
     }
 }
 
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct GdkContentSerializerClass {
+    pub parent_class: gobject::GObjectClass,
+}
+
+impl ::std::fmt::Debug for GdkContentSerializerClass {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GdkContentSerializerClass @ {self:p}"))
+            .field("parent_class", &self.parent_class)
+            .finish()
+    }
+}
+
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct GdkCursorClass {
+    pub parent_class: gobject::GObjectClass,
+}
+
+impl ::std::fmt::Debug for GdkCursorClass {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GdkCursorClass @ {self:p}"))
+            .field("parent_class", &self.parent_class)
+            .finish()
+    }
+}
+
+#[repr(C)]
+#[allow(dead_code)]
+pub struct _GdkDeviceClass {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+pub type GdkDeviceClass = _GdkDeviceClass;
+
+#[repr(C)]
+#[allow(dead_code)]
+pub struct _GdkDevicePadClass {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+pub type GdkDevicePadClass = _GdkDevicePadClass;
+
 #[repr(C)]
 #[allow(dead_code)]
 pub struct _GdkDevicePadInterface {
@@ -3142,6 +3252,33 @@ pub struct _GdkDevicePadInterface {
 }
 
 pub type GdkDevicePadInterface = _GdkDevicePadInterface;
+
+#[repr(C)]
+#[allow(dead_code)]
+pub struct _GdkDeviceToolClass {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+pub type GdkDeviceToolClass = _GdkDeviceToolClass;
+
+#[repr(C)]
+#[allow(dead_code)]
+pub struct _GdkDisplayClass {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+pub type GdkDisplayClass = _GdkDisplayClass;
+
+#[repr(C)]
+#[allow(dead_code)]
+pub struct _GdkDisplayManagerClass {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+pub type GdkDisplayManagerClass = _GdkDisplayManagerClass;
 
 #[repr(C)]
 #[allow(dead_code)]
@@ -3177,6 +3314,15 @@ pub type GdkDmabufTextureClass = _GdkDmabufTextureClass;
 
 #[repr(C)]
 #[allow(dead_code)]
+pub struct _GdkDragClass {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+pub type GdkDragClass = _GdkDragClass;
+
+#[repr(C)]
+#[allow(dead_code)]
 pub struct _GdkDragSurfaceInterface {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -3192,6 +3338,24 @@ pub struct _GdkDragSurfaceSize {
 }
 
 pub type GdkDragSurfaceSize = _GdkDragSurfaceSize;
+
+#[repr(C)]
+#[allow(dead_code)]
+pub struct _GdkDrawContextClass {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+pub type GdkDrawContextClass = _GdkDrawContextClass;
+
+#[repr(C)]
+#[allow(dead_code)]
+pub struct _GdkDropClass {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+pub type GdkDropClass = _GdkDropClass;
 
 #[repr(C)]
 #[allow(dead_code)]
@@ -3231,15 +3395,6 @@ pub type GdkFrameClockClass = _GdkFrameClockClass;
 
 #[repr(C)]
 #[allow(dead_code)]
-pub struct _GdkFrameClockPrivate {
-    _data: [u8; 0],
-    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
-}
-
-pub type GdkFrameClockPrivate = _GdkFrameClockPrivate;
-
-#[repr(C)]
-#[allow(dead_code)]
 pub struct GdkFrameTimings {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -3251,6 +3406,15 @@ impl ::std::fmt::Debug for GdkFrameTimings {
             .finish()
     }
 }
+
+#[repr(C)]
+#[allow(dead_code)]
+pub struct _GdkGLContextClass {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+pub type GdkGLContextClass = _GdkGLContextClass;
 
 #[repr(C)]
 #[allow(dead_code)]
@@ -3409,6 +3573,15 @@ impl ::std::fmt::Debug for GdkRectangle {
 
 #[repr(C)]
 #[allow(dead_code)]
+pub struct _GdkSeatClass {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+pub type GdkSeatClass = _GdkSeatClass;
+
+#[repr(C)]
+#[allow(dead_code)]
 pub struct _GdkSnapshotClass {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -3498,6 +3671,15 @@ pub struct _GdkToplevelSize {
 
 pub type GdkToplevelSize = _GdkToplevelSize;
 
+#[repr(C)]
+#[allow(dead_code)]
+pub struct _GdkVulkanContextClass {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+pub type GdkVulkanContextClass = _GdkVulkanContextClass;
+
 // Classes
 #[repr(C)]
 #[allow(dead_code)]
@@ -3585,13 +3767,13 @@ impl ::std::fmt::Debug for GdkContentDeserializer {
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct GdkContentProvider {
-    pub parent: gobject::GObject,
+    pub parent_instance: gobject::GObject,
 }
 
 impl ::std::fmt::Debug for GdkContentProvider {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("GdkContentProvider @ {self:p}"))
-            .field("parent", &self.parent)
+            .field("parent_instance", &self.parent_instance)
             .finish()
     }
 }
@@ -4208,6 +4390,13 @@ unsafe extern "C" {
     pub fn gdk_event_type_get_type() -> GType;
 
     //=========================================================================
+    // GdkFrameResult
+    //=========================================================================
+    #[cfg(feature = "v4_24")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+    pub fn gdk_frame_result_get_type() -> GType;
+
+    //=========================================================================
     // GdkFullscreenMode
     //=========================================================================
     pub fn gdk_fullscreen_mode_get_type() -> GType;
@@ -4575,6 +4764,9 @@ unsafe extern "C" {
     pub fn gdk_frame_timings_get_predicted_presentation_time(timings: *mut GdkFrameTimings) -> i64;
     pub fn gdk_frame_timings_get_presentation_time(timings: *mut GdkFrameTimings) -> i64;
     pub fn gdk_frame_timings_get_refresh_interval(timings: *mut GdkFrameTimings) -> i64;
+    #[cfg(feature = "v4_24")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+    pub fn gdk_frame_timings_get_result(timings: *mut GdkFrameTimings) -> GdkFrameResult;
     pub fn gdk_frame_timings_ref(timings: *mut GdkFrameTimings) -> *mut GdkFrameTimings;
     pub fn gdk_frame_timings_unref(timings: *mut GdkFrameTimings);
 
@@ -5524,14 +5716,14 @@ unsafe extern "C" {
     // GdkFrameClock
     //=========================================================================
     pub fn gdk_frame_clock_get_type() -> GType;
-    pub fn gdk_frame_clock_begin_updating(frame_clock: *mut GdkFrameClock);
-    pub fn gdk_frame_clock_end_updating(frame_clock: *mut GdkFrameClock);
+    pub fn gdk_frame_clock_begin_updating(self_: *mut GdkFrameClock);
+    pub fn gdk_frame_clock_end_updating(self_: *mut GdkFrameClock);
     pub fn gdk_frame_clock_get_current_timings(
         frame_clock: *mut GdkFrameClock,
     ) -> *mut GdkFrameTimings;
     pub fn gdk_frame_clock_get_fps(frame_clock: *mut GdkFrameClock) -> c_double;
     pub fn gdk_frame_clock_get_frame_counter(frame_clock: *mut GdkFrameClock) -> i64;
-    pub fn gdk_frame_clock_get_frame_time(frame_clock: *mut GdkFrameClock) -> i64;
+    pub fn gdk_frame_clock_get_frame_time(self_: *mut GdkFrameClock) -> i64;
     pub fn gdk_frame_clock_get_history_start(frame_clock: *mut GdkFrameClock) -> i64;
     pub fn gdk_frame_clock_get_refresh_info(
         frame_clock: *mut GdkFrameClock,
@@ -5543,10 +5735,7 @@ unsafe extern "C" {
         frame_clock: *mut GdkFrameClock,
         frame_counter: i64,
     ) -> *mut GdkFrameTimings;
-    pub fn gdk_frame_clock_request_phase(
-        frame_clock: *mut GdkFrameClock,
-        phase: GdkFrameClockPhase,
-    );
+    pub fn gdk_frame_clock_request_phase(self_: *mut GdkFrameClock, phase: GdkFrameClockPhase);
 
     //=========================================================================
     // GdkGLContext

@@ -1924,13 +1924,6 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
-        "GtkRestoreReason",
-        Layout {
-            size: size_of::<GtkRestoreReason>(),
-            alignment: align_of::<GtkRestoreReason>(),
-        },
-    ),
-    (
         "GtkRevealerTransitionType",
         Layout {
             size: size_of::<GtkRevealerTransitionType>(),
@@ -3070,11 +3063,12 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(gint) GTK_DIR_TAB_BACKWARD", "1"),
     ("(gint) GTK_DIR_TAB_FORWARD", "0"),
     ("(gint) GTK_DIR_UP", "2"),
-    ("(gint) GTK_EDITABLE_NUM_PROPERTIES", "9"),
+    ("(gint) GTK_EDITABLE_NUM_PROPERTIES", "10"),
     ("(gint) GTK_EDITABLE_PROP_COMPLETE_TEXT", "8"),
     ("(gint) GTK_EDITABLE_PROP_CURSOR_POSITION", "1"),
     ("(gint) GTK_EDITABLE_PROP_EDITABLE", "3"),
     ("(gint) GTK_EDITABLE_PROP_ENABLE_UNDO", "7"),
+    ("(gint) GTK_EDITABLE_PROP_INPUT_INTERCEPTOR", "9"),
     ("(gint) GTK_EDITABLE_PROP_MAX_WIDTH_CHARS", "5"),
     ("(gint) GTK_EDITABLE_PROP_SELECTION_BOUND", "2"),
     ("(gint) GTK_EDITABLE_PROP_TEXT", "0"),
@@ -3424,10 +3418,6 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(gint) GTK_RESPONSE_OK", "-5"),
     ("(gint) GTK_RESPONSE_REJECT", "-2"),
     ("(gint) GTK_RESPONSE_YES", "-8"),
-    ("(gint) GTK_RESTORE_REASON_LAUNCH", "1"),
-    ("(gint) GTK_RESTORE_REASON_PRISTINE", "0"),
-    ("(gint) GTK_RESTORE_REASON_RECOVER", "2"),
-    ("(gint) GTK_RESTORE_REASON_RESTORE", "3"),
     ("(gint) GTK_REVEALER_TRANSITION_TYPE_CROSSFADE", "1"),
     ("(gint) GTK_REVEALER_TRANSITION_TYPE_FADE_SLIDE_DOWN", "13"),
     ("(gint) GTK_REVEALER_TRANSITION_TYPE_FADE_SLIDE_LEFT", "11"),

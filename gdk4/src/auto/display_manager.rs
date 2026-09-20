@@ -13,7 +13,7 @@ use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GdkDisplayManager")]
-    pub struct DisplayManager(Object<ffi::GdkDisplayManager>);
+    pub struct DisplayManager(Object<ffi::GdkDisplayManager, ffi::GdkDisplayManagerClass>);
 
     match fn {
         type_ => || ffi::gdk_display_manager_get_type(),

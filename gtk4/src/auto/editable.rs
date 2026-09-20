@@ -138,6 +138,19 @@ pub trait EditableExt: IsA<Editable> + 'static {
         }
     }
 
+    #[cfg(feature = "v4_24")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+    #[doc(alias = "gtk_editable_get_input_interceptor")]
+    #[doc(alias = "get_input_interceptor")]
+    #[doc(alias = "input-interceptor")]
+    fn input_interceptor(&self) -> Option<Widget> {
+        unsafe {
+            from_glib_full(ffi::gtk_editable_get_input_interceptor(
+                self.as_ref().to_glib_none().0,
+            ))
+        }
+    }
+
     #[doc(alias = "gtk_editable_get_max_width_chars")]
     #[doc(alias = "get_max_width_chars")]
     #[doc(alias = "max-width-chars")]
@@ -238,6 +251,19 @@ pub trait EditableExt: IsA<Editable> + 'static {
         }
     }
 
+    #[cfg(feature = "v4_24")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+    #[doc(alias = "gtk_editable_set_input_interceptor")]
+    #[doc(alias = "input-interceptor")]
+    fn set_input_interceptor(&self, interceptor: Option<&impl IsA<Widget>>) {
+        unsafe {
+            ffi::gtk_editable_set_input_interceptor(
+                self.as_ref().to_glib_none().0,
+                interceptor.map(|p| p.as_ref()).to_glib_none().0,
+            );
+        }
+    }
+
     #[doc(alias = "gtk_editable_set_max_width_chars")]
     #[doc(alias = "max-width-chars")]
     fn set_max_width_chars(&self, n_chars: i32) {
@@ -326,6 +352,32 @@ pub trait EditableExt: IsA<Editable> + 'static {
                 c"delete-text".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     delete_text_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg(feature = "v4_24")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+    #[doc(alias = "input-intercepted")]
+    fn connect_input_intercepted<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn input_intercepted_trampoline<P: IsA<Editable>, F: Fn(&P) + 'static>(
+            this: *mut ffi::GtkEditable,
+            f: glib::ffi::gpointer,
+        ) {
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(Editable::from_glib_borrow(this).unsafe_cast_ref())
+            }
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                c"input-intercepted".as_ptr(),
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
+                    input_intercepted_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -437,6 +489,36 @@ pub trait EditableExt: IsA<Editable> + 'static {
                 c"notify::enable-undo".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_enable_undo_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg(feature = "v4_24")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+    #[doc(alias = "input-interceptor")]
+    fn connect_input_interceptor_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_input_interceptor_trampoline<
+            P: IsA<Editable>,
+            F: Fn(&P) + 'static,
+        >(
+            this: *mut ffi::GtkEditable,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(Editable::from_glib_borrow(this).unsafe_cast_ref())
+            }
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                c"notify::input-interceptor".as_ptr(),
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
+                    notify_input_interceptor_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )

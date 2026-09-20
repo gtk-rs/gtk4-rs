@@ -237,6 +237,13 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
+        "GdkContentDeserializerClass",
+        Layout {
+            size: size_of::<GdkContentDeserializerClass>(),
+            alignment: align_of::<GdkContentDeserializerClass>(),
+        },
+    ),
+    (
         "GdkContentProvider",
         Layout {
             size: size_of::<GdkContentProvider>(),
@@ -251,10 +258,24 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
+        "GdkContentSerializerClass",
+        Layout {
+            size: size_of::<GdkContentSerializerClass>(),
+            alignment: align_of::<GdkContentSerializerClass>(),
+        },
+    ),
+    (
         "GdkCrossingMode",
         Layout {
             size: size_of::<GdkCrossingMode>(),
             alignment: align_of::<GdkCrossingMode>(),
+        },
+    ),
+    (
+        "GdkCursorClass",
+        Layout {
+            size: size_of::<GdkCursorClass>(),
+            alignment: align_of::<GdkCursorClass>(),
         },
     ),
     (
@@ -304,6 +325,13 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         Layout {
             size: size_of::<GdkFrameClockPhase>(),
             alignment: align_of::<GdkFrameClockPhase>(),
+        },
+    ),
+    (
+        "GdkFrameResult",
+        Layout {
+            size: size_of::<GdkFrameResult>(),
+            alignment: align_of::<GdkFrameResult>(),
         },
     ),
     (
@@ -607,6 +635,13 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(guint) GDK_FRAME_CLOCK_PHASE_PAINT", "16"),
     ("(guint) GDK_FRAME_CLOCK_PHASE_RESUME_EVENTS", "32"),
     ("(guint) GDK_FRAME_CLOCK_PHASE_UPDATE", "4"),
+    ("(gint) GDK_FRAME_DISCARDED", "5"),
+    ("(gint) GDK_FRAME_EMPTY", "2"),
+    ("(gint) GDK_FRAME_OUTSTANDING", "4"),
+    ("(gint) GDK_FRAME_PREPARING", "0"),
+    ("(gint) GDK_FRAME_PRESENTED", "6"),
+    ("(gint) GDK_FRAME_SKIPPED", "1"),
+    ("(gint) GDK_FRAME_SUBMITTED", "3"),
     ("(gint) GDK_FULLSCREEN_ON_ALL_MONITORS", "1"),
     ("(gint) GDK_FULLSCREEN_ON_CURRENT_MONITOR", "0"),
     ("(guint) GDK_GL_API_GL", "1"),
