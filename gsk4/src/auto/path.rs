@@ -138,6 +138,13 @@ impl Path {
         }
     }
 
+    #[cfg(feature = "v4_26")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_26")))]
+    #[doc(alias = "gsk_path_hash")]
+    fn hash(&self) -> u32 {
+        unsafe { ffi::gsk_path_hash(self.to_glib_none().0) }
+    }
+
     #[doc(alias = "gsk_path_in_fill")]
     pub fn in_fill(&self, point: &graphene::Point, fill_rule: FillRule) -> bool {
         unsafe {
@@ -172,6 +179,18 @@ impl Path {
         unsafe { from_glib_full(ffi::gsk_path_to_string(self.to_glib_none().0)) }
     }
 
+    #[cfg(feature = "v4_26")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_26")))]
+    #[doc(alias = "gsk_path_translatable")]
+    pub fn translatable(&self, path2: &Path) -> bool {
+        unsafe {
+            from_glib(ffi::gsk_path_translatable(
+                self.to_glib_none().0,
+                path2.to_glib_none().0,
+            ))
+        }
+    }
+
     #[doc(alias = "gsk_path_parse")]
     pub fn parse(string: &str) -> Result<Path, glib::BoolError> {
         assert_initialized_main_thread!();
@@ -199,5 +218,17 @@ impl std::fmt::Display for Path {
     #[inline]
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
         f.write_str(&self.to_str())
+    }
+}
+
+#[cfg(feature = "v4_26")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_26")))]
+impl std::hash::Hash for Path {
+    #[inline]
+    fn hash<H>(&self, state: &mut H)
+    where
+        H: std::hash::Hasher,
+    {
+        std::hash::Hash::hash(&self.hash(), state)
     }
 }
