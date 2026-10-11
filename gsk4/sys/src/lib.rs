@@ -1414,6 +1414,9 @@ unsafe extern "C" {
         self_: *mut GskPath,
         bounds: *mut graphene::graphene_rect_t,
     ) -> gboolean;
+    #[cfg(feature = "v4_26")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_26")))]
+    pub fn gsk_path_hash(self_: *const GskPath) -> c_uint;
     #[cfg(feature = "v4_14")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
     pub fn gsk_path_in_fill(
@@ -1439,6 +1442,9 @@ unsafe extern "C" {
     #[cfg(feature = "v4_14")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
     pub fn gsk_path_to_string(self_: *mut GskPath) -> *mut c_char;
+    #[cfg(feature = "v4_26")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_26")))]
+    pub fn gsk_path_translatable(path1: *const GskPath, path2: *const GskPath) -> gboolean;
     #[cfg(feature = "v4_14")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
     pub fn gsk_path_unref(self_: *mut GskPath);
