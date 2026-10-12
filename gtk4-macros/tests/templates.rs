@@ -406,3 +406,53 @@ glib::wrapper! {
     @extends gtk::Widget,
     @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget;
 }
+
+mod imp7 {
+    use super::*;
+
+    #[derive(Debug, Default, gtk::CompositeTemplate)]
+    #[template(resource = "/org/example/tests/my_widget.ui")]
+    pub struct MyWidget7;
+
+    #[glib::object_subclass]
+    impl ObjectSubclass for MyWidget7 {
+        const NAME: &'static str = "MyWidget7";
+        type Type = super::MyWidget7;
+        type ParentType = gtk::Widget;
+    }
+
+    impl ObjectImpl for MyWidget7 {}
+    impl WidgetImpl for MyWidget7 {}
+}
+
+glib::wrapper! {
+    pub struct MyWidget7(ObjectSubclass<imp7::MyWidget7>)
+    @extends gtk::Widget,
+    @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget;
+}
+
+mod imp8 {
+    use super::*;
+
+    const RESOURCE_PATH_PREFIX: &str = "/org/example/tests";
+
+    #[derive(Debug, Default, gtk::CompositeTemplate)]
+    #[template(resource = &format!("{RESOURCE_PATH_PREFIX}/my_widget.ui"))]
+    pub struct MyWidget8;
+
+    #[glib::object_subclass]
+    impl ObjectSubclass for MyWidget8 {
+        const NAME: &'static str = "MyWidget8";
+        type Type = super::MyWidget8;
+        type ParentType = gtk::Widget;
+    }
+
+    impl ObjectImpl for MyWidget8 {}
+    impl WidgetImpl for MyWidget8 {}
+}
+
+glib::wrapper! {
+    pub struct MyWidget8(ObjectSubclass<imp8::MyWidget8>)
+    @extends gtk::Widget,
+    @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget;
+}

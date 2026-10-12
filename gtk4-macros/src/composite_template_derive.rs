@@ -45,7 +45,7 @@ fn gen_set_template(source: &TemplateSource, crate_ident: &proc_macro2::Ident) -
         TemplateSource::Resource(resource) => quote! {
             #crate_ident::subclass::widget::WidgetClassExt::set_template_from_resource(
                 klass,
-                &#resource,
+                #resource,
             );
         },
         TemplateSource::Xml(template) => quote! {

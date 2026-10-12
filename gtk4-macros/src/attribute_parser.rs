@@ -3,8 +3,8 @@
 use proc_macro2::Span;
 use quote::ToTokens;
 use syn::{
-    Attribute, DeriveInput, Error, Field, Fields, Ident, LitBool, LitStr, Meta, Result, Token,
-    Type,
+    Attribute, DeriveInput, Error, Expr, Field, Fields, Ident, LitBool, LitStr, Meta, Result,
+    Token, Type,
     parse::{Parse, ParseStream},
     punctuated::Punctuated,
 };
@@ -51,7 +51,7 @@ impl Parse for Template {
             } else if lookahead.peek(kw::resource) {
                 let keyword: kw::resource = input.parse()?;
                 let _: Token![=] = input.parse()?;
-                let value: LitStr = input.parse()?;
+                let value: Expr = input.parse()?;
 
                 if source.is_some() {
                     return Err(Error::new_spanned(
@@ -60,7 +60,7 @@ impl Parse for Template {
                     ));
                 }
 
-                source = Some(TemplateSource::Resource(value.value()));
+                source = Some(TemplateSource::Resource(Box::new(value)));
             } else if lookahead.peek(kw::string) {
                 let keyword: kw::string = input.parse()?;
                 let _: Token![=] = input.parse()?;
@@ -114,7 +114,7 @@ impl Parse for Template {
 /// The source of a template.
 pub enum TemplateSource {
     File(String),
-    Resource(String),
+    Resource(Box<Expr>),
     Xml(String),
     #[cfg(feature = "blueprint")]
     Blueprint(String),
