@@ -133,6 +133,10 @@ path = "g_object_signals/1/main.rs"
 name = "g_object_signals_2"
 path = "g_object_signals/2/main.rs"
 
+[[bin]]
+name = "g_object_signals_3"
+path = "g_object_signals/3/main.rs"
+
 # g_object_subclassing
 [[bin]]
 name = "g_object_subclassing_1"

@@ -65,5 +65,33 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/b
 {{#rustdoc_include ../listings/g_object_signals/2/main.rs:signal_handling}}
 ```
 
+## Don't keep locks while emitting signals
+
+There is one rule that is easy to overlook when you start emitting signals from a custom GObject:
+**never hold a `RefCell` borrow or a `Mutex` guard while emitting a signal, notifying a property change, or otherwise calling into code that might call back into the same object.**
+The same rule applies to `Cell` whenever it is wrapping a non-`Copy` type that exposes a borrow API.
+Signal handlers run synchronously inside the call to `emit_by_name`, and a handler is free to call any method on your object - including methods that need to take a borrow on the same `RefCell`. If the borrow you took before emitting is still alive, the second borrow will panic with `BorrowError` (or `BorrowMutError`), and a `Mutex` would deadlock.
+
+The fix is to take only the data you need out of the cell or lock, drop the borrow, and only then emit:
+
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/g_object_signals/3/tracked_button/imp.rs">listings/g_object_signals/3/tracked_button/imp.rs</a>
+
+```rust
+{{#rustdoc_include ../listings/g_object_signals/3/tracked_button/imp.rs:clicked_good}}
+```
+
+The handler that comes with this listing intentionally calls back into the button by setting `text` from inside the `text-changed` handler:
+
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/g_object_signals/3/main.rs">listings/g_object_signals/3/main.rs</a>
+
+```rust
+{{#rustdoc_include ../listings/g_object_signals/3/main.rs:handler}}
+```
+
+The fact that this works without panicking is the load-bearing detail.
+If `clicked` had emitted while still holding `self.text.borrow()`, the call to `set_text` inside the handler would have aborted the program with `BorrowMutError: already borrowed`.
+
+Property notifications go through the same dispatch as signals, so the same rule applies to property change handlers and to anything else that ends up calling `notify` on the object.
+
 You now know how to connect to every kind of signal and how to create your own.
 Custom signals are especially useful, if you want to notify consumers of your GObject that a certain event occurred.
