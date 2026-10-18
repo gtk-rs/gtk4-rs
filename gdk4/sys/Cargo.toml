@@ -69,6 +69,9 @@ version = "4.21"
 [package.metadata.system-deps.gtk4.v4_24]
 version = "4.23"
 
+[package.metadata.system-deps.gtk4.v4_26]
+version = "4.25"
+
 [package.metadata.docs.rs]
 rustdoc-args = ["--generate-link-to-definition"]
 all-features = true
@@ -89,6 +92,7 @@ v4_18 = ["v4_16"]
 v4_20 = ["v4_18"]
 v4_22 = ["v4_20"]
 v4_24 = ["v4_22"]
+v4_26 = ["v4_24"]
 
 [dependencies]
 libc = "0.2"
