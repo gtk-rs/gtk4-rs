@@ -71,7 +71,7 @@ version = "4.21"
 version = "4.23"
 
 [package.metadata.system-deps.gtk4.v4_26]
-version = "4.26"
+version = "4.25"
 
 [package.metadata.docs.rs]
 rustdoc-args = ["--generate-link-to-definition"]
