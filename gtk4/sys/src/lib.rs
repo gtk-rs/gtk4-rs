@@ -15498,6 +15498,9 @@ unsafe extern "C" {
     ) -> *mut GtkWidget;
     pub fn gtk_grid_view_get_enable_rubberband(self_: *mut GtkGridView) -> gboolean;
     pub fn gtk_grid_view_get_factory(self_: *mut GtkGridView) -> *mut GtkListItemFactory;
+    #[cfg(feature = "v4_26")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_26")))]
+    pub fn gtk_grid_view_get_header_factory(self_: *mut GtkGridView) -> *mut GtkListItemFactory;
     pub fn gtk_grid_view_get_max_columns(self_: *mut GtkGridView) -> c_uint;
     pub fn gtk_grid_view_get_min_columns(self_: *mut GtkGridView) -> c_uint;
     pub fn gtk_grid_view_get_model(self_: *mut GtkGridView) -> *mut GtkSelectionModel;
@@ -15518,6 +15521,12 @@ unsafe extern "C" {
         enable_rubberband: gboolean,
     );
     pub fn gtk_grid_view_set_factory(self_: *mut GtkGridView, factory: *mut GtkListItemFactory);
+    #[cfg(feature = "v4_26")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_26")))]
+    pub fn gtk_grid_view_set_header_factory(
+        self_: *mut GtkGridView,
+        factory: *mut GtkListItemFactory,
+    );
     pub fn gtk_grid_view_set_max_columns(self_: *mut GtkGridView, max_columns: c_uint);
     pub fn gtk_grid_view_set_min_columns(self_: *mut GtkGridView, min_columns: c_uint);
     pub fn gtk_grid_view_set_model(self_: *mut GtkGridView, model: *mut GtkSelectionModel);

@@ -2110,6 +2110,11 @@ unsafe extern "C" {
     //=========================================================================
     pub fn gsk_blur_node_get_type() -> GType;
     pub fn gsk_blur_node_new(child: *mut GskRenderNode, radius: c_float) -> *mut GskBlurNode;
+    #[cfg(feature = "v4_26")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_26")))]
+    pub fn gsk_blur_node_get_blur_radius(
+        node: *const GskBlurNode,
+    ) -> *const graphene::graphene_size_t;
     pub fn gsk_blur_node_get_child(node: *const GskBlurNode) -> *mut GskRenderNode;
     pub fn gsk_blur_node_get_radius(node: *const GskBlurNode) -> c_float;
 
