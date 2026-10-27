@@ -32,7 +32,7 @@ impl FixedLayoutChild {
 
     #[doc(alias = "gtk_fixed_layout_child_set_transform")]
     #[doc(alias = "transform")]
-    pub fn set_transform(&self, transform: &gsk::Transform) {
+    pub fn set_transform(&self, transform: Option<&gsk::Transform>) {
         unsafe {
             ffi::gtk_fixed_layout_child_set_transform(
                 self.to_glib_none().0,

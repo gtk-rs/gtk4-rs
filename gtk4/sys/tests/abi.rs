@@ -3040,6 +3040,8 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(guint) GTK_DEBUG_SESSION", "4194304"),
     ("(guint) GTK_DEBUG_SIZE_REQUEST", "256"),
     ("(guint) GTK_DEBUG_SNAPSHOT", "16384"),
+    ("(guint) GTK_DEBUG_SVG_CONTINUOUS", "33554432"),
+    ("(guint) GTK_DEBUG_SVG_ERRORS", "16777216"),
     ("(guint) GTK_DEBUG_TEXT", "1"),
     ("(guint) GTK_DEBUG_TOUCHSCREEN", "2048"),
     ("(guint) GTK_DEBUG_TREE", "2"),

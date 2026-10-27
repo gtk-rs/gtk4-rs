@@ -350,6 +350,14 @@ bitflags! {
         #[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
         #[doc(alias = "GTK_DEBUG_GENERAL_INFO")]
         const GENERAL_INFO = ffi::GTK_DEBUG_GENERAL_INFO as _;
+        #[cfg(feature = "v4_26")]
+        #[cfg_attr(docsrs, doc(cfg(feature = "v4_26")))]
+        #[doc(alias = "GTK_DEBUG_SVG_ERRORS")]
+        const SVG_ERRORS = ffi::GTK_DEBUG_SVG_ERRORS as _;
+        #[cfg(feature = "v4_26")]
+        #[cfg_attr(docsrs, doc(cfg(feature = "v4_26")))]
+        #[doc(alias = "GTK_DEBUG_SVG_CONTINUOUS")]
+        const SVG_CONTINUOUS = ffi::GTK_DEBUG_SVG_CONTINUOUS as _;
     }
 }
 

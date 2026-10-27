@@ -1152,6 +1152,12 @@ pub const GTK_DEBUG_SESSION: GtkDebugFlags = 4194304;
 #[cfg(feature = "v4_24")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
 pub const GTK_DEBUG_GENERAL_INFO: GtkDebugFlags = 8388608;
+#[cfg(feature = "v4_26")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_26")))]
+pub const GTK_DEBUG_SVG_ERRORS: GtkDebugFlags = 16777216;
+#[cfg(feature = "v4_26")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_26")))]
+pub const GTK_DEBUG_SVG_CONTINUOUS: GtkDebugFlags = 33554432;
 
 pub type GtkDialogFlags = c_uint;
 pub const GTK_DIALOG_MODAL: GtkDialogFlags = 1;
