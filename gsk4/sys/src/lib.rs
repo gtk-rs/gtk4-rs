@@ -2228,6 +2228,11 @@ unsafe extern "C" {
     pub fn gsk_component_transfer_node_get_child(
         node: *const GskComponentTransferNode,
     ) -> *mut GskRenderNode;
+    #[cfg(feature = "v4_26")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_26")))]
+    pub fn gsk_component_transfer_node_get_snap(
+        node: *const GskComponentTransferNode,
+    ) -> GskRectSnap;
     #[cfg(feature = "v4_20")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_20")))]
     pub fn gsk_component_transfer_node_get_transfer(
