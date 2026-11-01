@@ -153,6 +153,9 @@ status = "generate"
 version = "4.20"
 
     [[object.function]]
+    name = "get_snap"
+    manual = true
+    [[object.function]]
     name = "get_transfer"
     # Changed the parameter type in 4.22 from an i32 to a GDK
     # enum that was only added in 4.22

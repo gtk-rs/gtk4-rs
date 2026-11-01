@@ -2,9 +2,6 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-#[cfg(feature = "v4_26")]
-#[cfg_attr(docsrs, doc(cfg(feature = "v4_26")))]
-use crate::RectSnap;
 use crate::{ComponentTransfer, RenderNode, ffi};
 use glib::{prelude::*, translate::*};
 
@@ -53,14 +50,6 @@ impl ComponentTransferNode {
                 self.to_glib_none().0,
             ))
         }
-    }
-
-    #[cfg(feature = "v4_26")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v4_26")))]
-    #[doc(alias = "gsk_component_transfer_node_get_snap")]
-    #[doc(alias = "get_snap")]
-    pub fn snap(&self) -> RectSnap {
-        unsafe { ffi::gsk_component_transfer_node_get_snap(self.to_glib_none().0) }
     }
 
     #[cfg(feature = "v4_22")]
