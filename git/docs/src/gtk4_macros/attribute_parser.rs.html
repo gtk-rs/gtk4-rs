@@ -76,8 +76,8 @@
 <a href=#3 id=3 data-nosnippet>3</a></span><span class="kw">use </span><a href="https://docs.rs/proc-macro2/1.0.107/proc_macro2/struct.Span.html">proc_macro2::Span</a>;
 <a href=#4 id=4 data-nosnippet>4</a><span class="kw">use </span><a href="https://docs.rs/quote/1.0.47/quote/to_tokens/trait.ToTokens.html">quote::ToTokens</a>;
 <a href=#5 id=5 data-nosnippet>5</a><span class="kw">use </span>syn::{
-<a href=#6 id=6 data-nosnippet>6</a>    <a href="https://docs.rs/syn/3.0.9/syn/attr/struct.Attribute.html">Attribute</a>, <a href="https://docs.rs/syn/3.0.9/syn/derive/struct.DeriveInput.html">DeriveInput</a>, <a href="https://docs.rs/syn/3.0.9/syn/error/struct.Error.html">Error</a>, <a href="https://docs.rs/syn/3.0.9/syn/data/struct.Field.html">Field</a>, <a href="https://docs.rs/syn/3.0.9/syn/data/enum.Fields.html">Fields</a>, Ident, LitBool, LitStr, <a href="https://docs.rs/syn/3.0.9/syn/attr/enum.Meta.html">Meta</a>, <a class="prelude-ty" href="https://docs.rs/syn/3.0.9/syn/error/type.Result.html">Result</a>, <a href="https://docs.rs/syn/3.0.9/syn/macro.Token.html">Token</a>,
-<a href=#7 id=7 data-nosnippet>7</a>    <a href="https://docs.rs/syn/3.0.9/syn/ty/enum.Type.html">Type</a>,
+<a href=#6 id=6 data-nosnippet>6</a>    <a href="https://docs.rs/syn/3.0.9/syn/attr/struct.Attribute.html">Attribute</a>, <a href="https://docs.rs/syn/3.0.9/syn/derive/struct.DeriveInput.html">DeriveInput</a>, <a href="https://docs.rs/syn/3.0.9/syn/error/struct.Error.html">Error</a>, <a href="https://docs.rs/syn/3.0.9/syn/expr/enum.Expr.html">Expr</a>, <a href="https://docs.rs/syn/3.0.9/syn/data/struct.Field.html">Field</a>, <a href="https://docs.rs/syn/3.0.9/syn/data/enum.Fields.html">Fields</a>, Ident, LitBool, LitStr, <a href="https://docs.rs/syn/3.0.9/syn/attr/enum.Meta.html">Meta</a>, <a class="prelude-ty" href="https://docs.rs/syn/3.0.9/syn/error/type.Result.html">Result</a>,
+<a href=#7 id=7 data-nosnippet>7</a>    <a href="https://docs.rs/syn/3.0.9/syn/macro.Token.html">Token</a>, <a href="https://docs.rs/syn/3.0.9/syn/ty/enum.Type.html">Type</a>,
 <a href=#8 id=8 data-nosnippet>8</a>    parse::{<a href="https://docs.rs/syn/3.0.9/syn/parse/trait.Parse.html">Parse</a>, <a href="https://docs.rs/syn/3.0.9/syn/parse/type.ParseStream.html">ParseStream</a>},
 <a href=#9 id=9 data-nosnippet>9</a>    <a href="https://docs.rs/syn/3.0.9/syn/punctuated/struct.Punctuated.html">punctuated::Punctuated</a>,
 <a href=#10 id=10 data-nosnippet>10</a>};
@@ -124,7 +124,7 @@
 <a href=#51 id=51 data-nosnippet>51</a>            } <span class="kw">else if </span>lookahead.peek(kw::resource) {
 <a href=#52 id=52 data-nosnippet>52</a>                <span class="kw">let </span>keyword: kw::resource = input.parse()<span class="question-mark">?</span>;
 <a href=#53 id=53 data-nosnippet>53</a>                <span class="kw">let _</span>: <span class="macro">Token!</span>[=] = input.parse()<span class="question-mark">?</span>;
-<a href=#54 id=54 data-nosnippet>54</a>                <span class="kw">let </span>value: LitStr = input.parse()<span class="question-mark">?</span>;
+<a href=#54 id=54 data-nosnippet>54</a>                <span class="kw">let </span>value: Expr = input.parse()<span class="question-mark">?</span>;
 <a href=#55 id=55 data-nosnippet>55</a>
 <a href=#56 id=56 data-nosnippet>56</a>                <span class="kw">if </span>source.is_some() {
 <a href=#57 id=57 data-nosnippet>57</a>                    <span class="kw">return </span><span class="prelude-val">Err</span>(Error::new_spanned(
@@ -133,7 +133,7 @@
 <a href=#60 id=60 data-nosnippet>60</a>                    ));
 <a href=#61 id=61 data-nosnippet>61</a>                }
 <a href=#62 id=62 data-nosnippet>62</a>
-<a href=#63 id=63 data-nosnippet>63</a>                source = <span class="prelude-val">Some</span>(TemplateSource::Resource(value.value()));
+<a href=#63 id=63 data-nosnippet>63</a>                source = <span class="prelude-val">Some</span>(TemplateSource::Resource(Box::new(value)));
 <a href=#64 id=64 data-nosnippet>64</a>            } <span class="kw">else if </span>lookahead.peek(kw::string) {
 <a href=#65 id=65 data-nosnippet>65</a>                <span class="kw">let </span>keyword: kw::string = input.parse()<span class="question-mark">?</span>;
 <a href=#66 id=66 data-nosnippet>66</a>                <span class="kw">let _</span>: <span class="macro">Token!</span>[=] = input.parse()<span class="question-mark">?</span>;
@@ -187,7 +187,7 @@
 <a href=#114 id=114 data-nosnippet>114</a><span class="doccomment">/// The source of a template.
 <a href=#115 id=115 data-nosnippet>115</a></span><span class="kw">pub enum </span>TemplateSource {
 <a href=#116 id=116 data-nosnippet>116</a>    File(<a href="https://doc.rust-lang.org/nightly/alloc/string/struct.String.html">String</a>),
-<a href=#117 id=117 data-nosnippet>117</a>    Resource(<a href="https://doc.rust-lang.org/nightly/alloc/string/struct.String.html">String</a>),
+<a href=#117 id=117 data-nosnippet>117</a>    Resource(<a href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html">Box</a>&lt;<a href="https://docs.rs/syn/3.0.9/syn/expr/enum.Expr.html">Expr</a>&gt;),
 <a href=#118 id=118 data-nosnippet>118</a>    Xml(<a href="https://doc.rust-lang.org/nightly/alloc/string/struct.String.html">String</a>),
 <a href=#119 id=119 data-nosnippet>119</a>    <span class="attr">#[cfg(feature = <span class="string">"blueprint"</span>)]
 <a href=#120 id=120 data-nosnippet>120</a>    </span>Blueprint(<a href="https://doc.rust-lang.org/nightly/alloc/string/struct.String.html">String</a>),
