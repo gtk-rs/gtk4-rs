@@ -35,7 +35,7 @@ fn build_ui(app: &Application) {
         .margin_end(48)
         .valign(Align::Center)
         .halign(Align::Center)
-        .state(is_switch_enabled)
+        .active(is_switch_enabled)
         .build();
     // ANCHOR_END: switch
 
