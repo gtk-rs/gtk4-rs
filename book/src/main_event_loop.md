@@ -68,7 +68,8 @@ Let's add it by executing the following in the terminal:
 cargo add async-channel
 ```
 
-We want to send a `bool` to inform, whether we want the button to react to clicks or not.
+We deactivate the button right away in the callback, so that it is insensitive before the task is even spawned.
+When the task is done, we want to send a `bool` to inform, whether we want the button to react to clicks again.
 Since we send in a separate thread, we can use [`send_blocking`](https://docs.rs/async-channel/latest/async_channel/struct.Sender.html#method.send_blocking).
 But what about receiving?
 Every time we get a message, we want to set the sensitivity of the button according to the `bool` we've received.
@@ -87,7 +88,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/b
 ```
 
 As you can see, spawning a task still doesn't freeze our user interface.
-However, now we can't spawn multiple tasks at the same time since the button becomes insensitive after the first task has been spawned.
+However, now we can't spawn multiple tasks at the same time since the button becomes insensitive as soon as it is clicked.
 After the task is finished, the button becomes sensitive again.
 
 <div style="text-align:center">

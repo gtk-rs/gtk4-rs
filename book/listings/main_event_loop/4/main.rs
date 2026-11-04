@@ -29,16 +29,13 @@ fn build_ui(app: &Application) {
     // Create channel that can hold at most 1 message at a time
     let (sender, receiver) = async_channel::bounded(1);
     // Connect to "clicked" signal of `button`
-    button.connect_clicked(move |_| {
+    button.connect_clicked(move |button| {
+        // Deactivate the button until the operation is done
+        button.set_sensitive(false);
         glib::spawn_future_local(clone!(
             #[strong]
             sender,
             async move {
-                // Deactivate the button until the operation is done
-                sender
-                    .send(false)
-                    .await
-                    .expect("The channel needs to be open.");
                 glib::timeout_future_seconds(5).await;
                 // Activate the button again
                 sender

@@ -28,12 +28,12 @@ fn build_ui(app: &Application) {
     // ANCHOR: callback
     // Connect to "clicked" signal of `button`
     button.connect_clicked(move |button| {
+        // Deactivate the button until the operation is done
+        button.set_sensitive(false);
         glib::spawn_future_local(clone!(
             #[weak]
             button,
             async move {
-                // Deactivate the button until the operation is done
-                button.set_sensitive(false);
                 glib::timeout_future_seconds(5).await;
                 // Activate the button again
                 button.set_sensitive(true);
