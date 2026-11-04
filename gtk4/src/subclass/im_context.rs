@@ -533,9 +533,15 @@ unsafe extern "C" fn im_context_get_preedit_string<T: IMContextImpl>(
 
         let (text, attrs, cursor_idx) = imp.preedit_string();
 
-        *text_ptr = text.into_glib_ptr();
-        *cursor_index_ptr = cursor_idx;
-        *attrs_ptr = attrs.into_glib_ptr();
+        if !text_ptr.is_null() {
+            *text_ptr = text.into_glib_ptr();
+        }
+        if !cursor_index_ptr.is_null() {
+            *cursor_index_ptr = cursor_idx;
+        }
+        if !attrs_ptr.is_null() {
+            *attrs_ptr = attrs.into_glib_ptr();
+        }
     }
 }
 
@@ -749,5 +755,80 @@ unsafe extern "C" fn im_context_invalid_composition<T: IMContextImpl>(
         let text: Borrowed<GString> = from_glib_borrow(stringptr);
 
         imp.invalid_composition(&text).into_glib()
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use crate::{self as gtk4};
+
+    // Regression test for https://github.com/gtk-rs/gtk4-rs/issues/2391:
+    // GTK's own `get_preedit_string` implementations only write the out-params
+    // that are non-NULL, and `GtkText` passes NULL for some of them.
+    mod imp {
+        use super::*;
+
+        #[derive(Default)]
+        pub struct TestIMContext;
+
+        #[glib::object_subclass]
+        impl ObjectSubclass for TestIMContext {
+            const NAME: &'static str = "GtkRsTestIMContext";
+            type Type = super::TestIMContext;
+            type ParentType = IMContext;
+        }
+
+        impl ObjectImpl for TestIMContext {}
+        impl IMContextImpl for TestIMContext {}
+    }
+
+    glib::wrapper! {
+        pub struct TestIMContext(ObjectSubclass<imp::TestIMContext>)
+            @extends IMContext;
+    }
+
+    #[crate::test]
+    fn preedit_string_null_out_params() {
+        let context = glib::Object::new::<TestIMContext>();
+        let ptr = context.upcast_ref::<IMContext>().as_ptr();
+
+        unsafe {
+            // The three NULL patterns `GtkText` uses.
+            let mut text = std::ptr::null_mut();
+            ffi::gtk_im_context_get_preedit_string(
+                ptr,
+                &mut text,
+                std::ptr::null_mut(),
+                std::ptr::null_mut(),
+            );
+            assert_eq!(std::ffi::CStr::from_ptr(text).to_bytes(), b"");
+            glib::ffi::g_free(text as *mut _);
+
+            let mut text = std::ptr::null_mut();
+            let mut cursor_pos = -1;
+            ffi::gtk_im_context_get_preedit_string(
+                ptr,
+                &mut text,
+                std::ptr::null_mut(),
+                &mut cursor_pos,
+            );
+            assert_eq!(std::ffi::CStr::from_ptr(text).to_bytes(), b"");
+            assert_eq!(cursor_pos, 0);
+            glib::ffi::g_free(text as *mut _);
+
+            let mut text = std::ptr::null_mut();
+            let mut attrs = std::ptr::null_mut();
+            ffi::gtk_im_context_get_preedit_string(
+                ptr,
+                &mut text,
+                &mut attrs,
+                std::ptr::null_mut(),
+            );
+            assert_eq!(std::ffi::CStr::from_ptr(text).to_bytes(), b"");
+            assert!(!attrs.is_null());
+            glib::ffi::g_free(text as *mut _);
+            pango::ffi::pango_attr_list_unref(attrs);
+        }
     }
 }
