@@ -36,7 +36,7 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-555a9d2d.js";
+            window.path_to_searchindex_js = "searchindex-a4183ed2.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-b29212ab.js"></script>
@@ -325,7 +325,8 @@ In order to exchange information with the task we can create a channel with the 
 Let’s add it by executing the following in the terminal:</p>
 <pre><code>cargo add async-channel
 </code></pre>
-<p>We want to send a <code>bool</code> to inform, whether we want the button to react to clicks or not.
+<p>We deactivate the button right away in the callback, so that it is insensitive before the task is even spawned.
+When the task is done, we want to send a <code>bool</code> to inform, whether we want the button to react to clicks again.
 Since we send in a separate thread, we can use <a href="https://docs.rs/async-channel/latest/async_channel/struct.Sender.html#method.send_blocking"><code>send_blocking</code></a>.
 But what about receiving?
 Every time we get a message, we want to set the sensitivity of the button according to the <code>bool</code> we’ve received.
@@ -370,14 +371,12 @@ This <code>async</code> block is spawned on the <code>glib</code> main loop with
 </span>    // Create channel that can hold at most 1 message at a time
     let (sender, receiver) = async_channel::bounded(1);
     // Connect to "clicked" signal of `button`
-    button.connect_clicked(move |_| {
+    button.connect_clicked(move |button| {
+        // Deactivate the button until the operation is done
+        button.set_sensitive(false);
         let sender = sender.clone();
         // The long running operation runs now in a separate thread
         gio::spawn_blocking(move || {
-            // Deactivate the button until the operation is done
-            sender
-                .send_blocking(false)
-                .expect("The channel needs to be open.");
             let five_seconds = Duration::from_secs(5);
             thread::sleep(five_seconds);
             // Activate the button again
@@ -409,7 +408,7 @@ This <code>async</code> block is spawned on the <code>glib</code> main loop with
 </span><span class="boring">    window.present();
 </span><span class="boring">}</span></code></pre>
 <p>As you can see, spawning a task still doesn’t freeze our user interface.
-However, now we can’t spawn multiple tasks at the same time since the button becomes insensitive after the first task has been spawned.
+However, now we can’t spawn multiple tasks at the same time since the button becomes insensitive as soon as it is clicked.
 After the task is finished, the button becomes sensitive again.</p>
 <div style="text-align:center">
  <video autoplay="" muted="" loop="">
@@ -455,16 +454,13 @@ The converted code looks and behaves very similar to the multithreaded code.</p>
 </span>    // Create channel that can hold at most 1 message at a time
     let (sender, receiver) = async_channel::bounded(1);
     // Connect to "clicked" signal of `button`
-    button.connect_clicked(move |_| {
+    button.connect_clicked(move |button| {
+        // Deactivate the button until the operation is done
+        button.set_sensitive(false);
         glib::spawn_future_local(clone!(
             #[strong]
             sender,
             async move {
-                // Deactivate the button until the operation is done
-                sender
-                    .send(false)
-                    .await
-                    .expect("The channel needs to be open.");
                 glib::timeout_future_seconds(5).await;
                 // Activate the button again
                 sender
@@ -527,12 +523,12 @@ The converted code looks and behaves very similar to the multithreaded code.</p>
 </span><span class="boring">
 </span>    // Connect to "clicked" signal of `button`
     button.connect_clicked(move |button| {
+        // Deactivate the button until the operation is done
+        button.set_sensitive(false);
         glib::spawn_future_local(clone!(
             #[weak]
             button,
             async move {
-                // Deactivate the button until the operation is done
-                button.set_sensitive(false);
                 glib::timeout_future_seconds(5).await;
                 // Activate the button again
                 button.set_sensitive(true);
@@ -655,13 +651,13 @@ We can then get the return value of the function by calling <code>await</code> o
 </span><span class="boring">
 </span>    // Connect to "clicked" signal of `button`
     button.connect_clicked(move |button| {
+        // Deactivate the button until the operation is done
+        button.set_sensitive(false);
         // The main loop executes the asynchronous block
         glib::spawn_future_local(clone!(
             #[weak]
             button,
             async move {
-                // Deactivate the button until the operation is done
-                button.set_sensitive(false);
                 let enable_button = gio::spawn_blocking(move || {
                     let five_seconds = Duration::from_secs(5);
                     thread::sleep(five_seconds);
