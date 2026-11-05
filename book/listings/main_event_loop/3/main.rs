@@ -32,14 +32,12 @@ fn build_ui(app: &Application) {
     // Create channel that can hold at most 1 message at a time
     let (sender, receiver) = async_channel::bounded(1);
     // Connect to "clicked" signal of `button`
-    button.connect_clicked(move |_| {
+    button.connect_clicked(move |button| {
+        // Deactivate the button until the operation is done
+        button.set_sensitive(false);
         let sender = sender.clone();
         // The long running operation runs now in a separate thread
         gio::spawn_blocking(move || {
-            // Deactivate the button until the operation is done
-            sender
-                .send_blocking(false)
-                .expect("The channel needs to be open.");
             let five_seconds = Duration::from_secs(5);
             thread::sleep(five_seconds);
             // Activate the button again
