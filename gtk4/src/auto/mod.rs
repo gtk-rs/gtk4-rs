@@ -993,6 +993,13 @@ mod svg;
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_22")))]
 pub use self::svg::Svg;
 
+#[cfg(feature = "v4_24")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+mod svg_widget;
+#[cfg(feature = "v4_24")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
+pub use self::svg_widget::SvgWidget;
+
 mod switch;
 pub use self::switch::Switch;
 
