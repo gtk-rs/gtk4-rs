@@ -58,3 +58,4 @@ cargo run --bin basics
 - [Tokio Async Request](./tokio_async_request/)
 - [Video Player](./video_player/)
 - [Virtual Methods](./virtual_methods/)
+- [wgpu Area](./wgpu_area/)
