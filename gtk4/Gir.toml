@@ -2208,6 +2208,11 @@ status = "generate"
 generate_builder = false
 
 [[object]]
+name = "Gtk.SvgWidget"
+status = "generate"
+generate_builder = false
+
+[[object]]
 name = "Gtk.Switch"
 status = "generate"
     [[object.signal]]
