@@ -1,2 +1,2 @@
-window.ALL_CRATES = ["gdk4","gdk4_macos","gdk4_macos_sys","gdk4_sys","gdk4_wayland","gdk4_wayland_sys","gdk4_win32","gdk4_win32_sys","gdk4_x11","gdk4_x11_sys","gsk4","gsk4_sys","gtk4","gtk4_macros","gtk4_sys"];
-//{"start":21,"fragment_lengths":[6,13,17,11,15,19,13,17,11,15,7,11,7,14,11]}
+window.ALL_CRATES = [{"c":"gdk4"},{"c":"gdk4_macos"},{"c":"gdk4_macos_sys"},{"c":"gdk4_sys"},{"c":"gdk4_wayland"},{"c":"gdk4_wayland_sys"},{"c":"gdk4_win32"},{"c":"gdk4_win32_sys"},{"c":"gdk4_x11"},{"c":"gdk4_x11_sys"},{"c":"gsk4"},{"c":"gsk4_sys"},{"c":"gtk4"},{"c":"gtk4_macros"},{"c":"gtk4_sys"}];
+//{"start":21,"fragment_lengths":[12,19,23,17,21,25,19,23,17,21,13,17,13,20,17]}
