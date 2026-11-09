@@ -6508,6 +6508,9 @@ unsafe extern "C" {
     #[cfg(feature = "v4_24")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
     pub fn gdk_keyval_get_aliases(keyval: c_uint, n_aliases: *mut c_uint) -> *const c_uint;
+    #[cfg(feature = "v4_26")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_26")))]
+    pub fn gdk_keyval_is_alias(keyval_a: c_uint, keyval_b: c_uint) -> gboolean;
     pub fn gdk_keyval_is_lower(keyval: c_uint) -> gboolean;
     pub fn gdk_keyval_is_upper(keyval: c_uint) -> gboolean;
     pub fn gdk_keyval_name(keyval: c_uint) -> *const c_char;

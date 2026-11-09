@@ -39,10 +39,7 @@ impl DragIcon {
     #[doc(alias = "get_for_drag")]
     pub fn for_drag(drag: &gdk::Drag) -> DragIcon {
         assert_initialized_main_thread!();
-        unsafe {
-            Widget::from_glib_none(ffi::gtk_drag_icon_get_for_drag(drag.to_glib_none().0))
-                .unsafe_cast()
-        }
+        unsafe { from_glib_none(ffi::gtk_drag_icon_get_for_drag(drag.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_drag_icon_get_child")]
