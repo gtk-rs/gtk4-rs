@@ -11,6 +11,14 @@ pub fn intern_mime_type(string: &str) -> Option<glib::GString> {
     unsafe { from_glib_none(ffi::gdk_intern_mime_type(string.to_glib_none().0)) }
 }
 
+#[cfg(feature = "v4_26")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_26")))]
+#[doc(alias = "gdk_keyval_is_alias")]
+pub fn keyval_is_alias(keyval_a: u32, keyval_b: u32) -> bool {
+    assert_initialized_main_thread!();
+    unsafe { from_glib(ffi::gdk_keyval_is_alias(keyval_a, keyval_b)) }
+}
+
 #[cfg_attr(feature = "v4_12", deprecated = "Since 4.12")]
 #[allow(deprecated)]
 #[doc(alias = "gdk_pixbuf_get_from_surface")]
