@@ -52,9 +52,3 @@ pub fn set_allowed_backends(backends: &str) {
         ffi::gdk_set_allowed_backends(backends.to_glib_none().0);
     }
 }
-
-#[doc(alias = "gdk_unicode_to_keyval")]
-pub fn unicode_to_keyval(wc: u32) -> u32 {
-    assert_initialized_main_thread!();
-    unsafe { ffi::gdk_unicode_to_keyval(wc) }
-}
