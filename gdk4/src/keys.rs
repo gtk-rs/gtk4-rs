@@ -4,6 +4,7 @@ use crate::{ffi, prelude::*};
 use glib::{GString, Type, Value, translate::*, value::FromValue};
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
+#[repr(transparent)]
 // rustdoc-stripper-ignore-next
 /// A wrapper around `GDK_KEY_` constants and keyval methods.
 pub struct Key(u32);
