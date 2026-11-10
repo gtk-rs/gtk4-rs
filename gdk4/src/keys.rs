@@ -26,6 +26,12 @@ impl Key {
         }
     }
 
+    #[doc(alias = "gdk_unicode_to_keyval")]
+    pub fn from_unicode(c: char) -> Self {
+        skip_assert_initialized!();
+        unsafe { from_glib(ffi::gdk_unicode_to_keyval(c as u32)) }
+    }
+
     #[cfg(feature = "v4_24")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_24")))]
     #[doc(alias = "gdk_keyval_get_aliases")]
