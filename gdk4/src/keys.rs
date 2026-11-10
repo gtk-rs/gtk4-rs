@@ -42,6 +42,19 @@ impl Key {
         }
     }
 
+    #[cfg(feature = "v4_26")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_26")))]
+    #[doc(alias = "gdk_keyval_is_alias")]
+    pub fn is_alias(&self, other: Key) -> bool {
+        skip_assert_initialized!();
+        unsafe {
+            from_glib(ffi::gdk_keyval_is_alias(
+                self.into_glib(),
+                other.into_glib(),
+            ))
+        }
+    }
+
     #[doc(alias = "gdk_keyval_convert_case")]
     pub fn convert_case(&self) -> (Self, Self) {
         assert_initialized_main_thread!();

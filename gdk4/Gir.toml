@@ -194,6 +194,11 @@ status = "generate"
     rename = "aliases"
     doc_struct_name = "Key"
     [[object.function]]
+    name = "keyval_is_alias"
+    manual = true # manually handled by Key
+    rename = "is_alias"
+    doc_struct_name = "Key"
+    [[object.function]]
     name = "keyval_is_lower"
     manual = true # manually handled by Key
     rename = "is_lower"
