@@ -29,8 +29,6 @@ impl ColumnViewCell {
         unsafe { from_glib_none(ffi::gtk_column_view_cell_get_child(self.to_glib_none().0)) }
     }
 
-    #[cfg(not(feature = "v4_12"))]
-    #[cfg_attr(docsrs, doc(cfg(not(feature = "v4_12"))))]
     #[doc(alias = "gtk_column_view_cell_get_focusable")]
     #[doc(alias = "get_focusable")]
     #[doc(alias = "focusable")]
@@ -76,8 +74,6 @@ impl ColumnViewCell {
         }
     }
 
-    #[cfg(not(feature = "v4_12"))]
-    #[cfg_attr(docsrs, doc(cfg(not(feature = "v4_12"))))]
     #[doc(alias = "gtk_column_view_cell_set_focusable")]
     #[doc(alias = "focusable")]
     pub fn set_focusable(&self, focusable: bool) {
