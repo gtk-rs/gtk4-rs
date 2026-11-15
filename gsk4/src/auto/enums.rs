@@ -1692,6 +1692,10 @@ pub enum ScalingFilter {
     Nearest,
     #[doc(alias = "GSK_SCALING_FILTER_TRILINEAR")]
     Trilinear,
+    #[cfg(feature = "v4_26")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_26")))]
+    #[doc(alias = "GSK_SCALING_FILTER_BICUBIC")]
+    Bicubic,
     #[doc(hidden)]
     __Unknown(i32),
 }
@@ -1706,6 +1710,8 @@ impl IntoGlib for ScalingFilter {
             Self::Linear => ffi::GSK_SCALING_FILTER_LINEAR,
             Self::Nearest => ffi::GSK_SCALING_FILTER_NEAREST,
             Self::Trilinear => ffi::GSK_SCALING_FILTER_TRILINEAR,
+            #[cfg(feature = "v4_26")]
+            Self::Bicubic => ffi::GSK_SCALING_FILTER_BICUBIC,
             Self::__Unknown(value) => value,
         }
     }
@@ -1721,6 +1727,8 @@ impl FromGlib<ffi::GskScalingFilter> for ScalingFilter {
             ffi::GSK_SCALING_FILTER_LINEAR => Self::Linear,
             ffi::GSK_SCALING_FILTER_NEAREST => Self::Nearest,
             ffi::GSK_SCALING_FILTER_TRILINEAR => Self::Trilinear,
+            #[cfg(feature = "v4_26")]
+            ffi::GSK_SCALING_FILTER_BICUBIC => Self::Bicubic,
             value => Self::__Unknown(value),
         }
     }

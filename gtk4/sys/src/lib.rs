@@ -1736,6 +1736,20 @@ impl ::std::fmt::Debug for GtkAlertDialogClass {
 
 #[repr(C)]
 #[allow(dead_code)]
+pub struct GtkAllocationDetails {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+impl ::std::fmt::Debug for GtkAllocationDetails {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GtkAllocationDetails @ {self:p}"))
+            .finish()
+    }
+}
+
+#[repr(C)]
+#[allow(dead_code)]
 pub struct _GtkAlternativeTriggerClass {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -10982,6 +10996,41 @@ unsafe extern "C" {
     ) -> *mut glib::GList;
 
     //=========================================================================
+    // GtkAllocationDetails
+    //=========================================================================
+    #[cfg(feature = "v4_26")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_26")))]
+    pub fn gtk_allocation_details_get_type() -> GType;
+    #[cfg(feature = "v4_26")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_26")))]
+    pub fn gtk_allocation_details_new() -> *mut GtkAllocationDetails;
+    #[cfg(feature = "v4_26")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_26")))]
+    pub fn gtk_allocation_details_copy(
+        other: *const GtkAllocationDetails,
+    ) -> *mut GtkAllocationDetails;
+    #[cfg(feature = "v4_26")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_26")))]
+    pub fn gtk_allocation_details_free(self_: *mut GtkAllocationDetails);
+    #[cfg(feature = "v4_26")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_26")))]
+    pub fn gtk_allocation_details_get_baseline(self_: *const GtkAllocationDetails) -> c_int;
+    #[cfg(feature = "v4_26")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_26")))]
+    pub fn gtk_allocation_details_get_transform(
+        self_: *const GtkAllocationDetails,
+    ) -> *mut gsk::GskTransform;
+    #[cfg(feature = "v4_26")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_26")))]
+    pub fn gtk_allocation_details_set_baseline(self_: *mut GtkAllocationDetails, baseline: c_int);
+    #[cfg(feature = "v4_26")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_26")))]
+    pub fn gtk_allocation_details_set_transform(
+        self_: *mut GtkAllocationDetails,
+        transform: *mut gsk::GskTransform,
+    );
+
+    //=========================================================================
     // GtkBitset
     //=========================================================================
     pub fn gtk_bitset_get_type() -> GType;
@@ -11421,6 +11470,13 @@ unsafe extern "C" {
     pub fn gtk_text_iter_forward_to_tag_toggle(
         iter: *mut GtkTextIter,
         tag: *mut GtkTextTag,
+    ) -> gboolean;
+    #[cfg(feature = "v4_26")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_26")))]
+    pub fn gtk_text_iter_forward_to_tag_toggle_with_limit(
+        iter: *mut GtkTextIter,
+        tag: *mut GtkTextTag,
+        limit: *const GtkTextIter,
     ) -> gboolean;
     pub fn gtk_text_iter_forward_visible_cursor_position(iter: *mut GtkTextIter) -> gboolean;
     pub fn gtk_text_iter_forward_visible_cursor_positions(
@@ -20889,6 +20945,16 @@ unsafe extern "C" {
         height: c_int,
         baseline: c_int,
         transform: *mut gsk::GskTransform,
+    );
+    #[cfg(feature = "v4_26")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_26")))]
+    pub fn gtk_widget_allocate_detailed(
+        widget: *mut GtkWidget,
+        x: c_int,
+        y: c_int,
+        width: c_int,
+        height: c_int,
+        details: *const GtkAllocationDetails,
     );
     pub fn gtk_widget_child_focus(widget: *mut GtkWidget, direction: GtkDirectionType) -> gboolean;
     pub fn gtk_widget_compute_bounds(

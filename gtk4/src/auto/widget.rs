@@ -152,6 +152,13 @@ pub trait WidgetExt: IsA<Widget> + 'static {
         }
     }
 
+    //#[cfg(feature = "v4_26")]
+    //#[cfg_attr(docsrs, doc(cfg(feature = "v4_26")))]
+    //#[doc(alias = "gtk_widget_allocate_detailed")]
+    //fn allocate_detailed(&self, x: i32, y: i32, width: i32, height: i32, details: /*Ignored*/Option<&AllocationDetails>) {
+    //    unsafe { TODO: call ffi:gtk_widget_allocate_detailed() }
+    //}
+
     #[doc(alias = "gtk_widget_child_focus")]
     fn child_focus(&self, direction: DirectionType) -> bool {
         unsafe {

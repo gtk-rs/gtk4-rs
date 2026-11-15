@@ -444,6 +444,23 @@ impl TextIter {
         }
     }
 
+    #[cfg(feature = "v4_26")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_26")))]
+    #[doc(alias = "gtk_text_iter_forward_to_tag_toggle_with_limit")]
+    pub fn forward_to_tag_toggle_with_limit(
+        &mut self,
+        tag: Option<&impl IsA<TextTag>>,
+        limit: Option<&TextIter>,
+    ) -> bool {
+        unsafe {
+            from_glib(ffi::gtk_text_iter_forward_to_tag_toggle_with_limit(
+                self.to_glib_none_mut().0,
+                tag.map(|p| p.as_ref()).to_glib_none().0,
+                limit.to_glib_none().0,
+            ))
+        }
+    }
+
     #[doc(alias = "gtk_text_iter_forward_visible_cursor_position")]
     pub fn forward_visible_cursor_position(&mut self) -> bool {
         unsafe {
