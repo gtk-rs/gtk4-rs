@@ -1149,6 +1149,13 @@ mod accessible_list;
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
 pub use self::accessible_list::AccessibleList;
 
+#[cfg(feature = "v4_26")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_26")))]
+mod allocation_details;
+#[cfg(feature = "v4_26")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_26")))]
+pub use self::allocation_details::AllocationDetails;
+
 mod bitset;
 pub use self::bitset::Bitset;
 

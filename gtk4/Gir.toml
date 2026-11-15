@@ -39,6 +39,7 @@ generate = [
     "Gtk.Adjustment",
     "Gtk.AlertDialog",
     "Gtk.Allocation",
+    "Gtk.AllocationDetails",
     "Gtk.AlternativeTrigger",
     "Gtk.AnyFilter",
     "Gtk.AppChooser",
