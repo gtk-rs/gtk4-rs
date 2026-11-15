@@ -30,5 +30,7 @@ syn = {version = "3.0", features = ["full"]}
 [dev-dependencies]
 futures-channel = "0.3"
 futures-util = "0.3"
-gtk = { workspace = true, features = ["v4_10"] }
+# Needed by the compile-fail tests: trybuild2 fails to detect enabled features
+# with cargo >= 1.100, so enable it here instead.
+gtk = { workspace = true, features = ["v4_10", "xml_validation"] }
 trybuild2 = "1.0"
