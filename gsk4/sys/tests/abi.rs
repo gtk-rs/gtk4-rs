@@ -495,6 +495,7 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(gint) GSK_REPEATING_RADIAL_GRADIENT_NODE", "7"),
     ("(gint) GSK_REPEAT_NODE", "16"),
     ("(gint) GSK_ROUNDED_CLIP_NODE", "18"),
+    ("(gint) GSK_SCALING_FILTER_BICUBIC", "3"),
     ("(gint) GSK_SCALING_FILTER_LINEAR", "0"),
     ("(gint) GSK_SCALING_FILTER_NEAREST", "1"),
     ("(gint) GSK_SCALING_FILTER_TRILINEAR", "2"),

@@ -194,6 +194,9 @@ pub type GskScalingFilter = c_int;
 pub const GSK_SCALING_FILTER_LINEAR: GskScalingFilter = 0;
 pub const GSK_SCALING_FILTER_NEAREST: GskScalingFilter = 1;
 pub const GSK_SCALING_FILTER_TRILINEAR: GskScalingFilter = 2;
+#[cfg(feature = "v4_26")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_26")))]
+pub const GSK_SCALING_FILTER_BICUBIC: GskScalingFilter = 3;
 
 pub type GskSerializationError = c_int;
 pub const GSK_SERIALIZATION_UNSUPPORTED_FORMAT: GskSerializationError = 0;
