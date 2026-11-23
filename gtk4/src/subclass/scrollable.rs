@@ -22,12 +22,15 @@ pub trait ScrollableImplExt: ScrollableImpl {
                 as *const ffi::GtkScrollableInterface;
 
             if let Some(func) = (*parent_iface).get_border {
-                let border = std::ptr::null_mut();
+                // The parent implementation may only initialize part of the border
+                // (GtkTreeView only sets `top`), so start from a zeroed value.
+                let mut border = std::mem::MaybeUninit::<ffi::GtkBorder>::zeroed();
                 if from_glib(func(
                     self.obj().unsafe_cast_ref::<Scrollable>().to_glib_none().0,
-                    border,
+                    border.as_mut_ptr(),
                 )) {
-                    return Some(from_glib_none(border));
+                    let border = border.assume_init();
+                    return Some(from_glib_none(&border as *const ffi::GtkBorder));
                 }
             }
             None
