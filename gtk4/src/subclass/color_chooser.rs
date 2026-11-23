@@ -78,15 +78,16 @@ pub trait ColorChooserImplExt: ColorChooserImpl {
             let func = (*parent_iface)
                 .get_rgba
                 .expect("no parent \"get_rgba\" implementation");
-            let rgba = std::ptr::null_mut();
+            let mut rgba = std::mem::MaybeUninit::<gdk::ffi::GdkRGBA>::zeroed();
             func(
                 self.obj()
                     .unsafe_cast_ref::<ColorChooser>()
                     .to_glib_none()
                     .0,
-                rgba,
+                rgba.as_mut_ptr(),
             );
-            from_glib_none(rgba)
+            let rgba = rgba.assume_init();
+            from_glib_none(&rgba as *const gdk::ffi::GdkRGBA)
         }
     }
 
