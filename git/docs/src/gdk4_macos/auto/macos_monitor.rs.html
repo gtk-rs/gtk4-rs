@@ -85,7 +85,7 @@
 <a href=#12 id=12 data-nosnippet>12</a>    ///
 <a href=#13 id=13 data-nosnippet>13</a>    /// [`trait@gdk::prelude::MonitorExt`]
 <a href=#14 id=14 data-nosnippet>14</a>    </span><span class="attr">#[doc(alias = <span class="string">"GdkMacosMonitor"</span>)]
-<a href=#15 id=15 data-nosnippet>15</a>    </span><span class="kw">pub struct </span><a href="../../../gdk4_macos/struct.MacosMonitor.html">MacosMonitor</a>(Object&lt;ffi::<a href="../../../gdk4_macos_sys/struct.GdkMacosMonitor.html">GdkMacosMonitor</a>, ffi::<a href="../../../gdk4_macos_sys/type.GdkMacosMonitorClass.html">GdkMacosMonitorClass</a>&gt;) @extends gdk::<a href="../../../gdk4/auto/monitor/struct.Monitor.html">Monitor</a>;
+<a href=#15 id=15 data-nosnippet>15</a>    </span><span class="kw">pub struct </span><a href="../../../gdk4_macos/struct.MacosMonitor.html">MacosMonitor</a>(Object&lt;ffi::<a href="../../../gdk4_macos_sys/struct.GdkMacosMonitor.html">GdkMacosMonitor</a>, ffi::<a href="../../../gdk4_macos_sys/type.GdkMacosMonitorClass.html">GdkMacosMonitorClass</a>&gt;) @extends gdk::<a href="https://gtk-rs.org/gtk4-rs/git/docs/gdk4/auto/monitor/struct.Monitor.html">Monitor</a>;
 <a href=#16 id=16 data-nosnippet>16</a>
 <a href=#17 id=17 data-nosnippet>17</a>    <span class="kw">match fn </span>{
 <a href=#18 id=18 data-nosnippet>18</a>        type_ =&gt; || ffi::gdk_macos_monitor_get_type(),
@@ -108,10 +108,10 @@
 <a href=#35 id=35 data-nosnippet>35</a>    /// a [`gdk::Rectangle`][crate::gdk::Rectangle] to be filled with the monitor geometry
 <a href=#36 id=36 data-nosnippet>36</a>    </span><span class="attr">#[doc(alias = <span class="string">"gdk_macos_monitor_get_workarea"</span>)]
 <a href=#37 id=37 data-nosnippet>37</a>    #[doc(alias = <span class="string">"get_workarea"</span>)]
-<a href=#38 id=38 data-nosnippet>38</a>    </span><span class="kw">pub fn </span>workarea(monitor: <span class="kw-2">&amp;</span><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html">IsA</a>&lt;gdk::<a href="../../../gdk4/auto/monitor/struct.Monitor.html">Monitor</a>&gt;) -&gt; gdk::<a href="../../../gdk4/auto/rectangle/struct.Rectangle.html">Rectangle</a> {
+<a href=#38 id=38 data-nosnippet>38</a>    </span><span class="kw">pub fn </span>workarea(monitor: <span class="kw-2">&amp;</span><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html">IsA</a>&lt;gdk::<a href="https://gtk-rs.org/gtk4-rs/git/docs/gdk4/auto/monitor/struct.Monitor.html">Monitor</a>&gt;) -&gt; gdk::<a href="https://gtk-rs.org/gtk4-rs/git/docs/gdk4/auto/rectangle/struct.Rectangle.html">Rectangle</a> {
 <a href=#39 id=39 data-nosnippet>39</a>        <span class="macro">assert_initialized_main_thread!</span>();
 <a href=#40 id=40 data-nosnippet>40</a>        <span class="kw">unsafe </span>{
-<a href=#41 id=41 data-nosnippet>41</a>            <span class="kw">let </span><span class="kw-2">mut </span>geometry = gdk::<a href="../../../gdk4/auto/rectangle/struct.Rectangle.html">Rectangle</a>::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.Uninitialized.html#tymethod.uninitialized">uninitialized</a>();
+<a href=#41 id=41 data-nosnippet>41</a>            <span class="kw">let </span><span class="kw-2">mut </span>geometry = gdk::<a href="https://gtk-rs.org/gtk4-rs/git/docs/gdk4/auto/rectangle/struct.Rectangle.html">Rectangle</a>::<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.Uninitialized.html#tymethod.uninitialized">uninitialized</a>();
 <a href=#42 id=42 data-nosnippet>42</a>            ffi::<a href="../../../gdk4_macos_sys/fn.gdk_macos_monitor_get_workarea.html">gdk_macos_monitor_get_workarea</a>(
 <a href=#43 id=43 data-nosnippet>43</a>                <a href="#38">monitor</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
 <a href=#44 id=44 data-nosnippet>44</a>                <a href="#41">geometry</a>.<a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.ToGlibPtrMut.html#tymethod.to_glib_none_mut">to_glib_none_mut</a>().<span class="number">0</span>,
