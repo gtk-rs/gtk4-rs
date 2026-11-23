@@ -18,7 +18,7 @@ pub trait TreeModelFilterImpl: ObjectImpl + ObjectSubclass<Type: IsA<TreeModelFi
         &self,
         child_model: &M,
         iter: &TreeIter,
-        value: Value,
+        value: &mut Value,
         column: i32,
     ) {
         self.parent_modify(child_model, iter, value, column)
@@ -52,7 +52,7 @@ pub trait TreeModelFilterImplExt: TreeModelFilterImpl {
         &self,
         child_model: &M,
         iter: &TreeIter,
-        value: Value,
+        value: &mut Value,
         index: i32,
     ) {
         unsafe {
@@ -66,7 +66,7 @@ pub trait TreeModelFilterImplExt: TreeModelFilterImpl {
                         .0,
                     child_model.as_ref().to_glib_none().0,
                     iter.to_glib_none().0 as *mut _,
-                    value.to_glib_none().0 as *mut _,
+                    value.to_glib_none_mut().0,
                     index,
                 )
             }
@@ -115,7 +115,9 @@ unsafe extern "C" fn tree_model_filter_modify<T: TreeModelFilterImpl>(
         let imp = instance.imp();
         let child_model: Borrowed<TreeModel> = from_glib_borrow(child_modelptr);
         let iter: Borrowed<TreeIter> = from_glib_borrow(iterptr);
-        let value: Value = from_glib_full(valueptr);
+        // The vfunc receives caller-owned out storage that is initialized by the
+        // parent implementation (or the subclass), so it must not be owned here.
+        let value = Value::from_glib_ptr_borrow_mut(valueptr);
 
         imp.modify(&*child_model, &iter, value, column)
     }
